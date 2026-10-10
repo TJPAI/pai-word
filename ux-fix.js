@@ -8,22 +8,28 @@
       .replace(/"/g,'&quot;');
   }
 
-  function contrastExamples(u){
-    if(Array.isArray(u.s.compareExamples)&&u.s.compareExamples.length){
-      return u.s.compareExamples.slice(0,2);
+  function contrastData(u){
+    if(u.s.compare&&Array.isArray(u.s.compare.examples)){
+      return {
+        words:Array.isArray(u.s.compare.words)?u.s.compare.words:[],
+        note:u.s.compare.note||'',
+        examples:u.s.compare.examples.slice(0,3)
+      };
     }
-    // Backward-compatible fallback for older entries until dedicated
-    // synonym-comparison examples are added to every lexicon batch.
-    return [u.s.bad,u.s.good].filter(Boolean).slice(0,2);
+    if(Array.isArray(u.s.compareExamples)&&u.s.compareExamples.length){
+      return {words:[],note:u.s.x||'',examples:u.s.compareExamples.slice(0,2)};
+    }
+    return {words:[],note:u.s.x||'',examples:[u.s.bad,u.s.good].filter(Boolean).slice(0,2)};
   }
 
   answerHtml=function(u){
-    const compare=contrastExamples(u);
+    const compare=contrastData(u);
+    const words=compare.words.length?`<div class="contrast-words">${compare.words.map(escapeHtml).join(' · ')}</div>`:'';
     return `<div class="answer">
       <div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition">${escapeHtml(u.s.m)}</div><div class="root merged-root">${escapeHtml(u.w.root)}</div></div>
       <div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>
       <div class="answer-section examples-section">${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>
-      <div class="answer-section"><div class="answer-label">近义区分</div><div class="error-note">${escapeHtml(u.s.x)}</div>${compare.length?`<div class="contrast-examples">${compare.map((e,i)=>`<div class="contrast-example"><span>${i+1}.</span><span>${escapeHtml(e)}</span></div>`).join('')}</div>`:''}</div>
+      <div class="answer-section"><div class="answer-label">近义区分</div>${words}<div class="error-note">${escapeHtml(compare.note)}</div>${compare.examples.length?`<div class="contrast-examples">${compare.examples.map((e,i)=>`<div class="contrast-example"><span>${i+1}.</span><span>${escapeHtml(e)}</span></div>`).join('')}</div>`:''}</div>
     </div>`;
   };
 
