@@ -4,11 +4,27 @@
   min-height:43dvh;
   max-height:43dvh;
   flex:0 0 43dvh;
+  position:relative;
   overflow-anchor:none;
 }
+
+/* The reveal hint must never participate in flex centering. Otherwise,
+   removing it after reveal changes the center of the word + IPA group. */
+.tap-hint{
+  position:absolute;
+  left:0;
+  right:0;
+  top:calc(50% + 66px);
+  margin-top:0;
+  text-align:center;
+  pointer-events:none;
+}
+
 .study-body{overflow-anchor:none}
 .answer{overflow-anchor:none}
 .example-play{touch-action:manipulation}
+
 @media (max-height:700px){
   .word-hero{height:39dvh;min-height:39dvh;max-height:39dvh;flex-basis:39dvh}
+  .tap-hint{top:calc(50% + 62px)}
 }
