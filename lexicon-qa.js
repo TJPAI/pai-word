@@ -4,6 +4,7 @@
   const issues=[];
   const warnings=[];
   const seenWords=new Map();
+  const compareStats={total:0,complete:0,incomplete:0};
 
   function normalizeText(value){return String(value||'').toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9' -]/g,' ')}
   const irregularForms={
@@ -48,21 +49,24 @@
       if(!s.x)issues.push(`${p}: missing usage warning`);
       if(!s.bad||!s.good)issues.push(`${p}: missing wrong/correct example pair`);
       if(s.compare){
+        compareStats.total++;
         const cw=Array.isArray(s.compare.words)?s.compare.words:[];
         const ce=Array.isArray(s.compare.examples)?s.compare.examples:[];
-        if(!s.compare.note)issues.push(`${p}: synonym comparison missing note`);
-        if(cw.length<2)issues.push(`${p}: synonym comparison needs at least 2 words`);
-        if(ce.length!==cw.length)warnings.push(`${p}: synonym comparison has ${cw.length} words but ${ce.length} dedicated examples`);
+        let complete=true;
+        if(!s.compare.note){issues.push(`${p}: synonym comparison missing note`);complete=false}
+        if(cw.length<2){issues.push(`${p}: synonym comparison needs at least 2 words`);complete=false}
+        if(ce.length!==cw.length){warnings.push(`${p}: synonym comparison has ${cw.length} words but ${ce.length} dedicated examples`);complete=false}
         const mapped=[];
         ce.forEach((text,i)=>{
           const hit=cw.filter(word=>matches(word,text));
-          if(hit.length!==1)warnings.push(`${p}: comparison example ${i+1} maps to ${hit.length} words (${hit.join(', ')||'none'})`);
+          if(hit.length!==1){warnings.push(`${p}: comparison example ${i+1} maps to ${hit.length} words (${hit.join(', ')||'none'})`);complete=false}
           else mapped.push(hit[0]);
         });
         const duplicateMapped=[...new Set(mapped.filter((x,i)=>mapped.indexOf(x)!==i))];
-        if(duplicateMapped.length)warnings.push(`${p}: repeated comparison example target(s): ${duplicateMapped.join(', ')}`);
+        if(duplicateMapped.length){warnings.push(`${p}: repeated comparison example target(s): ${duplicateMapped.join(', ')}`);complete=false}
         const missing=cw.filter(word=>!mapped.includes(word));
-        if(missing.length)warnings.push(`${p}: no dedicated comparison example for: ${missing.join(', ')}`);
+        if(missing.length){warnings.push(`${p}: no dedicated comparison example for: ${missing.join(', ')}`);complete=false}
+        if(complete)compareStats.complete++;else compareStats.incomplete++;
       }
     });
   });
@@ -70,9 +74,11 @@
   window.PAI_WORD_LEXICON_QA={
     words:WORDS.length,
     senses:WORDS.reduce((n,w)=>n+Object.keys(w.s||{}).length,0),
+    compareStats,
     issues,warnings
   };
   if(issues.length)console.warn('[PAI Word lexicon QA issues]',issues);
   if(warnings.length)console.warn('[PAI Word lexicon QA warnings]',warnings);
+  console.info(`[PAI Word synonym QA] ${compareStats.complete}/${compareStats.total} complete, ${compareStats.incomplete} incomplete`);
   if(!issues.length&&!warnings.length)console.info(`[PAI Word lexicon QA] ${WORDS.length} words, ${window.PAI_WORD_LEXICON_QA.senses} senses, OK`);
 })();
