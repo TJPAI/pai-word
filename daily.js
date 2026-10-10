@@ -55,6 +55,21 @@
     oldSave();render();
   };
 
+  // Add extra new words only to the selected scene. This must not change the
+  // user's global daily-new-word setting or assignments in other scenes.
+  window.addSceneNewWords=function(scene,n=10){
+    ensureDaily();
+    const current=assignedKeys(scene);
+    const used=new Set(current);
+    const extra=allUnits(scene)
+      .filter(u=>!state.records[unitKey(u.w,u.sid)]&&!used.has(unitKey(u.w,u.sid)))
+      .slice(0,n)
+      .map(u=>unitKey(u.w,u.sid));
+    state.daily.assigned[scene]=[...current,...extra];
+    oldSave();
+    return extra.length;
+  };
+
   const baseRenderPanel=renderPanel;
   renderPanel=function(kind){
     if(kind!=='settings')return baseRenderPanel(kind);
