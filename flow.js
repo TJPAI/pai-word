@@ -1,4 +1,4 @@
-// Mobile flow v4: separate review/new learning with robust swipe navigation and rating.
+// Mobile flow v5: separate review/new learning with robust swipe navigation and rating.
 (function(){
   state.reviewDone=state.reviewDone||0;
   state.reviewTotal=state.reviewTotal||0;
@@ -57,8 +57,7 @@
     save();render();setTimeout(speakCurrent,100);
   };
   window.learnMore=function(scene,n=10){
-    state.newPerDay=(state.newPerDay||20)+n;
-    if(typeof setNewPerDay==='function')setNewPerDay(state.newPerDay);
+    if(typeof addSceneNewWords==='function')addSceneNewWords(scene,n);
     state.scene=scene;state.view='study';state.revealed=false;state.studyBrowseIndex=0;
     state.sessionDone=0;state.sessionTotal=newQueue(scene).length;
     save();render();setTimeout(speakCurrent,100);
@@ -72,8 +71,6 @@
   currentQueue=function(){return studyQueue()};
   currentUnit=function(){return studyUnit()};
 
-  // Rate exactly the word currently visible after any swipe. Keeping this logic
-  // here avoids depending on the older session.js queue-head behavior.
   rateKnown=function(known){
     const u=studyUnit();if(!u)return;
     const before=state.studyBrowseIndex||0;
@@ -121,8 +118,7 @@
   const baseRenderPanel=renderPanel;
   renderPanel=function(kind){
     if(kind!=='settings')return baseRenderPanel(kind);
-    state.includeRecent=state.includeRecent!==false;
-    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[10,20,30,50].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div><div class="setting-row"><span>包含近期增频词</span><button class="switch ${state.includeRecent?'on':''}" onclick="state.includeRecent=!state.includeRecent;save();render()"><i></i></button></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。近期增频词会按所属场景混入正常学习流。</div></div>`;
+    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[10,20,30,50].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`;
   };
 
   render=function(){
