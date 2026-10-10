@@ -1,0 +1,14 @@
+/* Keep the headword visually locked when answer content is revealed. */
+.word-hero{
+  height:43dvh;
+  min-height:43dvh;
+  max-height:43dvh;
+  flex:0 0 43dvh;
+  overflow-anchor:none;
+}
+.study-body{overflow-anchor:none}
+.answer{overflow-anchor:none}
+.example-play{touch-action:manipulation}
+@media (max-height:700px){
+  .word-hero{height:39dvh;min-height:39dvh;max-height:39dvh;flex-basis:39dvh}
+}
