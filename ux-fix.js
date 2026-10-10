@@ -1,10 +1,30 @@
 // UX layer: compact answer layout, answer toggles, audio behavior, and settings.
 (function(){
-  function escapeHtml(value){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+  function escapeHtml(value){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;')}
   state.showCollocations=state.showCollocations!==false;
   state.showExamples=state.showExamples!==false;
   state.showCompare=state.showCompare!==false;
+  state.voiceAccent=state.voiceAccent==='gb'?'gb':'us';
   window.toggleAnswerOption=function(key){if(!['showCollocations','showExamples','showCompare'].includes(key))return;state[key]=!state[key];save();render()};
+  window.setVoiceAccent=function(value){state.voiceAccent=value==='gb'?'gb':'us';save();render();setTimeout(()=>{const word=document.querySelector('.word')?.textContent?.trim();if(word)speak(word)},40)};
+
+  let speechVoices=[];
+  function refreshVoices(){if('speechSynthesis' in window)speechVoices=speechSynthesis.getVoices()||[]}
+  refreshVoices();
+  if('speechSynthesis' in window&&speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',refreshVoices);
+  speak=function(text,rate=.84){
+    if(!('speechSynthesis' in window)||!text)return;
+    const synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';
+    refreshVoices();
+    const exact=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase());
+    const regional=speechVoices.find(v=>String(v.lang).toLowerCase().startsWith(state.voiceAccent==='gb'?'en-gb':'en-us'));
+    const fallback=speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'));
+    synth.cancel();
+    const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=rate;u.voice=exact||regional||fallback||null;
+    window.__paiUtterance=u;
+    if(synth.paused)synth.resume();
+    setTimeout(()=>synth.speak(u),20);
+  };
 
   function normalizeText(value){return String(value||'').toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9' -]/g,' ')}
   const irregularForms={'win':['won'],'build':['built'],'lead':['led'],'run':['ran'],'fall':['fell','fallen'],'grow':['grew','grown'],'send':['sent'],'spend':['spent'],'find':['found'],'take':['took','taken'],'make':['made'],'come':['came'],'become':['became'],'write':['wrote','written'],'choose':['chose','chosen'],'rise':['rose','risen'],'hold':['held'],'sell':['sold'],'buy':['bought'],'teach':['taught'],'catch':['caught'],'think':['thought'],'bring':['brought'],'leave':['left'],'meet':['met'],'pay':['paid'],'say':['said'],'tell':['told'],'keep':['kept'],'feel':['felt'],'mean':['meant'],'lose':['lost'],'stand':['stood'],'understand':['understood'],'begin':['began','begun'],'break':['broke','broken'],'drive':['drove','driven']};
@@ -26,16 +46,9 @@
   reveal=function(){if(state.view!=='study'&&state.view!=='review')return;const wasRevealed=!!state.revealed,wordText=document.querySelector('.word')?.textContent?.trim()||'';state.revealed=!state.revealed;save();render();if(wasRevealed&&wordText)setTimeout(()=>speak(wordText),60)};
   document.addEventListener('click',function(event){const btn=event.target.closest('[data-example-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text)speak(text,.9)},true);
 
-  function enhanceSettings(){if(state.view!=='settings')return;const app=document.getElementById('app'),firstBlock=app?.querySelector('.panel-block');if(!firstBlock||firstBlock.querySelector('[data-answer-options]'))return;const wrap=document.createElement('div');wrap.setAttribute('data-answer-options','');wrap.innerHTML=`<div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义区分</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div>`;firstBlock.appendChild(wrap)}
+  function enhanceSettings(){if(state.view!=='settings')return;const app=document.getElementById('app'),firstBlock=app?.querySelector('.panel-block');if(!firstBlock||firstBlock.querySelector('[data-answer-options]'))return;const wrap=document.createElement('div');wrap.setAttribute('data-answer-options','');wrap.innerHTML=`<div class="setting-row"><span>发音口音</span><select onchange="setVoiceAccent(this.value)"><option value="us" ${state.voiceAccent==='us'?'selected':''}>美音</option><option value="gb" ${state.voiceAccent==='gb'?'selected':''}>英音</option></select></div><div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义区分</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div>`;firstBlock.appendChild(wrap)}
 
-  function fitAnswer(){
-    const answer=document.querySelector('.answer'),rating=document.querySelector('.rating');
-    if(!answer||!rating)return;
-    answer.classList.remove('fit-medium','fit-roomy');
-    const gap=rating.getBoundingClientRect().top-answer.getBoundingClientRect().bottom;
-    if(gap>170)answer.classList.add('fit-roomy');
-    else if(gap>85)answer.classList.add('fit-medium');
-  }
+  function fitAnswer(){const answer=document.querySelector('.answer'),rating=document.querySelector('.rating');if(!answer||!rating)return;answer.classList.remove('fit-medium','fit-roomy');const gap=rating.getBoundingClientRect().top-answer.getBoundingClientRect().bottom;if(gap>170)answer.classList.add('fit-roomy');else if(gap>85)answer.classList.add('fit-medium')}
 
   const baseRender=render;
   render=function(){baseRender();enhanceSettings();requestAnimationFrame(fitAnswer)};
