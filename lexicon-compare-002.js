@@ -1,0 +1,68 @@
+// PAI Word synonym distinctions: lexicon batch 002.
+(function(){
+  function add(word,scene,words,note,a,b){
+    const w=WORDS.find(x=>x.w===word); if(!w||!w.s[scene])return;
+    w.s[scene].compare={words,note,examples:[a,b]};
+  }
+
+  add('adopt','work',['adopt','adapt','implement'],'adopt 是正式采用方案；adapt 是调整以适应；implement 是把已决定的方案真正执行。','We adopted a new review process.','We adapted the process for a smaller team.');
+  add('adopt','public',['adopt','approve','enact'],'adopt 是机构正式采纳政策；approve 是批准；enact 专指把法案正式制定为法律。','The council adopted new safety standards.','Parliament enacted the law last year.');
+  add('affect','academic',['affect','influence','effect'],'affect 是动词，表示产生影响；influence 更强调逐渐或间接作用；effect 通常是名词“影响、效果”。','Temperature affects sensor accuracy.','Prior knowledge influences learning outcomes.');
+  add('affect','health',['affect','influence','impact'],'affect 是最普通的“影响”；influence 多指较间接作用；impact 强调显著影响。','Poor sleep affects concentration.','Long-term stress can have a major impact on health.');
+  add('assess','academic',['assess','evaluate','measure'],'assess 是系统判断程度或状态；evaluate 是综合评价价值或表现；measure 强调量化测量。','We assessed the reliability of the method.','We measured the positioning error in centimeters.');
+  add('assess','work',['assess','evaluate','review'],'assess 强调判断风险或能力；evaluate 强调按标准比较表现；review 强调检查已有材料或过程。','We assessed the project risks.','The committee evaluated three proposals.');
+  add('achieve','work',['achieve','accomplish','reach'],'achieve 常与目标、结果搭配；accomplish 强调完成任务；reach 常与具体目标值或阶段搭配。','The team achieved its annual target.','We reached the break-even point in June.');
+  add('achieve','academic',['achieve','attain','obtain'],'achieve 强调达到性能或结果；attain 更正式，常指达到水平；obtain 强调获得数据或结果。','The method achieved 95% accuracy.','We obtained similar results on the second dataset.');
+  add('acquire','work',['acquire','obtain','gain'],'acquire 较正式，常指获得技能、客户或公司；obtain 偏获得所需对象；gain 强调逐渐增加经验、优势或收益。','She acquired strong negotiation skills.','He gained valuable experience abroad.');
+  add('acquire','academic',['acquire','collect','obtain'],'acquire 强调系统获取信号或数据；collect 强调收集多个样本；obtain 强调最终得到。','The receiver acquires data at 10 Hz.','We collected measurements from 200 trials.');
+  add('adapt','work',['adapt','adjust','adopt'],'adapt 强调为适应环境而改变；adjust 多指较小调整；adopt 是采用新方案。','The team adapted to the new schedule.','We adjusted the deadline by two days.');
+  add('adapt','health',['adapt','adjust','acclimate'],'adapt 是一般适应；adjust 可指行为或状态调整；acclimate 特指逐渐适应新的环境条件。','The body adapts to high altitude.','It can take several days to acclimate to the heat.');
+  add('analyze','academic',['analyze','examine','evaluate'],'analyze 强调拆解数据或结构寻找关系；examine 强调仔细检查；evaluate 强调判断优劣。','We analyzed the data statistically.','The reviewers examined the assumptions carefully.');
+  add('analyze','work',['analyze','review','inspect'],'analyze 用于寻找趋势和原因；review 用于系统回顾材料；inspect 更偏现场或实物检查。','We analyzed customer feedback.','The manager reviewed the quarterly report.');
+  add('announce','public',['announce','declare','report'],'announce 是正式公布消息；declare 语气更强，常用于正式声明；report 是报道或报告事实。','Officials announced the new rules.','The government declared a state of emergency.');
+  add('announce','work',['announce','launch','introduce'],'announce 是公布消息；launch 是正式推出产品或项目；introduce 是首次引入某事物。','The company announced a new product line.','The company launched the product in May.');
+  add('approve','work',['approve','authorize','accept'],'approve 是正式批准方案或请求；authorize 强调授予权限；accept 是接受提议或结果。','The board approved the budget.','Only the director can authorize the payment.');
+  add('approve','public',['approve','authorize','permit'],'approve 是机构批准；authorize 强调法律或行政授权；permit 可作动词表示允许，也可作名词表示许可证。','The regulator approved the treatment.','The permit authorizes construction on the site.');
+  add('arrange','daily',['arrange','organize','schedule'],'arrange 强调把具体事项安排妥当；organize 强调组织执行；schedule 强调确定时间。','I arranged a taxi for six.','We scheduled the meeting for Friday.');
+  add('arrange','work',['arrange','coordinate','organize'],'arrange 是安排会议或资源；coordinate 强调协调多方；organize 强调统筹活动。','I arranged a call with the supplier.','She coordinated the work of three teams.');
+  add('attend','work',['attend','join','participate'],'attend 强调出席会议或活动；join 强调加入团队或活动；participate 强调实际参与。','She attended the meeting.','She participated actively in the discussion.');
+  add('attend','academic',['attend','join','participate'],'attend 强调到场听课或参会；join 可表示加入某场活动；participate 强调参与其中。','Two hundred researchers attended the conference.','Thirty students participated in the experiment.');
+  add('avoid','daily',['avoid','prevent','escape'],'avoid 是主动避开某事；prevent 是阻止某事发生；escape 是从已经存在的危险或处境中脱离。','I avoid driving at rush hour.','The barrier prevents cars from entering.');
+  add('avoid','health',['avoid','prevent','reduce'],'avoid 是避免接触风险；prevent 是防止疾病或事件发生；reduce 是降低风险而非完全避免。','Avoid direct exposure to sunlight.','Vaccination can prevent severe disease.');
+  add('balance','finance',['balance','amount','total'],'balance 是账户当前余额；amount 是某笔金额；total 是多个金额相加后的总数。','Your account balance is $500.','The total cost of the order is $500.');
+  add('balance','work',['balance','prioritize','trade off'],'balance 是在多个目标间保持均衡；prioritize 是确定优先级；trade off 是接受一方改善带来的另一方损失。','Managers balance speed with quality.','We prioritized reliability over new features.');
+  add('challenge','work',['challenge','problem','obstacle'],'challenge 是有难度但可应对的任务；problem 是实际问题；obstacle 是阻碍前进的具体障碍。','Hiring engineers is a major challenge.','Budget limits are an obstacle to expansion.');
+  add('challenge','academic',['challenge','problem','limitation'],'challenge 是待攻克的研究难题；problem 是研究问题本身；limitation 是方法或研究的局限。','Robust localization remains a challenge.','Small sample size is a limitation of the study.');
+  add('concern','public',['concern','worry','issue'],'concern 是正式语境中的担忧或关切；worry 更个人化；issue 是被讨论的议题本身。','Privacy is a major public concern.','Housing affordability is a policy issue.');
+  add('concern','work',['concern','risk','problem'],'concern 是需要注意的顾虑；risk 是可能发生的不利结果；problem 是已经存在的问题。','The deadline is our main concern.','Supplier failure is a significant risk.');
+  add('confirm','daily',['confirm','verify','check'],'confirm 是确认安排或信息最终无误；verify 强调核实真实性；check 是最普通的检查。','Please confirm your reservation.','Please check the address before leaving.');
+  add('confirm','work',['confirm','verify','validate'],'confirm 是确认事实或安排；verify 是核实正确性；validate 是确认符合要求或规则。','The supplier confirmed the shipment date.','We verified the figures against the source data.');
+  add('consume','finance',['consume','spend','use'],'consume 强调消耗商品或资源；spend 专指花费金钱或时间；use 是最普通的使用。','Households consume less energy at higher prices.','Households spent less on travel last month.');
+  add('consume','tech',['consume','use','occupy'],'consume 强调持续消耗计算资源；use 是一般使用；occupy 常指占用内存、空间或容量。','The model consumes too much memory.','The cache occupies 2 GB of disk space.');
+  add('contribute','work',['contribute','support','participate'],'contribute 强调提供具体价值或资源；support 是帮助推进；participate 只表示参与，不一定有实质贡献。','Everyone contributed to the proposal.','Several colleagues participated in the meeting.');
+  add('contribute','academic',['contribute','advance','add'],'contribute to 强调对领域增加知识；advance 强调推动领域向前；add 是最一般的增加。','The paper contributes to the literature.','The result advances our understanding of the mechanism.');
+  add('determine','academic',['determine','identify','decide'],'determine 强调通过证据确定；identify 强调识别出对象或原因；decide 是主观作出决定。','The test determined the exact cause.','The analysis identified three possible causes.');
+  add('determine','work',['determine','decide','define'],'determine 可表示条件客观决定结果；decide 是人作决策；define 是明确边界或内容。','Budget constraints determine the scope.','The steering committee decided to proceed.');
+  add('establish','work',['establish','create','set up'],'establish 较正式，强调建立并使之稳定；create 强调产生新的事物；set up 更口语，强调搭建或成立。','The company established a research group.','We set up a temporary project team.');
+  add('establish','academic',['establish','demonstrate','show'],'establish 强调证据足以确立事实或关系；demonstrate 强调通过证据展示；show 语气更一般。','The study established a causal relationship.','The experiment demonstrated the feasibility of the method.');
+  add('evaluate','academic',['evaluate','assess','test'],'evaluate 是按标准综合评价；assess 是判断程度或状态；test 是通过试验检验。','We evaluated the model on three datasets.','We tested the model under low-light conditions.');
+  add('evaluate','work',['evaluate','assess','compare'],'evaluate 是系统判断方案或表现；assess 强调风险或能力；compare 强调并列比较差异。','The committee evaluated three proposals.','We compared the two suppliers on cost and quality.');
+  add('expand','work',['expand','grow','extend'],'expand 强调扩大规模或范围；grow 多指自然或业务增长；extend 强调延长时间、距离或覆盖范围。','The company expanded into Asia.','The business grew by 20% last year.');
+  add('expand','academic',['expand','extend','broaden'],'expand 强调扩大模型或分析内容；extend 强调把已有方法推广到新情形；broaden 强调拓宽研究范围。','We expanded the analysis to a larger sample.','Future work could extend the method to moving targets.');
+  add('focus','work',['focus','prioritize','concentrate'],'focus on 是把注意力集中于某事；prioritize 是确定先后顺序；concentrate 更强调集中精力。','We should focus on reliability.','We prioritized the safety issues first.');
+  add('focus','academic',['focus','examine','address'],'focus on 表示研究重点；examine 强调仔细研究；address 强调处理一个研究问题。','The paper focuses on indoor localization.','The study examines long-term stability.');
+  add('identify','academic',['identify','detect','determine'],'identify 是识别出具体对象或原因；detect 是发现其存在；determine 是进一步确定其性质或数值。','We identified three sources of error.','The sensor detected an abnormal signal.');
+  add('identify','work',['identify','find','recognize'],'identify 较正式，强调明确风险或责任人；find 是一般找到；recognize 是认出或意识到。','We identified a major operational risk.','The manager recognized the need for change.');
+  add('indicate','academic',['indicate','suggest','prove'],'indicate 表示数据显示某趋势；suggest 语气更谨慎；prove 表示证据足以证明，强度最高。','The results indicate a small improvement.','The findings suggest that the effect may be temporary.');
+  add('indicate','public',['indicate','show','signal'],'indicate 是较正式地表明；show 是一般展示；signal 常指某迹象预示变化。','The figures indicate a modest recovery.','Falling demand may signal a slowdown.');
+  add('involve','work',['involve','include','engage'],'involve 表示某工作内在包含某任务或人员；include 是简单包含；engage 强调让某人积极参与。','The role involves managing two teams.','The workshop engaged employees from every department.');
+  add('involve','academic',['involve','include','require'],'involve 表示研究过程包含某步骤；include 只说明组成部分；require 强调必需条件。','The method involves estimating two parameters.','The protocol requires three calibration measurements.');
+  add('occur','academic',['occur','happen','arise'],'occur 较正式，常用于现象发生；happen 更口语；arise 常指问题或情况逐渐出现。','The error occurs at low signal levels.','A calibration problem arose during testing.');
+  add('occur','public',['occur','happen','take place'],'occur 正式中性；happen 较口语；take place 常用于有计划的事件。','The incident occurred after midnight.','The ceremony will take place on Friday.');
+  add('obtain','academic',['obtain','acquire','derive'],'obtain 是正式的“获得结果或数据”；acquire 强调获取过程；derive 强调从已有数据或公式推导。','We obtained similar results.','The parameter was derived from the measurements.');
+  add('obtain','work',['obtain','get','secure'],'obtain 较正式地获得批准或资源；get 最普通；secure 强调经过努力成功获得。','We obtained final approval.','The team secured additional funding.');
+  add('require','work',['require','need','demand'],'require 表示客观或正式要求；need 是一般需要；demand 语气更强。','The role requires strong analytical skills.','The client demanded an immediate response.');
+  add('require','academic',['require','need','depend on'],'require 表示方法必需某条件；need 更一般；depend on 强调结果受某条件制约。','The method requires two reference points.','Performance depends on accurate calibration.');
+  add('respond','social',['respond','reply','react'],'respond 是一般回应；reply 更专指对话或消息的回复；react 强调对刺激产生情绪或行为反应。','She responded to my message quickly.','He reacted angrily to the criticism.');
+  add('respond','health',['respond','react','recover'],'respond to treatment 指治疗产生效果；react to 强调身体对药物或刺激的反应；recover 是从疾病中恢复。','The patient responded well to treatment.','She reacted badly to the medication.');
+})();
