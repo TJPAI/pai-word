@@ -1,30 +1,76 @@
-/* Keep the headword visually locked when answer content is revealed. */
+/* Keep the headword visually locked while making room for the answer on the same mobile page. */
 .word-hero{
-  height:43dvh;
-  min-height:43dvh;
-  max-height:43dvh;
-  flex:0 0 43dvh;
+  height:27dvh;
+  min-height:27dvh;
+  max-height:27dvh;
+  flex:0 0 27dvh;
   position:relative;
   overflow-anchor:none;
 }
 
-/* The reveal hint must never participate in flex centering. Otherwise,
-   removing it after reveal changes the center of the word + IPA group. */
+/* The reveal hint never participates in flex centering, so the word and IPA
+   keep exactly the same geometry before and after reveal. */
 .tap-hint{
   position:absolute;
   left:0;
   right:0;
-  top:calc(50% + 66px);
+  top:calc(50% + 62px);
   margin-top:0;
   text-align:center;
   pointer-events:none;
 }
 
-.study-body{overflow-anchor:none}
-.answer{overflow-anchor:none}
+/* Compact the revealed content so word + answer can be seen together on a
+   typical iPhone viewport. Longer entries can still scroll naturally. */
+.study-body{
+  padding-top:8px;
+  overflow-anchor:none;
+}
+.answer{
+  overflow-anchor:none;
+  padding-top:4px;
+}
+.answer-section{
+  padding:9px 0;
+}
+.answer-label{
+  margin-bottom:4px;
+  font-size:11px;
+}
+.definition{
+  font-size:16px;
+  line-height:1.45;
+}
+.collocations,
+.root,
+.error-note{
+  font-size:14px;
+  line-height:1.45;
+}
+.example{
+  padding:4px 0;
+  font-size:13.5px;
+  line-height:1.4;
+  grid-template-columns:18px 1fr 34px;
+}
+.error-note{margin-bottom:6px}
+.error-pair{
+  gap:4px;
+  font-size:13px;
+  line-height:1.4;
+}
 .example-play{touch-action:manipulation}
 
-@media (max-height:700px){
-  .word-hero{height:39dvh;min-height:39dvh;max-height:39dvh;flex-basis:39dvh}
-  .tap-hint{top:calc(50% + 62px)}
+@media (max-height:760px){
+  .word-hero{height:24dvh;min-height:24dvh;max-height:24dvh;flex-basis:24dvh}
+  .tap-hint{top:calc(50% + 58px)}
+  .answer-section{padding:7px 0}
+}
+
+@media (max-height:680px){
+  .word-hero{height:22dvh;min-height:22dvh;max-height:22dvh;flex-basis:22dvh}
+  .tap-hint{top:calc(50% + 55px)}
+  .definition{font-size:15px}
+  .collocations,.root,.error-note{font-size:13.5px}
+  .example{font-size:13px}
 }
