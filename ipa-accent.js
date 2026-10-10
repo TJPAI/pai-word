@@ -1,8 +1,5 @@
-// Accent-aware IPA layer for the current production lexicon.
-// Every loaded headword receives explicit ipaUS / ipaUK values. UK keeps the
-// lexicon's original standard-British IPA unless a future entry overrides it;
-// US uses the General American forms below. The selected speech accent and IPA
-// therefore stay aligned without changing any learning-progress keys.
+// Accent-aware IPA data layer. It owns pronunciation data only; rendering stays in app-runtime.js.
+// UK currently preserves each lexicon entry's original IPA unless an explicit ipaUK exists.
 (function(){
   const us={
     issue:'/ˈɪʃuː/',interest:'/ˈɪntrəst/',approach:'/əˈproʊtʃ/',deploy:'/dɪˈplɔɪ/',plot:'/plɑːt/',symptom:'/ˈsɪmptəm/',estimate:'/ˈestɪmeɪt/',
@@ -18,28 +15,25 @@
     if(!w.ipaUS||!w.ipaUK)missing.push(w.w);
   });
 
-  window.PAI_WORD_IPA_QA={
-    words:WORDS.length,
-    complete:WORDS.length-missing.length,
-    missing
-  };
-  if(missing.length)console.warn('[PAI Word IPA QA] missing accent IPA',missing);
-  else console.info(`[PAI Word IPA QA] ${WORDS.length} words have US/UK IPA`);
+  let accent=state.voiceAccent==='gb'?'gb':'us';
+  function applyAccentIPA(){
+    WORDS.forEach(w=>{w.ipa=accent==='gb'?(w.ipaUK||w.ipa):(w.ipaUS||w.ipa)});
+  }
+
+  Object.defineProperty(state,'voiceAccent',{
+    configurable:true,
+    enumerable:true,
+    get(){return accent},
+    set(value){accent=value==='gb'?'gb':'us';applyAccentIPA()}
+  });
 
   window.getAccentIPA=function(word){
     if(!word)return'';
-    return state.voiceAccent==='gb'?(word.ipaUK||word.ipa):(word.ipaUS||word.ipa);
+    return accent==='gb'?(word.ipaUK||word.ipa):(word.ipaUS||word.ipa);
   };
+  window.PAI_WORD_IPA_QA={words:WORDS.length,complete:WORDS.length-missing.length,missing};
+  applyAccentIPA();
 
-  function syncIPA(){
-    const el=document.querySelector('.ipa');
-    const wordText=document.querySelector('.word')?.textContent?.trim();
-    if(!el||!wordText)return;
-    const word=WORDS.find(w=>w.w===wordText);
-    if(word)el.textContent=getAccentIPA(word);
-  }
-
-  const baseRender=render;
-  render=function(){baseRender();syncIPA()};
-  syncIPA();
+  if(missing.length)console.warn('[PAI Word IPA QA] missing accent IPA',missing);
+  else console.info(`[PAI Word IPA QA] ${WORDS.length} words have US/UK IPA fields`);
 })();
