@@ -1,45 +1,16 @@
 /* Keep the headword visually locked while fitting word + answer on one phone screen. */
-.word-hero{
-  height:19dvh;
-  min-height:19dvh;
-  max-height:19dvh;
-  flex:0 0 19dvh;
-  position:relative;
-  overflow-anchor:none;
-}
+.word-hero{height:19dvh;min-height:19dvh;max-height:19dvh;flex:0 0 19dvh;position:relative;overflow-anchor:none}
 .word{font-size:44px;line-height:1}
 .ipa{margin-top:7px;font-size:18px;line-height:1.15}
-
-/* Headword audio is automatic; no speaker icon is shown on prompt or answer pages. */
 .speak-btn{display:none!important}
 .word-line{justify-content:center}
-
-/* Listening-only mode hides written cues before reveal. */
 .word-hero.listen-only .word{display:none}
 .word-hero.listen-only .ipa{display:none}
 .word-hero.listen-only .word-line{justify-content:center}
-
-/* Reveal hint is absolutely positioned and never affects centering. */
-.tap-hint{
-  position:absolute;
-  left:0;
-  right:0;
-  top:calc(50% + 48px);
-  margin-top:0;
-  text-align:center;
-  pointer-events:none;
-  font-size:11px;
-}
+.tap-hint{position:absolute;left:0;right:0;top:calc(50% + 48px);margin-top:0;text-align:center;pointer-events:none;font-size:11px}
 .word-hero.listen-only .tap-hint{top:calc(50% + 42px)}
-
-.study-body{
-  padding:4px 18px calc(88px + var(--safe-b));
-  overflow-anchor:none;
-}
-.answer{
-  overflow-anchor:none;
-  padding-top:2px;
-}
+.study-body{padding:4px 18px calc(88px + var(--safe-b));overflow-anchor:none}
+.answer{overflow-anchor:none;padding-top:2px}
 .answer-section{padding:6px 0}
 .answer-label{margin-bottom:2px;font-size:10.5px;line-height:1.2}
 .definition-line{display:flex;align-items:baseline;gap:7px}
@@ -56,21 +27,20 @@
 .contrast-examples{display:grid;gap:3px;margin-top:4px}
 .contrast-example{display:grid;grid-template-columns:minmax(48px,max-content) 1fr;gap:7px;font-size:12.6px;line-height:1.3;color:#333;align-items:start}
 .contrast-word{font-weight:600;color:#111;white-space:nowrap}
+.contrast-word.unresolved{font-weight:400;color:#999}
 
-/* Adaptive typography: fewer optional sections means more room, so text grows. */
+/* Adaptive typography from settings. */
 .answer.density-2 .definition{font-size:16.5px}
 .answer.density-2 .collocations,.answer.density-2 .root,.answer.density-2 .error-note{font-size:14.2px}
 .answer.density-2 .key-reminder{font-size:13.4px}
 .answer.density-2 .example,.answer.density-2 .contrast-example{font-size:13.4px}
 .answer.density-2 .answer-section{padding:7px 0}
-
 .answer.density-1 .definition{font-size:18px;line-height:1.4}
 .answer.density-1 .collocations,.answer.density-1 .root,.answer.density-1 .error-note{font-size:15.2px;line-height:1.4}
 .answer.density-1 .key-reminder{font-size:14.2px}
 .answer.density-1 .example,.answer.density-1 .contrast-example{font-size:14.4px;line-height:1.38}
 .answer.density-1 .answer-label{font-size:11px}
 .answer.density-1 .answer-section{padding:9px 0}
-
 .answer.density-0 .definition{font-size:20px;line-height:1.45}
 .answer.density-0 .root{font-size:16px;line-height:1.45}
 .answer.density-0 .key-reminder{font-size:15px;line-height:1.42}
@@ -78,7 +48,19 @@
 .answer.density-0 .answer-label{font-size:11.5px}
 .answer.density-0 .answer-section{padding:11px 0}
 
-/* Slightly tighten the fixed bottom actions without reducing tap comfort. */
+/* Additional scaling based on measured free space above the rating bar. */
+.answer.fit-medium .definition{font-size:16.2px}
+.answer.fit-medium .collocations,.answer.fit-medium .root,.answer.fit-medium .error-note{font-size:14px}
+.answer.fit-medium .key-reminder{font-size:13.3px}
+.answer.fit-medium .example,.answer.fit-medium .contrast-example{font-size:13.3px;line-height:1.34}
+.answer.fit-medium .answer-section{padding-top:7px;padding-bottom:7px}
+.answer.fit-roomy .definition{font-size:17px;line-height:1.4}
+.answer.fit-roomy .collocations,.answer.fit-roomy .root,.answer.fit-roomy .error-note{font-size:14.6px;line-height:1.4}
+.answer.fit-roomy .key-reminder{font-size:13.8px;line-height:1.38}
+.answer.fit-roomy .example,.answer.fit-roomy .contrast-example{font-size:13.9px;line-height:1.38}
+.answer.fit-roomy .answer-label{font-size:11px}
+.answer.fit-roomy .answer-section{padding-top:8px;padding-bottom:8px}
+
 .rating{padding-top:7px;padding-bottom:calc(7px + var(--safe-b));gap:8px}
 .rating button{height:52px}
 
@@ -93,7 +75,6 @@
   .example{font-size:12.7px;line-height:1.28}
   .contrast-example{font-size:12.3px}
 }
-
 @media (max-height:700px){
   .word-hero{height:15dvh;min-height:15dvh;max-height:15dvh;flex-basis:15dvh}
   .word{font-size:41px}
