@@ -31,6 +31,18 @@
   function tokenForms(token){const t=token.toLowerCase(),forms=new Set([t]);if(irregularForms[t])irregularForms[t].forEach(x=>forms.add(x));if(t.length>=3){forms.add(t+'s');forms.add(t+'ed');forms.add(t+'ing');if(t.endsWith('e')){forms.add(t.slice(0,-1)+'ed');forms.add(t.slice(0,-1)+'ing')}if(t.endsWith('y')){forms.add(t.slice(0,-1)+'ies');forms.add(t.slice(0,-1)+'ied')}}return [...forms]}
   function wordMatchesSentence(word,sentence){const w=normalizeText(word).trim(),s=' '+normalizeText(sentence)+' ';if(!w||!s.trim())return false;const parts=w.split(/\s+/).filter(Boolean);return parts.every(p=>tokenForms(p).some(f=>s.includes(' '+f+' ')))}
 
+  function comparisonBriefs(words,note){
+    const parts=String(note||'').split(/[；;]/).map(x=>x.trim()).filter(Boolean);
+    return words.map((word,i)=>{
+      const lw=word.toLowerCase();
+      let part=parts.find(p=>p.toLowerCase().startsWith(lw+' ')||p.toLowerCase().startsWith(lw+'是')||p.toLowerCase().startsWith(lw+'：'));
+      if(!part)part=parts[i]||'';
+      if(part.toLowerCase().startsWith(lw))part=part.slice(word.length).trim();
+      part=part.replace(/^[:：]\s*/,'').replace(/^是\s*/,'');
+      return part;
+    });
+  }
+
   function contrastData(u){
     let words=[],note='',raw=[];
     if(u.s.compare&&Array.isArray(u.s.compare.examples)){
@@ -47,18 +59,21 @@
       const hits=words.filter(word=>wordMatchesSentence(word,text));
       if(hits.length===1&&!mapped.some(x=>x.word===hits[0]))mapped.push({word:hits[0],text});
     });
-    const examples=words.map(word=>mapped.find(x=>x.word===word)).filter(Boolean);
-    return {words,note,examples};
+    const briefs=comparisonBriefs(words,note);
+    const items=words.map((word,i)=>{
+      const example=mapped.find(x=>x.word===word);
+      return example?{word,brief:briefs[i]||'',text:example.text}:null;
+    }).filter(Boolean);
+    return {items};
   }
 
   answerHtml=function(u){
     const compare=contrastData(u),enabledCount=[state.showCollocations,state.showExamples,state.showCompare].filter(Boolean).length;
-    const words=compare.words.length?`<div class="contrast-words">${compare.words.map(escapeHtml).join(' · ')}</div>`:'';
     const pos=u.w.pos?`<span class="pos-chip">${escapeHtml(u.w.pos)}</span>`:'';
     const reminder=u.s.x?`<div class="key-reminder"><span>提醒</span>${escapeHtml(u.s.x)}</div>`:'';
     const collocations=state.showCollocations?`<div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>`:'';
     const examples=state.showExamples?`<div class="answer-section examples-section">${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>`:'';
-    const comparison=state.showCompare?`<div class="answer-section"><div class="answer-label">近义区分</div>${words}<div class="error-note">${escapeHtml(compare.note)}</div>${compare.examples.length?`<div class="contrast-examples">${compare.examples.map(item=>`<div class="contrast-example"><span class="contrast-word">${escapeHtml(item.word)}</span><span>${escapeHtml(item.text)}</span></div>`).join('')}</div>`:''}</div>`:'';
+    const comparison=state.showCompare?`<div class="answer-section"><div class="answer-label">近义区分</div>${compare.items.length?`<div class="contrast-examples">${compare.items.map(item=>`<div class="contrast-item"><div class="contrast-summary"><span class="contrast-word">${escapeHtml(item.word)}</span><span>：${escapeHtml(item.brief)}</span></div><div class="contrast-sentence">${escapeHtml(item.text)}</div></div>`).join('')}</div>`:''}</div>`:'';
     return `<div class="answer density-${enabledCount}"><div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div><div class="root merged-root">${escapeHtml(u.w.root)}</div>${reminder}</div>${collocations}${examples}${comparison}</div>`;
   };
 
