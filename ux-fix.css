@@ -1,76 +1,96 @@
-/* Keep the headword visually locked while making room for the answer on the same mobile page. */
+/* Keep the headword visually locked while fitting word + answer on one phone screen. */
 .word-hero{
-  height:27dvh;
-  min-height:27dvh;
-  max-height:27dvh;
-  flex:0 0 27dvh;
+  height:19dvh;
+  min-height:19dvh;
+  max-height:19dvh;
+  flex:0 0 19dvh;
   position:relative;
   overflow-anchor:none;
 }
+.word{font-size:44px;line-height:1}
+.ipa{margin-top:7px;font-size:18px;line-height:1.15}
+.speak-btn{font-size:22px;min-width:38px;min-height:38px;padding:5px}
 
-/* The reveal hint never participates in flex centering, so the word and IPA
-   keep exactly the same geometry before and after reveal. */
+/* Reveal hint is absolutely positioned and never affects centering. */
 .tap-hint{
   position:absolute;
   left:0;
   right:0;
-  top:calc(50% + 62px);
+  top:calc(50% + 48px);
   margin-top:0;
   text-align:center;
   pointer-events:none;
+  font-size:11px;
 }
 
-/* Compact the revealed content so word + answer can be seen together on a
-   typical iPhone viewport. Longer entries can still scroll naturally. */
 .study-body{
-  padding-top:8px;
+  padding:4px 18px calc(88px + var(--safe-b));
   overflow-anchor:none;
 }
 .answer{
   overflow-anchor:none;
-  padding-top:4px;
+  padding-top:2px;
 }
 .answer-section{
-  padding:9px 0;
+  padding:6px 0;
 }
 .answer-label{
-  margin-bottom:4px;
-  font-size:11px;
+  margin-bottom:2px;
+  font-size:10.5px;
+  line-height:1.2;
 }
 .definition{
-  font-size:16px;
-  line-height:1.45;
+  font-size:15.5px;
+  line-height:1.34;
 }
 .collocations,
 .root,
 .error-note{
-  font-size:14px;
-  line-height:1.45;
+  font-size:13.5px;
+  line-height:1.34;
 }
 .example{
-  padding:4px 0;
-  font-size:13.5px;
-  line-height:1.4;
-  grid-template-columns:18px 1fr 34px;
-}
-.error-note{margin-bottom:6px}
-.error-pair{
-  gap:4px;
+  padding:2px 0;
   font-size:13px;
-  line-height:1.4;
+  line-height:1.32;
+  grid-template-columns:16px 1fr 30px;
+  gap:6px;
 }
-.example-play{touch-action:manipulation}
-
-@media (max-height:760px){
-  .word-hero{height:24dvh;min-height:24dvh;max-height:24dvh;flex-basis:24dvh}
-  .tap-hint{top:calc(50% + 58px)}
-  .answer-section{padding:7px 0}
+.example-play{
+  min-width:30px;
+  min-height:30px;
+  font-size:16px;
+  padding:2px;
+  touch-action:manipulation;
+}
+.error-note{margin-bottom:3px}
+.error-pair{
+  gap:2px;
+  font-size:12.5px;
+  line-height:1.3;
 }
 
-@media (max-height:680px){
-  .word-hero{height:22dvh;min-height:22dvh;max-height:22dvh;flex-basis:22dvh}
-  .tap-hint{top:calc(50% + 55px)}
+/* Slightly tighten the fixed bottom actions without reducing tap comfort. */
+.rating{padding-top:7px;padding-bottom:calc(7px + var(--safe-b));gap:8px}
+.rating button{height:52px}
+
+@media (max-height:780px){
+  .word-hero{height:17dvh;min-height:17dvh;max-height:17dvh;flex-basis:17dvh}
+  .tap-hint{top:calc(50% + 44px)}
+  .answer-section{padding:5px 0}
   .definition{font-size:15px}
-  .collocations,.root,.error-note{font-size:13.5px}
-  .example{font-size:13px}
+  .collocations,.root,.error-note{font-size:13px}
+  .example{font-size:12.7px;line-height:1.28}
+}
+
+@media (max-height:700px){
+  .word-hero{height:15dvh;min-height:15dvh;max-height:15dvh;flex-basis:15dvh}
+  .word{font-size:41px}
+  .ipa{font-size:17px;margin-top:5px}
+  .tap-hint{top:calc(50% + 41px)}
+  .study-body{padding-left:16px;padding-right:16px}
+  .answer-section{padding:4px 0}
+  .example{padding:1px 0;font-size:12.4px}
+  .root,.error-note,.collocations{font-size:12.7px}
+  .error-pair{font-size:12px}
 }
