@@ -1,4 +1,4 @@
-// Mobile flow v3: separate review/new learning and support swipe navigation.
+// Mobile flow v4: separate review/new learning with robust swipe navigation and rating.
 (function(){
   state.reviewDone=state.reviewDone||0;
   state.reviewTotal=state.reviewTotal||0;
@@ -28,6 +28,18 @@
   function newCount(scene){return newQueue(scene).length}
   function reviewCount(){return allDueReviews().length}
   function speakCurrent(){const u=state.view==='review'?reviewUnit():studyUnit();if(u)speak(u.w.w)}
+  function scheduleRecord(u,known){
+    const k=unitKey(u.w,u.sid),now=Date.now(),prev=state.records[k]||{interval:0,reps:0};
+    let interval,due;
+    if(known){
+      const prevDays=prev.interval?prev.interval/86400000:0;
+      const days=prev.reps?Math.max(3,Math.round(prevDays*2.4)):3;
+      interval=days*86400000;due=now+interval;state.stats.known=(state.stats.known||0)+1;
+    }else{
+      interval=10*60000;due=now+interval;state.stats.unknown=(state.stats.unknown||0)+1;
+    }
+    state.records[k]={...prev,due,interval,reps:(prev.reps||0)+1,last:now,lastKnown:known};
+  }
 
   window.swipeWord=function(direction){
     const q=state.view==='review'?reviewQueue():studyQueue();
@@ -60,29 +72,26 @@
   currentQueue=function(){return studyQueue()};
   currentUnit=function(){return studyUnit()};
 
-  const baseRate=rateKnown;
+  // Rate exactly the word currently visible after any swipe. Keeping this logic
+  // here avoids depending on the older session.js queue-head behavior.
   rateKnown=function(known){
+    const u=studyUnit();if(!u)return;
     const before=state.studyBrowseIndex||0;
-    const result=baseRate(known);
+    scheduleRecord(u,known);
+    state.sessionDone=(state.sessionDone||0)+1;state.revealed=false;
     state.studyBrowseIndex=clampIndex(before,studyQueue().length);save();
-    return result;
+    document.querySelector(known?'.known':'.unknown')?.classList.add('flash');
+    document.querySelector('.word-hero')?.classList.add('fade-out');
+    setTimeout(()=>{render();setTimeout(speakCurrent,90)},130);
   };
 
   window.rateReview=function(known){
-    const q=reviewQueue(),u=reviewUnit();if(!u)return;
-    const k=unitKey(u.w,u.sid),now=Date.now(),prev=state.records[k]||{interval:0,reps:0};
-    let interval,due;
-    if(known){
-      const prevDays=prev.interval?prev.interval/86400000:1;
-      const days=Math.max(3,Math.round(prevDays*2.4));
-      interval=days*86400000;due=now+interval;state.stats.known=(state.stats.known||0)+1;
-    }else{
-      interval=10*60000;due=now+interval;state.stats.unknown=(state.stats.unknown||0)+1;
-    }
-    state.records[k]={...prev,due,interval,reps:(prev.reps||0)+1,last:now,lastKnown:known};
+    const u=reviewUnit();if(!u)return;
+    const before=state.reviewBrowseIndex||0;
+    scheduleRecord(u,known);
     state.reviewDone=(state.reviewDone||0)+1;state.revealed=false;
-    state.reviewBrowseIndex=clampIndex(state.reviewBrowseIndex,reviewQueue().length);save();
-    const btn=document.querySelector(known?'.known':'.unknown');btn?.classList.add('flash');
+    state.reviewBrowseIndex=clampIndex(before,reviewQueue().length);save();
+    document.querySelector(known?'.known':'.unknown')?.classList.add('flash');
     document.querySelector('.word-hero')?.classList.add('fade-out');
     setTimeout(()=>{render();setTimeout(speakCurrent,90)},130);
   };
@@ -133,6 +142,7 @@
     const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;
     if(dt>700||Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.25)return;
     e.preventDefault();
+    window.__paiSwipeUntil=Date.now()+350;
     swipeWord(dx<0?1:-1);
   },{passive:false});
 
