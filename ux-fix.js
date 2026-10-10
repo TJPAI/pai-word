@@ -42,9 +42,6 @@
     }else{
       note=u.s.x||'';raw=[u.s.bad,u.s.good].filter(Boolean).slice(0,2);
     }
-
-    // Only keep examples that map unambiguously to one comparison word.
-    // Then order them by the comparison-word order, not by source-array order.
     const mapped=[];
     raw.forEach(text=>{
       const hits=words.filter(word=>wordMatchesSentence(word,text));
@@ -65,7 +62,13 @@
     return `<div class="answer density-${enabledCount}"><div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div><div class="root merged-root">${escapeHtml(u.w.root)}</div>${reminder}</div>${collocations}${examples}${comparison}</div>`;
   };
 
-  reveal=function(){if(state.view!=='study'&&state.view!=='review')return;const wasRevealed=!!state.revealed,wordText=document.querySelector('.word')?.textContent?.trim()||'';state.revealed=!state.revealed;save();render();if(wasRevealed&&wordText)setTimeout(()=>speak(wordText),60)};
+  reveal=function(){
+    if(Date.now()<(window.__paiSwipeUntil||0))return;
+    if(state.view!=='study'&&state.view!=='review')return;
+    const wasRevealed=!!state.revealed,wordText=document.querySelector('.word')?.textContent?.trim()||'';
+    state.revealed=!state.revealed;save();render();
+    if(wasRevealed&&wordText)setTimeout(()=>speak(wordText),60);
+  };
   document.addEventListener('click',function(event){const btn=event.target.closest('[data-example-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text)speak(text,.9)},true);
 
   function enhanceSettings(){if(state.view!=='settings')return;const app=document.getElementById('app'),firstBlock=app?.querySelector('.panel-block');if(!firstBlock||firstBlock.querySelector('[data-answer-options]'))return;const wrap=document.createElement('div');wrap.setAttribute('data-answer-options','');wrap.innerHTML=`<div class="setting-row"><span>发音口音</span><select onchange="setVoiceAccent(this.value)"><option value="us" ${state.voiceAccent==='us'?'selected':''}>美音</option><option value="gb" ${state.voiceAccent==='gb'?'selected':''}>英音</option></select></div><div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义区分</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div>`;firstBlock.appendChild(wrap)}
