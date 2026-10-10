@@ -74,12 +74,12 @@
     const collocations=state.showCollocations?`<div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>`:'';
     const examples=state.showExamples?`<div class="answer-section examples-section">${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>`:'';
     const comparison=state.showCompare?`<div class="answer-section"><div class="answer-label">近义区分</div>${compare.items.length?`<div class="contrast-examples">${compare.items.map(item=>`<div class="contrast-item"><div class="contrast-summary"><span class="contrast-word">${escapeHtml(item.word)}</span><span>：${escapeHtml(item.brief)}</span></div><div class="contrast-sentence">${escapeHtml(item.text)}</div></div>`).join('')}</div>`:''}</div>`:'';
-    return `<div class="answer density-${enabledCount}"><div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div><div class="root merged-root">${escapeHtml(u.w.root)}</div>${reminder}</div>${collocations}${examples}${comparison}</div>`;
+    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div><div class="root merged-root">${escapeHtml(u.w.root)}</div>${reminder}</div>${collocations}${examples}${comparison}</div>`;
   };
 
   reveal=function(){
     if(Date.now()<(window.__paiSwipeUntil||0))return;
-    if(state.view!=='study'&&state.view!=='review')return;
+    if(!['study','review','freeReview'].includes(state.view))return;
     const wasRevealed=!!state.revealed,wordText=document.querySelector('.word')?.textContent?.trim()||'';
     state.revealed=!state.revealed;save();render();
     if(wasRevealed&&wordText)setTimeout(()=>speak(wordText),60);
