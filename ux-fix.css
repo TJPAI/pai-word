@@ -11,6 +11,12 @@
 .ipa{margin-top:7px;font-size:18px;line-height:1.15}
 .speak-btn{font-size:22px;min-width:38px;min-height:38px;padding:5px}
 
+/* Listening-only mode hides written cues before reveal but keeps replay audio. */
+.word-hero.listen-only .word{display:none}
+.word-hero.listen-only .ipa{display:none}
+.word-hero.listen-only .word-line{justify-content:center}
+.word-hero.listen-only .speak-btn{font-size:30px;min-width:54px;min-height:54px}
+
 /* Reveal hint is absolutely positioned and never affects centering. */
 .tap-hint{
   position:absolute;
@@ -22,6 +28,7 @@
   pointer-events:none;
   font-size:11px;
 }
+.word-hero.listen-only .tap-hint{top:calc(50% + 42px)}
 
 .study-body{
   padding:4px 18px calc(88px + var(--safe-b));
@@ -71,12 +78,7 @@
   padding:2px;
   touch-action:manipulation;
 }
-.error-note{margin-bottom:3px}
-.error-pair{
-  gap:2px;
-  font-size:12.5px;
-  line-height:1.3;
-}
+.error-note{margin-bottom:0}
 
 /* Slightly tighten the fixed bottom actions without reducing tap comfort. */
 .rating{padding-top:7px;padding-bottom:calc(7px + var(--safe-b));gap:8px}
@@ -85,6 +87,7 @@
 @media (max-height:780px){
   .word-hero{height:17dvh;min-height:17dvh;max-height:17dvh;flex-basis:17dvh}
   .tap-hint{top:calc(50% + 44px)}
+  .word-hero.listen-only .tap-hint{top:calc(50% + 39px)}
   .answer-section{padding:5px 0}
   .definition{font-size:15px}
   .collocations,.root,.error-note{font-size:13px}
@@ -96,9 +99,9 @@
   .word{font-size:41px}
   .ipa{font-size:17px;margin-top:5px}
   .tap-hint{top:calc(50% + 41px)}
+  .word-hero.listen-only .tap-hint{top:calc(50% + 36px)}
   .study-body{padding-left:16px;padding-right:16px}
   .answer-section{padding:4px 0}
   .example{padding:1px 0;font-size:12.4px}
   .root,.error-note,.collocations{font-size:12.7px}
-  .error-pair{font-size:12px}
 }
