@@ -1,4 +1,4 @@
-// UX fixes: compact answer layout and reliable example audio.
+// UX fixes: stable word position, reliable audio, compact answer layout, and answer toggle.
 (function(){
   function escapeHtml(value){
     return String(value)
@@ -8,13 +8,32 @@
       .replace(/"/g,'&quot;');
   }
 
+  function contrastExamples(u){
+    if(Array.isArray(u.s.compareExamples)&&u.s.compareExamples.length){
+      return u.s.compareExamples.slice(0,2);
+    }
+    // Backward-compatible fallback for older entries until dedicated
+    // synonym-comparison examples are added to every lexicon batch.
+    return [u.s.bad,u.s.good].filter(Boolean).slice(0,2);
+  }
+
   answerHtml=function(u){
-    return `<div class="answer" onclick="event.stopPropagation()">
+    const compare=contrastExamples(u);
+    return `<div class="answer">
       <div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition">${escapeHtml(u.s.m)}</div><div class="root merged-root">${escapeHtml(u.w.root)}</div></div>
       <div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>
       <div class="answer-section examples-section">${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>
-      <div class="answer-section"><div class="answer-label">近义区分</div><div class="error-note">${escapeHtml(u.s.x)}</div></div>
+      <div class="answer-section"><div class="answer-label">近义区分</div><div class="error-note">${escapeHtml(u.s.x)}</div>${compare.length?`<div class="contrast-examples">${compare.map((e,i)=>`<div class="contrast-example"><span>${i+1}.</span><span>${escapeHtml(e)}</span></div>`).join('')}</div>`:''}</div>
     </div>`;
+  };
+
+  // Blank-area tap toggles between prompt-only and revealed answer.
+  // Works for both new-word study and review sessions.
+  reveal=function(){
+    if(state.view!=='study'&&state.view!=='review')return;
+    state.revealed=!state.revealed;
+    save();
+    render();
   };
 
   document.addEventListener('click',function(event){
