@@ -9,16 +9,15 @@
 }
 .word{font-size:44px;line-height:1}
 .ipa{margin-top:7px;font-size:18px;line-height:1.15}
-.speak-btn{font-size:22px;min-width:38px;min-height:38px;padding:5px}
 
-/* On the revealed answer page the headword stays, but the headword speaker is removed. */
-.study-body:has(.answer) .speak-btn{display:none}
+/* Headword audio is automatic; no speaker icon is shown on prompt or answer pages. */
+.speak-btn{display:none!important}
+.word-line{justify-content:center}
 
-/* Listening-only mode hides written cues before reveal but keeps replay audio. */
+/* Listening-only mode hides written cues before reveal. */
 .word-hero.listen-only .word{display:none}
 .word-hero.listen-only .ipa{display:none}
 .word-hero.listen-only .word-line{justify-content:center}
-.word-hero.listen-only .speak-btn{font-size:30px;min-width:54px;min-height:54px}
 
 /* Reveal hint is absolutely positioned and never affects centering. */
 .tap-hint{
@@ -41,59 +40,43 @@
   overflow-anchor:none;
   padding-top:2px;
 }
-.answer-section{
-  padding:6px 0;
-}
-.answer-label{
-  margin-bottom:2px;
-  font-size:10.5px;
-  line-height:1.2;
-}
+.answer-section{padding:6px 0}
+.answer-label{margin-bottom:2px;font-size:10.5px;line-height:1.2}
 .definition-line{display:flex;align-items:baseline;gap:7px}
 .pos-chip{font-size:11px;line-height:1.2;color:#666;white-space:nowrap}
-.definition{
-  font-size:15.5px;
-  line-height:1.34;
-}
-.collocations,
-.root,
-.error-note{
-  font-size:13.5px;
-  line-height:1.34;
-}
-.merged-root{
-  margin-top:3px;
-  color:#666;
-}
-.key-reminder{
-  margin-top:3px;
-  font-size:12.8px;
-  line-height:1.34;
-  color:#444;
-}
+.definition{font-size:15.5px;line-height:1.34}
+.collocations,.root,.error-note{font-size:13.5px;line-height:1.34}
+.merged-root{margin-top:3px;color:#666}
+.key-reminder{margin-top:3px;font-size:12.8px;line-height:1.34;color:#444}
 .key-reminder>span{margin-right:5px;color:#999;font-size:10.5px}
-.examples-section{
-  padding-top:3px;
-  padding-bottom:3px;
-}
-.example{
-  padding:2px 0;
-  font-size:13px;
-  line-height:1.32;
-  grid-template-columns:16px 1fr 30px;
-  gap:6px;
-}
-.example-play{
-  min-width:30px;
-  min-height:30px;
-  font-size:16px;
-  padding:2px;
-  touch-action:manipulation;
-}
+.examples-section{padding-top:3px;padding-bottom:3px}
+.example{padding:2px 0;font-size:13px;line-height:1.32;grid-template-columns:16px 1fr 30px;gap:6px}
+.example-play{min-width:30px;min-height:30px;font-size:16px;padding:2px;touch-action:manipulation}
 .error-note{margin-bottom:3px}
 .contrast-examples{display:grid;gap:3px;margin-top:4px}
 .contrast-example{display:grid;grid-template-columns:minmax(48px,max-content) 1fr;gap:7px;font-size:12.6px;line-height:1.3;color:#333;align-items:start}
 .contrast-word{font-weight:600;color:#111;white-space:nowrap}
+
+/* Adaptive typography: fewer optional sections means more room, so text grows. */
+.answer.density-2 .definition{font-size:16.5px}
+.answer.density-2 .collocations,.answer.density-2 .root,.answer.density-2 .error-note{font-size:14.2px}
+.answer.density-2 .key-reminder{font-size:13.4px}
+.answer.density-2 .example,.answer.density-2 .contrast-example{font-size:13.4px}
+.answer.density-2 .answer-section{padding:7px 0}
+
+.answer.density-1 .definition{font-size:18px;line-height:1.4}
+.answer.density-1 .collocations,.answer.density-1 .root,.answer.density-1 .error-note{font-size:15.2px;line-height:1.4}
+.answer.density-1 .key-reminder{font-size:14.2px}
+.answer.density-1 .example,.answer.density-1 .contrast-example{font-size:14.4px;line-height:1.38}
+.answer.density-1 .answer-label{font-size:11px}
+.answer.density-1 .answer-section{padding:9px 0}
+
+.answer.density-0 .definition{font-size:20px;line-height:1.45}
+.answer.density-0 .root{font-size:16px;line-height:1.45}
+.answer.density-0 .key-reminder{font-size:15px;line-height:1.42}
+.answer.density-0 .pos-chip{font-size:12px}
+.answer.density-0 .answer-label{font-size:11.5px}
+.answer.density-0 .answer-section{padding:11px 0}
 
 /* Slightly tighten the fixed bottom actions without reducing tap comfort. */
 .rating{padding-top:7px;padding-bottom:calc(7px + var(--safe-b));gap:8px}
