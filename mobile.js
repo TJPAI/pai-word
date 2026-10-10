@@ -1,3 +1,5 @@
+// PAI Word base data and state only. UI, learning flow, review, speech and settings
+// are owned by app-runtime.js.
 const SCENES = {
   daily:'日常生活', work:'职场商务', academic:'学术学习', travel:'旅行出行', social:'社交关系',
   tech:'科技互联网', health:'健康医疗', finance:'金融消费', public:'公共社会', culture:'文化娱乐'
@@ -47,36 +49,21 @@ try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e)
 
 function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
 function unitKey(w,sid){return `${w.w}::${sid}`}
-function allUnits(scene){return WORDS.flatMap(w=>Object.entries(w.s).filter(([sid])=>sid===scene).map(([sid,s])=>({w,sid,s})))}
+function allUnits(scene){return WORDS.flatMap(w=>Object.entries(w.s||{}).filter(([sid])=>sid===scene).map(([sid,s])=>({w,sid,s})))}
 function dueUnits(scene){const now=Date.now();return allUnits(scene).filter(u=>state.records[unitKey(u.w,u.sid)]?.due<=now)}
 function unseenUnits(scene){return allUnits(scene).filter(u=>!state.records[unitKey(u.w,u.sid)])}
-function queueFor(scene){const due=dueUnits(scene);const unseen=unseenUnits(scene).slice(0,state.newPerDay);const seen=new Set(due.map(u=>unitKey(u.w,u.sid)));return [...due,...unseen.filter(u=>!seen.has(unitKey(u.w,u.sid)))]}
+
+// Base queue helpers are intentionally simple; daily.js replaces queueFor/todayCount
+// with the production daily-assignment policy before app-runtime.js loads.
+function queueFor(scene){const due=dueUnits(scene),unseen=unseenUnits(scene).slice(0,state.newPerDay),seen=new Set(due.map(u=>unitKey(u.w,u.sid)));return [...due,...unseen.filter(u=>!seen.has(unitKey(u.w,u.sid)))]}
 function todayCount(scene){return queueFor(scene).length}
 function currentQueue(){return state.scene?queueFor(state.scene):[]}
-function currentUnit(){const q=currentQueue();return q.length?q[Math.min(state.index,q.length-1)]:null}
+function currentUnit(){const q=currentQueue();return q[0]||null}
 
-function speak(text,rate=.84){if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text);u.lang='en-US';u.rate=rate;speechSynthesis.speak(u)}
-function openScene(scene){state.scene=scene;state.index=0;state.revealed=false;state.view='study';save();render();setTimeout(()=>{const u=currentUnit();if(u)speak(u.w.w)},120)}
-function goScenes(){speechSynthesis?.cancel?.();state.view='scenes';state.scene=null;state.index=0;state.revealed=false;save();render()}
-function reveal(){if(state.view!=='study'||state.revealed)return;state.revealed=true;save();render()}
-function rateKnown(known){const u=currentUnit();if(!u)return;const k=unitKey(u.w,u.sid),now=Date.now(),prev=state.records[k]||{interval:0,reps:0};let due,interval;
-  if(known){const prevDays=prev.interval?prev.interval/86400000:0;const days=prev.reps?Math.max(3,Math.round(prevDays*2.4)):3;interval=days*86400000;due=now+interval;state.stats.known=(state.stats.known||0)+1}
-  else{interval=10*60000;due=now+interval;state.stats.unknown=(state.stats.unknown||0)+1}
-  state.records[k]={due,interval,reps:(prev.reps||0)+1,last:now,lastKnown:known};save();
-  const btn=document.querySelector(known?'.known':'.unknown');btn?.classList.add('flash');document.querySelector('.word-hero')?.classList.add('fade-out');
-  setTimeout(()=>{state.index++;state.revealed=false;save();render();setTimeout(()=>{const n=currentUnit();if(n)speak(n.w.w)},90)},130)
+function goScenes(){
+  if('speechSynthesis' in window)speechSynthesis.cancel();
+  state.view='scenes';state.scene=null;state.index=0;state.revealed=false;
+  save();
+  if(typeof render==='function')render();
 }
-
-function renderScenes(){return `<div class="screen scene-screen"><div class="scene-head"><h1>场景背单词</h1><div class="scene-tools"><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><div class="scene-grid">${Object.entries(SCENES).map(([id,name])=>`<button class="scene-card" onclick="openScene('${id}')"><span class="scene-name">${name}</span><span class="scene-count">${todayCount(id)}</span></button>`).join('')}</div><div class="scene-note">数字表示今天待学数量：到期复习 + 今日新词。</div></div>`}
-
-function answerHtml(u){return `<div class="answer" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition">${u.s.m}</div></div><div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${u.s.c}</div></div><div class="answer-section"><div class="answer-label">例句</div>${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${e}</span><button class="example-play" onclick="speak(${JSON.stringify(e)});event.stopPropagation()">🔊</button></div>`).join('')}</div><div class="answer-section"><div class="answer-label">词根 / 词源</div><div class="root">${u.w.root}</div></div><div class="answer-section"><div class="answer-label">易错提醒</div><div class="error-note">${u.s.x}</div><div class="error-pair"><div class="wrong">✕ ${u.s.bad}</div><div class="right">✓ ${u.s.good}</div></div></div></div>`}
-
-function renderStudy(){const q=currentQueue(),u=currentUnit();if(!u)return `<div class="screen study-screen"><div class="study-top"><button class="back-btn" onclick="goScenes()">‹</button><div class="study-scene">${SCENES[state.scene]}</div><div class="study-progress">完成</div></div><div class="done"><div><h2>今天完成了</h2><p>本场景当前没有待学项目。</p><button class="primary-btn" onclick="goScenes()">返回场景</button></div></div></div>`;
-  const pos=Math.min(state.index+1,q.length);return `<div class="screen study-screen"><div class="study-top"><button class="back-btn" onclick="goScenes()">‹</button><div class="study-scene">${SCENES[state.scene]}</div><div class="study-progress">${pos} / ${q.length}</div></div><div class="study-body" onclick="reveal()"><div class="word-hero"><div class="word-line"><div class="word">${u.w.w}</div><button class="speak-btn" onclick="speak('${u.w.w}');event.stopPropagation()">🔊</button></div><div class="ipa">${u.w.ipa}</div>${state.revealed?'':'<div class="tap-hint">轻点空白处显示答案</div>'}</div>${state.revealed?answerHtml(u):''}</div><div class="rating"><button class="unknown" onclick="rateKnown(false)">不知道</button><button class="known" onclick="rateKnown(true)">知道</button></div></div>`}
-
-function openPanel(kind){state.view=kind;save();render()}
-function renderPanel(kind){if(kind==='stats'){const total=Object.keys(state.records).length,known=state.stats.known||0,unknown=state.stats.unknown||0;return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>统计</h2></div><div class="panel-block"><div class="stat-row"><span>已学习义项</span><b>${total}</b></div><div class="stat-row"><span>知道</span><b>${known}</b></div><div class="stat-row"><span>不知道</span><b>${unknown}</b></div></div><div class="panel-block muted">统计按“单词 × 场景义项”记录。</div></div>`}
-  return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><div class="setting-row"><span>每日新词</span><select onchange="state.newPerDay=+this.value;save();render()">${[10,20,30,50].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`}
-
-function render(){let html=state.view==='study'?renderStudy():state.view==='stats'?renderPanel('stats'):state.view==='settings'?renderPanel('settings'):renderScenes();document.getElementById('app').innerHTML=html}
-render();
+function openPanel(kind){state.view=kind;save();if(typeof render==='function')render()}
