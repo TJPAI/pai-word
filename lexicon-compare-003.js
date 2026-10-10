@@ -1,0 +1,64 @@
+// PAI Word synonym distinctions: lexicon batch 003.
+(function(){
+  function add(word,scene,words,note,a,b){
+    const w=WORDS.find(x=>x.w===word); if(!w||!w.s[scene])return;
+    w.s[scene].compare={words,note,examples:[a,b]};
+  }
+
+  add('allow','work',['allow','permit','enable'],'allow 是一般允许；permit 更正式；enable 强调创造条件使某人能够做到。','The policy allows employees to work remotely.','Better tools enable the team to work faster.');
+  add('allow','tech',['allow','enable','grant'],'allow 是允许操作或访问；enable 是开启能力；grant 强调授予权限。','The firewall allows access from trusted networks.','The administrator granted the user access.');
+  add('appear','academic',['appear','seem','emerge'],'appear to 表示看起来；seem 更一般；emerge 强调某种模式逐渐显现。','The effect appears to be stronger at short range.','A clear pattern emerged from the data.');
+  add('appear','public',['appear','emerge','surface'],'appear 是一般出现；emerge 强调逐渐出现；surface 常指新的信息或问题被发现。','New details appeared in the report.','Fresh evidence surfaced during the investigation.');
+  add('build','work',['build','develop','establish'],'build 强调逐步建立能力、关系或团队；develop 强调发展；establish 强调正式建立。','It takes time to build trust.','The company established a new research unit.');
+  add('build','tech',['build','develop','create'],'build 常用于构建软件或系统；develop 强调开发过程；create 强调新建对象或资源。','We built a prototype in two weeks.','Create a new project in the workspace.');
+  add('cause','academic',['cause','lead to','result in'],'cause 直接表示导致；lead to 强调因果链条；result in 强调最终结果。','High noise can cause estimation errors.','Poor calibration may lead to biased results.');
+  add('cause','health',['cause','trigger','contribute to'],'cause 表示直接导致；trigger 强调触发症状或事件；contribute to 表示只是众多原因之一。','Lack of sleep can cause headaches.','Stress may trigger migraine symptoms.');
+  add('communicate','work',['communicate','inform','explain'],'communicate 强调双向传递信息；inform 强调告知；explain 强调说明原因或机制。','Managers should communicate expectations clearly.','Please inform the team of the change.');
+  add('communicate','social',['communicate','talk','interact'],'communicate 是广义交流；talk 强调说话；interact 强调相互作用。','They communicate mostly through messaging apps.','The children interacted naturally during the activity.');
+  add('control','tech',['control','manage','regulate'],'control 强调直接控制系统行为；manage 强调整体管理；regulate 强调按规则调节。','The software controls the motor speed.','The regulator manages power consumption automatically.');
+  add('control','academic',['control','hold constant','adjust for'],'control a variable 可指控制实验条件；hold constant 是保持不变；adjust for 是统计上校正。','We controlled temperature during the experiment.','The model adjusted for age and prior experience.');
+  add('create','work',['create','build','generate'],'create 强调产生新事物或价值；build 强调逐步建立；generate 常指产生结果、机会或数据。','The partnership created new opportunities.','The campaign generated hundreds of leads.');
+  add('create','tech',['create','build','generate'],'create 常用于新建账户、文件或对象；build 常用于系统或软件；generate 常用于自动生成输出。','Create a new account before signing in.','The tool generates a configuration file automatically.');
+  add('develop','tech',['develop','build','design'],'develop 强调开发过程；build 强调把系统实现出来；design 强调设计结构和方案。','The team developed a new algorithm.','The engineers designed the system architecture first.');
+  add('develop','health',['develop','contract','experience'],'develop a condition 表示逐渐出现疾病或症状；contract 更正式地指感染疾病；experience 强调感受到症状。','He developed a fever overnight.','Some patients experienced mild dizziness.');
+  add('discover','academic',['discover','find','identify'],'discover 强调首次发现新的事实；find 更一般；identify 强调明确识别出具体对象。','Researchers discovered a new pattern.','The analysis identified three sources of error.');
+  add('discover','daily',['discover','find','notice'],'discover 常有“意外发现”的意味；find 是一般找到；notice 是注意到已存在的细节。','We discovered a quiet café near the station.','I noticed a small mistake in the receipt.');
+  add('enable','tech',['enable','allow','activate'],'enable 是使功能可用；allow 是允许操作；activate 是把某功能或账户激活。','The update enables offline access.','Activate the feature in settings.');
+  add('enable','work',['enable','empower','allow'],'enable 强调提供条件或工具；empower 强调赋予人自主权和能力；allow 只是允许。','Training enables staff to handle complex tasks.','The policy empowers managers to make local decisions.');
+  add('ensure','work',['ensure','make sure','guarantee'],'ensure 是正式地确保；make sure 更口语；guarantee 语气最强，暗示结果有保证。','Please ensure that all fields are complete.','The warranty guarantees free repair for one year.');
+  add('ensure','tech',['ensure','verify','validate'],'ensure 是通过措施确保结果；verify 是核实是否正确；validate 是确认是否符合要求。','Redundancy helps ensure availability.','We verified the configuration before deployment.');
+  add('explain','academic',['explain','describe','interpret'],'explain 强调说明为什么；describe 只是描述是什么；interpret 强调对结果赋予意义。','The model explains the observed difference.','The paper describes the experimental setup in detail.');
+  add('explain','work',['explain','clarify','justify'],'explain 是说明原因或过程；clarify 是把不清楚的地方说清；justify 是为决定提供理由。','She explained the new process to the team.','The manager justified the budget increase with new data.');
+  add('increase','finance',['increase','rise','grow'],'increase 可及物或不及物；rise 只表示自身上升；grow 常指较持续的增长。','Revenue increased by 12%.','Operating costs rose sharply in Q2.');
+  add('increase','academic',['increase','rise','improve'],'increase 只表示数值变大；rise 是不及物上升；improve 表示变得更好，不等于数值变大。','Error increases with distance.','Accuracy improved after calibration.');
+  add('manage','work',['manage','lead','supervise'],'manage 强调管理资源和日常工作；lead 强调方向和领导；supervise 强调监督执行。','She manages a team of twelve engineers.','He leads the product strategy.');
+  add('manage','daily',['manage','cope','handle'],'manage to do 表示设法做到；cope 强调应付困难；handle 强调处理具体事务。','I managed to finish before dinner.','She coped well with the sudden change.');
+  add('provide','work',['provide','offer','supply'],'provide 是通用的提供；offer 强调主动提出可供选择的东西；supply 多指持续供应物资。','The supplier provides technical support.','The hotel offers free airport transport.');
+  add('provide','academic',['provide','show','present'],'provide evidence/data 强调提供材料；show 强调结果表明；present 强调正式呈现。','The experiment provides strong evidence.','The figure presents the results by age group.');
+  add('reduce','work',['reduce','cut','decrease'],'reduce 是正式中性的降低；cut 更直接，常指成本或数量削减；decrease 可及物或不及物，较书面。','Automation reduced processing time.','The company cut travel costs by 20%.');
+  add('reduce','health',['reduce','lower','relieve'],'reduce 是一般降低风险或症状；lower 常与数值指标搭配；relieve 强调缓解不适。','Exercise reduces the risk of heart disease.','The medication relieved the pain quickly.');
+  add('relate','academic',['relate','associate','correlate'],'relate to 是广义有关；associate with 表示存在关联；correlate with 特指统计相关。','Performance is related to signal quality.','Error correlates with distance.');
+  add('relate','social',['relate','connect','empathize'],'relate to 表示对他人经历有共鸣；connect 强调建立联系；empathize 强调理解他人感受。','Many readers can relate to her experience.','She empathized with his frustration.');
+  add('remain','academic',['remain','stay','persist'],'remain 较正式，表示继续处于某状态；stay 更口语；persist 强调问题持续存在。','The mechanism remains unclear.','The bias persisted after recalibration.');
+  add('remain','public',['remain','stay','continue'],'remain 是正式的持续存在；stay 多用于具体状态或位置；continue 强调动作或状态延续。','The restrictions remain in place.','The service will continue through winter.');
+  add('represent','academic',['represent','indicate','depict'],'represent 表示某符号或样本代表某对象；indicate 是表明；depict 强调图像化描绘。','Each point represents one measurement.','The diagram depicts the system architecture.');
+  add('represent','public',['represent','speak for','stand for'],'represent 是正式代表某群体；speak for 强调替某人发言；stand for 可指象征或支持某立场。','She represents the district in parliament.','The organization speaks for small businesses.');
+  add('support','work',['support','assist','back'],'support 是持续帮助或资源支持；assist 更偏具体帮助；back 强调公开支持某决定或人。','The operations team supports three business units.','The board backed the proposal unanimously.');
+  add('support','academic',['support','confirm','prove'],'support 表示证据与主张一致；confirm 表示进一步印证；prove 强度最高，表示足以证明。','The data support the main hypothesis.','A second experiment confirmed the pattern.');
+  add('transfer','finance',['transfer','send','remit'],'transfer 是资金在账户间转移；send 是一般发送；remit 是较正式的汇款。','I transferred the money to my savings account.','The company remitted payment to the supplier.');
+  add('transfer','tech',['transfer','transmit','move'],'transfer 是广义传输或转移；transmit 强调信号或数据发送；move 强调改变文件位置。','The system transfers data securely.','The sensor transmits a packet every second.');
+  add('verify','tech',['verify','validate','check'],'verify 是核实是否正确；validate 是确认是否符合要求；check 是最普通的检查。','We verified the configuration before deployment.','The form validates the input automatically.');
+  add('verify','academic',['verify','confirm','replicate'],'verify 是通过实验核实；confirm 是进一步支持已有结论；replicate 是重复研究看结果能否再现。','We verified the result with an independent dataset.','Another lab replicated the experiment successfully.');
+  add('improve','work',['improve','enhance','optimize'],'improve 是一般变好；enhance 强调增强已有质量或能力；optimize 强调在约束下调到最佳。','The new workflow improved efficiency.','We optimized the process for lower cost.');
+  add('improve','academic',['improve','increase','enhance'],'improve 表示性能变好；increase 只表示数值变大；enhance 强调增强某项性质。','Calibration improved accuracy.','More antennas increased the signal power.');
+  add('monitor','tech',['monitor','observe','track'],'monitor 强调持续监测状态；observe 是一般观察；track 强调随时间记录变化。','We monitor network latency continuously.','The dashboard tracks daily error rates.');
+  add('monitor','health',['monitor','check','track'],'monitor 强调持续观察健康指标；check 是一次性检查；track 强调长期记录趋势。','Patients should monitor their blood pressure.','The app tracks heart rate over time.');
+  add('recognize','social',['recognize','identify','notice'],'recognize 是认出熟悉对象；identify 是确定身份；notice 是注意到变化或细节。','I recognized him from the photo.','She noticed a change in his tone.');
+  add('recognize','public',['recognize','acknowledge','accept'],'recognize 是正式承认身份、权利或事实；acknowledge 是承认某事实存在；accept 是接受观点或决定。','The law recognizes the right to appeal.','The report acknowledges several limitations.');
+  add('release','tech',['release','launch','deploy'],'release 是发布某个版本；launch 多指首次推出产品；deploy 是把系统部署到运行环境。','The team released version 2.0.','We deployed the update to production that night.');
+  add('release','public',['release','publish','announce'],'release 强调把信息对外公开；publish 强调正式出版或发布文档；announce 强调公布消息。','The agency released the report on Friday.','The journal published the study online.');
+  add('select','work',['select','choose','appoint'],'select 比 choose 更正式，强调从候选中挑选；appoint 是正式任命某人担任职位。','The panel selected three candidates.','The board appointed her as chair.');
+  add('select','academic',['select','sample','choose'],'select 是从集合中选择对象；sample 是按抽样方法选取样本；choose 是一般选择。','We selected the variables before modeling.','We sampled 200 participants from the registry.');
+  add('solve','work',['solve','resolve','fix'],'solve 常与 problem 搭配；resolve 常与 issue/conflict 搭配；fix 更口语，常指具体故障。','We solved the scheduling problem.','The team resolved the customer complaint.');
+  add('solve','academic',['solve','derive','compute'],'solve 是求解问题或方程；derive 是推导公式或结果；compute 是计算数值。','We solved the equations numerically.','The closed-form expression was derived analytically.');
+})();
