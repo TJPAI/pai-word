@@ -18,6 +18,13 @@
       if(!Array.isArray(s.e)||s.e.length!==3)issues.push(`${p}: examples must be exactly 3`);
       if(!s.x)issues.push(`${p}: missing usage warning`);
       if(!s.bad||!s.good)issues.push(`${p}: missing wrong/correct example pair`);
+      if(s.compare){
+        const cw=Array.isArray(s.compare.words)?s.compare.words:[];
+        const ce=Array.isArray(s.compare.examples)?s.compare.examples:[];
+        if(!s.compare.note)issues.push(`${p}: synonym comparison missing note`);
+        if(cw.length<2)issues.push(`${p}: synonym comparison needs at least 2 words`);
+        if(ce.length!==cw.length)issues.push(`${p}: synonym comparison examples (${ce.length}) must match words (${cw.length}) one-to-one`);
+      }
     });
   });
   for(const [word,count] of seenWords){if(count>1)issues.push(`${word}: duplicate headword x${count}`)}
