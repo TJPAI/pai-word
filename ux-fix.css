@@ -11,6 +11,9 @@
 .ipa{margin-top:7px;font-size:18px;line-height:1.15}
 .speak-btn{font-size:22px;min-width:38px;min-height:38px;padding:5px}
 
+/* On the revealed answer page the headword stays, but the headword speaker is removed. */
+.study-body:has(.answer) .speak-btn{display:none}
+
 /* Listening-only mode hides written cues before reveal but keeps replay audio. */
 .word-hero.listen-only .word{display:none}
 .word-hero.listen-only .ipa{display:none}
@@ -46,6 +49,8 @@
   font-size:10.5px;
   line-height:1.2;
 }
+.definition-line{display:flex;align-items:baseline;gap:7px}
+.pos-chip{font-size:11px;line-height:1.2;color:#666;white-space:nowrap}
 .definition{
   font-size:15.5px;
   line-height:1.34;
@@ -60,6 +65,13 @@
   margin-top:3px;
   color:#666;
 }
+.key-reminder{
+  margin-top:3px;
+  font-size:12.8px;
+  line-height:1.34;
+  color:#444;
+}
+.key-reminder>span{margin-right:5px;color:#999;font-size:10.5px}
 .examples-section{
   padding-top:3px;
   padding-bottom:3px;
@@ -94,6 +106,7 @@
   .answer-section{padding:5px 0}
   .definition{font-size:15px}
   .collocations,.root,.error-note{font-size:13px}
+  .key-reminder{font-size:12.5px}
   .example{font-size:12.7px;line-height:1.28}
   .contrast-example{font-size:12.3px}
 }
@@ -108,5 +121,6 @@
   .answer-section{padding:4px 0}
   .example{padding:1px 0;font-size:12.4px}
   .root,.error-note,.collocations{font-size:12.7px}
+  .key-reminder{font-size:12.2px}
   .contrast-example{font-size:12px}
 }
