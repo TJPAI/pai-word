@@ -1,4 +1,4 @@
-// UX fixes: stable word position, reliable audio, compact answer layout, and answer toggle.
+// UX layer: compact answer layout, answer toggles, audio behavior, and settings.
 (function(){
   function escapeHtml(value){
     return String(value)
@@ -7,6 +7,19 @@
       .replace(/>/g,'&gt;')
       .replace(/"/g,'&quot;');
   }
+
+  // All optional answer sections are visible by default. Values are persisted
+  // inside the existing app state so current learning progress is untouched.
+  state.showCollocations=state.showCollocations!==false;
+  state.showExamples=state.showExamples!==false;
+  state.showCompare=state.showCompare!==false;
+
+  window.toggleAnswerOption=function(key){
+    if(!['showCollocations','showExamples','showCompare'].includes(key))return;
+    state[key]=!state[key];
+    save();
+    render();
+  };
 
   function contrastData(u){
     let words=[],note='',examples=[];
@@ -21,29 +34,26 @@
       note=u.s.x||'';
       examples=[u.s.bad,u.s.good].filter(Boolean).slice(0,2);
     }
-
-    // Never pad synonym-comparison examples with a normal headword example.
-    // Each displayed comparison sentence must correspond one-to-one with the
-    // comparison word at the same index. Missing dedicated examples remain
-    // missing until the lexicon data is explicitly completed.
     return {words,note,examples};
   }
 
   answerHtml=function(u){
     const compare=contrastData(u);
+    const enabledCount=[state.showCollocations,state.showExamples,state.showCompare].filter(Boolean).length;
     const words=compare.words.length?`<div class="contrast-words">${compare.words.map(escapeHtml).join(' · ')}</div>`:'';
     const pos=u.w.pos?`<span class="pos-chip">${escapeHtml(u.w.pos)}</span>`:'';
     const reminder=u.s.x?`<div class="key-reminder"><span>提醒</span>${escapeHtml(u.s.x)}</div>`:'';
-    return `<div class="answer">
+    const collocations=state.showCollocations?`<div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>`:'';
+    const examples=state.showExamples?`<div class="answer-section examples-section">${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>`:'';
+    const comparison=state.showCompare?`<div class="answer-section"><div class="answer-label">近义区分</div>${words}<div class="error-note">${escapeHtml(compare.note)}</div>${compare.examples.length?`<div class="contrast-examples">${compare.examples.map((e,i)=>`<div class="contrast-example"><span class="contrast-word">${escapeHtml(compare.words[i]||String(i+1))}</span><span>${escapeHtml(e)}</span></div>`).join('')}</div>`:''}</div>`:'';
+    return `<div class="answer density-${enabledCount}">
       <div class="answer-section"><div class="answer-label">释义 / 词源</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div><div class="root merged-root">${escapeHtml(u.w.root)}</div>${reminder}</div>
-      <div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>
-      <div class="answer-section examples-section">${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>
-      <div class="answer-section"><div class="answer-label">近义区分</div>${words}<div class="error-note">${escapeHtml(compare.note)}</div>${compare.examples.length?`<div class="contrast-examples">${compare.examples.map((e,i)=>`<div class="contrast-example"><span class="contrast-word">${escapeHtml(compare.words[i]||String(i+1))}</span><span>${escapeHtml(e)}</span></div>`).join('')}</div>`:''}</div>
+      ${collocations}${examples}${comparison}
     </div>`;
   };
 
   // Blank-area tap toggles between prompt-only and revealed answer.
-  // When returning to the prompt, replay the current headword immediately.
+  // Returning to the prompt replays the current headword automatically.
   reveal=function(){
     if(state.view!=='study'&&state.view!=='review')return;
     const wasRevealed=!!state.revealed;
@@ -51,9 +61,7 @@
     state.revealed=!state.revealed;
     save();
     render();
-    if(wasRevealed&&wordText){
-      setTimeout(()=>speak(wordText),60);
-    }
+    if(wasRevealed&&wordText)setTimeout(()=>speak(wordText),60);
   };
 
   document.addEventListener('click',function(event){
@@ -64,4 +72,26 @@
     const text=btn.getAttribute('data-speak');
     if(text)speak(text,.9);
   },true);
+
+  function enhanceSettings(){
+    if(state.view!=='settings')return;
+    const app=document.getElementById('app');
+    const firstBlock=app?.querySelector('.panel-block');
+    if(!firstBlock||firstBlock.querySelector('[data-answer-options]'))return;
+    const wrap=document.createElement('div');
+    wrap.setAttribute('data-answer-options','');
+    wrap.innerHTML=`
+      <div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div>
+      <div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div>
+      <div class="setting-row"><span>显示近义区分</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div>`;
+    firstBlock.appendChild(wrap);
+  }
+
+  const baseRender=render;
+  render=function(){
+    baseRender();
+    enhanceSettings();
+  };
+
+  enhanceSettings();
 })();
