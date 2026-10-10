@@ -28,12 +28,17 @@
   };
 
   // Blank-area tap toggles between prompt-only and revealed answer.
-  // Works for both new-word study and review sessions.
+  // When returning to the prompt, replay the current headword immediately.
   reveal=function(){
     if(state.view!=='study'&&state.view!=='review')return;
+    const wasRevealed=!!state.revealed;
+    const wordText=document.querySelector('.word')?.textContent?.trim()||'';
     state.revealed=!state.revealed;
     save();
     render();
+    if(wasRevealed&&wordText){
+      setTimeout(()=>speak(wordText),60);
+    }
   };
 
   document.addEventListener('click',function(event){
