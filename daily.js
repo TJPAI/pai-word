@@ -37,7 +37,7 @@
     return [...due,...fresh];
   };
   todayCount=function(scene){return queueFor(scene).length};
-  // If the user changes the quota, only expand today's assignment; never replace already assigned items.
+
   window.setNewPerDay=function(n){
     state.newPerDay=n;
     ensureDaily();
@@ -54,5 +54,12 @@
     }
     oldSave();render();
   };
+
+  const baseRenderPanel=renderPanel;
+  renderPanel=function(kind){
+    if(kind!=='settings')return baseRenderPanel(kind);
+    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[10,20,30,50].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`;
+  };
+
   ensureDaily();
 })();
