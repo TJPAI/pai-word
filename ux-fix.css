@@ -24,21 +24,22 @@
 .example{padding:2px 0;font-size:13px;line-height:1.32;grid-template-columns:16px 1fr 30px;gap:6px}
 .example-play{min-width:30px;min-height:30px;font-size:16px;padding:2px;touch-action:manipulation}
 .error-note{margin-bottom:3px}
-.contrast-examples{display:grid;gap:3px;margin-top:4px}
-.contrast-example{display:grid;grid-template-columns:minmax(48px,max-content) 1fr;gap:7px;font-size:12.6px;line-height:1.3;color:#333;align-items:start}
+.contrast-examples{display:grid;gap:7px;margin-top:4px}
+.contrast-item{font-size:12.6px;line-height:1.3;color:#333}
+.contrast-summary{display:block}
 .contrast-word{font-weight:600;color:#111;white-space:nowrap}
-.contrast-word.unresolved{font-weight:400;color:#999}
+.contrast-sentence{margin-top:1px;color:#444}
 
 /* Adaptive typography from settings. */
 .answer.density-2 .definition{font-size:16.5px}
 .answer.density-2 .collocations,.answer.density-2 .root,.answer.density-2 .error-note{font-size:14.2px}
 .answer.density-2 .key-reminder{font-size:13.4px}
-.answer.density-2 .example,.answer.density-2 .contrast-example{font-size:13.4px}
+.answer.density-2 .example,.answer.density-2 .contrast-item{font-size:13.4px}
 .answer.density-2 .answer-section{padding:7px 0}
 .answer.density-1 .definition{font-size:18px;line-height:1.4}
 .answer.density-1 .collocations,.answer.density-1 .root,.answer.density-1 .error-note{font-size:15.2px;line-height:1.4}
 .answer.density-1 .key-reminder{font-size:14.2px}
-.answer.density-1 .example,.answer.density-1 .contrast-example{font-size:14.4px;line-height:1.38}
+.answer.density-1 .example,.answer.density-1 .contrast-item{font-size:14.4px;line-height:1.38}
 .answer.density-1 .answer-label{font-size:11px}
 .answer.density-1 .answer-section{padding:9px 0}
 .answer.density-0 .definition{font-size:20px;line-height:1.45}
@@ -52,12 +53,12 @@
 .answer.fit-medium .definition{font-size:16.2px}
 .answer.fit-medium .collocations,.answer.fit-medium .root,.answer.fit-medium .error-note{font-size:14px}
 .answer.fit-medium .key-reminder{font-size:13.3px}
-.answer.fit-medium .example,.answer.fit-medium .contrast-example{font-size:13.3px;line-height:1.34}
+.answer.fit-medium .example,.answer.fit-medium .contrast-item{font-size:13.3px;line-height:1.34}
 .answer.fit-medium .answer-section{padding-top:7px;padding-bottom:7px}
 .answer.fit-roomy .definition{font-size:17px;line-height:1.4}
 .answer.fit-roomy .collocations,.answer.fit-roomy .root,.answer.fit-roomy .error-note{font-size:14.6px;line-height:1.4}
 .answer.fit-roomy .key-reminder{font-size:13.8px;line-height:1.38}
-.answer.fit-roomy .example,.answer.fit-roomy .contrast-example{font-size:13.9px;line-height:1.38}
+.answer.fit-roomy .example,.answer.fit-roomy .contrast-item{font-size:13.9px;line-height:1.38}
 .answer.fit-roomy .answer-label{font-size:11px}
 .answer.fit-roomy .answer-section{padding-top:8px;padding-bottom:8px}
 
@@ -73,7 +74,7 @@
   .collocations,.root,.error-note{font-size:13px}
   .key-reminder{font-size:12.5px}
   .example{font-size:12.7px;line-height:1.28}
-  .contrast-example{font-size:12.3px}
+  .contrast-item{font-size:12.3px}
 }
 @media (max-height:700px){
   .word-hero{height:15dvh;min-height:15dvh;max-height:15dvh;flex-basis:15dvh}
@@ -86,5 +87,5 @@
   .example{padding:1px 0;font-size:12.4px}
   .root,.error-note,.collocations{font-size:12.7px}
   .key-reminder{font-size:12.2px}
-  .contrast-example{font-size:12px;grid-template-columns:minmax(44px,max-content) 1fr}
+  .contrast-item{font-size:12px}
 }
