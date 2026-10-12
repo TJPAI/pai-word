@@ -60,17 +60,19 @@
       return next;
     }
     const success=['recalled','correct'].includes(event.result)&&!event.hint_used;
-    const failure=['not_recalled','incorrect'].includes(event.result);
+    const failure=['not_recalled','incorrect'].includes(event.result)||event.result==='hinted_correct';
     if(success){
       next.independent_successes=(next.independent_successes||0)+1;
       if(event.event_type==='objective_answer')next.objective_successes=(next.objective_successes||0)+1;
       if(String(event.evidence_type||'').startsWith('delayed_')){
         next.delayed_successes=(next.delayed_successes||0)+1;
         next.status='delayed_verified';
-      }else if(next.status!=='delayed_verified')next.status='independent_recall';
-    }else if(failure||event.result==='hinted_correct'){
+      }else next.status='independent_recall';
+    }else if(failure){
       next.failures=(next.failures||0)+1;
-      if(next.status!=='delayed_verified')next.status='learning';
+      // A later failure must remain visible even if there was an earlier delayed success.
+      // delayed_successes retains the historical evidence; status describes the current learning condition.
+      next.status='learning';
     }
     return next;
   }
@@ -90,7 +92,10 @@
     const db=await openDB(),tx=db.transaction([EVENTS,TARGETS,SESSIONS],'readwrite');
     const eventStore=tx.objectStore(EVENTS),targetStore=tx.objectStore(TARGETS),sessionStore=tx.objectStore(SESSIONS);
     const existing=await reqValue(eventStore.get(event.event_id));
-    if(existing){tx.abort();return {duplicate:true,event:existing,target:await getTarget(event.target_id)};}
+    if(existing){
+      await txDone(tx);
+      return {duplicate:true,event:existing,target:await getTarget(event.target_id)};
+    }
     const previous=await reqValue(targetStore.get(event.target_id));
     const nextTarget=applyEvidence(previous,event,target);
     eventStore.add(event);targetStore.put(nextTarget);
@@ -116,6 +121,7 @@
 
   window.PAI_EVIDENCE={
     DB_NAME,makeId,openDB,getTarget,getSession,listEventsBySession,commit,saveSession,putMeta,getMeta,exportProgress,
-    makeEvent(fields){return {event_id:fields.event_id||makeId(),item_id:null,item_version:null,hint_used:false,active_duration:0,content_version:'Core-13000 V25.5',...fields,occurred_at:fields.occurred_at||nowIso()}}
+    makeEvent(fields){return {event_id:fields.event_id||makeId(),item_id:null,item_version:null,hint_used:false,active_duration:0,content_version:'Core-13000 V25.5',...fields,occurred_at:fields.occurred_at||nowIso()}},
+    _test:{baseTarget,applyEvidence}
   };
 })();
