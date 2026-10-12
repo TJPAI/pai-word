@@ -54,9 +54,14 @@
     next.last_event_at=event.occurred_at;next.updated_at=nowIso();
     next.seen_item_ids=Array.isArray(next.seen_item_ids)?next.seen_item_ids:[];
     if(event.item_id){next.last_item_id=event.item_id;if(!next.seen_item_ids.includes(event.item_id))next.seen_item_ids=[...next.seen_item_ids,event.item_id]}
+    if(event.event_type==='legacy_srs_snapshot'){
+      next.legacy_self_report=event.result;
+      if(next.status==='unmeasured')next.status='legacy_self_report';
+      return next;
+    }
     if(event.event_type==='exposure'){
       next.exposures=(next.exposures||0)+1;
-      if(next.status==='unmeasured')next.status='exposed';
+      if(next.status==='unmeasured'||next.status==='legacy_self_report')next.status='exposed';
       return next;
     }
     const success=['recalled','correct'].includes(event.result)&&!event.hint_used;
@@ -70,8 +75,6 @@
       }else next.status='independent_recall';
     }else if(failure){
       next.failures=(next.failures||0)+1;
-      // A later failure must remain visible even if there was an earlier delayed success.
-      // delayed_successes retains the historical evidence; status describes the current learning condition.
       next.status='learning';
     }
     return next;
@@ -84,18 +87,13 @@
     return (all||[]).filter(e=>e.session_id===sessionId).sort((a,b)=>String(a.occurred_at).localeCompare(String(b.occurred_at)));
   }
 
-  // Atomic event append + target update + optional session checkpoint.
-  // Duplicate event_id returns duplicate=true and performs no second update.
   async function commit({event,target,session}){
     if(!event?.event_id||!event?.ku_id||!event?.target_id||!event?.event_type||!event?.occurred_at)throw new Error('invalid learning event');
     if(!target?.target_id||target.target_id!==event.target_id||target.ku_id!==event.ku_id)throw new Error('target/event mismatch');
     const db=await openDB(),tx=db.transaction([EVENTS,TARGETS,SESSIONS],'readwrite');
     const eventStore=tx.objectStore(EVENTS),targetStore=tx.objectStore(TARGETS),sessionStore=tx.objectStore(SESSIONS);
     const existing=await reqValue(eventStore.get(event.event_id));
-    if(existing){
-      await txDone(tx);
-      return {duplicate:true,event:existing,target:await getTarget(event.target_id)};
-    }
+    if(existing){await txDone(tx);return {duplicate:true,event:existing,target:await getTarget(event.target_id)};}
     const previous=await reqValue(targetStore.get(event.target_id));
     const nextTarget=applyEvidence(previous,event,target);
     eventStore.add(event);targetStore.put(nextTarget);
