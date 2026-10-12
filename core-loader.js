@@ -1,0 +1,98 @@
+// Core-13000 adapter: canonical KU identity, indexed queues, conservative migration.
+(function(){
+  const ROOT='data/core13000-v25.5/';
+  const DOMAIN_SCENE=Object.freeze({
+    daily_communication:'daily',housing:'daily',family:'daily',food:'daily',
+    business:'work',work:'work',academic_research:'academic',education:'academic',science:'academic',
+    travel:'travel',driving_transport:'travel',relationships:'social',emotion:'social',
+    technology:'tech',ai_internet:'tech',engineering_manufacturing:'tech',science_technology:'tech',
+    health:'health',medicine_health:'health',finance_economy:'finance',shopping:'finance',
+    public_safety:'public',law:'public',society:'public',public_affairs_politics:'public',
+    law_public:'public',law_politics_society:'public',city:'public',news_media:'public',
+    arts_culture:'culture',entertainment:'culture',sport:'culture'
+  });
+  const norm=value=>String(value||'').trim().replace(/[；;。\s]/g,'');
+  async function fetchBytes(file,bytes,sha){
+    const response=await fetch(ROOT+file,{cache:'no-cache'});
+    if(!response.ok)throw new Error(file+' HTTP '+response.status);
+    const data=new Uint8Array(await response.arrayBuffer());
+    if(data.length!==bytes)throw new Error(file+' 文件大小不符');
+    if(!crypto.subtle)throw new Error('请通过 HTTPS 或 localhost 打开应用');
+    const digest=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',data)),x=>x.toString(16).padStart(2,'0')).join('');
+    if(digest!==sha)throw new Error(file+' 校验失败');
+    return data;
+  }
+  async function loadPack(pack,manifest){
+    let format='brotli';
+    try{new DecompressionStream(format)}catch(_){format='gzip'}
+    const fallback=format==='gzip';
+    const data=await fetchBytes(fallback?pack.fallback_file:pack.file,fallback?pack.fallback_bytes:pack.bytes,fallback?pack.fallback_sha256:pack.sha256);
+    const raw=await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream(format))).arrayBuffer();
+    if(raw.byteLength!==pack.raw_bytes)throw new Error(pack.file+' 解压大小不符');
+    const payload=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(raw));
+    if(payload.v!==manifest.schema_version||payload.release!==manifest.release||JSON.stringify(payload.columns)!==JSON.stringify(manifest.columns)||payload.words?.length!==pack.words)throw new Error(pack.file+' 结构不符');
+    for(let i=0;i<payload.words.length;i++)if(payload.words[i][0]!==pack.rank_start+i)throw new Error('词序不连续');
+    if(pack.rank_end!==pack.rank_start+pack.words-1)throw new Error('包范围不符');
+    return {words:payload.words,format};
+  }
+  function adapt(rows){
+    const words=[],byKU=new Map(),byScene=new Map(Object.keys(SCENES).map(k=>[k,[]])),byLemma=new Map();
+    let missingKU=0,missingIPA=0;
+    for(const row of rows){
+      const [rank,lemma,pos,uk,us,senses,collocations,examples,usage]=row;
+      if(!lemma||!Array.isArray(senses)||!senses.length||!Array.isArray(examples)||!Array.isArray(collocations)||!Array.isArray(usage))throw new Error('词条结构无效');
+      const w={rank,w:lemma,pos:pos||'',ipaUK:uk||'',ipaUS:us||'',ipa:us||uk||'',root:'',s:{},allSenses:senses};
+      if(!uk&&!us)missingIPA++;
+      for(const sense of senses){
+        const [sense_id,sensePos,zh,domain,ku_id]=sense;
+        if(!sense_id||!zh)throw new Error('义项结构无效');
+        if(!ku_id){missingKU++;continue}
+        if(byKU.has(ku_id))throw new Error('重复 ku_id：'+ku_id);
+        const scene=DOMAIN_SCENE[domain]||'unclassified';
+        const s={sense_id,ku_id,pos:sensePos||pos||'',domain,scene,m:zh,
+          c:collocations.map(([en,cn])=>en+(cn?' — '+cn:'')).join(' · '),
+          e:examples.map(([en,cn])=>en+(cn?'\n'+cn:'')),exampleAudio:examples.map(e=>e[0]),x:usage.join('；')};
+        w.s[ku_id]=s;const u={w,sid:ku_id,s,k:ku_id};byKU.set(ku_id,u);byScene.get(scene).push(u);
+      }
+      if(!Object.keys(w.s).length)throw new Error('词条无可学习知识单元：'+lemma);
+      words.push(w);const entries=byLemma.get(lemma)||[];entries.push(w);byLemma.set(lemma,entries);
+    }
+    return {words,byKU,byScene,byLemma,missingKU,missingIPA};
+  }
+  function migrate(core,legacy){
+    if(state.srsSchema==='ku_id-v1')return;
+    const backupKey=STORAGE+'::before-ku-id-v1';
+    const original=localStorage.getItem(STORAGE)||JSON.stringify(state);
+    // Backup must succeed before any mutation of stored progress.
+    if(localStorage.getItem(backupKey)===null)localStorage.setItem(backupKey,original);
+    const records=Object.fromEntries(Object.entries(state.records||{}).filter(([key])=>core.byKU.has(key))),pending={...(state.legacySrsPending||{})},legacyWords=new Map(legacy.map(w=>[w.w,w]));
+    for(const [key,record] of Object.entries(state.records||{})){
+      if(core.byKU.has(key))continue;
+      const [lemma,scene,...rest]=key.split('::'),oldSense=legacyWords.get(lemma)?.s[scene];
+      // A matching spelling or broad domain alone cannot prove sense equivalence.
+      const candidates=!rest.length&&oldSense?(core.byLemma.get(lemma)||[]).flatMap(w=>Object.values(w.s)).filter(s=>s.scene===scene&&norm(s.m)===norm(oldSense.m)):[];
+      if(candidates.length===1&&!records[candidates[0].ku_id]){records[candidates[0].ku_id]=record}
+      else pending[key]={record,reason:candidates.length?'ambiguous_or_collision':'no_exact_sense_match'};
+    }
+    const next={...state,records,srsSchema:'ku_id-v1',lexiconRelease:'Core-13000 V25.5',
+      legacySrsPending:pending,srsMigration:{backupKey,migrated:Object.keys(records).length,pending:Object.keys(pending).length},
+      daily:null,freeKeys:[],view:'scenes',scene:null};
+    localStorage.setItem(STORAGE,JSON.stringify(next));
+    Object.assign(state,next);
+  }
+  window.loadCore13000=async function(){
+    const response=await fetch(ROOT+'manifest.json',{cache:'no-cache'});
+    if(!response.ok)throw new Error('manifest HTTP '+response.status);
+    const manifest=await response.json();
+    if(manifest.release!=='Core-13000 V25.5'||manifest.word_count!==13000||manifest.packs?.length!==4)throw new Error('词库版本不符');
+    const packs=await Promise.all(manifest.packs.map(p=>loadPack(p,manifest))),rows=packs.flatMap(p=>p.words);
+    if(rows.length!==13000||rows.some((row,i)=>row[0]!==i+1))throw new Error('13,000 词连续性校验失败');
+    SCENES.unclassified='通用词汇 · 待分类';
+    const core=adapt(rows);migrate(core,WORDS);
+    WORDS.splice(0,WORDS.length,...core.words);window.PAI_CORE=core;
+    window.PAI_CORE_QA={release:manifest.release,words:WORDS.length,units:core.byKU.size,
+      missingKU:core.missingKU,missingIPA:core.missingIPA,formats:packs.map(p=>p.format),
+      sceneCounts:Object.fromEntries([...core.byScene].map(([k,v])=>[k,v.length])),migration:state.srsMigration};
+    return window.PAI_CORE_QA;
+  };
+})();

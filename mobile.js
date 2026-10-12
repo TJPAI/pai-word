@@ -48,8 +48,9 @@ let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:20,records:
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
 function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
-function unitKey(w,sid){return `${w.w}::${sid}`}
-function allUnits(scene){return WORDS.flatMap(w=>Object.entries(w.s||{}).filter(([sid])=>sid===scene).map(([sid,s])=>({w,sid,s})))}
+function unitKey(w,sid){return w.s[sid]?.ku_id||`${w.w}::${sid}`}
+function findUnitByKey(k){return window.PAI_CORE?.byKU.get(k)||null}
+function allUnits(scene){return window.PAI_CORE?.byScene.get(scene)||[]}
 function dueUnits(scene){const now=Date.now();return allUnits(scene).filter(u=>state.records[unitKey(u.w,u.sid)]?.due<=now)}
 function unseenUnits(scene){return allUnits(scene).filter(u=>!state.records[unitKey(u.w,u.sid)])}
 

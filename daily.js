@@ -19,11 +19,7 @@
     }
     return state.daily.assigned[scene];
   }
-  function findUnitByKey(k){
-    const [word,sid]=k.split('::');
-    const w=WORDS.find(x=>x.w===word);
-    return w&&w.s[sid]?{w,sid,s:w.s[sid]}:null;
-  }
+
 
   queueFor=function(scene){
     const due=dueUnits(scene),dueSet=new Set(due.map(u=>unitKey(u.w,u.sid)));

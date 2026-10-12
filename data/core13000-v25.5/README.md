@@ -1,6 +1,6 @@
 # PAI English Lexicon — Core-13000 V25.5 runtime export
 
-This directory stages the completed PAI English Lexicon data for `pai-word` without changing the current production learning flow.
+This directory stages the completed PAI English Lexicon data for `pai-word` for the integration branch. Production main remains unchanged.
 
 ## Release
 
@@ -45,6 +45,8 @@ No dictionary/corpus verification is implied by inclusion in this repository.
 
 ## Activation status
 
-`STAGED_NOT_ACTIVE`
+`ACTIVE_ON_INTEGRATION_BRANCH`
 
-The current production app still uses the legacy `WORDS` array and `word::scene` SRS keys. Runtime activation should be a separate change: load the new data, map UI units to canonical `sense_id`/`ku_id`, migrate existing local records safely, and only then replace the legacy loading chain.
+The four original pack bytes have been verified against the original manifest SHA-256 and included in this branch. Gzip compatibility packs contain byte-identical decompressed JSON. The new runtime uses canonical `ku_id` and conservatively preserves unresolved legacy records with an immutable local backup. See the root README for migration limits and validation evidence. Production `main` has not been modified.
+
+30 senses lack KU identifiers and remain visible as additional meanings without invented SRS identities. Scene annotation and external teaching-content checks remain incomplete. Browser visual validation remains pending.

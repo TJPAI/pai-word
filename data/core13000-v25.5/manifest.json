@@ -5,14 +5,68 @@
   "source_master": "PAI_Lexicon_Core13000_V25.5_teaching_repair_12501_13000_master.json",
   "source_master_sha256": "d815d541f598b98f0af580df4a6902b0e87067d97304863bd1bd8859aa0b651f",
   "storage_format": "Brotli-compressed UTF-8 JSON",
-  "columns": ["rank","lemma","pos","uk","us","senses[id,pos,zh,domain,ku_id]","collocations[text,zh]","examples[en,zh]","usage_zh"],
-  "pack_transfer_status": "PENDING_GITHUB_BINARY_UPLOAD",
+  "columns": [
+    "rank",
+    "lemma",
+    "pos",
+    "uk",
+    "us",
+    "senses[id,pos,zh,domain,ku_id]",
+    "collocations[text,zh]",
+    "examples[en,zh]",
+    "usage_zh"
+  ],
+  "pack_transfer_status": "VERIFIED_BINARY_PACKS",
   "pack_library_staging": "/PAI_Lexicon/pai-word-core13000-v25.5/",
   "packs": [
-    {"file":"core-00001-03250.json.br","rank_start":1,"rank_end":3250,"words":3250,"raw_bytes":1915008,"bytes":410197,"sha256":"c63a721dc788d2083673f20b9dd937c14948f802c9fc5176a5d64b5439af15d7"},
-    {"file":"core-03251-06500.json.br","rank_start":3251,"rank_end":6500,"words":3250,"raw_bytes":1983451,"bytes":328133,"sha256":"f2495285744619b8319f1b6c4320babc665bafdc020ae362f6cc0bbeb808bb22"},
-    {"file":"core-06501-09750.json.br","rank_start":6501,"rank_end":9750,"words":3250,"raw_bytes":1703280,"bytes":419162,"sha256":"2a112332fd7aaa2ae2621d4c4672670991333bc745e634141b7cf89d0a471f61"},
-    {"file":"core-09751-13000.json.br","rank_start":9751,"rank_end":13000,"words":3250,"raw_bytes":1828342,"bytes":468608,"sha256":"5a145d562df897f7df9c39870356b691b644464b54dc67602f4abbc9659dba03"}
+    {
+      "file": "core-00001-03250.json.br",
+      "rank_start": 1,
+      "rank_end": 3250,
+      "words": 3250,
+      "raw_bytes": 1915008,
+      "bytes": 410197,
+      "sha256": "c63a721dc788d2083673f20b9dd937c14948f802c9fc5176a5d64b5439af15d7",
+      "fallback_file": "core-00001-03250.json.gz",
+      "fallback_bytes": 589810,
+      "fallback_sha256": "cdd6fd3e817d63f6adbfac4c593383748cb6613e65baaca959f9106d0f2b56e8"
+    },
+    {
+      "file": "core-03251-06500.json.br",
+      "rank_start": 3251,
+      "rank_end": 6500,
+      "words": 3250,
+      "raw_bytes": 1983451,
+      "bytes": 328133,
+      "sha256": "f2495285744619b8319f1b6c4320babc665bafdc020ae362f6cc0bbeb808bb22",
+      "fallback_file": "core-03251-06500.json.gz",
+      "fallback_bytes": 464341,
+      "fallback_sha256": "2da6b3841bb7db9a4d017ce03be42946a5ca9e0f5ccb4a864fc86162a75d3a45"
+    },
+    {
+      "file": "core-06501-09750.json.br",
+      "rank_start": 6501,
+      "rank_end": 9750,
+      "words": 3250,
+      "raw_bytes": 1703280,
+      "bytes": 419162,
+      "sha256": "2a112332fd7aaa2ae2621d4c4672670991333bc745e634141b7cf89d0a471f61",
+      "fallback_file": "core-06501-09750.json.gz",
+      "fallback_bytes": 593091,
+      "fallback_sha256": "637441ee8db6f260e8d56790f0c6efbe3b06e30573bacdffa3d7fda04bfc143b"
+    },
+    {
+      "file": "core-09751-13000.json.br",
+      "rank_start": 9751,
+      "rank_end": 13000,
+      "words": 3250,
+      "raw_bytes": 1828342,
+      "bytes": 468608,
+      "sha256": "5a145d562df897f7df9c39870356b691b644464b54dc67602f4abbc9659dba03",
+      "fallback_file": "core-09751-13000.json.gz",
+      "fallback_bytes": 662949,
+      "fallback_sha256": "6fd554490a0322cf6c6bd5328427b9c932ba2fbbbc87f9adfbe3648285fa7fc9"
+    }
   ],
   "total_compressed_bytes": 1626100,
   "total_raw_bytes": 7430081,
@@ -24,11 +78,13 @@
     "corpus_validation": "INHERITED/PENDING according to source master",
     "example_external_spotcheck": "INHERITED/PENDING according to source master"
   },
-  "activation_status": "STAGED_NOT_ACTIVE",
+  "activation_status": "ACTIVE_ON_INTEGRATION_BRANCH",
   "notes": [
-    "The four pack binaries are persisted in ChatGPT Library but are not yet present in this Git branch; do not treat manifest listing as successful Git transfer.",
-    "Current production pai-word still uses the legacy WORDS array and word::scene SRS keys.",
-    "Scene mapping is not frozen; do not randomly map placeholder time_space_abstract domains.",
-    "Runtime migration target is canonical ku_id."
+    "All four original Brotli packs match the source manifest SHA-256.",
+    "Gzip packs contain identical decompressed JSON and support browsers without native Brotli DecompressionStream.",
+    "Scene mapping is partial: unknown and placeholder domains remain unclassified.",
+    "Runtime SRS uses canonical ku_id; unresolved legacy progress is backed up and retained separately.",
+    "30 senses without ku_id are retained as word metadata but excluded from SRS; all 13000 words have at least one canonical KU.",
+    "Source dictionary, corpus and example verification remain inherited/pending."
   ]
 }

@@ -10,14 +10,13 @@
 
   const missing=[];
   WORDS.forEach(w=>{
-    w.ipaUK=w.ipaUK||w.ipa;
-    w.ipaUS=w.ipaUS||us[w.w]||'';
+    if(!window.PAI_CORE){w.ipaUK=w.ipaUK||w.ipa;w.ipaUS=w.ipaUS||us[w.w]||'';}
     if(!w.ipaUS||!w.ipaUK)missing.push(w.w);
   });
 
   let accent=state.voiceAccent==='gb'?'gb':'us';
   function applyAccentIPA(){
-    WORDS.forEach(w=>{w.ipa=accent==='gb'?(w.ipaUK||w.ipa):(w.ipaUS||w.ipa)});
+    WORDS.forEach(w=>{w.ipa=accent==='gb'?w.ipaUK:w.ipaUS});
   }
 
   Object.defineProperty(state,'voiceAccent',{
@@ -29,11 +28,11 @@
 
   window.getAccentIPA=function(word){
     if(!word)return'';
-    return accent==='gb'?(word.ipaUK||word.ipa):(word.ipaUS||word.ipa);
+    return accent==='gb'?word.ipaUK:word.ipaUS;
   };
   window.PAI_WORD_IPA_QA={words:WORDS.length,complete:WORDS.length-missing.length,missing};
   applyAccentIPA();
 
-  if(missing.length)console.warn('[PAI Word IPA QA] missing accent IPA',missing);
+  if(missing.length)console.info('[PAI Word IPA QA] accent fields pending:',missing.length);
   else console.info(`[PAI Word IPA QA] ${WORDS.length} words have US/UK IPA fields`);
 })();
