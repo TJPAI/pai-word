@@ -13,6 +13,15 @@
   }));
   const byRank=new Map(window.PAI_CORE.words.map(w=>[w.rank,w]));
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  function offlineText(){
+    const s=window.PAI_LOCAL_LEXICON||{};
+    if(!s.supported)return '本地词库不可用';
+    if(s.offlineReady&&s.shellReady)return '完整词库已保存在本机 · 可离线启动';
+    if(s.offlineReady)return '完整词库已保存在本机 · 离线启动缓存初始化中';
+    return '首次联网使用后会将完整 13,000 词保存到本机';
+  }
+  function refreshOfflineStatus(){document.querySelectorAll('[data-offline-status]').forEach(el=>{el.textContent=offlineText()})}
+  window.addEventListener('pai-offline-status',refreshOfflineStatus);
   function resultItems(query){
     const q=String(query||'').trim().toLowerCase();
     if(!q)return searchIndex.slice(0,80);
@@ -35,7 +44,7 @@
   }
   function renderLexicon(){
     const q=state.lexiconQuery||'';
-    return `<div class="screen lex-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>词库浏览</h2></div><div class="lex-scope">Core-13000 V25.5 · 收录 13,000 词</div><div class="lex-search-wrap"><input id="lex-search" class="lex-search" type="search" autocomplete="off" autocapitalize="none" placeholder="搜索英文或中文释义" value="${esc(q)}" oninput="updateLexiconSearch(this.value)"></div><div class="lex-results" id="lex-results">${resultHtml(q)}</div></div>`;
+    return `<div class="screen lex-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>词库浏览</h2></div><div class="lex-scope">Core-13000 V25.5 · 收录 13,000 词<br><span data-offline-status>${esc(offlineText())}</span></div><div class="lex-search-wrap"><input id="lex-search" class="lex-search" type="search" autocomplete="off" autocapitalize="none" placeholder="搜索英文或中文释义" value="${esc(q)}" oninput="updateLexiconSearch(this.value)"></div><div class="lex-results" id="lex-results">${resultHtml(q)}</div></div>`;
   }
   function currentWord(){return byRank.get(state.lexiconWordRank||1)||null}
   function renderLexiconWord(){
@@ -67,15 +76,15 @@
       const tools=document.querySelector('.scene-tools');
       if(tools&&!tools.querySelector('[data-lexicon]'))tools.insertAdjacentHTML('afterbegin','<button class="text-btn" data-lexicon onclick="openLexicon(true)">词库</button>');
       const head=document.querySelector('.scene-head');
-      if(head&&!document.querySelector('.scope-strip'))head.insertAdjacentHTML('afterend',`<div class="scope-strip"><div><b>Core-13000 完整词库</b><span>13,000 词 · 今日新词全应用合计 ${state.newPerDay} 个 · 复习不限额</span></div></div>`);
+      if(head&&!document.querySelector('.scope-strip'))head.insertAdjacentHTML('afterend',`<div class="scope-strip"><div><b>Core-13000 完整词库</b><span>13,000 词 · 今日新词全应用合计 ${state.newPerDay} 个 · 复习不限额</span><span data-offline-status>${esc(offlineText())}</span></div></div>`);
       if(typeof globalNewRemaining==='function'&&globalNewRemaining()===0){document.querySelectorAll('button[onclick^="toggleExtraScenes("]').forEach(btn=>btn.remove());document.querySelector('.extra-scenes')?.remove()}
       const note=document.querySelector('.scene-note');if(note)note.insertAdjacentHTML('afterbegin',`完整 13,000 词学习 · 今日剩余新词 ${typeof globalNewRemaining==='function'?globalNewRemaining():'—'}<br>`);
     }
     if(state.view==='settings'){
-      const muted=[...document.querySelectorAll('.panel-block.muted')].at(-1);if(muted)muted.textContent='使用完整 Core-13000 词库。每日新词额度为全应用合计；到期复习不受新词额度限制。';
+      const muted=[...document.querySelectorAll('.panel-block.muted')].at(-1);if(muted)muted.innerHTML=`使用完整 Core-13000 词库。每日新词额度为全应用合计；到期复习不受新词额度限制。<br><span data-offline-status>${esc(offlineText())}</span>`;
     }
     if(state.view==='stats'){
-      const block=document.querySelector('.panel-block');if(block&&!block.querySelector('[data-scope-stat]'))block.insertAdjacentHTML('afterbegin','<div class="stat-row" data-scope-stat><span>学习词库</span><b>13,000</b></div>');
+      const block=document.querySelector('.panel-block');if(block&&!block.querySelector('[data-scope-stat]'))block.insertAdjacentHTML('afterbegin',`<div class="stat-row" data-scope-stat><span>学习词库</span><b>13,000</b></div><div class="stat-row"><span>本地词库</span><b data-offline-status>${esc(offlineText())}</b></div>`);
     }
   };
 })();
