@@ -59,6 +59,23 @@
     }
     return {words,byKU,byScene,byLemma,missingKU,missingIPA};
   }
+  async function loadComparisons(core,manifest){
+    const spec=manifest.comparisons;
+    if(!spec)return 0;
+    const raw=await fetchBytes(spec.file,spec.bytes,spec.sha256);
+    const data=JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(raw));
+    if(data.schema_version!=='1.0'||data.release!==manifest.release||!Array.isArray(data.entries)||data.entries.length!==spec.entries)throw new Error('辨析数据结构不符');
+    const seen=new Set();
+    for(const entry of data.entries){
+      const unit=core.byKU.get(entry.ku_id);
+      if(!unit||seen.has(entry.ku_id)||entry.sense_id!==unit.s.sense_id||entry.lemma!==unit.w.w||entry.sense_zh!==unit.s.m)throw new Error('辨析义项绑定不符');
+      if(!Array.isArray(entry.items)||entry.items.length!==3||new Set(entry.items.map(x=>x.word)).size!==3||!entry.items.some(x=>x.word===unit.w.w))throw new Error('辨析需包含三个不同词及当前单词');
+      if(entry.items.some(x=>['word','brief_zh','example_en','example_zh'].some(k=>typeof x[k]!=='string'||!x[k].trim())))throw new Error('辨析内容缺失');
+      if(entry.verification!=='EDITORIAL_DRAFT_EXTERNAL_CHECK_PENDING')throw new Error('辨析核验状态不符');
+      unit.s.compare={items:entry.items,verification:entry.verification};seen.add(entry.ku_id);
+    }
+    return seen.size;
+  }
   function migrate(core,legacy){
     if(state.srsSchema==='ku_id-v1')return;
     const backupKey=STORAGE+'::before-ku-id-v1';
@@ -88,10 +105,10 @@
     const packs=await Promise.all(manifest.packs.map(p=>loadPack(p,manifest))),rows=packs.flatMap(p=>p.words);
     if(rows.length!==13000||rows.some((row,i)=>row[0]!==i+1))throw new Error('13,000 词连续性校验失败');
     SCENES.unclassified='通用词汇 · 待分类';
-    const core=adapt(rows);migrate(core,WORDS);
+    const core=adapt(rows),comparisonUnits=await loadComparisons(core,manifest);migrate(core,WORDS);
     WORDS.splice(0,WORDS.length,...core.words);window.PAI_CORE=core;
     window.PAI_CORE_QA={release:manifest.release,words:WORDS.length,units:core.byKU.size,
-      missingKU:core.missingKU,missingIPA:core.missingIPA,formats:packs.map(p=>p.format),
+      missingKU:core.missingKU,missingIPA:core.missingIPA,comparisonUnits,formats:packs.map(p=>p.format),
       sceneCounts:Object.fromEntries([...core.byScene].map(([k,v])=>[k,v.length])),migration:state.srsMigration};
     return window.PAI_CORE_QA;
   };

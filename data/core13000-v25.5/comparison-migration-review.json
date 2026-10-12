@@ -1,0 +1,3583 @@
+{
+  "runtime_loaded": false,
+  "summary": {
+    "legacy_units": 193,
+    "structurally_complete": 97,
+    "migrated_revised": 20,
+    "sense_review_pending": 77,
+    "content_completion_pending": 96
+  },
+  "entries": [
+    {
+      "legacy_key": "issue::work",
+      "legacy_meaning": "问题、事项；需要处理但不一定严重的事情",
+      "legacy_comparison": {
+        "words": [
+          "issue",
+          "problem",
+          "matter"
+        ],
+        "note": "issue 较中性，指需要处理或讨论的事项；problem 明确表示困难或故障；matter 更泛指事情或待处理事项。",
+        "examples": [
+          "We need to discuss the staffing issue.",
+          "The server has a serious problem.",
+          "This matter should be resolved before Friday."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "issue::academic",
+      "legacy_meaning": "议题；值得分析、讨论或争论的问题",
+      "legacy_comparison": {
+        "words": [
+          "issue",
+          "question",
+          "problem"
+        ],
+        "note": "issue 强调值得讨论的议题；question 强调待回答的问题；problem 常指待解决的研究难题。",
+        "examples": [
+          "The paper addresses an important ethical issue.",
+          "The study asks a clear research question.",
+          "Data sparsity remains a difficult research problem."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "issue::public",
+      "legacy_meaning": "公共议题；社会或政策问题",
+      "legacy_comparison": {
+        "words": [
+          "issue",
+          "problem",
+          "concern"
+        ],
+        "note": "issue 是公共议题；problem 强调实际困难；concern 强调令人担忧之处。",
+        "examples": [
+          "Housing affordability is a major policy issue.",
+          "Traffic congestion is a serious urban problem.",
+          "Air quality remains a major public concern."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "issue::finance",
+      "legacy_meaning": "发行；正式发布证券、债券或票据",
+      "legacy_comparison": {
+        "words": [
+          "issue",
+          "release",
+          "offer"
+        ],
+        "note": "issue 指正式发行证券；release 多指发布信息或产品；offer 在金融里强调向投资者发售。",
+        "examples": [
+          "The company issued new shares to raise capital.",
+          "The bank released its annual report yesterday.",
+          "The bonds were offered to institutional investors."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "interest::social",
+      "legacy_meaning": "兴趣；对某事产生注意和好奇",
+      "legacy_comparison": {
+        "words": [
+          "interest",
+          "curiosity",
+          "hobby"
+        ],
+        "note": "interest 是较广泛的兴趣；curiosity 强调好奇心；hobby 是长期从事的业余爱好。",
+        "examples": [
+          "She has a strong interest in jazz.",
+          "His curiosity led him to ask more questions.",
+          "Photography has been her hobby for years."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0144_interest_ku01"
+    },
+    {
+      "legacy_key": "interest::finance",
+      "legacy_meaning": "利息；借贷资金的价格",
+      "legacy_comparison": {
+        "words": [
+          "interest",
+          "return",
+          "yield"
+        ],
+        "note": "interest 是借贷产生的利息；return 是投资总回报；yield 常指按价格计算的收益率。",
+        "examples": [
+          "The loan carries four percent interest.",
+          "The fund delivered a strong annual return.",
+          "The bond currently offers a yield of 3.8 percent."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0144_interest_ku03"
+    },
+    {
+      "legacy_key": "interest::public",
+      "legacy_meaning": "利益；权益，常用复数 interests",
+      "legacy_comparison": {
+        "words": [
+          "interest",
+          "benefit",
+          "stake"
+        ],
+        "note": "interest 常指个人或群体的利益；benefit 是具体好处；stake 强调与结果相关的利害关系。",
+        "examples": [
+          "The rule protects the public interest.",
+          "The policy provides a direct benefit to low-income families.",
+          "Local residents have a direct stake in the decision."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "approach::work",
+      "legacy_meaning": "处理问题的总体方式或思路",
+      "legacy_comparison": {
+        "words": [
+          "approach",
+          "method",
+          "strategy"
+        ],
+        "note": "approach 是总体处理思路；method 是具体做法；strategy 是为实现目标制定的整体计划。",
+        "examples": [
+          "We adopted a phased approach to the rollout.",
+          "This method cuts processing time in half.",
+          "Our strategy is to enter the market gradually."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "approach::academic",
+      "legacy_meaning": "研究路径、理论框架或分析视角",
+      "legacy_comparison": {
+        "words": [
+          "approach",
+          "method",
+          "framework"
+        ],
+        "note": "approach 是研究路径；method 是具体方法；framework 是组织概念或分析的框架。",
+        "examples": [
+          "The study uses a data-driven approach.",
+          "The experiment uses a Bayesian estimation method.",
+          "The paper proposes a unified theoretical framework."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "approach::social",
+      "legacy_meaning": "接近某人；主动与某人交谈或提出请求",
+      "legacy_comparison": {
+        "words": [
+          "approach",
+          "contact",
+          "address"
+        ],
+        "note": "approach 强调主动接近并开始交流；contact 强调建立联系；address 强调向某人讲话或正式处理某议题。",
+        "examples": [
+          "She approached her manager after the meeting.",
+          "She contacted her manager by email.",
+          "The chair addressed the audience before the ceremony."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "deploy::tech",
+      "legacy_meaning": "把软件、模型或服务发布到实际运行环境",
+      "legacy_comparison": {
+        "words": [
+          "deploy",
+          "install",
+          "release"
+        ],
+        "note": "deploy 强调把系统投入运行环境；install 强调安装；release 强调正式发布版本。",
+        "examples": [
+          "We deployed the model to production.",
+          "We installed the software on the server.",
+          "The team released version 2.0 last week."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "deploy::public",
+      "legacy_meaning": "调配人员、设备或资源到现场",
+      "legacy_comparison": {
+        "words": [
+          "deploy",
+          "dispatch",
+          "station"
+        ],
+        "note": "deploy 强调有计划地部署资源；dispatch 强调派出；station 强调长期驻守某地。",
+        "examples": [
+          "The city deployed extra crews after the storm.",
+          "The agency dispatched two teams immediately.",
+          "Additional officers were stationed near the station."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "deploy::work",
+      "legacy_meaning": "把人员或能力投入某项任务",
+      "legacy_comparison": {
+        "words": [
+          "deploy",
+          "assign",
+          "allocate"
+        ],
+        "note": "deploy 强调把人或能力投入使用；assign 强调分配任务；allocate 强调分配资源额度。",
+        "examples": [
+          "We deployed a small team to the project.",
+          "The manager assigned each engineer a task.",
+          "The director allocated more budget to customer support."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "plot::culture",
+      "legacy_meaning": "故事情节；事件如何展开的结构",
+      "legacy_comparison": {
+        "words": [
+          "plot",
+          "story",
+          "narrative"
+        ],
+        "note": "plot 是事件如何展开的情节结构；story 是整个故事；narrative 更强调叙述方式和视角。",
+        "examples": [
+          "The film has a simple plot.",
+          "The story follows a family across three generations.",
+          "The novel uses a nonlinear narrative."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_1981_plot_ku_s01"
+    },
+    {
+      "legacy_key": "plot::academic",
+      "legacy_meaning": "把数据绘制成图",
+      "legacy_comparison": {
+        "words": [
+          "plot",
+          "chart",
+          "graph"
+        ],
+        "note": "plot 作动词强调把变量关系画出来；chart 更常指图表呈现；graph 强调坐标关系图。",
+        "examples": [
+          "We plotted error against signal-to-noise ratio.",
+          "The chart summarizes the monthly results.",
+          "The graph shows a nearly linear relationship."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_1981_plot_ku_s04"
+    },
+    {
+      "legacy_key": "plot::public",
+      "legacy_meaning": "密谋；秘密计划",
+      "legacy_comparison": {
+        "words": [
+          "plot",
+          "plan",
+          "scheme"
+        ],
+        "note": "plot 通常含秘密或非法意图；plan 中性；scheme 可中性，也可带可疑意味。",
+        "examples": [
+          "Police uncovered a plot to steal confidential data.",
+          "The city announced a plan to improve public transit.",
+          "Investigators exposed a fraudulent investment scheme."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "symptom::health",
+      "legacy_meaning": "患者感受到或表现出的疾病症状",
+      "legacy_comparison": {
+        "words": [
+          "symptom",
+          "sign",
+          "condition"
+        ],
+        "note": "symptom 是患者感受到或表现出的症状；sign 是可客观观察的体征；condition 是疾病或健康状态本身。",
+        "examples": [
+          "A sore throat is a common symptom of infection.",
+          "A high temperature can be a clinical sign of illness.",
+          "Diabetes is a chronic medical condition."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "symptom::work",
+      "legacy_meaning": "深层组织问题的外在表现",
+      "legacy_comparison": {
+        "words": [
+          "symptom",
+          "cause",
+          "indicator"
+        ],
+        "note": "symptom 是深层问题的外在表现；cause 是根因；indicator 是提示某种状态的指标。",
+        "examples": [
+          "High turnover may be a symptom of poor management.",
+          "Poor communication was the main cause of the delay.",
+          "Low retention is an indicator of employee dissatisfaction."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "estimate::academic",
+      "legacy_meaning": "基于数据或模型估计参数或结果",
+      "legacy_comparison": {
+        "words": [
+          "estimate",
+          "calculate",
+          "predict"
+        ],
+        "note": "estimate 是基于数据作近似估计；calculate 强调按公式计算；predict 强调预测未来或未知结果。",
+        "examples": [
+          "We estimate the position from noisy measurements.",
+          "We calculate the exact distance from the known coordinates.",
+          "The model predicts future demand from historical data."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "estimate::work",
+      "legacy_meaning": "估算时间、成本、工作量",
+      "legacy_comparison": {
+        "words": [
+          "estimate",
+          "quote",
+          "forecast"
+        ],
+        "note": "estimate 是初步估算；quote 是向客户正式报价；forecast 是对未来的预测。",
+        "examples": [
+          "Can you estimate how long the migration will take?",
+          "The supplier quoted us twelve thousand dollars for the work.",
+          "The team forecasts stronger sales next quarter."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "estimate::finance",
+      "legacy_meaning": "估值或对金额作近似判断",
+      "legacy_comparison": {
+        "words": [
+          "estimate",
+          "valuation",
+          "forecast"
+        ],
+        "note": "estimate 是近似判断；valuation 是正式估值；forecast 是对未来财务指标的预测。",
+        "examples": [
+          "Analysts estimate annual revenue at eight million dollars.",
+          "The formal valuation placed the company at fifty million dollars.",
+          "The forecast projects slower revenue growth next year."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "ability::work",
+      "legacy_meaning": "完成某项工作或任务的能力",
+      "legacy_comparison": {
+        "words": [
+          "ability",
+          "skill",
+          "competence"
+        ],
+        "note": "ability 是一般能力；skill 是训练形成的具体技能；competence 强调达到工作要求的胜任能力。",
+        "examples": [
+          "Her ability to explain complex ideas is valuable.",
+          "Writing clearly is an important professional skill.",
+          "The role requires competence in project management."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0791_ability_ku01"
+    },
+    {
+      "legacy_key": "ability::academic",
+      "legacy_meaning": "学习、理解或完成学术任务的能力",
+      "legacy_comparison": {
+        "words": [
+          "ability",
+          "aptitude",
+          "skill"
+        ],
+        "note": "ability 是已经具备的能力；aptitude 更偏潜在天赋；skill 是通过训练获得的具体技能。",
+        "examples": [
+          "The test measures reasoning ability.",
+          "The assessment is designed to identify mathematical aptitude.",
+          "Academic writing is a skill that improves with practice."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "account::finance",
+      "legacy_meaning": "账户；用于存款、付款或记录资金往来的记录",
+      "legacy_comparison": {
+        "words": [
+          "account",
+          "balance",
+          "statement"
+        ],
+        "note": "account 是账户；balance 是账户余额；statement 是一段时期的账户对账单。",
+        "examples": [
+          "She opened a savings account.",
+          "Her account balance is two thousand four hundred dollars.",
+          "The monthly statement lists every transaction."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0442_account_ku01"
+    },
+    {
+      "legacy_key": "account::academic",
+      "legacy_meaning": "解释、描述；对现象的系统说明",
+      "legacy_comparison": {
+        "words": [
+          "account",
+          "explanation",
+          "description"
+        ],
+        "note": "account 是较系统的叙述或解释；explanation 强调说明原因；description 主要描述特征或过程。",
+        "examples": [
+          "The paper gives a detailed account of the experiment.",
+          "The authors provide an explanation for the unexpected result.",
+          "The report includes a clear description of the procedure."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0442_account_ku03"
+    },
+    {
+      "legacy_key": "charge::finance",
+      "legacy_meaning": "收费；向某人收取某项费用",
+      "legacy_comparison": {
+        "words": [
+          "charge",
+          "fee",
+          "cost"
+        ],
+        "note": "charge 是收取费用这一行为或收费项目；fee 常指服务费；cost 是实际成本或价格。",
+        "examples": [
+          "The hotel charges for late checkout.",
+          "The bank applies a monthly service fee.",
+          "The total cost includes taxes and delivery."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "charge::tech",
+      "legacy_meaning": "电荷；或给设备、电池充电",
+      "legacy_comparison": {
+        "words": [
+          "charge",
+          "power",
+          "energize"
+        ],
+        "note": "charge 强调给电池储能；power 强调给设备供电；energize 指使电路或设备带电。",
+        "examples": [
+          "Charge the battery before use.",
+          "The adapter powers the device during operation.",
+          "The technician energized the circuit after the safety check."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0504_charge_ku04"
+    },
+    {
+      "legacy_key": "claim::academic",
+      "legacy_meaning": "主张；论文中需要证据支持的论断",
+      "legacy_comparison": {
+        "words": [
+          "claim",
+          "argument",
+          "finding"
+        ],
+        "note": "claim 是需要证据支持的主张；argument 是支持主张的推理链条；finding 是研究得到的结果。",
+        "examples": [
+          "The authors make a strong theoretical claim.",
+          "The argument relies on two key assumptions.",
+          "The main finding is supported by three experiments."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "claim::public",
+      "legacy_meaning": "声称；公开表示某事为真",
+      "legacy_comparison": {
+        "words": [
+          "claim",
+          "state",
+          "assert"
+        ],
+        "note": "claim 常暗示真实性仍待验证；state 中性地陈述；assert 更强势地断言。",
+        "examples": [
+          "The company claims the process reduces waste.",
+          "The report states that emissions fell last year.",
+          "The spokesperson asserted that the allegations were false."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "conduct::academic",
+      "legacy_meaning": "开展、实施研究或实验",
+      "legacy_comparison": {
+        "words": [
+          "conduct",
+          "perform",
+          "carry out"
+        ],
+        "note": "conduct 较正式，常与 research/study 搭配；perform 常用于实验或具体操作；carry out 较通用，强调把计划或任务执行完成。",
+        "examples": [
+          "We conducted a controlled study.",
+          "The technician performed the calibration procedure.",
+          "The team carried out a series of field tests."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_1073_conduct_ku_s02"
+    },
+    {
+      "legacy_key": "conduct::work",
+      "legacy_meaning": "实施、组织某项正式活动或过程",
+      "legacy_comparison": {
+        "words": [
+          "conduct",
+          "lead",
+          "run"
+        ],
+        "note": "conduct 强调正式组织并实施某个过程；lead 强调带领人员或项目；run 更口语，常指负责日常运作。",
+        "examples": [
+          "She conducted five interviews this week.",
+          "He led the project team for six months.",
+          "She runs the customer support operation."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "context::academic",
+      "legacy_meaning": "语境、背景；理解研究结论所需要的条件和环境",
+      "legacy_comparison": {
+        "words": [
+          "context",
+          "background",
+          "setting"
+        ],
+        "note": "context 是理解信息所需的上下文；background 是更广泛的背景知识；setting 强调研究或事件发生的具体环境。",
+        "examples": [
+          "The result must be interpreted in context.",
+          "The introduction provides the necessary background.",
+          "The experiment was conducted in a controlled laboratory setting."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "context::social",
+      "legacy_meaning": "说话或行为发生的具体情境",
+      "legacy_comparison": {
+        "words": [
+          "context",
+          "situation",
+          "circumstance"
+        ],
+        "note": "context 强调言行所处的语境；situation 是当前具体情形；circumstance 常指影响事件的外部条件。",
+        "examples": [
+          "The comment sounds rude out of context.",
+          "In that situation, staying silent was reasonable.",
+          "Under those circumstances, postponing the meeting made sense."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "contract::work",
+      "legacy_meaning": "合同；明确双方权利义务的正式协议",
+      "legacy_comparison": {
+        "words": [
+          "contract",
+          "agreement",
+          "deal"
+        ],
+        "note": "contract 是具有正式法律约束力的合同；agreement 更广，指双方达成的一致；deal 更口语，强调交易或安排。",
+        "examples": [
+          "Both parties signed the contract.",
+          "We reached an agreement on the delivery date.",
+          "The two companies closed the deal last Friday."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "contract::public",
+      "legacy_meaning": "通过合同委托外部机构提供服务",
+      "legacy_comparison": {
+        "words": [
+          "contract",
+          "outsource",
+          "commission"
+        ],
+        "note": "contract with 强调通过合同委托外部机构；outsource 强调把原本内部工作外包；commission 强调正式委托某项专门工作。",
+        "examples": [
+          "The city contracted with a private operator.",
+          "The agency outsourced its IT support.",
+          "The council commissioned an independent safety review."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "decline::finance",
+      "legacy_meaning": "下降、减少；数值或市场指标走低",
+      "legacy_comparison": {
+        "words": [
+          "decline",
+          "drop",
+          "fall"
+        ],
+        "note": "decline 常表示较正式或持续的下降；drop 更强调明显、突然的下跌；fall 是最普通、最中性的“下降”。",
+        "examples": [
+          "Sales declined throughout the quarter.",
+          "The share price dropped twelve percent in one day.",
+          "Borrowing costs fell after the announcement."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "decline::social",
+      "legacy_meaning": "婉拒、谢绝邀请或请求",
+      "legacy_comparison": {
+        "words": [
+          "decline",
+          "refuse",
+          "reject"
+        ],
+        "note": "decline 是较礼貌、正式的拒绝；refuse 更直接，强调不愿做；reject 常用于拒绝提议、申请或方案。",
+        "examples": [
+          "She politely declined the invitation.",
+          "He refused to answer the question.",
+          "The committee rejected the proposal."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "deliver::work",
+      "legacy_meaning": "按承诺完成、交付成果",
+      "legacy_comparison": {
+        "words": [
+          "deliver",
+          "complete",
+          "provide"
+        ],
+        "note": "deliver 强调按承诺交付成果；complete 强调把任务做完；provide 强调提供资源、服务或信息。",
+        "examples": [
+          "The team delivered the project on time.",
+          "We completed all testing before launch.",
+          "The vendor provided technical support during deployment."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "deliver::daily",
+      "legacy_meaning": "递送、送达物品",
+      "legacy_comparison": {
+        "words": [
+          "deliver",
+          "send",
+          "ship"
+        ],
+        "note": "deliver 强调送达到收件人；send 只表示把东西发出；ship 多指通过物流系统运输商品。",
+        "examples": [
+          "The package was delivered this morning.",
+          "I sent the documents by email.",
+          "The seller shipped the order yesterday."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "demand::finance",
+      "legacy_meaning": "需求；市场愿意并能够购买某商品或服务的程度",
+      "legacy_comparison": {
+        "words": [
+          "demand",
+          "need",
+          "consumption"
+        ],
+        "note": "demand 是有购买意愿和支付能力的市场需求；need 是一般意义上的需要；consumption 是实际发生的消费量。",
+        "examples": [
+          "Demand for electric vehicles remains strong.",
+          "There is a growing need for affordable housing.",
+          "Electricity consumption peaked in July."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0576_demand_ku01"
+    },
+    {
+      "legacy_key": "demand::work",
+      "legacy_meaning": "要求；任务对时间、精力或能力提出的要求",
+      "legacy_comparison": {
+        "words": [
+          "demand",
+          "require",
+          "request"
+        ],
+        "note": "demand 语气较强，表示强烈要求或高度需要；require 表示客观条件上的需要；request 是礼貌地提出请求。",
+        "examples": [
+          "The role demands strong communication skills.",
+          "The job requires three years of experience.",
+          "She requested additional time to finish the report."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "evidence::academic",
+      "legacy_meaning": "证据；支持或反驳研究主张的数据与事实",
+      "legacy_comparison": {
+        "words": [
+          "evidence",
+          "proof",
+          "data"
+        ],
+        "note": "evidence 是支持判断或结论的证据；proof 表示足以证明某事的决定性依据；data 是数据本身，不一定能直接支持结论。",
+        "examples": [
+          "The experiments provide strong evidence for the hypothesis.",
+          "The theorem gives formal proof of the result.",
+          "The dataset contains measurements from five hundred trials."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "evidence::public",
+      "legacy_meaning": "用于判断事件事实的证据或材料",
+      "legacy_comparison": {
+        "words": [
+          "evidence",
+          "proof",
+          "clue"
+        ],
+        "note": "evidence 是可用于判断事实的证据；proof 是足以确定事实的证明；clue 是帮助调查的线索。",
+        "examples": [
+          "Investigators collected evidence from the scene.",
+          "The video provided proof that the vehicle entered the area.",
+          "A receipt provided a useful clue."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "feature::tech",
+      "legacy_meaning": "产品或软件中的功能、特性",
+      "legacy_comparison": {
+        "words": [
+          "feature",
+          "function",
+          "capability"
+        ],
+        "note": "feature 是产品面向用户的功能或特性；function 强调某个具体功能作用；capability 强调系统整体具备的能力。",
+        "examples": [
+          "The update adds a new privacy feature.",
+          "The search function can be disabled in settings.",
+          "The device has the capability to operate offline."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "feature::academic",
+      "legacy_meaning": "数据、对象或系统中可观察和分析的特征",
+      "legacy_comparison": {
+        "words": [
+          "feature",
+          "variable",
+          "attribute"
+        ],
+        "note": "feature 常指用于分析或建模的特征；variable 是可取不同数值的变量；attribute 是对象本身的属性。",
+        "examples": [
+          "The model uses spatial features as input.",
+          "Temperature is one of the measured variables.",
+          "Color is an important attribute of the material."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "impact::public",
+      "legacy_meaning": "影响；某事件或政策带来的显著后果",
+      "legacy_comparison": {
+        "words": [
+          "impact",
+          "effect",
+          "consequence"
+        ],
+        "note": "impact 强调较显著的影响；effect 是一般意义上的作用或效果；consequence 常强调由某事带来的后果。",
+        "examples": [
+          "The policy had a major impact on housing costs.",
+          "The new rule had little effect on traffic volume.",
+          "One consequence was a rise in waiting times."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "impact::work",
+      "legacy_meaning": "对业务、团队或结果产生的实际影响",
+      "legacy_comparison": {
+        "words": [
+          "impact",
+          "effect",
+          "influence"
+        ],
+        "note": "impact 常强调可见、可衡量的业务结果；effect 是一般效果；influence 更偏持续、间接的影响。",
+        "examples": [
+          "The outage had little impact on customers.",
+          "The training had a positive effect on response time.",
+          "Her leadership style influenced the whole team."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "maintain::tech",
+      "legacy_meaning": "维护系统，使其持续正常运行",
+      "legacy_comparison": {
+        "words": [
+          "maintain",
+          "repair",
+          "support"
+        ],
+        "note": "maintain 是持续维护使系统保持正常；repair 是出现故障后进行修复；support 是持续提供技术或用户支持。",
+        "examples": [
+          "The team maintains the platform.",
+          "The technician repaired the failed sensor.",
+          "The vendor supports the software for five years."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0959_maintain_ku01"
+    },
+    {
+      "legacy_key": "maintain::work",
+      "legacy_meaning": "保持某种状态、关系或标准",
+      "legacy_comparison": {
+        "words": [
+          "maintain",
+          "preserve",
+          "sustain"
+        ],
+        "note": "maintain 是保持既有状态；preserve 强调保护某种价值或状态不受损；sustain 强调长期维持。",
+        "examples": [
+          "We maintain high safety standards.",
+          "The policy is designed to preserve employee trust.",
+          "The company needs to sustain growth over time."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0959_maintain_ku02"
+    },
+    {
+      "legacy_key": "measure::academic",
+      "legacy_meaning": "测量；用数据确定变量的大小、程度或性能",
+      "legacy_comparison": {
+        "words": [
+          "measure",
+          "assess",
+          "evaluate"
+        ],
+        "note": "measure 强调用量化手段测量；assess 强调判断状态或程度；evaluate 强调按标准综合判断价值或表现。",
+        "examples": [
+          "We measured the positioning error.",
+          "We assessed the reliability of the method.",
+          "The reviewers evaluated the model against three benchmarks."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0538_measure_ku01"
+    },
+    {
+      "legacy_key": "measure::public",
+      "legacy_meaning": "措施；为解决问题采取的具体行动",
+      "legacy_comparison": {
+        "words": [
+          "measure",
+          "action",
+          "policy"
+        ],
+        "note": "measure 是为达到目的采取的具体措施；action 是一般行动；policy 是较系统、长期的政策安排。",
+        "examples": [
+          "The city introduced measures to reduce traffic.",
+          "Officials took immediate action after the warning.",
+          "The government adopted a new housing policy."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0538_measure_ku02"
+    },
+    {
+      "legacy_key": "policy::public",
+      "legacy_meaning": "政策；政府或机构制定的行动原则与规则",
+      "legacy_comparison": {
+        "words": [
+          "policy",
+          "rule",
+          "law"
+        ],
+        "note": "policy 是政府或组织的总体方针；rule 是具体规则；law 是具有法律强制力的法律。",
+        "examples": [
+          "The city adopted a new housing policy.",
+          "The building has a rule against smoking indoors.",
+          "The new law takes effect next January."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "policy::work",
+      "legacy_meaning": "组织内部的制度、规则或处理原则",
+      "legacy_comparison": {
+        "words": [
+          "policy",
+          "procedure",
+          "guideline"
+        ],
+        "note": "policy 规定原则和边界；procedure 规定具体操作步骤；guideline 是建议性指导，通常没有强制性。",
+        "examples": [
+          "The company updated its remote-work policy.",
+          "The procedure explains how to request access.",
+          "The guideline recommends reviewing passwords every six months."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "reserve::travel",
+      "legacy_meaning": "预订、预留座位、房间或服务",
+      "legacy_comparison": {
+        "words": [
+          "reserve",
+          "book",
+          "hold"
+        ],
+        "note": "reserve 与 book 都表示预订，reserve 略正式；book 更日常；hold 强调暂时为某人保留位置或房间。",
+        "examples": [
+          "We reserved a table for eight.",
+          "I booked a hotel room online.",
+          "The hotel can hold the room until six o’clock."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_1713_reserve_ku_s04"
+    },
+    {
+      "legacy_key": "reserve::finance",
+      "legacy_meaning": "储备、备用资金或资源",
+      "legacy_comparison": {
+        "words": [
+          "reserve",
+          "fund",
+          "capital"
+        ],
+        "note": "reserve 是为未来风险或支出预留的资金；fund 是指定用途的一笔资金；capital 是用于经营或投资的资本。",
+        "examples": [
+          "The bank increased its cash reserves.",
+          "The project is financed by a dedicated fund.",
+          "The company raised new capital from investors."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "secure::tech",
+      "legacy_meaning": "安全的；或保护系统和数据免受未授权访问",
+      "legacy_comparison": {
+        "words": [
+          "secure",
+          "protect",
+          "encrypt"
+        ],
+        "note": "secure 是整体确保系统或资源安全；protect 是一般意义上的保护；encrypt 专指用加密算法保护数据。",
+        "examples": [
+          "We secured the server before launch.",
+          "The firewall protects the internal network from unauthorized access.",
+          "Sensitive data are encrypted at rest."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "secure::work",
+      "legacy_meaning": "成功获得某项资源、机会或协议",
+      "legacy_comparison": {
+        "words": [
+          "secure",
+          "obtain",
+          "win"
+        ],
+        "note": "secure 强调经过努力成功获得；obtain 中性地表示获得；win 常表示在竞争中赢得。",
+        "examples": [
+          "The team secured funding for the project.",
+          "We obtained approval from the client.",
+          "The company won a major government contract."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "shift::work",
+      "legacy_meaning": "转变；工作重点、策略或资源发生变化",
+      "legacy_comparison": {
+        "words": [
+          "shift",
+          "change",
+          "transition"
+        ],
+        "note": "shift 常指方向或重点的转移；change 最广，表示一般改变；transition 强调从一种状态逐步过渡到另一种状态。",
+        "examples": [
+          "The company shifted its focus to enterprise clients.",
+          "The merger changed the reporting structure.",
+          "The team is transitioning to a new platform."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "shift::daily",
+      "legacy_meaning": "班次；一段固定的工作时间",
+      "legacy_comparison": {
+        "words": [
+          "shift",
+          "move",
+          "change"
+        ],
+        "note": "shift 常指位置或时间的小幅调整；move 强调移动位置；change 是最普通的“改变”。",
+        "examples": [
+          "Can we shift the meeting to Friday?",
+          "Please move the chair closer to the window.",
+          "I changed my appointment to next Monday."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "source::academic",
+      "legacy_meaning": "资料来源、数据来源或信息出处",
+      "legacy_comparison": {
+        "words": [
+          "source",
+          "reference",
+          "evidence"
+        ],
+        "note": "source 是信息来源；reference 是引用或参考条目；evidence 是支持结论的证据。",
+        "examples": [
+          "The article cites several primary sources.",
+          "The reference list contains forty papers.",
+          "The experiment provides strong evidence for the hypothesis."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "source::work",
+      "legacy_meaning": "寻找并获得人员、材料、零件或供应商",
+      "legacy_comparison": {
+        "words": [
+          "source",
+          "supplier",
+          "origin"
+        ],
+        "note": "source 可指获取资源的来源；supplier 是具体供应商；origin 强调起源或出处。",
+        "examples": [
+          "We need a reliable source of components.",
+          "The supplier can deliver within two weeks.",
+          "The team traced the defect to its origin."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "access::tech",
+      "legacy_meaning": "访问、使用系统、数据或服务的权限",
+      "legacy_comparison": {
+        "words": [
+          "access",
+          "permission",
+          "entry"
+        ],
+        "note": "access 是访问或使用系统的能力；permission 是授权；entry 更强调进入某处或系统的动作。",
+        "examples": [
+          "Users can access the dashboard remotely.",
+          "Admin permission is required to change this setting.",
+          "Biometric entry is enabled at the data center."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "access::public",
+      "legacy_meaning": "获得教育、医疗、交通等公共资源的机会",
+      "legacy_comparison": {
+        "words": [
+          "access",
+          "availability",
+          "entry"
+        ],
+        "note": "access 强调能否获得或使用公共资源；availability 强调资源是否存在并可获得；entry 更偏进入某地点。",
+        "examples": [
+          "The policy improves access to healthcare.",
+          "Service availability is limited in rural areas.",
+          "Museum entry is free for children under twelve."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "apply::academic",
+      "legacy_meaning": "应用方法、规则或理论到具体问题",
+      "legacy_comparison": {
+        "words": [
+          "apply",
+          "use",
+          "implement"
+        ],
+        "note": "apply 强调把方法用于具体对象；use 最普通，表示使用；implement 强调把算法或方案真正实现。",
+        "examples": [
+          "We applied the model to a new dataset.",
+          "The study used a standard calibration procedure.",
+          "The team implemented the algorithm in software."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0619_apply_ku02"
+    },
+    {
+      "legacy_key": "apply::work",
+      "legacy_meaning": "申请职位、项目或机会",
+      "legacy_comparison": {
+        "words": [
+          "apply",
+          "request",
+          "submit"
+        ],
+        "note": "apply for 表示正式申请职位或机会；request 是提出请求；submit 强调提交材料。",
+        "examples": [
+          "She applied for the position.",
+          "He requested two days of annual leave.",
+          "She submitted her application yesterday."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0619_apply_ku01"
+    },
+    {
+      "legacy_key": "assume::academic",
+      "legacy_meaning": "假设、假定某个条件为真以便推导或分析",
+      "legacy_comparison": {
+        "words": [
+          "assume",
+          "suppose",
+          "presume"
+        ],
+        "note": "assume 是为推理暂且设定；suppose 较通用，可表示假设；presume 常基于已有迹象作推断。",
+        "examples": [
+          "We assume the noise is Gaussian.",
+          "Suppose the channel remains constant during each frame.",
+          "From the evidence, we presume the device was offline."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0885_assume_ku01"
+    },
+    {
+      "legacy_key": "assume::work",
+      "legacy_meaning": "承担职责、职位或责任",
+      "legacy_comparison": {
+        "words": [
+          "assume",
+          "take on",
+          "accept"
+        ],
+        "note": "assume responsibility 较正式；take on 强调开始承担新的职责；accept 强调同意承担责任或任务。",
+        "examples": [
+          "She assumed responsibility for the project.",
+          "He took on a new leadership role.",
+          "She accepted responsibility for the final decision."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "available::daily",
+      "legacy_meaning": "可用的、可以买到或可以获得的",
+      "legacy_comparison": {
+        "words": [
+          "available",
+          "free",
+          "accessible"
+        ],
+        "note": "available 表示某物可获得或某人有空；free 更强调时间空闲；accessible 强调容易到达或使用。",
+        "examples": [
+          "Is this seat available?",
+          "I am free after three o’clock.",
+          "The trail is accessible by bus."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "available::work",
+      "legacy_meaning": "有空的、可以安排时间的",
+      "legacy_comparison": {
+        "words": [
+          "available",
+          "ready",
+          "accessible"
+        ],
+        "note": "available 表示资源或人员可用；ready 表示已经准备好；accessible 强调可以访问或取得。",
+        "examples": [
+          "The report will be available tomorrow.",
+          "The system is ready for deployment.",
+          "The archive is accessible to all team members."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "benefit::work",
+      "legacy_meaning": "好处、收益；某项行动带来的积极结果",
+      "legacy_comparison": {
+        "words": [
+          "benefit",
+          "advantage",
+          "value"
+        ],
+        "note": "benefit 是带来的实际好处；advantage 是相对于其他选择的优势；value 强调产生的价值。",
+        "examples": [
+          "Flexible hours benefit both staff and managers.",
+          "Low latency gives the product a competitive advantage.",
+          "The new dashboard creates value by reducing manual work."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "benefit::health",
+      "legacy_meaning": "对健康产生积极作用",
+      "legacy_comparison": {
+        "words": [
+          "benefit",
+          "effect",
+          "improvement"
+        ],
+        "note": "benefit 是健康方面的好处；effect 是任何效果，可能好也可能坏；improvement 是状态变好的结果。",
+        "examples": [
+          "Regular exercise provides cardiovascular benefits.",
+          "The medication had a mild sedative effect.",
+          "The treatment produced a measurable improvement in mobility."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "capacity::work",
+      "legacy_meaning": "组织、团队或个人可承担工作的能力上限",
+      "legacy_comparison": {
+        "words": [
+          "capacity",
+          "ability",
+          "capability"
+        ],
+        "note": "capacity 强调可承受的工作量或潜在容量；ability 是人的一般能力；capability 常指组织或系统能完成什么。",
+        "examples": [
+          "The team is operating at full capacity.",
+          "Her ability to negotiate helped close the deal.",
+          "The department has the capability to support larger projects."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "capacity::tech",
+      "legacy_meaning": "系统、网络或设备能够处理、存储或传输的最大量",
+      "legacy_comparison": {
+        "words": [
+          "capacity",
+          "bandwidth",
+          "capability"
+        ],
+        "note": "capacity 是系统可承载的总量；bandwidth 常指通信链路的数据传输能力；capability 是系统具备的功能能力。",
+        "examples": [
+          "The battery has a capacity of 5,000 mAh.",
+          "The link provides 100 Mbps of bandwidth.",
+          "The new sensor adds offline processing capability."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "compare::academic",
+      "legacy_meaning": "比较两个或多个对象以分析差异或相似性",
+      "legacy_comparison": {
+        "words": [
+          "compare",
+          "contrast",
+          "evaluate"
+        ],
+        "note": "compare 可同时看相同点和不同点；contrast 更强调差异；evaluate 是判断表现、价值或质量。",
+        "examples": [
+          "We compared the two algorithms under identical conditions.",
+          "The discussion contrasts centralized and distributed designs.",
+          "The study evaluates each method on three datasets."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0622_compare_ku01"
+    },
+    {
+      "legacy_key": "compare::finance",
+      "legacy_meaning": "比较价格、收益、成本或方案",
+      "legacy_comparison": {
+        "words": [
+          "compare",
+          "benchmark",
+          "evaluate"
+        ],
+        "note": "compare 是一般比较；benchmark 是与基准或行业标杆比较；evaluate 是综合评估价值或表现。",
+        "examples": [
+          "Compare the fees before choosing an account.",
+          "We benchmarked the fund against the market index.",
+          "Analysts evaluated the company before the acquisition."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "condition::academic",
+      "legacy_meaning": "实验、模型或分析成立时的条件、环境",
+      "legacy_comparison": {
+        "words": [
+          "condition",
+          "constraint",
+          "assumption"
+        ],
+        "note": "condition 是结论成立或实验所需条件；constraint 是限制；assumption 是分析前预先作出的假设。",
+        "examples": [
+          "The result holds under mild conditions.",
+          "The optimization includes a power constraint.",
+          "The derivation relies on a simplifying assumption."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "condition::health",
+      "legacy_meaning": "健康状况或疾病状态",
+      "legacy_comparison": {
+        "words": [
+          "condition",
+          "disease",
+          "disorder"
+        ],
+        "note": "condition 是最宽泛的健康状况；disease 通常指有较明确病理机制的疾病；disorder 常指功能或结构异常。",
+        "examples": [
+          "Diabetes is a chronic condition.",
+          "The patient was diagnosed with an autoimmune disease.",
+          "The clinic specializes in sleep disorders."
+        ]
+      },
+      "status": "MIGRATED_REVISED",
+      "target_ku_id": "w_0451_condition_ku03"
+    },
+    {
+      "legacy_key": "adopt::work",
+      "legacy_meaning": "采用某种方案、制度或做法",
+      "legacy_comparison": {
+        "words": [
+          "adopt",
+          "adapt",
+          "implement"
+        ],
+        "note": "adopt 是正式采用方案；adapt 是调整以适应；implement 是把已决定的方案真正执行。",
+        "examples": [
+          "We adopted a new review process.",
+          "We adapted the process for a smaller team."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "adopt::public",
+      "legacy_meaning": "正式通过或采纳政策、规则或标准",
+      "legacy_comparison": {
+        "words": [
+          "adopt",
+          "approve",
+          "enact"
+        ],
+        "note": "adopt 是机构正式采纳政策；approve 是批准；enact 专指把法案正式制定为法律。",
+        "examples": [
+          "The council adopted new safety standards.",
+          "Parliament enacted the law last year."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "affect::academic",
+      "legacy_meaning": "影响某变量、结果或行为",
+      "legacy_comparison": {
+        "words": [
+          "affect",
+          "influence",
+          "effect"
+        ],
+        "note": "affect 是动词，表示产生影响；influence 更强调逐渐或间接作用；effect 通常是名词“影响、效果”。",
+        "examples": [
+          "Temperature affects sensor accuracy.",
+          "Prior knowledge influences learning outcomes."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "affect::health",
+      "legacy_meaning": "影响身体、健康或某个器官",
+      "legacy_comparison": {
+        "words": [
+          "affect",
+          "influence",
+          "impact"
+        ],
+        "note": "affect 是最普通的“影响”；influence 多指较间接作用；impact 强调显著影响。",
+        "examples": [
+          "Poor sleep affects concentration.",
+          "Long-term stress can have a major impact on health."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "assess::academic",
+      "legacy_meaning": "系统评估方法、证据或性能",
+      "legacy_comparison": {
+        "words": [
+          "assess",
+          "evaluate",
+          "measure"
+        ],
+        "note": "assess 是系统判断程度或状态；evaluate 是按标准综合评价价值或表现；measure 强调用量化手段得到数值。",
+        "examples": [
+          "We assessed the reliability of the method.",
+          "We evaluated the model on three benchmark datasets.",
+          "We measured the positioning error in centimeters."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "assess::work",
+      "legacy_meaning": "评估项目、人员、风险或业务状况",
+      "legacy_comparison": {
+        "words": [
+          "assess",
+          "evaluate",
+          "review"
+        ],
+        "note": "assess 强调判断风险、能力或影响；evaluate 强调按标准比较表现；review 强调系统检查已有材料或过程。",
+        "examples": [
+          "We assessed the project risks before launch.",
+          "The committee evaluated three proposals.",
+          "The manager reviewed the quarterly report."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "achieve::work",
+      "legacy_meaning": "实现目标、结果或绩效",
+      "legacy_comparison": {
+        "words": [
+          "achieve",
+          "accomplish",
+          "reach"
+        ],
+        "note": "achieve 常与目标、结果搭配；accomplish 强调完成任务；reach 常与具体目标值或阶段搭配。",
+        "examples": [
+          "The team achieved its annual target.",
+          "We reached the break-even point in June."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "achieve::academic",
+      "legacy_meaning": "达到某项实验、性能或理论结果",
+      "legacy_comparison": {
+        "words": [
+          "achieve",
+          "attain",
+          "obtain"
+        ],
+        "note": "achieve 强调达到性能或结果；attain 更正式，常指达到水平；obtain 强调获得数据或结果。",
+        "examples": [
+          "The method achieved 95% accuracy.",
+          "We obtained similar results on the second dataset."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "acquire::work",
+      "legacy_meaning": "获得客户、技能、资产或公司",
+      "legacy_comparison": {
+        "words": [
+          "acquire",
+          "obtain",
+          "gain"
+        ],
+        "note": "acquire 较正式，常指获得技能、客户或公司；obtain 偏获得所需对象；gain 强调逐渐增加经验、优势或收益。",
+        "examples": [
+          "She acquired strong negotiation skills.",
+          "He gained valuable experience abroad."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "acquire::academic",
+      "legacy_meaning": "获取数据、信号或知识",
+      "legacy_comparison": {
+        "words": [
+          "acquire",
+          "collect",
+          "obtain"
+        ],
+        "note": "acquire 强调系统获取信号或数据；collect 强调收集多个样本；obtain 强调最终得到。",
+        "examples": [
+          "The receiver acquires data at 10 Hz.",
+          "We collected measurements from 200 trials."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "adapt::work",
+      "legacy_meaning": "调整做法以适应新情况",
+      "legacy_comparison": {
+        "words": [
+          "adapt",
+          "adjust",
+          "adopt"
+        ],
+        "note": "adapt 强调为适应环境而改变；adjust 多指较小调整；adopt 是采用新方案。",
+        "examples": [
+          "The team adapted to the new schedule.",
+          "We adjusted the deadline by two days."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "adapt::health",
+      "legacy_meaning": "身体或行为逐渐适应环境或刺激",
+      "legacy_comparison": {
+        "words": [
+          "adapt",
+          "adjust",
+          "acclimate"
+        ],
+        "note": "adapt 是一般适应；adjust 可指行为或状态调整；acclimate 特指逐渐适应新的环境条件。",
+        "examples": [
+          "The body adapts to high altitude.",
+          "It can take several days to acclimate to the heat."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "analyze::academic",
+      "legacy_meaning": "分析数据、模型或现象",
+      "legacy_comparison": {
+        "words": [
+          "analyze",
+          "examine",
+          "evaluate"
+        ],
+        "note": "analyze 强调拆解数据或结构寻找关系；examine 强调仔细检查；evaluate 强调判断优劣。",
+        "examples": [
+          "We analyzed the data statistically.",
+          "The reviewers examined the assumptions carefully."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "analyze::work",
+      "legacy_meaning": "分析业务问题、市场或运营数据",
+      "legacy_comparison": {
+        "words": [
+          "analyze",
+          "review",
+          "inspect"
+        ],
+        "note": "analyze 用于寻找趋势和原因；review 用于系统回顾材料；inspect 更偏现场或实物检查。",
+        "examples": [
+          "We analyzed customer feedback.",
+          "The manager reviewed the quarterly report."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "announce::public",
+      "legacy_meaning": "正式宣布公共消息或决定",
+      "legacy_comparison": {
+        "words": [
+          "announce",
+          "declare",
+          "report"
+        ],
+        "note": "announce 是正式公布消息；declare 语气更强，常用于正式声明；report 是报道或报告事实。",
+        "examples": [
+          "Officials announced the new rules.",
+          "The government declared a state of emergency."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "announce::work",
+      "legacy_meaning": "向团队、客户或市场正式发布信息",
+      "legacy_comparison": {
+        "words": [
+          "announce",
+          "launch",
+          "introduce"
+        ],
+        "note": "announce 是公布消息；launch 是正式推出产品或项目；introduce 是首次引入某事物。",
+        "examples": [
+          "The company announced a new product line.",
+          "The company launched the product in May."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "approve::work",
+      "legacy_meaning": "正式批准项目、预算或请求",
+      "legacy_comparison": {
+        "words": [
+          "approve",
+          "authorize",
+          "accept"
+        ],
+        "note": "approve 是正式批准方案或请求；authorize 强调授予权限；accept 是接受提议或结果。",
+        "examples": [
+          "The board approved the budget.",
+          "Only the director can authorize the payment."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "approve::public",
+      "legacy_meaning": "由官方机构批准许可、药品或政策",
+      "legacy_comparison": {
+        "words": [
+          "approve",
+          "authorize",
+          "permit"
+        ],
+        "note": "approve 是机构批准；authorize 强调法律或行政授权；permit 可作动词表示允许，也可作名词表示许可证。",
+        "examples": [
+          "The regulator approved the treatment.",
+          "The permit authorizes construction on the site."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "arrange::daily",
+      "legacy_meaning": "安排时间、活动或具体事务",
+      "legacy_comparison": {
+        "words": [
+          "arrange",
+          "organize",
+          "schedule"
+        ],
+        "note": "arrange 强调把具体事项安排妥当；organize 强调组织执行；schedule 强调确定时间。",
+        "examples": [
+          "I arranged a taxi for six.",
+          "We scheduled the meeting for Friday."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "arrange::work",
+      "legacy_meaning": "协调会议、资源或工作安排",
+      "legacy_comparison": {
+        "words": [
+          "arrange",
+          "coordinate",
+          "organize"
+        ],
+        "note": "arrange 是安排会议或资源；coordinate 强调协调多方；organize 强调统筹活动。",
+        "examples": [
+          "I arranged a call with the supplier.",
+          "She coordinated the work of three teams."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "attend::work",
+      "legacy_meaning": "参加会议、培训或活动",
+      "legacy_comparison": {
+        "words": [
+          "attend",
+          "join",
+          "participate"
+        ],
+        "note": "attend 强调出席会议或活动；join 强调加入团队或活动；participate 强调实际参与。",
+        "examples": [
+          "She attended the meeting.",
+          "She participated actively in the discussion."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "attend::academic",
+      "legacy_meaning": "上课、参加讲座或学术活动",
+      "legacy_comparison": {
+        "words": [
+          "attend",
+          "join",
+          "participate"
+        ],
+        "note": "attend 强调到场听课或参会；join 可表示加入某场活动；participate 强调参与其中。",
+        "examples": [
+          "Two hundred researchers attended the conference.",
+          "Thirty students participated in the experiment."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "avoid::daily",
+      "legacy_meaning": "避免某种人、事或行为",
+      "legacy_comparison": {
+        "words": [
+          "avoid",
+          "prevent",
+          "escape"
+        ],
+        "note": "avoid 是主动避开某事；prevent 是阻止某事发生；escape 是从已经存在的危险或处境中脱离。",
+        "examples": [
+          "I avoid driving at rush hour.",
+          "The barrier prevents cars from entering."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "avoid::health",
+      "legacy_meaning": "避免可能增加健康风险的行为或食物",
+      "legacy_comparison": {
+        "words": [
+          "avoid",
+          "prevent",
+          "reduce"
+        ],
+        "note": "avoid 是避免接触风险；prevent 是防止疾病或事件发生；reduce 是降低风险而非完全避免。",
+        "examples": [
+          "Avoid direct exposure to sunlight.",
+          "Vaccination can prevent severe disease."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "balance::finance",
+      "legacy_meaning": "余额；或使收支保持平衡",
+      "legacy_comparison": {
+        "words": [
+          "balance",
+          "amount",
+          "total"
+        ],
+        "note": "balance 是账户当前余额；amount 是某笔金额；total 是多个金额相加后的总数。",
+        "examples": [
+          "Your account balance is $500.",
+          "The total cost of the order is $500."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "balance::work",
+      "legacy_meaning": "在不同目标、任务或资源之间取得平衡",
+      "legacy_comparison": {
+        "words": [
+          "balance",
+          "prioritize",
+          "trade off"
+        ],
+        "note": "balance 是在多个目标间保持均衡；prioritize 是确定优先级；trade off 是接受一方改善带来的另一方损失。",
+        "examples": [
+          "Managers balance speed with quality.",
+          "We prioritized reliability over new features."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "challenge::work",
+      "legacy_meaning": "困难但值得解决的问题或任务",
+      "legacy_comparison": {
+        "words": [
+          "challenge",
+          "problem",
+          "obstacle"
+        ],
+        "note": "challenge 是有难度但可应对的任务；problem 是已经存在的问题；obstacle 是阻碍推进的具体障碍。",
+        "examples": [
+          "Hiring enough engineers is a major challenge.",
+          "The delayed shipment created a serious production problem.",
+          "Budget limits are an obstacle to expansion."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "challenge::academic",
+      "legacy_meaning": "研究中尚未解决的困难或关键问题",
+      "legacy_comparison": {
+        "words": [
+          "challenge",
+          "problem",
+          "limitation"
+        ],
+        "note": "challenge 是待攻克的研究难题；problem 是已经存在、需要解决的具体问题；limitation 是方法或研究本身的局限。",
+        "examples": [
+          "Robust localization in tunnels remains a major challenge.",
+          "Signal blockage is a serious problem in underground environments.",
+          "Small sample size is a limitation of the study."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "concern::public",
+      "legacy_meaning": "担忧；社会或公共讨论中的关切",
+      "legacy_comparison": {
+        "words": [
+          "concern",
+          "worry",
+          "issue"
+        ],
+        "note": "concern 是正式语境中的担忧或关切；worry 更个人化；issue 是被讨论的议题本身。",
+        "examples": [
+          "Privacy is a major public concern.",
+          "Housing affordability is a policy issue."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "concern::work",
+      "legacy_meaning": "工作中的顾虑、风险或需要关注的问题",
+      "legacy_comparison": {
+        "words": [
+          "concern",
+          "risk",
+          "problem"
+        ],
+        "note": "concern 是需要注意的顾虑；risk 是可能发生的不利结果；problem 是已经存在的问题。",
+        "examples": [
+          "The deadline is our main concern.",
+          "Supplier failure is a significant risk."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "confirm::daily",
+      "legacy_meaning": "确认时间、预订或信息无误",
+      "legacy_comparison": {
+        "words": [
+          "confirm",
+          "verify",
+          "check"
+        ],
+        "note": "confirm 是确认安排或信息最终无误；verify 强调核实真实性；check 是最普通的检查。",
+        "examples": [
+          "Please confirm your reservation.",
+          "Please check the address before leaving."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "confirm::work",
+      "legacy_meaning": "确认决定、安排或事实",
+      "legacy_comparison": {
+        "words": [
+          "confirm",
+          "verify",
+          "validate"
+        ],
+        "note": "confirm 是确认事实或安排；verify 是核实正确性；validate 是确认符合要求或规则。",
+        "examples": [
+          "The supplier confirmed the shipment date.",
+          "We verified the figures against the source data."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "consume::finance",
+      "legacy_meaning": "消费商品或服务；消耗资源",
+      "legacy_comparison": {
+        "words": [
+          "consume",
+          "spend",
+          "use"
+        ],
+        "note": "consume 强调消耗商品或资源；spend 专指花费金钱或时间；use 是最普通的使用。",
+        "examples": [
+          "Households consume less energy at higher prices.",
+          "Households spent less on travel last month."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "consume::tech",
+      "legacy_meaning": "消耗计算、内存、带宽或电力资源",
+      "legacy_comparison": {
+        "words": [
+          "consume",
+          "use",
+          "occupy"
+        ],
+        "note": "consume 强调持续消耗计算资源；use 是一般使用；occupy 常指占用内存、空间或容量。",
+        "examples": [
+          "The model consumes too much memory.",
+          "The cache occupies 2 GB of disk space."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "contribute::work",
+      "legacy_meaning": "为项目、团队或结果作出贡献",
+      "legacy_comparison": {
+        "words": [
+          "contribute",
+          "support",
+          "participate"
+        ],
+        "note": "contribute 强调提供具体价值或资源；support 是帮助推进；participate 只表示参与，不一定有实质贡献。",
+        "examples": [
+          "Everyone contributed to the proposal.",
+          "Several colleagues participated in the meeting."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "contribute::academic",
+      "legacy_meaning": "对知识、理论或研究领域作出贡献",
+      "legacy_comparison": {
+        "words": [
+          "contribute",
+          "advance",
+          "add"
+        ],
+        "note": "contribute to 强调对领域增加知识；advance 强调推动领域向前；add 是最一般的增加。",
+        "examples": [
+          "The paper contributes to the literature.",
+          "The result advances our understanding of the mechanism."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "determine::academic",
+      "legacy_meaning": "确定数值、关系或原因",
+      "legacy_comparison": {
+        "words": [
+          "determine",
+          "identify",
+          "decide"
+        ],
+        "note": "determine 强调通过证据确定；identify 强调识别出对象或原因；decide 是人基于判断作出决定。",
+        "examples": [
+          "The experiment determined the exact value of the parameter.",
+          "The analysis identified three possible causes.",
+          "The researchers decided to repeat the experiment."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "determine::work",
+      "legacy_meaning": "决定结果、条件或下一步行动",
+      "legacy_comparison": {
+        "words": [
+          "determine",
+          "decide",
+          "define"
+        ],
+        "note": "determine 可表示条件客观决定结果；decide 是人作决策；define 是明确范围、边界或内容。",
+        "examples": [
+          "Budget constraints determine the project scope.",
+          "The steering committee decided to proceed.",
+          "The team defined the responsibilities of each role."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "establish::work",
+      "legacy_meaning": "建立制度、团队、关系或业务",
+      "legacy_comparison": {
+        "words": [
+          "establish",
+          "create",
+          "set up"
+        ],
+        "note": "establish 较正式，强调建立并使之稳定；create 强调产生新的事物；set up 更口语，强调搭建或成立。",
+        "examples": [
+          "The company established a new research group.",
+          "The partnership created new business opportunities.",
+          "We set up a temporary project team."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "establish::academic",
+      "legacy_meaning": "通过证据确立事实、关系或方法基础",
+      "legacy_comparison": {
+        "words": [
+          "establish",
+          "demonstrate",
+          "show"
+        ],
+        "note": "establish 强调证据足以确立事实或关系；demonstrate 强调通过证据展示；show 是最一般的表明。",
+        "examples": [
+          "The study established a causal relationship.",
+          "The experiment demonstrated the feasibility of the method.",
+          "The results show a clear improvement in accuracy."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "evaluate::academic",
+      "legacy_meaning": "评价方法、模型或研究结果",
+      "legacy_comparison": {
+        "words": [
+          "evaluate",
+          "assess",
+          "test"
+        ],
+        "note": "evaluate 是按标准综合评价；assess 是判断程度或状态；test 是通过实验或测试检验。",
+        "examples": [
+          "We evaluated the model on three datasets.",
+          "We assessed the robustness of the method under noise.",
+          "We tested the model under low-light conditions."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "evaluate::work",
+      "legacy_meaning": "评估方案、表现或选择",
+      "legacy_comparison": {
+        "words": [
+          "evaluate",
+          "assess",
+          "compare"
+        ],
+        "note": "evaluate 是系统判断方案或表现；assess 强调风险或能力；compare 强调并列比较差异。",
+        "examples": [
+          "The committee evaluated three proposals.",
+          "We assessed the financial risk of the project.",
+          "We compared the two suppliers on cost and quality."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "expand::work",
+      "legacy_meaning": "扩大业务、团队、服务或市场",
+      "legacy_comparison": {
+        "words": [
+          "expand",
+          "grow",
+          "extend"
+        ],
+        "note": "expand 强调扩大规模或范围；grow 多指自然或业务增长；extend 强调延长时间、距离或覆盖范围。",
+        "examples": [
+          "The company expanded into Asia.",
+          "The business grew by 20% last year."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "expand::academic",
+      "legacy_meaning": "扩展模型、理论或研究范围",
+      "legacy_comparison": {
+        "words": [
+          "expand",
+          "extend",
+          "broaden"
+        ],
+        "note": "expand 强调扩大模型或分析内容；extend 强调把已有方法推广到新情形；broaden 强调拓宽研究范围。",
+        "examples": [
+          "We expanded the analysis to a larger sample.",
+          "Future work could extend the method to moving targets."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "focus::work",
+      "legacy_meaning": "集中注意力、资源或工作重点",
+      "legacy_comparison": {
+        "words": [
+          "focus",
+          "prioritize",
+          "concentrate"
+        ],
+        "note": "focus on 是把注意力集中于某事；prioritize 是确定先后顺序；concentrate 更强调集中精力。",
+        "examples": [
+          "We should focus on reliability.",
+          "We prioritized the safety issues first."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "focus::academic",
+      "legacy_meaning": "研究重点；把分析集中在某个问题上",
+      "legacy_comparison": {
+        "words": [
+          "focus",
+          "examine",
+          "address"
+        ],
+        "note": "focus on 表示研究重点；examine 强调仔细研究；address 强调处理一个研究问题。",
+        "examples": [
+          "The paper focuses on indoor localization.",
+          "The study examines long-term stability."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "identify::academic",
+      "legacy_meaning": "识别变量、模式、原因或问题",
+      "legacy_comparison": {
+        "words": [
+          "identify",
+          "detect",
+          "determine"
+        ],
+        "note": "identify 是识别出具体对象或原因；detect 是发现某物存在；determine 是进一步确定其性质、原因或数值。",
+        "examples": [
+          "We identified three major sources of error.",
+          "The sensor detected an abnormal signal.",
+          "Further tests determined the exact cause of the failure."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "identify::work",
+      "legacy_meaning": "找出风险、机会或责任人",
+      "legacy_comparison": {
+        "words": [
+          "identify",
+          "find",
+          "recognize"
+        ],
+        "note": "identify 较正式，强调明确风险、机会或责任人；find 是一般找到；recognize 强调意识到或认出。",
+        "examples": [
+          "We identified a major operational risk.",
+          "The team found a cheaper supplier.",
+          "The manager recognized the need for change."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "indicate::academic",
+      "legacy_meaning": "表明、显示某种趋势或结论",
+      "legacy_comparison": {
+        "words": [
+          "indicate",
+          "suggest",
+          "prove"
+        ],
+        "note": "indicate 表示数据表明某趋势；suggest 语气更谨慎；prove 表示证据足以证明，强度最高。",
+        "examples": [
+          "The results indicate a small but consistent improvement.",
+          "The findings suggest that the effect may be temporary.",
+          "The theorem proves that the solution is unique."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "indicate::public",
+      "legacy_meaning": "显示、说明某种情况或方向",
+      "legacy_comparison": {
+        "words": [
+          "indicate",
+          "show",
+          "signal"
+        ],
+        "note": "indicate 是较正式地表明；show 是一般展示或说明；signal 常指某迹象预示变化。",
+        "examples": [
+          "The figures indicate a modest recovery.",
+          "The survey shows strong public support.",
+          "Falling demand may signal a slowdown."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "involve::work",
+      "legacy_meaning": "涉及、包含某些人或任务",
+      "legacy_comparison": {
+        "words": [
+          "involve",
+          "include",
+          "engage"
+        ],
+        "note": "involve 表示某工作内在包含某任务或人员；include 是简单包含；engage 强调让某人积极参与。",
+        "examples": [
+          "The role involves managing two teams.",
+          "The workshop engaged employees from every department."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "involve::academic",
+      "legacy_meaning": "研究过程包含某步骤、变量或参与者",
+      "legacy_comparison": {
+        "words": [
+          "involve",
+          "include",
+          "require"
+        ],
+        "note": "involve 表示研究过程包含某步骤；include 只说明组成部分；require 强调必需条件。",
+        "examples": [
+          "The method involves estimating two parameters.",
+          "The protocol requires three calibration measurements."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "occur::academic",
+      "legacy_meaning": "发生、出现某种现象或事件",
+      "legacy_comparison": {
+        "words": [
+          "occur",
+          "happen",
+          "arise"
+        ],
+        "note": "occur 较正式，常用于现象发生；happen 更口语；arise 常指问题或情况逐渐出现。",
+        "examples": [
+          "The error occurs at low signal levels.",
+          "A calibration problem arose during testing."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "occur::public",
+      "legacy_meaning": "事件、事故或变化发生",
+      "legacy_comparison": {
+        "words": [
+          "occur",
+          "happen",
+          "take place"
+        ],
+        "note": "occur 正式中性；happen 较口语；take place 常用于有计划的事件。",
+        "examples": [
+          "The incident occurred after midnight.",
+          "The ceremony will take place on Friday."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "obtain::academic",
+      "legacy_meaning": "获得数据、结果、许可或样本",
+      "legacy_comparison": {
+        "words": [
+          "obtain",
+          "acquire",
+          "derive"
+        ],
+        "note": "obtain 是正式的“获得结果或数据”；acquire 强调获取过程；derive 强调从已有数据、公式或假设推导。",
+        "examples": [
+          "We obtained similar results in all three experiments.",
+          "The receiver acquires measurements at ten hertz.",
+          "The parameter was derived from the observed data."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "obtain::work",
+      "legacy_meaning": "获得批准、信息或资源",
+      "legacy_comparison": {
+        "words": [
+          "obtain",
+          "secure",
+          "receive"
+        ],
+        "note": "obtain 是正式中性的“获得”；secure 强调经过努力成功取得；receive 强调被动收到。",
+        "examples": [
+          "We obtained final approval last week.",
+          "The team secured additional funding for the project.",
+          "We received the signed contract this morning."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "require::work",
+      "legacy_meaning": "某任务、岗位或流程需要某条件",
+      "legacy_comparison": {
+        "words": [
+          "require",
+          "need",
+          "request"
+        ],
+        "note": "require 表示制度或岗位要求；need 是一般需要；request 是主动提出请求。",
+        "examples": [
+          "The role requires strong analytical skills.",
+          "We need more time to complete the review.",
+          "The client requested a revised schedule."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "require::academic",
+      "legacy_meaning": "方法、模型或实验需要特定数据或条件",
+      "legacy_comparison": {
+        "words": [
+          "require",
+          "need",
+          "demand"
+        ],
+        "note": "require 表示方法或条件客观要求；need 是最普通的需要；demand 强调高强度要求或资源消耗。",
+        "examples": [
+          "The method requires only two reference points.",
+          "The experiment needs additional calibration data.",
+          "Real-time processing demands substantial computing power."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "respond::social",
+      "legacy_meaning": "回应消息、问题或他人的行为",
+      "legacy_comparison": {
+        "words": [
+          "respond",
+          "reply",
+          "react"
+        ],
+        "note": "respond 是一般回应；reply 更专指对话或消息的回复；react 强调对刺激产生情绪或行为反应。",
+        "examples": [
+          "She responded to my message quickly.",
+          "He reacted angrily to the criticism."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "respond::health",
+      "legacy_meaning": "身体或患者对治疗、药物或刺激产生反应",
+      "legacy_comparison": {
+        "words": [
+          "respond",
+          "react",
+          "recover"
+        ],
+        "note": "respond to treatment 指治疗产生效果；react to 强调身体对药物或刺激的反应；recover 是从疾病中恢复。",
+        "examples": [
+          "The patient responded well to treatment.",
+          "She reacted badly to the medication."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "allow::work",
+      "legacy_meaning": "允许某人做某事或允许某种安排",
+      "legacy_comparison": {
+        "words": [
+          "allow",
+          "permit",
+          "enable"
+        ],
+        "note": "allow 是一般意义上的允许；permit 更正式，常用于制度、规则或授权；enable 强调创造条件或提供能力，使某事能够发生。",
+        "examples": [
+          "The policy allows employees to work remotely.",
+          "The new rules permit staff to work from home two days a week.",
+          "Better tools enable the team to work faster."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "allow::tech",
+      "legacy_meaning": "使系统具备某种能力或访问权限",
+      "legacy_comparison": {
+        "words": [
+          "allow",
+          "enable",
+          "grant"
+        ],
+        "note": "allow 表示允许某项操作或访问；enable 强调开启某项能力或功能；grant 强调正式授予权限。",
+        "examples": [
+          "The firewall allows access from trusted networks.",
+          "This setting enables offline access.",
+          "The administrator granted the user access to the repository."
+        ]
+      },
+      "status": "SENSE_REVIEW_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "appear::academic",
+      "legacy_meaning": "在数据、结果或现象中出现；看起来",
+      "legacy_comparison": {
+        "words": [
+          "appear",
+          "seem",
+          "emerge"
+        ],
+        "note": "appear to 表示看起来；seem 更一般；emerge 强调某种模式逐渐显现。",
+        "examples": [
+          "The effect appears to be stronger at short range.",
+          "A clear pattern emerged from the data."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "appear::public",
+      "legacy_meaning": "公开露面、出现或看起来具有某种状态",
+      "legacy_comparison": {
+        "words": [
+          "appear",
+          "emerge",
+          "surface"
+        ],
+        "note": "appear 是一般出现；emerge 强调逐渐出现；surface 常指新的信息或问题被发现。",
+        "examples": [
+          "New details appeared in the report.",
+          "Fresh evidence surfaced during the investigation."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "build::work",
+      "legacy_meaning": "建立团队、能力、关系或业务基础",
+      "legacy_comparison": {
+        "words": [
+          "build",
+          "develop",
+          "establish"
+        ],
+        "note": "build 强调逐步建立能力、关系或团队；develop 强调发展；establish 强调正式建立。",
+        "examples": [
+          "It takes time to build trust.",
+          "The company established a new research unit."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "build::tech",
+      "legacy_meaning": "构建软件、系统或模型",
+      "legacy_comparison": {
+        "words": [
+          "build",
+          "develop",
+          "create"
+        ],
+        "note": "build 常用于构建软件或系统；develop 强调开发过程；create 强调新建对象或资源。",
+        "examples": [
+          "We built a prototype in two weeks.",
+          "Create a new project in the workspace."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "cause::academic",
+      "legacy_meaning": "原因；或导致某种结果",
+      "legacy_comparison": {
+        "words": [
+          "cause",
+          "lead to",
+          "result in"
+        ],
+        "note": "cause 直接表示导致；lead to 强调因果链条；result in 强调最终结果。",
+        "examples": [
+          "High noise can cause estimation errors.",
+          "Poor calibration may lead to biased results."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "cause::health",
+      "legacy_meaning": "导致症状、疾病或健康问题的因素",
+      "legacy_comparison": {
+        "words": [
+          "cause",
+          "trigger",
+          "contribute to"
+        ],
+        "note": "cause 表示直接导致；trigger 强调触发症状或事件；contribute to 表示只是众多原因之一。",
+        "examples": [
+          "Lack of sleep can cause headaches.",
+          "Stress may trigger migraine symptoms."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "communicate::work",
+      "legacy_meaning": "沟通信息、想法或要求",
+      "legacy_comparison": {
+        "words": [
+          "communicate",
+          "inform",
+          "explain"
+        ],
+        "note": "communicate 强调双向传递信息；inform 强调告知；explain 强调说明原因或机制。",
+        "examples": [
+          "Managers should communicate expectations clearly.",
+          "Please inform the team of the change."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "communicate::social",
+      "legacy_meaning": "与他人交流思想、感受或信息",
+      "legacy_comparison": {
+        "words": [
+          "communicate",
+          "talk",
+          "interact"
+        ],
+        "note": "communicate 是广义交流；talk 强调说话；interact 强调相互作用。",
+        "examples": [
+          "They communicate mostly through messaging apps.",
+          "The children interacted naturally during the activity."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "control::tech",
+      "legacy_meaning": "控制设备、系统或变量",
+      "legacy_comparison": {
+        "words": [
+          "control",
+          "manage",
+          "regulate"
+        ],
+        "note": "control 强调直接控制系统行为；manage 强调整体管理；regulate 强调按规则调节。",
+        "examples": [
+          "The software controls the motor speed.",
+          "The regulator manages power consumption automatically."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "control::academic",
+      "legacy_meaning": "控制实验条件或干扰变量",
+      "legacy_comparison": {
+        "words": [
+          "control",
+          "hold constant",
+          "adjust for"
+        ],
+        "note": "control a variable 可指控制实验条件；hold constant 是保持不变；adjust for 是统计上校正。",
+        "examples": [
+          "We controlled temperature during the experiment.",
+          "The model adjusted for age and prior experience."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "create::work",
+      "legacy_meaning": "创建产品、流程、机会或价值",
+      "legacy_comparison": {
+        "words": [
+          "create",
+          "build",
+          "generate"
+        ],
+        "note": "create 强调产生新事物或价值；build 强调逐步建立；generate 常指产生结果、机会或数据。",
+        "examples": [
+          "The partnership created new opportunities.",
+          "The campaign generated hundreds of leads."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "create::tech",
+      "legacy_meaning": "新建文件、对象、账户或系统资源",
+      "legacy_comparison": {
+        "words": [
+          "create",
+          "build",
+          "generate"
+        ],
+        "note": "create 常用于新建账户、文件或对象；build 常用于系统或软件；generate 常用于自动生成输出。",
+        "examples": [
+          "Create a new account before signing in.",
+          "The tool generates a configuration file automatically."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "develop::tech",
+      "legacy_meaning": "开发软件、算法、系统或产品",
+      "legacy_comparison": {
+        "words": [
+          "develop",
+          "build",
+          "design"
+        ],
+        "note": "develop 强调开发过程；build 强调把系统实现出来；design 强调设计结构和方案。",
+        "examples": [
+          "The team developed a new algorithm.",
+          "The engineers designed the system architecture first."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "develop::health",
+      "legacy_meaning": "逐渐出现疾病、症状或某种状态",
+      "legacy_comparison": {
+        "words": [
+          "develop",
+          "contract",
+          "experience"
+        ],
+        "note": "develop a condition 表示逐渐出现疾病或症状；contract 更正式地指感染疾病；experience 强调感受到症状。",
+        "examples": [
+          "He developed a fever overnight.",
+          "Some patients experienced mild dizziness."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "discover::academic",
+      "legacy_meaning": "通过研究发现事实、规律或现象",
+      "legacy_comparison": {
+        "words": [
+          "discover",
+          "find",
+          "identify"
+        ],
+        "note": "discover 强调首次发现新的事实；find 更一般；identify 强调明确识别出具体对象。",
+        "examples": [
+          "Researchers discovered a new pattern.",
+          "The analysis identified three sources of error."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "discover::daily",
+      "legacy_meaning": "偶然发现某个地方、信息或事物",
+      "legacy_comparison": {
+        "words": [
+          "discover",
+          "find",
+          "notice"
+        ],
+        "note": "discover 常有“意外发现”的意味；find 是一般找到；notice 是注意到已存在的细节。",
+        "examples": [
+          "We discovered a quiet café near the station.",
+          "I noticed a small mistake in the receipt."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "enable::tech",
+      "legacy_meaning": "启用功能；使系统能够完成某事",
+      "legacy_comparison": {
+        "words": [
+          "enable",
+          "allow",
+          "activate"
+        ],
+        "note": "enable 是使功能可用；allow 是允许操作；activate 是把某功能或账户激活。",
+        "examples": [
+          "The update enables offline access.",
+          "Activate the feature in settings."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "enable::work",
+      "legacy_meaning": "创造条件使某人或团队能够完成任务",
+      "legacy_comparison": {
+        "words": [
+          "enable",
+          "empower",
+          "allow"
+        ],
+        "note": "enable 强调提供条件或工具；empower 强调赋予人自主权和能力；allow 只是允许。",
+        "examples": [
+          "Training enables staff to handle complex tasks.",
+          "The policy empowers managers to make local decisions."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "ensure::work",
+      "legacy_meaning": "确保某项要求、结果或流程得到满足",
+      "legacy_comparison": {
+        "words": [
+          "ensure",
+          "make sure",
+          "guarantee"
+        ],
+        "note": "ensure 是正式地确保；make sure 更口语；guarantee 语气最强，暗示结果有保证。",
+        "examples": [
+          "Please ensure that all fields are complete.",
+          "The warranty guarantees free repair for one year."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "ensure::tech",
+      "legacy_meaning": "确保系统满足可靠性、安全或兼容要求",
+      "legacy_comparison": {
+        "words": [
+          "ensure",
+          "verify",
+          "validate"
+        ],
+        "note": "ensure 是通过措施确保结果；verify 是核实是否正确；validate 是确认是否符合要求。",
+        "examples": [
+          "Redundancy helps ensure availability.",
+          "We verified the configuration before deployment."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "explain::academic",
+      "legacy_meaning": "解释现象、机制或研究结果",
+      "legacy_comparison": {
+        "words": [
+          "explain",
+          "describe",
+          "interpret"
+        ],
+        "note": "explain 强调说明为什么；describe 只是描述是什么；interpret 强调对结果赋予意义。",
+        "examples": [
+          "The model explains the observed difference.",
+          "The paper describes the experimental setup in detail."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "explain::work",
+      "legacy_meaning": "向他人说明决定、流程或问题原因",
+      "legacy_comparison": {
+        "words": [
+          "explain",
+          "clarify",
+          "justify"
+        ],
+        "note": "explain 是说明原因或过程；clarify 是把不清楚的地方说清；justify 是为决定提供理由。",
+        "examples": [
+          "She explained the new process to the team.",
+          "The manager justified the budget increase with new data."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "increase::finance",
+      "legacy_meaning": "数量、成本、价格或收入增加",
+      "legacy_comparison": {
+        "words": [
+          "increase",
+          "rise",
+          "grow"
+        ],
+        "note": "increase 可及物或不及物；rise 只表示自身上升；grow 常指较持续的增长。",
+        "examples": [
+          "Revenue increased by 12%.",
+          "Operating costs rose sharply in Q2."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "increase::academic",
+      "legacy_meaning": "变量、性能或概率上升",
+      "legacy_comparison": {
+        "words": [
+          "increase",
+          "rise",
+          "improve"
+        ],
+        "note": "increase 只表示数值变大；rise 是不及物上升；improve 表示变得更好，不等于数值变大。",
+        "examples": [
+          "Error increases with distance.",
+          "Accuracy improved after calibration."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "manage::work",
+      "legacy_meaning": "管理人员、项目、资源或风险",
+      "legacy_comparison": {
+        "words": [
+          "manage",
+          "lead",
+          "supervise"
+        ],
+        "note": "manage 强调管理资源和日常工作；lead 强调方向和领导；supervise 强调监督执行。",
+        "examples": [
+          "She manages a team of twelve engineers.",
+          "He leads the product strategy."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "manage::daily",
+      "legacy_meaning": "设法完成某事或应付某种情况",
+      "legacy_comparison": {
+        "words": [
+          "manage",
+          "cope",
+          "handle"
+        ],
+        "note": "manage to do 表示设法做到；cope 强调应付困难；handle 强调处理具体事务。",
+        "examples": [
+          "I managed to finish before dinner.",
+          "She coped well with the sudden change."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "provide::work",
+      "legacy_meaning": "提供服务、信息、资源或支持",
+      "legacy_comparison": {
+        "words": [
+          "provide",
+          "offer",
+          "supply"
+        ],
+        "note": "provide 是通用的提供；offer 强调主动提出可供选择的东西；supply 多指持续供应物资。",
+        "examples": [
+          "The supplier provides technical support.",
+          "The hotel offers free airport transport."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "provide::academic",
+      "legacy_meaning": "给出证据、数据、解释或方法",
+      "legacy_comparison": {
+        "words": [
+          "provide",
+          "show",
+          "present"
+        ],
+        "note": "provide evidence/data 强调提供材料；show 强调结果表明；present 强调正式呈现。",
+        "examples": [
+          "The experiment provides strong evidence.",
+          "The figure presents the results by age group."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "reduce::work",
+      "legacy_meaning": "降低成本、时间、风险或工作量",
+      "legacy_comparison": {
+        "words": [
+          "reduce",
+          "cut",
+          "decrease"
+        ],
+        "note": "reduce 是正式中性的降低；cut 更直接，常指成本或数量削减；decrease 可及物或不及物，较书面。",
+        "examples": [
+          "Automation reduced processing time.",
+          "The company cut travel costs by 20%."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "reduce::health",
+      "legacy_meaning": "降低症状、风险或暴露程度",
+      "legacy_comparison": {
+        "words": [
+          "reduce",
+          "lower",
+          "relieve"
+        ],
+        "note": "reduce 是一般降低风险或症状；lower 常与数值指标搭配；relieve 强调缓解不适。",
+        "examples": [
+          "Exercise reduces the risk of heart disease.",
+          "The medication relieved the pain quickly."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "relate::academic",
+      "legacy_meaning": "与某变量、理论或现象有关",
+      "legacy_comparison": {
+        "words": [
+          "relate",
+          "associate",
+          "correlate"
+        ],
+        "note": "relate to 是广义有关；associate with 表示存在关联；correlate with 特指统计相关。",
+        "examples": [
+          "Performance is related to signal quality.",
+          "Error correlates with distance."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "relate::social",
+      "legacy_meaning": "理解或认同他人的经历；与人建立共鸣",
+      "legacy_comparison": {
+        "words": [
+          "relate",
+          "connect",
+          "empathize"
+        ],
+        "note": "relate to 表示对他人经历有共鸣；connect 强调建立联系；empathize 强调理解他人感受。",
+        "examples": [
+          "Many readers can relate to her experience.",
+          "She empathized with his frustration."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "remain::academic",
+      "legacy_meaning": "仍然处于某状态；问题仍未解决",
+      "legacy_comparison": {
+        "words": [
+          "remain",
+          "stay",
+          "persist"
+        ],
+        "note": "remain 较正式，表示继续处于某状态；stay 更口语；persist 强调问题持续存在。",
+        "examples": [
+          "The mechanism remains unclear.",
+          "The bias persisted after recalibration."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "remain::public",
+      "legacy_meaning": "仍然存在或保持某种状况",
+      "legacy_comparison": {
+        "words": [
+          "remain",
+          "stay",
+          "continue"
+        ],
+        "note": "remain 是正式的持续存在；stay 多用于具体状态或位置；continue 强调动作或状态延续。",
+        "examples": [
+          "The restrictions remain in place.",
+          "The service will continue through winter."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "represent::academic",
+      "legacy_meaning": "表示某个变量、样本或概念",
+      "legacy_comparison": {
+        "words": [
+          "represent",
+          "indicate",
+          "depict"
+        ],
+        "note": "represent 表示某符号或样本代表某对象；indicate 是表明；depict 强调图像化描绘。",
+        "examples": [
+          "Each point represents one measurement.",
+          "The diagram depicts the system architecture."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "represent::public",
+      "legacy_meaning": "代表某群体、机构或利益",
+      "legacy_comparison": {
+        "words": [
+          "represent",
+          "speak for",
+          "stand for"
+        ],
+        "note": "represent 是正式代表某群体；speak for 强调替某人发言；stand for 可指象征或支持某立场。",
+        "examples": [
+          "She represents the district in parliament.",
+          "The organization speaks for small businesses."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "support::work",
+      "legacy_meaning": "支持团队、客户、决定或工作推进",
+      "legacy_comparison": {
+        "words": [
+          "support",
+          "assist",
+          "back"
+        ],
+        "note": "support 是持续帮助或资源支持；assist 更偏具体帮助；back 强调公开支持某决定或人。",
+        "examples": [
+          "The operations team supports three business units.",
+          "The board backed the proposal unanimously."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "support::academic",
+      "legacy_meaning": "证据支持某个主张、假设或解释",
+      "legacy_comparison": {
+        "words": [
+          "support",
+          "confirm",
+          "prove"
+        ],
+        "note": "support 表示证据与主张一致；confirm 表示进一步印证；prove 强度最高，表示足以证明。",
+        "examples": [
+          "The data support the main hypothesis.",
+          "A second experiment confirmed the pattern."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "transfer::finance",
+      "legacy_meaning": "转账、转移资金或资产",
+      "legacy_comparison": {
+        "words": [
+          "transfer",
+          "send",
+          "remit"
+        ],
+        "note": "transfer 是资金在账户间转移；send 是一般发送；remit 是较正式的汇款。",
+        "examples": [
+          "I transferred the money to my savings account.",
+          "The company remitted payment to the supplier."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "transfer::tech",
+      "legacy_meaning": "传输数据、文件或知识模型",
+      "legacy_comparison": {
+        "words": [
+          "transfer",
+          "transmit",
+          "move"
+        ],
+        "note": "transfer 是广义传输或转移；transmit 强调信号或数据发送；move 强调改变文件位置。",
+        "examples": [
+          "The system transfers data securely.",
+          "The sensor transmits a packet every second."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "verify::tech",
+      "legacy_meaning": "验证身份、数据、配置或结果是否正确",
+      "legacy_comparison": {
+        "words": [
+          "verify",
+          "validate",
+          "check"
+        ],
+        "note": "verify 是核实是否正确；validate 是确认是否符合要求；check 是最普通的检查。",
+        "examples": [
+          "We verified the configuration before deployment.",
+          "The form validates the input automatically."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "verify::academic",
+      "legacy_meaning": "通过分析或实验验证结果或假设",
+      "legacy_comparison": {
+        "words": [
+          "verify",
+          "confirm",
+          "replicate"
+        ],
+        "note": "verify 是通过实验核实；confirm 是进一步支持已有结论；replicate 是重复研究看结果能否再现。",
+        "examples": [
+          "We verified the result with an independent dataset.",
+          "Another lab replicated the experiment successfully."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "improve::work",
+      "legacy_meaning": "改善绩效、流程、服务或能力",
+      "legacy_comparison": {
+        "words": [
+          "improve",
+          "enhance",
+          "optimize"
+        ],
+        "note": "improve 是一般变好；enhance 强调增强已有质量或能力；optimize 强调在约束下调到最佳。",
+        "examples": [
+          "The new workflow improved efficiency.",
+          "We optimized the process for lower cost."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "improve::academic",
+      "legacy_meaning": "提高模型、方法或测量性能",
+      "legacy_comparison": {
+        "words": [
+          "improve",
+          "increase",
+          "enhance"
+        ],
+        "note": "improve 表示性能变好；increase 只表示数值变大；enhance 强调增强某项性质。",
+        "examples": [
+          "Calibration improved accuracy.",
+          "More antennas increased the signal power."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "monitor::tech",
+      "legacy_meaning": "持续监测系统、设备或指标状态",
+      "legacy_comparison": {
+        "words": [
+          "monitor",
+          "observe",
+          "track"
+        ],
+        "note": "monitor 强调持续监测状态；observe 是一般观察；track 强调随时间记录变化。",
+        "examples": [
+          "We monitor network latency continuously.",
+          "The dashboard tracks daily error rates."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "monitor::health",
+      "legacy_meaning": "持续观察症状、生命体征或健康变化",
+      "legacy_comparison": {
+        "words": [
+          "monitor",
+          "check",
+          "track"
+        ],
+        "note": "monitor 强调持续观察健康指标；check 是一次性检查；track 强调长期记录趋势。",
+        "examples": [
+          "Patients should monitor their blood pressure.",
+          "The app tracks heart rate over time."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "recognize::social",
+      "legacy_meaning": "认出某人、某物或理解某种情绪",
+      "legacy_comparison": {
+        "words": [
+          "recognize",
+          "identify",
+          "notice"
+        ],
+        "note": "recognize 是认出熟悉对象；identify 是确定身份；notice 是注意到变化或细节。",
+        "examples": [
+          "I recognized him from the photo.",
+          "She noticed a change in his tone."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "recognize::public",
+      "legacy_meaning": "正式承认某种身份、地位或事实",
+      "legacy_comparison": {
+        "words": [
+          "recognize",
+          "acknowledge",
+          "accept"
+        ],
+        "note": "recognize 是正式承认身份、权利或事实；acknowledge 是承认某事实存在；accept 是接受观点或决定。",
+        "examples": [
+          "The law recognizes the right to appeal.",
+          "The report acknowledges several limitations."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "release::tech",
+      "legacy_meaning": "发布软件、版本或功能",
+      "legacy_comparison": {
+        "words": [
+          "release",
+          "launch",
+          "deploy"
+        ],
+        "note": "release 是发布某个版本；launch 多指首次推出产品；deploy 是把系统部署到运行环境。",
+        "examples": [
+          "The team released version 2.0.",
+          "We deployed the update to production that night."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "release::public",
+      "legacy_meaning": "公开发布报告、数据或信息",
+      "legacy_comparison": {
+        "words": [
+          "release",
+          "publish",
+          "announce"
+        ],
+        "note": "release 强调把信息对外公开；publish 强调正式出版或发布文档；announce 强调公布消息。",
+        "examples": [
+          "The agency released the report on Friday.",
+          "The journal published the study online."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "select::work",
+      "legacy_meaning": "从多个候选中选择人员、方案或供应商",
+      "legacy_comparison": {
+        "words": [
+          "select",
+          "choose",
+          "appoint"
+        ],
+        "note": "select 比 choose 更正式，强调从候选中挑选；appoint 是正式任命某人担任职位。",
+        "examples": [
+          "The panel selected three candidates.",
+          "The board appointed her as chair."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "select::academic",
+      "legacy_meaning": "选择样本、变量、特征或方法",
+      "legacy_comparison": {
+        "words": [
+          "select",
+          "sample",
+          "choose"
+        ],
+        "note": "select 是从集合中选择对象；sample 是按抽样方法选取样本；choose 是一般选择。",
+        "examples": [
+          "We selected the variables before modeling.",
+          "We sampled 200 participants from the registry."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "solve::work",
+      "legacy_meaning": "解决问题、冲突或业务难题",
+      "legacy_comparison": {
+        "words": [
+          "solve",
+          "resolve",
+          "fix"
+        ],
+        "note": "solve 常与 problem 搭配；resolve 常与 issue/conflict 搭配；fix 更口语，常指具体故障。",
+        "examples": [
+          "We solved the scheduling problem.",
+          "The team resolved the customer complaint."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    },
+    {
+      "legacy_key": "solve::academic",
+      "legacy_meaning": "求解方程、优化问题或研究问题",
+      "legacy_comparison": {
+        "words": [
+          "solve",
+          "derive",
+          "compute"
+        ],
+        "note": "solve 是求解问题或方程；derive 是推导公式或结果；compute 是计算数值。",
+        "examples": [
+          "We solved the equations numerically.",
+          "The closed-form expression was derived analytically."
+        ]
+      },
+      "status": "CONTENT_COMPLETION_PENDING",
+      "target_ku_id": null
+    }
+  ]
+}

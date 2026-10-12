@@ -42,7 +42,7 @@ test('HTTP load, all 13000 headwords and 16202 KUs, every answer, last word, lea
     const requests=[],s=await boot(session({fetcher:async url=>{requests.push(url);return fetch(`http://127.0.0.1:${server.address().port}/`+url)}}));
     assert.equal(s.ctx.PAI_CORE_QA.words,13000);assert.equal(s.ctx.PAI_CORE_QA.units,16202);
     assert.equal(s.ctx.PAI_CORE_QA.missingKU,30);assert.equal(s.ctx.PAI_CORE_QA.missingIPA,593);
-    assert.equal(requests.length,5);assert.match(s.app.innerHTML,/13,000/);assert.doesNotMatch(s.app.innerHTML,/今天已完成/);
+    assert.equal(requests.length,6);assert.match(s.app.innerHTML,/13,000/);assert.doesNotMatch(s.app.innerHTML,/今天已完成/);
     let answered=0;for(const [key,u] of s.ctx.PAI_CORE.byKU){assert.equal(s.run(`unitKey(findUnitByKey('${key}').w,findUnitByKey('${key}').sid)`),key);const html=s.ctx.answerHtml(u);assert.ok(html.includes('definition'));assert.equal(u.s.e.length,3);answered++}assert.equal(answered,16202);
     assert.equal(s.run('WORDS.length'),13000);assert.equal(s.run('WORDS[12999].rank'),13000);
     const last=s.run('Object.values(WORDS[12999].s)[0].ku_id');const scene=s.ctx.PAI_CORE.byKU.get(last).s.scene;
@@ -106,5 +106,26 @@ test('backup or migration save failure leaves original storage untouched',async(
   for(const target of [STORAGE,STORAGE+'::before-ku-id-v1']){
     const stored={records:{'issue::work':{reps:2}},stats:{known:0,unknown:0}},s=session({stored,failWrite:k=>k===target});
     const before=s.db.get(STORAGE);await assert.rejects(s.ctx.loadCore13000(),/storage full/);assert.equal(s.db.get(STORAGE),before);assert.equal(s.ctx.PAI_CORE,undefined);
+  }
+});
+
+
+test('45 sense-bound comparisons have bilingual examples and do not bleed into other senses',async()=>{
+  const s=await boot(session());assert.equal(s.ctx.PAI_CORE_QA.comparisonUnits,45);
+  const units=[...s.ctx.PAI_CORE.byKU.values()].filter(u=>u.s.compare);
+  assert.equal(units.length,45);
+  for(const u of units){const html=s.ctx.answerHtml(u);assert.equal(u.s.compare.items.length,3);for(const item of u.s.compare.items){assert.ok(html.includes(item.brief_zh.replaceAll('&','&amp;')));assert.ok(html.includes(item.example_zh));assert.ok(item.example_en.length>10)}assert.equal((html.match(/class="contrast-item"/g)||[]).length,3)}
+  const make=s.ctx.PAI_CORE.byKU.get('w_0048_make_ku01');assert.ok(make.s.compare);assert.equal(s.ctx.PAI_CORE.byKU.get('w_0048_make_ku02').s.compare,undefined);
+  s.ctx.toggleAnswerOption('showCompare');assert.ok(!s.ctx.answerHtml(make).includes('contrast-item'));
+  s.ctx.toggleAnswerOption('showCompare');s.run("state.previewKU='w_0048_make_ku01';state.view='wordPreview';state.revealed=true");const before=s.db.get(STORAGE);s.ctx.render();assert.match(s.app.innerHTML,/词条预览/);assert.match(s.app.innerHTML,/制作或产生/);assert.equal(s.db.get(STORAGE),before);
+});
+test('comparison corruption or incorrect sense binding rejects before SRS migration',async()=>{
+  const crypto=require('node:crypto');
+  for(const mode of ['hash','binding']){
+    const manifest=JSON.parse(source('data/core13000-v25.5/manifest.json'));const data=JSON.parse(source('data/core13000-v25.5/comparisons-001.json'));
+    data.entries[0].sense_id='wrong_sense';const bytes=Buffer.from(JSON.stringify(data));
+    if(mode==='binding'){manifest.comparisons.bytes=bytes.length;manifest.comparisons.sha256=crypto.createHash('sha256').update(bytes).digest('hex')}
+    const s=session({stored:{records:{'issue::work':{reps:1}},stats:{known:0,unknown:0}},fetcher:async url=>new Response(url.endsWith('manifest.json')?JSON.stringify(manifest):url.endsWith('comparisons-001.json')?bytes:fs.readFileSync(path.join(root,url)))});
+    const before=s.db.get(STORAGE);await assert.rejects(s.ctx.loadCore13000(),mode==='hash'?/文件大小不符|校验失败/:/义项绑定不符/);assert.equal(s.db.get(STORAGE),before);
   }
 });
