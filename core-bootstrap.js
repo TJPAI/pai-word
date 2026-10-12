@@ -15,7 +15,7 @@
 
     const v21=new URLSearchParams(location.search).get('v21')==='1';
     if(v21){
-      for(const src of ['learning-evidence.js?v=1','v21-content.js?v=1','v21-app.js?v=1'])await script(src);
+      for(const src of ['learning-evidence.js?v=2','v21-content.js?v=1','v21-app-v2.js?v=1'])await script(src);
       await window.PAI_V21_APP.boot();
       app.removeAttribute('role');registerOfflineShell();return;
     }
