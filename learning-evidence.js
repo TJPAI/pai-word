@@ -40,6 +40,8 @@
       delayed_successes:0,
       objective_successes:0,
       failures:0,
+      seen_item_ids:[],
+      last_item_id:null,
       last_event_at:null,
       updated_at:nowIso()
     };
@@ -50,6 +52,8 @@
     next.target_id=target.target_id;next.ku_id=target.ku_id;next.type=target.type;
     next.content_version=event.content_version||next.content_version;
     next.last_event_at=event.occurred_at;next.updated_at=nowIso();
+    next.seen_item_ids=Array.isArray(next.seen_item_ids)?next.seen_item_ids:[];
+    if(event.item_id){next.last_item_id=event.item_id;if(!next.seen_item_ids.includes(event.item_id))next.seen_item_ids=[...next.seen_item_ids,event.item_id]}
     if(event.event_type==='exposure'){
       next.exposures=(next.exposures||0)+1;
       if(next.status==='unmeasured')next.status='exposed';
