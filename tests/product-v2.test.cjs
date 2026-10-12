@@ -10,13 +10,14 @@ function word(rank,lemma,scene='daily'){
   return {rank,w:lemma,pos:'n.',ipaUK:'',ipaUS:'',s:{[ku]:s}};
 }
 
-test('daily quota is app-wide and survives queue rebuilds',()=>{
+test('daily quota is app-wide, balanced across scenes, and survives queue rebuilds',()=>{
   const ctx={console,window:null,SCENES:{daily:'d',work:'w',unclassified:'u'},state:{newPerDay:20,records:{}},save(){},render(){},unitKey(_w,sid){return sid}};
   ctx.window=ctx;ctx.units=[];
   for(let i=1;i<=90;i++){const scene=i%3===0?'work':i%3===1?'daily':'unclassified';ctx.units.push({w:{rank:i,w:'w'+i},sid:'ku'+i,s:{scene,sense_id:'s'+i}})}
   ctx.allUnits=scene=>ctx.units.filter(u=>u.s.scene===scene);ctx.findUnitByKey=k=>ctx.units.find(u=>u.sid===k)||null;ctx.dueUnits=()=>[];
   vm.createContext(ctx);run('daily.js',ctx);
-  const assigned=Object.values(ctx.state.daily.assigned).flat();assert.equal(assigned.length,20);assert.equal(new Set(assigned).size,20);assert.equal(ctx.state.daily.lexiconLimit,13000);
+  const assigned=Object.values(ctx.state.daily.assigned).flat();assert.equal(assigned.length,20);assert.equal(new Set(assigned).size,20);assert.equal(ctx.state.daily.lexiconLimit,13000);assert.equal(ctx.state.daily.policy,'balanced-scenes-v1');
+  const counts=Object.values(ctx.state.daily.assigned).map(x=>x.length);assert.ok(counts.every(n=>n>0));assert.ok(Math.max(...counts)-Math.min(...counts)<=1);
   for(const k of assigned.slice(0,5)){ctx.markDailyNewComplete(k);ctx.state.records[k]={reps:1}}
   ctx.rebuildDailyAssignments();
   assert.equal(ctx.globalNewCompleted(),5);assert.equal(Object.values(ctx.state.daily.assigned).flat().length,15);assert.equal(ctx.globalNewAssigned(),20);
