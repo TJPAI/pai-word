@@ -18,8 +18,10 @@ https://raw.githack.com/TJPAI/pai-word/core13000-integration/index.html
 - 首页提供“词库”入口，可搜索英文或中文释义、打开任意收录词并选择具体 canonical 义项；浏览不会写学习记录。
 - 每日新词额度为**全应用合计**（默认 20），不按每个场景分别分配；到期复习不受新词额度限制。
 - 未可靠定稿的 domain 继续留在“通用词汇 · 待分类”，不随机分配场景。
-- 已增加隔离回归测试：全局每日额度；完整 13,000 词范围；词条浏览不改变既有 `ku_id` 进度。
-- 当前会话没有 Browser/手机设备控制能力，因此新 UI 的手机 Safari、真实点击搜索/评分/复习/刷新持久化仍需浏览器验收；不得把代码测试等同于 Safari 已通过。
+- 完整 Core-13000 采用 offline-first 本地缓存：首次联网加载并完成 SHA-256 校验后，将 manifest、实际使用的 4 个压缩 pack 和辨析数据写入独立 IndexedDB；后续启动优先读本地并再次校验。
+- 新增 `sw.js` 缓存 HTML/CSS/JS App shell；数据 pack 不重复放进 Cache Storage，而由 IndexedDB 单独管理。首次成功缓存后，目标行为是断网也能启动和学习。
+- 词库缓存与 `records[ku_id]` 学习进度分离；更新/重下词库不应删除 SRS 记录。
+- 当前会话没有 Browser/手机设备控制能力，因此手机 Safari 的真实离线启动、搜索/评分/复习/刷新持久化仍需浏览器验收；不得把代码测试等同于 Safari 已通过。
 
 ## 集成分支
 
@@ -39,6 +41,21 @@ https://raw.githack.com/TJPAI/pai-word/core13000-integration/index.html
 `mobile.js → core-loader.js → core-bootstrap.js → daily.js → ipa-accent.js → app-runtime.js → product-v2.js`
 
 `core-bootstrap.js` 等待全部 pack 通过校验并完成迁移后才初始化每日队列和页面。旧扩词和辨析脚本退出正式加载链；有旧版 SRS 记录时，仅在首次迁移前按需加载 3 个旧扩词脚本以识别旧义项。
+
+## 本地词库 / 离线优先
+
+词库缓存使用独立数据库 `pai-word-lexicon-v1`，不与 SRS 状态共用存储空间。
+
+1. 启动先读取本地 manifest；若本地没有，再联网下载并缓存。
+2. 每个压缩 pack 以 `filename@sha256` 作为缓存键。本地命中后仍重新检查字节数和 SHA-256；损坏缓存会删除并重新联网获取。
+3. 当前浏览器实际使用 Brotli 或 gzip 中的一种；下载成功后把该压缩文件保存到 IndexedDB，不保存 89 MB 编辑 master，也不把 13,000 词展开后永久重复存储。
+4. `comparisons-001.json` 同样进入本地缓存并继续做 SHA-256 与义项绑定校验。
+5. `navigator.storage.persist()` 可用时会申请持久存储；结果记录在 `PAI_LOCAL_LEXICON.persistent`，但代码不把申请失败等同于加载失败。
+6. App shell 由 `sw.js` 缓存；词库 data 路径被明确排除，避免 Service Worker 与 IndexedDB 双份保存同一 pack。
+7. 本次启动成功后后台检查在线 manifest；若发现 SHA/版本签名变化，只标记更新，不在正在学习时强制替换当前内存数据。
+8. UI 会区分“首次使用将保存到本机”“词库已保存本机”“可离线启动”等状态；只有 manifest、当前实际使用的 4 个 pack 和辨析数据都成功写入本地时才把词库数据标记为 offline-ready。
+
+以上是代码级实现；当前聊天环境没有真实 iPhone Safari 控制能力，因此 **尚未宣称手机 Safari 断网重启已验收通过**。
 
 ## 进度迁移
 
@@ -63,6 +80,13 @@ https://raw.githack.com/TJPAI/pai-word/core13000-integration/index.html
 - 旧状态即使曾保存 `lexiconLimit=5000`，启动产品层后也统一迁移到 13,000，而不删除已有 `records[ku_id]`；
 - 打开词库词条及选择义项不改变既有 SRS 记录。
 
+`tests/offline-cache.test.cjs` 增加离线缓存契约检查：
+
+- loader 必须先查 IndexedDB，再访问网络；
+- 本地命中仍必须执行 SHA-256；
+- offline-ready 必须依赖本地 manifest 和所需资产均成功落盘；
+- Service Worker 必须缓存 App shell，但明确排除 `data/core13000-v25.5/`，避免 pack 双份缓存。
+
 上一轮真实 Chrome 验证（旧产品层）使用已提交分支的第三方静态预览：
 
 - 验证提交：`dd7bcc43cd7cb4f620388801e4bbe5868efd175f`。
@@ -73,7 +97,7 @@ https://raw.githack.com/TJPAI/pai-word/core13000-integration/index.html
 - 刷新重新加载后，剩余新词仍为 19，进度持久化通过。
 - 控制台无应用错误；出现的 browser metadata 消息错误来自浏览器扩展，非应用脚本。
 
-Safari、手机视口、实际音频输出尚未验收。当前产品层的词库浏览/搜索和全局新词额度也尚未完成真实浏览器点击验收；不能沿用旧 Chrome 结果冒充本轮验收。第三方预览不是生产部署，其 localStorage 与正式站点隔离，未访问或修改用户生产学习进度。`main` 未修改。
+Safari、手机视口、实际音频输出尚未验收。当前产品层的词库浏览/搜索、全局新词额度以及 offline-first 本地缓存也尚未完成真实浏览器点击/断网验收；不能沿用旧 Chrome 结果冒充本轮验收。第三方预览不是生产部署，其 localStorage/IndexedDB 与正式站点隔离，未访问或修改用户生产学习进度。`main` 未修改。
 
 本地运行：`python3 -m http.server 8765 --bind 127.0.0.1`，访问 `http://127.0.0.1:8765/`。
 
