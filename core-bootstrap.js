@@ -15,7 +15,7 @@
 
     const v21=new URLSearchParams(location.search).get('v21')==='1';
     if(v21){
-      for(const src of ['learning-evidence.js?v=4','v21-legacy-import.js?v=1','v21-backup.js?v=1','v21-content.js?v=1','v21-app-v2.js?v=2'])await script(src);
+      for(const src of ['learning-evidence.js?v=4','v21-legacy-import.js?v=1','v21-backup.js?v=1','v21-scene-model.js?v=1','v21-content.js?v=1','v21-app-v2.js?v=2'])await script(src);
       await window.PAI_V21_LEGACY_IMPORT.run();
       await window.PAI_V21_APP.boot();
       app.removeAttribute('role');registerOfflineShell();return;
