@@ -4,7 +4,9 @@
   state.lexiconLimit=state.lexiconLimit===FULL_LIMIT?FULL_LIMIT:DEFAULT_LIMIT;
   const baseAllUnits=window.allUnits;
   window.allUnits=function(scene){return (baseAllUnits(scene)||[]).filter(u=>u.w.rank<=state.lexiconLimit)};
-  if(state.daily?.lexiconLimit!==state.lexiconLimit&&typeof rebuildDailyAssignments==='function')rebuildDailyAssignments();
+  const stagedKeys=Object.values(state.daily?.assigned||{}).flat();
+  const stagedOutOfScope=stagedKeys.some(k=>(window.PAI_CORE.byKU.get(k)?.w.rank||Infinity)>state.lexiconLimit);
+  if((state.daily?.lexiconLimit!==state.lexiconLimit||stagedOutOfScope)&&typeof rebuildDailyAssignments==='function')rebuildDailyAssignments();
 
   const searchIndex=window.PAI_CORE.words.map(w=>({
     w,
@@ -61,6 +63,9 @@
     if(typeof rebuildDailyAssignments==='function')rebuildDailyAssignments();else save();
     render();
   };
+
+  const oldRateKnown=window.rateKnown;
+  window.rateKnown=function(known){const u=typeof currentUnit==='function'?currentUnit():null;if(u&&!state.records[unitKey(u.w,u.sid)]&&typeof markDailyNewComplete==='function')markDailyNewComplete(unitKey(u.w,u.sid));return oldRateKnown(known)};
 
   const oldRender=window.render;
   window.render=function(){
