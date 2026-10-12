@@ -1,8 +1,8 @@
-const CACHE='pai-word-shell-v2';
+const CACHE='pai-word-shell-v3';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','./mobile.css','./ux-fix.css','./product-v2.css','./v21.css',
   './mobile.js','./core-loader.js','./core-bootstrap.js','./daily.js','./ipa-accent.js','./app-runtime.js','./product-v2.js',
-  './learning-evidence.js','./v21-content.js','./v21-app.js'
+  './learning-evidence.js','./v21-content.js','./v21-app-v2.js'
 ];
 self.addEventListener('install',event=>{
   event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
