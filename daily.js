@@ -1,6 +1,7 @@
 // Global daily assignment policy. New items share one app-wide quota; due reviews are unlimited.
 (function(){
   const oldSave=save;
+  const ASSIGNMENT_POLICY='balanced-scenes-v1';
   function dayKey(){
     const d=new Date();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
@@ -12,26 +13,47 @@
     state.dailyNewProgress.completed=Array.isArray(state.dailyNewProgress.completed)?state.dailyNewProgress.completed:[];
     return state.dailyNewProgress;
   }
-  function freshPool(){
-    const seen=new Set(),out=[];
-    for(const scene of Object.keys(SCENES))for(const u of allUnits(scene)){
-      const k=unitKey(u.w,u.sid);
-      if(seen.has(k)||state.records[k])continue;
-      seen.add(k);out.push(u);
+  function scenePools(){
+    const pools={};
+    for(const scene of Object.keys(SCENES)){
+      const seen=new Set();
+      pools[scene]=allUnits(scene)
+        .filter(u=>{
+          const k=unitKey(u.w,u.sid);
+          if(seen.has(k)||state.records[k])return false;
+          seen.add(k);return true;
+        })
+        .sort((a,b)=>(a.w.rank-b.w.rank)||String(a.s.sense_id).localeCompare(String(b.s.sense_id)));
     }
-    return out.sort((a,b)=>(a.w.rank-b.w.rank)||String(a.s.sense_id).localeCompare(String(b.s.sense_id)));
+    return pools;
+  }
+  function pickBalanced(limit){
+    const pools=scenePools(),scenes=Object.keys(SCENES).filter(scene=>pools[scene].length),picked=[];
+    const index=Object.fromEntries(scenes.map(scene=>[scene,0]));
+    while(picked.length<limit){
+      let added=false;
+      for(const scene of scenes){
+        const i=index[scene];
+        if(i<pools[scene].length){
+          picked.push(pools[scene][i]);index[scene]=i+1;added=true;
+          if(picked.length>=limit)break;
+        }
+      }
+      if(!added)break;
+    }
+    return picked;
   }
   function buildAssignments(){
     const assigned=Object.fromEntries(Object.keys(SCENES).map(scene=>[scene,[]])),progress=ensureProgress();
-    const remaining=Math.max(0,state.newPerDay-progress.completed.length),picked=freshPool().slice(0,remaining);
+    const remaining=Math.max(0,state.newPerDay-progress.completed.length),picked=pickBalanced(remaining);
     for(const u of picked)assigned[u.s.scene]?.push(unitKey(u.w,u.sid));
-    state.daily={date:dayKey(),assigned,quota:state.newPerDay,lexiconLimit:scopeLimit()};
+    state.daily={date:dayKey(),assigned,quota:state.newPerDay,lexiconLimit:scopeLimit(),policy:ASSIGNMENT_POLICY};
     oldSave();
     return state.daily;
   }
   function ensureDaily(){
     ensureProgress();const d=state.daily;
-    if(!d||d.date!==dayKey()||d.quota!==state.newPerDay||d.lexiconLimit!==scopeLimit()||!d.assigned)return buildAssignments();
+    if(!d||d.date!==dayKey()||d.quota!==state.newPerDay||d.lexiconLimit!==scopeLimit()||d.policy!==ASSIGNMENT_POLICY||!d.assigned)return buildAssignments();
     for(const scene of Object.keys(SCENES))d.assigned[scene]=d.assigned[scene]||[];
     return d;
   }
