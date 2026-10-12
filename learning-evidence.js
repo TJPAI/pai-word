@@ -30,63 +30,40 @@
 
   function baseTarget(target){
     return {
-      target_id:target.target_id,
-      ku_id:target.ku_id,
-      type:target.type,
-      status:'unmeasured',
-      content_version:target.content_version||'Core-13000 V25.5',
-      exposures:0,
-      independent_successes:0,
-      delayed_successes:0,
-      objective_successes:0,
-      failures:0,
-      seen_item_ids:[],
-      last_item_id:null,
-      last_event_at:null,
-      updated_at:nowIso()
+      target_id:target.target_id,ku_id:target.ku_id,type:target.type,status:'unmeasured',
+      content_version:target.content_version||'Core-13000 V25.5',exposures:0,independent_successes:0,
+      delayed_successes:0,objective_successes:0,failures:0,seen_item_ids:[],last_item_id:null,
+      last_event_at:null,updated_at:nowIso()
     };
   }
 
   function applyEvidence(prev,event,target){
     const next={...(prev||baseTarget(target))};
     next.target_id=target.target_id;next.ku_id=target.ku_id;next.type=target.type;
-    next.content_version=event.content_version||next.content_version;
-    next.last_event_at=event.occurred_at;next.updated_at=nowIso();
+    next.content_version=event.content_version||next.content_version;next.last_event_at=event.occurred_at;next.updated_at=nowIso();
     next.seen_item_ids=Array.isArray(next.seen_item_ids)?next.seen_item_ids:[];
     if(event.item_id){next.last_item_id=event.item_id;if(!next.seen_item_ids.includes(event.item_id))next.seen_item_ids=[...next.seen_item_ids,event.item_id]}
     if(event.event_type==='legacy_srs_snapshot'){
-      next.legacy_self_report=event.result;
-      if(next.status==='unmeasured')next.status='legacy_self_report';
-      return next;
+      next.legacy_self_report=event.result;if(next.status==='unmeasured')next.status='legacy_self_report';return next;
     }
     if(event.event_type==='exposure'){
-      next.exposures=(next.exposures||0)+1;
-      if(next.status==='unmeasured'||next.status==='legacy_self_report')next.status='exposed';
-      return next;
+      next.exposures=(next.exposures||0)+1;if(next.status==='unmeasured'||next.status==='legacy_self_report')next.status='exposed';return next;
     }
     const success=['recalled','correct'].includes(event.result)&&!event.hint_used;
     const failure=['not_recalled','incorrect'].includes(event.result)||event.result==='hinted_correct';
     if(success){
       next.independent_successes=(next.independent_successes||0)+1;
       if(event.event_type==='objective_answer')next.objective_successes=(next.objective_successes||0)+1;
-      if(String(event.evidence_type||'').startsWith('delayed_')){
-        next.delayed_successes=(next.delayed_successes||0)+1;
-        next.status='delayed_verified';
-      }else next.status='independent_recall';
-    }else if(failure){
-      next.failures=(next.failures||0)+1;
-      next.status='learning';
-    }
+      if(String(event.evidence_type||'').startsWith('delayed_')){next.delayed_successes=(next.delayed_successes||0)+1;next.status='delayed_verified'}
+      else next.status='independent_recall';
+    }else if(failure){next.failures=(next.failures||0)+1;next.status='learning'}
     return next;
   }
 
   async function getEvent(eventId){const db=await openDB();return reqValue(db.transaction(EVENTS,'readonly').objectStore(EVENTS).get(eventId));}
   async function getTarget(targetId){const db=await openDB();return reqValue(db.transaction(TARGETS,'readonly').objectStore(TARGETS).get(targetId));}
   async function getSession(sessionId){const db=await openDB();return reqValue(db.transaction(SESSIONS,'readonly').objectStore(SESSIONS).get(sessionId));}
-  async function listEventsBySession(sessionId){
-    const db=await openDB(),all=await reqValue(db.transaction(EVENTS,'readonly').objectStore(EVENTS).getAll());
-    return (all||[]).filter(e=>e.session_id===sessionId).sort((a,b)=>String(a.occurred_at).localeCompare(String(b.occurred_at)));
-  }
+  async function listEventsBySession(sessionId){const db=await openDB(),all=await reqValue(db.transaction(EVENTS,'readonly').objectStore(EVENTS).getAll());return (all||[]).filter(e=>e.session_id===sessionId).sort((a,b)=>String(a.occurred_at).localeCompare(String(b.occurred_at)));}
 
   // Keep the complete write chain inside IndexedDB request callbacks. This avoids
   // transactions becoming inactive between awaited requests in Safari/WebKit.
@@ -99,40 +76,19 @@
       const eventStore=tx.objectStore(EVENTS),targetStore=tx.objectStore(TARGETS),sessionStore=tx.objectStore(SESSIONS);
       let duplicate=false,nextTarget=null,writeError=null;
       const addReq=eventStore.add(event);
-      addReq.onerror=ev=>{
-        if(addReq.error?.name==='ConstraintError'){
-          duplicate=true;ev.preventDefault();ev.stopPropagation();
-        }else writeError=addReq.error||new Error('event write failed');
-      };
+      addReq.onerror=ev=>{if(addReq.error?.name==='ConstraintError'){duplicate=true;ev.preventDefault();ev.stopPropagation()}else writeError=addReq.error||new Error('event write failed')};
       addReq.onsuccess=()=>{
         const getReq=targetStore.get(event.target_id);
         getReq.onerror=()=>{writeError=getReq.error||new Error('target read failed')};
-        getReq.onsuccess=()=>{
-          try{
-            nextTarget=applyEvidence(getReq.result??null,event,target);
-            targetStore.put(nextTarget);
-            if(session)sessionStore.put({...session,updated_at:nowIso()});
-          }catch(error){writeError=error;tx.abort()}
-        };
+        getReq.onsuccess=()=>{try{nextTarget=applyEvidence(getReq.result??null,event,target);targetStore.put(nextTarget);if(session)sessionStore.put({...session,updated_at:nowIso()})}catch(error){writeError=error;tx.abort()}};
       };
       tx.onabort=()=>reject(writeError||tx.error||new Error('learning transaction aborted'));
       tx.onerror=()=>{if(!duplicate)reject(writeError||tx.error||new Error('learning transaction failed'))};
-      tx.oncomplete=async()=>{
-        try{
-          if(duplicate){resolve({duplicate:true,event:await getEvent(event.event_id),target:await getTarget(event.target_id)});return}
-          if(writeError){reject(writeError);return}
-          resolve({duplicate:false,event,target:nextTarget});
-        }catch(error){reject(error)}
-      };
+      tx.oncomplete=async()=>{try{if(duplicate){resolve({duplicate:true,event:await getEvent(event.event_id),target:await getTarget(event.target_id)});return}if(writeError){reject(writeError);return}resolve({duplicate:false,event,target:nextTarget})}catch(error){reject(error)}};
     });
   }
 
-  async function saveSession(session){
-    if(!session?.session_id)throw new Error('session_id required');
-    const db=await openDB(),tx=db.transaction(SESSIONS,'readwrite');
-    tx.objectStore(SESSIONS).put({...session,updated_at:nowIso()});await txDone(tx);return session;
-  }
-
+  async function saveSession(session){if(!session?.session_id)throw new Error('session_id required');const db=await openDB(),tx=db.transaction(SESSIONS,'readwrite');tx.objectStore(SESSIONS).put({...session,updated_at:nowIso()});await txDone(tx);return session;}
   async function putMeta(key,value){const db=await openDB(),tx=db.transaction(META,'readwrite');tx.objectStore(META).put(value,key);await txDone(tx)}
   async function getMeta(key){const db=await openDB();return reqValue(db.transaction(META,'readonly').objectStore(META).get(key))}
 
@@ -142,9 +98,32 @@
     return {schema:'pai-word-progress-v2',exported_at:nowIso(),events:await read(EVENTS),targets:await read(TARGETS),sessions:await read(SESSIONS)};
   }
 
+  function validateProgressBundle(bundle){
+    if(!bundle||bundle.schema!=='pai-word-progress-v2'||!Array.isArray(bundle.events)||!Array.isArray(bundle.targets)||!Array.isArray(bundle.sessions))throw new Error('invalid progress bundle');
+    const unique=(arr,key)=>arr.every((x,i)=>x&&typeof x[key]==='string'&&x[key]&&arr.findIndex(y=>y?.[key]===x[key])===i);
+    if(!unique(bundle.events,'event_id')||!unique(bundle.targets,'target_id')||!unique(bundle.sessions,'session_id'))throw new Error('duplicate or missing progress identity');
+    if(bundle.events.some(e=>!e.ku_id||!e.target_id||!e.event_type||!e.occurred_at))throw new Error('invalid event in progress bundle');
+    if(bundle.targets.some(t=>!t.ku_id||!t.type))throw new Error('invalid target in progress bundle');
+    return true;
+  }
+
+  async function replaceProgress(bundle){
+    validateProgressBundle(bundle);
+    const previous=await exportProgress(),db=await openDB(),backupKey='restore_backup::'+Date.now();
+    await new Promise((resolve,reject)=>{
+      const tx=db.transaction([EVENTS,TARGETS,SESSIONS,META],'readwrite');
+      const es=tx.objectStore(EVENTS),ts=tx.objectStore(TARGETS),ss=tx.objectStore(SESSIONS),ms=tx.objectStore(META);
+      ms.put(previous,backupKey);es.clear();ts.clear();ss.clear();
+      for(const e of bundle.events)es.put(e);for(const t of bundle.targets)ts.put(t);for(const s of bundle.sessions)ss.put(s);
+      const active=[...bundle.sessions].reverse().find(s=>s.status==='active');ms.put(active?.session_id||null,'active_session_id');
+      tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error||new Error('restore transaction aborted'));
+    });
+    return {restored:true,backupKey,counts:{events:bundle.events.length,targets:bundle.targets.length,sessions:bundle.sessions.length}};
+  }
+
   window.PAI_EVIDENCE={
-    DB_NAME,makeId,openDB,getEvent,getTarget,getSession,listEventsBySession,commit,saveSession,putMeta,getMeta,exportProgress,
+    DB_NAME,makeId,openDB,getEvent,getTarget,getSession,listEventsBySession,commit,saveSession,putMeta,getMeta,exportProgress,validateProgressBundle,replaceProgress,
     makeEvent(fields){return {event_id:fields.event_id||makeId(),item_id:null,item_version:null,hint_used:false,active_duration:0,content_version:'Core-13000 V25.5',...fields,occurred_at:fields.occurred_at||nowIso()}},
-    _test:{baseTarget,applyEvidence}
+    _test:{baseTarget,applyEvidence,validateProgressBundle}
   };
 })();
