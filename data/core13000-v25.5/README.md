@@ -49,4 +49,4 @@ No dictionary/corpus verification is implied by inclusion in this repository.
 
 The four original pack bytes have been verified against the original manifest SHA-256 and included in this branch. Gzip compatibility packs contain byte-identical decompressed JSON. The new runtime uses canonical `ku_id` and conservatively preserves unresolved legacy records with an immutable local backup. See the root README for migration limits and validation evidence. Production `main` has not been modified.
 
-30 senses lack KU identifiers and remain visible as additional meanings without invented SRS identities. Scene annotation and external teaching-content checks remain incomplete. Browser visual validation remains pending.
+30 senses lack KU identifiers and remain visible as additional meanings without invented SRS identities. Scene annotation and external teaching-content checks remain incomplete. Chrome desktop loading, reveal/rating and reload persistence have passed on the committed branch preview. Safari/mobile/audio validation remains pending.
