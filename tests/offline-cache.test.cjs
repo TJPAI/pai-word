@@ -8,7 +8,8 @@ test('Core-13000 loader is local-first but still verifies cached bytes',()=>{
   const src=read('core-loader.js');
   assert.match(src,/pai-word-lexicon-v1/);
   assert.match(src,/indexedDB\.open/);
-  assert.ok(src.indexOf('idbGet(ASSET_STORE,key)')<src.indexOf('fetchNetworkBytes(file,bytes,sha)'));
+  const body=src.match(/async function fetchBytes\(file,bytes,sha\)\{([\s\S]*?)\n  \}/)?.[1]||'';
+  assert.ok(body.indexOf('idbGet(ASSET_STORE,key)')>=0&&body.indexOf('idbGet(ASSET_STORE,key)')<body.indexOf('fetchNetworkBytes(file,bytes,sha)'));
   assert.match(src,/verifyBytes\(cached\.bytes,bytes,sha,file\)/);
   assert.match(src,/crypto\.subtle\.digest\('SHA-256'/);
   assert.match(src,/manifestCached/);
