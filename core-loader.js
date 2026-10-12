@@ -2,6 +2,7 @@
 (function(){
   const ROOT='data/core13000-v25.5/';
   const DB_NAME='pai-word-lexicon-v1',DB_VERSION=1,ASSET_STORE='assets',META_STORE='meta';
+  const ACTIVE_MANIFEST='active_manifest',CANDIDATE_MANIFEST='candidate_manifest',LEGACY_MANIFEST='manifest';
   const DOMAIN_SCENE=Object.freeze({
     daily_communication:'daily',housing:'daily',family:'daily',food:'daily',
     business:'work',work:'work',academic_research:'academic',education:'academic',science:'academic',
@@ -14,7 +15,7 @@
   });
   const norm=value=>String(value||'').trim().replace(/[；;。\s]/g,'');
   let dbPromise=null;
-  const localStatus={supported:'indexedDB' in window,persistent:false,manifestSource:'network',manifestCached:false,assetSources:{},offlineReady:false,release:null,updateAvailable:false,shellReady:false};
+  const localStatus={supported:'indexedDB' in window,persistent:false,manifestSource:'network',manifestCached:false,assetSources:{},offlineReady:false,release:null,updateAvailable:false,candidatePrepared:false,shellReady:false};
   window.PAI_LOCAL_LEXICON=localStatus;
 
   function openDB(){
@@ -70,20 +71,32 @@
     return data;
   }
   function validManifest(manifest){return manifest&&manifest.release==='Core-13000 V25.5'&&manifest.word_count===13000&&Array.isArray(manifest.packs)&&manifest.packs.length===4}
+  function manifestSignature(m){return JSON.stringify([m?.release,m?.word_count,m?.schema_version,m?.packs?.map(p=>[p.file,p.sha256,p.fallback_file,p.fallback_sha256]),m?.comparisons?.sha256])}
   async function loadManifest(){
-    const cached=await idbGet(META_STORE,'manifest');
-    if(validManifest(cached)){localStatus.manifestSource='local';localStatus.manifestCached=true;localStatus.release=cached.release;return cached}
+    // active_manifest is authoritative. The old `manifest` key is read only for one-time migration.
+    let cached=await idbGet(META_STORE,ACTIVE_MANIFEST),source='active-local';
+    if(!validManifest(cached)){
+      const legacy=await idbGet(META_STORE,LEGACY_MANIFEST);
+      if(validManifest(legacy)){cached=legacy;source='legacy-local';await idbPut(META_STORE,ACTIVE_MANIFEST,legacy)}
+    }
+    if(validManifest(cached)){
+      localStatus.manifestSource=source;localStatus.manifestCached=true;localStatus.release=cached.release;return cached;
+    }
     const response=await fetch(ROOT+'manifest.json',{cache:'no-cache'});if(!response.ok)throw new Error('manifest HTTP '+response.status);
     const manifest=await response.json();if(!validManifest(manifest))throw new Error('词库版本不符');
-    localStatus.manifestCached=await idbPut(META_STORE,'manifest',manifest);localStatus.manifestSource=localStatus.manifestCached?'network+cached':'network';localStatus.release=manifest.release;return manifest;
+    localStatus.manifestCached=await idbPut(META_STORE,ACTIVE_MANIFEST,manifest);localStatus.manifestSource=localStatus.manifestCached?'network+active-cached':'network';localStatus.release=manifest.release;return manifest;
   }
   async function checkManifestUpdate(current){
     try{
       const response=await fetch(ROOT+'manifest.json',{cache:'no-store'});if(!response.ok)return;
       const latest=await response.json();if(!validManifest(latest))return;
-      const sig=m=>JSON.stringify([m.release,m.word_count,m.packs?.map(p=>[p.sha256,p.fallback_sha256]),m.comparisons?.sha256]);
-      if(sig(latest)!==sig(current)){localStatus.updateAvailable=true;await idbPut(META_STORE,'manifest',latest)}
-    }catch(_){/* Offline is expected; local data remains authoritative for this launch. */}
+      if(manifestSignature(latest)!==manifestSignature(current)){
+        localStatus.updateAvailable=true;
+        // Never overwrite the active manifest merely because a newer manifest exists.
+        // Candidate assets must be downloaded and verified by a future updater before promotion.
+        await idbPut(META_STORE,CANDIDATE_MANIFEST,{manifest:latest,discoveredAt:Date.now(),baseSignature:manifestSignature(current)});
+      }
+    }catch(_){/* Offline is expected; the active manifest remains authoritative. */}
   }
   async function loadPack(pack,manifest){
     let format='brotli';
