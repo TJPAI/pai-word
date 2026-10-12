@@ -12,6 +12,7 @@
     zh:Object.values(w.s||{}).map(s=>s.m||'').join(' '),
     senses:Object.values(w.s||{}).length
   }));
+  const byRank=new Map(window.PAI_CORE.words.map(w=>[w.rank,w]));
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   function resultItems(query){
     const q=String(query||'').trim().toLowerCase();
@@ -37,7 +38,7 @@
     const q=state.lexiconQuery||'';
     return `<div class="screen lex-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>词库浏览</h2></div><div class="lex-scope">收录 13,000 词 · 当前学习范围前 ${state.lexiconLimit.toLocaleString()} 词</div><div class="lex-search-wrap"><input id="lex-search" class="lex-search" type="search" autocomplete="off" autocapitalize="none" placeholder="搜索英文或中文释义" value="${esc(q)}" oninput="updateLexiconSearch(this.value)"></div><div class="lex-results" id="lex-results">${resultHtml(q)}</div></div>`;
   }
-  function currentWord(){return window.PAI_CORE.words[(state.lexiconWordRank||1)-1]||null}
+  function currentWord(){return byRank.get(state.lexiconWordRank||1)||null}
   function renderLexiconWord(){
     const w=currentWord();if(!w)return renderLexicon();
     const units=Object.values(w.s||{});
@@ -51,7 +52,7 @@
 
   window.openLexicon=function(reset=false){state.view='lexicon';if(reset)state.lexiconQuery='';save();render()};
   window.updateLexiconSearch=function(value){state.lexiconQuery=value;const el=document.getElementById('lex-results');if(el)el.innerHTML=resultHtml(value)};
-  window.openLexiconWord=function(rank){state.lexiconWordRank=Number(rank);const w=window.PAI_CORE.words[state.lexiconWordRank-1];state.previewKU=Object.values(w?.s||{})[0]?.ku_id||null;state.view='lexiconWord';save();render()};
+  window.openLexiconWord=function(rank){state.lexiconWordRank=Number(rank);const w=byRank.get(state.lexiconWordRank);state.previewKU=Object.values(w?.s||{})[0]?.ku_id||null;state.view='lexiconWord';save();render()};
   window.selectLexiconSense=function(ku){state.previewKU=ku;save();render()};
   window.setLexiconLimit=function(limit){
     limit=Number(limit)===FULL_LIMIT?FULL_LIMIT:DEFAULT_LIMIT;
@@ -67,12 +68,13 @@
     if(state.view==='lexiconWord'){document.getElementById('app').innerHTML=renderLexiconWord();return}
     oldRender();
     const screen=document.querySelector('.screen');if(!screen)return;
+    document.querySelectorAll('button[onclick^="learnMore("]').forEach(btn=>btn.remove());
     if(state.view==='scenes'){
       const tools=document.querySelector('.scene-tools');
       if(tools&&!tools.querySelector('[data-lexicon]'))tools.insertAdjacentHTML('afterbegin','<button class="text-btn" data-lexicon onclick="openLexicon(true)">词库</button>');
       const head=document.querySelector('.scene-head');
       if(head&&!document.querySelector('.scope-strip'))head.insertAdjacentHTML('afterend',`<div class="scope-strip"><div><b>学习范围</b><span>今日新词全应用合计 ${state.newPerDay} 个 · 复习不限额</span></div><div class="scope-toggle"><button class="${state.lexiconLimit===5000?'active':''}" onclick="setLexiconLimit(5000)">前 5,000</button><button class="${state.lexiconLimit===13000?'active':''}" onclick="setLexiconLimit(13000)">13,000</button></div></div>`);
-      document.querySelectorAll('button[onclick^="learnMore("]').forEach(btn=>btn.remove());
+      if(typeof globalNewRemaining==='function'&&globalNewRemaining()===0){document.querySelectorAll('button[onclick^="toggleExtraScenes("]').forEach(btn=>btn.remove());document.querySelector('.extra-scenes')?.remove()}
       const note=document.querySelector('.scene-note');if(note)note.insertAdjacentHTML('afterbegin',`当前学习范围：前 ${state.lexiconLimit.toLocaleString()} 词 · 今日剩余新词 ${typeof globalNewRemaining==='function'?globalNewRemaining():'—'}<br>`);
     }
     if(state.view==='settings'){
