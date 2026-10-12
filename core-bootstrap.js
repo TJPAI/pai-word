@@ -12,6 +12,14 @@
     if(state.srsSchema!=='ku_id-v1'&&Object.keys(state.records||{}).some(k=>k.includes('::')))
       for(const src of ['lexicon-core-001.js','lexicon-core-002.js','lexicon-core-003.js'])await script(src);
     await loadCore13000();
+
+    const v21=new URLSearchParams(location.search).get('v21')==='1';
+    if(v21){
+      for(const src of ['learning-evidence.js?v=1','v21-content.js?v=1','v21-app.js?v=1'])await script(src);
+      await window.PAI_V21_APP.boot();
+      app.removeAttribute('role');registerOfflineShell();return;
+    }
+
     for(const src of ['daily.js?v=core13000-4','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','product-v2.js?v=core13000-2'])await script(src);
     state.view='scenes';state.scene=null;state.revealed=false;
     const previewWord=new URLSearchParams(location.search).get('word');
