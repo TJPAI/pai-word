@@ -5,7 +5,7 @@
     const d=new Date();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-  function scopeLimit(){return state.lexiconLimit===13000?13000:5000}
+  const scopeLimit=()=>13000;
   function ensureProgress(){
     const date=dayKey();
     if(!state.dailyNewProgress||state.dailyNewProgress.date!==date)state.dailyNewProgress={date,completed:[]};
