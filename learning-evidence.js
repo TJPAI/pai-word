@@ -80,6 +80,7 @@
     return next;
   }
 
+  async function getEvent(eventId){const db=await openDB();return reqValue(db.transaction(EVENTS,'readonly').objectStore(EVENTS).get(eventId));}
   async function getTarget(targetId){const db=await openDB();return reqValue(db.transaction(TARGETS,'readonly').objectStore(TARGETS).get(targetId));}
   async function getSession(sessionId){const db=await openDB();return reqValue(db.transaction(SESSIONS,'readonly').objectStore(SESSIONS).get(sessionId));}
   async function listEventsBySession(sessionId){
@@ -87,19 +88,43 @@
     return (all||[]).filter(e=>e.session_id===sessionId).sort((a,b)=>String(a.occurred_at).localeCompare(String(b.occurred_at)));
   }
 
+  // Keep the complete write chain inside IndexedDB request callbacks. This avoids
+  // transactions becoming inactive between awaited requests in Safari/WebKit.
   async function commit({event,target,session}){
     if(!event?.event_id||!event?.ku_id||!event?.target_id||!event?.event_type||!event?.occurred_at)throw new Error('invalid learning event');
     if(!target?.target_id||target.target_id!==event.target_id||target.ku_id!==event.ku_id)throw new Error('target/event mismatch');
-    const db=await openDB(),tx=db.transaction([EVENTS,TARGETS,SESSIONS],'readwrite');
-    const eventStore=tx.objectStore(EVENTS),targetStore=tx.objectStore(TARGETS),sessionStore=tx.objectStore(SESSIONS);
-    const existing=await reqValue(eventStore.get(event.event_id));
-    if(existing){await txDone(tx);return {duplicate:true,event:existing,target:await getTarget(event.target_id)};}
-    const previous=await reqValue(targetStore.get(event.target_id));
-    const nextTarget=applyEvidence(previous,event,target);
-    eventStore.add(event);targetStore.put(nextTarget);
-    if(session)sessionStore.put({...session,updated_at:nowIso()});
-    await txDone(tx);
-    return {duplicate:false,event,target:nextTarget};
+    const db=await openDB();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction([EVENTS,TARGETS,SESSIONS],'readwrite');
+      const eventStore=tx.objectStore(EVENTS),targetStore=tx.objectStore(TARGETS),sessionStore=tx.objectStore(SESSIONS);
+      let duplicate=false,nextTarget=null,writeError=null;
+      const addReq=eventStore.add(event);
+      addReq.onerror=ev=>{
+        if(addReq.error?.name==='ConstraintError'){
+          duplicate=true;ev.preventDefault();ev.stopPropagation();
+        }else writeError=addReq.error||new Error('event write failed');
+      };
+      addReq.onsuccess=()=>{
+        const getReq=targetStore.get(event.target_id);
+        getReq.onerror=()=>{writeError=getReq.error||new Error('target read failed')};
+        getReq.onsuccess=()=>{
+          try{
+            nextTarget=applyEvidence(getReq.result??null,event,target);
+            targetStore.put(nextTarget);
+            if(session)sessionStore.put({...session,updated_at:nowIso()});
+          }catch(error){writeError=error;tx.abort()}
+        };
+      };
+      tx.onabort=()=>reject(writeError||tx.error||new Error('learning transaction aborted'));
+      tx.onerror=()=>{if(!duplicate)reject(writeError||tx.error||new Error('learning transaction failed'))};
+      tx.oncomplete=async()=>{
+        try{
+          if(duplicate){resolve({duplicate:true,event:await getEvent(event.event_id),target:await getTarget(event.target_id)});return}
+          if(writeError){reject(writeError);return}
+          resolve({duplicate:false,event,target:nextTarget});
+        }catch(error){reject(error)}
+      };
+    });
   }
 
   async function saveSession(session){
@@ -118,7 +143,7 @@
   }
 
   window.PAI_EVIDENCE={
-    DB_NAME,makeId,openDB,getTarget,getSession,listEventsBySession,commit,saveSession,putMeta,getMeta,exportProgress,
+    DB_NAME,makeId,openDB,getEvent,getTarget,getSession,listEventsBySession,commit,saveSession,putMeta,getMeta,exportProgress,
     makeEvent(fields){return {event_id:fields.event_id||makeId(),item_id:null,item_version:null,hint_used:false,active_duration:0,content_version:'Core-13000 V25.5',...fields,occurred_at:fields.occurred_at||nowIso()}},
     _test:{baseTarget,applyEvidence}
   };
