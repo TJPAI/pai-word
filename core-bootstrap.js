@@ -12,7 +12,9 @@
     if(!['ku_id-v1','ku_id-v2'].includes(state.srsSchema)&&Object.keys(state.records||{}).some(k=>k.includes('::')))
       for(const src of ['lexicon-core-001.js','lexicon-core-002.js','lexicon-core-003.js'])await script(src);
     await loadCore13000();
-    for(const src of ['daily.js?v=core13000-4','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','product-v2.js?v=v267i-product-1'])await script(src);
+    // Optional teaching-content enhancement: never block the verified core runtime.
+    try{await script('ku-content.js?v=v267i-kucontent-1');if(window.PAI_KU_CONTENT_READY)await window.PAI_KU_CONTENT_READY}catch(error){console.warn('[PAI Word] KU content enhancement skipped',error)}
+    for(const src of ['daily.js?v=core13000-4','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','ku-content-ui.js?v=v267i-kucontent-1','product-v2.js?v=v267i-product-1'])await script(src);
     state.view='scenes';state.scene=null;state.revealed=false;
     const previewWord=new URLSearchParams(location.search).get('word');
     const preview=window.PAI_CORE.byLemma.get(previewWord)?.[0];
