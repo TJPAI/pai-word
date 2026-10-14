@@ -564,29 +564,63 @@
  window.PAI_TOPIC_CATALOG=topicCatalog;
  // Independently audit all proposed themes; this is a candidate index, not verification.
  let proposedCoverage=null;
+ const proposedKeys=new Map();
  async function loadProposedCoverage(){
   try{
    const response=await fetch('data/scene-taxonomy-proposal-v1.json');
    if(!response.ok)throw Error('taxonomy HTTP '+response.status);
    const doc=await response.json();
-   const rows=doc.domains.flatMap(domain=>domain.topics.map(t=>({id:t.id,domain:domain.name,name:t.name,wordRanks:new Set(),kuIds:new Set()})));
-   const lookup=new Map();
-   for(const row of rows){if(!lookup.has(row.name))lookup.set(row.name,[]);lookup.get(row.name).push(row)}
+   const rows=doc.domains.flatMap(domain=>domain.topics.map(t=>({id:t.id,domain:domain.name,name:t.name,wordRanks:new Set(),kuIds:new Set(),directKU:new Set()})));
+   const aliases={
+    '鱼类':['鱼','鲑','鳕','鲤','鲈','鳟','鲨','鳗','鲱','鲭','沙丁'],
+    '鸟类':['鸟','鹰','鸽','鹦鹉','麻雀','燕子','企鹅','鸵鸟'],
+    '昆虫':['昆虫','蚂蚁','蜜蜂','蝴蝶','甲虫','蚊子','苍蝇','蟑螂'],
+    '水果':['水果','苹果','香蕉','葡萄','柑橘','草莓','樱桃','桃子','梨','芒果'],
+    '蔬菜':['蔬菜','胡萝卜','菠菜','卷心菜','黄瓜','茄子','洋葱'],
+    '帆船':['帆船','船帆','航行','舵','顺风','逆风','海风'],
+    '烹饪':['烹饪','烹调','煮','烤','炒','蒸','厨房','食谱'],
+    '机场值机':['机场','值机','托运','登机牌','柜台'],
+    '安检登机':['安检','登机','航班','登机口','安检门'],
+    '医院挂号':['医院','挂号','预约','门诊','就诊']
+   };
+   const baseTopicByName=new Map(topics.map(t=>[t.name,t]));
    for(const w of core.words){
+    const lemma=w.w.toLowerCase();
     for(const s of Object.values(w.s)){
      if(s.kuType!=='sense')continue;
      const gloss=String(s.m||'')+' '+String(s.kuTitle||'');
-     for(const row of rows)if(gloss.includes(row.name)){row.wordRanks.add(w.rank);row.kuIds.add(s.ku_id)}
+     for(const row of rows){
+      const direct=gloss.includes(row.name);
+      const expanded=(aliases[row.name]||[]).some(term=>gloss.includes(term));
+      const base=baseTopicByName.get(row.name);
+      const curated=!!base&&base.words.split(' ').includes(lemma);
+      if(!direct&&!expanded&&!curated)continue;
+      row.wordRanks.add(w.rank);row.kuIds.add(s.ku_id);
+      if(direct)row.directKU.add(s.ku_id);
+     }
     }
    }
-   proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,status:'candidate_unverified'}));
+   for(const row of rows)proposedKeys.set(row.id,[...row.kuIds]);
+   proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'candidate_unverified'}));
    window.PAI_PROPOSED_SCENE_COVERAGE=()=>proposedCoverage.map(x=>({...x}));
    if(state.view==='scenes')render();
   }catch(e){window.PAI_PROPOSED_SCENE_ERROR=String(e)}
  }
+ window.startProposedScene=id=>{
+  const scene=proposedCoverage?.find(x=>x.id===id),keys=proposedKeys.get(id)||[];
+  if(!scene||!keys.length){topicFeedback='此主题暂无可靠候选，请选择其他主题。';render();return}
+  state.proposedSceneId=id;state.topicStudyQuery='';state.topicStudyTitle=scene.name;state.topicStudyTotal=keys.length;
+  persist();start(keys.filter(k=>!state.records[k]).slice(0,TOPIC_BATCH_SIZE).length?keys.filter(k=>!state.records[k]).slice(0,TOPIC_BATCH_SIZE):keys.slice(0,TOPIC_BATCH_SIZE),scene.name+' · 场景学习','proposed')
+ };
+ window.continueProposedScene=()=>{
+  const keys=proposedKeys.get(state.proposedSceneId)||[];
+  const unseen=keys.filter(k=>!state.records[k]);
+  if(!unseen.length){active=false;state.view='scenes';topicFeedback='本主题暂无未接触的 KU。';render();return}
+  start(unseen.slice(0,TOPIC_BATCH_SIZE),(state.topicStudyTitle||'场景')+' · 继续学习','proposed')
+ };
  loadProposedCoverage();
 
- window.PAI_TOPIC_PREVIEW=q=>{const keys=topicCandidates(q,topicMatch(q));return {totalWords:topicWordCount(keys),totalKU:keys.length,unseenKU:keys.filter(k=>!state.records[k]).length,batchSize:TOPIC_BATCH_SIZE}};
+  window.PAI_TOPIC_PREVIEW=q=>{const keys=topicCandidates(q,topicMatch(q));return {totalWords:topicWordCount(keys),totalKU:keys.length,unseenKU:keys.filter(k=>!state.records[k]).length,batchSize:TOPIC_BATCH_SIZE}};
  window.startTopicStudy=()=>{
   const q=topicInput.trim();if(!q){topicFeedback='请输入场景或一句话。';render();return}
   const matches=topicMatch(q),keys=topicCandidates(q,matches);
@@ -642,11 +676,11 @@
   const n=fresh().length,r=due().length,completed=globalNewCompleted(),resume=state.learningSession?.queue?.length;
   const topicCards=()=>topicCatalog().map(t=>`<button class="scene-card" onclick="setTopicInput('${esc(t.name)}');startTopicStudy()"><span class="scene-name">${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join('');
   const cards=ids=>ids.map(id=>`<button class="scene-card" onclick="openScene('${id}')"><span class="scene-name">${esc(SCENES[id])}</span><span class="scene-count"><b>${unlearned(id).length}</b><small>未学词</small></span></button>`).join('');
-  return `<div class="screen scene-screen"><div class="scene-head"><h1>PAI Word</h1><div class="scene-tools"><button class="text-btn" onclick="openLexicon()">词库</button><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><p class="home-intro">选一个场景，先回忆，再看答案。</p><section class="topic-search"><label for="topic-input">一句话选择背词场景</label><form onsubmit="event.preventDefault();startTopicStudy()"><input id="topic-input" aria-label="描述想学的场景" maxlength="160" placeholder="例如：蔬菜、动物园、我想去机场登机" oninput="setTopicInput(this.value)" value="${esc(topicInput)}"><button type="submit" class="primary-btn">开始场景背词</button></form><p class="scene-note">支持常见主题与简短描述；从现有 Core-13000 中选词，不生成新词条。</p>${topicFeedback?`<p class="topic-feedback" role="status">${esc(topicFeedback)}</p>`:""}</section><section class="today-plan"><label for="scene-choice">今日新词来源</label><select id="scene-choice" onchange="selectLearningScene(this.value)">${Object.entries(SCENES).map(([id,name])=>`<option value="${id}" ${id===state.selectedScene?'selected':''}>${category(id)} · ${esc(name)}</option>`).join('')}</select><p>今日已接触 ${completed} 个新词 · 待学 ${state.daily.newWordKeys.filter(k=>!state.records[k]).length} 个</p><button class="primary-btn" onclick="openToday()">${n||r?'开始今日学习':'今日分配已完成'}${n||r?` · ${n+r} 项`:''}</button>${resume?`<button class="secondary-btn" onclick="resumeLearning()">继续上次学习 · 剩余 ${resume} 项</button>`:''}<button class="text-btn" onclick="openReview()">优先复习 ${r} 项</button></section><h2 class="group-title">主题场景 · 全部候选单词数</h2><p class="scene-note">按当前词库动态统计；每个场景内同一单词只计一次。</p><div class="scene-grid">${topicCards()}</div><details class="scene-taxonomy-audit"><summary>完整场景目录与候选覆盖（188个主题）</summary><p class="scene-note">仅按中文释义中的主题名称直接匹配，属于未经验证的保守候选统计；0不表示词库没有相关词。</p>${proposedCoverage?proposedCoverage.map(t=>`<div class="scene-note">${esc(t.domain)} / ${esc(t.name)}：${t.words} 单词 · ${t.ku} KU</div>`).join(''):'正在统计场景候选…'}</details><h2 class="group-title">按场景学习</h2><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)==='场景'))}</div><h2 class="group-title">基础与词频分层</h2><p class="scene-note">以下词汇尚未完成场景细分，按词频范围学习。功能词单独练习。</p><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)!=='场景'&&(core.byScene.get(id)||[]).length))}</div><p class="scene-note">内容持续校订中；收录数量不代表已完成词典核验。<br>${statusText()}</p></div>`;
+  return `<div class="screen scene-screen"><div class="scene-head"><h1>PAI Word</h1><div class="scene-tools"><button class="text-btn" onclick="openLexicon()">词库</button><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><p class="home-intro">选一个场景，先回忆，再看答案。</p><section class="topic-search"><label for="topic-input">一句话选择背词场景</label><form onsubmit="event.preventDefault();startTopicStudy()"><input id="topic-input" aria-label="描述想学的场景" maxlength="160" placeholder="例如：蔬菜、动物园、我想去机场登机" oninput="setTopicInput(this.value)" value="${esc(topicInput)}"><button type="submit" class="primary-btn">开始场景背词</button></form><p class="scene-note">支持常见主题与简短描述；从现有 Core-13000 中选词，不生成新词条。</p>${topicFeedback?`<p class="topic-feedback" role="status">${esc(topicFeedback)}</p>`:""}</section><section class="today-plan"><label for="scene-choice">今日新词来源</label><select id="scene-choice" onchange="selectLearningScene(this.value)">${Object.entries(SCENES).map(([id,name])=>`<option value="${id}" ${id===state.selectedScene?'selected':''}>${category(id)} · ${esc(name)}</option>`).join('')}</select><p>今日已接触 ${completed} 个新词 · 待学 ${state.daily.newWordKeys.filter(k=>!state.records[k]).length} 个</p><button class="primary-btn" onclick="openToday()">${n||r?'开始今日学习':'今日分配已完成'}${n||r?` · ${n+r} 项`:''}</button>${resume?`<button class="secondary-btn" onclick="resumeLearning()">继续上次学习 · 剩余 ${resume} 项</button>`:''}<button class="text-btn" onclick="openReview()">优先复习 ${r} 项</button></section><h2 class="group-title">主题场景 · 全部候选单词数</h2><p class="scene-note">按当前词库动态统计；每个场景内同一单词只计一次。</p><div class="scene-grid">${topicCards()}</div><details class="scene-taxonomy-audit"><summary>完整场景目录与候选覆盖（188个主题）</summary><p class="scene-note">仅按中文释义中的主题名称直接匹配，属于未经验证的保守候选统计；0不表示词库没有相关词。</p>${proposedCoverage?proposedCoverage.map(t=>`<button class="scene-card" onclick="startProposedScene(\'${t.id}\')" ${t.ku?'':'disabled'}><span class="scene-name">${esc(t.domain)} / ${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join(''):'正在统计场景候选…'}</details><h2 class="group-title">按场景学习</h2><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)==='场景'))}</div><h2 class="group-title">基础与词频分层</h2><p class="scene-note">以下词汇尚未完成场景细分，按词频范围学习。功能词单独练习。</p><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)!=='场景'&&(core.byScene.get(id)||[]).length))}</div><p class="scene-note">内容持续校订中；收录数量不代表已完成词典核验。<br>${statusText()}</p></div>`;
  }
  function learning(){
   const s=state.learningSession,u=browsedUnit||unit();if(!s)return home();
-  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${s.completed.length} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${s.kind==='topic'?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="continueTopicStudy()">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
+  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${s.completed.length} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${(s.kind==='topic'||s.kind==='proposed')?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="${s.kind==='proposed'?'continueProposedScene()':'continueTopicStudy()'}">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
   const progress=`已完成 ${s.completed.length} / ${s.total}`;
   if(loading||error)return `<div class="screen study-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
