@@ -50,7 +50,7 @@
    body.innerHTML=`<div class="word-hero"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div></div>${answerHtml(u)}`;
    host.classList.add('revealed','previous-answer');
    host.querySelector('.recall-note').textContent='滑动浏览答案 · 右滑上一词 / 左滑下一词';
-   speak(u.w.w);return true;
+   PAI_TAP_FLOW.browseReady(u.k,()=>window.browseAnswer(1));speak(u.w.w);return true;
   }catch(_){return false}
  };
  window.rateLearning=grade=>{
