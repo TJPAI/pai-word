@@ -278,6 +278,15 @@
    if(state.view==='scenes')render();
   }catch(e){window.PAI_SCENE_DIMENSION_ERROR=String(e)}
  }
+ window.PAI_SCENE_SAMPLE_AUDIT=(limit=12)=>{
+  const n=Math.max(1,Math.min(100,Number(limit)||12));
+  const topic=(proposedCoverage||[]).map(x=>({id:x.id,name:x.name,dimension:'topic',keys:proposedKeys.get(x.id)||[]}));
+  const other=(additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:dimensionKeys.get(i.id)||[]}))));
+  return [...topic,...other].map(scene=>{
+   const samples=scene.keys.slice(0,n).map(k=>{const u=byKey(k);return u?{kuId:k,word:u.w?.w||'',gloss:u.s?.m||u.m||'',title:u.s?.kuTitle||u.kuTitle||''}:null}).filter(Boolean);
+   return {id:scene.id,name:scene.name,dimension:scene.dimension,ku:scene.keys.length,samples};
+  });
+ };
  window.PAI_EXPORT_SCENE_INDEX=()=>{
   const topicRows=(proposedCoverage||[]).map(x=>({id:x.id,name:x.name,dimension:'topic',keys:proposedKeys.get(x.id)||[],status:'candidate_unverified'}));
   const dimensionRows=(additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:dimensionKeys.get(i.id)||[],status:'candidate_unverified'}))));
@@ -309,7 +318,7 @@
  };
  loadAdditionalDimensions();
  let proposedCoverage=null;
- const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v52';
+ const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v53';
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
