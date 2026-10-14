@@ -404,22 +404,17 @@
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
+ const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
- window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;state.revealed=false;showCurrent();return true};
+ window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;const s=state.learningSession;if(!s.queue.includes(next)){s.queue.push(next);s.completed=s.completed.filter(k=>k!==next)}const at=s.queue.indexOf(next);if(at>0)s.queue.unshift(...s.queue.splice(at,1));persist();showCurrent();return true};
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
-  const s=state.learningSession;
-  const items=[...s.completed.map(k=>byKey(k)).filter(Boolean),...s.queue.map(k=>byKey(k)).filter(Boolean)];
-  const unique=[];const seen=new Set();
-  for(const u of items){if(!seen.has(u.k)){seen.add(u.k);unique.push(u)}}
-  if(!unique.length)return false;
-  const currentIndex=unique.findIndex(u=>u.k===unit().k);
-  const index=browseIndex===null?currentIndex:browseIndex;
-  const next=index+direction;
-  if(next<0||next>=unique.length)return false;
-  const u=unique[next],id=++browseToken;
+  const keys=cycleKeys();if(!keys.length)return false;
+  const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
+  const next=(index+direction+keys.length)%keys.length;
+  const u=byKey(keys[next]),id=++browseToken;
   PAI_TAP_FLOW.cancel();++token;
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
    browseIndex=next;browsedUnit=u;state.revealed=true;
