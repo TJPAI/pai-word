@@ -82,6 +82,32 @@
   {topic:'饮料',patterns:['饮料','果汁','咖啡','茶饮','汽水']},
   {topic:'甜点与烘焙',patterns:['甜点','甜品','糕点','蛋糕','烘焙']}
  ];
+ const taxonomy=[
+  {id:'nature',label:'自然界',parent:null,topics:['天气与自然','动物园','鱼类']},
+  {id:'animals',label:'动物',parent:'nature',topics:['动物园','鱼类']},
+  {id:'aquatic',label:'水生动物',parent:'animals',topics:['鱼类','海鲜']},
+  {id:'fish',label:'鱼类',parent:'aquatic',topics:['鱼类']},
+  {id:'wildlife',label:'野生动物',parent:'animals',topics:['动物园']},
+  {id:'food',label:'食品',parent:null,topics:['水果','蔬菜与烹饪','海鲜','鱼类','肉类','饮料','甜点与烘焙']},
+  {id:'produce',label:'果蔬',parent:'food',topics:['水果','蔬菜与烹饪']},
+  {id:'fruit',label:'水果',parent:'produce',topics:['水果']},
+  {id:'vegetable',label:'蔬菜',parent:'produce',topics:['蔬菜与烹饪']},
+  {id:'seafood',label:'海鲜',parent:'food',topics:['海鲜','鱼类']},
+  {id:'meat',label:'肉类',parent:'food',topics:['肉类']},
+  {id:'drink',label:'饮料',parent:'food',topics:['饮料']},
+  {id:'dessert',label:'甜点',parent:'food',topics:['甜点与烘焙']},
+  {id:'activities',label:'生活场景',parent:null,topics:['机场与登机','医院就诊','餐厅点餐','酒店住宿','超市购物','学校与课堂','体育与运动']},
+  {id:'travel',label:'出行住宿',parent:'activities',topics:['机场与登机','酒店住宿']},
+  {id:'shopping',label:'购物',parent:'activities',topics:['超市购物']},
+  {id:'dining',label:'餐饮',parent:'activities',topics:['餐厅点餐']},
+  {id:'health',label:'医疗',parent:'activities',topics:['医院就诊']},
+  {id:'education',label:'教育',parent:'activities',topics:['学校与课堂']},
+  {id:'sports',label:'运动',parent:'activities',topics:['体育与运动']}
+ ];
+ const taxonomyById=new Map(taxonomy.map(n=>[n.id,n]));
+ const taxonomyTopicMap=new Map();
+ for(const node of taxonomy)for(const topic of node.topics){if(!taxonomyTopicMap.has(topic))taxonomyTopicMap.set(topic,[]);taxonomyTopicMap.get(topic).push(node.id)}
+ const taxonomyAncestors=id=>{const ids=[];let n=taxonomyById.get(id);while(n){ids.push(n.id);n=n.parent?taxonomyById.get(n.parent):null}return ids};
  const senseTags=new Map(),indexStats={catalogWords:core.words.length,catalogKU:core.byKU.size,glossTaggedKU:0,curatedHeadwords:topicIndex.size};
  for(const w of core.words)for(const s of Object.values(w.s)){
   if(s.kuType!=='sense')continue;
@@ -101,7 +127,25 @@
  indexStats.topics=topicCoverage;
  indexStats.taggedHeadwords=[...new Set([...topicIndex.keys(),...core.words.filter(w=>Object.values(w.s).some(s=>senseTags.has(s.ku_id))).map(w=>w.w.toLowerCase())])].length;
  window.PAI_TOPIC_INDEX_QA=indexStats;
+ indexStats.taxonomyNodes=taxonomy.length;
+ const kuSemanticIndex=new Map();
+ for(const w of core.words){
+  const curated=topicIndex.get(w.w.toLowerCase())||[];
+  for(const s of Object.values(w.s)){
+   if(s.kuType!=='sense')continue;
+   const inferred=senseTags.get(s.ku_id)||[];
+   const sources=[...curated.map(x=>({topic:x.topic,source:'curated',confidence:0.8})),...inferred.map(topic=>({topic,source:'gloss_rule',confidence:0.55}))];
+   if(!sources.length)continue;
+   const nodes=new Set();
+   for(const source of sources)for(const id of taxonomyTopicMap.get(source.topic)||[])for(const ancestor of taxonomyAncestors(id))nodes.add(ancestor);
+   kuSemanticIndex.set(s.ku_id,{nodes:[...nodes],sources});
+  }
+ }
+ indexStats.indexedSenseKU=kuSemanticIndex.size;
+ window.PAI_TOPIC_INDEX_QA=indexStats;
  window.PAI_TOPIC_INDEX_REPORT=()=>JSON.parse(JSON.stringify(indexStats));
+ window.PAI_TOPIC_TAXONOMY=taxonomy.map(n=>({...n}));
+ window.PAI_TOPIC_KU_TAGS=key=>{const v=kuSemanticIndex.get(key);return v?JSON.parse(JSON.stringify(v)):null};
 
  function topicMatch(input){
   const q=input.trim().toLowerCase(),scores=new Map();
