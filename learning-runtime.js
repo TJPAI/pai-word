@@ -597,6 +597,10 @@
    const rulesResponse=await fetch('data/scene-dimension-rules-v1.json');
    if(!rulesResponse.ok)throw Error('dimension rules HTTP '+rulesResponse.status);
    const semanticRules=(await rulesResponse.json()).rules||{};
+   const seedResponse=await fetch('data/scene-headword-seeds-v1.json');
+   if(!seedResponse.ok)throw Error('headword seeds HTTP '+seedResponse.status);
+   const seedDoc=await seedResponse.json();
+   const lemmaSeeds=new Map(Object.entries(seedDoc.seeds||{}).map(([name,words])=>[name,new Set(words.map(w=>w.toLowerCase()))]));
    const matchTerms=new Map(entries.map(e=>[e.id,[...new Set([e.name,...(semanticRules[e.name]||[]),...(explicitTaskTerms[e.name]||[])])].filter(x=>x.length>=2)]));
    // Only explicit full-label gloss matches are admitted. Each match records
    // the source field, never an invented dictionary verification status.
@@ -611,6 +615,21 @@
      if(!source)continue;
      e.keys.push(s.ku_id);e.words.add(w.rank);
      const evidence={dimension:e.dimension,sceneId:e.id,sceneName:e.name,kuId:s.ku_id,word:w.w,rank:w.rank,source,matchedText:term,verified:false,reviewStatus:'pending'};
+     e.evidence.set(s.ku_id,evidence);
+     if(!reverse.has(s.ku_id))reverse.set(s.ku_id,[]);
+     reverse.get(s.ku_id).push(evidence);
+    }
+   }
+   // Curated English headword seeds can recover missing Chinese-gloss matches,
+   // but only for unambiguous single-sense words. All remain editorial candidates.
+   for(const w of core.words){
+    const senses=Object.values(w.s).filter(s=>s.kuType==='sense');
+    if(senses.length!==1)continue;
+    const s=senses[0];
+    for(const e of entries){
+     if(!lemmaSeeds.get(e.name)?.has(w.w.toLowerCase())||e.evidence.has(s.ku_id))continue;
+     e.keys.push(s.ku_id);e.words.add(w.rank);
+     const evidence={dimension:e.dimension,sceneId:e.id,sceneName:e.name,kuId:s.ku_id,word:w.w,rank:w.rank,source:'editorial_headword_seed',matchedText:w.w,verified:false,reviewStatus:'pending'};
      e.evidence.set(s.ku_id,evidence);
      if(!reverse.has(s.ku_id))reverse.set(s.ku_id,[]);
      reverse.get(s.ku_id).push(evidence);
@@ -690,7 +709,7 @@
  };
  loadAdditionalDimensions();
  let proposedCoverage=null;
- const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v53';
+ const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v54';
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
