@@ -634,17 +634,30 @@
    const ruleCoverage=rows.reduce((acc,row)=>{if((aliases[row.name]||[]).length)acc.withExpansion++;else acc.directOnly++;return acc},{totalThemes:rows.length,withExpansion:0,directOnly:0});
    window.PAI_SCENE_RULE_COVERAGE=()=>({...ruleCoverage});
 
-   const baseTopicByName=new Map(topics.map(t=>[t.name,t]));
+   // Build the rule lookup once: avoid splitting curated lists for every KU.
+   const curatedByLemma=new Map();
+   const rules=rows.map(row=>{
+    const terms=[row.name,...(aliases[row.name]||[])].filter(x=>typeof x==='string'&&x.length>=2);
+    return {row,terms:[...new Set(terms)]};
+   });
+   const rowByName=new Map(rows.map(row=>[row.name,row]));
+   for(const t of topics){
+    const row=rowByName.get(t.name);
+    if(!row||typeof t.words!=='string')continue;
+    for(const lemma of t.words.toLowerCase().split(/\s+/).filter(Boolean)){
+     if(!curatedByLemma.has(lemma))curatedByLemma.set(lemma,new Set());
+     curatedByLemma.get(lemma).add(row);
+    }
+   }
    for(const w of core.words){
-    const lemma=w.w.toLowerCase();
+    const curatedRows=curatedByLemma.get(w.w.toLowerCase())||new Set();
     for(const s of Object.values(w.s)){
      if(s.kuType!=='sense')continue;
      const gloss=String(s.m||'')+' '+String(s.kuTitle||'');
-     for(const row of rows){
+     for(const {row,terms} of rules){
       const direct=gloss.includes(row.name);
-      const expanded=(aliases[row.name]||[]).some(term=>gloss.includes(term));
-      const base=baseTopicByName.get(row.name);
-      const curated=!!base&&base.words.split(' ').includes(lemma);
+      const expanded=!direct&&terms.some(term=>gloss.includes(term));
+      const curated=curatedRows.has(row);
       if(!direct&&!expanded&&!curated)continue;
       row.wordRanks.add(w.rank);row.kuIds.add(s.ku_id);
       if(direct)row.directKU.add(s.ku_id);
