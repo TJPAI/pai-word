@@ -3,10 +3,10 @@
 .timing-settings input{width:78px;padding:8px;border:1px solid #ddd;border-radius:8px}.timing-settings .setting-row{gap:16px}.learning-screen .recall-note{min-height:46px;flex-shrink:0;font-size:13px;color:#555}.learning-screen .study-body{cursor:pointer}.learning-screen button,.learning-screen details{cursor:pointer}
 
 /* Large fixed bottom recall correction controls */
-.learning-screen.revealed:not(.previous-answer) .recall-correction{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;position:sticky;bottom:0;z-index:15;width:100%;box-sizing:border-box;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e6e9e7;flex-shrink:0}
+.learning-screen.revealed .recall-correction{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;position:sticky;bottom:0;z-index:15;width:100%;box-sizing:border-box;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e6e9e7;flex-shrink:0}
 .learning-screen .recall-correction button{width:100%;min-width:0;min-height:68px;border-radius:16px;border:1px solid #d4d9d6;background:#f4f6f5;color:#202725;font-size:19px;font-weight:700;touch-action:manipulation}
 .learning-screen .recall-correction button:first-child{background:#fcebe9;border-color:#f2cbc5;color:#9b352b}
 .learning-screen .recall-correction button:nth-child(2){background:#fff4d9;border-color:#f0dfa9;color:#806019}
 .learning-screen .recall-correction button:last-child{background:#e7f5ec;border-color:#b8ddc6;color:#236944}
-.learning-screen.revealed:not(.previous-answer) .session-footnote{display:none}
+.learning-screen.revealed .session-footnote{display:none}
 @media(max-width:380px){.learning-screen .recall-correction{gap:7px!important;padding-left:10px!important;padding-right:10px!important}.learning-screen .recall-correction button{font-size:17px;min-height:64px}}
