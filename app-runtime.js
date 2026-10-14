@@ -64,7 +64,7 @@
     const fallback=speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'));
     synth.cancel();
     const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=rate;u.voice=exact||regional||fallback||null;
-    window.__paiUtterance=u;if(synth.paused)synth.resume();setTimeout(()=>synth.speak(u),20);
+    window.__paiUtterance=u;if(synth.paused)synth.resume();synth.speak(u);
   };
   function speakCurrent(delay=60){const u=currentVisibleUnit();if(u)setTimeout(()=>speak(u.w.w),delay)}
 
@@ -155,7 +155,7 @@
     document.getElementById('app').innerHTML=html;requestAnimationFrame(fitAnswer);
   };
 
-  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&window.PAI_TAP_FLOW?.['repeat','browse-repeat'].includes(window.PAI_TAP_FLOW?.snapshot().phase)){if(!btn.hasAttribute('data-example-audio'))return;window.PAI_TAP_FLOW.interruptRepeatForExample()}speak(text,btn.hasAttribute('data-word-audio')?.84:.9)}},true);
+  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&['repeat','browse-repeat'].includes(window.PAI_TAP_FLOW?.snapshot().phase)){if(!btn.hasAttribute('data-example-audio'))return;window.PAI_TAP_FLOW.interruptRepeatForExample()}speak(text,btn.hasAttribute('data-word-audio')?.84:.9)}},true);
   let sx=0,sy=0,st=0;
   document.addEventListener('touchstart',e=>{if(!e.touches||e.touches.length!==1)return;const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now()},{passive:true});
   document.addEventListener('touchend',e=>{if(!['study','review'].includes(state.view))return;if(!e.changedTouches||e.changedTouches.length!==1||e.target.closest('button,select,a'))return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;if(dt>700||Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.25)return;e.preventDefault();window.__paiSwipeUntil=Date.now()+350;swipeWord(dx<0?1:-1)},{passive:false});
