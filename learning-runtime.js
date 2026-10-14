@@ -339,7 +339,7 @@
  function ready(k,preserveAudio=false){clear(preserveAudio);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function answer({key,mode,score,advance}){clear();visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
- function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;phase='answer';const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
+ function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
  function browseReady(k,advance){answer({key:k,mode:'swipe',score:'again',advance})}
  function finish(g){if(!valid(g)||phase==='idle')return;phase='committing';const fn=onAdvance;onAdvance=null;fn?.(grade)}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
@@ -412,7 +412,7 @@
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
- window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;const s=state.learningSession;if(!s.queue.includes(next)){s.queue.push(next);s.completed=s.completed.filter(k=>k!==next)}const at=s.queue.indexOf(next);if(at>0)s.queue.unshift(...s.queue.splice(at,1));persist();showCurrent();return true};
+ window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;persist();showCurrent();return true};
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const keys=cycleKeys();if(!keys.length)return false;
@@ -426,9 +426,10 @@
    PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer());render();if(state.autoPronounce.swipe)speak(u.w.w);return true;
   }catch(_){return false}
  };
- window.rateLearning=grade=>{
+ window.rateBrowsedLearning=(grade,k)=>{if(!browsedUnit||browsedUnit.k!==k)return;window.rateLearning(grade,k)};
+ window.rateLearning=(grade,targetKey=null)=>{
   if(!active||loading||error||!unit()||!state.revealed||!['again','hard','good'].includes(grade))return;
-  const session=state.learningSession,u=unit(),k=u.k,now=Date.now(),prev=state.records[k];previousUnit=u;
+  const session=state.learningSession,u=targetKey?byKey(targetKey):unit();if(!u)return;const k=u.k,now=Date.now(),prev=state.records[k];previousUnit=u;
   if(!prev)markDailyNewComplete(k);
   const seen=session.seen[k]||0;session.seen[k]=seen+1;session.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
@@ -437,7 +438,7 @@
   if(repeat){r.due=now;r.interval=0;}else{const prior=prev?.lastStableInterval||prev?.interval||0;const days=session.kind==='free'&&prior>0?prior/DAY:prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*(prev?.lastGrade==='hard'?1.5:2.3)));r.interval=days*DAY;r.lastStableInterval=r.interval;r.due=session.kind==='free'&&prev?.due>now?prev.due:now+r.interval}
   if(repeat&&prev?.interval>0)r.lastStableInterval=grade==='again'?0:prev.interval;
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
-  session.queue.shift();if(repeat)session.queue.splice(Math.min(4,session.queue.length),0,k);else if(!session.completed.includes(k))session.completed.push(k);
+  const qi=session.queue.indexOf(k);if(qi>=0)session.queue.splice(qi,1);session.completed=session.completed.filter(x=>x!==k);if(repeat)session.queue.splice(Math.min(4,session.queue.length),0,k);else session.completed.push(k);
   state.revealed=false;persist();showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
