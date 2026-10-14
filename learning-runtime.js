@@ -461,7 +461,19 @@
   for(const rule of glossRules)if(rule.patterns.some(p=>meaning.includes(p)))tags.push(rule.topic);
   if(tags.length){senseTags.set(s.ku_id,tags);indexStats.glossTaggedKU++}
  }
+ const topicCoverage={};
+ for(const t of topics)topicCoverage[t.name]={curatedAvailable:0,glossTaggedKU:0,glossTaggedHeadwords:0};
+ for(const w of core.words){
+  const curated=new Set((topicIndex.get(w.w.toLowerCase())||[]).map(x=>x.topic));
+  const inferred=new Set();
+  for(const s of Object.values(w.s))for(const tag of senseTags.get(s.ku_id)||[]){topicCoverage[tag].glossTaggedKU++;inferred.add(tag)}
+  for(const tag of curated)topicCoverage[tag].curatedAvailable++;
+  for(const tag of inferred)topicCoverage[tag].glossTaggedHeadwords++;
+ }
+ indexStats.topics=topicCoverage;
+ indexStats.taggedHeadwords=[...new Set([...topicIndex.keys(),...core.words.filter(w=>Object.values(w.s).some(s=>senseTags.has(s.ku_id))).map(w=>w.w.toLowerCase())])].length;
  window.PAI_TOPIC_INDEX_QA=indexStats;
+ window.PAI_TOPIC_INDEX_REPORT=()=>JSON.parse(JSON.stringify(indexStats));
 
  function topicMatch(input){
   const q=input.trim().toLowerCase(),scores=new Map();
