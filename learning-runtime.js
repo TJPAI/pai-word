@@ -571,18 +571,37 @@
    if(!response.ok)throw Error('dimension HTTP '+response.status);
    const doc=await response.json();
    additionalDimensions=doc.dimensions;
-   const entries=additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:[],words:new Set()}))));
-   // Conservative exact-label evidence only. This deliberately avoids assigning
-   // broad verbs to tasks/functions without an independently reviewed mapping.
+   const entries=additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:[],words:new Set(),evidence:new Map()}))));
+   // Only explicit full-label gloss matches are admitted. Each match records
+   // the source field, never an invented dictionary verification status.
+   const reverse=new Map();
    for(const w of core.words)for(const s of Object.values(w.s)){
     if(s.kuType!=='sense')continue;
-    const gloss=String(s.m||'')+' '+String(s.kuTitle||'');
-    for(const e of entries)if(gloss.includes(e.name)){e.keys.push(s.ku_id);e.words.add(w.rank)}
+    const gloss=String(s.m||''),title=String(s.kuTitle||'');
+    for(const e of entries){
+     const source=gloss.includes(e.name)?'sense_gloss_exact':title.includes(e.name)?'ku_title_exact':null;
+     if(!source)continue;
+     e.keys.push(s.ku_id);e.words.add(w.rank);
+     const evidence={dimension:e.dimension,sceneId:e.id,sceneName:e.name,kuId:s.ku_id,word:w.w,rank:w.rank,source,matchedText:e.name,verified:false,reviewStatus:'pending'};
+     e.evidence.set(s.ku_id,evidence);
+     if(!reverse.has(s.ku_id))reverse.set(s.ku_id,[]);
+     reverse.get(s.ku_id).push(evidence);
+    }
    }
    for(const e of entries)dimensionKeys.set(e.id,e.keys);
-   const stats=new Map(entries.map(e=>[e.id,{ku:e.keys.length,words:e.words.size,status:'direct_label_candidate_unverified'}]));
+   const stats=new Map(entries.map(e=>[e.id,{ku:e.keys.length,words:e.words.size,status:'candidate_unverified'}]));
    window.PAI_SCENE_DIMENSIONS=()=>additionalDimensions.map(d=>({id:d.id,label:d.label,groups:d.groups.map(g=>({name:g.name,count:g.items.length,items:g.items.map(i=>({id:i.id,name:i.name,...stats.get(i.id)}))}))}));
-   window.PAI_DIMENSION_KU_TAGS=kuId=>entries.filter(e=>e.keys.includes(kuId)).map(e=>({dimension:e.dimension,id:e.id,name:e.name,source:'gloss_exact_label',verified:false}));
+   window.PAI_DIMENSION_KU_TAGS=kuId=>(reverse.get(kuId)||[]).map(e=>({...e}));
+   window.PAI_DIMENSION_EVIDENCE=(sceneId,limit=30)=>{
+    const e=entries.find(x=>x.id===sceneId);
+    return e?[...e.evidence.values()].slice(0,Math.max(0,Math.min(500,Number(limit)||30))).map(x=>({...x})):[];
+   };
+   window.PAI_DIMENSION_QA=()=>{
+    const empty=entries.filter(e=>!e.keys.length).map(e=>({id:e.id,name:e.name,dimension:e.dimension}));
+    const sparse=entries.filter(e=>e.keys.length>0&&e.words.size<10).map(e=>({id:e.id,name:e.name,words:e.words.size,ku:e.keys.length}));
+    const totalLinks=entries.reduce((n,e)=>n+e.keys.length,0);
+    return {total:entries.length,nonempty:entries.length-empty.length,empty,lowCoverage:sparse,totalCandidateLinks:totalLinks,reviewedLinks:0,verification:'not_verified'};
+   };
    if(state.view==='scenes')render();
   }catch(e){window.PAI_SCENE_DIMENSION_ERROR=String(e)}
  }
