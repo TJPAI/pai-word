@@ -682,7 +682,7 @@
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
-  if(saved){const parsed=JSON.parse(saved);if(parsed.schemaVersion===1&&parsed.scenes?.length===312)sceneCache=parsed}
+  if(saved){const parsed=JSON.parse(saved);if(parsed.schemaVersion===1&&parsed.scenes?.length===312&&new Set(parsed.scenes.map(x=>x.id)).size===312&&parsed.scenes.every(x=>Array.isArray(x.keys)&&x.keys.every(k=>byKey(k))))sceneCache=parsed}
  }catch(_){}
  const sceneCacheRows=new Map((sceneCache?.scenes||[]).map(x=>[x.id,x]));
  const saveSceneCache=()=>{
@@ -745,6 +745,7 @@
    }
    saveSceneCache();
    proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'candidate_unverified'}));
+   saveSceneCache();
    window.PAI_PROPOSED_SCENE_COVERAGE=()=>proposedCoverage.map(x=>({...x}));
    window.PAI_SCENE_COVERAGE_QA=()=>{
     const total=proposedCoverage.length,nonempty=proposedCoverage.filter(x=>x.ku>0).length;
