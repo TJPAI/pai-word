@@ -137,3 +137,12 @@ node --test tests/learning-v3.test.cjs
 ```
 
 The pack builder reads the original checked V25.5 Brotli packs and V26.7I overlays; `core-loader.js` supplies the source adapter at build time only. No canonical source word pack is edited. Tests for retired v2 runtime behavior are retained as historical tests; the active learning flow is covered by `learning-v3.test.cjs`.
+
+### Experimental tap timing (2026-10-15)
+
+`tap-flow.js` replaces reveal/rating buttons on learning screens. The first blank-space tap measures time since the hydrated card rendered: <=1s Good, >1s–3s Hard, >3s Again; answers remain visible for 1/3/5s respectively before committing once and advancing. A second blank-space tap cancels that deadline, persists an unknown marker, and reads the word five times with a one-second gap after each completed utterance, then advances. Thresholds, display durations, repeat count and gap are temporarily editable in settings. Leaving the view or backgrounding cancels timers/speech; foregrounding restarts the recall clock. Scrolls, text selection and controls do not grade. These thresholds are an experimental user-selected policy, not validated memory estimates.
+
+```sh
+node scripts/build-runtime.cjs
+node --test tests/tap-flow.test.cjs tests/learning-v3.test.cjs
+```

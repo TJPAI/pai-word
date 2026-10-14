@@ -324,6 +324,50 @@
 
 
 ;
+// SOURCE: tap-flow.js
+// Experimental timing policy; response speed is not a calibrated memory score.
+(function(){
+ const defaults={goodWithin:1,hardWithin:3,goodShow:1,hardShow:3,againShow:5,repeatCount:5,repeatGap:1};
+ const labels={goodWithin:'想起了：点击阈值（秒）',hardWithin:'模糊：点击阈值（秒）',goodShow:'想起了：答案展示（秒）',hardShow:'模糊：答案展示（秒）',againShow:'没想起：答案展示（秒）',repeatCount:'重读次数',repeatGap:'每遍读完后的间隔（秒）'};
+ function config(){const c={...defaults,...state.tapTiming};for(const k of Object.keys(defaults)){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.min(k==='repeatCount'?20:60,Math.max(k==='repeatGap'?0:.1,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c}
+ let phase='idle',generation=0,timers=new Set(),began=0,responseMs=null,grade=null,repeated=0,speechError=false,visibleKey=null;
+ function later(fn,ms){const id=setTimeout(()=>{timers.delete(id);fn()},ms);timers.add(id);return id}
+ function cancel(){generation++;for(const t of timers)clearTimeout(t);timers.clear();phase='idle';visibleKey=null;if('speechSynthesis'in window)speechSynthesis.cancel()}
+ function ready(k){cancel();visibleKey=k;began=Date.now();responseMs=null;grade=null;repeated=0;speechError=false;phase='question'}
+ function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
+ function valid(g){return generation===g&&state.view==='learning'&&window.currentUnit?.()?.k===visibleKey}
+ function finish(g){if(!valid(g))return;phase='committing';window.rateLearning(grade)}
+ function render(){if(typeof window.render==='function')window.render()}
+ function speakRepeated(g){
+  if(!valid(g))return;const c=config();repeated++;render();let done=false;
+  const complete=()=>{if(done)return;done=true;if(!valid(g))return;if(repeated>=c.repeatCount)finish(g);else later(()=>speakRepeated(g),c.repeatGap*1000)};
+  if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){speechError=true;render();later(complete,1000);return}
+  const synth=speechSynthesis;synth.cancel();const u=new SpeechSynthesisUtterance(currentUnit().w.w);u.lang='en-US';u.rate=.84;u.voice=(synth.getVoices()||[]).find(v=>String(v.lang).toLowerCase()==='en-us')||null;
+  u.onend=complete;u.onerror=()=>{speechError=true;render();complete()};window.__paiUtterance=u;
+  try{if(synth.paused)synth.resume();synth.speak(u)}catch(_){speechError=true;render();complete()}
+  later(()=>{if(!done&&valid(g)){speechError=true;synth.cancel();complete()}},10000);
+ }
+ function tap(){
+  if(state.view!=='learning'||!currentUnit()||document.hidden)return;
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
+  else if(phase==='answer'){for(const t of timers)clearTimeout(t);timers.clear();generation++;grade='again';phase='repeat';repeated=0;const k=currentUnit().k;if(!state.records[k])markDailyNewComplete(k);state.records[k]={...(state.records[k]||{}),lastKnown:false,lastGrade:'again',learningPending:true,due:Date.now()};save();speakRepeated(generation)}
+ }
+ window.setTapTiming=(k,value)=>{if(!(k in defaults))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();render()};
+ window.resetTapTiming=()=>{state.tapTiming={...defaults};save();render()};
+ function settings(){const c=config();return `<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题面出现后开始计时。答案页点空白会记为没想起，并重读后切词。</p>${Object.keys(defaults).map(k=>`<label class="setting-row"><span>${labels[k]}</span><input type="number" aria-label="${labels[k]}" min="${k==='repeatGap'?0:k==='repeatCount'?1:.1}" max="${k==='repeatCount'?20:60}" step="${k==='repeatCount'?1:.1}" value="${c[k]}" onchange="setTapTiming('${k}',this.value)"></label>`).join('')}<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>`}
+ function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
+ window.PAI_TAP_FLOW={ready,cancel,tap,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
+ document.addEventListener('click',e=>{
+  if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
+  if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
+  if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap();
+ },true);
+ document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
+ let touch=null;document.addEventListener('touchstart',e=>{if(e.touches?.length===1)touch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+600},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(state.view!=='learning'||!currentUnit())return;if(document.hidden){cancel();state.revealed=false}else{ready(currentUnit().k);render()}});
+})();
+
+;
 // SOURCE: learning-app.js
 // One owner for today's study, scene batches, reviews and in-session relearning.
 (function(){
@@ -343,7 +387,7 @@
  function current(){return active?unit():null}window.currentUnit=current;
  window.currentQueue=()=>active?(state.learningSession?.queue||[]).map(byKey).filter(Boolean):[];
  function statusText(){const s=window.PAI_LOCAL_LEXICON;return s.offlineReady?'全部词包已缓存':`已缓存 ${s.loadedChunks} / ${s.totalChunks} 个词包；学习时按需下载`}
- async function showCurrent(auto=true){const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+ async function showCurrent(auto=true){PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k);render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent()}
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
@@ -351,9 +395,9 @@
  window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
  window.resumeLearning=()=>{active=true;state.view='learning';state.revealed=false;showCurrent()};
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
- window.goScenes=()=>{++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
- window.openPanel=kind=>{active=false;state.view=kind;persist();render()};
- window.reveal=()=>{if(!active||loading||error||!unit())return;state.revealed=true;render()};
+ window.goScenes=()=>{PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
+ window.openPanel=kind=>{PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
+ window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent(false);
  window.rateLearning=grade=>{
   if(!active||loading||error||!unit()||!state.revealed||!['again','hard','good'].includes(grade))return;
@@ -362,7 +406,7 @@
   const seen=session.seen[k]||0;session.seen[k]=seen+1;session.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
   const repeat=grade!=='good'||(!prev&&seen===0);
-  const r={...(prev||{}),last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev?.reps||0)+1,responseMs:Math.max(0,now-startedAt),learningPending:repeat,srsPolicy:'session-retrieval-v3'};
+  const r={...(prev||{}),last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev?.reps||0)+1,responseMs:PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt),learningPending:repeat,srsPolicy:'session-retrieval-v3'};
   if(repeat){r.due=now;r.interval=0;}else{const prior=prev?.lastStableInterval||prev?.interval||0;const days=session.kind==='free'&&prior>0?prior/DAY:prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*(prev?.lastGrade==='hard'?1.5:2.3)));r.interval=days*DAY;r.lastStableInterval=r.interval;r.due=session.kind==='free'&&prev?.due>now?prev.due:now+r.interval}
   if(repeat&&prev?.interval>0)r.lastStableInterval=grade==='again'?0:prev.interval;
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
@@ -383,7 +427,7 @@
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const repeat=s.seen[u.k]>0;
   const label=u.s.kuType==='sense'?'回忆这个词的含义':u.s.kuTitle;
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''}">${top(s.title,progress)}<div class="study-body"><div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div>${state.revealed?answerHtml(u):'<button class="reveal-btn" onclick="reveal()">想好后，显示答案</button>'}</div>${state.revealed?'<div class="rating three-ratings"><button class="unknown" onclick="rateLearning(\'again\')">没想起</button><button class="hard" onclick="rateLearning(\'hard\')">模糊</button><button class="known" onclick="rateLearning(\'good\')">想起了</button></div>':'<p class="recall-note">先在心里说出答案，再核对。空格翻面；1 / 2 / 3 评分。</p>'}<div class="session-footnote">新词会再次回忆；没想起或模糊的词隔最多 4 张再来。可随时退出，下次优先继续。</div></div>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''}">${top(s.title,progress)}<div class="study-body"><div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div>${state.revealed?answerHtml(u):''}</div><p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote">新词与错词会在本轮再次出现。点击节奏可在设置中调整。</div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};
@@ -394,11 +438,8 @@
  function lexicon(){return `<div class="screen lex-screen">${top('词库浏览')}<p class="scene-note">共收录 ${core.words.length.toLocaleString()} 词；内容校验尚未全部完成。</p><input aria-label="搜索词库" class="lex-search" placeholder="搜索英文或中文释义" value="${esc(query)}" oninput="updateLexiconSearch(this.value)"><div id="lex-results">${resultHtml()}</div></div>`}
  function detail(){const w=core.words[state.lexiconWordRank-1],u=byKey(state.previewKU);return `<div class="screen lex-word-screen">${top('词条')}<button class="text-btn" onclick="openLexicon()">返回搜索</button><div class="lex-word-head"><div><h1>${esc(w.w)}</h1><div class="ipa">${esc(w.ipaUS||'')}</div></div><button class="speak-btn" data-word-audio data-speak="${esc(w.w)}" aria-label="播放单词">🔊</button></div>${loading?'<p>正在加载词条…</p>':error?`<p>${esc(error)}</p><button onclick="openLexiconWord(${w.rank})">重试</button>`:`<div class="sense-picker">${Object.values(w.s).map(s=>`<button class="sense-chip ${s.ku_id===u.k?'active':''}" onclick="selectLexiconSense('${s.ku_id}')">${esc(s.kuTitle||s.pos)} · ${esc(s.m)}</button>`).join('')}</div>${answerHtml(u)}`}<p class="scene-note">浏览不改变学习进度。发音使用设备提供的美音语音。</p></div>`}
  const previousRender=window.render;
- window.render=function(){const app=document.getElementById('app');if(state.view==='scenes')app.innerHTML=home();else if(state.view==='learning')app.innerHTML=learning();else if(state.view==='lexicon')app.innerHTML=lexicon();else if(state.view==='lexiconWord')app.innerHTML=detail();else{previousRender();if(state.view==='settings'){for(const row of document.querySelectorAll('.setting-row')){if(row.textContent.includes('发音口音'))row.innerHTML='<span>发音</span><b>美音 · 系统语音</b>';if(row.textContent.includes('显示 3 个例句'))row.querySelector('span').textContent='显示可用例句'}const panel=document.querySelector('.panel-screen');panel.insertAdjacentHTML('beforeend',`<div class="panel-block"><p>${statusText()}</p><button class="secondary-btn" onclick="downloadOfflineLexicon()" ${window.PAI_LOCAL_LEXICON.downloading?'disabled':''}>${window.PAI_LOCAL_LEXICON.downloading?'正在缓存…':'下载全部词包供离线使用'}</button>${window.PAI_LOCAL_LEXICON.error?`<p>${esc(window.PAI_LOCAL_LEXICON.error)}</p>`:''}</div>`)} }
+ window.render=function(){const app=document.getElementById('app');if(state.view==='scenes')app.innerHTML=home();else if(state.view==='learning')app.innerHTML=learning();else if(state.view==='lexicon')app.innerHTML=lexicon();else if(state.view==='lexiconWord')app.innerHTML=detail();else{previousRender();if(state.view==='settings'){for(const row of document.querySelectorAll('.setting-row')){if(row.textContent.includes('发音口音'))row.innerHTML='<span>发音</span><b>美音 · 系统语音</b>';if(row.textContent.includes('显示 3 个例句'))row.querySelector('span').textContent='显示可用例句'}const panel=document.querySelector('.panel-screen');panel.insertAdjacentHTML('beforeend',PAI_TAP_FLOW.settings());panel.insertAdjacentHTML('beforeend',`<div class="panel-block"><p>${statusText()}</p><button class="secondary-btn" onclick="downloadOfflineLexicon()" ${window.PAI_LOCAL_LEXICON.downloading?'disabled':''}>${window.PAI_LOCAL_LEXICON.downloading?'正在缓存…':'下载全部词包供离线使用'}</button>${window.PAI_LOCAL_LEXICON.error?`<p>${esc(window.PAI_LOCAL_LEXICON.error)}</p>`:''}</div>`)} }
  };
  window.addEventListener('pai-offline-status',()=>{if(state.view==='settings')render()});
- document.addEventListener('keydown',e=>{if(!active||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)||e.ctrlKey||e.metaKey||e.altKey||e.repeat)return;if(e.code==='Space'){e.preventDefault();reveal()}else if(['1','2','3'].includes(e.key)){e.preventDefault();rateLearning({1:'again',2:'hard',3:'good'}[e.key])}});
- // A swipe reveals; it never silently records an answer or skips an unlearned card.
- let startTouch=null;document.addEventListener('touchstart',e=>{if(active&&e.touches.length===1)startTouch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});document.addEventListener('touchend',e=>{if(!active||!startTouch||e.target.closest('button,input,select'))return;const t=e.changedTouches[0];if(t&&Math.abs(t.clientX-startTouch.x)>60&&Math.abs(t.clientX-startTouch.x)>Math.abs(t.clientY-startTouch.y)*1.5)reveal();startTouch=null},{passive:true});
  window.PAI_LEARNING_QA={due,fresh,unlearned,current:unit};
 })();

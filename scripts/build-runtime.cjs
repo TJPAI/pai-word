@@ -1,1 +1,1 @@
-const fs=require('fs');fs.writeFileSync('learning-runtime.js',['daily.js','app-runtime.js','ku-content-ui.js','learning-app.js'].map(f=>'// SOURCE: '+f+'\n'+fs.readFileSync(f,'utf8')).join('\n;\n'));
+const fs=require('fs');fs.writeFileSync('learning-runtime.js',['daily.js','app-runtime.js','ku-content-ui.js','tap-flow.js','learning-app.js'].map(f=>'// SOURCE: '+f+'\n'+fs.readFileSync(f,'utf8')).join('\n;\n'));
