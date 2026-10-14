@@ -560,7 +560,8 @@
   start(unseen.slice(0,TOPIC_BATCH_SIZE),(state.topicStudyTitle||q)+' · 继续学习','topic')
  };
  const topicWordCount=keys=>new Set(keys.map(k=>byKey(k)?.w?.w?.toLowerCase()).filter(Boolean)).size;
- const topicCatalog=()=>topics.map(t=>{const keys=topicCandidates(t.terms[0],topicMatch(t.terms[0]));return {name:t.name,words:topicWordCount(keys),ku:keys.length,unseen:keys.filter(k=>!state.records[k]).length}});
+ const cachedTopicCandidates=topics.map(t=>({name:t.name,keys:topicCandidates(t.terms[0],topicMatch(t.terms[0]))}));
+ const topicCatalog=()=>cachedTopicCandidates.map(t=>({name:t.name,words:topicWordCount(t.keys),ku:t.keys.length,unseen:t.keys.filter(k=>!state.records[k]).length}));
  window.PAI_TOPIC_CATALOG=topicCatalog;
  // Independently audit all proposed themes; this is a candidate index, not verification.
  let additionalDimensions=null;
