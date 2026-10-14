@@ -40,7 +40,7 @@
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
- window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;const s=state.learningSession;if(!s.queue.includes(next)){s.queue.push(next);s.completed=s.completed.filter(k=>k!==next)}const at=s.queue.indexOf(next);if(at>0)s.queue.unshift(...s.queue.splice(at,1));persist();showCurrent();return true};
+ window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;persist();showCurrent();return true};
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const keys=cycleKeys();if(!keys.length)return false;
