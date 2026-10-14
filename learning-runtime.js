@@ -418,24 +418,43 @@
  ];
  let topicInput='',topicFeedback='';
  window.setTopicInput=v=>{topicInput=String(v||'').slice(0,160)};
- function topicMatch(input){const q=input.trim().toLowerCase();if(!q)return null;const hits=[...foodTopicSets,...topicSets].map(t=>({t,score:t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0)})).sort((a,b)=>b.score-a.score);return hits[0].score?hits[0].t:null}
- function topicCandidates(q,t){
-  const terms=t?t.words.split(' '):[];
-  const order=new Map(terms.map((w,i)=>[w,i]));
+ const semanticGroups=[
+  {id:'food',aliases:['食品','食物','吃','饮食','food'],children:['水果','蔬菜与烹饪','海鲜','肉类','饮料','甜点与烘焙']},
+  {id:'market',aliases:['市场','买菜','采购','购物','market'],children:['水果','蔬菜与烹饪','海鲜','肉类','超市购物']},
+  {id:'cooking',aliases:['做饭','烹饪','晚餐','午餐','厨房','cook','dinner'],children:['蔬菜与烹饪','海鲜','肉类','水果']},
+  {id:'restaurant',aliases:['餐厅','点餐','饭店','restaurant'],children:['餐厅点餐','海鲜','肉类','蔬菜与烹饪','饮料']}
+ ];
+ const topics=[...foodTopicSets,...topicSets];
+ const topicByName=new Map(topics.map(t=>[t.name,t]));
+ const topicIndex=new Map();
+ for(const t of topics)for(const [i,lemma]of t.words.split(' ').entries()){
+  const k=lemma.toLowerCase();if(!topicIndex.has(k))topicIndex.set(k,[]);
+  topicIndex.get(k).push({topic:t.name,weight:Math.max(15,100-i*2)});
+ }
+ function topicMatch(input){
+  const q=input.trim().toLowerCase(),scores=new Map();
+  for(const t of topics){const hit=t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0);if(hit)scores.set(t.name,hit*12)}
+  for(const group of semanticGroups)if(group.aliases.some(a=>q.includes(a.toLowerCase())))for(const child of group.children)scores.set(child,Math.max(scores.get(child)||0,20));
+  return [...scores].sort((a,b)=>b[1]-a[1]).map(([name,weight])=>({topic:topicByName.get(name),weight}));
+ }
+ function topicCandidates(q,matches){
   const normalized=q.trim().toLowerCase();
   const clean=normalized.replace(/[，。！？、；：,.!?;:()（）]/g,' ').replace(/^(我想|我想要|我要|我需要|请|帮我|学习|背|关于|有关|一些|去|在|的|英语|单词|词汇|场景)+/g,'').replace(/(相关|场景|单词|词汇|英语|怎么说|有哪些|的)+$/g,'').trim();
   const tokens=[clean,normalized].filter((x,i,a)=>x.length>=2&&a.indexOf(x)===i);
+  const weights=new Map(matches.map(x=>[x.topic.name,x.weight]));
   const scored=[];
   for(const w of core.words){
-   const exact=order.has(w.w.toLowerCase());
+   const lemma=w.w.toLowerCase(),tags=topicIndex.get(lemma)||[];
    let best=null;
    for(const s of Object.values(w.s)){
     if(s.kuType!=='sense')continue;
     const gloss=String(s.m||'').toLowerCase(),title=String(s.kuTitle||'').toLowerCase();
-    const semantic=t&&t.terms.some(x=>x.length>=2&&(gloss.includes(x.toLowerCase())||title.includes(x.toLowerCase())));
-    const queryHit=tokens.some(x=>gloss.includes(x)||title.includes(x));
-    if(!exact&&!queryHit&&!semantic)continue;
-    const score=(exact?1000-order.get(w.w.toLowerCase())*8:0)+(queryHit?220:0)+(semantic?45:0)-w.rank/5000;
+    const direct=tokens.some(x=>gloss.includes(x)||title.includes(x));
+    const matchedTags=tags.filter(x=>weights.has(x.topic));
+    const tagScore=matchedTags.length?Math.max(...matchedTags.map(x=>x.weight+weights.get(x.topic)*2)):0;
+    const context=matches.some(x=>x.topic.terms.some(term=>term.length>=2&&(gloss.includes(term.toLowerCase())||title.includes(term.toLowerCase()))));
+    if(!direct&&!tagScore&&!context)continue;
+    const score=tagScore+(direct?160:0)+(context?35:0)-w.rank/5000;
     if(!best||score>best.score)best={key:s.ku_id,score};
    }
    if(best)scored.push({...best,rank:w.rank,known:!!state.records[best.key]});
@@ -444,9 +463,9 @@
  }
  window.startTopicStudy=()=>{
   const q=topicInput.trim();if(!q){topicFeedback='请输入场景或一句话。';render();return}
-  const t=topicMatch(q),keys=topicCandidates(q,t);
+  const matches=topicMatch(q),keys=topicCandidates(q,matches);
   if(!keys.length){topicFeedback='未找到足够匹配的词义。请尝试更具体的主题，例如“蔬菜”或“动物园”。';render();return}
-  topicFeedback='';start(keys,(t?.name||q.slice(0,24))+' · 场景学习','topic')
+  topicFeedback='';start(keys,(matches[0]?.topic.name||q.slice(0,24))+' · 场景学习','topic')
  };
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
