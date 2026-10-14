@@ -1,0 +1,16 @@
+{
+  "schema": "pai-word-kucontent-manifest-v1",
+  "base_release": "Core-13000 V26.7I runtime bridge",
+  "release": "Core-13000 V26.7I KU content enhancement",
+  "encoding": "base64+gzip+utf8-json",
+  "ku_content_count": 510,
+  "parts": [
+    {"file":"part01.b64","chars":16128,"sha256":"0dac2266d20bc57698c55485a5549d14839cca10794cb9975b1a56e87440719b"},
+    {"file":"part02.b64","chars":16128,"sha256":"fbd6b903426b0b41a64bf8b993807b8c785641167beeed7067074ebb4e31e0fd"}
+  ],
+  "gzip_bytes": 24190,
+  "gzip_sha256": "0f89f0e5b5b19aa0ba7a24859c7c7127b753fa1ae04fdf308ac5003377ef7d3c",
+  "json_bytes": 97838,
+  "json_sha256": "499fb493a2d5fe866f849b92c7ebcf37f9f48e66fcebf9558ff150991b81b175",
+  "fields": ["ku_id","content_zh","pattern_or_example","exercise_type","priority"]
+}
