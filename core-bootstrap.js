@@ -9,10 +9,10 @@
     }).catch(error=>console.warn('[PAI Word] service worker unavailable',error));
   }
   try{
-    if(state.srsSchema!=='ku_id-v1'&&Object.keys(state.records||{}).some(k=>k.includes('::')))
+    if(!['ku_id-v1','ku_id-v2'].includes(state.srsSchema)&&Object.keys(state.records||{}).some(k=>k.includes('::')))
       for(const src of ['lexicon-core-001.js','lexicon-core-002.js','lexicon-core-003.js'])await script(src);
     await loadCore13000();
-    for(const src of ['daily.js?v=core13000-4','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','product-v2.js?v=core13000-2'])await script(src);
+    for(const src of ['daily.js?v=core13000-4','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','product-v2.js?v=v267i-product-1'])await script(src);
     state.view='scenes';state.scene=null;state.revealed=false;
     const previewWord=new URLSearchParams(location.search).get('word');
     const preview=window.PAI_CORE.byLemma.get(previewWord)?.[0];
