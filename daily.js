@@ -19,14 +19,15 @@
     p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
     return p;
   }
-  function wordHasRecord(w){return Object.keys(w.s||{}).some(k=>!!state.records[k])}
-  function primaryUnit(w){const key=Object.keys(w.s||{})[0];return key?findUnitByKey(key):null}
+  function primaryKey(w){return Object.keys(w.s||{})[0]||null}
+  function wordIntroduced(w){const k=primaryKey(w);return !!(k&&state.records[k])}
+  function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
     if(limit<=0)return[];
     const picked=[];
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
-      if(wordHasRecord(w))continue;
+      if(wordIntroduced(w))continue;
       const u=primaryUnit(w);if(u)picked.push(u);
     }
     return picked;
@@ -36,8 +37,8 @@
     if(limit<=0)return[];
     const candidates=[];
     for(const w of window.PAI_CORE.words){
-      if(!wordHasRecord(w))continue;
-      const primary=Object.keys(w.s||{})[0];
+      if(!wordIntroduced(w))continue;
+      const primary=primaryKey(w);
       for(const [k] of Object.entries(w.s||{})){
         if(k===primary||state.records[k])continue;
         const u=findUnitByKey(k);if(u)candidates.push(u);
