@@ -193,7 +193,7 @@
  window.PAI_TOPIC_CATALOG=topicCatalog;
  // Independently audit all proposed themes; this is a candidate index, not verification.
  let additionalDimensions=null;
- const dimensionKeys=new Map();
+ const dimensionKeys=new Map(),dimensionEvidenceCache=new Map();
  async function loadAdditionalDimensions(){
   try{
    const response=await fetch('data/scene-dimensions-v1.json');
@@ -242,7 +242,7 @@
     }
    }
    }
-   for(const e of entries){const cached=sceneCacheRows.get(e.id);if(cached){e.keys=(cached.keys||[]).filter(k=>byKey(k));for(const k of e.keys)e.words.add(byKey(k).w.rank)}dimensionKeys.set(e.id,e.keys)}
+   for(const e of entries){const cached=sceneCacheRows.get(e.id);if(cached){e.keys=(cached.keys||[]).filter(k=>byKey(k));for(const k of e.keys)e.words.add(byKey(k).w.rank);for(const v of cached.evidence||[]){if(!byKey(v.kuId))continue;e.evidence.set(v.kuId,v);if(!reverse.has(v.kuId))reverse.set(v.kuId,[]);reverse.get(v.kuId).push(v)}}dimensionKeys.set(e.id,e.keys);dimensionEvidenceCache.set(e.id,[...e.evidence.values()])}
    saveSceneCache();
    const stats=new Map(entries.map(e=>[e.id,{ku:e.keys.length,words:e.words.size,status:'candidate_unverified'}]));
    window.PAI_SCENE_DIMENSIONS=()=>additionalDimensions.map(d=>({id:d.id,label:d.label,groups:d.groups.map(g=>({name:g.name,count:g.items.length,items:g.items.map(i=>({id:i.id,name:i.name,...stats.get(i.id)}))}))}));
@@ -315,12 +315,12 @@
  const sceneCacheRows=new Map((sceneCache?.scenes||[]).map(x=>[x.id,x]));
  const saveSceneCache=()=>{
   if(!proposedCoverage||!additionalDimensions)return;
-  const scenes=[...proposedCoverage.map(x=>({id:x.id,keys:proposedKeys.get(x.id)||[],directKU:x.directKU})),
-   ...additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,keys:dimensionKeys.get(i.id)||[]}))))];
+  const scenes=[...proposedCoverage.map(x=>({id:x.id,keys:proposedKeys.get(x.id)||[],directKU:proposedDirectKeys.get(x.id)||[]})),
+   ...additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,keys:dimensionKeys.get(i.id)||[],evidence:dimensionEvidenceCache.get(i.id)||[]})))))];
   if(scenes.length!==312)return;
   try{localStorage.setItem(SCENE_CACHE_KEY,JSON.stringify({schemaVersion:1,scenes}))}catch(_){}
  };
- const proposedKeys=new Map();
+ const proposedKeys=new Map(),proposedDirectKeys=new Map();
  async function loadProposedCoverage(){
   try{
    const response=await fetch('data/scene-taxonomy-proposal-v1.json');
@@ -369,7 +369,7 @@
    for(const row of rows){
     const cached=sceneCacheRows.get(row.id);
     if(cached){for(const k of cached.keys||[]){if(byKey(k)){row.kuIds.add(k);row.wordRanks.add(byKey(k).w.rank)}}for(const k of cached.directKU||[])row.directKU.add(k)}
-    proposedKeys.set(row.id,[...row.kuIds]);
+    proposedKeys.set(row.id,[...row.kuIds]);proposedDirectKeys.set(row.id,[...row.directKU]);
    }
    saveSceneCache();
    proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'candidate_unverified'}));
