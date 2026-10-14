@@ -1,7 +1,7 @@
-// Daily policy V2: newPerDay means NEW WORDS. Extra KUs are scheduled as a separate reinforcement budget.
+// Daily policy V3: newPerDay means NEW WORDS. First introduction prefers a Sense KU; extra KUs use a separate reinforcement budget.
 (function(){
   const oldSave=save;
-  const ASSIGNMENT_POLICY='rank-first-words+reinforcement-v2';
+  const ASSIGNMENT_POLICY='rank-first-sense-words+reinforcement-v3';
   const REINFORCEMENT_RATIO=.30;
   function dayKey(){
     const d=new Date();
@@ -14,7 +14,7 @@
     if(!state.dailyNewProgress||state.dailyNewProgress.date!==date)state.dailyNewProgress={date,completed:[],newWordsCompleted:[],reinforcementCompleted:[]};
     const p=state.dailyNewProgress;
     p.completed=Array.isArray(p.completed)?p.completed:[];
-    // One-time same-day compatibility with the old KU-count policy: do not unexpectedly grant a second full quota.
+    // One-time same-day compatibility with older KU-count policies: do not unexpectedly grant a second full quota.
     p.newWordsCompleted=Array.isArray(p.newWordsCompleted)?p.newWordsCompleted:[...p.completed];
     p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
     return p;
