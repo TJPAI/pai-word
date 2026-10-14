@@ -306,6 +306,37 @@
    return {id:scene.id,name:scene.name,dimension:scene.dimension,ku:scene.keys.length,samples};
   });
  };
+ window.PAI_SCENE_QUALITY_REPORT=()=>{
+  const rows=window.PAI_SCENE_SAMPLE_AUDIT(100);
+  const evidenceByScene=new Map((additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>[i.id,dimensionEvidenceCache.get(i.id)||[]]))));
+  const report=rows.map(scene=>{
+   const evidence=evidenceByScene.get(scene.id)||[];
+   const bySource={};
+   for(const v of evidence)bySource[v.source]=(bySource[v.source]||0)+1;
+   const seedCount=bySource.editorial_headword_seed||0;
+   const aliasCount=(bySource.sense_gloss_alias||0)+(bySource.ku_title_alias||0);
+   const exactCount=(bySource.sense_gloss_exact||0)+(bySource.ku_title_exact||0);
+   const warnings=[];
+   if(scene.ku===0)warnings.push('empty');
+   if(scene.ku>0&&scene.ku<10)warnings.push('low_candidate_coverage');
+   if(scene.ku>1000)warnings.push('possible_overmatching');
+   if(scene.dimension!=='topic'&&scene.ku>0&&aliasCount/scene.ku>=0.8)warnings.push('alias_dominated');
+   if(scene.dimension!=='topic'&&seedCount>0)warnings.push('unverified_english_seeds');
+   return {id:scene.id,name:scene.name,dimension:scene.dimension,ku:scene.ku,exactCount,aliasCount,seedCount,warnings,samples:scene.samples};
+  });
+  const counts={};
+  for(const row of report)for(const warning of row.warnings)counts[warning]=(counts[warning]||0)+1;
+  return {schemaVersion:1,generatedAt:new Date().toISOString(),status:'candidate_unverified',sceneCount:report.length,nonemptySceneCount:report.filter(x=>x.ku>0).length,warningCounts:counts,scenes:report.sort((a,b)=>b.warnings.length-a.warnings.length||a.ku-b.ku)};
+ };
+ window.PAI_DOWNLOAD_SCENE_QUALITY_REPORT=()=>{
+  const report=window.PAI_SCENE_QUALITY_REPORT();
+  if(report.sceneCount!==312)throw Error('Scene index not ready: '+report.sceneCount+'/312');
+  const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),link=document.createElement('a');
+  link.href=url;link.download='pai-scene-quality-report-v1.json';document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+  return {sceneCount:report.sceneCount,warningCounts:report.warningCounts};
+ };
  window.PAI_EXPORT_SCENE_INDEX=()=>{
   const topicRows=(proposedCoverage||[]).map(x=>({id:x.id,name:x.name,dimension:'topic',keys:proposedKeys.get(x.id)||[],status:'candidate_unverified'}));
   const dimensionRows=(additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:dimensionKeys.get(i.id)||[],status:'candidate_unverified'}))));
@@ -337,7 +368,7 @@
  };
  loadAdditionalDimensions();
  let proposedCoverage=null;
- const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v54';
+ const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v55';
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
