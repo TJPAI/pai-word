@@ -600,7 +600,10 @@
    window.PAI_PROPOSED_SCENE_COVERAGE=()=>proposedCoverage.map(x=>({...x}));
    window.PAI_SCENE_COVERAGE_QA=()=>{
     const total=proposedCoverage.length,nonempty=proposedCoverage.filter(x=>x.ku>0).length;
-    return {totalThemes:total,nonemptyThemes:nonempty,emptyThemes:total-nonempty,expandedRules:ruleCoverage.withExpansion,directOnly:ruleCoverage.directOnly,verification:'not_verified'};
+    const empty=proposedCoverage.filter(x=>x.ku===0).map(x=>({id:x.id,name:x.name,domain:x.domain}));
+    const low=proposedCoverage.filter(x=>x.ku>0&&x.words<10).map(x=>({id:x.id,name:x.name,words:x.words,ku:x.ku}));
+    const inflated=proposedCoverage.filter(x=>x.ku>1000).map(x=>({id:x.id,name:x.name,words:x.words,ku:x.ku}));
+    return {totalThemes:total,nonemptyThemes:nonempty,emptyThemes:total-nonempty,expandedRules:ruleCoverage.withExpansion,directOnly:ruleCoverage.directOnly,empty,lowCoverage:low,possibleOvermatching:inflated,verification:'not_verified'};
    };
 
    if(state.view==='scenes')render();
