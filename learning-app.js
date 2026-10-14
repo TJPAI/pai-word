@@ -30,6 +30,8 @@
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
  window.getBrowsedUnit=()=>browsedUnit;
+ window.getVisibleLearningUnit=()=>browsedUnit||unit();
+ window.restartLearningQuestion=()=>{if(active)showCurrent()};
  window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;state.revealed=false;showCurrent();return true};
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
