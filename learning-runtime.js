@@ -271,7 +271,7 @@
     document.getElementById('app').innerHTML=html;requestAnimationFrame(fitAnswer);
   };
 
-  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&window.PAI_TAP_FLOW?.snapshot().phase==='repeat')return;speak(text,btn.hasAttribute('data-word-audio')?.84:.9)}},true);
+  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&window.PAI_TAP_FLOW?.snapshot().phase==='repeat'){if(!btn.hasAttribute('data-example-audio'))return;window.PAI_TAP_FLOW.interruptRepeatForExample()}speak(text,btn.hasAttribute('data-word-audio')?.84:.9)}},true);
   let sx=0,sy=0,st=0;
   document.addEventListener('touchstart',e=>{if(!e.touches||e.touches.length!==1)return;const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now()},{passive:true});
   document.addEventListener('touchend',e=>{if(!['study','review'].includes(state.view))return;if(!e.changedTouches||e.changedTouches.length!==1||e.target.closest('button,select,a'))return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;if(dt>700||Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.25)return;e.preventDefault();window.__paiSwipeUntil=Date.now()+350;swipeWord(dx<0?1:-1)},{passive:false});
@@ -346,6 +346,15 @@
   try{if(synth.paused)synth.resume();synth.speak(u)}catch(_){speechError=true;render();complete()}
   later(()=>{if(!done&&valid(g)){speechError=true;synth.cancel();complete()}},10000);
  }
+ function interruptRepeatForExample(){
+  if(phase!=='repeat')return false;
+  generation++;for(const timer of timers)clearTimeout(timer);timers.clear();
+  phase='committing';
+  // Commit the overridden 'again' exactly once before the example begins speaking.
+  // Do not cancel speech here; the example player owns the speech interruption.
+  window.rateLearning(grade);
+  return true;
+ }
  function tap(){
   if(document.querySelector('.learning-screen.previous-answer'))return;
   if(state.view!=='learning'||!currentUnit()||document.hidden)return;
@@ -361,7 +370,7 @@
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();render()};
  function settings(){const c=config();return `<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题面出现后开始计时。答案页点空白会记为没想起，并重读后切词。</p>${Object.keys(defaults).map(k=>`<label class="setting-row"><span>${labels[k]}</span><input type="number" aria-label="${labels[k]}" min="${k==='repeatGap'?0:k==='repeatCount'?1:.1}" max="${k==='repeatCount'?20:60}" step="${k==='repeatCount'?1:.1}" value="${c[k]}" oninput="setTapTiming('${k}',this.value,false)" onchange="setTapTiming('${k}',this.value)"></label>`).join('')}<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>`}
  function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
- window.PAI_TAP_FLOW={ready,cancel,tap,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
+ window.PAI_TAP_FLOW={ready,cancel,tap,interruptRepeatForExample,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
  document.addEventListener('click',e=>{
   if(state.view!=='learning'||document.querySelector('.learning-screen.previous-answer')||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
   if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
