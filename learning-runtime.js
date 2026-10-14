@@ -356,7 +356,11 @@
   return true;
  }
  function tap(){
-  if(document.querySelector('.learning-screen.previous-answer'))return;
+  if(document.querySelector('.learning-screen.previous-answer')){
+   const u=window.getBrowsedUnit?.();if(!u)return;
+   cancel();phase='browse-repeat';const g=generation;let count=0;
+   const next=()=>{if(g!==generation||state.view!=='learning'||!document.querySelector('.learning-screen.previous-answer'))return;if(count>=config().repeatCount){phase='idle';return}count++;if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){later(next,1000);return}const utterance=new SpeechSynthesisUtterance(u.w.w);utterance.lang='en-US';utterance.rate=.84;let done=false;const completed=()=>{if(done)return;done=true;later(next,config().repeatGap*1000)};utterance.onend=completed;utterance.onerror=completed;speechSynthesis.cancel();speechSynthesis.speak(utterance);later(completed,10000)};next();return;
+  }
   if(state.view!=='learning'||!currentUnit()||document.hidden)return;
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
   else if(phase==='answer'){
@@ -372,7 +376,7 @@
  function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
  window.PAI_TAP_FLOW={ready,cancel,tap,interruptRepeatForExample,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
  document.addEventListener('click',e=>{
-  if(state.view!=='learning'||document.querySelector('.learning-screen.previous-answer')||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
+  if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
   if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
   if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap();
  },true);
@@ -403,7 +407,7 @@
  function current(){return active?unit():null}window.currentUnit=current;
  window.currentQueue=()=>active?(state.learningSession?.queue||[]).map(byKey).filter(Boolean):[];
  function statusText(){const s=window.PAI_LOCAL_LEXICON;return s.offlineReady?'全部词包已缓存':`已缓存 ${s.loadedChunks} / ${s.totalChunks} 个词包；学习时按需下载`}
- async function showCurrent(auto=true){browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k);render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+ async function showCurrent(auto=true){browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k);render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent()}
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
@@ -415,7 +419,8 @@
  window.openPanel=kind=>{previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent(false);
- let browseIndex=null,browseToken=0;
+ let browseIndex=null,browseToken=0,browsedUnit=null;
+ window.getBrowsedUnit=()=>browsedUnit;
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const s=state.learningSession;
@@ -430,7 +435,7 @@
   const u=unique[next],id=++browseToken;
   PAI_TAP_FLOW.cancel();++token;
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
-   browseIndex=next;state.revealed=true;
+   browseIndex=next;browsedUnit=u;state.revealed=true;
    const host=document.querySelector('.learning-screen'),body=host?.querySelector('.study-body');
    if(!host||!body)return false;
    body.innerHTML=`<div class="word-hero"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div></div>${answerHtml(u)}`;
