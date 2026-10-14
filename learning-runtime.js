@@ -397,6 +397,13 @@
   if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
   try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
+ const foodTopicSets=[
+  {name:'水果',terms:['水果','果园','买水果','fruit','fruits'],words:'fruit apple banana orange pear peach grape strawberry blueberry raspberry blackberry cherry pineapple mango watermelon melon lemon lime grapefruit kiwi coconut papaya plum apricot fig date pomegranate avocado lychee tangerine nectarine raisin berry citrus ripe juicy peel seed'},
+  {name:'海鲜',terms:['海鲜','海产品','海鲜市场','seafood','shellfish'],words:'seafood fish shrimp prawn crab lobster oyster mussel clam scallop squid octopus salmon tuna cod sardine anchovy herring mackerel trout eel shellfish seaweed roe fillet shell fresh frozen grill steam boil fry catch'},
+  {name:'肉类',terms:['肉类','肉店','meat'],words:'meat beef pork chicken lamb mutton turkey duck steak sausage bacon ham rib breast thigh roast grill fry butcher'},
+  {name:'饮料',terms:['饮料','喝什么','beverage','drink'],words:'drink beverage water juice milk coffee tea soda lemonade smoothie cocktail bottle glass cup thirst'},
+  {name:'甜点与烘焙',terms:['甜点','蛋糕','烘焙','dessert','bakery'],words:'dessert cake bread cookie biscuit pie pastry chocolate cream butter sugar flour oven bake sweet'}
+ ];
  const topicSets=[
   {name:'蔬菜与烹饪',terms:['蔬菜','买菜','菜市场','做饭','烹饪','vegetable','cooking'],words:'vegetable carrot cabbage spinach onion cucumber broccoli lettuce eggplant potato tomato pepper garlic pumpkin pea bean mushroom celery radish corn boil chop slice fresh harvest'},
   {name:'动物园',terms:['动物园','动物','看动物','zoo','wildlife'],words:'zoo lion tiger elephant giraffe zebra monkey panda bear penguin kangaroo hippo rhino snake crocodile cage enclosure keeper feed habitat wild species conservation ticket'},
@@ -411,7 +418,7 @@
  ];
  let topicInput='',topicFeedback='';
  window.setTopicInput=v=>{topicInput=String(v||'').slice(0,160)};
- function topicMatch(input){const q=input.trim().toLowerCase();if(!q)return null;const hits=topicSets.map(t=>({t,score:t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0)})).sort((a,b)=>b.score-a.score);return hits[0].score?hits[0].t:null}
+ function topicMatch(input){const q=input.trim().toLowerCase();if(!q)return null;const hits=[...foodTopicSets,...topicSets].map(t=>({t,score:t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0)})).sort((a,b)=>b.score-a.score);return hits[0].score?hits[0].t:null}
  function topicCandidates(q,t){
   const terms=t?t.words.split(' '):[];
   const order=new Map(terms.map((w,i)=>[w,i]));
