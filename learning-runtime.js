@@ -696,7 +696,7 @@
      for(const {row,terms} of rules){
       const direct=gloss.includes(row.name);
       const expanded=!direct&&terms.some(term=>gloss.includes(term));
-      const curated=curatedRows.has(row);
+      const curated=curatedRows.has(row)&&Object.values(w.s).filter(x=>x.kuType==='sense').length===1;
       if(!direct&&!expanded&&!curated)continue;
       row.wordRanks.add(w.rank);row.kuIds.add(s.ku_id);
       if(direct)row.directKU.add(s.ku_id);
