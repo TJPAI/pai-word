@@ -224,6 +224,21 @@
     const e=entries.find(x=>x.id===sceneId);
     return e?[...e.evidence.values()].slice(0,Math.max(0,Math.min(500,Number(limit)||30))).map(x=>({...x})):[];
    };
+   window.PAI_SCENE_AUDIT_EXPORT=()=>{
+    const dimensions=entries.map(e=>({
+     id:e.id,name:e.name,dimension:e.dimension,words:e.words.size,ku:e.keys.length,
+     evidence:[...e.evidence.values()].map(v=>({...v}))
+    }));
+    return {schemaVersion:1,generatedAt:new Date().toISOString(),source:'runtime_gloss_exact_matching',reviewed:false,dimensions};
+   };
+   window.PAI_SCENE_AUDIT_DOWNLOAD=()=>{
+    const payload=JSON.stringify(window.PAI_SCENE_AUDIT_EXPORT());
+    const blob=new Blob([payload],{type:'application/json'});
+    const url=URL.createObjectURL(blob);
+    const link=document.createElement('a');
+    link.href=url;link.download='pai-scene-audit-candidates.json';link.click();
+    setTimeout(()=>URL.revokeObjectURL(url),1000);
+   };
    window.PAI_DIMENSION_QA=()=>{
     const empty=entries.filter(e=>!e.keys.length).map(e=>({id:e.id,name:e.name,dimension:e.dimension}));
     const sparse=entries.filter(e=>e.keys.length>0&&e.words.size<10).map(e=>({id:e.id,name:e.name,words:e.words.size,ku:e.keys.length}));
