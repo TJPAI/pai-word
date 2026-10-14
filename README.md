@@ -114,3 +114,26 @@ Safari、手机视口、实际音频输出尚未验收。当前产品层的词�
 - 增加辨析完整性、串义防护、损坏和错误绑定拒绝测试，共 11 项测试通过。
 
 上一批浏览器验证（Chrome，1363×936）：提交 `efa565d9af601c00f5deb96bc34cab6f105b2eec` 的 `index.html?word=make` 实际显示 make / do / create 三项中文区别与英文例句、中文译文；返回场景页通过；关闭辨析选项并刷新后内容隐藏，重新开启后恢复。页面非空、无框架错误界面，控制台无应用错误（浏览器扩展 metadata 消息错误不属于应用）。截图确认三组内容无重叠。Safari 和手机视口尚未验收。
+
+
+## Learning flow revision (2026-10-14)
+
+Production entry now uses `lazy-loader.js` and the generated `learning-runtime.js`.
+`flow-v2.js`, `scene-study.js`, `swipe-v2.js`, and `product-v2.js` remain as historical sources but are no longer loaded.
+
+- Today selects new words from the selected category (default: daily); function words are separated. Unclassified vocabulary is presented in frequency bands, not claimed as curated scenes.
+- One persisted session queue owns study, due review, and free review. New words get a second retrieval; Again/Hard returns after up to four intervening cards, or sooner at the end. Unresolved items are immediately due and survive reload. Progress counts completed unique KUs against a fixed total.
+- Scheduling is a transparent heuristic, **not** a fitted forgetting model or FSRS. Response time is recorded but is not interpreted as a calibrated memory score.
+- First load downloads a checked catalog. Full cards are loaded in 250-word chunks and adjacent cards are prefetched. IndexedDB caches content by digest. Download-all is optional in settings.
+- Canonical 13,000 words / 16,616 KU IDs remain intact. Content screening suppresses obvious templates; it does **not** turn dictionary/corpus validation into PASS. See `data/learning-v3/content-audit.json`.
+- Speech uses device TTS in US English. Empty examples/collocations/comparisons are hidden. App icons include an Apple touch icon.
+
+Rebuild:
+
+```sh
+node scripts/build-learning-packs.cjs
+node scripts/build-runtime.cjs
+node --test tests/learning-v3.test.cjs
+```
+
+The pack builder reads the original checked V25.5 Brotli packs and V26.7I overlays; `core-loader.js` supplies the source adapter at build time only. No canonical source word pack is edited. Tests for retired v2 runtime behavior are retained as historical tests; the active learning flow is covered by `learning-v3.test.cjs`.

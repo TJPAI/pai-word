@@ -1,29 +1,5 @@
-const CACHE='pai-word-shell-v7';
-const SHELL=[
-  './','./index.html','./manifest.webmanifest','./mobile.css','./ux-fix.css','./product-v2.css',
-  './mobile.js','./core-loader.js','./core-bootstrap.js','./daily.js','./ipa-accent.js','./app-runtime.js',
-  './ku-content.js','./ku-content-ui.js','./product-v2.js','./scene-counts.js','./flow-v2.js','./scene-study.js','./swipe-v2.js'
-];
-self.addEventListener('install',event=>{
-  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting()));
-});
-self.addEventListener('activate',event=>{
-  event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pai-word-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));
-});
-self.addEventListener('fetch',event=>{
-  if(event.request.method!=='GET')return;
-  const url=new URL(event.request.url);
-  if(url.origin!==self.location.origin||url.pathname.includes('/data/core13000-'))return;
-  event.respondWith((async()=>{
-    try{
-      const fresh=await fetch(event.request);
-      if(fresh.ok){const cache=await caches.open(CACHE);cache.put(event.request,fresh.clone()).catch(()=>{});}
-      return fresh;
-    }catch(error){
-      const cached=await caches.match(event.request,{ignoreSearch:true});
-      if(cached)return cached;
-      if(event.request.mode==='navigate')return caches.match('./index.html',{ignoreSearch:true});
-      throw error;
-    }
-  })());
-});
+const CACHE='pai-word-shell-v31';
+const SHELL=['./','./index.html','./manifest.webmanifest','./mobile.css','./ux-fix.css','./product-v2.css','./learning.css','./mobile.js','./lazy-loader.js','./core-bootstrap.js','./learning-runtime.js','./icon.svg','./apple-touch-icon.png'];
+self.addEventListener('install',e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(SHELL)).then(()=>self.skipWaiting())));
+self.addEventListener('activate',e=>e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('pai-word-shell-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));
+self.addEventListener('fetch',e=>{const u=new URL(e.request.url);if(e.request.method!=='GET'||u.origin!==self.location.origin||u.pathname.includes('/data/'))return;e.respondWith((async()=>{const c=await caches.open(CACHE);if(!e.request.mode.includes('navigate')){const hit=await c.match(e.request,{ignoreSearch:true});if(hit)return hit}try{const r=await fetch(e.request);if(r.ok)await c.put(e.request,r.clone());return r}catch(err){return await c.match(e.request,{ignoreSearch:true})||await c.match('./index.html')}})())});

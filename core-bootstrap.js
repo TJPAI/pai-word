@@ -1,28 +1,11 @@
-// Do not initialize queues or render the legacy data before the release is ready.
 (async function(){
-  const app=document.getElementById('app');
-  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src;el.onload=resolve;el.onerror=()=>reject(new Error('运行文件加载失败：'+src));document.body.appendChild(el)})}
-  function registerOfflineShell(){
-    if(!('serviceWorker' in navigator))return;
-    navigator.serviceWorker.register('./sw.js').then(()=>navigator.serviceWorker.ready).then(()=>{
-      if(window.PAI_LOCAL_LEXICON){window.PAI_LOCAL_LEXICON.shellReady=true;window.dispatchEvent(new CustomEvent('pai-offline-status'))}
-    }).catch(error=>console.warn('[PAI Word] service worker unavailable',error));
-  }
-  try{
-    if(!['ku_id-v1','ku_id-v2'].includes(state.srsSchema)&&Object.keys(state.records||{}).some(k=>k.includes('::')))
-      for(const src of ['lexicon-core-001.js','lexicon-core-002.js','lexicon-core-003.js'])await script(src);
-    await loadCore13000();
-    // Optional teaching-content enhancement: never block the verified core runtime.
-    try{await script('ku-content.js?v=v267i-kucontent-1');if(window.PAI_KU_CONTENT_READY)await window.PAI_KU_CONTENT_READY}catch(error){console.warn('[PAI Word] KU content enhancement skipped',error)}
-    for(const src of ['daily.js?v=v267i-daily-2','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','ku-content-ui.js?v=v267i-kucontent-2','product-v2.js?v=v267i-product-1','scene-counts.js?v=v267i-scene-counts-1','flow-v2.js?v=v267i-flow-2','scene-study.js?v=v267i-scene-study-2','swipe-v2.js?v=v267i-swipe-1'])await script(src);
-    state.view='scenes';state.scene=null;state.revealed=false;
-    const previewWord=new URLSearchParams(location.search).get('word');
-    const preview=window.PAI_CORE.byLemma.get(previewWord)?.[0];
-    if(preview){state.view='wordPreview';state.previewKU=Object.keys(preview.s)[0];state.revealed=true;}
-    render();app.removeAttribute('role');registerOfflineShell();
-  }catch(error){
-    console.error('[PAI Word load]',error);
-    app.replaceChildren();const message=document.createElement('p');message.textContent='词库加载失败：'+error.message;
-    const retry=document.createElement('button');retry.textContent='重新加载';retry.onclick=()=>location.reload();app.append(message,retry);
-  }
+ const app=document.getElementById('app');
+ function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v=learning-v3.1';el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败'));document.body.appendChild(el)})}
+ try{
+  await loadLearningCatalog();
+  await script('learning-runtime.js');
+  state.view='scenes';state.revealed=false;render();app.removeAttribute('role');
+  const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
+  if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').then(()=>{window.PAI_LOCAL_LEXICON.shellReady=true}).catch(()=>{});
+ }catch(e){app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();

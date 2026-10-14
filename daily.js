@@ -1,7 +1,7 @@
 // Daily policy V2: newPerDay means NEW WORDS. Extra KUs are scheduled as a separate reinforcement budget.
 (function(){
   const oldSave=save;
-  const ASSIGNMENT_POLICY='rank-first-words+reinforcement-v2';
+  const ASSIGNMENT_POLICY='selected-scene-words-v3';
   const REINFORCEMENT_RATIO=.30;
   function dayKey(){
     const d=new Date();
@@ -28,7 +28,7 @@
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
       if(wordIntroduced(w))continue;
-      const u=primaryUnit(w);if(u)picked.push(u);
+      const u=primaryUnit(w);if(u && u.s.scene===(state.selectedScene||'daily'))picked.push(u);
     }
     return picked;
   }
@@ -41,6 +41,7 @@
       const primary=primaryKey(w);
       for(const [k] of Object.entries(w.s||{})){
         if(k===primary||state.records[k])continue;
+        if(w.s[k].scene!==(state.selectedScene||'daily')||w.s[k].kuType!=='sense')continue;
         const u=findUnitByKey(k);if(u)candidates.push(u);
       }
     }
@@ -62,7 +63,7 @@
     const newWords=pickNewWords(remainingWords),reinforcement=pickReinforcement(remainingReinforcement);
     newWords.forEach(u=>addAssigned(assigned,u));reinforcement.forEach(u=>addAssigned(assigned,u));
     state.daily={
-      date:dayKey(),assigned,quota:state.newPerDay,wordQuota:state.newPerDay,reinforcementQuota:reinforcementQuota(),
+      date:dayKey(),scene:state.selectedScene||'daily',assigned,quota:state.newPerDay,wordQuota:state.newPerDay,reinforcementQuota:reinforcementQuota(),
       newWordKeys:newWords.map(u=>unitKey(u.w,u.sid)),reinforcementKeys:reinforcement.map(u=>unitKey(u.w,u.sid)),
       lexiconLimit:scopeLimit(),policy:ASSIGNMENT_POLICY
     };
@@ -70,7 +71,7 @@
   }
   function ensureDaily(){
     ensureProgress();const d=state.daily;
-    if(!d||d.date!==dayKey()||d.wordQuota!==state.newPerDay||d.reinforcementQuota!==reinforcementQuota()||d.lexiconLimit!==scopeLimit()||d.policy!==ASSIGNMENT_POLICY||!d.assigned)return buildAssignments();
+    if(!d||d.date!==dayKey()||d.wordQuota!==state.newPerDay||d.reinforcementQuota!==reinforcementQuota()||d.lexiconLimit!==scopeLimit()||d.policy!==ASSIGNMENT_POLICY||!d.assigned||d.scene!==(state.selectedScene||'daily'))return buildAssignments();
     for(const scene of Object.keys(SCENES))d.assigned[scene]=d.assigned[scene]||[];
     d.newWordKeys=Array.isArray(d.newWordKeys)?d.newWordKeys:[];d.reinforcementKeys=Array.isArray(d.reinforcementKeys)?d.reinforcementKeys:[];
     return d;
@@ -87,7 +88,8 @@
   window.markDailyNewComplete=function(k){
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
-    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    const u=findUnitByKey(k);
+    if(u&&primaryKey(u.w)===k&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
@@ -107,3 +109,4 @@
   window.dailyPolicyQA=function(){ensureDaily();return {policy:ASSIGNMENT_POLICY,newWordQuota:state.daily.wordQuota,reinforcementQuota:state.daily.reinforcementQuota,newWords:state.daily.newWordKeys.length,reinforcement:state.daily.reinforcementKeys.length,totalFresh:Object.values(state.daily.assigned).flat().length}};
   // Intentionally lazy: product-v2 repairs V26.7I scene metadata before the first assignment is generated.
 })();
+
