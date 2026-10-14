@@ -23,7 +23,12 @@
  function tap(){
   if(state.view!=='learning'||!currentUnit()||document.hidden)return;
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
-  else if(phase==='answer'){for(const t of timers)clearTimeout(t);timers.clear();generation++;grade='again';phase='repeat';repeated=0;const k=currentUnit().k;if(!state.records[k])markDailyNewComplete(k);state.records[k]={...(state.records[k]||{}),lastKnown:false,lastGrade:'again',learningPending:true,due:Date.now()};save();speakRepeated(generation)}
+  else if(phase==='answer'){
+   for(const t of timers)clearTimeout(t);timers.clear();generation++;grade='again';phase='repeat';repeated=0;
+   // Do not partially mutate SRS/daily state here. The rating is committed once, through rateLearning(),
+   // after the final repetition. If navigation/backgrounding cancels the repetition, no half-commit remains.
+   speakRepeated(generation);
+  }
  }
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value==='')return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)render()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();render()};
