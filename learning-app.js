@@ -310,7 +310,7 @@
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
-  if(saved){const parsed=JSON.parse(saved);if(parsed.schemaVersion===1&&parsed.scenes?.length===312)sceneCache=parsed}
+  if(saved){const parsed=JSON.parse(saved);if(parsed.schemaVersion===1&&parsed.scenes?.length===312&&new Set(parsed.scenes.map(x=>x.id)).size===312&&parsed.scenes.every(x=>Array.isArray(x.keys)&&x.keys.every(k=>byKey(k))))sceneCache=parsed}
  }catch(_){}
  const sceneCacheRows=new Map((sceneCache?.scenes||[]).map(x=>[x.id,x]));
  const saveSceneCache=()=>{
