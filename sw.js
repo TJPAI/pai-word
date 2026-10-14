@@ -1,4 +1,4 @@
-const CACHE='pai-word-shell-v1';
+const CACHE='pai-word-shell-v2';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','./mobile.css','./ux-fix.css','./product-v2.css',
   './mobile.js','./core-loader.js','./core-bootstrap.js','./daily.js','./ipa-accent.js','./app-runtime.js','./product-v2.js'
@@ -12,7 +12,7 @@ self.addEventListener('activate',event=>{
 self.addEventListener('fetch',event=>{
   if(event.request.method!=='GET')return;
   const url=new URL(event.request.url);
-  if(url.origin!==self.location.origin||url.pathname.includes('/data/core13000-v25.5/'))return;
+  if(url.origin!==self.location.origin||url.pathname.includes('/data/core13000-'))return;
   event.respondWith((async()=>{
     try{
       const fresh=await fetch(event.request);
