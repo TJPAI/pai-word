@@ -222,7 +222,10 @@
     '权衡利弊':['利弊','权衡','取舍'],
     '批判与质疑':['质疑','批判','反驳']
    };
-   const matchTerms=new Map(entries.map(e=>[e.id,[e.name,...(explicitTaskTerms[e.name]||[])].filter(x=>x.length>=2)]));
+   const rulesResponse=await fetch('data/scene-dimension-rules-v1.json');
+   if(!rulesResponse.ok)throw Error('dimension rules HTTP '+rulesResponse.status);
+   const semanticRules=(await rulesResponse.json()).rules||{};
+   const matchTerms=new Map(entries.map(e=>[e.id,[...new Set([e.name,...(semanticRules[e.name]||[]),...(explicitTaskTerms[e.name]||[])])].filter(x=>x.length>=2)]));
    // Only explicit full-label gloss matches are admitted. Each match records
    // the source field, never an invented dictionary verification status.
    const reverse=new Map();
@@ -306,7 +309,7 @@
  };
  loadAdditionalDimensions();
  let proposedCoverage=null;
- const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v49';
+ const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v51';
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
