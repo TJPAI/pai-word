@@ -20,7 +20,7 @@
     return p;
   }
   function primaryKey(w){return Object.keys(w.s||{})[0]||null}
-  function wordIntroduced(w){const k=primaryKey(w);return !!(k&&state.records[k])}
+  function wordIntroduced(w){return Object.keys(w.s||{}).some(k=>state.records[k])}
   function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
     if(limit<=0)return[];
@@ -28,7 +28,7 @@
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
       if(wordIntroduced(w))continue;
-      const u=primaryUnit(w);if(u && u.s.scene===(state.selectedScene||'daily'))picked.push(u);
+      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily'));const u=k?findUnitByKey(k):null;if(u)picked.push(u);
     }
     return picked;
   }
@@ -89,7 +89,7 @@
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
     const u=findUnitByKey(k);
-    if(u&&primaryKey(u.w)===k&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    if(u&&!wordIntroduced(u.w)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
