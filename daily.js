@@ -19,7 +19,11 @@
     p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
     return p;
   }
-  function primaryKey(w){return Object.keys(w.s||{})[0]||null}
+  function primaryKey(w){
+    const entries=Object.entries(w.s||{});
+    const sense=entries.find(([,s])=>String(s?.kuType||'sense').toLowerCase()==='sense');
+    return sense?.[0]||entries[0]?.[0]||null;
+  }
   function wordIntroduced(w){const k=primaryKey(w);return !!(k&&state.records[k])}
   function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
