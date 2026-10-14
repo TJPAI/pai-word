@@ -575,6 +575,9 @@
    if(!ruleResponse.ok)throw Error('scene rules HTTP '+ruleResponse.status);
    const ruleDoc=await ruleResponse.json();
    const aliases=ruleDoc.aliases||{};
+   const ruleCoverage=rows.reduce((acc,row)=>{if((aliases[row.name]||[]).length)acc.withExpansion++;else acc.directOnly++;return acc},{totalThemes:rows.length,withExpansion:0,directOnly:0});
+   window.PAI_SCENE_RULE_COVERAGE=()=>({...ruleCoverage});
+
    const baseTopicByName=new Map(topics.map(t=>[t.name,t]));
    for(const w of core.words){
     const lemma=w.w.toLowerCase();
@@ -595,6 +598,11 @@
    for(const row of rows)proposedKeys.set(row.id,[...row.kuIds]);
    proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'candidate_unverified'}));
    window.PAI_PROPOSED_SCENE_COVERAGE=()=>proposedCoverage.map(x=>({...x}));
+   window.PAI_SCENE_COVERAGE_QA=()=>{
+    const total=proposedCoverage.length,nonempty=proposedCoverage.filter(x=>x.ku>0).length;
+    return {totalThemes:total,nonemptyThemes:nonempty,emptyThemes:total-nonempty,expandedRules:ruleCoverage.withExpansion,directOnly:ruleCoverage.directOnly,verification:'not_verified'};
+   };
+
    if(state.view==='scenes')render();
   }catch(e){window.PAI_PROPOSED_SCENE_ERROR=String(e)}
  }
