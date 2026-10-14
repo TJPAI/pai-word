@@ -1,7 +1,7 @@
 // V26.7I KU teaching-card UI + KU-specific recall cue.
 (function(){
   const base=window.answerHtml;if(typeof base!=='function')return;
-  const style=document.createElement('style');style.textContent='.ku-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}.ku-title{font-weight:700}.ku-rule{font-size:1.05rem;line-height:1.65}.ku-pattern{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.035);line-height:1.55}.ku-pattern .answer-label{margin-bottom:5px}.ku-context{margin-top:8px}.ku-context summary{cursor:pointer}.ku-front-prompt{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:10px;font-size:.92rem}.ku-front-prompt .ku-cue-title{font-weight:650}.ku-front-prompt .ku-cue-meta{opacity:.62;font-size:.86rem}';document.head.appendChild(style);
+  const style=document.createElement('style');style.textContent='.ku-head{display:flex;align-items:center;gap:8px;margin-bottom:12px}.ku-title{font-weight:700}.ku-rule{font-size:1.05rem;line-height:1.65}.ku-pattern{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(0,0,0,.035);line-height:1.55}.ku-pattern .answer-label{margin-bottom:5px}.ku-context{margin-top:8px}.ku-context summary{cursor:pointer}.ku-front-prompt{display:flex;align-items:center;justify-content:center;gap:7px;flex-wrap:wrap;margin-top:10px;font-size:.92rem}.ku-front-prompt .ku-cue-title{font-weight:650}';document.head.appendChild(style);
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   const labels={sense:'释义',grammar:'语法',collocation:'搭配',contrast:'辨析',pronunciation:'发音',usage:'用法',risk:'易错',morphology:'词形',polysemy:'多义',discourse:'语篇',pragmatics:'语用',degree:'程度',number:'数词',adverb:'副词',word_order:'语序'};
   window.answerHtml=function(u){
@@ -29,7 +29,7 @@
     const type=String(u.s?.kuType||'sense').toLowerCase(),label=labels[type]||'知识点';
     let title='',meta='';
     if(type==='sense'){
-      const scene=window.SCENES?.[u.s?.scene]||u.s?.scene||'';title='释义';meta=[u.s?.pos||u.w?.pos||'',scene].filter(Boolean).join(' · ');
+      const scene=(typeof SCENES!=='undefined'&&SCENES[u.s?.scene])||u.s?.scene||'';title='释义';meta=[u.s?.pos||u.w?.pos||'',scene].filter(Boolean).join(' · ');
     }else{
       title=u.s?.kuTitle||label;meta=label;
     }
