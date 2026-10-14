@@ -272,7 +272,7 @@
    for(const t of topics){
     const row=rowByName.get(t.name);
     if(!row||typeof t.words!=='string')continue;
-    for(const lemma of t.words.toLowerCase().split(/\\s+/).filter(Boolean)){
+    for(const lemma of t.words.toLowerCase().split(/\s+/).filter(Boolean)){
      if(!curatedByLemma.has(lemma))curatedByLemma.set(lemma,new Set());
      curatedByLemma.get(lemma).add(row);
     }
