@@ -26,6 +26,7 @@
   try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
  const foodTopicSets=[
+  {name:'鱼类',terms:['鱼类','鱼种','各种鱼','淡水鱼','海水鱼','fish species','types of fish'],words:'fish salmon tuna trout cod carp catfish bass perch pike eel herring mackerel sardine anchovy halibut flounder sole snapper grouper tilapia haddock pollock sturgeon swordfish marlin shark ray skate goldfish guppy koi minnow salmonella fishery aquatic freshwater saltwater fin gill scale spawn school shoal'},
   {name:'水果',terms:['水果','果园','买水果','fruit','fruits'],words:'fruit apple banana orange pear peach grape strawberry blueberry raspberry blackberry cherry pineapple mango watermelon melon lemon lime grapefruit kiwi coconut papaya plum apricot fig date pomegranate avocado lychee tangerine nectarine raisin berry citrus ripe juicy peel seed'},
   {name:'海鲜',terms:['海鲜','海产品','海鲜市场','seafood','shellfish'],words:'seafood fish shrimp prawn crab lobster oyster mussel clam scallop squid octopus salmon tuna cod sardine anchovy herring mackerel trout eel shellfish seaweed roe fillet shell fresh frozen grill steam boil fry catch'},
   {name:'肉类',terms:['肉类','肉店','meat'],words:'meat beef pork chicken lamb mutton turkey duck steak sausage bacon ham rib breast thigh roast grill fry butcher'},
@@ -47,9 +48,9 @@
  let topicInput='',topicFeedback='';
  window.setTopicInput=v=>{topicInput=String(v||'').slice(0,160)};
  const semanticGroups=[
-  {id:'food',aliases:['食品','食物','吃','饮食','food'],children:['水果','蔬菜与烹饪','海鲜','肉类','饮料','甜点与烘焙']},
-  {id:'market',aliases:['市场','买菜','采购','购物','market'],children:['水果','蔬菜与烹饪','海鲜','肉类','超市购物']},
-  {id:'cooking',aliases:['做饭','烹饪','晚餐','午餐','厨房','cook','dinner'],children:['蔬菜与烹饪','海鲜','肉类','水果']},
+  {id:'food',aliases:['食品','食物','吃','饮食','food'],children:['水果','蔬菜与烹饪','海鲜','鱼类','肉类','饮料','甜点与烘焙']},
+  {id:'market',aliases:['市场','买菜','采购','购物','market'],children:['水果','蔬菜与烹饪','海鲜','鱼类','肉类','超市购物']},
+  {id:'cooking',aliases:['做饭','烹饪','晚餐','午餐','厨房','cook','dinner'],children:['蔬菜与烹饪','海鲜','鱼类','肉类','水果']},
   {id:'restaurant',aliases:['餐厅','点餐','饭店','restaurant'],children:['餐厅点餐','海鲜','肉类','蔬菜与烹饪','饮料']}
  ];
  const topics=[...foodTopicSets,...topicSets];
@@ -65,6 +66,7 @@
  // A tag is inferred only when a meaning contains a precise category term.
  const glossRules=[
   {topic:'水果',patterns:['水果','果实','浆果','柑橘','苹果','香蕉','葡萄','桃子','梨子','芒果','草莓','樱桃','西瓜','菠萝']},
+  {topic:'鱼类',patterns:['鱼类','鱼种','淡水鱼','海水鱼','鲑鱼','鳕鱼','鲤鱼','鲶鱼','鲈鱼','鳗鱼','鲱鱼','鲭鱼','沙丁鱼','金枪鱼','鳟鱼','鲨鱼','比目鱼','鳃','鱼鳍']},
   {topic:'海鲜',patterns:['海鲜','贝类','甲壳类','虾','螃蟹','牡蛎','扇贝','贻贝','龙虾','鱿鱼','章鱼','鲑鱼','金枪鱼','沙丁鱼']},
   {topic:'蔬菜与烹饪',patterns:['蔬菜','绿叶菜','胡萝卜','卷心菜','菠菜','黄瓜','茄子','洋葱','烹饪','烹调']},
   {topic:'动物园',patterns:['动物园','野生动物','哺乳动物','长颈鹿','斑马','大象','狮子','老虎','猴子']},
@@ -93,6 +95,8 @@
   const q=input.trim().toLowerCase(),scores=new Map();
   for(const t of topics){const hit=t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0);if(hit)scores.set(t.name,hit*12)}
   for(const group of semanticGroups)if(group.aliases.some(a=>q.includes(a.toLowerCase())))for(const child of group.children)scores.set(child,Math.max(scores.get(child)||0,20));
+  if(/鱼类|鱼种|淡水鱼|海水鱼|各种鱼|fish species|types of fish/.test(q))scores.set('鱼类',Math.max(scores.get('鱼类')||0,120));
+  if(/海鲜|海产品|seafood/.test(q))scores.set('鱼类',Math.max(scores.get('鱼类')||0,30));
   return [...scores].sort((a,b)=>b[1]-a[1]).map(([name,weight])=>({topic:topicByName.get(name),weight}));
  }
  function topicCandidates(q,matches){
