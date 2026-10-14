@@ -40,7 +40,35 @@
  let topicInput='',topicFeedback='';
  window.setTopicInput=v=>{topicInput=String(v||'').slice(0,160)};
  function topicMatch(input){const q=input.trim().toLowerCase();if(!q)return null;const hits=topicSets.map(t=>({t,score:t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0)})).sort((a,b)=>b.score-a.score);return hits[0].score?hits[0].t:null}
- window.startTopicStudy=()=>{const q=topicInput.trim();if(!q){topicFeedback='请输入场景或一句话。';render();return}const t=topicMatch(q);if(!t){topicFeedback='暂未识别这个场景，请尝试更具体的词语，例如“动物园”或“机场登机”。';render();return}const words=t.words.split(' '),ranks=new Map(words.map((w,i)=>[w,i]));const candidates=core.words.filter(w=>ranks.has(w.w.toLowerCase())).sort((a,b)=>ranks.get(a.w.toLowerCase())-ranks.get(b.w.toLowerCase()));const keys=candidates.sort((a,b)=>Number(!!state.records[a.s[Object.keys(a.s)[0]]?.ku_id])-Number(!!state.records[b.s[Object.keys(b.s)[0]]?.ku_id])||ranks.get(a.w.toLowerCase())-ranks.get(b.w.toLowerCase())).map(w=>Object.values(w.s).find(s=>s.kuType==='sense')?.ku_id||Object.keys(w.s)[0]).filter(Boolean);if(!keys.length){topicFeedback='词库中暂未找到这个场景的可用单词。';render();return}topicFeedback='';start(keys.slice(0,20),t.name+' · 场景学习','topic')};
+ function topicCandidates(q,t){
+  const terms=t?t.words.split(' '):[];
+  const order=new Map(terms.map((w,i)=>[w,i]));
+  const normalized=q.trim().toLowerCase();
+  const clean=normalized.replace(/[，。！？、；：,.!?;:()（）]/g,' ').replace(/^(我想|我想要|我要|我需要|请|帮我|学习|背|关于|有关|一些|去|在|的|英语|单词|词汇|场景)+/g,'').replace(/(相关|场景|单词|词汇|英语|怎么说|有哪些|的)+$/g,'').trim();
+  const tokens=[clean,normalized].filter((x,i,a)=>x.length>=2&&a.indexOf(x)===i);
+  const scored=[];
+  for(const w of core.words){
+   const exact=order.has(w.w.toLowerCase());
+   let best=null;
+   for(const s of Object.values(w.s)){
+    if(s.kuType!=='sense')continue;
+    const gloss=String(s.m||'').toLowerCase(),title=String(s.kuTitle||'').toLowerCase();
+    const semantic=t&&t.terms.some(x=>x.length>=2&&(gloss.includes(x.toLowerCase())||title.includes(x.toLowerCase())));
+    const queryHit=tokens.some(x=>gloss.includes(x)||title.includes(x));
+    if(!exact&&!queryHit&&!semantic)continue;
+    const score=(exact?1000-order.get(w.w.toLowerCase())*8:0)+(queryHit?220:0)+(semantic?45:0)-w.rank/5000;
+    if(!best||score>best.score)best={key:s.ku_id,score};
+   }
+   if(best)scored.push({...best,rank:w.rank,known:!!state.records[best.key]});
+  }
+  return scored.sort((a,b)=>Number(a.known)-Number(b.known)||b.score-a.score||a.rank-b.rank).slice(0,20).map(x=>x.key);
+ }
+ window.startTopicStudy=()=>{
+  const q=topicInput.trim();if(!q){topicFeedback='请输入场景或一句话。';render();return}
+  const t=topicMatch(q),keys=topicCandidates(q,t);
+  if(!keys.length){topicFeedback='未找到足够匹配的词义。请尝试更具体的主题，例如“蔬菜”或“动物园”。';render();return}
+  topicFeedback='';start(keys,(t?.name||q.slice(0,24))+' · 场景学习','topic')
+ };
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
  window.openFreeReview=()=>start(Object.keys(state.records).filter(byKey),'自由复习','free');
