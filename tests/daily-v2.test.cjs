@@ -3,7 +3,8 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
-const source=fs.readFileSync(path.resolve(__dirname,'..','daily.js'),'utf8');
+const ROOT=path.resolve(__dirname,'..');
+const source=fs.readFileSync(path.join(ROOT,'daily.js'),'utf8');
 function makeContext({words=60,newPerDay=20,records={}}={}){
   const byKU=new Map(),list=[];
   for(let rank=1;rank<=words;rank++){
@@ -45,4 +46,10 @@ test('setting 50 means 50 new words with a separate 15-KU reinforcement budget',
   const records=Object.fromEntries(Array.from({length:20},(_,i)=>['p'+(i+1),{due:Infinity}]));
   const c=makeContext({words:100,newPerDay:50,records});const qa=c.dailyPolicyQA();
   assert.equal(qa.newWordQuota,50);assert.equal(qa.newWords,50);assert.equal(qa.reinforcementQuota,15);assert.equal(qa.reinforcement,15);
+});
+test('cache busts activate daily V2 on Safari/CDN clients',()=>{
+  const bootstrap=fs.readFileSync(path.join(ROOT,'core-bootstrap.js'),'utf8');
+  const index=fs.readFileSync(path.join(ROOT,'index.html'),'utf8');
+  assert.match(bootstrap,/daily\.js\?v=v267i-daily-2/);
+  assert.match(index,/core-bootstrap\.js\?v=v267i-3/);
 });
