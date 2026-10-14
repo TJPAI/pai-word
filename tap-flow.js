@@ -10,6 +10,7 @@
  function ready(k,preserveAudio=false){clear(preserveAudio);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function answer({key,mode,score,advance}){clear();visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
+ function correct(score){if(!['again','hard','good'].includes(score)||entryMode!=='tap'||!['answer','answer-paused','example'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;phase='answer';const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
  function browseReady(k,advance){answer({key:k,mode:'swipe',score:null,advance})}
  function finish(g){if(!valid(g)||phase==='idle')return;phase='committing';const fn=onAdvance;onAdvance=null;fn?.(grade)}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
@@ -29,7 +30,7 @@
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" aria-label="'+labels[k]+'" min="0" max="60" step="0.1" value="'+c[k]+'" oninput="setTapTiming(\''+k+'\',this.value,false)" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
  function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='answer')return '轻点空白处重读 · 自动进入下一词题目';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '正在朗读例句 · 点击空白处可重读单词';if(phase==='answer-paused')return '点击空白处重读单词后进入下一题';return ''}
- window.PAI_TAP_FLOW={ready,answer,browseReady,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ window.PAI_TAP_FLOW={ready,answer,browseReady,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
