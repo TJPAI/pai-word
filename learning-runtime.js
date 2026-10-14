@@ -171,17 +171,20 @@
   function refreshVoices(){if('speechSynthesis' in window)speechVoices=speechSynthesis.getVoices()||[]}
   refreshVoices();
   if('speechSynthesis' in window&&speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',refreshVoices);
-  window.speak=function(text,rate=.84){
-    if(!('speechSynthesis' in window)||!text)return;
-    const synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';
-    refreshVoices();
-    const exact=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase());
-    const regional=speechVoices.find(v=>String(v.lang).toLowerCase().startsWith(state.voiceAccent==='gb'?'en-gb':'en-us'));
-    const fallback=speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'));
-    synth.cancel();
-    const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=rate;u.voice=exact||regional||fallback||null;
-    window.__paiUtterance=u;if(synth.paused)synth.resume();synth.speak(u);
+  let audioGeneration=0;
+  window.PAI_AUDIO={
+    stop(){audioGeneration++;if('speechSynthesis'in window)speechSynthesis.cancel()},
+    play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
+      this.stop();const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
+      const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
+      const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=rate;u.voice=voice;window.__paiUtterance=u;
+      let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;onDone?.()};
+      u.onend=done;u.onerror=done;
+      if(synth.paused)synth.resume();
+      try{synth.speak(u)}catch(_){done()}
+    }
   };
+  window.speak=(text,rate=.84)=>window.PAI_AUDIO.play(text,rate);
   function speakCurrent(delay=60){const u=currentVisibleUnit();if(u)setTimeout(()=>speak(u.w.w),delay)}
 
   // Synonym comparison parsing for the compact per-word format.
@@ -271,7 +274,7 @@
     document.getElementById('app').innerHTML=html;requestAnimationFrame(fitAnswer);
   };
 
-  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&['repeat','browse-repeat'].includes(window.PAI_TAP_FLOW?.snapshot().phase)){if(!btn.hasAttribute('data-example-audio'))return;window.PAI_TAP_FLOW.interruptRepeatForExample()}speak(text,btn.hasAttribute('data-word-audio')?.84:.9)}},true);
+  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&window.PAI_TAP_FLOW?.snapshot().phase==='repeating'){if(!btn.hasAttribute('data-example-audio'))return;window.PAI_TAP_FLOW.interruptRepeatForExample()}window.PAI_AUDIO.play(text,btn.hasAttribute('data-word-audio')?.84:.9,()=>{if(btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.exampleFinished()})}},true);
   let sx=0,sy=0,st=0;
   document.addEventListener('touchstart',e=>{if(!e.touches||e.touches.length!==1)return;const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now()},{passive:true});
   document.addEventListener('touchend',e=>{if(!['study','review'].includes(state.view))return;if(!e.changedTouches||e.changedTouches.length!==1||e.target.closest('button,select,a'))return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;if(dt>700||Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.25)return;e.preventDefault();window.__paiSwipeUntil=Date.now()+350;swipeWord(dx<0?1:-1)},{passive:false});
@@ -324,82 +327,45 @@
 
 ;
 // SOURCE: tap-flow.js
-// Experimental timing policy; response speed is not a calibrated memory score.
+// Single owner of QUESTION/ANSWER interaction, timing and navigation.
 (function(){
  const defaults={goodWithin:1,hardWithin:3,goodShow:1,hardShow:3,againShow:15,repeatCount:5,repeatGap:1};
  const labels={goodWithin:'想起了：点击阈值（秒）',hardWithin:'模糊：点击阈值（秒）',goodShow:'想起了：答案展示（秒）',hardShow:'模糊：答案展示（秒）',againShow:'没想起：答案展示（秒）',repeatCount:'重读次数',repeatGap:'每遍读完后的间隔（秒）'};
- function config(){const c={...defaults,...state.tapTiming};for(const k of Object.keys(defaults)){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.min(k==='repeatCount'?20:60,Math.max(k==='repeatGap'?0:.1,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c}
- let phase='idle',generation=0,timers=new Set(),began=0,responseMs=null,grade=null,repeated=0,speechError=false,visibleKey=null;
- function later(fn,ms){const id=setTimeout(()=>{timers.delete(id);fn()},ms);timers.add(id);return id}
- function cancel(){browseNext=null;generation++;for(const t of timers)clearTimeout(t);timers.clear();phase='idle';visibleKey=null;if('speechSynthesis'in window)speechSynthesis.cancel()}
- function ready(k){cancel();visibleKey=k;began=Date.now();responseMs=null;grade=null;repeated=0;speechError=false;phase='question'}
+ const config=()=>{const c={...defaults,...state.tapTiming};for(const k in defaults){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.max(k==='repeatGap'?0:.1,Math.min(k==='repeatCount'?20:60,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c};
+ let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null;
+ function clear(){generation++;if(timer!==null)clearTimeout(timer);timer=null;window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
+ function later(fn,ms){timer=setTimeout(()=>{timer=null;fn()},ms)}
+ function valid(g){return g===generation&&state.view==='learning'&&!document.hidden&&window.getVisibleLearningUnit?.()?.k===visibleKey}
+ function ready(k){clear();visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
- function valid(g){return generation===g&&state.view==='learning'&&window.currentUnit?.()?.k===visibleKey}
- let browseNext=null;
- function browseReady(k,next){cancel();visibleKey=k;browseNext=next;phase='browse-answer';grade=null;repeated=0;const g=generation;later(()=>{if(g===generation&&phase==='browse-answer')browseNext?.()},config().againShow*1000)}
- function finish(g){if(!valid(g))return;phase='committing';window.rateLearning(grade)}
- function render(){if(typeof window.render==='function')window.render()}
- function speakRepeated(g){
-  if(!valid(g))return;const c=config();repeated++;render();let done=false;
-  const complete=()=>{if(done)return;done=true;if(!valid(g))return;if(repeated>=c.repeatCount)later(()=>finish(g),c.repeatGap*1000);else later(()=>speakRepeated(g),c.repeatGap*1000)};
-  if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){speechError=true;render();later(complete,1000);return}
-  const synth=speechSynthesis;synth.cancel();const u=new SpeechSynthesisUtterance(currentUnit().w.w);u.lang='en-US';u.rate=.84;u.voice=(synth.getVoices()||[]).find(v=>String(v.lang).toLowerCase()==='en-us')||null;
-  u.onend=complete;u.onerror=()=>{speechError=true;render();complete()};window.__paiUtterance=u;
-  try{if(synth.paused)synth.resume();synth.speak(u)}catch(_){speechError=true;render();complete()}
-  later(()=>{if(!done&&valid(g)){speechError=true;synth.cancel();complete()}},10000);
+ function answer({key,mode,score,advance}){clear();visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
+ function browseReady(k,advance){answer({key:k,mode:'swipe',score:null,advance})}
+ function finish(g){if(!valid(g)||phase==='idle')return;phase='committing';const fn=onAdvance;onAdvance=null;fn?.(grade)}
+ function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
+  repeated++;window.render?.();const c=config();
+  const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>finish(g),c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
+  if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
- function interruptRepeatForExample(){
-  if(phase==='browse-repeat'){const next=browseNext;cancel();phase='browse-example';browseNext=next;return true}
-  if(phase!=='repeat')return false;
-  generation++;for(const timer of timers)clearTimeout(timer);timers.clear();
-  phase='committing';
-  // Commit the overridden 'again' exactly once before the example begins speaking.
-  // Do not cancel speech here; the example player owns the speech interruption.
-  window.rateLearning(grade);
-  return true;
+ function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.rateLearning?.(g)});window.render?.()}
+  else if(phase==='answer'){if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';grade='again';repeated=0;repeat(generation)}
  }
- function tap(){
-  if(document.querySelector('.learning-screen.previous-answer')){
-   if(phase!=='browse-answer')return;
-   const u=window.getBrowsedUnit?.();if(!u)return;
-   for(const timer of timers)clearTimeout(timer);timers.clear();generation++;
-   phase='browse-repeat';const g=generation;let count=0,done=false;
-   const next=()=>{if(done||g!==generation||state.view!=='learning'||!document.querySelector('.learning-screen.previous-answer'))return;
-    if(count>=config().repeatCount){done=true;later(()=>{if(g===generation)browseNext?.()},config().repeatGap*1000);return}
-    count++;if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){later(next,1000);return}
-    const utterance=new SpeechSynthesisUtterance(u.w.w);utterance.lang='en-US';utterance.rate=.84;
-    let ended=false;const completed=()=>{if(ended)return;ended=true;later(next,config().repeatGap*1000)};
-    utterance.onend=completed;utterance.onerror=completed;speechSynthesis.cancel();speechSynthesis.speak(utterance);later(completed,10000)
-   };next();return;
-  }
-  if(state.view!=='learning'||!currentUnit()||document.hidden)return;
-  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
-  else if(phase==='answer'){
-   for(const t of timers)clearTimeout(t);timers.clear();generation++;grade='again';phase='repeat';repeated=0;
-   // Do not partially mutate SRS/daily state here. The rating is committed once, through rateLearning(),
-   // after the final repetition. If navigation/backgrounding cancels the repetition, no half-commit remains.
-   speakRepeated(generation);
-  }
- }
- window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value==='')return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)render()};
- window.resetTapTiming=()=>{state.tapTiming={...defaults};save();render()};
- function settings(){const c=config();return `<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题面出现后开始计时。答案页点空白会记为没想起，并重读后切词。</p>${Object.keys(defaults).map(k=>`<label class="setting-row"><span>${labels[k]}</span><input type="number" aria-label="${labels[k]}" min="${k==='repeatGap'?0:k==='repeatCount'?1:.1}" max="${k==='repeatCount'?20:60}" step="${k==='repeatCount'?1:.1}" value="${c[k]}" oninput="setTapTiming('${k}',this.value,false)" onchange="setTapTiming('${k}',this.value)"></label>`).join('')}<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>`}
- function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='browse-answer')return `滑动浏览 · ${config().againShow}秒后自动下一词；点空白重读`;
- if(phase==='browse-repeat')return `重读中 · 点击例句可中断`;
- if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
- window.PAI_TAP_FLOW={ready,browseReady,cancel,tap,interruptRepeatForExample,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
- document.addEventListener('click',e=>{
-  if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
-  if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
-  if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap();
- },true);
+ function interruptRepeatForExample(){if(phase!=='repeating')return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';return true}
+ function exampleFinished(){if(phase!=='example')return;const g=generation;later(()=>finish(g),0)}
+ function cancel(){clear()}
+ window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value==='')return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
+ window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
+ function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" aria-label="'+labels[k]+'" min="0" max="60" step="0.1" value="'+c[k]+'" oninput="setTapTiming(\''+k+'\',this.value,false)" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
+ function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='answer')return '轻点空白处重读 · 自动进入下一词题目';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '正在朗读例句';return ''}
+ window.PAI_TAP_FLOW={ready,answer,browseReady,cancel,tap,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
- let touch=null;document.addEventListener('touchstart',e=>{if(e.touches?.length===1)touch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+600},{passive:true});
- let swipeStart=null;
- document.addEventListener('touchstart',e=>{if(state.view==='learning'&&e.touches?.length===1)swipeStart={x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()};else swipeStart=null},{passive:true});
- document.addEventListener('touchend',e=>{if(!swipeStart||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-swipeStart.x,y=e.changedTouches[0].clientY-swipeStart.y,dt=Date.now()-swipeStart.time;swipeStart=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;window.__paiTapSuppressUntil=Date.now()+700;window.browseAnswer?.(x>0?-1:1)},{passive:true});
- document.addEventListener('visibilitychange',()=>{if(state.view!=='learning'||!currentUnit()||document.querySelector('.learning-screen.previous-answer'))return;if(document.hidden){cancel();state.revealed=false}else{ready(currentUnit().k);render()}});
+ let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
+ document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+700},{passive:true});
+ document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;window.__paiTapSuppressUntil=Date.now()+700;window.browseAnswer?.(x>0?-1:1)},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(state.view!=='learning')return;if(document.hidden){clear();state.revealed=false}else window.restartLearningQuestion?.()});
 })();
+
 ;
 // SOURCE: learning-app.js
 // One owner for today's study, scene batches, reviews and in-session relearning.
@@ -434,6 +400,8 @@
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
  window.getBrowsedUnit=()=>browsedUnit;
+ window.getVisibleLearningUnit=()=>browsedUnit||unit();
+ window.restartLearningQuestion=()=>{if(active)showCurrent()};
  window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;state.revealed=false;showCurrent();return true};
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
