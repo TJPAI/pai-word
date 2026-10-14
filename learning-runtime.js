@@ -274,7 +274,7 @@
     document.getElementById('app').innerHTML=html;requestAnimationFrame(fitAnswer);
   };
 
-  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&window.PAI_TAP_FLOW?.snapshot().phase==='repeating'){if(!btn.hasAttribute('data-example-audio'))return;window.PAI_TAP_FLOW.interruptRepeatForExample()}window.PAI_AUDIO.play(text,btn.hasAttribute('data-word-audio')?.84:.9,()=>{if(btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.exampleFinished()})}},true);
+  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.beginExample();window.PAI_AUDIO.play(text,btn.hasAttribute('data-word-audio')?.84:.9,()=>{if(btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.exampleFinished()})}},true);
   let sx=0,sy=0,st=0;
   document.addEventListener('touchstart',e=>{if(!e.touches||e.touches.length!==1)return;const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now()},{passive:true});
   document.addEventListener('touchend',e=>{if(!['study','review'].includes(state.view))return;if(!e.changedTouches||e.changedTouches.length!==1||e.target.closest('button,select,a'))return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;if(dt>700||Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.25)return;e.preventDefault();window.__paiSwipeUntil=Date.now()+350;swipeWord(dx<0?1:-1)},{passive:false});
@@ -348,16 +348,17 @@
  }
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.rateLearning?.(g)});window.render?.()}
-  else if(phase==='answer'){if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';grade='again';repeated=0;repeat(generation)}
+  else if(phase==='answer'||phase==='answer-paused'||phase==='example'){window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';grade='again';repeated=0;repeat(generation)}
  }
- function interruptRepeatForExample(){if(phase!=='repeating')return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';return true}
- function exampleFinished(){if(phase!=='example')return;const g=generation;later(()=>finish(g),0)}
+ function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
+ function interruptRepeatForExample(){return beginExample()}
+ function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
  function cancel(){clear()}
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value==='')return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" aria-label="'+labels[k]+'" min="0" max="60" step="0.1" value="'+c[k]+'" oninput="setTapTiming(\''+k+'\',this.value,false)" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
- function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='answer')return '轻点空白处重读 · 自动进入下一词题目';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '正在朗读例句';return ''}
- window.PAI_TAP_FLOW={ready,answer,browseReady,cancel,tap,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='answer')return '轻点空白处重读 · 自动进入下一词题目';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '正在朗读例句 · 点击空白处可重读单词';if(phase==='answer-paused')return '点击空白处重读单词后进入下一题';return ''}
+ window.PAI_TAP_FLOW={ready,answer,browseReady,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
