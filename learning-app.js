@@ -373,6 +373,7 @@
    }
    saveSceneCache();
    proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'candidate_unverified'}));
+   saveSceneCache();
    window.PAI_PROPOSED_SCENE_COVERAGE=()=>proposedCoverage.map(x=>({...x}));
    window.PAI_SCENE_COVERAGE_QA=()=>{
     const total=proposedCoverage.length,nonempty=proposedCoverage.filter(x=>x.ku>0).length;
