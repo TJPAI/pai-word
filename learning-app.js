@@ -30,6 +30,7 @@
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
  window.getBrowsedUnit=()=>browsedUnit;
+ window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;state.revealed=false;showCurrent();return true};
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const s=state.learningSession;
@@ -46,7 +47,7 @@
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
    browseIndex=next;browsedUnit=u;state.revealed=true;
    render();
-   PAI_TAP_FLOW.browseReady(u.k,()=>window.browseAnswer(1));render();speak(u.w.w);return true;
+   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer());render();speak(u.w.w);return true;
   }catch(_){return false}
  };
  window.rateLearning=grade=>{
