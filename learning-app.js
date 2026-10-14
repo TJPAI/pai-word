@@ -46,6 +46,7 @@
   {name:'体育与运动',terms:['体育','运动','锻炼','sport','exercise'],words:'sport exercise training athlete competition stadium team coach race swimming running sailing'}
  ];
  let topicInput='',topicFeedback='';
+ const TOPIC_BATCH_SIZE=20;
  window.setTopicInput=v=>{topicInput=String(v||'').slice(0,160)};
  const semanticGroups=[
   {id:'food',aliases:['食品','食物','吃','饮食','food'],children:['水果','蔬菜与烹饪','海鲜','鱼类','肉类','饮料','甜点与烘焙']},
@@ -177,13 +178,21 @@
    }
    if(best)scored.push({...best,rank:w.rank,known:!!state.records[best.key]});
   }
-  return scored.sort((a,b)=>Number(a.known)-Number(b.known)||b.score-a.score||a.rank-b.rank).slice(0,20).map(x=>x.key);
+  return scored.sort((a,b)=>Number(a.known)-Number(b.known)||b.score-a.score||a.rank-b.rank).map(x=>x.key);
  }
+ window.continueTopicStudy=()=>{
+  const q=state.topicStudyQuery;if(!q)return;
+  const keys=topicCandidates(q,topicMatch(q));
+  const unseen=keys.filter(k=>!state.records[k]);
+  if(!unseen.length){topicFeedback='本场景已没有未接触的 KU；已学习内容将按复习计划出现。';active=false;state.view='scenes';render();return}
+  start(unseen.slice(0,TOPIC_BATCH_SIZE),(state.topicStudyTitle||q)+' · 继续学习','topic')
+ };
+ window.PAI_TOPIC_PREVIEW=q=>{const keys=topicCandidates(q,topicMatch(q));return {totalKU:keys.length,unseenKU:keys.filter(k=>!state.records[k]).length,batchSize:TOPIC_BATCH_SIZE}};
  window.startTopicStudy=()=>{
   const q=topicInput.trim();if(!q){topicFeedback='请输入场景或一句话。';render();return}
   const matches=topicMatch(q),keys=topicCandidates(q,matches);
   if(!keys.length){topicFeedback='未找到足够匹配的词义。请尝试更具体的主题，例如“蔬菜”或“动物园”。';render();return}
-  topicFeedback='';start(keys,(matches[0]?.topic.name||q.slice(0,24))+' · 场景学习','topic')
+  topicFeedback='';state.topicStudyQuery=q;state.topicStudyTitle=matches[0]?.topic.name||q.slice(0,24);state.topicStudyTotal=keys.length;persist();start(keys.slice(0,TOPIC_BATCH_SIZE),state.topicStudyTitle+' · 场景学习','topic')
  };
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
@@ -237,7 +246,7 @@
  }
  function learning(){
   const s=state.learningSession,u=browsedUnit||unit();if(!s)return home();
-  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${s.completed.length} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
+  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${s.completed.length} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${s.kind==='topic'?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="continueTopicStudy()">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
   const progress=`已完成 ${s.completed.length} / ${s.total}`;
   if(loading||error)return `<div class="screen study-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
