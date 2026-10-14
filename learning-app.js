@@ -16,7 +16,7 @@
  function current(){return active?unit():null}window.currentUnit=current;
  window.currentQueue=()=>active?(state.learningSession?.queue||[]).map(byKey).filter(Boolean):[];
  function statusText(){const s=window.PAI_LOCAL_LEXICON;return s.offlineReady?'全部词包已缓存':`已缓存 ${s.loadedChunks} / ${s.totalChunks} 个词包；学习时按需下载`}
- async function showCurrent(auto=true){browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k);render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+ async function showCurrent(auto=true){browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k);render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent()}
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
@@ -28,7 +28,8 @@
  window.openPanel=kind=>{previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent(false);
- let browseIndex=null,browseToken=0;
+ let browseIndex=null,browseToken=0,browsedUnit=null;
+ window.getBrowsedUnit=()=>browsedUnit;
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const s=state.learningSession;
@@ -43,7 +44,7 @@
   const u=unique[next],id=++browseToken;
   PAI_TAP_FLOW.cancel();++token;
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
-   browseIndex=next;state.revealed=true;
+   browseIndex=next;browsedUnit=u;state.revealed=true;
    const host=document.querySelector('.learning-screen'),body=host?.querySelector('.study-body');
    if(!host||!body)return false;
    body.innerHTML=`<div class="word-hero"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div></div>${answerHtml(u)}`;
