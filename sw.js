@@ -1,4 +1,4 @@
-const CACHE='pai-word-shell-v3';
+const CACHE='pai-word-shell-v4';
 const SHELL=[
   './','./index.html','./manifest.webmanifest','./mobile.css','./ux-fix.css','./product-v2.css',
   './mobile.js','./core-loader.js','./core-bootstrap.js','./daily.js','./ipa-accent.js','./app-runtime.js',
