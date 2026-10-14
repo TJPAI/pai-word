@@ -1,0 +1,43 @@
+{
+  "schema": "pai-word-overlay-manifest-v1",
+  "base_release": "Core-13000 V25.5",
+  "release": "Core-13000 V26.7I KU overlay",
+  "word_count": 13000,
+  "ku_count": 16616,
+  "encoding": "base64+gzip+utf8-json",
+  "parts": [
+    {
+      "file": "overlay.part01.b64",
+      "chars": 10000,
+      "sha256": "f8782d2d74168089ee2f044994f24eeb20ce18b2acc4fef78049b3185b8c5f1f"
+    },
+    {
+      "file": "overlay.part02.b64",
+      "chars": 10000,
+      "sha256": "505b544a7a733d5d74b58239ded69d660fea11190b9de49a49b1e1a8b619fe48"
+    },
+    {
+      "file": "overlay.part03.b64",
+      "chars": 10000,
+      "sha256": "73331d896aeb4be7ab2ff55db21479f9853d9828595158e4b403d7709a454db6"
+    },
+    {
+      "file": "overlay.part04.b64",
+      "chars": 10000,
+      "sha256": "a86f2928413393579984351e03f3f541a2b5e237a79848d04bf93e32e003ffc7"
+    },
+    {
+      "file": "overlay.part05.b64",
+      "chars": 9296,
+      "sha256": "6ed7791c7ad0e7119d5fa624cd242842307c6798f50b3b4703c95975b623e5ba"
+    }
+  ],
+  "gzip_bytes": 36972,
+  "gzip_sha256": "e2b02bef06fda311a20366144ec1e16fe1393f729d278dbc1b25e607f18ad483",
+  "json_bytes": 112871,
+  "json_sha256": "8f08484a795be06bb9159d62b7395ea23eac0148913f43a5cc201c4aaa338840",
+  "ipa_pos_count": 983,
+  "extra_ku_count": 414,
+  "special_primary_count": 96,
+  "scope_note": "Runtime bridge: preserves V25.5 compact teaching payload, overlays V26.7I US IPA/POS updates and expands canonical KU inventory to 16,616. Rich V26.7I remains the content authority."
+}
