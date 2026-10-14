@@ -21,6 +21,7 @@
   later(()=>{if(!done&&valid(g)){speechError=true;synth.cancel();complete()}},10000);
  }
  function tap(){
+  if(document.querySelector('.learning-screen.previous-answer'))return;
   if(state.view!=='learning'||!currentUnit()||document.hidden)return;
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
   else if(phase==='answer'){
@@ -36,11 +37,14 @@
  function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
  window.PAI_TAP_FLOW={ready,cancel,tap,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
  document.addEventListener('click',e=>{
-  if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
+  if(state.view!=='learning'||document.querySelector('.learning-screen.previous-answer')||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
   if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
   if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap();
  },true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{if(e.touches?.length===1)touch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+600},{passive:true});
- document.addEventListener('visibilitychange',()=>{if(state.view!=='learning'||!currentUnit())return;if(document.hidden){cancel();state.revealed=false}else{ready(currentUnit().k);render()}});
+ let swipeStart=null;
+ document.addEventListener('touchstart',e=>{if(state.view==='learning'&&e.touches?.length===1)swipeStart={x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()};else swipeStart=null},{passive:true});
+ document.addEventListener('touchend',e=>{if(!swipeStart||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-swipeStart.x,y=e.changedTouches[0].clientY-swipeStart.y,dt=Date.now()-swipeStart.time;swipeStart=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;if(x>0){window.__paiTapSuppressUntil=Date.now()+700;window.showPreviousAnswer?.()}else if(document.querySelector('.learning-screen.previous-answer')){window.__paiTapSuppressUntil=Date.now()+700;window.restoreCurrentAnswer?.()}},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(state.view!=='learning'||!currentUnit()||document.querySelector('.learning-screen.previous-answer'))return;if(document.hidden){cancel();state.revealed=false}else{ready(currentUnit().k);render()}});
 })();
