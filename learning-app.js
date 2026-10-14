@@ -316,7 +316,7 @@
  const saveSceneCache=()=>{
   if(!proposedCoverage||!additionalDimensions)return;
   const scenes=[...proposedCoverage.map(x=>({id:x.id,keys:proposedKeys.get(x.id)||[],directKU:proposedDirectKeys.get(x.id)||[]})),
-   ...additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,keys:dimensionKeys.get(i.id)||[],evidence:dimensionEvidenceCache.get(i.id)||[]})))))];
+   ...additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,keys:dimensionKeys.get(i.id)||[],evidence:dimensionEvidenceCache.get(i.id)||[]}))))];
   if(scenes.length!==312)return;
   try{localStorage.setItem(SCENE_CACHE_KEY,JSON.stringify({schemaVersion:1,scenes}))}catch(_){}
  };
