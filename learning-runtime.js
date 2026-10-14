@@ -573,6 +573,28 @@
    const doc=await response.json();
    additionalDimensions=doc.dimensions;
    const entries=additionalDimensions.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:[],words:new Set(),evidence:new Map()}))));
+   const explicitTaskTerms={
+    '处理航班延误':['航班延误','航班取消','延误','改签'],
+    '行李丢失申报':['行李丢失','遗失行李','行李认领'],
+    '退货退款':['退款','退货','退还货款'],
+    '问路导航':['问路','指路','导航','路线'],
+    '描述症状':['症状','疼痛','发烧','咳嗽'],
+    '遵医嘱用药':['处方','剂量','服药','用药'],
+    '检索文献':['文献检索','参考文献','检索'],
+    '撰写摘要':['摘要','概述'],
+    '回复审稿意见':['审稿','评审意见','同行评议'],
+    '报告数据':['统计数据','实验数据','数据报告'],
+    '谈合同':['合同','协议','签约'],
+    '报告风险':['风险评估','风险管理'],
+    '原因与结果':['因果','原因','结果','导致'],
+    '条件与假设':['假设','条件','前提'],
+    '比较与对比':['比较','对比','差异'],
+    '表达不确定性':['不确定','可能性','怀疑'],
+    '证据与结论':['证据','结论','推论'],
+    '权衡利弊':['利弊','权衡','取舍'],
+    '批判与质疑':['质疑','批判','反驳']
+   };
+   const matchTerms=new Map(entries.map(e=>[e.id,[e.name,...(explicitTaskTerms[e.name]||[])].filter(x=>x.length>=2)]));
    // Only explicit full-label gloss matches are admitted. Each match records
    // the source field, never an invented dictionary verification status.
    const reverse=new Map();
@@ -580,10 +602,11 @@
     if(s.kuType!=='sense')continue;
     const gloss=String(s.m||''),title=String(s.kuTitle||'');
     for(const e of entries){
-     const source=gloss.includes(e.name)?'sense_gloss_exact':title.includes(e.name)?'ku_title_exact':null;
+     const term=(matchTerms.get(e.id)||[]).find(t=>gloss.includes(t)||title.includes(t));
+     const source=term?(gloss.includes(term)?(term===e.name?'sense_gloss_exact':'sense_gloss_alias'):(term===e.name?'ku_title_exact':'ku_title_alias')):null;
      if(!source)continue;
      e.keys.push(s.ku_id);e.words.add(w.rank);
-     const evidence={dimension:e.dimension,sceneId:e.id,sceneName:e.name,kuId:s.ku_id,word:w.w,rank:w.rank,source,matchedText:e.name,verified:false,reviewStatus:'pending'};
+     const evidence={dimension:e.dimension,sceneId:e.id,sceneName:e.name,kuId:s.ku_id,word:w.w,rank:w.rank,source,matchedText:term,verified:false,reviewStatus:'pending'};
      e.evidence.set(s.ku_id,evidence);
      if(!reverse.has(s.ku_id))reverse.set(s.ku_id,[]);
      reverse.get(s.ku_id).push(evidence);
