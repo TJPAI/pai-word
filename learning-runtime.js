@@ -571,18 +571,10 @@
    if(!response.ok)throw Error('taxonomy HTTP '+response.status);
    const doc=await response.json();
    const rows=doc.domains.flatMap(domain=>domain.topics.map(t=>({id:t.id,domain:domain.name,name:t.name,wordRanks:new Set(),kuIds:new Set(),directKU:new Set()})));
-   const aliases={
-    '鱼类':['鱼','鲑','鳕','鲤','鲈','鳟','鲨','鳗','鲱','鲭','沙丁'],
-    '鸟类':['鸟','鹰','鸽','鹦鹉','麻雀','燕子','企鹅','鸵鸟'],
-    '昆虫':['昆虫','蚂蚁','蜜蜂','蝴蝶','甲虫','蚊子','苍蝇','蟑螂'],
-    '水果':['水果','苹果','香蕉','葡萄','柑橘','草莓','樱桃','桃子','梨','芒果'],
-    '蔬菜':['蔬菜','胡萝卜','菠菜','卷心菜','黄瓜','茄子','洋葱'],
-    '帆船':['帆船','船帆','航行','舵','顺风','逆风','海风'],
-    '烹饪':['烹饪','烹调','煮','烤','炒','蒸','厨房','食谱'],
-    '机场值机':['机场','值机','托运','登机牌','柜台'],
-    '安检登机':['安检','登机','航班','登机口','安检门'],
-    '医院挂号':['医院','挂号','预约','门诊','就诊']
-   };
+   const ruleResponse=await fetch('data/scene-semantic-rules-v1.json');
+   if(!ruleResponse.ok)throw Error('scene rules HTTP '+ruleResponse.status);
+   const ruleDoc=await ruleResponse.json();
+   const aliases=ruleDoc.aliases||{};
    const baseTopicByName=new Map(topics.map(t=>[t.name,t]));
    for(const w of core.words){
     const lemma=w.w.toLowerCase();
