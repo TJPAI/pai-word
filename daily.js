@@ -38,7 +38,7 @@
     for(const w of window.PAI_CORE.words){
       if(!wordHasRecord(w))continue;
       const primary=Object.keys(w.s||{})[0];
-      for(const [k,s] of Object.entries(w.s||{})){
+      for(const [k] of Object.entries(w.s||{})){
         if(k===primary||state.records[k])continue;
         const u=findUnitByKey(k);if(u)candidates.push(u);
       }
@@ -104,5 +104,5 @@
   window.globalReinforcementRemaining=function(){ensureDaily();return state.daily.reinforcementKeys.filter(k=>!state.records[k]).length};
   window.globalReinforcementCompleted=function(){return ensureProgress().reinforcementCompleted.length};
   window.dailyPolicyQA=function(){ensureDaily();return {policy:ASSIGNMENT_POLICY,newWordQuota:state.daily.wordQuota,reinforcementQuota:state.daily.reinforcementQuota,newWords:state.daily.newWordKeys.length,reinforcement:state.daily.reinforcementKeys.length,totalFresh:Object.values(state.daily.assigned).flat().length}};
-  ensureDaily();
+  // Intentionally lazy: product-v2 repairs V26.7I scene metadata before the first assignment is generated.
 })();
