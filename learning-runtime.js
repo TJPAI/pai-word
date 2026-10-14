@@ -644,6 +644,22 @@
    if(state.view==='scenes')render();
   }catch(e){window.PAI_SCENE_DIMENSION_ERROR=String(e)}
  }
+ window.PAI_EXPORT_SCENE_INDEX=()=>{
+  const topicRows=(proposedCoverage||[]).map(x=>({id:x.id,name:x.name,dimension:'topic',keys:proposedKeys.get(x.id)||[],status:'candidate_unverified'}));
+  const dimensionRows=(additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:dimensionKeys.get(i.id)||[],status:'candidate_unverified'}))));
+  const scenes=[...topicRows,...dimensionRows];
+  const allKeys=new Set(scenes.flatMap(x=>x.keys));
+  return {schemaVersion:1,source:'PAI Word Core-13000 runtime',status:'candidate_unverified',generatedAt:new Date().toISOString(),
+   sceneCount:scenes.length,nonemptySceneCount:scenes.filter(x=>x.keys.length>0).length,uniqueKUCount:allKeys.size,scenes};
+ };
+ window.PAI_DOWNLOAD_SCENE_INDEX=()=>{
+  const data=window.PAI_EXPORT_SCENE_INDEX();
+  if(data.sceneCount!==312)throw Error('场景目录尚未加载完整，稍后重试');
+  const blob=new Blob([JSON.stringify(data)],{type:'application/json'});
+  const url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='pai-word-scene-index-v1.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(url),1000);
+ };
  window.startDimensionScene=id=>{
   const keys=dimensionKeys.get(id)||[];
   if(!keys.length){topicFeedback='该场景尚无直接匹配的 KU，待人工扩展语义映射。';render();return}
