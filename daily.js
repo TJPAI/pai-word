@@ -53,7 +53,7 @@
     return picked;
   }
   function blankAssignments(){return Object.fromEntries(Object.keys(SCENES).map(scene=>[scene,[]]))}
-  function addAssigned(assigned,u){const scene=u.s.scene in assigned?u.s.scene:'core';(assigned[scene]||(assigned[scene]=[])).push(unitKey(u.w,u.sid))}
+  function addAssigned(assigned,u){const scene=u.s.scene in assigned?u.s.scene:'general';(assigned[scene]||(assigned[scene]=[])).push(unitKey(u.w,u.sid))}
   function buildAssignments(){
     const assigned=blankAssignments(),p=ensureProgress();
     const remainingWords=Math.max(0,state.newPerDay-p.newWordsCompleted.length);
