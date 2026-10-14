@@ -1,0 +1,24 @@
+{
+  "schema": "pai-word-overlay-manifest-v2",
+  "base_release": "Core-13000 V25.5",
+  "release": "Core-13000 V26.7I KU overlay",
+  "word_count": 13000,
+  "ku_count": 16616,
+  "encoding": "base64+gzip+utf8-json",
+  "parts": [
+    {"file":"part01.b64","chars":8600,"sha256":"caca837c7c8e221f98c17afb720f0abd2edf1ff70c8b6431d669d6f06b38f354"},
+    {"file":"part02.b64","chars":8600,"sha256":"4b9ee73551f434329330440c97e82431017bdcfa479db2f8db3be7ad779e3ad6"},
+    {"file":"part03.b64","chars":8600,"sha256":"718d7346ca42a3811a1c0252113360af62c674e4cf7889a69fc9ef5249bf28f1"},
+    {"file":"part04.b64","chars":8600,"sha256":"f682ce0250e6ec7470a7a3ee5a4cdf967fbed3e948444abee0530e7ce2adc2f9"},
+    {"file":"part05.b64","chars":8600,"sha256":"009dfc69685b33e8a3a0d3a39d77a7f75d8d6b4c5f6021c0721e4c685efa8c2a"},
+    {"file":"part06.b64","chars":8432,"sha256":"86acf1ec804cbf161995d4ed595e34c459d2858e74e1248811f3ae558a0d6df1"}
+  ],
+  "gzip_bytes":38574,
+  "gzip_sha256":"e347493f4e54f97beb9c18ed853ea9720fb179c63ab6c1fef1336cb018901b38",
+  "json_bytes":133586,
+  "json_sha256":"5e1c60c1bf08a4233afde8e258c45a5e2b5f71d99979bd2746e2cff59762b5a6",
+  "ipa_pos_count":983,
+  "ku_meta_count":510,
+  "ku_content_fields":["rank","ku_id","type","title_zh","sense_id","content_zh","pattern_or_example","exercise_type","priority","status"],
+  "scope_note":"Runtime bridge: V25.5 compact sense/examples/collocations plus V26.7I POS/US-IPA and complete content for the 510 canonical KU records needed to expand the runtime inventory to 16,616. Rich V26.7I remains authoritative."
+}
