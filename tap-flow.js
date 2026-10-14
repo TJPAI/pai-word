@@ -5,10 +5,12 @@
  function config(){const c={...defaults,...state.tapTiming};for(const k of Object.keys(defaults)){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.min(k==='repeatCount'?20:60,Math.max(k==='repeatGap'?0:.1,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c}
  let phase='idle',generation=0,timers=new Set(),began=0,responseMs=null,grade=null,repeated=0,speechError=false,visibleKey=null;
  function later(fn,ms){const id=setTimeout(()=>{timers.delete(id);fn()},ms);timers.add(id);return id}
- function cancel(){generation++;for(const t of timers)clearTimeout(t);timers.clear();phase='idle';visibleKey=null;if('speechSynthesis'in window)speechSynthesis.cancel()}
+ function cancel(){browseNext=null;generation++;for(const t of timers)clearTimeout(t);timers.clear();phase='idle';visibleKey=null;if('speechSynthesis'in window)speechSynthesis.cancel()}
  function ready(k){cancel();visibleKey=k;began=Date.now();responseMs=null;grade=null;repeated=0;speechError=false;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function valid(g){return generation===g&&state.view==='learning'&&window.currentUnit?.()?.k===visibleKey}
+ let browseNext=null;
+ function browseReady(k,next){cancel();visibleKey=k;browseNext=next;phase='browse-answer';grade=null;repeated=0;const g=generation;later(()=>{if(g===generation&&phase==='browse-answer')browseNext?.()},config().againShow*1000)}
  function finish(g){if(!valid(g))return;phase='committing';window.rateLearning(grade)}
  function render(){if(typeof window.render==='function')window.render()}
  function speakRepeated(g){
@@ -21,6 +23,7 @@
   later(()=>{if(!done&&valid(g)){speechError=true;synth.cancel();complete()}},10000);
  }
  function interruptRepeatForExample(){
+  if(phase==='browse-repeat'){const next=browseNext;cancel();phase='browse-example';browseNext=next;return true}
   if(phase!=='repeat')return false;
   generation++;for(const timer of timers)clearTimeout(timer);timers.clear();
   phase='committing';
@@ -31,9 +34,17 @@
  }
  function tap(){
   if(document.querySelector('.learning-screen.previous-answer')){
+   if(phase!=='browse-answer')return;
    const u=window.getBrowsedUnit?.();if(!u)return;
-   cancel();phase='browse-repeat';const g=generation;let count=0;
-   const next=()=>{if(g!==generation||state.view!=='learning'||!document.querySelector('.learning-screen.previous-answer'))return;if(count>=config().repeatCount){phase='idle';return}count++;if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){later(next,1000);return}const utterance=new SpeechSynthesisUtterance(u.w.w);utterance.lang='en-US';utterance.rate=.84;let done=false;const completed=()=>{if(done)return;done=true;later(next,config().repeatGap*1000)};utterance.onend=completed;utterance.onerror=completed;speechSynthesis.cancel();speechSynthesis.speak(utterance);later(completed,10000)};next();return;
+   for(const timer of timers)clearTimeout(timer);timers.clear();generation++;
+   phase='browse-repeat';const g=generation;let count=0,done=false;
+   const next=()=>{if(done||g!==generation||state.view!=='learning'||!document.querySelector('.learning-screen.previous-answer'))return;
+    if(count>=config().repeatCount){done=true;later(()=>{if(g===generation)browseNext?.()},config().repeatGap*1000);return}
+    count++;if(!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){later(next,1000);return}
+    const utterance=new SpeechSynthesisUtterance(u.w.w);utterance.lang='en-US';utterance.rate=.84;
+    let ended=false;const completed=()=>{if(ended)return;ended=true;later(next,config().repeatGap*1000)};
+    utterance.onend=completed;utterance.onerror=completed;speechSynthesis.cancel();speechSynthesis.speak(utterance);later(completed,10000)
+   };next();return;
   }
   if(state.view!=='learning'||!currentUnit()||document.hidden)return;
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
@@ -47,8 +58,10 @@
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value==='')return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)render()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();render()};
  function settings(){const c=config();return `<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题面出现后开始计时。答案页点空白会记为没想起，并重读后切词。</p>${Object.keys(defaults).map(k=>`<label class="setting-row"><span>${labels[k]}</span><input type="number" aria-label="${labels[k]}" min="${k==='repeatGap'?0:k==='repeatCount'?1:.1}" max="${k==='repeatCount'?20:60}" step="${k==='repeatCount'?1:.1}" value="${c[k]}" oninput="setTapTiming('${k}',this.value,false)" onchange="setTapTiming('${k}',this.value)"></label>`).join('')}<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>`}
- function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
- window.PAI_TAP_FLOW={ready,cancel,tap,interruptRepeatForExample,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
+ function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='browse-answer')return `滑动浏览 · ${config().againShow}秒后自动下一词；点空白重读`;
+ if(phase==='browse-repeat')return `重读中 · 点击例句可中断`;
+ if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
+ window.PAI_TAP_FLOW={ready,browseReady,cancel,tap,interruptRepeatForExample,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
  document.addEventListener('click',e=>{
   if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
   if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
