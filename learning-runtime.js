@@ -427,10 +427,40 @@
  const topics=[...foodTopicSets,...topicSets];
  const topicByName=new Map(topics.map(t=>[t.name,t]));
  const topicIndex=new Map();
- for(const t of topics)for(const [i,lemma]of t.words.split(' ').entries()){
+ function addTopicTag(lemma,topic,weight,source){
   const k=lemma.toLowerCase();if(!topicIndex.has(k))topicIndex.set(k,[]);
-  topicIndex.get(k).push({topic:t.name,weight:Math.max(15,100-i*2)});
+  const tags=topicIndex.get(k),old=tags.find(x=>x.topic===topic);
+  if(old){if(weight>old.weight){old.weight=weight;old.source=source}}else tags.push({topic,weight,source});
  }
+ for(const t of topics)for(const [i,lemma]of t.words.split(' ').entries())addTopicTag(lemma,t.name,Math.max(15,100-i*2),'curated');
+ // Build an additional semantic index from actual Core-13000 sense glosses.
+ // A tag is inferred only when a meaning contains a precise category term.
+ const glossRules=[
+  {topic:'水果',patterns:['水果','果实','浆果','柑橘','苹果','香蕉','葡萄','桃子','梨子','芒果','草莓','樱桃','西瓜','菠萝']},
+  {topic:'海鲜',patterns:['海鲜','贝类','甲壳类','虾','螃蟹','牡蛎','扇贝','贻贝','龙虾','鱿鱼','章鱼','鲑鱼','金枪鱼','沙丁鱼']},
+  {topic:'蔬菜与烹饪',patterns:['蔬菜','绿叶菜','胡萝卜','卷心菜','菠菜','黄瓜','茄子','洋葱','烹饪','烹调']},
+  {topic:'动物园',patterns:['动物园','野生动物','哺乳动物','长颈鹿','斑马','大象','狮子','老虎','猴子']},
+  {topic:'机场与登机',patterns:['机场','登机','航班','航站楼','行李托运']},
+  {topic:'医院就诊',patterns:['医院','就诊','诊断','处方','症状','病人']},
+  {topic:'餐厅点餐',patterns:['餐厅','点餐','菜单','服务员','账单']},
+  {topic:'酒店住宿',patterns:['酒店','旅馆','住宿','前台','客房']},
+  {topic:'超市购物',patterns:['超市','收银','购物车','货架']},
+  {topic:'天气与自然',patterns:['天气','气温','气象','暴风雨','降雨']},
+  {topic:'学校与课堂',patterns:['学校','教室','课堂','学生','教师']},
+  {topic:'体育与运动',patterns:['体育','运动员','比赛','训练','帆船']},
+  {topic:'肉类',patterns:['肉类','牛肉','猪肉','羊肉','鸡肉','香肠']},
+  {topic:'饮料',patterns:['饮料','果汁','咖啡','茶饮','汽水']},
+  {topic:'甜点与烘焙',patterns:['甜点','甜品','糕点','蛋糕','烘焙']}
+ ];
+ const senseTags=new Map(),indexStats={catalogWords:core.words.length,catalogKU:core.byKU.size,glossTaggedKU:0,curatedHeadwords:topicIndex.size};
+ for(const w of core.words)for(const s of Object.values(w.s)){
+  if(s.kuType!=='sense')continue;
+  const meaning=String(s.m||'')+' '+String(s.kuTitle||''),tags=[];
+  for(const rule of glossRules)if(rule.patterns.some(p=>meaning.includes(p)))tags.push(rule.topic);
+  if(tags.length){senseTags.set(s.ku_id,tags);indexStats.glossTaggedKU++}
+ }
+ window.PAI_TOPIC_INDEX_QA=indexStats;
+
  function topicMatch(input){
   const q=input.trim().toLowerCase(),scores=new Map();
   for(const t of topics){const hit=t.terms.reduce((n,term)=>n+(q.includes(term.toLowerCase())?term.length+2:0),0);if(hit)scores.set(t.name,hit*12)}
@@ -450,7 +480,7 @@
     if(s.kuType!=='sense')continue;
     const gloss=String(s.m||'').toLowerCase(),title=String(s.kuTitle||'').toLowerCase();
     const direct=tokens.some(x=>gloss.includes(x)||title.includes(x));
-    const matchedTags=tags.filter(x=>weights.has(x.topic));
+    const inferred=senseTags.get(s.ku_id)||[];const matchedTags=[...tags.filter(x=>weights.has(x.topic)),...inferred.filter(x=>weights.has(x)).map(topic=>({topic,weight:65}))];
     const tagScore=matchedTags.length?Math.max(...matchedTags.map(x=>x.weight+weights.get(x.topic)*2)):0;
     const context=matches.some(x=>x.topic.terms.some(term=>term.length>=2&&(gloss.includes(term.toLowerCase())||title.includes(term.toLowerCase()))));
     if(!direct&&!tagScore&&!context)continue;
