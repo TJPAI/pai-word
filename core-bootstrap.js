@@ -14,7 +14,7 @@
     await loadCore13000();
     // Optional teaching-content enhancement: never block the verified core runtime.
     try{await script('ku-content.js?v=v267i-kucontent-1');if(window.PAI_KU_CONTENT_READY)await window.PAI_KU_CONTENT_READY}catch(error){console.warn('[PAI Word] KU content enhancement skipped',error)}
-    for(const src of ['daily.js?v=v267i-daily-2','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','ku-content-ui.js?v=v267i-kucontent-2','product-v2.js?v=v267i-product-1','scene-counts.js?v=v267i-scene-counts-1','flow-v2.js?v=v267i-flow-2','scene-study.js?v=v267i-scene-study-1'])await script(src);
+    for(const src of ['daily.js?v=v267i-daily-2','ipa-accent.js?v=core13000-1','app-runtime.js?v=core13000-2','ku-content-ui.js?v=v267i-kucontent-2','product-v2.js?v=v267i-product-1','scene-counts.js?v=v267i-scene-counts-1','flow-v2.js?v=v267i-flow-2','scene-study.js?v=v267i-scene-study-2','swipe-v2.js?v=v267i-swipe-1'])await script(src);
     state.view='scenes';state.scene=null;state.revealed=false;
     const previewWord=new URLSearchParams(location.search).get('word');
     const preview=window.PAI_CORE.byLemma.get(previewWord)?.[0];
