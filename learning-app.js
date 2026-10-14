@@ -54,9 +54,10 @@
    PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer());render();if(state.autoPronounce.swipe)speak(u.w.w);return true;
   }catch(_){return false}
  };
- window.rateLearning=grade=>{
+ window.rateBrowsedLearning=(grade,k)=>{if(!browsedUnit||browsedUnit.k!==k)return;window.rateLearning(grade,k)};
+ window.rateLearning=(grade,targetKey=null)=>{
   if(!active||loading||error||!unit()||!state.revealed||!['again','hard','good'].includes(grade))return;
-  const session=state.learningSession,u=unit(),k=u.k,now=Date.now(),prev=state.records[k];previousUnit=u;
+  const session=state.learningSession,u=targetKey?byKey(targetKey):unit();if(!u)return;const k=u.k,now=Date.now(),prev=state.records[k];previousUnit=u;
   if(!prev)markDailyNewComplete(k);
   const seen=session.seen[k]||0;session.seen[k]=seen+1;session.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
@@ -65,7 +66,7 @@
   if(repeat){r.due=now;r.interval=0;}else{const prior=prev?.lastStableInterval||prev?.interval||0;const days=session.kind==='free'&&prior>0?prior/DAY:prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*(prev?.lastGrade==='hard'?1.5:2.3)));r.interval=days*DAY;r.lastStableInterval=r.interval;r.due=session.kind==='free'&&prev?.due>now?prev.due:now+r.interval}
   if(repeat&&prev?.interval>0)r.lastStableInterval=grade==='again'?0:prev.interval;
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
-  session.queue.shift();if(repeat)session.queue.splice(Math.min(4,session.queue.length),0,k);else if(!session.completed.includes(k))session.completed.push(k);
+  const qi=session.queue.indexOf(k);if(qi>=0)session.queue.splice(qi,1);session.completed=session.completed.filter(x=>x!==k);if(repeat)session.queue.splice(Math.min(4,session.queue.length),0,k);else session.completed.push(k);
   state.revealed=false;persist();showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
