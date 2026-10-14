@@ -347,6 +347,7 @@
   later(()=>{if(!done&&valid(g)){speechError=true;synth.cancel();complete()}},10000);
  }
  function tap(){
+  if(document.querySelector('.learning-screen.previous-answer'))return;
   if(state.view!=='learning'||!currentUnit()||document.hidden)return;
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);grade=classify(responseMs);phase='answer';state.revealed=true;const g=generation,c=config();render();later(()=>finish(g),c[grade+'Show']*1000)}
   else if(phase==='answer'){
@@ -362,13 +363,16 @@
  function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='repeat')return `${speechError?'系统发音不可用 · ':''}重读 ${repeated} / ${config().repeatCount} · 已标记没想起`;if(phase==='answer')return `${{good:'想起了',hard:'模糊',again:'没想起'}[grade]} · ${config()[grade+'Show']}秒后自动下一词；点空白重读并记为没想起`;return ''}
  window.PAI_TAP_FLOW={ready,cancel,tap,config,classify,settings,hint,snapshot:()=>({phase,responseMs,grade,repeated})};
  document.addEventListener('click',e=>{
-  if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
+  if(state.view!=='learning'||document.querySelector('.learning-screen.previous-answer')||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;
   if(!e.target.matches('.learning-screen,.study-body,.word-hero,.word-line,.answer,.answer-section,.examples-section,.session-footnote,.recall-note'))return;
   if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap();
  },true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{if(e.touches?.length===1)touch={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+600},{passive:true});
- document.addEventListener('visibilitychange',()=>{if(state.view!=='learning'||!currentUnit())return;if(document.hidden){cancel();state.revealed=false}else{ready(currentUnit().k);render()}});
+ let swipeStart=null;
+ document.addEventListener('touchstart',e=>{if(state.view==='learning'&&e.touches?.length===1)swipeStart={x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()};else swipeStart=null},{passive:true});
+ document.addEventListener('touchend',e=>{if(!swipeStart||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-swipeStart.x,y=e.changedTouches[0].clientY-swipeStart.y,dt=Date.now()-swipeStart.time;swipeStart=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;if(x>0){window.__paiTapSuppressUntil=Date.now()+700;window.showPreviousAnswer?.()}else if(document.querySelector('.learning-screen.previous-answer')){window.__paiTapSuppressUntil=Date.now()+700;window.restoreCurrentAnswer?.()}},{passive:true});
+ document.addEventListener('visibilitychange',()=>{if(state.view!=='learning'||!currentUnit()||document.querySelector('.learning-screen.previous-answer'))return;if(document.hidden){cancel();state.revealed=false}else{ready(currentUnit().k);render()}});
 })();
 ;
 // SOURCE: learning-app.js
@@ -381,7 +385,7 @@
  const date=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
  state.selectedScene=SCENES[state.selectedScene]?state.selectedScene:'daily';
  state.learningSession=state.learningSession||null;
- let active=false,loading=false,error='',startedAt=0,token=0;
+ let active=false,loading=false,error='',startedAt=0,token=0,previousUnit=null;
  const due=()=>Object.entries(state.records).filter(([k,r])=>byKey(k)&&(r.learningPending||r.lastKnown===false||r.due<=Date.now())).sort((a,b)=>(b[1].learningPending?1:0)-(a[1].learningPending?1:0)||a[1].due-b[1].due).map(([k])=>k);
  const fresh=()=>{globalNewRemaining();return [...state.daily.newWordKeys,...state.daily.reinforcementKeys].filter(k=>!state.records[k])};
  const unit=()=>byKey(state.learningSession?.queue[0]);
@@ -391,20 +395,22 @@
  window.currentQueue=()=>active?(state.learningSession?.queue||[]).map(byKey).filter(Boolean):[];
  function statusText(){const s=window.PAI_LOCAL_LEXICON;return s.offlineReady?'全部词包已缓存':`已缓存 ${s.loadedChunks} / ${s.totalChunks} 个词包；学习时按需下载`}
  async function showCurrent(auto=true){PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k);render();if(auto&&!state.hideWord)speak(u.w.w);if(auto&&state.hideWord)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
- function start(keys,title,kind){const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent()}
+ function start(keys,title,kind){previousUnit=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent()}
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
  window.openFreeReview=()=>start(Object.keys(state.records).filter(byKey),'自由复习','free');
  window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
- window.resumeLearning=()=>{active=true;state.view='learning';state.revealed=false;showCurrent()};
+ window.resumeLearning=()=>{previousUnit=null;active=true;state.view='learning';state.revealed=false;showCurrent()};
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
- window.goScenes=()=>{PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
- window.openPanel=kind=>{PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
+ window.goScenes=()=>{previousUnit=null;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
+ window.openPanel=kind=>{previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent(false);
+ window.showPreviousAnswer=async()=>{if(!active||!previousUnit||loading||error)return false;PAI_TAP_FLOW.cancel();const id=++token;const previous=previousUnit;state.view='learning';state.revealed=true;try{await ensureUnits([previous.k]);if(id!==token)return false;const html=answerHtml(previous);const host=document.querySelector('.learning-screen');if(!host)return false;const body=host.querySelector('.study-body');if(!body)return false;body.innerHTML=`<div class="word-hero"><div class="word-line"><div class="word">${esc(previous.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(previous.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(previous.w.ipaUS)}</div></div>${html}`;host.classList.add('revealed','previous-answer');host.querySelector('.recall-note').textContent='上一词答案 · 左滑返回当前词';return true}catch(_){return false}};
+ window.restoreCurrentAnswer=()=>{if(!document.querySelector('.learning-screen.previous-answer'))return false;state.revealed=false;showCurrent(false);return true};
  window.rateLearning=grade=>{
   if(!active||loading||error||!unit()||!state.revealed||!['again','hard','good'].includes(grade))return;
-  const session=state.learningSession,u=unit(),k=u.k,now=Date.now(),prev=state.records[k];
+  const session=state.learningSession,u=unit(),k=u.k,now=Date.now(),prev=state.records[k];previousUnit=u;
   if(!prev)markDailyNewComplete(k);
   const seen=session.seen[k]||0;session.seen[k]=seen+1;session.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
