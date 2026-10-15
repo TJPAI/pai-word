@@ -1,4 +1,4 @@
-// Data-dependent UI adapter for pai-word manifest taxonomy and dual IPA.
+// Data-dependent UI adapter for pai-word manifest taxonomy, bilingual examples and dual IPA.
 (function(){
  const baseRender=window.render;
  const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -14,5 +14,6 @@
  function enhanceHome(){const screen=document.querySelector('.scene-screen');if(!screen||!window.PAI_TAXONOMY)return;screen.querySelector('.topic-search')?.remove();screen.querySelectorAll(':scope > .group-title,:scope > .scene-grid,:scope > .scene-taxonomy-audit,:scope > .scene-note').forEach(el=>el.remove());const plan=screen.querySelector('.today-plan');plan?.insertAdjacentHTML('afterend',taxonomyHtml());rebuildSelect()}
  function ipaHtml(w){const parts=[];if(w?.ipaUS)parts.push(`美 ${esc(w.ipaUS)}`);if(w?.ipaUK)parts.push(`英 ${esc(w.ipaUK)}`);return parts.join(' · ')}
  function enhanceIPA(){let w=null;if(state.view==='learning')w=window.getVisibleLearningUnit?.()?.w;else if(state.view==='lexiconWord')w=window.PAI_CORE?.words?.[(state.lexiconWordRank||1)-1];if(!w)return;const target=state.view==='learning'?document.querySelector('.word-hero .ipa'):document.querySelector('.lex-word-head .ipa');if(target){const text=ipaHtml(w);if(text)target.innerHTML=text;else target.remove()}}
- window.render=function(){baseRender();if(state.view==='scenes')enhanceHome();enhanceIPA()};
+ function enhanceExamples(){for(const row of document.querySelectorAll('.example')){const spans=[...row.querySelectorAll('span')].filter(x=>!x.classList.contains('example-num'));const text=spans[0];if(!text)continue;const parts=text.textContent.split('\n'),en=(parts.shift()||'').trim(),zh=parts.join('\n').trim();text.innerHTML=esc(en)+(zh?`<br>${esc(zh)}`:'')}}
+ window.render=function(){baseRender();if(state.view==='scenes')enhanceHome();enhanceIPA();enhanceExamples()};
 })();
