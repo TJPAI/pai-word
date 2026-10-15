@@ -20,7 +20,6 @@ test('PAI Word v4 real-browser smoke', async ({ page }) => {
     minors:Object.keys(window.PAI_TAXONOMY.minors).length,
     tracks:Object.keys(window.PAI_TRACK_KU_COUNTS).length,
     storageKey:window.PAI_STORAGE_KEY,
-    selectedScene:window.state.selectedScene,
     sceneOptions:document.querySelectorAll('#scene-choice option').length,
     taxonomy:!!document.querySelector('#v4-taxonomy')
   }));
@@ -38,10 +37,9 @@ test('PAI Word v4 real-browser smoke', async ({ page }) => {
   expect(snapshot.taxonomy).toBeTruthy();
 
   await page.evaluate(()=>window.selectLearningScene('travel.taxi'));
-  await page.waitForFunction(()=>window.state.selectedScene==='travel.taxi');
+  await page.waitForFunction(()=>document.querySelector('#scene-choice')?.value==='travel.taxi');
   await page.evaluate(()=>window.openScene('travel.taxi'));
-  await page.waitForFunction(()=>window.state.view==='learning',{timeout:10000});
-  await page.waitForSelector('.word',{timeout:30000});
+  await page.waitForSelector('.study-screen .word',{timeout:30000});
   await page.waitForFunction(()=>{
     const u=window.currentUnit?.();
     return !!u&&u.s?.scene==='travel.taxi'&&u.w?.loaded===true;
