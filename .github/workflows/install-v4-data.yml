@@ -1,0 +1,58 @@
+name: Install pai-word-20000-v4 data
+
+on:
+  push:
+    branches:
+      - lexicon-20000-v4-integration
+    paths:
+      - pai-word-20000-v4.zip
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  install-v4-data:
+    if: github.event_name == 'workflow_dispatch' || github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout integration branch
+        uses: actions/checkout@v4
+        with:
+          ref: lexicon-20000-v4-integration
+          fetch-depth: 0
+
+      - name: Require uploaded v4 zip
+        run: test -f pai-word-20000-v4.zip
+
+      - name: Extract v4 package
+        run: |
+          rm -rf .tmp-pai-word-v4
+          mkdir .tmp-pai-word-v4
+          unzip -q pai-word-20000-v4.zip -d .tmp-pai-word-v4
+
+      - name: Verify source package
+        run: node scripts/verify-v4-package.mjs .tmp-pai-word-v4
+
+      - name: Atomically install data directory
+        run: node scripts/install-v4-data.mjs .tmp-pai-word-v4 data/learning-v3
+
+      - name: Verify installed data
+        run: node scripts/verify-v4-package.mjs data/learning-v3
+
+      - name: Verify v4 runtime boundary
+        run: node scripts/verify-v4-runtime.mjs
+
+      - name: Commit installed v4 data
+        run: |
+          rm -rf .tmp-pai-word-v4
+          rm -f pai-word-20000-v4.zip
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/learning-v3 pai-word-20000-v4.zip
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          git commit -m "Install pai-word-20000-v4 lexicon data"
+          git push origin HEAD:lexicon-20000-v4-integration
