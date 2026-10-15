@@ -14,6 +14,8 @@ const sw=read('sw.js');
 must(!bootstrap.includes("script('learning-runtime.js')"),'core-bootstrap still loads legacy bundled learning-runtime.js');
 for(const f of ['daily.js','app-runtime.js','ku-content-ui.js','tap-flow.js','scene-review-v4.js','learning-app.js'])must(bootstrap.includes(`'${f}'`),`core-bootstrap does not load ${f}`);
 must(bootstrap.includes("script('v4-ui.js')"),'v4-ui adapter is not loaded');
+for(const f of ['data/scene-dimensions-v1.json','data/scene-dimension-rules-v1.json','data/scene-headword-seeds-v1.json','data/scene-taxonomy-proposal-v1.json','data/scene-semantic-rules-v1.json'])must(bootstrap.includes(`'${f}'`),`legacy scene audit blocker missing ${f}`);
+must(bootstrap.includes('window.fetch=nativeFetch'),'temporary legacy-audit fetch guard is not restored');
 
 must(loader.includes("manifest.wordCount"),'loader does not use manifest.wordCount');
 must(loader.includes("manifest.kuCount"),'loader does not use manifest.kuCount');
