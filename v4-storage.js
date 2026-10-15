@@ -7,7 +7,6 @@
     showExamples:legacyState.showExamples,
     showCompare:legacyState.showCompare,
     hideWord:legacyState.hideWord,
-    voiceAccent:legacyState.voiceAccent,
     autoPronounce:legacyState.autoPronounce
   };
   let activeKey=null;
@@ -22,6 +21,7 @@
     state.stats={known:0,unknown:0,...(stored.stats||{})};
     state.daily=stored.daily||null;
     state.learningSession=stored.learningSession||null;
+    state.voiceAccent='us';
     activeKey=key;
     save=function(){localStorage.setItem(activeKey,JSON.stringify(state))};
     window.PAI_STORAGE_KEY=key;
