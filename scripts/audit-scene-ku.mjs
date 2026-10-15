@@ -15,21 +15,21 @@ const entries=dims.flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:
 const byScene=new Map(entries.map(e=>[e.id,{...e,items:[],seen:new Set()}]));
 const wordRows=Array.isArray(catalog)?catalog:(catalog.words||[]);
 if(!wordRows.length)throw Error('Cannot find catalog.words: inspect catalog format before claiming results');
-const sensesOf=w=>Object.values(w.s||{}).filter(s=>s&&s.kuType==='sense');
+const sensesOf=row=>(row[3]||[]).filter(s=>s[2]==='sense').map(s=>({ku_id:s[0],kuTitle:s[3],m:s[5]}));
 let totalSenses=0;
 for(const w of wordRows){
- const senses=sensesOf(w);totalSenses+=senses.length;
+ const lemma=w[1],senses=sensesOf(w);totalSenses+=senses.length;
  for(const s of senses){
   const gloss=String(s.m||''),title=String(s.kuTitle||'');
   for(const e of entries){
    const aliases=[e.name,...(rules[e.name]||[])].filter(x=>x.length>=2);
    const matched=aliases.find(t=>gloss.includes(t)||title.includes(t));
-   const seed=senses.length===1&&(seeds[e.name]||[]).includes(String(w.w||'').toLowerCase());
+   const seed=senses.length===1&&(seeds[e.name]||[]).includes(String(lemma||'').toLowerCase());
    if(!matched&&!seed)continue;
    const row=byScene.get(e.id);
    if(row.seen.has(s.ku_id))continue;
    row.seen.add(s.ku_id);
-   row.items.push({ku_id:s.ku_id,word:w.w,gloss,title,source:matched?'gloss_alias':'editorial_headword_seed',matchedText:matched||w.w});
+   row.items.push({ku_id:s.ku_id,word:lemma,gloss,title,source:matched?'gloss_alias':'editorial_headword_seed',matchedText:matched||lemma});
   }
  }
 }
