@@ -1,0 +1,48 @@
+name: V4 browser smoke
+
+on:
+  push:
+    branches: [lexicon-20000-v4-integration]
+    paths:
+      - 'index.html'
+      - 'core-bootstrap.js'
+      - 'lazy-loader.js'
+      - 'v4-storage.js'
+      - 'v4-ui.js'
+      - 'daily.js'
+      - 'app-runtime.js'
+      - 'learning-app.js'
+      - 'scene-review-v4.js'
+      - 'tap-flow.js'
+      - 'ku-content-ui.js'
+      - 'sw.js'
+      - 'data/learning-v3/**'
+      - 'scripts/v4-browser-smoke.spec.mjs'
+      - '.github/workflows/v4-browser-smoke.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright
+        run: |
+          npm install --no-save @playwright/test@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start static server
+        run: |
+          python3 -m http.server 4173 --bind 127.0.0.1 >/tmp/pai-word-http.log 2>&1 &
+          echo $! >/tmp/pai-word-http.pid
+          for i in {1..20}; do curl -fsS http://127.0.0.1:4173/ >/dev/null && exit 0; sleep 1; done
+          cat /tmp/pai-word-http.log
+          exit 1
+      - name: Run browser smoke
+        run: npx playwright test scripts/v4-browser-smoke.spec.mjs --reporter=line --workers=1
