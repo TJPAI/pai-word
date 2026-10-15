@@ -42,15 +42,17 @@ test('PAI Word v4 real-browser smoke', async ({ page }) => {
   await page.waitForSelector('.study-screen .word',{timeout:30000});
   await page.waitForFunction(()=>{
     const u=window.currentUnit?.();
-    return !!u&&u.s?.scene==='travel.taxi'&&u.w?.loaded===true;
+    return !!u&&u.s?.scene==='travel.taxi'&&u.s?.__loaded===true&&String(u.s?.m||'').trim().length>0;
   },{timeout:30000});
 
   const learned=await page.evaluate(()=>{
     const u=window.currentUnit();
-    return {scene:u.s.scene,ku:u.k,lemma:u.w.w,loaded:u.w.loaded,chunk:u.s.chunkFile||null};
+    return {scene:u.s.scene,ku:u.k,lemma:u.w.w,loaded:u.s.__loaded,meaning:u.s.m,chunk:u.chunkFile||null};
   });
   expect(learned.scene).toBe('travel.taxi');
   expect(learned.loaded).toBeTruthy();
+  expect(learned.meaning.trim().length).toBeGreaterThan(0);
+  expect(learned.chunk).toBe('scene-travel-taxi.json.b64');
   expect(learned.ku).toMatch(/^w_\d{5}_.+_ku_s\d+$/);
 
   expect(pageErrors,`page errors: ${pageErrors.join(' | ')}`).toEqual([]);
