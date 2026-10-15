@@ -7,7 +7,9 @@
     const d=new Date();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-  const scopeLimit=()=>13000;
+  const defaultScene=()=>window.PAI_DEFAULT_SCENE||Object.keys(SCENES)[0]||null;
+  const selectedScene=()=>SCENES[state.selectedScene]?state.selectedScene:defaultScene();
+  const scopeLimit=()=>Number(window.PAI_MANIFEST?.wordCount||window.PAI_CORE?.words?.length||0);
   const reinforcementQuota=()=>Math.max(3,Math.round(state.newPerDay*REINFORCEMENT_RATIO));
   function ensureProgress(){
     const date=dayKey();
@@ -24,24 +26,24 @@
   function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
     if(limit<=0)return[];
-    const picked=[];
+    const picked=[],scene=selectedScene();
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
       if(wordIntroduced(w))continue;
-      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily'));const u=k?findUnitByKey(k):null;if(u)picked.push(u);
+      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===scene);const u=k?findUnitByKey(k):null;if(u)picked.push(u);
     }
     return picked;
   }
   const TYPE_ORDER=Object.freeze({sense:0,risk:1,contrast:2,grammar:3,usage:4,collocation:5,pronunciation:6,polysemy:7,morphology:8,discourse:9,pragmatics:10});
   function pickReinforcement(limit){
     if(limit<=0)return[];
-    const candidates=[];
+    const candidates=[],scene=selectedScene();
     for(const w of window.PAI_CORE.words){
       if(!wordIntroduced(w))continue;
       const primary=primaryKey(w);
       for(const [k] of Object.entries(w.s||{})){
         if(k===primary||state.records[k])continue;
-        if(w.s[k].scene!==(state.selectedScene||'daily')||w.s[k].kuType!=='sense')continue;
+        if(w.s[k].scene!==scene||w.s[k].kuType!=='sense')continue;
         const u=findUnitByKey(k);if(u)candidates.push(u);
       }
     }
@@ -55,24 +57,25 @@
     return picked;
   }
   function blankAssignments(){return Object.fromEntries(Object.keys(SCENES).map(scene=>[scene,[]]))}
-  function addAssigned(assigned,u){const scene=u.s.scene in assigned?u.s.scene:'general';(assigned[scene]||(assigned[scene]=[])).push(unitKey(u.w,u.sid))}
+  function addAssigned(assigned,u){const scene=u.s.scene in assigned?u.s.scene:defaultScene();if(scene)(assigned[scene]||(assigned[scene]=[])).push(unitKey(u.w,u.sid))}
   function buildAssignments(){
-    const assigned=blankAssignments(),p=ensureProgress();
+    const assigned=blankAssignments(),p=ensureProgress(),scene=selectedScene();
+    if(scene&&state.selectedScene!==scene)state.selectedScene=scene;
     const remainingWords=Math.max(0,state.newPerDay-p.newWordsCompleted.length);
     const remainingReinforcement=Math.max(0,reinforcementQuota()-p.reinforcementCompleted.length);
     const newWords=pickNewWords(remainingWords),reinforcement=pickReinforcement(remainingReinforcement);
     newWords.forEach(u=>addAssigned(assigned,u));reinforcement.forEach(u=>addAssigned(assigned,u));
     state.daily={
-      date:dayKey(),scene:state.selectedScene||'daily',assigned,quota:state.newPerDay,wordQuota:state.newPerDay,reinforcementQuota:reinforcementQuota(),
+      date:dayKey(),scene,assigned,quota:state.newPerDay,wordQuota:state.newPerDay,reinforcementQuota:reinforcementQuota(),
       newWordKeys:newWords.map(u=>unitKey(u.w,u.sid)),reinforcementKeys:reinforcement.map(u=>unitKey(u.w,u.sid)),
       lexiconLimit:scopeLimit(),policy:ASSIGNMENT_POLICY
     };
     oldSave();return state.daily;
   }
   function ensureDaily(){
-    ensureProgress();const d=state.daily;
-    if(!d||d.date!==dayKey()||d.wordQuota!==state.newPerDay||d.reinforcementQuota!==reinforcementQuota()||d.lexiconLimit!==scopeLimit()||d.policy!==ASSIGNMENT_POLICY||!d.assigned||d.scene!==(state.selectedScene||'daily'))return buildAssignments();
-    for(const scene of Object.keys(SCENES))d.assigned[scene]=d.assigned[scene]||[];
+    ensureProgress();const d=state.daily,scene=selectedScene();
+    if(!d||d.date!==dayKey()||d.wordQuota!==state.newPerDay||d.reinforcementQuota!==reinforcementQuota()||d.lexiconLimit!==scopeLimit()||d.policy!==ASSIGNMENT_POLICY||!d.assigned||d.scene!==scene)return buildAssignments();
+    for(const id of Object.keys(SCENES))d.assigned[id]=d.assigned[id]||[];
     d.newWordKeys=Array.isArray(d.newWordKeys)?d.newWordKeys:[];d.reinforcementKeys=Array.isArray(d.reinforcementKeys)?d.reinforcementKeys:[];
     return d;
   }
@@ -106,7 +109,6 @@
   window.globalNewAssigned=function(){return globalNewCompleted()+globalNewRemaining()};
   window.globalReinforcementRemaining=function(){ensureDaily();return state.daily.reinforcementKeys.filter(k=>!state.records[k]).length};
   window.globalReinforcementCompleted=function(){return ensureProgress().reinforcementCompleted.length};
-  window.dailyPolicyQA=function(){ensureDaily();return {policy:ASSIGNMENT_POLICY,newWordQuota:state.daily.wordQuota,reinforcementQuota:state.daily.reinforcementQuota,newWords:state.daily.newWordKeys.length,reinforcement:state.daily.reinforcementKeys.length,totalFresh:Object.values(state.daily.assigned).flat().length}};
-  // Intentionally lazy: product-v2 repairs V26.7I scene metadata before the first assignment is generated.
+  window.dailyPolicyQA=function(){ensureDaily();return {policy:ASSIGNMENT_POLICY,newWordQuota:state.daily.wordQuota,reinforcementQuota:state.daily.reinforcementQuota,newWords:state.daily.newWordKeys.length,reinforcement:state.daily.reinforcementKeys.length,totalFresh:Object.values(state.daily.assigned).flat().length,lexiconLimit:state.daily.lexiconLimit,scene:state.daily.scene}};
+  // Intentionally lazy: assignments are generated only after the lexicon catalog and selected scene are ready.
 })();
-
