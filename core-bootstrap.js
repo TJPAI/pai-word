@@ -1,9 +1,11 @@
 (async function(){
  const app=document.getElementById('app');
- function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v=tap-v58';el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败'));document.body.appendChild(el)})}
+ function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v=lexicon-v4';el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败'));document.body.appendChild(el)})}
  try{
   await loadLearningCatalog();
   await script('learning-runtime.js');
+  if(!SCENES[state.selectedScene]){state.selectedScene=window.PAI_DEFAULT_SCENE||Object.keys(SCENES)[0];state.daily=null;save()}
+  await script('v4-ui.js');
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').then(()=>{window.PAI_LOCAL_LEXICON.shellReady=true}).catch(()=>{});
