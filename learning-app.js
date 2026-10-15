@@ -368,7 +368,7 @@
  };
  loadAdditionalDimensions();
  let proposedCoverage=null;
- const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v56';
+ const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v57';
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
