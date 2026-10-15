@@ -1,0 +1,448 @@
+{
+  "before": {
+    "catalogWords": 13000,
+    "catalogKU": 16616,
+    "catalogSenseKU": 16136,
+    "sceneCount": 312,
+    "byDimension": {
+      "topic": 188,
+      "task": 76,
+      "function": 48
+    },
+    "candidateLinksBefore": 4065,
+    "linksAfter": 4065,
+    "uniqueSenseKUCovered": 2949,
+    "unmappedSenseKU": 13187,
+    "emptyScenes": 10,
+    "lowCoverageScenes": 159,
+    "duplicateCatalogKU": 0,
+    "duplicateWithinScene": 0,
+    "multipleRuleHits": 339,
+    "crossSceneLinksBeyondFirst": 1116,
+    "missingDimensionSeedOccurrences": 28,
+    "missingTopicSeedOccurrences": 48,
+    "reviewedIncludes": 0,
+    "addedMissingLinks": 0,
+    "removedIncorrectLinks": 0,
+    "pendingLinks": 4065,
+    "dictionaryVerifiedLinks": 0,
+    "errors": []
+  },
+  "after": {
+    "catalogWords": 13000,
+    "catalogKU": 16616,
+    "catalogSenseKU": 16136,
+    "sceneCount": 312,
+    "byDimension": {
+      "topic": 188,
+      "task": 76,
+      "function": 48
+    },
+    "candidateLinksBefore": 4065,
+    "linksAfter": 4576,
+    "uniqueSenseKUCovered": 3072,
+    "unmappedSenseKU": 13064,
+    "emptyScenes": 1,
+    "lowCoverageScenes": 128,
+    "duplicateCatalogKU": 0,
+    "duplicateWithinScene": 0,
+    "multipleRuleHits": 339,
+    "crossSceneLinksBeyondFirst": 1504,
+    "missingDimensionSeedOccurrences": 28,
+    "missingTopicSeedOccurrences": 48,
+    "reviewedIncludes": 821,
+    "addedMissingLinks": 641,
+    "removedIncorrectLinks": 130,
+    "pendingLinks": 3755,
+    "dictionaryVerifiedLinks": 0,
+    "errors": [],
+    "scenesWithEditorialDecisions": 135,
+    "scenesStillContainingPending": 288,
+    "editoriallyReviewedUniqueKU": 377,
+    "externallyVerifiedEnglishSeedErrors": null
+  },
+  "emptyBefore": [
+    {
+      "id": "d3-t10",
+      "name": "机上服务"
+    },
+    {
+      "id": "d5-t19",
+      "name": "职业安全"
+    },
+    {
+      "id": "d6-t18",
+      "name": "医疗器械"
+    },
+    {
+      "id": "d6-t19",
+      "name": "健康保险"
+    },
+    {
+      "id": "d8-t12",
+      "name": "区块链"
+    },
+    {
+      "id": "d8-t17",
+      "name": "智能家居"
+    },
+    {
+      "id": "d8-t19",
+      "name": "环境技术"
+    },
+    {
+      "id": "d10-t1",
+      "name": "城市设施"
+    },
+    {
+      "id": "d10-t7",
+      "name": "气候变化"
+    },
+    {
+      "id": "d10-t18",
+      "name": "城市规划"
+    }
+  ],
+  "emptyAfter": [
+    {
+      "id": "d8-t12",
+      "name": "区块链"
+    }
+  ],
+  "missingSeeds": [
+    {
+      "scene": "办理值机",
+      "word": "check-in",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "办理值机",
+      "word": "boarding",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "处理航班延误",
+      "word": "delayed",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "行李丢失申报",
+      "word": "lost",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "行李丢失申报",
+      "word": "missing",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "更换座位",
+      "word": "seating",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "边检问答",
+      "word": "customs",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "报告数据",
+      "word": "statistics",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "撰写摘要",
+      "word": "synopsis",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "申请奖学金",
+      "word": "funding",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "主持会议",
+      "word": "meeting",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "主持会议",
+      "word": "minutes",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "解决故障",
+      "word": "troubleshoot",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "目的与手段",
+      "word": "means",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "必要与充分",
+      "word": "required",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "权衡利弊",
+      "word": "tradeoff",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "提出反例",
+      "word": "counterexample",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "时间先后",
+      "word": "earlier",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "时间先后",
+      "word": "later",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "承诺与意愿",
+      "word": "willing",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "解决问题",
+      "word": "troubleshoot",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "澄清误解",
+      "word": "misunderstanding",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "线上视频会议",
+      "word": "meeting",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "线上视频会议",
+      "word": "webcam",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "制定购物清单",
+      "word": "shopping",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "预约服务",
+      "word": "booking",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "安排聚会",
+      "word": "gathering",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    },
+    {
+      "scene": "情绪与态度",
+      "word": "feeling",
+      "status": "absent_from_catalog_not_necessarily_invalid_English"
+    }
+  ],
+  "missingTopicSeeds": [
+    {
+      "scene": "鱼类",
+      "word": "mackerel"
+    },
+    {
+      "scene": "鱼类",
+      "word": "sardine"
+    },
+    {
+      "scene": "鱼类",
+      "word": "anchovy"
+    },
+    {
+      "scene": "鱼类",
+      "word": "halibut"
+    },
+    {
+      "scene": "鱼类",
+      "word": "snapper"
+    },
+    {
+      "scene": "鱼类",
+      "word": "grouper"
+    },
+    {
+      "scene": "鱼类",
+      "word": "tilapia"
+    },
+    {
+      "scene": "鱼类",
+      "word": "haddock"
+    },
+    {
+      "scene": "鱼类",
+      "word": "pollock"
+    },
+    {
+      "scene": "鱼类",
+      "word": "sturgeon"
+    },
+    {
+      "scene": "鱼类",
+      "word": "swordfish"
+    },
+    {
+      "scene": "鱼类",
+      "word": "marlin"
+    },
+    {
+      "scene": "鱼类",
+      "word": "guppy"
+    },
+    {
+      "scene": "鱼类",
+      "word": "koi"
+    },
+    {
+      "scene": "鱼类",
+      "word": "minnow"
+    },
+    {
+      "scene": "鱼类",
+      "word": "salmonella"
+    },
+    {
+      "scene": "鱼类",
+      "word": "saltwater"
+    },
+    {
+      "scene": "水果",
+      "word": "blueberry"
+    },
+    {
+      "scene": "水果",
+      "word": "blackberry"
+    },
+    {
+      "scene": "水果",
+      "word": "watermelon"
+    },
+    {
+      "scene": "水果",
+      "word": "kiwi"
+    },
+    {
+      "scene": "水果",
+      "word": "papaya"
+    },
+    {
+      "scene": "水果",
+      "word": "pomegranate"
+    },
+    {
+      "scene": "水果",
+      "word": "lychee"
+    },
+    {
+      "scene": "水果",
+      "word": "tangerine"
+    },
+    {
+      "scene": "水果",
+      "word": "nectarine"
+    },
+    {
+      "scene": "海鲜",
+      "word": "scallop"
+    },
+    {
+      "scene": "海鲜",
+      "word": "octopus"
+    },
+    {
+      "scene": "海鲜",
+      "word": "sardine"
+    },
+    {
+      "scene": "海鲜",
+      "word": "anchovy"
+    },
+    {
+      "scene": "海鲜",
+      "word": "mackerel"
+    },
+    {
+      "scene": "海鲜",
+      "word": "roe"
+    },
+    {
+      "scene": "海鲜",
+      "word": "frozen"
+    },
+    {
+      "scene": "肉类",
+      "word": "mutton"
+    },
+    {
+      "scene": "饮料",
+      "word": "smoothie"
+    },
+    {
+      "scene": "蔬菜与烹饪",
+      "word": "eggplant"
+    },
+    {
+      "scene": "蔬菜与烹饪",
+      "word": "radish"
+    },
+    {
+      "scene": "动物园",
+      "word": "hippo"
+    },
+    {
+      "scene": "机场与登机",
+      "word": "boarding"
+    },
+    {
+      "scene": "机场与登机",
+      "word": "check-in"
+    },
+    {
+      "scene": "餐厅点餐",
+      "word": "appetizer"
+    },
+    {
+      "scene": "酒店住宿",
+      "word": "check-in"
+    },
+    {
+      "scene": "酒店住宿",
+      "word": "check-out"
+    },
+    {
+      "scene": "超市购物",
+      "word": "checkout"
+    },
+    {
+      "scene": "体育与运动",
+      "word": "training"
+    },
+    {
+      "scene": "体育与运动",
+      "word": "swimming"
+    },
+    {
+      "scene": "体育与运动",
+      "word": "running"
+    },
+    {
+      "scene": "体育与运动",
+      "word": "sailing"
+    }
+  ]
+}

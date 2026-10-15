@@ -178,7 +178,10 @@
    }
    if(best)scored.push({...best,rank:w.rank,known:!!state.records[best.key]});
   }
-  return scored.sort((a,b)=>Number(a.known)-Number(b.known)||b.score-a.score||a.rank-b.rank).map(x=>x.key);
+  let keys=scored.sort((a,b)=>Number(a.known)-Number(b.known)||b.score-a.score||a.rank-b.rank).map(x=>x.key);
+  const named={'鱼类':'d1-t4','水果':'d1-t10','餐厅点餐':'d2-t10','饮料':'d2-t11'};
+  if(matches.length===1&&named[matches[0].topic.name])keys=PAI_SCENE_REVIEW.apply(named[matches[0].topic.name],keys);
+  return keys;
  }
  window.continueTopicStudy=()=>{
   const q=state.topicStudyQuery;if(!q)return;
@@ -264,9 +267,12 @@
     }
    }
    }
-   for(const e of entries){const cached=sceneCacheRows.get(e.id);if(cached){e.keys=(cached.keys||[]).filter(k=>byKey(k));for(const k of e.keys)e.words.add(byKey(k).w.rank);for(const v of cached.evidence||[]){if(!byKey(v.kuId))continue;e.evidence.set(v.kuId,v);if(!reverse.has(v.kuId))reverse.set(v.kuId,[]);reverse.get(v.kuId).push(v)}}dimensionKeys.set(e.id,e.keys);dimensionEvidenceCache.set(e.id,[...e.evidence.values()])}
+   for(const e of entries){const cached=sceneCacheRows.get(e.id);if(cached){e.keys=(cached.keys||[]).filter(k=>byKey(k));for(const k of e.keys)e.words.add(byKey(k).w.rank);for(const v of cached.evidence||[]){if(!byKey(v.kuId))continue;e.evidence.set(v.kuId,v);if(!reverse.has(v.kuId))reverse.set(v.kuId,[]);reverse.get(v.kuId).push(v)}}e.keys=PAI_SCENE_REVIEW.apply(e.id,e.keys);e.words=new Set(e.keys.map(k=>byKey(k).w.rank));
+    e.evidence=new Map(e.keys.map(k=>[k,PAI_SCENE_REVIEW.evidence(e.id,k)||e.evidence.get(k)]).filter(([,v])=>v));
+    dimensionKeys.set(e.id,e.keys);dimensionEvidenceCache.set(e.id,[...e.evidence.values()])}
+   reverse.clear();for(const e of entries)for(const v of e.evidence.values()){if(!reverse.has(v.kuId))reverse.set(v.kuId,[]);reverse.get(v.kuId).push(v)}
    saveSceneCache();
-   const stats=new Map(entries.map(e=>[e.id,{ku:e.keys.length,words:e.words.size,status:'candidate_unverified'}]));
+   const stats=new Map(entries.map(e=>[e.id,{ku:e.keys.length,words:e.words.size,status:'mixed_editorial_and_pending',...PAI_SCENE_REVIEW.stats(e.id,e.keys)}]));
    window.PAI_SCENE_DIMENSIONS=()=>additionalDimensions.map(d=>({id:d.id,label:d.label,groups:d.groups.map(g=>({name:g.name,count:g.items.length,items:g.items.map(i=>({id:i.id,name:i.name,...stats.get(i.id)}))}))}));
    window.PAI_DIMENSION_KU_TAGS=kuId=>(reverse.get(kuId)||[]).map(e=>({...e}));
    window.PAI_DIMENSION_EVIDENCE=(sceneId,limit=30)=>{
@@ -292,7 +298,7 @@
     const empty=entries.filter(e=>!e.keys.length).map(e=>({id:e.id,name:e.name,dimension:e.dimension}));
     const sparse=entries.filter(e=>e.keys.length>0&&e.words.size<10).map(e=>({id:e.id,name:e.name,words:e.words.size,ku:e.keys.length}));
     const totalLinks=entries.reduce((n,e)=>n+e.keys.length,0);
-    return {total:entries.length,nonempty:entries.length-empty.length,empty,lowCoverage:sparse,totalCandidateLinks:totalLinks,reviewedLinks:0,verification:'not_verified'};
+    return {total:entries.length,nonempty:entries.length-empty.length,empty,lowCoverage:sparse,totalCandidateLinks:totalLinks,reviewedLinks:entries.reduce((n,e)=>n+PAI_SCENE_REVIEW.stats(e.id,e.keys).editoriallyReviewed,0),verification:'editorial_only_dictionary_not_verified'};
    };
    if(state.view==='scenes')render();
   }catch(e){window.PAI_SCENE_DIMENSION_ERROR=String(e)}
@@ -322,7 +328,7 @@
    if(scene.ku>1000)warnings.push('possible_overmatching');
    if(scene.dimension!=='topic'&&scene.ku>0&&aliasCount/scene.ku>=0.8)warnings.push('alias_dominated');
    if(scene.dimension!=='topic'&&seedCount>0)warnings.push('unverified_english_seeds');
-   return {id:scene.id,name:scene.name,dimension:scene.dimension,ku:scene.ku,exactCount,aliasCount,seedCount,warnings,samples:scene.samples};
+   return {id:scene.id,name:scene.name,dimension:scene.dimension,ku:scene.ku,...PAI_SCENE_REVIEW.stats(scene.id,proposedKeys.get(scene.id)||dimensionKeys.get(scene.id)||[]),exactCount,aliasCount,seedCount,warnings,samples:scene.samples};
   });
   const counts={};
   for(const row of report)for(const warning of row.warnings)counts[warning]=(counts[warning]||0)+1;
@@ -338,8 +344,8 @@
   return {sceneCount:report.sceneCount,warningCounts:report.warningCounts};
  };
  window.PAI_EXPORT_SCENE_INDEX=()=>{
-  const topicRows=(proposedCoverage||[]).map(x=>({id:x.id,name:x.name,dimension:'topic',keys:proposedKeys.get(x.id)||[],status:'candidate_unverified'}));
-  const dimensionRows=(additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:dimensionKeys.get(i.id)||[],status:'candidate_unverified'}))));
+  const topicRows=(proposedCoverage||[]).map(x=>({id:x.id,name:x.name,dimension:'topic',keys:proposedKeys.get(x.id)||[],...PAI_SCENE_REVIEW.stats(x.id,proposedKeys.get(x.id)||[]),status:'mixed_editorial_and_pending'}));
+  const dimensionRows=(additionalDimensions||[]).flatMap(d=>d.groups.flatMap(g=>g.items.map(i=>({id:i.id,name:i.name,dimension:d.id,keys:dimensionKeys.get(i.id)||[],...PAI_SCENE_REVIEW.stats(i.id,dimensionKeys.get(i.id)||[]),status:'mixed_editorial_and_pending'}))));
   const scenes=[...topicRows,...dimensionRows];
   const allKeys=new Set(scenes.flatMap(x=>x.keys));
   return {schemaVersion:1,source:'PAI Word Core-13000 runtime',status:'candidate_unverified',generatedAt:new Date().toISOString(),
@@ -368,7 +374,7 @@
  };
  loadAdditionalDimensions();
  let proposedCoverage=null;
- const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v57';
+ const SCENE_CACHE_KEY='pai-word:scene-ku-index:core13000:v58';
  let sceneCache=null;
  try{
   const saved=localStorage.getItem(SCENE_CACHE_KEY);
@@ -431,10 +437,11 @@
    for(const row of rows){
     const cached=sceneCacheRows.get(row.id);
     if(cached){for(const k of cached.keys||[]){if(byKey(k)){row.kuIds.add(k);row.wordRanks.add(byKey(k).w.rank)}}for(const k of cached.directKU||[])row.directKU.add(k)}
+    row.kuIds=new Set(PAI_SCENE_REVIEW.apply(row.id,[...row.kuIds]));row.wordRanks=new Set([...row.kuIds].map(k=>byKey(k).w.rank));row.directKU=new Set([...row.directKU].filter(k=>row.kuIds.has(k)));
     proposedKeys.set(row.id,[...row.kuIds]);proposedDirectKeys.set(row.id,[...row.directKU]);
    }
    saveSceneCache();
-   proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'candidate_unverified'}));
+   proposedCoverage=rows.map(row=>({id:row.id,domain:row.domain,name:row.name,words:row.wordRanks.size,ku:row.kuIds.size,directKU:row.directKU.size,unseenKU:[...row.kuIds].filter(k=>!state.records[k]).length,status:'mixed_editorial_and_pending',...PAI_SCENE_REVIEW.stats(row.id,[...row.kuIds])}));
    saveSceneCache();
    window.PAI_PROPOSED_SCENE_COVERAGE=()=>proposedCoverage.map(x=>({...x}));
    window.PAI_SCENE_COVERAGE_QA=()=>{
@@ -518,7 +525,7 @@
   const n=fresh().length,r=due().length,completed=globalNewCompleted(),resume=state.learningSession?.queue?.length;
   const topicCards=()=>topicCatalog().map(t=>`<button class="scene-card" onclick="setTopicInput('${esc(t.name)}');startTopicStudy()"><span class="scene-name">${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join('');
   const cards=ids=>ids.map(id=>`<button class="scene-card" onclick="openScene('${id}')"><span class="scene-name">${esc(SCENES[id])}</span><span class="scene-count"><b>${unlearned(id).length}</b><small>未学词</small></span></button>`).join('');
-  return `<div class="screen scene-screen"><div class="scene-head"><h1>PAI Word</h1><div class="scene-tools"><button class="text-btn" onclick="openLexicon()">词库</button><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><p class="home-intro">选一个场景，先回忆，再看答案。</p><section class="topic-search"><label for="topic-input">一句话选择背词场景</label><form onsubmit="event.preventDefault();startTopicStudy()"><input id="topic-input" aria-label="描述想学的场景" maxlength="160" placeholder="例如：蔬菜、动物园、我想去机场登机" oninput="setTopicInput(this.value)" value="${esc(topicInput)}"><button type="submit" class="primary-btn">开始场景背词</button></form><p class="scene-note">支持常见主题与简短描述；从现有 Core-13000 中选词，不生成新词条。</p>${topicFeedback?`<p class="topic-feedback" role="status">${esc(topicFeedback)}</p>`:""}</section><section class="today-plan"><label for="scene-choice">今日新词来源</label><select id="scene-choice" onchange="selectLearningScene(this.value)">${Object.entries(SCENES).map(([id,name])=>`<option value="${id}" ${id===state.selectedScene?'selected':''}>${category(id)} · ${esc(name)}</option>`).join('')}</select><p>今日已接触 ${completed} 个新词 · 待学 ${state.daily.newWordKeys.filter(k=>!state.records[k]).length} 个</p><button class="primary-btn" onclick="openToday()">${n||r?'开始今日学习':'今日分配已完成'}${n||r?` · ${n+r} 项`:''}</button>${resume?`<button class="secondary-btn" onclick="resumeLearning()">继续上次学习 · 剩余 ${resume} 项</button>`:''}<button class="text-btn" onclick="openReview()">优先复习 ${r} 项</button></section><h2 class="group-title">主题场景 · 全部候选单词数</h2><p class="scene-note">按当前词库动态统计；每个场景内同一单词只计一次。</p><div class="scene-grid">${topicCards()}</div><details class="scene-taxonomy-audit"><summary>任务场景与语言功能 · 新增124项</summary><p class="scene-note">仅展示词义中直接出现完整场景名称的初步候选；有 KU 的条目可试学。未匹配不代表词库无相关词，所有映射均待审核。</p>${additionalDimensions?additionalDimensions.map(d=>`<h3>${esc(d.label)}</h3>${d.groups.map(g=>`<p class="scene-note"><b>${esc(g.name)}</b>：${g.items.map(i=>{const keys=dimensionKeys.get(i.id)||[];return keys.length?`<button onclick="startDimensionScene('${i.id}')">${esc(i.name)} (${keys.length} KU)</button>`:`${esc(i.name)} (待映射)`}).join('、')}</p>`).join('')}`).join(''):'正在加载目录…'}</details><details class="scene-taxonomy-audit"><summary>完整场景目录与候选覆盖（188个主题）</summary><p class="scene-note">仅按中文释义中的主题名称直接匹配，属于未经验证的保守候选统计；0不表示词库没有相关词。</p>${proposedCoverage?proposedCoverage.map(t=>`<button class="scene-card" onclick="startProposedScene(\'${t.id}\')" ${t.ku?'':'disabled'}><span class="scene-name">${esc(t.domain)} / ${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join(''):'正在统计场景候选…'}</details><h2 class="group-title">按场景学习</h2><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)==='场景'))}</div><h2 class="group-title">基础与词频分层</h2><p class="scene-note">以下词汇尚未完成场景细分，按词频范围学习。功能词单独练习。</p><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)!=='场景'&&(core.byScene.get(id)||[]).length))}</div><p class="scene-note">内容持续校订中；收录数量不代表已完成词典核验。<br>${statusText()}</p></div>`;
+  return `<div class="screen scene-screen"><div class="scene-head"><h1>PAI Word</h1><div class="scene-tools"><button class="text-btn" onclick="openLexicon()">词库</button><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><p class="home-intro">选一个场景，先回忆，再看答案。</p><section class="topic-search"><label for="topic-input">一句话选择背词场景</label><form onsubmit="event.preventDefault();startTopicStudy()"><input id="topic-input" aria-label="描述想学的场景" maxlength="160" placeholder="例如：蔬菜、动物园、我想去机场登机" oninput="setTopicInput(this.value)" value="${esc(topicInput)}"><button type="submit" class="primary-btn">开始场景背词</button></form><p class="scene-note">支持常见主题与简短描述；从现有 Core-13000 中选词，不生成新词条。</p>${topicFeedback?`<p class="topic-feedback" role="status">${esc(topicFeedback)}</p>`:""}</section><section class="today-plan"><label for="scene-choice">今日新词来源</label><select id="scene-choice" onchange="selectLearningScene(this.value)">${Object.entries(SCENES).map(([id,name])=>`<option value="${id}" ${id===state.selectedScene?'selected':''}>${category(id)} · ${esc(name)}</option>`).join('')}</select><p>今日已接触 ${completed} 个新词 · 待学 ${state.daily.newWordKeys.filter(k=>!state.records[k]).length} 个</p><button class="primary-btn" onclick="openToday()">${n||r?'开始今日学习':'今日分配已完成'}${n||r?` · ${n+r} 项`:''}</button>${resume?`<button class="secondary-btn" onclick="resumeLearning()">继续上次学习 · 剩余 ${resume} 项</button>`:''}<button class="text-btn" onclick="openReview()">优先复习 ${r} 项</button></section><h2 class="group-title">主题场景 · 全部候选单词数</h2><p class="scene-note">按当前词库动态统计；每个场景内同一单词只计一次。</p><div class="scene-grid">${topicCards()}</div><details class="scene-taxonomy-audit"><summary>任务场景与语言功能 · 新增124项</summary><p class="scene-note">已接入逐词义编辑核验；其余自动候选仍待审核，编辑核验不等于外部词典验证。</p>${additionalDimensions?additionalDimensions.map(d=>`<h3>${esc(d.label)}</h3>${d.groups.map(g=>`<p class="scene-note"><b>${esc(g.name)}</b>：${g.items.map(i=>{const keys=dimensionKeys.get(i.id)||[];return keys.length?`<button onclick="startDimensionScene('${i.id}')">${esc(i.name)} (${keys.length} KU)</button>`:`${esc(i.name)} (待映射)`}).join('、')}</p>`).join('')}`).join(''):'正在加载目录…'}</details><details class="scene-taxonomy-audit"><summary>完整场景目录与候选覆盖（188个主题）</summary><p class="scene-note">按具体词义修正漏配与误配；未核验候选仍保留待审。0表示当前没有可用映射。</p>${proposedCoverage?proposedCoverage.map(t=>`<button class="scene-card" onclick="startProposedScene(\'${t.id}\')" ${t.ku?'':'disabled'}><span class="scene-name">${esc(t.domain)} / ${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU · 已编辑核验 ${t.editoriallyReviewed||0}</small></span></button>`).join(''):'正在统计场景候选…'}</details><h2 class="group-title">按场景学习</h2><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)==='场景'))}</div><h2 class="group-title">基础与词频分层</h2><p class="scene-note">以下词汇尚未完成场景细分，按词频范围学习。功能词单独练习。</p><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)!=='场景'&&(core.byScene.get(id)||[]).length))}</div><p class="scene-note">内容持续校订中；收录数量不代表已完成词典核验。<br>${statusText()}</p></div>`;
  }
  function learning(){
   const s=state.learningSession,u=browsedUnit||unit();if(!s)return home();
