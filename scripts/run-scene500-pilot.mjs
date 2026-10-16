@@ -11,6 +11,7 @@ for (const file of seedManifest.files || []) {
 
 const steps = [
   ['node', ['scripts/validate-scene-taxonomy-v2.mjs']],
+  ['node', ['scripts/validate-scene500-node-types.mjs']],
   ['node', ['scripts/validate-scene500-seeds.mjs']],
   ['node', ['scripts/generate-scene500-candidates.mjs']],
   ['node', ['scripts/audit-scene500-candidates.mjs']]
@@ -24,5 +25,6 @@ for (const [cmd, args] of steps) {
 }
 
 console.log(`\nScene500 seeded-scene pipeline completed for ${seededScenes} scenes.`);
+console.log('Node types, seed coverage, source-membership policy, candidates and QA all passed their configured gates.');
 console.log('Generated data/scene500-candidates-v1.json remains generated_candidate/pending only.');
 console.log('Do not copy candidates into production links until sense-level review is complete.');
