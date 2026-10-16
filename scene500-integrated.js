@@ -75,19 +75,20 @@
     return [...due,...fresh];
   };
 
+  // Keep scene entry synchronous. On iOS Safari the first automatic pronunciation
+  // must be started inside the original user gesture; the production learning
+  // runtime then loads the KU payload asynchronously after starting speech.
   const baseOpenScene=window.openScene;
-  window.openScene=async function(scene){
+  window.openScene=function(scene){
     if(!ids.has(scene))return baseOpenScene(scene);
-    const keys=assignment(scene);
-    if(typeof ensureUnits==='function')await ensureUnits(keys);
+    assignment(scene);
     return baseOpenScene(scene);
   };
 
   const baseLearnMore=window.learnMore;
-  window.learnMore=async function(scene,n=10){
+  window.learnMore=function(scene,n=10){
     if(!ids.has(scene))return baseLearnMore(scene,n);
-    const keys=assignment(scene,n,true);
-    if(typeof ensureUnits==='function')await ensureUnits(keys);
+    assignment(scene,n,true);
     return baseOpenScene(scene);
   };
 
