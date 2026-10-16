@@ -6,6 +6,9 @@ const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const manifest = read('data/learning-v3/manifest.json');
 const taxonomy = read('data/scene-taxonomy-v2.json');
 const seedManifest = read('data/scene500-seed-manifest-v1.json');
+const sourceMembership = fs.existsSync('data/scene500-source-membership-v1.json')
+  ? read('data/scene500-source-membership-v1.json')
+  : { scenes: {} };
 
 function loadSeeds() {
   const merged = { policy: { minimumScore: 3 }, scenes: {} };
@@ -21,6 +24,7 @@ function loadSeeds() {
   return merged;
 }
 const seeds = loadSeeds();
+const deferredSourceScenes = new Set(Object.keys(sourceMembership.scenes || {}));
 
 function unpackB64Gzip(path) {
   const txt = fs.readFileSync(path, 'utf8').trim();
@@ -46,6 +50,9 @@ for (const sceneId of Object.keys(seeds.scenes || {})) {
   if (!validSceneIds.has(sceneId)) throw new Error(`Unknown scene seed: ${sceneId}`);
   byScene[sceneId] = 0;
 }
+for (const sceneId of deferredSourceScenes) {
+  if (!validSceneIds.has(sceneId)) throw new Error(`Unknown source-membership scene: ${sceneId}`);
+}
 
 for (const row of catalog) {
   const [rank, word, wordPos, kus] = row;
@@ -54,6 +61,9 @@ for (const row of catalog) {
     const senseEnText = [kuTitle, kuType, kuPos].filter(Boolean).join(' | ');
     const senseZhText = [meaning, kuTitle].filter(Boolean).join(' | ');
     for (const [sceneId, rule] of Object.entries(seeds.scenes || {})) {
+      // Exam/source-list scenes are intentionally excluded from semantic matching.
+      if (deferredSourceScenes.has(sceneId)) continue;
+
       const enHits = (rule.senseEn || []).filter(k => phraseHit(senseEnText, k));
       const zhHits = (rule.senseZh || []).filter(k => phraseHit(senseZhText, k));
       const headwordHit = (rule.headwords || []).some(k => norm(word) === norm(k));
@@ -96,22 +106,26 @@ for (const c of candidates) {
 }
 const links = [...dedup.values()].sort((a,b) => a.sceneId.localeCompare(b.sceneId) || a.meta.rank - b.meta.rank || a.kuId.localeCompare(b.kuId));
 const out = {
-  schemaVersion: 3,
+  schemaVersion: 4,
   taxonomyId: taxonomy.taxonomyId,
   sourceCatalogRelease: manifest.release,
   seedFiles: seedManifest.files,
+  sourceMembershipFile: fs.existsSync('data/scene500-source-membership-v1.json') ? 'data/scene500-source-membership-v1.json' : null,
   status: 'generated_candidates_pending_review',
   policy: {
     autoVerified: 0,
     productionEligible: false,
     senseEvidenceRequired: true,
     headwordOnlyForbidden: true,
-    note: 'Heuristic sense-first matching only. Every link requires editorial/dictionary/corpus review before promotion.'
+    sourceMembershipScenesExcludedFromSemanticMatching: true,
+    note: 'Semantic scenes use heuristic sense-first matching. Exam/source-list scenes require separate authoritative membership evidence. Every link requires review before promotion.'
   },
   summary: {
     wordCount: manifest.wordCount,
     kuCount: manifest.kuCount,
     seededScenes: Object.keys(seeds.scenes || {}).length,
+    semanticCandidateScenes: Object.keys(seeds.scenes || {}).filter(id => !deferredSourceScenes.has(id)).length,
+    deferredSourceScenes: [...deferredSourceScenes].sort(),
     candidateLinks: links.length,
     candidatesByScene: byScene
   },
