@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "taxonomyId": "pai-word-scene500-v1",
+  "scope": "S001-S250",
+  "status": "editorial_primary_type_v1",
+  "types": {
+    "semantic_scene": {
+      "description": "A recognizable real-world situation that can own a coherent KU set.",
+      "sceneIds": ["S001","S006","S025","S030","S037","S049","S061","S062","S063","S065","S069","S074","S076","S077","S084","S087","S088","S089","S090","S091","S092","S093","S094","S095","S096","S097","S098","S101","S102","S108","S109","S110","S111","S112","S113","S114","S115","S116","S117","S118","S123","S125","S146","S150","S155","S162","S171","S172","S173","S174","S200","S210","S211","S216"]
+    },
+    "theme": {
+      "description": "A topic/domain whose vocabulary is useful across multiple situations.",
+      "sceneIds": ["S007","S008","S009","S010","S011","S012","S013","S014","S015","S016","S017","S018","S026","S027","S028","S029","S042","S043","S050","S051","S052","S053","S054","S055","S056","S057","S058","S059","S060","S100","S124","S126","S127","S128","S129","S130","S131","S132","S133","S134","S135","S136","S149","S226","S227","S228","S229","S230","S231","S232","S233","S234","S235","S241","S242","S243","S244","S245","S247","S248","S249","S250"]
+    },
+    "place": {
+      "description": "A physical or institutional context best used as a compositional facet rather than a standalone wordbook.",
+      "sceneIds": ["S038","S039","S040","S041","S066","S067","S068","S070","S071","S072","S073","S078","S079","S080","S081","S082","S083","S085","S086","S099","S105","S106","S107","S137","S138","S139","S140","S141","S142","S151","S152","S153","S154"]
+    },
+    "task": {
+      "description": "A user goal/action that should often combine with Theme/Place rather than own duplicated vocabulary.",
+      "sceneIds": ["S002","S003","S019","S020","S023","S024","S031","S032","S033","S034","S035","S036","S044","S045","S046","S047","S061","S064","S075","S103","S104","S119","S120","S121","S122","S137","S138","S141","S142","S143","S144","S145","S147","S148","S156","S157","S158","S159","S160","S161","S163","S164","S165","S166","S167","S168","S169","S170","S175","S176","S177","S178","S179","S180","S181","S182","S183","S199","S201","S202","S203","S204","S205","S206","S207","S208","S209","S212","S213","S214","S215","S217","S218","S219","S220","S221","S222","S223","S224","S225","S236","S237","S238","S239","S240","S246"]
+    },
+    "function": {
+      "description": "A communicative function; should normally be a compositional dimension, not an isolated scene wordbook.",
+      "sceneIds": ["S004","S005","S021","S022"]
+    },
+    "source_collection": {
+      "description": "Membership comes from an authoritative exam/course/source list, not semantic matching.",
+      "sceneIds": ["S184","S185","S186","S187","S188","S189","S190","S191","S192","S193","S194","S195","S196","S197","S198"]
+    }
+  },
+  "policy": {
+    "onePrimaryTypePerScene": true,
+    "secondaryFacetsAllowed": true,
+    "semanticMatcherAllowedFor": ["semantic_scene","theme","place","task","function"],
+    "sourceMembershipRequiresExternalEvidence": true,
+    "note": "Primary type determines mapping strategy. It does not prevent a node from carrying secondary Theme/Place/Task/Function facets."
+  }
+}
