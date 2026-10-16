@@ -5,7 +5,22 @@ import zlib from 'node:zlib';
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const manifest = read('data/learning-v3/manifest.json');
 const taxonomy = read('data/scene-taxonomy-v2.json');
-const seeds = read('data/scene500-seeds-v1.json');
+const seedManifest = read('data/scene500-seed-manifest-v1.json');
+
+function loadSeeds() {
+  const merged = { policy: { minimumScore: 3 }, scenes: {} };
+  for (const file of seedManifest.files || []) {
+    const doc = read(file);
+    if (doc.taxonomyId !== taxonomy.taxonomyId) throw new Error(`Seed taxonomy mismatch: ${file}`);
+    if (doc.policy?.minimumScore != null) merged.policy.minimumScore = Math.max(merged.policy.minimumScore, doc.policy.minimumScore);
+    for (const [sceneId, rule] of Object.entries(doc.scenes || {})) {
+      if (merged.scenes[sceneId]) throw new Error(`Duplicate scene seed across files: ${sceneId}`);
+      merged.scenes[sceneId] = rule;
+    }
+  }
+  return merged;
+}
+const seeds = loadSeeds();
 
 function unpackB64Gzip(path) {
   const txt = fs.readFileSync(path, 'utf8').trim();
@@ -43,7 +58,6 @@ for (const row of catalog) {
       const zhHits = (rule.senseZh || []).filter(k => phraseHit(senseZhText, k));
       const headwordHit = (rule.headwords || []).some(k => norm(word) === norm(k));
 
-      // Sense evidence is mandatory. A headword match only strengthens an existing sense hit.
       if (!enHits.length && !zhHits.length) continue;
       let score = enHits.length * 2 + zhHits.length * 3 + (headwordHit ? 1 : 0);
       if (rank <= 3000) score += 1;
@@ -82,9 +96,10 @@ for (const c of candidates) {
 }
 const links = [...dedup.values()].sort((a,b) => a.sceneId.localeCompare(b.sceneId) || a.meta.rank - b.meta.rank || a.kuId.localeCompare(b.kuId));
 const out = {
-  schemaVersion: 2,
+  schemaVersion: 3,
   taxonomyId: taxonomy.taxonomyId,
   sourceCatalogRelease: manifest.release,
+  seedFiles: seedManifest.files,
   status: 'generated_candidates_pending_review',
   policy: {
     autoVerified: 0,
