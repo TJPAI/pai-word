@@ -1,9 +1,10 @@
 (async function(){
  const app=document.getElementById('app');
- function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v=tap-v42';el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败'));document.body.appendChild(el)})}
+ function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v=tap-v43';el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败'));document.body.appendChild(el)})}
  try{
   await loadLearningCatalog();
   await script('learning-runtime.js');
+  await script('audio-compat.js');
   await script('scene500-integrated.js');
   await script('home-dashboard.js');
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');
