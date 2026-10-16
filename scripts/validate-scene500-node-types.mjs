@@ -26,7 +26,7 @@ const taxIds = new Set((taxonomy.scenes || []).map(x=>x.id));
 for (const id of expected) if (!taxIds.has(id)) fail.push(`taxonomy missing ${id}`);
 
 const sourceType = new Set(nodeTypes.types?.source_collection?.sceneIds || []);
-const deferred = new Set(sourceMembership.scenes || sourceMembership.sceneIds || []);
+const deferred = new Set(Object.keys(sourceMembership.scenes || {}));
 for (const id of sourceType) if (!deferred.has(id)) fail.push(`source_collection not deferred in source-membership config: ${id}`);
 for (const id of deferred) if (expected.has(id) && !sourceType.has(id)) fail.push(`deferred source scene not typed source_collection: ${id}`);
 
@@ -36,6 +36,8 @@ const result = {
   expectedScenes: expected.size,
   typedScenes: seen.size,
   counts,
+  sourceCollectionScenes: sourceType.size,
+  deferredSourceScenes: deferred.size,
   status: fail.length ? 'FAIL' : 'PASS',
   errors: fail
 };
