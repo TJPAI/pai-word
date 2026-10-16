@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 import { spawnSync } from 'node:child_process';
+import fs from 'node:fs';
+
+const seedManifest = JSON.parse(fs.readFileSync('data/scene500-seed-manifest-v1.json', 'utf8'));
+let seededScenes = 0;
+for (const file of seedManifest.files || []) {
+  const doc = JSON.parse(fs.readFileSync(file, 'utf8'));
+  seededScenes += Object.keys(doc.scenes || {}).length;
+}
 
 const steps = [
   ['node', ['scripts/validate-scene-taxonomy-v2.mjs']],
@@ -14,6 +22,6 @@ for (const [cmd, args] of steps) {
   if (r.status !== 0) process.exit(r.status ?? 1);
 }
 
-console.log('\nScene500 C01 pilot pipeline completed.');
+console.log(`\nScene500 seeded-scene pipeline completed for ${seededScenes} scenes.`);
 console.log('Generated data/scene500-candidates-v1.json remains generated_candidate/pending only.');
 console.log('Do not copy candidates into production links until sense-level review is complete.');
