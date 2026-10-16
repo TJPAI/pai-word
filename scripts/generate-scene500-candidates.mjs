@@ -15,7 +15,7 @@ function unpackB64Gzip(path) {
 const catalog = unpackB64Gzip(`data/learning-v3/${manifest.catalog.file}`);
 const validSceneIds = new Set((taxonomy.scenes || []).map(s => s.id));
 const norm = s => String(s ?? '').toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').trim();
-const tokenHit = (haystack, needle) => {
+const phraseHit = (haystack, needle) => {
   const h = norm(haystack), n = norm(needle);
   if (!n) return false;
   if (/^[a-z0-9'-]+$/i.test(n)) {
@@ -36,17 +36,25 @@ for (const row of catalog) {
   const [rank, word, wordPos, kus] = row;
   for (const ku of kus || []) {
     const [kuId, oldScene, kuType, kuTitle, kuPos, meaning] = ku;
-    const enText = [word, kuTitle, kuType, kuPos, wordPos].filter(Boolean).join(' | ');
-    const zhText = [meaning, kuTitle].filter(Boolean).join(' | ');
+    const senseEnText = [kuTitle, kuType, kuPos].filter(Boolean).join(' | ');
+    const senseZhText = [meaning, kuTitle].filter(Boolean).join(' | ');
     for (const [sceneId, rule] of Object.entries(seeds.scenes || {})) {
-      const enHits = (rule.includeEn || []).filter(k => tokenHit(enText, k));
-      const zhHits = (rule.includeZh || []).filter(k => tokenHit(zhText, k));
+      const enHits = (rule.senseEn || []).filter(k => phraseHit(senseEnText, k));
+      const zhHits = (rule.senseZh || []).filter(k => phraseHit(senseZhText, k));
+      const headwordHit = (rule.headwords || []).some(k => norm(word) === norm(k));
+
+      // Sense evidence is mandatory. A headword match only strengthens an existing sense hit.
       if (!enHits.length && !zhHits.length) continue;
-      const hitCount = enHits.length + zhHits.length;
-      const confidence = Math.min(0.88, Number((0.58 + Math.min(hitCount, 3) * 0.08 + (rank <= 3000 ? 0.04 : 0)).toFixed(2)));
+      let score = enHits.length * 2 + zhHits.length * 3 + (headwordHit ? 1 : 0);
+      if (rank <= 3000) score += 1;
+      if (score < (seeds.policy?.minimumScore ?? 3)) continue;
+
+      const confidence = Math.min(0.90, Number((0.54 + Math.min(score, 7) * 0.05).toFixed(2)));
+      const relevance = score >= 6 ? 'core' : 'extended';
       const evidence = [
-        `seed-hit:${[...enHits, ...zhHits].join(',')}`,
-        `word=${word}`,
+        enHits.length ? `senseEn:${enHits.join(',')}` : null,
+        zhHits.length ? `senseZh:${zhHits.join(',')}` : null,
+        headwordHit ? `headword-support:${word}` : null,
         kuTitle ? `kuTitle=${kuTitle}` : null,
         meaning ? `meaning=${meaning}` : null,
         oldScene ? `legacyScene=${oldScene}` : null
@@ -54,12 +62,12 @@ for (const row of catalog) {
       candidates.push({
         kuId,
         sceneId,
-        relevance: hitCount >= 2 ? 'core' : 'extended',
+        relevance,
         confidence,
         source: 'generated_candidate',
         evidence,
         reviewStatus: 'pending',
-        meta: { rank, word, kuType, oldScene }
+        meta: { rank, word, kuType, oldScene, score }
       });
       byScene[sceneId]++;
     }
@@ -74,14 +82,16 @@ for (const c of candidates) {
 }
 const links = [...dedup.values()].sort((a,b) => a.sceneId.localeCompare(b.sceneId) || a.meta.rank - b.meta.rank || a.kuId.localeCompare(b.kuId));
 const out = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   taxonomyId: taxonomy.taxonomyId,
   sourceCatalogRelease: manifest.release,
   status: 'generated_candidates_pending_review',
   policy: {
     autoVerified: 0,
     productionEligible: false,
-    note: 'Heuristic seed matching only. Every link requires sense-level editorial/dictionary/corpus review before promotion.'
+    senseEvidenceRequired: true,
+    headwordOnlyForbidden: true,
+    note: 'Heuristic sense-first matching only. Every link requires editorial/dictionary/corpus review before promotion.'
   },
   summary: {
     wordCount: manifest.wordCount,
