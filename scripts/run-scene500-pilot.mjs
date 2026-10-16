@@ -11,6 +11,7 @@ for (const file of seedManifest.files || []) {
 
 const steps = [
   ['node', ['scripts/validate-scene-taxonomy-v2.mjs']],
+  ['node', ['scripts/validate-scene500-seeds.mjs']],
   ['node', ['scripts/generate-scene500-candidates.mjs']],
   ['node', ['scripts/audit-scene500-candidates.mjs']]
 ];
