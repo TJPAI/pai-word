@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "taxonomyId": "pai-word-scene500-v1",
+  "status": "runtime_model_defined_mapping_pending",
+  "principle": "Scene500 is a compositional scene graph, not 500 independent wordbooks.",
+  "nodeTypeBehavior": {
+    "semantic_scene": {
+      "standaloneLearningSurface": true,
+      "composableFacet": true,
+      "candidateMapping": "sense_first_semantic",
+      "example": "机场安检 / 航班延误 / 急诊 / 参加会议"
+    },
+    "theme": {
+      "standaloneLearningSurface": "optional_when_coherent",
+      "composableFacet": true,
+      "candidateMapping": "sense_first_semantic",
+      "example": "天气 / 营养 / 人工智能 / 宏观经济"
+    },
+    "place": {
+      "standaloneLearningSurface": false,
+      "composableFacet": true,
+      "candidateMapping": "context_semantic",
+      "example": "厨房 / 地铁 / 医院 / 法院"
+    },
+    "task": {
+      "standaloneLearningSurface": "optional_when_high_value",
+      "composableFacet": true,
+      "candidateMapping": "task_semantic",
+      "example": "订位 / 挂号 / 写简历 / 文献检索"
+    },
+    "function": {
+      "standaloneLearningSurface": false,
+      "composableFacet": true,
+      "candidateMapping": "communicative_function",
+      "example": "请求 / 道歉 / 建议 / 澄清 / 说服"
+    },
+    "cognitive_facet": {
+      "standaloneLearningSurface": false,
+      "composableFacet": true,
+      "candidateMapping": "discourse_relation_and_reasoning",
+      "example": "因果 / 比较 / 假设 / 证据 / 风险收益"
+    },
+    "source_collection": {
+      "standaloneLearningSurface": true,
+      "composableFacet": false,
+      "candidateMapping": "authoritative_source_membership",
+      "example": "CET-4 / IELTS / TOEFL / GRE"
+    }
+  },
+  "composition": {
+    "primaryDimensions": ["theme","place","task","function"],
+    "advancedDimension": "cognitive_facet",
+    "collectionDimension": "source_collection",
+    "example": {
+      "surfaceNameZh": "在机场柜台投诉航班延误并要求改签",
+      "theme": "旅行出行",
+      "place": "机场",
+      "task": "处理航班延误/改签",
+      "function": ["投诉","请求","澄清"],
+      "cognitive": ["因果","比较选择"]
+    }
+  },
+  "releaseRules": {
+    "flat500MenuForbidden": true,
+    "emptyNodesMayRemainHidden": true,
+    "generatedCandidatesNeverAutoVerified": true,
+    "sourceCollectionsRequireProvenance": true,
+    "runtimeShouldPreferComposedScenes": true,
+    "standaloneSceneRequiresReviewedCoreKUSet": true
+  }
+}
