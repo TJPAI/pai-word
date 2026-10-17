@@ -16,7 +16,7 @@ test('Core-13000 loader is local-first but still verifies cached bytes',()=>{
   assert.match(src,/offlineReady=localStatus\.supported&&localStatus\.manifestCached/);
 });
 
-test('current app shell is versioned and caches only bootstrap-critical Scene500 data',()=>{
+test('current app shell caches ranked Scene500 membership v2 plus v1 fallback',()=>{
   const sw=read('sw.js');
   const boot=read('core-bootstrap.js');
   const index=read('index.html');
@@ -25,13 +25,14 @@ test('current app shell is versioned and caches only bootstrap-critical Scene500
   assert.ok(swVersion&&bootVersion);
   assert.equal(swVersion,bootVersion);
   assert.match(index,new RegExp('core-bootstrap\\.js\\?v='+bootVersion.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
-  assert.match(sw,/MEMBERSHIP='\.\/data\/scene500-playable-membership-v1\.json'/);
-  assert.match(sw,/SHELL=.*MEMBERSHIP/);
+  assert.match(sw,/scene500-playable-membership-v2\.json/);
+  assert.match(sw,/scene500-playable-membership-v1\.json/);
   assert.match(sw,/u\.pathname\.includes\('\/data\/'\)&&!membership/);
   assert.match(sw,/if\(membership\)/);
-  assert.match(sw,/c\.match\(MEMBERSHIP\)/);
   assert.match(sw,/fetch\(e\.request,\{cache:'no-store'\}\)/);
-  assert.match(boot,/PAI_SCENE500_MEMBERSHIP=await json\('data\/scene500-playable-membership-v1\.json'\)/);
+  assert.match(boot,/scene500-playable-membership-v2\.json/);
+  assert.match(boot,/falling back to V1/);
+  assert.match(boot,/scene500-playable-membership-v1\.json/);
 });
 
 test('an already-open older shell reloads when a different service-worker version activates',()=>{
