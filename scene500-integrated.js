@@ -2,7 +2,7 @@
 // Adds a conservative playable subset to the existing PAI Word shell while
 // preserving question/answer/rating/audio/SRS behavior owned by learning-runtime.js.
 (function(){
-  const VERSION='scene500-playable-v2';
+  const VERSION='scene500-playable-v3';
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',lemmas:['rent','apartment','house','room','landlord','contract','lease','electricity','water','condition'],tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
     {id:'cs043',name:'预订酒店并确认房型和政策',desc:'订房、房型、价格、取消与入住政策',lemmas:['hotel','book','reservation','room','price','cancel','confirm','available','guest','policy'],tags:['酒店','订房','预订','房型','取消','住宿','hotel','booking','reservation']},
@@ -22,7 +22,6 @@
     {id:'cs092',name:'阅读论文并总结研究不足',desc:'论文、研究方法、结果、证据与研究不足',lemmas:['paper','research','study','method','result','data','analysis','evidence','theory','experiment'],tags:['论文','研究','学术','文献','paper','research','study']},
     {id:'cs096',name:'学术会议报告、提问和答辩',desc:'会议报告、演讲、提问、讨论与学术社交',lemmas:['conference','research','paper','present','presentation','question','answer','discuss','session','speaker'],tags:['学术会议','开会','会议报告','报告','答辩','学术交流','conference','academic conference','presentation']},
     {id:'cs468',name:'讨论气候变化与可持续发展',desc:'气候、能源、碳排放、环境与可持续发展',lemmas:['climate','environment','energy','carbon','emission','sustainable','pollution','resource','global','risk'],tags:['气候变化','可持续','环境','碳','能源','climate','sustainable','carbon']},
-    // Backward-compatible pilot IDs kept so existing local state and links remain valid.
     {id:'cs206',name:'工作面试与自我介绍',desc:'兼容旧 pilot 场景',lemmas:['interview','experience','skill','career','job','position','candidate','strength','salary','company'],tags:['面试','求职','interview']},
     {id:'cs215',name:'安排并参加工作会议',desc:'兼容旧 pilot 场景',lemmas:['meeting','schedule','agenda','attend','discuss','report','update','deadline','task','decision'],tags:['会议','meeting']},
     {id:'cs223',name:'与客户沟通并处理问题',desc:'兼容旧 pilot 场景',lemmas:['customer','client','service','issue','support','request','solution','complaint','reply','confirm'],tags:['客户','client','customer']},
@@ -32,6 +31,8 @@
   const ids=new Set(SCENE_SPECS.map(x=>x.id));
   const keyOf=u=>unitKey(u.w,u.sid);
   const dayKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+  const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
+  const activeDifficulty=scene=>state.scene500DifficultyByScene?.[scene]||'all';
 
   function primaryUnitForLemma(lemma){
     const words=window.PAI_CORE?.byLemma?.get(lemma)||[];
@@ -66,7 +67,9 @@
   }
 
   function assignment(scene,count=state.newPerDay||20,extend=false){
-    const days=pilotState(),units=allUnits(scene),existing=Array.isArray(days[scene])?days[scene]:[];
+    const difficulty=activeDifficulty(scene),bucket=`${scene}::${difficulty}`,days=pilotState();
+    const units=allUnits(scene).filter(u=>rankAllowed(Number(u?.w?.rank)||999999,difficulty));
+    const existing=Array.isArray(days[bucket])?days[bucket]:[];
     if(!extend&&existing.length)return existing;
     const chosen=[...existing],seen=new Set(chosen);
     for(const u of units){
@@ -74,7 +77,7 @@
       chosen.push(k);seen.add(k);
       if(chosen.length>=existing.length+count)break;
     }
-    days[scene]=chosen;save();return chosen;
+    days[bucket]=chosen;save();return chosen;
   }
 
   const baseQueueFor=window.queueFor||queueFor;
