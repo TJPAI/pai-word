@@ -5,7 +5,6 @@
 (function(){
   const DAILY_ALLOWED=new Set([25,50,100,200]);
   const ROUND_ALLOWED=new Set([10,25,50]);
-  const DISPLAY_LIMIT=50;
   const BASE_POOL={
     cs018:'daily',cs043:'travel',cs044:'travel',cs046:'travel',cs047:'travel',cs049:'travel',
     cs057:'health',cs062:'academic',cs064:'academic',cs073:'work',cs076:'work',cs079:'work',
@@ -23,28 +22,22 @@
   const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
   const unitKeyOf=u=>unitKey(u.w,u.sid);
 
+  // Scene500 has no artificial vocabulary-size cap. The full controlled fallback
+  // candidate universe remains available; difficulty selects a slice and daily /
+  // per-round settings alone control how many fresh words enter a study session.
   function expandScene500Pools(){
     if(!window.PAI_CORE?.byScene||!window.PAI_SCENE500?.sceneIds)return;
     for(const scene of window.PAI_SCENE500.sceneIds){
       const base=BASE_POOL[scene];if(!base)continue;
       const existing=[...(allUnits(scene)||[])],seen=new Set(existing.map(unitKeyOf));
       const fallback=[...(window.PAI_CORE.byScene.get(base)||[])].sort((a,b)=>(Number(a?.w?.rank)||999999)-(Number(b?.w?.rank)||999999));
-      for(const difficulty of ['basic','common','advanced','high']){
-        let added=0;
-        for(const u of fallback){
-          const rank=Number(u?.w?.rank)||999999;if(!rankAllowed(rank,difficulty))continue;
-          const k=unitKeyOf(u);if(seen.has(k))continue;
-          seen.add(k);existing.push(u);added++;
-          if(added>=DISPLAY_LIMIT)break;
-        }
+      for(const u of fallback){
+        const k=unitKeyOf(u);if(seen.has(k))continue;
+        seen.add(k);existing.push(u);
       }
       window.PAI_CORE.byScene.set(scene,existing);
     }
-    if(window.PAI_SCENE500)window.PAI_SCENE500.internalDifficultyPoolExpanded=true;
-    if(window.PAI_SCENE_SEARCH?.wordCount){
-      const baseWordCount=window.PAI_SCENE_SEARCH.wordCount.bind(window.PAI_SCENE_SEARCH);
-      window.PAI_SCENE_SEARCH.wordCount=(id,d='all')=>Math.min(DISPLAY_LIMIT,baseWordCount(id,d));
-    }
+    if(window.PAI_SCENE500)window.PAI_SCENE500.internalPoolExpanded=true;
   }
   expandScene500Pools();
 
@@ -95,7 +88,6 @@
     n=Number(n);if(!DAILY_ALLOWED.has(n))n=50;
     state.newPerDay=n;
     state.daily=null;
-    // Force the daily engine to rebuild its assignment lazily with the new budget.
     window.PAI_LEARNING_QA?.fresh?.();
     save();
     if(typeof render==='function')render();
@@ -120,7 +112,6 @@
     };
   }
 
-  // Keep the original daily row, replace its options, and add the independent round row.
   const baseRender=window.render;
   window.render=function(){
     const out=baseRender();
@@ -137,7 +128,7 @@
         dailyRow.insertAdjacentHTML('afterend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
       }
       for(const el of document.querySelectorAll('.panel-block.muted')){
-        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词控制全天新词总量；每轮单词数控制单次学习的新词上限；到期复习不占新词额度。';
+        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词控制全天新词总量；每轮单词数控制单次学习的新词上限；场景词库本身不设数量上限；到期复习不占新词额度。';
       }
     }
     return out;
