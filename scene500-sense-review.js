@@ -1,5 +1,6 @@
 // Scene500 Sense/KU review support. QA-only: never changes playable bindings automatically.
 (function(){
+  const VERSION='sense-review-v2';
   const PRIMARY_SCENES=new Set(['cs018','cs043','cs044','cs046','cs047','cs049','cs057','cs062','cs064','cs073','cs076','cs079','cs081','cs088','cs090','cs092','cs096','cs468']);
   const HINTS=Object.freeze({
     'cs043:book':'预订（酒店房间）','cs043:room':'酒店房间、客房',
@@ -21,42 +22,76 @@
   });
   const membership=()=>window.PAI_SCENE500_MEMBERSHIP||{};
   const core=()=>window.PAI_CORE;
+  const norm=value=>String(value||'').trim().toLowerCase();
+  const selectionKey=(sceneId,lemma)=>`${sceneId}:${norm(lemma)}`;
+
   function candidateSenses(lemma){
     const out=[];
-    for(const w of (core()?.byLemma?.get(String(lemma||'').toLowerCase())||[])){
+    for(const w of (core()?.byLemma?.get(norm(lemma))||[])){
       for(const [kuId,s] of Object.entries(w.s||{})){
         if(String(s?.kuType||'sense').toLowerCase()!=='sense')continue;
-        out.push({coreRank:w.rank??null,lemma:w.w||lemma,kuId,pos:s.pos||w.pos||'',meaningZh:s.m||s.meaningZh||'',title:s.kuTitle||'',scene:s.scene||''});
+        out.push({coreRank:w.rank??null,lemma:w.w||lemma,kuId:String(kuId),pos:s.pos||w.pos||'',meaningZh:s.m||s.meaningZh||'',title:s.kuTitle||'',scene:s.scene||''});
       }
     }
-    return out;
+    return out.sort((a,b)=>(Number(a.coreRank)||999999)-(Number(b.coreRank)||999999)||String(a.kuId).localeCompare(String(b.kuId)));
   }
   function currentResolved(sceneId,lemma){
-    return (window.PAI_SCENE500?.membershipByScene?.[sceneId]||[]).find(x=>String(x.lemma||'').toLowerCase()===String(lemma||'').toLowerCase())||null;
+    return (window.PAI_SCENE500?.membershipByScene?.[sceneId]||[]).find(x=>norm(x.lemma)===norm(lemma))||null;
   }
-  function buildQueue(){
+  function reviewState(raw,candidates){
+    const explicit=!!(raw?.kuId||raw?.senseId);
+    if(explicit&&raw?.senseBindingReviewed===true)return 'explicit_binding_reviewed';
+    if(candidates.length===0)return 'unresolved';
+    if(explicit)return 'explicit_binding_needs_review';
+    if(candidates.length===1)return 'single_candidate_needs_review';
+    return 'needs_candidate_selection';
+  }
+  function buildRows({includeReviewed=false,sceneId=null,ambiguousOnly=false}={}){
     const rows=[];
-    for(const [sceneId,scene] of Object.entries(membership().scenes||{})){
-      if(!PRIMARY_SCENES.has(sceneId))continue;
+    for(const [sid,scene] of Object.entries(membership().scenes||{})){
+      if(!PRIMARY_SCENES.has(sid)||sceneId&&sid!==sceneId)continue;
       for(const raw of (scene?.entries||[])){
         if(typeof raw!=='object'||!raw)continue;
-        const lemma=String(raw.lemma||'').toLowerCase();if(!lemma)continue;
-        const candidates=candidateSenses(lemma),resolved=currentResolved(sceneId,lemma);
-        const explicit=!!(raw.kuId||raw.senseId);
-        const hint=raw.senseHintZh||HINTS[`${sceneId}:${lemma}`]||'';
-        const needsReview=!explicit||raw.senseBindingReviewed!==true;
-        if(!needsReview)continue;
-        rows.push({sceneId,sceneName:SCENES?.[sceneId]||sceneId,sceneRank:Number(raw.sceneRank)||null,lemma,targetSenseZh:hint,currentKuId:resolved?.kuId||null,currentBindingMethod:resolved?.bindingMethod||null,currentSenseBindingStatus:resolved?.senseBindingStatus||null,candidateCount:candidates.length,candidates});
+        const lemma=norm(raw.lemma);if(!lemma)continue;
+        const candidates=candidateSenses(lemma),resolved=currentResolved(sid,lemma),state=reviewState(raw,candidates);
+        if(!includeReviewed&&state==='explicit_binding_reviewed')continue;
+        if(ambiguousOnly&&candidates.length<=1)continue;
+        rows.push({
+          key:selectionKey(sid,lemma),sceneId:sid,sceneName:SCENES?.[sid]||sid,sceneRank:Number(raw.sceneRank)||null,lemma,
+          targetSenseZh:raw.senseHintZh||HINTS[selectionKey(sid,lemma)]||'',reviewState:state,
+          currentKuId:raw.kuId||resolved?.kuId||null,currentBindingMethod:resolved?.bindingMethod||null,
+          currentSenseBindingStatus:resolved?.senseBindingStatus||null,candidateCount:candidates.length,candidates
+        });
       }
     }
-    return rows.sort((a,b)=>a.sceneId.localeCompare(b.sceneId)||(a.sceneRank||999999)-(b.sceneRank||999999));
+    return rows.sort((a,b)=>a.sceneId.localeCompare(b.sceneId)||(a.sceneRank||999999)-(b.sceneRank||999999)||a.lemma.localeCompare(b.lemma));
   }
+  function findRow(sceneId,lemma){return buildRows({includeReviewed:true}).find(x=>x.key===selectionKey(sceneId,lemma))||null}
+  function validateSelection(row,kuId){
+    if(!row)return {ok:false,reason:'review_row_not_found'};
+    const id=String(kuId||'');if(!id)return {ok:false,reason:'ku_id_required'};
+    const candidate=row.candidates.find(x=>String(x.kuId)===id);
+    if(!candidate)return {ok:false,reason:'ku_id_not_in_candidates'};
+    return {ok:true,candidate};
+  }
+  function buildMembershipPatch(selections,{reviewedBy='editorial_review',reviewNote='',reviewedAt=null}={}){
+    if(!selections||typeof selections!=='object'||Array.isArray(selections))throw Error('selections must be an object keyed by sceneId:lemma');
+    const rows=buildRows({includeReviewed:true}),byKey=new Map(rows.map(r=>[r.key,r])),patches=[],errors=[];
+    for(const [key,kuId] of Object.entries(selections).sort(([a],[b])=>a.localeCompare(b))){
+      const row=byKey.get(key),check=validateSelection(row,kuId);
+      if(!check.ok){errors.push({key,kuId:String(kuId||''),reason:check.reason});continue}
+      const c=check.candidate;
+      patches.push({sceneId:row.sceneId,lemma:row.lemma,sceneRank:row.sceneRank,coreRank:c.coreRank??null,kuId:c.kuId,
+        senseBindingReviewed:true,senseBindingMethod:'manual_review',senseReviewNote:reviewNote||row.targetSenseZh||'',
+        senseReviewedAt:reviewedAt||new Date().toISOString(),senseReviewedBy:reviewedBy});
+    }
+    return {schema:'pai-word-scene500-membership-patch-v1',mutationApplied:false,note:'Review output only. Apply to membership V2 in a separate explicit edit after validating errors and selected KU meanings.',patches,errors};
+  }
+
   window.PAI_SCENE500_SENSE_REVIEW={
-    version:'sense-review-v1',
-    hints:HINTS,
-    candidateSenses,
-    queue:buildQueue,
-    summary(){const q=buildQueue();return {entries:q.length,withTargetHint:q.filter(x=>x.targetSenseZh).length,ambiguous:q.filter(x=>x.candidateCount>1).length,noCandidate:q.filter(x=>x.candidateCount===0).length,singleCandidate:q.filter(x=>x.candidateCount===1).length}},
-    export(){return {schema:'pai-word-scene500-sense-review-v1',generatedAt:new Date().toISOString(),note:'QA-only candidate review. No row is Sense-verified until membership explicitly records kuId/senseId and senseBindingReviewed=true.',summary:this.summary(),rows:buildQueue()}}
+    version:VERSION,hints:HINTS,selectionKey,candidateSenses,reviewState,
+    queue:options=>buildRows(options||{}),ambiguous:()=>buildRows({ambiguousOnly:true}),find:findRow,validateSelection,buildMembershipPatch,
+    summary(){const q=buildRows();return {entries:q.length,withTargetHint:q.filter(x=>x.targetSenseZh).length,needsCandidateSelection:q.filter(x=>x.reviewState==='needs_candidate_selection').length,explicitNeedsReview:q.filter(x=>x.reviewState==='explicit_binding_needs_review').length,unresolved:q.filter(x=>x.reviewState==='unresolved').length,singleCandidateNeedsReview:q.filter(x=>x.reviewState==='single_candidate_needs_review').length}},
+    export(){return {schema:'pai-word-scene500-sense-review-v2',generatedAt:new Date().toISOString(),note:'QA-only candidate review. Single-candidate rows are not auto-approved. No row is Sense-reviewed until an explicit selected KU is written to membership with senseBindingReviewed=true.',summary:this.summary(),rows:buildRows()}}
   };
 })();
