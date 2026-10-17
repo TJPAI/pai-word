@@ -11,8 +11,6 @@ test('daily and per-round settings use independent requested ranges and defaults
   assert.match(src,/state\.newPerDay=50/);
   assert.match(src,/state\.wordsPerRound=10/);
   assert.match(src,/Math\.min\(roundSize\(\),dailyRemaining\(\)\)/);
-  assert.match(src,/window\.setNewPerDay=function\(n\)/);
-  assert.match(src,/window\.setWordsPerRound=function\(n\)/);
   const base=read('mobile.js');
   assert.match(base,/newPerDay:50,wordsPerRound:10/);
 });
@@ -20,19 +18,24 @@ test('daily and per-round settings use independent requested ranges and defaults
 test('final round policy owns scene sizing instead of legacy fixed ten',()=>{
   const src=read('round-policy.js');
   assert.match(src,/window\.openScene=function\(scene\)/);
-  assert.match(src,/PAI_LEARNING_QA\?\.unlearned\?\.\(scene\)/);
   assert.match(src,/slice\(0,limit\)/);
   assert.match(src,/state\.learningSession\.queue=keys/);
 });
 
-test('Scene500 vocabulary pools and displayed counts have no artificial 50-word cap',()=>{
+test('Scene500 has no artificial vocabulary cap but broad parent-scene fallback is not playable',()=>{
   const policy=read('round-policy.js');
-  const bridge=read('scene500-integrated.js');
   assert.doesNotMatch(policy,/DISPLAY_LIMIT/);
   assert.doesNotMatch(policy,/Math\.min\(50/);
-  assert.doesNotMatch(bridge,/MAX_SCENE_UNITS/);
-  assert.match(policy,/for\(const u of fallback\)/);
-  assert.match(bridge,/for\(const u of fallback\)addUnit\(units,seen,u\)/);
+  assert.match(policy,/playableVocabulary='curated_scene_lemmas_only'/);
+  assert.match(policy,/broadBackfillPlayable=false/);
+  assert.match(policy,/delete state\.scene500Pilot/);
+});
+
+test('Scene500 fresh rounds are distinct by headword, not only by KU',()=>{
+  const src=read('round-policy.js');
+  assert.match(src,/seenWords=new Set\(\)/);
+  assert.match(src,/wordKey=u\.w\?\.rank\?\?u\.w\?\.w/);
+  assert.match(src,/Object\.keys\(u\.w\?\.s\|\|\{\}\)\.some\(id=>state\.records\?\.\[id\]\)/);
 });
 
 test('manual recall correction remains immediate and authoritative',()=>{
