@@ -34,11 +34,25 @@ test('Scene500 v2 ranks Core membership without duplicating lexical content',()=
   assert.equal(membership.policy.masterLexicon,'Core-20K');
   assert.equal(membership.policy.membershipUnit,'sense');
   assert.equal(membership.policy.learningUnit,'KU');
+  assert.equal(membership.policy.seedReferenceUnit,'headword');
   assert.equal(membership.policy.generatedCandidatesNeverAutoVerified,true);
   assert.match(bridge,/ranked_membership_data_only/);
   assert.match(bridge,/membershipByScene/);
   assert.doesNotMatch(bridge,/BASE_POOL/);
   assert.doesNotMatch(bridge,/MAX_SCENE_UNITS/);
+});
+
+test('Scene500 wordId is never silently treated as Core rank',()=>{
+  const bridge=read('scene500-integrated.js');
+  const schema=JSON.parse(read('data/scene500-playable-membership-v2.schema.json'));
+  const props=schema.properties.scenes.additionalProperties.properties.entries.items.properties;
+  assert.ok(props.wordId);
+  assert.ok(props.coreRank);
+  assert.match(bridge,/function wordByStableId\(wordId\)/);
+  assert.match(bridge,/function wordByCoreRank\(coreRank\)/);
+  assert.match(bridge,/if\(raw\.wordId\).*wordByStableId/);
+  assert.match(bridge,/if\(raw\.coreRank!==null&&raw\.coreRank!==undefined\).*wordByCoreRank/);
+  assert.doesNotMatch(bridge,/Number\(raw\.wordId\)/);
 });
 
 test('Scene500 generated candidates cannot enter playable learning pools',()=>{
@@ -48,13 +62,14 @@ test('Scene500 generated candidates cannot enter playable learning pools',()=>{
   assert.match(bridge,/\['editorial','dictionary_corpus_verified','source_verified'\]\.includes/);
 });
 
-test('Scene500 membership resolves explicit KU or sense before word or lemma fallback',()=>{
+test('Scene500 membership resolves explicit KU or sense before word, rank or lemma fallback',()=>{
   const bridge=read('scene500-integrated.js');
   const ku=bridge.indexOf('if(raw.kuId)');
   const sense=bridge.indexOf('if(raw.senseId)');
-  const word=bridge.indexOf('if(raw.wordId');
+  const word=bridge.indexOf('if(raw.wordId)');
+  const rank=bridge.indexOf('if(raw.coreRank!==null');
   const lemma=bridge.indexOf("const lemma=String(raw.lemma||'')");
-  assert.ok(ku>=0&&ku<sense&&sense<word&&word<lemma);
+  assert.ok(ku>=0&&ku<sense&&sense<word&&word<rank&&rank<lemma);
   assert.match(bridge,/rankIssues/);
   assert.match(bridge,/unresolvedEntries/);
   assert.match(bridge,/duplicateEntries/);
