@@ -45,11 +45,13 @@ test('fresh rounds are distinct by headword, not only by KU',()=>{
   assert.match(src,/Object\.keys\(u\.w\?\.s\|\|\{\}\)\.some\(id=>state\.records\?\.\[id\]\)/);
 });
 
-test('home exposes separate new-word, reinforcement and due counts',()=>{
+test('home exposes separate new-word, reinforcement and due flows',()=>{
   const policy=read('round-policy.js');
   const home=read('home-dashboard.js');
   assert.match(policy,/window\.studyBudgetSummary=/);
+  assert.match(policy,/window\.openReinforcement=function\(\)/);
   assert.match(home,/今日新词/);
+  assert.match(home,/openReinforcement\(\)/);
   assert.match(home,/强化/);
   assert.match(home,/到期/);
 });
