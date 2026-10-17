@@ -1,8 +1,8 @@
-// Scene500 composed-scene bridge.
-// Adds a conservative playable subset to the existing PAI Word shell while
-// preserving question/answer/rating/audio/SRS behavior owned by learning-runtime.js.
+// Scene500 composed-scene data bridge.
+// This file owns scene definitions and truthful curated playable pools only.
+// Study-session sizing, daily budgets, queue construction and grading are owned by round-policy.js.
 (function(){
-  const VERSION='scene500-playable-v6';
+  const VERSION='scene500-playable-v8-data-only';
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',lemmas:['rent','apartment','house','room','landlord','contract','lease','electricity','water','condition'],tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
     {id:'cs043',name:'预订酒店并确认房型和政策',desc:'订房、房型、价格、取消与入住政策',lemmas:['hotel','book','reservation','room','price','cancel','confirm','available','guest','policy'],tags:['酒店','订房','预订','房型','取消','住宿','hotel','booking','reservation']},
@@ -28,18 +28,7 @@
     {id:'cs254',name:'手机、App与设备问题',desc:'兼容旧 pilot 场景',lemmas:['phone','mobile','app','software','device','screen','battery','update','install','connect'],tags:['手机','app','设备','phone']},
     {id:'cs321',name:'阅读论文并做学术讨论',desc:'兼容旧 pilot 场景',lemmas:['paper','research','study','method','result','data','analysis','evidence','theory','experiment'],tags:['论文','学术','research']}
   ];
-  const BASE_POOL={
-    cs018:'daily',cs043:'travel',cs044:'travel',cs046:'travel',cs047:'travel',cs049:'travel',
-    cs057:'health',cs062:'academic',cs064:'academic',cs073:'work',cs076:'work',cs079:'work',
-    cs081:'tech',cs088:'tech',cs090:'tech',cs092:'academic',cs096:'academic',cs468:'public',
-    cs206:'work',cs215:'work',cs223:'work',cs254:'tech',cs321:'academic'
-  };
   const ids=new Set(SCENE_SPECS.map(x=>x.id));
-  const keyOf=u=>unitKey(u.w,u.sid);
-  const dayKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
-  const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
-  const activeDifficulty=scene=>state.scene500DifficultyByScene?.[scene]||'all';
-
   function primaryUnitForLemma(lemma){
     const words=window.PAI_CORE?.byLemma?.get(lemma)||[];
     for(const w of words){
@@ -49,76 +38,19 @@
     }
     return null;
   }
-
-  function addUnit(units,seen,u){
-    if(!u)return;
-    const k=keyOf(u);if(seen.has(k))return;
-    seen.add(k);units.push(u);
-  }
-
   function installSceneData(){
     if(!window.PAI_CORE)return;
     for(const spec of SCENE_SPECS){
       SCENES[spec.id]=spec.name;
-      const units=[],seen=new Set();
-      // Tier 1: explicitly curated scene lemmas always come first.
-      for(const lemma of spec.lemmas)addUnit(units,seen,primaryUnitForLemma(lemma));
-      // Tier 2 (temporary MVP): use the full closest controlled Core scene as the candidate
-      // universe. There is no artificial scene-size cap; daily/round settings control pacing.
-      const baseScene=BASE_POOL[spec.id];
-      const fallback=[...(window.PAI_CORE.byScene.get(baseScene)||[])].sort((a,b)=>(Number(a?.w?.rank)||999999)-(Number(b?.w?.rank)||999999));
-      for(const u of fallback)addUnit(units,seen,u);
+      const units=[],seenWords=new Set();
+      for(const lemma of spec.lemmas){
+        const u=primaryUnitForLemma(lemma);if(!u)continue;
+        const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
+        seenWords.add(wordKey);units.push(u);
+      }
       window.PAI_CORE.byScene.set(spec.id,units);
     }
-    window.PAI_SCENE500={version:VERSION,sceneIds:[...ids],specs:SCENE_SPECS};
+    window.PAI_SCENE500={version:VERSION,sceneIds:[...ids],specs:SCENE_SPECS,playableVocabulary:'curated_scene_lemmas_only',broadBackfillPlayable:false,sessionPolicyOwner:'round-policy.js'};
   }
-
-  function pilotState(){
-    state.scene500Pilot=state.scene500Pilot||{version:VERSION,days:{}};
-    if(state.scene500Pilot.version!==VERSION)state.scene500Pilot={version:VERSION,days:{}};
-    const date=dayKey();
-    state.scene500Pilot.days[date]=state.scene500Pilot.days[date]||{};
-    return state.scene500Pilot.days[date];
-  }
-
-  function assignment(scene,count=Infinity,extend=false){
-    const difficulty=activeDifficulty(scene),bucket=`${scene}::${difficulty}`,days=pilotState();
-    const units=allUnits(scene).filter(u=>rankAllowed(Number(u?.w?.rank)||999999,difficulty));
-    const existing=Array.isArray(days[bucket])?days[bucket]:[];
-    if(!extend&&existing.length)return existing;
-    const chosen=[...existing],seen=new Set(chosen),target=Number.isFinite(count)?existing.length+Math.max(0,count):Infinity;
-    for(const u of units){
-      const k=keyOf(u);if(seen.has(k)||state.records[k])continue;
-      chosen.push(k);seen.add(k);
-      if(chosen.length>=target)break;
-    }
-    days[bucket]=chosen;save();return chosen;
-  }
-
-  const baseQueueFor=window.queueFor||queueFor;
-  window.queueFor=queueFor=function(scene){
-    if(!ids.has(scene))return baseQueueFor(scene);
-    const keys=assignment(scene),due=dueUnits(scene),dueSet=new Set(due.map(keyOf));
-    const fresh=keys.filter(k=>!state.records[k]).map(findUnitByKey).filter(Boolean).filter(u=>!dueSet.has(keyOf(u)));
-    state.daily=state.daily||{date:dayKey(),assigned:{}};
-    state.daily.assigned=state.daily.assigned||{};
-    state.daily.assigned[scene]=keys;
-    return [...due,...fresh];
-  };
-
-  const baseOpenScene=window.openScene;
-  window.openScene=function(scene){
-    if(!ids.has(scene))return baseOpenScene(scene);
-    assignment(scene);
-    return baseOpenScene(scene);
-  };
-
-  const baseLearnMore=window.learnMore;
-  window.learnMore=function(scene,n=10){
-    if(!ids.has(scene))return baseLearnMore(scene,n);
-    assignment(scene,n,true);
-    return baseOpenScene(scene);
-  };
-
   installSceneData();
 })();
