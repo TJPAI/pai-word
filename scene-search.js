@@ -1,13 +1,14 @@
 // One-sentence Scene500 search MVP. Pure front-end: no LLM/API, no generated learning words.
 (function(){
   const LEGACY_ALIASES=new Set(['cs206','cs215','cs223','cs254','cs321']);
+  const FAMILY={cs043:'hotel',cs044:'hotel',cs046:'flight',cs047:'flight',cs092:'academic',cs096:'academic'};
   const bundles=[
     {terms:['学术会议','参加会议','conference','academic conference','会议报告','论文报告','答辩'],targets:{cs096:18,cs092:5,cs076:4}},
     {terms:['坐飞机','飞机','航班','机场','airport','flight','登机'],targets:{cs047:12,cs046:10,cs049:4}},
     {terms:['值机','托运','安检','check in','security','luggage'],targets:{cs046:18,cs047:5}},
     {terms:['延误','改签','取消航班','转机','delay','reschedule'],targets:{cs047:18,cs046:3}},
     {terms:['入境','海关','签证','边境','immigration','customs','visa','passport','美国入境'],targets:{cs049:18,cs046:3}},
-    {terms:['美国','出国','海外','国外'],targets:{cs049:5,cs046:4,cs043:3,cs044:3}},
+    {terms:['美国','出国','海外','国外'],targets:{cs049:10,cs046:5,cs043:3,cs044:3}},
     {terms:['酒店','住宿','hotel','住酒店','订房'],targets:{cs044:12,cs043:11}},
     {terms:['预订酒店','订酒店','订房','reservation','booking'],targets:{cs043:18,cs044:5}},
     {terms:['入住','前台','房间服务','check in hotel','front desk'],targets:{cs044:18,cs043:4}},
@@ -54,7 +55,6 @@
     if(q.includes(norm(s.name)))score+=20;
     const tokens=q.split(stop).filter(x=>x.length>=2);
     for(const t of tokens){if(hay.includes(t))score+=4}
-    // Chinese bigram overlap keeps fallback useful without pretending to be an embedding model.
     const cn=[...q.replace(/[\x00-\xff]/g,'')];
     const bigrams=[];for(let i=0;i<cn.length-1;i++)bigrams.push(cn[i]+cn[i+1]);
     for(const bg of new Set(bigrams))if(hay.includes(bg))score+=.65;
@@ -69,6 +69,12 @@
     }
     return scores;
   }
+  function diversify(rows,limit){
+    const chosen=[],deferred=[],seen=new Set();
+    for(const row of rows){const family=FAMILY[row.id]||row.id;if(seen.has(family)){deferred.push(row);continue}seen.add(family);chosen.push(row);if(chosen.length>=limit)return chosen}
+    for(const row of deferred){chosen.push(row);if(chosen.length>=limit)break}
+    return chosen;
+  }
   function search(query,difficulty='all',limit=5){
     const q=norm(query);if(!q)return[];
     const bs=bundleScores(q),rows=[];
@@ -76,12 +82,11 @@
       const words=uniqueWords(s.id,difficulty);if(!words.length)continue;
       let score=(bs[s.id]||0)+lexicalScore(q,s);
       if(score<=0)continue;
-      // Small preference for richer playable scenes, never enough to beat intent relevance.
       score+=Math.min(2,words.length/10);
       rows.push({...s,score,wordCount:words.length,difficulty});
     }
     rows.sort((a,b)=>b.score-a.score||b.wordCount-a.wordCount||a.name.localeCompare(b.name,'zh-CN'));
-    return rows.slice(0,Math.max(1,Math.min(5,limit)));
+    return diversify(rows,Math.max(1,Math.min(5,limit)));
   }
   function remember(scene){
     const arr=Array.isArray(state.scene500Recent)?state.scene500Recent:[];
