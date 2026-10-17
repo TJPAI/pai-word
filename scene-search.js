@@ -2,6 +2,7 @@
 (function(){
   const LEGACY_ALIASES=new Set(['cs206','cs215','cs223','cs254','cs321']);
   const FAMILY={cs043:'hotel',cs044:'hotel',cs046:'flight',cs047:'flight',cs092:'academic',cs096:'academic'};
+  const MIN_SCORE=3;
   const bundles=[
     {terms:['学术会议','参加会议','conference','academic conference','会议报告','论文报告','答辩'],targets:{cs096:18,cs092:5,cs076:4}},
     {terms:['坐飞机','飞机','航班','机场','airport','flight','登机'],targets:{cs047:12,cs046:10,cs049:4}},
@@ -81,7 +82,7 @@
     for(const s of specs()){
       const words=uniqueWords(s.id,difficulty);if(!words.length)continue;
       let score=(bs[s.id]||0)+lexicalScore(q,s);
-      if(score<=0)continue;
+      if(score<MIN_SCORE)continue;
       score+=Math.min(2,words.length/10);
       rows.push({...s,score,wordCount:words.length,difficulty});
     }
