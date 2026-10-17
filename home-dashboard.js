@@ -19,15 +19,20 @@
   }
   function lastScene(){const id=(state.scene500Recent||[])[0]||null;return id&&SCENES[id]?{id,name:SCENES[id]}:null}
   function playable(){return (window.PAI_SCENE500?.specs||[]).filter(s=>!['cs206','cs215','cs223','cs254','cs321'].includes(s.id))}
-  function firstPlayable(){return playable().find(s=>(searchApi()?.wordCount(s.id,'all')||0)>0)?.id||null}
+  function inventory(id,difficulty='all'){return searchApi()?.inventory?.(id,difficulty)||{reviewedCount:searchApi()?.wordCount?.(id,difficulty)||0,candidateCount:null}}
+  function firstPlayable(){return playable().find(s=>inventory(s.id,'all').reviewedCount>0)?.id||null}
   function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
-  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,wordCount:searchApi()?.wordCount(x.id,s.difficulty)||0}))}
+  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
+  function countHtml(r){
+    if(Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>候选</small><em>${r.reviewedCount} 已审核</em></span>`;
+    return `<span class="scene-result-count"><b>${r.reviewedCount}</b><small>已审核</small></span>`;
+  }
   function resultHtml(){
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
     if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
-    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="scene-result-count">${r.wordCount}<small>词</small></span></button>`).join('')}</section>`;
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}<p class="scene-results-note">“已审核”表示当前可直接进入学习的场景词；它不是该场景的总词数。场景候选池不受每轮 10/25/50 的限制。</p></section>`;
   }
   function recentHtml(){
     const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
@@ -51,7 +56,7 @@
           ${resultHtml()}
         </section>
         ${recentHtml()}
-        <div class="browse-link"><a href="scene500-demo.html">浏览场景目录 →</a><span>目录展示 Scene500 节点组合出的 120 个场景；未审核 KU 不会自动进入学习。</span></div>
+        <div class="browse-link"><a href="scene500-demo.html">浏览场景目录 →</a><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
       </main>
     </div></div>`;
   }
