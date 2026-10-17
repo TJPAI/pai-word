@@ -2,7 +2,7 @@
 // Scene definitions live here; playable membership comes from ranked data only.
 // Core lexicon remains the single lexical database. Session policy is owned by round-policy.js.
 (function(){
-  const VERSION='scene500-playable-v10-ranked-membership';
+  const VERSION='scene500-playable-v11-rank-safe-membership';
   const LEGACY_ALIAS={cs206:'cs073',cs215:'cs076',cs223:'cs079',cs254:'cs081',cs321:'cs092'};
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
@@ -43,14 +43,22 @@
     for(const w of (window.PAI_CORE?.byLemma?.get(lemma)||[])){const u=primaryUnitForWord(w);if(u)return u}
     return null;
   }
+  function wordByStableId(wordId){
+    if(wordId===null||wordId===undefined||wordId==='')return null;
+    const map=window.PAI_CORE?.byWordId;
+    return map?.get?.(String(wordId))||map?.get?.(wordId)||null;
+  }
+  function wordByCoreRank(coreRank){
+    const n=Number(coreRank);
+    return Number.isInteger(n)&&n>0?window.PAI_CORE?.words?.[n-1]||null:null;
+  }
   function resolveEntry(raw){
     if(typeof raw==='string')return primaryUnitForLemma(raw.trim().toLowerCase());
     if(!raw||typeof raw!=='object')return null;
     if(raw.kuId){const u=window.PAI_CORE?.byKU?.get(String(raw.kuId));if(u)return u}
     if(raw.senseId){const u=window.PAI_CORE?.byKU?.get(String(raw.senseId));if(u)return u}
-    if(raw.wordId!==null&&raw.wordId!==undefined){
-      const n=Number(raw.wordId);if(Number.isInteger(n)&&n>0){const u=primaryUnitForWord(window.PAI_CORE?.words?.[n-1]);if(u)return u}
-    }
+    if(raw.wordId){const u=primaryUnitForWord(wordByStableId(raw.wordId));if(u)return u}
+    if(raw.coreRank!==null&&raw.coreRank!==undefined){const u=primaryUnitForWord(wordByCoreRank(raw.coreRank));if(u)return u}
     const lemma=String(raw.lemma||'').trim().toLowerCase();
     return lemma?primaryUnitForLemma(lemma):null;
   }
@@ -68,7 +76,7 @@
 
   function installSceneData(){
     if(!window.PAI_CORE)return;
-    const qa={missingMembership:[],emptyPlayable:[],unresolvedEntries:[],duplicateEntries:[],blockedGenerated:[],rankIssues:[]};
+    const qa={missingMembership:[],emptyPlayable:[],unresolvedEntries:[],duplicateEntries:[],blockedGenerated:[],rankIssues:[],unresolvedStableWordIds:[]};
     const membershipByScene={};
     for(const spec of SCENE_SPECS){
       SCENES[spec.id]=spec.name;
@@ -79,20 +87,22 @@
       const ranked=[...entries].sort((a,b)=>(Number(typeof a==='object'&&a?.sceneRank)||999999)-(Number(typeof b==='object'&&b?.sceneRank)||999999));
       const units=[],resolved=[],seenWords=new Set(),seenEntry=new Set();let lastRank=0;
       for(const raw of ranked){
-        const lemma=String(typeof raw==='string'?raw:raw?.lemma||'').trim().toLowerCase();
+        const obj=typeof raw==='object'&&raw?raw:{};
+        const lemma=String(typeof raw==='string'?raw:obj.lemma||'').trim().toLowerCase();
         const meta=mergedMeta(source,raw);
-        const identity=String((typeof raw==='object'&&(raw.kuId||raw.senseId||raw.wordId))||lemma);
+        const identity=String(obj.kuId||obj.senseId||obj.wordId||(obj.coreRank?`rank:${obj.coreRank}`:'')||lemma);
         if(!identity)continue;
         if(seenEntry.has(identity)){qa.duplicateEntries.push(`${spec.id}:${identity}`);continue}
         seenEntry.add(identity);
         if(meta.sceneRank!==null){if(meta.sceneRank<=lastRank)qa.rankIssues.push(`${spec.id}:${identity}:${meta.sceneRank}`);lastRank=Math.max(lastRank,meta.sceneRank)}
         if(meta.evidenceStatus==='generated_candidate'){qa.blockedGenerated.push(`${spec.id}:${identity}`);continue}
         if(!playable(meta))continue;
+        if(obj.wordId&&!wordByStableId(obj.wordId)&&!lemma)qa.unresolvedStableWordIds.push(`${spec.id}:${obj.wordId}`);
         const u=resolveEntry(raw);
         if(!u){qa.unresolvedEntries.push(`${spec.id}:${identity}`);continue}
         const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
         seenWords.add(wordKey);units.push(u);
-        resolved.push({lemma:u.w?.w||lemma,wordId:u.w?.rank??null,kuId:u.k||null,sceneRank:meta.sceneRank,sceneScore:meta.sceneScore,evidenceStatus:meta.evidenceStatus,source:meta.source,reviewed:meta.reviewed});
+        resolved.push({lemma:u.w?.w||lemma,wordId:obj.wordId||null,coreRank:u.w?.rank??obj.coreRank??null,senseId:obj.senseId||null,kuId:u.k||obj.kuId||null,sceneRank:meta.sceneRank,sceneScore:meta.sceneScore,evidenceStatus:meta.evidenceStatus,source:meta.source,reviewed:meta.reviewed});
       }
       if(!units.length)qa.emptyPlayable.push(spec.id);
       window.PAI_CORE.byScene.set(spec.id,units);
