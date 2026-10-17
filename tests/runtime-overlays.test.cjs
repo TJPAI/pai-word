@@ -88,6 +88,21 @@ test('mechanical primary-sense fallback is never reported as Sense-level verifie
   assert.match(bridge,/runtime_resolution_audit_only/);
 });
 
+test('Sense review QA lists candidate KUs but never mutates playable bindings',()=>{
+  const review=read('scene500-sense-review.js');
+  const boot=read('core-bootstrap.js');
+  assert.match(boot,/scene500-sense-review\.js/);
+  assert.match(review,/QA-only: never changes playable bindings automatically/);
+  assert.match(review,/candidateSenses/);
+  assert.match(review,/currentKuId/);
+  assert.match(review,/targetSenseZh/);
+  assert.match(review,/candidateCount/);
+  assert.match(review,/PAI_SCENE500_SENSE_REVIEW/);
+  assert.match(review,/No row is Sense-verified until membership explicitly records kuId\/senseId and senseBindingReviewed=true/);
+  assert.doesNotMatch(review,/byScene\.set/);
+  assert.doesNotMatch(review,/window\.openScene\s*=/);
+});
+
 test('fresh rounds are distinct by headword, not only by KU',()=>{
   const src=read('round-policy.js');
   assert.match(src,/seenWords=new Set\(\)/);
