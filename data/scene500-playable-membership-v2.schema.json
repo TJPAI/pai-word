@@ -26,11 +26,14 @@
         "type": "object",
         "required": ["entries"],
         "properties": {
+          "evidenceStatus": {"enum": ["generated_candidate", "editorial", "dictionary_corpus_verified", "source_verified"]},
+          "source": {"type": "string"},
+          "reviewed": {"type": "boolean"},
           "entries": {
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["lemma", "sceneRank", "sceneScore", "evidenceStatus", "source"],
+              "required": ["lemma", "sceneRank"],
               "properties": {
                 "lemma": {"type": "string", "minLength": 1},
                 "wordId": {"type": ["string", "integer", "null"]},
@@ -39,7 +42,7 @@
                 "sceneRank": {"type": "integer", "minimum": 1},
                 "sceneScore": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
                 "evidenceStatus": {"enum": ["generated_candidate", "editorial", "dictionary_corpus_verified", "source_verified"]},
-                "source": {"type": "string", "minLength": 1},
+                "source": {"type": "string"},
                 "reviewed": {"type": "boolean"},
                 "note": {"type": "string"}
               },
