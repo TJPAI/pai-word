@@ -27,15 +27,26 @@ test('round-policy is the only Scene500 session policy owner',()=>{
   assert.match(bridge,/sessionPolicyOwner:'round-policy\.js'/);
 });
 
-test('Scene500 has no artificial vocabulary cap and broad parent-scene fallback is not playable',()=>{
-  const policy=read('round-policy.js');
+test('Scene500 playable vocabulary is membership-driven with no broad fallback',()=>{
   const bridge=read('scene500-integrated.js');
-  assert.doesNotMatch(policy,/DISPLAY_LIMIT/);
-  assert.doesNotMatch(bridge,/MAX_SCENE_UNITS/);
-  assert.match(bridge,/playableVocabulary:'curated_scene_lemmas_only'/);
+  const membership=JSON.parse(read('data/scene500-playable-membership-v1.json'));
+  assert.equal(membership.policy.playableOnly,true);
+  assert.equal(membership.policy.generatedCandidatesNeverAutoVerified,true);
+  assert.match(bridge,/PAI_SCENE500_MEMBERSHIP/);
+  assert.match(bridge,/playableVocabulary:'membership_data_only'/);
   assert.match(bridge,/broadBackfillPlayable:false/);
   assert.doesNotMatch(bridge,/BASE_POOL/);
-  assert.match(policy,/delete state\.scene500Pilot/);
+  assert.doesNotMatch(bridge,/MAX_SCENE_UNITS/);
+});
+
+test('Scene500 membership runtime exposes QA for missing, empty, unresolved and duplicate entries',()=>{
+  const bridge=read('scene500-integrated.js');
+  assert.match(bridge,/missingMembership/);
+  assert.match(bridge,/emptyPlayable/);
+  assert.match(bridge,/unresolvedLemmas/);
+  assert.match(bridge,/duplicateEntries/);
+  assert.match(bridge,/membershipSchemaVersion/);
+  assert.match(bridge,/membershipStatus/);
 });
 
 test('fresh rounds are distinct by headword, not only by KU',()=>{
