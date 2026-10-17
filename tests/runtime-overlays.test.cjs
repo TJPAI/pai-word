@@ -62,17 +62,26 @@ test('Scene500 generated candidates cannot enter playable learning pools',()=>{
   assert.match(bridge,/\['editorial','dictionary_corpus_verified','source_verified'\]\.includes/);
 });
 
-test('Scene500 membership resolves explicit KU or sense before word, rank or lemma fallback',()=>{
+test('Scene500 resolution order remains explicit Sense then word, rank and lemma fallback',()=>{
   const bridge=read('scene500-integrated.js');
-  const ku=bridge.indexOf('if(raw.kuId)');
-  const sense=bridge.indexOf('if(raw.senseId)');
+  const ku=bridge.indexOf('if(raw.kuId&&explicitReviewed)');
+  const sense=bridge.indexOf('if(raw.senseId&&explicitReviewed)');
   const word=bridge.indexOf('if(raw.wordId)');
   const rank=bridge.indexOf('if(raw.coreRank!==null');
-  const lemma=bridge.indexOf("const lemma=String(raw.lemma||'')");
-  assert.ok(ku>=0&&ku<sense&&sense<word&&word<rank&&rank<lemma);
+  const fallback=bridge.indexOf("return fallbackByLemma(raw,'lemma')");
+  assert.ok(ku>=0&&ku<sense&&sense<word&&word<rank&&rank<fallback);
   assert.match(bridge,/rankIssues/);
   assert.match(bridge,/unresolvedEntries/);
   assert.match(bridge,/duplicateEntries/);
+});
+
+test('unreviewed explicit KU or Sense IDs never outrank the reviewed binding gate',()=>{
+  const bridge=read('scene500-integrated.js');
+  assert.match(bridge,/const explicitReviewed=membership\.schemaVersion!==2\|\|raw\.senseBindingReviewed===true/);
+  assert.match(bridge,/\(raw\.kuId\|\|raw\.senseId\)&&!explicitReviewed/);
+  assert.match(bridge,/unreviewed_explicit_ignored/);
+  assert.match(bridge,/blockedUnreviewedExplicitBindings/);
+  assert.match(bridge,/obj\.senseBindingReviewed!==true/);
 });
 
 test('mechanical primary-sense fallback is never reported as Sense-level verified',()=>{
