@@ -4,7 +4,7 @@
   "membershipVersion": "Core20K_V1.2",
   "wordCount": 20000,
   "playableWordCount": 19007,
-  "kuCount": 22621,
+  "kuCount": 22627,
   "inheritedCore13K": 12994,
   "newLexicalSemantic": 6013,
   "structural": 993,
@@ -19,6 +19,7 @@
     "membershipAndRankFrozen": true,
     "contentVerificationEvolving": true,
     "stable13kCatalogReused": true,
+    "mergeDuplicateStableLemmas": true,
     "richCore13kHydrationDisabledInPreview": true,
     "structuralMembersPlayable": false,
     "structuralPolicy": "Searchable and linked to base; no fabricated independent Sense/KU.",
@@ -26,6 +27,8 @@
   },
   "buildQA": {
     "missingCount": 0,
+    "duplicateStableLemmasMerged": ["dispatch", "drape", "overt", "pathological"],
+    "stableLemmasExcluded": ["dem", "nome"],
     "missing": []
   }
 }
