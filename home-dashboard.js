@@ -31,7 +31,7 @@
         <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(last?.name||'开始一个场景')}</h2><p>${due?`有 ${due} 个到期 KU 待复习`:`已学习 ${learned.toLocaleString()} 个 KU`}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="PAI_SCENE_SEARCH.open('${esc(continueId)}','${esc(continueDifficulty)}')">继续</button>`:''}${due?`<button class="continue-review" onclick="openReview()">复习 ${due}</button>`:''}</div></section>
         <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
           <textarea id="scene-query" class="scene-query" rows="3" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(s.query||'')}</textarea>
-          <div class="scene-search-controls"><label>难度<select id="scene-difficulty"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
+          <div class="scene-search-controls"><label>难度<select id="scene-difficulty" onchange="refreshScene500Difficulty(this.value)"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
           ${resultHtml()}
         </section>
         ${recentHtml()}
@@ -39,12 +39,21 @@
       </main>
     </div></div>`;
   }
+  function runSceneSearch(q,difficulty){
+    const results=searchApi()?.search(q,difficulty,5)||[];
+    state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
+  }
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
     const difficulty=document.getElementById('scene-difficulty')?.value||'all';
-    const results=searchApi()?.search(q,difficulty,5)||[];
-    state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
+    runSceneSearch(q,difficulty);
     requestAnimationFrame(()=>document.querySelector('.scene-results,.scene-search-empty')?.scrollIntoView({block:'nearest',behavior:'smooth'}));
+  };
+  window.refreshScene500Difficulty=function(difficulty){
+    const s=ui();
+    const q=(document.getElementById('scene-query')?.value||s.query||'').trim();
+    if(!s.query||!q){state.sceneSearchUi={...s,difficulty};save();return}
+    runSceneSearch(q,difficulty||'all');
   };
   window.render=function(){if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
 })();
