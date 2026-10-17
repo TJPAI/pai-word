@@ -2,7 +2,7 @@
 // Adds a conservative playable subset to the existing PAI Word shell while
 // preserving question/answer/rating/audio/SRS behavior owned by learning-runtime.js.
 (function(){
-  const VERSION='scene500-playable-v4';
+  const VERSION='scene500-playable-v5';
   const MAX_SCENE_UNITS=50;
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',lemmas:['rent','apartment','house','room','landlord','contract','lease','electricity','water','condition'],tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
@@ -83,7 +83,10 @@
     return state.scene500Pilot.days[date];
   }
 
-  function assignment(scene,count=state.newPerDay||20,extend=false){
+  // Scene500 MVP deliberately assigns the whole filtered scene pool (up to 50)
+  // instead of inheriting the global daily-new-word quota. This keeps the experiment
+  // focused on scene relevance while leaving existing due/SRS records untouched.
+  function assignment(scene,count=MAX_SCENE_UNITS,extend=false){
     const difficulty=activeDifficulty(scene),bucket=`${scene}::${difficulty}`,days=pilotState();
     const units=allUnits(scene).filter(u=>rankAllowed(Number(u?.w?.rank)||999999,difficulty));
     const existing=Array.isArray(days[bucket])?days[bucket]:[];
@@ -111,7 +114,7 @@
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
     if(!ids.has(scene))return baseOpenScene(scene);
-    assignment(scene);
+    assignment(scene,MAX_SCENE_UNITS);
     return baseOpenScene(scene);
   };
 
