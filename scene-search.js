@@ -50,6 +50,20 @@
     if(difficulty==='high')return rank>11000;
     return true;
   }
+  function candidateCount(scene){
+    const byScene=window.PAI_SCENE500_CANDIDATES?.summary?.candidatesByScene;
+    const n=Number(byScene?.[scene]);
+    return Number.isFinite(n)&&n>=0?n:null;
+  }
+  function inventory(scene,difficulty='all'){
+    return {
+      scene,
+      difficulty,
+      reviewedCount:uniqueWords(scene,difficulty).length,
+      candidateCount:candidateCount(scene),
+      candidatePoolStatus:candidateCount(scene)===null?'not_loaded':'available'
+    };
+  }
   function lexicalScore(q,s){
     const hay=norm([s.name,s.desc,...(s.tags||[])].join(' '));let score=0;
     for(const tag of (s.tags||[])){const t=norm(tag);if(t.length>=2&&q.includes(t))score+=Math.min(12,3+t.length)}
@@ -80,13 +94,13 @@
     const q=norm(query);if(!q)return[];
     const bs=bundleScores(q),rows=[];
     for(const s of specs()){
-      const words=uniqueWords(s.id,difficulty);if(!words.length)continue;
+      const inv=inventory(s.id,difficulty);if(!inv.reviewedCount)continue;
       let score=(bs[s.id]||0)+lexicalScore(q,s);
       if(score<MIN_SCORE)continue;
-      score+=Math.min(2,words.length/10);
-      rows.push({...s,score,wordCount:words.length,difficulty});
+      score+=Math.min(2,inv.reviewedCount/10);
+      rows.push({...s,score,wordCount:inv.reviewedCount,reviewedCount:inv.reviewedCount,candidateCount:inv.candidateCount,difficulty});
     }
-    rows.sort((a,b)=>b.score-a.score||b.wordCount-a.wordCount||a.name.localeCompare(b.name,'zh-CN'));
+    rows.sort((a,b)=>b.score-a.score||b.reviewedCount-a.reviewedCount||a.name.localeCompare(b.name,'zh-CN'));
     return diversify(rows,Math.max(1,Math.min(5,limit)));
   }
   function remember(scene,difficulty){
@@ -99,5 +113,11 @@
   function open(scene,difficulty='all'){remember(scene,difficulty);return window.openScene(scene)}
   function recent(){return (state.scene500Recent||[]).map(id=>specs().find(s=>s.id===id)).filter(Boolean)}
   function recentDifficulty(id){return state.scene500DifficultyByScene?.[id]||'all'}
-  window.PAI_SCENE_SEARCH={search,open,recent,recentDifficulty,wordCount:(id,d='all')=>uniqueWords(id,d).length,rankAllowed};
+  window.PAI_SCENE_SEARCH={
+    search,open,recent,recentDifficulty,inventory,
+    reviewedWordCount:(id,d='all')=>inventory(id,d).reviewedCount,
+    candidateCount,
+    wordCount:(id,d='all')=>inventory(id,d).reviewedCount,
+    rankAllowed
+  };
 })();
