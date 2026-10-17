@@ -8,6 +8,16 @@
   const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
   const unitKeyOf=u=>unitKey(u.w,u.sid);
 
+  function sceneMemberKeys(scene){
+    return new Set((allUnits(scene)||[]).map(unitKeyOf));
+  }
+
+  function dueKeys(scene){
+    const members=sceneMemberKeys(scene);
+    const allDue=window.PAI_LEARNING_QA?.due?.()||[];
+    return allDue.filter(k=>members.has(k));
+  }
+
   function roundKeys(scene){
     const difficulty=state.scene500DifficultyByScene?.[scene]||'all';
     const out=[],seen=new Set();
@@ -22,12 +32,14 @@
   }
 
   // The newer learning runtime has its own hard-coded slice(0,10). Let it create
-  // the session, then replace that scene session queue with the requested round size.
+  // the session, then replace that scene session queue with due reviews plus the
+  // requested number of fresh words. Due reviews never consume the per-round quota.
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
     const result=baseOpenScene(scene);
     if(isScene500(scene)&&state.learningSession?.kind==='scene'){
-      const keys=roundKeys(scene);
+      const due=dueKeys(scene),fresh=roundKeys(scene),seen=new Set(due);
+      const keys=[...due,...fresh.filter(k=>!seen.has(k))];
       state.learningSession.queue=keys;
       state.learningSession.total=keys.length;
       state.learningSession.completed=[];
@@ -35,7 +47,7 @@
       state.learningSession.attempts=0;
       state.studyBrowseIndex=0;
       save();
-      // Restart on the first unit so the UI/progress immediately reflect the expanded round.
+      // Restart on the first unit so the UI/progress immediately reflect the corrected round.
       if(typeof window.resumeLearning==='function')window.resumeLearning();
       else if(typeof render==='function')render();
     }
