@@ -8,6 +8,7 @@ function boot(){
   global.state={records:{}};
   global.save=()=>{};
   global.openScene=id=>id;
+  delete global.PAI_SCENE500_CANDIDATES;
   const defs={
     cs018:['租房看房并询问居住条件','看房、房东、租约、水电与居住条件',['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']],
     cs043:['预订酒店并确认房型和政策','订房、房型、价格、取消与入住政策',['酒店','订房','预订','房型','取消','住宿','hotel','booking','reservation']],
@@ -66,4 +67,22 @@ test('opening a recommendation persists its difficulty before delegating to exis
   assert.equal(opened,'cs018');
   assert.equal(state.scene500DifficultyByScene.cs018,'common');
   assert.equal(state.scene500Recent[0],'cs018');
+});
+
+test('reviewed playable count is not presented as total candidate-pool size',()=>{
+  const api=boot();
+  const inv=api.inventory('cs018','all');
+  assert.equal(inv.reviewedCount,1);
+  assert.equal(inv.candidateCount,null);
+  assert.equal(inv.candidatePoolStatus,'not_loaded');
+  assert.equal(api.wordCount('cs018','all'),1);
+});
+
+test('candidate pool count stays separate when candidate inventory is available',()=>{
+  const api=boot();
+  global.PAI_SCENE500_CANDIDATES={summary:{candidatesByScene:{cs018:347}}};
+  const inv=api.inventory('cs018','all');
+  assert.equal(inv.reviewedCount,1);
+  assert.equal(inv.candidateCount,347);
+  assert.equal(inv.candidatePoolStatus,'available');
 });
