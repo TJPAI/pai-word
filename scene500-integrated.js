@@ -2,7 +2,8 @@
 // Adds a conservative playable subset to the existing PAI Word shell while
 // preserving question/answer/rating/audio/SRS behavior owned by learning-runtime.js.
 (function(){
-  const VERSION='scene500-playable-v3';
+  const VERSION='scene500-playable-v4';
+  const MAX_SCENE_UNITS=50;
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',lemmas:['rent','apartment','house','room','landlord','contract','lease','electricity','water','condition'],tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
     {id:'cs043',name:'预订酒店并确认房型和政策',desc:'订房、房型、价格、取消与入住政策',lemmas:['hotel','book','reservation','room','price','cancel','confirm','available','guest','policy'],tags:['酒店','订房','预订','房型','取消','住宿','hotel','booking','reservation']},
@@ -28,6 +29,12 @@
     {id:'cs254',name:'手机、App与设备问题',desc:'兼容旧 pilot 场景',lemmas:['phone','mobile','app','software','device','screen','battery','update','install','connect'],tags:['手机','app','设备','phone']},
     {id:'cs321',name:'阅读论文并做学术讨论',desc:'兼容旧 pilot 场景',lemmas:['paper','research','study','method','result','data','analysis','evidence','theory','experiment'],tags:['论文','学术','research']}
   ];
+  const BASE_POOL={
+    cs018:'daily',cs043:'travel',cs044:'travel',cs046:'travel',cs047:'travel',cs049:'travel',
+    cs057:'health',cs062:'academic',cs064:'academic',cs073:'work',cs076:'work',cs079:'work',
+    cs081:'tech',cs088:'tech',cs090:'tech',cs092:'academic',cs096:'academic',cs468:'public',
+    cs206:'work',cs215:'work',cs223:'work',cs254:'tech',cs321:'academic'
+  };
   const ids=new Set(SCENE_SPECS.map(x=>x.id));
   const keyOf=u=>unitKey(u.w,u.sid);
   const dayKey=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
@@ -44,18 +51,28 @@
     return null;
   }
 
+  function addUnit(units,seen,u){
+    if(!u||units.length>=MAX_SCENE_UNITS)return;
+    const k=keyOf(u);if(seen.has(k))return;
+    seen.add(k);units.push(u);
+  }
+
   function installSceneData(){
     if(!window.PAI_CORE)return;
     for(const spec of SCENE_SPECS){
       SCENES[spec.id]=spec.name;
       const units=[],seen=new Set();
-      for(const lemma of spec.lemmas){
-        const u=primaryUnitForLemma(lemma);if(!u)continue;
-        const k=keyOf(u);if(seen.has(k))continue;seen.add(k);units.push(u);
-      }
+      // Tier 1: explicitly curated scene lemmas always come first.
+      for(const lemma of spec.lemmas)addUnit(units,seen,primaryUnitForLemma(lemma));
+      // Tier 2 (temporary MVP): backfill from the closest existing controlled Core scene,
+      // ranked by the Core lexicon rank. This expands the playable pool without inventing
+      // words/KUs. It is intentionally broad and will be replaced by reviewed Scene500×KU mapping.
+      const baseScene=BASE_POOL[spec.id];
+      const fallback=[...(window.PAI_CORE.byScene.get(baseScene)||[])].sort((a,b)=>(Number(a?.w?.rank)||999999)-(Number(b?.w?.rank)||999999));
+      for(const u of fallback){addUnit(units,seen,u);if(units.length>=MAX_SCENE_UNITS)break}
       window.PAI_CORE.byScene.set(spec.id,units);
     }
-    window.PAI_SCENE500={version:VERSION,sceneIds:[...ids],specs:SCENE_SPECS};
+    window.PAI_SCENE500={version:VERSION,maxSceneUnits:MAX_SCENE_UNITS,sceneIds:[...ids],specs:SCENE_SPECS};
   }
 
   function pilotState(){
@@ -75,7 +92,7 @@
     for(const u of units){
       const k=keyOf(u);if(seen.has(k)||state.records[k])continue;
       chosen.push(k);seen.add(k);
-      if(chosen.length>=existing.length+count)break;
+      if(chosen.length>=Math.min(MAX_SCENE_UNITS,existing.length+count))break;
     }
     days[bucket]=chosen;save();return chosen;
   }
