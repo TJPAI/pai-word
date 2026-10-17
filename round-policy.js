@@ -3,7 +3,8 @@
 // This overlay adds an independent state.wordsPerRound session-size setting and
 // is deliberately loaded last so it is the final policy owner for scene sessions.
 (function(){
-  const ALLOWED=new Set([10,20,30,50]);
+  const DAILY_ALLOWED=new Set([25,50,100,200]);
+  const ROUND_ALLOWED=new Set([10,25,50]);
   const DISPLAY_LIMIT=50;
   const BASE_POOL={
     cs018:'daily',cs043:'travel',cs044:'travel',cs046:'travel',cs047:'travel',cs049:'travel',
@@ -11,9 +12,10 @@
     cs081:'tech',cs088:'tech',cs090:'tech',cs092:'academic',cs096:'academic',cs468:'public',
     cs206:'work',cs215:'work',cs223:'work',cs254:'tech',cs321:'academic'
   };
-  if(!ALLOWED.has(Number(state.wordsPerRound)))state.wordsPerRound=20;
-  const roundSize=()=>ALLOWED.has(Number(state.wordsPerRound))?Number(state.wordsPerRound):20;
-  const dailyLimit=()=>ALLOWED.has(Number(state.newPerDay))?Number(state.newPerDay):20;
+  if(!DAILY_ALLOWED.has(Number(state.newPerDay)))state.newPerDay=50;
+  if(!ROUND_ALLOWED.has(Number(state.wordsPerRound)))state.wordsPerRound=10;
+  const roundSize=()=>ROUND_ALLOWED.has(Number(state.wordsPerRound))?Number(state.wordsPerRound):10;
+  const dailyLimit=()=>DAILY_ALLOWED.has(Number(state.newPerDay))?Number(state.newPerDay):50;
   const dailyCompleted=()=>Math.max(0,Number(window.globalNewCompleted?.()||0));
   const dailyRemaining=()=>Math.max(0,dailyLimit()-dailyCompleted());
   const freshLimit=()=>Math.min(roundSize(),dailyRemaining());
@@ -21,10 +23,6 @@
   const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
   const unitKeyOf=u=>unitKey(u.w,u.sid);
 
-  // Scene500's initial MVP bridge used to stop after the first 50 rank-sorted
-  // fallback units. That biased the pool toward basic words before difficulty
-  // filtering. Keep enough controlled candidates per difficulty internally,
-  // while keeping user-visible counts capped at 50.
   function expandScene500Pools(){
     if(!window.PAI_CORE?.byScene||!window.PAI_SCENE500?.sceneIds)return;
     for(const scene of window.PAI_SCENE500.sceneIds){
@@ -73,10 +71,6 @@
     return units.slice(0,limit).map(u=>u.k);
   }
 
-  // The bundled learning runtime still contains a legacy scene slice(0,10).
-  // Let it initialise its internal state, then replace the session with the
-  // final policy: due reviews + min(per-round size, remaining daily budget).
-  // Due reviews consume neither the daily-new budget nor the per-round fresh quota.
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
     const result=baseOpenScene(scene);
@@ -96,8 +90,18 @@
     return result;
   };
 
+  // Override the legacy daily setter because the bundled runtime only accepts 10/20/30/50.
+  window.setNewPerDay=function(n){
+    n=Number(n);if(!DAILY_ALLOWED.has(n))n=50;
+    state.newPerDay=n;
+    state.daily=null;
+    // Force the daily engine to rebuild its assignment lazily with the new budget.
+    window.PAI_LEARNING_QA?.fresh?.();
+    save();
+    if(typeof render==='function')render();
+  };
   window.setWordsPerRound=function(n){
-    n=Number(n);if(!ALLOWED.has(n))n=20;
+    n=Number(n);if(!ROUND_ALLOWED.has(n))n=10;
     state.wordsPerRound=n;
     save();
     if(typeof render==='function')render();
@@ -105,8 +109,6 @@
   window.wordsPerRound=roundSize;
   window.dailyNewRemaining=dailyRemaining;
 
-  // Manual recall correction is immediate. The underlying tap-flow schedules
-  // another answer timer; cancelling it first makes the explicit buttons authoritative.
   if(window.PAI_TAP_FLOW?.correct){
     const baseCorrect=window.PAI_TAP_FLOW.correct.bind(window.PAI_TAP_FLOW);
     window.PAI_TAP_FLOW.correct=function(score){
@@ -118,7 +120,7 @@
     };
   }
 
-  // Keep the original 每日新词 setting and add an independent 每轮单词数 row.
+  // Keep the original daily row, replace its options, and add the independent round row.
   const baseRender=window.render;
   window.render=function(){
     const out=baseRender();
@@ -126,11 +128,16 @@
       const rows=[...document.querySelectorAll('.setting-row')];
       const dailyRow=rows.find(x=>x.querySelector('span')?.textContent?.trim()==='每日新词');
       if(dailyRow){
-        const options=[10,20,30,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
+        const dailySelect=dailyRow.querySelector('select');
+        if(dailySelect){
+          dailySelect.innerHTML=[25,50,100,200].map(n=>`<option value="${n}" ${dailyLimit()===n?'selected':''}>${n}</option>`).join('');
+          dailySelect.setAttribute('onchange','setNewPerDay(+this.value)');
+        }
+        const options=[10,25,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
         dailyRow.insertAdjacentHTML('afterend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
       }
       for(const el of document.querySelectorAll('.panel-block.muted')){
-        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定'))el.textContent='每日新词控制全天新词总量；每轮单词数控制单次学习的新词上限；到期复习不占新词额度。';
+        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词控制全天新词总量；每轮单词数控制单次学习的新词上限；到期复习不占新词额度。';
       }
     }
     return out;
