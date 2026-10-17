@@ -18,8 +18,6 @@
   const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
   const unitKeyOf=u=>unitKey(u.w,u.sid);
 
-  // Clean legacy Scene500 pilot assignment caches from older builds. Current rounds are
-  // constructed directly and only the learning session itself is persisted.
   if(state.scene500Pilot){delete state.scene500Pilot;save()}
 
   function sceneMemberKeys(scene){return new Set((allUnits(scene)||[]).map(unitKeyOf))}
@@ -39,8 +37,6 @@
         if(!rankAllowed(Number(u?.w?.rank)||999999,difficulty))continue;
         const k=unitKeyOf(u),wordKey=u.w?.rank??u.w?.w;
         if(seenWords.has(wordKey)||state.records?.[k])continue;
-        // "每轮单词数" is a headword count, not a KU count. If any KU for a word has
-        // progress, that word has already been introduced and is not charged as a new word.
         if(Object.keys(u.w?.s||{}).some(id=>state.records?.[id]))continue;
         seenWords.add(wordKey);out.push(k);if(out.length>=limit)break;
       }
@@ -74,7 +70,19 @@
     return result;
   };
 
-  // Override the legacy daily setter because daily.js still exposes old presets.
+  function reinforcementKeys(){
+    window.globalReinforcementRemaining?.();
+    const keys=Array.isArray(state.daily?.reinforcementKeys)?state.daily.reinforcementKeys:[];
+    return keys.filter(k=>window.PAI_CORE?.byKU?.has(k)&&!state.records?.[k]);
+  }
+  window.openReinforcement=function(){
+    const keys=reinforcementKeys();if(!keys.length)return;
+    state.learningSession={date:new Date().toISOString().slice(0,10),kind:'reinforcement',title:'知识强化',queue:keys,total:keys.length,completed:[],seen:{},attempts:0};
+    state.view='learning';state.revealed=false;save();
+    if(typeof window.resumeLearning==='function')window.resumeLearning();
+    else if(typeof render==='function')render();
+  };
+
   window.setNewPerDay=function(n){
     n=Number(n);if(!DAILY_ALLOWED.has(n))n=50;
     state.newPerDay=n;
@@ -96,11 +104,10 @@
     dailyCompleted:dailyCompleted(),
     dailyRemaining:dailyRemaining(),
     roundLimit:roundSize(),
-    reinforcementRemaining:Math.max(0,Number(window.globalReinforcementRemaining?.()||0)),
+    reinforcementRemaining:reinforcementKeys().length,
     due:Math.max(0,Number(window.PAI_LEARNING_QA?.due?.().length||0))
   });
 
-  // Manual grading is authoritative and advances immediately.
   if(window.PAI_TAP_FLOW?.correct){
     const baseCorrect=window.PAI_TAP_FLOW.correct.bind(window.PAI_TAP_FLOW);
     window.PAI_TAP_FLOW.correct=function(score){
@@ -112,7 +119,6 @@
     };
   }
 
-  // Settings UI: keep daily and per-round controls independent.
   const baseRender=window.render;
   window.render=function(){
     const out=baseRender();
