@@ -2,6 +2,13 @@
 import fs from 'node:fs';
 import zlib from 'node:zlib';
 
+// IMPORTANT: this generator belongs to the legacy Scene500 taxonomy whose Sxxx
+// meanings differ from the current canonical 20×25 taxonomy. It must never be
+// used as the production source for current Scene500 ranked membership.
+if (!process.argv.includes('--legacy-taxonomy')) {
+  throw new Error('Refusing to run legacy Scene500 candidate generator. Current canonical taxonomy is data/scene500-taxonomy-20x25-v1.txt. Pass --legacy-taxonomy only for explicit historical/diagnostic work.');
+}
+
 const read = p => JSON.parse(fs.readFileSync(p, 'utf8'));
 const manifest = read('data/learning-v3/manifest.json');
 const taxonomy = read('data/scene-taxonomy-v2.json');
@@ -61,18 +68,14 @@ for (const row of catalog) {
     const senseEnText = [kuTitle, kuType, kuPos].filter(Boolean).join(' | ');
     const senseZhText = [meaning, kuTitle].filter(Boolean).join(' | ');
     for (const [sceneId, rule] of Object.entries(seeds.scenes || {})) {
-      // Exam/source-list scenes are intentionally excluded from semantic matching.
       if (deferredSourceScenes.has(sceneId)) continue;
-
       const enHits = (rule.senseEn || []).filter(k => phraseHit(senseEnText, k));
       const zhHits = (rule.senseZh || []).filter(k => phraseHit(senseZhText, k));
       const headwordHit = (rule.headwords || []).some(k => norm(word) === norm(k));
-
       if (!enHits.length && !zhHits.length) continue;
       let score = enHits.length * 2 + zhHits.length * 3 + (headwordHit ? 1 : 0);
       if (rank <= 3000) score += 1;
       if (score < (seeds.policy?.minimumScore ?? 3)) continue;
-
       const confidence = Math.min(0.90, Number((0.54 + Math.min(score, 7) * 0.05).toFixed(2)));
       const relevance = score >= 6 ? 'core' : 'extended';
       const evidence = [
@@ -83,16 +86,7 @@ for (const row of catalog) {
         meaning ? `meaning=${meaning}` : null,
         oldScene ? `legacyScene=${oldScene}` : null
       ].filter(Boolean).join('; ');
-      candidates.push({
-        kuId,
-        sceneId,
-        relevance,
-        confidence,
-        source: 'generated_candidate',
-        evidence,
-        reviewStatus: 'pending',
-        meta: { rank, word, kuType, oldScene, score }
-      });
+      candidates.push({kuId,sceneId,relevance,confidence,source:'generated_candidate',evidence,reviewStatus:'pending',meta:{rank,word,kuType,oldScene,score}});
       byScene[sceneId]++;
     }
   }
@@ -111,14 +105,16 @@ const out = {
   sourceCatalogRelease: manifest.release,
   seedFiles: seedManifest.files,
   sourceMembershipFile: fs.existsSync('data/scene500-source-membership-v1.json') ? 'data/scene500-source-membership-v1.json' : null,
-  status: 'generated_candidates_pending_review',
+  status: 'legacy_generated_candidates_pending_review',
   policy: {
     autoVerified: 0,
     productionEligible: false,
+    legacyTaxonomyOnly: true,
+    currentCanonicalTaxonomy: 'data/scene500-taxonomy-20x25-v1.txt',
     senseEvidenceRequired: true,
     headwordOnlyForbidden: true,
     sourceMembershipScenesExcludedFromSemanticMatching: true,
-    note: 'Semantic scenes use heuristic sense-first matching. Exam/source-list scenes require separate authoritative membership evidence. Every link requires review before promotion.'
+    note: 'LEGACY ONLY. Do not use these links as current Scene500 production membership.'
   },
   summary: {
     wordCount: manifest.wordCount,
