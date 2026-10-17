@@ -1,19 +1,50 @@
-// Redesigned Scene500 home only. All study/question/answer/settings/review flows remain owned by learning-runtime.js.
+// Scene500 sentence-search home only. Study/question/answer/settings/review flows remain owned by learning-runtime.js.
 (function(){
   const baseRender=window.render;
   if(typeof baseRender!=='function')return;
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const searchApi=()=>window.PAI_SCENE_SEARCH;
   function dueCount(){const now=Date.now();let n=0;for(const [k,r] of Object.entries(state.records||{})){if(window.PAI_CORE?.byKU?.has(k)&&r?.due<=now)n++}return n}
   function learnedCount(){let n=0;for(const k of Object.keys(state.records||{}))if(window.PAI_CORE?.byKU?.has(k))n++;return n}
-  function todayNewCount(){const d=state.daily;return d?.newWordKeys?.filter(k=>!state.records[k]).length??0}
-  function pilotScenes(){return window.PAI_SCENE500?.specs||[]}
-  function sceneWordCount(id){try{return new Set((allUnits(id)||[]).map(u=>u?.w?.rank??u?.w?.w).filter(v=>v!==undefined&&v!==null)).size}catch(_){return 0}}
-  function firstPlayable(){return pilotScenes().find(s=>sceneWordCount(s.id)>0)?.id||null}
-  function progressPct(){return Math.min(100,Math.round(learnedCount()/16616*100))}
-  function renderHome(){
-    const learned=learnedCount(),due=dueCount(),today=todayNewCount(),pct=progressPct(),scenes=pilotScenes(),play=firstPlayable();
-    const sceneCards=scenes.map((s,i)=>{const words=sceneWordCount(s.id);return `<button class="home-scene-card" onclick="openScene('${esc(s.id)}')"><div class="home-scene-title">${esc(s.name)}</div><div class="home-scene-meta">组合场景 · Core-13000</div><div class="home-scene-foot"><span>${i<3?'推荐优先学习':'可直接学习'}</span><span class="home-count">${words} 词</span></div></button>`}).join('');
-    return `<div class="home-dashboard"><div class="home-shell"><div class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>13,000 词 · 16,616 词义单元 · 场景化英语词汇学习</p></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></div><div class="home-layout"><main class="home-main"><section class="home-hero"><div><h2>在真实场景中<br>掌握核心词汇</h2><p>从真实使用场景进入学习。题目页、答案页、发音、SRS 与现有设置保持不变。</p><div class="home-hero-actions">${play?`<button class="home-primary" onclick="openScene('${esc(play)}')">开始学习</button>`:''}${due?`<button class="home-secondary" onclick="openReview()">复习 ${due}</button>`:''}</div></div><div class="home-kpis"><div class="home-kpi"><b>13,000</b><span>核心词汇</span></div><div class="home-kpi"><b>16,616</b><span>KU</span></div><div class="home-kpi"><b>500</b><span>语义节点</span></div><div class="home-kpi"><b>120</b><span>组合场景目标</span></div></div></section><section class="home-section"><div class="home-section-head"><div><h3>学习场景</h3><p>当前开放10个已接入真实词库的组合场景；右侧数字为该场景当前包含的独立单词数。</p></div></div><div class="home-scene-grid">${sceneCards}</div></section><div class="home-note">当前组合场景仍在扩展和语义审核中；场景词数按实际映射的独立 headword 统计，同一单词多个 KU 只计1次。</div></main><aside class="home-side"><section class="home-panel"><h3>我的学习进度</h3><div class="home-progress-row"><b>${pct}%</b><span>${learned.toLocaleString()} / 16,616 KU</span></div><div class="home-meter"><i style="width:${pct}%"></i></div><div class="home-mini-grid"><div class="home-mini"><b>${state.newPerDay||20}</b><span>每日新词</span></div><div class="home-mini"><b>${due}</b><span>今日复习</span></div></div>${due?`<button class="home-wide-btn" onclick="openReview()">开始复习</button>`:(play?`<button class="home-wide-btn" onclick="openScene('${esc(play)}')">继续学习</button>`:'')}</section><section class="home-panel"><h3>学习设置</h3><button class="home-link-row" onclick="openPanel('settings')"><span>每日新词</span><small>${state.newPerDay||20} ›</small></button><button class="home-link-row" onclick="openPanel('settings')"><span>发音口音</span><small>${state.voiceAccent==='gb'?'英音':'美音'} ›</small></button><button class="home-link-row" onclick="openPanel('settings')"><span>显示选项</span><small>搭配 / 例句 / 辨析 ›</small></button></section><section class="home-panel"><h3>今日状态</h3><button class="home-link-row" onclick="openPanel('stats')"><span>已学习 KU</span><small>${learned.toLocaleString()} ›</small></button><div class="home-link-row"><span>待学新词</span><small>${today}</small></div><div class="home-link-row"><span>到期复习</span><small>${due}</small></div></section></aside></div></div></div>`;
+  function lastScene(){const id=(state.scene500Recent||[])[0]||state.selectedScene||null;return id&&SCENES[id]?{id,name:SCENES[id]}:null}
+  function playable(){return (window.PAI_SCENE500?.specs||[]).filter(s=>!['cs206','cs215','cs223','cs254','cs321'].includes(s.id))}
+  function firstPlayable(){return playable().find(s=>(searchApi()?.wordCount(s.id,'all')||0)>0)?.id||null}
+  function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
+  function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
+  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,wordCount:searchApi()?.wordCount(x.id,s.difficulty)||0}))}
+  function resultHtml(){
+    const s=ui(),rows=resultRows();
+    if(!s.query)return'';
+    if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="scene-result-count">${r.wordCount}<small>词</small></span></button>`).join('')}</section>`;
   }
+  function recentHtml(){
+    const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
+    return `<section class="home-recent"><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row">${rows.slice(0,3).map(s=>`<button onclick="PAI_SCENE_SEARCH.open('${esc(s.id)}')">${esc(s.name)}</button>`).join('')}</div></section>`;
+  }
+  function renderHome(){
+    const due=dueCount(),learned=learnedCount(),last=lastScene(),fallback=firstPlayable(),s=ui();
+    const continueId=last?.id||fallback;
+    return `<div class="home-dashboard"><div class="home-shell">
+      <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
+      <main class="home-focus">
+        <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(last?.name||'开始一个场景')}</h2><p>${due?`有 ${due} 个到期 KU 待复习`:`已学习 ${learned.toLocaleString()} 个 KU`}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="PAI_SCENE_SEARCH.open('${esc(continueId)}')">继续</button>`:''}${due?`<button class="continue-review" onclick="openReview()">复习 ${due}</button>`:''}</div></section>
+        <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
+          <textarea id="scene-query" class="scene-query" rows="3" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(s.query||'')}</textarea>
+          <div class="scene-search-controls"><label>难度<select id="scene-difficulty"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
+          ${resultHtml()}
+        </section>
+        ${recentHtml()}
+        <div class="browse-link"><a href="scene500-demo.html">浏览场景目录 →</a><span>目录展示 Scene500 节点组合出的 120 个场景；未审核 KU 不会自动进入学习。</span></div>
+      </main>
+    </div></div>`;
+  }
+  window.findScene500=function(){
+    const q=document.getElementById('scene-query')?.value?.trim()||'';
+    const difficulty=document.getElementById('scene-difficulty')?.value||'all';
+    const results=searchApi()?.search(q,difficulty,5)||[];
+    state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
+    requestAnimationFrame(()=>document.querySelector('.scene-results,.scene-search-empty')?.scrollIntoView({block:'nearest',behavior:'smooth'}));
+  };
   window.render=function(){if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
 })();
