@@ -27,26 +27,37 @@ test('round-policy is the only Scene500 session policy owner',()=>{
   assert.match(bridge,/sessionPolicyOwner:'round-policy\.js'/);
 });
 
-test('Scene500 playable vocabulary is membership-driven with no broad fallback',()=>{
+test('Scene500 v2 ranks Core membership without duplicating lexical content',()=>{
   const bridge=read('scene500-integrated.js');
-  const membership=JSON.parse(read('data/scene500-playable-membership-v1.json'));
-  assert.equal(membership.policy.playableOnly,true);
+  const membership=JSON.parse(read('data/scene500-playable-membership-v2.json'));
+  assert.equal(membership.schemaVersion,2);
+  assert.equal(membership.policy.masterLexicon,'Core-20K');
+  assert.equal(membership.policy.membershipUnit,'sense');
+  assert.equal(membership.policy.learningUnit,'KU');
   assert.equal(membership.policy.generatedCandidatesNeverAutoVerified,true);
-  assert.match(bridge,/PAI_SCENE500_MEMBERSHIP/);
-  assert.match(bridge,/playableVocabulary:'membership_data_only'/);
-  assert.match(bridge,/broadBackfillPlayable:false/);
+  assert.match(bridge,/ranked_membership_data_only/);
+  assert.match(bridge,/membershipByScene/);
   assert.doesNotMatch(bridge,/BASE_POOL/);
   assert.doesNotMatch(bridge,/MAX_SCENE_UNITS/);
 });
 
-test('Scene500 membership runtime exposes QA for missing, empty, unresolved and duplicate entries',()=>{
+test('Scene500 generated candidates cannot enter playable learning pools',()=>{
   const bridge=read('scene500-integrated.js');
-  assert.match(bridge,/missingMembership/);
-  assert.match(bridge,/emptyPlayable/);
-  assert.match(bridge,/unresolvedLemmas/);
+  assert.match(bridge,/generated_candidate/);
+  assert.match(bridge,/blockedGenerated/);
+  assert.match(bridge,/\['editorial','dictionary_corpus_verified','source_verified'\]\.includes/);
+});
+
+test('Scene500 membership resolves explicit KU or sense before word or lemma fallback',()=>{
+  const bridge=read('scene500-integrated.js');
+  const ku=bridge.indexOf('if(raw.kuId)');
+  const sense=bridge.indexOf('if(raw.senseId)');
+  const word=bridge.indexOf('if(raw.wordId');
+  const lemma=bridge.indexOf("const lemma=String(raw.lemma||'')");
+  assert.ok(ku>=0&&ku<sense&&sense<word&&word<lemma);
+  assert.match(bridge,/rankIssues/);
+  assert.match(bridge,/unresolvedEntries/);
   assert.match(bridge,/duplicateEntries/);
-  assert.match(bridge,/membershipSchemaVersion/);
-  assert.match(bridge,/membershipStatus/);
 });
 
 test('fresh rounds are distinct by headword, not only by KU',()=>{
