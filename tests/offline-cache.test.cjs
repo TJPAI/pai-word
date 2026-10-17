@@ -16,11 +16,25 @@ test('Core-13000 loader is local-first but still verifies cached bytes',()=>{
   assert.match(src,/offlineReady=localStatus\.supported&&localStatus\.manifestCached/);
 });
 
-test('app shell service worker provides network-first offline fallback without duplicating lexicon packs',()=>{
-  const src=read('sw.js');
-  assert.match(src,/pai-word-shell-v1/);
-  assert.match(src,/cache\.addAll\(SHELL\)/);
-  assert.match(src,/url\.pathname\.includes\('\/data\/core13000-v25\.5\/'\)/);
-  assert.match(src,/caches\.match\(event\.request,\{ignoreSearch:true\}\)/);
-  assert.match(src,/event\.request\.mode==='navigate'/);
+test('current app shell is versioned, network-first, and leaves lexicon data to IndexedDB',()=>{
+  const sw=read('sw.js');
+  const boot=read('core-bootstrap.js');
+  const index=read('index.html');
+  const swVersion=sw.match(/pai-word-shell-(tap-[^']+)/)?.[1];
+  const bootVersion=boot.match(/const VERSION='([^']+)'/)?.[1];
+  assert.ok(swVersion&&bootVersion);
+  assert.equal(swVersion,bootVersion);
+  assert.match(index,new RegExp('core-bootstrap\\.js\\?v='+bootVersion.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));
+  assert.match(sw,/cache[s]?\.open\(CACHE\)/);
+  assert.match(sw,/addAll\(SHELL\)/);
+  assert.match(sw,/u\.pathname\.includes\('\/data\/'\)/);
+  assert.match(sw,/fetch\(e\.request,\{cache:'no-store'\}\)/);
+  assert.match(sw,/c\.match\(e\.request,\{ignoreSearch:true\}\)/);
+});
+
+test('an already-open older shell reloads when a different service-worker version activates',()=>{
+  const boot=read('core-bootstrap.js');
+  assert.match(boot,/e\.data\?\.type!==['"]PAI_SHELL_UPDATED['"]/);
+  assert.match(boot,/next===VERSION/);
+  assert.match(boot,/location\.reload\(\)/);
 });
