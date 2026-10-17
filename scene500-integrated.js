@@ -2,8 +2,7 @@
 // Adds a conservative playable subset to the existing PAI Word shell while
 // preserving question/answer/rating/audio/SRS behavior owned by learning-runtime.js.
 (function(){
-  const VERSION='scene500-playable-v5';
-  const MAX_SCENE_UNITS=50;
+  const VERSION='scene500-playable-v6';
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',lemmas:['rent','apartment','house','room','landlord','contract','lease','electricity','water','condition'],tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
     {id:'cs043',name:'预订酒店并确认房型和政策',desc:'订房、房型、价格、取消与入住政策',lemmas:['hotel','book','reservation','room','price','cancel','confirm','available','guest','policy'],tags:['酒店','订房','预订','房型','取消','住宿','hotel','booking','reservation']},
@@ -52,7 +51,7 @@
   }
 
   function addUnit(units,seen,u){
-    if(!u||units.length>=MAX_SCENE_UNITS)return;
+    if(!u)return;
     const k=keyOf(u);if(seen.has(k))return;
     seen.add(k);units.push(u);
   }
@@ -64,15 +63,14 @@
       const units=[],seen=new Set();
       // Tier 1: explicitly curated scene lemmas always come first.
       for(const lemma of spec.lemmas)addUnit(units,seen,primaryUnitForLemma(lemma));
-      // Tier 2 (temporary MVP): backfill from the closest existing controlled Core scene,
-      // ranked by the Core lexicon rank. This expands the playable pool without inventing
-      // words/KUs. It is intentionally broad and will be replaced by reviewed Scene500×KU mapping.
+      // Tier 2 (temporary MVP): use the full closest controlled Core scene as the candidate
+      // universe. There is no artificial scene-size cap; daily/round settings control pacing.
       const baseScene=BASE_POOL[spec.id];
       const fallback=[...(window.PAI_CORE.byScene.get(baseScene)||[])].sort((a,b)=>(Number(a?.w?.rank)||999999)-(Number(b?.w?.rank)||999999));
-      for(const u of fallback){addUnit(units,seen,u);if(units.length>=MAX_SCENE_UNITS)break}
+      for(const u of fallback)addUnit(units,seen,u);
       window.PAI_CORE.byScene.set(spec.id,units);
     }
-    window.PAI_SCENE500={version:VERSION,maxSceneUnits:MAX_SCENE_UNITS,sceneIds:[...ids],specs:SCENE_SPECS};
+    window.PAI_SCENE500={version:VERSION,sceneIds:[...ids],specs:SCENE_SPECS};
   }
 
   function pilotState(){
@@ -83,19 +81,16 @@
     return state.scene500Pilot.days[date];
   }
 
-  // Scene500 MVP deliberately assigns the whole filtered scene pool (up to 50)
-  // instead of inheriting the global daily-new-word quota. This keeps the experiment
-  // focused on scene relevance while leaving existing due/SRS records untouched.
-  function assignment(scene,count=MAX_SCENE_UNITS,extend=false){
+  function assignment(scene,count=Infinity,extend=false){
     const difficulty=activeDifficulty(scene),bucket=`${scene}::${difficulty}`,days=pilotState();
     const units=allUnits(scene).filter(u=>rankAllowed(Number(u?.w?.rank)||999999,difficulty));
     const existing=Array.isArray(days[bucket])?days[bucket]:[];
     if(!extend&&existing.length)return existing;
-    const chosen=[...existing],seen=new Set(chosen);
+    const chosen=[...existing],seen=new Set(chosen),target=Number.isFinite(count)?existing.length+Math.max(0,count):Infinity;
     for(const u of units){
       const k=keyOf(u);if(seen.has(k)||state.records[k])continue;
       chosen.push(k);seen.add(k);
-      if(chosen.length>=Math.min(MAX_SCENE_UNITS,existing.length+count))break;
+      if(chosen.length>=target)break;
     }
     days[bucket]=chosen;save();return chosen;
   }
@@ -114,7 +109,7 @@
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
     if(!ids.has(scene))return baseOpenScene(scene);
-    assignment(scene,MAX_SCENE_UNITS);
+    assignment(scene);
     return baseOpenScene(scene);
   };
 
