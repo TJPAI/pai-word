@@ -1,6 +1,6 @@
 // Optional Core20K preview runtime. Load after lazy-loader.js and before core-bootstrap.js.
 // Activated only with ?lexicon=20k (or localStorage pai-lexicon-mode=20k).
-// Reuses the stable Core13K catalog, then overlays the frozen Core20K membership/rank and 6,013 new lexical entries.
+// Reuses the stable Core13K catalog, then overlays frozen Core20K membership/rank and 6,013 new lexical entries.
 (function(){
   const params=new URLSearchParams(location.search);
   const requested=params.get('lexicon')||localStorage.getItem('pai-lexicon-mode');
@@ -31,7 +31,10 @@
     for(const k of Object.keys(SCENES))delete SCENES[k];
     Object.assign(SCENES,{daily:'日常生活',work:'职场商务',academic:'学术学习',travel:'旅行出行',social:'社交关系',tech:'科技互联网',health:'健康医疗',finance:'金融消费',public:'公共社会',culture:'文化娱乐',function:'功能词专项',core1:'词频 1–1,000',core3:'词频 1,001–3,000',core6:'词频 3,001–6,000',core13:'词频 6,001–13,000',core20:'Core20K 扩展'});
     const core={words:[],byKU:new Map(),byScene:new Map(Object.keys(SCENES).map(k=>[k,[]])),byLemma:new Map(),byWordId:new Map()};
-    const baseByLemma=new Map();for(const w of base.words)baseByLemma.set(String(w.w).toLowerCase(),w);
+    // Core13K contains four same-spelling duplicate headwords. Core20K collapses each pair into one WORD,
+    // so preserve all KUs by grouping the stable catalog by lemma instead of overwriting one row.
+    const baseByLemma=new Map();
+    for(const w of base.words){const key=String(w.w).toLowerCase(),arr=baseByLemma.get(key)||[];arr.push(w);baseByLemma.set(key,arr)}
     const addUnit=(w,k,s0,kuContent=null)=>{
       if(core.byKU.has(k))throw Error('Core20K Preview 重复 KU: '+k);
       const s={ku_id:k,scene:s0.scene||'core20',kuType:String(s0.kuType||'sense').toLowerCase(),kuTitle:s0.kuTitle||'',pos:s0.pos||w.pos,m:s0.m||'',e:Array.isArray(s0.e)?s0.e:[],c:s0.c||'',x:s0.x||''};
@@ -40,9 +43,10 @@
     for(const row of overlay.rows){
       const [rank,lemma,role,payload]=row;let w;
       if(role==='I'){
-        const src=baseByLemma.get(String(lemma).toLowerCase());if(!src)throw Error('Core20K Preview 继承词未找到: '+lemma);
-        w={rank,w:lemma,pos:src.pos||'',s:{},ipa:src.ipa||'',ipaUS:src.ipaUS||src.ipa||'',ipaUK:src.ipaUK||'',root:'',allSenses:src.allSenses||[],loaded:true,role:'INHERITED_CORE13K_LEXICAL',sourceCore13Rank:Number(payload)||src.rank};
-        for(const [k,s] of Object.entries(src.s||{}))addUnit(w,k,s,null);
+        const srcs=baseByLemma.get(String(lemma).toLowerCase())||[];if(!srcs.length)throw Error('Core20K Preview 继承词未找到: '+lemma);
+        const primary=srcs[0],positions=[...new Set(srcs.map(x=>x.pos).filter(Boolean))];
+        w={rank,w:lemma,pos:positions.join('/')||primary.pos||'',s:{},ipa:primary.ipa||'',ipaUS:primary.ipaUS||primary.ipa||'',ipaUK:primary.ipaUK||'',root:'',allSenses:srcs.flatMap(x=>x.allSenses||[]),loaded:true,role:'INHERITED_CORE13K_LEXICAL',sourceCore13Ranks:srcs.map(x=>x.rank)};
+        for(const src of srcs)for(const [k,s] of Object.entries(src.s||{}))addUnit(w,k,s,null);
       }else if(role==='L'){
         if(!Array.isArray(payload))throw Error('Core20K Preview lexical payload 缺失: '+lemma);
         const [kid,pos,ipa,zh,en,evidence,source]=payload;w={rank,w:lemma,pos:pos||'',s:{},ipa:ipa||'',ipaUS:ipa||'',ipaUK:'',root:'',allSenses:[[`${kid}_sense`,pos||'',zh||'',en||'',false]],loaded:true,role:'LEXICAL_SEMANTIC'};
