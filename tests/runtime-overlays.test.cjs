@@ -75,6 +75,19 @@ test('Scene500 membership resolves explicit KU or sense before word, rank or lem
   assert.match(bridge,/duplicateEntries/);
 });
 
+test('mechanical primary-sense fallback is never reported as Sense-level verified',()=>{
+  const bridge=read('scene500-integrated.js');
+  assert.match(bridge,/explicit_sense_binding/);
+  assert.match(bridge,/primary_sense_fallback_unreviewed/);
+  assert.match(bridge,/unverifiedSenseBindings/);
+  assert.match(bridge,/ambiguousLemmaBindings/);
+  assert.match(bridge,/candidateSenseCount/);
+  assert.match(bridge,/bindingMethod/);
+  assert.match(bridge,/senseBindingStatus/);
+  assert.match(bridge,/exportResolvedMembership/);
+  assert.match(bridge,/runtime_resolution_audit_only/);
+});
+
 test('fresh rounds are distinct by headword, not only by KU',()=>{
   const src=read('round-policy.js');
   assert.match(src,/seenWords=new Set\(\)/);
