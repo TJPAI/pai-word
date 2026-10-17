@@ -1,8 +1,9 @@
 // Scene500 composed-scene data bridge.
-// Scene definitions live here; playable vocabulary membership is data-driven.
-// Study-session sizing, daily budgets, queue construction and grading are owned by round-policy.js.
+// Scene definitions live here; playable membership comes from ranked data only.
+// Core lexicon remains the single lexical database. Session policy is owned by round-policy.js.
 (function(){
-  const VERSION='scene500-playable-v9-membership-data';
+  const VERSION='scene500-playable-v10-ranked-membership';
+  const LEGACY_ALIAS={cs206:'cs073',cs215:'cs076',cs223:'cs079',cs254:'cs081',cs321:'cs092'};
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
     {id:'cs043',name:'预订酒店并确认房型和政策',desc:'订房、房型、价格、取消与入住政策',tags:['酒店','订房','预订','房型','取消','住宿','hotel','booking','reservation']},
@@ -32,48 +33,75 @@
   const membership=window.PAI_SCENE500_MEMBERSHIP||{};
   const membershipScenes=membership.scenes||{};
 
+  function primaryUnitForWord(w){
+    if(!w)return null;
+    const entries=Object.entries(w.s||{});
+    const sense=entries.find(([,s])=>String(s.kuType||'sense').toLowerCase()==='sense')||entries[0];
+    return sense?window.PAI_CORE.byKU.get(sense[0])||null:null;
+  }
   function primaryUnitForLemma(lemma){
-    const words=window.PAI_CORE?.byLemma?.get(lemma)||[];
-    for(const w of words){
-      const entries=Object.entries(w.s||{});
-      const sense=entries.find(([,s])=>String(s.kuType||'sense').toLowerCase()==='sense')||entries[0];
-      if(sense){const u=window.PAI_CORE.byKU.get(sense[0]);if(u)return u}
-    }
+    for(const w of (window.PAI_CORE?.byLemma?.get(lemma)||[])){const u=primaryUnitForWord(w);if(u)return u}
     return null;
   }
+  function resolveEntry(raw){
+    if(typeof raw==='string')return primaryUnitForLemma(raw.trim().toLowerCase());
+    if(!raw||typeof raw!=='object')return null;
+    if(raw.kuId){const u=window.PAI_CORE?.byKU?.get(String(raw.kuId));if(u)return u}
+    if(raw.senseId){const u=window.PAI_CORE?.byKU?.get(String(raw.senseId));if(u)return u}
+    if(raw.wordId!==null&&raw.wordId!==undefined){
+      const n=Number(raw.wordId);if(Number.isInteger(n)&&n>0){const u=primaryUnitForWord(window.PAI_CORE?.words?.[n-1]);if(u)return u}
+    }
+    const lemma=String(raw.lemma||'').trim().toLowerCase();
+    return lemma?primaryUnitForLemma(lemma):null;
+  }
+  function mergedMeta(source,raw){
+    const obj=typeof raw==='object'&&raw?raw:{};
+    return {
+      evidenceStatus:obj.evidenceStatus||source?.evidenceStatus||(membership.schemaVersion===1?'editorial':null),
+      source:obj.source||source?.source||(membership.schemaVersion===1?'scene500_playable_membership_v1':null),
+      reviewed:obj.reviewed!==undefined?!!obj.reviewed:(source?.reviewed!==undefined?!!source.reviewed:membership.schemaVersion===1),
+      sceneRank:Number.isInteger(Number(obj.sceneRank))?Number(obj.sceneRank):null,
+      sceneScore:Number.isFinite(Number(obj.sceneScore))?Number(obj.sceneScore):null
+    };
+  }
+  function playable(meta){return meta.reviewed&&['editorial','dictionary_corpus_verified','source_verified'].includes(meta.evidenceStatus)}
 
   function installSceneData(){
     if(!window.PAI_CORE)return;
-    const qa={missingMembership:[],emptyPlayable:[],unresolvedLemmas:[],duplicateEntries:[]};
+    const qa={missingMembership:[],emptyPlayable:[],unresolvedEntries:[],duplicateEntries:[],blockedGenerated:[],rankIssues:[]};
+    const membershipByScene={};
     for(const spec of SCENE_SPECS){
       SCENES[spec.id]=spec.name;
-      const source=membershipScenes[spec.id];
+      const membershipId=LEGACY_ALIAS[spec.id]||spec.id;
+      const source=membershipScenes[membershipId];
       if(!source)qa.missingMembership.push(spec.id);
       const entries=Array.isArray(source?.entries)?source.entries:[];
-      const units=[],seenWords=new Set(),seenLemma=new Set();
-      for(const raw of entries){
+      const ranked=[...entries].sort((a,b)=>(Number(typeof a==='object'&&a?.sceneRank)||999999)-(Number(typeof b==='object'&&b?.sceneRank)||999999));
+      const units=[],resolved=[],seenWords=new Set(),seenEntry=new Set();let lastRank=0;
+      for(const raw of ranked){
         const lemma=String(typeof raw==='string'?raw:raw?.lemma||'').trim().toLowerCase();
-        if(!lemma)continue;
-        if(seenLemma.has(lemma)){qa.duplicateEntries.push(`${spec.id}:${lemma}`);continue}
-        seenLemma.add(lemma);
-        const u=primaryUnitForLemma(lemma);
-        if(!u){qa.unresolvedLemmas.push(`${spec.id}:${lemma}`);continue}
+        const meta=mergedMeta(source,raw);
+        const identity=String((typeof raw==='object'&&(raw.kuId||raw.senseId||raw.wordId))||lemma);
+        if(!identity)continue;
+        if(seenEntry.has(identity)){qa.duplicateEntries.push(`${spec.id}:${identity}`);continue}
+        seenEntry.add(identity);
+        if(meta.sceneRank!==null){if(meta.sceneRank<=lastRank)qa.rankIssues.push(`${spec.id}:${identity}:${meta.sceneRank}`);lastRank=Math.max(lastRank,meta.sceneRank)}
+        if(meta.evidenceStatus==='generated_candidate'){qa.blockedGenerated.push(`${spec.id}:${identity}`);continue}
+        if(!playable(meta))continue;
+        const u=resolveEntry(raw);
+        if(!u){qa.unresolvedEntries.push(`${spec.id}:${identity}`);continue}
         const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
         seenWords.add(wordKey);units.push(u);
+        resolved.push({lemma:u.w?.w||lemma,wordId:u.w?.rank??null,kuId:u.k||null,sceneRank:meta.sceneRank,sceneScore:meta.sceneScore,evidenceStatus:meta.evidenceStatus,source:meta.source,reviewed:meta.reviewed});
       }
       if(!units.length)qa.emptyPlayable.push(spec.id);
       window.PAI_CORE.byScene.set(spec.id,units);
+      membershipByScene[spec.id]=resolved;
     }
     window.PAI_SCENE500={
-      version:VERSION,
-      sceneIds:[...ids],
-      specs:SCENE_SPECS,
-      membershipSchemaVersion:membership.schemaVersion||null,
-      membershipStatus:membership.status||'missing',
-      playableVocabulary:'membership_data_only',
-      broadBackfillPlayable:false,
-      sessionPolicyOwner:'round-policy.js',
-      qa
+      version:VERSION,sceneIds:[...ids],specs:SCENE_SPECS,
+      membershipSchemaVersion:membership.schemaVersion||null,membershipStatus:membership.status||'missing',membershipByScene,
+      playableVocabulary:'ranked_membership_data_only',broadBackfillPlayable:false,sessionPolicyOwner:'round-policy.js',qa
     };
   }
   installSceneData();
