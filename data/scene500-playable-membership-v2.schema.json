@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tjpai.github.io/pai-word/data/scene500-playable-membership-v2.schema.json",
+  "title": "PAI Word Scene500 Ranked Membership V2",
+  "type": "object",
+  "required": ["schemaVersion", "taxonomyId", "policy", "scenes"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "taxonomyId": {"type": "string"},
+    "status": {"type": "string"},
+    "policy": {
+      "type": "object",
+      "required": ["masterLexicon", "membershipUnit", "learningUnit", "autoVerify"],
+      "properties": {
+        "masterLexicon": {"const": "Core-20K"},
+        "membershipUnit": {"const": "sense"},
+        "learningUnit": {"const": "KU"},
+        "autoVerify": {"const": false},
+        "generatedCandidatesNeverAutoVerified": {"const": true}
+      },
+      "additionalProperties": true
+    },
+    "scenes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["entries"],
+        "properties": {
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["lemma", "sceneRank", "sceneScore", "evidenceStatus", "source"],
+              "properties": {
+                "lemma": {"type": "string", "minLength": 1},
+                "wordId": {"type": ["string", "integer", "null"]},
+                "senseId": {"type": ["string", "null"]},
+                "kuId": {"type": ["string", "null"]},
+                "sceneRank": {"type": "integer", "minimum": 1},
+                "sceneScore": {"type": "number", "minimum": 0, "maximum": 1},
+                "evidenceStatus": {"enum": ["generated_candidate", "editorial", "dictionary_corpus_verified", "source_verified"]},
+                "source": {"type": "string", "minLength": 1},
+                "reviewed": {"type": "boolean"},
+                "note": {"type": "string"}
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}
