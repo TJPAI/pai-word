@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='tap-v71-scene500-inventory-separation';window.PAI_APP_VERSION=VERSION;
+ const VERSION='tap-v72-scene500-threshold-membership';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
@@ -12,6 +12,7 @@
  }
  try{
   await loadLearningCatalog();
+  window.PAI_SCENE500_MEMBERSHIP_POLICY=await json('data/scene500-ranked-membership-policy-v1.json');
   window.PAI_SCENE500_MEMBERSHIP=await sceneMembership();
   await script('learning-runtime.js');
   await script('audio-compat.js');
