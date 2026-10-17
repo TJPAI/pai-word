@@ -1,9 +1,11 @@
 (async function(){
- const VERSION='tap-v63-separate-reinforcement';window.PAI_APP_VERSION=VERSION;
+ const VERSION='tap-v64-scene500-membership';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
+ async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
  try{
   await loadLearningCatalog();
+  window.PAI_SCENE500_MEMBERSHIP=await json('data/scene500-playable-membership-v1.json');
   await script('learning-runtime.js');
   await script('audio-compat.js');
   await script('scene500-integrated.js');
