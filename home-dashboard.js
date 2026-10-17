@@ -4,7 +4,13 @@
   if(typeof baseRender!=='function')return;
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   const searchApi=()=>window.PAI_SCENE_SEARCH;
-  function dueCount(){const now=Date.now();let n=0;for(const [k,r] of Object.entries(state.records||{})){if(window.PAI_CORE?.byKU?.has(k)&&r?.due<=now)n++}return n}
+  function dueCount(){
+    const engineDue=window.PAI_LEARNING_QA?.due?.();
+    if(Array.isArray(engineDue))return engineDue.length;
+    const now=Date.now();let n=0;
+    for(const [k,r] of Object.entries(state.records||{}))if(window.PAI_CORE?.byKU?.has(k)&&(r?.learningPending||r?.lastKnown===false||r?.due<=now))n++;
+    return n;
+  }
   function learnedCount(){let n=0;for(const k of Object.keys(state.records||{}))if(window.PAI_CORE?.byKU?.has(k))n++;return n}
   function lastScene(){const id=(state.scene500Recent||[])[0]||null;return id&&SCENES[id]?{id,name:SCENES[id]}:null}
   function playable(){return (window.PAI_SCENE500?.specs||[]).filter(s=>!['cs206','cs215','cs223','cs254','cs321'].includes(s.id))}
