@@ -88,19 +88,30 @@ test('mechanical primary-sense fallback is never reported as Sense-level verifie
   assert.match(bridge,/runtime_resolution_audit_only/);
 });
 
-test('Sense review QA lists candidate KUs but never mutates playable bindings',()=>{
+test('sense review queue is deterministic and never mutates playable membership',()=>{
   const review=read('scene500-sense-review.js');
-  const boot=read('core-bootstrap.js');
-  assert.match(boot,/scene500-sense-review\.js/);
-  assert.match(review,/QA-only: never changes playable bindings automatically/);
-  assert.match(review,/candidateSenses/);
-  assert.match(review,/currentKuId/);
-  assert.match(review,/targetSenseZh/);
-  assert.match(review,/candidateCount/);
-  assert.match(review,/PAI_SCENE500_SENSE_REVIEW/);
-  assert.match(review,/No row is Sense-verified until membership explicitly records kuId\/senseId and senseBindingReviewed=true/);
+  assert.match(review,/sense-review-v2/);
+  assert.match(review,/single_candidate_needs_review/);
+  assert.match(review,/needs_candidate_selection/);
+  assert.match(review,/sort\(\(a,b\)=>\(Number\(a\.coreRank\)/);
+  assert.match(review,/buildMembershipPatch/);
+  assert.match(review,/mutationApplied:false/);
+  assert.match(review,/ku_id_not_in_candidates/);
   assert.doesNotMatch(review,/byScene\.set/);
   assert.doesNotMatch(review,/window\.openScene\s*=/);
+  assert.doesNotMatch(review,/PAI_SCENE500_MEMBERSHIP\s*=/);
+});
+
+test('Sense-reviewed membership requires an explicit reviewed KU selection',()=>{
+  const review=read('scene500-sense-review.js');
+  const schema=JSON.parse(read('data/scene500-playable-membership-v2.schema.json'));
+  const props=schema.properties.scenes.additionalProperties.properties.entries.items.properties;
+  assert.ok(props.senseBindingReviewed);
+  assert.ok(props.senseBindingMethod);
+  assert.match(review,/senseBindingReviewed:true/);
+  assert.match(review,/senseBindingMethod:'manual_review'/);
+  assert.match(review,/const candidate=row\.candidates\.find/);
+  assert.match(review,/No row is Sense-reviewed until an explicit selected KU/);
 });
 
 test('fresh rounds are distinct by headword, not only by KU',()=>{
