@@ -47,6 +47,12 @@
                 "evidenceStatus": {"enum": ["generated_candidate", "editorial", "dictionary_corpus_verified", "source_verified"]},
                 "source": {"type": "string"},
                 "reviewed": {"type": "boolean"},
+                "senseBindingReviewed": {"type": "boolean", "description": "True only after an explicit Sense/KU review decision; runtime fallback never sets this."},
+                "senseBindingMethod": {"enum": ["manual_review", "dictionary_corpus_verified", "source_verified"]},
+                "senseReviewNote": {"type": "string"},
+                "senseReviewedAt": {"type": "string", "format": "date-time"},
+                "senseReviewedBy": {"type": "string"},
+                "senseHintZh": {"type": "string"},
                 "note": {"type": "string"}
               },
               "additionalProperties": true
