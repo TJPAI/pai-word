@@ -1,12 +1,13 @@
 // Final study policy overlay.
-// Daily new-word budget remains owned by state.newPerDay / daily.js.
-// This overlay owns the independent per-round size and the final Scene500 session policy.
+// Scene500 data/pools are owned by scene500-integrated.js.
+// This file is the only owner for scene-session sizing, daily/round limits and manual grading overrides.
 (function(){
   const DAILY_ALLOWED=new Set([25,50,100,200]);
   const ROUND_ALLOWED=new Set([10,25,50]);
-
-  if(!DAILY_ALLOWED.has(Number(state.newPerDay)))state.newPerDay=50;
-  if(!ROUND_ALLOWED.has(Number(state.wordsPerRound)))state.wordsPerRound=10;
+  let normalized=false;
+  if(!DAILY_ALLOWED.has(Number(state.newPerDay))){state.newPerDay=50;normalized=true}
+  if(!ROUND_ALLOWED.has(Number(state.wordsPerRound))){state.wordsPerRound=10;normalized=true}
+  if(normalized)save();
 
   const roundSize=()=>ROUND_ALLOWED.has(Number(state.wordsPerRound))?Number(state.wordsPerRound):10;
   const dailyLimit=()=>DAILY_ALLOWED.has(Number(state.newPerDay))?Number(state.newPerDay):50;
@@ -17,39 +18,9 @@
   const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
   const unitKeyOf=u=>unitKey(u.w,u.sid);
 
-  function primaryUnitForLemma(lemma){
-    const words=window.PAI_CORE?.byLemma?.get(lemma)||[];
-    for(const w of words){
-      const entries=Object.entries(w.s||{});
-      const sense=entries.find(([,s])=>String(s.kuType||'sense').toLowerCase()==='sense')||entries[0];
-      if(sense){const u=window.PAI_CORE.byKU.get(sense[0]);if(u)return u}
-    }
-    return null;
-  }
-
-  // The temporary Scene500 bridge used broad parent categories as backfill. That is
-  // useful for candidate generation, but it is not honest enough to be shown or learned
-  // as if every parent-category word belonged to the small scene. Runtime therefore keeps
-  // only explicitly curated scene lemmas playable until reviewed Scene500×KU mappings land.
-  function installTruthfulScene500Pools(){
-    if(!window.PAI_CORE?.byScene||!window.PAI_SCENE500?.specs)return;
-    for(const spec of window.PAI_SCENE500.specs){
-      const units=[],seenWords=new Set();
-      for(const lemma of spec.lemmas||[]){
-        const u=primaryUnitForLemma(lemma);if(!u)continue;
-        const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
-        seenWords.add(wordKey);units.push(u);
-      }
-      window.PAI_CORE.byScene.set(spec.id,units);
-    }
-    // Remove legacy full-scene assignment caches. The final session policy below creates
-    // only the actual round queue, so persisting hundreds/thousands of candidate KU keys
-    // is unnecessary and can pressure Safari localStorage.
-    if(state.scene500Pilot){delete state.scene500Pilot;save()}
-    window.PAI_SCENE500.playableVocabulary='curated_scene_lemmas_only';
-    window.PAI_SCENE500.broadBackfillPlayable=false;
-  }
-  installTruthfulScene500Pools();
+  // Clean legacy Scene500 pilot assignment caches from older builds. Current rounds are
+  // constructed directly and only the learning session itself is persisted.
+  if(state.scene500Pilot){delete state.scene500Pilot;save()}
 
   function sceneMemberKeys(scene){return new Set((allUnits(scene)||[]).map(unitKeyOf))}
   function dueKeys(scene){
@@ -68,14 +39,20 @@
         if(!rankAllowed(Number(u?.w?.rank)||999999,difficulty))continue;
         const k=unitKeyOf(u),wordKey=u.w?.rank??u.w?.w;
         if(seenWords.has(wordKey)||state.records?.[k])continue;
-        // Treat a headword as introduced if any of its KUs already has progress.
+        // "每轮单词数" is a headword count, not a KU count. If any KU for a word has
+        // progress, that word has already been introduced and is not charged as a new word.
         if(Object.keys(u.w?.s||{}).some(id=>state.records?.[id]))continue;
         seenWords.add(wordKey);out.push(k);if(out.length>=limit)break;
       }
       return out;
     }
     const units=window.PAI_LEARNING_QA?.unlearned?.(scene)||[];
-    return units.slice(0,limit).map(u=>u.k);
+    const out=[],seenWords=new Set();
+    for(const u of units){
+      const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
+      seenWords.add(wordKey);out.push(u.k);if(out.length>=limit)break;
+    }
+    return out;
   }
 
   const baseOpenScene=window.openScene;
@@ -97,7 +74,7 @@
     return result;
   };
 
-  // Override the legacy daily setter because the bundled runtime still accepts the old presets.
+  // Override the legacy daily setter because daily.js still exposes old presets.
   window.setNewPerDay=function(n){
     n=Number(n);if(!DAILY_ALLOWED.has(n))n=50;
     state.newPerDay=n;
@@ -114,6 +91,14 @@
   };
   window.wordsPerRound=roundSize;
   window.dailyNewRemaining=dailyRemaining;
+  window.studyBudgetSummary=()=>({
+    dailyLimit:dailyLimit(),
+    dailyCompleted:dailyCompleted(),
+    dailyRemaining:dailyRemaining(),
+    roundLimit:roundSize(),
+    reinforcementRemaining:Math.max(0,Number(window.globalReinforcementRemaining?.()||0)),
+    due:Math.max(0,Number(window.PAI_LEARNING_QA?.due?.().length||0))
+  });
 
   // Manual grading is authoritative and advances immediately.
   if(window.PAI_TAP_FLOW?.correct){
@@ -140,11 +125,13 @@
           dailySelect.innerHTML=[25,50,100,200].map(n=>`<option value="${n}" ${dailyLimit()===n?'selected':''}>${n}</option>`).join('');
           dailySelect.setAttribute('onchange','setNewPerDay(+this.value)');
         }
-        const options=[10,25,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
-        dailyRow.insertAdjacentHTML('afterend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
+        if(!rows.some(x=>x.querySelector('span')?.textContent?.trim()==='每轮单词数')){
+          const options=[10,25,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
+          dailyRow.insertAdjacentHTML('afterend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
+        }
       }
       for(const el of document.querySelectorAll('.panel-block.muted')){
-        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词控制全天新词总量；每轮单词数控制单次学习的新词上限；场景本身不设人工数量上限；到期复习不占新词额度。';
+        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词控制全天新词总量；每轮单词数控制单次学习的新词上限；强化 KU 与到期复习单独计算，不占新词额度。';
       }
     }
     return out;
