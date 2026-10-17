@@ -44,7 +44,7 @@ const WORDS = [
 ];
 
 const STORAGE='pai-word-mobile-v1';
-let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:20,records:{},stats:{known:0,unknown:0}};
+let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
 function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
