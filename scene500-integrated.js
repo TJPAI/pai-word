@@ -2,7 +2,7 @@
 // Scene definitions live here; playable membership comes from ranked data only.
 // Core lexicon remains the single lexical database. Session policy is owned by round-policy.js.
 (function(){
-  const VERSION='scene500-playable-v12-sense-binding-audit';
+  const VERSION='scene500-playable-v13-reviewed-explicit-bindings';
   const LEGACY_ALIAS={cs206:'cs073',cs215:'cs076',cs223:'cs079',cs254:'cs081',cs321:'cs092'};
   const SCENE_SPECS=[
     {id:'cs018',name:'租房看房并询问居住条件',desc:'看房、房东、租约、水电与居住条件',tags:['租房','看房','房东','租约','合同','水电','公寓','rent','landlord','lease','utilities']},
@@ -59,18 +59,23 @@
     const explicit=method==='kuId'||method==='senseId';
     return {unit,method,bindingStatus:explicit?'explicit_sense_binding':(count>1||lemmaWordCount>1?'primary_sense_fallback_unreviewed':'primary_sense_fallback'),senseCount:count,lemmaWordCount};
   }
+  function fallbackByLemma(raw,method='lemma'){
+    const lemma=String(raw?.lemma||'').trim().toLowerCase(),words=wordsForLemma(lemma),u=lemma?primaryUnitForLemma(lemma):null;
+    return bindingResult(u,method,u?.w,words.length);
+  }
   function resolveEntry(raw){
     if(typeof raw==='string'){
       const lemma=raw.trim().toLowerCase(),words=wordsForLemma(lemma),u=primaryUnitForLemma(lemma);
       return bindingResult(u,'lemma',u?.w,words.length);
     }
     if(!raw||typeof raw!=='object')return bindingResult(null,'invalid',null,0);
-    if(raw.kuId){const u=window.PAI_CORE?.byKU?.get(String(raw.kuId));return bindingResult(u,'kuId',u?.w,1)}
-    if(raw.senseId){const u=window.PAI_CORE?.byKU?.get(String(raw.senseId));return bindingResult(u,'senseId',u?.w,1)}
+    const explicitReviewed=membership.schemaVersion!==2||raw.senseBindingReviewed===true;
+    if(raw.kuId&&explicitReviewed){const u=window.PAI_CORE?.byKU?.get(String(raw.kuId));return bindingResult(u,'kuId',u?.w,1)}
+    if(raw.senseId&&explicitReviewed){const u=window.PAI_CORE?.byKU?.get(String(raw.senseId));return bindingResult(u,'senseId',u?.w,1)}
+    if((raw.kuId||raw.senseId)&&!explicitReviewed)return fallbackByLemma(raw,'unreviewed_explicit_ignored');
     if(raw.wordId){const w=wordByStableId(raw.wordId);return bindingResult(primaryUnitForWord(w),'wordId',w,1)}
     if(raw.coreRank!==null&&raw.coreRank!==undefined){const w=wordByCoreRank(raw.coreRank);return bindingResult(primaryUnitForWord(w),'coreRank',w,1)}
-    const lemma=String(raw.lemma||'').trim().toLowerCase(),words=wordsForLemma(lemma),u=lemma?primaryUnitForLemma(lemma):null;
-    return bindingResult(u,'lemma',u?.w,words.length);
+    return fallbackByLemma(raw,'lemma');
   }
   function mergedMeta(source,raw){
     const obj=typeof raw==='object'&&raw?raw:{};
@@ -86,7 +91,7 @@
 
   function installSceneData(){
     if(!window.PAI_CORE)return;
-    const qa={missingMembership:[],emptyPlayable:[],unresolvedEntries:[],duplicateEntries:[],blockedGenerated:[],rankIssues:[],unresolvedStableWordIds:[],unverifiedSenseBindings:[],ambiguousLemmaBindings:[]};
+    const qa={missingMembership:[],emptyPlayable:[],unresolvedEntries:[],duplicateEntries:[],blockedGenerated:[],rankIssues:[],unresolvedStableWordIds:[],unverifiedSenseBindings:[],ambiguousLemmaBindings:[],blockedUnreviewedExplicitBindings:[]};
     const membershipByScene={};
     for(const spec of SCENE_SPECS){
       SCENES[spec.id]=spec.name;
@@ -108,17 +113,19 @@
         if(meta.evidenceStatus==='generated_candidate'){qa.blockedGenerated.push(`${spec.id}:${identity}`);continue}
         if(!playable(meta))continue;
         if(obj.wordId&&!wordByStableId(obj.wordId)&&!lemma)qa.unresolvedStableWordIds.push(`${spec.id}:${obj.wordId}`);
+        if(membership.schemaVersion===2&&(obj.kuId||obj.senseId)&&obj.senseBindingReviewed!==true)qa.blockedUnreviewedExplicitBindings.push(`${spec.id}:${identity}`);
         const binding=resolveEntry(raw),u=binding.unit;
         if(!u){qa.unresolvedEntries.push(`${spec.id}:${identity}`);continue}
-        if(binding.bindingStatus==='primary_sense_fallback_unreviewed')qa.unverifiedSenseBindings.push(`${spec.id}:${identity}`);
+        if(binding.bindingStatus==='primary_sense_fallback_unreviewed'||binding.method==='unreviewed_explicit_ignored')qa.unverifiedSenseBindings.push(`${spec.id}:${identity}`);
         if(binding.lemmaWordCount>1)qa.ambiguousLemmaBindings.push(`${spec.id}:${identity}:${binding.lemmaWordCount}`);
         const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
         seenWords.add(wordKey);units.push(u);
         resolved.push({
           lemma:u.w?.w||lemma,wordId:obj.wordId||null,coreRank:u.w?.rank??obj.coreRank??null,
-          senseId:obj.senseId||null,kuId:u.k||obj.kuId||null,
+          senseId:obj.senseBindingReviewed===true?(obj.senseId||null):null,kuId:u.k||null,
           sceneRank:meta.sceneRank,sceneScore:meta.sceneScore,evidenceStatus:meta.evidenceStatus,source:meta.source,reviewed:meta.reviewed,
-          bindingMethod:binding.method,senseBindingStatus:binding.bindingStatus,candidateSenseCount:binding.senseCount,lemmaWordCount:binding.lemmaWordCount
+          senseBindingReviewed:obj.senseBindingReviewed===true,bindingMethod:binding.method,senseBindingStatus:binding.bindingStatus,
+          candidateSenseCount:binding.senseCount,lemmaWordCount:binding.lemmaWordCount
         });
       }
       if(!units.length)qa.emptyPlayable.push(spec.id);
