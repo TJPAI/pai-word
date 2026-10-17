@@ -25,13 +25,14 @@ test('final round policy owns scene sizing instead of legacy fixed ten',()=>{
   assert.match(src,/state\.learningSession\.queue=keys/);
 });
 
-test('Scene500 difficulty pools are expanded before user-visible 50-word cap',()=>{
-  const src=read('round-policy.js');
-  assert.match(src,/const DISPLAY_LIMIT=50/);
-  assert.match(src,/for\(const difficulty of \['basic','common','advanced','high'\]\)/);
-  assert.match(src,/rankAllowed\(rank,difficulty\)/);
-  assert.match(src,/added>=DISPLAY_LIMIT/);
-  assert.match(src,/Math\.min\(DISPLAY_LIMIT,baseWordCount\(id,d\)\)/);
+test('Scene500 vocabulary pools and displayed counts have no artificial 50-word cap',()=>{
+  const policy=read('round-policy.js');
+  const bridge=read('scene500-integrated.js');
+  assert.doesNotMatch(policy,/DISPLAY_LIMIT/);
+  assert.doesNotMatch(policy,/Math\.min\(50/);
+  assert.doesNotMatch(bridge,/MAX_SCENE_UNITS/);
+  assert.match(policy,/for\(const u of fallback\)/);
+  assert.match(bridge,/for\(const u of fallback\)addUnit\(units,seen,u\)/);
 });
 
 test('manual recall correction remains immediate and authoritative',()=>{
