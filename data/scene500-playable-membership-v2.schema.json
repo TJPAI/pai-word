@@ -16,7 +16,9 @@
         "membershipUnit": {"const": "sense"},
         "learningUnit": {"const": "KU"},
         "autoVerify": {"const": false},
-        "generatedCandidatesNeverAutoVerified": {"const": true}
+        "generatedCandidatesNeverAutoVerified": {"const": true},
+        "runtimeMayResolveMissingIds": {"type": "boolean"},
+        "seedReferenceUnit": {"enum": ["headword", "sense"]}
       },
       "additionalProperties": true
     },
@@ -36,7 +38,8 @@
               "required": ["lemma", "sceneRank"],
               "properties": {
                 "lemma": {"type": "string", "minLength": 1},
-                "wordId": {"type": ["string", "integer", "null"]},
+                "wordId": {"type": ["string", "null"], "description": "Stable Core word identifier when available; never interpreted as rank."},
+                "coreRank": {"type": ["integer", "null"], "minimum": 1, "description": "Current Core lexicon rank/index reference for compatibility."},
                 "senseId": {"type": ["string", "null"]},
                 "kuId": {"type": ["string", "null"]},
                 "sceneRank": {"type": "integer", "minimum": 1},
