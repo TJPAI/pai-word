@@ -18,6 +18,16 @@
   await script('audio-compat.js');
   await script('scene500-integrated.js');
   await script('scene500-sense-review.js');
+  // Display coarse Scene500 inventory separately from reviewed learning membership.
+  if(new URLSearchParams(location.search).get('core20k')==='1'){
+   try{
+    const inventory=await json('data/scene500-v40-inventory.json');
+    if(inventory.schema!=='pai-scene500-core20k-v40-inventory-v1'||Object.keys(inventory.scenes||{}).length!==500)throw Error('Scene500 inventory schema invalid');
+    const counts=Object.fromEntries(Object.entries(inventory.scenes).map(([id,v])=>[id,v.candidates]));
+    window.PAI_SCENE500_CANDIDATES={summary:{candidatesByScene:counts},version:'Scene500 V4.0 coarse',verifiedSense:false};
+    window.PAI_SCENE500_V40_INVENTORY=inventory;
+   }catch(error){console.warn('Scene500 V4 inventory unavailable; reviewed Scene500 remains usable',error)}
+  }
   await script('scene-search.js');
   await script('home-dashboard.js');
   await script('round-policy.js');
