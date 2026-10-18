@@ -91,7 +91,7 @@
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
     const u=findUnitByKey(k);
-    if(u&&!wordIntroduced(u.w)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    // The answer is already saved in state.records when this callback runs.\n    // Use the assignment snapshot, not wordIntroduced(), to count a new word.\n    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
