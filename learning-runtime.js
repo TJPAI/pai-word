@@ -30,7 +30,7 @@
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
       if(wordIntroduced(w))continue;
-      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily'));const u=k?findUnitByKey(k):null;if(unitIsPlayable(u))picked.push(u);
+      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily')&&unitIsPlayable(findUnitByKey(k)));const u=k?findUnitByKey(k):null;if(unitIsPlayable(u))picked.push(u);
     }
     return picked;
   }
