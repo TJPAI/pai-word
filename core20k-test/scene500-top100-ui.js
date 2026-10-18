@@ -34,9 +34,10 @@
        const qa=await loadSceneTop100(window.PAI_CORE,id);
        const units=window.PAI_CORE.byScene.get(id);
        const eligible=units.filter(u=>!state.records?.[u.k]);
-       const max=Math.min(Number(state.wordsPerRound)||10,Number(state.newPerDay)||50);
-       const queue=eligible.slice(0,max).map(u=>u.k);
-       label.textContent='前100名：可学 '+qa.playable+'；未通过当前门禁 '+qa.blocked+'；本轮 '+queue.length;
+       // Scene vocabulary is the entire eligible subset of V4 ranks 1–100.
+       // wordsPerRound is a study preference, never a Scene500 vocabulary cap.
+       const queue=eligible.map(u=>u.k);
+       label.textContent='Top100：当前可学 '+qa.playable+'；暂不可学 '+qa.blocked+'；未学 '+queue.length+'（不是10词上限）';
        if(!queue.length)return;
        state.selectedScene=id;
        state.learningSession={date:new Date().toISOString().slice(0,10),kind:'scene',title:scenes.find(s=>s.id===id).name+' · Top100',queue,total:queue.length,completed:[],seen:{},attempts:0};
