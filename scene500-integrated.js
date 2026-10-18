@@ -70,11 +70,27 @@
     }
     if(!raw||typeof raw!=='object')return bindingResult(null,'invalid',null,0);
     const explicitReviewed=membership.schemaVersion!==2||raw.senseBindingReviewed===true;
-    if(raw.kuId&&explicitReviewed){const candidate=window.PAI_CORE?.byKU?.get(String(raw.kuId));const u=candidate?.s?.playable===false||candidate?.s?.requiresHydration===true?null:candidate;return bindingResult(u,'kuId',u?.w,1)}
-    if(raw.senseId&&explicitReviewed){const candidate=window.PAI_CORE?.byKU?.get(String(raw.senseId));const u=candidate?.s?.playable===false||candidate?.s?.requiresHydration===true?null:candidate;return bindingResult(u,'senseId',u?.w,1)}
+    const expected=String(raw.lemma||'').trim().toLowerCase();
+    const matches=u=>!!u&&(!expected||String(u.w?.w||'').trim().toLowerCase()===expected);
+    if(raw.kuId&&explicitReviewed){
+      const u=window.PAI_CORE?.byKU?.get(String(raw.kuId));
+      return bindingResult(matches(u)&&u.s?.playable!==false&&u.s?.requiresHydration!==true?u:null,'kuId',u?.w,1);
+    }
+    if(raw.senseId&&explicitReviewed){
+      const u=window.PAI_CORE?.byKU?.get(String(raw.senseId));
+      return bindingResult(matches(u)&&u.s?.playable!==false&&u.s?.requiresHydration!==true?u:null,'senseId',u?.w,1);
+    }
     if((raw.kuId||raw.senseId)&&!explicitReviewed)return fallbackByLemma(raw,'unreviewed_explicit_ignored');
-    if(raw.wordId){const w=wordByStableId(raw.wordId);return bindingResult(primaryUnitForWord(w),'wordId',w,1)}
-    if(raw.coreRank!==null&&raw.coreRank!==undefined){const w=wordByCoreRank(raw.coreRank);return bindingResult(primaryUnitForWord(w),'coreRank',w,1)}
+    if(raw.wordId){
+      const w=wordByStableId(raw.wordId);
+      if(w&&(!expected||w.w.toLowerCase()===expected))return bindingResult(primaryUnitForWord(w),'wordId',w,1);
+      return expected?fallbackByLemma(raw,'stale_wordId_lemma_fallback'):bindingResult(null,'wordId',null,0);
+    }
+    if(raw.coreRank!==null&&raw.coreRank!==undefined){
+      const w=wordByCoreRank(raw.coreRank);
+      if(w&&(!expected||w.w.toLowerCase()===expected))return bindingResult(primaryUnitForWord(w),'coreRank',w,1);
+      return expected?fallbackByLemma(raw,'stale_coreRank_lemma_fallback'):bindingResult(null,'coreRank',null,0);
+    }
     return fallbackByLemma(raw,'lemma');
   }
   function mergedMeta(source,raw){
