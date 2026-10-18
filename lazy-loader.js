@@ -34,10 +34,12 @@ if(new URLSearchParams(location.search).get('core20k')==='1'){
  window.loadLearningCatalog=async function(){
   try{
    const {tryInstallCore20K}=await import('./scripts/core20k-dev-boot.mjs');
-   return await tryInstallCore20K();
+   const core=await tryInstallCore20K();
+   window.PAI_CORE20K_BOOT={ok:true,words:core.qa.words};
+   return core;
   }catch(error){
-   console.warn('[Core20K dev] Unified dataset unavailable; using legacy loader.',error);
-   return legacyLoad();
+   window.PAI_CORE20K_BOOT={ok:false,error:String(error?.message||error)};
+   throw Error('Core20K test loading failed: '+String(error?.message||error));
   }
  };
 }
