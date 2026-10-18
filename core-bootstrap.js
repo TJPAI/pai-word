@@ -14,6 +14,19 @@
   await loadLearningCatalog();
   window.PAI_SCENE500_MEMBERSHIP_POLICY=await json('data/scene500-ranked-membership-policy-v1.json');
   window.PAI_SCENE500_MEMBERSHIP=await sceneMembership();
+  // Suspend transient home renders until the final home renderer is installed.
+  // This preserves the initial lightweight loading markup without a cover or white screen.
+  const initialMarkup=app.innerHTML;
+  const originalInnerHTML=Object.getOwnPropertyDescriptor(Element.prototype,'innerHTML');
+  let suppressInterimHome=true;
+  Object.defineProperty(app,'innerHTML',{
+   configurable:true,
+   get(){return originalInnerHTML.get.call(this)},
+   set(value){
+    if(suppressInterimHome&&typeof state!=='undefined'&&state.view==='scenes')return;
+    return originalInnerHTML.set.call(this,value);
+   }
+  });
   await script('learning-runtime.js');
   await script('audio-compat.js');
   await script('scene500-integrated.js');
@@ -41,6 +54,8 @@
   await script('home-dashboard.js');
   await script('round-policy.js');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
+  suppressInterimHome=false;
+  delete app.innerHTML;
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
   // Explicit, visible data provenance in opt-in testing; never label a 13K page as 20K.
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
