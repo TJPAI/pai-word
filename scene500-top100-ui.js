@@ -10,14 +10,22 @@
   const scenes=parseScene500Taxonomy(await response.text());
   const opts=scenes.map(s=>'<option value="'+s.id+'">'+s.id+' '+esc(s.name)+'</option>').join('');
   const baseRender=window.render;
+  const inventory=window.PAI_SCENE500_V40_INVENTORY?.scenes||{};
   window.render=function(){
    const result=baseRender();
    if(state.view==='scenes'||state.view==='home'){
     const host=document.querySelector('.home-dashboard')||document.querySelector('#app');
     if(host&&!document.querySelector('#scene500-top100-panel')){
      const el=document.createElement('section');el.id='scene500-top100-panel';el.style.cssText='margin:16px;padding:16px;border:1px solid #9995;border-radius:12px';
-     el.innerHTML='<h3>Scene500 · Top100（试验）</h3><p>原始V4排名前100；通用 Sense 不代表场景词义已审核。</p><select id="scene500-top100-id" style="max-width:100%;padding:8px">'+opts+'</select> <button id="scene500-top100-start" style="padding:8px">学习此场景</button><p id="scene500-top100-status" role="status"></p>';
-     host.appendChild(el);
+     el.innerHTML='<h3>Scene500 · Top100（试验）</h3><p>每场景固定检查原始排名前100；实际可学数量由 KU 门禁决定，每轮学习数量独立设置。通用 Sense 不代表场景词义已审核。</p><select id="scene500-top100-id" style="max-width:100%;padding:8px">'+opts+'</select> <button id="scene500-top100-start" style="padding:8px">学习此场景</button><p id="scene500-top100-status" role="status"></p>';
+     host.prepend(el);
+     const selector=el.querySelector('select');
+     const status=el.querySelector('#scene500-top100-status');
+     const showScope=()=>{const id=selector.value;const n=inventory[id]?.candidates;status.textContent='场景 '+id+'：Top100 排名范围，完整候选池 '+(Number.isFinite(n)?n:'约1000')+'；点击学习后校验实际可学数量。';};
+     selector.addEventListener('change',showScope);showScope();
+     // The legacy cs demo recommendation list only has ten seed words per scene.
+     // Hide it in explicit Core20K Top100 testing to avoid presenting stale 10-word counts.
+     for(const old of host.querySelectorAll('.scene-results'))old.hidden=true;
      el.querySelector('button').onclick=async()=>{
       const btn=el.querySelector('button'),label=el.querySelector('#scene500-top100-status'),id=el.querySelector('select').value;
       btn.disabled=true;label.textContent='正在校验 Top100…';
