@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {inspectProposedContent,planSafeUpgrade} from './scene500-b75-core20k-preflight.mjs';
+const row={scene_id:'S068',lemma:'biometric',new_content_proposal_key:'B70_DRAFT_demo',proposed_ku_type:'Collocation',proposed_pos:'adj+n',proposed_gloss_zh:'生物识别认证',production_eligible:'False',target_ku_id:''};
+const a=inspectProposedContent([row,{...row,scene_id:'S257'}]);
+assert.equal(a.structurePass,true);assert.equal(a.contentCount,1);assert.equal(a.sceneLinkCount,2);assert.equal(a.approved,0);
+assert.equal(inspectProposedContent([row,{...row,proposed_gloss_zh:'错误内容'}]).structurePass,false);
+assert.equal(inspectProposedContent([{...row,production_eligible:'True'}]).structurePass,false);
+const record={reps:3,due:123},records={'old':record};
+assert.equal(planSafeUpgrade(records,['old'],['new'],[{from:'old',to:['new'],type:'split'}]).pass,false);
+assert.equal(planSafeUpgrade(records,['old'],['new'],[{from:'old',to:['new'],type:'merge'}]).pass,false);
+assert.equal(planSafeUpgrade(records,['old'],['new'],[{from:'old',to:['new'],type:'replace'}]).pass,false);
+const mapped=planSafeUpgrade(records,['old'],['new'],[{from:'old',to:['new'],type:'replace',approved:true}]);
+assert.equal(mapped.pass,true);assert.deepEqual(mapped.records['new'],record);
+assert.deepEqual(records,{'old':record});
+console.log('B75 PASS: cross-scene reuse, conflicts, premature approval, safe migration');
