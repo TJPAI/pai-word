@@ -27,3 +27,17 @@
   window.PAI_CORE_QA={release:VERSION,words:core.words.length,units:core.byKU.size};state.voiceAccent='us';save();return core;
  };
 })();
+
+// Development-only 20K switch. No effect without ?core20k=1.
+if(new URLSearchParams(location.search).get('core20k')==='1'){
+ const legacyLoad=window.loadLearningCatalog;
+ window.loadLearningCatalog=async function(){
+  try{
+   const {tryInstallCore20K}=await import('./scripts/core20k-dev-boot.mjs');
+   return await tryInstallCore20K();
+  }catch(error){
+   console.warn('[Core20K dev] Unified dataset unavailable; using legacy loader.',error);
+   return legacyLoad();
+  }
+ };
+}
