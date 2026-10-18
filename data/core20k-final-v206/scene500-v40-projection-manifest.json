@@ -1,0 +1,17 @@
+{
+  "artifact": "SceneRank500 V4.0 projected onto Core20K V2.0.6 FINAL_FROZEN",
+  "source_matrix": "PAI_Word_SceneRank500_V4.0_FinalAuditCandidate_500x1000.csv.gz",
+  "core_baseline": "Core20K_LongTerm_V2.0.6",
+  "rows": 499699,
+  "scenes": 500,
+  "rows_per_scene_min": 995,
+  "rows_per_scene_max": 1000,
+  "rank_policy": {
+    "scene_rank_v40": "immutable source rank",
+    "core20k_scene_rank": "dense rerank after exact lemma membership filtering only"
+  },
+  "oov_source_rows": 301,
+  "sha256_gzip": "701b97673102fe305d229533b2d5843c0182fd276f19f3731dde2fd9a46169fa",
+  "status": "DERIVED_COARSE_BASELINE_READY_FOR_SENSE_DISAMBIGUATION",
+  "not_claimed": ["not sense-verified","not KU membership","not dictionary verification"]
+}

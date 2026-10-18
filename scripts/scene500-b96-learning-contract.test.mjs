@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {buildGroupedStagingCatalog} from './scene500-b85-staging-catalog-v2.mjs';
+import {inspectLearningCompatibility} from './scene500-b96-learning-contract.mjs';
+const core={byKU:new Map(),byLemma:new Map()};
+const word=(id,ku,sense,gloss)=>({word_id:id,ku_id:ku,sense_id:sense,ku_type:'sense',semantic_key:id+':'+sense,status:'approved',production_eligible:true,lemma:'heading',pos:'n.',rank:17001,gloss_zh:gloss});
+const entries=[word('w1','fixture-ku-1','s1','标题'),word('w1','fixture-ku-2','s2','航向')];
+const links=[{scene_id:'S001',ku_id:'fixture-ku-1'},{scene_id:'S002',ku_id:'fixture-ku-2'},{scene_id:'S291',ku_id:'fixture-ku-2'}];
+const cat=buildGroupedStagingCatalog(core,entries,links,{},true);
+const result=inspectLearningCompatibility(cat,cat.sceneBindings);
+assert.equal(result.pass,true);assert.equal(result.crossSceneReuse,1);
+assert.equal(cat.byKU.get('fixture-ku-2').w,cat.byKU.get('fixture-ku-1').w);
+assert.equal(cat.byKU.get('fixture-ku-2').sid,'fixture-ku-2');
+const broken={...cat,byKU:new Map(cat.byKU)};
+broken.byKU.set('fixture-ku-1',{...cat.byKU.get('fixture-ku-1'),sid:'wrong'});
+assert.equal(inspectLearningCompatibility(broken,cat.sceneBindings).pass,false);
+console.log('B96-B105 compatibility contract PASS');

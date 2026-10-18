@@ -1,0 +1,3 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {assessPronunciationCoverage} from './core20k-pronunciation-coverage-gate.mjs';
+test('dictionary match alone is never display-ready',()=>{const r=assessPronunciationCoverage({arpabet_example:'T EH1 S T',license_status:'pending_review',us_ipa:''},{redistribution_approved:false});assert.equal(r.releaseEligible,false);assert.ok(r.reasons.includes('NO_US_IPA_CONVERSION'))});
+test('even converted IPA must have verified sense alignment',()=>assert.equal(assessPronunciationCoverage({arpabet_example:'T EH1 S T',license_status:'approved',us_ipa:'/tɛst/'},{redistribution_approved:true}).releaseEligible,false));

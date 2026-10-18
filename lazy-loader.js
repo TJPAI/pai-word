@@ -27,3 +27,19 @@
   window.PAI_CORE_QA={release:VERSION,words:core.words.length,units:core.byKU.size};state.voiceAccent='us';save();return core;
  };
 })();
+
+// Development-only 20K switch. No effect without ?core20k=1.
+if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
+ const legacyLoad=window.loadLearningCatalog;
+ window.loadLearningCatalog=async function(){
+  try{
+   const {tryInstallCore20K}=await import('./scripts/core20k-dev-boot.mjs');
+   const core=await tryInstallCore20K();
+   window.PAI_CORE20K_BOOT={ok:true,words:core.qa.words};
+   return core;
+  }catch(error){
+   window.PAI_CORE20K_BOOT={ok:false,error:String(error?.message||error)};
+   throw Error('Core20K test loading failed: '+String(error?.message||error));
+  }
+ };
+}

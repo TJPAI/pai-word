@@ -1,0 +1,46 @@
+{
+  "baselineId": "Core20K_LongTerm_V2.0.6",
+  "phase": "POST_FREEZE_CONTENT_AND_SCENE_REFINEMENT",
+  "membershipImmutable": true,
+  "contentLayers": [
+    "Sense",
+    "Grammar",
+    "Collocation",
+    "Contrast",
+    "Pronunciation",
+    "Usage/Risk"
+  ],
+  "evidenceStates": [
+    "source_verified",
+    "dictionary_corpus_verified",
+    "editorial",
+    "generated_draft_pending_review"
+  ],
+  "scene500": {
+    "productionUnit": "SENSE",
+    "learningUnit": "KU",
+    "membershipRule": "threshold_qualified_ranked_variable_size",
+    "fixedTopK": false,
+    "qaWindows": [100, 300, 1000],
+    "generatedCandidatesAutoVerified": false,
+    "headwordOnlyBindingForbiddenForFinalFineMapping": true,
+    "requiredFields": [
+      "scene_id",
+      "sense_id",
+      "relevance_score",
+      "scene_rank",
+      "evidence_status",
+      "review_status"
+    ]
+  },
+  "structuralWords": {
+    "independentSenseRequired": false,
+    "fabricatedSenseForbidden": true,
+    "linkToLexicalBaseOrCanonicalTarget": true
+  },
+  "runtime": {
+    "membershipSource": "Core20K_LongTerm_V2.0.6",
+    "contentOverlayVersionedSeparately": true,
+    "sceneMappingVersionedSeparately": true
+  }
+}

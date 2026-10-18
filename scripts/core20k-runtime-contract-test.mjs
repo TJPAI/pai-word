@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {buildCore20KRuntime} from './core20k-unified-runtime-adapter.mjs';
+const headwords=Array.from({length:20000},(_,i)=>[i+1,'word'+(i+1),'n.','',i===0?[['ku_1','sense','释义','meaning',true],['ku_2','sense','','meaning',false]]:[]]);
+const core=buildCore20KRuntime({schema:'pai-core20k-runtime-v1',headwords,compatibility_orphans:[]});
+assert.equal(core.words.length,20000);
+assert.equal(core.byLemma.get('word20000')[0].rank,20000);
+assert.equal(core.qa.activeKU,2);
+assert.equal(core.qa.playableSense,1);
+assert.equal(core.byScene.get('daily').length,1);
+assert.equal(core.byScene.get('daily')[0].k,'ku_1');
+assert.equal(core.canStudy('ku_1'),true);
+assert.equal(core.canStudy('ku_2'),false);
+assert.throws(()=>buildCore20KRuntime({schema:'pai-core20k-runtime-v1',headwords:[...headwords.slice(0,19999),headwords[0]]}),/RANK_OR_DUPLICATE/);
+console.log('Core20K unified adapter contract: PASS');

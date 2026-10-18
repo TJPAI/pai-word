@@ -32,7 +32,8 @@
   ];
   const stop=/[，。！？、；：,.!?;:\s]+/;
   const norm=s=>String(s||'').trim().toLowerCase();
-  function specs(){return (window.PAI_SCENE500?.specs||[]).filter(s=>!LEGACY_ALIASES.has(s.id))}
+  const canonical=()=>new URLSearchParams(location.search).get('core20k')==='1'&&window.PAI_SCENE500?.specs?.some(s=>s.id==='S001');
+  function specs(){return (window.PAI_SCENE500?.specs||[]).filter(s=>canonical()||!LEGACY_ALIASES.has(s.id))}
   function units(scene){try{return allUnits(scene)||[]}catch(_){return[]}}
   function uniqueWords(scene,difficulty='all'){
     const out=new Map();
@@ -52,7 +53,9 @@
   }
   function candidateCount(scene){
     const byScene=window.PAI_SCENE500_CANDIDATES?.summary?.candidatesByScene;
-    const n=Number(byScene?.[scene]);
+    const raw=byScene?.[scene];
+    if(raw===undefined||raw===null)return null;
+    const n=Number(raw);
     return Number.isFinite(n)&&n>=0?n:null;
   }
   function inventory(scene,difficulty='all'){
@@ -81,6 +84,12 @@
       let hits=0;for(const term of b.terms)if(q.includes(norm(term)))hits++;
       if(!hits)continue;
       for(const [id,w] of Object.entries(b.targets))scores[id]=(scores[id]||0)+w+Math.min(4,hits-1);
+    }
+    if(canonical()){
+      const xwalk={cs018:['S087'],cs043:['S113'],cs044:['S114'],cs046:['S104','S105'],cs047:['S106','S108'],cs049:['S109','S110'],cs057:['S226'],cs062:['S126'],cs064:['S132'],cs073:['S176'],cs076:['S183'],cs079:['S199'],cs081:['S213'],cs088:['S265'],cs090:['S274'],cs092:['S152'],cs096:['S165'],cs468:['S471']};
+      const mapped={};
+      for(const [id,score] of Object.entries(scores))for(const dest of xwalk[id]||[])mapped[dest]=(mapped[dest]||0)+score;
+      return mapped;
     }
     return scores;
   }

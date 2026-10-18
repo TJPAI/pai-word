@@ -8,7 +8,8 @@
     const d=new Date();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-  const scopeLimit=()=>13000;
+  const scopeLimit=()=>window.PAI_CORE?.words?.length||13000;
+  const unitIsPlayable=u=>!!u&&u.s?.playable!==false&&u.s?.requiresHydration!==true;
   const reinforcementQuota=()=>Math.max(3,Math.round(state.newPerDay*REINFORCEMENT_RATIO));
   function ensureProgress(){
     const date=dayKey();
@@ -20,8 +21,8 @@
     p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
     return p;
   }
-  function primaryKey(w){return Object.keys(w.s||{})[0]||null}
-  function wordIntroduced(w){return Object.keys(w.s||{}).some(k=>state.records[k])}
+  function primaryKey(w){return Object.keys(w.s||{}).find(k=>unitIsPlayable(findUnitByKey(k)))||null}
+  function wordIntroduced(w){return Object.keys(w.s||{}).some(k=>unitIsPlayable(findUnitByKey(k))&&state.records[k])}
   function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
     if(limit<=0)return[];
@@ -29,7 +30,7 @@
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
       if(wordIntroduced(w))continue;
-      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily'));const u=k?findUnitByKey(k):null;if(u)picked.push(u);
+      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily')&&unitIsPlayable(findUnitByKey(k)));const u=k?findUnitByKey(k):null;if(unitIsPlayable(u))picked.push(u);
     }
     return picked;
   }
@@ -43,7 +44,7 @@
       for(const [k] of Object.entries(w.s||{})){
         if(k===primary||state.records[k])continue;
         if(w.s[k].scene!==(state.selectedScene||'daily')||w.s[k].kuType!=='sense')continue;
-        const u=findUnitByKey(k);if(u)candidates.push(u);
+        const u=findUnitByKey(k);if(unitIsPlayable(u))candidates.push(u);
       }
     }
     candidates.sort((a,b)=>((TYPE_ORDER[a.s.kuType]??20)-(TYPE_ORDER[b.s.kuType]??20))||(a.w.rank-b.w.rank)||String(a.k).localeCompare(String(b.k)));
@@ -80,8 +81,8 @@
   function assignedKeys(scene){ensureDaily();return state.daily.assigned[scene]||[]}
 
   queueFor=function(scene){
-    const due=dueUnits(scene),dueSet=new Set(due.map(u=>unitKey(u.w,u.sid)));
-    const fresh=assignedKeys(scene).filter(k=>!state.records[k]).map(findUnitByKey).filter(Boolean).filter(u=>!dueSet.has(unitKey(u.w,u.sid)));
+    const due=dueUnits(scene).filter(unitIsPlayable),dueSet=new Set(due.map(u=>unitKey(u.w,u.sid)));
+    const fresh=assignedKeys(scene).filter(k=>!state.records[k]).map(findUnitByKey).filter(unitIsPlayable).filter(u=>!dueSet.has(unitKey(u.w,u.sid)));
     return [...due,...fresh];
   };
   todayCount=function(scene){return queueFor(scene).length};
@@ -89,8 +90,8 @@
   window.markDailyNewComplete=function(k){
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
-    const u=findUnitByKey(k);
-    if(u&&!wordIntroduced(u.w)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    // Count only KUs originally assigned as new, before saving their SRS records.
+    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
@@ -117,6 +118,7 @@
 // PAI Word production runtime: one owner for learning flow, review, answer UI,
 // settings, listening mode, speech and swipe behavior.
 (function(){
+  const unitIsPlayable=u=>!!u&&u.s?.playable!==false&&u.s?.requiresHydration!==true;
   state.reviewDone=state.reviewDone||0;
   state.reviewTotal=state.reviewTotal||0;
   state.sessionDone=state.sessionDone||0;
@@ -133,7 +135,7 @@
   function byKey(k){return findUnitByKey(k)}
   function clampIndex(i,len){return len?Math.max(0,Math.min(Number(i)||0,len-1)):0}
   function assignedKeys(scene){queueFor(scene);return state.daily?.assigned?.[scene]||[]}
-  function newQueue(scene){return assignedKeys(scene).filter(k=>!state.records[k]).map(byKey).filter(Boolean)}
+  function newQueue(scene){return assignedKeys(scene).filter(k=>!state.records[k]).map(byKey).filter(unitIsPlayable)}
   function studyQueue(){return state.scene?newQueue(state.scene):[]}
   function studyUnit(){const q=studyQueue();state.studyBrowseIndex=clampIndex(state.studyBrowseIndex,q.length);return q[state.studyBrowseIndex]||null}
   function allDueReviews(){
@@ -239,7 +241,7 @@
 
   // Free review and zero state
   function assignedNewCount(scene){return (state.daily?.assigned?.[scene]||[]).filter(k=>!state.records[k]).length}
-  function remainingUnseen(scene){return allUnits(scene).filter(u=>!state.records[unitKey(u.w,u.sid)])}
+  function remainingUnseen(scene){return allUnits(scene).filter(u=>unitIsPlayable(u)&&!state.records[unitKey(u.w,u.sid)])}
   function allSceneNewZero(){return Object.keys(SCENES).every(s=>newCount(s)===0)}
   function dueCount(){return reviewCount()}
   function hasStudied(){return Object.keys(state.records).some(k=>byKey(k))}
@@ -679,7 +681,7 @@
   const n=fresh().length,r=due().length,completed=globalNewCompleted(),resume=state.learningSession?.queue?.length;
   const topicCards=()=>topicCatalog().map(t=>`<button class="scene-card" onclick="setTopicInput('${esc(t.name)}');startTopicStudy()"><span class="scene-name">${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join('');
   const cards=ids=>ids.map(id=>`<button class="scene-card" onclick="openScene('${id}')"><span class="scene-name">${esc(SCENES[id])}</span><span class="scene-count"><b>${unlearned(id).length}</b><small>未学词</small></span></button>`).join('');
-  return `<div class="screen scene-screen"><div class="scene-head"><h1>PAI Word</h1><div class="scene-tools"><button class="text-btn" onclick="openLexicon()">词库</button><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><p class="home-intro">选一个场景，先回忆，再看答案。</p><section class="topic-search"><label for="topic-input">一句话选择背词场景</label><form onsubmit="event.preventDefault();startTopicStudy()"><input id="topic-input" aria-label="描述想学的场景" maxlength="160" placeholder="例如：蔬菜、动物园、我想去机场登机" oninput="setTopicInput(this.value)" value="${esc(topicInput)}"><button type="submit" class="primary-btn">开始场景背词</button></form><p class="scene-note">支持常见主题与简短描述；从现有 Core-13000 中选词，不生成新词条。</p>${topicFeedback?`<p class="topic-feedback" role="status">${esc(topicFeedback)}</p>`:""}</section><section class="today-plan"><label for="scene-choice">今日新词来源</label><select id="scene-choice" onchange="selectLearningScene(this.value)">${Object.entries(SCENES).map(([id,name])=>`<option value="${id}" ${id===state.selectedScene?'selected':''}>${category(id)} · ${esc(name)}</option>`).join('')}</select><p>今日已接触 ${completed} 个新词 · 待学 ${state.daily.newWordKeys.filter(k=>!state.records[k]).length} 个</p><button class="primary-btn" onclick="openToday()">${n||r?'开始今日学习':'今日分配已完成'}${n||r?` · ${n+r} 项`:''}</button>${resume?`<button class="secondary-btn" onclick="resumeLearning()">继续上次学习 · 剩余 ${resume} 项</button>`:''}<button class="text-btn" onclick="openReview()">优先复习 ${r} 项</button></section><h2 class="group-title">主题场景 · 全部候选单词数</h2><p class="scene-note">按当前词库动态统计；每个场景内同一单词只计一次。</p><div class="scene-grid">${topicCards()}</div><details class="scene-taxonomy-audit"><summary>完整场景目录与候选覆盖（188个主题）</summary><p class="scene-note">仅按中文释义中的主题名称直接匹配，属于未经验证的保守候选统计；0不表示词库没有相关词。</p>${proposedCoverage?proposedCoverage.map(t=>`<button class="scene-card" onclick="startProposedScene(\'${t.id}\')" ${t.ku?'':'disabled'}><span class="scene-name">${esc(t.domain)} / ${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join(''):'正在统计场景候选…'}</details><h2 class="group-title">按场景学习</h2><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)==='场景'))}</div><h2 class="group-title">基础与词频分层</h2><p class="scene-note">以下词汇尚未完成场景细分，按词频范围学习。功能词单独练习。</p><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)!=='场景'&&(core.byScene.get(id)||[]).length))}</div><p class="scene-note">内容持续校订中；收录数量不代表已完成词典核验。<br>${statusText()}</p></div>`;
+  return `<div class="screen scene-screen"><div class="scene-head"><h1>PAI Word</h1><div class="scene-tools"><button class="text-btn" onclick="openLexicon()">词库</button><button class="text-btn" onclick="openPanel('stats')">统计</button><button class="text-btn" onclick="openPanel('settings')">设置</button></div></div><p class="home-intro">选一个场景，先回忆，再看答案。</p><section class="topic-search"><label for="topic-input">一句话选择背词场景</label><form onsubmit="event.preventDefault();startTopicStudy()"><input id="topic-input" aria-label="描述想学的场景" maxlength="160" placeholder="例如：蔬菜、动物园、我想去机场登机" oninput="setTopicInput(this.value)" value="${esc(topicInput)}"><button type="submit" class="primary-btn">开始场景背词</button></form><p class="scene-note">支持常见主题与简短描述；从当前词库中选词，不生成新词条。</p>${topicFeedback?`<p class="topic-feedback" role="status">${esc(topicFeedback)}</p>`:""}</section><section class="today-plan"><label for="scene-choice">今日新词来源</label><select id="scene-choice" onchange="selectLearningScene(this.value)">${Object.entries(SCENES).map(([id,name])=>`<option value="${id}" ${id===state.selectedScene?'selected':''}>${category(id)} · ${esc(name)}</option>`).join('')}</select><p>今日已接触 ${completed} 个新词 · 待学 ${state.daily.newWordKeys.filter(k=>!state.records[k]).length} 个</p><button class="primary-btn" onclick="openToday()">${n||r?'开始今日学习':'今日分配已完成'}${n||r?` · ${n+r} 项`:''}</button>${resume?`<button class="secondary-btn" onclick="resumeLearning()">继续上次学习 · 剩余 ${resume} 项</button>`:''}<button class="text-btn" onclick="openReview()">优先复习 ${r} 项</button></section><h2 class="group-title">主题场景 · 全部候选单词数</h2><p class="scene-note">按当前词库动态统计；每个场景内同一单词只计一次。</p><div class="scene-grid">${topicCards()}</div><details class="scene-taxonomy-audit"><summary>完整场景目录与候选覆盖（188个主题）</summary><p class="scene-note">仅按中文释义中的主题名称直接匹配，属于未经验证的保守候选统计；0不表示词库没有相关词。</p>${proposedCoverage?proposedCoverage.map(t=>`<button class="scene-card" onclick="startProposedScene(\'${t.id}\')" ${t.ku?'':'disabled'}><span class="scene-name">${esc(t.domain)} / ${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join(''):'正在统计场景候选…'}</details><h2 class="group-title">按场景学习</h2><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)==='场景'))}</div><h2 class="group-title">基础与词频分层</h2><p class="scene-note">以下词汇尚未完成场景细分，按词频范围学习。功能词单独练习。</p><div class="scene-grid">${cards(Object.keys(SCENES).filter(id=>category(id)!=='场景'&&(core.byScene.get(id)||[]).length))}</div><p class="scene-note">内容持续校订中；收录数量不代表已完成词典核验。<br>${statusText()}</p></div>`;
  }
  function learning(){
   const s=state.learningSession,u=browsedUnit||unit();if(!s)return home();

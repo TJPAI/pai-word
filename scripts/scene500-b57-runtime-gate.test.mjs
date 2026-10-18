@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {validateSceneKuBridge} from './scene500-b57-runtime-gate.mjs';
+const catalog=[{lemma:'meeting',proposed_sense_key:'B55_PROPOSAL_SENSE_abc',proposed_sense_ku_key:'B55_PROPOSAL_KU_SENSE_abc',target_word_id:'',target_sense_id:'',target_ku_id:''}];
+const row={scene_id:'S076',lemma:'meeting',core20k_member:'True',scene_rank_v40:'3',candidate_sense_proposal_keys:'B55_PROPOSAL_SENSE_abc',target_word_id:'',target_sense_id:'',target_ku_id:''};
+const result=validateSceneKuBridge([row],catalog,{expectedRows:1,expectedCatalog:1});
+assert.equal(result.pass,true);
+assert.equal(result.counts.productionEligible,0);
+assert.equal(result.statuses[0].status,'HOLD');
+assert.match(result.statuses[0].blockers,/NO_CANONICAL_RUNTIME_KU_MAPPING/);
+assert.equal(validateSceneKuBridge([row,row],catalog).pass,false);
+assert.equal(validateSceneKuBridge([{...row,scene_id:'cs076'}],catalog).statuses[0].blockers.includes('INVALID_SCENE_ID'),true);
+assert.equal(validateSceneKuBridge([{...row,lemma:'training'}],catalog).statuses[0].blockers.includes('CROSS_LEMMA_PROPOSAL'),true);
+assert.equal(validateSceneKuBridge([{...row,core20k_member:'False'}],catalog).statuses[0].blockers.includes('NOT_CORE20K'),true);
+console.log('B57 gate: fixture assertions PASS');
