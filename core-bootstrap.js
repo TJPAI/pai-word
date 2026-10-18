@@ -22,6 +22,17 @@
   await script('home-dashboard.js');
   await script('round-policy.js');
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');
+  // Explicit, visible data provenance in opt-in testing; never label a 13K page as 20K.
+  if(new URLSearchParams(location.search).get('core20k')==='1'){
+   const qa=window.PAI_CORE_QA;
+   if(qa?.release!=='Core20K-dev'||qa.words!==20000)throw Error('Core20K mode missing verified runtime');
+   const flag=document.createElement('div');
+   flag.id='pai-core20k-test-status';
+   flag.setAttribute('role','status');
+   flag.style.cssText='position:fixed;right:8px;top:env(safe-area-inset-top, 8px);z-index:9999;background:#12372b;color:white;border-radius:8px;padding:5px 9px;font:12px system-ui;pointer-events:none';
+   flag.textContent='Core20K TEST · '+qa.words.toLocaleString()+'词 · '+qa.playable.toLocaleString()+'可学Sense';
+   document.body.appendChild(flag);
+  }
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   if('serviceWorker'in navigator){
    navigator.serviceWorker.addEventListener('message',e=>{
