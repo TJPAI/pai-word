@@ -14,6 +14,10 @@ export function buildCore20KRuntime(payload) {
     }
     words.push(w);byRank.set(rank,w);byLemma.set(lemma.toLowerCase(),[w]);
   }
+  // The existing app requires a scene index, even before Scene500 overlays are applied.
+  const general=[];
+  for (const u of byKU.values()) if (u.s.playable) general.push(u);
+  byScene.set('general',general);
   const orphans=payload.compatibility_orphans||[],orphanIds=new Set();
   for(const o of orphans)for(const id of o.ku_ids||[]) {
     if(byKU.has(id)||orphanIds.has(id))throw Error('CORE20K_ORPHAN_COLLISION');
@@ -21,7 +25,7 @@ export function buildCore20KRuntime(payload) {
   }
   return {words,byKU,byLemma,byRank,byScene,orphanIds,
     canStudy(id){return byKU.get(id)?.s.playable===true},
-    qa:{words:words.length,activeKU:byKU.size,orphanKU:orphanIds.size,playableSense:[...byKU.values()].filter(u=>u.s.playable).length}};
+    qa:{words:words.length,activeKU:byKU.size,orphanKU:orphanIds.size,playableSense:general.length}};
 }
 export function assertLegacyKUIdentity(core,legacyIds) {
   const lost=legacyIds.filter(id=>!core.byKU.has(id)&&!core.orphanIds.has(id));
