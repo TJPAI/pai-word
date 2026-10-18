@@ -13,6 +13,7 @@
   const inventory=window.PAI_SCENE500_V40_INVENTORY?.scenes||{};
   window.render=function(){
    const result=baseRender();
+   for(const old of document.querySelectorAll('.scene-results,.scene-search-card'))old.hidden=true;
    if(state.view==='scenes'||state.view==='home'){
     const host=document.querySelector('.home-dashboard')||document.querySelector('#app');
     if(host&&!document.querySelector('#scene500-top100-panel')){
@@ -25,7 +26,7 @@
      selector.addEventListener('change',showScope);showScope();
      // The legacy cs demo recommendation list only has ten seed words per scene.
      // Hide it in explicit Core20K Top100 testing to avoid presenting stale 10-word counts.
-     for(const old of host.querySelectorAll('.scene-results'))old.hidden=true;
+     for(const old of host.querySelectorAll('.scene-results,.scene-search-card'))old.hidden=true;
      el.querySelector('button').onclick=async()=>{
       const btn=el.querySelector('button'),label=el.querySelector('#scene500-top100-status'),id=el.querySelector('select').value;
       btn.disabled=true;label.textContent='正在校验 Top100…';
