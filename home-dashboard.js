@@ -63,6 +63,7 @@
     </div></div>`;
   }
   function runSceneSearch(q,difficulty){
+    if(window.PAI_SCENE500_TOP100?.loading){window.PAI_SCENE500_TOP100_READY?.then(()=>runSceneSearch(q,difficulty)).catch(console.error);return;}
     const results=searchApi()?.search(q,difficulty,5)||[];
     state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
   }
