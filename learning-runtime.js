@@ -8,7 +8,8 @@
     const d=new Date();
     return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
   }
-  const scopeLimit=()=>13000;
+  const scopeLimit=()=>window.PAI_CORE?.words?.length||13000;
+  const unitIsPlayable=u=>!!u&&u.s?.playable!==false&&u.s?.requiresHydration!==true;
   const reinforcementQuota=()=>Math.max(3,Math.round(state.newPerDay*REINFORCEMENT_RATIO));
   function ensureProgress(){
     const date=dayKey();
@@ -29,7 +30,7 @@
     for(const w of window.PAI_CORE.words){
       if(picked.length>=limit)break;
       if(wordIntroduced(w))continue;
-      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily'));const u=k?findUnitByKey(k):null;if(u)picked.push(u);
+      const k=Object.keys(w.s||{}).find(k=>w.s[k].scene===(state.selectedScene||'daily'));const u=k?findUnitByKey(k):null;if(unitIsPlayable(u))picked.push(u);
     }
     return picked;
   }
@@ -43,7 +44,7 @@
       for(const [k] of Object.entries(w.s||{})){
         if(k===primary||state.records[k])continue;
         if(w.s[k].scene!==(state.selectedScene||'daily')||w.s[k].kuType!=='sense')continue;
-        const u=findUnitByKey(k);if(u)candidates.push(u);
+        const u=findUnitByKey(k);if(unitIsPlayable(u))candidates.push(u);
       }
     }
     candidates.sort((a,b)=>((TYPE_ORDER[a.s.kuType]??20)-(TYPE_ORDER[b.s.kuType]??20))||(a.w.rank-b.w.rank)||String(a.k).localeCompare(String(b.k)));
@@ -80,8 +81,8 @@
   function assignedKeys(scene){ensureDaily();return state.daily.assigned[scene]||[]}
 
   queueFor=function(scene){
-    const due=dueUnits(scene),dueSet=new Set(due.map(u=>unitKey(u.w,u.sid)));
-    const fresh=assignedKeys(scene).filter(k=>!state.records[k]).map(findUnitByKey).filter(Boolean).filter(u=>!dueSet.has(unitKey(u.w,u.sid)));
+    const due=dueUnits(scene).filter(unitIsPlayable),dueSet=new Set(due.map(u=>unitKey(u.w,u.sid)));
+    const fresh=assignedKeys(scene).filter(k=>!state.records[k]).map(findUnitByKey).filter(unitIsPlayable).filter(u=>!dueSet.has(unitKey(u.w,u.sid)));
     return [...due,...fresh];
   };
   todayCount=function(scene){return queueFor(scene).length};
