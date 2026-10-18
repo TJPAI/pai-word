@@ -10,7 +10,9 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   const {buildCore20KRuntime}=await import('./core20k-unified-runtime-adapter.mjs');
   const core=buildCore20KRuntime(JSON.parse(raw));
   if(core.qa.words!==20000||core.qa.activeKU<16000||core.qa.playableSense<12000)throw Error('CORE20K_INCOMPLETE_DATA');
-  const previous=window.PAI_CORE;
+  const previous=window.PAI_CORE, previousWords=[...WORDS], previousScenes={...SCENES};
+  const previousEnsure=window.ensureUnits, previousOffline=window.downloadOfflineLexicon;
+  const previousStatus=window.PAI_LOCAL_LEXICON, previousQA=window.PAI_CORE_QA;
   try{
     for(const k of Object.keys(SCENES))delete SCENES[k];
     SCENES.daily='每日学习';
@@ -21,5 +23,11 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
     window.PAI_LOCAL_LEXICON={supported:true,offlineReady:true,shellReady:false,loadedChunks:1,totalChunks:1,release:'Core20K-dev'};
     window.PAI_CORE_QA={release:'Core20K-dev',words:core.qa.words,units:core.qa.activeKU,playable:core.qa.playableSense};
     return core;
-  }catch(error){window.PAI_CORE=previous;throw error}
+  }catch(error){
+    window.PAI_CORE=previous;WORDS.splice(0,WORDS.length,...previousWords);
+    for(const k of Object.keys(SCENES))delete SCENES[k];Object.assign(SCENES,previousScenes);
+    window.ensureUnits=previousEnsure;window.downloadOfflineLexicon=previousOffline;
+    window.PAI_LOCAL_LEXICON=previousStatus;window.PAI_CORE_QA=previousQA;
+    throw error;
+  }
 }
