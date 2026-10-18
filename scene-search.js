@@ -32,7 +32,7 @@
   ];
   const stop=/[，。！？、；：,.!?;:\s]+/;
   const norm=s=>String(s||'').trim().toLowerCase();
-  const canonical=()=>new URLSearchParams(location.search).get('core20k')==='1'&&window.PAI_SCENE500?.specs?.some(s=>s.id==='S001');
+  const canonical=()=>(window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')&&window.PAI_SCENE500?.specs?.some(s=>s.id==='S001');
   function specs(){return (window.PAI_SCENE500?.specs||[]).filter(s=>canonical()||!LEGACY_ALIASES.has(s.id))}
   function units(scene){try{return allUnits(scene)||[]}catch(_){return[]}}
   function uniqueWords(scene,difficulty='all'){

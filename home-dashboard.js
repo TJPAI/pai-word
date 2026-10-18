@@ -25,7 +25,7 @@
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
   function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
   function countHtml(r){
-    if(new URLSearchParams(location.search).get('core20k')==='1')return '<span class="scene-result-count"><b>'+r.reviewedCount+'</b><small>可学 KU</small><em>Top100</em></span>';
+    if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'))return '<span class="scene-result-count"><b>'+r.reviewedCount+'</b><small>可学 KU</small><em>Top100</em></span>';
     if(window.PAI_SCENE500_TOP100&&Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>Top100</small><em>${r.reviewedCount} 可学·通用义</em></span>`;
     if(Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>候选</small><em>${r.reviewedCount} 已审核</em></span>`;
     return `<span class="scene-result-count"><b>${r.reviewedCount}</b><small>已审核</small></span>`;
