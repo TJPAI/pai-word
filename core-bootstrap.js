@@ -18,6 +18,10 @@
   await script('audio-compat.js');
   await script('scene500-integrated.js');
   await script('scene500-sense-review.js');
+  if(new URLSearchParams(location.search).get('core20k')==='1'){
+   const {installScene500Top100}=await import('./scripts/scene500-top100-loader.mjs');
+   await installScene500Top100();
+  }
   // Display coarse Scene500 inventory separately from reviewed learning membership.
   if(new URLSearchParams(location.search).get('core20k')==='1'){
    try{
