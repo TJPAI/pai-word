@@ -21,8 +21,8 @@
     p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
     return p;
   }
-  function primaryKey(w){return Object.keys(w.s||{})[0]||null}
-  function wordIntroduced(w){return Object.keys(w.s||{}).some(k=>state.records[k])}
+  function primaryKey(w){return Object.keys(w.s||{}).find(k=>unitIsPlayable(findUnitByKey(k)))||null}
+  function wordIntroduced(w){return Object.keys(w.s||{}).some(k=>unitIsPlayable(findUnitByKey(k))&&state.records[k])}
   function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
     if(limit<=0)return[];
@@ -134,7 +134,7 @@
   function byKey(k){return findUnitByKey(k)}
   function clampIndex(i,len){return len?Math.max(0,Math.min(Number(i)||0,len-1)):0}
   function assignedKeys(scene){queueFor(scene);return state.daily?.assigned?.[scene]||[]}
-  function newQueue(scene){return assignedKeys(scene).filter(k=>!state.records[k]).map(byKey).filter(Boolean)}
+  function newQueue(scene){return assignedKeys(scene).filter(k=>!state.records[k]).map(byKey).filter(unitIsPlayable)}
   function studyQueue(){return state.scene?newQueue(state.scene):[]}
   function studyUnit(){const q=studyQueue();state.studyBrowseIndex=clampIndex(state.studyBrowseIndex,q.length);return q[state.studyBrowseIndex]||null}
   function allDueReviews(){
@@ -240,7 +240,7 @@
 
   // Free review and zero state
   function assignedNewCount(scene){return (state.daily?.assigned?.[scene]||[]).filter(k=>!state.records[k]).length}
-  function remainingUnseen(scene){return allUnits(scene).filter(u=>!state.records[unitKey(u.w,u.sid)])}
+  function remainingUnseen(scene){return allUnits(scene).filter(u=>unitIsPlayable(u)&&!state.records[unitKey(u.w,u.sid)])}
   function allSceneNewZero(){return Object.keys(SCENES).every(s=>newCount(s)===0)}
   function dueCount(){return reviewCount()}
   function hasStudied(){return Object.keys(state.records).some(k=>byKey(k))}
