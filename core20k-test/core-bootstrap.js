@@ -36,6 +36,7 @@
   await script('scene-search.js');
   await script('home-dashboard.js');
   await script('round-policy.js');
+  await script('scene500-top100-ui.js');
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');
   // Explicit, visible data provenance in opt-in testing; never label a 13K page as 20K.
   if(new URLSearchParams(location.search).get('core20k')==='1'){
