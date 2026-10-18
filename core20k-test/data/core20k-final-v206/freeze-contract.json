@@ -1,0 +1,25 @@
+{
+  "baselineId": "Core20K_LongTerm_V2.0.6",
+  "status": "FINAL_FROZEN",
+  "authoritativeMembership": "PAI_Word_Core20000_LongTermBaseline_Frozen_V2.0.6.csv",
+  "authoritativeRoleLedger": "PAI_Word_Core20000_LongTermBaseline_RoleLedger_V2.0.6.csv",
+  "membershipSha256": "e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca",
+  "roleLedgerSha256": "00c5f24325b69044dd90289d68087165ad45ee3162359d2b721487cee6586ebc",
+  "rows": 20000,
+  "casefoldUniqueLemmas": 20000,
+  "rankRange": [1, 20000],
+  "roleCounts": {
+    "INHERITED_CORE13K_LEXICAL": 12994,
+    "LEXICAL_SEMANTIC": 6002,
+    "STRUCTURAL": 1004
+  },
+  "qualityOverlayVersionAtFreeze": "V2.15",
+  "qualityStrictPending": ["microservice", "retinoic"],
+  "membershipPolicy": {
+    "ordinaryMembershipChangesAllowed": false,
+    "controlledCriticalErrataOnly": true,
+    "contentOverlaysMayEvolve": true
+  },
+  "postFreezeCanonicalArchitecture": "WORD_FAMILY -> WORD -> SENSE -> KU",
+  "srsUnit": "KU"
+}

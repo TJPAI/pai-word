@@ -1,0 +1,20 @@
+import assert from 'node:assert/strict';
+import {buildStagingCatalog} from './scene500-b76-catalog-adapter.mjs';
+// Contract test only. No production data or automatic content approval.
+const old={w:'legacy',rank:1,s:{'legacy-ku':{m:'旧词'}}};
+const core={byKU:new Map([['legacy-ku',{w:old,k:'legacy-ku'}]]),byLemma:new Map([['legacy',[old]]])};
+const records={'legacy-ku':{reps:9,due:12345,interval:345}};
+const draft={ku_id:'B70_DRAFT_example',word_id:'DRAFT',sense_id:'DRAFT',ku_type:'sense',semantic_key:'draft:test',status:'pending',production_eligible:false,lemma:'example',rank:20001,pos:'n',gloss_zh:'测试'};
+assert.equal(buildStagingCatalog(core,[draft],[],records).enabled,false);
+assert.throws(()=>buildStagingCatalog(core,[draft],[],records,{stagingEnabled:true}),/UNAPPROVED_CONTENT_BLOCKED/);
+const approved={...draft,ku_id:'fixture:ku:1',word_id:'fixture:word:1',sense_id:'fixture:sense:1',semantic_key:'fixture:sense:1',status:'approved',production_eligible:true};
+const links=[{scene_id:'S001',ku_id:'fixture:ku:1'},{scene_id:'S002',ku_id:'fixture:ku:1'}];
+const mounted=buildStagingCatalog(core,[approved],links,records,{stagingEnabled:true});
+assert.equal(mounted.byKU.size,2);
+assert.equal(mounted.sceneBindings.get('S001')[0],mounted.sceneBindings.get('S002')[0]);
+assert.equal(mounted.srsRecords['legacy-ku'].reps,9);
+assert.equal(core.byKU.size,1);
+const sampleRecords={...mounted.srsRecords,[mounted.sceneBindings.get('S001')[0]]:{reps:1,due:999,interval:10}};
+assert.equal(sampleRecords[mounted.sceneBindings.get('S002')[0]].reps,1);
+assert.equal(records['fixture:ku:1'],undefined);
+console.log('B77-B85 contract test PASS: HOLD gate, staged catalog, SRS isolation');

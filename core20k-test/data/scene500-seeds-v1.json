@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 2,
+  "taxonomyId": "pai-word-scene500-v1",
+  "status": "pilot_c01_conservative_seed_rules",
+  "policy": {
+    "purpose": "candidate_generation_only",
+    "autoVerify": false,
+    "matchingUnit": "KU",
+    "minimumScore": 3,
+    "headwordOnlyForbidden": true,
+    "notes": "Candidate generation is sense-first. Generic headword hits are never sufficient by themselves."
+  },
+  "scenes": {
+    "S001": {"senseEn":["meet for the first time","meet someone","introduce","introduction","stranger","acquaintance"],"senseZh":["初次见面","认识某人","相识","陌生人","熟人","介绍"],"headwords":["meet","introduce","stranger","acquaintance"]},
+    "S002": {"senseEn":["introduce yourself","introduce myself","self-introduction","my name","personal background"],"senseZh":["自我介绍","介绍自己","个人背景","姓名"],"headwords":["introduce","name","background"]},
+    "S003": {"senseEn":["introduce someone","introduce a person","this is my","colleague","classmate"],"senseZh":["介绍他人","介绍某人","同事","同学"],"headwords":["introduce","colleague","classmate"]},
+    "S004": {"senseEn":["greet","greeting","say hello","how are you","good morning","good afternoon","good evening"],"senseZh":["问候","寒暄","打招呼","你好","早上好","下午好","晚上好"],"headwords":["hello","hi","greet","greeting"]},
+    "S005": {"senseEn":["say goodbye","goodbye","farewell","see you","take care"],"senseZh":["告别","道别","再见","保重"],"headwords":["goodbye","bye","farewell"]},
+    "S006": {"senseEn":["small talk","casual conversation","chat with","have a chat"],"senseZh":["闲聊","聊天","随便聊聊","交谈"],"headwords":["chat","conversation"]},
+    "S007": {"senseEn":["weather","weather forecast","rainy","sunny","cloudy","windy","snowy","temperature"],"senseZh":["天气","天气预报","下雨","晴朗","多云","刮风","下雪","气温"],"headwords":["weather","rain","sunny","cloudy","wind","snow","temperature","forecast"]},
+    "S008": {"senseEn":["weekend","on saturday","on sunday"],"senseZh":["周末","星期六","星期日"],"headwords":["weekend","saturday","sunday"]},
+    "S009": {"senseEn":["hobby","personal interest","be interested in","favorite activity"],"senseZh":["兴趣","爱好","感兴趣","最喜欢的活动"],"headwords":["hobby","interest"]},
+    "S010": {"senseEn":["hometown","home town","place of birth","grew up"],"senseZh":["家乡","故乡","出生地","长大的地方"],"headwords":["hometown"]},
+    "S011": {"senseEn":["family member","parent","mother","father","brother","sister","son","daughter","children"],"senseZh":["家庭成员","父母","母亲","父亲","兄弟","姐妹","儿子","女儿","子女"],"headwords":["family","parent","mother","father","brother","sister","son","daughter"]},
+    "S012": {"senseEn":["occupation","profession","career","place of work","work for a company","job title"],"senseZh":["职业","工作单位","从事工作","职位","事业"],"headwords":["occupation","profession","career","job"]},
+    "S013": {"senseEn":["field of study","major in","university course","school subject","study at university"],"senseZh":["所学专业","主修","大学课程","学科","学习课程"],"headwords":["study","major","course"]},
+    "S014": {"senseEn":["age","years old","birthday","date of birth"],"senseZh":["年龄","岁","生日","出生日期"],"headwords":["age","birthday"]},
+    "S015": {"senseEn":["personal experience","past experience","life experience","have experienced"],"senseZh":["个人经历","过去经历","人生经历","经历过"],"headwords":["experience"]},
+    "S016": {"senseEn":["physical appearance","look like","hair color","eye color","height","build"],"senseZh":["外貌","长相","发色","眼睛颜色","身高","体型"],"headwords":["appearance","height"]},
+    "S017": {"senseEn":["personality","personality trait","friendly person","shy person","outgoing person"],"senseZh":["性格","性格特点","友好的人","害羞的人","外向的人"],"headwords":["personality","friendly","shy","outgoing"]},
+    "S018": {"senseEn":["habit","daily routine","usual routine","regular habit"],"senseZh":["习惯","日常规律","日常作息","惯常做法"],"headwords":["habit","routine"]},
+    "S019": {"senseEn":["contact details","contact information","phone number","email address","postal address"],"senseZh":["联系方式","联系信息","电话号码","电子邮箱","通信地址"],"headwords":["contact","email"]},
+    "S020": {"senseEn":["invite someone","invitation","would you like to come","ask someone to join"],"senseZh":["邀请某人","邀请","请某人参加"],"headwords":["invite","invitation"]},
+    "S021": {"senseEn":["accept an invitation","accept the invitation","gladly accept","i'd love to"],"senseZh":["接受邀请","欣然接受","很乐意参加"],"headwords":["accept"]},
+    "S022": {"senseEn":["decline an invitation","refuse an invitation","cannot attend","can't make it"],"senseZh":["拒绝邀请","婉拒邀请","不能参加"],"headwords":["decline","refuse"]},
+    "S023": {"senseEn":["make an appointment","arrange a time","schedule a meeting","available time"],"senseZh":["预约时间","约时间","安排时间","约见"],"headwords":["appointment","schedule"]},
+    "S024": {"senseEn":["reschedule","cancel an appointment","postpone a meeting","change the time","call off a meeting"],"senseZh":["改约","取消预约","推迟会议","改时间"],"headwords":["reschedule","cancel","postpone"]},
+    "S025": {"senseEn":["long time no see","meet again after a long time","reunion"],"senseZh":["久别重逢","好久不见","多年后重逢"],"headwords":["reunion"]}
+  }
+}

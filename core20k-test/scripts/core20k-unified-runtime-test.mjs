@@ -1,0 +1,15 @@
+import { readFileSync } from 'node:fs';
+import { gunzipSync } from 'node:zlib';
+import { buildCore20KRuntime, assertLegacyKUIdentity } from './core20k-unified-runtime-adapter.mjs';
+const path=process.argv[2];
+if(!path)throw Error('Usage: node scripts/core20k-unified-runtime-test.mjs /path/to/core20k-runtime.json.gz');
+const raw=readFileSync(path),data=JSON.parse((path.endsWith('.gz')?gunzipSync(raw):raw).toString('utf8'));
+const core=buildCore20KRuntime(data);
+if(core.qa.words!==20000 || core.qa.activeKU!==16617 || core.qa.playableSense!==16137)throw Error('CORE20K_QA_COUNTS');
+if(core.words[0].w!=='out')throw Error('CORE20K_FIRST_WORD');
+const sample=[...core.byKU.keys()].slice(0,100);
+assertLegacyKUIdentity(core,sample);
+const first=core.words.find(w=>Object.values(w.s).some(s=>s.playable));
+if(!first||!Object.values(first.s).some(s=>s.playable&&s.m))throw Error('NO_PLAYABLE_SENSE');
+const last=core.words[19999];if(last.rank!==20000)throw Error('LAST_RANK');
+console.log(JSON.stringify({...core.qa,pass:true}));

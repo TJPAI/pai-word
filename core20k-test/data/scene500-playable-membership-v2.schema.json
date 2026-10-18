@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://tjpai.github.io/pai-word/data/scene500-playable-membership-v2.schema.json",
+  "title": "PAI Word Scene500 Ranked Membership V2",
+  "type": "object",
+  "required": ["schemaVersion", "taxonomyId", "policy", "scenes"],
+  "properties": {
+    "schemaVersion": {"const": 2},
+    "taxonomyId": {"type": "string"},
+    "status": {"type": "string"},
+    "policy": {
+      "type": "object",
+      "required": ["masterLexicon", "membershipUnit", "learningUnit", "autoVerify"],
+      "properties": {
+        "masterLexicon": {"const": "Core-20K"},
+        "membershipUnit": {"const": "sense"},
+        "learningUnit": {"const": "KU"},
+        "autoVerify": {"const": false},
+        "generatedCandidatesNeverAutoVerified": {"const": true},
+        "runtimeMayResolveMissingIds": {"type": "boolean"},
+        "seedReferenceUnit": {"enum": ["headword", "sense"]}
+      },
+      "additionalProperties": true
+    },
+    "scenes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["entries"],
+        "properties": {
+          "evidenceStatus": {"enum": ["generated_candidate", "editorial", "dictionary_corpus_verified", "source_verified"]},
+          "source": {"type": "string"},
+          "reviewed": {"type": "boolean"},
+          "entries": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["lemma", "sceneRank"],
+              "properties": {
+                "lemma": {"type": "string", "minLength": 1},
+                "wordId": {"type": ["string", "null"], "description": "Stable Core word identifier when available; never interpreted as rank."},
+                "coreRank": {"type": ["integer", "null"], "minimum": 1, "description": "Current Core lexicon rank/index reference for compatibility."},
+                "senseId": {"type": ["string", "null"]},
+                "kuId": {"type": ["string", "null"]},
+                "sceneRank": {"type": "integer", "minimum": 1},
+                "sceneScore": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+                "evidenceStatus": {"enum": ["generated_candidate", "editorial", "dictionary_corpus_verified", "source_verified"]},
+                "source": {"type": "string"},
+                "reviewed": {"type": "boolean"},
+                "senseBindingReviewed": {"type": "boolean", "description": "True only after an explicit Sense/KU review decision; runtime fallback never sets this."},
+                "senseBindingMethod": {"enum": ["manual_review", "dictionary_corpus_verified", "source_verified"]},
+                "senseReviewNote": {"type": "string"},
+                "senseReviewedAt": {"type": "string", "format": "date-time"},
+                "senseReviewedBy": {"type": "string"},
+                "senseHintZh": {"type": "string"},
+                "note": {"type": "string"}
+              },
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": true
+      }
+    }
+  },
+  "additionalProperties": true
+}

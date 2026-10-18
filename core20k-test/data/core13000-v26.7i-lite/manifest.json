@@ -1,0 +1,47 @@
+{
+  "schema": "pai-word-overlay-manifest-v1",
+  "base_release": "Core-13000 V25.5",
+  "release": "Core-13000 V26.7I KU overlay",
+  "word_count": 13000,
+  "ku_count": 16616,
+  "encoding": "base64+gzip+utf8-json",
+  "parts": [
+    {
+      "file": "part01.b64",
+      "chars": 6300,
+      "sha256": "5dfbf7463a487006142f222ac01024d6034f220a0ae6b72fd5ed7480f60553ec"
+    },
+    {
+      "file": "part02.b64",
+      "chars": 6300,
+      "sha256": "4a69ba16c6e886da14eab438719bb91a14e25b6757b3d95c0de5da24cd235b71"
+    },
+    {
+      "file": "part03.b64",
+      "chars": 6300,
+      "sha256": "347c4c949c11f1f737059282dad95c78b977df4380f48362005aec44dd9b02a4"
+    },
+    {
+      "file": "part04.b64",
+      "chars": 6300,
+      "sha256": "1f2c3cbf0326db57d0ff7654edfc5caa22db45b0aa8d687330f63617784a7420"
+    },
+    {
+      "file": "part05.b64",
+      "chars": 6300,
+      "sha256": "323dba762429fc4e2eeaea77b80a0f7331d97fd0d0920f513fbd65cb87c812a6"
+    },
+    {
+      "file": "part06.b64",
+      "chars": 48,
+      "sha256": "3cc73de3e27f4af6a85367da517f7cfd98f591992090962895e7d1b08614ba16"
+    }
+  ],
+  "gzip_bytes": 23661,
+  "gzip_sha256": "c81dc212205fb482fa0a850f410ce442e966bf1c52ef4f0730379dbdbd6c4bb9",
+  "json_bytes": 71304,
+  "json_sha256": "1f07e1230ec742e333012a6404712c059c4cca4b6d326b903357fc4e1a21a00a",
+  "ipa_pos_count": 983,
+  "ku_meta_count": 510,
+  "scope_note": "Runtime bridge only: V25.5 compact teaching payload + V26.7I POS/US-IPA and complete canonical KU inventory. Rich V26.7I remains authoritative content source."
+}

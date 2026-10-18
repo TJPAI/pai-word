@@ -1,0 +1,34 @@
+{
+  "release": "core20k-preview-overlay-v1",
+  "baselineVersion": "Core20K_LongTerm_V2.0",
+  "membershipVersion": "Core20K_V1.2",
+  "wordCount": 20000,
+  "playableWordCount": 19007,
+  "kuCount": 22627,
+  "inheritedCore13K": 12994,
+  "newLexicalSemantic": 6013,
+  "structural": 993,
+  "pack": {
+    "file": "overlay.b64",
+    "sha256": "a10342cf72c2d0ebd7a0ec2c9e4d06e0f6a1a7fd78a3e6132b9ed688f8ced80b",
+    "bytes": 633876,
+    "rawBytes": 1770608
+  },
+  "contentPolicy": {
+    "preview": true,
+    "membershipAndRankFrozen": true,
+    "contentVerificationEvolving": true,
+    "stable13kCatalogReused": true,
+    "mergeDuplicateStableLemmas": true,
+    "richCore13kHydrationDisabledInPreview": true,
+    "structuralMembersPlayable": false,
+    "structuralPolicy": "Searchable and linked to base; no fabricated independent Sense/KU.",
+    "newLexicalContent": "Existing editorial/source-backed draft content only; provenance preserved."
+  },
+  "buildQA": {
+    "missingCount": 0,
+    "duplicateStableLemmasMerged": ["dispatch", "drape", "overt", "pathological"],
+    "stableLemmasExcluded": ["dem", "nome"],
+    "missing": []
+  }
+}

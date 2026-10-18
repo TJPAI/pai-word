@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "policyId": "scene500-ranked-membership-threshold-v1",
+  "taxonomyId": "pai-word-scene500-20x25-v1",
+  "masterLexicon": "Core-20K",
+  "architecture": "WORD_FAMILY -> WORD -> SENSE -> KU",
+  "sceneMembershipUnit": "sense",
+  "learningUnit": "KU",
+  "selectionPolicy": "threshold_based_ranked_membership",
+  "fixedDepth": null,
+  "fixedMinimumSize": null,
+  "fixedMaximumSize": null,
+  "rules": {
+    "noFixedTopK": true,
+    "naturalSceneSize": true,
+    "senseSpecificMembership": true,
+    "rankOnlyWithinEligibleMembership": true,
+    "generatedCandidatesNeverAutoVerified": true,
+    "weakRelevanceMustNotBeAddedToFillQuota": true,
+    "sceneLayerMustNotDuplicateLexicalContent": true,
+    "runtimeRoundSizeIndependentFromSceneSize": true
+  },
+  "runtime": {
+    "dailyNewOptions": [25, 50, 100, 200],
+    "dailyNewDefault": 50,
+    "wordsPerRoundOptions": [10, 25, 50],
+    "wordsPerRoundDefault": 10,
+    "note": "Per-round limits control study pacing only. They never cap scene membership size."
+  },
+  "qa": {
+    "historicalDepthMetrics": [100, 300, 1000],
+    "historicalDepthMetricsPurpose": "coverage_audit_only",
+    "historicalDepthMetricsAffectRuntimeMembership": false,
+    "note": "Top100/Top300/Top1000 may be retained as historical or diagnostic coverage metrics. They are not product membership targets and must not truncate or pad runtime scene membership."
+  },
+  "eligibility": {
+    "principle": "Keep a Core-20K Sense only when its scene relevance and learning value meet the adopted quality threshold; then rank eligible members by scene priority.",
+    "thresholdVersion": "pending-calibration",
+    "scoreRequiredForProduction": false,
+    "ordinalRankAllowed": true
+  },
+  "status": "canonical_policy"
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "baselineId": "Core20K_LongTerm_V2.0.6",
+  "taxonomy": "PAI_Word_Scene500_20x25_S001-S500",
+  "membershipUnit": "sense",
+  "learningUnit": "KU",
+  "primaryKey": ["scene_id", "sense_id"],
+  "fields": {
+    "scene_id": {"type": "string", "pattern": "^S(00[1-9]|0[1-9][0-9]|[1-4][0-9]{2}|500)$", "required": true},
+    "word_id": {"type": "string", "required": true},
+    "sense_id": {"type": "string", "required": true},
+    "ku_ids": {"type": "array", "items": "string", "required": false},
+    "relevance_score": {"type": "number", "minimum": 0, "maximum": 1, "required": true},
+    "scene_rank": {"type": "integer", "minimum": 1, "required": true},
+    "evidence_status": {"type": "enum", "values": ["source_verified", "dictionary_corpus_verified", "editorial", "generated_draft_pending_review"], "required": true},
+    "review_status": {"type": "enum", "values": ["verified", "reviewed", "pending"], "required": true},
+    "binding_method": {"type": "enum", "values": ["manual_review", "dictionary_evidence", "corpus_evidence", "editorial_candidate", "generated_candidate"], "required": true}
+  },
+  "productionRules": {
+    "fixedTopK": false,
+    "minimumMembersPerScene": null,
+    "maximumMembersPerScene": null,
+    "weakPaddingForbidden": true,
+    "generatedCandidateMayBeVerified": false,
+    "finalMembershipRequiresRealSenseId": true,
+    "structuralWordMayBindOnlyThroughResolvedLexicalSense": true
+  },
+  "qa": {
+    "diagnosticWindows": [100, 300, 1000],
+    "checkDuplicateSceneSensePairs": true,
+    "checkRankContinuityWithinQualifiedMembers": true,
+    "checkMissingSenseIds": true,
+    "checkHeadwordOnlyBindings": true,
+    "checkGeneratedVerifiedContradictions": true
+  }
+}

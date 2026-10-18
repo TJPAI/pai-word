@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "taxonomyId": "pai-word-scene500-v1",
+  "status": "empty_by_design_until_semantic_review",
+  "mappingUnit": "KU",
+  "relationship": "many_to_many",
+  "wordLevelDirectMappingForbidden": true,
+  "linkSchema": {
+    "kuId": "Core-13000 immutable ku_id",
+    "sceneId": "S001..S500",
+    "relevance": "core|extended",
+    "confidence": "0..1",
+    "source": "dictionary_verified|corpus_verified|editorial_verified|generated_candidate",
+    "evidence": "brief evidence or reviewer note",
+    "reviewStatus": "verified|pending|rejected"
+  },
+  "releasePolicy": {
+    "liveRequiresReviewStatus": "verified",
+    "generatedCandidateCanGoLive": false,
+    "headwordOnlyEvidenceCanGoLive": false,
+    "senseLevelEvidenceRequired": true
+  },
+  "links": []
+}

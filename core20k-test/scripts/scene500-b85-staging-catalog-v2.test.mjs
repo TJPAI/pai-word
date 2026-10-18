@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {buildGroupedStagingCatalog as build} from './scene500-b85-staging-catalog-v2.mjs';
+const core={byKU:new Map([['old',{k:'old'}]]),byLemma:new Map([['legacy',[{w:'legacy'}]]])};
+const w=(id,ku,sense,gloss)=>({word_id:id,ku_id:ku,sense_id:sense,ku_type:'sense',semantic_key:id+':'+sense,status:'approved',production_eligible:true,lemma:'heading',pos:'n',rank:17001,gloss_zh:gloss});
+const entries=[w('w1','new1','s1','标题'),w('w1','new2','s2','航向')];
+const links=[{scene_id:'S001',ku_id:'new1'},{scene_id:'S291',ku_id:'new2'}];
+assert.equal(build(core,entries,links,{},false).enabled,false);
+const out=build(core,entries,links,{old:{reps:4}},true);
+assert.equal(out.addedWords,1);assert.equal(out.addedKU,2);
+assert.equal(out.byWordId.get('w1').s.new1.m,'标题');
+assert.equal(out.byWordId.get('w1').s.new2.m,'航向');
+assert.equal(out.records.old.reps,4);assert.equal(core.byKU.size,1);
+assert.throws(()=>build(core,entries.map(e=>({...e,status:'pending'})),links,{},true),/UNAPPROVED/);
+assert.throws(()=>build(core,[entries[0],{...entries[1],rank:5}],links,{},true),/WORD_IDENTITY_CONFLICT/);
+console.log('B85 V2 grouping test PASS');

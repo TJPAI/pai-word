@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {buildStagingCatalog} from './scene500-b76-catalog-adapter.mjs';
+const legacy={w:'legacy',rank:1,s:{'legacy-ku':{m:'旧释义'}}};
+const core={byKU:new Map([['legacy-ku',{w:legacy,k:'legacy-ku'}]]),byLemma:new Map([['legacy',[legacy]]])};
+const approved={ku_id:'new-ku',word_id:'new-word',sense_id:'new-sense',ku_type:'sense',semantic_key:'new-word:sense1',status:'approved',production_eligible:true,lemma:'newword',rank:20001,pos:'n.',gloss_zh:'新词'};
+const links=[{scene_id:'S001',ku_id:'new-ku'},{scene_id:'S002',ku_id:'new-ku'}];
+const disabled=buildStagingCatalog(core,[approved],links,{'legacy-ku':{reps:4}});
+assert.equal(disabled.enabled,false);assert.equal(core.byKU.size,1);
+const result=buildStagingCatalog(core,[approved],links,{'legacy-ku':{reps:4}},{stagingEnabled:true});
+assert.equal(result.added,1);assert.equal(result.byKU.size,2);assert.deepEqual(result.sceneBindings.get('S002'),['new-ku']);
+assert.equal(result.srsRecords['legacy-ku'].reps,4);assert.equal(core.byKU.size,1);
+assert.throws(()=>buildStagingCatalog(core,[{...approved,status:'pending'}],links,{}, {stagingEnabled:true}),/UNAPPROVED/);
+assert.throws(()=>buildStagingCatalog(core,[{...approved,ku_id:'legacy-ku'}],links,{}, {stagingEnabled:true}),/REGISTRY_INVALID/);
+assert.throws(()=>buildStagingCatalog(core,[approved],[...links,links[0]],{}, {stagingEnabled:true}),/DUPLICATE/);
+assert.throws(()=>buildStagingCatalog(core,[approved],[{scene_id:'cs001',ku_id:'new-ku'}],{}, {stagingEnabled:true}),/INVALID_SCENE/);
+console.log('B76 PASS: staging-only catalog, legacy SRS preservation, shared KU, safety gates');
