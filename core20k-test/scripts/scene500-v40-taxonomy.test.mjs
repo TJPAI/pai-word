@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {parseScene500Taxonomy,validateScene500Inventory} from './scene500-v40-taxonomy.mjs';
+const specs=parseScene500Taxonomy(readFileSync('data/scene500-taxonomy-20x25-v1.txt','utf8'));
+const inventory=JSON.parse(readFileSync('data/scene500-v40-inventory.json','utf8'));
+assert.equal(specs[0].id,'S001');
+assert.equal(specs.at(-1).id,'S500');
+assert.equal(validateScene500Inventory(inventory,specs),true);
+const count=Object.values(inventory.scenes).reduce((a,v)=>a+v.candidates,0);
+assert.equal(count,499699);
+console.log('Scene500 canonical taxonomy and V4 inventory: PASS');
