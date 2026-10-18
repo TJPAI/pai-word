@@ -25,6 +25,7 @@
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
   function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
   function countHtml(r){
+    if(window.PAI_SCENE500_TOP100&&Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>Top100</small><em>${r.reviewedCount} 可学·通用义</em></span>`;
     if(Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>候选</small><em>${r.reviewedCount} 已审核</em></span>`;
     return `<span class="scene-result-count"><b>${r.reviewedCount}</b><small>已审核</small></span>`;
   }
@@ -32,7 +33,7 @@
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
     if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
-    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}<p class="scene-results-note">“已审核”表示当前可直接进入学习的场景词；它不是该场景的总词数。场景候选池不受每轮 10/25/50 的限制。</p></section>`;
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
     const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
