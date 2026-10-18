@@ -90,8 +90,8 @@
   window.markDailyNewComplete=function(k){
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
-    const u=findUnitByKey(k);
-    // The answer is already saved in state.records when this callback runs.\n    // Use the assignment snapshot, not wordIntroduced(), to count a new word.\n    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    // Count only KUs originally assigned as new, before saving their SRS records.
+    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
