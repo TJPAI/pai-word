@@ -28,6 +28,11 @@
     window.PAI_SCENE500_V40_INVENTORY=inventory;
    }catch(error){console.warn('Scene500 V4 inventory unavailable; reviewed Scene500 remains usable',error)}
   }
+  if(new URLSearchParams(location.search).get('core20k')==='1'){
+   const review=await json('data/scene500-review-index-b163-v1.json');
+   const gate=await import('./scripts/scene500-review-gate.mjs');
+   window.PAI_SCENE500_REVIEW_AUDIT=gate.validateReviewIndex(review);
+  }
   await script('scene-search.js');
   await script('home-dashboard.js');
   await script('round-policy.js');
