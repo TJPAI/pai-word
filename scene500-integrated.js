@@ -33,10 +33,10 @@
   const membership=window.PAI_SCENE500_MEMBERSHIP||{};
   const membershipScenes=membership.scenes||{};
 
-  function senseEntries(w){return Object.entries(w?.s||{}).filter(([,s])=>String(s?.kuType||'sense').toLowerCase()==='sense')}
+  function senseEntries(w){return Object.entries(w?.s||{}).filter(([,s])=>String(s?.kuType||'sense').toLowerCase()==='sense'&&s?.playable!==false&&s?.requiresHydration!==true)}
   function primaryUnitForWord(w){
     if(!w)return null;
-    const entries=Object.entries(w.s||{}),sense=senseEntries(w)[0]||entries[0];
+    const entries=Object.entries(w.s||{}).filter(([,s])=>s?.playable!==false&&s?.requiresHydration!==true),sense=senseEntries(w)[0]||entries[0];
     return sense?window.PAI_CORE.byKU.get(sense[0])||null:null;
   }
   function wordsForLemma(lemma){return [...(window.PAI_CORE?.byLemma?.get(lemma)||[])]}
@@ -70,8 +70,8 @@
     }
     if(!raw||typeof raw!=='object')return bindingResult(null,'invalid',null,0);
     const explicitReviewed=membership.schemaVersion!==2||raw.senseBindingReviewed===true;
-    if(raw.kuId&&explicitReviewed){const u=window.PAI_CORE?.byKU?.get(String(raw.kuId));return bindingResult(u,'kuId',u?.w,1)}
-    if(raw.senseId&&explicitReviewed){const u=window.PAI_CORE?.byKU?.get(String(raw.senseId));return bindingResult(u,'senseId',u?.w,1)}
+    if(raw.kuId&&explicitReviewed){const candidate=window.PAI_CORE?.byKU?.get(String(raw.kuId));const u=candidate?.s?.playable===false||candidate?.s?.requiresHydration===true?null:candidate;return bindingResult(u,'kuId',u?.w,1)}
+    if(raw.senseId&&explicitReviewed){const candidate=window.PAI_CORE?.byKU?.get(String(raw.senseId));const u=candidate?.s?.playable===false||candidate?.s?.requiresHydration===true?null:candidate;return bindingResult(u,'senseId',u?.w,1)}
     if((raw.kuId||raw.senseId)&&!explicitReviewed)return fallbackByLemma(raw,'unreviewed_explicit_ignored');
     if(raw.wordId){const w=wordByStableId(raw.wordId);return bindingResult(primaryUnitForWord(w),'wordId',w,1)}
     if(raw.coreRank!==null&&raw.coreRank!==undefined){const w=wordByCoreRank(raw.coreRank);return bindingResult(primaryUnitForWord(w),'coreRank',w,1)}
