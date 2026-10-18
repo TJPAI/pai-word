@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-root-fast-20261019d';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-root-single-home-20261019e';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
@@ -16,7 +16,6 @@
   window.PAI_SCENE500_MEMBERSHIP=await sceneMembership();
   // Suspend transient home renders until the final home renderer is installed.
   // This preserves the initial lightweight loading markup without a cover or white screen.
-  const initialMarkup=app.innerHTML;
   const originalInnerHTML=Object.getOwnPropertyDescriptor(Element.prototype,'innerHTML');
   let suppressInterimHome=true;
   Object.defineProperty(app,'innerHTML',{
@@ -79,5 +78,5 @@
    });
    navigator.serviceWorker.register('./sw.js?v='+VERSION).then(()=>{window.PAI_LOCAL_LEXICON.shellReady=true}).catch(()=>{});
   }
- }catch(e){app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
+ }catch(e){delete app.innerHTML;app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();
