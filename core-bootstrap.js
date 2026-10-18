@@ -14,7 +14,16 @@
   await loadLearningCatalog();
   window.PAI_SCENE500_MEMBERSHIP_POLICY=await json('data/scene500-ranked-membership-policy-v1.json');
   window.PAI_SCENE500_MEMBERSHIP=await sceneMembership();
-  // Avoid blank screen: leave the existing boot content visible until final dashboard.
+  // Retain a visible loading message over transient legacy renders, never a blank screen.
+  const bootCover=document.createElement('div');
+  bootCover.id='pai-startup-cover';
+  bootCover.setAttribute('role','status');
+  bootCover.textContent='PAI Word · 正在准备学习场景…';
+  bootCover.style.cssText='position:fixed;inset:0;z-index:9998;display:flex;align-items:center;justify-content:center;background:#fff;color:#444;font:16px system-ui';
+  document.body.appendChild(bootCover);
+  // Fail open rather than blocking the page indefinitely on a stalled initialization.
+  const bootFailsafe=setTimeout(()=>bootCover.remove(),12000);
+  const clearBootCover=()=>{clearTimeout(bootFailsafe);bootCover.remove()};
   await script('learning-runtime.js');
   await script('audio-compat.js');
   await script('scene500-integrated.js');
@@ -42,7 +51,7 @@
   await script('home-dashboard.js');
   await script('round-policy.js');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
-  state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  state.view='scenes';state.revealed=false;render();app.removeAttribute('role');clearBootCover();document.body.classList.add('pai-boot-ready');
   // Explicit, visible data provenance in opt-in testing; never label a 13K page as 20K.
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    const qa=window.PAI_CORE_QA;
@@ -65,5 +74,5 @@
    });
    navigator.serviceWorker.register('./sw.js?v='+VERSION).then(()=>{window.PAI_LOCAL_LEXICON.shellReady=true}).catch(()=>{});
   }
- }catch(e){app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
+ }catch(e){document.getElementById('pai-startup-cover')?.remove();app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();
