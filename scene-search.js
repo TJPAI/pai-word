@@ -52,7 +52,9 @@
   }
   function candidateCount(scene){
     const byScene=window.PAI_SCENE500_CANDIDATES?.summary?.candidatesByScene;
-    const n=Number(byScene?.[scene]);
+    const raw=byScene?.[scene];
+    if(raw===undefined||raw===null)return null;
+    const n=Number(raw);
     return Number.isFinite(n)&&n>=0?n:null;
   }
   function inventory(scene,difficulty='all'){
