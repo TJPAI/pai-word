@@ -118,6 +118,7 @@
 // PAI Word production runtime: one owner for learning flow, review, answer UI,
 // settings, listening mode, speech and swipe behavior.
 (function(){
+  const unitIsPlayable=u=>!!u&&u.s?.playable!==false&&u.s?.requiresHydration!==true;
   state.reviewDone=state.reviewDone||0;
   state.reviewTotal=state.reviewTotal||0;
   state.sessionDone=state.sessionDone||0;
