@@ -13,6 +13,8 @@ export function applySceneTop100(core,sceneId,rows) {
   if(!kuId)continue;
   const u=core.byKU.get(kuId);
   if(!u||u.w!==w||!core.canStudy(kuId))continue;
+  const senses=Object.values(w.s||{}).filter(s=>s.kuType==='sense'&&s.playable===true);
+  if(senses.length!==1||senses[0]!==u.s)continue;
   // Only first core Sense available: must not pretend to be scene-specific verified.
   eligible.push(u);
  }
@@ -24,9 +26,9 @@ export async function loadSceneTop100(core,sceneId,fetcher=fetch){
  if(!match)throw Error('SCENE_ID');
  const num=Number(match[1]);if(num<1||num>500)throw Error('SCENE_ID');
  const shard=String(Math.ceil(num/25)).padStart(2,'0');
- const res=await fetcher('data/scene500-top100/top100-'+shard+'.json');
+ const res=await fetcher('data/scene500-top100-v40/group-'+shard+'.json');
  if(!res.ok)throw Error('TOP100_HTTP_'+res.status);
  const data=await res.json();
- if(data.schema!=='pai-scene500-top100-v1'||data.reviewLevel!=='coarse_candidates_not_sense_verified')throw Error('TOP100_SCHEMA');
+ if(data.schema!=='pai-scene500-top100-v40-v1'||data.policy!=='ranks_1_100; only single_playable_general_sense; no scene_sense_verified_claim')throw Error('TOP100_SCHEMA');
  return applySceneTop100(core,sceneId,data.scenes?.[sceneId]);
 }
