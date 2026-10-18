@@ -13,11 +13,12 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   const previous=window.PAI_CORE;
   try{
     for(const k of Object.keys(SCENES))delete SCENES[k];
-    SCENES.general='全部词汇';
+    SCENES.daily='每日学习';
     window.PAI_CORE=core;
     WORDS.splice(0,WORDS.length,...core.words);
     window.ensureUnits=async()=>{};
     window.downloadOfflineLexicon=async()=>{};
+    window.PAI_LOCAL_LEXICON={supported:true,offlineReady:true,shellReady:false,loadedChunks:1,totalChunks:1,release:'Core20K-dev'};
     window.PAI_CORE_QA={release:'Core20K-dev',words:core.qa.words,units:core.qa.activeKU,playable:core.qa.playableSense};
     return core;
   }catch(error){window.PAI_CORE=previous;throw error}
