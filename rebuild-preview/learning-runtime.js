@@ -702,9 +702,11 @@
   if(!active||loading||error||!browsedUnit||!['again','hard','good'].includes(grade))return;
   PAI_TAP_FLOW.choose(grade);
  };
+ let historicalCommitInProgress=false;
  window.rateBrowsedLearning=(grade,k)=>{
-  if(!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
-  const attemptId=newAttemptId(),before=state,draft=structuredClone(state),now=Date.now(),prev=state.records[k]||{};
+  if(historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
+  historicalCommitInProgress=true;
+  const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
   const record={...prev,last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev.reps||0)+1,
    responseMs:PAI_TAP_FLOW.snapshot().responseMs??null,learningPending:grade!=='good',srsPolicy:'session-retrieval-v3'};
   if(grade!=='good'){record.due=now;record.interval=0}
@@ -712,14 +714,14 @@
   draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=false;state=draft;
-  try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);return}
-  PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
+  try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;render();return}
+  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
   // A finished historical retest advances browsing; it never changes the active session queue.
   window.browseAnswer?.(1);
  };
  window.rateLearning=(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
-  const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
+  const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k;let attempt;try{attempt=ensureAttempt()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('无法持久化评分尝试',e);render();return}if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
   let before,draft;
   try{before=state;draft=structuredClone(state)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分状态复制失败',e);return}
