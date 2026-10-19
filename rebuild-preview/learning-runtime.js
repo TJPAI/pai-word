@@ -370,12 +370,13 @@
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
  function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
+ function resumeFailedCommit(){if(phase!=='committing')return;phase='answer-paused';onAdvance=null;window.render?.()}
  function cancel(){clear()}
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
  function hint(){if(phase==='question')return '点击空白看答案 · 左右滑动切词';if(phase==='answer')return '点击空白重读 · 左右滑动切词';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '例句播放中';if(phase==='answer-paused')return '点击空白重读 · 左右滑动切词';return ''}
- window.PAI_TAP_FLOW={ready,answer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),clearPendingGrade:k=>{pendingGrades.delete(k);if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ window.PAI_TAP_FLOW={ready,answer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),clearPendingGrade:k=>{pendingGrades.delete(k);if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
@@ -714,17 +715,17 @@
   draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=false;state=draft;
-  try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;render();return}
+  try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
   historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
   // A finished historical retest advances browsing; it never changes the active session queue.
   window.browseAnswer?.(1);
  };
  window.rateLearning=(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
-  const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k;let attempt;try{attempt=ensureAttempt()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('无法持久化评分尝试',e);render();return}if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
+  const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k;let attempt;try{attempt=ensureAttempt()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('无法持久化评分尝试',e);PAI_TAP_FLOW.resumeFailedCommit();render();return}if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
   let before,draft;
-  try{before=state;draft=structuredClone(state)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分状态复制失败',e);return}
+  try{before=state;draft=structuredClone(state)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分状态复制失败',e);PAI_TAP_FLOW.resumeFailedCommit();return}
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{
   if(!prev)markDailyNewComplete(k);
@@ -738,7 +739,7 @@
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
   window.PAI_SAVE_DEFERRED=false;persist();
-  }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);render();return}
+  }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
   PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;showCurrent();
