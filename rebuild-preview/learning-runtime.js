@@ -347,12 +347,12 @@
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
-   answer({key:visibleKey,mode:'tap',score,advance:g=>window.rateLearning?.(g,visibleKey)});
+   answer({key:visibleKey,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
    window.render?.();return;
   }
   correct(score);
  }
- function browseReady(k,advance){answer({key:k,mode:'swipe',score:'again',advance})}
+ function browseReady(k,advance,revealed=true){if(revealed)answer({key:k,mode:'swipe',score:'again',advance});else ready(k)}
  function finish(g){if(!valid(g)||phase==='idle')return;phase='committing';const fn=onAdvance;onAdvance=null;fn?.(grade)}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
@@ -684,12 +684,12 @@
   const keys=cycleKeys();if(!keys.length)return false;
   const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
   const next=(index+direction+keys.length)%keys.length;
-  const u=byKey(keys[next]),id=++browseToken;
+  const u=byKey(keys[next]),id=++browseToken,wasRevealed=state.revealed;
   PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
-   browseIndex=next;browsedUnit=u;state.revealed=true;
+   browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
    render();
-   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer());render();if(state.autoPronounce.swipe)speak(u.w.w);return true;
+   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);render();if(state.autoPronounce.swipe)speak(u.w.w);return true;
   }catch(_){return false}
  };
  // Historical rating is a NEW review event, never a rewrite of a prior attempt.
@@ -698,7 +698,7 @@
  window.PAI_HISTORY_RETEST=()=>historyRetest;
  window.chooseHistoricalRating=grade=>{
   if(!active||loading||error||!browsedUnit||!['again','hard','good'].includes(grade))return;
-  PAI_TAP_FLOW.correct(grade);
+  PAI_TAP_FLOW.choose(grade);
  };
  window.rateBrowsedLearning=(grade,k)=>{
   if(!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
@@ -756,7 +756,7 @@
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const repeat=s.seen[u.k]>0;
   const label=u.s.kuType==='sense'?'回忆这个词的含义':u.s.kuTitle;
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="study-body"><div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div>${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="PAI_TAP_FLOW.correct('again')">不知道</button><button onclick="PAI_TAP_FLOW.correct('hard')">模糊</button><button onclick="PAI_TAP_FLOW.correct('good')">知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')">不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')">模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')">知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote">新词与错词会在本轮再次出现。点击节奏可在设置中调整。</div></div>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="study-body"><div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div>${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')">不知道</button><button onclick="chooseHistoricalRating('hard')">模糊</button><button onclick="chooseHistoricalRating('good')">知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')">不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')">模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')">知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote">新词与错词会在本轮再次出现。点击节奏可在设置中调整。</div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};
