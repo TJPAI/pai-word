@@ -682,7 +682,7 @@
  };
  window.rateBrowsedLearning=()=>{}; // Historical cards are strictly read-only in V2.1.
  window.rateLearning=(grade,targetKey=null)=>{
-  if(!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
+  if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
   const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
   let before,draft;
