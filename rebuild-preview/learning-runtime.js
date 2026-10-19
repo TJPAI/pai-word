@@ -362,7 +362,7 @@
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   // Historical preview with the answer visible cannot be treated as an unseen recall.
 
-  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.rateLearning?.(g,k)});window.render?.()}
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===k?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.()}
   else if(phase==='answer'||phase==='answer-paused'||phase==='example'){window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';grade='again';repeated=0;repeat(generation)}
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
