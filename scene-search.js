@@ -35,13 +35,15 @@
   const canonical=()=>(window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')&&window.PAI_SCENE500?.specs?.some(s=>s.id==='S001');
   function specs(){return (window.PAI_SCENE500?.specs||[]).filter(s=>canonical()||!LEGACY_ALIASES.has(s.id))}
   function units(scene){try{return allUnits(scene)||[]}catch(_){return[]}}
+  const sceneRankCache=new Map();
   function uniqueWords(scene,difficulty='all'){
-    const out=new Map();
-    for(const u of units(scene)){
-      const rank=Number(u?.w?.rank)||999999;if(!rankAllowed(rank,difficulty))continue;
-      const key=u?.w?.rank??u?.w?.w;if(key!==undefined&&!out.has(key))out.set(key,u);
+    let ranks=sceneRankCache.get(scene);
+    if(!ranks){
+      ranks=new Set();
+      for(const u of units(scene)){const rank=Number(u?.w?.rank);if(Number.isFinite(rank)&&rank>0)ranks.add(rank)}
+      sceneRankCache.set(scene,ranks);
     }
-    return [...out.values()];
+    return [...ranks].filter(rank=>rankAllowed(rank,difficulty));
   }
   function rankAllowed(rank,difficulty){
     if(difficulty==='all')return true;
