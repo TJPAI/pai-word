@@ -3,7 +3,8 @@ const state={data:null,list:[],i:0,score:{known:0,again:0}};
 const status=t=>el('status').textContent=t;
 const invalid=t=>el('err').textContent=t;
 const decode=async b=>new Response(new Blob([b]).stream().pipeThrough(new DecompressionStream('gzip'))).json();
-const cache=new Map();
+const cache=new Map();let taxonomy=[];
+async function loadTaxonomy(){const r=await fetch('./scene-index.json');if(!r.ok)throw Error('500场景目录加载失败');const d=await r.json();if(d.schema!=='pai-scene500-taxonomy-preview-v1'||d.scenes?.length!==500)throw Error('场景目录内容异常');taxonomy=d.scenes;renderSuggestions();}
 async function boot(){
  try{
   if(!('DecompressionStream'in window))throw Error('浏览器不支持原生GZIP解压');
@@ -13,7 +14,7 @@ async function boot(){
   if(actualHash!=='e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b')throw Error('Core20K SHA-256 校验失败：拒绝使用不匹配的学习数据');
   const data=await decode(compressed);
   if(data.schema!=='pai-core20k-runtime-v1'||data.headwords?.length!==20000)throw Error('20K词库身份异常');
-  state.data=data;el('go').disabled=el('random').disabled=false;status('20,000词目录已加载。选择场景开始。');
+  state.data=data;await loadTaxonomy();el('go').disabled=el('random').disabled=false;status('20,000词、500个场景目录已加载。可以输入中文名称。');
  }catch(e){status('加载失败');invalid(e.message)}
 }
 async function scene(code){
@@ -37,12 +38,14 @@ async function scene(code){
  return list;
 }
 function render(){
- const item=state.list[state.i];el('sceneName').textContent=state.scene+' · 原始Top100';el('step').textContent=(state.i+1)+' / '+state.list.length;
+ const item=state.list[state.i];el('sceneName').textContent=state.scene+' '+(taxonomy.find(x=>x.id===state.scene)?.name||'')+' · 原始Top100';el('step').textContent=(state.i+1)+' / '+state.list.length;
  el('word').textContent=item.lemma;el('meaning').textContent=item.zh;
  el('meaning').classList.add('hidden');el('showRow').classList.remove('hidden');el('nextRow').classList.add('hidden');
 }
+function renderSuggestions(){const raw=el('search').value.trim().toLowerCase();const chosen=!raw?[]:taxonomy.filter(x=>x.id.toLowerCase().includes(raw)||x.name.toLowerCase().includes(raw)).slice(0,8);el('suggestions').replaceChildren();for(const x of chosen){const b=document.createElement('button');b.className='suggestion';b.type='button';b.textContent=x.id+' '+x.name;b.onclick=()=>{el('search').value=x.id;renderSuggestions();};el('suggestions').append(b)}}
+el('search').addEventListener('input',renderSuggestions);
 async function go(){
- invalid('');let code=el('search').value.trim().toUpperCase();el('go').disabled=true;status('正在检查场景排名和 KU…');
+ invalid('');let raw=el('search').value.trim();const matches=taxonomy.filter(x=>x.name===raw||x.id.toUpperCase()===raw.toUpperCase());let code=matches.length===1?matches[0].id:raw.toUpperCase();el('go').disabled=true;status('正在检查场景排名和 KU…');
  try{state.list=await scene(code);state.i=0;state.scene=code;state.score={known:0,again:0};if(!state.list.length)throw Error('当前场景暂无通过保守审核门禁的 Sense');el('lesson').classList.remove('hidden');render();status('可学习 '+state.list.length+' 个；其余Top100位置不自动补齐。');el('lesson').scrollIntoView({behavior:'smooth'});}
  catch(e){invalid(e.message)}finally{el('go').disabled=false}
 }
