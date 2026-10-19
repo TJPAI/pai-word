@@ -12,7 +12,11 @@ export async function inspectAndSeedPreview({storage=localStorage,dbName='pai-wo
  const db=await openPreviewDB(dbName);
  try{
   const current=await readSnapshot(db);
+  // A present but malformed record must never be treated as an empty database.
   if(current.state!==null)return {status:'existing-indexeddb',version:current.version};
+  if(current.version!==0||Object.keys(current.committedAttempts||{}).length)return {status:'invalid-indexeddb-baseline'};
+  // Refuse a stale seed if another tab changed the legacy source while probing.
+  if(storage.getItem(STORAGE)!==raw)return {status:'legacy-changed-retry'};
   const outcome=await initializeSnapshot(db,structuredClone(legacy));
   return {status:outcome.status==='initialized'?'seeded-readonly':'existing-indexeddb',version:outcome.version};
  }finally{db.close()}
