@@ -14,7 +14,7 @@
   function budget(){
     const b=window.studyBudgetSummary?.();
     if(b)return b;
-    const dailyLimit=Number(state.newPerDay)||50,due=dueCount();
+    const dailyLimit=Number(state.newPerDay)||20,due=dueCount();
     return {dailyLimit,dailyCompleted:0,dailyRemaining:dailyLimit,roundLimit:Number(state.wordsPerRound)||20,reinforcementRemaining:0,due};
   }
   function lastScene(){const id=(state.scene500Recent||[])[0]||null;return id&&SCENES[id]?{id,name:SCENES[id]}:null}
