@@ -1,6 +1,10 @@
 (async function(){
- const VERSION='core20k-v21-scene40';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-scene41';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
+ const bootStarted=performance.now(),timings={};
+ const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
+ mark('bootstrap');
+
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.async=false;el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
  async function sceneMembership(){
@@ -14,8 +18,8 @@
   const catalogReady=loadLearningCatalog();
   const policyReady=json('data/scene500-ranked-membership-policy-v1.json');
   const membershipReady=sceneMembership();
-  await catalogReady;
-  [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);
+  await catalogReady;mark('catalog');
+  [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);mark('memberships');
   // Download in parallel, execute in insertion order (dynamic scripts: async=false).
   // Preserve the established global dependencies without seven sequential network waits.
   await Promise.all([
@@ -27,13 +31,14 @@
    script('rebuild-preview/home-dashboard.js'),
    script('rebuild-preview/round-policy.js')
   ]);
+  mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
   const typed=document.getElementById('scene-query')?.value||'';
   const difficulty=document.getElementById('scene-difficulty')?.value||'all';
   state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||state.sceneSearchUi?.query||typed||'',difficulty:preboot?.difficulty||state.sceneSearchUi?.difficulty||difficulty,resultIds:preboot?.query?[]:(state.sceneSearchUi?.resultIds||[])};
-  state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
-  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function')queueMicrotask(()=>window.restoreScene500Recommendations());
+  state.view='scenes';state.revealed=false;render();mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function')queueMicrotask(()=>{window.restoreScene500Recommendations();mark('recommendationsRestored')});
   // Optional packs must never replace an already usable homepage with a fatal loading screen.
   try{
   // Non-critical Scene500 packs and inventory load after first interactive home render.
