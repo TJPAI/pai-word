@@ -348,7 +348,7 @@
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
    answer({key:visibleKey,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
-   window.render?.();return;
+   window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(current.w.w,.84);return;
   }
   correct(score);
  }
