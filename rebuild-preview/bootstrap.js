@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-quota-20261019d';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-home-20261019e';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
@@ -56,17 +56,6 @@
   suppressInterimHome=false;
   delete app.innerHTML;
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
-  // Explicit, visible data provenance in opt-in testing; never label a 13K page as 20K.
-  if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
-   const qa=window.PAI_CORE_QA;
-   if(qa?.release!=='Core20K-dev'||qa.words!==20000)throw Error('Core20K mode missing verified runtime');
-   const flag=document.createElement('div');
-   flag.id='pai-core20k-test-status';
-   flag.setAttribute('role','status');
-   flag.style.cssText='position:fixed;right:8px;top:env(safe-area-inset-top, 8px);z-index:9999;background:#12372b;color:white;border-radius:8px;padding:5px 9px;font:12px system-ui;pointer-events:none';
-   flag.textContent='Core20K TEST · '+qa.words.toLocaleString()+'词 · '+qa.playable.toLocaleString()+'可学Sense';
-   document.body.appendChild(flag);
-  }
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   if('serviceWorker'in navigator){
    navigator.serviceWorker.addEventListener('message',e=>{
