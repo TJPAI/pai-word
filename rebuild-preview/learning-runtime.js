@@ -400,6 +400,8 @@
  state.autoPronounce={question:true,swipe:true,...state.autoPronounce};
  window.setAutoPronounce=(kind,enabled)=>{if(!['question','swipe'].includes(kind))return;state.autoPronounce[kind]=!!enabled;persist();render()};
  let active=false,loading=false,error='',startedAt=0,token=0,previousUnit=null;
+ const newAttemptId=()=>('crypto' in window&&typeof crypto.randomUUID==='function'?crypto.randomUUID():('attempt-'+Date.now()+'-'+Math.random().toString(36).slice(2)));
+ const ensureAttempt=()=>{const sess=state.learningSession,k=sess?.queue?.[0];if(!k)return null;if(!sess.currentAttempt||sess.currentAttempt.kuId!==k){sess.currentAttempt={attemptId:newAttemptId(),kuId:k,committed:false};persist()}return sess.currentAttempt};
  const due=()=>Object.entries(state.records).filter(([k,r])=>byKey(k)&&(r.learningPending||r.lastKnown===false||r.due<=Date.now())).sort((a,b)=>(b[1].learningPending?1:0)-(a[1].learningPending?1:0)||a[1].due-b[1].due).map(([k])=>k);
  const fresh=()=>{globalNewRemaining();return [...state.daily.newWordKeys,...state.daily.reinforcementKeys].filter(k=>!state.records[k])};
  const unit=()=>byKey(state.learningSession?.queue[0]);
@@ -413,8 +415,8 @@
   // Catalog lemmas exist before the deferred KU payload is loaded.
   const autoQuestion=state.autoPronounce.question;
   if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
-  try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
- function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
+  try{await ensureUnits([u.k]);if(id!==token)return;ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+ function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
   {name:'鱼类',terms:['鱼类','鱼种','各种鱼','淡水鱼','海水鱼','fish species','types of fish'],words:'fish salmon tuna trout cod carp catfish bass perch pike eel herring mackerel sardine anchovy halibut flounder sole snapper grouper tilapia haddock pollock sturgeon swordfish marlin shark ray skate goldfish guppy koi minnow salmonella fishery aquatic freshwater saltwater fin gill scale spawn school shoal'},
@@ -680,8 +682,8 @@
  };
  window.rateBrowsedLearning=()=>{}; // Historical cards are strictly read-only in V2.1.
  window.rateLearning=(grade,targetKey=null)=>{
-  if(!active||loading||error||!unit()||!state.revealed||!['again','hard','good'].includes(grade))return;
-  const session=state.learningSession,u=targetKey?byKey(targetKey):unit();if(!u)return;const k=u.k,now=Date.now(),prev=state.records[k];previousUnit=u;
+  if(!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
+  const session=state.learningSession,u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;attempt.committed=true;const now=Date.now(),prev=state.records[k];previousUnit=u;
   if(!prev)markDailyNewComplete(k);
   const seen=session.seen[k]||0;session.seen[k]=seen+1;session.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
@@ -691,7 +693,7 @@
   if(repeat&&prev?.interval>0)r.lastStableInterval=grade==='again'?0:prev.interval;
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
   const qi=session.queue.indexOf(k);if(qi>=0)session.queue.splice(qi,1);session.completed=session.completed.filter(x=>x!==k);if(repeat)session.queue.splice(Math.min(4,session.queue.length),0,k);else session.completed.push(k);
-  state.revealed=false;persist();showCurrent();
+  state.revealed=false;session.currentAttempt=null;persist();showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
  function home(){
