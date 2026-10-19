@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-grade25';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-stable26';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
