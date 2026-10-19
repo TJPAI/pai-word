@@ -355,7 +355,7 @@
   correct(score);
  }
  function browseReady(k,advance,revealed=true){const cardGrade=gradeFor(k);if(revealed)answer({key:k,mode:'swipe',score:cardGrade,advance});else ready(k)}
- function finish(g){if(!valid(g)||phase==='idle')return;phase='committing';const fn=onAdvance;onAdvance=null;fn?.(grade)}
+ function finish(g){if(!valid(g)||phase==='idle'||phase==='committing')return;const fn=onAdvance;onAdvance=null;if(typeof fn!=='function'){phase='answer-paused';window.render?.();return}phase='committing';try{fn(grade)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分提交回调失败',e);resumeFailedCommit()}}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
   const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>finish(g),c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
