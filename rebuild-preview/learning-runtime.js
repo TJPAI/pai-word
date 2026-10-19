@@ -701,7 +701,9 @@
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
   window.PAI_SAVE_DEFERRED=false;persist();
   }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);render();return}
-  previousUnit=u;state.learningSession.currentAttempt=null;showCurrent();
+  // Do not clear the committed attempt before the next question is durably prepared.
+  // On refresh the committed marker prevents replaying this rating.
+  previousUnit=u;showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
  function home(){
