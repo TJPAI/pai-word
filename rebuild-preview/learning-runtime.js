@@ -686,7 +686,8 @@
   const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
   const before=state,draft=structuredClone(state);
-  state=draft;
+  window.PAI_SAVE_DEFERRED=true;state=draft;
+  try{
   if(!prev)markDailyNewComplete(k);
   const seen=state.learningSession.seen[k]||0;state.learningSession.seen[k]=seen+1;state.learningSession.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
@@ -697,7 +698,8 @@
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
-  try{persist()}catch(e){state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);render();return}
+  window.PAI_SAVE_DEFERRED=false;persist();
+  }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);render();return}
   previousUnit=u;state.learningSession.currentAttempt=null;showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
