@@ -51,7 +51,7 @@
   }
   await script('scene-search.js');
   await script('rebuild-preview/home-dashboard.js');
-  await script('round-policy.js');
+  await script('rebuild-preview/round-policy.js');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   suppressInterimHome=false;
   delete app.innerHTML;
