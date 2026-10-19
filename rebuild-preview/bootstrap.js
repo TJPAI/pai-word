@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-isolation1';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-isolation2';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
@@ -59,6 +59,17 @@
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   // V2.1 isolation: preview must never register the shared root-scope worker.
   // Dedicated scoped offline support will be introduced after worker isolation tests.
-  window.PAI_PREVIEW_OFFLINE_STATUS='disabled_pending_scoped_worker';
+  window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registering';
+  if('serviceWorker' in navigator){
+    const previewUrl=new URL('rebuild-preview/',document.baseURI);
+    const workerUrl=new URL('sw.js',previewUrl);
+    navigator.serviceWorker.register(workerUrl.href,{scope:previewUrl.pathname,updateViaCache:'none'})
+      .then(reg=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registered';
+        // Existing root workers can control the first load. Scoped worker takes over after claim/reload.
+        if(!navigator.serviceWorker.controller||!navigator.serviceWorker.controller.scriptURL.startsWith(previewUrl.href))
+          window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_waiting_for_control';
+      })
+      .catch(error=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_failed';console.warn('Preview worker unavailable',error)});
+  }
  }catch(e){delete app.innerHTML;app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();
