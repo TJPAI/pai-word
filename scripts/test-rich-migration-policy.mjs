@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {classifyLegacyRich} from './rich-migration-policy.mjs';
+const base={lemma:'house',legacyMatches:1,targetWord:{w:'house'},oldKU:{id:'ku1',type:'sense',lemma:'house'},targetKU:{id:'ku1',type:'sense',lemma:'house'},rich:{e:[['a house','房子']],c:'house price',x:''}};
+assert.equal(classifyLegacyRich(base).status,'review_required');
+assert.equal(classifyLegacyRich({...base,legacyMatches:2}).status,'quarantine_ambiguous_lemma');
+assert.equal(classifyLegacyRich({...base,targetWord:null}).status,'quarantine_missing_word');
+assert.equal(classifyLegacyRich({...base,targetKU:{...base.targetKU,id:'other'}}).status,'quarantine_ku_identity');
+assert.equal(classifyLegacyRich({...base,targetKU:{...base.targetKU,type:'contrast'}}).status,'quarantine_ku_identity');
+assert.equal(classifyLegacyRich({...base,rich:{e:[],c:'',x:''}}).status,'empty_rich_content');
+assert.equal(classifyLegacyRich({...base}).release_eligible,false);
+console.log('rich migration policy: 7 assertions PASS');
