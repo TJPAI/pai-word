@@ -1,12 +1,13 @@
 // Editorial overlay builder: only human-approved KU are emitted; pending records never alter runtime.
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
-const input=JSON.parse(fs.readFileSync('data/audit/core13k20k-p0-editorial-candidates-v7.json','utf8'));
-assert.equal(input.schema,'pai-core20k-p0-editorial-candidates-v7');
-assert.equal(input.total,input.rows.length);
-assert.equal(input.source_verified,input.rows.filter(r=>r.source_content_checked).length);
-assert.equal(input.drafted,input.rows.filter(r=>!!r.proposed_zh).length);
-assert.equal(input.release_eligible,input.rows.filter(r=>r.release_eligible).length);
+const input=JSON.parse(fs.readFileSync('data/audit/core13k20k-p0-256-editorial-queue-v1.json','utf8'));
+assert.equal(input.schema,'pai-core20k-p0-256-editorial-queue-v1');
+assert.equal(input.count,256);
+assert.equal(input.rows.length,input.count);
+assert.equal(input.source_checked,input.rows.filter(r=>r.source_content_checked).length);
+assert.equal(input.proposed,input.rows.filter(r=>!!r.proposed_zh).length);
+assert.equal(input.approved,input.rows.filter(r=>r.release_eligible).length);
 const allowedTypes=new Set(['grammar','collocation','contrast','pronunciation','risk','usage']);
 const seen=new Set(), approved=[];
 for(const r of input.rows){
@@ -23,7 +24,7 @@ for(const r of input.rows){
   approved.push({ku_id:r.ku_id,lemma:r.lemma,ku_type:r.ku_type,zh:r.proposed_zh,source_url:r.source_url,reviewer:r.editorial_reviewer,reviewed_at:r.editorial_reviewed_at});
  }
 }
-const overlay={schema:'pai-core20k-nonsenses-ku-overlay-v1',source:'data/audit/core13k20k-p0-editorial-candidates-v7.json',items:approved,release_eligible_count:approved.length};
+const overlay={schema:'pai-core20k-nonsenses-ku-overlay-v1',source:'data/audit/core13k20k-p0-256-editorial-queue-v1.json',items:approved,release_eligible_count:approved.length};
 fs.mkdirSync('audit-output',{recursive:true});
 fs.writeFileSync('audit-output/core20k-p0-approved-overlay.json',JSON.stringify(overlay,null,2)+'\n');
 console.log('Editorial overlay contract PASS: '+input.rows.length+' reviewed records, '+approved.length+' approved changes');
