@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-pending37';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-scene38';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
@@ -25,9 +25,9 @@
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
   const typed=document.getElementById('scene-query')?.value||'';
   const difficulty=document.getElementById('scene-difficulty')?.value||'all';
-  state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||typed||state.sceneSearchUi?.query||'',difficulty:preboot?.difficulty||difficulty,resultIds:[]};
+  state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||typed||state.sceneSearchUi?.query||'',difficulty:preboot?.difficulty||state.sceneSearchUi?.difficulty||difficulty,resultIds:preboot?.query?[]:(state.sceneSearchUi?.resultIds||[])};
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
-  if(preboot?.query&&typeof window.findScene500==='function')window.findScene500();
+  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function')window.restoreScene500Recommendations();
   // Optional packs must never replace an already usable homepage with a fatal loading screen.
   try{
   // Non-critical Scene500 packs and inventory load after first interactive home render.
