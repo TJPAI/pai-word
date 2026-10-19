@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {planSrsMigration} from './vendor/scene500-b73-ku-registry.mjs';
+import {applySceneTop100} from './vendor/scene500-top100-runtime.mjs';
+import {inspectLearningCompatibility} from './vendor/scene500-b96-learning-contract.mjs';
+const records={ku1:{interval:2},ku2:{interval:5}};
+const same=planSrsMigration(records,['ku1','ku2'],['ku1','ku2']);
+assert(same.pass);assert.deepEqual(same.records,records);
+const orphan=planSrsMigration(records,['ku1','ku2'],['ku1']);
+assert(orphan.pass);assert.equal(orphan.pending.ku2.reason,'NO_VERIFIED_MIGRATION');
+const invalid=planSrsMigration(records,['ku1','ku2'],['ku1','ku3'],[{from:'ku2',to:['unknown'],type:'replace'}]);
+assert.equal(invalid.pass,false);assert.equal(invalid.unchanged,true);
+const words=[],byRank=new Map(),byKU=new Map(),byScene=new Map();
+for(let i=1;i<=100;i++){
+ const id='ku'+i,w={w:'word'+i,s:{}};
+ const sense={ku_id:id,kuType:'sense',playable:true};w.s[id]=sense;
+ const unit={sid:id,k:id,w,s:sense};
+ words.push(w);byRank.set(i,w);byKU.set(id,unit);
+}
+const core={words,byRank,byKU,byScene,canStudy:id=>byKU.has(id)};
+const rows=words.map((w,i)=>[i+1,w.w,i+1,'ku'+(i+1)]);
+const res=applySceneTop100(core,'S001',rows);
+assert.equal(res.candidates,100);assert.equal(res.playable,100);
+assert.equal(core.byScene.get('S001').length,100);
+assert.throws(()=>applySceneTop100(core,'S001',[...rows.slice(0,99),[101,'word100',100,'ku100']]),/TOP100_ORDER/);
+const compatible=inspectLearningCompatibility({byKU,records},{...new Map([['S001',['ku1','ku2']],['S002',['ku1']]])},records);
+assert.equal(compatible.pass,true);
+assert.equal(compatible.crossSceneReuse,1);
+const broken=inspectLearningCompatibility({byKU,records},new Map([['S001',['not-real']]]),records);
+assert.equal(broken.pass,false);
+console.log('Rebuild V1 selected-asset regression assertions PASS');
