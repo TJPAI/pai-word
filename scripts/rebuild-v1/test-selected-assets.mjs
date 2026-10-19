@@ -9,6 +9,8 @@ const orphan=planSrsMigration(records,['ku1','ku2'],['ku1']);
 assert(orphan.pass);assert.equal(orphan.pending.ku2.reason,'NO_VERIFIED_MIGRATION');
 const invalid=planSrsMigration(records,['ku1','ku2'],['ku1','ku3'],[{from:'ku2',to:['unknown'],type:'replace'}]);
 assert.equal(invalid.pass,false);assert.equal(invalid.unchanged,true);
+const merged=planSrsMigration({old:{interval:5}},['old'],['next'],[{from:'old',to:['next'],type:'merge'}]);
+assert.equal(merged.pass,true);assert.equal(merged.pending.old.reason,'SPLIT_OR_MERGE_REQUIRES_EXPLICIT_RESOLUTION');assert.equal(merged.records.next,undefined);
 const words=[],byRank=new Map(),byKU=new Map(),byScene=new Map();
 for(let i=1;i<=100;i++){
  const id='ku'+i,w={w:'word'+i,s:{}};
