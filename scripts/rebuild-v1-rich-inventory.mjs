@@ -37,7 +37,8 @@ for(const full of chunks){
   const ref=coreKU.get(id);
   if(!ref||ref.lemma.toLowerCase()!==lemma){counters.missingKURecords++;missing.push({lemma,id,reason:'ku_identity_or_lemma_mismatch'});continue;}
   counters.matchedKURecords++;
-  const e=Array.isArray(s.e)?s.e:[],c=s.c||'',x=s.x||'';
+  const rich=full.rich?.[id]||{};
+  const e=Array.isArray(rich.e)?rich.e:(Array.isArray(s.e)?s.e:[]),c=rich.c??s.c??'',x=rich.x??s.x??'';
   const hasRich=Boolean(e.length||(Array.isArray(c)?c.length:String(c).trim())||String(x).trim());
   if(!hasRich)continue;
   counters.richCandidateKUs++;
