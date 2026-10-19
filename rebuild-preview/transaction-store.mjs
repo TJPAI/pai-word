@@ -18,8 +18,10 @@ export async function commitSnapshot(db,{expectedVersion,nextState,attemptId}){
   req.onerror=()=>{try{tx.abort()}catch{}};
   req.onsuccess=()=>{
    const previous=req.result||{version:0,state:null,committedAttempts:{}};
-   if(previous.version!==expectedVersion){outcome={status:'conflict',version:previous.version};tx.abort();return}
+   // Idempotency takes precedence over stale-version detection: a retried
+   // acknowledged attempt must report duplicate, never an unrelated conflict.
    if(previous.committedAttempts?.[attemptId]){outcome={status:'duplicate',version:previous.version};tx.abort();return}
+   if(previous.version!==expectedVersion){outcome={status:'conflict',version:previous.version};tx.abort();return}
    const committedAttempts={...(previous.committedAttempts||{}),[attemptId]:true};
    const next={version:previous.version+1,state:nextState,committedAttempts};
    store.put(next,'current');outcome={status:'committed',version:next.version};
