@@ -362,7 +362,7 @@
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   // Historical preview with the answer visible cannot be treated as an unseen recall.
 
-  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const k=visibleKey,score=visualGrade;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===k?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const k=visibleKey,score=classify(responseMs);state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===k?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
   else if(phase==='answer'||phase==='answer-paused'||phase==='example'){window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';repeated=0;repeat(generation)}
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
