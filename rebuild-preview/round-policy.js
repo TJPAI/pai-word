@@ -2,15 +2,15 @@
 // Scene500 data/pools are owned by scene500-integrated.js.
 // This file is the only owner for scene-session sizing, daily/round limits and manual grading overrides.
 (function(){
-  const DAILY_ALLOWED=new Set([25,50,100,200]);
-  const ROUND_ALLOWED=new Set([10,25,50]);
+  const DAILY_ALLOWED=new Set([10,20,30,50]);
+  const ROUND_ALLOWED=new Set([10,20,30,50]);
   let normalized=false;
-  if(!DAILY_ALLOWED.has(Number(state.newPerDay))){state.newPerDay=50;normalized=true}
-  if(!ROUND_ALLOWED.has(Number(state.wordsPerRound))){state.wordsPerRound=10;normalized=true}
+  if(!DAILY_ALLOWED.has(Number(state.newPerDay))){state.newPerDay=20;normalized=true}
+  if(!ROUND_ALLOWED.has(Number(state.wordsPerRound))){state.wordsPerRound=20;normalized=true}
   if(normalized)save();
 
-  const roundSize=()=>ROUND_ALLOWED.has(Number(state.wordsPerRound))?Number(state.wordsPerRound):10;
-  const dailyLimit=()=>DAILY_ALLOWED.has(Number(state.newPerDay))?Number(state.newPerDay):50;
+  const roundSize=()=>ROUND_ALLOWED.has(Number(state.wordsPerRound))?Number(state.wordsPerRound):20;
+  const dailyLimit=()=>DAILY_ALLOWED.has(Number(state.newPerDay))?Number(state.newPerDay):20;
   const dailyCompleted=()=>Math.max(0,Number(window.globalNewCompleted?.()||0));
   const dailyRemaining=()=>Math.max(0,dailyLimit()-dailyCompleted());
   const freshLimit=()=>Math.min(roundSize(),dailyRemaining());
@@ -93,7 +93,7 @@
   };
 
   window.setNewPerDay=function(n){
-    n=Number(n);if(!DAILY_ALLOWED.has(n))n=50;
+    n=Number(n);if(!DAILY_ALLOWED.has(n))n=20;
     state.newPerDay=n;
     state.daily=null;
     window.PAI_LEARNING_QA?.fresh?.();
@@ -101,7 +101,7 @@
     if(typeof render==='function')render();
   };
   window.setWordsPerRound=function(n){
-    n=Number(n);if(!ROUND_ALLOWED.has(n))n=10;
+    n=Number(n);if(!ROUND_ALLOWED.has(n))n=20;
     state.wordsPerRound=n;
     save();
     if(typeof render==='function')render();
@@ -137,11 +137,11 @@
       if(dailyRow){
         const dailySelect=dailyRow.querySelector('select');
         if(dailySelect){
-          dailySelect.innerHTML=[25,50,100,200].map(n=>`<option value="${n}" ${dailyLimit()===n?'selected':''}>${n}</option>`).join('');
+          dailySelect.innerHTML=[10,20,30,50].map(n=>`<option value="${n}" ${dailyLimit()===n?'selected':''}>${n}</option>`).join('');
           dailySelect.setAttribute('onchange','setNewPerDay(+this.value)');
         }
         if(!rows.some(x=>x.querySelector('span')?.textContent?.trim()==='每轮单词数')){
-          const options=[10,25,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
+          const options=[10,20,30,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
           dailyRow.insertAdjacentHTML('afterend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
         }
       }
