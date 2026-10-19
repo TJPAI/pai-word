@@ -4,6 +4,7 @@
 // Usage: node scripts/rebuild-v1-rich-inventory.mjs
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import {classifyLegacyRich} from './rich-migration-policy.mjs';
 import {gunzipSync} from 'node:zlib';
 const json=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const outDir='audit-output';fs.mkdirSync(outDir,{recursive:true});
@@ -39,8 +40,13 @@ for(const full of chunks){
   counters.matchedKURecords++;
   const rich=full.rich?.[id]||{};
   const e=Array.isArray(rich.e)?rich.e:(Array.isArray(s.e)?s.e:[]),c=rich.c??s.c??'',x=rich.x??s.x??'';
-  const hasRich=Boolean(e.length||(Array.isArray(c)?c.length:String(c).trim())||String(x).trim());
-  if(!hasRich)continue;
+  const legacyKU=legacy[0]?.senses?.find(row=>row[0]===id);
+  const verdict=classifyLegacyRich({lemma,legacyMatches:legacy.length,targetWord:hit,
+   oldKU:legacyKU?{id,lemma,type:legacyKU[2]}:null,
+   targetKU:{id,lemma:ref.lemma,type:ref.type},rich:{e,c,x}});
+  if(verdict.status==='quarantine_ku_identity'){counters.missingKURecords++;missing.push({lemma,id,reason:'ku_type_mismatch'});continue;}
+  if(verdict.status==='empty_rich_content')continue;
+  assert.equal(verdict.status,'review_required','unexpected rich migration status');
   counters.richCandidateKUs++;
   changes.push({ku_id:id,lemma,legacy_rank:legacy[0]?.rank,examples:e,collocations:c,usage:x,
    evidence_status:'legacy_sanitized_not_independently_dictionary_verified',
