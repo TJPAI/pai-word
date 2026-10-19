@@ -24,7 +24,7 @@
   function dueKeys(scene){
     const allDue=window.PAI_LEARNING_QA?.due?.()||[];
     if(isScene500(scene)){
-      const members=sceneMemberKeys(scene);return allDue.filter(k=>members.has(k));
+      const members=sceneMemberKeys(scene),difficulty=state.scene500DifficultyByScene?.[scene]||'all';return allDue.filter(k=>members.has(k)&&rankAllowed(Number(window.PAI_CORE?.byKU?.get(k)?.w?.rank)||999999,difficulty));
     }
     return allDue.filter(k=>window.PAI_CORE?.byKU?.get(k)?.s?.scene===scene);
   }
@@ -59,7 +59,9 @@
       const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
       const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
-      return window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
+      const result=window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
+      if(state.learningSession){state.learningSession.scene500Difficulty=state.scene500DifficultyByScene?.[scene]||'all';save();}
+      return result;
     }
     const result=baseOpenScene(scene);
     if(state.learningSession?.kind==='scene'){
