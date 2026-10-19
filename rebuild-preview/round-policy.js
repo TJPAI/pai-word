@@ -29,14 +29,14 @@
     return allDue.filter(k=>window.PAI_CORE?.byKU?.get(k)?.s?.scene===scene);
   }
 
-  function freshKeys(scene){
+  function freshKeys(scene,excluded=new Set()){
     const limit=freshLimit();if(limit<=0)return[];
     if(isScene500(scene)){
       const difficulty=state.scene500DifficultyByScene?.[scene]||'all',out=[],seenWords=new Set();
       for(const u of (allUnits(scene)||[])){
         if(!rankAllowed(Number(u?.w?.rank)||999999,difficulty))continue;
         const k=unitKeyOf(u),wordKey=u.w?.rank??u.w?.w;
-        if(seenWords.has(wordKey)||state.records?.[k])continue;
+        if(excluded.has(k)||seenWords.has(wordKey)||state.records?.[k])continue;
         if(Object.keys(u.w?.s||{}).some(id=>state.records?.[id]))continue;
         seenWords.add(wordKey);out.push(k);if(out.length>=limit)break;
       }
@@ -45,7 +45,7 @@
     const units=window.PAI_LEARNING_QA?.unlearned?.(scene)||[];
     const out=[],seenWords=new Set();
     for(const u of units){
-      const wordKey=u.w?.rank??u.w?.w;if(seenWords.has(wordKey))continue;
+      const wordKey=u.w?.rank??u.w?.w;if(excluded.has(u.k)||seenWords.has(wordKey))continue;
       seenWords.add(wordKey);out.push(u.k);if(out.length>=limit)break;
     }
     return out;
@@ -57,14 +57,14 @@
       state.selectedScene=scene;
       window.rebuildDailyAssignments?.();
       const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
-      const fresh=freshKeys(scene).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
+      const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
       return window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
     }
     const result=baseOpenScene(scene);
     if(state.learningSession?.kind==='scene'){
       const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
-      const fresh=freshKeys(scene).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
+      const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
       state.learningSession.queue=keys;
       state.learningSession.total=keys.length;
