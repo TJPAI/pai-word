@@ -53,6 +53,14 @@
 
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
+    if(isScene500(scene)&&typeof window.PAI_START_POLICY_SESSION==='function'){
+      state.selectedScene=scene;
+      window.rebuildDailyAssignments?.();
+      const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
+      const fresh=freshKeys(scene).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
+      const keys=[...due,...fresh];
+      return window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
+    }
     const result=baseOpenScene(scene);
     if(state.learningSession?.kind==='scene'){
       const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
@@ -63,10 +71,8 @@
       state.learningSession.completed=[];
       state.learningSession.seen={};
       state.learningSession.attempts=0;
-      state.studyBrowseIndex=0;
       save();
-      if(typeof window.resumeLearning==='function')window.resumeLearning();
-      else if(typeof render==='function')render();
+      window.resumeLearning?.();
     }
     return result;
   };
