@@ -27,7 +27,7 @@ for(const w of joined.items){
   legacyTypes[ku.type]=(legacyTypes[ku.type]||0)+1;kuCount++;
  }
  examples+=(w.examples||[]).length;collocations+=(w.collocations||[]).length;usage+=(w.usage_notes||[]).length;
- assert.equal(w.status,'joined_candidate_review_required','not a releasable record');
+ assert.equal(w.status,'candidate_not_editorially_approved','not a releasable record');
 }
 assert.equal(kuCount,16574);assert.equal(examples,38970);assert.equal(collocations,38958);assert.equal(usage,6182);
 console.log(JSON.stringify({result:'PASS_STRUCTURAL_ONLY',words:seen.size,kuCount,examples,collocations,usage,legacyTypes,notReleaseCertified:true}));
