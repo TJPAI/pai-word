@@ -31,7 +31,7 @@
   await script('scene500-integrated.js');
   await script('scene500-sense-review.js');
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
-   const {installScene500Top100}=await import('../scripts/scene500-top100-loader.mjs');
+   const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
    await installScene500Top100();
   }
   // Display coarse Scene500 inventory separately from reviewed learning membership.
@@ -46,7 +46,7 @@
   }
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    const review=await json('data/scene500-review-index-b163-v1.json');
-   const gate=await import('../scripts/scene500-review-gate.mjs');
+   const gate=await import(new URL('scripts/scene500-review-gate.mjs',document.baseURI).href);
    window.PAI_SCENE500_REVIEW_AUDIT=gate.validateReviewIndex(review);
   }
   await script('scene-search.js');
