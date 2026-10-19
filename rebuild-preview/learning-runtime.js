@@ -683,17 +683,22 @@
  window.rateBrowsedLearning=()=>{}; // Historical cards are strictly read-only in V2.1.
  window.rateLearning=(grade,targetKey=null)=>{
   if(!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
-  const session=state.learningSession,u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;attempt.committed=true;const now=Date.now(),prev=state.records[k];previousUnit=u;
+  const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
+  // Compute on an isolated draft; never mutate live memory before persistence succeeds.
+  const before=state,draft=structuredClone(state);
+  state=draft;
   if(!prev)markDailyNewComplete(k);
-  const seen=session.seen[k]||0;session.seen[k]=seen+1;session.attempts++;
+  const seen=state.learningSession.seen[k]||0;state.learningSession.seen[k]=seen+1;state.learningSession.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
   const repeat=grade!=='good'||(!prev&&seen===0);
   const r={...(prev||{}),last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev?.reps||0)+1,responseMs:PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt),learningPending:repeat,srsPolicy:'session-retrieval-v3'};
-  if(repeat){r.due=now;r.interval=0;}else{const prior=prev?.lastStableInterval||prev?.interval||0;const days=session.kind==='free'&&prior>0?prior/DAY:prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*(prev?.lastGrade==='hard'?1.5:2.3)));r.interval=days*DAY;r.lastStableInterval=r.interval;r.due=session.kind==='free'&&prev?.due>now?prev.due:now+r.interval}
+  if(repeat){r.due=now;r.interval=0;}else{const prior=prev?.lastStableInterval||prev?.interval||0;const days=state.learningSession.kind==='free'&&prior>0?prior/DAY:prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*(prev?.lastGrade==='hard'?1.5:2.3)));r.interval=days*DAY;r.lastStableInterval=r.interval;r.due=state.learningSession.kind==='free'&&prev?.due>now?prev.due:now+r.interval}
   if(repeat&&prev?.interval>0)r.lastStableInterval=grade==='again'?0:prev.interval;
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
-  const qi=session.queue.indexOf(k);if(qi>=0)session.queue.splice(qi,1);session.completed=session.completed.filter(x=>x!==k);if(repeat)session.queue.splice(Math.min(4,session.queue.length),0,k);else session.completed.push(k);
-  state.revealed=false;session.currentAttempt=null;persist();showCurrent();
+  const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
+  state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
+  try{persist()}catch(e){state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);render();return}
+  previousUnit=u;state.learningSession.currentAttempt=null;showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
  function home(){
