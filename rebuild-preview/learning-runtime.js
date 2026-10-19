@@ -360,7 +360,9 @@
   if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
-  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.rateLearning?.(g)});window.render?.()}
+  // Historical preview with the answer visible cannot be treated as an unseen recall.
+  if(window.getBrowsedUnit?.()&&!window.PAI_HISTORY_RETEST?.())return;
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.PAI_HISTORY_RETEST?.()?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.()}
   else if(phase==='answer'||phase==='answer-paused'||phase==='example'){window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';grade='again';repeated=0;repeat(generation)}
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
@@ -713,7 +715,9 @@
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[historyAttemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=false;state=draft;
   try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);return}
-  historyRetest=false;historyAttemptId=null;state.revealed=true;render();
+  historyRetest=false;historyAttemptId=null;state.revealed=true;
+  // A finished historical retest advances browsing; it never changes the active session queue.
+  window.browseAnswer?.(1);
  };
  window.rateLearning=(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
