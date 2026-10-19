@@ -70,6 +70,12 @@
     const results=searchApi()?.search(q,difficulty,5)||[];
     state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
   }
+  window.restoreScene500Recommendations=function(){
+    const s=ui(),q=(s.query||'').trim();
+    if(!q)return;
+    // Recalculate against the current Scene500 index, without scrolling the page.
+    runSceneSearch(q,s.difficulty||'all');
+  };
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
     const difficulty=document.getElementById('scene-difficulty')?.value||'all';
