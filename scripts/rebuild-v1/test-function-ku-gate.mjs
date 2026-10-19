@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {classifyFunctionKU} from './function-ku-gate.mjs';
+const unit={id:'grammar-1',type:'grammar'};
+assert.equal(classifyFunctionKU(unit).playable,false);
+assert.equal(classifyFunctionKU({id:'sense-1',type:'sense'}).playable,false);
+assert.equal(classifyFunctionKU(unit,{'grammar-1':{status:'approved',ku_type:'grammar',mode:'function_practice',reviewer:'editor',source_url:'http://example.org'}}).playable,false);
+assert.equal(classifyFunctionKU(unit,{'grammar-1':{status:'approved',ku_type:'pronunciation',mode:'function_practice',reviewer:'editor',source_url:'https://example.org'}}).playable,false);
+const approvals={'grammar-1':{status:'approved',ku_type:'grammar',mode:'function_practice',reviewer:'editor',source_url:'https://example.org'}};
+assert.equal(classifyFunctionKU(unit,approvals).playable,true);
+assert.equal(classifyFunctionKU({id:'number-1',type:'number'},approvals).playable,false);
+console.log('FUNCTION_KU_FAIL_CLOSED_PASS: 6 tests');
