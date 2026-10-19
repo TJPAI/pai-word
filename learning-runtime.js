@@ -333,7 +333,7 @@
 (function(){
  const defaults={goodWithin:2,hardWithin:5,goodShow:2,hardShow:4,againShow:6,repeatCount:3,repeatGap:1};
  const labels={goodWithin:'想起了：点击阈值（秒）',hardWithin:'模糊：点击阈值（秒）',goodShow:'想起了：答案展示（秒）',hardShow:'模糊：答案展示（秒）',againShow:'没想起：答案展示（秒）',repeatCount:'重读次数',repeatGap:'每遍读完后的间隔（秒）'};
- const config=()=>{const c={...defaults,...state.tapTiming};for(const k in defaults){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.max(k==='repeatGap'?0:.1,Math.min(k==='repeatCount'?20:60,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c};
+ const config=()=>{const c={...defaults,...state.tapTiming};for(const k in defaults){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.max(k==='repeatCount'?1:k==='repeatGap'?0:0.1,Math.min(k==='repeatCount'?10:60,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c};
  let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null;
  function clear(preserveAudio=false){generation++;if(timer!==null)clearTimeout(timer);timer=null;if(!preserveAudio)window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
  function later(fn,ms){timer=setTimeout(()=>{timer=null;fn()},ms)}
@@ -357,9 +357,9 @@
  function interruptRepeatForExample(){return beginExample()}
  function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
  function cancel(){clear()}
- window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value==='')return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
+ window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
- function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" aria-label="'+labels[k]+'" min="0" max="60" step="0.1" value="'+c[k]+'" oninput="setTapTiming(\''+k+'\',this.value,false)" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
+ function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatCount'?'1':'0')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
  function hint(){if(phase==='question')return '想好后，轻点屏幕空白处';if(phase==='answer')return '轻点空白处重读 · 自动进入下一词题目';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '正在朗读例句 · 点击空白处可重读单词';if(phase==='answer-paused')return '点击空白处重读单词后进入下一题';return ''}
  window.PAI_TAP_FLOW={ready,answer,browseReady,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
