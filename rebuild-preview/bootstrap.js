@@ -28,6 +28,8 @@
   state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||typed||state.sceneSearchUi?.query||'',difficulty:preboot?.difficulty||difficulty,resultIds:[]};
   state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
   if(preboot?.query&&typeof window.findScene500==='function')window.findScene500();
+  // Optional packs must never replace an already usable homepage with a fatal loading screen.
+  try{
   // Non-critical Scene500 packs and inventory load after first interactive home render.
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
@@ -48,6 +50,8 @@
    const gate=await import(new URL('scripts/scene500-review-gate.mjs',document.baseURI).href);
    window.PAI_SCENE500_REVIEW_AUDIT=gate.validateReviewIndex(review);
   }
+
+  }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
 
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   // V2.1 isolation: preview must never register the shared root-scope worker.
