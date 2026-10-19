@@ -9,7 +9,8 @@ export function openPreviewDB(name='pai-word-core20k-preview-v21'){
  });
 }
 export async function commitSnapshot(db,{expectedVersion,nextState,attemptId}){
- if(!Number.isInteger(expectedVersion)||expectedVersion<0||!attemptId)throw new Error('Invalid transaction identity');
+ if(!Number.isSafeInteger(expectedVersion)||expectedVersion<0||typeof attemptId!=='string'||!attemptId.trim())throw new Error('Invalid transaction identity');
+ if(!nextState||typeof nextState!=='object'||Array.isArray(nextState)||!nextState.records||typeof nextState.records!=='object'||Array.isArray(nextState.records))throw new Error('Invalid learning state snapshot');
  return new Promise((resolve,reject)=>{
   const tx=db.transaction('snapshot','readwrite');
   const store=tx.objectStore('snapshot');
@@ -18,6 +19,7 @@ export async function commitSnapshot(db,{expectedVersion,nextState,attemptId}){
   req.onerror=()=>{try{tx.abort()}catch{}};
   req.onsuccess=()=>{
    const previous=req.result||{version:0,state:null,committedAttempts:{}};
+   if(!Number.isSafeInteger(previous.version)||previous.version<0||!previous.committedAttempts||typeof previous.committedAttempts!=='object'){outcome={status:'invalid-baseline'};tx.abort();return}
    // Idempotency takes precedence over stale-version detection: a retried
    // acknowledged attempt must report duplicate, never an unrelated conflict.
    if(previous.committedAttempts?.[attemptId]){outcome={status:'duplicate',version:previous.version};tx.abort();return}
