@@ -692,7 +692,7 @@
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
    browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
    render();
-   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);render();if(wasRevealed&&state.autoPronounce.swipe)speak(u.w.w);return true;
+   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
   }catch(_){return false}
  };
  // Historical rating is a NEW review event, never a rewrite of a prior attempt.
