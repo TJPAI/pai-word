@@ -8,7 +8,7 @@ assert.equal(c.total,20);
 assert.equal(c.rows.length,20);
 assert.equal(c.drafted,5);
 assert.equal(c.source_verified,c.rows.filter(r=>r.source_content_checked).length);
-assert.equal(c.source_verified,12);
+assert.equal(c.source_verified,18);
 assert.equal(c.release_eligible,0);
 const expected=new Map(base.rows.map(r=>[r.ku_id,r]));
 assert.equal(expected.size,20);
@@ -28,4 +28,4 @@ for(const r of c.rows){
   assert(r.proposed_zh.length>12);
  }else if(!r.source_content_checked) assert.equal(r.source_url,null);
 }
-console.log('P0 editorial V7 fail-closed contract PASS: 20 records, 5 drafts, 12 source-verified, 0 approved');
+console.log('P0 editorial V7 fail-closed contract PASS: 20 records, 5 drafts, 18 source-verified, 0 approved');
