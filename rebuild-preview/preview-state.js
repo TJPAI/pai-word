@@ -47,7 +47,7 @@ const STORAGE='pai-word-core20k-rebuild-preview-v21';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
-function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
+function save(){if(window.PAI_SAVE_DEFERRED===true)return;localStorage.setItem(STORAGE,JSON.stringify(state))}
 function unitKey(w,sid){return w.s[sid]?.ku_id||`${w.w}::${sid}`}
 function findUnitByKey(k){return window.PAI_CORE?.byKU.get(k)||null}
 function allUnits(scene){return window.PAI_CORE?.byScene.get(scene)||[]}
