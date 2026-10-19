@@ -253,7 +253,7 @@
   window.rateFreeReview=function(known){const u=byKey(state.freeKeys?.[0]);if(!u)return;scheduleRecord(u,known,2.2);state.freeKeys.shift();state.freeDone=(state.freeDone||0)+1;state.revealed=false;save();animateRating(known);setTimeout(()=>{render();speakCurrent(90)},130)};
 
   function heroHtml(u){const hidden=state.hideWord&&!state.revealed?' listen-only':'';return `<div class="word-hero${hidden}"><div class="word-line"><div class="word">${escapeHtml(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${escapeHtml(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${escapeHtml(u.w.ipa||'本口音音标待补充')}</div>${state.revealed?'':'<div class="tap-hint">轻点空白处显示答案</div>'}</div>`}
-  function studyShell(title,progress,u,ratingHtml){return `<div class="screen study-screen"><div class="study-top"><button class="back-btn" onclick="goScenes()">‹</button><div class="study-scene">${title}</div><div class="study-progress">${progress}</div></div><div class="study-body" onclick="reveal()">${heroHtml(u)}${state.revealed&&!historyRetest?answerHtml(u):''}</div>${ratingHtml}</div>`}
+  function studyShell(title,progress,u,ratingHtml){return `<div class="screen study-screen"><div class="study-top"><button class="back-btn" onclick="goScenes()">‹</button><div class="study-scene">${title}</div><div class="study-progress">${progress}</div></div><div class="study-body" onclick="reveal()">${heroHtml(u)}${state.revealed?answerHtml(u):''}</div>${ratingHtml}</div>`}
   function ratingHtml(reviewType){const fn=reviewType==='review'?'rateReview':reviewType==='free'?'rateFreeReview':'rateKnown';return `<div class="rating"><button class="unknown" onclick="${fn}(false)">不知道</button><button class="known" onclick="${fn}(true)">知道</button></div>`}
 
   function renderWordPreview(){const u=byKey(state.previewKU);if(!u)return renderScenes();return studyShell('词条预览','',u,'<div class="scene-note">此预览不会修改学习进度。辨析为编辑稿，外部核验待完成。</div>')}
@@ -341,18 +341,18 @@
  function ready(k,preserveAudio=false){clear(preserveAudio);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function answer({key,mode,score,advance}){clear();visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
- function correct(score){if((entryMode==='swipe'&&!window.PAI_HISTORY_RETEST?.())||!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
+ function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
  function choose(score){
   if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
-   answer({key:visibleKey,mode:'tap',score,advance:g=>window.PAI_HISTORY_RETEST?.()?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
+   answer({key:visibleKey,mode:'tap',score,advance:g=>window.rateLearning?.(g,visibleKey)});
    window.render?.();return;
   }
   correct(score);
  }
- function browseReady(k,advance){ready(k); /* Browsing must not auto-advance or auto-grade. */}
+ function browseReady(k,advance){answer({key:k,mode:'swipe',score:'again',advance})}
  function finish(g){if(!valid(g)||phase==='idle')return;phase='committing';const fn=onAdvance;onAdvance=null;fn?.(grade)}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
@@ -361,8 +361,8 @@
  }
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   // Historical preview with the answer visible cannot be treated as an unseen recall.
-  if(window.getBrowsedUnit?.()&&!window.PAI_HISTORY_RETEST?.())return;
-  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.PAI_HISTORY_RETEST?.()?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.()}
+
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const score=classify(responseMs),k=visibleKey;state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.rateLearning?.(g,k)});window.render?.()}
   else if(phase==='answer'||phase==='answer-paused'||phase==='example'){window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';grade='again';repeated=0;repeat(generation)}
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
@@ -698,24 +698,20 @@
  window.PAI_HISTORY_RETEST=()=>historyRetest;
  window.chooseHistoricalRating=grade=>{
   if(!active||loading||error||!browsedUnit||!['again','hard','good'].includes(grade))return;
-  if(!historyRetest){
-   historyRetest=true;historyAttemptId=newAttemptId();state.revealed=false;
-   PAI_TAP_FLOW.ready(browsedUnit.k);render();return;
-  }
-  PAI_TAP_FLOW.choose(grade);
+  PAI_TAP_FLOW.correct(grade);
  };
  window.rateBrowsedLearning=(grade,k)=>{
-  if(!active||!historyRetest||!browsedUnit||browsedUnit.k!==k||!historyAttemptId||!['again','hard','good'].includes(grade))return;
-  const before=state,draft=structuredClone(state),now=Date.now(),prev=state.records[k]||{};
+  if(!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
+  const attemptId=newAttemptId(),before=state,draft=structuredClone(state),now=Date.now(),prev=state.records[k]||{};
   const record={...prev,last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev.reps||0)+1,
    responseMs:PAI_TAP_FLOW.snapshot().responseMs??null,learningPending:grade!=='good',srsPolicy:'session-retrieval-v3'};
   if(grade!=='good'){record.due=now;record.interval=0}
   else {const prior=prev.lastStableInterval||prev.interval||0;const days=prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*2));record.interval=days*DAY;record.lastStableInterval=record.interval;record.due=now+record.interval}
   draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
-  draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[historyAttemptId]:{kuId:k,grade,at:now}};
+  draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=false;state=draft;
   try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);return}
-  historyRetest=false;historyAttemptId=null;state.revealed=true;
+  state.revealed=true;
   // A finished historical retest advances browsing; it never changes the active session queue.
   window.browseAnswer?.(1);
  };
@@ -760,7 +756,7 @@
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const repeat=s.seen[u.k]>0;
   const label=u.s.kuType==='sense'?'回忆这个词的含义':u.s.kuTitle;
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="study-body"><div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div>${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')">不知道</button><button onclick="chooseHistoricalRating('hard')">模糊</button><button onclick="chooseHistoricalRating('good')">知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')">不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')">模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')">知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote">新词与错词会在本轮再次出现。点击节奏可在设置中调整。</div></div>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="study-body"><div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div><div class="ipa">${esc(u.w.ipaUS)}</div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div>${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="PAI_TAP_FLOW.correct('again')">不知道</button><button onclick="PAI_TAP_FLOW.correct('hard')">模糊</button><button onclick="PAI_TAP_FLOW.correct('good')">知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')">不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')">模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')">知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote">新词与错词会在本轮再次出现。点击节奏可在设置中调整。</div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};
