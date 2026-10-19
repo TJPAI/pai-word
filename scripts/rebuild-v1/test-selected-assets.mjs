@@ -22,7 +22,7 @@ const res=applySceneTop100(core,'S001',rows);
 assert.equal(res.candidates,100);assert.equal(res.playable,100);
 assert.equal(core.byScene.get('S001').length,100);
 assert.throws(()=>applySceneTop100(core,'S001',[...rows.slice(0,99),[101,'word100',100,'ku100']]),/TOP100_ORDER/);
-const compatible=inspectLearningCompatibility({byKU,records},{...new Map([['S001',['ku1','ku2']],['S002',['ku1']]])},records);
+const compatible=inspectLearningCompatibility({byKU,records},new Map([['S001',['ku1','ku2']],['S002',['ku1']]]),records);
 assert.equal(compatible.pass,true);
 assert.equal(compatible.crossSceneReuse,1);
 const broken=inspectLearningCompatibility({byKU,records},new Map([['S001',['not-real']]]),records);
