@@ -399,6 +399,7 @@
   if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
   try{await ensureUnits([u.k]);if(id!==token)return;loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
+ window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
   {name:'鱼类',terms:['鱼类','鱼种','各种鱼','淡水鱼','海水鱼','fish species','types of fish'],words:'fish salmon tuna trout cod carp catfish bass perch pike eel herring mackerel sardine anchovy halibut flounder sole snapper grouper tilapia haddock pollock sturgeon swordfish marlin shark ray skate goldfish guppy koi minnow salmonella fishery aquatic freshwater saltwater fin gill scale spawn school shoal'},
   {name:'水果',terms:['水果','果园','买水果','fruit','fruits'],words:'fruit apple banana orange pear peach grape strawberry blueberry raspberry blackberry cherry pineapple mango watermelon melon lemon lime grapefruit kiwi coconut papaya plum apricot fig date pomegranate avocado lychee tangerine nectarine raisin berry citrus ripe juicy peel seed'},
