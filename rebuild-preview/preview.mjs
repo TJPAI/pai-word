@@ -8,7 +8,10 @@ async function boot(){
  try{
   if(!('DecompressionStream'in window))throw Error('浏览器不支持原生GZIP解压');
   const r=await fetch('../data/core20k-runtime.json.gz');if(!r.ok)throw Error('词库请求失败 '+r.status);
-  const data=await decode(await r.arrayBuffer());
+  const compressed=await r.arrayBuffer();
+  const actualHash=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',compressed)),b=>b.toString(16).padStart(2,'0')).join('');
+  if(actualHash!=='e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b')throw Error('Core20K SHA-256 校验失败：拒绝使用不匹配的学习数据');
+  const data=await decode(compressed);
   if(data.schema!=='pai-core20k-runtime-v1'||data.headwords?.length!==20000)throw Error('20K词库身份异常');
   state.data=data;el('go').disabled=el('random').disabled=false;status('20,000词目录已加载。选择场景开始。');
  }catch(e){status('加载失败');invalid(e.message)}
