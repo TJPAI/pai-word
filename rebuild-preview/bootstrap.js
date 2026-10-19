@@ -1,7 +1,7 @@
 (async function(){
- const VERSION='core20k-v21-scene39';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-scene40';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
- function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
+ function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.async=false;el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
  async function sceneMembership(){
   try{return await json('data/scene500-playable-membership-v2.json')}
@@ -16,13 +16,17 @@
   const membershipReady=sceneMembership();
   await catalogReady;
   [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);
-  await script('rebuild-preview/learning-runtime.js');
-  await script('audio-compat.js');
-  await script('scene500-integrated.js');
-  await script('scene500-sense-review.js');
-  await script('scene-search.js');
-  await script('rebuild-preview/home-dashboard.js');
-  await script('rebuild-preview/round-policy.js');
+  // Download in parallel, execute in insertion order (dynamic scripts: async=false).
+  // Preserve the established global dependencies without seven sequential network waits.
+  await Promise.all([
+   script('rebuild-preview/learning-runtime.js'),
+   script('audio-compat.js'),
+   script('scene500-integrated.js'),
+   script('scene500-sense-review.js'),
+   script('scene-search.js'),
+   script('rebuild-preview/home-dashboard.js'),
+   script('rebuild-preview/round-policy.js')
+  ]);
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
   const typed=document.getElementById('scene-query')?.value||'';
