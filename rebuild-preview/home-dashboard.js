@@ -43,7 +43,7 @@
     return `<section class="home-recent"><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row">${rows.slice(0,3).map(s=>`<button onclick="PAI_SCENE_SEARCH.open('${esc(s.id)}','${esc(searchApi()?.recentDifficulty?.(s.id)||'all')}')">${esc(s.name)}</button>`).join('')}</div></section>`;
   }
   function canResumeScene(scene){
-    return !!(scene&&state.learningSession?.kind==='scene'&&state.selectedScene===scene&&Array.isArray(state.learningSession.queue)&&state.learningSession.queue.length);
+    return !!(scene&&state.learningSession?.kind==='scene'&&state.selectedScene===scene&&state.learningSession.scene500Difficulty===(searchApi()?.recentDifficulty?.(scene)||'all')&&Array.isArray(state.learningSession.queue)&&state.learningSession.queue.length);
   }
   function renderHome(){
     const b=budget(),last=lastScene(),fallback=firstPlayable(),s=ui();
@@ -83,7 +83,7 @@
     runSceneSearch(q,difficulty||'all');
   };
   window.continueScene500=function(scene,difficulty='all'){
-    if(canResumeScene(scene)&&typeof window.resumeLearning==='function')return window.resumeLearning();
+    if(canResumeScene(scene)&&state.learningSession.scene500Difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
   window.render=function(){if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
