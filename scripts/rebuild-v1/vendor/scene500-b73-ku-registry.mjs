@@ -32,7 +32,7 @@ export function planSrsMigration(records,oldKnownIds,newKnownIds,transitions=[])
   if(target.has(id)) {kept[id]=record;continue;}
   const tr=byFrom.get(id);
   if(!tr){pending[id]={record,reason:'NO_VERIFIED_MIGRATION'};continue;}
-  if(tr.type==='split'||tr.to.length!==1){pending[id]={record,reason:'SPLIT_REQUIRES_EXPLICIT_RESOLUTION',targets:tr.to};continue;}
+  if(tr.type!=='replace'||tr.to.length!==1){pending[id]={record,reason:'SPLIT_OR_MERGE_REQUIRES_EXPLICIT_RESOLUTION',targets:tr.to};continue;}
   const dest=tr.to[0];
   if(Object.hasOwn(kept,dest)||Object.hasOwn(records,dest)||proposed.some(p=>p.to===dest)){
    pending[id]={record,reason:'DESTINATION_COLLISION',targets:tr.to};continue;
