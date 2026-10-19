@@ -40,3 +40,20 @@ export function readSnapshot(db){
   request.onerror=()=>reject(request.error);
  });
 }
+
+export function initializeSnapshot(db,initialState){
+ if(!initialState||typeof initialState!=='object'||Array.isArray(initialState)||!initialState.records||typeof initialState.records!=='object'||Array.isArray(initialState.records))throw new Error('Invalid initial learning state');
+ return new Promise((resolve,reject)=>{
+  const tx=db.transaction('snapshot','readwrite'),store=tx.objectStore('snapshot');
+  let outcome=null;
+  const req=store.get('current');
+  req.onerror=()=>{try{tx.abort()}catch{}};
+  req.onsuccess=()=>{
+   if(req.result!==undefined){outcome={status:'existing',version:req.result.version};return}
+   store.put({version:0,state:initialState,committedAttempts:{}},'current');
+   outcome={status:'initialized',version:0};
+  };
+  tx.oncomplete=()=>resolve(outcome);
+  tx.onabort=()=>reject(tx.error||new Error('Initialization aborted'));
+ });
+}
