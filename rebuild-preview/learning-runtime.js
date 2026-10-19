@@ -367,7 +367,23 @@
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
  document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+700},{passive:true});
  document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;window.__paiTapSuppressUntil=Date.now()+700;window.browseAnswer?.(x>0?-1:1)},{passive:true});
- document.addEventListener('visibilitychange',()=>{if(state.view!=='learning')return;if(document.hidden){clear();state.revealed=false}else window.restartLearningQuestion?.()});
+ // Backgrounding never turns an already revealed answer into a fresh timed question.
+ let hiddenAt=0,hiddenPhase=null;
+ document.addEventListener('visibilitychange',()=>{
+  if(state.view!=='learning')return;
+  if(document.hidden){
+   hiddenAt=Date.now();hiddenPhase=phase;
+   if(timer!==null){clearTimeout(timer);timer=null}
+   generation++;window.PAI_AUDIO?.stop();
+   if(phase==='answer'||phase==='repeating'||phase==='example')phase='answer-paused';
+  }else if(hiddenAt){
+   const pausedFor=Math.max(0,Date.now()-hiddenAt);
+   if(hiddenPhase==='question'&&phase==='question')began+=pausedFor;
+   // Answer and repetition remain paused: no automatic result after backgrounding.
+   hiddenAt=0;hiddenPhase=null;
+   window.render?.();
+  }
+ });
 })();
 
 ;
