@@ -3,7 +3,7 @@
   "source": "data/audit/core13k20k-p0-evidence-v6.json",
   "total": 20,
   "drafted": 5,
-  "source_verified": 18,
+  "source_verified": 19,
   "release_eligible": 0,
   "rows": [
     {
@@ -153,11 +153,16 @@
       "old_zh": "look at=看；look for=寻找；look after=照顾。",
       "core20k_zh": "看；瞧",
       "proposed_zh": null,
-      "source_url": null,
-      "source_content_checked": false,
+      "source_url": "https://dictionary.cambridge.org/dictionary/english/look-for",
+      "source_content_checked": true,
       "editorial_checked": false,
-      "status": "pending_evidence",
-      "release_eligible": false
+      "status": "component_definitions_verified_comparison_pending",
+      "release_eligible": false,
+      "additional_source_urls": [
+        "https://dictionary.cambridge.org/dictionary/english/look-at",
+        "https://dictionary.cambridge.org/dictionary/english/look-after"
+      ],
+      "source_evidence": "Cambridge individually defines look at as directing the eyes, look for as trying to find, and look after as caring for. This is three component definitions, not a directly compared teaching group."
     },
     {
       "ku_id": "w_0076_look_ku06",
