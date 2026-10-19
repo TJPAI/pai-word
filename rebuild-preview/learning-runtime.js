@@ -401,7 +401,7 @@
  window.setAutoPronounce=(kind,enabled)=>{if(!['question','swipe'].includes(kind))return;state.autoPronounce[kind]=!!enabled;persist();render()};
  let active=false,loading=false,error='',startedAt=0,token=0,previousUnit=null;
  const newAttemptId=()=>('crypto' in window&&typeof crypto.randomUUID==='function'?crypto.randomUUID():('attempt-'+Date.now()+'-'+Math.random().toString(36).slice(2)));
- const ensureAttempt=()=>{const sess=state.learningSession,k=sess?.queue?.[0];if(!k)return null;if(!sess.currentAttempt||sess.currentAttempt.kuId!==k){sess.currentAttempt={attemptId:newAttemptId(),kuId:k,committed:false};persist()}return sess.currentAttempt};
+ const ensureAttempt=()=>{const sess=state.learningSession,k=sess?.queue?.[0];if(!k)return null;if(!sess.currentAttempt||sess.currentAttempt.kuId!==k||sess.currentAttempt.committed){const previous=sess.currentAttempt;const next={attemptId:newAttemptId(),kuId:k,committed:false};sess.currentAttempt=next;try{persist()}catch(e){sess.currentAttempt=previous;throw e}}return sess.currentAttempt};
  const due=()=>Object.entries(state.records).filter(([k,r])=>byKey(k)&&(r.learningPending||r.lastKnown===false||r.due<=Date.now())).sort((a,b)=>(b[1].learningPending?1:0)-(a[1].learningPending?1:0)||a[1].due-b[1].due).map(([k])=>k);
  const fresh=()=>{globalNewRemaining();return [...state.daily.newWordKeys,...state.daily.reinforcementKeys].filter(k=>!state.records[k])};
  const unit=()=>byKey(state.learningSession?.queue[0]);
@@ -685,7 +685,8 @@
   if(!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
   const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k,attempt=ensureAttempt();if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
-  const before=state,draft=structuredClone(state);
+  let before,draft;
+  try{before=state;draft=structuredClone(state)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分状态复制失败',e);return}
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{
   if(!prev)markDailyNewComplete(k);
