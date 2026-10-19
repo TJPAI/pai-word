@@ -685,10 +685,10 @@
  }
  function learning(){
   const s=state.learningSession,u=browsedUnit||unit();if(!s)return home();
-  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${s.completed.length} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${(s.kind==='topic'||s.kind==='proposed')?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="${s.kind==='proposed'?'continueProposedScene()':'continueTopicStudy()'}">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
-  const total=Math.max(0,Number.isFinite(Number(s.total))?Math.floor(Number(s.total)):0);
-   const completed=new Set((s.completed||[]).filter(k=>window.PAI_CORE?.byKU?.has(k))).size;
-   const progress=`已完成 ${Math.min(completed,total)} / ${total}`;
+   const sessionTotal=Math.max(0,Number.isFinite(Number(s.total))?Math.floor(Number(s.total)):0);
+   const sessionCompleted=Math.min(new Set((s.completed||[]).filter(k=>window.PAI_CORE?.byKU?.has(k))).size,sessionTotal);
+  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${sessionCompleted} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${(s.kind==='topic'||s.kind==='proposed')?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="${s.kind==='proposed'?'continueProposedScene()':'continueTopicStudy()'}">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
+  const progress=`已完成 ${sessionCompleted} / ${sessionTotal}`;
   if(loading||error)return `<div class="screen study-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const repeat=s.seen[u.k]>0;
