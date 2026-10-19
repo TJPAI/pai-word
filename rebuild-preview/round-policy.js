@@ -117,16 +117,8 @@
     due:Math.max(0,Number(window.PAI_LEARNING_QA?.due?.().length||0))
   });
 
-  if(window.PAI_TAP_FLOW?.correct){
-    const baseCorrect=window.PAI_TAP_FLOW.correct.bind(window.PAI_TAP_FLOW);
-    window.PAI_TAP_FLOW.correct=function(score){
-      if(!['again','hard','good'].includes(score))return baseCorrect(score);
-      const u=window.getVisibleLearningUnit?.();
-      if(state.view!=='learning'||!state.revealed||!u)return baseCorrect(score);
-      window.PAI_TAP_FLOW.cancel?.();
-      return window.rateLearning?.(score,u.k);
-    };
-  }
+  // Grading correction stays in TapFlow until the scheduled final commit.
+  // Do not override TapFlow.correct with immediate SRS writes.
 
   const baseRender=window.render;
   window.render=function(){
