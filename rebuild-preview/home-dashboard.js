@@ -65,16 +65,22 @@
       </main>
     </div></div>`;
   }
-  function runSceneSearch(q,difficulty){
-    // Scene recommendations do not depend on optional Top100 count-pack loading.
+  function runSceneSearch(q,difficulty,{restore=false}={}){
+    // A saved recommendation must not be replaced by a transient empty index
+    // during boot. Explicit user searches may legitimately have zero matches.
     const results=searchApi()?.search(q,difficulty,5)||[];
-    state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
+    const ids=results.map(x=>x.id);
+    const previous=ui();
+    const preserved=restore&&ids.length===0&&previous.query===q&&Array.isArray(previous.resultIds)&&previous.resultIds.length>0;
+    state.sceneSearchUi={query:q,difficulty,resultIds:preserved?previous.resultIds:ids};
+    if(!preserved)save();
+    render();
   }
   window.restoreScene500Recommendations=function(){
     const s=ui(),q=(s.query||'').trim();
     if(!q)return;
     // Recalculate against the current Scene500 index, without scrolling the page.
-    runSceneSearch(q,s.difficulty||'all');
+    runSceneSearch(q,s.difficulty||'all',{restore:true});
   };
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
