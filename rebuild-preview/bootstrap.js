@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-scene41';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-search42';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
@@ -20,17 +20,13 @@
   const membershipReady=sceneMembership();
   await catalogReady;mark('catalog');
   [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);mark('memberships');
-  // Download in parallel, execute in insertion order (dynamic scripts: async=false).
-  // Preserve the established global dependencies without seven sequential network waits.
-  await Promise.all([
-   script('rebuild-preview/learning-runtime.js'),
-   script('audio-compat.js'),
-   script('scene500-integrated.js'),
-   script('scene500-sense-review.js'),
-   script('scene-search.js'),
-   script('rebuild-preview/home-dashboard.js'),
-   script('rebuild-preview/round-policy.js')
-  ]);
+  await script('rebuild-preview/learning-runtime.js');
+  await script('audio-compat.js');
+  await script('scene500-integrated.js');
+  await script('scene500-sense-review.js');
+  await script('scene-search.js');
+  await script('rebuild-preview/home-dashboard.js');
+  await script('rebuild-preview/round-policy.js');
   mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
