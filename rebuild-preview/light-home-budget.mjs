@@ -1,9 +1,8 @@
 export function countDueFromHomeMetadata(records,metadata,{now=Date.now()}={}){
- if(metadata?.schema!=='pai-word-v21-home-ku-metadata-v1'||!Array.isArray(metadata.entries)||!Number.isInteger(metadata.playableKU)||metadata.entries.length!==metadata.playableKU)throw Error('HOME_KU_METADATA_INVALID');
- const seen=new Set();let count=0;
+ validateHomeKuMetadata(metadata);
+ let count=0;
  for(const row of metadata.entries){
-  if(!Array.isArray(row)||row.length!==2||typeof row[0]!=='string'||!row[0]||!Number.isInteger(row[1])||row[1]<1||seen.has(row[0]))throw Error('HOME_KU_METADATA_ENTRY');
-  seen.add(row[0]);
+  if(!Array.isArray(row)||row.length!==2||typeof row[0]!=='string'||!row[0]||!Number.isInteger(row[1])||row[1]<1)throw Error('HOME_KU_METADATA_ENTRY');
   const rec=records?.[row[0]];
   if(rec&&Number.isFinite(rec.due)&&rec.due<=now)count+=row[1];
  }
@@ -11,6 +10,13 @@ export function countDueFromHomeMetadata(records,metadata,{now=Date.now()}={}){
 }
 // Read-only preflight for lightweight-home statistics.
 // Do not synthesize due/reinforcement counts from incomplete KU metadata.
+export function validateHomeKuMetadata(metadata){
+ if(metadata?.schema!=='pai-word-v21-home-ku-metadata-v1'||metadata.coreRelease!=='Core20K-dev'||metadata.sceneRelease!=='SceneRank500-V4'||metadata.top100Entries!==22227||!Number.isInteger(metadata.playableKU)||metadata.playableKU<22227||!Array.isArray(metadata.entries)||metadata.entries.length!==metadata.playableKU)throw Error('HOME_KU_METADATA_INCOMPLETE');
+ const seen=new Set();let weighted=0;
+ for(const row of metadata.entries){if(!Array.isArray(row)||row.length!==2||typeof row[0]!=='string'||!row[0]||!Number.isInteger(row[1])||row[1]<1||seen.has(row[0]))throw Error('HOME_KU_METADATA_ENTRY');seen.add(row[0]);weighted+=row[1]-1}
+ if(weighted!==22227)throw Error('HOME_KU_MULTIPLICITY:'+weighted);
+ return metadata;
+}
 const DAILY_ALLOWED=new Set([25,50,100,200]);
 const ROUND_ALLOWED=new Set([10,25,50]);
 export function inspectHomeBudget(state,{now=new Date(),validKU=null,authoritativeDue=null,kuMetadata=null}={}){
@@ -25,7 +31,8 @@ export function inspectHomeBudget(state,{now=new Date(),validKU=null,authoritati
  const dailyCompleted=completed.length;
  const d=state.daily;
  const reinforcementQuota=Math.max(3,Math.round(dailyLimit*.30));
- const validSet=validKU instanceof Set?validKU:kuMetadata?.schema==='pai-word-v21-home-ku-metadata-v1'?new Set(kuMetadata.entries.map(row=>row[0])):null;
+ if(kuMetadata)validateHomeKuMetadata(kuMetadata);
+ const validSet=validKU instanceof Set?validKU:kuMetadata?new Set(kuMetadata.entries.map(row=>row[0])):null;
  const validAssignment=!!(validSet&&d?.date===date&&d.wordQuota===dailyLimit&&d.reinforcementQuota===reinforcementQuota&&d.lexiconLimit===20000&&d.policy==='selected-scene-words-v3'&&d.scene===(state.selectedScene||'daily')&&d.assigned&&Array.isArray(d.reinforcementKeys));
  const reinforcementRemaining=validAssignment?d.reinforcementKeys.filter(k=>validSet.has(k)&&!state.records?.[k]).length:null;
  const due=Number.isInteger(authoritativeDue)&&authoritativeDue>=0?authoritativeDue:kuMetadata?countDueFromHomeMetadata(state.records,kuMetadata,{now:now.getTime()}):null;
