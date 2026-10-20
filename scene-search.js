@@ -121,7 +121,13 @@
     state.scene500DifficultyByScene[scene]=difficulty;
     save();
   }
-  function open(scene,difficulty='all'){remember(scene,difficulty);return window.openScene(scene)}
+  function open(scene,difficulty='all'){
+    // Lightweight mode may defer the full engine. Never change recent history
+    // before its initialization succeeds; the default path remains unchanged.
+    const deferred=window.PAI_DEFERRED_LEARNING_ENTRY;
+    if(deferred&&typeof deferred.enter==='function')return deferred.enter(scene,difficulty);
+    remember(scene,difficulty);return window.openScene(scene);
+  }
   function recent(){return (state.scene500Recent||[]).map(id=>specs().find(s=>s.id===id)).filter(Boolean)}
   function recentDifficulty(id){return state.scene500DifficultyByScene?.[id]||'all'}
   window.PAI_SCENE_SEARCH={
