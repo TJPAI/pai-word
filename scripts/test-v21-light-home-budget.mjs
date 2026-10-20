@@ -18,4 +18,11 @@ const stale=inspectHomeBudget({...state,daily:{...state.daily,date:'2026-10-19'}
 assert.equal(stale.complete,false);
 assert.equal(stale.reinforcementRemaining,null);
 assert.equal(inspectHomeBudget(state,{now:new Date(2026,9,21,12)}).dailyCompleted,0);
+const metadata={schema:'pai-word-v21-home-ku-metadata-v1',playableKU:2,entries:[['a',3],['b',1]]};
+const derived=inspectHomeBudget(state,{now,kuMetadata:metadata});
+assert.equal(derived.complete,true);
+assert.equal(derived.due,0);
+assert.equal(derived.reinforcementRemaining,1);
+const dueState={...state,records:{a:{due:now.getTime()-1}}};
+assert.equal(inspectHomeBudget(dueState,{now,kuMetadata:metadata}).due,3);
 console.log('PASS lightweight home budget: daily progress, no false zero, stale assignment, day rollover');
