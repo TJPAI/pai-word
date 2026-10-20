@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-restore44';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-atomic45';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
@@ -33,8 +33,9 @@
   const typed=document.getElementById('scene-query')?.value||'';
   const difficulty=document.getElementById('scene-difficulty')?.value||'all';
   state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||state.sceneSearchUi?.query||typed||'',difficulty:preboot?.difficulty||state.sceneSearchUi?.difficulty||difficulty,resultIds:preboot?.query?[]:(state.sceneSearchUi?.resultIds||[])};
-  state.view='scenes';state.revealed=false;render();mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
-  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function')queueMicrotask(()=>{window.restoreScene500Recommendations();mark('recommendationsRestored')});
+  state.view='scenes';state.revealed=false;
+  // Assemble final home content behind the boot gate; expose it only once.
+
   // Optional packs must never replace an already usable homepage with a fatal loading screen.
   try{
   // Non-critical Scene500 packs and inventory load after first interactive home render.
@@ -66,6 +67,8 @@
    mark('recommendationsAfterPacks');
   }
 
+  if(!state.sceneSearchUi?.query)render();
+  mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   // V2.1 isolation: preview must never register the shared root-scope worker.
   // Dedicated scoped offline support will be introduced after worker isolation tests.
