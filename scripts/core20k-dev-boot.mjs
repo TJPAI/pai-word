@@ -3,6 +3,8 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   const started=performance.now();
   const timing={};
   const mark=label=>{timing[label]=Math.round(performance.now()-started);window.PAI_CORE20K_LOAD_TIMINGS={...timing}};
+  // Fetch the runtime adapter concurrently with the compressed lexicon.
+  const adapterReady=import('./core20k-unified-runtime-adapter.mjs');
   const response=await fetcher(url,{cache:'default'});
   if(!response.ok)throw Error('CORE20K_DATA_HTTP_'+response.status);
   const buffer=await response.arrayBuffer();mark('download');
@@ -11,7 +13,7 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   else if(window.pako?.ungzip)raw=new TextDecoder().decode(window.pako.ungzip(new Uint8Array(buffer)));
   else throw Error('CORE20K_GZIP_NOT_SUPPORTED');
   mark('decompressed');
-  const {buildCore20KRuntime}=await import('./core20k-unified-runtime-adapter.mjs');
+  const {buildCore20KRuntime}=await adapterReady;
   const core=buildCore20KRuntime(JSON.parse(raw));mark('indexed');
   if(core.qa.words!==20000||core.qa.activeKU<16000||core.qa.playableSense<12000)throw Error('CORE20K_INCOMPLETE_DATA');
   const previous=window.PAI_CORE, previousWords=[...WORDS], previousScenes={...SCENES};
