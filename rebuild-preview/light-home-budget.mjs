@@ -1,3 +1,14 @@
+export function countDueFromHomeMetadata(records,metadata,{now=Date.now()}={}){
+ if(metadata?.schema!=='pai-word-v21-home-ku-metadata-v1'||!Array.isArray(metadata.entries)||!Number.isInteger(metadata.playableKU)||metadata.entries.length!==metadata.playableKU)throw Error('HOME_KU_METADATA_INVALID');
+ const seen=new Set();let count=0;
+ for(const row of metadata.entries){
+  if(!Array.isArray(row)||row.length!==2||typeof row[0]!=='string'||!row[0]||!Number.isInteger(row[1])||row[1]<1||seen.has(row[0]))throw Error('HOME_KU_METADATA_ENTRY');
+  seen.add(row[0]);
+  const rec=records?.[row[0]];
+  if(rec&&Number.isFinite(rec.due)&&rec.due<=now)count+=row[1];
+ }
+ return count;
+}
 // Read-only preflight for lightweight-home statistics.
 // Do not synthesize due/reinforcement counts from incomplete KU metadata.
 const DAILY_ALLOWED=new Set([25,50,100,200]);
