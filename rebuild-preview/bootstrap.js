@@ -1,12 +1,12 @@
 (async function(){
- const VERSION='core20k-v21-fast46';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-fast47';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
  mark('bootstrap');
 
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.async=false;el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
- async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
+ async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'default'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
  async function sceneMembership(){
   try{return await json('data/scene500-playable-membership-v2.json')}
   catch(v2Error){
