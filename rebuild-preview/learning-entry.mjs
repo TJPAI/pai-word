@@ -1,7 +1,7 @@
 // Lightweight-home boundary: one and only one engine initialization on first learning intent.
 // The existing learning engine remains authoritative; this module never reads/writes SRS.
-let pending=null,ready=false;
 export function createLearningEntry({load,open,onError=()=>{}}){
+ let pending=null,ready=false;
  if(typeof load!=='function'||typeof open!=='function')throw Error('LEARNING_ENTRY_DEPENDENCIES');
  const preload=()=>{
    if(ready)return Promise.resolve();
