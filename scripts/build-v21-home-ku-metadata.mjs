@@ -32,6 +32,7 @@ for(let group=1;group<=20;group++){
 }
 if(totalRows!==50000||accepted!==22227)throw Error('HOME_KU_COVERAGE:'+totalRows+':'+accepted);
 const entries=[...multiplicity].sort((a,b)=>a[0].localeCompare(b[0]));
+if(entries.length!==playable.size||entries.reduce((n,[,count])=>n+count-1,0)!==accepted)throw Error('HOME_KU_MULTIPLICITY_MISMATCH');
 const payload={schema:'pai-word-v21-home-ku-metadata-v1',coreRelease:'Core20K-dev',sceneRelease:'SceneRank500-V4',playableKU:playable.size,top100Entries:accepted,entries};
 const output=path.join(root,'rebuild-preview/data/home-ku-metadata-v1.json');
 fs.mkdirSync(path.dirname(output),{recursive:true});
