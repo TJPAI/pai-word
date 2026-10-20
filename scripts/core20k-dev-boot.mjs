@@ -1,6 +1,6 @@
 // Development-only Core20K boot option. ?core20k=1; falls back to existing catalog on any error.
 export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetcher=fetch}={}){
-  const response=await fetcher(url,{cache:'no-store'});
+  const response=await fetcher(url,{cache:'default'});
   if(!response.ok)throw Error('CORE20K_DATA_HTTP_'+response.status);
   const buffer=await response.arrayBuffer();
   let raw;
