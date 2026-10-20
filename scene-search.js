@@ -59,6 +59,8 @@
     return Number.isFinite(n)&&n>=0?n:null;
   }
   function inventory(scene,difficulty='all'){
+    const light=window.PAI_LIGHT_HOME_INDEX?.scenes?.[scene];
+    if(light)return {scene,difficulty,reviewedCount:light.counts?.[difficulty]??light.counts?.all??0,candidateCount:null};
     return {
       scene,
       difficulty,
