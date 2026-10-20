@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-fast47';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-measure48';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
@@ -53,6 +53,15 @@
 
   if(!state.sceneSearchUi?.query)render();
   mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  // Read-only diagnostics: available from the console; never persist or alter study state.
+  window.PAI_STARTUP_REPORT=()=>{
+   const t=window.PAI_BOOT_TIMINGS||{},c=window.PAI_CORE20K_LOAD_TIMINGS||{};
+   const nav=performance.getEntriesByType('navigation')[0];
+   const start=nav?.startTime||0;
+   return {version:VERSION,homeReadyMs:t.homeRendered??null,
+    stagesMs:{...t},core20kMs:{...c},
+    navigationMs:nav?{domContentLoaded:Math.round(nav.domContentLoadedEventEnd-start),loadEvent:Math.round(nav.loadEventEnd-start)}:null};
+  };
   // Inventory and audit are not required to present or use the home screen.
   // Run after the first complete paint, without triggering another home render.
   setTimeout(async()=>{try{
