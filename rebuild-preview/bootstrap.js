@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-atomic45';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-fast46';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
@@ -43,6 +43,19 @@
    const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
    await installScene500Top100();
   }
+  }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
+  // Match public preview: search again after the optional Scene500 word pool
+  // finishes installing. Early home rendering must not permanently store zero results.
+  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
+   window.restoreScene500Recommendations();
+   mark('recommendationsAfterPacks');
+  }
+
+  if(!state.sceneSearchUi?.query)render();
+  mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  // Inventory and audit are not required to present or use the home screen.
+  // Run after the first complete paint, without triggering another home render.
+  setTimeout(async()=>{try{
   // Display coarse Scene500 inventory separately from reviewed learning membership.
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    try{
@@ -59,16 +72,7 @@
    window.PAI_SCENE500_REVIEW_AUDIT=gate.validateReviewIndex(review);
   }
 
-  }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
-  // Match public preview: search again after the optional Scene500 word pool
-  // finishes installing. Early home rendering must not permanently store zero results.
-  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
-   window.restoreScene500Recommendations();
-   mark('recommendationsAfterPacks');
-  }
-
-  if(!state.sceneSearchUi?.query)render();
-  mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  }catch(error){console.warn('Deferred Scene500 metadata unavailable',error)}},0);
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   // V2.1 isolation: preview must never register the shared root-scope worker.
   // Dedicated scoped offline support will be introduced after worker isolation tests.
