@@ -1,28 +1,29 @@
 import assert from 'node:assert/strict';
-import {inspectHomeBudget} from '../rebuild-preview/light-home-budget.mjs';
-const now=new Date(2026,9,20,12);
-const state={newPerDay:50,wordsPerRound:10,records:{a:{}},
- dailyNewProgress:{date:'2026-10-20',newWordsCompleted:['one','two']},
- selectedScene:'S001',
- daily:{date:'2026-10-20',wordQuota:50,reinforcementQuota:15,lexiconLimit:20000,
-  policy:'selected-scene-words-v3',scene:'S001',assigned:{S001:['a']},reinforcementKeys:['a','b']}};
-const incomplete=inspectHomeBudget(state,{now});
-assert.equal(incomplete.dailyCompleted,2);
-assert.equal(incomplete.complete,false);
-assert.equal(incomplete.reinforcementRemaining,null);
-assert.equal(incomplete.due,null);
-const complete=inspectHomeBudget(state,{now,validKU:new Set(['a','b']),authoritativeDue:4});
-assert.equal(complete.complete,true);assert.equal(complete.reinforcementRemaining,1);
-assert.equal(complete.due,4);assert.equal(complete.dailyRemaining,48);
-const stale=inspectHomeBudget({...state,daily:{...state.daily,date:'2026-10-19'}},{now,validKU:new Set(['a','b']),authoritativeDue:4});
-assert.equal(stale.complete,false);
-assert.equal(stale.reinforcementRemaining,null);
-assert.equal(inspectHomeBudget(state,{now:new Date(2026,9,21,12)}).dailyCompleted,0);
-const metadata={schema:'pai-word-v21-home-ku-metadata-v1',coreRelease:'Core20K-dev',sceneRelease:'SceneRank500-V4',top100Entries:22227,playableKU:22227,entries:[['a',3],['b',1],...Array.from({length:22225},(_,i)=>['test-ku-'+i,i===0?22226:1])]};
-const derived=inspectHomeBudget(state,{now,kuMetadata:metadata});
-assert.equal(derived.complete,true);
-assert.equal(derived.due,0);
-assert.equal(derived.reinforcementRemaining,1);
-const dueState={...state,records:{a:{due:now.getTime()-1}}};
-assert.equal(inspectHomeBudget(dueState,{now,kuMetadata:metadata}).due,3);
-console.log('PASS lightweight home budget: daily progress, no false zero, stale assignment, day rollover');
+import fs from 'node:fs';
+import vm from 'node:vm';
+import {loadHomeSources} from './build-v21-home-ku-metadata.mjs';
+import {inspectHomeBudget,countDueFromHomeMetadata} from '../rebuild-preview/light-home-budget.mjs';
+const {core}=await loadHomeSources();
+const metadata=JSON.parse(fs.readFileSync('rebuild-preview/data/home-ku-metadata-v1.json'));
+const source=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+const daily=source.split('// SOURCE: app-runtime.js')[0];
+const due=source.match(/const due=\(\)=>Object.entries\(state.records\).*?;/)[0];
+const entries=[...core.byKU.keys()];let cases=0;
+for(const scene of ['daily','S001','S123'])for(const quota of [25,50,100,200])for(const stale of [false,true]){
+ const state={newPerDay:quota,wordsPerRound:25,selectedScene:scene,records:{}};
+ entries.forEach((k,i)=>{if(i%7===0)state.records[k]={due:i%2?Date.now()+999999:0};if(i%13===0)state.records[k]={due:Date.now()+999999,learningPending:true};if(i%17===0)state.records[k]={due:Date.now()+999999,lastKnown:false}});
+ state.records.orphan={due:0};
+ const c={state,window:{PAI_CORE:core},SCENES:globalThis.SCENES,save:()=>{},findUnitByKey:k=>core.byKU.get(k),unitKey:(w,sid)=>sid,queueFor:null,todayCount:null,byKey:k=>core.byKU.get(k),Date,console};
+ vm.createContext(c);vm.runInContext(daily+'\n'+due+'\nglobalThis.expectedDue=due;',c);
+ c.window.rebuildDailyAssignments();
+ if(stale)state.daily.date='2000-01-01';
+ const before=JSON.stringify(state),projected=inspectHomeBudget(state,{kuMetadata:metadata});
+ assert.equal(JSON.stringify(state),before,'projection writes state');
+ assert.equal(projected.due,c.expectedDue().length);
+ assert.equal(projected.reinforcementRemaining,c.window.globalReinforcementRemaining());
+ assert.equal(projected.dailyCompleted,c.window.globalNewCompleted());cases++;
+}
+const repeated=metadata.sceneOccurrences.find(([,n])=>n>1)[0];
+assert.equal(countDueFromHomeMetadata({[repeated]:{due:0}},metadata),1);
+assert.equal(inspectHomeBudget({records:{}},{kuMetadata:metadata}).complete,true);
+console.log('PASS real-runtime budget parity',cases,'cases; distinct KU due, stale rebuild, read-only');
