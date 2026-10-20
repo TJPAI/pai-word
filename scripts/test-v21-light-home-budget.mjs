@@ -18,7 +18,7 @@ const stale=inspectHomeBudget({...state,daily:{...state.daily,date:'2026-10-19'}
 assert.equal(stale.complete,false);
 assert.equal(stale.reinforcementRemaining,null);
 assert.equal(inspectHomeBudget(state,{now:new Date(2026,9,21,12)}).dailyCompleted,0);
-const metadata={schema:'pai-word-v21-home-ku-metadata-v1',playableKU:2,entries:[['a',3],['b',1]]};
+const metadata={schema:'pai-word-v21-home-ku-metadata-v1',coreRelease:'Core20K-dev',sceneRelease:'SceneRank500-V4',top100Entries:22227,playableKU:22227,entries:[['a',3],['b',1],...Array.from({length:22225},(_,i)=>['test-ku-'+i,i===0?22226:1])]};
 const derived=inspectHomeBudget(state,{now,kuMetadata:metadata});
 assert.equal(derived.complete,true);
 assert.equal(derived.due,0);
