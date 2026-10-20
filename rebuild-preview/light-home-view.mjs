@@ -13,8 +13,8 @@ export function buildLightHomeView({index,query='',difficulty='all',results=[],b
  const last=continueScene&&index.scenes[continueScene]?continueScene:null;
  return `<div class="home-dashboard"><div class="home-shell"><header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p></div><div class="home-actions"><button data-home-action="stats" class="home-quiet-btn">统计</button><button data-home-action="settings" class="home-quiet-btn">设置</button></div></header><main class="home-focus"><section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(last?index.scenes[last].name:'开始一个场景')}</h2><p>今日新词 ${budget.dailyCompleted}/${budget.dailyLimit} · 每轮 ${budget.roundLimit}${budget.reinforcementRemaining?` · 强化 ${budget.reinforcementRemaining}`:''}${budget.due?` · 到期 ${budget.due}`:''}</p></div><div class="continue-actions">${last?`<button class="continue-primary" data-scene-id="${esc(last)}">继续</button>`:''}</div></section><section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你想学习的场景。</p></div><textarea id="scene-query" class="scene-query" rows="3" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(query)}</textarea><div class="scene-search-controls"><label>难度<select id="scene-difficulty">${levels.map(d=>`<option value="${d}"${level===d?' selected':''}>${labels[d]}</option>`).join('')}</select></label><button class="find-scenes" data-home-action="search">找场景</button></div>${recommendation}</section></main></div></div>`;
 }
-export function mountLightHome({element,index,state,budget,search,onScene,onAction}){
- if(!element||typeof search!=='function'||typeof onScene!=='function'||typeof onAction!=='function')throw Error('HOME_CALLBACKS_REQUIRED');
+export function mountLightHome({element,index,state,budget,search,onScene,onAction,persist}){
+ if(!element||typeof search!=='function'||typeof onScene!=='function'||typeof onAction!=='function'||typeof persist!=='function')throw Error('HOME_CALLBACKS_REQUIRED');
  const show=()=>{
   const q=state.sceneSearchUi?.query||'',d=state.sceneSearchUi?.difficulty||'all';
   element.innerHTML=buildLightHomeView({index,query:q,difficulty:d,results:state.sceneSearchUi?.resultIds||[],budget,continueScene:(state.scene500Recent||[])[0]});
@@ -27,7 +27,7 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
    const query=element.querySelector('#scene-query')?.value.trim()||'';
    const difficulty=element.querySelector('#scene-difficulty')?.value||'all';
    state.sceneSearchUi={query,difficulty,resultIds:search(query,difficulty).map(s=>s.id)};
-   show();
+   persist(state);show();
   }else onAction(action.dataset.homeAction);
  });
  element.addEventListener('change',event=>{
@@ -35,7 +35,7 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
   const query=element.querySelector('#scene-query')?.value.trim()||'';
   const difficulty=event.target.value;
   state.sceneSearchUi={query,difficulty,resultIds:query?search(query,difficulty).map(s=>s.id):[]};
-  show();
+  persist(state);show();
  });
  return {render:show};
 }
