@@ -13,10 +13,8 @@ export function createLearningEntry({load,open,onError=()=>{}}){
   enter:async (scene,difficulty='all')=>{
    if(!scene||typeof scene!=='string')throw Error('LEARNING_SCENE_REQUIRED');
    // Do not alter any scene history or user record before the engine is ready.
-   const entry=this;
    // Use shared promise for simultaneous taps; open only after successful load.
-   if(!pending){pending=Promise.resolve().then(load).then(()=>{ready=true}).catch(err=>{pending=null;onError(err);throw err})}
-   await pending;
+   await this.preload();
    return open(scene,difficulty);
   }
  };
