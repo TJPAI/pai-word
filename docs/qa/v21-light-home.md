@@ -140,3 +140,24 @@ Safety command:
 ```
 PAI_CHROMIUM=/path/to/chromium PAI_ROLLBACK_ROOT=/path/to/f2ac8c5-tree node scripts/test-v21-browser-safety.mjs
 ```
+
+
+## Writer lease lifecycle follow-up (2026-10-21, development only)
+
+Commit b621f2ac changes the preview writer lease to release its Web Lock when
+a stored-snapshot mismatch rejects a save, when a document receives pagehide,
+and when a document is restored from BFCache. Such a page becomes read-only
+until a refresh; it must not reuse an old in-memory learning state. Concurrent
+calls to acquirePreviewWriter in the same document now reuse one request.
+
+Targeted JS execution through the GitHub-loaded source verified that an
+out-of-band localStorage modification rejects save(), marks the tab read-only,
+and releases the held lease exactly once. The new standalone Node regression
+is scripts/test-v21-writer-lease.mjs; it is automatically included by
+scripts/test-v21-all.mjs, but has NOT been executed in a checked-out Node
+environment in this follow-up. Chromium, WebKit, and real Safari remain
+unverified for this new change. Existing recorded Chromium test results refer
+to earlier commits and must not be represented as a pass for the new HEAD.
+
+Network-only preview service worker and unsupported offline reload remain
+unchanged; no offline-support claim or deployment is made.
