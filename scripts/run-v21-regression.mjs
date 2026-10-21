@@ -27,6 +27,7 @@ const required=[
  "test-v21-rating-phases.mjs",
  "test-v21-rating-transaction.mjs",
  "test-v21-scene-refresh.mjs",
+ "test-v21-scene500-round-queue.mjs",
  "test-v21-scene-search-click.mjs",
  "test-v21-study-contract.mjs",
  "test-v21-three-rating-controls.mjs",
