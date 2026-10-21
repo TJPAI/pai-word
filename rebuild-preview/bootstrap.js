@@ -26,6 +26,10 @@
     state={...state,...previous.snapshot};
     const settings=await window.PAI_KU_DURABLE.readSettings(durableDB);
     if(settings&&typeof settings==='object')state={...state,...settings};
+    const home=await window.PAI_KU_DURABLE.readHome(durableDB);
+    if(home&&typeof home==='object'){
+     for(const key of ['sceneSearchUi','scene500Recent','scene500DifficultyByScene'])if(Object.prototype.hasOwnProperty.call(home,key))state[key]=home[key];
+    }
     state.view='scenes';state.revealed=false;
    }
    window.PAI_KU_DURABLE_DB=durableDB;
