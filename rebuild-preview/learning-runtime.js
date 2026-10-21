@@ -350,7 +350,7 @@
  function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=()=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(score,visibleKey):window.rateLearning?.(score,visibleKey);const g=generation;window.render?.();finish(g)}
  function choose(score){
   if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
-  window.PAI_AUTOBROWSE?.stop();++browseToken;
+  window.PAI_AUTOBROWSE?.stop();window.PAI_CANCEL_PENDING_BROWSE?.();
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
@@ -683,6 +683,7 @@
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
+ window.PAI_CANCEL_PENDING_BROWSE=()=>{++browseToken};
  const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
