@@ -47,4 +47,16 @@ assert.deepEqual([...run('all',{},['a','a2','d'])],['a','d','b','c','e'],
  assert.deepEqual([...state.learningSession.queue],['a','b'],
   'legacy scene must not repeat due senses or reintroduce the same word as fresh');
 }
+// Reinforcement sessions must also avoid repeating a headword in one round.
+{
+ const alpha={rank:10,w:'alpha'},beta={rank:20,w:'beta'};
+ const state={newPerDay:50,wordsPerRound:10,records:{},daily:{reinforcementKeys:['a','a2','b','a']}};
+ const window={PAI_CORE:{byKU:new Map([['a',{w:alpha}],['a2',{w:alpha}],['b',{w:beta}]])},
+  globalReinforcementRemaining(){},PAI_LEARNING_QA:{},openScene(){},render(){}};
+ const ctx={window,state,save(){},SCENES:{},document:{}};
+ vm.createContext(ctx);vm.runInContext(source,ctx);
+ window.openReinforcement();
+ assert.deepEqual([...state.learningSession.queue],['a','b'],
+  'reinforcement round must select only one KU per headword');
+}
 console.log('PASS: Scene500 rank bands, same-word and cross-sense dedupe, due-first queue');
