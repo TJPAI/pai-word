@@ -7,6 +7,34 @@ import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 const dir=path.dirname(fileURLToPath(import.meta.url)),root=path.dirname(dir);
 const tests=readdirSync(dir).filter(f=>/^test-v21-.*\.mjs$/.test(f)).sort();
+const required=[
+ "test-v21-audio-serialization.mjs",
+ "test-v21-conflict-reload.mjs",
+ "test-v21-core20k-scene500-integration.mjs",
+ "test-v21-cross-scene-daily-dedupe.mjs",
+ "test-v21-deferred-learning-entry.mjs",
+ "test-v21-deferred-scene-bridge.mjs",
+ "test-v21-duplicate-attempt-recovery.mjs",
+ "test-v21-historical-backup-failure.mjs",
+ "test-v21-historical-overlap.mjs",
+ "test-v21-historical-write-lock.mjs",
+ "test-v21-home-scene-counts.mjs",
+ "test-v21-home-search-diff.mjs",
+ "test-v21-light-home-budget.mjs",
+ "test-v21-light-home-startup.mjs",
+ "test-v21-migration-probe.mjs",
+ "test-v21-rating-blank-commit.mjs",
+ "test-v21-rating-phases.mjs",
+ "test-v21-rating-transaction.mjs",
+ "test-v21-scene-refresh.mjs",
+ "test-v21-scene-search-click.mjs",
+ "test-v21-study-contract.mjs",
+ "test-v21-three-rating-controls.mjs",
+ "test-v21-top100-runtime-identity.mjs",
+ "test-v21-transaction-store.mjs"
+];
+const missing=required.filter(name=>!tests.includes(name));
+if(missing.length){console.error('Incomplete V2.1 suite; missing tests:\\n'+missing.join('\\n'));process.exit(2)}
 if(!tests.length){console.error('No V2.1 tests discovered; refusing false PASS');process.exit(2)}
 const results=[];
 for(const file of tests){
