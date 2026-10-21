@@ -119,7 +119,25 @@
     state.scene500DifficultyByScene[scene]=difficulty;
     save();
   }
-  function open(scene,difficulty='all'){remember(scene,difficulty);return window.openScene(scene)}
+  function open(scene,difficulty='all'){
+    const label=window.SCENES?.[scene]||scene;
+    const status=document.getElementById('scene-open-status');
+    if(status)status.textContent='正在进入 '+label+'…';
+    try{
+      if(typeof window.openScene!=='function')throw Error('学习入口未准备好');
+      remember(scene,difficulty);
+      const result=window.openScene(scene);
+      if(state.view!=='learning')throw Error('未能进入学习页面，请检查当前场景是否有可学词');
+      if(status)status.textContent='';
+      return result;
+    }catch(error){
+      console.error('Scene500 open failed',scene,error);
+      const msg='进入场景失败：'+(error?.message||String(error));
+      if(status)status.textContent=msg;
+      else window.alert?.(msg);
+      return false;
+    }
+  }
   function recent(){return (state.scene500Recent||[]).map(id=>specs().find(s=>s.id===id)).filter(Boolean)}
   function recentDifficulty(id){return state.scene500DifficultyByScene?.[id]||'all'}
   window.PAI_SCENE_SEARCH={
