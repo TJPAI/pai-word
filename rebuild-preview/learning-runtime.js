@@ -753,14 +753,19 @@
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
  window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;PAI_TAP_FLOW.syncPage();if(!next)return false;persist();showCurrent();return true};
  // All swipe and auto-browse navigation passes through this single guarded entry.
+ let manualBrowsePending=0;
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
   const phase=PAI_TAP_FLOW.snapshot().phase;
   if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused','answer'].includes(phase))return false;
    if(phase==='answer')return source==='swipe'&&PAI_TAP_FLOW.commitEarly(direction);
-  // A newer browse request invalidates any in-flight older browse.
-  const moved=await window.browseAnswer(direction);
-  if(source==='swipe'&&moved&&state.autoBrowseEnabled&&['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))window.PAI_AUTOBROWSE?.restart();
-  return moved;
+  // Explicit swipes take priority over a simultaneous automatic navigation.
+  if(source==='auto'&&manualBrowsePending>0)return false;
+  if(source==='swipe')manualBrowsePending++;
+  try{
+   const moved=await window.browseAnswer(direction);
+   if(source==='swipe'&&moved&&state.autoBrowseEnabled&&['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))window.PAI_AUTOBROWSE?.restart();
+   return moved;
+  }finally{if(source==='swipe')manualBrowsePending=Math.max(0,manualBrowsePending-1)}
  };
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
