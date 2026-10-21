@@ -41,4 +41,15 @@ audio.whenIdle(()=>stopped++);
 audio.stop();
 assert.equal(stopped,1,'explicit stop must release waiting callbacks');
 assert.equal(watchdogs.size,0,'stopped utterances must clear watchdogs');
-console.log('PASS: replacement does not trigger premature rating speech, natural finish and stop release waiters');
+// Safari may never fire onend/onerror. The watchdog must release waiters exactly once.
+audio.play('stuck');
+let timedOut=0;
+audio.whenIdle(()=>timedOut++);
+assert.equal(watchdogs.size,1,'one active speech watchdog expected');
+const watchdog=[...watchdogs.values()][0].fn;
+watchdog();
+assert.equal(timedOut,1,'watchdog must release the pending rating');
+assert.equal(watchdogs.size,0,'watchdog must clean up');
+active?.onend?.();
+assert.equal(timedOut,1,'late speech event must not trigger a second completion');
+console.log('PASS: replacement does not trigger premature rating speech, natural finish and stop and watchdog release waiters');
