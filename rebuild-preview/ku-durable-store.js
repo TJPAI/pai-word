@@ -7,8 +7,8 @@
  function open(){
   return new Promise((resolve,reject)=>{
    if(!window.indexedDB)return reject(Error('IndexedDB unavailable'));
-   const r=indexedDB.open(NAME,2);
-   r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('state'))db.createObjectStore('state');if(!db.objectStoreNames.contains('attempts'))db.createObjectStore('attempts');if(!db.objectStoreNames.contains('settings'))db.createObjectStore('settings')};
+   const r=indexedDB.open(NAME,3);
+   r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('state'))db.createObjectStore('state');if(!db.objectStoreNames.contains('attempts'))db.createObjectStore('attempts');if(!db.objectStoreNames.contains('settings'))db.createObjectStore('settings');if(!db.objectStoreNames.contains('home'))db.createObjectStore('home')};
    r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error||Error('IndexedDB open failed'));
   });
  }
@@ -43,5 +43,7 @@
  }
  function readSettings(db){return new Promise((resolve,reject)=>{const tx=db.transaction('settings','readonly'),req=tx.objectStore('settings').get('current');req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)})}
  function writeSettings(db,settings){return new Promise((resolve,reject)=>{const tx=db.transaction('settings','readwrite');tx.objectStore('settings').put(settings,'current');tx.oncomplete=()=>resolve(true);tx.onabort=()=>reject(tx.error||Error('Settings write aborted'))})}
- window.PAI_KU_DURABLE={open,read,initialize,commit,readSettings,writeSettings};
+ function readHome(db){return new Promise((resolve,reject)=>{const tx=db.transaction('home','readonly'),req=tx.objectStore('home').get('current');req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)})}
+ function writeHome(db,home){return new Promise((resolve,reject)=>{const tx=db.transaction('home','readwrite');tx.objectStore('home').put(home,'current');tx.oncomplete=()=>resolve(true);tx.onabort=()=>reject(tx.error||Error('Home state write aborted'))})}
+ window.PAI_KU_DURABLE={open,read,initialize,commit,readSettings,writeSettings,readHome,writeHome};
 })();
