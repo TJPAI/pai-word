@@ -24,7 +24,14 @@
   function dueKeys(scene){
     const allDue=window.PAI_LEARNING_QA?.due?.()||[];
     if(isScene500(scene)){
-      const members=sceneMemberKeys(scene),difficulty=state.scene500DifficultyByScene?.[scene]||'all';return allDue.filter(k=>members.has(k)&&rankAllowed(Number(window.PAI_CORE?.byKU?.get(k)?.w?.rank)||999999,difficulty));
+      const members=sceneMemberKeys(scene),difficulty=state.scene500DifficultyByScene?.[scene]||'all',seenWords=new Set();
+      return allDue.filter(k=>{
+        const word=window.PAI_CORE?.byKU?.get(k)?.w;
+        if(!members.has(k)||!rankAllowed(Number(word?.rank)||999999,difficulty))return false;
+        const lemma=word?.rank??word?.w??k;
+        if(seenWords.has(lemma))return false;
+        seenWords.add(lemma);return true;
+      });
     }
     return allDue.filter(k=>window.PAI_CORE?.byKU?.get(k)?.s?.scene===scene);
   }
