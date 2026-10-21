@@ -21,17 +21,15 @@
    durableDB=await window.PAI_KU_DURABLE.open();
    const previous=await window.PAI_KU_DURABLE.initialize(durableDB,state);
    window.PAI_KU_DURABLE_VERSION=previous.version;
-   if(previous?.snapshot?.records){
-    // IndexedDB is the authoritative restored KU snapshot. Legacy localStorage is preserved.
-    state={...state,...previous.snapshot};
-    const settings=await window.PAI_KU_DURABLE.readSettings(durableDB);
-    if(settings&&typeof settings==='object')state={...state,...settings};
-    const home=await window.PAI_KU_DURABLE.readHome(durableDB);
-    if(home&&typeof home==='object'){
-     for(const key of ['sceneSearchUi','scene500Recent','scene500DifficultyByScene'])if(Object.prototype.hasOwnProperty.call(home,key))state[key]=home[key];
-    }
-    state.view='scenes';state.revealed=false;
+   // Restore each domain independently; a missing KU snapshot must not hide saved home/settings.
+   if(previous?.snapshot?.records)state={...state,...previous.snapshot};
+   const settings=await window.PAI_KU_DURABLE.readSettings(durableDB);
+   if(settings&&typeof settings==='object')state={...state,...settings};
+   const home=await window.PAI_KU_DURABLE.readHome(durableDB);
+   if(home&&typeof home==='object'){
+    for(const key of ['sceneSearchUi','scene500Recent','scene500DifficultyByScene'])if(Object.prototype.hasOwnProperty.call(home,key))state[key]=home[key];
    }
+   state.view='scenes';state.revealed=false;
    window.PAI_KU_DURABLE_DB=durableDB;
    window.PAI_KU_STORAGE_READY=true;
   }catch(storageError){
