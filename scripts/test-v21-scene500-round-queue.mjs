@@ -31,4 +31,6 @@ assert.deepEqual([...run('all',{a2:{lastGrade:'good'}})],['b','c','d','e'],
  'learning another sense must exclude the whole headword from fresh');
 assert.deepEqual([...run('all',{},['d','c'])],['d','c','a','b','e'],
  'due KUs occupy slots before new words');
+assert.deepEqual([...run('all',{},['a','a2','d'])],['a','d','b','c','e'],
+ 'two due senses of a single headword must not duplicate the word or reappear as fresh');
 console.log('PASS: Scene500 rank bands, same-word and cross-sense dedupe, due-first queue');
