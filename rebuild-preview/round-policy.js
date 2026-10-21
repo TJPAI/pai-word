@@ -33,7 +33,14 @@
         seenWords.add(lemma);return true;
       });
     }
-    return allDue.filter(k=>window.PAI_CORE?.byKU?.get(k)?.s?.scene===scene);
+    const seenWords=new Set();
+    return allDue.filter(k=>{
+      const u=window.PAI_CORE?.byKU?.get(k);
+      if(u?.s?.scene!==scene)return false;
+      const lemma=u.w?.rank??u.w?.w??k;
+      if(seenWords.has(lemma))return false;
+      seenWords.add(lemma);return true;
+    });
   }
 
   function freshKeys(scene,excluded=new Set()){
@@ -52,6 +59,7 @@
     }
     const units=window.PAI_LEARNING_QA?.unlearned?.(scene)||[];
     const out=[],seenWords=new Set();
+    for(const k of excluded){const word=window.PAI_CORE?.byKU?.get(k)?.w;if(word)seenWords.add(word.rank??word.w)}
     for(const u of units){
       const wordKey=u.w?.rank??u.w?.w;if(excluded.has(u.k)||seenWords.has(wordKey))continue;
       seenWords.add(wordKey);out.push(u.k);if(out.length>=limit)break;
