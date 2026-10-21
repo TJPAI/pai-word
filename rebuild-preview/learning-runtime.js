@@ -378,6 +378,8 @@
   // Auto-browse blank taps only reveal the current answer. No audio, scoring, navigation or timer reset.
   if(state.autoBrowseEnabled){
    if(phase==='question'&&!state.revealed){responseMs=Math.max(0,Date.now()-began);state.revealed=true;phase='answer-paused';grade=null;onAdvance=null;window.render?.()}
+   else if(phase==='answer-paused'&&state.revealed){state.revealed=false;ready(visibleKey,true);window.render?.()}
+   // Do not interrupt a pending rated answer or a KU persistence transaction.
    return;
   }
   // Historical preview with the answer visible cannot be treated as an unseen recall.
