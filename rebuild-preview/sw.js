@@ -1,9 +1,49 @@
-// V2.1 preview-scoped worker: deliberately does not cache or rewrite production requests.
-// Scope must remain /pai-word/rebuild-preview/.
+// Preview-only opt-in-on-success light-home offline shell.
+// No precache, no root-site cache deletion, no Core20K/Top100 background downloads.
+// Offline study is NOT provided by this worker.
 const SCOPE=new URL(self.registration.scope);
+const ROOT=new URL('../',SCOPE);
+const CACHE='pai-word-rebuild-preview-light-home-v21-20261021a';
+const CACHEABLE=new Set([
+ 'rebuild-preview/','rebuild-preview/index.html',
+ 'rebuild-preview/preview-state.js','rebuild-preview/bootstrap.js',
+ 'rebuild-preview/home-index.mjs','rebuild-preview/light-home-startup.mjs',
+ 'rebuild-preview/light-home-budget.mjs','rebuild-preview/learning-entry.mjs',
+ 'rebuild-preview/light-home-view.mjs','rebuild-preview/home-dashboard.js',
+ 'rebuild-preview/data/home-scene-index-v1.json',
+ 'rebuild-preview/data/home-ku-metadata-v1.json',
+ 'rebuild-preview/data/home-ku-metadata-v1.json.gz',
+ 'scene-search.js'
+]);
+const pathOf=url=>{
+ const u=new URL(url);
+ if(u.origin!==ROOT.origin||!u.pathname.startsWith(ROOT.pathname))return null;
+ return decodeURIComponent(u.pathname.slice(ROOT.pathname.length));
+};
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
-self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
+self.addEventListener('activate',event=>event.waitUntil((async()=>{
+ // Retire ONLY this preview's own earlier light-shell caches.
+ const names=await caches.keys();
+ await Promise.all(names.filter(n=>n.startsWith('pai-word-rebuild-preview-light-home-')&&n!==CACHE).map(n=>caches.delete(n)));
+ await self.clients.claim();
+})()));
 self.addEventListener('fetch',event=>{
-  // Network/browser default; never respond with the root index.html or touch root caches.
-  if(!event.request.url.startsWith(SCOPE.href))return;
+ const request=event.request;
+ if(request.method!=='GET')return;
+ const path=pathOf(request.url);
+ if(!path||!CACHEABLE.has(path))return;
+ // Only requests from preview-controlled clients; do not intercept root-site pages.
+ if(event.clientId&&!new URL(self.registration.scope).pathname.includes('rebuild-preview/'))return;
+ event.respondWith((async()=>{
+  const cache=await caches.open(CACHE);
+  try{
+   const response=await fetch(request);
+   if(response.ok&&response.type==='basic')event.waitUntil(cache.put(request,response.clone()));
+   return response;
+  }catch(error){
+   const cached=await cache.match(request,{ignoreSearch:true});
+   if(cached)return cached;
+   throw error;
+  }
+ })());
 });
