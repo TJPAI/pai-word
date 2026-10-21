@@ -173,14 +173,16 @@
   function refreshVoices(){if('speechSynthesis' in window)speechVoices=speechSynthesis.getVoices()||[]}
   refreshVoices();
   if('speechSynthesis' in window&&speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',refreshVoices);
-  let audioGeneration=0;
+  let audioGeneration=0,activeSpeech=false,audioIdleListeners=new Set();
+  const notifyAudioIdle=()=>{if(!activeSpeech){for(const cb of [...audioIdleListeners]){audioIdleListeners.delete(cb);cb()}}};
   window.PAI_AUDIO={
-    stop(){audioGeneration++;if('speechSynthesis'in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()},
+    whenIdle(callback){if(!activeSpeech){callback();return ()=>{}}audioIdleListeners.add(callback);return ()=>audioIdleListeners.delete(callback)},
+    stop(){audioGeneration++;activeSpeech=false;if('speechSynthesis'in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel();notifyAudioIdle()},
     play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
-      this.stop();const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
+      this.stop();activeSpeech=true;const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
       const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
       const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=Math.min(10,rate*(Number(state.speechSpeed)||100)/100);u.voice=voice;window.__paiUtterance=u;
-      let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;onDone?.()};
+      let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;activeSpeech=false;notifyAudioIdle();onDone?.()};
       u.onend=done;u.onerror=done;
       if(synth.paused)synth.resume();
       try{synth.speak(u)}catch(e){console.warn('Speech synthesis failed',e);done()}
@@ -339,14 +341,14 @@
  function syncPage(){state.revealed=pageRevealed()}
  function resetPage(){pageState='QUESTION';syncPage()}
  let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null,visualGrade='again';
- let ratingDeadline=0,pendingSwipeDirection=0;
+ let ratingDeadline=0,pendingSwipeDirection=0,cancelAudioWait=null,ratingSpeechStarted=false;
  const PENDING_GRADE_STORAGE='pai-word-core20k-rebuild-preview-v21-pending-grades';
  const pendingGrades=new Map();
  try{const saved=JSON.parse(localStorage.getItem(PENDING_GRADE_STORAGE)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))for(const [k,v] of Object.entries(saved)){if(['again','hard','good'].includes(v))pendingGrades.set(k,v)}}catch(e){console.warn('无法恢复待提交评分',e)}
  function persistPending(){localStorage.setItem(PENDING_GRADE_STORAGE,JSON.stringify(Object.fromEntries(pendingGrades)))}
  function setPendingGrade(k,score){if(!k||!['again','hard','good'].includes(score))return;pendingGrades.set(k,score);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分选择保存失败',e)}}
  const gradeFor=k=>pendingGrades.get(k)||(state.records?.[k]?.lastGrade||'again');
- function clear(preserveAudio=false){pendingSwipeDirection=0;generation++;if(timer!==null)clearTimeout(timer);timer=null;if(!preserveAudio)window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
+ function clear(preserveAudio=false){if(cancelAudioWait){cancelAudioWait();cancelAudioWait=null}ratingSpeechStarted=false;pendingSwipeDirection=0;generation++;if(timer!==null)clearTimeout(timer);timer=null;if(!preserveAudio)window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
  function later(fn,ms){timer=setTimeout(()=>{timer=null;fn()},ms)}
  function valid(g){return g===generation&&state.view==='learning'&&!document.hidden&&window.getVisibleLearningUnit?.()?.k===visibleKey}
  function ready(k,preserveAudio=false){if(ratedVisibleKey!==k)ratedVisibleKey=null;clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase=pageRevealed()?'answer-paused':'question'}
@@ -355,20 +357,29 @@
  function correct(score){if(['again','hard','good'].includes(score))startRatedSequence(score)}
  function startRatedSequence(score){
   if(!visibleKey)return;
-  if(timer!==null)clearTimeout(timer);timer=null;window.PAI_AUDIO?.stop();
-  const g=++generation, word=window.getVisibleLearningUnit?.()?.w?.w;
+  const previousRatingSpeech=phase==='answer'&&ratingSpeechStarted;
+  if(cancelAudioWait){cancelAudioWait();cancelAudioWait=null}
+  if(timer!==null)clearTimeout(timer);timer=null;
+  // Allow an existing auto-browse/blank-tap utterance to finish naturally.
+  // A corrected rating may replace only the earlier rating's own speech.
+  if(previousRatingSpeech)window.PAI_AUDIO?.stop();
+  ratingSpeechStarted=false;
+  const g=++generation,word=window.getVisibleLearningUnit?.()?.w?.w;
   ratedVisibleKey=visibleKey;grade=score;visualGrade=score;phase='answer';entryMode='rating';state.revealed=true;setPendingGrade(visibleKey,score);
   onAdvance=value=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(value,visibleKey):window.rateLearning?.(value,visibleKey);
   const count={again:3,hard:2,good:1}[score],started=Date.now(),showMs=config()[score+'Show']*1000;
-  ratingDeadline=started+showMs;pendingSwipeDirection=0;
-  repeated=0;window.render?.();
+  ratingDeadline=started+showMs;pendingSwipeDirection=0;repeated=0;window.render?.();
   const next=()=>{
    if(!valid(g)||phase!=='answer')return;
-   if(repeated>=count){later(()=>finish(g),Math.max(0,showMs-(Date.now()-started)));return}
-   repeated++;
+   if(repeated>=count){ratingSpeechStarted=false;later(()=>finish(g),Math.max(0,ratingDeadline-Date.now()));return}
+   repeated++;ratingSpeechStarted=true;
    const done=()=>{if(!valid(g)||phase!=='answer')return;if(repeated>=count)next();else later(next,config().repeatGap*1000)};
    if(word&&window.PAI_AUDIO?.play)window.PAI_AUDIO.play(word,.84,done);else done();
-  };next();
+  };
+  let startedRating=false;
+  const begin=()=>{if(startedRating||!valid(g)||phase!=='answer')return;startedRating=true;cancelAudioWait=null;next()};
+  cancelAudioWait=window.PAI_AUDIO?.whenIdle?.(begin)||null;
+  if(!window.PAI_AUDIO?.whenIdle)begin();
  }
  function choose(score){
   if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden||phase==='committing'||!visibleKey)return;
@@ -379,7 +390,7 @@
  function commitEarly(direction){
   if(phase!=='answer'||![-1,1].includes(direction)||!visibleKey)return false;
   pendingSwipeDirection=direction;
-  window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;
+  if(cancelAudioWait){cancelAudioWait();cancelAudioWait=null}window.PAI_AUDIO?.stop();ratingSpeechStarted=false;if(timer!==null)clearTimeout(timer);timer=null;
   finish(++generation);return true;
  }
  function takeSwipeDirection(){const direction=pendingSwipeDirection;pendingSwipeDirection=0;return direction}
@@ -395,7 +406,7 @@
   pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
   if(phase==='answer'){
    // A blank tap changes the logical face but keeps the pending rating and its deadline.
-   window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;
+   if(cancelAudioWait){cancelAudioWait();cancelAudioWait=null}window.PAI_AUDIO?.stop();ratingSpeechStarted=false;if(timer!==null)clearTimeout(timer);timer=null;
    const g=++generation;later(()=>finish(g),Math.max(0,ratingDeadline-Date.now()));
    window.render?.();
    if(!state.autoBrowseEnabled&&word)window.PAI_AUDIO?.play(word,.84);
