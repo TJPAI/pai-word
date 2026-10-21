@@ -362,7 +362,7 @@
  function finish(g){if(!valid(g)||phase==='idle'||phase==='committing')return;const fn=onAdvance;onAdvance=null;if(typeof fn!=='function'){phase='answer-paused';window.render?.();return}phase='committing';try{fn(grade)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分提交回调失败',e);resumeFailedCommit()}}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
-  const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>finish(g),c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
+  const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>{if(!valid(g)||phase!=='repeating')return;const k=visibleKey;state.revealed=false;ready(k,true);window.render?.()},c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
   if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
@@ -429,7 +429,7 @@
  function current(){return active?unit():null}window.currentUnit=current;
  window.currentQueue=()=>active?(state.learningSession?.queue||[]).map(byKey).filter(Boolean):[];
  function statusText(){const s=window.PAI_LOCAL_LEXICON;return s.offlineReady?'全部词包已缓存':`已缓存 ${s.loadedChunks} / ${s.totalChunks} 个词包；学习时按需下载`}
- async function showCurrent(gestureSpeech=false){historyRetest=false;historyAttemptId=null;browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;
+ async function showCurrent(gestureSpeech=false){state.revealed=false;historyRetest=false;historyAttemptId=null;browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;
   // First scene-entry speech must be initiated synchronously in the tap gesture on iOS Safari.
   // Catalog lemmas exist before the deferred KU payload is loaded.
   const autoQuestion=state.autoPronounce.question;
@@ -721,8 +721,8 @@
   window.PAI_SAVE_DEFERRED=false;state=draft;
   try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId});if(result.status!=='committed')throw Error('Duplicate historical rating attempt');save()}else persist(true)}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
   historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
-  // A finished historical retest advances browsing; it never changes the active session queue.
-  window.browseAnswer?.(1);
+  // After an explicitly rated historical KU, return to the active queue's QUESTION page.
+  state.revealed=false;showCurrent();
  };
  window.rateLearning=async(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
