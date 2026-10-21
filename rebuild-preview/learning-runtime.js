@@ -22,7 +22,7 @@
     return p;
   }
   function primaryKey(w){return Object.keys(w.s||{}).find(k=>unitIsPlayable(findUnitByKey(k)))||null}
-  function wordIntroduced(w){return Object.keys(w.s||{}).some(k=>unitIsPlayable(findUnitByKey(k))&&state.records[k])}
+  function wordIntroduced(w){return !!state.introducedHeadwords?.[w.w.toLowerCase()]||Object.keys(w.s||{}).some(k=>unitIsPlayable(findUnitByKey(k))&&state.records[k])}
   function primaryUnit(w){const key=primaryKey(w);return key?findUnitByKey(key):null}
   function pickNewWords(limit){
     if(limit<=0)return[];
@@ -91,7 +91,7 @@
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
     // Count only KUs originally assigned as new, before saving their SRS records.
-    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    // New-headword quota is committed when the question is first displayed.
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
@@ -346,10 +346,22 @@
  function valid(g){return g===generation&&state.view==='learning'&&!document.hidden&&window.getVisibleLearningUnit?.()?.k===visibleKey}
  function ready(k,preserveAudio=false){clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
- function answer({key,mode,score,advance}){clear();visualGrade=score||'again';if(mode!=='swipe')setPendingGrade(key,visualGrade);visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
- function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
+ function rememberAnswer(key,score){
+  const attempt=state.learningSession?.currentAttempt;if(!attempt||attempt.kuId!==key||attempt.committed)return;
+  const previous={...attempt};Object.assign(attempt,{phase:'answer',responseMs,grade:score});
+  try{save()}catch(e){state.learningSession.currentAttempt=previous;state.revealed=previous.phase==='answer';window.PAI_LAST_SAVE_ERROR=String(e);throw e}
+ }
+ function answer({key,mode,score,advance}){clear();visualGrade=score||'again';visibleKey=key;entryMode=mode;grade=score;
+  if(mode!=='swipe'&&mode!=='restore'){try{rememberAnswer(key,visualGrade)}catch(e){ready(key);window.render?.();return false}}
+  const attemptId=state.learningSession?.currentAttempt?.attemptId;
+  onAdvance=g=>{if(state.learningSession?.currentAttempt?.attemptId===attemptId)advance?.(g)};
+  phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000);
+ }
+ function restoreAnswer(k,attempt){responseMs=attempt.responseMs??null;state.revealed=true;answer({key:k,mode:'restore',score:attempt.grade||'again',advance:g=>window.rateLearning?.(g,k)})}
+
+ function correct(score){if(window.getBrowsedUnit?.())return;if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;rememberAnswer(visibleKey,score);setPendingGrade(visibleKey,score);phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
  function choose(score){
-  if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
+  if(window.getBrowsedUnit?.()||!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
@@ -365,7 +377,7 @@
   const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>finish(g),c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
   if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
- function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
+ function tap(){if(window.getBrowsedUnit?.())return;if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   // Historical preview with the answer visible cannot be treated as an unseen recall.
 
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const k=visibleKey,score=classify(responseMs);state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===k?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
@@ -374,13 +386,13 @@
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
  function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
- function resumeFailedCommit(){if(phase!=='committing')return;phase='answer-paused';onAdvance=null;window.render?.()}
+ function resumeFailedCommit(){phase='answer-paused';const k=visibleKey,id=state.learningSession?.currentAttempt?.attemptId;onAdvance=g=>{if(state.learningSession?.currentAttempt?.attemptId===id)window.rateLearning?.(g,k)};window.render?.()}
  function cancel(){clear()}
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
  function hint(){if(phase==='question')return '点击空白看答案 · 左右滑动切词';if(phase==='answer')return '点击空白重读 · 左右滑动切词';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '例句播放中';if(phase==='answer-paused')return '点击空白重读 · 左右滑动切词';return ''}
- window.PAI_TAP_FLOW={ready,answer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ window.PAI_TAP_FLOW={ready,answer,restoreAnswer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
@@ -420,7 +432,24 @@
  window.setAutoPronounce=(kind,enabled)=>{if(!['question','swipe'].includes(kind))return;state.autoPronounce[kind]=!!enabled;persist();render()};
  let active=false,loading=false,error='',startedAt=0,token=0,previousUnit=null;
  const newAttemptId=()=>('crypto' in window&&typeof crypto.randomUUID==='function'?crypto.randomUUID():('attempt-'+Date.now()+'-'+Math.random().toString(36).slice(2)));
- const ensureAttempt=()=>{const sess=state.learningSession,k=sess?.queue?.[0];if(!k)return null;if(!sess.currentAttempt||sess.currentAttempt.kuId!==k||sess.currentAttempt.committed){const previous=sess.currentAttempt;const next={attemptId:newAttemptId(),kuId:k,committed:false};sess.currentAttempt=next;try{persist()}catch(e){sess.currentAttempt=previous;throw e}}return sess.currentAttempt};
+ const ensureAttempt=()=>{
+  const sess=state.learningSession,k=sess?.queue?.[0],u=byKey(k);if(!u)return null;
+  const previous=state;const needsAttempt=!sess.currentAttempt||sess.currentAttempt.kuId!==k||sess.currentAttempt.committed;
+  const word=u.w.w.toLowerCase(),introduced=state.introducedHeadwords?.[word]||Object.keys(u.w.s).some(id=>state.records[id]);
+  if(!needsAttempt&&introduced)return sess.currentAttempt;
+  state=structuredClone(state);
+  if(needsAttempt)state.learningSession.currentAttempt={attemptId:newAttemptId(),kuId:k,committed:false,phase:'question'};
+  if(!introduced){
+   const today=date();if(state.dailyNewProgress?.date!==today)state.dailyNewProgress={date:today,completed:[],newWordsCompleted:[],reinforcementCompleted:[]};
+   const p=state.dailyNewProgress;p.newWordsCompleted=p.newWordsCompleted||[...(p.completed||[])];
+   if(p.newWordsCompleted.length>=state.newPerDay){state=previous;throw Error('今日新词额度已用完，请返回首页复习')}
+   state.introducedHeadwords={...state.introducedHeadwords,[word]:{kuId:k,at:Date.now()}};
+   if(!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+   state.daily=null;
+  }
+  try{persist()}catch(e){state=previous;throw e}
+  return state.learningSession.currentAttempt;
+ };
  const due=()=>Object.entries(state.records).filter(([k,r])=>byKey(k)&&(r.learningPending||r.lastKnown===false||r.due<=Date.now())).sort((a,b)=>(b[1].learningPending?1:0)-(a[1].learningPending?1:0)||a[1].due-b[1].due).map(([k])=>k);
  const fresh=()=>{globalNewRemaining();return [...state.daily.newWordKeys,...state.daily.reinforcementKeys].filter(k=>!state.records[k])};
  const unit=()=>byKey(state.learningSession?.queue[0]);
@@ -429,12 +458,12 @@
  function current(){return active?unit():null}window.currentUnit=current;
  window.currentQueue=()=>active?(state.learningSession?.queue||[]).map(byKey).filter(Boolean):[];
  function statusText(){const s=window.PAI_LOCAL_LEXICON;return s.offlineReady?'全部词包已缓存':`已缓存 ${s.loadedChunks} / ${s.totalChunks} 个词包；学习时按需下载`}
- async function showCurrent(gestureSpeech=false){historyRetest=false;historyAttemptId=null;browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u&&!u.w.loaded;render();if(!u)return;
+ async function showCurrent(gestureSpeech=false){historyRetest=false;historyAttemptId=null;browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit();error='';loading=!!u;render();if(!u)return;
   // First scene-entry speech must be initiated synchronously in the tap gesture on iOS Safari.
   // Catalog lemmas exist before the deferred KU payload is loaded.
   const autoQuestion=state.autoPronounce.question;
-  if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
-  try{await ensureUnits([u.k]);if(id!==token)return;ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+
+  try{await ensureUnits([u.k]);if(id!==token)return;const attempt=ensureAttempt();loading=false;startedAt=Date.now();state.revealed=attempt.phase==='answer';if(state.revealed)PAI_TAP_FLOW.restoreAnswer(u.k,attempt);else PAI_TAP_FLOW.ready(u.k);render();if(autoQuestion&&!state.revealed)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
@@ -694,36 +723,17 @@
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=state.revealed;
   PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
-   browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
+   if(u.k===unit().k){await showCurrent();return true}
+   browseIndex=next;browsedUnit=u;state.revealed=true;
    render();
-   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
+   PAI_TAP_FLOW.cancel();render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
   }catch(_){return false}
  };
- // Historical rating is a NEW review event, never a rewrite of a prior attempt.
- // Because browsing already reveals the answer, first press starts a hidden-answer retest.
+ // History is read-only: browsing never creates a review or changes SRS.
  let historyRetest=false,historyAttemptId=null;
- window.PAI_HISTORY_RETEST=()=>historyRetest;
- window.chooseHistoricalRating=grade=>{
-  if(!active||loading||error||!browsedUnit||!['again','hard','good'].includes(grade))return;
-  PAI_TAP_FLOW.choose(grade);
- };
- let historicalCommitInProgress=false;
- window.rateBrowsedLearning=(grade,k)=>{
-  if(historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
-  historicalCommitInProgress=true;
-  const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
-  const record={...prev,last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev.reps||0)+1,
-   responseMs:PAI_TAP_FLOW.snapshot().responseMs??null,learningPending:grade!=='good',srsPolicy:'session-retrieval-v3'};
-  if(grade!=='good'){record.due=now;record.interval=0}
-  else {const prior=prev.lastStableInterval||prev.interval||0;const days=prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*2));record.interval=days*DAY;record.lastStableInterval=record.interval;record.due=now+record.interval}
-  draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
-  draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
-  window.PAI_SAVE_DEFERRED=false;state=draft;
-  try{persist()}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
-  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
-  // A finished historical retest advances browsing; it never changes the active session queue.
-  window.browseAnswer?.(1);
- };
+ window.PAI_HISTORY_RETEST=()=>false;
+ window.chooseHistoricalRating=()=>{};
+ window.rateBrowsedLearning=()=>{};
  window.rateLearning=(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
   const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k;let attempt;try{attempt=ensureAttempt()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('无法持久化评分尝试',e);PAI_TAP_FLOW.resumeFailedCommit();render();return}if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
@@ -759,7 +769,7 @@
   const s=state.learningSession,u=browsedUnit||unit();if(!s)return home();
    const sessionTotal=Math.max(0,Number.isFinite(Number(s.total))?Math.floor(Number(s.total)):0);
    const sessionCompleted=Math.min(new Set((s.completed||[]).filter(k=>window.PAI_CORE?.byKU?.has(k))).size,sessionTotal);
-  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${sessionCompleted} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${(s.kind==='topic'||s.kind==='proposed')?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="${s.kind==='proposed'?'continueProposedScene()':'continueTopicStudy()'}">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
+  if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${sessionCompleted} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${(s.kind==='topic'||s.kind==='proposed')?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="${s.kind==='proposed'?'continueProposedScene()':'continueTopicStudy()'}">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 ${state.wordsPerRound||10} 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
   const progress=`已完成 ${sessionCompleted} / ${sessionTotal}`;
   if(loading||error)return `<div class="screen study-screen learning-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div><div class="recall-correction" role="group" aria-label="词卡加载中，按钮暂不可用"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
@@ -767,7 +777,7 @@
   const gradeAttrs=g=>` data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
   const repeat=s.seen[u.k]>0;
   const label=u.s.kuType==='sense'?'回忆词义':u.s.kuTitle;
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div><div class="study-body">${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div><div class="study-body">${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button disabled ${gradeAttrs('again')}>不知道</button><button disabled ${gradeAttrs('hard')}>模糊</button><button disabled ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};

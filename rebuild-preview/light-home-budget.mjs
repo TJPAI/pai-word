@@ -30,7 +30,7 @@ export function inspectHomeBudget(state,{now=new Date(),kuMetadata:m}={}){
   reinforcementRemaining=(d.reinforcementKeys||[]).filter(k=>ids.has(k)&&!records[k]).length;
  }else{
   // Adapter assigns every sense to daily; Top100 adds membership without changing it.
-  const candidates=scene==='daily'?m.words.filter(([,keys])=>keys.some(k=>records[k])&&keys.slice(1).some(k=>!records[k])).length:0;
+  const candidates=scene==='daily'?m.words.filter(([,keys,lemma])=>(state.introducedHeadwords?.[lemma]||keys.some(k=>records[k]))&&keys.slice(1).some(k=>!records[k])).length:0;
   reinforcementRemaining=Math.min(candidates,Math.max(0,quota-(p.reinforcementCompleted||[]).length));
  }
  return {dailyLimit,dailyCompleted,dailyRemaining:Math.max(0,dailyLimit-dailyCompleted),roundLimit,reinforcementRemaining,due:countDueFromHomeMetadata(records,m,{now:now.getTime()}),studied:Object.keys(records).filter(k=>ids.has(k)).length,complete:true,missing:[],date};

@@ -1,0 +1,87 @@
+{
+  "browser": "153.0.8010.0",
+  "environment": "Local loopback HTTP; gzip text; cache max-age=3600; Chromium headless; not Safari or public Pages",
+  "checks": [
+    "home restores query/difficulty and writes no storage; no heavy request",
+    "blocked full lexicon and 20 shards: all five difficulty counts and search work",
+    "settings and statistics usable without full engine",
+    "failed initialization leaves no session; retry enters real study",
+    "refresh resumes same attempt and revealed answer without new recall time",
+    "injected scoring save failure: no half state or lost queue",
+    "100 synchronous submissions score once; wrong answer reinsertion does not complete KU",
+    "history browsing and attempted grading do not alter records or progress",
+    "home/engine statistics agree; unrelated production storage untouched",
+    "no uncaught browser errors",
+    "3 cold + 3 warm actual navigations, usable search and first learning entry"
+  ],
+  "performance": [
+    {
+      "run": 0,
+      "temperature": "cold",
+      "homeInteractiveMs": 83.5,
+      "completePaintObservedMs": 135.59999999997672,
+      "transferBytes": 384129,
+      "requests": 16,
+      "heavyRequests": 0
+    },
+    {
+      "run": 0,
+      "temperature": "warm",
+      "homeInteractiveMs": 59.29999999998836,
+      "completePaintObservedMs": 94.70000000001164,
+      "transferBytes": 0,
+      "requests": 16,
+      "heavyRequests": 0
+    },
+    {
+      "run": 0,
+      "firstLearningWallMs": 892
+    },
+    {
+      "run": 1,
+      "temperature": "cold",
+      "homeInteractiveMs": 83.29999999998836,
+      "completePaintObservedMs": 161.5,
+      "transferBytes": 384129,
+      "requests": 16,
+      "heavyRequests": 0
+    },
+    {
+      "run": 1,
+      "temperature": "warm",
+      "homeInteractiveMs": 58.5,
+      "completePaintObservedMs": 93.29999999998836,
+      "transferBytes": 0,
+      "requests": 16,
+      "heavyRequests": 0
+    },
+    {
+      "run": 1,
+      "firstLearningWallMs": 945
+    },
+    {
+      "run": 2,
+      "temperature": "cold",
+      "homeInteractiveMs": 85.90000000002328,
+      "completePaintObservedMs": 161.90000000002328,
+      "transferBytes": 384129,
+      "requests": 16,
+      "heavyRequests": 0
+    },
+    {
+      "run": 2,
+      "temperature": "warm",
+      "homeInteractiveMs": 76.79999999998836,
+      "completePaintObservedMs": 106.29999999998836,
+      "transferBytes": 0,
+      "requests": 16,
+      "heavyRequests": 0
+    },
+    {
+      "run": 2,
+      "firstLearningWallMs": 830
+    }
+  ],
+  "safari": "Not tested: no real Safari / iPhone available",
+  "result": "PASS"
+}

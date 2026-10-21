@@ -1,0 +1,13 @@
+PASS learning entry: single flight, retry, no premature open
+PASS: optional deferred learning entry and unchanged legacy fallback
+PASS 2540 original-vs-projection searches
+PASS real-runtime budget parity 24 cases; distinct KU due, stale rebuild, read-only
+PASS lightweight home: validated index, one concurrent fetch, 500 scenes, no learning engine
+PASS: existing, changed source, empty, invalid baseline; connections closed
+PASS: answer, answer-paused, example, reread correction
+PASS: duplicate rating, storage failure rollback, wrong-answer reinsertion
+PASS restored search recalculated against complete home index before first render
+PASS: 6 executed timing cases and 8 source-contract assertions
+PASS: all three controls appear before reveal and remain correction-capable on answer; historic cards read-only
+PASS: duplicate, conflict, commit and empty-state rejection in simulated transactions
+Node suite failures: 0

@@ -22,8 +22,10 @@ export async function buildHomeMetadata(){
  // entries: all active KU IDs (including existing non-playable SRS records).
  // words: playable IDs in original primary order, needed for exact reinforcement.
  const payload={schema:'pai-word-v21-home-ku-metadata-v1',coreRelease:'Core20K-dev',sceneRelease:'SceneRank500-V4',sourceHash,headwords:core.words.length,sceneCount:specs.length,top100Candidates:50000,top100Entries:22227,playableKU:core.qa.playableSense,
- entries:[...core.byKU.keys()],words:core.words.filter(w=>Object.values(w.s).some(s=>s.playable)).map(w=>[w.rank,Object.keys(w.s).filter(k=>w.s[k].playable)]),sceneOccurrences:[...occurrences].sort((a,b)=>a[0].localeCompare(b[0]))};
- fs.writeFileSync('rebuild-preview/data/home-ku-metadata-v1.json',JSON.stringify(payload)+'\n');
+ entries:[...core.byKU.keys()],words:core.words.filter(w=>Object.values(w.s).some(s=>s.playable)).map(w=>[w.rank,Object.keys(w.s).filter(k=>w.s[k].playable),w.w.toLowerCase()]),sceneOccurrences:[...occurrences].sort((a,b)=>a[0].localeCompare(b[0]))};
+ const bytes=JSON.stringify(payload)+'\n';
+ fs.writeFileSync('rebuild-preview/data/home-ku-metadata-v1.json',bytes);
+ fs.writeFileSync('rebuild-preview/data/home-ku-metadata-v1.json.gz',zlib.gzipSync(bytes,{level:9}));
  console.log('HOME_KU_METADATA_OK',{...core.qa,scenes:specs.length,candidates:50000,eligible:22227,sourceHash});
  return payload;
 }

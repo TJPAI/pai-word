@@ -16,8 +16,8 @@ for(const [settings,ms,expected] of [
  assert.equal(vm.runInContext(defaults+config+classify+';classify('+ms+')',ctx),expected);
 }
 for(const pattern of [
- /if\(gestureSpeech&&autoQuestion&&u\.w\?\.w\)/,
- /if\(!gestureSpeech&&autoQuestion\)speak\(u\.w\.w\)/,
+ /const attempt=ensureAttempt\(\)/,
+ /if\(autoQuestion&&!state\.revealed\)speak\(u\.w\.w\)/,
  /\(wasRevealed\?state\.autoPronounce\.swipe:state\.autoPronounce\.question\)/,
  /if\(state\.autoPronounce\?\.swipe\)window\.PAI_AUDIO\?\.play\(current\.w\.w/,
  /const k=visibleKey,score=classify\(responseMs\)/,

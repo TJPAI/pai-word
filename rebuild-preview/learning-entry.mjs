@@ -1,7 +1,7 @@
 // Lightweight-home boundary: one and only one engine initialization on first learning intent.
 // The existing learning engine remains authoritative; this module never reads/writes SRS.
 export function createLearningEntry({load,open,onError=()=>{}}){
- let pending=null,ready=false;
+ let pending=null,ready=false,entering=null;
  if(typeof load!=='function'||typeof open!=='function')throw Error('LEARNING_ENTRY_DEPENDENCIES');
  const preload=()=>{
    if(ready)return Promise.resolve();
@@ -11,12 +11,11 @@ export function createLearningEntry({load,open,onError=()=>{}}){
  return {
   isReady:()=>ready,
   preload,
-  enter:async (scene,difficulty='all')=>{
-   if(!scene||typeof scene!=='string')throw Error('LEARNING_SCENE_REQUIRED');
-   // Do not alter any scene history or user record before the engine is ready.
-   // Use shared promise for simultaneous taps; open only after successful load.
-   await preload();
-   return open(scene,difficulty);
+  enter:(scene,difficulty='all')=>{
+   if(!scene||typeof scene!=='string')return Promise.reject(Error('LEARNING_SCENE_REQUIRED'));
+   if(entering)return entering;
+   entering=preload().then(()=>open(scene,difficulty)).finally(()=>{entering=null});
+   return entering;
   }
  };
 }

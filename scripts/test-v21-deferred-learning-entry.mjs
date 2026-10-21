@@ -4,7 +4,7 @@ let loads=0,opened=[];
 const gate=createLearningEntry({load:async()=>{loads++},open:(id,d)=>opened.push([id,d])});
 await Promise.all([gate.enter('S001'),gate.enter('S002','high'),gate.preload()]);
 assert.equal(loads,1);assert.equal(gate.isReady(),true);
-assert.deepEqual(opened,[['S001','all'],['S002','high']]);
+assert.deepEqual(opened,[['S001','all']]);
 let attempts=0;
 const retry=createLearningEntry({load:async()=>{if(++attempts===1)throw Error('offline')},open:id=>id});
 await assert.rejects(retry.enter('S003'),/offline/);
