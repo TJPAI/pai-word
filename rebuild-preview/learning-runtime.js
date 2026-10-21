@@ -363,7 +363,7 @@
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);ratedVisibleKey=visibleKey;state.revealed=true;
    answer({key:visibleKey,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
-   setPendingGrade(visibleKey,score);window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(current.w.w,.84);return;
+   setPendingGrade(visibleKey,score);window.render?.();if(!state.autoBrowseEnabled&&state.autoPronounce?.swipe)window.PAI_AUDIO?.play(current.w.w,.84);return;
   }
   correct(score);
  }
