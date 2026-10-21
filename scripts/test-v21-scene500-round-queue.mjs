@@ -59,4 +59,10 @@ assert.deepEqual([...run('all',{},['a','a2','d'])],['a','d','b','c','e'],
  assert.deepEqual([...state.learningSession.queue],['a','b'],
   'reinforcement round must select only one KU per headword');
 }
+// Deduplication must defer—not discard—the other due sense: once the first
+// sense is no longer due, the second remains eligible on the next round.
+assert.deepEqual([...run('basic',{},['a','a2'])],['a'],
+ 'same-headword due senses must not coexist in a round');
+assert.deepEqual([...run('basic',{a:{due:Date.now()+86400000}},['a2'])],['a2'],
+ 'second sense must be scheduled when first sense is no longer due');
 console.log('PASS: Scene500 rank bands, same-word and cross-sense dedupe, due-first queue');
