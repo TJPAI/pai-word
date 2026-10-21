@@ -227,3 +227,21 @@ remain stored until an explicit, validated cleanup strategy is implemented.
 scripts/test-v21-offline-shell.mjs now asserts activation does not delete the
 previous preview cache. No full checked-out Node/Chromium/Safari test was run
 for this commit; offline reload and complete-cache update remain open gates.
+
+
+## Offline partial-shell guard (2026-10-21)
+
+The preview Worker now checks that all ten required lightweight startup files
+and at least one homepage KU metadata format are cached before serving offline
+navigation HTML. A partially visited or incompletely cached shell rejects the
+offline navigation (OFFLINE_HOME_INCOMPLETE / OFFLINE_HOME_STATS_MISSING)
+rather than presenting a broken application. The isolated SW regression test
+was extended to assert this rejection and complete-cache fallback.
+
+Limits: cache completeness currently verifies required resource paths, not
+cryptographic content hashes or an atomic versioned manifest. A complete cache
+can still contain resources collected across online revisions if filenames did
+not change; that stronger version-coherence gate remains outstanding.
+The updated tests have NOT been executed with Node/Chromium in this turn,
+since the environment cannot check out the private repository. No offline,
+Safari, or production deployment pass is claimed.
