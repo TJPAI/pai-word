@@ -195,3 +195,21 @@ Therefore the current on-demand cache is NOT sufficient evidence that an entire
 home can refresh offline; it requires a self-contained asset path or another
 explicit scoped caching strategy. No browser or Node test was executed in this
 follow-up, and no offline or release acceptance is claimed.
+
+
+## Preview-scoped search asset (2026-10-21)
+
+The lightweight bootstrap now requests rebuild-preview/scene-search.js
+instead of the repository-root scene-search.js. Both files were compared
+byte-for-byte (7,939 bytes) after the change. The new Node regression
+scripts/test-v21-preview-search-mirror.mjs checks this parity and confirms
+the bootstrap + SW allowlist use the scoped path. The preview's isolated cache
+namespace was rotated to ...20261021b; formal root resources were not
+modified.
+
+This removes the known out-of-scope search script from the light homepage
+dependency chain, but it is not yet proof of complete offline startup:
+individual files are cached only after successful online requests; mixed
+versions, partial cache population, worker activation and actual offline reload
+require dedicated browser tests. The test script was committed but has not
+been run in Node or Chromium in this turn. Safari remains unverified.
