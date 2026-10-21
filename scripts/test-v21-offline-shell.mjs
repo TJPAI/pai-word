@@ -24,7 +24,7 @@ const fetcher=async request=>{
  if(!online)throw Error('offline');
  return {ok:true,type:'basic',clone(){return this},value:'network'};
 };
-vm.runInNewContext(source,{self:sw,caches,fetch:fetcher,URL,decodeURIComponent,Promise,Set});
+vm.runInNewContext(source,{self:sw,caches,fetch:fetcher,URL,decodeURIComponent,Promise,Set,Response:class {constructor(value){this.value=value}}});
 async function request(url,method='GET'){
  let response,waits=[];
  events.fetch({request:{method,url},clientId:'preview-client',
@@ -54,6 +54,10 @@ const required=[
 online=true;
 for(const asset of required)await request('https://example.test/pai-word/'+asset);
 online=false;
+await assert.rejects(request(home),/OFFLINE_HOME_NOT_SEALED/);
+let sealed;
+events.message({data:{type:'PAI_HOME_BOOT_OK'},source:{url:home},waitUntil:p=>{sealed=p}});
+await sealed;
 assert.equal((await request(home)).value,'network');
 await assert.rejects(request('https://example.test/pai-word/rebuild-preview/index.html?v=other'),/offline/);
 assert.equal(await request('https://example.test/pai-word/data/core20k-runtime.json.gz'),null);
