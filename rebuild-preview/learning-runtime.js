@@ -346,19 +346,19 @@
  function valid(g){return g===generation&&state.view==='learning'&&!document.hidden&&window.getVisibleLearningUnit?.()?.k===visibleKey}
  function ready(k,preserveAudio=false){clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
- function answer({key,mode,score,advance}){clear();visualGrade=score||'again';if(mode!=='swipe')setPendingGrade(key,visualGrade);visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
+ function answer({key,mode,score,advance}){clear();visualGrade=score||'again';visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
  function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
  function choose(score){
   if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
-   answer({key:visibleKey,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
-   window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(current.w.w,.84);return;
+   answer({key:visibleKey,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
+   setPendingGrade(visibleKey,score);window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(current.w.w,.84);return;
   }
   correct(score);
  }
- function browseReady(k,advance,revealed=true){const cardGrade=gradeFor(k);if(revealed)answer({key:k,mode:'swipe',score:cardGrade,advance});else ready(k)}
+ function browseReady(k,advance,revealed=true){if(revealed){clear();visibleKey=k;entryMode='swipe';visualGrade=gradeFor(k);grade=null;onAdvance=null;phase='answer-paused'}else ready(k)}
  function finish(g){if(!valid(g)||phase==='idle'||phase==='committing')return;const fn=onAdvance;onAdvance=null;if(typeof fn!=='function'){phase='answer-paused';window.render?.();return}phase='committing';try{fn(grade)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分提交回调失败',e);resumeFailedCommit()}}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
@@ -368,7 +368,7 @@
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   // Historical preview with the answer visible cannot be treated as an unseen recall.
 
-  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const k=visibleKey,score=classify(responseMs);state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===k?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
+  if(phase==='question'){responseMs=Math.max(0,Date.now()-began);state.revealed=true;phase='answer-paused';grade=null;onAdvance=null;window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
   else if(phase==='answer'||phase==='answer-paused'||phase==='example'){window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;phase='repeating';repeated=0;repeat(generation)}
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
@@ -379,7 +379,7 @@
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'<button class="text-btn" onclick="resetTapTiming()">恢复默认节奏</button></div>'}
- function hint(){if(phase==='question')return '点击空白看答案 · 左右滑动切词';if(phase==='answer')return '点击空白重读 · 左右滑动切词';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '例句播放中';if(phase==='answer-paused')return '点击空白重读 · 左右滑动切词';return ''}
+ function hint(){if(phase==='question')return '点击空白看答案，不计分 · 仅底部三个按钮提交评分';if(phase==='answer')return '已选择评分 · 即将进入下一词';if(phase==='repeating')return '重读 '+repeated+' / '+config().repeatCount;if(phase==='example')return '例句播放中';if(phase==='answer-paused')return '尚未评分 · 点击底部按钮提交；点击空白重读';return ''}
  window.PAI_TAP_FLOW={ready,answer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
