@@ -1,90 +1,72 @@
 (async function(){
- const VERSION='core20k-v21-light-home-2';window.PAI_APP_VERSION=VERSION;
- const app=document.getElementById('app'),scripts=new Map();
- function script(src){if(!scripts.has(src))scripts.set(src,new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>{el.remove();scripts.delete(src);reject(Error('应用文件加载失败: '+src))};document.body.appendChild(el)}));return scripts.get(src)}
- let homeRender,engineRender,initializing=false,runtimeLoaded=false,policyLoaded=false,entry,metadata,index,panels;
- const render=()=>{if(initializing)return;if(state.view==='scenes')return homeRender?.();if(['settings','stats'].includes(state.view))return panels?.render(state.view);return engineRender?.()};
- function notice(text,retry){let box=document.getElementById('learning-load-status');if(!box){box=document.createElement('div');box.id='learning-load-status';box.setAttribute('role','status');box.style.cssText='position:fixed;bottom:16px;left:5%;width:90%;box-sizing:border-box;padding:14px;background:white;border:1px solid #cbd5e1;border-radius:12px;z-index:100';document.body.appendChild(box)}box.textContent=text;if(retry){const b=document.createElement('button');b.textContent='重试';b.onclick=retry;box.appendChild(b)}}
- const studyPreloads=new Set();
- function preloadStudyScripts(){
-  for(const path of ['rebuild-preview/learning-runtime.js','rebuild-preview/round-policy.js','audio-compat.js']){
-   if(studyPreloads.has(path))continue;studyPreloads.add(path);
-   const link=document.createElement('link');link.rel='preload';link.as='script';link.href=path+'?v='+VERSION;document.head.appendChild(link);
+ const VERSION='core20k-v21-voice35';window.PAI_APP_VERSION=VERSION;
+ const app=document.getElementById('app');
+ function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
+ async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'no-store'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
+ async function sceneMembership(){
+  try{return await json('data/scene500-playable-membership-v2.json')}
+  catch(v2Error){
+   console.warn('Scene500 membership V2 unavailable; falling back to V1.',v2Error);
+   return json('data/scene500-playable-membership-v1.json');
   }
- }
- let navigation=null;
- function intent(kind,scene,difficulty='all'){
-  if(!window.PAI_PREVIEW_WRITABLE){notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());return Promise.resolve()}
-  if(navigation)return navigation;
-  const entryStarted=performance.now();
-  window.PAI_STUDY_ENTRY_TIMING={start:entryStarted,stages:[]};
-  const stage=name=>window.PAI_STUDY_ENTRY_TIMING?.stages.push({name,elapsedMs:Math.round(performance.now()-entryStarted)});
-  window.PAI_STUDY_ENTRY_STAGE=stage;
-  stage('intent');
-  // User-initiated preload starts script transfer while Core20K and Top100 initialize.
-  preloadStudyScripts();
-  notice('正在准备学习内容…');
-  navigation=entry.enter(kind,JSON.stringify({scene,difficulty})).then(()=>{stage('open-returned');document.getElementById('learning-load-status')?.remove()}).catch(e=>{console.error(e);notice('学习内容加载失败：'+e.message,()=>intent(kind,scene,difficulty))}).finally(()=>{navigation=null});
-  return navigation;
  }
  try{
-  await window.acquirePreviewWriter();
-  const [{prepareLightweightHome,installLightweightSceneCatalog},{inspectHomeBudget},{createLearningEntry},{createLightPanels}]=await Promise.all([import('./light-home-startup.mjs'),import('./light-home-budget.mjs'),import('./learning-entry.mjs'),import('./light-home-view.mjs')]);
-  async function loadMetadata(){
-   const compressed=typeof DecompressionStream!=='undefined';
-   const response=await fetch('rebuild-preview/data/home-ku-metadata-v1.json'+(compressed?'.gz':''),{cache:'default'});
-   if(!response.ok)throw Error('首页统计索引加载失败');
-   return compressed?JSON.parse(await new Response(response.body.pipeThrough(new DecompressionStream('gzip'))).text()):response.json();
+  await loadLearningCatalog();
+  window.PAI_SCENE500_MEMBERSHIP_POLICY=await json('data/scene500-ranked-membership-policy-v1.json');
+  window.PAI_SCENE500_MEMBERSHIP=await sceneMembership();
+  await script('rebuild-preview/learning-runtime.js');
+  await script('audio-compat.js');
+  await script('scene500-integrated.js');
+  await script('scene500-sense-review.js');
+  await script('scene-search.js');
+  await script('rebuild-preview/home-dashboard.js');
+  await script('rebuild-preview/round-policy.js');
+  // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
+  const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
+  const typed=document.getElementById('scene-query')?.value||'';
+  const difficulty=document.getElementById('scene-difficulty')?.value||'all';
+  state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||typed||state.sceneSearchUi?.query||'',difficulty:preboot?.difficulty||difficulty,resultIds:[]};
+  state.view='scenes';state.revealed=false;render();app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  if(preboot?.query&&typeof window.findScene500==='function')window.findScene500();
+  // Optional packs must never replace an already usable homepage with a fatal loading screen.
+  try{
+  // Non-critical Scene500 packs and inventory load after first interactive home render.
+  if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
+   const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
+   await installScene500Top100();
   }
-  const [prepared,loadedMetadata]=await Promise.all([prepareLightweightHome(),loadMetadata()]);index=prepared.index;metadata=loadedMetadata;
-  if(metadata.sourceHash!==index.sourceHash)throw Error('首页数据版本不一致，请刷新重试');
-  installLightweightSceneCatalog(prepared);
-  const budget=()=>inspectHomeBudget(state,{kuMetadata:metadata});budget();
-  window.PAI_HOME_BUDGET=budget;window.studyBudgetSummary=budget;
-  panels=createLightPanels({element:app,getState:()=>state,budget,save,home:()=>{state.view='scenes';render()}});
-  window.render=()=>panels.render(state.view);
-  await script('rebuild-preview/scene-search.js');await script('rebuild-preview/home-dashboard.js');homeRender=window.render;window.render=render;
-  function bindHomeActions(){
-   window.openPanel=kind=>{if(!['settings','stats'].includes(kind))return;if(engineActions.openPanel)return engineActions.openPanel(kind);state.view=kind;render()};
-   window.openReview=()=>intent('review');window.openReinforcement=()=>intent('reinforcement');window.resumeLearning=()=>intent('resume');
-  }
-  window.PAI_DEFERRED_LEARNING_ENTRY={enter:(scene,difficulty)=>intent('scene',scene,difficulty)};
-  const engineActions={};bindHomeActions();
-  function captureEngine(){engineRender=window.render;for(const k of ['openScene','resumeLearning','openReview','openReinforcement','openPanel'])if(typeof window[k]==='function')engineActions[k]=window[k]}
-  entry=createLearningEntry({load:async()=>{
-   initializing=true;
+  // Display coarse Scene500 inventory separately from reviewed learning membership.
+  if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    try{
-    if(!window.PAI_CORE){const {tryInstallCore20K}=await import('../scripts/core20k-dev-boot.mjs');await tryInstallCore20K()}
-    window.PAI_STUDY_ENTRY_STAGE?.('core-ready');
-    if(!window.PAI_SCENE500_TOP100||window.PAI_SCENE500_TOP100.error){const {installScene500Top100}=await import('../scripts/scene500-top100-loader.mjs');await installScene500Top100()}
-    await window.PAI_SCENE500_TOP100_READY;
-    window.PAI_STUDY_ENTRY_STAGE?.('top100-ready');
-    if(!runtimeLoaded){await script('rebuild-preview/learning-runtime.js');runtimeLoaded=true;captureEngine()}
-    window.PAI_STUDY_ENTRY_STAGE?.('runtime-ready');
-    await script('audio-compat.js');
-    if(!policyLoaded){const originalRender=engineRender;window.render=()=>{if(!initializing)originalRender?.()};Object.assign(window,engineActions);await script('rebuild-preview/round-policy.js');policyLoaded=true;captureEngine()}
-    window.studyBudgetSummary=budget;
-    window.PAI_ENGINE_READY=true;
-    window.PAI_STUDY_ENTRY_STAGE?.('engine-ready');
-   }finally{initializing=false;window.render=render;bindHomeActions()}
-  },open:async(kind,arg)=>{
-   const {scene,difficulty}=JSON.parse(arg);
-   window.PAI_STUDY_ENTRY_STAGE?.('open-start');
-   if(kind==='scene'){
-    state.scene500Recent=[scene,...(state.scene500Recent||[]).filter(id=>id!==scene)].slice(0,5);
-    state.scene500DifficultyByScene={...state.scene500DifficultyByScene,[scene]:difficulty};
-    return engineActions.openScene(scene);
-   }
-   return engineActions[{resume:'resumeLearning',review:'openReview',reinforcement:'openReinforcement'}[kind]]();
-  }});
-  // Restore from the complete projection before the single first home DOM commit.
-  const q=state.sceneSearchUi?.query||'',d=state.sceneSearchUi?.difficulty||'all';
-  state.sceneSearchUi={query:q,difficulty:d,resultIds:q?PAI_SCENE_SEARCH.search(q,d,5).map(s=>s.id):[]};
-  state.view='scenes';homeRender();if(!window.PAI_PREVIEW_WRITABLE)notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());document.body.classList.add('pai-boot-ready');
-  window.PAI_HOME_READY_MS=performance.now();performance.mark('pai-home-interactive');
-  // Notify preview worker only after valid metadata, search and home DOM are ready.
-  const notifyOfflineHomeReady=()=>{const controller=navigator.serviceWorker?.controller;if(controller?.scriptURL?.includes('/rebuild-preview/sw.js'))controller.postMessage({type:'PAI_HOME_BOOT_OK'})};
-  window.PAI_STARTUP_REPORT=()=>({version:VERSION,homeInteractiveMs:window.PAI_HOME_READY_MS,engineReady:!!window.PAI_ENGINE_READY,resources:performance.getEntriesByType('resource').map(r=>({name:r.name,transferSize:r.transferSize,duration:r.duration}))});
-  if('serviceWorker'in navigator){notifyOfflineHomeReady();navigator.serviceWorker.register(new URL('rebuild-preview/sw.js',document.baseURI),{scope:new URL('rebuild-preview/',document.baseURI).pathname,updateViaCache:'none'}).then(()=>{notifyOfflineHomeReady();navigator.serviceWorker.addEventListener('controllerchange',notifyOfflineHomeReady,{once:true})}).catch(console.warn)}
- }catch(e){document.body.classList.add('pai-boot-ready');app.replaceChildren();const h=document.createElement('h1');h.textContent='PAI Word';const p=document.createElement('p');p.textContent='首页加载失败：'+e.message;const b=document.createElement('button');b.textContent='重新加载';b.onclick=()=>location.reload();app.append(h,p,b);console.error(e)}
+    const inventory=await json('data/scene500-v40-inventory.json');
+    if(inventory.schema!=='pai-scene500-core20k-v40-inventory-v1'||Object.keys(inventory.scenes||{}).length!==500)throw Error('Scene500 inventory schema invalid');
+    const counts=Object.fromEntries(Object.entries(inventory.scenes).map(([id,v])=>[id,v.candidates]));
+    window.PAI_SCENE500_CANDIDATES={summary:{candidatesByScene:counts},version:'Scene500 V4.0 coarse',verifiedSense:false};
+    window.PAI_SCENE500_V40_INVENTORY=inventory;
+   }catch(error){console.warn('Scene500 V4 inventory unavailable; reviewed Scene500 remains usable',error)}
+  }
+  if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
+   const review=await json('data/scene500-review-index-b163-v1.json');
+   const gate=await import(new URL('scripts/scene500-review-gate.mjs',document.baseURI).href);
+   window.PAI_SCENE500_REVIEW_AUDIT=gate.validateReviewIndex(review);
+  }
+
+  }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
+
+  const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
+  // V2.1 isolation: preview must never register the shared root-scope worker.
+  // Dedicated scoped offline support will be introduced after worker isolation tests.
+  window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registering';
+  if('serviceWorker' in navigator){
+    const previewUrl=new URL('rebuild-preview/',document.baseURI);
+    const workerUrl=new URL('sw.js',previewUrl);
+    navigator.serviceWorker.register(workerUrl.href,{scope:previewUrl.pathname,updateViaCache:'none'})
+      .then(reg=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registered';
+        // Existing root workers can control the first load. Scoped worker takes over after claim/reload.
+        if(!navigator.serviceWorker.controller||!navigator.serviceWorker.controller.scriptURL.startsWith(previewUrl.href))
+          window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_waiting_for_control';
+      })
+      .catch(error=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_failed';console.warn('Preview worker unavailable',error)});
+  }
+ }catch(e){app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();

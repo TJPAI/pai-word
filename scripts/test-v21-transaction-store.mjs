@@ -23,11 +23,10 @@ async function exercise(initial,args){
  return {result,current};
 }
 const initial={version:4,state:{value:'old'},committedAttempts:{'a1':true}};
-let x=await exercise(initial,{expectedVersion:3,attemptId:'a1',nextState:{records:{},value:'bad'}});
+let x=await exercise(initial,{expectedVersion:3,attemptId:'a1',nextState:{value:'bad'}});
 assert.equal(x.result.status,'duplicate');assert.deepEqual(x.current,initial);
-x=await exercise(initial,{expectedVersion:3,attemptId:'a2',nextState:{records:{},value:'bad'}});
+x=await exercise(initial,{expectedVersion:3,attemptId:'a2',nextState:{value:'bad'}});
 assert.equal(x.result.status,'conflict');assert.deepEqual(x.current,initial);
-x=await exercise(initial,{expectedVersion:4,attemptId:'a2',nextState:{records:{},value:'new'}});
+x=await exercise(initial,{expectedVersion:4,attemptId:'a2',nextState:{value:'new'}});
 assert.equal(x.result.status,'committed');assert.equal(x.current.version,5);assert.equal(x.current.state.value,'new');assert.equal(x.current.committedAttempts.a2,true);
-await assert.rejects(()=>exercise(initial,{expectedVersion:4,attemptId:'a3',nextState:null}),/Invalid learning state snapshot/);
-console.log('PASS: duplicate, conflict, commit and empty-state rejection in simulated transactions');
+console.log('PASS: duplicate, conflict, commit simulated transaction paths');

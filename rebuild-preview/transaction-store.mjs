@@ -9,8 +9,7 @@ export function openPreviewDB(name='pai-word-core20k-preview-v21'){
  });
 }
 export async function commitSnapshot(db,{expectedVersion,nextState,attemptId}){
- if(!Number.isSafeInteger(expectedVersion)||expectedVersion<0||typeof attemptId!=='string'||!attemptId.trim())throw new Error('Invalid transaction identity');
- if(!nextState||typeof nextState!=='object'||Array.isArray(nextState)||!nextState.records||typeof nextState.records!=='object'||Array.isArray(nextState.records))throw new Error('Invalid learning state snapshot');
+ if(!Number.isInteger(expectedVersion)||expectedVersion<0||!attemptId)throw new Error('Invalid transaction identity');
  return new Promise((resolve,reject)=>{
   const tx=db.transaction('snapshot','readwrite');
   const store=tx.objectStore('snapshot');
@@ -19,7 +18,6 @@ export async function commitSnapshot(db,{expectedVersion,nextState,attemptId}){
   req.onerror=()=>{try{tx.abort()}catch{}};
   req.onsuccess=()=>{
    const previous=req.result||{version:0,state:null,committedAttempts:{}};
-   if(!Number.isSafeInteger(previous.version)||previous.version<0||!previous.committedAttempts||typeof previous.committedAttempts!=='object'){outcome={status:'invalid-baseline'};tx.abort();return}
    // Idempotency takes precedence over stale-version detection: a retried
    // acknowledged attempt must report duplicate, never an unrelated conflict.
    if(previous.committedAttempts?.[attemptId]){outcome={status:'duplicate',version:previous.version};tx.abort();return}
@@ -38,22 +36,5 @@ export function readSnapshot(db){
   const tx=db.transaction('snapshot','readonly'),request=tx.objectStore('snapshot').get('current');
   request.onsuccess=()=>resolve(request.result||{version:0,state:null,committedAttempts:{}});
   request.onerror=()=>reject(request.error);
- });
-}
-
-export function initializeSnapshot(db,initialState){
- if(!initialState||typeof initialState!=='object'||Array.isArray(initialState)||!initialState.records||typeof initialState.records!=='object'||Array.isArray(initialState.records))throw new Error('Invalid initial learning state');
- return new Promise((resolve,reject)=>{
-  const tx=db.transaction('snapshot','readwrite'),store=tx.objectStore('snapshot');
-  let outcome=null;
-  const req=store.get('current');
-  req.onerror=()=>{try{tx.abort()}catch{}};
-  req.onsuccess=()=>{
-   if(req.result!==undefined){outcome={status:'existing',version:req.result.version};return}
-   store.put({version:0,state:initialState,committedAttempts:{}},'current');
-   outcome={status:'initialized',version:0};
-  };
-  tx.oncomplete=()=>resolve(outcome);
-  tx.onabort=()=>reject(tx.error||new Error('Initialization aborted'));
  });
 }

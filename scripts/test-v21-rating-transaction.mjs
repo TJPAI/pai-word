@@ -16,7 +16,7 @@ for(const scenario of cases){
    state:original,previousUnit:null,active:true,loading:false,error:'',browsedUnit:null,startedAt:Date.now()-1000,DAY:86400000,
    unit:()=>({k:'ku1'}),ensureAttempt:()=>original.learningSession.currentAttempt,
    markDailyNewComplete:()=>{},rebuildDailyAssignments:()=>{},
-   PAI_TAP_FLOW:{clearPendingGrade(){},resumeFailedCommit(){},snapshot:()=>({responseMs:1000})},
+   PAI_TAP_FLOW:{snapshot:()=>({responseMs:1000})},
    persist:()=>{writes++;if(scenario==='save-failure')throw Error('injected save error')},
    render:()=>{},showCurrent:()=>{shown++},
    window:{},console:{error:()=>{}},structuredClone:obj=>JSON.parse(JSON.stringify(obj)),

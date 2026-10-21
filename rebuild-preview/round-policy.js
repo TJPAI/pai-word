@@ -37,7 +37,7 @@
         if(!rankAllowed(Number(u?.w?.rank)||999999,difficulty))continue;
         const k=unitKeyOf(u),wordKey=u.w?.rank??u.w?.w;
         if(excluded.has(k)||seenWords.has(wordKey)||state.records?.[k])continue;
-        if(state.introducedHeadwords?.[u.w.w.toLowerCase()]||Object.keys(u.w?.s||{}).some(id=>state.records?.[id]))continue;
+        if(Object.keys(u.w?.s||{}).some(id=>state.records?.[id]))continue;
         seenWords.add(wordKey);out.push(k);if(out.length>=limit)break;
       }
       return out;
@@ -56,8 +56,7 @@
     if(isScene500(scene)&&typeof window.PAI_START_POLICY_SESSION==='function'){
       state.selectedScene=scene;
       window.rebuildDailyAssignments?.();
-      const pending=(allUnits(scene)||[]).filter(u=>!state.records?.[u.k]&&state.introducedHeadwords?.[u.w.w.toLowerCase()]?.kuId===u.k&&rankAllowed(u.w.rank,state.scene500DifficultyByScene?.[scene]||'all')).map(u=>u.k);
-      const due=[...new Set([...dueKeys(scene),...pending])].slice(0,roundSize()),seen=new Set(due);
+      const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
       const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
       const result=window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
@@ -66,8 +65,7 @@
     }
     const result=baseOpenScene(scene);
     if(state.learningSession?.kind==='scene'){
-      const pending=(allUnits(scene)||[]).filter(u=>!state.records?.[u.k]&&state.introducedHeadwords?.[u.w.w.toLowerCase()]?.kuId===u.k&&rankAllowed(u.w.rank,state.scene500DifficultyByScene?.[scene]||'all')).map(u=>u.k);
-      const due=[...new Set([...dueKeys(scene),...pending])].slice(0,roundSize()),seen=new Set(due);
+      const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
       const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
       state.learningSession.queue=keys;
@@ -88,7 +86,10 @@
   }
   window.openReinforcement=function(){
     const keys=reinforcementKeys().slice(0,roundSize());if(!keys.length)return;
-    return window.PAI_START_POLICY_SESSION(keys,'知识强化','reinforcement');
+    state.learningSession={date:new Date().toISOString().slice(0,10),kind:'reinforcement',title:'知识强化',queue:keys,total:keys.length,completed:[],seen:{},attempts:0};
+    state.view='learning';state.revealed=false;save();
+    if(typeof window.resumeLearning==='function')window.resumeLearning();
+    else if(typeof render==='function')render();
   };
 
   window.setNewPerDay=function(n){
