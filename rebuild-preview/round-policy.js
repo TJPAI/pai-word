@@ -101,7 +101,15 @@
     return keys.filter(k=>window.PAI_CORE?.byKU?.has(k)&&!state.records?.[k]);
   }
   window.openReinforcement=function(){
-    const keys=reinforcementKeys().slice(0,roundSize());if(!keys.length)return;
+    const keys=[],seenWords=new Set();
+    for(const k of reinforcementKeys()){
+      const word=window.PAI_CORE?.byKU?.get(k)?.w;
+      const lemma=word?.rank??word?.w??k;
+      if(seenWords.has(lemma))continue;
+      seenWords.add(lemma);keys.push(k);
+      if(keys.length>=roundSize())break;
+    }
+    if(!keys.length)return;
     state.learningSession={date:new Date().toISOString().slice(0,10),kind:'reinforcement',title:'知识强化',queue:keys,total:keys.length,completed:[],seen:{},attempts:0};
     state.view='learning';state.revealed=false;save();
     if(typeof window.resumeLearning==='function')window.resumeLearning();
