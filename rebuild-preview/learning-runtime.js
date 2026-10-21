@@ -348,9 +348,15 @@
  function ready(k,preserveAudio=false){if(ratedVisibleKey!==k)ratedVisibleKey=null;clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function answer({key,mode,score,advance}){clear();visualGrade=score||'again';visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
- function correct(score){if(ratedVisibleKey===visibleKey)return;if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;ratedVisibleKey=visibleKey;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=()=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(score,visibleKey):window.rateLearning?.(score,visibleKey);const g=generation;window.render?.();if(state.autoBrowseEnabled)later(()=>finish(g),config()[score+'Show']*1000);else finish(g)}
+ function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;ratedVisibleKey=visibleKey;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=g=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey);const g=generation;window.render?.();if(state.autoBrowseEnabled)later(()=>finish(g),config()[score+'Show']*1000);else finish(g)}
  function choose(score){
-  if(!['again','hard','good'].includes(score)||ratedVisibleKey===visibleKey||state.view!=='learning'||document.hidden||['answer','committing'].includes(phase))return;
+  if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden||phase==='committing')return;
+  if(phase==='answer'&&ratedVisibleKey===visibleKey){
+   // The latest selection wins; restart the answer display countdown, but never create another attempt.
+   if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;
+   setPendingGrade(visibleKey,score);const g=generation;window.render?.();later(()=>finish(g),config()[score+'Show']*1000);return;
+  }
+  if(ratedVisibleKey===visibleKey)return;
   window.PAI_AUTOBROWSE?.stop();window.PAI_CANCEL_PENDING_BROWSE?.();
   window.PAI_AUTO_RATED_FACE=state.autoBrowseEnabled?(state.revealed?'answer':'question'):null;
   if(phase==='question'){
@@ -853,7 +859,7 @@
   if(loading||error)return `<div class="screen study-screen learning-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div><div class="recall-correction" role="group" aria-label="词卡加载中，按钮暂不可用"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const selectedGrade=PAI_TAP_FLOW.selectedGradeFor(u.k);
-  const gradeAttrs=g=>` ${PAI_TAP_FLOW.ratingLocked(u.k)?'disabled aria-disabled="true"':''} data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
+  const gradeAttrs=g=>` ${PAI_TAP_FLOW.snapshot().phase==='committing'?'disabled aria-disabled="true"':''} data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
   const repeat=s.seen[u.k]>0;
   const autoSwitch=`<label style="display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-size:12px"><input type="checkbox" ${state.autoBrowseEnabled?'checked':''} onchange="setAutoBrowse(this.checked)" aria-label="自动浏览开关">自动浏览</label>`;
   const label=u.s.kuType==='sense'?'回忆词义':u.s.kuTitle;
