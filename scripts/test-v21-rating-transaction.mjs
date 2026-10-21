@@ -16,7 +16,7 @@ async function run(mode){
  const context={state:initial,active:true,loading:false,error:'',browsedUnit:null,
   unit:()=>({k:'ku1'}),ensureAttempt:()=>context.state.learningSession.currentAttempt,
   markDailyNewComplete(){},rebuildDailyAssignments(){},startedAt:Date.now(),DAY:86400000,
-  previousUnit:null,browseIndex:null,cycleKeys:()=>['ku1'],render(){},showCurrent(){shown++},save(){},
+  previousUnit:null,browseIndex:null,cycleKeys:()=>['ku1'],render(){},showCurrent(){shown++},save(){if(mode==='backupFailure')throw Error('localStorage quota')},
   PAI_TAP_FLOW:{
    snapshot:()=>({phase:'committing',responseMs:250}),syncPage(){},resumeFailedCommit(){failed++},
    clearPendingGrade(){},takeHoldAfterRating:()=>true,pageState:()=> 'QUESTION',browseReady(){held++},
@@ -36,7 +36,7 @@ async function run(mode){
  // VM global bindings allow the real rating implementation to update its live 'state'.
  vm.runInContext(implementation,context);
  await context.window.rateLearning('good','ku1');
- if(mode==='success'){
+ if(mode==='success'||mode==='backupFailure'){
   await context.window.rateLearning('good','ku1');
   assert.equal(writes,1,'committed attempt cannot be saved twice');
   assert.equal(context.state.learningSession.attempts,1);
@@ -59,5 +59,6 @@ async function run(mode){
  }
 }
 await run('success');
+await run('backupFailure');
 await run('failure');
 console.log('PASS: async IndexedDB commit idempotency, hold-current-card, failure rollback and retry');
