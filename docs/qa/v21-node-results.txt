@@ -1,6 +1,7 @@
 PASS learning entry: single flight, retry, no premature open
 PASS: optional deferred learning entry and unchanged legacy fallback
 PASS 2540 original-vs-projection searches
+PASS 20 real ensureAttempt cases: all quotas, KU/headword dedup, durable rollback
 PASS real-runtime budget parity 24 cases; distinct KU due, stale rebuild, read-only
 PASS lightweight home: validated index, one concurrent fetch, 500 scenes, no learning engine
 PASS: existing, changed source, empty, invalid baseline; connections closed

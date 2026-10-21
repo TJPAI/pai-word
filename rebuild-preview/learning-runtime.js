@@ -359,7 +359,7 @@
  }
  function restoreAnswer(k,attempt){responseMs=attempt.responseMs??null;state.revealed=true;answer({key:k,mode:'restore',score:attempt.grade||'again',advance:g=>window.rateLearning?.(g,k)})}
 
- function correct(score){if(window.getBrowsedUnit?.())return;if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;rememberAnswer(visibleKey,score);setPendingGrade(visibleKey,score);phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
+ function correct(score){if(window.getBrowsedUnit?.())return;if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;try{rememberAnswer(visibleKey,score)}catch(e){phase='answer-paused';window.render?.();return}grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';if(entryMode==='swipe'){onAdvance=()=>window.rateBrowsedLearning?.(score,visibleKey)}const g=generation;later(()=>finish(g),config()[score+'Show']*1000);window.render?.()}
  function choose(score){
   if(window.getBrowsedUnit?.()||!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
   if(phase==='question'){
@@ -710,7 +710,7 @@
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
- const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
+ const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...Object.keys(state.learningSession?.seen||{}),state.learningSession?.queue?.[0]])].filter(byKey);
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
