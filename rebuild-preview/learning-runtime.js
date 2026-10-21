@@ -716,9 +716,23 @@
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
  window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;persist();showCurrent();return true};
+ window.skipUnansweredLearning=()=>{
+  if(!active||loading||error||browsedUnit||state.view!=='learning'||state.revealed)return false;
+  const session=state.learningSession,queue=session?.queue;
+  if(!Array.isArray(queue)||queue.length<2||!queue[0])return false;
+  // A skipped unanswered question remains in the active queue; it earns no grade.
+  const previous=state,draft=structuredClone(state),q=draft.learningSession.queue;
+  draft.learningSession.queue=[...q.slice(1),q[0]];
+  draft.learningSession.currentAttempt=null;
+  state=draft;
+  try{persist()}catch(e){state=previous;window.PAI_LAST_SAVE_ERROR=String(e);return false}
+  showCurrent(true);
+  return true;
+ };
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const keys=cycleKeys();if(!keys.length)return false;
+  if(direction>0&&browseIndex===null&&keys.length===1)return window.skipUnansweredLearning();
   const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
   const next=index+direction;if(next<0||next>=keys.length)return false;
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=state.revealed;
