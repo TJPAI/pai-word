@@ -13,7 +13,7 @@ const CACHEABLE=new Set([
  'rebuild-preview/data/home-scene-index-v1.json',
  'rebuild-preview/data/home-ku-metadata-v1.json',
  'rebuild-preview/data/home-ku-metadata-v1.json.gz',
- 'scene-search.js'
+ 'rebuild-preview/scene-search.js'
 ]);
 const pathOf=url=>{
  const u=new URL(url);
