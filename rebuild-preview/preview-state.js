@@ -55,7 +55,7 @@ function persistHomeState(){
  const home={};for(const key of PAI_HOME_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))home[key]=structuredClone(state[key]);
  const serialized=JSON.stringify(home);if(serialized===paiHomeQueued||(serialized===paiHomeLast&&paiHomeQueued===null))return;
  paiHomeQueued=serialized;
- paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeHome(window.PAI_KU_DURABLE_DB,home)).then(()=>{paiHomeLast=serialized;if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e)});
+ paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeHome(window.PAI_KU_DURABLE_DB,home)).then(()=>{paiHomeLast=serialized;if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-home-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-home-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='场景或难度保存失败：刷新后可能丢失最近修改。';setTimeout(()=>banner.remove(),7000)});
 }
 
 let paiSettingsLast=null,paiSettingsQueued=null,paiSettingsQueue=Promise.resolve();
