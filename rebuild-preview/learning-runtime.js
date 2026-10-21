@@ -339,13 +339,14 @@
  function syncPage(){state.revealed=pageRevealed()}
  function resetPage(){pageState='QUESTION';syncPage()}
  let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null,visualGrade='again';
+ let ratingDeadline=0,pendingSwipeDirection=0;
  const PENDING_GRADE_STORAGE='pai-word-core20k-rebuild-preview-v21-pending-grades';
  const pendingGrades=new Map();
  try{const saved=JSON.parse(localStorage.getItem(PENDING_GRADE_STORAGE)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))for(const [k,v] of Object.entries(saved)){if(['again','hard','good'].includes(v))pendingGrades.set(k,v)}}catch(e){console.warn('无法恢复待提交评分',e)}
  function persistPending(){localStorage.setItem(PENDING_GRADE_STORAGE,JSON.stringify(Object.fromEntries(pendingGrades)))}
  function setPendingGrade(k,score){if(!k||!['again','hard','good'].includes(score))return;pendingGrades.set(k,score);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分选择保存失败',e)}}
  const gradeFor=k=>pendingGrades.get(k)||(state.records?.[k]?.lastGrade||'again');
- function clear(preserveAudio=false){generation++;if(timer!==null)clearTimeout(timer);timer=null;if(!preserveAudio)window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
+ function clear(preserveAudio=false){pendingSwipeDirection=0;generation++;if(timer!==null)clearTimeout(timer);timer=null;if(!preserveAudio)window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
  function later(fn,ms){timer=setTimeout(()=>{timer=null;fn()},ms)}
  function valid(g){return g===generation&&state.view==='learning'&&!document.hidden&&window.getVisibleLearningUnit?.()?.k===visibleKey}
  function ready(k,preserveAudio=false){if(ratedVisibleKey!==k)ratedVisibleKey=null;clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase=pageRevealed()?'answer-paused':'question'}
@@ -359,6 +360,7 @@
   ratedVisibleKey=visibleKey;grade=score;visualGrade=score;phase='answer';entryMode='rating';state.revealed=true;setPendingGrade(visibleKey,score);
   onAdvance=value=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(value,visibleKey):window.rateLearning?.(value,visibleKey);
   const count={again:3,hard:2,good:1}[score],started=Date.now(),showMs=config()[score+'Show']*1000;
+  ratingDeadline=started+showMs;pendingSwipeDirection=0;
   repeated=0;window.render?.();
   const next=()=>{
    if(!valid(g)||phase!=='answer')return;
@@ -374,6 +376,13 @@
   startRatedSequence(score);
  }
  function browseReady(k,advance,revealed=true){syncPage();ready(k)}
+ function commitEarly(direction){
+  if(phase!=='answer'||![-1,1].includes(direction)||!visibleKey)return false;
+  pendingSwipeDirection=direction;
+  window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;
+  finish(++generation);return true;
+ }
+ function takeSwipeDirection(){const direction=pendingSwipeDirection;pendingSwipeDirection=0;return direction}
  function finish(g){if(!valid(g)||phase==='idle'||phase==='committing')return;const fn=onAdvance;onAdvance=null;if(typeof fn!=='function'){phase='answer-paused';window.render?.();return}phase='committing';try{fn(grade)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分提交回调失败',e);resumeFailedCommit()}}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
@@ -381,7 +390,13 @@
   if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
  function tap(){
-  if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.()||['answer','committing','repeating'].includes(phase))return;
+  if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.()||['committing','repeating'].includes(phase))return;
+  if(phase==='answer'){
+   pageState=pageRevealed()?'QUESTION':'ANSWER';syncPage();
+   window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;
+   const g=++generation;later(()=>finish(g),Math.max(0,ratingDeadline-Date.now()));
+   window.render?.();return;
+  }
   pageState=pageRevealed()?'QUESTION':'ANSWER';syncPage();
   if(pageRevealed()){responseMs=Math.max(0,Date.now()-began);phase='answer-paused';window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
   else ready(visibleKey,true);
@@ -412,7 +427,7 @@
  };
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'</div>'}
  function hint(){return state.revealed?'点空白回题目，左右滑切词，点底部按钮训练记忆':'点空白看答案，左右滑切词，点底部按钮训练记忆'}
- window.PAI_TAP_FLOW={ready,answer,browseReady,choose,resetPage,syncPage,pageState:()=>pageState,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),ratingLocked:k=>ratedVisibleKey===k,clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ window.PAI_TAP_FLOW={ready,answer,browseReady,choose,resetPage,syncPage,pageState:()=>pageState,commitEarly,takeSwipeDirection,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),ratingLocked:k=>ratedVisibleKey===k,clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
@@ -722,7 +737,8 @@
  // All swipe and auto-browse navigation passes through this single guarded entry.
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
   const phase=PAI_TAP_FLOW.snapshot().phase;
-  if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(phase))return false;
+  if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused','answer'].includes(phase))return false;
+   if(phase==='answer')return source==='swipe'&&PAI_TAP_FLOW.commitEarly(direction);
   // A newer browse request invalidates any in-flight older browse.
   const moved=await window.browseAnswer(direction);
   if(source==='swipe'&&moved&&state.autoBrowseEnabled&&['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))window.PAI_AUTOBROWSE?.restart();
@@ -805,7 +821,7 @@
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;save()}else throw Error('IndexedDB unavailable: refusing unsafe fallback')}catch(e){window.PAI_SAVE_DEFERRED=false;state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(String(e).includes('conflict'))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
-  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(1);window.PAI_AUTOBROWSE?.restart()
+  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();const direction=PAI_TAP_FLOW.takeSwipeDirection()||1;PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(direction);window.PAI_AUTOBROWSE?.restart()
  };
  window.PAI_RELOAD_KU_AFTER_CONFLICT=async()=>{
   if(!window.PAI_KU_STORAGE_READY)return false;
@@ -845,7 +861,7 @@
   }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(String(e).includes('conflict'))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
-  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();showCurrent();
+  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
  function home(){
