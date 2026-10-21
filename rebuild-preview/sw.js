@@ -15,6 +15,15 @@ const CACHEABLE=new Set([
  'rebuild-preview/data/home-ku-metadata-v1.json.gz',
  'rebuild-preview/scene-search.js'
 ]);
+// A navigation must not receive an offline HTML shell unless all startup assets exist.
+const REQUIRED_HOME=[
+ 'rebuild-preview/preview-state.js','rebuild-preview/bootstrap.js',
+ 'rebuild-preview/home-index.mjs','rebuild-preview/light-home-startup.mjs',
+ 'rebuild-preview/light-home-budget.mjs','rebuild-preview/learning-entry.mjs',
+ 'rebuild-preview/light-home-view.mjs','rebuild-preview/home-dashboard.js',
+ 'rebuild-preview/scene-search.js',
+ 'rebuild-preview/data/home-scene-index-v1.json'
+];
 const pathOf=url=>{
  const u=new URL(url);
  if(u.origin!==ROOT.origin||!u.pathname.startsWith(ROOT.pathname))return null;
@@ -41,7 +50,15 @@ self.addEventListener('fetch',event=>{
    return response;
   }catch(error){
    const cached=await cache.match(request);
-   if(cached)return cached;
+   if(cached){
+    if(path==='rebuild-preview/'||path==='rebuild-preview/index.html'){
+     const keys=await cache.keys();
+     const present=new Set(keys.map(key=>pathOf(key.url)));
+     if(REQUIRED_HOME.some(item=>!present.has(item)))throw Error('OFFLINE_HOME_INCOMPLETE');
+     if(!present.has('rebuild-preview/data/home-ku-metadata-v1.json')&&!present.has('rebuild-preview/data/home-ku-metadata-v1.json.gz'))throw Error('OFFLINE_HOME_STATS_MISSING');
+    }
+    return cached;
+   }
    throw error;
   }
  })());
