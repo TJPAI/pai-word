@@ -736,8 +736,10 @@
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!unit())return false;
   const keys=cycleKeys();if(!keys.length)return false;
-  if(direction>0&&browseIndex===null&&keys.length===1)return window.skipUnansweredLearning();
   const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
+  // The current KU is the final seen card. Swipe forward must move to the
+  // next unasked question rather than stop at the history boundary.
+  if(direction>0&&index===keys.length-1)return window.skipUnansweredLearning();
   const next=index+direction;if(next<0||next>=keys.length)return false;
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=state.revealed;
   PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
