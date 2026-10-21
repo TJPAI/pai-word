@@ -7,7 +7,7 @@ assert.match(s,/window\.skipUnansweredLearning=\(\)=>/);
 assert.match(s,/draft\.learningSession\.queue=\[\.\.\.q\.slice\(1\),q\[0\]\]/);
 assert.match(s,/draft\.learningSession\.currentAttempt=null/);
 assert.match(s,/try\{persist\(\)\}catch\(e\)\{state=previous/);
-assert.match(s,/if\(direction>0&&browseIndex===null&&keys\.length===1\)return window\.skipUnansweredLearning\(\)/);
+assert.match(s,/if\(direction>0&&index===keys\.length-1\)return window\.skipUnansweredLearning\(\)/);
 assert.match(s,/if\(synth\.speaking\|\|synth\.pending\|\|synth\.paused\)this\.stop\(\)/);
 const rotate=q=>[...q.slice(1),q[0]];
 assert.deepEqual(rotate(['a','b','c']),['b','c','a']);
