@@ -15,15 +15,17 @@ for(const [settings,ms,expected] of [
  const ctx={state:{tapTiming:settings}};vm.createContext(ctx);
  assert.equal(vm.runInContext(defaults+config+classify+';classify('+ms+')',ctx),expected);
 }
+// Current V2.1 uses explicit grading, not the legacy timed auto-grade flow.
 for(const pattern of [
- /if\(gestureSpeech&&autoQuestion&&u\.w\?\.w\)/,
- /if\(!gestureSpeech&&autoQuestion\)speak\(u\.w\.w\)/,
- /\(wasRevealed\?state\.autoPronounce\.swipe:state\.autoPronounce\.question\)/,
- /if\(state\.autoPronounce\?\.swipe\)window\.PAI_AUDIO\?\.play\(current\.w\.w/,
- /const k=visibleKey,score=classify\(responseMs\)/,
- /phase='repeating';repeated=0;repeat\(generation\)/,
- /clearPendingGrade:k=>\{pendingGrades\.delete\(k\)/,
- /const gradeFor=k=>pendingGrades\.get\(k\)\|\|\(state\.records\?\.\[k\]\?\.lastGrade\|\|'again'\)/
-])assert(pattern.test(source),'missing runtime contract '+pattern);
+ /function choose\(score\)\{/,
+ /function correct\(score\)\{/,
+ /function startRatedSequence\(score\)\{/,
+ /const count=\{again:3,hard:2,good:1\}\[score\]/,
+ /phase='committing'/,
+ /function tap\(\)\{/,
+ /window\.PAI_AUTOBROWSE\?\.stop\(\)/,
+ /const gradeFor=k=>pendingGrades\.get\(k\)/
+])assert(pattern.test(source),'missing current runtime contract '+pattern);
 assert(!/phase='repeating';grade='again'/.test(source),'reread must not overwrite grade');
-console.log('PASS: 6 executed timing cases and 8 source-contract assertions');
+
+console.log('PASS: 6 executed timing cases and 8 current source-contract assertions');
