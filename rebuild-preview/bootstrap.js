@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-light-home-1';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-light-home-2';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app'),scripts=new Map();
  function script(src){if(!scripts.has(src))scripts.set(src,new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>{el.remove();scripts.delete(src);reject(Error('应用文件加载失败: '+src))};document.body.appendChild(el)}));return scripts.get(src)}
  let homeRender,engineRender,initializing=false,runtimeLoaded=false,policyLoaded=false,entry,metadata,index,panels;
@@ -7,12 +7,14 @@
  function notice(text,retry){let box=document.getElementById('learning-load-status');if(!box){box=document.createElement('div');box.id='learning-load-status';box.setAttribute('role','status');box.style.cssText='position:fixed;bottom:16px;left:5%;width:90%;box-sizing:border-box;padding:14px;background:white;border:1px solid #cbd5e1;border-radius:12px;z-index:100';document.body.appendChild(box)}box.textContent=text;if(retry){const b=document.createElement('button');b.textContent='重试';b.onclick=retry;box.appendChild(b)}}
  let navigation=null;
  function intent(kind,scene,difficulty='all'){
+  if(!window.PAI_PREVIEW_WRITABLE){notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());return Promise.resolve()}
   if(navigation)return navigation;
   notice('正在准备学习内容…');
   navigation=entry.enter(kind,JSON.stringify({scene,difficulty})).then(()=>document.getElementById('learning-load-status')?.remove()).catch(e=>{console.error(e);notice('学习内容加载失败：'+e.message,()=>intent(kind,scene,difficulty))}).finally(()=>{navigation=null});
   return navigation;
  }
  try{
+  await window.acquirePreviewWriter();
   const [{prepareLightweightHome,installLightweightSceneCatalog},{inspectHomeBudget},{createLearningEntry},{createLightPanels}]=await Promise.all([import('./light-home-startup.mjs'),import('./light-home-budget.mjs'),import('./learning-entry.mjs'),import('./light-home-view.mjs')]);
   async function loadMetadata(){
    const compressed=typeof DecompressionStream!=='undefined';
@@ -59,7 +61,7 @@
   // Restore from the complete projection before the single first home DOM commit.
   const q=state.sceneSearchUi?.query||'',d=state.sceneSearchUi?.difficulty||'all';
   state.sceneSearchUi={query:q,difficulty:d,resultIds:q?PAI_SCENE_SEARCH.search(q,d,5).map(s=>s.id):[]};
-  state.view='scenes';homeRender();document.body.classList.add('pai-boot-ready');
+  state.view='scenes';homeRender();if(!window.PAI_PREVIEW_WRITABLE)notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());document.body.classList.add('pai-boot-ready');
   window.PAI_HOME_READY_MS=performance.now();performance.mark('pai-home-interactive');
   window.PAI_STARTUP_REPORT=()=>({version:VERSION,homeInteractiveMs:window.PAI_HOME_READY_MS,engineReady:!!window.PAI_ENGINE_READY,resources:performance.getEntriesByType('resource').map(r=>({name:r.name,transferSize:r.transferSize,duration:r.duration}))});
   if('serviceWorker'in navigator)navigator.serviceWorker.register(new URL('rebuild-preview/sw.js',document.baseURI),{scope:new URL('rebuild-preview/',document.baseURI).pathname,updateViaCache:'none'}).catch(console.warn);

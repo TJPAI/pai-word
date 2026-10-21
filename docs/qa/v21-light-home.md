@@ -109,3 +109,34 @@ Final measured medians (2026-10-21, local environment only):
 
 Cold complete-home observation fell about 81.5% and subresource transfer about
 70.5% in this controlled test. These are not iPhone/public-network guarantees.
+
+## Follow-up: writer safety and rollback (2026-10-21)
+
+Reproduced before fix: two live preview tabs could overwrite each other's state.
+The second stale tab's save erased the first tab's newer statistics. Added an
+origin-scoped Web Lock held for the document lifetime, using the existing preview
+storage namespace. Only its owner can save or start learning. Other tabs can
+browse/search read-only; settings are disabled and a visible notice explains
+closing the writer and refreshing to continue. Browsers without the lock API
+remain explicitly read-only, rather than silently allowing unsafe writes.
+Every save also compares the stored snapshot to detect out-of-band/older-client
+writes. No SRS schema migration, record deletion or new database was introduced.
+
+Actual Chromium safety tests (v21-browser-safety.json): secondary writer rejected;
+close/reload handover preserves both updates; external changes reject stale save;
+rollback to f2ac8c5 after closing newer clients restores the same attempt, answer
+phase and response time; unsupported lock API does not permit learning writes.
+The rollback test is local, not a GitHub Pages deployment. Older clients do not
+honor the new lock: close old-version tabs when updating or rolling back.
+
+Actual offline result: with HTTP cache disabled and the current network-only
+worker, offline reload FAILS. This is a measured unsupported capability, not a
+passing offline acceptance test. No speculative caching layer was added in this
+correctness patch. Real iPhone Safari / audio and full offline support remain
+release gates. Earlier statements listing current-version tab safety and local
+rollback as untested are superseded by these narrowly scoped results.
+
+Safety command:
+```
+PAI_CHROMIUM=/path/to/chromium PAI_ROLLBACK_ROOT=/path/to/f2ac8c5-tree node scripts/test-v21-browser-safety.mjs
+```

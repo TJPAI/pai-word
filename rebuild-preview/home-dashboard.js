@@ -73,7 +73,7 @@
     const previous=ui();
     const preserved=restore&&ids.length===0&&previous.query===q&&Array.isArray(previous.resultIds)&&previous.resultIds.length>0;
     state.sceneSearchUi={query:q,difficulty,resultIds:preserved?previous.resultIds:ids};
-    if(!preserved)save();
+    if(!preserved&&window.PAI_PREVIEW_WRITABLE!==false)save();
     render();
   }
   window.restoreScene500Recommendations=function(){
@@ -91,7 +91,7 @@
   window.refreshScene500Difficulty=function(difficulty){
     const s=ui();
     const q=(document.getElementById('scene-query')?.value||s.query||'').trim();
-    if(!s.query||!q){state.sceneSearchUi={...s,difficulty};save();return}
+    if(!s.query||!q){state.sceneSearchUi={...s,difficulty};if(window.PAI_PREVIEW_WRITABLE!==false)save();return}
     runSceneSearch(q,difficulty||'all');
   };
   window.continueScene500=function(scene,difficulty='all'){

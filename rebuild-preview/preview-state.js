@@ -45,9 +45,26 @@ const WORDS = [
 
 const STORAGE='pai-word-core20k-rebuild-preview-v21';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
-try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
+let savedSnapshot=null;
+try{savedSnapshot=localStorage.getItem(STORAGE);state={...state,...JSON.parse(savedSnapshot||'{}')}}catch(e){}
+// Hold one origin-scoped write lease for the lifetime of this document.
+// A second tab can browse but must close the writer and reload before studying.
+window.PAI_PREVIEW_WRITABLE=false;
+window.acquirePreviewWriter=()=>new Promise(resolve=>{
+ if(!navigator.locks?.request){window.PAI_PREVIEW_WRITE_REASON='此浏览器不支持安全的多页面写入保护，请使用较新的浏览器学习。';resolve(false);return}
+ navigator.locks.request(STORAGE+'-writer',{ifAvailable:true},lock=>{
+  if(!lock){window.PAI_PREVIEW_WRITE_REASON='另一个页面正在使用学习记录。请关闭该页面后刷新本页，再继续学习。';resolve(false);return}
+  window.PAI_PREVIEW_WRITABLE=true;resolve(true);
+  return new Promise(()=>{});
+ }).catch(e=>{window.PAI_PREVIEW_WRITE_REASON='学习记录写入保护未就绪：'+e.message;resolve(false)});
+});
+function save(){
+ if(window.PAI_SAVE_DEFERRED===true)return;
+ if(!window.PAI_PREVIEW_WRITABLE)throw Error(window.PAI_PREVIEW_WRITE_REASON||'学习记录尚未准备好');
+ if(localStorage.getItem(STORAGE)!==savedSnapshot){window.PAI_PREVIEW_WRITABLE=false;window.PAI_PREVIEW_WRITE_REASON='学习记录已被其他页面更新，请刷新后继续。';throw Error(window.PAI_PREVIEW_WRITE_REASON)}
+ const next=JSON.stringify(state);localStorage.setItem(STORAGE,next);savedSnapshot=next;
+}
 
-function save(){if(window.PAI_SAVE_DEFERRED===true)return;localStorage.setItem(STORAGE,JSON.stringify(state))}
 function unitKey(w,sid){return w.s[sid]?.ku_id||`${w.w}::${sid}`}
 function findUnitByKey(k){return window.PAI_CORE?.byKU.get(k)||null}
 function allUnits(scene){return window.PAI_CORE?.byScene.get(scene)||[]}
