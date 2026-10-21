@@ -18,7 +18,7 @@
   const speakNow=()=>{
    if(id!==seq||finished)return;
    refresh();
-   const u=new SpeechSynthesisUtterance(text);current=u;window.__paiUtterance=u;u.lang=lang;u.rate=rate;u.pitch=1;u.volume=1;u.voice=pick(lang);
+   const u=new SpeechSynthesisUtterance(text);current=u;window.__paiUtterance=u;u.lang=lang;u.rate=Math.min(10,rate*(Number(state.speechSpeed)||100)/100);u.pitch=1;u.volume=1;u.voice=pick(lang);
    u.onstart=()=>{lastEvent='start';if(watchdog){clearTimeout(watchdog);watchdog=null}};
    u.onend=done;
    u.onerror=e=>{lastEvent='error:'+(e?.error||'unknown');done()};
