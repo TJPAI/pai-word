@@ -385,7 +385,7 @@
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
  document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+700},{passive:true});
- document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;window.__paiTapSuppressUntil=Date.now()+700;window.browseAnswer?.(x>0?-1:1)},{passive:true});
+ document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;window.__paiTapSuppressUntil=Date.now()+700;window.PAI_NAVIGATE_LEARNING?.(x>0?-1:1,'swipe')},{passive:true});
  // Backgrounding never turns an already revealed answer into a fresh timed question.
  let hiddenAt=0,hiddenPhase=null;
  document.addEventListener('visibilitychange',()=>{
@@ -686,8 +686,17 @@
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
  window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;state.revealed=false;if(!next)return false;persist();showCurrent();return true};
+ // All swipe and auto-browse navigation passes through this single guarded entry.
+ window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
+  const phase=PAI_TAP_FLOW.snapshot().phase;
+  if(!active||error||!unit()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(phase))return false;
+  // A newer browse request invalidates any in-flight older browse.
+  const moved=await window.browseAnswer(direction);
+  if(source==='swipe'&&state.autoBrowseEnabled)window.PAI_AUTOBROWSE?.restart();
+  return moved;
+ };
  window.browseAnswer=async direction=>{
-  if(!active||loading||error||!unit())return false;
+  if(!active||error||!unit()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
   const keys=cycleKeys();if(!keys.length)return false;
   const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
   const next=(index+direction+keys.length)%keys.length;
@@ -712,7 +721,7 @@
    const phase=window.PAI_TAP_FLOW?.snapshot()?.phase;
    // Never interrupt a pending rating, storage commit or explicit answer replay.
    if(!loading&&!error&&!window.PAI_SAVE_DEFERRED&&['question','answer-paused'].includes(phase)){
-    try{await window.browseAnswer(1)}catch(e){console.warn('Auto browse skipped',e)}
+    try{await window.PAI_NAVIGATE_LEARNING(1,'auto')}catch(e){console.warn('Auto browse skipped',e)}
    }
    if(generation===autoBrowseGeneration)scheduleAutoBrowse();
   },autoInterval());
