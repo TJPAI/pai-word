@@ -759,7 +759,7 @@
   draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=false;state=draft;
-  try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId});if(result.status!=='committed')throw Error('Duplicate historical rating attempt');save()}else persist(true)}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
+  try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;save()}else throw Error('IndexedDB unavailable: refusing unsafe fallback')}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
   historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
   // After an explicitly rated historical KU, return to the active queue's QUESTION page.
   state.revealed=false;showCurrent();
@@ -783,8 +783,8 @@
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
-  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId});if(result.status!=='committed')throw Error('Duplicate KU rating attempt');window.PAI_SAVE_DEFERRED=false;save()}
-  else {window.PAI_SAVE_DEFERRED=false;persist(true)};
+  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;save()}
+  else {window.PAI_SAVE_DEFERRED=false;throw Error('IndexedDB unavailable: refusing unsafe KU write')};
   }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
