@@ -179,3 +179,19 @@ before enabling public offline claims. The new isolated test
 scripts/test-v21-offline-shell.mjs has been committed but has not been run
 against Node or in Chromium in this turn. Safari and offline refresh remain
 unverified at this HEAD. No publishing branch was updated.
+
+
+## Offline version isolation follow-up (2026-10-21)
+
+The preview service worker previously used cache.match(...,{ignoreSearch:true}).
+This could serve a stale JS asset after the application changed its ?v= URL.
+It now requires an exact URL match; a changed version without a matching
+cached response fails offline rather than silently mixing assets.
+scripts/test-v21-offline-shell.mjs now asserts this version-mismatch failure.
+
+Important scope limitation: the preview-scoped Service Worker cannot intercept
+requests for /pai-word/scene-search.js outside /pai-word/rebuild-preview/.
+Therefore the current on-demand cache is NOT sufficient evidence that an entire
+home can refresh offline; it requires a self-contained asset path or another
+explicit scoped caching strategy. No browser or Node test was executed in this
+follow-up, and no offline or release acceptance is claimed.
