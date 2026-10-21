@@ -177,7 +177,11 @@
   window.PAI_AUDIO={
     stop(){audioGeneration++;if('speechSynthesis'in window)speechSynthesis.cancel()},
     play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
-      this.stop();const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
+      const synth=speechSynthesis;
+      // Calling cancel() on an idle synth can suppress the first utterance in Safari.
+      if(synth.speaking||synth.pending||synth.paused)this.stop();
+      else audioGeneration++;
+      const id=audioGeneration,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
       const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
       const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=rate;u.voice=voice;window.__paiUtterance=u;
       let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;onDone?.()};
