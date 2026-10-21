@@ -392,12 +392,12 @@
  function tap(){
   if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.()||['committing','repeating'].includes(phase))return;
   if(phase==='answer'){
-   pageState=pageRevealed()?'QUESTION':'ANSWER';syncPage();
+   pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
    window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;
    const g=++generation;later(()=>finish(g),Math.max(0,ratingDeadline-Date.now()));
    window.render?.();return;
   }
-  pageState=pageRevealed()?'QUESTION':'ANSWER';syncPage();
+  pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
   if(pageRevealed()){responseMs=Math.max(0,Date.now()-began);phase='answer-paused';window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
   else ready(visibleKey,true);
   window.render?.();if(state.autoBrowseEnabled)window.PAI_AUTOBROWSE?.restart();
