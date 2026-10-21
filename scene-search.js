@@ -119,7 +119,7 @@
     state.scene500DifficultyByScene[scene]=difficulty;
     save();
   }
-  function open(scene,difficulty='all'){remember(scene,difficulty);return window.openScene(scene)}
+  function open(scene,difficulty='all'){try{remember(scene,difficulty);if(typeof window.openScene!=='function')throw Error('学习页面尚未初始化');return window.openScene(scene)}catch(error){console.error('PAI_SCENE_CLICK_ERROR',scene,error);const msg='场景进入失败：'+String(error?.message||error);let el=document.getElementById('pai-scene-click-error');if(!el){el=document.createElement('div');el.id='pai-scene-click-error';el.setAttribute('role','alert');el.style.cssText='position:fixed;z-index:100000;bottom:16px;left:12px;right:12px;background:#7f1d1d;color:white;padding:14px;border-radius:10px;font:14px system-ui;box-shadow:0 2px 12px #0005';document.body.appendChild(el)}el.textContent=msg;return false}}
   function recent(){return (state.scene500Recent||[]).map(id=>specs().find(s=>s.id===id)).filter(Boolean)}
   function recentDifficulty(id){return state.scene500DifficultyByScene?.[id]||'all'}
   window.PAI_SCENE_SEARCH={
