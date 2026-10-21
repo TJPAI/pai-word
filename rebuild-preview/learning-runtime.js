@@ -175,7 +175,7 @@
   if('speechSynthesis' in window&&speechSynthesis.addEventListener)speechSynthesis.addEventListener('voiceschanged',refreshVoices);
   let audioGeneration=0;
   window.PAI_AUDIO={
-    stop(){audioGeneration++;if('speechSynthesis'in window)speechSynthesis.cancel()},
+    stop(){audioGeneration++;if('speechSynthesis'in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel()},
     play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
       this.stop();const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
       const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
@@ -183,7 +183,7 @@
       let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;onDone?.()};
       u.onend=done;u.onerror=done;
       if(synth.paused)synth.resume();
-      try{synth.speak(u)}catch(_){done()}
+      try{synth.speak(u)}catch(e){console.warn('Speech synthesis failed',e);done()}
     }
   };
   window.speak=(text,rate=.84)=>window.PAI_AUDIO.play(text,rate);
