@@ -42,5 +42,5 @@ assert.equal(await request('https://example.test/pai-word/data/core20k-runtime.j
 assert.equal(await request('https://example.test/pai-word/data/scene500-top100-v40/group-01.json'),null);
 assert.equal(await request('https://example.test/pai-word/index.html'),null);
 assert.equal(await request(home,'POST'),null);
-await assert.rejects(request('https://example.test/pai-word/rebuild-preview/missing.js'),/offline|Cannot read/).catch(()=>{}); // not in allowlist
+assert.equal(await request('https://example.test/pai-word/rebuild-preview/missing.js'),null);
 console.log('PASS preview offline shell: on-demand cache, offline fallback, no heavy-resource interception');
