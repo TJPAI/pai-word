@@ -47,7 +47,32 @@ const STORAGE='pai-word-mobile-v1';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
-function save(){localStorage.setItem(STORAGE,JSON.stringify(state))}
+// Storage quota must never prevent a scene from opening or a card from being rated.
+let paiStorageWarningShown=false;
+function save(){
+  try{
+    // Daily assignments are derived data and can be regenerated on demand.
+    const persisted={...state};
+    delete persisted.daily;
+    localStorage.setItem(STORAGE,JSON.stringify(persisted));
+    return true;
+  }catch(error){
+    console.warn('PAI_STATE_PERSIST_FAILED',error);
+    if(!paiStorageWarningShown){
+      paiStorageWarningShown=true;
+      const warn=()=>{
+        if(document.getElementById('pai-storage-warning'))return;
+        const el=document.createElement('div');el.id='pai-storage-warning';el.setAttribute('role','alert');
+        el.style.cssText='position:fixed;z-index:99998;left:12px;right:12px;bottom:12px;background:#874b14;color:white;padding:12px;border-radius:10px;font:14px system-ui';
+        el.textContent='浏览器存储空间不足：可以继续学习，但本次进度可能无法保存。请勿清除已有学习数据。';
+        document.body.appendChild(el);
+        setTimeout(()=>el.remove(),10000);
+      };
+      if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',warn,{once:true});else warn();
+    }
+    return false;
+  }
+}
 function unitKey(w,sid){return w.s[sid]?.ku_id||`${w.w}::${sid}`}
 function findUnitByKey(k){return window.PAI_CORE?.byKU.get(k)||null}
 function allUnits(scene){return window.PAI_CORE?.byScene.get(scene)||[]}
