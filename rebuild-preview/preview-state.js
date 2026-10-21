@@ -57,7 +57,8 @@ function save(){
     window.PAI_PREVIEW_STORAGE_ERROR=null;
     return true;
   }catch(error){
-    // Safari can reject writes even while reads still succeed. Keep interaction usable.
+    // IndexedDB is the KU authority once initialized; localStorage is only legacy backup.
+    if(window.PAI_KU_STORAGE_READY===true)return true;
     window.PAI_PREVIEW_STORAGE_ERROR=String(error?.message||error);
     console.warn('PAI_PREVIEW_STORAGE_QUOTA',error);
     if(!document.getElementById('pai-preview-storage-warning')){
