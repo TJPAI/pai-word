@@ -10,6 +10,6 @@ for(const [grade,label] of [['again','不知道'],['hard','模糊'],['good','知
 assert(runtime.includes("function choose(score){"),'question-stage direct grading handler missing');
 assert(runtime.includes("if(phase==='question'){"),'question stage must be handled');
 assert(runtime.includes("correct(score);"),'answer-stage correction handler missing');
-assert(runtime.includes('window.rateBrowsedLearning=()=>{}'),'historical cards must remain read-only');
+assert(runtime.includes('window.rateBrowsedLearning=async(grade,k)=>'),'historical card grading must have durable commit handler');
 assert(html.includes('id="pai-preview-rating-bar"'),'preview must include visible safe-area controls');
 console.log('PASS: all three controls appear before reveal and remain correction-capable on answer; historic cards read-only');
