@@ -9,7 +9,7 @@
    if(!window.indexedDB)return reject(Error('IndexedDB unavailable'));
    const r=indexedDB.open(NAME,3);let blocked=false;
    r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('state'))db.createObjectStore('state');if(!db.objectStoreNames.contains('attempts'))db.createObjectStore('attempts');if(!db.objectStoreNames.contains('settings'))db.createObjectStore('settings');if(!db.objectStoreNames.contains('home'))db.createObjectStore('home')};
-   r.onsuccess=()=>{const db=r.result;db.onversionchange=()=>db.close();if(blocked){db.close();return}resolve(db)};
+   r.onsuccess=()=>{const db=r.result;db.onversionchange=()=>{db.close();if(window.PAI_KU_DURABLE_DB===db){window.PAI_KU_STORAGE_READY=false;window.PAI_KU_STORAGE_FATAL=true}};if(blocked){db.close();return}resolve(db)};
    r.onblocked=()=>{blocked=true;reject(Error('IndexedDB upgrade blocked by another tab'))};
    r.onerror=()=>reject(r.error||Error('IndexedDB open failed'));
   });
