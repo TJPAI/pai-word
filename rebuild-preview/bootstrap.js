@@ -5,10 +5,19 @@
  let homeRender,engineRender,initializing=false,runtimeLoaded=false,policyLoaded=false,entry,metadata,index,panels;
  const render=()=>{if(initializing)return;if(state.view==='scenes')return homeRender?.();if(['settings','stats'].includes(state.view))return panels?.render(state.view);return engineRender?.()};
  function notice(text,retry){let box=document.getElementById('learning-load-status');if(!box){box=document.createElement('div');box.id='learning-load-status';box.setAttribute('role','status');box.style.cssText='position:fixed;bottom:16px;left:5%;width:90%;box-sizing:border-box;padding:14px;background:white;border:1px solid #cbd5e1;border-radius:12px;z-index:100';document.body.appendChild(box)}box.textContent=text;if(retry){const b=document.createElement('button');b.textContent='重试';b.onclick=retry;box.appendChild(b)}}
+ const studyPreloads=new Set();
+ function preloadStudyScripts(){
+  for(const path of ['rebuild-preview/learning-runtime.js','rebuild-preview/round-policy.js','audio-compat.js']){
+   if(studyPreloads.has(path))continue;studyPreloads.add(path);
+   const link=document.createElement('link');link.rel='preload';link.as='script';link.href=path+'?v='+VERSION;document.head.appendChild(link);
+  }
+ }
  let navigation=null;
  function intent(kind,scene,difficulty='all'){
   if(!window.PAI_PREVIEW_WRITABLE){notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());return Promise.resolve()}
   if(navigation)return navigation;
+  // User-initiated preload starts script transfer while Core20K and Top100 initialize.
+  preloadStudyScripts();
   notice('正在准备学习内容…');
   navigation=entry.enter(kind,JSON.stringify({scene,difficulty})).then(()=>document.getElementById('learning-load-status')?.remove()).catch(e=>{console.error(e);notice('学习内容加载失败：'+e.message,()=>intent(kind,scene,difficulty))}).finally(()=>{navigation=null});
   return navigation;
