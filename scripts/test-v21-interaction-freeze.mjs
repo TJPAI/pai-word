@@ -1,7 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const src=fs.readFileSync(new URL('../rebuild-preview/learning-runtime.js',import.meta.url),'utf8');
-const baseline=fs.readFileSync(new URL('../rebuild-preview/learning-runtime.js',import.meta.url),'utf8');
 assert.match(src,/goodWithin:2,hardWithin:5,goodShow:2,hardShow:4,againShow:6,repeatCount:3/);
 assert.match(src,/state\.autoPronounce=\{question:true,swipe:true/);
 assert.match(src,/if\(spokeInGesture\)window\.PAI_AUDIO\?\.play/);
