@@ -65,10 +65,23 @@
       </main>
     </div></div>`;
   }
+  let pendingSceneSearch=0;
   function runSceneSearch(q,difficulty){
-    if(window.PAI_SCENE500_TOP100?.loading){window.PAI_SCENE500_TOP100_READY?.then(()=>runSceneSearch(q,difficulty)).catch(console.error);return;}
+    const request=++pendingSceneSearch;
+    // Preserve user's text before async Top100 indexing finishes.
+    state.sceneSearchUi={query:q,difficulty,resultIds:[]};
+    const ready=window.PAI_SCENE500_TOP100_READY;
+    if(!window.PAI_SCENE500_TOP100||window.PAI_SCENE500_TOP100.loading){
+      render();
+      if(ready)Promise.resolve(ready).then(()=>{
+        if(request===pendingSceneSearch)runSceneSearch(q,difficulty);
+      }).catch(e=>{console.error('Scene500 search index unavailable',e);render()});
+      return;
+    }
     const results=searchApi()?.search(q,difficulty,5)||[];
-    state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};save();render();
+    state.sceneSearchUi={query:q,difficulty,resultIds:results.map(x=>x.id)};
+    try{save()}catch(e){console.warn('Scene search selection not saved',e)}
+    render();
   }
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
