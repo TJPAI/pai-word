@@ -24,6 +24,18 @@ const REQUIRED_HOME=[
  'rebuild-preview/scene-search.js',
  'rebuild-preview/data/home-scene-index-v1.json'
 ];
+const SEAL_URL=new URL('__offline-home-sealed__',SCOPE).href;
+self.addEventListener('message',event=>{
+ if(event.data?.type!=='PAI_HOME_BOOT_OK'||!event.source?.url?.startsWith(SCOPE.href))return;
+ event.waitUntil((async()=>{
+  const cache=await caches.open(CACHE);
+  const keys=await cache.keys();
+  const present=new Set(keys.map(key=>pathOf(key.url)));
+  if(REQUIRED_HOME.some(item=>!present.has(item)))return;
+  if(!present.has('rebuild-preview/data/home-ku-metadata-v1.json')&&!present.has('rebuild-preview/data/home-ku-metadata-v1.json.gz'))return;
+  await cache.put(SEAL_URL,new Response('sealed'));
+ })());
+});
 const pathOf=url=>{
  const u=new URL(url);
  if(u.origin!==ROOT.origin||!u.pathname.startsWith(ROOT.pathname))return null;
@@ -46,12 +58,13 @@ self.addEventListener('fetch',event=>{
   const cache=await caches.open(CACHE);
   try{
    const response=await fetch(request);
-   if(response.ok&&response.type==='basic')event.waitUntil(cache.put(request,response.clone()));
+   if(response.ok&&response.type==='basic')event.waitUntil((async()=>{if(!await cache.match(SEAL_URL))await cache.put(request,response.clone())})());
    return response;
   }catch(error){
    const cached=await cache.match(request);
    if(cached){
     if(path==='rebuild-preview/'||path==='rebuild-preview/index.html'){
+     if(!await cache.match(SEAL_URL))throw Error('OFFLINE_HOME_NOT_SEALED');
      const keys=await cache.keys();
      const present=new Set(keys.map(key=>pathOf(key.url)));
      if(REQUIRED_HOME.some(item=>!present.has(item)))throw Error('OFFLINE_HOME_INCOMPLETE');
