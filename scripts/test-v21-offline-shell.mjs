@@ -15,6 +15,7 @@ const caches={
  delete:async key=>{deleted.push(key);return true},
  open:async()=>({
   put:async(request,response)=>{stored.set(request.url,response);writes.push(request.url)},
+  keys:async()=>[...stored.keys()].map(url=>({url})),
   match:async (request,options)=>{assert.equal(options,undefined);return stored.get(request.url)||null}
  })
 };
@@ -40,6 +41,18 @@ assert.deepEqual(deleted,[], 'activation must not discard older rollback cache')
 const home='https://example.test/pai-word/rebuild-preview/index.html?v=test';
 assert.equal((await request(home)).value,'network');
 assert.equal(writes.length,1);
+online=false;
+await assert.rejects(request(home),/OFFLINE_HOME_INCOMPLETE/);
+const required=[
+ 'rebuild-preview/preview-state.js','rebuild-preview/bootstrap.js',
+ 'rebuild-preview/home-index.mjs','rebuild-preview/light-home-startup.mjs',
+ 'rebuild-preview/light-home-budget.mjs','rebuild-preview/learning-entry.mjs',
+ 'rebuild-preview/light-home-view.mjs','rebuild-preview/home-dashboard.js',
+ 'rebuild-preview/scene-search.js','rebuild-preview/data/home-scene-index-v1.json',
+ 'rebuild-preview/data/home-ku-metadata-v1.json.gz'
+];
+online=true;
+for(const asset of required)await request('https://example.test/pai-word/'+asset);
 online=false;
 assert.equal((await request(home)).value,'network');
 await assert.rejects(request('https://example.test/pai-word/rebuild-preview/index.html?v=other'),/offline/);
