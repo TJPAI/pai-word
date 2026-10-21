@@ -334,6 +334,7 @@
  const defaults={goodWithin:2,hardWithin:5,goodShow:2,hardShow:4,againShow:6,repeatCount:3,repeatGap:1};
  const labels={goodWithin:'想起了：点击阈值（秒）',hardWithin:'模糊：点击阈值（秒）',goodShow:'想起了：答案展示（秒）',hardShow:'模糊：答案展示（秒）',againShow:'没想起：答案展示（秒）',repeatCount:'重读次数',repeatGap:'每遍读完后的间隔（秒）'};
  const config=()=>{const c={...defaults,...state.tapTiming};for(const k in defaults){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.max(k==='repeatCount'?1:k==='repeatGap'?0:0.1,Math.min(k==='repeatCount'?10:60,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c};
+ let ratedVisibleKey=null;
  let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null,visualGrade='again';
  const PENDING_GRADE_STORAGE='pai-word-core20k-rebuild-preview-v21-pending-grades';
  const pendingGrades=new Map();
@@ -344,23 +345,23 @@
  function clear(preserveAudio=false){generation++;if(timer!==null)clearTimeout(timer);timer=null;if(!preserveAudio)window.PAI_AUDIO?.stop();phase='idle';visibleKey=null;onAdvance=null}
  function later(fn,ms){timer=setTimeout(()=>{timer=null;fn()},ms)}
  function valid(g){return g===generation&&state.view==='learning'&&!document.hidden&&window.getVisibleLearningUnit?.()?.k===visibleKey}
- function ready(k,preserveAudio=false){clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
+ function ready(k,preserveAudio=false){if(ratedVisibleKey!==k)ratedVisibleKey=null;clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase='question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function answer({key,mode,score,advance}){clear();visualGrade=score||'again';visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
- function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=()=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(score,visibleKey):window.rateLearning?.(score,visibleKey);const g=generation;window.render?.();if(state.autoBrowseEnabled)later(()=>finish(g),config()[score+'Show']*1000);else finish(g)}
+ function correct(score){if(ratedVisibleKey===visibleKey)return;if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;ratedVisibleKey=visibleKey;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=()=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(score,visibleKey):window.rateLearning?.(score,visibleKey);const g=generation;window.render?.();if(state.autoBrowseEnabled)later(()=>finish(g),config()[score+'Show']*1000);else finish(g)}
  function choose(score){
-  if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden||['answer','committing'].includes(phase))return;
+  if(!['again','hard','good'].includes(score)||ratedVisibleKey===visibleKey||state.view!=='learning'||document.hidden||['answer','committing'].includes(phase))return;
   window.PAI_AUTOBROWSE?.stop();window.PAI_CANCEL_PENDING_BROWSE?.();
   window.PAI_AUTO_RATED_FACE=state.autoBrowseEnabled?(state.revealed?'answer':'question'):null;
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
-   responseMs=Math.max(0,Date.now()-began);state.revealed=true;
+   responseMs=Math.max(0,Date.now()-began);ratedVisibleKey=visibleKey;state.revealed=true;
    answer({key:visibleKey,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(g,visibleKey):window.rateLearning?.(g,visibleKey)});
    setPendingGrade(visibleKey,score);window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(current.w.w,.84);return;
   }
   correct(score);
  }
- function browseReady(k,advance,revealed=true){if(revealed){clear();visibleKey=k;entryMode='swipe';visualGrade=gradeFor(k);grade=null;onAdvance=null;phase='answer-paused'}else ready(k)}
+ function browseReady(k,advance,revealed=true){if(ratedVisibleKey!==k)ratedVisibleKey=null;if(revealed){clear();visibleKey=k;entryMode='swipe';visualGrade=gradeFor(k);grade=null;onAdvance=null;phase='answer-paused'}else ready(k)}
  function finish(g){if(!valid(g)||phase==='idle'||phase==='committing')return;const fn=onAdvance;onAdvance=null;if(typeof fn!=='function'){phase='answer-paused';window.render?.();return}phase='committing';try{fn(grade)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分提交回调失败',e);resumeFailedCommit()}}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
@@ -377,7 +378,7 @@
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
  function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
- function resumeFailedCommit(){if(phase!=='committing')return;phase='answer-paused';onAdvance=null;window.render?.();let el=document.getElementById('pai-ku-commit-error');if(!el){el=document.createElement('div');el.id='pai-ku-commit-error';el.setAttribute('role','alert');el.style.cssText='position:fixed;top:calc(65px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:12px;border-radius:10px;font:14px system-ui;pointer-events:none';document.body.appendChild(el)}el.textContent='KU 评分未保存，当前单词不会自动跳过。请检查 Safari 存储后重试。';setTimeout(()=>el.remove(),7000)}
+ function resumeFailedCommit(){if(phase!=='committing')return;ratedVisibleKey=null;phase='answer-paused';onAdvance=null;window.render?.();let el=document.getElementById('pai-ku-commit-error');if(!el){el=document.createElement('div');el.id='pai-ku-commit-error';el.setAttribute('role','alert');el.style.cssText='position:fixed;top:calc(65px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:12px;border-radius:10px;font:14px system-ui;pointer-events:none';document.body.appendChild(el)}el.textContent='KU 评分未保存，当前单词不会自动跳过。请检查 Safari 存储后重试。';setTimeout(()=>el.remove(),7000)}
  function cancel(){clear()}
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
@@ -399,7 +400,7 @@
  };
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'</div>'}
  function hint(){return state.revealed?'点空白回题目，左右滑切词，点底部按钮训练记忆':'点空白看答案，左右滑切词，点底部按钮训练记忆'}
- window.PAI_TAP_FLOW={ready,answer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
+ window.PAI_TAP_FLOW={ready,answer,browseReady,choose,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),ratingLocked:k=>ratedVisibleKey===k,clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
@@ -852,7 +853,7 @@
   if(loading||error)return `<div class="screen study-screen learning-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div><div class="recall-correction" role="group" aria-label="词卡加载中，按钮暂不可用"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const selectedGrade=PAI_TAP_FLOW.selectedGradeFor(u.k);
-  const gradeAttrs=g=>` data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
+  const gradeAttrs=g=>` ${PAI_TAP_FLOW.ratingLocked(u.k)?'disabled aria-disabled="true"':''} data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
   const repeat=s.seen[u.k]>0;
   const autoSwitch=`<label style="display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-size:12px"><input type="checkbox" ${state.autoBrowseEnabled?'checked':''} onchange="setAutoBrowse(this.checked)" aria-label="自动浏览开关">自动浏览</label>`;
   const label=u.s.kuType==='sense'?'回忆词义':u.s.kuTitle;
