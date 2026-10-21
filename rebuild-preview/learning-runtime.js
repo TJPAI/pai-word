@@ -833,7 +833,7 @@
   return true;
  };
  window.rateBrowsedLearning=async(grade,k)=>{
-  if(historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
+  if(window.PAI_SAVE_DEFERRED===true||historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
   historicalCommitInProgress=true;
   const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
   const record={...prev,last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev.reps||0)+1,
