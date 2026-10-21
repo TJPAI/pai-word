@@ -374,7 +374,7 @@
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
  function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
- function resumeFailedCommit(){if(phase!=='committing')return;phase='answer-paused';onAdvance=null;window.render?.()}
+ function resumeFailedCommit(){if(phase!=='committing')return;phase='answer-paused';onAdvance=null;window.render?.();let el=document.getElementById('pai-ku-commit-error');if(!el){el=document.createElement('div');el.id='pai-ku-commit-error';el.setAttribute('role','alert');el.style.cssText='position:fixed;top:calc(65px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:12px;border-radius:10px;font:14px system-ui;pointer-events:none';document.body.appendChild(el)}el.textContent='KU 评分未保存，当前单词不会自动跳过。请检查 Safari 存储后重试。';setTimeout(()=>el.remove(),7000)}
  function cancel(){clear()}
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
