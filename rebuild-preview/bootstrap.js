@@ -16,10 +16,15 @@
  function intent(kind,scene,difficulty='all'){
   if(!window.PAI_PREVIEW_WRITABLE){notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());return Promise.resolve()}
   if(navigation)return navigation;
+  const entryStarted=performance.now();
+  window.PAI_STUDY_ENTRY_TIMING={start:entryStarted,stages:[]};
+  const stage=name=>window.PAI_STUDY_ENTRY_TIMING?.stages.push({name,elapsedMs:Math.round(performance.now()-entryStarted)});
+  window.PAI_STUDY_ENTRY_STAGE=stage;
+  stage('intent');
   // User-initiated preload starts script transfer while Core20K and Top100 initialize.
   preloadStudyScripts();
   notice('正在准备学习内容…');
-  navigation=entry.enter(kind,JSON.stringify({scene,difficulty})).then(()=>document.getElementById('learning-load-status')?.remove()).catch(e=>{console.error(e);notice('学习内容加载失败：'+e.message,()=>intent(kind,scene,difficulty))}).finally(()=>{navigation=null});
+  navigation=entry.enter(kind,JSON.stringify({scene,difficulty})).then(()=>{stage('open-returned');document.getElementById('learning-load-status')?.remove()}).catch(e=>{console.error(e);notice('学习内容加载失败：'+e.message,()=>intent(kind,scene,difficulty))}).finally(()=>{navigation=null});
   return navigation;
  }
  try{
@@ -50,16 +55,21 @@
    initializing=true;
    try{
     if(!window.PAI_CORE){const {tryInstallCore20K}=await import('../scripts/core20k-dev-boot.mjs');await tryInstallCore20K()}
+    window.PAI_STUDY_ENTRY_STAGE?.('core-ready');
     if(!window.PAI_SCENE500_TOP100||window.PAI_SCENE500_TOP100.error){const {installScene500Top100}=await import('../scripts/scene500-top100-loader.mjs');await installScene500Top100()}
     await window.PAI_SCENE500_TOP100_READY;
+    window.PAI_STUDY_ENTRY_STAGE?.('top100-ready');
     if(!runtimeLoaded){await script('rebuild-preview/learning-runtime.js');runtimeLoaded=true;captureEngine()}
+    window.PAI_STUDY_ENTRY_STAGE?.('runtime-ready');
     await script('audio-compat.js');
     if(!policyLoaded){const originalRender=engineRender;window.render=()=>{if(!initializing)originalRender?.()};Object.assign(window,engineActions);await script('rebuild-preview/round-policy.js');policyLoaded=true;captureEngine()}
     window.studyBudgetSummary=budget;
     window.PAI_ENGINE_READY=true;
+    window.PAI_STUDY_ENTRY_STAGE?.('engine-ready');
    }finally{initializing=false;window.render=render;bindHomeActions()}
   },open:async(kind,arg)=>{
    const {scene,difficulty}=JSON.parse(arg);
+   window.PAI_STUDY_ENTRY_STAGE?.('open-start');
    if(kind==='scene'){
     state.scene500Recent=[scene,...(state.scene500Recent||[]).filter(id=>id!==scene)].slice(0,5);
     state.scene500DifficultyByScene={...state.scene500DifficultyByScene,[scene]:difficulty};
