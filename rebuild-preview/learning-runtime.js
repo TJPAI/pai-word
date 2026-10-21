@@ -805,7 +805,7 @@
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;save()}else throw Error('IndexedDB unavailable: refusing unsafe fallback')}catch(e){window.PAI_SAVE_DEFERRED=false;state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(String(e).includes('conflict'))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
-  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();await window.browseAnswer(1);window.PAI_AUTOBROWSE?.restart()
+  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(1);window.PAI_AUTOBROWSE?.restart()
  };
  window.PAI_RELOAD_KU_AFTER_CONFLICT=async()=>{
   if(!window.PAI_KU_STORAGE_READY)return false;
