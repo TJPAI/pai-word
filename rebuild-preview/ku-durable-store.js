@@ -7,8 +7,8 @@
  function open(){
   return new Promise((resolve,reject)=>{
    if(!window.indexedDB)return reject(Error('IndexedDB unavailable'));
-   const r=indexedDB.open(NAME,1);
-   r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('state'))db.createObjectStore('state');if(!db.objectStoreNames.contains('attempts'))db.createObjectStore('attempts')};
+   const r=indexedDB.open(NAME,2);
+   r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('state'))db.createObjectStore('state');if(!db.objectStoreNames.contains('attempts'))db.createObjectStore('attempts');if(!db.objectStoreNames.contains('settings'))db.createObjectStore('settings')};
    r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error||Error('IndexedDB open failed'));
   });
  }
@@ -18,8 +18,8 @@
   const req=store.get(KEY);req.onsuccess=()=>{if(req.result){result=req.result;return}result={version:0,snapshot:structuredClone(initial),updatedAt:Date.now()};store.put(result,KEY)};
   tx.oncomplete=()=>resolve(result);tx.onabort=()=>reject(tx.error||Error('Migration aborted'));tx.onerror=()=>{};
  })}
- function commit(db,{snapshot,attemptId}){
-  if(!attemptId||typeof attemptId!=='string'||!snapshot?.records) return Promise.reject(Error('Invalid durable KU write'));
+ function commit(db,{snapshot,attemptId,expectedVersion}){
+  if(!attemptId||typeof attemptId!=='string'||!snapshot?.records||!Number.isSafeInteger(expectedVersion)) return Promise.reject(Error('Invalid durable KU write'));
   return new Promise((resolve,reject)=>{
    const tx=db.transaction(['state','attempts'],'readwrite'),states=tx.objectStore('state'),attempts=tx.objectStore('attempts');
    let result=null;
@@ -29,6 +29,7 @@
     const req=states.get(KEY);
     req.onsuccess=()=>{
      const previous=req.result||{version:0};
+     if(previous.version!==expectedVersion){result={status:'conflict',version:previous.version};return}
      const version=previous.version+1;
      states.put({version,snapshot:structuredClone(snapshot),updatedAt:Date.now()},KEY);
      attempts.put({at:Date.now()},attemptId);
@@ -40,5 +41,7 @@
    tx.onerror=()=>{};
   });
  }
- window.PAI_KU_DURABLE={open,read,initialize,commit};
+ function readSettings(db){return new Promise((resolve,reject)=>{const tx=db.transaction('settings','readonly'),req=tx.objectStore('settings').get('current');req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error)})}
+ function writeSettings(db,settings){return new Promise((resolve,reject)=>{const tx=db.transaction('settings','readwrite');tx.objectStore('settings').put(settings,'current');tx.oncomplete=()=>resolve(true);tx.onabort=()=>reject(tx.error||Error('Settings write aborted'))})}
+ window.PAI_KU_DURABLE={open,read,initialize,commit,readSettings,writeSettings};
 })();
