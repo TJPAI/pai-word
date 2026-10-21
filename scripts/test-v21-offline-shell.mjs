@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 const source=fs.readFileSync(new URL('../rebuild-preview/sw.js',import.meta.url),'utf8');
-const events={},stored=new Map(),writes=[],requests=[];
+const events={},stored=new Map(),writes=[],requests=[],deleted=[];
 let online=true;
 const sw={
  registration:{scope:'https://example.test/pai-word/rebuild-preview/'},
@@ -11,8 +11,8 @@ const sw={
  skipWaiting:async()=>{},clients:{claim:async()=>{}}
 };
 const caches={
- keys:async()=>[],
- delete:async()=>true,
+ keys:async()=>['pai-word-rebuild-preview-light-home-v21-previous'],
+ delete:async key=>{deleted.push(key);return true},
  open:async()=>({
   put:async(request,response)=>{stored.set(request.url,response);writes.push(request.url)},
   match:async (request,options)=>{assert.equal(options,undefined);return stored.get(request.url)||null}
@@ -33,6 +33,10 @@ async function request(url,method='GET'){
  await Promise.all(waits);
  return result;
 }
+let activated;
+events.activate({waitUntil:p=>{activated=p}});
+await activated;
+assert.deepEqual(deleted,[], 'activation must not discard older rollback cache');
 const home='https://example.test/pai-word/rebuild-preview/index.html?v=test';
 assert.equal((await request(home)).value,'network');
 assert.equal(writes.length,1);
