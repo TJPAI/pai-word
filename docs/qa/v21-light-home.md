@@ -262,3 +262,29 @@ cryptographic integrity proof; a race during initial caching and upgrades still
 needs actual Chromium/WebKit offline-refresh testing. Node and browser test
 suites have not been run on this latest HEAD in this tool environment. Root
 site and published Pages branches remain untouched.
+
+
+## Interaction parity audit against pre-Astra freeze (2026-10-21)
+
+The pre-lightweight-home freeze commit 116a3b40 was verified to be an
+ancestor of this branch. Compared rebuild-preview/learning-runtime.js line by
+line (20 changed hunks). Confirmed unchanged defaults: recall thresholds 2/5s,
+answer delays 2/4/6s, 3 rereads and 1s reread gap, US/GB speech selection,
+question/answer automatic speech switches, manual speaker, answer blank-tap
+reread and grade choices. Newer SRS and immutable-attempt protections must
+remain authoritative.
+
+Two interaction regressions were found and corrected in commit 3ba92f00:
+historical swipe had forced answer-visible rather than preserving page type;
+swipe navigation wrapped instead of stopping at either edge. History remains
+read-only and never exposes an unseen future queue card. Blank tap on a
+historical question now reveals a read-only answer without scoring.
+Also restored a synchronous first-word speech attempt before async KU hydration
+when initiated with gestureSpeech, avoiding a second play after hydration.
+
+A new source-level freeze guard test is
+scripts/test-v21-interaction-freeze.mjs. Targeted inspection and JS syntax
+check passed; complete Node browser/real iPhone Safari gesture, speech timing,
+swipe and automatic advancement tests have NOT run on this HEAD. Deferred
+first study entry itself still crosses asynchronous loading and Safari user
+activation must be tested on-device. No deployment change made.
