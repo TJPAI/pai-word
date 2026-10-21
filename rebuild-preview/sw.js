@@ -22,9 +22,8 @@ const pathOf=url=>{
 };
 self.addEventListener('install',event=>event.waitUntil(self.skipWaiting()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
- // Retire ONLY this preview's own earlier light-shell caches.
- const names=await caches.keys();
- await Promise.all(names.filter(n=>n.startsWith('pai-word-rebuild-preview-light-home-')&&n!==CACHE).map(n=>caches.delete(n)));
+ // Keep older preview caches for rollback until a complete replacement is verified.
+ // Fetches use only CACHE and never fall back across versions.
  await self.clients.claim();
 })()));
 self.addEventListener('fetch',event=>{
