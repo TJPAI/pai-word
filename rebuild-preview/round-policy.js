@@ -40,6 +40,7 @@
     const limit=freshLimit();if(limit<=0)return[];
     if(isScene500(scene)){
       const difficulty=state.scene500DifficultyByScene?.[scene]||'all',out=[],seenWords=new Set();
+      for(const k of excluded){const word=window.PAI_CORE?.byKU?.get(k)?.w;if(word)seenWords.add(word.rank??word.w)}
       for(const u of (allUnits(scene)||[])){
         if(!rankAllowed(Number(u?.w?.rank)||999999,difficulty))continue;
         const k=unitKeyOf(u),wordKey=u.w?.rank??u.w?.w;
