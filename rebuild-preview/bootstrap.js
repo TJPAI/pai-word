@@ -15,6 +15,22 @@
   }
  }
  try{
+  await script('rebuild-preview/ku-durable-store.js');
+  let durableDB=null;
+  try{
+   durableDB=await window.PAI_KU_DURABLE.open();
+   const previous=await window.PAI_KU_DURABLE.initialize(durableDB,state);
+   if(previous?.snapshot?.records){
+    // IndexedDB is the authoritative restored KU snapshot. Legacy localStorage is preserved.
+    state={...state,...previous.snapshot};
+    state.view='scenes';state.revealed=false;
+   }
+   window.PAI_KU_DURABLE_DB=durableDB;
+   window.PAI_KU_STORAGE_READY=true;
+  }catch(storageError){
+   window.PAI_KU_STORAGE_READY=false;
+   console.warn('Durable KU storage unavailable; rating writes must not silently succeed',storageError);
+  }
   const catalogReady=loadLearningCatalog();
   const policyReady=json('data/scene500-ranked-membership-policy-v1.json');
   const membershipReady=sceneMembership();
