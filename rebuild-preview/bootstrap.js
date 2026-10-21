@@ -20,6 +20,7 @@
   const membershipReady=sceneMembership();
   await catalogReady;mark('catalog');
   [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);mark('memberships');
+  await script('rebuild-preview/memory-schedulers.js');
   await script('rebuild-preview/learning-runtime.js');
   await script('audio-compat.js');
   await script('scene500-integrated.js');
