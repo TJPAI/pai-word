@@ -420,7 +420,7 @@
  window.setAutoPronounce=(kind,enabled)=>{if(!['question','swipe'].includes(kind))return;state.autoPronounce[kind]=!!enabled;persist();render()};
  let active=false,loading=false,error='',startedAt=0,token=0,previousUnit=null;
  const newAttemptId=()=>('crypto' in window&&typeof crypto.randomUUID==='function'?crypto.randomUUID():('attempt-'+Date.now()+'-'+Math.random().toString(36).slice(2)));
- const ensureAttempt=()=>{const sess=state.learningSession,k=sess?.queue?.[0];if(!k)return null;if(!sess.currentAttempt||sess.currentAttempt.kuId!==k||sess.currentAttempt.committed){const previous=sess.currentAttempt;const next={attemptId:newAttemptId(),kuId:k,committed:false};sess.currentAttempt=next;try{persist(true)}catch(e){sess.currentAttempt=previous;throw e}}return sess.currentAttempt};
+ const ensureAttempt=()=>{const sess=state.learningSession,k=sess?.queue?.[0];if(!k)return null;if(!sess.currentAttempt||sess.currentAttempt.kuId!==k||sess.currentAttempt.committed){const previous=sess.currentAttempt;const next={attemptId:newAttemptId(),kuId:k,committed:false};sess.currentAttempt=next;try{if(!window.PAI_KU_STORAGE_READY)persist(true)}catch(e){sess.currentAttempt=previous;throw e}}return sess.currentAttempt};
  const due=()=>Object.entries(state.records).filter(([k,r])=>byKey(k)&&(r.learningPending||r.lastKnown===false||r.due<=Date.now())).sort((a,b)=>(b[1].learningPending?1:0)-(a[1].learningPending?1:0)||a[1].due-b[1].due).map(([k])=>k);
  const fresh=()=>{globalNewRemaining();return [...state.daily.newWordKeys,...state.daily.reinforcementKeys].filter(k=>!state.records[k])};
  const unit=()=>byKey(state.learningSession?.queue[0]);
@@ -708,7 +708,7 @@
   PAI_TAP_FLOW.choose(grade);
  };
  let historicalCommitInProgress=false;
- window.rateBrowsedLearning=(grade,k)=>{
+ window.rateBrowsedLearning=async(grade,k)=>{
   if(historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
   historicalCommitInProgress=true;
   const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
@@ -719,12 +719,12 @@
   draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=false;state=draft;
-  try{persist(true)}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
+  try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId});if(result.status!=='committed')throw Error('Duplicate historical rating attempt');save()}else persist(true)}catch(e){state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();return}
   historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
   // A finished historical retest advances browsing; it never changes the active session queue.
   window.browseAnswer?.(1);
  };
- window.rateLearning=(grade,targetKey=null)=>{
+ window.rateLearning=async(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
   const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k;let attempt;try{attempt=ensureAttempt()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('无法持久化评分尝试',e);PAI_TAP_FLOW.resumeFailedCommit();render();return}if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
@@ -743,7 +743,9 @@
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
-  window.PAI_SAVE_DEFERRED=false;persist(true);
+  window.PAI_SAVE_DEFERRED=false;
+  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId});if(result.status!=='committed')throw Error('Duplicate KU rating attempt');save()}
+  else persist(true);
   }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
