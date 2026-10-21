@@ -310,3 +310,31 @@ Source syntax and targeted invariants were checked in the connected GitHub
 environment. scripts/test-v21-swipe-speech-regression.mjs was committed but
 not executed in a full Node checkout; no new browser test or deployment was
 performed. Public rebuild-preview URLs are NOT guaranteed to serve this HEAD.
+
+
+## P0 first-card latency and navigation follow-up (2026-10-21)
+
+A user reported that the lightweight homepage feels faster but initial study entry
+is slow and first-word audio/swipe are unreliable. Development branch only.
+
+This change begins preloading the three legacy learning script files when the
+user actually invokes a learning action, concurrently with Core20K/Top100
+setup. It does NOT fetch the complete lexicon or 20 shard groups on homepage
+startup. The frozen learning workflow and SRS remain authoritative.
+
+Forward swipe from the last seen card now routes to the next unanswered queue
+item using the existing ungraded rotation helper instead of stopping at the
+history boundary. This does not synthesize a grade or reveal a future answer.
+The separate swipe regression source test was updated.
+
+An in-page performance trace window.PAI_STUDY_ENTRY_TIMING records stages
+intent, core-ready, top100-ready, runtime-ready, engine-ready, open-start,
+first-question-rendered, and open-returned. Stage times are elapsed from the
+user's click, NOT validated performance results. A source guard was added at
+scripts/test-v21-first-entry-path.mjs.
+
+Connected GitHub source was verified and both modified scripts passed JS
+syntax checks in the tool environment. There has been NO genuine Playwright,
+Chromium, iPhone Safari, sound output, or deployed-site validation of these
+new changes. First user-gesture unlock for iPhone speech remains unresolved
+across the deferred-engine load; no full parity claim is made.
