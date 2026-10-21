@@ -47,7 +47,31 @@ const STORAGE='pai-word-core20k-rebuild-preview-v21';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
-function save(){if(window.PAI_SAVE_DEFERRED===true)return;localStorage.setItem(STORAGE,JSON.stringify(state))}
+function save(){
+  if(window.PAI_SAVE_DEFERRED===true)return true;
+  try{
+    // Only ephemeral daily assignments are omitted; canonical SRS records remain.
+    const snapshot={...state};
+    delete snapshot.daily;
+    localStorage.setItem(STORAGE,JSON.stringify(snapshot));
+    window.PAI_PREVIEW_STORAGE_ERROR=null;
+    return true;
+  }catch(error){
+    // Safari can reject writes even while reads still succeed. Keep interaction usable.
+    window.PAI_PREVIEW_STORAGE_ERROR=String(error?.message||error);
+    console.warn('PAI_PREVIEW_STORAGE_QUOTA',error);
+    if(!document.getElementById('pai-preview-storage-warning')){
+      const notice=document.createElement('div');
+      notice.id='pai-preview-storage-warning';
+      notice.setAttribute('role','alert');
+      notice.style.cssText='position:fixed;bottom:12px;left:12px;right:12px;z-index:99999;background:#78350f;color:#fff;padding:12px;border-radius:10px;font:14px system-ui';
+      notice.textContent='Safari 存储空间不足：当前可继续操作，但部分学习进度可能无法保存。';
+      document.body.appendChild(notice);
+      setTimeout(()=>notice.remove(),8000);
+    }
+    return false;
+  }
+}
 function unitKey(w,sid){return w.s[sid]?.ku_id||`${w.w}::${sid}`}
 function findUnitByKey(k){return window.PAI_CORE?.byKU.get(k)||null}
 function allUnits(scene){return window.PAI_CORE?.byScene.get(scene)||[]}
