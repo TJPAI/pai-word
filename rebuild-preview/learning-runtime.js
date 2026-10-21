@@ -349,7 +349,7 @@
  function answer({key,mode,score,advance}){clear();visualGrade=score||'again';visibleKey=key;entryMode=mode;grade=score;onAdvance=advance;phase='answer';const g=generation;later(()=>finish(g),config()[(score||'again')+'Show']*1000)}
  function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=()=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(score,visibleKey):window.rateLearning?.(score,visibleKey);const g=generation;window.render?.();if(state.autoBrowseEnabled)later(()=>finish(g),config()[score+'Show']*1000);else finish(g)}
  function choose(score){
-  if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
+  if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden||['answer','committing'].includes(phase))return;
   window.PAI_AUTOBROWSE?.stop();window.PAI_CANCEL_PENDING_BROWSE?.();
   window.PAI_AUTO_RATED_FACE=state.autoBrowseEnabled?(state.revealed?'answer':'question'):null;
   if(phase==='question'){
@@ -709,16 +709,16 @@
  // All swipe and auto-browse navigation passes through this single guarded entry.
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
   const phase=PAI_TAP_FLOW.snapshot().phase;
-  if(!active||loading||error||!unit()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(phase))return false;
+  if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(phase))return false;
   // A newer browse request invalidates any in-flight older browse.
   const moved=await window.browseAnswer(direction);
   if(source==='swipe'&&moved&&state.autoBrowseEnabled&&['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))window.PAI_AUTOBROWSE?.restart();
   return moved;
  };
  window.browseAnswer=async direction=>{
-  if(!active||loading||error||!unit()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
+  if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
   const keys=cycleKeys();if(!keys.length)return false;
-  const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
+  const index=browseIndex===null?Math.max(0,keys.indexOf(window.getVisibleLearningUnit().k)):browseIndex;
   const next=(index+direction+keys.length)%keys.length;
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=state.revealed;
   // Preload without changing the current card: a user rating can still win the race.
@@ -767,6 +767,19 @@
   PAI_TAP_FLOW.choose(grade);
  };
  let historicalCommitInProgress=false;
+ window.PAI_RESUME_AUTO_RATED_CARD=(k)=>{
+  const face=window.PAI_AUTO_RATED_FACE;
+  if(!state.autoBrowseEnabled||!face)return false;
+  window.PAI_AUTO_RATED_FACE=null;
+  const u=byKey(k);if(!u)return false;
+  // Rating has already committed. Keep the same KU visible, with no navigation here.
+  const keys=cycleKeys();
+  browseIndex=keys.indexOf(k);browsedUnit=u;historyRetest=false;historyAttemptId=null;
+  state.revealed=face==='answer';
+  PAI_TAP_FLOW.browseReady(k,null,state.revealed);
+  render();window.PAI_AUTOBROWSE?.restart();
+  return true;
+ };
  window.rateBrowsedLearning=async(grade,k)=>{
   if(historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
   historicalCommitInProgress=true;
@@ -781,7 +794,7 @@
   try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;save()}else throw Error('IndexedDB unavailable: refusing unsafe fallback')}catch(e){window.PAI_SAVE_DEFERRED=false;state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(String(e).includes('conflict'))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);state.revealed=true;
   // After an explicitly rated historical KU, return to the active queue's QUESTION page.
-  state.revealed=false;showCurrent();
+  if(!window.PAI_RESUME_AUTO_RATED_CARD(k)){state.revealed=false;showCurrent()}
  };
  window.PAI_RELOAD_KU_AFTER_CONFLICT=async()=>{
   if(!window.PAI_KU_STORAGE_READY)return false;
@@ -821,7 +834,7 @@
   }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(String(e).includes('conflict'))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
-  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;showCurrent();
+  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;if(!window.PAI_RESUME_AUTO_RATED_CARD(k))showCurrent();
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
  function home(){
