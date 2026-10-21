@@ -14,9 +14,9 @@ const caches={
  keys:async()=>['pai-word-rebuild-preview-light-home-v21-previous'],
  delete:async key=>{deleted.push(key);return true},
  open:async()=>({
-  put:async(request,response)=>{stored.set(request.url,response);writes.push(request.url)},
+  put:async(request,response)=>{stored.set(typeof request==='string'?request:request.url,response);writes.push(typeof request==='string'?request:request.url)},
   keys:async()=>[...stored.keys()].map(url=>({url})),
-  match:async (request,options)=>{assert.equal(options,undefined);return stored.get(request.url)||null}
+  match:async (request,options)=>{assert.equal(options,undefined);return stored.get(typeof request==='string'?request:request.url)||null}
  })
 };
 const fetcher=async request=>{
