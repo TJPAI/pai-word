@@ -51,23 +51,10 @@
     return out;
   }
 
-  const baseOpenScene=window.openScene;
-  window.openScene=function(scene){
-    const result=baseOpenScene(scene);
-    if(state.learningSession?.kind==='scene'){
-      const due=dueKeys(scene),fresh=freshKeys(scene),seen=new Set(due);
-      const keys=[...due,...fresh.filter(k=>!seen.has(k))];
-      state.learningSession.queue=keys;
-      state.learningSession.total=keys.length;
-      state.learningSession.completed=[];
-      state.learningSession.seen={};
-      state.learningSession.attempts=0;
-      state.studyBrowseIndex=0;
-      save();
-      if(typeof window.resumeLearning==='function')window.resumeLearning();
-      else if(typeof render==='function')render();
-    }
-    return result;
+  // Compute scene queue before starting the study session, never overwrite a live queue.
+  window.PAI_SCENE_SESSION_KEYS=function(scene){
+    const due=dueKeys(scene),fresh=freshKeys(scene),seen=new Set(due);
+    return [...due,...fresh.filter(k=>!seen.has(k))];
   };
 
   function reinforcementKeys(){
