@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const read=name=>fs.readFileSync(name,'utf8');
+const unit={w:{w:'hotel',rank:500,s:{'ku-hotel':{}}},sid:'ku-hotel',k:'ku-hotel',s:{scene:'S113'}};
+const state={newPerDay:50,wordsPerRound:10,records:{},scene500DifficultyByScene:{},scene500Recent:[],view:'scenes'};
+const w={PAI_CORE20K_ROOT:true,PAI_SCENE500:{sceneIds:['S113'],specs:[{id:'S113',name:'酒店',desc:'住宿',tags:['酒店']}]},PAI_CORE:{byKU:new Map([[unit.k,unit]])},PAI_LEARNING_QA:{due:()=>[],unlearned:()=>[]},globalNewCompleted:()=>0,render:()=>{},openScene:()=>{},PAI_START_POLICY_SESSION:(keys,title,kind)=>{state.learningSession={queue:keys,title,kind};state.view='learning'}};
+const context=vm.createContext({window:w,state,SCENES:{S113:'酒店'},allUnits:id=>id==='S113'?[unit]:[],unitKey:(_w,id)=>id,save:()=>{},render:()=>{},document:{querySelectorAll:()=>[],getElementById:()=>null},location:{search:''},URLSearchParams,console});
+vm.runInContext(read('rebuild-preview/round-policy.js'),context);
+vm.runInContext(read('scene-search.js'),context);
+assert.equal(w.PAI_SCENE_SEARCH.search('酒店')[0]?.id,'S113');
+w.PAI_SCENE_SEARCH.open('S113','all');
+assert.equal(state.view,'learning');
+assert.deepEqual(Array.from(state.learningSession.queue),['ku-hotel']);
+assert.equal(state.learningSession.kind,'scene');
+console.log('PASS Scene500 search -> click -> nonempty learning session (fixture)');
