@@ -360,3 +360,20 @@ No frozen runtime wholesale replacement, new deployment, or assertion of
 Safari/audio/swipe success is made. Next gate is real-device/browser playback
 and swipe behavior alongside end-to-end safe learning state, after restoring
 specific frozen interaction handlers in a controlled patch.
+
+
+## Baseline-first mobile swipe follow-up (2026-10-21)
+
+Compared frozen 116a3b40 and current touch listeners: both had near-identical
+horizontal swipe recognition, but newer browse behavior and async entry differ.
+The current learning screen now applies touch-action:pan-y and explicitly
+calls preventDefault on an accepted horizontal touchend (non-passive handler),
+so vertical scrolling remains native while horizontal swipes are routed
+through browseAnswer. Source guard updated accordingly. This does not
+automatically validate actual Safari gestures or guarantee a next item exists
+in a one-card round. History remains read-only; no ahead-of-queue answers
+are exposed. The old frozen runtime was not copied over because it predates
+attempt persistence and transaction protections.
+
+In this tool environment only the remote source and JS syntax were checked;
+no real iPhone/Chromium interaction test or audible playback test was run.
