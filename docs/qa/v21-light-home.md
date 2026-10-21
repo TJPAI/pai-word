@@ -288,3 +288,25 @@ check passed; complete Node browser/real iPhone Safari gesture, speech timing,
 swipe and automatic advancement tests have NOT run on this HEAD. Deferred
 first study entry itself still crosses asynchronous loading and Safari user
 activation must be tested on-device. No deployment change made.
+
+
+## User-reported no audio / swipe does not switch words (2026-10-21)
+
+Confirmed in actual development source: cycleKeys initially contains only the
+current question, making both swipe directions inert for a fresh round.
+Forward swipe now safely rotates the current unanswered KU to the tail of the
+active queue, resets only its uncommitted attempt, and presents the next KU as
+a new question. The rotation persists atomically through the existing save()
+path; if the write fails, in-memory state is restored. No grade is synthesized
+and no future answer is revealed. Historical browsing remains read-only.
+Rightward swipe on the first question with no history remains a no-op.
+
+Native speech path also no longer calls speechSynthesis.cancel() when idle,
+as this may suppress the first utterance on Safari. The previous first-entry
+gesture loss across async engine initialization remains a distinct possible
+issue and needs real iPhone Safari verification.
+
+Source syntax and targeted invariants were checked in the connected GitHub
+environment. scripts/test-v21-swipe-speech-regression.mjs was committed but
+not executed in a full Node checkout; no new browser test or deployment was
+performed. Public rebuild-preview URLs are NOT guaranteed to serve this HEAD.
