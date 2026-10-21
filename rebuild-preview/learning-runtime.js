@@ -736,9 +736,10 @@
   const seen=state.learningSession.seen[k]||0;state.learningSession.seen[k]=seen+1;state.learningSession.attempts++;
   // New material gets a second retrieval; mistakes never disappear behind a timer.
   const repeat=grade!=='good'||(!prev&&seen===0);
-  const r={...(prev||{}),last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev?.reps||0)+1,responseMs:PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt),learningPending:repeat,srsPolicy:'session-retrieval-v3'};
-  if(repeat){r.due=now;r.interval=0;}else{const prior=prev?.lastStableInterval||prev?.interval||0;const days=state.learningSession.kind==='free'&&prior>0?prior/DAY:prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*(prev?.lastGrade==='hard'?1.5:2.3)));r.interval=days*DAY;r.lastStableInterval=r.interval;r.due=state.learningSession.kind==='free'&&prev?.due>now?prev.due:now+r.interval}
-  if(repeat&&prev?.interval>0)r.lastStableInterval=grade==='again'?0:prev.interval;
+  const r=window.PAI_MEMORY_SCHEDULERS.review('basic',{
+   previous:prev,grade,now,repeat,sessionKind:state.learningSession.kind
+  });
+  r.responseMs=PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt);
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
