@@ -9,7 +9,9 @@
    if(!window.indexedDB)return reject(Error('IndexedDB unavailable'));
    const r=indexedDB.open(NAME,3);
    r.onupgradeneeded=()=>{const db=r.result;if(!db.objectStoreNames.contains('state'))db.createObjectStore('state');if(!db.objectStoreNames.contains('attempts'))db.createObjectStore('attempts');if(!db.objectStoreNames.contains('settings'))db.createObjectStore('settings');if(!db.objectStoreNames.contains('home'))db.createObjectStore('home')};
-   r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error||Error('IndexedDB open failed'));
+   r.onsuccess=()=>{const db=r.result;db.onversionchange=()=>db.close();resolve(db)};
+   r.onblocked=()=>reject(Error('IndexedDB upgrade blocked by another tab'));
+   r.onerror=()=>reject(r.error||Error('IndexedDB open failed'));
   });
  }
  function read(db){return new Promise((resolve,reject)=>{const tx=db.transaction('state','readonly'),req=tx.objectStore('state').get(KEY);req.onsuccess=()=>resolve(req.result||null);req.onerror=()=>reject(req.error||Error('Read failed'))})}
