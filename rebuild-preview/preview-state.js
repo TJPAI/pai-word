@@ -47,8 +47,17 @@ const STORAGE='pai-word-core20k-rebuild-preview-v21';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
+const PAI_SETTING_KEYS=['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','selectedScene','sceneDifficulty'];
+let paiSettingsLast=null,paiSettingsQueue=Promise.resolve();
+function persistIndependentSettings(){
+ if(!window.PAI_KU_STORAGE_READY)return;
+ const settings={};for(const key of PAI_SETTING_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))settings[key]=state[key];
+ const serialized=JSON.stringify(settings);if(serialized===paiSettingsLast)return;
+ paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeSettings(window.PAI_KU_DURABLE_DB,settings)).then(()=>{paiSettingsLast=serialized}).catch(e=>{window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e)});
+}
 function save(){
   if(window.PAI_SAVE_DEFERRED===true)return true;
+  persistIndependentSettings();
   try{
     // Only ephemeral daily assignments are omitted; canonical SRS records remain.
     const snapshot={...state};
