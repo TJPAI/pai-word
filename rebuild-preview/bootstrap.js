@@ -29,7 +29,7 @@
   window.PAI_HOME_BUDGET=budget;window.studyBudgetSummary=budget;
   panels=createLightPanels({element:app,getState:()=>state,budget,save,home:()=>{state.view='scenes';render()}});
   window.render=()=>panels.render(state.view);
-  await script('scene-search.js');await script('rebuild-preview/home-dashboard.js');homeRender=window.render;window.render=render;
+  await script('rebuild-preview/scene-search.js');await script('rebuild-preview/home-dashboard.js');homeRender=window.render;window.render=render;
   function bindHomeActions(){
    window.openPanel=kind=>{if(!['settings','stats'].includes(kind))return;if(engineActions.openPanel)return engineActions.openPanel(kind);state.view=kind;render()};
    window.openReview=()=>intent('review');window.openReinforcement=()=>intent('reinforcement');window.resumeLearning=()=>intent('resume');
