@@ -179,7 +179,7 @@
     play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
       this.stop();const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
       const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
-      const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=rate;u.voice=voice;window.__paiUtterance=u;
+      const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=Math.min(10,rate*(Number(state.speechSpeed)||100)/100);u.voice=voice;window.__paiUtterance=u;
       let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;onDone?.()};
       u.onend=done;u.onerror=done;
       if(synth.paused)synth.resume();
@@ -267,7 +267,7 @@
   }
   function renderPanel(kind){
     if(kind==='stats'){const total=Object.keys(state.records).filter(k=>byKey(k)).length,known=state.stats.known||0,unknown=state.stats.unknown||0;return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>统计</h2></div><div class="panel-block"><div class="stat-row"><span>已学习义项</span><b>${total}</b></div><div class="stat-row"><span>旧版待确认记录</span><b>${Object.keys(state.legacySrsPending||{}).length}</b></div><div class="stat-row"><span>知道</span><b>${known}</b></div><div class="stat-row"><span>不知道</span><b>${unknown}</b></div></div><div class="panel-block muted">统计按知识单元记录；旧版无法唯一对应的进度已保留待确认。</div></div>`}
-    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><h3>记忆算法</h3><div class="setting-row"><span>当前算法</span><strong>Basic SRS</strong></div><p class="muted">FSRS-6 与自适应算法待验证后开放；当前 KU 评分仍使用基础规则，切换不会重置学习记录。</p></div><div class="panel-block"><div class="setting-row"><span>自动浏览间隔（秒）</span><input type="number" min="0.2" max="60" step="0.1" value="${Number(state.autoBrowseInterval)||1}" onchange="setAutoBrowseInterval(this.value)" aria-label="自动浏览间隔（秒）"></div><p class="muted">默认 1 秒；题目页只浏览题目，答案页只浏览答案。自动浏览不计分。</p><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[25,50,100,200].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div><div class="setting-row"><span>发音口音</span><select onchange="setVoiceAccent(this.value)"><option value="us" ${state.voiceAccent==='us'?'selected':''}>美音</option><option value="gb" ${state.voiceAccent==='gb'?'selected':''}>英音</option></select></div><div class="setting-row"><span>隐藏单词（听音模式）</span><button class="switch ${state.hideWord?'on':''}" onclick="toggleHideWord()"><i></i></button></div><div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义 / 易混词辨析</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`;
+    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><h3>记忆算法</h3><div class="setting-row"><span>当前算法</span><strong>Basic SRS</strong></div><p class="muted">FSRS-6 与自适应算法待验证后开放；当前 KU 评分仍使用基础规则，切换不会重置学习记录。</p></div><div class="panel-block"><div class="setting-row"><span>自动浏览速度</span><select onchange="setAutoBrowseInterval(this.value)">${[['1.5','快'],['3','中'],['6','慢']].map(([n,label])=>`<option value="${n}" ${Math.abs((Number(state.autoBrowseInterval)||3)-Number(n))<.01?'selected':''}>${label}</option>`).join('')}</select></div><div class="setting-row"><span>朗读速度</span><select onchange="setSpeechSpeed(this.value)">${[100,150,200].map(n=>`<option value="${n}" ${(Number(state.speechSpeed)||100)===n?'selected':''}>${n}%</option>`).join('')}</select></div><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[25,50,100,200].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div><div class="setting-row"><span>发音口音</span><select onchange="setVoiceAccent(this.value)"><option value="us" ${state.voiceAccent==='us'?'selected':''}>美音</option><option value="gb" ${state.voiceAccent==='gb'?'selected':''}>英音</option></select></div><div class="setting-row"><span>隐藏单词（听音模式）</span><button class="switch ${state.hideWord?'on':''}" onclick="toggleHideWord()"><i></i></button></div><div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义 / 易混词辨析</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`;
   }
   function fitAnswer(){const answer=document.querySelector('.answer'),rating=document.querySelector('.rating');if(!answer||!rating)return;answer.classList.remove('fit-medium','fit-roomy');const gap=rating.getBoundingClientRect().top-answer.getBoundingClientRect().bottom;if(gap>170)answer.classList.add('fit-roomy');else if(gap>85)answer.classList.add('fit-medium')}
 
@@ -714,7 +714,7 @@
  };
  // Auto-browse is presentation-only: never score or commit a KU.
  let autoBrowseTimer=null,autoBrowseGeneration=0;
- const autoInterval=()=>Math.round(Math.max(.2,Math.min(60,Number(state.autoBrowseInterval)||1))*1000);
+ const autoInterval=()=>Math.round(([1.5,3,6].includes(Number(state.autoBrowseInterval))?Number(state.autoBrowseInterval):3)*1000);
  function stopAutoBrowse(){autoBrowseGeneration++;if(autoBrowseTimer!==null)clearTimeout(autoBrowseTimer);autoBrowseTimer=null}
  function scheduleAutoBrowse(){
   const generation=autoBrowseGeneration;
@@ -735,8 +735,9 @@
  window.setAutoBrowse=enabled=>{
   state.autoBrowseEnabled=!!enabled;save();restartAutoBrowse();render();
  };
+ window.setSpeechSpeed=value=>{const n=Number(value);if(![100,150,200].includes(n))return;state.speechSpeed=n;save();render()};
  window.setAutoBrowseInterval=value=>{
-  const n=Number(value);if(!Number.isFinite(n)||n<.2||n>60)return;
+  const n=Number(value);if(![1.5,3,6].includes(n))return;
   state.autoBrowseInterval=n;save();restartAutoBrowse();render();
  };
  document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAutoBrowse();else restartAutoBrowse()});
