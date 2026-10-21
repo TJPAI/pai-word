@@ -15,7 +15,7 @@ const caches={
  delete:async()=>true,
  open:async()=>({
   put:async(request,response)=>{stored.set(request.url,response);writes.push(request.url)},
-  match:async request=>stored.get(request.url)||null
+  match:async (request,options)=>{assert.equal(options,undefined);return stored.get(request.url)||null}
  })
 };
 const fetcher=async request=>{
@@ -38,6 +38,7 @@ assert.equal((await request(home)).value,'network');
 assert.equal(writes.length,1);
 online=false;
 assert.equal((await request(home)).value,'network');
+await assert.rejects(request('https://example.test/pai-word/rebuild-preview/index.html?v=other'),/offline/);
 assert.equal(await request('https://example.test/pai-word/data/core20k-runtime.json.gz'),null);
 assert.equal(await request('https://example.test/pai-word/data/scene500-top100-v40/group-01.json'),null);
 assert.equal(await request('https://example.test/pai-word/index.html'),null);
