@@ -690,14 +690,14 @@
  // All swipe and auto-browse navigation passes through this single guarded entry.
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
   const phase=PAI_TAP_FLOW.snapshot().phase;
-  if(!active||error||!unit()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(phase))return false;
+  if(!active||loading||error||!unit()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(phase))return false;
   // A newer browse request invalidates any in-flight older browse.
   const moved=await window.browseAnswer(direction);
   if(source==='swipe'&&state.autoBrowseEnabled)window.PAI_AUTOBROWSE?.restart();
   return moved;
  };
  window.browseAnswer=async direction=>{
-  if(!active||error||!unit()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
+  if(!active||loading||error||!unit()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
   const keys=cycleKeys();if(!keys.length)return false;
   const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
   const next=(index+direction+keys.length)%keys.length;
