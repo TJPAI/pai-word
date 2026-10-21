@@ -405,7 +405,7 @@
   else ready(visibleKey,true);
   window.render?.();
   if(!state.autoBrowseEnabled&&word)window.PAI_AUDIO?.play(word,.84);
-  if(state.autoBrowseEnabled)window.PAI_AUTOBROWSE?.restart();
+  // In auto-browse, blank taps only change the face. Keep the original timer and audio untouched.
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
