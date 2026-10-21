@@ -674,10 +674,10 @@
  window.openReview=()=>start(due(),'优先复习','review');
  window.openFreeReview=()=>start(Object.keys(state.records).filter(byKey),'自由复习','free');
  window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
- window.resumeLearning=()=>{previousUnit=null;active=true;state.view='learning';state.revealed=false;showCurrent()};
+ window.resumeLearning=()=>{previousUnit=null;active=true;state.view='learning';state.revealed=false;showCurrent();window.PAI_AUTOBROWSE?.restart()};
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
- window.goScenes=()=>{previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
- window.openPanel=kind=>{previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
+ window.goScenes=()=>{window.PAI_AUTOBROWSE?.stop();previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
+ window.openPanel=kind=>{window.PAI_AUTOBROWSE?.stop();previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
