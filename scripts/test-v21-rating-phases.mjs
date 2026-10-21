@@ -23,7 +23,7 @@ for(const phase of ['question','answer-paused','answer','repeating']){
 for(const phase of ['committing']){
  const calls=[],context={phase,visibleKey:'ku1',began:0,state:{view:'learning'},document:{hidden:false},
   window:{},pageRevealed:()=>true,startRatedSequence:score=>calls.push(score),Date};
- vm.createContext(context);vm.runInContext(choose+';choose("good");',context);
+ vm.createContext(context);vm.runInContext(correct+';'+choose+';choose("good");correct("hard");',context);
  assert.deepEqual(calls,[],'committing must reject new grading');
 }
 console.log('PASS: current rating entrypoints, corrections and commit-phase protection');
