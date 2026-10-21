@@ -33,4 +33,18 @@ assert.deepEqual([...run('all',{},['d','c'])],['d','c','a','b','e'],
  'due KUs occupy slots before new words');
 assert.deepEqual([...run('all',{},['a','a2','d'])],['a','d','b','c','e'],
  'two due senses of a single headword must not duplicate the word or reappear as fresh');
+// Legacy scene route must obey the same headword invariant.
+{
+ const alpha={rank:10,w:'alpha'},beta={rank:20,w:'beta'};
+ const units=[{k:'a',w:alpha,s:{scene:'legacy'}},{k:'a2',w:alpha,s:{scene:'legacy'}},{k:'b',w:beta,s:{scene:'legacy'}}];
+ const state={newPerDay:50,wordsPerRound:10,records:{},selectedScene:'legacy',daily:{reinforcementKeys:[]}};
+ const window={PAI_SCENE500:{sceneIds:[]},PAI_LEARNING_QA:{due:()=>['a','a2'],unlearned:()=>units},
+  PAI_CORE:{byKU:new Map(units.map(u=>[u.k,u]))},globalNewCompleted:()=>0,
+  openScene(){state.learningSession={kind:'scene'}}};
+ const ctx={window,state,save(){},allUnits:()=>[],unitKey(){},SCENES:{},document:{}};
+ vm.createContext(ctx);vm.runInContext(source,ctx);
+ window.openScene('legacy');
+ assert.deepEqual([...state.learningSession.queue],['a','b'],
+  'legacy scene must not repeat due senses or reintroduce the same word as fresh');
+}
 console.log('PASS: Scene500 rank bands, same-word and cross-sense dedupe, due-first queue');
