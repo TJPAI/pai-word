@@ -53,7 +53,7 @@ function persistIndependentSettings(){
  if(!window.PAI_KU_STORAGE_READY)return;
  const settings={};for(const key of PAI_SETTING_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))settings[key]=state[key];
  const serialized=JSON.stringify(settings);if(serialized===paiSettingsLast)return;
- paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeSettings(window.PAI_KU_DURABLE_DB,settings)).then(()=>{paiSettingsLast=serialized}).catch(e=>{window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e)});
+ paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeSettings(window.PAI_KU_DURABLE_DB,settings)).then(()=>{paiSettingsLast=serialized}).catch(e=>{window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-settings-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-settings-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='设置保存失败：本次修改可能在刷新后丢失。';setTimeout(()=>banner.remove(),7000)});
 }
 function save(){
   if(window.PAI_SAVE_DEFERRED===true)return true;
