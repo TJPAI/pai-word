@@ -48,6 +48,15 @@ let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPer
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
 const PAI_SETTING_KEYS=['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','selectedScene','sceneDifficulty'];
+const PAI_HOME_KEYS=['sceneSearchUi','scene500Recent','scene500DifficultyByScene'];
+let paiHomeLast=null,paiHomeQueue=Promise.resolve();
+function persistHomeState(){
+ if(!window.PAI_KU_STORAGE_READY)return;
+ const home={};for(const key of PAI_HOME_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))home[key]=structuredClone(state[key]);
+ const serialized=JSON.stringify(home);if(serialized===paiHomeLast)return;
+ paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeHome(window.PAI_KU_DURABLE_DB,home)).then(()=>{paiHomeLast=serialized;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e)});
+}
+
 let paiSettingsLast=null,paiSettingsQueue=Promise.resolve();
 function persistIndependentSettings(){
  if(!window.PAI_KU_STORAGE_READY)return;
@@ -58,6 +67,7 @@ function persistIndependentSettings(){
 function save(){
   if(window.PAI_SAVE_DEFERRED===true)return true;
   persistIndependentSettings();
+  persistHomeState();
   try{
     // Only ephemeral daily assignments are omitted; canonical SRS records remain.
     const snapshot={...state};
