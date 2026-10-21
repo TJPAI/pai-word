@@ -44,6 +44,14 @@
    await installScene500Top100();
   }
   }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
+  // The Top100 installer returns before its 20 shard fetches finish.
+  // Refresh any recommendation only AFTER the actual word pool is ready.
+  if(window.PAI_SCENE500_TOP100_READY){
+    window.PAI_SCENE500_TOP100_READY.then(()=>{
+      if(state.view==='scenes'&&typeof window.restoreScene500Recommendations==='function')
+        window.restoreScene500Recommendations();
+    }).catch(error=>console.warn('Scene500 recommendations refresh failed',error));
+  }
   // Match public preview: search again after the optional Scene500 word pool
   // finishes installing. Early home rendering must not permanently store zero results.
   if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
