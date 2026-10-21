@@ -468,7 +468,7 @@
   const autoQuestion=state.autoPronounce.question;
   const spokeInGesture=!!(gestureSpeech&&autoQuestion&&state.learningSession?.currentAttempt?.phase!=='answer');
   if(spokeInGesture)window.PAI_AUDIO?.play(u.w.w,.84);
-  try{await ensureUnits([u.k]);if(id!==token)return;const attempt=ensureAttempt();loading=false;startedAt=Date.now();state.revealed=attempt.phase==='answer';if(state.revealed)PAI_TAP_FLOW.restoreAnswer(u.k,attempt);else PAI_TAP_FLOW.ready(u.k);render();if(autoQuestion&&!state.revealed&&!spokeInGesture)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+  try{await ensureUnits([u.k]);if(id!==token)return;const attempt=ensureAttempt();loading=false;startedAt=Date.now();state.revealed=attempt.phase==='answer';if(state.revealed)PAI_TAP_FLOW.restoreAnswer(u.k,attempt);else PAI_TAP_FLOW.ready(u.k);render();window.PAI_STUDY_ENTRY_STAGE?.('first-question-rendered');if(autoQuestion&&!state.revealed&&!spokeInGesture)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
