@@ -370,7 +370,8 @@
   // Historical preview with the answer visible cannot be treated as an unseen recall.
 
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);state.revealed=true;phase='answer-paused';grade=null;onAdvance=null;window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
-  else if(phase==='answer'||phase==='answer-paused'||phase==='example'){if(timer!==null)clearTimeout(timer);timer=null;generation++;const k=visibleKey;state.revealed=false;ready(k,true);window.render?.()}
+  else if(phase==='answer'){/* A rated answer retains its pending commit even if its face is flipped. */state.revealed=!state.revealed;window.render?.()}
+  else if(phase==='answer-paused'||phase==='example'){if(timer!==null)clearTimeout(timer);timer=null;generation++;const k=visibleKey;state.revealed=false;ready(k,true);window.render?.()}
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
