@@ -34,7 +34,7 @@ const required=[
  "test-v21-transaction-store.mjs"
 ];
 const missing=required.filter(name=>!tests.includes(name));
-if(missing.length){console.error('Incomplete V2.1 suite; missing tests:\\n'+missing.join('\\n'));process.exit(2)}
+if(missing.length){console.error('Incomplete V2.1 suite; missing tests:\n'+missing.join('\n'));process.exit(2)}
 if(!tests.length){console.error('No V2.1 tests discovered; refusing false PASS');process.exit(2)}
 const results=[];
 for(const file of tests){
