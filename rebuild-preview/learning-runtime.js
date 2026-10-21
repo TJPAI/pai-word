@@ -350,6 +350,7 @@
  function correct(score){if(!['again','hard','good'].includes(score)||!['answer','answer-paused','example','repeating'].includes(phase))return;window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;generation++;grade=score;visualGrade=score;setPendingGrade(visibleKey,score);phase='answer';onAdvance=()=>window.getBrowsedUnit?.()?.k===visibleKey?window.rateBrowsedLearning?.(score,visibleKey):window.rateLearning?.(score,visibleKey);const g=generation;window.render?.();finish(g)}
  function choose(score){
   if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden)return;
+  window.PAI_AUTOBROWSE?.stop();++browseToken;
   if(phase==='question'){
    const current=window.getVisibleLearningUnit?.();if(!current||!visibleKey||current.k!==visibleKey)return;
    responseMs=Math.max(0,Date.now()-began);state.revealed=true;
@@ -434,7 +435,7 @@
   // Catalog lemmas exist before the deferred KU payload is loaded.
   const autoQuestion=state.autoPronounce.question;
   if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
-  try{await ensureUnits([u.k]);if(id!==token)return;ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+  try{await ensureUnits([u.k]);if(id!==token)return;ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();window.PAI_AUTOBROWSE?.restart();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true);window.PAI_AUTOBROWSE?.restart()}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
