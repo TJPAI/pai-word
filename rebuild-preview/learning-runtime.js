@@ -267,7 +267,7 @@
   }
   function renderPanel(kind){
     if(kind==='stats'){const total=Object.keys(state.records).filter(k=>byKey(k)).length,known=state.stats.known||0,unknown=state.stats.unknown||0;return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>统计</h2></div><div class="panel-block"><div class="stat-row"><span>已学习义项</span><b>${total}</b></div><div class="stat-row"><span>旧版待确认记录</span><b>${Object.keys(state.legacySrsPending||{}).length}</b></div><div class="stat-row"><span>知道</span><b>${known}</b></div><div class="stat-row"><span>不知道</span><b>${unknown}</b></div></div><div class="panel-block muted">统计按知识单元记录；旧版无法唯一对应的进度已保留待确认。</div></div>`}
-    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><h3>记忆算法</h3><div class="setting-row"><span>当前算法</span><strong>Basic SRS</strong></div><p class="muted">FSRS-6 与自适应算法待验证后开放；当前 KU 评分仍使用基础规则，切换不会重置学习记录。</p></div><div class="panel-block"><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[25,50,100,200].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div><div class="setting-row"><span>发音口音</span><select onchange="setVoiceAccent(this.value)"><option value="us" ${state.voiceAccent==='us'?'selected':''}>美音</option><option value="gb" ${state.voiceAccent==='gb'?'selected':''}>英音</option></select></div><div class="setting-row"><span>隐藏单词（听音模式）</span><button class="switch ${state.hideWord?'on':''}" onclick="toggleHideWord()"><i></i></button></div><div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义 / 易混词辨析</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`;
+    return `<div class="screen panel-screen"><div class="panel-top"><button class="back-btn" onclick="goScenes()">‹</button><h2>设置</h2></div><div class="panel-block"><h3>记忆算法</h3><div class="setting-row"><span>当前算法</span><strong>Basic SRS</strong></div><p class="muted">FSRS-6 与自适应算法待验证后开放；当前 KU 评分仍使用基础规则，切换不会重置学习记录。</p></div><div class="panel-block"><div class="setting-row"><span>自动浏览间隔（秒）</span><input type="number" min="0.2" max="60" step="0.1" value="${Number(state.autoBrowseInterval)||1}" onchange="setAutoBrowseInterval(this.value)" aria-label="自动浏览间隔（秒）"></div><p class="muted">默认 1 秒；题目页只浏览题目，答案页只浏览答案。自动浏览不计分。</p><div class="setting-row"><span>每日新词</span><select onchange="setNewPerDay(+this.value)">${[25,50,100,200].map(n=>`<option value="${n}" ${state.newPerDay===n?'selected':''}>${n}</option>`).join('')}</select></div><div class="setting-row"><span>发音口音</span><select onchange="setVoiceAccent(this.value)"><option value="us" ${state.voiceAccent==='us'?'selected':''}>美音</option><option value="gb" ${state.voiceAccent==='gb'?'selected':''}>英音</option></select></div><div class="setting-row"><span>隐藏单词（听音模式）</span><button class="switch ${state.hideWord?'on':''}" onclick="toggleHideWord()"><i></i></button></div><div class="setting-row"><span>显示高频搭配</span><button class="switch ${state.showCollocations?'on':''}" onclick="toggleAnswerOption('showCollocations')"><i></i></button></div><div class="setting-row"><span>显示 3 个例句</span><button class="switch ${state.showExamples?'on':''}" onclick="toggleAnswerOption('showExamples')"><i></i></button></div><div class="setting-row"><span>显示近义 / 易混词辨析</span><button class="switch ${state.showCompare?'on':''}" onclick="toggleAnswerOption('showCompare')"><i></i></button></div></div><div class="panel-block muted">新词数量固定；到期复习不设上限。</div></div>`;
   }
   function fitAnswer(){const answer=document.querySelector('.answer'),rating=document.querySelector('.rating');if(!answer||!rating)return;answer.classList.remove('fit-medium','fit-roomy');const gap=rating.getBoundingClientRect().top-answer.getBoundingClientRect().bottom;if(gap>170)answer.classList.add('fit-roomy');else if(gap>85)answer.classList.add('fit-medium')}
 
@@ -435,7 +435,7 @@
   const autoQuestion=state.autoPronounce.question;
   if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
   try{await ensureUnits([u.k]);if(id!==token)return;ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);render();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
- function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
+ function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true);window.PAI_AUTOBROWSE?.restart()}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
   {name:'鱼类',terms:['鱼类','鱼种','各种鱼','淡水鱼','海水鱼','fish species','types of fish'],words:'fish salmon tuna trout cod carp catfish bass perch pike eel herring mackerel sardine anchovy halibut flounder sole snapper grouper tilapia haddock pollock sturgeon swordfish marlin shark ray skate goldfish guppy koi minnow salmonella fishery aquatic freshwater saltwater fin gill scale spawn school shoal'},
@@ -699,6 +699,34 @@
    PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
   }catch(_){return false}
  };
+ // Auto-browse is presentation-only: never score or commit a KU.
+ let autoBrowseTimer=null,autoBrowseGeneration=0;
+ const autoInterval=()=>Math.round(Math.max(.2,Math.min(60,Number(state.autoBrowseInterval)||1))*1000);
+ function stopAutoBrowse(){autoBrowseGeneration++;if(autoBrowseTimer!==null)clearTimeout(autoBrowseTimer);autoBrowseTimer=null}
+ function scheduleAutoBrowse(){
+  const generation=autoBrowseGeneration;
+  if(!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
+  autoBrowseTimer=setTimeout(async()=>{
+   autoBrowseTimer=null;
+   if(generation!==autoBrowseGeneration||!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
+   const phase=window.PAI_TAP_FLOW?.snapshot()?.phase;
+   // Never interrupt a pending rating, storage commit or explicit answer replay.
+   if(!loading&&!error&&!window.PAI_SAVE_DEFERRED&&['question','answer-paused'].includes(phase)){
+    try{await window.browseAnswer(1)}catch(e){console.warn('Auto browse skipped',e)}
+   }
+   if(generation===autoBrowseGeneration)scheduleAutoBrowse();
+  },autoInterval());
+ }
+ function restartAutoBrowse(){stopAutoBrowse();scheduleAutoBrowse()}
+ window.PAI_AUTOBROWSE={restart:restartAutoBrowse,stop:stopAutoBrowse};
+ window.setAutoBrowse=enabled=>{
+  state.autoBrowseEnabled=!!enabled;save();restartAutoBrowse();render();
+ };
+ window.setAutoBrowseInterval=value=>{
+  const n=Number(value);if(!Number.isFinite(n)||n<.2||n>60)return;
+  state.autoBrowseInterval=n;save();restartAutoBrowse();render();
+ };
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAutoBrowse();else restartAutoBrowse()});
  // Historical rating is a NEW review event, never a rewrite of a prior attempt.
  // Because browsing already reveals the answer, first press starts a hidden-answer retest.
  let historyRetest=false,historyAttemptId=null;
@@ -768,8 +796,8 @@
   const selectedGrade=PAI_TAP_FLOW.selectedGradeFor(u.k);
   const gradeAttrs=g=>` data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
   const repeat=s.seen[u.k]>0;
-  const label=u.s.kuType==='sense'?'回忆词义':u.s.kuTitle;
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div><div class="study-body">${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
+  const autoSwitch=`<label style="display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer"><input type="checkbox" ${state.autoBrowseEnabled?'checked':''} onchange="setAutoBrowse(this.checked)" aria-label="自动浏览开关">自动浏览</label>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${autoSwitch}</p></div><div class="study-body">${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};
