@@ -635,7 +635,7 @@
  window.openToday=()=>start([...due(),...fresh()],`${SCENES[state.selectedScene]} · 今日学习`,'today');
  window.openReview=()=>start(due(),'优先复习','review');
  window.openFreeReview=()=>start(Object.keys(state.records).filter(byKey),'自由复习','free');
- window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
+ window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();const fallback=[...due().filter(k=>byKey(k)?.s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)];const keys=window.PAI_SCENE_SESSION_KEYS?.(id)||fallback;start(keys,SCENES[id]+' · 定向学习','scene')};
  window.resumeLearning=()=>{previousUnit=null;active=true;state.view='learning';state.revealed=false;showCurrent()};
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
  window.goScenes=()=>{previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
