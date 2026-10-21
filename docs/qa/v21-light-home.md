@@ -213,3 +213,17 @@ individual files are cached only after successful online requests; mixed
 versions, partial cache population, worker activation and actual offline reload
 require dedicated browser tests. The test script was committed but has not
 been run in Node or Chromium in this turn. Safari remains unverified.
+
+
+## Preview cache rollback safety (2026-10-21, latest follow-up)
+
+The preview-scoped Worker no longer deletes old preview shell caches immediately
+during activation. Before this fix, activation purged the previous shell even
+if the new on-demand cache was incomplete; offline rollback could then fail.
+Fetch handling still reads ONLY the active named cache, so preserving older
+caches does not authorize mixing script or data versions. The old caches
+remain stored until an explicit, validated cleanup strategy is implemented.
+
+scripts/test-v21-offline-shell.mjs now asserts activation does not delete the
+previous preview cache. No full checked-out Node/Chromium/Safari test was run
+for this commit; offline reload and complete-cache update remain open gates.
