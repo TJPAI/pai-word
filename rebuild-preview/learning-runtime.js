@@ -764,6 +764,20 @@
   // After an explicitly rated historical KU, return to the active queue's QUESTION page.
   state.revealed=false;showCurrent();
  };
+ window.PAI_RELOAD_KU_AFTER_CONFLICT=async()=>{
+  if(!window.PAI_KU_STORAGE_READY)return false;
+  window.PAI_AUTOBROWSE?.stop();
+  try{
+   const latest=await window.PAI_KU_DURABLE.read(window.PAI_KU_DURABLE_DB);
+   if(!latest?.snapshot?.records)return false;
+   // Keep locally selected settings; replace only authoritative learning state.
+   const preserved={};for(const key of ['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','selectedScene','sceneDifficulty'])if(Object.prototype.hasOwnProperty.call(state,key))preserved[key]=state[key];
+   state={...state,...latest.snapshot,...preserved,view:'scenes',revealed:false};
+   window.PAI_KU_DURABLE_VERSION=latest.version;
+   active=false;browsedUnit=null;historyRetest=false;historyAttemptId=null;++browseToken;++token;PAI_TAP_FLOW.cancel();
+   render();return true;
+  }catch(e){window.PAI_LAST_SAVE_ERROR=String(e);return false}
+ };
  window.rateLearning=async(grade,targetKey=null)=>{
   if(window.PAI_SAVE_DEFERRED===true||!active||loading||error||!unit()||!state.revealed||browsedUnit||!['again','hard','good'].includes(grade))return;
   const u=unit();if(!u||targetKey&&targetKey!==u.k)return;const k=u.k;let attempt;try{attempt=ensureAttempt()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('无法持久化评分尝试',e);PAI_TAP_FLOW.resumeFailedCommit();render();return}if(!attempt||attempt.kuId!==k||attempt.committed)return;const now=Date.now(),prev=state.records[k];
@@ -785,7 +799,7 @@
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
   if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;save()}
   else {window.PAI_SAVE_DEFERRED=false;throw Error('IndexedDB unavailable: refusing unsafe KU write')};
-  }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return}
+  }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(String(e).includes('conflict'))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
   PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;showCurrent();
