@@ -51,32 +51,11 @@
     return out;
   }
 
-  const baseOpenScene=window.openScene;
-  window.openScene=function(scene){
-    if(isScene500(scene)&&typeof window.PAI_START_POLICY_SESSION==='function'){
-      state.selectedScene=scene;
-      window.rebuildDailyAssignments?.();
-      const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
-      const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
-      const keys=[...due,...fresh];
-      const result=window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
-      if(state.learningSession){state.learningSession.scene500Difficulty=state.scene500DifficultyByScene?.[scene]||'all';save();}
-      return result;
-    }
-    const result=baseOpenScene(scene);
-    if(state.learningSession?.kind==='scene'){
-      const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
-      const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
-      const keys=[...due,...fresh];
-      state.learningSession.queue=keys;
-      state.learningSession.total=keys.length;
-      state.learningSession.completed=[];
-      state.learningSession.seen={};
-      state.learningSession.attempts=0;
-      save();
-      window.resumeLearning?.();
-    }
-    return result;
+  // Compute the full scene queue before the learning runtime starts.
+  // Never replace a live queue or call resumeLearning a second time.
+  window.PAI_SCENE_SESSION_KEYS=function(scene){
+    const due=dueKeys(scene),fresh=freshKeys(scene),seen=new Set(due);
+    return [...due,...fresh.filter(k=>!seen.has(k))];
   };
 
   function reinforcementKeys(){
