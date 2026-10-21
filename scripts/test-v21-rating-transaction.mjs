@@ -24,7 +24,7 @@ async function run(mode){
   },
   window:{PAI_SAVE_DEFERRED:false,PAI_KU_STORAGE_READY:true,PAI_KU_DURABLE_VERSION:0,PAI_KU_DURABLE_DB:{},
    PAI_KU_DURABLE:{async commit(){
-    writes++;if(mode==='failure')throw Error('quota');
+    writes++;if(mode==='failure'&&writes===1)throw Error('quota');
     return {status:'committed',version:writes};
    }},
    PAI_MEMORY_SCHEDULERS:{review(_,{grade}){return {lastGrade:grade}}},
@@ -52,6 +52,10 @@ async function run(mode){
   assert.equal(failed,1);
   await context.window.rateLearning('good','ku1');
   assert.equal(writes,2,'failure allows a subsequent retry');
+  assert.equal(context.state.learningSession.attempts,1,'successful retry counts exactly once');
+  assert.equal(context.state.stats.known,1,'successful retry increases known exactly once');
+  assert.equal(Object.keys(context.state.records).length,1,'successful retry persists a single KU');
+  assert.equal(held,1,'successful retry retains current card');
  }
 }
 await run('success');
