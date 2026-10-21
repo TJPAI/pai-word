@@ -338,3 +338,25 @@ syntax checks in the tool environment. There has been NO genuine Playwright,
 Chromium, iPhone Safari, sound output, or deployed-site validation of these
 new changes. First user-gesture unlock for iPhone speech remains unresolved
 across the deferred-engine load; no full parity claim is made.
+
+
+## Stable learning core integration direction (2026-10-21)
+
+The user rejected incremental Astra-runtime patches due to audible and swipe
+regressions despite a faster homepage. The accepted integration policy is:
+keep the lightweight home projection and performance architecture, restore
+pre-Astra frozen learning UX from commit 116a3b40, and preserve later SRS
+transaction safety/attempt restore/multi-tab protection as mandatory invariants.
+
+Added scripts/test-v21-frozen-interaction.mjs. It uses git show to compare
+frozen and current interaction blocks (timer defaults, audio handler, reread
+loop, settings), and checks the presence of touch navigation, automatic
+pronunciation, tap reveal, browse, attempt, and SRS write paths. A changed
+block is reported as DIFF and requires deliberate browser parity verification;
+this audit is not a behavioral pass. It requires a real repository checkout
+with git and was NOT run in this connector-only turn.
+
+No frozen runtime wholesale replacement, new deployment, or assertion of
+Safari/audio/swipe success is made. Next gate is real-device/browser playback
+and swipe behavior alongside end-to-end safe learning state, after restoring
+specific frozen interaction handlers in a controlled patch.
