@@ -20,15 +20,19 @@
   try{
    durableDB=await window.PAI_KU_DURABLE.open();
    const previous=await window.PAI_KU_DURABLE.initialize(durableDB,state);
+   window.PAI_KU_DURABLE_VERSION=previous.version;
    if(previous?.snapshot?.records){
     // IndexedDB is the authoritative restored KU snapshot. Legacy localStorage is preserved.
     state={...state,...previous.snapshot};
+    const settings=await window.PAI_KU_DURABLE.readSettings(durableDB);
+    if(settings&&typeof settings==='object')state={...state,...settings};
     state.view='scenes';state.revealed=false;
    }
    window.PAI_KU_DURABLE_DB=durableDB;
    window.PAI_KU_STORAGE_READY=true;
   }catch(storageError){
    window.PAI_KU_STORAGE_READY=false;
+   window.PAI_KU_STORAGE_FATAL=true;
    console.warn('Durable KU storage unavailable; rating writes must not silently succeed',storageError);
   }
   const catalogReady=loadLearningCatalog();
