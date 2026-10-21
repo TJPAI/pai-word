@@ -63,6 +63,8 @@
   state.sceneSearchUi={query:q,difficulty:d,resultIds:q?PAI_SCENE_SEARCH.search(q,d,5).map(s=>s.id):[]};
   state.view='scenes';homeRender();if(!window.PAI_PREVIEW_WRITABLE)notice(window.PAI_PREVIEW_WRITE_REASON,()=>location.reload());document.body.classList.add('pai-boot-ready');
   window.PAI_HOME_READY_MS=performance.now();performance.mark('pai-home-interactive');
+  // Notify preview worker only after valid metadata, search and home DOM are ready.
+  if(navigator.serviceWorker?.controller?.scriptURL?.includes('/rebuild-preview/sw.js'))navigator.serviceWorker.controller.postMessage({type:'PAI_HOME_BOOT_OK'});
   window.PAI_STARTUP_REPORT=()=>({version:VERSION,homeInteractiveMs:window.PAI_HOME_READY_MS,engineReady:!!window.PAI_ENGINE_READY,resources:performance.getEntriesByType('resource').map(r=>({name:r.name,transferSize:r.transferSize,duration:r.duration}))});
   if('serviceWorker'in navigator)navigator.serviceWorker.register(new URL('rebuild-preview/sw.js',document.baseURI),{scope:new URL('rebuild-preview/',document.baseURI).pathname,updateViaCache:'none'}).catch(console.warn);
  }catch(e){document.body.classList.add('pai-boot-ready');app.replaceChildren();const h=document.createElement('h1');h.textContent='PAI Word';const p=document.createElement('p');p.textContent='首页加载失败：'+e.message;const b=document.createElement('button');b.textContent='重新加载';b.onclick=()=>location.reload();app.append(h,p,b);console.error(e)}
