@@ -19,9 +19,10 @@ const synth={
 };
 class Utterance{constructor(text){this.text=text}}
 const window={speechSynthesis:synth,SpeechSynthesisUtterance:Utterance};
+let watchdogId=0;const watchdogs=new Map();
 const context={window,speechSynthesis:synth,SpeechSynthesisUtterance:Utterance,
  state:{voiceAccent:'us',speechSpeed:100},refreshVoices:()=>{},speechVoices:[{lang:'en-US'}],
- console,Set,Math};
+ console,Set,Math,setTimeout:(fn,ms)=>{const id=++watchdogId;watchdogs.set(id,{fn,ms});return id},clearTimeout:id=>watchdogs.delete(id)};
 vm.createContext(context);
 vm.runInContext(speechBlock,context);
 const audio=window.PAI_AUDIO;
@@ -39,4 +40,5 @@ let stopped=0;
 audio.whenIdle(()=>stopped++);
 audio.stop();
 assert.equal(stopped,1,'explicit stop must release waiting callbacks');
+assert.equal(watchdogs.size,0,'stopped utterances must clear watchdogs');
 console.log('PASS: replacement does not trigger premature rating speech, natural finish and stop release waiters');
