@@ -10,6 +10,15 @@
    return json('data/scene500-playable-membership-v1.json');
   }
  }
+ // Download existing startup scripts concurrently while the legacy lexicon loads.
+ // Execution order stays unchanged to preserve the frozen learning experience.
+ const startupScripts=['rebuild-preview/learning-runtime.js','audio-compat.js',
+  'scene500-integrated.js','scene500-sense-review.js','scene-search.js',
+  'rebuild-preview/home-dashboard.js','rebuild-preview/round-policy.js'];
+ for(const src of startupScripts){
+  const link=document.createElement('link');link.rel='preload';link.as='script';
+  link.href=src+'?v='+VERSION;document.head.appendChild(link);
+ }
  try{
   await loadLearningCatalog();
   window.PAI_SCENE500_MEMBERSHIP_POLICY=await json('data/scene500-ranked-membership-policy-v1.json');
