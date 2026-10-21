@@ -355,7 +355,7 @@
  function ready(k,preserveAudio=false){if(ratedVisibleKey!==k)ratedVisibleKey=null;clear(preserveAudio);visualGrade=gradeFor(k);visibleKey=k;began=Date.now();responseMs=null;grade=null;entryMode=null;repeated=0;phase=pageRevealed()?'answer-paused':'question'}
  function classify(ms){const c=config();return ms<=c.goodWithin*1000?'good':ms<=c.hardWithin*1000?'hard':'again'}
  function answer({key,score}){if(key===visibleKey)startRatedSequence(score||'again')}
- function correct(score){if(['again','hard','good'].includes(score))startRatedSequence(score)}
+ function correct(score){if(phase!=='committing'&&visibleKey&&['again','hard','good'].includes(score))startRatedSequence(score)}
  function startRatedSequence(score){
   if(!visibleKey)return;
   const previousRatingSpeech=phase==='answer'&&ratingSpeechStarted;
