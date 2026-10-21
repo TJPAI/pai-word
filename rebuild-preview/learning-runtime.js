@@ -377,7 +377,7 @@
   const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>finish(g),c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
   if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
- function tap(){if(window.getBrowsedUnit?.())return;if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
+ function tap(){if(window.getBrowsedUnit?.()){window.reveal?.();return}if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
   // Historical preview with the answer visible cannot be treated as an unseen recall.
 
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);const k=visibleKey,score=classify(responseMs);state.revealed=true;answer({key:k,mode:'tap',score,advance:g=>window.getBrowsedUnit?.()?.k===k?window.rateBrowsedLearning?.(g,k):window.rateLearning?.(g,k)});window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
@@ -462,8 +462,9 @@
   // First scene-entry speech must be initiated synchronously in the tap gesture on iOS Safari.
   // Catalog lemmas exist before the deferred KU payload is loaded.
   const autoQuestion=state.autoPronounce.question;
-
-  try{await ensureUnits([u.k]);if(id!==token)return;const attempt=ensureAttempt();loading=false;startedAt=Date.now();state.revealed=attempt.phase==='answer';if(state.revealed)PAI_TAP_FLOW.restoreAnswer(u.k,attempt);else PAI_TAP_FLOW.ready(u.k);render();if(autoQuestion&&!state.revealed)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+  const spokeInGesture=!!(gestureSpeech&&autoQuestion&&state.learningSession?.currentAttempt?.phase!=='answer');
+  if(spokeInGesture)window.PAI_AUDIO?.play(u.w.w,.84);
+  try{await ensureUnits([u.k]);if(id!==token)return;const attempt=ensureAttempt();loading=false;startedAt=Date.now();state.revealed=attempt.phase==='answer';if(state.revealed)PAI_TAP_FLOW.restoreAnswer(u.k,attempt);else PAI_TAP_FLOW.ready(u.k);render();if(autoQuestion&&!state.revealed&&!spokeInGesture)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{})}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';state.revealed=false;persist();showCurrent(true)}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
@@ -707,7 +708,7 @@
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
  window.goScenes=()=>{previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
  window.openPanel=kind=>{previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
- window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
+ window.reveal=()=>{if(!active||loading||error||!unit())return;if(browsedUnit){if(!state.revealed){state.revealed=true;render();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(browsedUnit.w.w,.84)}return}PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
  const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...Object.keys(state.learningSession?.seen||{}),state.learningSession?.queue?.[0]])].filter(byKey);
@@ -719,13 +720,12 @@
   if(!active||loading||error||!unit())return false;
   const keys=cycleKeys();if(!keys.length)return false;
   const index=browseIndex===null?Math.max(0,keys.indexOf(unit().k)):browseIndex;
-  const next=(index+direction+keys.length)%keys.length;
+  const next=index+direction;if(next<0||next>=keys.length)return false;
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=state.revealed;
   PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning')return false;
    if(u.k===unit().k){await showCurrent();return true}
-   browseIndex=next;browsedUnit=u;state.revealed=true;
-   render();
+   browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
    PAI_TAP_FLOW.cancel();render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
   }catch(_){return false}
  };
