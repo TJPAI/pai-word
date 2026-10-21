@@ -375,8 +375,12 @@
   if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
  function tap(){if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.())return;
+  // Auto-browse blank taps only reveal the current answer. No audio, scoring, navigation or timer reset.
+  if(state.autoBrowseEnabled){
+   if(phase==='question'&&!state.revealed){responseMs=Math.max(0,Date.now()-began);state.revealed=true;phase='answer-paused';grade=null;onAdvance=null;window.render?.()}
+   return;
+  }
   // Historical preview with the answer visible cannot be treated as an unseen recall.
-
   if(phase==='question'){responseMs=Math.max(0,Date.now()-began);state.revealed=true;phase='answer-paused';grade=null;onAdvance=null;window.render?.();if(state.autoPronounce?.swipe)window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
   else if(phase==='answer'){/* A rated answer retains its pending commit even if its face is flipped. */state.revealed=!state.revealed;window.render?.()}
   else if(phase==='answer-paused'||phase==='example'){if(timer!==null)clearTimeout(timer);timer=null;generation++;const k=visibleKey;state.revealed=false;ready(k,true);window.render?.()}
