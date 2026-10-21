@@ -47,7 +47,7 @@ const STORAGE='pai-word-core20k-rebuild-preview-v21';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
-const PAI_SETTING_KEYS=['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','selectedScene','sceneDifficulty'];
+const PAI_SETTING_KEYS=['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','speechSpeed','selectedScene','sceneDifficulty'];
 const PAI_HOME_KEYS=['sceneSearchUi','scene500Recent','scene500DifficultyByScene'];
 let paiHomeLast=null,paiHomeQueued=null,paiHomeQueue=Promise.resolve();
 function persistHomeState(){
