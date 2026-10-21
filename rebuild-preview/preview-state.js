@@ -49,21 +49,24 @@ try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e)
 
 const PAI_SETTING_KEYS=['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','selectedScene','sceneDifficulty'];
 const PAI_HOME_KEYS=['sceneSearchUi','scene500Recent','scene500DifficultyByScene'];
-let paiHomeLast=null,paiHomeQueue=Promise.resolve();
+let paiHomeLast=null,paiHomeQueued=null,paiHomeQueue=Promise.resolve();
 function persistHomeState(){
  if(!window.PAI_KU_STORAGE_READY)return;
  const home={};for(const key of PAI_HOME_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))home[key]=structuredClone(state[key]);
- const serialized=JSON.stringify(home);if(serialized===paiHomeLast)return;
- paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeHome(window.PAI_KU_DURABLE_DB,home)).then(()=>{paiHomeLast=serialized;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e)});
+ const serialized=JSON.stringify(home);if(serialized===paiHomeLast||serialized===paiHomeQueued)return;
+ paiHomeQueued=serialized;
+ paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeHome(window.PAI_KU_DURABLE_DB,home)).then(()=>{paiHomeLast=serialized;if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e)});
 }
 
-let paiSettingsLast=null,paiSettingsQueue=Promise.resolve();
+let paiSettingsLast=null,paiSettingsQueued=null,paiSettingsQueue=Promise.resolve();
 function persistIndependentSettings(){
  if(!window.PAI_KU_STORAGE_READY)return;
  const settings={};for(const key of PAI_SETTING_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))settings[key]=state[key];
- const serialized=JSON.stringify(settings);if(serialized===paiSettingsLast)return;
- paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeSettings(window.PAI_KU_DURABLE_DB,settings)).then(()=>{paiSettingsLast=serialized}).catch(e=>{window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-settings-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-settings-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='设置保存失败：本次修改可能在刷新后丢失。';setTimeout(()=>banner.remove(),7000)});
+ const serialized=JSON.stringify(settings);if(serialized===paiSettingsLast||serialized===paiSettingsQueued)return;
+ paiSettingsQueued=serialized;
+ paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeSettings(window.PAI_KU_DURABLE_DB,settings)).then(()=>{paiSettingsLast=serialized;if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=null}).catch(e=>{if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-settings-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-settings-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='设置保存失败：本次修改可能在刷新后丢失。';setTimeout(()=>banner.remove(),7000)});
 }
+window.PAI_PERSISTENCE_FLUSH=()=>Promise.allSettled([paiHomeQueue,paiSettingsQueue]);
 function save(){
   if(window.PAI_SAVE_DEFERRED===true)return true;
   persistIndependentSettings();
