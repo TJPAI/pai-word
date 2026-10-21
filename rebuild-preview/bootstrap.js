@@ -43,6 +43,16 @@
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
    await installScene500Top100();
+   await window.PAI_SCENE500_TOP100_READY;
+   // A search entered before the optional Top100 index became available must
+   // be recomputed with real playable counts, rather than retaining an empty list.
+   const queuedQuery=state.sceneSearchUi?.query?.trim();
+   if(queuedQuery&&typeof window.PAI_SCENE_SEARCH?.search==='function'){
+    const difficulty=state.sceneSearchUi.difficulty||'all';
+    const results=window.PAI_SCENE_SEARCH.search(queuedQuery,difficulty,5);
+    state.sceneSearchUi={...state.sceneSearchUi,resultIds:results.map(item=>item.id)};
+    render();
+   }
   }
   // Display coarse Scene500 inventory separately from reviewed learning membership.
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
