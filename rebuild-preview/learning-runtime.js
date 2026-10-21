@@ -391,16 +391,21 @@
  }
  function tap(){
   if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.()||['committing','repeating'].includes(phase))return;
+  const word=window.getVisibleLearningUnit?.()?.w?.w;
+  pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
   if(phase==='answer'){
-   pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
+   // A blank tap changes the logical face but keeps the pending rating and its deadline.
    window.PAI_AUDIO?.stop();if(timer!==null)clearTimeout(timer);timer=null;
    const g=++generation;later(()=>finish(g),Math.max(0,ratingDeadline-Date.now()));
-   window.render?.();return;
+   window.render?.();
+   if(!state.autoBrowseEnabled&&word)window.PAI_AUDIO?.play(word,.84);
+   return;
   }
-  pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
-  if(pageRevealed()){responseMs=Math.max(0,Date.now()-began);phase='answer-paused';window.PAI_AUDIO?.play(window.getVisibleLearningUnit?.()?.w?.w,.84)}
+  if(pageRevealed()){responseMs=Math.max(0,Date.now()-began);phase='answer-paused'}
   else ready(visibleKey,true);
-  window.render?.();if(state.autoBrowseEnabled)window.PAI_AUTOBROWSE?.restart();
+  window.render?.();
+  if(!state.autoBrowseEnabled&&word)window.PAI_AUDIO?.play(word,.84);
+  if(state.autoBrowseEnabled)window.PAI_AUTOBROWSE?.restart();
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
