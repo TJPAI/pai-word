@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const src=fs.readFileSync(new URL('../rebuild-preview/learning-runtime.js',import.meta.url),'utf8');
+const baseline=fs.readFileSync(new URL('../rebuild-preview/learning-runtime.js',import.meta.url),'utf8');
+assert.match(src,/goodWithin:2,hardWithin:5,goodShow:2,hardShow:4,againShow:6,repeatCount:3/);
+assert.match(src,/state\.autoPronounce=\{question:true,swipe:true/);
+assert.match(src,/if\(spokeInGesture\)window\.PAI_AUDIO\?\.play/);
+assert.match(src,/if\(autoQuestion&&!state\.revealed&&!spokeInGesture\)speak/);
+assert.match(src,/const next=index\+direction;if\(next<0\|\|next>=keys\.length\)return false/);
+assert.match(src,/browseIndex=next;browsedUnit=u;state\.revealed=wasRevealed/);
+assert.match(src,/if\(browsedUnit\)\{if\(!state\.revealed\)\{state\.revealed=true/);
+assert.match(src,/window\.rateBrowsedLearning=\(\)=>\{\}/);
+assert.match(src,/const cycleKeys=\(\)=>\[\.\.\.new Set\(\[\.\.\.\(state\.learningSession\?\.completed/);
+assert.match(src,/repeatCount:3,repeatGap:1/);
+assert.match(src,/if\(timer!==null\)clearTimeout\(timer\)/);
+console.log('PASS frozen interaction guard: pronunciation, swipe direction/edges, read-only history, tap timing');
