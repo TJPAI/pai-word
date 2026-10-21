@@ -177,9 +177,9 @@
   const notifyAudioIdle=()=>{if(!activeSpeech){for(const cb of [...audioIdleListeners]){audioIdleListeners.delete(cb);cb()}}};
   window.PAI_AUDIO={
     whenIdle(callback){if(!activeSpeech){callback();return ()=>{}}audioIdleListeners.add(callback);return ()=>audioIdleListeners.delete(callback)},
-    stop(){audioGeneration++;activeSpeech=false;if('speechSynthesis'in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel();notifyAudioIdle()},
+    stop(notify=true){audioGeneration++;activeSpeech=false;if('speechSynthesis'in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel();if(notify)notifyAudioIdle()},
     play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
-      this.stop();activeSpeech=true;const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
+      this.stop(false);activeSpeech=true;const id=audioGeneration,synth=speechSynthesis,lang=state.voiceAccent==='gb'?'en-GB':'en-US';refreshVoices();
       const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
       const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=Math.min(10,rate*(Number(state.speechSpeed)||100)/100);u.voice=voice;window.__paiUtterance=u;
       let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;activeSpeech=false;notifyAudioIdle();onDone?.()};
