@@ -743,9 +743,8 @@
   state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   state.revealed=false;state.learningSession.currentAttempt={...attempt,committed:true};
-  window.PAI_SAVE_DEFERRED=false;
-  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId});if(result.status!=='committed')throw Error('Duplicate KU rating attempt');save()}
-  else persist(true);
+  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId});if(result.status!=='committed')throw Error('Duplicate KU rating attempt');window.PAI_SAVE_DEFERRED=false;save()}
+  else {window.PAI_SAVE_DEFERRED=false;persist(true)};
   }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
