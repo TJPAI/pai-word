@@ -3,7 +3,7 @@
 // Offline study is NOT provided by this worker.
 const SCOPE=new URL(self.registration.scope);
 const ROOT=new URL('../',SCOPE);
-const CACHE='pai-word-rebuild-preview-light-home-v21-20261021a';
+const CACHE='pai-word-rebuild-preview-light-home-v21-20261021b';
 const CACHEABLE=new Set([
  'rebuild-preview/','rebuild-preview/index.html',
  'rebuild-preview/preview-state.js','rebuild-preview/bootstrap.js',
