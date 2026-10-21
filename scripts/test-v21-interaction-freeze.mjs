@@ -12,4 +12,6 @@ assert.match(src,/window\.rateBrowsedLearning=\(\)=>\{\}/);
 assert.match(src,/const cycleKeys=\(\)=>\[\.\.\.new Set\(\[\.\.\.\(state\.learningSession\?\.completed/);
 assert.match(src,/repeatCount:3,repeatGap:1/);
 assert.match(src,/if\(timer!==null\)clearTimeout\(timer\)/);
+assert.match(src,/\.learning-screen\{touch-action:pan-y\}/);
+assert.match(src,/e\.preventDefault\(\);window\.browseAnswer\?\.\(x>0\?-1:1\)\},\{passive:false\}\)/);
 console.log('PASS frozen interaction guard: pronunciation, swipe direction/edges, read-only history, tap timing');
