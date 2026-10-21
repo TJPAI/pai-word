@@ -161,3 +161,21 @@ to earlier commits and must not be represented as a pass for the new HEAD.
 
 Network-only preview service worker and unsupported offline reload remain
 unchanged; no offline-support claim or deployment is made.
+
+
+## Offline shell experiment (2026-10-21, unverified browser gate)
+
+The preview-only Service Worker now opportunistically caches a strict allowlist of
+light-home HTML, JS, and two projections after successful network requests.
+When offline, those same requests may fall back to cached responses. It does
+not precache anything, fetch the Core20K runtime or Scene500 Top100 shards in
+the background, or touch formal-site caches. The cache namespace is
+pai-word-rebuild-preview-light-home-*.
+
+This is NOT offline study support: first study entry still requires complete
+runtime and shard availability. A partial online visit may also leave an
+incomplete shell cache. Cache version coherency across updates must be tested
+before enabling public offline claims. The new isolated test
+scripts/test-v21-offline-shell.mjs has been committed but has not been run
+against Node or in Chromium in this turn. Safari and offline refresh remain
+unverified at this HEAD. No publishing branch was updated.
