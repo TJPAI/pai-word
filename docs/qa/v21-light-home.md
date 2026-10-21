@@ -245,3 +245,20 @@ not change; that stronger version-coherence gate remains outstanding.
 The updated tests have NOT been executed with Node/Chromium in this turn,
 since the environment cannot check out the private repository. No offline,
 Safari, or production deployment pass is claimed.
+
+
+## Offline cache sealing follow-up (2026-10-21)
+
+Preview Worker now refuses offline home HTML until it has received a
+PAI_HOME_BOOT_OK message from a controlled preview client after valid homepage
+metadata, search integration and DOM commit. Before writing a cache seal it
+checks the critical asset path allowlist and KU metadata availability.
+Once sealed, subsequent opportunistic fetches do not overwrite the sealed
+cache. Bootstrap sends the completion message when controlled, after worker
+registration and on first controller handoff.
+
+This is a best-effort consistency gate, NOT an atomic offline bundle or a
+cryptographic integrity proof; a race during initial caching and upgrades still
+needs actual Chromium/WebKit offline-refresh testing. Node and browser test
+suites have not been run on this latest HEAD in this tool environment. Root
+site and published Pages branches remain untouched.
