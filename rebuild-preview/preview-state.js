@@ -64,8 +64,8 @@ function save(){
       const notice=document.createElement('div');
       notice.id='pai-preview-storage-warning';
       notice.setAttribute('role','alert');
-      notice.style.cssText='position:fixed;bottom:12px;left:12px;right:12px;z-index:99999;background:#78350f;color:#fff;padding:12px;border-radius:10px;font:14px system-ui';
-      notice.textContent='Safari 存储空间不足：当前可继续操作，但部分学习进度可能无法保存。';
+      notice.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#78350f;color:#fff;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none;box-shadow:0 3px 12px #0003';
+      notice.textContent='Safari 存储空间不足：当前存储写入失败；评分不会被视为成功，请先备份学习数据并检查存储。';
       document.body.appendChild(notice);
       setTimeout(()=>notice.remove(),8000);
     }
