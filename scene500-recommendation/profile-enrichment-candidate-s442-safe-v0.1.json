@@ -1,0 +1,45 @@
+{
+  "schema": "scene500-enrichment-safe-overlay-v0.1",
+  "status": "editorial_draft_unverified_not_promoted",
+  "parent": "profile-enrichment-candidate-targeted4-v0.1.json",
+  "change": {
+    "S442": {
+      "remove_aliases": [
+        "例如",
+        "比如说"
+      ],
+      "reason": "Generic discourse markers caused S442 to outrank ticket purchase intents."
+    }
+  },
+  "real_data": {
+    "terms": 20000,
+    "scenes": 500,
+    "edges_before": 3693,
+    "edges_after": 3690,
+    "linked_terms_before": 1680,
+    "linked_terms_after": 1677
+  },
+  "diagnostic": {
+    "queries": 31,
+    "recall_at5": 0.7096774193548387,
+    "mrr_at10": 0.6032258064516128,
+    "ndcg_at5": 0.5941271003982665,
+    "regression_on_existing_metrics": false,
+    "adversarial": [
+      {
+        "query": "比如说我想买飞机票",
+        "before_top1": "S442",
+        "after_top1": "S103"
+      },
+      {
+        "query": "例如我想购买一张火车票",
+        "before_top1": "S442",
+        "after_top1": "S053",
+        "issue": "S092 still second"
+      }
+    ],
+    "method": "local faithful Python reimplementation with real 20K+500 and rebuilt lexical edges",
+    "blind": false
+  },
+  "gate": "Remain candidate until new independent evaluation and native CI; do not merge into stable catalog"
+}
