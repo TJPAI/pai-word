@@ -1,0 +1,46 @@
+{
+  "schema": "scene500-bus-ticket-candidate-v0.1",
+  "status": "partial_pass_not_promoted",
+  "base": "profile-enrichment-candidate-ticket-v0.1.json",
+  "scene": "S092",
+  "add_aliases": [
+    "公交车票",
+    "公交购票",
+    "购买公交票"
+  ],
+  "add_actions": [
+    "购买公交车票"
+  ],
+  "real_data": {
+    "terms": 20000,
+    "scenes": 500,
+    "edges_before": 3692,
+    "edges_after": 3693,
+    "linked_terms_before": 1678,
+    "linked_terms_after": 1678
+  },
+  "node_diagnostic": {
+    "queries": 31,
+    "recall_at5": 0.7096774193548387,
+    "mrr_at10": 0.6032258064516128,
+    "ndcg_at5": 0.5941271003982665,
+    "regressions": 0,
+    "improved": [
+      "我想买公交车票",
+      "怎么买公交车票"
+    ],
+    "unchanged_correct": [
+      "我要乘公交车去学校",
+      "公交车在哪里上车",
+      "我想购买一张火车票"
+    ],
+    "unresolved": [
+      "乘公交车怎么付钱买票"
+    ]
+  },
+  "warnings": [
+    "Tests not blind; locally reconstructed Node modules, not checked-out CI",
+    "Mixed intent still ranks S078 above S092",
+    "Do not promote before separate QA and Safari tests"
+  ]
+}
