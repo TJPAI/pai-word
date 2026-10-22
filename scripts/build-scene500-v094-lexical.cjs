@@ -21,7 +21,7 @@ const add=(term,sceneId,score,evidence_type)=>{
  const term_id=byTerm.get(term);
  if(!term_id)return;
  const k=term_id+'\0'+sceneId,old=postings.get(k);
- if(!old||old.score<score)postings.set(k,{term_id,term,scene_id:sceneId,score,evidence_type,confidence:null,review_status:'lexical_candidate_unverified'});
+ if(!old||old.score<score)postings.set(k,{term_id,term,scene_id:sceneId,score,evidence_type,confidence:0,review_status:'lexical_candidate_unverified'});
 };
 for(const [sceneId,scene] of Object.entries(catalog.scenes)){
  if(!/^S(00[1-9]|0[1-9]\d|[1-4]\d\d|500)$/.test(sceneId))throw Error('Bad scene ID');
@@ -31,9 +31,10 @@ for(const [sceneId,scene] of Object.entries(catalog.scenes)){
   if(!value)continue;
   // Exact field hit gets stronger evidence. Embedded hits must be >=2 Han characters.
   if(byTerm.has(value))add(value,sceneId,weight,kind+'_exact');
-  for(const word of byTerm.keys()){
-   if(word.length<2||word.length>=value.length)continue;
-   if(value.includes(normalize(word)))add(word,sceneId,Math.round(weight*.65*1000)/1000,kind+'_substring');
+  for(let i=0;i<value.length;i++)for(let n=2;n<=Math.min(12,value.length-i);n++){
+   const word=value.slice(i,i+n);
+   if(n>=value.length||!byTerm.has(word))continue;
+   add(word,sceneId,Math.round(weight*.65*1000)/1000,kind+'_substring');
   }
  }
 }
