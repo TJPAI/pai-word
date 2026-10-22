@@ -35,23 +35,29 @@
   function firstPlayable(){return playable().find(s=>inventory(s.id,'all').reviewedCount>0)?.id||null}
   function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
+  const sceneCategories=['日常起居与家庭生活','餐饮与食品','购物与消费','出行与城市交通','旅行与旅游','学校与学习','大学与学术研究','工作与职场','求职与职业发展','商务与企业经营','数字生活与互联网','科技、AI与工程','医疗与健康','运动与健身','娱乐、文化与休闲','社交、人际与情感','公共服务、法律与社会生活','语言功能与沟通任务','自然、环境与世界','认知、表达与高级思维'];
+  function stableSceneDescription(id){
+    const canonical=/^S(\\d{3})$/.exec(id);
+    if(canonical){const n=Number(canonical[1]);if(n>=1&&n<=500)return sceneCategories[Math.floor((n-1)/25)]+' · 场景词汇';}
+    return indexedScenes().byId.get(id)?.desc||'';
+  }
   function resultRows(){
     const snapshot=ui();
     if(!snapshot.query||!Array.isArray(snapshot.resultIds))return [];
-    // Preserve exactly the submitted result IDs/order. Scene specs and Top100
-    // are hydrated later and must not replace names or drop snapshot rows.
     return snapshot.resultIds.slice(0,5).map(id=>{
       const name=window.PAI_SCENE_NAMES?.[id]||SCENES[id]||'';
-      return name?{id,name,desc:'',...inventory(id,snapshot.difficulty)}:null;
+      return name?{id,name,desc:stableSceneDescription(id),...inventory(id,snapshot.difficulty)}:null;
     }).filter(Boolean);
   }
   function countHtml(r){
-    if(window.PAI_SCENE500_TOP100?.loading)return '<span class="scene-result-count"><b>加载中</b><small>可学词数待计算</small></span>';
-    if(window.PAI_SCENE500_TOP100?.error)return '<span class="scene-result-count"><b>不可用</b><small>场景词池加载失败</small></span>';
-    if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'))return '<span class="scene-result-count"><b>'+r.reviewedCount+'</b><small>可学 KU</small><em>Top100</em></span>';
-    if(window.PAI_SCENE500_TOP100&&Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>Top100</small><em>${r.reviewedCount} 可学·通用义</em></span>`;
-    if(Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>候选</small><em>${r.reviewedCount} 已审核</em></span>`;
-    return `<span class="scene-result-count"><b>${r.reviewedCount}</b><small>已审核</small></span>`;
+    // Prefer actual locally available inventory. An optional background loader
+    // must not mask existing counts or replace the scene labels with placeholders.
+    const n=Number(r.reviewedCount);
+    const known=Number.isFinite(n)&&n>=0;
+    if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'))
+      return known&&n>0?`<span class="scene-result-count"><b>${n}</b><small>可学 KU</small></span>`:'';
+    if(Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>候选</small><em>${known?n:'—'} 已审核</em></span>`;
+    return known&&n>0?`<span class="scene-result-count"><b>${n}</b><small>已审核</small></span>`:'';
   }
   function resultHtml(){
     const s=ui(),rows=resultRows();
