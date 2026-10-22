@@ -189,6 +189,17 @@
       try{synth.speak(u);const scaledRate=Math.max(.5,Math.min(2,Number(u.rate)||1));const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));audioWatchdog=setTimeout(()=>{if(id!==audioGeneration||ended)return;console.warn('Speech synthesis completion timed out');if(synth.speaking||synth.pending)synth.cancel();done()},maxWait)}catch(e){console.warn('Speech synthesis failed',e);done()}
     }
   };
+  // iOS Safari can return from suspension with a stuck speech queue or stale voices.
+  // Reset the queue on foreground return; the next explicit speaker tap provides a fresh user gesture.
+  let paiSpeechHiddenAt=0;
+  document.addEventListener('visibilitychange',()=>{
+    if(document.hidden){paiSpeechHiddenAt=Date.now();return}
+    if(!paiSpeechHiddenAt)return;
+    const backgroundMs=Date.now()-paiSpeechHiddenAt;paiSpeechHiddenAt=0;
+    if(backgroundMs<15000)return;
+    try{window.PAI_AUDIO.stop();refreshVoices();window.PAI_LAST_AUDIO_RESUME={at:Date.now(),backgroundMs,status:'queue-reset',voiceCount:speechVoices.length}}
+    catch(error){window.PAI_LAST_AUDIO_RESUME={at:Date.now(),backgroundMs,status:'error',error:String(error)}}
+  });
   window.speak=(text,rate=.84)=>window.PAI_AUDIO.play(text,rate);
   function speakCurrent(delay=60){const u=currentVisibleUnit();if(u)setTimeout(()=>speak(u.w.w),delay)}
 
