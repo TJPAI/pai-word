@@ -76,8 +76,23 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
   if(window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'){
     const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
     mark('top100InstallStarted');
-    await installScene500Top100();
-    await window.PAI_SCENE500_TOP100_READY;
+    const intent=window.PAI_EARLY_HOME?.clicked;
+    await installScene500Top100({sceneId:intent?.action==='scene'?intent.scene:null});
+    // Every subsequent scene is ensured before its existing openScene() logic runs.
+    const originalOpen=window.PAI_SCENE_SEARCH?.open;
+    if(typeof originalOpen==='function'&&!window.PAI_V22_SCENE_OPEN_WRAPPED){
+      window.PAI_V22_SCENE_OPEN_WRAPPED=true;
+      const inFlight=new Map();
+      window.PAI_SCENE_SEARCH.open=(scene,difficulty='all')=>{
+        if(!/^S\\d{3}$/.test(scene))return originalOpen(scene,difficulty);
+        if(inFlight.has(scene))return inFlight.get(scene);
+        const job=window.PAI_ENSURE_SCENE500_TOP100(scene)
+          .then(()=>originalOpen(scene,difficulty))
+          .finally(()=>inFlight.delete(scene));
+        inFlight.set(scene,job);
+        return job;
+      };
+    }
     mark('scene500Playable');
   }
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
