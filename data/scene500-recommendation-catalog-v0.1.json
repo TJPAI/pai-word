@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.3",
+  "source": "home-scene-index-v1 + semantic-overlay-v0.4",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -1741,13 +1741,26 @@
     },
     "S051": {
       "name": "便利店购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "便利店买日常用品与即食食品",
+      "aliases": [
+        "便利店买东西",
+        "24小时便利店"
+      ],
+      "actions": [
+        "买零食",
+        "结账",
+        "挑商品"
+      ],
+      "objects": [
+        "便利店",
+        "饮料",
+        "零食"
+      ],
+      "example_queries": [
+        "我去便利店买瓶水"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 24,
@@ -1758,13 +1771,26 @@
     },
     "S052": {
       "name": "超市购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在超市挑选日用品并结账",
+      "aliases": [
+        "逛超市",
+        "超市采购"
+      ],
+      "actions": [
+        "挑商品",
+        "推购物车",
+        "结账"
+      ],
+      "objects": [
+        "超市",
+        "购物车",
+        "货架"
+      ],
+      "example_queries": [
+        "我去超市买洗衣液"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 24,
@@ -1775,13 +1801,26 @@
     },
     "S053": {
       "name": "商场购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在购物中心浏览不同商铺购物",
+      "aliases": [
+        "逛商场",
+        "购物中心购物"
+      ],
+      "actions": [
+        "逛店",
+        "挑选",
+        "购买"
+      ],
+      "objects": [
+        "商场",
+        "品牌店",
+        "楼层"
+      ],
+      "example_queries": [
+        "想去商场逛逛买东西"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 64,
         "basic": 25,
@@ -1792,13 +1831,26 @@
     },
     "S054": {
       "name": "服装购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "选购衣服并确定款式尺码",
+      "aliases": [
+        "买衣服",
+        "服装店购物"
+      ],
+      "actions": [
+        "选尺码",
+        "挑款式",
+        "买服装"
+      ],
+      "objects": [
+        "外套",
+        "裤子",
+        "尺码"
+      ],
+      "example_queries": [
+        "去服装店买一件外套"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 51,
         "basic": 19,
@@ -1809,13 +1861,26 @@
     },
     "S055": {
       "name": "鞋帽购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "选购鞋子帽子等服饰配件",
+      "aliases": [
+        "买鞋",
+        "买帽子"
+      ],
+      "actions": [
+        "试鞋",
+        "挑鞋",
+        "选帽子"
+      ],
+      "objects": [
+        "运动鞋",
+        "鞋码",
+        "帽子"
+      ],
+      "example_queries": [
+        "我想买一双合脚的鞋"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 25,
@@ -1826,13 +1891,26 @@
     },
     "S056": {
       "name": "化妆品购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "购买护肤和彩妆产品",
+      "aliases": [
+        "买化妆品",
+        "护肤品购物"
+      ],
+      "actions": [
+        "挑口红",
+        "选护肤品",
+        "买彩妆"
+      ],
+      "objects": [
+        "口红",
+        "粉底",
+        "护肤品"
+      ],
+      "example_queries": [
+        "想去买防晒霜和口红"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 26,
@@ -1843,13 +1921,26 @@
     },
     "S057": {
       "name": "电子产品购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "比较并购买手机电脑等电子设备",
+      "aliases": [
+        "买手机",
+        "电子设备购物"
+      ],
+      "actions": [
+        "比较配置",
+        "购买手机",
+        "挑电脑"
+      ],
+      "objects": [
+        "手机",
+        "笔记本",
+        "耳机"
+      ],
+      "example_queries": [
+        "我想买一台新笔记本电脑"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 28,
@@ -1860,13 +1951,26 @@
     },
     "S058": {
       "name": "家具家居购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在家具店选购家居用品",
+      "aliases": [
+        "买家具",
+        "家居店购物"
+      ],
+      "actions": [
+        "挑沙发",
+        "选家具",
+        "购买家居用品"
+      ],
+      "objects": [
+        "沙发",
+        "床",
+        "桌椅"
+      ],
+      "example_queries": [
+        "家里要买新沙发"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 21,
@@ -1877,13 +1981,26 @@
     },
     "S059": {
       "name": "书店购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在书店浏览并购买书籍",
+      "aliases": [
+        "买书",
+        "逛书店"
+      ],
+      "actions": [
+        "找书",
+        "翻阅",
+        "购书"
+      ],
+      "objects": [
+        "书店",
+        "图书",
+        "书架"
+      ],
+      "example_queries": [
+        "去书店买一本小说"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 18,
@@ -1894,13 +2011,26 @@
     },
     "S060": {
       "name": "药店非处方购物",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在药店购买无需处方的日常药品",
+      "aliases": [
+        "药房买药",
+        "买非处方药"
+      ],
+      "actions": [
+        "咨询药师",
+        "购买非处方药",
+        "看说明书"
+      ],
+      "objects": [
+        "药店",
+        "药师",
+        "非处方药"
+      ],
+      "example_queries": [
+        "去药店买非处方感冒药"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 49,
         "basic": 25,
@@ -1911,13 +2041,27 @@
     },
     "S061": {
       "name": "试穿与试用",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "购买前试穿服装或试用商品",
+      "aliases": [
+        "试衣服",
+        "试穿鞋",
+        "体验样品"
+      ],
+      "actions": [
+        "试穿",
+        "试用",
+        "体验"
+      ],
+      "objects": [
+        "试衣间",
+        "样品",
+        "尺码"
+      ],
+      "example_queries": [
+        "我能试穿一下这条裤子吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 40,
         "basic": 31,
@@ -1928,13 +2072,27 @@
     },
     "S062": {
       "name": "询价与比价",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向商家询问商品价格并比较报价",
+      "aliases": [
+        "问价格",
+        "比价",
+        "砍价"
+      ],
+      "actions": [
+        "询价",
+        "比较价格",
+        "问多少钱"
+      ],
+      "objects": [
+        "标价",
+        "价格",
+        "报价"
+      ],
+      "example_queries": [
+        "这个多少钱可以便宜吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 23,
@@ -1945,13 +2103,27 @@
     },
     "S063": {
       "name": "折扣与促销",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "了解商家打折活动和促销条件",
+      "aliases": [
+        "打折",
+        "促销活动",
+        "特价商品"
+      ],
+      "actions": [
+        "查折扣",
+        "参与促销",
+        "询问优惠"
+      ],
+      "objects": [
+        "折扣",
+        "特价",
+        "促销"
+      ],
+      "example_queries": [
+        "这件衣服现在打几折"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 24,
@@ -1962,13 +2134,27 @@
     },
     "S064": {
       "name": "优惠券与会员",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "使用优惠券或商店会员权益",
+      "aliases": [
+        "用优惠券",
+        "会员折扣",
+        "会员积分"
+      ],
+      "actions": [
+        "兑换优惠券",
+        "使用积分",
+        "出示会员码"
+      ],
+      "objects": [
+        "优惠券",
+        "积分",
+        "会员卡"
+      ],
+      "example_queries": [
+        "我有优惠券可以用吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 21,
         "basic": 17,
@@ -1979,13 +2165,26 @@
     },
     "S065": {
       "name": "付款方式",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "选择合适的购买结算方式",
+      "aliases": [
+        "怎么付款",
+        "支付选项"
+      ],
+      "actions": [
+        "选择付款方式",
+        "询问付款方式",
+        "结算"
+      ],
+      "objects": [
+        "现金",
+        "银行卡",
+        "电子钱包"
+      ],
+      "example_queries": [
+        "这家店接受哪些付款方式"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 32,
@@ -1996,13 +2195,26 @@
     },
     "S066": {
       "name": "现金支付",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "使用纸币硬币完成线下付款",
+      "aliases": [
+        "付现金",
+        "现金结账"
+      ],
+      "actions": [
+        "拿现金",
+        "找零",
+        "收现金"
+      ],
+      "objects": [
+        "纸币",
+        "硬币",
+        "零钱"
+      ],
+      "example_queries": [
+        "我想用现金结账"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 31,
@@ -2013,13 +2225,26 @@
     },
     "S067": {
       "name": "刷卡支付",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过银行卡在终端刷卡或插卡付款",
+      "aliases": [
+        "信用卡付款",
+        "刷银行卡"
+      ],
+      "actions": [
+        "刷卡",
+        "插卡",
+        "输密码"
+      ],
+      "objects": [
+        "银行卡",
+        "POS机",
+        "信用卡"
+      ],
+      "example_queries": [
+        "我想刷信用卡付款"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 40,
         "basic": 28,
@@ -2030,13 +2255,27 @@
     },
     "S068": {
       "name": "移动支付",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "使用手机扫码或电子钱包付款",
+      "aliases": [
+        "扫码付款",
+        "手机支付",
+        "电子钱包"
+      ],
+      "actions": [
+        "扫码",
+        "手机付款",
+        "出示付款码"
+      ],
+      "objects": [
+        "二维码",
+        "手机",
+        "电子钱包"
+      ],
+      "example_queries": [
+        "可以扫二维码付款吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 33,
@@ -2047,13 +2286,27 @@
     },
     "S069": {
       "name": "收据与发票",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "索取保存购物凭证或开具发票",
+      "aliases": [
+        "开发票",
+        "要收据",
+        "购物小票"
+      ],
+      "actions": [
+        "索要发票",
+        "打印收据",
+        "保存凭证"
+      ],
+      "objects": [
+        "发票",
+        "收据",
+        "小票"
+      ],
+      "example_queries": [
+        "请给我开一张发票"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 31,
@@ -2064,13 +2317,26 @@
     },
     "S070": {
       "name": "退货",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "将不想要或有问题的商品退回商家",
+      "aliases": [
+        "退东西",
+        "退货退款"
+      ],
+      "actions": [
+        "申请退货",
+        "寄回商品",
+        "办理退款"
+      ],
+      "objects": [
+        "退货单",
+        "商品",
+        "退款"
+      ],
+      "example_queries": [
+        "买错了我想退货退款"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 29,
@@ -2081,13 +2347,26 @@
     },
     "S071": {
       "name": "换货",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "把已购买商品更换尺码款式或同类商品",
+      "aliases": [
+        "换尺寸",
+        "商品换货"
+      ],
+      "actions": [
+        "申请换货",
+        "更换尺码",
+        "更换商品"
+      ],
+      "objects": [
+        "换货单",
+        "尺码",
+        "商品"
+      ],
+      "example_queries": [
+        "衣服太小了想换大一码"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 20,
@@ -2098,13 +2377,26 @@
     },
     "S072": {
       "name": "保修与售后",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "要求维修保修或处理购买后的问题",
+      "aliases": [
+        "售后服务",
+        "保修维修"
+      ],
+      "actions": [
+        "申请保修",
+        "报修",
+        "联系客服"
+      ],
+      "objects": [
+        "保修卡",
+        "维修",
+        "售后"
+      ],
+      "example_queries": [
+        "新买的电器坏了如何保修"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 36,
@@ -2115,13 +2407,27 @@
     },
     "S073": {
       "name": "网购下单",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在网店选择商品并提交在线订单",
+      "aliases": [
+        "网上买东西",
+        "网购",
+        "线上下单"
+      ],
+      "actions": [
+        "加入购物车",
+        "提交订单",
+        "选择地址"
+      ],
+      "objects": [
+        "网店",
+        "购物车",
+        "订单"
+      ],
+      "example_queries": [
+        "我想在网上买手机下单"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 32,
         "basic": 27,
@@ -2132,13 +2438,27 @@
     },
     "S074": {
       "name": "物流查询",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "查询已发货包裹的运输状态",
+      "aliases": [
+        "查快递",
+        "查询物流",
+        "包裹跟踪"
+      ],
+      "actions": [
+        "跟踪物流",
+        "查询运单",
+        "查看配送"
+      ],
+      "objects": [
+        "运单号",
+        "物流信息",
+        "快递"
+      ],
+      "example_queries": [
+        "我的网购包裹送到哪里了"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 25,
         "basic": 24,
@@ -2149,13 +2469,27 @@
     },
     "S075": {
       "name": "二手交易",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "买卖使用过的商品并商议交易条件",
+      "aliases": [
+        "闲置交易",
+        "买二手",
+        "卖二手"
+      ],
+      "actions": [
+        "发布闲置",
+        "议价",
+        "交易"
+      ],
+      "objects": [
+        "二手商品",
+        "卖家",
+        "平台"
+      ],
+      "example_queries": [
+        "我想把旧自行车卖掉"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 29,
