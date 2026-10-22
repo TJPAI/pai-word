@@ -160,6 +160,7 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
    document.getElementById('load-error').textContent=e.message;
   }
   console.error(e);
+  throw e; // Reject shared initialization so the next explicit tap can retry.
  }
 })().then(()=>{ready=true},error=>{pending=null;throw error});
   return pending;
