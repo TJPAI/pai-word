@@ -19,9 +19,8 @@ async function cacheText(operation,value){
      if(operation==='read'){
       const get=store.get(CACHE_KEY);get.onsuccess=()=>finish(get.result||null);get.onerror=()=>finish(null);
      }else{store.put(value,CACHE_KEY);tx.oncomplete=()=>finish(true);tx.onabort=()=>finish(null);tx.onerror=()=>finish(null)}
-     tx.oncomplete=(()=>{const original=tx.oncomplete;return ()=>{if(typeof original==='function')original();if(operation==='read')db.close()}})();
-     if(operation==='write')tx.addEventListener('complete',()=>db.close(),{once:true});
-     tx.addEventListener('abort',()=>db.close(),{once:true});
+     tx.addEventListener('complete',()=>{db.close();if(operation==='write')finish(true)},{once:true});
+     tx.addEventListener('abort',()=>{db.close();finish(null)},{once:true});
     }catch{db.close();finish(null)}
    };
   }catch{finish(null)}
