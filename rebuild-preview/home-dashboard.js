@@ -25,7 +25,9 @@
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
   function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
   function countHtml(r){
-    if(window.PAI_SCENE500_TOP100?.loading)return '<span class="scene-result-count"><b>加载中</b><small>可学词数待计算</small></span>';
+    // Top100 loads one shard at a time; homepage inventory comes from the validated lightweight index.
+    const count=window.PAI_LIGHT_HOME_INDEX?.scenes?.[r.id]?.counts?.[state.sceneSearchUi?.difficulty||'all'];
+    if(Number.isInteger(count))return '<span class="scene-result-count"><b>'+count+'</b><small>可学 KU</small><em>Top100</em></span>';
     if(window.PAI_SCENE500_TOP100?.error)return '<span class="scene-result-count"><b>不可用</b><small>场景词池加载失败</small></span>';
     if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'))return '<span class="scene-result-count"><b>'+r.reviewedCount+'</b><small>可学 KU</small><em>Top100</em></span>';
     if(window.PAI_SCENE500_TOP100&&Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>Top100</small><em>${r.reviewedCount} 可学·通用义</em></span>`;
@@ -47,7 +49,8 @@
   }
   function renderHome(){
     const b=budget(),last=lastScene(),fallback=firstPlayable(),s=ui();
-    const sceneLoad=window.PAI_SCENE500_TOP100?.loading?'Scene500 词池加载中，数量稍后更新':window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
+    // Shard loading is learning-only, never a global homepage loading indicator.
+    const sceneLoad='';
     const continueId=last?.id||fallback,continueDifficulty=last?searchApi()?.recentDifficulty?.(last.id)||'all':'all';
     const resume=canResumeScene(continueId);
     const status=`今日新词 ${b.dailyCompleted}/${b.dailyLimit} · 每轮 ${b.roundLimit}${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
