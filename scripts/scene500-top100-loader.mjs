@@ -41,7 +41,19 @@ export async function installScene500Top100({fetcher=fetch,base='data/scene500-t
   for(const [id,units] of pending)core.byScene.set(id,units);
   Object.assign(window.PAI_SCENE500.qa,{total,eligible,blocked:total-eligible,loading:false});
   Object.assign(window.PAI_SCENE500_TOP100,{eligible,blocked:total-eligible,loading:false});
-  if(typeof window.render==='function'&&typeof state!=='undefined'&&state.view==='scenes')window.render();
+  if(typeof window.render==='function'&&typeof state!=='undefined'&&state.view==='scenes'){
+   // The optional data refresh must not erase text being entered before "找场景".
+   const draft=document.getElementById('scene-query')?.value;
+   const selectedDifficulty=document.getElementById('scene-difficulty')?.value;
+   const hasDraft=typeof draft==='string'&&draft!==(state.sceneSearchUi?.query||'');
+   window.render();
+   if(hasDraft){
+    const field=document.getElementById('scene-query');
+    if(field)field.value=draft;
+    const level=document.getElementById('scene-difficulty');
+    if(level&&selectedDifficulty)level.value=selectedDifficulty;
+   }
+  }
   return window.PAI_SCENE500_TOP100;
  })();
  window.PAI_SCENE500_TOP100_READY.catch(error=>{
