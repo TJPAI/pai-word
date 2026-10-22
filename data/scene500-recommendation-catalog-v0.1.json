@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.2",
+  "source": "home-scene-index-v1 + semantic-overlay-v0.3",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -939,13 +939,28 @@
     },
     "S026": {
       "name": "早餐",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "早晨准备和享用早餐",
+      "aliases": [
+        "吃早饭",
+        "早餐时间",
+        "早点"
+      ],
+      "actions": [
+        "准备早餐",
+        "吃早餐",
+        "点早餐"
+      ],
+      "objects": [
+        "面包",
+        "鸡蛋",
+        "牛奶",
+        "早餐"
+      ],
+      "example_queries": [
+        "早上吃什么早餐"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 46,
         "basic": 33,
@@ -956,13 +971,28 @@
     },
     "S027": {
       "name": "午餐",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "中午用餐与安排午饭",
+      "aliases": [
+        "吃午饭",
+        "午饭",
+        "中午吃饭"
+      ],
+      "actions": [
+        "吃午餐",
+        "准备午餐",
+        "约午饭"
+      ],
+      "objects": [
+        "午餐",
+        "午休",
+        "便当",
+        "餐厅"
+      ],
+      "example_queries": [
+        "中午想吃午饭"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 54,
         "basic": 36,
@@ -973,13 +1003,28 @@
     },
     "S028": {
       "name": "晚餐",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "傍晚或夜间的正餐活动",
+      "aliases": [
+        "吃晚饭",
+        "晚饭",
+        "晚餐时间"
+      ],
+      "actions": [
+        "吃晚餐",
+        "准备晚饭",
+        "约晚餐"
+      ],
+      "objects": [
+        "晚餐",
+        "餐桌",
+        "晚饭",
+        "家人"
+      ],
+      "example_queries": [
+        "晚上约朋友吃晚饭"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 38,
@@ -990,13 +1035,28 @@
     },
     "S029": {
       "name": "咖啡馆",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在咖啡馆点饮品、休息或交流",
+      "aliases": [
+        "咖啡店",
+        "咖啡厅",
+        "喝咖啡"
+      ],
+      "actions": [
+        "点咖啡",
+        "找座位",
+        "喝咖啡"
+      ],
+      "objects": [
+        "咖啡",
+        "咖啡师",
+        "菜单",
+        "座位"
+      ],
+      "example_queries": [
+        "去咖啡馆喝拿铁"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 29,
         "basic": 23,
@@ -1007,13 +1067,28 @@
     },
     "S030": {
       "name": "快餐店",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在快餐店选餐、下单与取餐",
+      "aliases": [
+        "吃快餐",
+        "快餐厅",
+        "汉堡店"
+      ],
+      "actions": [
+        "点套餐",
+        "取餐",
+        "选快餐"
+      ],
+      "objects": [
+        "汉堡",
+        "薯条",
+        "套餐",
+        "柜台"
+      ],
+      "example_queries": [
+        "在快餐店点汉堡薯条"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 44,
@@ -1024,13 +1099,28 @@
     },
     "S031": {
       "name": "中餐馆",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在中式餐厅选择菜品与用餐",
+      "aliases": [
+        "中餐厅",
+        "中餐店",
+        "吃中餐"
+      ],
+      "actions": [
+        "选菜",
+        "吃中餐",
+        "点中餐"
+      ],
+      "objects": [
+        "中餐",
+        "炒菜",
+        "餐桌",
+        "菜单"
+      ],
+      "example_queries": [
+        "去中餐馆吃炒菜"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 62,
         "basic": 32,
@@ -1041,13 +1131,28 @@
     },
     "S032": {
       "name": "西餐馆",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在西式餐厅选餐并用餐",
+      "aliases": [
+        "西餐厅",
+        "吃西餐",
+        "西式餐厅"
+      ],
+      "actions": [
+        "选西餐",
+        "用餐",
+        "点主菜"
+      ],
+      "objects": [
+        "牛排",
+        "意面",
+        "刀叉",
+        "菜单"
+      ],
+      "example_queries": [
+        "去西餐厅吃牛排"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 52,
         "basic": 24,
@@ -1058,13 +1163,28 @@
     },
     "S033": {
       "name": "自助餐",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在自助餐厅自行选取餐食",
+      "aliases": [
+        "吃自助",
+        "自助餐厅",
+        "自助式餐饮"
+      ],
+      "actions": [
+        "取餐",
+        "选择菜品",
+        "排队取食物"
+      ],
+      "objects": [
+        "餐台",
+        "餐盘",
+        "自助餐",
+        "食物"
+      ],
+      "example_queries": [
+        "去酒店吃自助餐"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 52,
         "basic": 28,
@@ -1075,13 +1195,28 @@
     },
     "S034": {
       "name": "点餐",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向服务人员或点餐系统选择并提交菜品",
+      "aliases": [
+        "点菜",
+        "叫餐",
+        "下单点菜"
+      ],
+      "actions": [
+        "点菜",
+        "点餐",
+        "提交订单"
+      ],
+      "objects": [
+        "菜单",
+        "服务员",
+        "菜品",
+        "订单"
+      ],
+      "example_queries": [
+        "我想在餐厅点菜"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 47,
         "basic": 41,
@@ -1092,13 +1227,28 @@
     },
     "S035": {
       "name": "修改订单",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "更改已经提交的食品或餐饮订单",
+      "aliases": [
+        "更改点单",
+        "改订单",
+        "修改点餐"
+      ],
+      "actions": [
+        "改单",
+        "取消菜品",
+        "更换菜品"
+      ],
+      "objects": [
+        "订单",
+        "菜品",
+        "数量",
+        "备注"
+      ],
+      "example_queries": [
+        "刚点完菜想修改订单"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 25,
@@ -1109,13 +1259,28 @@
     },
     "S036": {
       "name": "询问菜品与食材",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向餐厅询问菜肴成分和做法",
+      "aliases": [
+        "问菜品",
+        "了解食材",
+        "询问菜单"
+      ],
+      "actions": [
+        "询问食材",
+        "问做法",
+        "咨询配料"
+      ],
+      "objects": [
+        "菜单",
+        "食材",
+        "配料",
+        "菜品"
+      ],
+      "example_queries": [
+        "这道菜里面有什么食材"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 56,
         "basic": 31,
@@ -1126,13 +1291,28 @@
     },
     "S037": {
       "name": "过敏与忌口",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "告知餐饮过敏原和不能食用的食物",
+      "aliases": [
+        "食物过敏",
+        "饮食忌口",
+        "不能吃某种食物"
+      ],
+      "actions": [
+        "告知过敏",
+        "避开食材",
+        "询问过敏原"
+      ],
+      "objects": [
+        "花生",
+        "海鲜",
+        "过敏原",
+        "食材"
+      ],
+      "example_queries": [
+        "我对花生过敏不能吃"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 55,
         "basic": 35,
@@ -1143,13 +1323,28 @@
     },
     "S038": {
       "name": "素食与特殊饮食",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "表达素食或其他特殊饮食需求",
+      "aliases": [
+        "吃素",
+        "素食餐",
+        "特殊饮食"
+      ],
+      "actions": [
+        "选择素食",
+        "要求无肉",
+        "咨询饮食限制"
+      ],
+      "objects": [
+        "蔬菜",
+        "素食",
+        "肉类",
+        "餐食"
+      ],
+      "example_queries": [
+        "我只吃素食不要肉"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 62,
         "basic": 30,
@@ -1160,13 +1355,28 @@
     },
     "S039": {
       "name": "饮料与酒水",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "挑选与点用饮料、酒水",
+      "aliases": [
+        "点饮料",
+        "喝饮品",
+        "酒水单"
+      ],
+      "actions": [
+        "点饮料",
+        "选择饮品",
+        "喝饮料"
+      ],
+      "objects": [
+        "果汁",
+        "茶",
+        "啤酒",
+        "饮料"
+      ],
+      "example_queries": [
+        "我想点一杯果汁"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 40,
         "basic": 28,
@@ -1177,13 +1387,28 @@
     },
     "S040": {
       "name": "甜点与烘焙",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "选购或制作蛋糕、甜点与烘焙食品",
+      "aliases": [
+        "甜品",
+        "糕点",
+        "烤蛋糕"
+      ],
+      "actions": [
+        "点甜点",
+        "烤蛋糕",
+        "做甜品"
+      ],
+      "objects": [
+        "蛋糕",
+        "饼干",
+        "烤箱",
+        "甜点"
+      ],
+      "example_queries": [
+        "学习烤蛋糕做甜点"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 67,
         "basic": 30,
@@ -1194,13 +1419,28 @@
     },
     "S041": {
       "name": "结账与小费",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在餐饮消费后支付账单与处理小费",
+      "aliases": [
+        "买单",
+        "餐厅结账",
+        "付小费"
+      ],
+      "actions": [
+        "结账",
+        "买单",
+        "给小费"
+      ],
+      "objects": [
+        "账单",
+        "银行卡",
+        "服务费",
+        "小费"
+      ],
+      "example_queries": [
+        "餐厅吃完饭怎么结账"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 23,
         "basic": 21,
@@ -1211,13 +1451,28 @@
     },
     "S042": {
       "name": "外卖下单",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "使用外卖服务选择餐食并提交配送订单",
+      "aliases": [
+        "叫外卖",
+        "点外卖",
+        "外卖点餐"
+      ],
+      "actions": [
+        "点外卖",
+        "填写地址",
+        "提交订单"
+      ],
+      "objects": [
+        "外卖",
+        "地址",
+        "配送费",
+        "餐食"
+      ],
+      "example_queries": [
+        "手机上点外卖送到家"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 35,
@@ -1228,13 +1483,28 @@
     },
     "S043": {
       "name": "取餐与配送",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "领取餐食或了解配送进度",
+      "aliases": [
+        "取外卖",
+        "取餐",
+        "送餐进度"
+      ],
+      "actions": [
+        "取餐",
+        "送餐",
+        "查询配送"
+      ],
+      "objects": [
+        "外卖员",
+        "取餐码",
+        "配送",
+        "餐食"
+      ],
+      "example_queries": [
+        "我的外卖到了怎么取餐"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 43,
@@ -1245,13 +1515,28 @@
     },
     "S044": {
       "name": "超市食品采购",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在超市购买食品和食材",
+      "aliases": [
+        "超市买菜",
+        "超市买食品",
+        "采购食材"
+      ],
+      "actions": [
+        "选购食品",
+        "购买食材",
+        "查看价格"
+      ],
+      "objects": [
+        "超市",
+        "食品",
+        "货架",
+        "购物篮"
+      ],
+      "example_queries": [
+        "去超市买牛奶鸡蛋"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 36,
@@ -1262,13 +1547,28 @@
     },
     "S045": {
       "name": "菜市场采购",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在菜市场挑选和购买新鲜食材",
+      "aliases": [
+        "菜市场买菜",
+        "买新鲜蔬菜",
+        "农贸市场"
+      ],
+      "actions": [
+        "挑菜",
+        "问价",
+        "买菜"
+      ],
+      "objects": [
+        "菜摊",
+        "蔬菜",
+        "鱼肉",
+        "价格"
+      ],
+      "example_queries": [
+        "到菜市场买青菜"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 46,
         "basic": 40,
@@ -1279,13 +1579,28 @@
     },
     "S046": {
       "name": "食品包装与标签",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "阅读食品包装上的成分和营养信息",
+      "aliases": [
+        "食品标签",
+        "食品营养标识",
+        "看包装"
+      ],
+      "actions": [
+        "阅读标签",
+        "查看成分",
+        "查看营养信息"
+      ],
+      "objects": [
+        "包装",
+        "配料表",
+        "营养成分",
+        "条码"
+      ],
+      "example_queries": [
+        "食品包装上营养标签怎么看"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 49,
         "basic": 31,
@@ -1296,13 +1611,29 @@
     },
     "S047": {
       "name": "烹饪方法",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "学习煎煮炒烤等烹饪技术",
+      "aliases": [
+        "做菜方法",
+        "烹调方法",
+        "煎炒烹炸"
+      ],
+      "actions": [
+        "煎",
+        "炒",
+        "煮",
+        "烤"
+      ],
+      "objects": [
+        "锅",
+        "食材",
+        "火候",
+        "烤箱"
+      ],
+      "example_queries": [
+        "如何把牛排煎熟"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 54,
         "basic": 27,
@@ -1313,13 +1644,28 @@
     },
     "S048": {
       "name": "味道与口感",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "描述食物味觉和口感特征",
+      "aliases": [
+        "食物味道",
+        "口味",
+        "口感"
+      ],
+      "actions": [
+        "品尝",
+        "评价味道",
+        "描述口感"
+      ],
+      "objects": [
+        "甜味",
+        "酸味",
+        "酥脆",
+        "香味"
+      ],
+      "example_queries": [
+        "这道菜吃起来很酸"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 53,
         "basic": 28,
@@ -1330,13 +1676,29 @@
     },
     "S049": {
       "name": "食品保存",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过冷藏、冷冻及储存保护食品",
+      "aliases": [
+        "储存食物",
+        "食品冷藏",
+        "食物保鲜"
+      ],
+      "actions": [
+        "冷藏",
+        "冷冻",
+        "密封",
+        "储存"
+      ],
+      "objects": [
+        "冰箱",
+        "保鲜盒",
+        "食品",
+        "冷冻室"
+      ],
+      "example_queries": [
+        "食物放冰箱怎么保存"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 34,
@@ -1347,13 +1709,28 @@
     },
     "S050": {
       "name": "食品安全与保质期",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "判断食品是否安全和是否过期",
+      "aliases": [
+        "食品过期",
+        "食物安全",
+        "查看保质期"
+      ],
+      "actions": [
+        "查看日期",
+        "检查变质",
+        "判断过期"
+      ],
+      "objects": [
+        "保质期",
+        "生产日期",
+        "细菌",
+        "食品"
+      ],
+      "example_queries": [
+        "这瓶牛奶过期还能喝吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 42,
         "basic": 37,
