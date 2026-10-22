@@ -42,7 +42,7 @@
   function resultHtml(){
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
-    if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
+    if(!rows.length)return recommendationBusy?'<p class="scene-note" role="status">正在查找场景…</p>':'<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
     return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}${(recommendationPage+1)*5<recommendationRows.length?'<button type="button" class="find-scenes" onclick="nextScene500Page()">换一批 →</button>':''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
@@ -86,7 +86,7 @@
     recommendationPage=0;recommendationRows=[];
     state.sceneSearchUi={...ui(),query:q,difficulty,resultIds:[]};
     if(!q){save();render();return}
-    recommendationBusy=true;
+    recommendationBusy=true;render();
     try{
       const module=await adapter();
       const index=window.PAI_LIGHT_HOME_INDEX;
@@ -94,14 +94,14 @@
       const {snapshot}=await module.recommendScene500(q,difficulty,index,{limit:100});
       if(ticket!==recommendationRun)return;
       recommendationRows=snapshot.results.map(row=>row.sceneId);
-      showRecommendationPage();save();
+      recommendationBusy=false;showRecommendationPage();save();
     }catch(error){
       if(ticket!==recommendationRun)return;
       // Explicit bounded fallback. Do not claim full Alpha recommendations.
       window.PAI_RECOMMENDATION_ERROR=String(error);
       window.PAI_RECOMMENDATION_MODE='fallback';
       recommendationRows=(searchApi()?.search(q,difficulty,5)||[]).map(row=>row.id);
-      showRecommendationPage();save();
+      recommendationBusy=false;showRecommendationPage();save();
     }finally{if(ticket===recommendationRun)recommendationBusy=false}
   }
   window.restoreScene500Recommendations=function(){
