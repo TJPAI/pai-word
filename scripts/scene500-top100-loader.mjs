@@ -46,12 +46,28 @@ export async function installScene500Top100({fetcher=fetch,base='data/scene500-t
    const draft=document.getElementById('scene-query')?.value;
    const selectedDifficulty=document.getElementById('scene-difficulty')?.value;
    const hasDraft=typeof draft==='string'&&draft!==(state.sceneSearchUi?.query||'');
-   window.render();
-   if(hasDraft){
+   const focused=document.activeElement?.id==='scene-query';
+   // Do not replace a focused textarea while Safari is composing Chinese input.
+   if(focused){
     const field=document.getElementById('scene-query');
-    if(field)field.value=draft;
-    const level=document.getElementById('scene-difficulty');
-    if(level&&selectedDifficulty)level.value=selectedDifficulty;
+    field?.addEventListener('blur',()=>{
+     if(state.view!=='scenes')return;
+     const latestDraft=field.value;
+     const latestDifficulty=document.getElementById('scene-difficulty')?.value;
+     window.render();
+     const next=document.getElementById('scene-query');
+     if(next)next.value=latestDraft;
+     const level=document.getElementById('scene-difficulty');
+     if(level&&latestDifficulty)level.value=latestDifficulty;
+    },{once:true});
+   }else{
+    window.render();
+    if(hasDraft){
+     const field=document.getElementById('scene-query');
+     if(field)field.value=draft;
+     const level=document.getElementById('scene-difficulty');
+     if(level&&selectedDifficulty)level.value=selectedDifficulty;
+    }
    }
   }
   return window.PAI_SCENE500_TOP100;
