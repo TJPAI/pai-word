@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.8",
+  "source": "home-scene-index-v1 + semantic-overlay-v0.9",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -5601,13 +5601,27 @@
     },
     "S176": {
       "name": "上班打卡",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在公司记录上班与下班出勤",
+      "aliases": [
+        "上下班打卡",
+        "签到考勤",
+        "考勤签到"
+      ],
+      "actions": [
+        "签到",
+        "刷工卡",
+        "记录出勤"
+      ],
+      "objects": [
+        "考勤机",
+        "工卡",
+        "工作时间"
+      ],
+      "example_queries": [
+        "今天忘记上班打卡怎么办"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 31,
@@ -5618,13 +5632,27 @@
     },
     "S177": {
       "name": "办公室日常交流",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "和同事交流办公室里的日常事情",
+      "aliases": [
+        "办公室聊天",
+        "同事交流",
+        "工作闲聊"
+      ],
+      "actions": [
+        "打招呼",
+        "交流",
+        "询问同事"
+      ],
+      "objects": [
+        "同事",
+        "工位",
+        "办公室"
+      ],
+      "example_queries": [
+        "怎么用英语跟同事打招呼"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 32,
         "basic": 29,
@@ -5635,13 +5663,27 @@
     },
     "S178": {
       "name": "介绍岗位职责",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向别人说明自己的职务和工作内容",
+      "aliases": [
+        "工作职责介绍",
+        "岗位介绍",
+        "职位介绍"
+      ],
+      "actions": [
+        "介绍职位",
+        "解释职责",
+        "说明分工"
+      ],
+      "objects": [
+        "岗位",
+        "职责",
+        "职位"
+      ],
+      "example_queries": [
+        "怎么向新同事介绍我的岗位职责"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 26,
@@ -5652,13 +5694,27 @@
     },
     "S179": {
       "name": "安排工作任务",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "给同事分配并安排工作事项",
+      "aliases": [
+        "工作分配",
+        "任务安排",
+        "布置任务"
+      ],
+      "actions": [
+        "分配任务",
+        "确认负责人",
+        "布置工作"
+      ],
+      "objects": [
+        "任务清单",
+        "负责人",
+        "优先级"
+      ],
+      "example_queries": [
+        "如何把项目任务分配给团队成员"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 30,
@@ -5669,13 +5725,27 @@
     },
     "S180": {
       "name": "汇报进度",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "说明项目或任务已经完成的进展",
+      "aliases": [
+        "工作进度汇报",
+        "项目进展",
+        "进度更新"
+      ],
+      "actions": [
+        "更新进度",
+        "说明完成情况",
+        "报告进展"
+      ],
+      "objects": [
+        "进度表",
+        "里程碑",
+        "项目状态"
+      ],
+      "example_queries": [
+        "项目进展到哪一步了怎样汇报"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 28,
         "basic": 25,
@@ -5686,13 +5756,27 @@
     },
     "S181": {
       "name": "工作交接",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "将正在负责的工作移交给其他人员",
+      "aliases": [
+        "交接工作",
+        "岗位交接",
+        "移交任务"
+      ],
+      "actions": [
+        "移交资料",
+        "说明待办",
+        "交接事项"
+      ],
+      "objects": [
+        "交接清单",
+        "接手人",
+        "工作文件"
+      ],
+      "example_queries": [
+        "休假前把手头工作交接给同事"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 35,
@@ -5703,13 +5787,27 @@
     },
     "S182": {
       "name": "开例会",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "召开固定周期的团队例行会议",
+      "aliases": [
+        "周例会",
+        "晨会",
+        "部门例会"
+      ],
+      "actions": [
+        "召开例会",
+        "讨论待办",
+        "同步状态"
+      ],
+      "objects": [
+        "会议议程",
+        "例会",
+        "团队"
+      ],
+      "example_queries": [
+        "每周部门例会要讨论哪些工作"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 33,
@@ -5720,13 +5818,27 @@
     },
     "S183": {
       "name": "参加项目会议",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "参加特定项目的讨论与协调会议",
+      "aliases": [
+        "项目讨论会",
+        "项目会议",
+        "项目组开会"
+      ],
+      "actions": [
+        "讨论项目",
+        "确认决策",
+        "协调任务"
+      ],
+      "objects": [
+        "项目团队",
+        "议程",
+        "会议室"
+      ],
+      "example_queries": [
+        "今天下午参加项目推进会议"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 29,
@@ -5737,13 +5849,27 @@
     },
     "S184": {
       "name": "会议发言",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在正式工作会议上表达意见或提问",
+      "aliases": [
+        "会议上发言",
+        "开会发言",
+        "表达会议意见"
+      ],
+      "actions": [
+        "提出观点",
+        "提问",
+        "回应讨论"
+      ],
+      "objects": [
+        "参会者",
+        "议题",
+        "发言"
+      ],
+      "example_queries": [
+        "我想在会议上发表自己的意见"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 42,
         "basic": 23,
@@ -5754,13 +5880,27 @@
     },
     "S185": {
       "name": "会议纪要",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "记录会议议题决定和后续行动",
+      "aliases": [
+        "写会议纪要",
+        "会议记录",
+        "整理会议内容"
+      ],
+      "actions": [
+        "记录决议",
+        "整理纪要",
+        "列出待办"
+      ],
+      "objects": [
+        "会议纪要",
+        "决议",
+        "行动项"
+      ],
+      "example_queries": [
+        "会后如何整理会议纪要"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 51,
         "basic": 17,
@@ -5771,13 +5911,27 @@
     },
     "S186": {
       "name": "制定计划",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "制定工作的阶段性目标和执行方案",
+      "aliases": [
+        "工作规划",
+        "制定工作计划",
+        "安排工作计划"
+      ],
+      "actions": [
+        "安排步骤",
+        "制定方案",
+        "规划时间"
+      ],
+      "objects": [
+        "工作计划",
+        "任务",
+        "目标"
+      ],
+      "example_queries": [
+        "下个月的团队工作计划怎么制定"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 48,
         "basic": 33,
@@ -5788,13 +5942,27 @@
     },
     "S187": {
       "name": "设定截止日期",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "为任务确定完成时限和交付日",
+      "aliases": [
+        "截止日期",
+        "deadline",
+        "交付期限"
+      ],
+      "actions": [
+        "设定期限",
+        "确认交付日",
+        "提醒截止"
+      ],
+      "objects": [
+        "截止日期",
+        "日程",
+        "交付物"
+      ],
+      "example_queries": [
+        "这项任务的截止日期是哪天"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 36,
@@ -5805,13 +5973,27 @@
     },
     "S188": {
       "name": "协调资源",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "调配项目所需的人员设备与预算",
+      "aliases": [
+        "资源协调",
+        "调配资源",
+        "资源分配"
+      ],
+      "actions": [
+        "申请资源",
+        "调配人手",
+        "协调预算"
+      ],
+      "objects": [
+        "人员",
+        "预算",
+        "设备"
+      ],
+      "example_queries": [
+        "项目缺人手如何协调资源"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 69,
         "basic": 29,
@@ -5822,13 +6004,27 @@
     },
     "S189": {
       "name": "跨部门协作",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "与其他部门共同完成工作任务",
+      "aliases": [
+        "跨部门配合",
+        "部门协同",
+        "跨团队协作"
+      ],
+      "actions": [
+        "协调部门",
+        "共享信息",
+        "联合推进"
+      ],
+      "objects": [
+        "部门",
+        "负责人",
+        "协同任务"
+      ],
+      "example_queries": [
+        "如何和其他部门协调项目"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 38,
         "basic": 25,
@@ -5839,13 +6035,27 @@
     },
     "S190": {
       "name": "向上级汇报",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向领导说明重要工作成果或问题",
+      "aliases": [
+        "向领导汇报",
+        "向老板汇报",
+        "上级报告"
+      ],
+      "actions": [
+        "汇报成果",
+        "说明风险",
+        "请示决策"
+      ],
+      "objects": [
+        "领导",
+        "汇报材料",
+        "工作结果"
+      ],
+      "example_queries": [
+        "怎样向主管汇报项目进展"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 32,
@@ -5856,13 +6066,27 @@
     },
     "S191": {
       "name": "给下属反馈",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向团队下属提出工作表现建议",
+      "aliases": [
+        "员工反馈",
+        "下属沟通",
+        "指导下属"
+      ],
+      "actions": [
+        "提供反馈",
+        "指导改进",
+        "评价表现"
+      ],
+      "objects": [
+        "下属",
+        "反馈",
+        "工作表现"
+      ],
+      "example_queries": [
+        "如何给下属提出改进意见"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 50,
         "basic": 45,
@@ -5873,13 +6097,27 @@
     },
     "S192": {
       "name": "处理工作邮件",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "阅读撰写并回复职场电子邮件",
+      "aliases": [
+        "写工作邮件",
+        "回复邮件",
+        "商务邮件"
+      ],
+      "actions": [
+        "写邮件",
+        "回复邮件",
+        "转发附件"
+      ],
+      "objects": [
+        "邮箱",
+        "邮件主题",
+        "附件"
+      ],
+      "example_queries": [
+        "给同事发邮件确认会议"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 31,
@@ -5890,13 +6128,27 @@
     },
     "S193": {
       "name": "即时消息沟通",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过工作聊天软件发送即时信息",
+      "aliases": [
+        "工作群消息",
+        "即时通讯",
+        "职场聊天"
+      ],
+      "actions": [
+        "发送消息",
+        "回复群聊",
+        "确认收到"
+      ],
+      "objects": [
+        "聊天软件",
+        "工作群",
+        "消息"
+      ],
+      "example_queries": [
+        "在工作群里通知同事"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 42,
         "basic": 25,
@@ -5907,13 +6159,27 @@
     },
     "S194": {
       "name": "电话会议",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过电话或音频参加多人会议",
+      "aliases": [
+        "电话开会",
+        "语音会议",
+        "conference call"
+      ],
+      "actions": [
+        "拨入会议",
+        "发言",
+        "静音"
+      ],
+      "objects": [
+        "电话会议",
+        "耳机",
+        "拨入码"
+      ],
+      "example_queries": [
+        "参加跨国项目电话会议"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 28,
@@ -5924,13 +6190,27 @@
     },
     "S195": {
       "name": "远程办公",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在家或异地使用网络开展工作",
+      "aliases": [
+        "居家办公",
+        "线上办公",
+        "remote work"
+      ],
+      "actions": [
+        "远程协作",
+        "线上办公",
+        "视频沟通"
+      ],
+      "objects": [
+        "电脑",
+        "网络",
+        "远程团队"
+      ],
+      "example_queries": [
+        "今天在家远程办公"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 50,
         "basic": 30,
@@ -5941,13 +6221,27 @@
     },
     "S196": {
       "name": "绩效评估",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "依据工作成果和目标评价员工表现",
+      "aliases": [
+        "年度考核",
+        "绩效考核",
+        "工作考评"
+      ],
+      "actions": [
+        "评估业绩",
+        "讨论目标",
+        "写绩效评价"
+      ],
+      "objects": [
+        "绩效指标",
+        "考核表",
+        "员工"
+      ],
+      "example_queries": [
+        "如何准备年度绩效评估"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 34,
@@ -5958,13 +6252,27 @@
     },
     "S197": {
       "name": "请假",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "申请休假并通知工作安排",
+      "aliases": [
+        "请年假",
+        "申请病假",
+        "请休假"
+      ],
+      "actions": [
+        "申请假期",
+        "报备休假",
+        "安排交接"
+      ],
+      "objects": [
+        "假期申请",
+        "年假",
+        "主管"
+      ],
+      "example_queries": [
+        "下周想请两天年假"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 27,
@@ -5975,13 +6283,27 @@
     },
     "S198": {
       "name": "加班",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在正常工作时间之外继续工作",
+      "aliases": [
+        "加班工作",
+        "延时工作",
+        "晚上加班"
+      ],
+      "actions": [
+        "加班",
+        "申请加班",
+        "记录工时"
+      ],
+      "objects": [
+        "加班费",
+        "工时",
+        "项目任务"
+      ],
+      "example_queries": [
+        "项目赶进度今晚需要加班"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 33,
@@ -5992,13 +6314,27 @@
     },
     "S199": {
       "name": "出差",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "因工作前往外地并处理差旅事宜",
+      "aliases": [
+        "商务出差",
+        "外地出差",
+        "工作旅行"
+      ],
+      "actions": [
+        "预订行程",
+        "拜访客户",
+        "报销差旅"
+      ],
+      "objects": [
+        "机票",
+        "酒店",
+        "差旅费"
+      ],
+      "example_queries": [
+        "下周要去上海出差见客户"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 36,
@@ -6009,13 +6345,27 @@
     },
     "S200": {
       "name": "离职与交接",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "结束雇佣关系并办理离职手续",
+      "aliases": [
+        "办理离职",
+        "辞职交接",
+        "离职手续"
+      ],
+      "actions": [
+        "提出离职",
+        "归还设备",
+        "完成交接"
+      ],
+      "objects": [
+        "离职申请",
+        "公司设备",
+        "交接清单"
+      ],
+      "example_queries": [
+        "我要辞职并办理工作交接"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 22,
