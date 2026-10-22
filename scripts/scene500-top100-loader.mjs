@@ -41,35 +41,9 @@ export async function installScene500Top100({fetcher=fetch,base='data/scene500-t
   for(const [id,units] of pending)core.byScene.set(id,units);
   Object.assign(window.PAI_SCENE500.qa,{total,eligible,blocked:total-eligible,loading:false});
   Object.assign(window.PAI_SCENE500_TOP100,{eligible,blocked:total-eligible,loading:false});
-  if(typeof window.render==='function'&&typeof state!=='undefined'&&state.view==='scenes'){
-   // The optional data refresh must not erase text being entered before "找场景".
-   const draft=document.getElementById('scene-query')?.value;
-   const selectedDifficulty=document.getElementById('scene-difficulty')?.value;
-   const hasDraft=typeof draft==='string'&&draft!==(state.sceneSearchUi?.query||'');
-   const focused=document.activeElement?.id==='scene-query';
-   // Do not replace a focused textarea while Safari is composing Chinese input.
-   if(focused){
-    const field=document.getElementById('scene-query');
-    field?.addEventListener('blur',()=>{
-     if(state.view!=='scenes')return;
-     const latestDraft=field.value;
-     const latestDifficulty=document.getElementById('scene-difficulty')?.value;
-     window.render();
-     const next=document.getElementById('scene-query');
-     if(next)next.value=latestDraft;
-     const level=document.getElementById('scene-difficulty');
-     if(level&&latestDifficulty)level.value=latestDifficulty;
-    },{once:true});
-   }else{
-    window.render();
-    if(hasDraft){
-     const field=document.getElementById('scene-query');
-     if(field)field.value=draft;
-     const level=document.getElementById('scene-difficulty');
-     if(level&&selectedDifficulty)level.value=selectedDifficulty;
-    }
-   }
-  }
+  // Do not repaint on shard completion. Bootstrap owns the one recommendation
+  // refresh after readiness; an arbitrary blur-time render could cancel a tap.
+  window.PAI_TOP100_REFRESH_READY=true;
   return window.PAI_SCENE500_TOP100;
  })();
  window.PAI_SCENE500_TOP100_READY.catch(error=>{
