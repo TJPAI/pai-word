@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
-const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.1.json','utf8'));
+const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.2.json','utf8'));
 const home=JSON.parse(fs.readFileSync('rebuild-preview/data/home-scene-index-v1.json','utf8'));
 const ranker=require('./scene500-semantic-ranker.cjs');
 const fields=['description_enriched','aliases','actions','objects','example_queries'];
