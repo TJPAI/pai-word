@@ -1,0 +1,47 @@
+{
+  "scope": "Scene500 catalog v0.2 snapshot",
+  "sourceBlobShas": {
+    "catalog": "9052e3071a95fee7cba009280d10b4b58a609cf3",
+    "home": "7dcf49f6b956224c78e0f03959c2fc32e1e72fd9"
+  },
+  "verifiedAt": "2026-10-22",
+  "counts": {
+    "scenes": 500,
+    "draftProfiles": 25,
+    "nameOnlyFallback": 475,
+    "missingIds": 0,
+    "homeNameMismatches": 0
+  },
+  "duplicateNames": [
+    {
+      "name": "提出假设",
+      "sceneIds": [
+        "S155",
+        "S494"
+      ]
+    }
+  ],
+  "substringOverlaps": [
+    {
+      "sceneIds": [
+        "S122",
+        "S365"
+      ],
+      "names": [
+        "参观博物馆",
+        "博物馆"
+      ]
+    },
+    {
+      "sceneIds": [
+        "S394",
+        "S438"
+      ],
+      "names": [
+        "表达不同意见",
+        "不同意"
+      ]
+    }
+  ],
+  "interpretation": "Duplicate names are identity ambiguities for recommender review, not proof of invalid canonical taxonomy. Weak-label tests are not independent quality evaluation."
+}
