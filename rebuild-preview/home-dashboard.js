@@ -4,6 +4,11 @@
   if(typeof baseRender!=='function')return;
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   const searchApi=()=>window.PAI_SCENE_SEARCH;
+  // Same adapter used by the lightweight homepage; never run a second ranking algorithm.
+  let recommendationRun=0,recommendationPage=0,recommendationRows=[],recommendationBusy=false;
+  let adapterPromise=null;
+  const adapter=()=>adapterPromise ||= import('./scene-recommendation-adapter.mjs').catch(e=>{adapterPromise=null;throw e});
+
   function dueCount(){
     const engineDue=window.PAI_LEARNING_QA?.due?.();
     if(Array.isArray(engineDue))return engineDue.length;
@@ -38,7 +43,7 @@
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
     if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
-    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}${(recommendationPage+1)*5<recommendationRows.length?'<button type="button" class="find-scenes" onclick="nextScene500Page()">换一批 →</button>':''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
     const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
@@ -68,33 +73,48 @@
       </main>
     </div></div>`;
   }
-  function runSceneSearch(q,difficulty,{restore=false}={}){
-    // A saved recommendation must not be replaced by a transient empty index
-    // during boot. Explicit user searches may legitimately have zero matches.
-    const results=searchApi()?.search(q,difficulty,5)||[];
-    const ids=results.map(x=>x.id);
-    const previous=ui();
-    const preserved=restore&&ids.length===0&&previous.query===q&&Array.isArray(previous.resultIds)&&previous.resultIds.length>0;
-    state.sceneSearchUi={query:q,difficulty,resultIds:preserved?previous.resultIds:ids};
-    if(!preserved)save();
+  function showRecommendationPage(){
+    state.sceneSearchUi={...ui(),resultIds:recommendationRows.slice(recommendationPage*5,(recommendationPage+1)*5)};
     render();
+  }
+  window.nextScene500Page=function(){
+    if((recommendationPage+1)*5>=recommendationRows.length)return;
+    recommendationPage++;showRecommendationPage();
+  };
+  async function runSceneSearch(q,difficulty,{restore=false}={}){
+    const ticket=++recommendationRun;
+    recommendationPage=0;recommendationRows=[];
+    state.sceneSearchUi={...ui(),query:q,difficulty,resultIds:[]};
+    if(!q){save();render();return}
+    recommendationBusy=true;
+    try{
+      const module=await adapter();
+      const index=window.PAI_LIGHT_HOME_INDEX;
+      if(!index)throw Error('LIGHT_HOME_INDEX_MISSING');
+      const {snapshot}=await module.recommendScene500(q,difficulty,index,{limit:100});
+      if(ticket!==recommendationRun)return;
+      recommendationRows=snapshot.results.map(row=>row.sceneId);
+      showRecommendationPage();save();
+    }catch(error){
+      if(ticket!==recommendationRun)return;
+      // Explicit bounded fallback. Do not claim full Alpha recommendations.
+      window.PAI_RECOMMENDATION_ERROR=String(error);
+      window.PAI_RECOMMENDATION_MODE='fallback';
+      recommendationRows=(searchApi()?.search(q,difficulty,5)||[]).map(row=>row.id);
+      showRecommendationPage();save();
+    }finally{if(ticket===recommendationRun)recommendationBusy=false}
   }
   window.restoreScene500Recommendations=function(){
     const s=ui(),q=(s.query||'').trim();
-    if(!q)return;
-    // Recalculate against the current Scene500 index, without scrolling the page.
-    runSceneSearch(q,s.difficulty||'all',{restore:true});
+    if(q)runSceneSearch(q,s.difficulty||'all',{restore:true});
   };
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
     const difficulty=document.getElementById('scene-difficulty')?.value||'all';
     runSceneSearch(q,difficulty);
-    requestAnimationFrame(()=>document.querySelector('.scene-results,.scene-search-empty')?.scrollIntoView({block:'nearest',behavior:'smooth'}));
   };
   window.refreshScene500Difficulty=function(difficulty){
-    const s=ui();
-    const q=(document.getElementById('scene-query')?.value||s.query||'').trim();
-    if(!s.query||!q){state.sceneSearchUi={...s,difficulty};save();return}
+    const q=document.getElementById('scene-query')?.value?.trim()||ui().query||'';
     runSceneSearch(q,difficulty||'all');
   };
   window.continueScene500=function(scene,difficulty='all'){
