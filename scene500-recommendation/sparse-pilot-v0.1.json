@@ -1,0 +1,101 @@
+{
+  "schema": "pai-scene500-sparse-pilot-v0.1",
+  "status": "synthetic_fixture_not_verified",
+  "scene_count": 500,
+  "terms": {
+    "机场值机": [
+      {
+        "sceneId": "S104",
+        "weight": 1
+      }
+    ],
+    "托运行李": [
+      {
+        "sceneId": "S104",
+        "weight": 0.9
+      }
+    ],
+    "转机": [
+      {
+        "sceneId": "S108",
+        "weight": 1
+      }
+    ],
+    "酒店入住": [
+      {
+        "sceneId": "S113",
+        "weight": 1
+      }
+    ],
+    "牙医": [
+      {
+        "sceneId": "S320",
+        "weight": 1
+      },
+      {
+        "sceneId": "S302",
+        "weight": 0.6
+      }
+    ],
+    "预约": [
+      {
+        "sceneId": "S302",
+        "weight": 0.9
+      },
+      {
+        "sceneId": "S320",
+        "weight": 0.3
+      }
+    ],
+    "退货": [
+      {
+        "sceneId": "S070",
+        "weight": 1
+      }
+    ],
+    "退钱": [
+      {
+        "sceneId": "S070",
+        "weight": 0.9
+      }
+    ],
+    "工作交接": [
+      {
+        "sceneId": "S181",
+        "weight": 1
+      },
+      {
+        "sceneId": "S200",
+        "weight": 0.7
+      }
+    ],
+    "离职": [
+      {
+        "sceneId": "S200",
+        "weight": 1
+      }
+    ],
+    "假设": [
+      {
+        "sceneId": "S155",
+        "weight": 0.6
+      },
+      {
+        "sceneId": "S494",
+        "weight": 0.6
+      }
+    ],
+    "科学假设": [
+      {
+        "sceneId": "S155",
+        "weight": 1
+      }
+    ],
+    "语言假设": [
+      {
+        "sceneId": "S494",
+        "weight": 1
+      }
+    ]
+  }
+}
