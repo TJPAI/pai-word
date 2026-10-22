@@ -59,7 +59,7 @@
   }
   function renderHome(){
     const b=budget(),last=lastScene(),fallback=last?null:firstPlayable(),s=ui();
-    const sceneLoad=window.PAI_SCENE500_TOP100?.loading?'Scene500 词池加载中，数量稍后更新':window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
+    const sceneLoad=window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
     const continueId=last?.id||fallback,continueDifficulty=last?searchApi()?.recentDifficulty?.(last.id)||'all':'all';
     const resume=canResumeScene(continueId);
     const status=`今日新词 ${b.dailyCompleted}/${b.dailyLimit} · 每轮 ${b.roundLimit}${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
