@@ -62,6 +62,8 @@ jobs:
             scene500-holdout-report.json
             scene500-holdout-v2-report.json
           if-no-files-found: warn
+      - name: Test 20K Chinese lexicon intake
+        run: node --test tests/scene500-chinese20k-intake.test.cjs
       - name: Test experimental sparse term-scene retriever
         run: node --test scene500-recommendation/sparse-retriever.test.mjs
       - name: Test independent browser ESM module
