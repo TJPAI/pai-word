@@ -13,6 +13,11 @@ for(const data of [full,compact]){
  assert.equal(Object.values(data.scenes).filter(x=>x.quality==='draft_unverified').length,draft);
  assert.equal(Object.values(data.scenes).filter(x=>x.quality==='machine_generated_unverified').length,generated);
 }
+for(const [id,scene] of Object.entries(compact.scenes)){
+ if(scene.quality==='machine_generated_unverified'){
+  assert.ok(!(scene.aliases||[]).some(a=>a.endsWith('相关交流')||/^关于.+的问题$/.test(a)),id+' contains generic aliases');
+ }
+}
 const search=require('../scripts/scene500-semantic-ranker.cjs');
 assert.equal(search.rank('起床与晨间准备',full.scenes,{limit:5})[0].id,'S001');
 console.log('PASS 500 scene catalog with',draft,'draft profiles and',generated,'machine-generated candidates');
