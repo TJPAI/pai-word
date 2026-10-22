@@ -12,6 +12,7 @@ on:
       - 'tests/scene500-recommendation-catalog.test.cjs'
       - 'scene500-recommendation/**'
       - 'data/scene500-recommendation-catalog-v0.1.json'
+      - 'scene500-recommendation/catalog-v0.2.json'
       - 'rebuild-preview/data/home-scene-index-v1.json'
   workflow_dispatch:
 permissions:
@@ -31,5 +32,7 @@ jobs:
         run: node tests/scene500-semantic-ranker.test.cjs
       - name: Build and test 500-scene catalog
         run: node tests/scene500-recommendation-catalog.test.cjs
+      - name: Verify generated compact catalog is committed
+        run: git diff --exit-code -- scene500-recommendation/catalog-v0.2.json
       - name: Test independent browser ESM module
         run: node --test scene500-recommendation/engine.test.mjs
