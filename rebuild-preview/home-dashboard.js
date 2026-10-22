@@ -51,8 +51,12 @@
     return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
-    const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
-    return `<section class="home-recent"><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row">${rows.slice(0,3).map(s=>`<button onclick="PAI_SCENE_SEARCH.open('${esc(s.id)}','${esc(searchApi()?.recentDifficulty?.(s.id)||'all')}')">${esc(displayName(s.id)||s.name)}</button>`).join('')}</div></section>`;
+    // Recent history is already persisted. Never filter it through an index that
+    // changes while Scene500/Top100 data loads in the background.
+    const ids=Array.isArray(state.scene500Recent)?state.scene500Recent:[];
+    const rows=ids.map(id=>({id,name:displayName(id)})).filter(s=>s.name).slice(0,3);
+    if(!rows.length)return'';
+    return `<section class="home-recent"><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row">${rows.map(s=>`<button onclick="PAI_SCENE_SEARCH.open('${esc(s.id)}','${esc(searchApi()?.recentDifficulty?.(s.id)||'all')}')">${esc(s.name)}</button>`).join('')}</div></section>`;
   }
   function canResumeScene(scene){
     return !!(scene&&state.learningSession?.kind==='scene'&&state.selectedScene===scene&&state.learningSession.scene500Difficulty===(searchApi()?.recentDifficulty?.(scene)||'all')&&Array.isArray(state.learningSession.queue)&&state.learningSession.queue.length);
