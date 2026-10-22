@@ -28,7 +28,7 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
  const show=()=>{
   const q=state.sceneSearchUi?.query||'',d=state.sceneSearchUi?.difficulty||'all';
   if(catalogOpen){element.innerHTML=catalogView(index,cat,d);return}
-  element.innerHTML=buildLightHomeView({index,query:q,difficulty:d,results:currentPage().length?currentPage():state.sceneSearchUi?.resultIds||[],budget,continueScene:(state.scene500Recent||[])[0],hasMore:(page+1)*PAGE_SIZE<ranked.length,searchStatus});
+  element.innerHTML=buildLightHomeView({index,query:q,difficulty:d,results:ranked.length?currentPage():(searchStatus?[]:state.sceneSearchUi?.resultIds||[]),budget,continueScene:(state.scene500Recent||[])[0],hasMore:(page+1)*PAGE_SIZE<ranked.length,searchStatus});
  };
  show();
  element.addEventListener('click',event=>{
@@ -65,7 +65,7 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
   if(event.target.id!=='scene-query'||event.target.isComposing)return;
   const query=event.target.value;
   const current=state.sceneSearchUi||{};
-  if(query!==current.query){searchVersion++;ranked=[];page=0;searchStatus=''}
+  if(query!==current.query){searchVersion++;ranked=[];page=0;searchStatus='';}
   state.sceneSearchUi={...current,query,resultIds:query===current.query?current.resultIds:[]};
   persist(state);
  };
