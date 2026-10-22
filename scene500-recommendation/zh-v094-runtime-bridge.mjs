@@ -49,7 +49,11 @@ export function createChineseV094Index(payload,{aliases={}}={}){
     if(node.has(''))spans.push({start,end:end+1,term:node.get(''),candidates:candidates(node.get(''))});
    }
   }
-  return spans.sort((a,b)=>(b.end-b.start)-(a.end-a.start)||a.start-b.start).slice(0,Math.min(10,Math.max(0,maxTerms)));
+  // Rank meaningful multi-character spans first. Retain single-character spans only
+  // as a fallback when no multi-character candidates exist; keep overlaps visible.
+  const multi=spans.filter(x=>x.end-x.start>1);
+  const selected=multi.length?multi:spans.filter(x=>!byTerm.get(x.term)?.stopword_hint);
+  return selected.sort((a,b)=>(b.end-b.start)-(a.end-a.start)||a.start-b.start).slice(0,Math.min(10,Math.max(0,maxTerms)));
  }
  return Object.freeze({version:String(payload.version??'0.9.4-rc.2'),size:byId.size,candidates,extract,
    find:query=>candidates(query)[0]??null,getById:id=>byId.get(id)??null});
