@@ -3372,7 +3372,9 @@
       "aliases": [
         "办理值机",
         "机场报到",
-        "check in"
+        "check in",
+        "托运行李拿登机牌",
+        "机场先托运行李"
       ],
       "actions": [
         "办登机牌",
@@ -3450,6 +3452,9 @@
         "我的航班在哪个登机口上飞机"
       ],
       "review_status": "draft_unverified",
+      "negative_terms": [
+        "托运行李拿登机牌"
+      ],
       "quality": "draft_unverified",
       "counts": {
         "all": 44,
@@ -3496,7 +3501,11 @@
       "aliases": [
         "航班中转",
         "换乘飞机",
-        "转机衔接"
+        "转机衔接",
+        "转国际航班",
+        "另一架飞机",
+        "转航班",
+        "衔接航班"
       ],
       "actions": [
         "赶转机",
@@ -3527,7 +3536,11 @@
       "aliases": [
         "入境审查",
         "移民局检查",
-        "边检入境"
+        "边检入境",
+        "边检",
+        "边检问我",
+        "入境官问我",
+        "来美国做什么"
       ],
       "actions": [
         "出示护照",
@@ -3667,6 +3680,9 @@
         "我想提前预订下周的酒店"
       ],
       "review_status": "draft_unverified",
+      "negative_terms": [
+        "拿房卡"
+      ],
       "quality": "draft_unverified",
       "counts": {
         "all": 69,
@@ -3682,7 +3698,9 @@
       "aliases": [
         "办理入住",
         "酒店check in",
-        "酒店登记"
+        "酒店登记",
+        "前台拿房卡",
+        "拿房卡"
       ],
       "actions": [
         "登记入住",
@@ -4861,7 +4879,10 @@
       "aliases": [
         "查论文",
         "检索文章",
-        "文献搜索"
+        "文献搜索",
+        "检索论文",
+        "找研究论文",
+        "查找论文"
       ],
       "actions": [
         "查询数据库",
@@ -4923,7 +4944,8 @@
       "aliases": [
         "文献综述",
         "总结研究现状",
-        "归纳文献"
+        "归纳文献",
+        "归纳研究现状"
       ],
       "actions": [
         "比较文献",
@@ -4970,6 +4992,9 @@
         "我想了解提出假设需要怎么做"
       ],
       "review_status": "draft_unverified",
+      "negative_terms": [
+        "假如明天"
+      ],
       "quality": "draft_unverified",
       "counts": {
         "all": 49,
@@ -5373,6 +5398,9 @@
         "我想了解同行评审需要怎么做"
       ],
       "review_status": "draft_unverified",
+      "negative_terms": [
+        "审稿人要求修改论文如何回复"
+      ],
       "quality": "draft_unverified",
       "counts": {
         "all": 53,
@@ -5388,7 +5416,10 @@
       "aliases": [
         "审稿回复",
         "回复reviewer",
-        "revision letter"
+        "revision letter",
+        "审稿人要求修改",
+        "修改论文如何回复",
+        "回复审稿人"
       ],
       "actions": [
         "逐条回应",
@@ -6892,6 +6923,9 @@
         "怎样给HR发邮件接受工作Offer"
       ],
       "review_status": "draft_unverified",
+      "negative_terms": [
+        "婉拒"
+      ],
       "quality": "draft_unverified",
       "counts": {
         "all": 20,
@@ -6907,7 +6941,10 @@
       "aliases": [
         "婉拒录用",
         "拒绝工作邀请",
-        "拒绝offer"
+        "拒绝offer",
+        "婉拒工作邀请",
+        "婉拒公司",
+        "婉拒公司的工作邀请"
       ],
       "actions": [
         "拒绝录用",
@@ -6938,7 +6975,10 @@
       "aliases": [
         "办理入职",
         "新人报到",
-        "员工入职登记"
+        "员工入职登记",
+        "新员工第一天",
+        "办理入职手续",
+        "新人第一天"
       ],
       "actions": [
         "提交证件",
@@ -9124,7 +9164,10 @@
       "description_enriched": "人工智能与前沿技术领域：定位与导航。用于理解、描述或讨论相关情境。",
       "aliases": [
         "定位与导航相关交流",
-        "关于定位与导航的问题"
+        "关于定位与导航的问题",
+        "导航定位",
+        "自主定位",
+        "空间定位"
       ],
       "actions": [
         "理解原理",
@@ -9938,6 +9981,9 @@
         "我想了解药店买药该怎么用英语说"
       ],
       "review_status": "machine_generated_unverified",
+      "negative_terms": [
+        "非处方"
+      ],
       "quality": "machine_generated_unverified",
       "counts": {
         "all": 56,
@@ -10850,7 +10896,10 @@
       "description_enriched": "体育健身与运动领域：运动受伤。用于理解、描述或讨论相关情境。",
       "aliases": [
         "运动受伤相关交流",
-        "关于运动受伤的问题"
+        "关于运动受伤的问题",
+        "膝盖受伤",
+        "跑步受伤",
+        "运动后受伤"
       ],
       "actions": [
         "参加活动",
@@ -15204,7 +15253,11 @@
       "description_enriched": "通用语言表达中的假设；归属高级表达与思维",
       "aliases": [
         "通用语言表达中的假设",
-        "假如会怎样"
+        "假如会怎样",
+        "假如",
+        "如果",
+        "假设条件",
+        "假如明天"
       ],
       "actions": [
         "提出假设",
