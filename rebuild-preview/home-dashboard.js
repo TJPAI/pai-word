@@ -121,5 +121,5 @@
     if(canResumeScene(scene)&&state.learningSession.scene500Difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
-  window.render=function(){if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
+  window.render=function(){if(state.view==='scenes'&&window.PAI_EARLY_HOME?.clicked?.action==='scene')return;if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
 })();
