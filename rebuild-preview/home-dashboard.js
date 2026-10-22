@@ -61,8 +61,9 @@
           ${resultHtml()}
         </section>
         ${recentHtml()}
-        <div class="browse-link"><button type="button" class="catalog-back" onclick="openSceneCatalog()">浏览场景目录 →</button><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
+        <div class="browse-link"><button type="button" class="catalog-back" onclick="PAI_OPEN_CATALOG_LAZY()">浏览场景目录 →</button><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
       </main>
+      ${location.pathname.includes('/perf-preview/')?`<footer style="padding:8px 12px 24px;text-align:center;font:11px system-ui;color:#64748b;overflow-wrap:anywhere">加速版源代码 SHA：<span data-perf-source-sha>${esc(window.PAI_PERF_SOURCE_SHA||'读取中…')}</span></footer>`:''}
     </div></div>`;
   }
   function runSceneSearch(q,difficulty,{restore=false}={}){
