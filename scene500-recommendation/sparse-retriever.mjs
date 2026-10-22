@@ -1,7 +1,7 @@
 // Experimental sparse Chinese term→Scene500 retrieval; no production quality assertion.
 // The association registry is built offline, not inferred during a search.
 export const SPARSE_VERSION='0.1.0-alpha';
-const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\\s，。！？、；：,.!?;:]+/g,'');
+const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
 export function createSparseSceneRetriever({registry, catalog}={}){
  if(!registry||registry.scene_count!==500||!registry.terms||!catalog?.scenes)
   throw new Error('SCENE500_INVALID_SPARSE_REGISTRY');
