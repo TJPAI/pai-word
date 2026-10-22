@@ -1,0 +1,49 @@
+{
+  "schema": "scene500-label-quarantine-v0.1",
+  "source": "scene500-recommendation/query-holdout-v0.2.json",
+  "policy": "Do not silently relabel. Quarantine disputed cases for sensitivity analysis, not an untouched holdout.",
+  "excluded": [
+    {
+      "query": "公司给我发的工资单上扣了什么税",
+      "expected": [
+        "S246"
+      ],
+      "reason": "S246 is 财务预算, not a defined payroll-tax scene",
+      "status": "needs_independent_review"
+    },
+    {
+      "query": "我准备去日本旅游，先查签证要求",
+      "expected": [
+        "S101"
+      ],
+      "reason": "Travel planning does not explicitly describe visa requirements; suitable scene may be absent",
+      "status": "needs_independent_review"
+    },
+    {
+      "query": "火车票买错日期如何退票",
+      "expected": [
+        "S089"
+      ],
+      "reason": "S089 is 道路施工与绕行, categorically mismatched to train ticket refunds",
+      "status": "invalid_scene_label"
+    }
+  ],
+  "retained_labeled": 28,
+  "provisional_metrics": {
+    "baseline": {
+      "recall_at5": 0.30357142857142855,
+      "mrr_at10": 0.2988095238095238,
+      "ndcg_at5": 0.2580819423403899
+    },
+    "hybrid": {
+      "recall_at5": 0.5892857142857143,
+      "mrr_at10": 0.5339285714285714,
+      "ndcg_at5": 0.49891003548095963
+    }
+  },
+  "limitations": [
+    "Post-hoc sensitivity check, not blind evaluation",
+    "Remaining 28 labels are still editorial_unreviewed",
+    "Computed from existing native Node 20K+500 source diagnostic; no new retraining or algorithm tuning"
+  ]
+}
