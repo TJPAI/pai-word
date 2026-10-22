@@ -1,0 +1,22 @@
+{
+  "schema": "pai-scene500-profile-evidence-audit-v0.1",
+  "source_branch": "scene500-recommendation-dev",
+  "catalog_path": "scene500-recommendation/catalog-v0.2.json",
+  "source_sha": "0b1e9023eb21e99311b58e82bbe1518c04a63d76",
+  "scene_count": 500,
+  "missing_aliases": 217,
+  "missing_actions": 224,
+  "generic_template_descriptions": 223,
+  "missing_aliases_and_actions": 217,
+  "duplicate_name_groups": [
+    {
+      "name": "提出假设",
+      "sceneIds": [
+        "S155",
+        "S494"
+      ]
+    }
+  ],
+  "status": "structural_audit_not_semantic_verification",
+  "interpretation": "Automatic lexical association coverage is limited by incomplete scene profiles; do not infer recommendation precision from coverage."
+}
