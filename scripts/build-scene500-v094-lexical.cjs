@@ -2,8 +2,8 @@
 // Reproducible Chinese Core20K v0.9.4 → Scene500 lexical candidates.
 // Not AI-generated semantic links. No false frequency or confidence assertions.
 // Usage: node scripts/build-scene500-v094-lexical.cjs CORE20K.min.json catalog-v0.2.json OUTPUT.json
-import fs from 'node:fs';
-import crypto from 'node:crypto';
+const fs=require('node:fs');
+const crypto=require('node:crypto');
 const [,,lexPath,catalogPath,outPath]=process.argv;
 if(!lexPath||!catalogPath||!outPath)throw Error('Expected 3 file paths');
 const raw=fs.readFileSync(lexPath),catRaw=fs.readFileSync(catalogPath);
