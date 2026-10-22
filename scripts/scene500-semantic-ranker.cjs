@@ -23,6 +23,11 @@
     const grams=uniq([...q].slice(0,-1).map((c,i)=>c+q[i+1])).filter(p=>/[^a-z0-9]/i.test(p));
     n+=Math.min(5,grams.filter(g=>desc.includes(g)).length*.5);
     if(examples.some(p=>p===q))n+=16;
+    const negative=uniq(scene.negative_terms||[]).map(norm).filter(x=>x.length>=2);
+    const negativeHits=negative.filter(p=>q.includes(p)).length;
+    // Penalize contrasting intents, but never discard a mixed-intent query outright.
+    if(negativeHits)n-=Math.min(18,negativeHits*9);
+    n=Math.max(0,n);
     return Math.round(n*100)/100;
   }
   function rank(query,scenes,{limit=20,minScore=3}={}){
