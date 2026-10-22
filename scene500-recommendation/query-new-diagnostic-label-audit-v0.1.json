@@ -1,0 +1,41 @@
+{
+  "schema": "scene500-diagnostic-label-audit-v0.1",
+  "source": "query-new-diagnostic-v0.1.json",
+  "status": "post_hoc_corrected_labels_not_independent_blind",
+  "corrections": [
+    {
+      "query": "我要学习机器人视觉识别和传感器",
+      "before": [
+        "S282",
+        "S285"
+      ],
+      "after": [
+        "S284",
+        "S282",
+        "S288"
+      ],
+      "catalog_grounding": {
+        "S282": "计算机视觉",
+        "S284": "机器人",
+        "S285": "无人机",
+        "S288": "传感器"
+      },
+      "reason": "S285 refers to unmanned aircraft not mentioned in the query; robot and sensor scene IDs were omitted."
+    }
+  ],
+  "labeled_query_count": 9,
+  "metrics": {
+    "old": {
+      "recall_at5": 0.8518518518518519,
+      "mrr_at10": 0.8333333333333334,
+      "ndcg_at5": 0.8218100433955643
+    },
+    "hybrid": {
+      "recall_at5": 1,
+      "mrr_at10": 0.9166666666666666,
+      "ndcg_at5": 0.9331271712847291
+    }
+  },
+  "method": "Actual 20K+500+3553 local Node run using source-reconstructed ESM modules; corrected label after inspection; not independent or formal CI",
+  "notes": "Keep original query-new-diagnostic-v0.1.json immutable; label changes are auditable. Results are nine small authored diagnostics, not population performance."
+}
