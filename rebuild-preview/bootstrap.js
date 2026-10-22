@@ -137,5 +137,22 @@
       })
       .catch(error=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_failed';console.warn('Preview worker unavailable',error)});
   }
- }catch(e){app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
+ }catch(e){
+  app.style.visibility='visible';document.body.classList.add('pai-boot-ready');
+  // Never destroy a functioning lightweight home because Stage B failed.
+  if(window.PAI_EARLY_HOME?.ready&&app.querySelector('.home-dashboard')){
+   let notice=document.getElementById('pai-early-notice');
+   if(!notice){notice=document.createElement('p');notice.id='pai-early-notice';app.appendChild(notice)}
+   notice.setAttribute('role','alert');
+   notice.textContent='学习功能初始化失败，首页仍可搜索。请检查网络后重新加载。';
+   const retry=document.createElement('button');
+   retry.type='button';retry.textContent='重新加载学习功能';
+   retry.addEventListener('click',()=>location.reload());
+   notice.append(' ',retry);
+  }else{
+   app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';
+   document.getElementById('load-error').textContent=e.message;
+  }
+  console.error(e);
+ }
 })();
