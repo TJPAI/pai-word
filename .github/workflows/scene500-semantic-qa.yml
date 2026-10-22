@@ -45,9 +45,18 @@ jobs:
       - name: Test canonical title retrieval diagnostic
         run: node --test scene500-recommendation/coverage.test.mjs
       - name: Report natural language query diagnostics (unreviewed)
-        run: node scripts/evaluate-scene500-recommendation.cjs --assert-structure
+        run: node scripts/evaluate-scene500-recommendation.cjs --assert-structure > scene500-diagnostics-report.json
       - name: Report separate editorial holdout (not a release gate)
-        run: node scripts/evaluate-scene500-recommendation.cjs --holdout --assert-structure
+        run: node scripts/evaluate-scene500-recommendation.cjs --holdout --assert-structure > scene500-holdout-report.json
+      - name: Upload query diagnostic reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scene500-quality-reports
+          path: |
+            scene500-diagnostics-report.json
+            scene500-holdout-report.json
+          if-no-files-found: warn
       - name: Test independent browser ESM module
         run: node --test scene500-recommendation/engine.test.mjs
       - name: Test scene identity, eligibility, paging and diagnostic performance
