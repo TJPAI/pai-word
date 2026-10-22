@@ -1,11 +1,11 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const ranker=require('../scripts/scene500-semantic-ranker.cjs');
-const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.4.json','utf8'));
+const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.5.json','utf8'));
 const scenes=overlay.scenes;
-assert.equal(Object.keys(scenes).length,75);
+assert.equal(Object.keys(scenes).length,100);
 for(const [id,s] of Object.entries(scenes)){
-  assert.match(id,/^S0[0-7][0-9]$/);
+  assert.match(id,/^S(0[0-9]{2}|100)$/);
   for(const f of ['name','description_enriched','aliases','actions','objects','example_queries'])
     assert.ok(s[f]&&(typeof s[f]==='string'?s[f].length:s[f].length>0),id+':'+f);
 }
