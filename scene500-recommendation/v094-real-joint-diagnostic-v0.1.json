@@ -1,0 +1,23 @@
+{
+  "schema": "scene500-v094-joint-evaluation-summary-v0.1",
+  "data": "actual uploaded V0.9.4 RC2 ZIP plus user-uploaded catalog-v0.2.json",
+  "lexicon_sha256": "9be43c35c1e0d1b1926c11726acb2d707bb052634e1ebc60ed445e4b35c63335",
+  "catalog_sha256": "35a680bee9ec2fe207c877c82da306b1bc1c77685457cfb489193732453bc4e8",
+  "method": "Python equivalent reimplementation, NOT native Node module or GitHub Actions validation",
+  "evaluation_provenance": "31 labeled cases from previously viewed editorial_unreviewed query-holdout-v0.2; diagnostic, not blind or human-verified",
+  "generated_edges": 3553,
+  "linked_terms": 1613,
+  "scene_coverage": 500,
+  "lexical_candidate_quality": "lexical_candidate_unverified",
+  "baseline": {
+    "recall_at5": 0.27419354838709675,
+    "mrr_at10": 0.2698924731182796,
+    "ndcg_at5": 0.2331062705009973
+  },
+  "hybrid": {
+    "recall_at5": 0.5645161290322581,
+    "mrr_at10": 0.49032258064516127,
+    "ndcg_at5": 0.4645212113400085
+  },
+  "interpretation": "Diagnostic improvement; independent blind QA and native Node/Safari runtime validation still required; do not deploy to stable app."
+}
