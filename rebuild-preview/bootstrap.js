@@ -54,11 +54,13 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
    window.PAI_KU_STORAGE_FATAL=true;
    console.warn('Durable KU storage unavailable; rating writes must not silently succeed',storageError);
   }
+  mark('storageRestored');
   const catalogReady=loadLearningCatalog();
   const policyReady=json('data/scene500-ranked-membership-policy-v1.json');
   const membershipReady=sceneMembership();
   await catalogReady;mark('catalog');
   [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);mark('memberships');
+  mark('catalogAndMembershipReady');
   await script('rebuild-preview/memory-schedulers.js');
   await script('rebuild-preview/learning-runtime.js');
   await script('audio-compat.js');
@@ -73,6 +75,7 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
   // The earlier deferred post-render installation caused empty sessions and undefined titles.
   if(window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'){
     const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
+    mark('top100InstallStarted');
     await installScene500Top100();
     await window.PAI_SCENE500_TOP100_READY;
     mark('scene500Playable');
