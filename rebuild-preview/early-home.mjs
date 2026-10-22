@@ -42,11 +42,17 @@ let homeWrites=Promise.resolve();
 
 window.PAI_EARLY_HOME={ready:false,clicked:null};
 try{
- const {index}=await prepareLightweightHome();
+ const [{index},snapshot]=await Promise.all([prepareLightweightHome(),readLightHomeSnapshot().catch(error=>{window.PAI_EARLY_HOME.hydrateError=String(error);return null})]);
  if(!window.PAI_FULL_HOME_READY){
-   const saved=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};
-   const bootQuery=document.getElementById('scene-query')?.value||'';
-   const ui={sceneSearchUi:{...saved,query:saved.query||bootQuery},scene500Recent:state.scene500Recent||[]};
+   // Restore authoritative IndexedDB home state BEFORE mounting controls.
+   const storedHome=snapshot?.home||{},storedSettings=snapshot?.settings||{};
+   const saved={query:'',difficulty:'all',resultIds:[],...(state.sceneSearchUi||{}),...(storedHome.sceneSearchUi||{})};
+   const bootQuery=document.getElementById('scene-query')?.value;
+   if(bootQuery)saved.query=bootQuery;
+   state.sceneSearchUi={...saved};
+   if(Array.isArray(storedHome.scene500Recent))state.scene500Recent=[...storedHome.scene500Recent];
+   if(storedHome.scene500DifficultyByScene)state.scene500DifficultyByScene={...storedHome.scene500DifficultyByScene};
+   const ui={sceneSearchUi:{...saved},scene500Recent:[...(state.scene500Recent||[])]};
    const fallbackSearch=(query,difficulty)=>{
      const q=query.trim().toLowerCase();
      if(!q)return [];
@@ -94,7 +100,7 @@ try{
      });
    };
    // Budget is not yet authoritative; use last-saved scalar settings only, and label status as pending.
-   const budget={pending:true,dailyCompleted:0,dailyLimit:Number(state.newPerDay)||50,roundLimit:Number(state.wordsPerRound)||10,due:0,reinforcementRemaining:0};
+   const budget={pending:true,dailyCompleted:0,dailyLimit:Number(storedSettings.newPerDay)||Number(state.newPerDay)||50,roundLimit:Number(storedSettings.wordsPerRound)||Number(state.wordsPerRound)||10,due:0,reinforcementRemaining:0};
    const view=mountLightHome({element:app,index,state:ui,budget,search,
      onScene:(scene,difficulty)=>defer('scene',scene,difficulty),
      onAction:action=>defer(action),
@@ -110,24 +116,6 @@ try{
    const status=app.querySelector('.continue-card p');
    if(status)status.textContent='学习进度同步中，搜索与浏览场景已可使用';
    window.PAI_EARLY_HOME.ready=true;
-   // Hydrate after first paint; never overwrite a draft edited during the read.
-   readLightHomeSnapshot().then(snapshot=>{
-     if(!snapshot||window.PAI_FULL_HOME_READY)return;
-     const settings=snapshot.settings||{},home=snapshot.home||{};
-     if(Number.isFinite(Number(settings.newPerDay)))budget.dailyLimit=Number(settings.newPerDay);
-     if(Number.isFinite(Number(settings.wordsPerRound)))budget.roundLimit=Number(settings.wordsPerRound);
-     if(!window.PAI_EARLY_HOME.edited){
-       if(home.sceneSearchUi)ui.sceneSearchUi={...ui.sceneSearchUi,...home.sceneSearchUi};
-       if(Array.isArray(home.scene500Recent))ui.scene500Recent=[...home.scene500Recent];
-       state.sceneSearchUi={...ui.sceneSearchUi};
-       state.scene500Recent=[...ui.scene500Recent];
-       if(home.scene500DifficultyByScene)state.scene500DifficultyByScene={...home.scene500DifficultyByScene};
-       window.PAI_EARLY_HOME.searchUi={...ui.sceneSearchUi};
-       const active=document.activeElement;
-       if(!active||!['scene-query','catalog-query'].includes(active.id))view.render();
-     }
-   }).catch(error=>{window.PAI_EARLY_HOME.hydrateError=String(error)});
-
    window.PAI_EARLY_HOME.readyMs=Math.round(performance.now()-started);
    app.insertAdjacentHTML('beforeend','<p id="pai-early-notice" style="font-size:12px;text-align:center;opacity:.6">学习统计与复习状态加载后更新</p>');
  }
