@@ -66,6 +66,8 @@ jobs:
         run: node --test tests/scene500-chinese-associations.test.cjs
       - name: Test 20K Chinese lexicon intake
         run: node --test tests/scene500-chinese20k-intake.test.cjs
+      - name: Verify cross-project data and recommendation interface contract
+        run: node --test scene500-recommendation/contract-adapter.test.mjs
       - name: Test experimental sparse term-scene retriever
         run: node --test scene500-recommendation/sparse-retriever.test.mjs
       - name: Test independent browser ESM module
