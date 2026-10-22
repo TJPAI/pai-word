@@ -98,5 +98,6 @@
     if(canResumeScene(scene)&&state.learningSession.scene500Difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
+  window.PAI_HOME_DASHBOARD_RENDER=renderHome;
   window.render=function(){if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
 })();
