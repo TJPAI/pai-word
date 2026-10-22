@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createScene500Recommender,loadScene500Recommender} from './engine.mjs';
-const catalog=JSON.parse(fs.readFileSync(new URL('../data/scene500-recommendation-catalog-v0.1.json',import.meta.url),'utf8'));
+const catalog=JSON.parse(fs.readFileSync(new URL('./catalog-v0.2.json',import.meta.url),'utf8'));
 test('500 canonical scenes and stable top-N pages',()=>{
  const engine=createScene500Recommender({catalog,minimumScore:0});
  const snapshot=engine.search('起床与晨间准备',{limit:20});
@@ -42,4 +42,12 @@ test('soft evidence supports mixed intent',()=>{
  const result=engine.search('早晨起床后刷牙洗脸',{limit:20});
  assert.ok(result.results.some(r=>r.sceneId==='S001'));
  assert.ok(result.results.some(r=>r.sceneId==='S002'));
+});
+
+test('catalog is recommendation-only without home/SRS counters',()=>{
+ assert.equal(Object.keys(catalog.scenes).length,500);
+ for(const item of Object.values(catalog.scenes)){
+  assert.equal(item.counts,undefined);
+  assert.equal(item.ku_id,undefined);
+ }
 });
