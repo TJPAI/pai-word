@@ -1,0 +1,45 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createScene500Recommender,loadScene500Recommender} from './engine.mjs';
+const catalog=JSON.parse(fs.readFileSync(new URL('../data/scene500-recommendation-catalog-v0.1.json',import.meta.url),'utf8'));
+test('500 canonical scenes and stable top-N pages',()=>{
+ const engine=createScene500Recommender({catalog,minimumScore:0});
+ const snapshot=engine.search('起床与晨间准备',{limit:20});
+ assert.equal(snapshot.results[0].sceneId,'S001');
+ assert.equal(snapshot.results.length,20);
+ assert.equal(new Set(snapshot.results.map(r=>r.sceneId)).size,20);
+ const first=engine.getPage(snapshot,0);
+ const second=engine.getPage(snapshot,1);
+ assert.deepEqual(first,snapshot.results.slice(0,5));
+ assert.deepEqual(second,snapshot.results.slice(5,10));
+ assert.equal(new Set([...first,...second].map(r=>r.sceneId)).size,10);
+ assert.deepEqual(snapshot,engine.search('起床与晨间准备',{limit:20}));
+});
+test('explicit eligibility and strict ID retention',()=>{
+ const engine=createScene500Recommender({catalog,minimumScore:0});
+ const result=engine.search('起床',{limit:20,eligibleSceneIds:['S001','S025']});
+ assert.deepEqual(result.results.map(r=>r.sceneId).sort(),['S001','S025']);
+ assert.equal(engine.search('起床',{eligibleSceneIds:[]}).total,0);
+ assert.equal(engine.search('  ').total,0);
+});
+test('load uses supplied fetch and does not fetch until invoked',async()=>{
+ let called=0;
+ const engine=await loadScene500Recommender({catalogUrl:'/fake-catalog.json',fetchImpl:async url=>{
+  called++;
+  assert.equal(url,'/fake-catalog.json');
+  return {ok:true,json:async()=>catalog};
+ }});
+ assert.equal(called,1);
+ assert.equal(engine.search('洗漱',{limit:5}).results[0].sceneId,'S002');
+});
+test('errors are explicit and recoverable by caller',async()=>{
+ await assert.rejects(()=>loadScene500Recommender({catalogUrl:'/bad',fetchImpl:async()=>({ok:false,status:503})}),/SCENE500_CATALOG_FETCH_FAILED/);
+ assert.throws(()=>createScene500Recommender({catalog:{scene_count:1,scenes:{}}}),/SCENE500_INVALID_CATALOG/);
+});
+test('soft evidence supports mixed intent',()=>{
+ const engine=createScene500Recommender({catalog,minimumScore:0});
+ const result=engine.search('早晨起床后刷牙洗脸',{limit:20});
+ assert.ok(result.results.some(r=>r.sceneId==='S001'));
+ assert.ok(result.results.some(r=>r.sceneId==='S002'));
+});
