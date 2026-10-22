@@ -4,6 +4,7 @@
   if(typeof baseRender!=='function')return;
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   const searchApi=()=>window.PAI_SCENE_SEARCH;
+  const displayName=id=>window.PAI_SCENE_NAMES?.[id]||SCENES[id]||indexedScenes().byId.get(id)?.name||'';
   function dueCount(){
     const engineDue=window.PAI_LEARNING_QA?.due?.();
     if(Array.isArray(engineDue))return engineDue.length;
@@ -17,7 +18,7 @@
     const dailyLimit=Number(state.newPerDay)||50,due=dueCount();
     return {dailyLimit,dailyCompleted:0,dailyRemaining:dailyLimit,roundLimit:Number(state.wordsPerRound)||10,reinforcementRemaining:0,due};
   }
-  function lastScene(){const id=(state.scene500Recent||[])[0]||null;return id&&SCENES[id]?{id,name:SCENES[id]}:null}
+  function lastScene(){const id=(state.scene500Recent||[])[0]||null;return id&&displayName(id)?{id,name:displayName(id)}:null}
   const excludedSceneIds=new Set(['cs206','cs215','cs223','cs254','cs321']);
   let sceneIndexSource=null,sceneIndex=null;
   function indexedScenes(){
@@ -34,7 +35,7 @@
   function firstPlayable(){return playable().find(s=>inventory(s.id,'all').reviewedCount>0)?.id||null}
   function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
-  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>indexedScenes().byId.get(id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
+  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>{const entry=indexedScenes().byId.get(id);const name=displayName(id);return entry?{...entry,name:name||entry.name}:name?{id,name,desc:''}:null}).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
   function countHtml(r){
     if(window.PAI_SCENE500_TOP100?.loading)return '<span class="scene-result-count"><b>加载中</b><small>可学词数待计算</small></span>';
     if(window.PAI_SCENE500_TOP100?.error)return '<span class="scene-result-count"><b>不可用</b><small>场景词池加载失败</small></span>';
@@ -51,7 +52,7 @@
   }
   function recentHtml(){
     const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
-    return `<section class="home-recent"><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row">${rows.slice(0,3).map(s=>`<button onclick="PAI_SCENE_SEARCH.open('${esc(s.id)}','${esc(searchApi()?.recentDifficulty?.(s.id)||'all')}')">${esc(s.name)}</button>`).join('')}</div></section>`;
+    return `<section class="home-recent"><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row">${rows.slice(0,3).map(s=>`<button onclick="PAI_SCENE_SEARCH.open('${esc(s.id)}','${esc(searchApi()?.recentDifficulty?.(s.id)||'all')}')">${esc(displayName(s.id)||s.name)}</button>`).join('')}</div></section>`;
   }
   function canResumeScene(scene){
     return !!(scene&&state.learningSession?.kind==='scene'&&state.selectedScene===scene&&state.learningSession.scene500Difficulty===(searchApi()?.recentDifficulty?.(scene)||'all')&&Array.isArray(state.learningSession.queue)&&state.learningSession.queue.length);
