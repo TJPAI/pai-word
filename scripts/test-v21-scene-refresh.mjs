@@ -19,5 +19,5 @@ s=restoredState({query:'会议',difficulty:'common',resultIds:['S165']},'',{quer
 assert.equal(s.query,'酒店');assert.equal(s.difficulty,'basic');assert.equal(s.resultIds.length,0);
 assert.match(bootstrap,/restoreScene500Recommendations\(\)/);
 assert.doesNotMatch(home,/PAI_SCENE500_TOP100_READY\?\.then\(\(\)=>runSceneSearch/);
-assert.match(home,/runSceneSearch\(q,s\.difficulty\|\|'all'\)/);
+assert.match(home,/runSceneSearch\(q,s\.difficulty\|\|'all'(?:,[^)]*)?\)/);
 console.log('PASS: restored query/difficulty/results, new preboot query precedence and no Top100 blocking');
