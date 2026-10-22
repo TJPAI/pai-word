@@ -123,7 +123,17 @@
     await installScene500Top100();
     if(window.PAI_SCENE500_TOP100_READY){
      await window.PAI_SCENE500_TOP100_READY;
-     if(state.view==='scenes'&&typeof window.restoreScene500Recommendations==='function')window.restoreScene500Recommendations();
+     if(state.view==='scenes'){
+      const field=document.getElementById('scene-query');
+      const savedQuery=state.sceneSearchUi?.query||'';
+      const unsentDraft=field&&field.value!==savedQuery;
+      // Never replace a focused textarea or an unsent Chinese draft. The next
+      // explicit search/difficulty action will render against ready Top100 data.
+      if(document.activeElement?.id!=='scene-query'&&!unsentDraft){
+       if(savedQuery&&typeof window.restoreScene500Recommendations==='function')window.restoreScene500Recommendations();
+       else if(typeof window.render==='function')window.render();
+      }
+     }
     }
    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
   })();
