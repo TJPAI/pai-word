@@ -65,3 +65,24 @@ test('direct name evidence remains retrievable, even without semantic fields',()
  const matches=recommender.search('我想学机场值机',{limit:100}).results;
  assert.ok(matches.some(r=>r.sceneId==='S104'));
 });
+
+test('duplicate canonical names preserve two identities and eligibility',()=>{
+ const recommender=createScene500Recommender({catalog,minimumScore:0});
+ assert.equal(catalog.scenes.S155.name,catalog.scenes.S494.name);
+ const both=recommender.search('提出假设',{limit:500});
+ assert.ok(both.results.some(r=>r.sceneId==='S155'));
+ assert.ok(both.results.some(r=>r.sceneId==='S494'));
+ const research=recommender.search('提出假设',{eligibleSceneIds:['S155'],limit:100});
+ assert.deepEqual(research.results.map(x=>x.sceneId),['S155']);
+ const general=recommender.search('提出假设',{eligibleSceneIds:['S494'],limit:100});
+ assert.deepEqual(general.results.map(x=>x.sceneId),['S494']);
+});
+test('all pages retain ordering and never introduce ineligible scenes',()=>{
+ const recommender=createScene500Recommender({catalog,minimumScore:0});
+ const ids=Array.from({length:100},(_,i)=>'S'+String(i+1).padStart(3,'0'));
+ const snapshot=recommender.search('项目讨论',{limit:100,eligibleSceneIds:ids});
+ const combined=Array.from({length:20},(_,i)=>recommender.getPage(snapshot,i,5)).flat();
+ assert.deepEqual(combined,snapshot.results);
+ assert.ok(combined.every(r=>ids.includes(r.sceneId)));
+ assert.equal(new Set(combined.map(r=>r.sceneId)).size,combined.length);
+});
