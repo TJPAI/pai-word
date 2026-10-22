@@ -84,16 +84,18 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
 
   // Match public preview: search again after the optional Scene500 word pool
   // finishes installing. Early home rendering must not permanently store zero results.
-  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
+  // If the initial user intent was to study, do not paint an intermediate full home
+  // just before opening the learning card. This avoids an avoidable flicker.
+  const earlyClick=window.PAI_EARLY_HOME?.clicked;
+  const openingScene=earlyClick?.action==='scene';
+  if(!openingScene&&state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
    window.restoreScene500Recommendations();
    mark('recommendationsAfterPacks');
   }
-
-  if(!state.sceneSearchUi?.query)render();
+  if(!openingScene&&!state.sceneSearchUi?.query)render();
   window.PAI_FULL_HOME_READY=true;
   mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
   // Replay at most one early user intent after authoritative storage and engine are ready.
-  const earlyClick=window.PAI_EARLY_HOME?.clicked;
   if(earlyClick){window.PAI_EARLY_HOME.clicked=null;
     try{
       if(earlyClick.action==='scene')window.PAI_SCENE_SEARCH?.open(earlyClick.scene,earlyClick.difficulty);
