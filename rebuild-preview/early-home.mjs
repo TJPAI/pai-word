@@ -33,6 +33,9 @@ try{
      onScene:(scene,difficulty)=>defer('scene',scene,difficulty),
      onAction:action=>defer(action),
      persist:()=>{state.sceneSearchUi={...ui.sceneSearchUi};window.PAI_PREVIEW_PENDING_SEARCH={query:ui.sceneSearchUi.query,difficulty:ui.sceneSearchUi.difficulty};}});
+   // Do not present fabricated progress counts while SRS storage is still pending.
+   const status=app.querySelector('.continue-card p');
+   if(status)status.textContent='学习进度同步中，搜索与浏览场景已可使用';
    window.PAI_EARLY_HOME.ready=true;
    window.PAI_EARLY_HOME.readyMs=Math.round(performance.now()-started);
    app.insertAdjacentHTML('beforeend','<p id="pai-early-notice" style="font-size:12px;text-align:center;opacity:.6">学习统计与复习状态加载后更新</p>');
