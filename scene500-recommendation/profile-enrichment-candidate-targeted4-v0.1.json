@@ -1,0 +1,89 @@
+{
+  "schema": "scene500-enrichment-candidate-targeted4-v0.1",
+  "status": "candidate_editorial_unverified_no_production_promotion",
+  "based_on": "profile-enrichment-candidate-first14-v0.1.json",
+  "scene_changes": {
+    "S268": {
+      "aliases": [
+        "网盘",
+        "网络云盘",
+        "云端备份",
+        "在线文件存储"
+      ],
+      "actions": [
+        "备份文件到云端",
+        "上传文件",
+        "同步文件",
+        "恢复备份"
+      ]
+    },
+    "S321": {
+      "aliases": [
+        "配眼镜",
+        "验光配镜",
+        "眼睛模糊",
+        "看不清远处"
+      ],
+      "actions": [
+        "验光",
+        "检查视力",
+        "选择镜片",
+        "配一副眼镜"
+      ]
+    },
+    "S442": {
+      "aliases": [
+        "举个例子",
+        "举一个例子",
+        "例如",
+        "比如说"
+      ],
+      "actions": [
+        "举例说明",
+        "给出例子",
+        "用例子解释"
+      ]
+    },
+    "S491": {
+      "aliases": [
+        "比较优缺点",
+        "权衡优缺点",
+        "考虑得失"
+      ],
+      "actions": [
+        "权衡优劣",
+        "比较好处和坏处"
+      ]
+    }
+  },
+  "rejected_due_to_ranking_interference": [
+    "S491 alias 利弊分析",
+    "S491 action 分析优点缺点"
+  ],
+  "real_data": {
+    "terms": 20000,
+    "scenes": 500,
+    "edges_before": 3662,
+    "edges_after": 3693,
+    "linked_terms_before": 1660,
+    "linked_terms_after": 1680
+  },
+  "evaluation": {
+    "source": "locally executed Python reconstruction of committed ranking and builder on actual V0.9.4 ZIP and uploaded 500-scene catalog",
+    "queries": 31,
+    "label_status": "existing_editorial_unreviewed_post_hoc_diagnostic",
+    "prior": {
+      "recall_at5": 0.5806451612903226,
+      "mrr_at10": 0.49032258064516127,
+      "ndcg_at5": 0.47700033415402593
+    },
+    "candidate": {
+      "recall_at5": 0.7096774193548387,
+      "mrr_at10": 0.6032258064516128,
+      "ndcg_at5": 0.5941271003982665
+    },
+    "per_query_recall_or_rr_regressions": 0,
+    "disclaimer": "Tuned after inspecting these queries, so numbers are not generalization evidence."
+  },
+  "decision": "Keep candidate separate until independent reviews, new holdout, and native checked-out Node tests."
+}
