@@ -10,11 +10,14 @@ const raw=fs.readFileSync(lexPath),catRaw=fs.readFileSync(catalogPath);
 const lex=JSON.parse(raw),catalog=JSON.parse(catRaw);
 if(!Array.isArray(lex.terms)||lex.terms.length!==20000||Object.keys(catalog.scenes||{}).length!==500)throw Error('Invalid source dimensions');
 const normalize=s=>String(s??'').normalize('NFKC').replace(/\s+/g,'').toLowerCase();
-const byTerm=new Map(),ids=new Set();
+const byTerm=new Map(),ids=new Set(),normalizedTerms=new Map();
 for(const row of lex.terms){
  const term=row.t??row.term,id=row.id??row.term_id;
  if(typeof term!=='string'||typeof id!=='string'||ids.has(id)||byTerm.has(term))throw Error('Invalid term identity');
  byTerm.set(term,id);ids.add(id);
+ const key=normalize(term);
+ if(!normalizedTerms.has(key))normalizedTerms.set(key,[]);
+ normalizedTerms.get(key).push(term);
 }
 const postings=new Map();
 const add=(term,sceneId,score,evidence_type)=>{
@@ -30,11 +33,11 @@ for(const [sceneId,scene] of Object.entries(catalog.scenes)){
   const value=normalize(rawText);
   if(!value)continue;
   // Exact field hit gets stronger evidence. Embedded hits must be >=2 Han characters.
-  if(byTerm.has(value))add(value,sceneId,weight,kind+'_exact');
+  for(const term of normalizedTerms.get(value)||[])add(term,sceneId,weight,kind+'_exact');
   for(let i=0;i<value.length;i++)for(let n=2;n<=Math.min(12,value.length-i);n++){
    const word=value.slice(i,i+n);
-   if(n>=value.length||!byTerm.has(word))continue;
-   add(word,sceneId,Math.round(weight*.65*1000)/1000,kind+'_substring');
+   if(n>=value.length)continue;
+   for(const term of normalizedTerms.get(word)||[])add(term,sceneId,Math.round(weight*.65*1000)/1000,kind+'_substring');
   }
  }
 }
