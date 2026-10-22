@@ -76,7 +76,7 @@
       const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
       const result=window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
-      if(state.learningSession){state.learningSession.scene500Difficulty=state.scene500DifficultyByScene?.[scene]||'all';save();}
+      if(state.learningSession){state.learningSession.scene500SceneId=scene;state.learningSession.scene500Difficulty=state.scene500DifficultyByScene?.[scene]||'all';save();}
       return result;
     }
     const result=baseOpenScene(scene);
@@ -84,6 +84,8 @@
       const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
       const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
+      state.learningSession.scene500SceneId=scene;
+      state.learningSession.scene500Difficulty=state.scene500DifficultyByScene?.[scene]||'all';
       state.learningSession.queue=keys;
       state.learningSession.total=keys.length;
       state.learningSession.completed=[];
