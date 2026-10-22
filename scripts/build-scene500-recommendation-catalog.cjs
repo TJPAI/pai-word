@@ -24,13 +24,13 @@ const output={schema:'pai-scene500-recommendation-catalog-v0.1',
  policy:'Build-time catalog only; do not substitute for Core20K/KU or production learning data',
  scene_count:ids.length,scenes};
 fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');
-console.log('Wrote',dest,'with',ids.length,'scenes;',Object.keys(overlay.scenes).length,'draft profiles');
+console.log('Wrote',dest,'with',ids.length,'scenes;',Object.keys(overlay.scenes).length,'scene profiles (all provenance levels)');
 
 // Separate the deployable recommendation asset from home counts and learning data.
 const liteScenes={};
 for(const [id,s] of Object.entries(scenes)){
  const v={name:s.name};
- for(const k of ['description_enriched','aliases','actions','objects','example_queries','negative_terms','quality'])
+ for(const k of ['description_enriched','aliases','actions','objects','example_queries','quality','negative_terms'])
   if(s[k]!==undefined&&(typeof s[k]!=='string'||s[k]))v[k]=s[k];
  // Suppress templated machine-generated aliases that inflate generic-query matches.
  if(s.quality==='machine_generated_unverified')v.aliases=(v.aliases||[]).filter(a=>!a.endsWith('相关交流')&&!/^关于.+的问题$/.test(a));
