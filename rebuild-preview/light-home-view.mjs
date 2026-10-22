@@ -44,6 +44,8 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
    const query=element.querySelector('#scene-query')?.value.trim()||'';
    const difficulty=element.querySelector('#scene-difficulty')?.value||'all';
    const version=++searchVersion;
+   const searchStarted=performance.now();
+   window.PAI_SEARCH_DIAGNOSTICS={state:'loading',queryLength:query.length,difficulty,startedAt:Date.now()};
    ranked=[];page=0;searchStatus=query?'正在查找场景…':'';
    state.sceneSearchUi={query,difficulty,resultIds:[]};persist(state);show();
    if(!query)return;
@@ -51,11 +53,11 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
      if(version!==searchVersion)return;
      ranked=rows.map(r=>typeof r==='string'?r:r.sceneId||r.id).filter(id=>index.scenes[id]);
      state.sceneSearchUi={query,difficulty,resultIds:ranked.slice(0,PAGE_SIZE)};
-     searchStatus='';persist(state);show();
+     searchStatus='';window.PAI_SEARCH_DIAGNOSTICS={state:'ready',elapsedMs:Math.round(performance.now()-searchStarted),resultCount:ranked.length,mode:window.PAI_RECOMMENDATION_MODE||'unknown'};persist(state);show();
    }).catch(error=>{
      if(version!==searchVersion)return;
      searchStatus='场景推荐暂不可用，请重试或浏览场景目录。';
-     window.PAI_RECOMMENDATION_ERROR=String(error);show();
+     window.PAI_RECOMMENDATION_ERROR=String(error);window.PAI_SEARCH_DIAGNOSTICS={state:'error',elapsedMs:Math.round(performance.now()-searchStarted),error:String(error)};show();
    });
   }else onAction(action.dataset.homeAction);
  });
