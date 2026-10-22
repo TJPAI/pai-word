@@ -10,6 +10,7 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   const buffer=await response.arrayBuffer();mark('download');
   let raw;
   if(typeof DecompressionStream!=='undefined')raw=await new Response(new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+  else if(typeof window.PAI_ENSURE_PAKO==='function'){await window.PAI_ENSURE_PAKO();raw=new TextDecoder().decode(window.pako.ungzip(new Uint8Array(buffer)))}
   else if(window.pako?.ungzip)raw=new TextDecoder().decode(window.pako.ungzip(new Uint8Array(buffer)));
   else throw Error('CORE20K_GZIP_NOT_SUPPORTED');
   mark('decompressed');
