@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.6",
+  "source": "home-scene-index-v1 + semantic-overlay-v0.7",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -4050,13 +4050,28 @@
     },
     "S126": {
       "name": "课堂听课",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕课堂听课完成相关学习或校园任务",
+      "aliases": [
+        "听讲",
+        "上课听老师讲授",
+        "讲课",
+        "课堂讲解"
+      ],
+      "actions": [
+        "听讲",
+        "理解课程",
+        "课堂学习"
+      ],
+      "objects": [
+        "老师",
+        "讲台",
+        "课堂"
+      ],
+      "example_queries": [
+        "我上课听不懂老师讲什么"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 41,
@@ -4067,13 +4082,27 @@
     },
     "S127": {
       "name": "课堂提问",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕课堂提问完成相关学习或校园任务",
+      "aliases": [
+        "举手提问",
+        "课堂发问",
+        "问老师问题"
+      ],
+      "actions": [
+        "举手",
+        "提出问题",
+        "课堂提问"
+      ],
+      "objects": [
+        "老师",
+        "问题",
+        "课堂"
+      ],
+      "example_queries": [
+        "我在课堂上想举手提问"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 34,
@@ -4084,13 +4113,27 @@
     },
     "S128": {
       "name": "回答老师问题",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕回答老师问题完成相关学习或校园任务",
+      "aliases": [
+        "回答提问",
+        "课堂答题",
+        "老师点名"
+      ],
+      "actions": [
+        "回答问题",
+        "口头作答",
+        "解释答案"
+      ],
+      "objects": [
+        "老师",
+        "答案",
+        "提问"
+      ],
+      "example_queries": [
+        "老师点名让我回答问题"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 54,
         "basic": 27,
@@ -4101,13 +4144,27 @@
     },
     "S129": {
       "name": "记笔记",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕记笔记完成相关学习或校园任务",
+      "aliases": [
+        "做课堂笔记",
+        "记录重点",
+        "记听课笔记"
+      ],
+      "actions": [
+        "记录",
+        "摘抄",
+        "整理笔记"
+      ],
+      "objects": [
+        "笔记本",
+        "课件",
+        "重点"
+      ],
+      "example_queries": [
+        "我想把课堂重点记下来"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 22,
@@ -4118,13 +4175,27 @@
     },
     "S130": {
       "name": "完成作业",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕完成作业完成相关学习或校园任务",
+      "aliases": [
+        "做作业",
+        "写家庭作业",
+        "完成课后任务"
+      ],
+      "actions": [
+        "解题",
+        "完成练习",
+        "写作业"
+      ],
+      "objects": [
+        "习题",
+        "作业",
+        "截止时间"
+      ],
+      "example_queries": [
+        "老师布置的作业还没写完"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 29,
@@ -4135,13 +4206,27 @@
     },
     "S131": {
       "name": "交作业",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕交作业完成相关学习或校园任务",
+      "aliases": [
+        "提交作业",
+        "上交作业",
+        "作业上传"
+      ],
+      "actions": [
+        "上传",
+        "提交",
+        "交给老师"
+      ],
+      "objects": [
+        "作业文件",
+        "提交入口",
+        "截止日期"
+      ],
+      "example_queries": [
+        "我怎么在线提交作业"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 31,
@@ -4152,13 +4237,27 @@
     },
     "S132": {
       "name": "小组讨论",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕小组讨论完成相关学习或校园任务",
+      "aliases": [
+        "团队课堂讨论",
+        "分组讨论",
+        "小组研讨"
+      ],
+      "actions": [
+        "分组交流",
+        "讨论",
+        "分享观点"
+      ],
+      "objects": [
+        "同学",
+        "小组",
+        "讨论题"
+      ],
+      "example_queries": [
+        "课堂分组讨论该如何表达观点"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 38,
         "basic": 36,
@@ -4169,13 +4268,27 @@
     },
     "S133": {
       "name": "课堂展示",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕课堂展示完成相关学习或校园任务",
+      "aliases": [
+        "做课堂汇报",
+        "展示报告",
+        "学生演讲"
+      ],
+      "actions": [
+        "讲演",
+        "展示幻灯片",
+        "汇报"
+      ],
+      "objects": [
+        "幻灯片",
+        "听众",
+        "讲台"
+      ],
+      "example_queries": [
+        "我要在课堂上做PPT展示"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 32,
@@ -4186,13 +4299,27 @@
     },
     "S134": {
       "name": "实验课",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕实验课完成相关学习或校园任务",
+      "aliases": [
+        "做实验课",
+        "课堂实验",
+        "教学实验"
+      ],
+      "actions": [
+        "操作仪器",
+        "观察实验",
+        "记录结果"
+      ],
+      "objects": [
+        "实验器材",
+        "实验步骤",
+        "实验室"
+      ],
+      "example_queries": [
+        "物理实验课怎么记录测量结果"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 35,
@@ -4203,13 +4330,27 @@
     },
     "S135": {
       "name": "图书馆学习",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕图书馆学习完成相关学习或校园任务",
+      "aliases": [
+        "图书馆自习",
+        "去图书馆学习",
+        "安静自习"
+      ],
+      "actions": [
+        "自习",
+        "阅读",
+        "复习"
+      ],
+      "objects": [
+        "图书馆",
+        "阅览室",
+        "自习座位"
+      ],
+      "example_queries": [
+        "我去图书馆安静地复习"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 35,
@@ -4220,13 +4361,27 @@
     },
     "S136": {
       "name": "借书还书",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕借书还书完成相关学习或校园任务",
+      "aliases": [
+        "图书馆借还书",
+        "续借图书",
+        "归还图书"
+      ],
+      "actions": [
+        "借书",
+        "还书",
+        "续借"
+      ],
+      "objects": [
+        "借书证",
+        "图书",
+        "借阅期限"
+      ],
+      "example_queries": [
+        "图书馆的书怎么续借"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 19,
@@ -4237,13 +4392,27 @@
     },
     "S137": {
       "name": "查找资料",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕查找资料完成相关学习或校园任务",
+      "aliases": [
+        "搜集资料",
+        "检索文献",
+        "寻找学习材料"
+      ],
+      "actions": [
+        "检索",
+        "查阅",
+        "筛选资料"
+      ],
+      "objects": [
+        "数据库",
+        "搜索引擎",
+        "资料"
+      ],
+      "example_queries": [
+        "我要搜集课题相关资料"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 32,
@@ -4254,13 +4423,27 @@
     },
     "S138": {
       "name": "线上课程",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕线上课程完成相关学习或校园任务",
+      "aliases": [
+        "网课",
+        "远程学习",
+        "在线听课"
+      ],
+      "actions": [
+        "观看网课",
+        "在线互动",
+        "完成线上练习"
+      ],
+      "objects": [
+        "网络课程",
+        "视频",
+        "教学平台"
+      ],
+      "example_queries": [
+        "我用电脑参加线上课程"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 23,
         "basic": 20,
@@ -4271,13 +4454,27 @@
     },
     "S139": {
       "name": "选课",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕选课完成相关学习或校园任务",
+      "aliases": [
+        "选修课程",
+        "注册课程",
+        "选课系统"
+      ],
+      "actions": [
+        "查看课程",
+        "选择课程",
+        "注册"
+      ],
+      "objects": [
+        "课表",
+        "选课系统",
+        "学分"
+      ],
+      "example_queries": [
+        "下学期我要选一门课"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 29,
@@ -4288,13 +4485,27 @@
     },
     "S140": {
       "name": "课程退选",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕课程退选完成相关学习或校园任务",
+      "aliases": [
+        "退课",
+        "撤销选课",
+        "取消课程注册"
+      ],
+      "actions": [
+        "退选",
+        "撤销注册",
+        "调整课表"
+      ],
+      "objects": [
+        "课程",
+        "选课系统",
+        "退选截止日"
+      ],
+      "example_queries": [
+        "这门课太难了我想退选"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 27,
@@ -4305,13 +4516,27 @@
     },
     "S141": {
       "name": "考试准备",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕考试准备完成相关学习或校园任务",
+      "aliases": [
+        "备考",
+        "考前复习",
+        "准备测验"
+      ],
+      "actions": [
+        "刷题",
+        "复习",
+        "模拟考试"
+      ],
+      "objects": [
+        "考纲",
+        "练习题",
+        "复习计划"
+      ],
+      "example_queries": [
+        "考试前如何安排复习"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 27,
@@ -4322,13 +4547,27 @@
     },
     "S142": {
       "name": "参加考试",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕参加考试完成相关学习或校园任务",
+      "aliases": [
+        "参加测验",
+        "正式考试",
+        "进入考场"
+      ],
+      "actions": [
+        "答题",
+        "交卷",
+        "遵守考试规则"
+      ],
+      "objects": [
+        "考场",
+        "试卷",
+        "监考老师"
+      ],
+      "example_queries": [
+        "明天去参加期末考试"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 29,
@@ -4339,13 +4578,27 @@
     },
     "S143": {
       "name": "成绩与反馈",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕成绩与反馈完成相关学习或校园任务",
+      "aliases": [
+        "查看成绩",
+        "成绩反馈",
+        "试卷讲评"
+      ],
+      "actions": [
+        "查分",
+        "分析错题",
+        "听取反馈"
+      ],
+      "objects": [
+        "成绩单",
+        "评语",
+        "评分"
+      ],
+      "example_queries": [
+        "老师给我的考试成绩和反馈"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 41,
@@ -4356,13 +4609,27 @@
     },
     "S144": {
       "name": "论文写作",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕论文写作完成相关学习或校园任务",
+      "aliases": [
+        "写学术论文",
+        "撰写论文",
+        "论文初稿"
+      ],
+      "actions": [
+        "起草",
+        "修改论文",
+        "组织章节"
+      ],
+      "objects": [
+        "摘要",
+        "正文",
+        "论文"
+      ],
+      "example_queries": [
+        "我正在撰写研究论文"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 52,
         "basic": 19,
@@ -4373,13 +4640,27 @@
     },
     "S145": {
       "name": "引用与参考文献",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕引用与参考文献完成相关学习或校园任务",
+      "aliases": [
+        "引用文献",
+        "参考书目",
+        "引文格式"
+      ],
+      "actions": [
+        "标注引用",
+        "整理参考文献",
+        "核对格式"
+      ],
+      "objects": [
+        "参考文献",
+        "DOI",
+        "引文"
+      ],
+      "example_queries": [
+        "论文参考文献应该如何引用"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 28,
         "basic": 22,
@@ -4390,13 +4671,27 @@
     },
     "S146": {
       "name": "向老师请教",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕向老师请教完成相关学习或校园任务",
+      "aliases": [
+        "请教老师",
+        "向导师求助",
+        "课后问老师"
+      ],
+      "actions": [
+        "咨询",
+        "请教",
+        "预约老师"
+      ],
+      "objects": [
+        "老师",
+        "导师",
+        "办公室"
+      ],
+      "example_queries": [
+        "我想找老师请教课程难题"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 38,
         "basic": 37,
@@ -4407,13 +4702,27 @@
     },
     "S147": {
       "name": "和同学合作",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕和同学合作完成相关学习或校园任务",
+      "aliases": [
+        "合作学习",
+        "同学协作",
+        "团队完成任务"
+      ],
+      "actions": [
+        "分工",
+        "协作",
+        "互相帮助"
+      ],
+      "objects": [
+        "同学",
+        "团队",
+        "共享文档"
+      ],
+      "example_queries": [
+        "和同学一起完成项目"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 40,
         "basic": 35,
@@ -4424,13 +4733,27 @@
     },
     "S148": {
       "name": "校园活动",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕校园活动完成相关学习或校园任务",
+      "aliases": [
+        "校园社团活动",
+        "学校活动",
+        "大学校园活动"
+      ],
+      "actions": [
+        "参加活动",
+        "组织活动",
+        "报名"
+      ],
+      "objects": [
+        "社团",
+        "校园",
+        "学生会"
+      ],
+      "example_queries": [
+        "学校社团今天组织什么活动"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 25,
@@ -4441,13 +4764,27 @@
     },
     "S149": {
       "name": "申请奖学金",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕申请奖学金完成相关学习或校园任务",
+      "aliases": [
+        "奖学金申请",
+        "申请助学金",
+        "奖学金材料"
+      ],
+      "actions": [
+        "申请",
+        "提交材料",
+        "审核资格"
+      ],
+      "objects": [
+        "奖学金",
+        "成绩单",
+        "申请表"
+      ],
+      "example_queries": [
+        "我想申请大学奖学金"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 33,
@@ -4458,13 +4795,27 @@
     },
     "S150": {
       "name": "毕业与学位",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "围绕毕业与学位完成相关学习或校园任务",
+      "aliases": [
+        "毕业典礼",
+        "获得学位",
+        "毕业手续"
+      ],
+      "actions": [
+        "申请毕业",
+        "参加典礼",
+        "领取证书"
+      ],
+      "objects": [
+        "毕业证",
+        "学位证",
+        "毕业典礼"
+      ],
+      "example_queries": [
+        "我今年毕业准备领取学位证"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 42,
         "basic": 32,
