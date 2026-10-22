@@ -86,3 +86,13 @@ test('all pages retain ordering and never introduce ineligible scenes',()=>{
  assert.ok(combined.every(r=>ids.includes(r.sceneId)));
  assert.equal(new Set(combined.map(r=>r.sceneId)).size,combined.length);
 });
+
+test('invalid canonical identities and empty names are rejected at init',()=>{
+ const malformed=structuredClone(catalog);
+ malformed.scenes.S999=malformed.scenes.S500;
+ delete malformed.scenes.S500;
+ assert.throws(()=>createScene500Recommender({catalog:malformed}),/SCENE500_INVALID_CATALOG/);
+ const empty=structuredClone(catalog);
+ empty.scenes.S155.name=' ';
+ assert.throws(()=>createScene500Recommender({catalog:empty}),/SCENE500_INVALID_CATALOG/);
+});
