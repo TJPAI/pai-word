@@ -10,7 +10,7 @@ const started=performance.now();
 async function readLightHomeSnapshot(){
  if(!window.indexedDB)return null;
  const db=await new Promise((resolve,reject)=>{
-  const request=indexedDB.open('pai-word-ku-durable-v1',3);
+  const request=indexedDB.open(location.pathname.startsWith('/pai-word-preview/')?'pai-word-ku-durable-preview-v1':'pai-word-ku-durable-v1',3);
   request.onupgradeneeded=()=>{const d=request.result;for(const name of ['state','attempts','settings','home'])if(!d.objectStoreNames.contains(name))d.createObjectStore(name)};
   request.onsuccess=()=>resolve(request.result);
   request.onerror=()=>reject(request.error);
@@ -28,7 +28,7 @@ async function readLightHomeSnapshot(){
 }
 async function writeLightHome(snapshot){
  const db=await new Promise((resolve,reject)=>{
-  const request=indexedDB.open('pai-word-ku-durable-v1',3);
+  const request=indexedDB.open(location.pathname.startsWith('/pai-word-preview/')?'pai-word-ku-durable-preview-v1':'pai-word-ku-durable-v1',3);
   request.onsuccess=()=>resolve(request.result);
   request.onerror=()=>reject(request.error);
  });
