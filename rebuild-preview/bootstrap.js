@@ -84,7 +84,7 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
       window.PAI_V22_SCENE_OPEN_WRAPPED=true;
       const inFlight=new Map();
       window.PAI_SCENE_SEARCH.open=(scene,difficulty='all')=>{
-        if(!/^S\\d{3}$/.test(scene))return originalOpen(scene,difficulty);
+        if(!/^S[0-9]{3}$/.test(scene))return originalOpen(scene,difficulty);
         if(inFlight.has(scene))return inFlight.get(scene);
         const job=window.PAI_ENSURE_SCENE500_TOP100(scene)
           .then(()=>originalOpen(scene,difficulty))
