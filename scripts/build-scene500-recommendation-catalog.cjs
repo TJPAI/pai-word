@@ -32,6 +32,8 @@ for(const [id,s] of Object.entries(scenes)){
  const v={name:s.name};
  for(const k of ['description_enriched','aliases','actions','objects','example_queries','negative_terms','quality'])
   if(s[k]!==undefined&&(typeof s[k]!=='string'||s[k]))v[k]=s[k];
+ // Suppress templated machine-generated aliases that inflate generic-query matches.
+ if(s.quality==='machine_generated_unverified')v.aliases=(v.aliases||[]).filter(a=>!a.endsWith('相关交流')&&!/^关于.+的问题$/.test(a));
  liteScenes[id]=v;
 }
 const lite={schema:'pai-scene500-recommendation-catalog-v0.2',scene_count:500,scenes:liteScenes};
