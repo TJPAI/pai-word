@@ -10,8 +10,20 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   const buffer=await response.arrayBuffer();mark('download');
   let raw;
   if(typeof DecompressionStream!=='undefined')raw=await new Response(new Blob([buffer]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
-  else if(window.pako?.ungzip)raw=new TextDecoder().decode(window.pako.ungzip(new Uint8Array(buffer)));
-  else throw Error('CORE20K_GZIP_NOT_SUPPORTED');
+  else {
+   // Safari versions without DecompressionStream use a lazy fallback only when learning starts.
+   if(!window.pako?.ungzip){
+     window.PAI_CORE20K_PAKO_PROMISE ||= new Promise((resolve,reject)=>{
+       const script=document.createElement('script');
+       script.src='https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako_inflate.min.js';
+       script.onload=()=>window.pako?.ungzip?resolve(window.pako):reject(Error('CORE20K_GZIP_FALLBACK_MISSING'));
+       script.onerror=()=>reject(Error('CORE20K_GZIP_FALLBACK_NETWORK'));
+       document.head.appendChild(script);
+     }).catch(error=>{window.PAI_CORE20K_PAKO_PROMISE=null;throw error});
+     await window.PAI_CORE20K_PAKO_PROMISE;
+   }
+   raw=new TextDecoder().decode(window.pako.ungzip(new Uint8Array(buffer)));
+  }
   mark('decompressed');
   const {buildCore20KRuntime}=await adapterReady;
   const core=buildCore20KRuntime(JSON.parse(raw));mark('indexed');
