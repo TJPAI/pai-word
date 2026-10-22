@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.5",
+  "source": "home-scene-index-v1 + semantic-overlay-v0.6",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -3275,13 +3275,27 @@
     },
     "S101": {
       "name": "制定旅行计划",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "规划旅行时间、路线、交通和住宿",
+      "aliases": [
+        "规划旅行",
+        "做旅游攻略",
+        "行程安排"
+      ],
+      "actions": [
+        "规划行程",
+        "制定预算",
+        "安排路线"
+      ],
+      "objects": [
+        "行程表",
+        "日期",
+        "预算"
+      ],
+      "example_queries": [
+        "我准备下个月出国旅游怎样安排行程"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 31,
@@ -3292,13 +3306,27 @@
     },
     "S102": {
       "name": "选择目的地",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "比较并决定要前往的旅游城市或景区",
+      "aliases": [
+        "去哪旅游",
+        "挑旅行地点",
+        "旅游目的地"
+      ],
+      "actions": [
+        "比较目的地",
+        "选择城市",
+        "了解景点"
+      ],
+      "objects": [
+        "城市",
+        "景区",
+        "目的地"
+      ],
+      "example_queries": [
+        "我还没决定暑假去哪个国家旅游"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 36,
@@ -3309,13 +3337,27 @@
     },
     "S103": {
       "name": "预订机票",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "查询航班票价并购买飞机票",
+      "aliases": [
+        "订飞机票",
+        "买机票",
+        "机票预订"
+      ],
+      "actions": [
+        "查航班",
+        "订票",
+        "选座购买"
+      ],
+      "objects": [
+        "航班",
+        "机票",
+        "票价"
+      ],
+      "example_queries": [
+        "我想预订去伦敦的机票"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 30,
         "basic": 24,
@@ -3326,13 +3368,27 @@
     },
     "S104": {
       "name": "机场值机",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "起飞前办理航班值机和托运行李手续",
+      "aliases": [
+        "办理值机",
+        "机场报到",
+        "check in"
+      ],
+      "actions": [
+        "办登机牌",
+        "办理值机",
+        "托运行李"
+      ],
+      "objects": [
+        "值机柜台",
+        "登机牌",
+        "托运行李"
+      ],
+      "example_queries": [
+        "到机场之后在哪里办登机牌"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 33,
@@ -3343,13 +3399,27 @@
     },
     "S105": {
       "name": "安检",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "经过机场安全检查及随身物品检查",
+      "aliases": [
+        "机场安检",
+        "安全检查",
+        "过安检"
+      ],
+      "actions": [
+        "排队安检",
+        "检查随身物品",
+        "通过安检"
+      ],
+      "objects": [
+        "安检通道",
+        "液体",
+        "安检员"
+      ],
+      "example_queries": [
+        "机场安检时液体能带多少"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 56,
         "basic": 22,
@@ -3360,13 +3430,27 @@
     },
     "S106": {
       "name": "登机",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "根据登机牌找到登机口并登上飞机",
+      "aliases": [
+        "上飞机",
+        "登机口",
+        "boarding"
+      ],
+      "actions": [
+        "寻找登机口",
+        "排队登机",
+        "出示登机牌"
+      ],
+      "objects": [
+        "登机口",
+        "登机牌",
+        "飞机"
+      ],
+      "example_queries": [
+        "我的航班在哪个登机口上飞机"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 33,
@@ -3377,13 +3461,27 @@
     },
     "S107": {
       "name": "机上服务",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "乘机过程中向乘务员寻求服务",
+      "aliases": [
+        "飞机上服务",
+        "机舱服务",
+        "空乘服务"
+      ],
+      "actions": [
+        "要饮料",
+        "请求毛毯",
+        "呼叫乘务员"
+      ],
+      "objects": [
+        "乘务员",
+        "座椅",
+        "机上餐食"
+      ],
+      "example_queries": [
+        "在飞机上怎么向空乘要水"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 30,
@@ -3394,13 +3492,27 @@
     },
     "S108": {
       "name": "转机",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在中转机场换乘另一趟航班",
+      "aliases": [
+        "航班中转",
+        "换乘飞机",
+        "转机衔接"
+      ],
+      "actions": [
+        "赶转机",
+        "查转机口",
+        "办理中转"
+      ],
+      "objects": [
+        "中转机场",
+        "连接航班",
+        "转机口"
+      ],
+      "example_queries": [
+        "国际航班转机需要重新安检吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 27,
@@ -3411,13 +3523,27 @@
     },
     "S109": {
       "name": "入境检查",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "入境时接受护照及签证证件核验",
+      "aliases": [
+        "入境审查",
+        "移民局检查",
+        "边检入境"
+      ],
+      "actions": [
+        "出示护照",
+        "回答入境问题",
+        "查验签证"
+      ],
+      "objects": [
+        "护照",
+        "签证",
+        "边检官"
+      ],
+      "example_queries": [
+        "抵达美国如何回答入境官问题"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 31,
@@ -3428,13 +3554,27 @@
     },
     "S110": {
       "name": "海关申报",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "入境时向海关申报携带的货物或物品",
+      "aliases": [
+        "过海关",
+        "申报物品",
+        "customs declaration"
+      ],
+      "actions": [
+        "填写申报单",
+        "申报物品",
+        "接受海关检查"
+      ],
+      "objects": [
+        "海关",
+        "申报单",
+        "物品"
+      ],
+      "example_queries": [
+        "入境时携带现金需要向海关申报吗"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 28,
         "basic": 25,
@@ -3445,13 +3585,27 @@
     },
     "S111": {
       "name": "领取行李",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "落地后在行李转盘提取托运行李",
+      "aliases": [
+        "机场拿行李",
+        "取托运行李",
+        "行李提取"
+      ],
+      "actions": [
+        "找行李转盘",
+        "领取行李",
+        "核对箱子"
+      ],
+      "objects": [
+        "行李转盘",
+        "行李箱",
+        "行李牌"
+      ],
+      "example_queries": [
+        "下飞机后去哪领取托运行李"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 69,
         "basic": 27,
@@ -3462,13 +3616,27 @@
     },
     "S112": {
       "name": "行李丢失",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "航班抵达后处理托运行李未到达问题",
+      "aliases": [
+        "行李没到",
+        "托运行李遗失",
+        "找不到行李"
+      ],
+      "actions": [
+        "报告丢失",
+        "填写遗失表",
+        "联系航空公司"
+      ],
+      "objects": [
+        "行李服务台",
+        "行李标签",
+        "遗失行李"
+      ],
+      "example_queries": [
+        "飞机落地后我的托运行李不见了"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 35,
@@ -3479,13 +3647,27 @@
     },
     "S113": {
       "name": "预订酒店",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "选择住宿并提前预订酒店客房",
+      "aliases": [
+        "订酒店",
+        "酒店订房",
+        "住宿预订"
+      ],
+      "actions": [
+        "查空房",
+        "选择房型",
+        "确认预订"
+      ],
+      "objects": [
+        "酒店",
+        "订单",
+        "房型"
+      ],
+      "example_queries": [
+        "我想提前预订下周的酒店"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 69,
         "basic": 29,
@@ -3496,13 +3678,27 @@
     },
     "S114": {
       "name": "酒店入住",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "抵达酒店后在前台登记并领取房卡",
+      "aliases": [
+        "办理入住",
+        "酒店check in",
+        "酒店登记"
+      ],
+      "actions": [
+        "登记入住",
+        "出示证件",
+        "领取房卡"
+      ],
+      "objects": [
+        "前台",
+        "房卡",
+        "预订号"
+      ],
+      "example_queries": [
+        "我到酒店前台办理入住手续"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 29,
         "basic": 21,
@@ -3513,13 +3709,27 @@
     },
     "S115": {
       "name": "酒店设施",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "了解并使用酒店的公共设施",
+      "aliases": [
+        "酒店健身房",
+        "酒店泳池",
+        "酒店早餐设施"
+      ],
+      "actions": [
+        "寻找设施",
+        "询问开放时间",
+        "使用设施"
+      ],
+      "objects": [
+        "健身房",
+        "游泳池",
+        "电梯"
+      ],
+      "example_queries": [
+        "酒店的健身房在哪里"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 57,
         "basic": 19,
@@ -3530,13 +3740,27 @@
     },
     "S116": {
       "name": "酒店服务请求",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向酒店工作人员提出客房及其他服务需求",
+      "aliases": [
+        "客房服务",
+        "酒店叫服务",
+        "请求酒店帮助"
+      ],
+      "actions": [
+        "请求清洁",
+        "加毛巾",
+        "请求送物品"
+      ],
+      "objects": [
+        "客房服务",
+        "毛巾",
+        "服务台"
+      ],
+      "example_queries": [
+        "请酒店送两条毛巾到房间"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 24,
         "basic": 23,
@@ -3547,13 +3771,27 @@
     },
     "S117": {
       "name": "酒店投诉",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向酒店报告服务或房间问题并要求解决",
+      "aliases": [
+        "投诉酒店",
+        "酒店服务不好",
+        "客房问题投诉"
+      ],
+      "actions": [
+        "投诉",
+        "要求换房",
+        "反馈问题"
+      ],
+      "objects": [
+        "前台",
+        "噪声",
+        "房间故障"
+      ],
+      "example_queries": [
+        "酒店房间很吵我想投诉"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 45,
         "basic": 35,
@@ -3564,13 +3802,27 @@
     },
     "S118": {
       "name": "酒店退房",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "离开酒店时结算费用并交还房卡",
+      "aliases": [
+        "退酒店房",
+        "酒店退房",
+        "checkout"
+      ],
+      "actions": [
+        "办理退房",
+        "结清账单",
+        "交还房卡"
+      ],
+      "objects": [
+        "房卡",
+        "账单",
+        "前台"
+      ],
+      "example_queries": [
+        "明天早上怎样办理酒店退房"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 30,
         "basic": 25,
@@ -3581,13 +3833,27 @@
     },
     "S119": {
       "name": "青年旅舍与民宿",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "入住青年旅舍或私人经营的短租住宿",
+      "aliases": [
+        "青旅",
+        "住民宿",
+        "青年旅舍"
+      ],
+      "actions": [
+        "住多人间",
+        "联系房东",
+        "办理民宿入住"
+      ],
+      "objects": [
+        "青旅床位",
+        "房东",
+        "民宿"
+      ],
+      "example_queries": [
+        "我想预订一个青年旅舍床位"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 29,
         "basic": 23,
@@ -3598,13 +3864,27 @@
     },
     "S120": {
       "name": "旅游咨询中心",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在游客服务中心获取旅游资讯",
+      "aliases": [
+        "游客中心",
+        "旅游问讯处",
+        "tourist information"
+      ],
+      "actions": [
+        "询问路线",
+        "索取地图",
+        "咨询开放时间"
+      ],
+      "objects": [
+        "游客中心",
+        "旅游地图",
+        "咨询人员"
+      ],
+      "example_queries": [
+        "旅游咨询中心在哪里可以拿地图"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 30,
@@ -3615,13 +3895,27 @@
     },
     "S121": {
       "name": "景点购票",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "购买或预约景区景点门票",
+      "aliases": [
+        "买景区门票",
+        "景点门票预订",
+        "门票预约"
+      ],
+      "actions": [
+        "买门票",
+        "预约入场",
+        "验证门票"
+      ],
+      "objects": [
+        "门票",
+        "售票处",
+        "预约码"
+      ],
+      "example_queries": [
+        "如何预约景点的入场门票"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 29,
@@ -3632,13 +3926,27 @@
     },
     "S122": {
       "name": "参观博物馆",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "参观博物馆展品并了解参观规则",
+      "aliases": [
+        "逛博物馆",
+        "博物馆参观",
+        "看展览"
+      ],
+      "actions": [
+        "参观展品",
+        "了解展览",
+        "听讲解"
+      ],
+      "objects": [
+        "博物馆",
+        "展厅",
+        "展品"
+      ],
+      "example_queries": [
+        "我想去博物馆看展览"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 47,
         "basic": 24,
@@ -3649,13 +3957,27 @@
     },
     "S123": {
       "name": "导游与跟团",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "跟随导游参加有组织的旅行团",
+      "aliases": [
+        "跟团游",
+        "导游讲解",
+        "旅行团"
+      ],
+      "actions": [
+        "跟随导游",
+        "集合",
+        "听讲解"
+      ],
+      "objects": [
+        "导游",
+        "旅行团",
+        "集合地点"
+      ],
+      "example_queries": [
+        "我想参加导游带领的旅行团"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 35,
@@ -3666,13 +3988,27 @@
     },
     "S124": {
       "name": "自由行与打卡",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "自行游览景点并拍照记录旅行",
+      "aliases": [
+        "自由行",
+        "旅游打卡",
+        "自助旅游"
+      ],
+      "actions": [
+        "自行游览",
+        "拍照",
+        "打卡"
+      ],
+      "objects": [
+        "景点",
+        "相机",
+        "旅行路线"
+      ],
+      "example_queries": [
+        "我们不跟团自己去景点打卡"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 30,
         "basic": 22,
@@ -3683,13 +4019,27 @@
     },
     "S125": {
       "name": "旅行突发情况",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "应对旅途中发生的紧急或意外事件",
+      "aliases": [
+        "旅行遇险",
+        "旅途意外",
+        "旅行紧急状况"
+      ],
+      "actions": [
+        "寻求帮助",
+        "联系救援",
+        "调整行程"
+      ],
+      "objects": [
+        "护照遗失",
+        "紧急电话",
+        "意外事故"
+      ],
+      "example_queries": [
+        "旅行时护照丢了该怎么办"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 45,
         "basic": 30,
