@@ -14,6 +14,7 @@ on:
       - 'tests/scene500-recommendation-catalog.test.cjs'
       - 'scene500-recommendation/**'
       - 'scripts/audit-scene500-recommendation.cjs'
+      - 'scripts/evaluate-scene500-recommendation.cjs'
       - 'data/scene500-recommendation-catalog-v0.1.json'
       - 'scene500-recommendation/catalog-v0.2.json'
       - 'rebuild-preview/data/home-scene-index-v1.json'
@@ -41,5 +42,7 @@ jobs:
         run: node scripts/audit-scene500-recommendation.cjs --strict
       - name: Test canonical title retrieval diagnostic
         run: node --test scene500-recommendation/coverage.test.mjs
+      - name: Report natural language query diagnostics (unreviewed)
+        run: node scripts/evaluate-scene500-recommendation.cjs --assert-structure
       - name: Test independent browser ESM module
         run: node --test scene500-recommendation/engine.test.mjs
