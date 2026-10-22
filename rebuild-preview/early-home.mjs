@@ -23,9 +23,23 @@ try{
      }).filter(Boolean).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id)).slice(0,5);
    };
    const defer=(action,scene,difficulty)=>{
+     // Join concurrent user taps to the one authoritative Stage-B bootstrap.
+     if(window.PAI_EARLY_HOME.clicked)return;
      window.PAI_EARLY_HOME.clicked={action,scene,difficulty};
      const e=document.getElementById('pai-early-notice');
      if(e)e.textContent='正在准备学习功能…';
+     const loader=window.PAI_LEARNING_RUNTIME_LOAD;
+     if(typeof loader!=='function'){
+       window.PAI_EARLY_HOME.clicked=null;
+       if(e)e.textContent='学习模块尚未就绪，请重试。';
+       return;
+     }
+     loader().catch(error=>{
+       window.PAI_EARLY_HOME.clicked=null;
+       const notice=document.getElementById('pai-early-notice');
+       if(notice)notice.textContent='学习功能加载失败，请检查网络后重试。';
+       console.error('Learning entry failed',error);
+     });
    };
    // Budget is not yet authoritative; use last-saved scalar settings only, and label status as pending.
    const budget={dailyCompleted:0,dailyLimit:Number(state.newPerDay)||50,roundLimit:Number(state.wordsPerRound)||10,due:0,reinforcementRemaining:0};
