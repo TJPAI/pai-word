@@ -68,6 +68,8 @@ jobs:
         run: node --test tests/scene500-chinese20k-intake.test.cjs
       - name: Test optional real V0.9.4 asset integration (skipped unless delivered)
         run: node --test scene500-recommendation/zh-v094-real-asset.test.mjs
+      - name: End-to-end V0.9.4 candidate-to-metrics smoke test
+        run: node --test tests/scene500-v094-end-to-end.test.cjs
       - name: Test V0.9.4 lexical field substring builder
         run: node --test tests/scene500-v094-lexical.test.cjs
       - name: Test V0.9.4 exact-first word identity and overlap extraction
