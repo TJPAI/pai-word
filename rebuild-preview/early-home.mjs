@@ -2,6 +2,7 @@
 // Never writes learning records. Existing runtime takes over when ready.
 import {prepareLightweightHome} from './light-home-startup.mjs';
 import {mountLightHome} from './light-home-view.mjs';
+import {recommendScene500} from './scene-recommendation-adapter.mjs';
 const app=document.getElementById('app');
 const started=performance.now();
 window.PAI_EARLY_HOME={ready:false,clicked:null};
@@ -11,7 +12,7 @@ try{
    const saved=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};
    const bootQuery=document.getElementById('scene-query')?.value||'';
    const ui={sceneSearchUi:{...saved,query:saved.query||bootQuery},scene500Recent:state.scene500Recent||[]};
-   const search=(query,difficulty)=>{
+   const fallbackSearch=(query,difficulty)=>{
      const q=query.trim().toLowerCase();
      if(!q)return [];
      return Object.entries(index.scenes).map(([id,s])=>{
@@ -21,6 +22,17 @@ try{
        for(let i=0;i<q.length-1;i++)if(hay.includes(q.slice(i,i+2)))score++;
        return score?{id,score}:null;
      }).filter(Boolean).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id)).slice(0,5);
+   };
+   const search=async(query,difficulty)=>{
+     try{
+       const {snapshot}=await recommendScene500(query,difficulty,index,{limit:100});
+       window.PAI_RECOMMENDATION_MODE='alpha';
+       return snapshot.results;
+     }catch(error){
+       window.PAI_RECOMMENDATION_MODE='fallback';
+       window.PAI_RECOMMENDATION_ERROR=String(error);
+       return fallbackSearch(query,difficulty);
+     }
    };
    const defer=(action,scene,difficulty)=>{
      // Join concurrent user taps to the one authoritative Stage-B bootstrap.
