@@ -51,3 +51,17 @@ test('catalog is recommendation-only without home/SRS counters',()=>{
   assert.equal(item.ku_id,undefined);
  }
 });
+
+test('generic description bigrams alone cannot pass default relevance threshold',()=>{
+ const scenes=Object.fromEntries(Array.from({length:500},(_,i)=>{
+  const id='S'+String(i+1).padStart(3,'0');
+  return [id,{name:'测试项'+String(i+1),description_enriched:'围绕数据讨论研究信息和方法的主题',quality:'machine_generated_unverified'}];
+ }));
+ const recommender=createScene500Recommender({catalog:{scene_count:500,scenes}});
+ assert.equal(recommender.search('需要讨论研究信息和方法').total,0);
+});
+test('direct name evidence remains retrievable, even without semantic fields',()=>{
+ const recommender=createScene500Recommender({catalog});
+ const matches=recommender.search('我想学机场值机',{limit:100}).results;
+ assert.ok(matches.some(r=>r.sceneId==='S104'));
+});
