@@ -4,7 +4,7 @@ const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，
 const unique=a=>[...new Set(a.filter(Boolean))];
 // Small, generic Chinese function-word strip for order-independent phrase matching.
 const weakWords=/^(?:我|你|他|她|它|们|的|了|过|在|和|与|把|给|向|想|要|请|问|如何|怎么|怎样|可以|一下|一个|一些|需要|进行|有关|相关|问题|情况)$/;
-const segments=x=>normalize(x).match(/[\u4e00-\u9fff]{2,}|[a-z0-9]+/g)||[];
+const segments=x=>String(x??'').normalize('NFKC').toLowerCase().match(/[\u4e00-\u9fff]{2,}|[a-z0-9]+/g)||[];
 function unorderedEvidence(q,p){
  const parts=segments(p).filter(x=>!weakWords.test(x)&&x.length>=2);
  if(parts.length<2||parts.length>4)return false;
