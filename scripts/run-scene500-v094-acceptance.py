@@ -22,7 +22,13 @@ def run():
         file_name='zh-core20k-v094.min.json'
         manifest=json.loads(z.read('zh-core20k-v094-manifest.json'))
         raw=z.read(file_name)
+        for name,record in manifest.get('files',{}).items():
+            actual=z.read(name)
+            if len(actual)!=record['bytes'] or digest(actual)!=record['sha256']:
+                raise ValueError('MANIFEST_ASSET_MISMATCH: '+name)
         if len(raw)!=1354769: raise ValueError('COMPACT_ASSET_SIZE_MISMATCH')
+        if manifest.get('data_version')!='0.9.4-rc.2' or manifest.get('contract_version')!='1.1':
+            raise ValueError('UNEXPECTED_V094_CONTRACT_VERSION')
         lex=json.loads(raw)
         if len(lex.get('terms',[]))!=20000: raise ValueError('TERM_COUNT_MISMATCH')
         if len(set(x.get('id') for x in lex['terms']))!=20000: raise ValueError('TERM_ID_COLLISION')
@@ -38,7 +44,7 @@ def run():
               'catalog_sha256':digest(catalog.read_bytes()),'terms':20000,'associations':result['association_edges'],
               'baseline':{k:result['baseline'][k] for k in ('recall_at5','mrr_at10','ndcg_at5')},
               'hybrid':{k:result['hybrid'][k] for k in ('recall_at5','mrr_at10','ndcg_at5')},
-              'manifest_available':isinstance(manifest,dict)}
+              'manifest_verified':True,'manifest_contract_version':manifest['contract_version']}
             (output/'receipt.json').write_text(json.dumps(receipt,ensure_ascii=False,indent=2)+'\n')
             print(json.dumps(receipt,ensure_ascii=False))
 if __name__=='__main__':run()
