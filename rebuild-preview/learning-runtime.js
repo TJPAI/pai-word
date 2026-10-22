@@ -186,7 +186,7 @@
       let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;clearAudioWatchdog();activeSpeech=false;notifyAudioIdle();onDone?.()};
       u.onend=done;u.onerror=done;
       if(synth.paused)synth.resume();
-      try{synth.speak(u);const scaledRate=Math.max(.5,Math.min(2,Number(u.rate)||1));const maxWait=Math.min(30000,Math.max(8000,Math.ceil(String(text).length*650/scaledRate)+5000));audioWatchdog=setTimeout(()=>{if(id!==audioGeneration||ended)return;console.warn('Speech synthesis completion timed out');if(synth.speaking||synth.pending)synth.cancel();done()},maxWait)}catch(e){console.warn('Speech synthesis failed',e);done()}
+      try{synth.speak(u);const scaledRate=Math.max(.5,Math.min(2,Number(u.rate)||1));const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));audioWatchdog=setTimeout(()=>{if(id!==audioGeneration||ended)return;console.warn('Speech synthesis completion timed out');if(synth.speaking||synth.pending)synth.cancel();done()},maxWait)}catch(e){console.warn('Speech synthesis failed',e);done()}
     }
   };
   window.speak=(text,rate=.84)=>window.PAI_AUDIO.play(text,rate);
@@ -375,7 +375,7 @@
    if(repeated>=count){ratingSpeechStarted=false;later(()=>finish(g),Math.max(0,ratingDeadline-Date.now()));return}
    repeated++;ratingSpeechStarted=true;
    const done=()=>{if(!valid(g)||phase!=='answer')return;if(repeated>=count)next();else later(next,config().repeatGap*1000)};
-   if(word&&window.PAI_AUDIO?.play)window.PAI_AUDIO.play(word,.84,done);else done();
+   if(word&&state.autoPronounce?.swipe&&window.PAI_AUDIO?.play)window.PAI_AUDIO.play(word,.84,done);else done();
   };
   let startedRating=false;
   const begin=()=>{if(startedRating||!valid(g)||phase!=='answer')return;startedRating=true;cancelAudioWait=null;next()};
@@ -400,7 +400,7 @@
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
   const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>{if(!valid(g)||phase!=='repeating')return;const k=visibleKey;state.revealed=false;ready(k,true);window.render?.()},c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
-  if(window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
+  if(state.autoPronounce?.question&&window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
  function tap(){
   if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.()||['committing','repeating'].includes(phase))return;
@@ -411,13 +411,13 @@
    if(cancelAudioWait){cancelAudioWait();cancelAudioWait=null}window.PAI_AUDIO?.stop();ratingSpeechStarted=false;if(timer!==null)clearTimeout(timer);timer=null;
    holdAfterRating=true;finish(++generation);
    window.render?.();
-   if(!state.autoBrowseEnabled&&word)window.PAI_AUDIO?.play(word,.84);
+   if(!state.autoBrowseEnabled&&word&&state.autoPronounce?.[state.revealed?'swipe':'question'])window.PAI_AUDIO?.play(word,.84);
    return;
   }
   if(pageRevealed()){responseMs=Math.max(0,Date.now()-began);phase='answer-paused'}
   else ready(visibleKey,true);
   window.render?.();
-  if(!state.autoBrowseEnabled&&word)window.PAI_AUDIO?.play(word,.84);
+  if(!state.autoBrowseEnabled&&word&&state.autoPronounce?.[state.revealed?'swipe':'question'])window.PAI_AUDIO?.play(word,.84);
   // In auto-browse, blank taps only change the face. Keep the original timer and audio untouched.
  }
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
