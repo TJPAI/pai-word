@@ -20,7 +20,7 @@ const words={source_version:String(lex.version),terms:lex.terms.map(x=>({
 const base=createScene500Recommender({catalog});
 const hybrid=createScene500ContractAdapter({catalog,lexicon:words,associations});
 function evaluate(engine){
- let recall=0,mrr=0,dcg=0,denom=0,zero=0;
+ let recall=0,mrr=0,mrr5=0,dcg=0,denom=0,zero=0;
  const details=[];
  for(const c of holdout.cases){
   const ids=engine.search(c.query,{limit:10}).results.map(x=>x.sceneId);
@@ -31,14 +31,14 @@ function evaluate(engine){
   const first=ids.findIndex(x=>expected.includes(x));
   const ideal=expected.slice(0,5).reduce((a,_,i)=>a+1/Math.log2(i+2),0);
   const actual=ids.slice(0,5).reduce((a,id,i)=>a+(expected.includes(id)?1/Math.log2(i+2):0),0);
-  recall+=at5;mrr+=first>=0?1/(first+1):0;dcg+=ideal?actual/ideal:0;
+  recall+=at5;mrr+=first>=0?1/(first+1):0;mrr5+=first>=0&&first<5?1/(first+1):0;dcg+=ideal?actual/ideal:0;
   if(!ids.length)zero++;
   details.push({query:c.query,expected,top5:ids.slice(0,5),recall_at5:at5,first_rank:first>=0?first+1:null});
  }
- return {labeled_queries:denom,recall_at5:recall/denom,mrr_at10:mrr/denom,ndcg_at5:dcg/denom,no_hit_queries:zero,details};
+ return {labeled_queries:denom,recall_at5:recall/denom,mrr_at5:mrr5/denom,mrr_at10:mrr/denom,ndcg_at5:dcg/denom,no_hit_queries:zero,details};
 }
 const b=evaluate(base),h=evaluate(hybrid);
 const result={status:'diagnostic_unreviewed_not_blind',lexicon_version:lex.version,association_version:associations.association_version,
- association_edges:associations.links.length,baseline:b,hybrid:h,delta:{recall_at5:h.recall_at5-b.recall_at5,mrr_at10:h.mrr_at10-b.mrr_at10,ndcg_at5:h.ndcg_at5-b.ndcg_at5}};
+ association_edges:associations.links.length,baseline:b,hybrid:h,delta:{recall_at5:h.recall_at5-b.recall_at5,mrr_at5:h.mrr_at5-b.mrr_at5,mrr_at10:h.mrr_at10-b.mrr_at10,ndcg_at5:h.ndcg_at5-b.ndcg_at5}};
 fs.writeFileSync(reportPath,JSON.stringify(result,null,2)+'\n');
-console.log(JSON.stringify({edges:result.association_edges,baseline:{recall_at5:b.recall_at5,mrr_at10:b.mrr_at10,ndcg_at5:b.ndcg_at5},hybrid:{recall_at5:h.recall_at5,mrr_at10:h.mrr_at10,ndcg_at5:h.ndcg_at5},delta:result.delta}));
+console.log(JSON.stringify({edges:result.association_edges,baseline:{recall_at5:b.recall_at5,mrr_at5:b.mrr_at5,mrr_at10:b.mrr_at10,ndcg_at5:b.ndcg_at5},hybrid:{recall_at5:h.recall_at5,mrr_at5:h.mrr_at5,mrr_at10:h.mrr_at10,ndcg_at5:h.ndcg_at5},delta:result.delta}));
