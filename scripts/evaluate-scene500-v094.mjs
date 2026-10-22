@@ -2,6 +2,7 @@
 // Run with actual V0.9.4 source, Scene500 catalog and candidate links.
 // node scripts/evaluate-scene500-v094.mjs zh-core20k-v094.min.json catalog-v0.2.json associations.json holdout.json report.json
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import {createScene500Recommender} from '../scene500-recommendation/engine.mjs';
 import {createScene500ContractAdapter} from '../scene500-recommendation/contract-adapter.mjs';
 const [,,lexPath,catPath,edgePath,casePath,reportPath]=process.argv;
@@ -9,6 +10,10 @@ if([lexPath,catPath,edgePath,casePath,reportPath].some(x=>!x))throw Error('Expec
 const lex=JSON.parse(fs.readFileSync(lexPath,'utf8')),catalog=JSON.parse(fs.readFileSync(catPath,'utf8'));
 const associations=JSON.parse(fs.readFileSync(edgePath,'utf8')),holdout=JSON.parse(fs.readFileSync(casePath,'utf8'));
 if(lex.terms?.length!==20000||Object.keys(catalog.scenes||{}).length!==500)throw Error('Invalid asset dimensions');
+const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+if(associations.source?.lexicon_sha256&&associations.source.lexicon_sha256!==hash(lexPath))throw Error('LEXICON_SHA_MISMATCH');
+if(associations.source?.catalog_sha256&&associations.source.catalog_sha256!==hash(catPath))throw Error('CATALOG_SHA_MISMATCH');
+if(associations.quality!=='lexical_candidate_unverified')throw Error('ASSOCIATION_QUALITY_STATE_UNEXPECTED');
 const words={source_version:String(lex.version),terms:lex.terms.map(x=>({
  term_id:x.id,term:x.t,normalized_term:x.n,frequency_rank:null,frequency_score:null,pos:null,aliases:[],source_version:String(lex.version)
 }))};
