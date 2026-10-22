@@ -2,11 +2,23 @@
 export const ENGINE_VERSION='1.0.0-alpha.1';
 const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
 const unique=a=>[...new Set(a.filter(Boolean))];
+// Small, generic Chinese function-word strip for order-independent phrase matching.
+const weakWords=/^(?:我|你|他|她|它|们|的|了|过|在|和|与|把|给|向|想|要|请|问|如何|怎么|怎样|可以|一下|一个|一些|需要|进行|有关|相关|问题|情况)$/;
+const segments=x=>normalize(x).match(/[\u4e00-\u9fff]{2,}|[a-z0-9]+/g)||[];
+function unorderedEvidence(q,p){
+ const parts=segments(p).filter(x=>!weakWords.test(x)&&x.length>=2);
+ if(parts.length<2||parts.length>4)return false;
+ return parts.every(x=>q.includes(x));
+}
 function score(query,s){
  const q=normalize(query); if(!q)return 0;
  let points=0,anchored=false;
  for(const p of unique([s.name,...(s.aliases||[])]).map(normalize).filter(x=>x.length>=2))
   if(q.includes(p)){points+=p===normalize(s.name)?20:12;anchored=true;}
+ // Multi-part aliases can match despite reversed phrase order, at lower weight.
+ for(const p of unique(s.aliases||[]))if(!q.includes(normalize(p))&&unorderedEvidence(q,p)){
+  points+=6;anchored=true;
+ }
  let actions=0,objects=0;
  for(const p of unique(s.actions||[]).map(normalize).filter(x=>x.length>=2))
   if(q.includes(p)){points+=7;actions++;anchored=true;}
