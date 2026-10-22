@@ -96,3 +96,12 @@ test('invalid canonical identities and empty names are rejected at init',()=>{
  empty.scenes.S155.name=' ';
  assert.throws(()=>createScene500Recommender({catalog:empty}),/SCENE500_INVALID_CATALOG/);
 });
+
+test('unordered multi-part alias is a conservative relevance hint',()=>{
+ const custom=structuredClone(catalog);
+ custom.scenes.S001.aliases=['火车 退票'];
+ const engine=createScene500Recommender({catalog:custom});
+ const hit=engine.search('退票后还要找火车',{eligibleSceneIds:['S001']});
+ assert.equal(hit.results[0]?.sceneId,'S001');
+ assert.equal(engine.search('只想退票',{eligibleSceneIds:['S001']}).total,0);
+});
