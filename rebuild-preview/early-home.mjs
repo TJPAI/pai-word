@@ -94,7 +94,7 @@ try{
      });
    };
    // Budget is not yet authoritative; use last-saved scalar settings only, and label status as pending.
-   const budget={dailyCompleted:0,dailyLimit:Number(state.newPerDay)||50,roundLimit:Number(state.wordsPerRound)||10,due:0,reinforcementRemaining:0};
+   const budget={pending:true,dailyCompleted:0,dailyLimit:Number(state.newPerDay)||50,roundLimit:Number(state.wordsPerRound)||10,due:0,reinforcementRemaining:0};
    const view=mountLightHome({element:app,index,state:ui,budget,search,
      onScene:(scene,difficulty)=>defer('scene',scene,difficulty),
      onAction:action=>defer(action),
