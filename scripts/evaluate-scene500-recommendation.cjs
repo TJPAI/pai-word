@@ -5,8 +5,9 @@ const {pathToFileURL}=require('node:url');
 (async()=>{
 const {createScene500Recommender}=await import(pathToFileURL(require('node:path').resolve('scene500-recommendation/engine.mjs')).href);
 const catalog=JSON.parse(fs.readFileSync('scene500-recommendation/catalog-v0.2.json','utf8'));
-const holdout=process.argv.includes('--holdout');
-const set=JSON.parse(fs.readFileSync(holdout?'scene500-recommendation/query-holdout-v0.1.json':'scene500-recommendation/query-diagnostics-v0.1.json','utf8'));
+const holdoutV2=process.argv.includes('--holdout-v2');
+const holdout=holdoutV2||process.argv.includes('--holdout');
+const set=JSON.parse(fs.readFileSync(holdoutV2?'scene500-recommendation/query-holdout-v0.2.json':holdout?'scene500-recommendation/query-holdout-v0.1.json':'scene500-recommendation/query-diagnostics-v0.1.json','utf8'));
 const isHoldout=holdout;
 const engine=createScene500Recommender({catalog});
 const rows=set.cases.map(t=>{
