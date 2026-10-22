@@ -58,7 +58,7 @@ async function paiWriteWithConnectionRecovery(method,value){
  try{return await durable[method](db,value)}
  catch(error){
   const msg=String(error?.name||'')+' '+String(error?.message||error||'');
-  if(!/InvalidStateError|DatabaseClosedError|connection is closing|database connection is closing|connection.*closed|database.*closed/i.test(msg))throw error;
+  if(!/InvalidStateError|DatabaseClosedError|TransactionInactiveError|UnknownError|AbortError|connection is closing|database connection is closing|connection.*closed|database.*closed/i.test(msg))throw error;
   if(!paiReconnectPending)paiReconnectPending=(async()=>{
    const fresh=await durable.open();
    window.PAI_KU_DURABLE_DB=fresh;
@@ -87,6 +87,16 @@ function persistIndependentSettings(){
  paiSettingsQueued=serialized;
  paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>paiWriteWithConnectionRecovery('writeSettings',settings)).then(()=>{paiSettingsLast=serialized;if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=null}).catch(e=>{if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-settings-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-settings-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='设置保存失败：本次修改可能在刷新后丢失。';setTimeout(()=>banner.remove(),7000)});
 }
+// Read-only foreground probe: Safari may keep a stale IDB handle after a long suspension.
+// Do not touch SRS versions or overwrite records. Writes reopen on recognized transient failures.
+window.PAI_STORAGE_PROBE=async()=>{
+ const at=Date.now(),info={at,hidden:document.hidden,settings:'not-ready'};
+ try{const db=window.PAI_KU_DURABLE_DB;if(!db)throw Error('DB not initialized');await window.PAI_KU_DURABLE.readSettings(db);info.settings='ok'}
+ catch(error){info.settings='failed';info.errorName=error?.name||'Error';info.errorMessage=String(error?.message||error);}
+ window.PAI_LAST_FOREGROUND_STORAGE_PROBE=info;return info;
+};
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)void window.PAI_STORAGE_PROBE()});
+window.addEventListener('pageshow',()=>{void window.PAI_STORAGE_PROBE()});
 window.PAI_PERSISTENCE_FLUSH=()=>Promise.allSettled([paiHomeQueue,paiSettingsQueue]);
 function save(){
   if(window.PAI_SAVE_DEFERRED===true)return true;
