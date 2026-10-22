@@ -19,19 +19,24 @@
   let durableDB=null;
   try{
    durableDB=await window.PAI_KU_DURABLE.open();
-   const previous=await window.PAI_KU_DURABLE.initialize(durableDB,state);
+   // Independent object stores: begin all three transactions together, but restore
+   // the state in the original priority order only after every operation settles.
+   const [previous,settings,home]=await Promise.all([
+    window.PAI_KU_DURABLE.initialize(durableDB,state),
+    window.PAI_KU_DURABLE.readSettings(durableDB),
+    window.PAI_KU_DURABLE.readHome(durableDB)
+   ]);
    window.PAI_KU_DURABLE_VERSION=previous.version;
    // Restore each domain independently; a missing KU snapshot must not hide saved home/settings.
    if(previous?.snapshot?.records)state={...state,...previous.snapshot};
-   const settings=await window.PAI_KU_DURABLE.readSettings(durableDB);
    if(settings&&typeof settings==='object')state={...state,...settings};
-   const home=await window.PAI_KU_DURABLE.readHome(durableDB);
    if(home&&typeof home==='object'){
     for(const key of ['sceneSearchUi','scene500Recent','scene500DifficultyByScene'])if(Object.prototype.hasOwnProperty.call(home,key))state[key]=home[key];
    }
    state.view='scenes';state.revealed=false;
    window.PAI_KU_DURABLE_DB=durableDB;
    window.PAI_KU_STORAGE_READY=true;
+   mark('storageReady');
   }catch(storageError){
    window.PAI_KU_STORAGE_READY=false;
    window.PAI_KU_STORAGE_FATAL=true;
