@@ -72,7 +72,7 @@ export async function installScene500Top100({fetcher=fetch,base='data/scene500-t
  }
  const controller=await installation;
  // The first study intent only needs one 25-scene shard, not all 500 scenes.
- const ready=sceneId?controller.ensureScene(sceneId):controller.loadAll();
+ const ready=sceneId?controller.ensureScene(sceneId):Promise.resolve(controller.status);
  window.PAI_SCENE500_TOP100_READY=ready;
  return ready;
 }
