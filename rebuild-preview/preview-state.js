@@ -49,13 +49,34 @@ try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e)
 
 const PAI_SETTING_KEYS=['newPerDay','wordsPerRound','voiceAccent','hideWord','autoPronounce','tapTiming','autoBrowseEnabled','autoBrowseInterval','speechSpeed','showCollocations','showExamples','showCompare','selectedScene','sceneDifficulty'];
 const PAI_HOME_KEYS=['sceneSearchUi','scene500Recent','scene500DifficultyByScene'];
+// Safari may suspend/close an IndexedDB connection while the tab is backgrounded.
+// Reopen only for connection-invalid errors; quota and transaction errors remain visible.
+let paiReconnectPending=null;
+async function paiWriteWithConnectionRecovery(method,value){
+ const durable=window.PAI_KU_DURABLE;
+ const db=window.PAI_KU_DURABLE_DB;
+ try{return await durable[method](db,value)}
+ catch(error){
+  const msg=String(error?.name||'')+' '+String(error?.message||error||'');
+  if(!/InvalidStateError|DatabaseClosedError|connection is closing|database connection is closing|connection.*closed|database.*closed/i.test(msg))throw error;
+  if(!paiReconnectPending)paiReconnectPending=(async()=>{
+   const fresh=await durable.open();
+   window.PAI_KU_DURABLE_DB=fresh;
+   window.PAI_KU_STORAGE_READY=true;
+   window.PAI_KU_STORAGE_FATAL=false;
+   return fresh;
+  })().finally(()=>{paiReconnectPending=null});
+  const fresh=await paiReconnectPending;
+  return durable[method](fresh,value);
+ }
+}
 let paiHomeLast=null,paiHomeQueued=null,paiHomeQueue=Promise.resolve();
 function persistHomeState(){
  if(!window.PAI_KU_STORAGE_READY)return;
  const home={};for(const key of PAI_HOME_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))home[key]=structuredClone(state[key]);
  const serialized=JSON.stringify(home);if(serialized===paiHomeQueued||(serialized===paiHomeLast&&paiHomeQueued===null))return;
  paiHomeQueued=serialized;
- paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeHome(window.PAI_KU_DURABLE_DB,home)).then(()=>{paiHomeLast=serialized;if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-home-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-home-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='场景或难度保存失败：刷新后可能丢失最近修改。';setTimeout(()=>banner.remove(),7000)});
+ paiHomeQueue=paiHomeQueue.catch(()=>{}).then(()=>paiWriteWithConnectionRecovery('writeHome',home)).then(()=>{paiHomeLast=serialized;if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=null}).catch(e=>{if(paiHomeQueued===serialized)paiHomeQueued=null;window.PAI_HOME_SAVE_ERROR=String(e);console.warn('PAI_HOME_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-home-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-home-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='场景或难度保存失败：刷新后可能丢失最近修改。';setTimeout(()=>banner.remove(),7000)});
 }
 
 let paiSettingsLast=null,paiSettingsQueued=null,paiSettingsQueue=Promise.resolve();
@@ -64,7 +85,7 @@ function persistIndependentSettings(){
  const settings={};for(const key of PAI_SETTING_KEYS)if(Object.prototype.hasOwnProperty.call(state,key))settings[key]=state[key];
  const serialized=JSON.stringify(settings);if(serialized===paiSettingsQueued||(serialized===paiSettingsLast&&paiSettingsQueued===null))return;
  paiSettingsQueued=serialized;
- paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>window.PAI_KU_DURABLE.writeSettings(window.PAI_KU_DURABLE_DB,settings)).then(()=>{paiSettingsLast=serialized;if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=null}).catch(e=>{if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-settings-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-settings-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='设置保存失败：本次修改可能在刷新后丢失。';setTimeout(()=>banner.remove(),7000)});
+ paiSettingsQueue=paiSettingsQueue.catch(()=>{}).then(()=>paiWriteWithConnectionRecovery('writeSettings',settings)).then(()=>{paiSettingsLast=serialized;if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=null}).catch(e=>{if(paiSettingsQueued===serialized)paiSettingsQueued=null;window.PAI_SETTINGS_SAVE_ERROR=String(e);console.warn('PAI_SETTINGS_IDB_WRITE_FAILED',e);let banner=document.getElementById('pai-settings-save-error');if(!banner){banner=document.createElement('div');banner.id='pai-settings-save-error';banner.setAttribute('role','alert');banner.style.cssText='position:fixed;top:calc(66px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:10px;border-radius:10px;font:13px system-ui;pointer-events:none';document.body.appendChild(banner)}banner.textContent='设置保存失败：本次修改可能在刷新后丢失。';setTimeout(()=>banner.remove(),7000)});
 }
 window.PAI_PERSISTENCE_FLUSH=()=>Promise.allSettled([paiHomeQueue,paiSettingsQueue]);
 function save(){
