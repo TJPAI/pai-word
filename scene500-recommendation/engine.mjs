@@ -29,6 +29,13 @@ export function createScene500Recommender({catalog, minimumScore=3}={}){
  if(!catalog||catalog.scene_count!==500||!catalog.scenes||Object.keys(catalog.scenes).length!==500)
   throw new Error('SCENE500_INVALID_CATALOG');
  const ordered=Object.entries(catalog.scenes).sort((a,b)=>a[0].localeCompare(b[0]));
+ // Reject malformed identities before they can leak into search or scene selection.
+ for(let i=0;i<ordered.length;i++){
+  const expected='S'+String(i+1).padStart(3,'0');
+  const [id,scene]=ordered[i];
+  if(id!==expected||!scene||typeof scene.name!=='string'||!scene.name.trim())
+   throw new Error('SCENE500_INVALID_CATALOG: '+id);
+ }
  return Object.freeze({
   version:ENGINE_VERSION,
   catalogVersion:catalog.schema,
