@@ -66,6 +66,8 @@ jobs:
         run: node --test tests/scene500-chinese-associations.test.cjs
       - name: Test 20K Chinese lexicon intake
         run: node --test tests/scene500-chinese20k-intake.test.cjs
+      - name: Test optional real V0.9.4 asset integration (skipped unless delivered)
+        run: node --test scene500-recommendation/zh-v094-real-asset.test.mjs
       - name: Test V0.9.4 exact-first word identity and overlap extraction
         run: node --test scene500-recommendation/zh-v094-runtime-bridge.test.mjs
       - name: Test Chinese Core20K RC1 lazy loader and fallback
