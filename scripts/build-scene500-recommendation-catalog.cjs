@@ -25,3 +25,16 @@ const output={schema:'pai-scene500-recommendation-catalog-v0.1',
  scene_count:ids.length,scenes};
 fs.writeFileSync(dest,JSON.stringify(output,null,2)+'\n');
 console.log('Wrote',dest,'with',ids.length,'scenes;',Object.keys(overlay.scenes).length,'draft profiles');
+
+// Separate the deployable recommendation asset from home counts and learning data.
+const liteScenes={};
+for(const [id,s] of Object.entries(scenes)){
+ const v={name:s.name};
+ for(const k of ['description_enriched','aliases','actions','objects','example_queries','negative_terms','quality'])
+  if(s[k]!==undefined&&(typeof s[k]!=='string'||s[k]))v[k]=s[k];
+ liteScenes[id]=v;
+}
+const lite={schema:'pai-scene500-recommendation-catalog-v0.2',scene_count:500,scenes:liteScenes};
+const liteDest=path.join(root,'scene500-recommendation/catalog-v0.2.json');
+fs.writeFileSync(liteDest,JSON.stringify(lite));
+console.log('Wrote compact recommendation catalog',liteDest);
