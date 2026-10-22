@@ -116,6 +116,13 @@ try{
    const status=app.querySelector('.continue-card p');
    if(status)status.textContent='学习进度同步中，搜索与浏览场景已可使用';
    window.PAI_EARLY_HOME.ready=true;
+   // Visible source identity for every QA screenshot; this is a source build label, not a deployed SHA.
+   const stamp=document.createElement('p');
+   stamp.id='pai-build-identity';
+   stamp.setAttribute('aria-label','开发构建版本');
+   stamp.style.cssText='font:11px system-ui;text-align:center;opacity:.65;margin:8px auto 12px';
+   stamp.textContent='PAI Word V2.2 · dev core20k-rebuild-v1 · state-restore-d';
+   app.appendChild(stamp);
    window.PAI_EARLY_HOME.readyMs=Math.round(performance.now()-started);
    app.insertAdjacentHTML('beforeend','<p id="pai-early-notice" style="font-size:12px;text-align:center;opacity:.6">学习统计与复习状态加载后更新</p>');
  }
