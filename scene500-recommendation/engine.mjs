@@ -4,19 +4,20 @@ const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，
 const unique=a=>[...new Set(a.filter(Boolean))];
 function score(query,s){
  const q=normalize(query); if(!q)return 0;
- let points=0;
+ let points=0,anchored=false;
  for(const p of unique([s.name,...(s.aliases||[])]).map(normalize).filter(x=>x.length>=2))
-  if(q.includes(p))points+=p===normalize(s.name)?20:12;
+  if(q.includes(p)){points+=p===normalize(s.name)?20:12;anchored=true;}
  let actions=0,objects=0;
  for(const p of unique(s.actions||[]).map(normalize).filter(x=>x.length>=2))
-  if(q.includes(p)){points+=7;actions++}
+  if(q.includes(p)){points+=7;actions++;anchored=true;}
  for(const p of unique(s.objects||[]).map(normalize).filter(x=>x.length>=2))
-  if(q.includes(p)){points+=4;objects++}
+  if(q.includes(p)){points+=4;objects++;anchored=true;}
  if(actions&&objects)points+=10;
  const desc=normalize(s.description_enriched||'');
  const grams=unique([...q].slice(0,-1).map((c,i)=>c+q[i+1]));
- points+=Math.min(5,grams.filter(g=>desc.includes(g)).length*.5);
- if((s.example_queries||[]).some(x=>normalize(x)===q))points+=16;
+ // Character bigrams alone are weak evidence; they must not trigger a result.
+ points+=Math.min(anchored?5:2,grams.filter(g=>desc.includes(g)).length*.5);
+ if((s.example_queries||[]).some(x=>normalize(x)===q)){points+=16;anchored=true;}
  const negatives=unique(s.negative_terms||[]).map(normalize).filter(x=>x.length>=2);
  points-=Math.min(18,negatives.filter(x=>q.includes(x)).length*9);
  return Math.round(Math.max(0,points)*100)/100;
