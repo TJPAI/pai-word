@@ -1,0 +1,39 @@
+{
+  "schema": "scene500-native-node-diagnostic-v0.2",
+  "status": "diagnostic_pass_not_blind_not_safari",
+  "input_provenance": "User uploaded actual zh-core20k-v094-delivery ZIP, catalog-v0.2.json and generated 3553 lexical edges",
+  "execution": "Local Node 22 reconstruction of GitHub engine.mjs, sparse-retriever.mjs, contract-adapter.mjs; not checkout CI",
+  "count": {
+    "terms": 20000,
+    "scenes": 500,
+    "links": 3553,
+    "linked_terms": 1613,
+    "queries": 31
+  },
+  "baseline": {
+    "recall_at5": 0.27419354838709675,
+    "mrr_at10": 0.2698924731182796,
+    "ndcg_at5": 0.2331062705009973
+  },
+  "hybrid": {
+    "recall_at5": 0.5645161290322581,
+    "mrr_at10": 0.49032258064516127,
+    "ndcg_at5": 0.4645212113400085
+  },
+  "performance_node_single_sample": {
+    "init_ms": 54.78,
+    "baseline_31_queries_ms": 218.76,
+    "hybrid_31_queries_ms": 421.66
+  },
+  "limitations": [
+    "Editorial labels have not been independently adjudicated. S089 points to road construction and detours, yet corresponding labeled query concerns train-ticket refunds.",
+    "Evidence edges are lexical_candidate_unverified, not dictionary or corpus validated.",
+    "Safari main-thread and loading evaluation not performed.",
+    "Exact GitHub CI has not been run; Node modules were reconstructed from current source for local verification."
+  ],
+  "next_actions": [
+    "Audit reference query labels against 500 scene definitions.",
+    "Use truly independent held-out queries.",
+    "Run checked-out Node CI and Safari before integration."
+  ]
+}
