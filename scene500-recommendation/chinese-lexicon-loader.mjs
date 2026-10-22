@@ -1,6 +1,7 @@
 // Optional lazy Chinese Core20K assets; failures fall back to the validated Scene500 rule engine.
 import {createScene500Recommender} from './engine.mjs';
 import {createScene500ContractAdapter} from './contract-adapter.mjs';
+import {createChineseV094Index} from './zh-v094-runtime-bridge.mjs';
 const format=(base)=>Object.freeze({
  version:'scene500-rule-fallback-v0.1',
  mode:'rule_fallback',
@@ -22,7 +23,14 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
  try{
   const [lex,assoc]=await Promise.all([fetchImpl(lexiconUrl,{signal:controller.signal,cache:'force-cache'}),fetchImpl(associationUrl,{signal:controller.signal,cache:'force-cache'})]);
   if(!lex.ok||!assoc.ok)throw Error('SCENE500_ASSET_HTTP_FAILED');
-  const [lexicon,associations]=await Promise.all([lex.json(),assoc.json()]);
+  let [lexicon,associations]=await Promise.all([lex.json(),assoc.json()]);
+  if(lexicon?.terms?.length===20000&&lexicon.terms[0]?.id&&lexicon.terms[0]?.t){
+   const index=createChineseV094Index(lexicon);
+   lexicon={source_version:index.version,terms:lexicon.terms.map(x=>({
+    term_id:x.id,term:x.t,normalized_term:x.n,frequency_rank:null,frequency_score:null,
+    pos:null,aliases:[],source_version:index.version
+   }))};
+  }
   const engine=createScene500ContractAdapter({catalog,lexicon,associations});
   return Object.freeze({...engine,mode:'hybrid'});
  }catch(_err){
