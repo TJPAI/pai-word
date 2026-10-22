@@ -1,0 +1,89 @@
+{
+  "schema": "scene500-fresh-diagnostic-v0.1",
+  "status": "authored_diagnostic_unreviewed_not_blind",
+  "policy": "Created after previous diagnostics; don't call independent blind benchmark. Never tune on it and then claim unseen performance.",
+  "cases": [
+    {
+      "query": "出国旅游订酒店、过海关和问路",
+      "relevantSceneIds": [
+        "S113",
+        "S110",
+        "S076"
+      ],
+      "category": "multi",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "明早到机场办理值机并托运行李",
+      "relevantSceneIds": [
+        "S104"
+      ],
+      "category": "travel",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我要去酒店前台登记并领取房卡",
+      "relevantSceneIds": [
+        "S114"
+      ],
+      "category": "hotel",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "学校实验室正在设计实验和收集数据",
+      "relevantSceneIds": [
+        "S156",
+        "S157"
+      ],
+      "category": "research",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我要给审稿人逐条回复修改建议",
+      "relevantSceneIds": [
+        "S169"
+      ],
+      "category": "research",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我想讨论科研论文的科学假设",
+      "relevantSceneIds": [
+        "S155"
+      ],
+      "category": "duplicate-name",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "假如明天会下雨，我该怎么表达假设条件",
+      "relevantSceneIds": [
+        "S494"
+      ],
+      "category": "duplicate-name",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我要学习机器人视觉识别和传感器",
+      "relevantSceneIds": [
+        "S282",
+        "S285"
+      ],
+      "category": "multi",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我很想很想就是问一下，怎么把东西退回店里",
+      "relevantSceneIds": [
+        "S070"
+      ],
+      "category": "colloquial",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "XXXXzxqv12345%%%*",
+      "relevantSceneIds": [],
+      "category": "negative",
+      "reviewStatus": "editorial_unreviewed"
+    }
+  ]
+}
