@@ -33,3 +33,14 @@ test('abort-aware timeout degrades instead of hanging',async()=>{
  const engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'/words',associationUrl:'/links',timeoutMs:5,fetchImpl:async(_,opt)=>new Promise((_,reject)=>opt.signal.addEventListener('abort',()=>reject(Error('aborted')),{once:true}))});
  assert.equal(engine.mode,'rule_fallback');
 });
+
+test('real V0.9.4 compact data shape is accepted without fabricated frequency',async()=>{
+ const terms=Array.from({length:20000},(_,i)=>({id:'zh_'+i.toString(16).padStart(20,'0'),t:'模拟词'+i,n:'模拟词'+i,s:0}));
+ terms[0]={id:terms[0].id,t:'牙医',n:'牙医',s:0};
+ const compact={version:'0.9.4-rc.2',terms};
+ const link={association_version:'pilot',links:[{term_id:terms[0].id,scene_id:'S320',score:1,rank:1,evidence_type:'test_fixture',confidence:.5,association_version:'pilot'}]};
+ const engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'/v094',associationUrl:'/links',
+   fetchImpl:async url=>({ok:true,json:async()=>url==='/v094'?compact:link})});
+ assert.equal(engine.mode,'hybrid');
+ assert.deepEqual(engine.search('牙医',{eligibleSceneIds:['S320']}).results.map(x=>x.sceneId),['S320']);
+});
