@@ -7,6 +7,7 @@ const root=path.resolve(__dirname,'..');
 const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const home=read('rebuild-preview/data/home-scene-index-v1.json');
 const overlay=read('data/scene500-semantic-overlay-v1.2.json');
+const colloquial=read('scene500-recommendation/query-expansions-v0.1.json');
 const dest=path.join(root,'data/scene500-recommendation-catalog-v0.1.json');
 const ids=Object.keys(home.scenes).sort();
 if(ids.length!==500)throw Error('Expected 500 canonical scenes, got '+ids.length);
@@ -38,8 +39,12 @@ for(const [id,s] of Object.entries(scenes)){
   const genericActions=new Set(["操作","设置","访问","解决问题","理解原理","使用工具","讨论应用","描述情况","咨询医生","安排检查","参加活动","练习技能","注意安全","欣赏","参与","交流体验","表达态度","回应他人","维护关系","办理手续","寻求服务","沟通问题","提出观点","回应","澄清","描述现象","理解原因","讨论影响","分析","描述","解释","论证"]);
   v.actions=(v.actions||[]).filter(a=>!genericActions.has(a));
  }
+ // Separate reviewable colloquial layer; preserve original profile and identities.
+ const extra=colloquial.scenes[id]?.aliases||[];
+ if(extra.length)v.aliases=[...new Set([...(v.aliases||[]),...extra])];
  liteScenes[id]=v;
 }
+for(const id of Object.keys(colloquial.scenes))if(!home.scenes[id])throw Error('Unknown expansion scene '+id);
 const lite={schema:'pai-scene500-recommendation-catalog-v0.2',scene_count:500,scenes:liteScenes};
 const liteDest=path.join(root,'scene500-recommendation/catalog-v0.2.json');
 fs.writeFileSync(liteDest,JSON.stringify(lite));
