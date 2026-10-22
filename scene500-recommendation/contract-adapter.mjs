@@ -43,7 +43,7 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
   linksByTerm.get(link.term_id).push(link);
  }
  const registry={scene_count:500,terms:{}};
- const matchedTermIds=new Map();
+
  for(const t of lexicon.terms){
   const key=norm(t.normalized_term);
   const links=(linksByTerm.get(t.term_id)||[]).sort((a,b)=>a.rank-b.rank);
@@ -55,7 +55,7 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
     if(!prev||prev.weight<p.score)byScene.set(p.scene_id,{sceneId:p.scene_id,weight:p.score});
    }
    registry.terms[key]=[...byScene.values()].sort((a,b)=>b.weight-a.weight||a.sceneId.localeCompare(b.sceneId)).slice(0,50);
-   matchedTermIds.set(key,[...(matchedTermIds.get(key)||[]),t.term_id]);
+
   }
  }
  const sparse=createSparseSceneRetriever({catalog,registry});
