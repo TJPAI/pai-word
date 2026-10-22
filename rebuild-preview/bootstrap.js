@@ -49,6 +49,7 @@
   await script('scene500-sense-review.js');
   await script('scene-search.js');
   await script('rebuild-preview/home-dashboard.js');
+  await script('rebuild-preview/scene-catalog.js');
   await script('rebuild-preview/round-policy.js');
   mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
