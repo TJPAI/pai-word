@@ -799,8 +799,25 @@
    if(generation===autoBrowseGeneration)scheduleAutoBrowse();
   },autoInterval());
  }
- function restartAutoBrowse(){stopAutoBrowse();scheduleAutoBrowse()}
- window.PAI_AUTOBROWSE={restart:restartAutoBrowse,stop:stopAutoBrowse};
+ let autoWakeLock=null,autoWakeRequest=0;
+ const wakeAllowed=()=>!!(state.autoBrowseEnabled&&active&&state.view==='learning'&&!document.hidden);
+ async function syncAutoWakeLock(){
+  const request=++autoWakeRequest;
+  if(!wakeAllowed()){
+   const lock=autoWakeLock;autoWakeLock=null;
+   if(lock)try{await lock.release()}catch{}
+   return;
+  }
+  if(autoWakeLock||!navigator.wakeLock?.request)return;
+  try{
+   const lock=await navigator.wakeLock.request('screen');
+   if(request!==autoWakeRequest||!wakeAllowed()){try{await lock.release()}catch{};return}
+   autoWakeLock=lock;
+   lock.addEventListener?.('release',()=>{if(autoWakeLock===lock)autoWakeLock=null},{once:true});
+  }catch(e){/* Unsupported or denied: ordinary foreground auto-browse still works. */}
+ }
+ function restartAutoBrowse(){stopAutoBrowse();scheduleAutoBrowse();void syncAutoWakeLock()}
+ window.PAI_AUTOBROWSE={restart:restartAutoBrowse,stop(){stopAutoBrowse();const lock=autoWakeLock;autoWakeLock=null;autoWakeRequest++;if(lock)void lock.release().catch(()=>{})}};
  window.setAutoBrowse=enabled=>{
   state.autoBrowseEnabled=!!enabled;save();restartAutoBrowse();render();
  };
