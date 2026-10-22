@@ -1,0 +1,62 @@
+{
+  "schema": "scene500-ticket-rank-candidate-v0.1",
+  "status": "candidate_not_promoted",
+  "parent": "profile-enrichment-candidate-s442-safe-v0.1.json",
+  "change": {
+    "S092": {
+      "add_aliases": [
+        "火车票",
+        "火车票购买"
+      ],
+      "add_actions": [
+        "购买车票"
+      ]
+    }
+  },
+  "actual_data": {
+    "lexicon_terms": 20000,
+    "scenes": 500,
+    "edges_before": 3690,
+    "edges_after": 3692,
+    "linked_terms_before": 1677,
+    "linked_terms_after": 1678
+  },
+  "native_node_check": {
+    "environment": "Node 22 reconstructed current GitHub ESM engine and adapter with real ZIP and catalog",
+    "queries": [
+      {
+        "query": "例如我想购买一张火车票",
+        "S092_rank_before": 2,
+        "S092_rank_after": 1,
+        "top1_before": "S053",
+        "top1_after": "S092"
+      },
+      {
+        "query": "我想购买一张火车票",
+        "top1_before": "S053",
+        "top1_after": "S092"
+      },
+      {
+        "query": "比如说我想买飞机票",
+        "top1_before": "S103",
+        "top1_after": "S103"
+      },
+      {
+        "query": "用一个例子解释刚才的观点",
+        "top1_before": "S442",
+        "top1_after": "S442"
+      },
+      {
+        "query": "我想买公交车票",
+        "top1_after": "S078",
+        "remaining_ambiguity": "S092 ranked second"
+      }
+    ],
+    "existing_diagnostic_queries": 31,
+    "recall_at5": 0.7096774193548387,
+    "mrr_at10": 0.6032258064516128,
+    "ndcg_at5": 0.5941271003982665
+  },
+  "limitation": "Small targeted post-hoc diagnostic, not independent blind test. Reconstructed Node modules are not GitHub CI.",
+  "decision": "Candidate only; monitor bus-ticket adjacent-scene confusion."
+}
