@@ -61,7 +61,7 @@
           ${resultHtml()}
         </section>
         ${recentHtml()}
-        <div class="browse-link"><a href="scene500-demo.html">浏览场景目录 →</a><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
+        <div class="browse-link"><button type="button" onclick="openSceneCatalog()">浏览场景目录 →</button><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
       </main>
     </div></div>`;
   }
