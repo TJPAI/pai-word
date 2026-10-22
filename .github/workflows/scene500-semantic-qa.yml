@@ -10,6 +10,8 @@ on:
       - '.github/workflows/scene500-semantic-qa.yml'
       - 'scripts/build-scene500-recommendation-catalog.cjs'
       - 'tests/scene500-recommendation-catalog.test.cjs'
+      - 'scene500-recommendation/**'
+      - 'data/scene500-recommendation-catalog-v0.1.json'
       - 'rebuild-preview/data/home-scene-index-v1.json'
   workflow_dispatch:
 permissions:
@@ -29,3 +31,5 @@ jobs:
         run: node tests/scene500-semantic-ranker.test.cjs
       - name: Build and test 500-scene catalog
         run: node tests/scene500-recommendation-catalog.test.cjs
+      - name: Test independent browser ESM module
+        run: node --test scene500-recommendation/engine.test.mjs
