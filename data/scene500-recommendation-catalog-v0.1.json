@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.7",
+  "source": "home-scene-index-v1 + semantic-overlay-v0.8",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -4826,13 +4826,27 @@
     },
     "S151": {
       "name": "确定研究问题",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "确定可研究且有价值的科学问题",
+      "aliases": [
+        "找研究问题",
+        "确定课题",
+        "科学问题"
+      ],
+      "actions": [
+        "界定问题",
+        "提出研究问题",
+        "明确研究目标"
+      ],
+      "objects": [
+        "研究空白",
+        "研究目标",
+        "科学问题"
+      ],
+      "example_queries": [
+        "我想了解确定研究问题需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 58,
         "basic": 44,
@@ -4843,13 +4857,27 @@
     },
     "S152": {
       "name": "文献检索",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "检索学术数据库寻找相关文献",
+      "aliases": [
+        "查论文",
+        "检索文章",
+        "文献搜索"
+      ],
+      "actions": [
+        "查询数据库",
+        "使用检索词",
+        "筛选论文"
+      ],
+      "objects": [
+        "数据库",
+        "关键词",
+        "检索结果"
+      ],
+      "example_queries": [
+        "我想了解文献检索需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 56,
         "basic": 35,
@@ -4860,13 +4888,27 @@
     },
     "S153": {
       "name": "阅读论文",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "理解学术论文的结构与核心贡献",
+      "aliases": [
+        "读论文",
+        "精读论文",
+        "论文阅读"
+      ],
+      "actions": [
+        "阅读摘要",
+        "分析方法",
+        "理解结论"
+      ],
+      "objects": [
+        "论文",
+        "方法",
+        "图表"
+      ],
+      "example_queries": [
+        "我想了解阅读论文需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 54,
         "basic": 41,
@@ -4877,13 +4919,27 @@
     },
     "S154": {
       "name": "总结文献",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "归纳多篇论文的研究进展和不足",
+      "aliases": [
+        "文献综述",
+        "总结研究现状",
+        "归纳文献"
+      ],
+      "actions": [
+        "比较文献",
+        "总结研究现状",
+        "提炼研究空白"
+      ],
+      "objects": [
+        "参考论文",
+        "研究进展",
+        "文献笔记"
+      ],
+      "example_queries": [
+        "我想了解总结文献需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 48,
         "basic": 34,
@@ -4894,13 +4950,27 @@
     },
     "S155": {
       "name": "提出假设",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "提出可验证的科研假设和预期关系",
+      "aliases": [
+        "科学假设",
+        "研究假说",
+        "假设检验前提"
+      ],
+      "actions": [
+        "构建假说",
+        "预测关系",
+        "提出研究假设"
+      ],
+      "objects": [
+        "自变量",
+        "因变量",
+        "研究假设"
+      ],
+      "example_queries": [
+        "我想了解提出假设需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 49,
         "basic": 33,
@@ -4911,13 +4981,27 @@
     },
     "S156": {
       "name": "设计实验",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "规划研究实验步骤及控制变量",
+      "aliases": [
+        "实验方案",
+        "实验设计",
+        "设计对照组"
+      ],
+      "actions": [
+        "设计实验",
+        "设置对照",
+        "控制变量"
+      ],
+      "objects": [
+        "实验组",
+        "对照组",
+        "实验流程"
+      ],
+      "example_queries": [
+        "我想了解设计实验需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 55,
         "basic": 46,
@@ -4928,13 +5012,27 @@
     },
     "S157": {
       "name": "数据采集",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过观察测量调查等方式取得原始数据",
+      "aliases": [
+        "收集数据",
+        "测量数据",
+        "开展调查"
+      ],
+      "actions": [
+        "测量",
+        "记录数据",
+        "收集样本"
+      ],
+      "objects": [
+        "传感器",
+        "问卷",
+        "原始数据"
+      ],
+      "example_queries": [
+        "我想了解数据采集需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 56,
         "basic": 33,
@@ -4945,13 +5043,27 @@
     },
     "S158": {
       "name": "数据清洗",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "处理原始数据中的缺失异常和重复记录",
+      "aliases": [
+        "数据预处理",
+        "清理数据",
+        "处理缺失值"
+      ],
+      "actions": [
+        "去重",
+        "处理缺失值",
+        "检测异常值"
+      ],
+      "objects": [
+        "原始数据",
+        "异常值",
+        "缺失值"
+      ],
+      "example_queries": [
+        "我想了解数据清洗需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 53,
         "basic": 41,
@@ -4962,13 +5074,27 @@
     },
     "S159": {
       "name": "数据分析",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "计算统计指标并探索数据中的模式",
+      "aliases": [
+        "分析数据",
+        "数据探索",
+        "分析结果"
+      ],
+      "actions": [
+        "计算指标",
+        "分析趋势",
+        "比较数据"
+      ],
+      "objects": [
+        "数据集",
+        "指标",
+        "统计量"
+      ],
+      "example_queries": [
+        "我想了解数据分析需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 62,
         "basic": 45,
@@ -4979,13 +5105,27 @@
     },
     "S160": {
       "name": "统计检验",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "对统计假设开展显著性等检验",
+      "aliases": [
+        "显著性检验",
+        "假设检验",
+        "p值检验"
+      ],
+      "actions": [
+        "计算p值",
+        "进行统计检验",
+        "判断显著性"
+      ],
+      "objects": [
+        "p值",
+        "置信区间",
+        "统计假设"
+      ],
+      "example_queries": [
+        "我想了解统计检验需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 52,
         "basic": 37,
@@ -4996,13 +5136,27 @@
     },
     "S161": {
       "name": "画图与可视化",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "把研究数据转化成图表表达",
+      "aliases": [
+        "数据画图",
+        "制作可视化",
+        "科研绘图"
+      ],
+      "actions": [
+        "绘制图表",
+        "可视化",
+        "选择坐标轴"
+      ],
+      "objects": [
+        "折线图",
+        "柱状图",
+        "坐标轴"
+      ],
+      "example_queries": [
+        "我想了解画图与可视化需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 56,
         "basic": 23,
@@ -5013,13 +5167,27 @@
     },
     "S162": {
       "name": "解释结果",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "说明研究发现的含义和不确定性",
+      "aliases": [
+        "解释研究结果",
+        "解读实验结果",
+        "结果阐释"
+      ],
+      "actions": [
+        "解释结果",
+        "讨论偏差",
+        "判断意义"
+      ],
+      "objects": [
+        "实验结果",
+        "误差",
+        "研究结论"
+      ],
+      "example_queries": [
+        "我想了解解释结果需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 58,
         "basic": 47,
@@ -5030,13 +5198,27 @@
     },
     "S163": {
       "name": "写论文摘要",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "撰写概括目的方法结果与结论的摘要",
+      "aliases": [
+        "写摘要",
+        "论文摘要",
+        "英文abstract"
+      ],
+      "actions": [
+        "概述贡献",
+        "写摘要",
+        "凝练结论"
+      ],
+      "objects": [
+        "摘要",
+        "研究目的",
+        "研究结果"
+      ],
+      "example_queries": [
+        "我想了解写论文摘要需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 60,
         "basic": 44,
@@ -5047,13 +5229,27 @@
     },
     "S164": {
       "name": "写论文引言",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "撰写论文背景研究动机与主要贡献",
+      "aliases": [
+        "写引言",
+        "写introduction",
+        "论文开头"
+      ],
+      "actions": [
+        "介绍背景",
+        "阐明问题",
+        "陈述贡献"
+      ],
+      "objects": [
+        "研究背景",
+        "引言",
+        "研究空白"
+      ],
+      "example_queries": [
+        "我想了解写论文引言需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 62,
         "basic": 40,
@@ -5064,13 +5260,27 @@
     },
     "S165": {
       "name": "写研究方法",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "撰写论文中的研究设计与方法步骤",
+      "aliases": [
+        "写方法章节",
+        "方法部分",
+        "论文method"
+      ],
+      "actions": [
+        "描述方法",
+        "解释实验设置",
+        "说明流程"
+      ],
+      "objects": [
+        "研究方法",
+        "实验设置",
+        "方法章节"
+      ],
+      "example_queries": [
+        "我想了解写研究方法需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 35,
@@ -5081,13 +5291,27 @@
     },
     "S166": {
       "name": "写结果部分",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "撰写论文中客观呈现的实验结果",
+      "aliases": [
+        "论文结果章节",
+        "results部分",
+        "写结果"
+      ],
+      "actions": [
+        "报告结果",
+        "呈现图表",
+        "描述指标"
+      ],
+      "objects": [
+        "结果章节",
+        "实验数据",
+        "图表"
+      ],
+      "example_queries": [
+        "我想了解写结果部分需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 47,
@@ -5098,13 +5322,27 @@
     },
     "S167": {
       "name": "写讨论部分",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "撰写论文中对发现的解释和局限",
+      "aliases": [
+        "写讨论",
+        "discussion章节",
+        "讨论结果"
+      ],
+      "actions": [
+        "解释发现",
+        "比较研究",
+        "讨论局限"
+      ],
+      "objects": [
+        "讨论章节",
+        "研究局限",
+        "已有研究"
+      ],
+      "example_queries": [
+        "我想了解写讨论部分需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 62,
         "basic": 44,
@@ -5115,13 +5353,27 @@
     },
     "S168": {
       "name": "同行评审",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "以同行审稿人身份评价论文质量",
+      "aliases": [
+        "审稿",
+        "同行评议",
+        "peer review"
+      ],
+      "actions": [
+        "审查方法",
+        "提出意见",
+        "评价论文"
+      ],
+      "objects": [
+        "审稿意见",
+        "稿件",
+        "评审人"
+      ],
+      "example_queries": [
+        "我想了解同行评审需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 53,
         "basic": 36,
@@ -5132,13 +5384,27 @@
     },
     "S169": {
       "name": "回复审稿意见",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "逐条回应审稿意见并修订论文",
+      "aliases": [
+        "审稿回复",
+        "回复reviewer",
+        "revision letter"
+      ],
+      "actions": [
+        "逐条回应",
+        "修改稿件",
+        "撰写回复信"
+      ],
+      "objects": [
+        "审稿人",
+        "回复信",
+        "修订稿"
+      ],
+      "example_queries": [
+        "我想了解回复审稿意见需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 46,
         "basic": 37,
@@ -5149,13 +5415,27 @@
     },
     "S170": {
       "name": "投稿期刊会议",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向期刊或学术会议提交研究论文",
+      "aliases": [
+        "投论文",
+        "论文投稿",
+        "提交稿件"
+      ],
+      "actions": [
+        "选择期刊",
+        "上传稿件",
+        "完成投稿"
+      ],
+      "objects": [
+        "投稿系统",
+        "期刊",
+        "会议"
+      ],
+      "example_queries": [
+        "我想了解投稿期刊会议需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 47,
         "basic": 34,
@@ -5166,13 +5446,27 @@
     },
     "S171": {
       "name": "学术会议注册",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "办理学术会议报名注册及缴费",
+      "aliases": [
+        "注册会议",
+        "会议报名",
+        "registration"
+      ],
+      "actions": [
+        "在线注册",
+        "填写资料",
+        "缴纳会费"
+      ],
+      "objects": [
+        "会议注册",
+        "报名表",
+        "注册费"
+      ],
+      "example_queries": [
+        "我想了解学术会议注册需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 49,
         "basic": 37,
@@ -5183,13 +5477,27 @@
     },
     "S172": {
       "name": "会议报告",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在学术会议上进行口头学术汇报",
+      "aliases": [
+        "学术汇报",
+        "会议演讲",
+        "口头报告"
+      ],
+      "actions": [
+        "报告研究",
+        "回答提问",
+        "制作演讲稿"
+      ],
+      "objects": [
+        "演讲幻灯片",
+        "会议听众",
+        "报告时段"
+      ],
+      "example_queries": [
+        "我想了解会议报告需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 59,
         "basic": 32,
@@ -5200,13 +5508,27 @@
     },
     "S173": {
       "name": "海报展示",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过科研海报展示成果并与听众交流",
+      "aliases": [
+        "poster展示",
+        "学术海报",
+        "科研墙报"
+      ],
+      "actions": [
+        "设计海报",
+        "介绍成果",
+        "交流问题"
+      ],
+      "objects": [
+        "海报",
+        "展板",
+        "研究图表"
+      ],
+      "example_queries": [
+        "我想了解海报展示需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 50,
         "basic": 35,
@@ -5217,13 +5539,27 @@
     },
     "S174": {
       "name": "科研合作",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "与研究伙伴共同开展科研项目",
+      "aliases": [
+        "合作研究",
+        "联合科研",
+        "跨团队合作"
+      ],
+      "actions": [
+        "共享数据",
+        "联合研究",
+        "协调任务"
+      ],
+      "objects": [
+        "合作伙伴",
+        "研究团队",
+        "项目"
+      ],
+      "example_queries": [
+        "我想了解科研合作需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 45,
         "basic": 27,
@@ -5234,13 +5570,27 @@
     },
     "S175": {
       "name": "研究伦理与学术诚信",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "遵循研究伦理规范并保持学术诚信",
+      "aliases": [
+        "科研诚信",
+        "学术不端",
+        "研究伦理"
+      ],
+      "actions": [
+        "获得伦理审批",
+        "规范引用",
+        "避免造假"
+      ],
+      "objects": [
+        "伦理委员会",
+        "知情同意",
+        "学术规范"
+      ],
+      "example_queries": [
+        "我想了解研究伦理与学术诚信需要怎么做"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 60,
         "basic": 43,
