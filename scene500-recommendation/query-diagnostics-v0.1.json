@@ -1,0 +1,351 @@
+{
+  "schema": "pai-scene500-query-diagnostics-v0.1",
+  "groundTruthStatus": "editorial_unreviewed_diagnostic",
+  "note": "Independently authored query probes, NOT reviewed learner ground truth; do not report scores as validated production accuracy.",
+  "cases": [
+    {
+      "query": "到机场先托运行李拿登机牌",
+      "primarySceneIds": [
+        "S104"
+      ],
+      "relevantSceneIds": [
+        "S104"
+      ],
+      "negativeSceneIds": [
+        "S106"
+      ],
+      "category": "airport-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "过了安检去登机口上飞机",
+      "primarySceneIds": [
+        "S105",
+        "S106"
+      ],
+      "relevantSceneIds": [
+        "S105",
+        "S106"
+      ],
+      "negativeSceneIds": [
+        "S104"
+      ],
+      "category": "multi-intent",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "从另一架飞机转国际航班",
+      "primarySceneIds": [
+        "S108"
+      ],
+      "relevantSceneIds": [
+        "S108"
+      ],
+      "negativeSceneIds": [
+        "S094"
+      ],
+      "category": "airport-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "落地后边检问我来美国做什么",
+      "primarySceneIds": [
+        "S109"
+      ],
+      "relevantSceneIds": [
+        "S109"
+      ],
+      "negativeSceneIds": [
+        "S110"
+      ],
+      "category": "border-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "入境时要申报携带的物品",
+      "primarySceneIds": [
+        "S110"
+      ],
+      "relevantSceneIds": [
+        "S110"
+      ],
+      "negativeSceneIds": [
+        "S109"
+      ],
+      "category": "border-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "提前订两晚酒店客房",
+      "primarySceneIds": [
+        "S113"
+      ],
+      "relevantSceneIds": [
+        "S113"
+      ],
+      "negativeSceneIds": [
+        "S114"
+      ],
+      "category": "hotel-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "到酒店前台拿房卡",
+      "primarySceneIds": [
+        "S114"
+      ],
+      "relevantSceneIds": [
+        "S114"
+      ],
+      "negativeSceneIds": [
+        "S113"
+      ],
+      "category": "hotel-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "退房的时候结清账单",
+      "primarySceneIds": [
+        "S118"
+      ],
+      "relevantSceneIds": [
+        "S118"
+      ],
+      "negativeSceneIds": [
+        "S113"
+      ],
+      "category": "hotel-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "研究中提出可验证的假设",
+      "primarySceneIds": [
+        "S155"
+      ],
+      "relevantSceneIds": [
+        "S155"
+      ],
+      "negativeSceneIds": [
+        "S494"
+      ],
+      "category": "duplicate-title",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "假如明天放假我们就出发",
+      "primarySceneIds": [
+        "S494"
+      ],
+      "relevantSceneIds": [
+        "S494"
+      ],
+      "negativeSceneIds": [
+        "S155"
+      ],
+      "category": "duplicate-title",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我先检索论文再总结研究现状",
+      "primarySceneIds": [
+        "S152",
+        "S154"
+      ],
+      "relevantSceneIds": [
+        "S152",
+        "S154"
+      ],
+      "negativeSceneIds": [],
+      "category": "multi-intent",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "审稿人要求修改论文如何回复",
+      "primarySceneIds": [
+        "S169"
+      ],
+      "relevantSceneIds": [
+        "S169"
+      ],
+      "negativeSceneIds": [
+        "S168"
+      ],
+      "category": "research-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "申请工作准备简历和英文求职信",
+      "primarySceneIds": [
+        "S203",
+        "S204"
+      ],
+      "relevantSceneIds": [
+        "S203",
+        "S204"
+      ],
+      "negativeSceneIds": [],
+      "category": "multi-intent",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "刚收到录用通知我要接受offer",
+      "primarySceneIds": [
+        "S217"
+      ],
+      "relevantSceneIds": [
+        "S217"
+      ],
+      "negativeSceneIds": [
+        "S218"
+      ],
+      "category": "offer-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "婉拒公司的工作邀请",
+      "primarySceneIds": [
+        "S218"
+      ],
+      "relevantSceneIds": [
+        "S218"
+      ],
+      "negativeSceneIds": [
+        "S217"
+      ],
+      "category": "offer-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "新员工第一天办理手续",
+      "primarySceneIds": [
+        "S219"
+      ],
+      "relevantSceneIds": [
+        "S219"
+      ],
+      "negativeSceneIds": [
+        "S220"
+      ],
+      "category": "onboarding-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "入职后参加培训熟悉公司制度",
+      "primarySceneIds": [
+        "S220"
+      ],
+      "relevantSceneIds": [
+        "S220"
+      ],
+      "negativeSceneIds": [
+        "S219"
+      ],
+      "category": "onboarding-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "买的衣服尺码小想换大一码",
+      "primarySceneIds": [
+        "S071"
+      ],
+      "relevantSceneIds": [
+        "S071"
+      ],
+      "negativeSceneIds": [
+        "S070"
+      ],
+      "category": "shopping-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "买错了想退款退货",
+      "primarySceneIds": [
+        "S070"
+      ],
+      "relevantSceneIds": [
+        "S070"
+      ],
+      "negativeSceneIds": [
+        "S071"
+      ],
+      "category": "shopping-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "我对花生过敏不能吃",
+      "primarySceneIds": [
+        "S037"
+      ],
+      "relevantSceneIds": [
+        "S037"
+      ],
+      "negativeSceneIds": [
+        "S038"
+      ],
+      "category": "food-neighbors",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "去药店买非处方感冒药",
+      "primarySceneIds": [
+        "S060"
+      ],
+      "relevantSceneIds": [
+        "S060"
+      ],
+      "negativeSceneIds": [
+        "S318"
+      ],
+      "category": "cross-category",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "昨天跑步后膝盖受伤",
+      "primarySceneIds": [
+        "S349"
+      ],
+      "relevantSceneIds": [
+        "S349"
+      ],
+      "negativeSceneIds": [],
+      "category": "sports-health",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "无人机在仓库自主导航定位",
+      "primarySceneIds": [
+        "S285",
+        "S291"
+      ],
+      "relevantSceneIds": [
+        "S285",
+        "S291"
+      ],
+      "negativeSceneIds": [],
+      "category": "multi-intent",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "机器学习和深度学习有什么区别",
+      "primarySceneIds": [
+        "S279",
+        "S280"
+      ],
+      "relevantSceneIds": [
+        "S279",
+        "S280"
+      ],
+      "negativeSceneIds": [],
+      "category": "multi-intent",
+      "reviewStatus": "editorial_unreviewed"
+    },
+    {
+      "query": "%%%%%zxq",
+      "primarySceneIds": [],
+      "relevantSceneIds": [],
+      "negativeSceneIds": [],
+      "category": "irrelevant",
+      "reviewStatus": "editorial_unreviewed"
+    }
+  ]
+}
