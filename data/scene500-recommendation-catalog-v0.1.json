@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v0.9",
+  "source": "home-scene-index-v1 + semantic-overlay-v1.0",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -6376,13 +6376,27 @@
     },
     "S201": {
       "name": "搜索职位",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在招聘网站与雇主渠道寻找合适的职位",
+      "aliases": [
+        "找工作",
+        "搜招聘",
+        "找职位"
+      ],
+      "actions": [
+        "搜索职位",
+        "筛选岗位",
+        "查看招聘"
+      ],
+      "objects": [
+        "招聘网站",
+        "职位",
+        "筛选条件"
+      ],
+      "example_queries": [
+        "我想找数据分析师的工作机会"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 34,
@@ -6393,13 +6407,27 @@
     },
     "S202": {
       "name": "阅读招聘信息",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "理解招聘广告中的任职要求和工作条件",
+      "aliases": [
+        "看招聘广告",
+        "读职位描述",
+        "招聘要求"
+      ],
+      "actions": [
+        "阅读JD",
+        "核对资格",
+        "了解工作内容"
+      ],
+      "objects": [
+        "职位描述",
+        "任职要求",
+        "招聘广告"
+      ],
+      "example_queries": [
+        "招聘信息里写的任职资格是什么"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 38,
         "basic": 38,
@@ -6410,13 +6438,27 @@
     },
     "S203": {
       "name": "准备简历",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "准备并修改应聘用的个人履历",
+      "aliases": [
+        "修改简历",
+        "制作CV",
+        "写履历"
+      ],
+      "actions": [
+        "整理经历",
+        "编辑简历",
+        "突出技能"
+      ],
+      "objects": [
+        "简历",
+        "教育经历",
+        "工作经历"
+      ],
+      "example_queries": [
+        "申请工作之前想把简历改好"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 32,
         "basic": 31,
@@ -6427,13 +6469,27 @@
     },
     "S204": {
       "name": "撰写求职信",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "为具体岗位写求职申请信",
+      "aliases": [
+        "写cover letter",
+        "求职申请信",
+        "动机信"
+      ],
+      "actions": [
+        "撰写求职信",
+        "说明动机",
+        "匹配岗位"
+      ],
+      "objects": [
+        "求职信",
+        "招聘岗位",
+        "申请动机"
+      ],
+      "example_queries": [
+        "申请这个岗位的英文求职信怎么写"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 39,
@@ -6444,13 +6500,27 @@
     },
     "S205": {
       "name": "填写网申",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在招聘系统提交在线求职申请",
+      "aliases": [
+        "网上申请工作",
+        "在线投简历",
+        "招聘网申"
+      ],
+      "actions": [
+        "填写网申",
+        "上传材料",
+        "提交申请"
+      ],
+      "objects": [
+        "招聘系统",
+        "申请表",
+        "附件"
+      ],
+      "example_queries": [
+        "这个职位怎么在线填写申请表"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 30,
         "basic": 28,
@@ -6461,13 +6531,27 @@
     },
     "S206": {
       "name": "联系招聘人员",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "主动或被动与招聘专员联络",
+      "aliases": [
+        "联系HR",
+        "联系猎头",
+        "问招聘官"
+      ],
+      "actions": [
+        "询问进展",
+        "回复招聘邮件",
+        "预约通话"
+      ],
+      "objects": [
+        "招聘专员",
+        "人事",
+        "联系方式"
+      ],
+      "example_queries": [
+        "怎样给招聘人员发邮件询问进度"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 28,
@@ -6478,13 +6562,27 @@
     },
     "S207": {
       "name": "准备面试",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在正式面试前练习问题和材料",
+      "aliases": [
+        "模拟面试",
+        "面试准备",
+        "备战面试"
+      ],
+      "actions": [
+        "准备答案",
+        "了解公司",
+        "练习表达"
+      ],
+      "objects": [
+        "面试题",
+        "公司信息",
+        "自我介绍"
+      ],
+      "example_queries": [
+        "下周要面试现在该怎么准备"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 31,
@@ -6495,13 +6593,27 @@
     },
     "S208": {
       "name": "自我介绍",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "面试中简洁介绍个人教育与经历",
+      "aliases": [
+        "英文自我介绍",
+        "介绍自己",
+        "面试自我介绍"
+      ],
+      "actions": [
+        "介绍背景",
+        "介绍经历",
+        "说明优势"
+      ],
+      "objects": [
+        "个人经历",
+        "技能",
+        "自我介绍"
+      ],
+      "example_queries": [
+        "面试开头怎么用英语自我介绍"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 32,
         "basic": 29,
@@ -6512,13 +6624,27 @@
     },
     "S209": {
       "name": "行为面试",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "回答有关过去行为和经历的面试问题",
+      "aliases": [
+        "行为面试题",
+        "STAR面试",
+        "经历类面试"
+      ],
+      "actions": [
+        "举例说明",
+        "描述经历",
+        "使用STAR"
+      ],
+      "objects": [
+        "行为问题",
+        "案例经历",
+        "团队协作"
+      ],
+      "example_queries": [
+        "面试官问如何处理冲突怎么回答"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 42,
         "basic": 37,
@@ -6529,13 +6655,27 @@
     },
     "S210": {
       "name": "技术面试",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "回答针对专业技能和技术能力的面试问题",
+      "aliases": [
+        "技术问答面试",
+        "编程面试",
+        "专业面试"
+      ],
+      "actions": [
+        "解释技术",
+        "解决问题",
+        "写代码"
+      ],
+      "objects": [
+        "技术知识",
+        "代码",
+        "算法"
+      ],
+      "example_queries": [
+        "软件工程师技术面试怎么准备"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 55,
         "basic": 31,
@@ -6546,13 +6686,27 @@
     },
     "S211": {
       "name": "案例面试",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过商业案例和结构化推理解决面试题",
+      "aliases": [
+        "商业案例面试",
+        "咨询case面试",
+        "案例分析面试"
+      ],
+      "actions": [
+        "分析案例",
+        "拆解问题",
+        "估算市场"
+      ],
+      "objects": [
+        "案例题",
+        "商业问题",
+        "假设"
+      ],
+      "example_queries": [
+        "咨询公司案例面试让我估算市场规模"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 30,
@@ -6563,13 +6717,27 @@
     },
     "S212": {
       "name": "询问岗位职责",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在求职过程中了解职位负责的具体工作",
+      "aliases": [
+        "问工作职责",
+        "询问职位工作内容",
+        "岗位内容咨询"
+      ],
+      "actions": [
+        "询问职责",
+        "了解日常工作",
+        "确认岗位范围"
+      ],
+      "objects": [
+        "岗位职责",
+        "面试官",
+        "工作内容"
+      ],
+      "example_queries": [
+        "面试时怎么问这个岗位每天做什么"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 19,
@@ -6580,13 +6748,27 @@
     },
     "S213": {
       "name": "询问团队文化",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在面试中了解团队合作方式和文化",
+      "aliases": [
+        "问团队氛围",
+        "询问企业文化",
+        "团队文化问题"
+      ],
+      "actions": [
+        "询问氛围",
+        "了解沟通方式",
+        "讨论价值观"
+      ],
+      "objects": [
+        "团队文化",
+        "同事",
+        "工作氛围"
+      ],
+      "example_queries": [
+        "面试时怎么了解团队文化"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 30,
@@ -6597,13 +6779,27 @@
     },
     "S214": {
       "name": "讨论薪资",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "与雇主谈论工资数字和薪酬预期",
+      "aliases": [
+        "谈工资",
+        "薪资谈判",
+        "期望薪资"
+      ],
+      "actions": [
+        "提出薪资要求",
+        "协商工资",
+        "讨论薪酬"
+      ],
+      "objects": [
+        "薪资",
+        "年薪",
+        "薪酬范围"
+      ],
+      "example_queries": [
+        "收到工作邀请后如何谈工资"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 27,
         "basic": 25,
@@ -6614,13 +6810,27 @@
     },
     "S215": {
       "name": "讨论福利",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "了解并谈判雇主提供的非工资待遇",
+      "aliases": [
+        "员工福利",
+        "带薪休假福利",
+        "福利待遇"
+      ],
+      "actions": [
+        "询问保险",
+        "讨论假期",
+        "确认福利"
+      ],
+      "objects": [
+        "医疗保险",
+        "年假",
+        "退休金"
+      ],
+      "example_queries": [
+        "这家公司员工医疗保险和年假怎么样"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 36,
@@ -6631,13 +6841,27 @@
     },
     "S216": {
       "name": "背景调查",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "雇主对应聘者经历与资格进行核实",
+      "aliases": [
+        "背调",
+        "入职背景核查",
+        "雇佣背景调查"
+      ],
+      "actions": [
+        "联系推荐人",
+        "核查经历",
+        "提供证明"
+      ],
+      "objects": [
+        "背景调查",
+        "推荐人",
+        "工作经历"
+      ],
+      "example_queries": [
+        "公司说录用前要做背景调查"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 35,
@@ -6648,13 +6872,27 @@
     },
     "S217": {
       "name": "接受Offer",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "正式同意公司发出的录用邀请",
+      "aliases": [
+        "接受录用",
+        "同意工作邀约",
+        "接受offer"
+      ],
+      "actions": [
+        "确认录用",
+        "签署合同",
+        "回复接受"
+      ],
+      "objects": [
+        "录用通知",
+        "Offer",
+        "劳动合同"
+      ],
+      "example_queries": [
+        "怎样给HR发邮件接受工作Offer"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 20,
         "basic": 19,
@@ -6665,13 +6903,27 @@
     },
     "S218": {
       "name": "拒绝Offer",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "礼貌拒绝公司发出的录用邀请",
+      "aliases": [
+        "婉拒录用",
+        "拒绝工作邀请",
+        "拒绝offer"
+      ],
+      "actions": [
+        "拒绝录用",
+        "感谢邀请",
+        "回复拒绝"
+      ],
+      "objects": [
+        "Offer",
+        "招聘人员",
+        "拒绝邮件"
+      ],
+      "example_queries": [
+        "已经收到Offer但想礼貌拒绝"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 28,
         "basic": 27,
@@ -6682,13 +6934,27 @@
     },
     "S219": {
       "name": "入职手续",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "正式入职时办理身份资料和行政手续",
+      "aliases": [
+        "办理入职",
+        "新人报到",
+        "员工入职登记"
+      ],
+      "actions": [
+        "提交证件",
+        "签署文件",
+        "领取工牌"
+      ],
+      "objects": [
+        "劳动合同",
+        "工牌",
+        "入职表格"
+      ],
+      "example_queries": [
+        "第一天上班需要办理什么入职手续"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 34,
@@ -6699,13 +6965,27 @@
     },
     "S220": {
       "name": "新人培训",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "新员工学习公司制度和业务流程",
+      "aliases": [
+        "新人入职培训",
+        "入职培训",
+        "新员工orientation"
+      ],
+      "actions": [
+        "参加培训",
+        "学习流程",
+        "了解规则"
+      ],
+      "objects": [
+        "培训课程",
+        "公司制度",
+        "导师"
+      ],
+      "example_queries": [
+        "新员工第一周培训通常做什么"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 40,
         "basic": 35,
@@ -6716,13 +6996,27 @@
     },
     "S221": {
       "name": "职业规划",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "规划职业目标和中长期发展路径",
+      "aliases": [
+        "职业发展计划",
+        "生涯规划",
+        "职业路线"
+      ],
+      "actions": [
+        "制定职业目标",
+        "评估能力",
+        "规划成长"
+      ],
+      "objects": [
+        "职业路径",
+        "职业目标",
+        "技能"
+      ],
+      "example_queries": [
+        "未来五年我的职业发展怎么规划"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 43,
         "basic": 26,
@@ -6733,13 +7027,27 @@
     },
     "S222": {
       "name": "寻求导师",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "寻找能够提供职业建议的资深指导者",
+      "aliases": [
+        "找职业导师",
+        "寻找mentor",
+        "导师指导"
+      ],
+      "actions": [
+        "联系导师",
+        "请教经验",
+        "约指导"
+      ],
+      "objects": [
+        "导师",
+        "职业建议",
+        "资深同事"
+      ],
+      "example_queries": [
+        "我想找个行业导师给职业发展建议"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 37,
@@ -6750,13 +7058,27 @@
     },
     "S223": {
       "name": "建立职业人脉",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "建立和维护行业及工作领域的联系人",
+      "aliases": [
+        "职业社交",
+        "建立人脉",
+        "行业networking"
+      ],
+      "actions": [
+        "交换联系方式",
+        "结识同行",
+        "维护联系"
+      ],
+      "objects": [
+        "行业活动",
+        "联系人",
+        "LinkedIn"
+      ],
+      "example_queries": [
+        "如何在行业活动上认识职业人脉"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 37,
         "basic": 33,
@@ -6767,13 +7089,27 @@
     },
     "S224": {
       "name": "升职与加薪",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "与雇主讨论晋升机会或增加工资",
+      "aliases": [
+        "申请晋升",
+        "要求加薪",
+        "升职谈判"
+      ],
+      "actions": [
+        "提出晋升",
+        "争取加薪",
+        "讨论表现"
+      ],
+      "objects": [
+        "晋升",
+        "工资",
+        "职级"
+      ],
+      "example_queries": [
+        "工作表现很好如何向老板要求加薪"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 30,
@@ -6784,13 +7120,27 @@
     },
     "S225": {
       "name": "转行",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "从现有职业转换到不同行业或岗位",
+      "aliases": [
+        "职业转型",
+        "换行业",
+        "转行找工作"
+      ],
+      "actions": [
+        "转换行业",
+        "学习新技能",
+        "探索岗位"
+      ],
+      "objects": [
+        "新行业",
+        "技能转型",
+        "职业方向"
+      ],
+      "example_queries": [
+        "我想从教师转行做程序员"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 37,
