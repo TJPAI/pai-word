@@ -59,7 +59,7 @@ function repaint(focus=false){const a=document.getElementById('app');if(!a)retur
 window.openSceneCatalog=function(){
  state.view='scene-catalog';render();
  if(window.PAI_LIGHT_HOME_INDEX?.scenes)return;
- import('./home-index.mjs').then(m=>m.loadHomeIndex()).then(index=>{
+ import(new URL('rebuild-preview/home-index.mjs',document.baseURI).href).then(m=>m.loadHomeIndex()).then(index=>{
   window.PAI_LIGHT_HOME_INDEX=index;
   if(state.view==='scene-catalog')render();
  }).catch(error=>{window.PAI_SCENE_CATALOG_INDEX_ERROR=String(error);console.warn('Scene500 catalog counts fallback',error)});
