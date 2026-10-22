@@ -5,10 +5,22 @@
  function db(){return dbPromise||(dbPromise=new Promise(resolve=>{if(!status.supported)return resolve(null);const r=indexedDB.open('pai-word-lazy-v3',1);r.onupgradeneeded=()=>r.result.createObjectStore('assets');r.onsuccess=()=>resolve(r.result);r.onerror=()=>{status.supported=false;resolve(null)}}))}
  async function cached(key,value){const d=await db();if(!d)return null;return new Promise(resolve=>{const t=d.transaction('assets',value===undefined?'readonly':'readwrite'),s=t.objectStore('assets');if(value===undefined){const r=s.get(key);r.onsuccess=()=>resolve(r.result);r.onerror=()=>resolve(null)}else{s.put(value,key);t.oncomplete=()=>resolve(true);t.onerror=()=>resolve(null)}})}
  const digest=async text=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text))),n=>n.toString(16).padStart(2,'0')).join('');
+ let pakoPending=null;
+ async function loadPakoOnDemand(){
+  if(window.pako?.ungzip)return window.pako;
+  if(!pakoPending)pakoPending=new Promise((resolve,reject)=>{
+   const el=document.createElement('script');
+   el.src='https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako_inflate.min.js';
+   el.onload=()=>window.pako?.ungzip?resolve(window.pako):reject(Error('gzip fallback unavailable'));
+   el.onerror=()=>reject(Error('gzip fallback CDN unavailable'));
+   document.head.appendChild(el);
+  }).catch(e=>{pakoPending=null;throw e});
+  return pakoPending;
+ }
  async function gunzip(bytes){
   if(typeof DecompressionStream!=='undefined')return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
-  if(window.pako&&typeof window.pako.ungzip==='function')return window.pako.ungzip(bytes);
-  throw Error('当前浏览器缺少 gzip 解压能力，请更新 Safari 或使用 Chrome');
+  const pako=await loadPakoOnDemand();
+  return pako.ungzip(bytes);
  }
  async function asset(a){let text=await cached(a.sha256);if(!text||text.length!==a.bytes||await digest(text)!==a.sha256){const r=await fetch(ROOT+a.file);if(!r.ok)throw Error('词包未下载，请联网后重试');text=await r.text();if(text.length!==a.bytes||await digest(text)!==a.sha256)throw Error('词包校验失败');await cached(a.sha256,text)}const bytes=Uint8Array.from(atob(text),c=>c.charCodeAt(0));const raw=await gunzip(bytes);if(raw.byteLength!==a.rawBytes)throw Error('词包结构错误');return JSON.parse(new TextDecoder().decode(raw))}
  const loaded=new Set(),stored=new Set(),pending=new Map();
