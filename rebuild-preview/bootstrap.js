@@ -42,20 +42,17 @@
   const membershipReady=sceneMembership();
   await catalogReady;mark('catalog');
   [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);mark('memberships');
-  // Non-async dynamic scripts execute in insertion order while downloads can overlap.
-  // Never change order: each runtime overlay wraps state and render from its predecessor.
-  const runtimeScripts=[
-   'rebuild-preview/memory-schedulers.js',
-   'rebuild-preview/learning-runtime.js',
-   'audio-compat.js',
-   'scene500-integrated.js',
-   'scene500-sense-review.js',
-   'scene-search.js',
-   'rebuild-preview/home-dashboard.js',
-   'rebuild-preview/scene-catalog.js',
-   'rebuild-preview/round-policy.js'
-  ];
-  await Promise.all(runtimeScripts.map(src=>script(src)));
+  // The HTML preloads runtime scripts in parallel. Execute sequentially here
+  // so a load failure cannot run dependent scripts after an incomplete predecessor.
+  await script('rebuild-preview/memory-schedulers.js');
+  await script('rebuild-preview/learning-runtime.js');
+  await script('audio-compat.js');
+  await script('scene500-integrated.js');
+  await script('scene500-sense-review.js');
+  await script('scene-search.js');
+  await script('rebuild-preview/home-dashboard.js');
+  await script('rebuild-preview/scene-catalog.js');
+  await script('rebuild-preview/round-policy.js');
   mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
