@@ -32,7 +32,7 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
  };
  show();
  element.addEventListener('click',event=>{
-  const scene=event.target.closest('[data-scene-id]');if(scene&&element.contains(scene)){onScene(scene.dataset.sceneId,element.querySelector('#scene-difficulty')?.value||'all');return}
+  const scene=event.target.closest('[data-scene-id]');if(scene&&element.contains(scene)){const id=scene.dataset.sceneId;const difficulty=scene.classList.contains('continue-primary')?(state.scene500DifficultyByScene?.[id]||state.sceneSearchUi?.difficulty||'all'):(element.querySelector('#scene-difficulty')?.value||'all');onScene(id,difficulty);return}
   const category=event.target.closest('[data-catalog-category]');
   if(category&&catalogOpen){cat={category:Number(category.dataset.catalogCategory),query:''};show();return}
   const action=event.target.closest('[data-home-action]');if(!action||!element.contains(action))return;
