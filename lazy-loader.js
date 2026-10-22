@@ -7,6 +7,7 @@
  const digest=async text=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text))),n=>n.toString(16).padStart(2,'0')).join('');
  async function gunzip(bytes){
   if(typeof DecompressionStream!=='undefined')return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
+  if(typeof window.PAI_ENSURE_PAKO==='function'){await window.PAI_ENSURE_PAKO();return window.pako.ungzip(bytes)};
   if(window.pako&&typeof window.pako.ungzip==='function')return window.pako.ungzip(bytes);
   throw Error('当前浏览器缺少 gzip 解压能力，请更新 Safari 或使用 Chrome');
  }
