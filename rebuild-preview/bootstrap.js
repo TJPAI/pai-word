@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v21-perf-overlap-scene-fetch-20261023';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v21-perf-single-top100-refresh-20261023';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
