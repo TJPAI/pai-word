@@ -22,6 +22,11 @@ const genericActions=new Set(["操作","设置","访问","解决问题","理解�
 for(const [id,item] of Object.entries(compact.scenes))if(item.quality==='machine_generated_unverified'){
  assert.ok((item.actions||[]).every(action=>!genericActions.has(action)),id+' generic action leaked');
 }
+const colloquial=JSON.parse(fs.readFileSync('scene500-recommendation/query-expansions-v0.1.json','utf8'));
+for(const [id,entry] of Object.entries(colloquial.scenes)){
+ assert.ok(compact.scenes[id],id+' missing from compact catalog');
+ for(const term of entry.aliases)assert.ok(compact.scenes[id].aliases.includes(term),id+' missing expansion '+term);
+}
 const search=require('../scripts/scene500-semantic-ranker.cjs');
 assert.equal(search.rank('起床与晨间准备',full.scenes,{limit:5})[0].id,'S001');
 console.log('PASS 500 scene catalog with',draft,'draft profiles and',generated,'machine-generated candidates');
