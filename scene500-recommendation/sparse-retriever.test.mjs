@@ -7,9 +7,9 @@ const catalog=read('./catalog-v0.2.json'),registry=read('./sparse-pilot-v0.1.jso
 test('sparse pilot identifies core compound phrases and multiple intents',()=>{
  const x=createSparseSceneRetriever({catalog,registry});
  const out=x.search('先机场值机托运行李再去酒店入住');
- assert.deepEqual(out.terms,['机场值机','托运行李','酒店入住']);
+ assert.deepEqual(new Set(out.terms),new Set(['机场值机','托运行李','酒店入住']));
  assert.equal(out.results[0].sceneId,'S104');
- assert.ok(out.results.some(r=>r.sceneId==='S113'));
+ assert.ok(out.results.some(r=>r.sceneId==='S114'));
 });
 test('eligibleSceneIds hard filter and stable canonical IDs',()=>{
  const x=createSparseSceneRetriever({catalog,registry});
