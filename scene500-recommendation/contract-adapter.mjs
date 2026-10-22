@@ -10,9 +10,10 @@ export function validateChineseLexiconContract(lexicon){
  for(const t of lexicon.terms){
   if(!t||typeof t.term_id!=='string'||!t.term_id.trim()||typeof t.term!=='string'||!t.term.trim()||
   typeof t.normalized_term!=='string'||!t.normalized_term.trim()||
-  !Number.isInteger(t.frequency_rank)||t.frequency_rank<1||!finite(t.frequency_score)||
+  (t.frequency_rank!=null&&(!Number.isInteger(t.frequency_rank)||t.frequency_rank<1))||
+  (t.frequency_score!=null&&(!finite(t.frequency_score)||t.frequency_score<0))||
   !Array.isArray(t.aliases)||typeof t.source_version!=='string'||!t.source_version.trim()||
-  (t.pos!==null&&typeof t.pos!=='string')||ids.has(t.term_id)||keys.has(t.normalized_term))
+  (t.pos!=null&&typeof t.pos!=='string')||ids.has(t.term_id)||keys.has(t.normalized_term))
    throw Error('SCENE500_INVALID_CHINESE_TERM: '+String(t?.term_id));
   ids.add(t.term_id);keys.add(t.normalized_term);
  }
@@ -36,11 +37,15 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
  validateChineseLexiconContract(lexicon);
  validateAssociations({catalog,lexicon,associations});
  const base=createScene500Recommender({catalog,minimumScore});
- const terms=new Map(lexicon.terms.map(t=>[t.term_id,t]));
+ const linksByTerm=new Map();
+ for(const link of associations.links){
+  if(!linksByTerm.has(link.term_id))linksByTerm.set(link.term_id,[]);
+  linksByTerm.get(link.term_id).push(link);
+ }
  const registry={scene_count:500,terms:{}};
  for(const t of lexicon.terms){
   const key=norm(t.normalized_term);
-  const links=associations.links.filter(x=>x.term_id===t.term_id).sort((a,b)=>a.rank-b.rank);
+  const links=(linksByTerm.get(t.term_id)||[]).sort((a,b)=>a.rank-b.rank);
   if(key.length>1&&links.length)registry.terms[key]=links.map(p=>({sceneId:p.scene_id,weight:p.score}));
  }
  const sparse=createSparseSceneRetriever({catalog,registry});
