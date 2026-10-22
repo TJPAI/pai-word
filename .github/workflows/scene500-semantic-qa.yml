@@ -50,3 +50,5 @@ jobs:
         run: node scripts/evaluate-scene500-recommendation.cjs --holdout --assert-structure
       - name: Test independent browser ESM module
         run: node --test scene500-recommendation/engine.test.mjs
+      - name: Test scene identity, eligibility, paging and diagnostic performance
+        run: node --test scene500-recommendation/isolation-performance.test.mjs
