@@ -1,0 +1,5 @@
+# Batch 33 — 110 new Chinese Sense gloss drafts
+
+Actual executable local builder `/mnt/data/build_batch33.py` processed all 1,921 Batch32 outstanding records; individually authored 110 Sense-specific Chinese drafts, preserving original candidate keys, rank, lemma, POS, OEWN Sense ID and complete English gloss. 1,811 records remain. Source task SHA256 `117affe2c6d91e424c53a2c962e58e3390a9a56a2f42370732894559e4d166bc`; new data SHA256 `91fee308717dab15fb83c3812424962419300dbe23f709435f97ae98f0036b51`; remaining tasks SHA256 `e57571e37d6daf1f909eb7f0cd4c8100a17fe135308b2ef3ce208ec401ed108b`.
+
+16 targeted risk markers (historical terms, narrow definitions, part of speech, specialist usages). Structural QA and ZIP integrity passed. Complete draft and remaining JSONL in local downloadable `core20k_batch33_zh110.zip`. Drafts are **EDITORIAL_UNVERIFIED**, with no newly accepted KU IDs or Production Ready promotion. No app, SRS, Scene500 or frozen membership changes. This GitHub commit records audit only.
