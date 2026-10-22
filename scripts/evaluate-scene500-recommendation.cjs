@@ -5,7 +5,9 @@ const {pathToFileURL}=require('node:url');
 (async()=>{
 const {createScene500Recommender}=await import(pathToFileURL(require('node:path').resolve('scene500-recommendation/engine.mjs')).href);
 const catalog=JSON.parse(fs.readFileSync('scene500-recommendation/catalog-v0.2.json','utf8'));
-const set=JSON.parse(fs.readFileSync('scene500-recommendation/query-diagnostics-v0.1.json','utf8'));
+const holdout=process.argv.includes('--holdout');
+const set=JSON.parse(fs.readFileSync(holdout?'scene500-recommendation/query-holdout-v0.1.json':'scene500-recommendation/query-diagnostics-v0.1.json','utf8'));
+const isHoldout=holdout;
 const engine=createScene500Recommender({catalog});
 const rows=set.cases.map(t=>{
  const ranked=engine.search(t.query,{limit:100}).results.map(x=>x.sceneId);
@@ -22,11 +24,11 @@ const rows=set.cases.map(t=>{
   ndcg5:idcg?dcg/idcg:null,
   precision5:hits/5,
   reciprocalRank10:first>=0&&first<10?1/(first+1):0,
-  falsePositive5:t.negativeSceneIds.filter(id=>actual.has(id)),
+  falsePositive5:(t.negativeSceneIds||[]).filter(id=>actual.has(id)),
   missing:rel.filter(id=>!actual.has(id))};
 });
 const relevant=rows.filter(r=>r.recall5!==null),avg=(xs)=>xs.length?xs.reduce((a,b)=>a+b,0)/xs.length:0;
-const summary={label:'UNREVIEWED EDITORIAL DIAGNOSTIC - NOT VALIDATED ACCURACY',queries:rows.length,
+const summary={label:isHoldout?'UNREVIEWED HOLDOUT - NOT VALIDATED ACCURACY':'UNREVIEWED EDITORIAL DIAGNOSTIC - NOT VALIDATED ACCURACY',queries:rows.length,
  recall5:avg(relevant.map(r=>r.recall5)),precision5:avg(relevant.map(r=>r.precision5)),
  mrr10:avg(relevant.map(r=>r.reciprocalRank10)),
  recall10:avg(relevant.map(r=>r.recall10)),
