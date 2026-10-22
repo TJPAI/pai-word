@@ -30,6 +30,17 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
    persist(state);show();
   }else onAction(action.dataset.homeAction);
  });
+ // Preserve unsubmitted drafts without replacing the textarea during Chinese IME.
+ // Only the explicit search button computes/replaces the recommendation list.
+ const captureDraft=event=>{
+  if(event.target.id!=='scene-query'||event.target.isComposing)return;
+  const query=event.target.value;
+  const current=state.sceneSearchUi||{};
+  state.sceneSearchUi={...current,query,resultIds:query===current.query?current.resultIds:[]};
+  persist(state);
+ };
+ element.addEventListener('compositionend',captureDraft);
+ element.addEventListener('change',captureDraft);
  element.addEventListener('change',event=>{
   if(event.target.id!=='scene-difficulty')return;
   const query=element.querySelector('#scene-query')?.value.trim()||'';
