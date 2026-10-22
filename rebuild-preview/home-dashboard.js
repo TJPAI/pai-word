@@ -69,7 +69,8 @@
   }
   function resumableScene(){
     const session=state.learningSession;
-    const id=state.selectedScene;
+    const id=session?.scene500SceneId||state.selectedScene;
+    if(session?.scene500SceneId&&session.scene500SceneId!==state.selectedScene)return null;
     if(session?.kind!=='scene'||!id||!displayName(id)||!Array.isArray(session.queue)||!session.queue.length)return null;
     // Never present a stale or unresolvable queue as an active session.
     if(!session.queue.every(k=>window.PAI_CORE?.byKU?.has(k)))return null;
