@@ -129,7 +129,7 @@
     runSceneSearch(q,difficulty||'all');
   };
   window.continueScene500=function(scene,difficulty='all'){
-    if(canResumeScene(scene)&&state.learningSession.scene500Difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
+    if(canResumeScene(scene)&&resumableScene()?.difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
