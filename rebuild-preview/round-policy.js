@@ -75,7 +75,18 @@
       const due=dueKeys(scene).slice(0,roundSize()),seen=new Set(due);
       const fresh=freshKeys(scene,seen).filter(k=>!seen.has(k)).slice(0,Math.max(0,roundSize()-due.length));
       const keys=[...due,...fresh];
-      const result=window.PAI_START_POLICY_SESSION(keys,SCENES[scene]+' · 定向学习','scene');
+      // Never persist an empty learning session or show an undefined scene title.
+      if(!keys.length){
+        state.view='scenes';
+        window.PAI_SCENE_ENTRY_ERROR='当前场景在所选难度下暂无可学习KU，请更换难度或场景。';
+        window.render?.();
+        let notice=document.getElementById('pai-scene-empty-notice');
+        if(!notice){notice=document.createElement('p');notice.id='pai-scene-empty-notice';notice.setAttribute('role','alert');document.querySelector('.home-focus')?.prepend(notice)}
+        if(notice)notice.textContent=window.PAI_SCENE_ENTRY_ERROR;
+        return false;
+      }
+      const name=SCENES[scene]||window.PAI_LIGHT_HOME_INDEX?.scenes?.[scene]?.name||scene;
+      const result=window.PAI_START_POLICY_SESSION(keys,name+' · 定向学习','scene');
       if(state.learningSession){state.learningSession.scene500Difficulty=state.scene500DifficultyByScene?.[scene]||'all';save();}
       return result;
     }
