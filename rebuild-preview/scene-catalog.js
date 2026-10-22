@@ -41,7 +41,7 @@ return `<style>
 .scene-catalog small{color:inherit;opacity:.65}
 .scene-catalog .catalog-note{font-size:12px;opacity:.65;margin:12px 0}
 @media(max-width:480px){.scene-catalog .catalog-tools{flex-wrap:wrap}.scene-catalog select{width:120px}.scene-catalog .catalog-cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
-</style><section class="scene-catalog"><header class="catalog-head"><button class="catalog-back" data-cat-back>← 返回</button><h2>浏览场景目录</h2></header><p class="catalog-note">Scene500 · 20大类 × 25小类 · 共享首页难度，点击场景进入现有学习流程</p><div class="catalog-tools"><input id="catalog-query" aria-label="搜索场景" placeholder="搜索500个场景" value="${esc(c.query)}"><select id="catalog-difficulty" aria-label="难度">${Object.entries(levels).map(([v,l])=>`<option value="${v}" ${d===v?'selected':''}>${l}</option>`).join('')}</select></div><nav class="catalog-cats" aria-label="场景大类">${names.map((n,i)=>`<button class="catalog-group" data-cat-index="${i}" aria-pressed="${!c.query&&i===c.category}">${String(i+1).padStart(2,'0')} ${esc(n)}</button>`).join('')}</nav><p class="catalog-note">${c.query?`匹配场景：${list.length}个`:`${esc(names[c.category])} · ${list.length}个场景`}</p><div class="catalog-items">${list.length?list.map(s=>`<button class="catalog-item" data-cat-scene="${s.id}"><span><b>${s.id} · ${esc(s.name)}</b>${s.desc?`<small style="display:block">${esc(s.desc)}</small>`:''}</span><small>${s.count===null?'数量待加载':s.count+' 可学KU'} →</small></button>`).join(''):'<p>没有匹配场景；可尝试其它关键词。</p>'}</div></section>`;
+</style><section class="scene-catalog"><header class="catalog-head"><button class="catalog-back" data-cat-back>← 返回</button><h2>浏览场景目录</h2></header><p class="catalog-note">Scene500 · 20大类 × 25小类 · 共享首页难度，点击场景进入现有学习流程</p><div class="catalog-tools"><input id="catalog-query" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="搜索场景" placeholder="搜索500个场景" value="${esc(c.query)}"><button type="button" class="catalog-back" data-cat-search>搜索</button><select id="catalog-difficulty" aria-label="难度">${Object.entries(levels).map(([v,l])=>`<option value="${v}" ${d===v?'selected':''}>${l}</option>`).join('')}</select></div><nav class="catalog-cats" aria-label="场景大类">${names.map((n,i)=>`<button class="catalog-group" data-cat-index="${i}" aria-pressed="${!c.query&&i===c.category}">${String(i+1).padStart(2,'0')} ${esc(n)}</button>`).join('')}</nav><p class="catalog-note">${c.query?`匹配场景：${list.length}个`:`${esc(names[c.category])} · ${list.length}个场景`}</p><div class="catalog-items">${list.length?list.map(s=>`<button class="catalog-item" data-cat-scene="${s.id}"><span><b>${s.id} · ${esc(s.name)}</b>${s.desc?`<small style="display:block">${esc(s.desc)}</small>`:''}</span><small>${s.count===null?'数量待加载':s.count+' 可学KU'} →</small></button>`).join(''):'<p>没有匹配场景；可尝试其它关键词。</p>'}</div></section>`;
 }
 // Refresh only results: never replace a focused text input during typing or IME composition.
 function refreshMatches(){
@@ -64,17 +64,19 @@ if(e.target.closest('[data-cat-back]')){state.view='scenes';render();return}
 const group=e.target.closest('[data-cat-index]');if(group){const c=catalog();c.category=Number(group.dataset.catIndex);c.query='';repaint();return}
 const button=e.target.closest('[data-cat-scene]');if(button){window.PAI_SCENE_SEARCH?.open(button.dataset.catScene,state.sceneSearchUi?.difficulty||'all');}
 });
-document.addEventListener('input',e=>{
- if(state.view!=='scene-catalog'||e.target.id!=='catalog-query')return;
- catalog().query=e.target.value;
- // iOS Safari Chinese Pinyin: do not redraw matches until composition commits.
- if(e.isComposing||e.target.dataset.composing==='1')return;
+// Safari Chinese IME: never update the DOM while typing, composing, or choosing candidates.
+// Search only on an explicit button tap or the input's committed change (blur).
+function commitCatalogSearch(){
+ const el=document.getElementById('catalog-query');
+ if(!el||state.view!=='scene-catalog')return;
+ catalog().query=el.value;
  refreshMatches();
+}
+document.addEventListener('click',e=>{
+ if(state.view==='scene-catalog'&&e.target.closest('[data-cat-search]'))commitCatalogSearch();
 });
-document.addEventListener('compositionstart',e=>{if(state.view==='scene-catalog'&&e.target.id==='catalog-query')e.target.dataset.composing='1'});
-document.addEventListener('compositionend',e=>{
- if(state.view!=='scene-catalog'||e.target.id!=='catalog-query')return;
- delete e.target.dataset.composing;catalog().query=e.target.value;refreshMatches();
+document.addEventListener('change',e=>{
+ if(state.view==='scene-catalog'&&e.target.id==='catalog-query')commitCatalogSearch();
 });
 document.addEventListener('change',e=>{if(state.view==='scene-catalog'&&e.target.id==='catalog-difficulty'){state.sceneSearchUi=state.sceneSearchUi||{};state.sceneSearchUi.difficulty=e.target.value;save();repaint()}});
 })();
