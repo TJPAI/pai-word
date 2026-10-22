@@ -22,7 +22,7 @@
   const strip=document.createElement('aside');
   strip.id='pai-perf-version-strip';
   strip.setAttribute('aria-label','加速版部署版本');
-  strip.style.cssText='position:fixed;bottom:0;left:0;right:0;z-index:2147483000;background:#f1f5f9;color:#334155;border-top:1px solid #cbd5e1;padding:5px 8px calc(5px + env(safe-area-inset-bottom));font:11px/1.45 system-ui,sans-serif;text-align:center;overflow-wrap:anywhere;pointer-events:none';
+  strip.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2147483000;background:#f1f5f9;color:#334155;border-bottom:1px solid #cbd5e1;padding:calc(5px + env(safe-area-inset-top)) 8px 5px;font:11px/1.45 system-ui,sans-serif;text-align:center;overflow-wrap:anywhere;pointer-events:none';
   strip.textContent='加速版 SHA：读取中…';
   document.body.appendChild(strip);
   void fetch(new URL('preview-source-sha.txt',document.baseURI),{cache:'no-store'})
