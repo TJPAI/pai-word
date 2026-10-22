@@ -59,10 +59,15 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
   await script('rebuild-preview/round-policy.js');
   mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
+  // Preserve the current input, including empty drafts, across Stage A -> B.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
-  const typed=document.getElementById('scene-query')?.value||'';
-  const difficulty=document.getElementById('scene-difficulty')?.value||'all';
-  state.sceneSearchUi={...(state.sceneSearchUi||{}),query:preboot?.query||state.sceneSearchUi?.query||typed||'',difficulty:preboot?.difficulty||state.sceneSearchUi?.difficulty||difficulty,resultIds:preboot?.query?[]:(state.sceneSearchUi?.resultIds||[])};
+  const earlySearch=window.PAI_EARLY_HOME?.searchUi;
+  const typed=document.getElementById('scene-query');
+  const difficultyNode=document.getElementById('scene-difficulty');
+  const prior=state.sceneSearchUi||{};
+  const query=typed?typed.value:(earlySearch?.query??preboot?.query??prior.query??'');
+  const difficulty=difficultyNode?.value||earlySearch?.difficulty||preboot?.difficulty||prior.difficulty||'all';
+  state.sceneSearchUi={...prior,query,difficulty,resultIds:query===prior.query?(prior.resultIds||[]):[]};
   state.view='scenes';state.revealed=false;
   // Assemble final home content behind the boot gate; expose it only once.
 
