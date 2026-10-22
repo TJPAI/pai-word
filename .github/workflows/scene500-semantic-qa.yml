@@ -70,6 +70,8 @@ jobs:
         run: node --test scene500-recommendation/zh-v094-real-asset.test.mjs
       - name: End-to-end V0.9.4 candidate-to-metrics smoke test
         run: node --test tests/scene500-v094-end-to-end.test.cjs
+      - name: Lock real Scene500 catalog ranking baseline
+        run: node --test scene500-recommendation/real-catalog-baseline.test.mjs
       - name: Test V0.9.4 lexical field substring builder
         run: node --test tests/scene500-v094-lexical.test.cjs
       - name: Test V0.9.4 exact-first word identity and overlap extraction
