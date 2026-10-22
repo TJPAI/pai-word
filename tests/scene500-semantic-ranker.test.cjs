@@ -1,11 +1,11 @@
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const ranker=require('../scripts/scene500-semantic-ranker.cjs');
-const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v1.1.json','utf8'));
+const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v1.2.json','utf8'));
 const scenes=overlay.scenes;
-assert.equal(Object.keys(scenes).length,250);
+assert.equal(Object.keys(scenes).length,500);
 for(const [id,s] of Object.entries(scenes)){
-  assert.match(id,/^S(?:0[0-9]{2}|1[0-9]{2}|2[0-4][0-9]|250)$/);
+  assert.match(id,/^S(?:00[1-9]|0[1-9][0-9]|[1-4][0-9]{2}|500)$/);
   for(const f of ['name','description_enriched','aliases','actions','objects','example_queries'])
     assert.ok(s[f]&&(typeof s[f]==='string'?s[f].length:s[f].length>0),id+':'+f);
 }
@@ -42,4 +42,4 @@ assert.deepEqual(ranker.page(rows,0).map(x=>x.id),rows.slice(0,5).map(x=>x.id));
 assert.deepEqual(ranker.page(rows,1).map(x=>x.id),rows.slice(5,10).map(x=>x.id));
 assert.equal(new Set(rows.map(x=>x.id)).size,rows.length);
 assert.deepEqual(ranker.rank('  ',scenes),[]);
-console.log('PASS: 25 schema records, 8 query fixtures, deterministic pagination, unique results, blank query');
+console.log('PASS: 500 schema records, 8 query fixtures, deterministic pagination, unique results, blank query');
