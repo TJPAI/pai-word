@@ -10,11 +10,11 @@ const wordsData=JSON.parse(wordsRaw),catalog=JSON.parse(catalogRaw);
 const words=wordsData.words?.map(x=>typeof x==='string'?x:x.term);
 if(!Array.isArray(words)||words.length!==20000||new Set(words).size!==20000)throw Error('Expected 20000 unique words');
 if(catalog.scene_count!==500||Object.keys(catalog.scenes||{}).length!==500)throw Error('Expected 500 scenes');
-const norm=s=>String(s??'').normalize('NFKC').replace(/\\s+/g,'');
+const norm=s=>String(s??'').normalize('NFKC').replace(/\s+/g,'');
 const allowed=new Set(words);
 const edges=new Map();
 for(const [sceneId,scene] of Object.entries(catalog.scenes)){
- if(!/^S(?:00[1-9]|0[1-9]\\d|[1-4]\\d\\d|500)$/.test(sceneId))throw Error('Invalid ID '+sceneId);
+ if(!/^S(?:00[1-9]|0[1-9]\d|[1-4]\d\d|500)$/.test(sceneId))throw Error('Invalid ID '+sceneId);
  const fields=[['name',[scene.name],1],['aliases',scene.aliases||[],.8],['actions',scene.actions||[],.7],['objects',scene.objects||[],.55]];
  for(const [field,items,weight] of fields)for(const raw of items){
   const term=norm(raw);
