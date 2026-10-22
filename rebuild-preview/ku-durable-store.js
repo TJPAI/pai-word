@@ -2,7 +2,7 @@
 // This layer does not delete localStorage or other databases.
 (function(){
  'use strict';
- const NAME='pai-word-ku-durable-v1';
+ const NAME=location.pathname.startsWith('/pai-word-preview/')?'pai-word-ku-durable-preview-v1':'pai-word-ku-durable-v1';
  const KEY='current';
  function open(){
   return new Promise((resolve,reject)=>{
