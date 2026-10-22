@@ -3,7 +3,7 @@
 **Owner:** Scene500 recommendation workstream. **Integrator:** PAI Word home/runtime workstream.
 
 ## Isolation rules
-- Browser ESM at `scene500-recommendation/engine.mjs`; standalone catalog at `data/scene500-recommendation-catalog-v0.1.json`.
+- Browser ESM at `scene500-recommendation/engine.mjs`; standalone catalog at `scene500-recommendation/catalog-v0.2.json`.
 - Host imports this module **after Home Shell paints** or on first search. Never static-import it from the home entrypoint if that delays first paint.
 - No changes to `scene-search.js`, home entrypoint, Core20K, Top100, `ku_id`, SRS, `state`, or `save()` in this workstream.
 - Host owns difficulty/availability filtering by passing `eligibleSceneIds`, UI, pagination controls, analytics, and learning navigation.
@@ -16,7 +16,7 @@ let enginePromise;
 function loadRecommendationEngine(){
   return enginePromise ??= import('./scene500-recommendation/engine.mjs')
     .then(({loadScene500Recommender})=>loadScene500Recommender({
-      catalogUrl:'./data/scene500-recommendation-catalog-v0.1.json'
+      catalogUrl:'./scene500-recommendation/catalog-v0.2.json'
     })).catch(err=>{enginePromise=null;throw err});
 }
 async function recommend(query,eligibleSceneIds,limit=20){
