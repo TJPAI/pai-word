@@ -15,6 +15,7 @@ on:
       - 'scene500-recommendation/**'
       - 'scripts/audit-scene500-recommendation.cjs'
       - 'scripts/evaluate-scene500-recommendation.cjs'
+      - 'scripts/verify-scene500-generated.cjs'
       - 'scene500-recommendation/query-holdout-v0.1.json'
       - 'data/scene500-recommendation-catalog-v0.1.json'
       - 'scene500-recommendation/catalog-v0.2.json'
@@ -37,8 +38,8 @@ jobs:
         run: node tests/scene500-semantic-ranker.test.cjs
       - name: Build and test 500-scene catalog
         run: node tests/scene500-recommendation-catalog.test.cjs
-      - name: Verify generated compact catalog is committed
-        run: git diff --exit-code -- scene500-recommendation/catalog-v0.2.json
+      - name: Verify generated catalogs match committed semantic data
+        run: node scripts/verify-scene500-generated.cjs
       - name: Audit all 500 scenes
         run: node scripts/audit-scene500-recommendation.cjs --strict
       - name: Test canonical title retrieval diagnostic
