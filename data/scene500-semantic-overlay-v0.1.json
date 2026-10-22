@@ -1,0 +1,660 @@
+{
+  "schema": "pai-scene500-semantic-overlay-v0.1",
+  "source_home_index_sha": "7dcf49f6b956224c78e0f03959c2fc32e1e72fd9",
+  "policy": "additive_only; never overwrite taxonomy/top100/KU; draft requires independent review",
+  "scenes": {
+    "S001": {
+      "name": "起床与晨间准备",
+      "description_enriched": "早晨起床并完成出门前准备",
+      "aliases": [
+        "起床",
+        "早上起来",
+        "晨起",
+        "早晨准备"
+      ],
+      "actions": [
+        "醒来",
+        "起床",
+        "整理床铺",
+        "准备出门"
+      ],
+      "objects": [
+        "闹钟",
+        "床铺",
+        "早晨",
+        "衣服"
+      ],
+      "example_queries": [
+        "早晨起床后应该做什么",
+        "我早上起不来怎么办"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S002": {
+      "name": "洗漱与个人清洁",
+      "description_enriched": "完成刷牙洗脸、洗澡等日常个人清洁",
+      "aliases": [
+        "洗脸刷牙",
+        "个人卫生",
+        "洗漱",
+        "洗澡"
+      ],
+      "actions": [
+        "刷牙",
+        "洗脸",
+        "洗澡",
+        "洗头"
+      ],
+      "objects": [
+        "牙刷",
+        "牙膏",
+        "洗发水",
+        "毛巾"
+      ],
+      "example_queries": [
+        "如何正确刷牙洗脸",
+        "我想学洗澡洗头相关英语"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S003": {
+      "name": "穿衣与搭配",
+      "description_enriched": "选择衣服并搭配适合场合的穿着",
+      "aliases": [
+        "搭配衣服",
+        "穿搭",
+        "穿衣服",
+        "服饰搭配"
+      ],
+      "actions": [
+        "穿衣",
+        "选衣服",
+        "搭配",
+        "换衣服"
+      ],
+      "objects": [
+        "上衣",
+        "裤子",
+        "鞋",
+        "颜色"
+      ],
+      "example_queries": [
+        "今天怎么搭配衣服",
+        "去面试穿什么衣服"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S004": {
+      "name": "整理房间",
+      "description_enriched": "整理房间里的物品并保持整洁",
+      "aliases": [
+        "收拾房间",
+        "整理卧室",
+        "房间收纳"
+      ],
+      "actions": [
+        "整理",
+        "收纳",
+        "摆放",
+        "清扫"
+      ],
+      "objects": [
+        "房间",
+        "书桌",
+        "床",
+        "物品"
+      ],
+      "example_queries": [
+        "我想整理凌乱的房间",
+        "如何收纳房间里的东西"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S005": {
+      "name": "做家务",
+      "description_enriched": "安排并完成一般家庭日常劳动",
+      "aliases": [
+        "家务活",
+        "家庭劳动",
+        "家务"
+      ],
+      "actions": [
+        "打扫",
+        "拖地",
+        "擦拭",
+        "整理"
+      ],
+      "objects": [
+        "地板",
+        "灰尘",
+        "家具",
+        "家"
+      ],
+      "example_queries": [
+        "今天要做家务",
+        "我要扫地拖地"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S006": {
+      "name": "洗衣与晾晒",
+      "description_enriched": "清洗、晾晒和收纳衣物",
+      "aliases": [
+        "洗衣服",
+        "晾衣服",
+        "衣物清洗"
+      ],
+      "actions": [
+        "洗涤",
+        "漂洗",
+        "脱水",
+        "晾晒"
+      ],
+      "objects": [
+        "洗衣机",
+        "衣服",
+        "洗衣液",
+        "晾衣架"
+      ],
+      "example_queries": [
+        "洗衣机怎么洗衣服",
+        "雨天怎么晾衣服"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S007": {
+      "name": "做饭准备",
+      "description_enriched": "准备烹饪所需的食材与厨具",
+      "aliases": [
+        "准备做饭",
+        "备菜",
+        "烹饪前准备"
+      ],
+      "actions": [
+        "洗菜",
+        "切菜",
+        "备料",
+        "准备"
+      ],
+      "objects": [
+        "食材",
+        "菜刀",
+        "砧板",
+        "锅"
+      ],
+      "example_queries": [
+        "做饭前需要准备什么",
+        "我在厨房切菜备料"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S008": {
+      "name": "家庭用餐",
+      "description_enriched": "在家中和家庭成员一起吃饭",
+      "aliases": [
+        "在家吃饭",
+        "家庭餐桌",
+        "家里用餐"
+      ],
+      "actions": [
+        "吃饭",
+        "盛饭",
+        "分享",
+        "用餐"
+      ],
+      "objects": [
+        "餐桌",
+        "碗筷",
+        "家人",
+        "饭菜"
+      ],
+      "example_queries": [
+        "一家人一起吃晚饭",
+        "家里吃饭如何摆餐桌"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S009": {
+      "name": "洗碗与厨房清洁",
+      "description_enriched": "用餐后清洗餐具与厨房区域",
+      "aliases": [
+        "洗碗",
+        "刷盘子",
+        "清洁厨房"
+      ],
+      "actions": [
+        "洗碗",
+        "擦洗",
+        "冲洗",
+        "收拾"
+      ],
+      "objects": [
+        "碗",
+        "盘子",
+        "水槽",
+        "厨房"
+      ],
+      "example_queries": [
+        "吃完饭我要洗碗",
+        "怎么清洁厨房台面"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S010": {
+      "name": "居家休息",
+      "description_enriched": "在家中放松、休息与恢复精力",
+      "aliases": [
+        "在家放松",
+        "家中休息",
+        "宅家休息"
+      ],
+      "actions": [
+        "放松",
+        "休息",
+        "躺下",
+        "小睡"
+      ],
+      "objects": [
+        "沙发",
+        "客厅",
+        "家",
+        "午休"
+      ],
+      "example_queries": [
+        "我想在家好好休息",
+        "工作后在沙发上放松"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S011": {
+      "name": "看电视与流媒体",
+      "description_enriched": "观看电视节目或使用流媒体服务",
+      "aliases": [
+        "追剧",
+        "看视频平台",
+        "看电视"
+      ],
+      "actions": [
+        "观看",
+        "播放",
+        "暂停",
+        "选节目"
+      ],
+      "objects": [
+        "电视",
+        "遥控器",
+        "电视剧",
+        "流媒体"
+      ],
+      "example_queries": [
+        "晚上想在电视上追剧",
+        "如何用流媒体看节目"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S012": {
+      "name": "家庭聊天",
+      "description_enriched": "与家庭成员进行日常交流",
+      "aliases": [
+        "家人聊天",
+        "家庭沟通",
+        "亲子聊天"
+      ],
+      "actions": [
+        "聊天",
+        "分享",
+        "讨论",
+        "倾听"
+      ],
+      "objects": [
+        "家人",
+        "话题",
+        "消息",
+        "家庭"
+      ],
+      "example_queries": [
+        "和家人聊今天的事",
+        "怎样和父母沟通"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S013": {
+      "name": "照顾孩子",
+      "description_enriched": "照料孩子的日常生活和需要",
+      "aliases": [
+        "带孩子",
+        "照看小孩",
+        "育儿照护"
+      ],
+      "actions": [
+        "照看",
+        "喂养",
+        "安抚",
+        "陪伴"
+      ],
+      "objects": [
+        "孩子",
+        "婴儿",
+        "玩具",
+        "奶瓶"
+      ],
+      "example_queries": [
+        "如何照顾小宝宝",
+        "我要给孩子喂饭"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S014": {
+      "name": "照顾老人",
+      "description_enriched": "帮助老年家庭成员完成日常照护",
+      "aliases": [
+        "照看老人",
+        "老人护理",
+        "陪伴长辈"
+      ],
+      "actions": [
+        "陪伴",
+        "搀扶",
+        "照料",
+        "提醒"
+      ],
+      "objects": [
+        "老人",
+        "长辈",
+        "日常用品",
+        "家"
+      ],
+      "example_queries": [
+        "我需要照顾年迈的父母",
+        "如何陪老人散步"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S015": {
+      "name": "照顾宠物",
+      "description_enriched": "喂养并照顾家庭宠物的生活",
+      "aliases": [
+        "养宠物",
+        "照料猫狗",
+        "宠物护理"
+      ],
+      "actions": [
+        "喂食",
+        "遛狗",
+        "清理",
+        "照看"
+      ],
+      "objects": [
+        "猫",
+        "狗",
+        "宠物食品",
+        "牵引绳"
+      ],
+      "example_queries": [
+        "我每天带狗出去散步",
+        "给猫喂食和清理猫砂"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S016": {
+      "name": "家庭聚会",
+      "description_enriched": "在家举办或参加亲友聚会",
+      "aliases": [
+        "亲友聚餐",
+        "家庭派对",
+        "家里聚会"
+      ],
+      "actions": [
+        "邀请",
+        "招待",
+        "聊天",
+        "聚餐"
+      ],
+      "objects": [
+        "亲戚",
+        "朋友",
+        "客人",
+        "食物"
+      ],
+      "example_queries": [
+        "周末家里要聚会",
+        "邀请亲戚来家吃饭"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S017": {
+      "name": "家具与家居用品",
+      "description_enriched": "认识、选择和使用各类家具用品",
+      "aliases": [
+        "家具用品",
+        "家居物品",
+        "家具"
+      ],
+      "actions": [
+        "摆放",
+        "选择",
+        "使用",
+        "更换"
+      ],
+      "objects": [
+        "桌子",
+        "椅子",
+        "床",
+        "柜子"
+      ],
+      "example_queries": [
+        "客厅应该摆什么家具",
+        "我想了解各种家居用品"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S018": {
+      "name": "水电燃气使用",
+      "description_enriched": "在家庭中使用水、电和燃气设施",
+      "aliases": [
+        "水电煤",
+        "家庭水电",
+        "燃气使用"
+      ],
+      "actions": [
+        "用水",
+        "用电",
+        "开关",
+        "节约"
+      ],
+      "objects": [
+        "水龙头",
+        "插座",
+        "电表",
+        "燃气"
+      ],
+      "example_queries": [
+        "家里突然停水停电",
+        "如何安全使用燃气"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S019": {
+      "name": "家电使用与故障",
+      "description_enriched": "操作家庭电器并应对常见故障",
+      "aliases": [
+        "家电故障",
+        "电器使用",
+        "电器坏了"
+      ],
+      "actions": [
+        "启动",
+        "设置",
+        "检修",
+        "排查"
+      ],
+      "objects": [
+        "冰箱",
+        "空调",
+        "洗衣机",
+        "电器"
+      ],
+      "example_queries": [
+        "空调不能启动怎么办",
+        "家里的冰箱不制冷"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S020": {
+      "name": "家庭维修",
+      "description_enriched": "处理家中设施的简单修理工作",
+      "aliases": [
+        "修理房屋",
+        "修东西",
+        "家居修缮"
+      ],
+      "actions": [
+        "修理",
+        "安装",
+        "更换",
+        "检查"
+      ],
+      "objects": [
+        "门锁",
+        "水管",
+        "螺丝",
+        "工具"
+      ],
+      "example_queries": [
+        "家里水龙头漏水",
+        "我想修理门锁"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S021": {
+      "name": "搬家与整理物品",
+      "description_enriched": "搬迁住所和分类整理物品",
+      "aliases": [
+        "搬家",
+        "搬迁",
+        "打包搬家"
+      ],
+      "actions": [
+        "打包",
+        "搬运",
+        "整理",
+        "拆箱"
+      ],
+      "objects": [
+        "纸箱",
+        "家具",
+        "行李",
+        "新家"
+      ],
+      "example_queries": [
+        "准备搬家要打包什么",
+        "搬到新家后整理物品"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S022": {
+      "name": "邻里交往",
+      "description_enriched": "与邻居相识、沟通和互相帮助",
+      "aliases": [
+        "邻居交流",
+        "邻里关系",
+        "邻里沟通"
+      ],
+      "actions": [
+        "打招呼",
+        "沟通",
+        "拜访",
+        "帮助"
+      ],
+      "objects": [
+        "邻居",
+        "楼道",
+        "社区",
+        "住户"
+      ],
+      "example_queries": [
+        "如何和新邻居打招呼",
+        "跟邻居商量噪音问题"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S023": {
+      "name": "收快递与包裹",
+      "description_enriched": "接收、查找及处理快递包裹",
+      "aliases": [
+        "收包裹",
+        "收快递",
+        "快递签收"
+      ],
+      "actions": [
+        "签收",
+        "取件",
+        "拆包",
+        "查询"
+      ],
+      "objects": [
+        "快递",
+        "包裹",
+        "取件码",
+        "快递柜"
+      ],
+      "example_queries": [
+        "我的快递到了哪里",
+        "去快递柜取包裹"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S024": {
+      "name": "垃圾分类与回收",
+      "description_enriched": "按类别分拣垃圾并回收物品",
+      "aliases": [
+        "扔垃圾",
+        "分类回收",
+        "垃圾回收"
+      ],
+      "actions": [
+        "分类",
+        "投放",
+        "回收",
+        "处理"
+      ],
+      "objects": [
+        "可回收物",
+        "垃圾桶",
+        "废纸",
+        "塑料"
+      ],
+      "example_queries": [
+        "塑料瓶是什么垃圾",
+        "我想进行垃圾分类"
+      ],
+      "review_status": "draft_unverified"
+    },
+    "S025": {
+      "name": "睡前与就寝",
+      "description_enriched": "临睡前准备并进入睡眠",
+      "aliases": [
+        "准备睡觉",
+        "睡前准备",
+        "上床睡觉"
+      ],
+      "actions": [
+        "刷牙",
+        "关灯",
+        "上床",
+        "入睡"
+      ],
+      "objects": [
+        "卧室",
+        "枕头",
+        "被子",
+        "床"
+      ],
+      "example_queries": [
+        "晚上准备睡觉了",
+        "睡前关灯盖被子"
+      ],
+      "review_status": "draft_unverified"
+    }
+  }
+}
