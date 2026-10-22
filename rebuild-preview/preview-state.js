@@ -43,7 +43,7 @@ const WORDS = [
   }}
 ];
 
-const STORAGE='pai-word-core20k-rebuild-preview-v21';
+const STORAGE=location.pathname.startsWith('/pai-word-preview/')?'pai-word-core20k-isolated-preview-v22':'pai-word-core20k-rebuild-preview-v21';
 let state={view:'scenes',scene:null,index:0,revealed:false,newPerDay:50,wordsPerRound:10,records:{},stats:{known:0,unknown:0}};
 try{state={...state,...JSON.parse(localStorage.getItem(STORAGE)||'{}')}}catch(e){}
 
