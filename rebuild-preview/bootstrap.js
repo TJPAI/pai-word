@@ -97,13 +97,8 @@
   state.view='scenes';state.revealed=false;
   // Assemble final home content behind the boot gate; expose it only once.
 
-  // Preserve the saved search during bootstrap; refresh it again once Top100 is ready.
-  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
-   window.restoreScene500Recommendations();
-   mark('recommendationsAfterPacks');
-  }
-
-  if(!state.sceneSearchUi?.query)render();
+  // Restore persisted recommendation IDs exactly; only explicit user actions rerank.
+  render();
   mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
@@ -121,20 +116,8 @@
     if(!(window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'))return;
     const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
     await installScene500Top100();
-    if(window.PAI_SCENE500_TOP100_READY){
-     await window.PAI_SCENE500_TOP100_READY;
-     if(state.view==='scenes'){
-      const field=document.getElementById('scene-query');
-      const savedQuery=state.sceneSearchUi?.query||'';
-      const unsentDraft=field&&field.value!==savedQuery;
-      // Never replace a focused textarea or an unsent Chinese draft. The next
-      // explicit search/difficulty action will render against ready Top100 data.
-      if(document.activeElement?.id!=='scene-query'&&!unsentDraft){
-       if(savedQuery&&typeof window.restoreScene500Recommendations==='function')window.restoreScene500Recommendations();
-       else if(typeof window.render==='function')window.render();
-      }
-     }
-    }
+    if(window.PAI_SCENE500_TOP100_READY)await window.PAI_SCENE500_TOP100_READY;
+    // Never rerank or replace the search draft during background data hydration.
    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
   })();
   // Inventory and audit are not required to present or use the home screen.
