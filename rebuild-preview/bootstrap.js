@@ -1,4 +1,10 @@
-(async function(){
+// V2.2: Stage B runs only after an explicit learning-dependent user action.
+window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
+ let pending=null, ready=false;
+ return function loadLearningRuntime(){
+  if(ready)return Promise.resolve();
+  if(pending)return pending;
+  pending=(async function(){
  const VERSION='core20k-v21-auto-wakelock-20261022';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
@@ -155,4 +161,11 @@
   }
   console.error(e);
  }
+})().then(()=>{ready=true},error=>{pending=null;throw error});
+  return pending;
+ };
 })();
+// Learning runtime is not requested at page load. Deep links are explicit learning intents.
+if(new URLSearchParams(location.search).has('word')){
+ window.PAI_LEARNING_RUNTIME_LOAD().catch(error=>console.error('Deep-link learning load failed',error));
+}
