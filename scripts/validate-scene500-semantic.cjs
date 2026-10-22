@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 const fs = require('node:fs');
 const assert = require('node:assert/strict');
-const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.4.json','utf8'));
+const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.5.json','utf8'));
 const home=JSON.parse(fs.readFileSync('rebuild-preview/data/home-scene-index-v1.json','utf8'));
 const ranker=require('./scene500-semantic-ranker.cjs');
 const fields=['description_enriched','aliases','actions','objects','example_queries'];
 const ids=Object.keys(overlay.scenes);
 assert.equal(Object.keys(home.scenes).length,500,'home scene count');
-assert.equal(ids.length,75,'first batch size');
+assert.equal(ids.length,100,'first batch size');
 const seenNames=new Set();
 for(const id of ids){
  const rec=overlay.scenes[id],original=home.scenes[id];
