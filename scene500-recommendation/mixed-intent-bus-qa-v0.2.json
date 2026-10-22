@@ -1,0 +1,56 @@
+{
+  "schema": "scene500-bus-mixed-intent-interpretation-v0.2",
+  "status": "diagnostic_reclassification_not_blind",
+  "supersedes_interpretation_only": "profile-enrichment-candidate-bus-ticket-v0.1.json",
+  "query": "乘公交车怎么付钱买票",
+  "expected": [
+    "S078",
+    "S092"
+  ],
+  "native_node_results": [
+    {
+      "sceneId": "S078",
+      "rank": 1,
+      "score": 36.61
+    },
+    {
+      "sceneId": "S092",
+      "rank": 2,
+      "score": 2.996
+    },
+    {
+      "sceneId": "S065",
+      "rank": 3,
+      "score": 2.7
+    }
+  ],
+  "conclusion": "Both riding and ticket-payment intents are present in top2; requiring ticket scene at rank1 is not justified for a genuine mixed-intent query.",
+  "checks": [
+    {
+      "query": "我想买公交车票",
+      "expected_top1": "S092",
+      "observed_top1": "S092"
+    },
+    {
+      "query": "怎么买公交车票",
+      "expected_top1": "S092",
+      "observed_top1": "S092"
+    },
+    {
+      "query": "我要乘公交车去学校",
+      "expected_top1": "S078",
+      "observed_top1": "S078"
+    },
+    {
+      "query": "公交车在哪里上车",
+      "expected_top1": "S078",
+      "observed_top1": "S078"
+    }
+  ],
+  "limitations": [
+    "Existing scene profiles and 3693 lexical candidates only",
+    "Query design and classification are not blind",
+    "Both candidate scenes may be reasonably returned for mixed intent",
+    "Do not modify stable system or call this a production acceptance"
+  ]
+}
