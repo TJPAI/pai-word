@@ -9,7 +9,7 @@ export function buildLightHomeView({index,query='',difficulty='all',results=[],b
  const level=levels.includes(difficulty)?difficulty:'all';
  const rows=results.map(id=>({id,scene:index.scenes[id]})).filter(r=>r.scene);
  const items=rows.map(({id,scene},i)=>`<button class="scene-result" data-scene-id="${esc(id)}"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(scene.name)}</b><small>${esc(scene.desc)}</small></span><span class="scene-result-count"><b>${scene.counts[level]}</b><small>可学 KU</small><em>Top100</em></span></button>`).join('');
- const recommendation=query.trim()?(rows.length?`<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${labels[level]}</span></div>${items}</section>`:'<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>'):'';
+ const recommendation=query.trim()?(rows.length?`<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${labels[level]}</span></div>${items}</section>`:(searchStatus?'':'<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>')):'';
  const last=continueScene&&index.scenes[continueScene]?continueScene:null;
  return `<div class="home-dashboard"><div class="home-shell"><header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p></div><div class="home-actions"><button data-home-action="stats" class="home-quiet-btn">统计</button><button data-home-action="settings" class="home-quiet-btn">设置</button></div></header><main class="home-focus"><section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(last?index.scenes[last].name:'开始一个场景')}</h2><p>今日新词 ${budget.dailyCompleted}/${budget.dailyLimit} · 每轮 ${budget.roundLimit}${budget.reinforcementRemaining?` · 强化 ${budget.reinforcementRemaining}`:''}${budget.due?` · 到期 ${budget.due}`:''}</p></div><div class="continue-actions">${last?`<button class="continue-primary" data-scene-id="${esc(last)}">继续</button>`:''}</div></section><section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你想学习的场景。</p></div><textarea id="scene-query" class="scene-query" rows="3" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(query)}</textarea><div class="scene-search-controls"><label>难度<select id="scene-difficulty">${levels.map(d=>`<option value="${d}"${level===d?' selected':''}>${labels[d]}</option>`).join('')}</select></label><button class="find-scenes" data-home-action="search">找场景</button></div>${recommendation}${hasMore?'<button type="button" data-home-action="next-page">换一批 →</button>':''}${searchStatus?`<p role="status" class="scene-note">${esc(searchStatus)}</p>`:''}</section><div class="browse-link"><button type="button" data-home-action="catalog">浏览场景目录 →</button></div></main></div></div>`;
 }
@@ -69,6 +69,7 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
   state.sceneSearchUi={...current,query,resultIds:query===current.query?current.resultIds:[]};
   persist(state);
  };
+ element.addEventListener('input',captureDraft);
  element.addEventListener('compositionend',captureDraft);
  element.addEventListener('change',captureDraft);
  element.addEventListener('change',event=>{
