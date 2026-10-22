@@ -18,12 +18,23 @@
     return {dailyLimit,dailyCompleted:0,dailyRemaining:dailyLimit,roundLimit:Number(state.wordsPerRound)||10,reinforcementRemaining:0,due};
   }
   function lastScene(){const id=(state.scene500Recent||[])[0]||null;return id&&SCENES[id]?{id,name:SCENES[id]}:null}
-  function playable(){return (window.PAI_SCENE500?.specs||[]).filter(s=>!['cs206','cs215','cs223','cs254','cs321'].includes(s.id))}
+  const excludedSceneIds=new Set(['cs206','cs215','cs223','cs254','cs321']);
+  let sceneIndexSource=null,sceneIndex=null;
+  function indexedScenes(){
+    const source=window.PAI_SCENE500?.specs;
+    if(source!==sceneIndexSource||!sceneIndex){
+      sceneIndexSource=source;
+      const list=(source||[]).filter(s=>!excludedSceneIds.has(s.id));
+      sceneIndex={list,byId:new Map(list.map(s=>[s.id,s]))};
+    }
+    return sceneIndex;
+  }
+  function playable(){return indexedScenes().list}
   function inventory(id,difficulty='all'){return searchApi()?.inventory?.(id,difficulty)||{reviewedCount:searchApi()?.wordCount?.(id,difficulty)||0,candidateCount:null}}
   function firstPlayable(){return playable().find(s=>inventory(s.id,'all').reviewedCount>0)?.id||null}
   function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
-  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>playable().find(x=>x.id===id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
+  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>indexedScenes().byId.get(id)).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
   function countHtml(r){
     if(window.PAI_SCENE500_TOP100?.loading)return '<span class="scene-result-count"><b>加载中</b><small>可学词数待计算</small></span>';
     if(window.PAI_SCENE500_TOP100?.error)return '<span class="scene-result-count"><b>不可用</b><small>场景词池加载失败</small></span>';
@@ -46,7 +57,7 @@
     return !!(scene&&state.learningSession?.kind==='scene'&&state.selectedScene===scene&&state.learningSession.scene500Difficulty===(searchApi()?.recentDifficulty?.(scene)||'all')&&Array.isArray(state.learningSession.queue)&&state.learningSession.queue.length);
   }
   function renderHome(){
-    const b=budget(),last=lastScene(),fallback=firstPlayable(),s=ui();
+    const b=budget(),last=lastScene(),fallback=last?null:firstPlayable(),s=ui();
     const sceneLoad=window.PAI_SCENE500_TOP100?.loading?'Scene500 词池加载中，数量稍后更新':window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
     const continueId=last?.id||fallback,continueDifficulty=last?searchApi()?.recentDifficulty?.(last.id)||'all':'all';
     const resume=canResumeScene(continueId);
