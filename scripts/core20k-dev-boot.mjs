@@ -18,7 +18,7 @@ async function cacheText(operation,value){
      const store=tx.objectStore('assets');
      if(operation==='read'){
       const get=store.get(CACHE_KEY);get.onsuccess=()=>finish(get.result||null);get.onerror=()=>finish(null);
-     }else{store.put(value,CACHE_KEY);tx.oncomplete=()=>finish(true);tx.onabort=()=>finish(null);tx.onerror=()=>finish(null)}
+     }else{store.put(value,CACHE_KEY)}
      tx.addEventListener('complete',()=>{db.close();if(operation==='write')finish(true)},{once:true});
      tx.addEventListener('abort',()=>{db.close();finish(null)},{once:true});
     }catch{db.close();finish(null)}
@@ -33,8 +33,8 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
   // Fetch the runtime adapter concurrently with the compressed lexicon.
   const adapterReady=import('./core20k-unified-runtime-adapter.mjs');
   const {buildCore20KRuntime}=await adapterReady;
-  // Cache identity includes the canonical asset URL and the deployment source SHA
-  // when supplied by the host. Do not persist reconstructed SRS or other user data.
+  // Cache identity includes the asset URL and a release marker. Bump the app VERSION
+  // or set PAI_CORE20K_ASSET_VERSION whenever the underlying gz changes.
   const identity=String(new URL(url,document.baseURI).href)+'|'+String(window.PAI_CORE20K_ASSET_VERSION||window.PAI_APP_VERSION||'');
   let core=null,raw=null,fromCache=false;
   try{
