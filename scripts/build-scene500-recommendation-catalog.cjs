@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // Build-time Scene500 recommendation catalog; never edits original inputs.
-// 125 drafted semantic profiles + 375 explicitly marked name-only fallbacks.
+// 150 drafted semantic profiles + 350 explicitly marked name-only fallbacks.
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');
 const read=p=>JSON.parse(fs.readFileSync(path.join(root,p),'utf8'));
 const home=read('rebuild-preview/data/home-scene-index-v1.json');
-const overlay=read('data/scene500-semantic-overlay-v0.6.json');
+const overlay=read('data/scene500-semantic-overlay-v0.7.json');
 const dest=path.join(root,'data/scene500-recommendation-catalog-v0.1.json');
 const ids=Object.keys(home.scenes).sort();
 if(ids.length!==500)throw Error('Expected 500 canonical scenes, got '+ids.length);
