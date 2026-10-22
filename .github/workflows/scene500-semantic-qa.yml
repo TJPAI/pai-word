@@ -1,0 +1,26 @@
+name: Scene500 Semantic QA
+on:
+  push:
+    branches: [core20k-rebuild-v1]
+    paths:
+      - 'data/scene500-semantic-overlay-v0.1.json'
+      - 'scripts/scene500-semantic-ranker.cjs'
+      - 'scripts/validate-scene500-semantic.cjs'
+      - 'tests/scene500-semantic-ranker.test.cjs'
+      - '.github/workflows/scene500-semantic-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  semantic-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate overlay
+        run: node scripts/validate-scene500-semantic.cjs
+      - name: Run ranking regressions
+        run: node tests/scene500-semantic-ranker.test.cjs
