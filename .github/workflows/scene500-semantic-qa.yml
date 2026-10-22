@@ -62,6 +62,8 @@ jobs:
             scene500-holdout-report.json
             scene500-holdout-v2-report.json
           if-no-files-found: warn
+      - name: Test experimental sparse term-scene retriever
+        run: node --test scene500-recommendation/sparse-retriever.test.mjs
       - name: Test independent browser ESM module
         run: node --test scene500-recommendation/engine.test.mjs
       - name: Test scene identity, eligibility, paging and diagnostic performance
