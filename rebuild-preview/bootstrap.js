@@ -68,7 +68,16 @@
   }
 
   if(!state.sceneSearchUi?.query)render();
+  window.PAI_FULL_HOME_READY=true;
   mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  // Replay at most one early user intent after authoritative storage and engine are ready.
+  const earlyClick=window.PAI_EARLY_HOME?.clicked;
+  if(earlyClick){window.PAI_EARLY_HOME.clicked=null;
+    try{
+      if(earlyClick.action==='scene')window.PAI_SCENE_SEARCH?.open(earlyClick.scene,earlyClick.difficulty);
+      else if(['settings','stats'].includes(earlyClick.action))window.openPanel?.(earlyClick.action);
+    }catch(error){console.warn('Early intent replay failed',error)}
+  }
   // Stage B: optional Top100 may hydrate only after the real home is visible.
   // It does not hold the first paint or the startup's interactive gate.
   setTimeout(async()=>{
