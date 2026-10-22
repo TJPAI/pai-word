@@ -46,7 +46,7 @@ try{
    mountLightHome({element:app,index,state:ui,budget,search,
      onScene:(scene,difficulty)=>defer('scene',scene,difficulty),
      onAction:action=>defer(action),
-     persist:()=>{state.sceneSearchUi={...ui.sceneSearchUi};window.PAI_PREVIEW_PENDING_SEARCH={query:ui.sceneSearchUi.query,difficulty:ui.sceneSearchUi.difficulty};}});
+     persist:()=>{state.sceneSearchUi={...ui.sceneSearchUi};window.PAI_EARLY_HOME.searchUi={...ui.sceneSearchUi};window.PAI_PREVIEW_PENDING_SEARCH={query:ui.sceneSearchUi.query,difficulty:ui.sceneSearchUi.difficulty};}});
    // Do not present fabricated progress counts while SRS storage is still pending.
    const status=app.querySelector('.continue-card p');
    if(status)status.textContent='学习进度同步中，搜索与浏览场景已可使用';
