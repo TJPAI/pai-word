@@ -5,7 +5,7 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
   if(ready)return Promise.resolve();
   if(pending)return pending;
   pending=(async function(){
- const VERSION='core20k-v21-auto-wakelock-20261022';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-staged-20261022c';window.PAI_APP_VERSION=VERSION;
  const app=document.getElementById('app');
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
