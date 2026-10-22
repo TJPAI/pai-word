@@ -35,7 +35,16 @@
   function firstPlayable(){return playable().find(s=>inventory(s.id,'all').reviewedCount>0)?.id||null}
   function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
-  function resultRows(){const s=ui();if(!s.query||!s.resultIds?.length)return[];return s.resultIds.map(id=>{const entry=indexedScenes().byId.get(id);const name=displayName(id);return entry?{...entry,name:name||entry.name}:name?{id,name,desc:''}:null}).filter(Boolean).map(x=>({...x,...inventory(x.id,s.difficulty)}))}
+  function resultRows(){
+    const snapshot=ui();
+    if(!snapshot.query||!Array.isArray(snapshot.resultIds))return [];
+    // Preserve exactly the submitted result IDs/order. Scene specs and Top100
+    // are hydrated later and must not replace names or drop snapshot rows.
+    return snapshot.resultIds.slice(0,5).map(id=>{
+      const name=window.PAI_SCENE_NAMES?.[id]||SCENES[id]||'';
+      return name?{id,name,desc:'',...inventory(id,snapshot.difficulty)}:null;
+    }).filter(Boolean);
+  }
   function countHtml(r){
     if(window.PAI_SCENE500_TOP100?.loading)return '<span class="scene-result-count"><b>加载中</b><small>可学词数待计算</small></span>';
     if(window.PAI_SCENE500_TOP100?.error)return '<span class="scene-result-count"><b>不可用</b><small>场景词池加载失败</small></span>';
