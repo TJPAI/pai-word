@@ -76,6 +76,8 @@ jobs:
         run: node --test tests/scene500-v094-lexical.test.cjs
       - name: Test V0.9.4 exact-first word identity and overlap extraction
         run: node --test scene500-recommendation/zh-v094-runtime-bridge.test.mjs
+      - name: Test single-vs-multi intent evaluation policy
+        run: node --test scene500-recommendation/intent-evaluation.test.mjs
       - name: Test Chinese Core20K RC1 lazy loader and fallback
         run: node --test scene500-recommendation/chinese-lexicon-loader.test.mjs
       - name: Verify cross-project data and recommendation interface contract
