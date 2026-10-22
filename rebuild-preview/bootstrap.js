@@ -69,6 +69,14 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
   await script('rebuild-preview/scene-catalog.js');
   await script('rebuild-preview/round-policy.js');
   mark('startupScripts');
+  // Stage B must resolve canonical Scene500 membership BEFORE opening any S001-S500 session.
+  // The earlier deferred post-render installation caused empty sessions and undefined titles.
+  if(window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'){
+    const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
+    await installScene500Top100();
+    await window.PAI_SCENE500_TOP100_READY;
+    mark('scene500Playable');
+  }
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   // Preserve the current input, including empty drafts, across Stage A -> B.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
@@ -102,21 +110,6 @@ window.PAI_LEARNING_RUNTIME_LOAD ||= (function(){
       else if(['settings','stats'].includes(earlyClick.action))window.openPanel?.(earlyClick.action);
     }catch(error){console.warn('Early intent replay failed',error)}
   }
-  // Stage B: optional Top100 may hydrate only after the real home is visible.
-  // It does not hold the first paint or the startup's interactive gate.
-  setTimeout(async()=>{
-    try{
-      if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
-        const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
-        await installScene500Top100();
-      }
-      if(window.PAI_SCENE500_TOP100_READY){
-        await window.PAI_SCENE500_TOP100_READY;
-        if(state.view==='scenes'&&typeof window.restoreScene500Recommendations==='function')window.restoreScene500Recommendations();
-      }
-    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
-  },0);
-
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
    const t=window.PAI_BOOT_TIMINGS||{},c=window.PAI_CORE20K_LOAD_TIMINGS||{};
