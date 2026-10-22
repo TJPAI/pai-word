@@ -60,22 +60,6 @@
   state.view='scenes';state.revealed=false;
   // Assemble final home content behind the boot gate; expose it only once.
 
-  // Optional packs must never replace an already usable homepage with a fatal loading screen.
-  try{
-  // Non-critical Scene500 packs and inventory load after first interactive home render.
-  if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
-   const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
-   await installScene500Top100();
-  }
-  }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
-  // The Top100 installer returns before its 20 shard fetches finish.
-  // Refresh any recommendation only AFTER the actual word pool is ready.
-  if(window.PAI_SCENE500_TOP100_READY){
-    window.PAI_SCENE500_TOP100_READY.then(()=>{
-      if(state.view==='scenes'&&typeof window.restoreScene500Recommendations==='function')
-        window.restoreScene500Recommendations();
-    }).catch(error=>console.warn('Scene500 recommendations refresh failed',error));
-  }
   // Match public preview: search again after the optional Scene500 word pool
   // finishes installing. Early home rendering must not permanently store zero results.
   if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
@@ -85,6 +69,21 @@
 
   if(!state.sceneSearchUi?.query)render();
   mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  // Stage B: optional Top100 may hydrate only after the real home is visible.
+  // It does not hold the first paint or the startup's interactive gate.
+  setTimeout(async()=>{
+    try{
+      if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
+        const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
+        await installScene500Top100();
+      }
+      if(window.PAI_SCENE500_TOP100_READY){
+        await window.PAI_SCENE500_TOP100_READY;
+        if(state.view==='scenes'&&typeof window.restoreScene500Recommendations==='function')window.restoreScene500Recommendations();
+      }
+    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
+  },0);
+
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
    const t=window.PAI_BOOT_TIMINGS||{},c=window.PAI_CORE20K_LOAD_TIMINGS||{};
