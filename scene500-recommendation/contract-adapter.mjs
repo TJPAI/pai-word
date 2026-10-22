@@ -6,16 +6,16 @@ const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。�
 const finite=x=>typeof x==='number'&&Number.isFinite(x);
 export function validateChineseLexiconContract(lexicon){
  if(!lexicon||typeof lexicon.source_version!=='string'||!lexicon.source_version.trim()||!Array.isArray(lexicon.terms))throw Error('SCENE500_INVALID_CHINESE_LEXICON');
- const ids=new Set(),keys=new Set();
+ const ids=new Set();
  for(const t of lexicon.terms){
   if(!t||typeof t.term_id!=='string'||!t.term_id.trim()||typeof t.term!=='string'||!t.term.trim()||
   typeof t.normalized_term!=='string'||!t.normalized_term.trim()||
   (t.frequency_rank!=null&&(!Number.isInteger(t.frequency_rank)||t.frequency_rank<1))||
   (t.frequency_score!=null&&(!finite(t.frequency_score)||t.frequency_score<0))||
   !Array.isArray(t.aliases)||typeof t.source_version!=='string'||!t.source_version.trim()||
-  (t.pos!=null&&typeof t.pos!=='string')||ids.has(t.term_id)||keys.has(t.normalized_term))
+  (t.pos!=null&&typeof t.pos!=='string')||ids.has(t.term_id))
    throw Error('SCENE500_INVALID_CHINESE_TERM: '+String(t?.term_id));
-  ids.add(t.term_id);keys.add(t.normalized_term);
+  ids.add(t.term_id);
  }
  return {count:ids.size,sourceVersion:lexicon.source_version};
 }
@@ -43,10 +43,20 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
   linksByTerm.get(link.term_id).push(link);
  }
  const registry={scene_count:500,terms:{}};
+ const matchedTermIds=new Map();
  for(const t of lexicon.terms){
   const key=norm(t.normalized_term);
   const links=(linksByTerm.get(t.term_id)||[]).sort((a,b)=>a.rank-b.rank);
-  if(key.length>1&&links.length)registry.terms[key]=links.map(p=>({sceneId:p.scene_id,weight:p.score}));
+  if(key.length>1&&links.length){
+   const current=registry.terms[key]||[];
+   const byScene=new Map(current.map(x=>[x.sceneId,x]));
+   for(const p of links){
+    const prev=byScene.get(p.scene_id);
+    if(!prev||prev.weight<p.score)byScene.set(p.scene_id,{sceneId:p.scene_id,weight:p.score});
+   }
+   registry.terms[key]=[...byScene.values()].sort((a,b)=>b.weight-a.weight||a.sceneId.localeCompare(b.sceneId)).slice(0,50);
+   matchedTermIds.set(key,[...(matchedTermIds.get(key)||[]),t.term_id]);
+  }
  }
  const sparse=createSparseSceneRetriever({catalog,registry});
  return Object.freeze({
