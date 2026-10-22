@@ -40,6 +40,12 @@
  }
  try{
   await script('rebuild-preview/ku-durable-store.js');
+  // Read-only Scene500 fetches may overlap IndexedDB restore; attach rejection handlers
+  // immediately so a slow storage operation never leaves an unhandled rejection.
+  const sceneInputsReady=Promise.all([
+   json('data/scene500-ranked-membership-policy-v1.json'),
+   sceneMembership()
+  ]).then(values=>({values}),error=>({error}));
   let durableDB=null;
   try{
    durableDB=await window.PAI_KU_DURABLE.open();
@@ -67,10 +73,11 @@
    console.warn('Durable KU storage unavailable; rating writes must not silently succeed',storageError);
   }
   const catalogReady=loadLearningCatalog();
-  const policyReady=json('data/scene500-ranked-membership-policy-v1.json');
-  const membershipReady=sceneMembership();
   await catalogReady;mark('catalog');
-  [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=await Promise.all([policyReady,membershipReady]);mark('memberships');
+  const sceneInputs=await sceneInputsReady;
+  if(sceneInputs.error)throw sceneInputs.error;
+  [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=sceneInputs.values;
+  mark('memberships');
   // The HTML preloads runtime scripts in parallel. Execute sequentially here
   // so a load failure cannot run dependent scripts after an incomplete predecessor.
   await script('rebuild-preview/memory-schedulers.js');
