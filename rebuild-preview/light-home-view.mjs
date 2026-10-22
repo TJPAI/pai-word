@@ -79,7 +79,8 @@ export function mountLightHome({element,index,state,budget,search,onScene,onActi
   ++searchVersion;ranked=[];page=0;searchStatus='';
   state.sceneSearchUi={query,difficulty,resultIds:[]};
   persist(state);show();
-  // Difficulty changed: require an explicit search submission to avoid IME races.
+  // A committed difficulty change reruns the same query, with a fresh snapshot.
+  if(query)element.querySelector('[data-home-action="search"]')?.click();
  });
  return {render:show};
 }
