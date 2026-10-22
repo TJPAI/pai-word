@@ -1,6 +1,6 @@
 {
   "schema": "pai-scene500-recommendation-catalog-v0.1",
-  "source": "home-scene-index-v1 + semantic-overlay-v1.0",
+  "source": "home-scene-index-v1 + semantic-overlay-v1.1",
   "policy": "Build-time catalog only; do not substitute for Core20K/KU or production learning data",
   "scene_count": 500,
   "scenes": {
@@ -7151,13 +7151,27 @@
     },
     "S226": {
       "name": "公司介绍",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向他人介绍企业业务背景与组织",
+      "aliases": [
+        "介绍公司",
+        "企业简介",
+        "公司概况"
+      ],
+      "actions": [
+        "说明业务",
+        "介绍规模",
+        "讲公司历史"
+      ],
+      "objects": [
+        "公司",
+        "业务",
+        "团队"
+      ],
+      "example_queries": [
+        "如何用英语向客户介绍我们公司"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 40,
         "basic": 37,
@@ -7168,13 +7182,27 @@
     },
     "S227": {
       "name": "产品介绍",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "说明产品功能特点与应用价值",
+      "aliases": [
+        "讲解产品",
+        "介绍商品",
+        "产品功能"
+      ],
+      "actions": [
+        "展示功能",
+        "解释优势",
+        "介绍用途"
+      ],
+      "objects": [
+        "产品",
+        "功能",
+        "规格"
+      ],
+      "example_queries": [
+        "我想介绍我们的新产品有哪些功能"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 50,
         "basic": 18,
@@ -7185,13 +7213,27 @@
     },
     "S228": {
       "name": "客户需求访谈",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过交流理解客户问题与采购需求",
+      "aliases": [
+        "客户访谈",
+        "需求调研访谈",
+        "问客户需求"
+      ],
+      "actions": [
+        "询问需求",
+        "确认痛点",
+        "记录要求"
+      ],
+      "objects": [
+        "客户",
+        "需求",
+        "使用场景"
+      ],
+      "example_queries": [
+        "如何访谈客户了解真正需求"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 53,
         "basic": 37,
@@ -7202,13 +7244,27 @@
     },
     "S229": {
       "name": "商务拜访",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "赴客户或合作伙伴处进行商务交流",
+      "aliases": [
+        "拜访客户",
+        "商务会面",
+        "客户走访"
+      ],
+      "actions": [
+        "预约拜访",
+        "寒暄",
+        "交流合作"
+      ],
+      "objects": [
+        "客户公司",
+        "会面",
+        "行程"
+      ],
+      "example_queries": [
+        "明天去客户公司拜访洽谈"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 41,
         "basic": 39,
@@ -7219,13 +7275,27 @@
     },
     "S230": {
       "name": "销售演示",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "现场演示产品方案以支持销售",
+      "aliases": [
+        "产品演示",
+        "销售Demo",
+        "演示方案"
+      ],
+      "actions": [
+        "演示功能",
+        "回答疑问",
+        "展示价值"
+      ],
+      "objects": [
+        "演示文稿",
+        "产品",
+        "客户"
+      ],
+      "example_queries": [
+        "我需要向客户演示软件产品"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 27,
         "basic": 24,
@@ -7236,13 +7306,27 @@
     },
     "S231": {
       "name": "报价",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "向客户提交商品或服务价格方案",
+      "aliases": [
+        "给客户报价",
+        "报价单",
+        "提供价格"
+      ],
+      "actions": [
+        "制定报价",
+        "发送报价单",
+        "说明条款"
+      ],
+      "objects": [
+        "报价单",
+        "单价",
+        "付款条件"
+      ],
+      "example_queries": [
+        "客户要求我发一份正式报价单"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 13,
@@ -7253,13 +7337,27 @@
     },
     "S232": {
       "name": "议价",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "买卖双方协商价格与商业条件",
+      "aliases": [
+        "谈价格",
+        "商务砍价",
+        "价格谈判"
+      ],
+      "actions": [
+        "提出还价",
+        "协商折扣",
+        "谈条件"
+      ],
+      "objects": [
+        "价格",
+        "折扣",
+        "谈判"
+      ],
+      "example_queries": [
+        "客户嫌报价太高想议价"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 34,
         "basic": 30,
@@ -7270,13 +7368,27 @@
     },
     "S233": {
       "name": "合同讨论",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "审阅并协商商务合同条款",
+      "aliases": [
+        "讨论合同",
+        "合同条款谈判",
+        "合同审核"
+      ],
+      "actions": [
+        "协商条款",
+        "修改条款",
+        "确认责任"
+      ],
+      "objects": [
+        "合同草案",
+        "条款",
+        "违约责任"
+      ],
+      "example_queries": [
+        "合同付款条款需要再讨论"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 50,
         "basic": 40,
@@ -7287,13 +7399,27 @@
     },
     "S234": {
       "name": "签订合同",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "正式完成合同签署和生效手续",
+      "aliases": [
+        "签合同",
+        "签署协议",
+        "合同盖章"
+      ],
+      "actions": [
+        "核对文本",
+        "签字",
+        "盖章"
+      ],
+      "objects": [
+        "合同",
+        "签名",
+        "印章"
+      ],
+      "example_queries": [
+        "双方明天签订采购合同"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 31,
         "basic": 29,
@@ -7304,13 +7430,27 @@
     },
     "S235": {
       "name": "采购",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "购买企业运营所需产品和服务",
+      "aliases": [
+        "企业采购",
+        "采购物资",
+        "采购流程"
+      ],
+      "actions": [
+        "提出采购需求",
+        "询价",
+        "下采购单"
+      ],
+      "objects": [
+        "采购申请",
+        "供应商",
+        "物料"
+      ],
+      "example_queries": [
+        "公司需要采购一批电脑设备"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 39,
@@ -7321,13 +7461,27 @@
     },
     "S236": {
       "name": "供应商管理",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "选择和评估供应商并维护合作",
+      "aliases": [
+        "管理供应商",
+        "供应商评价",
+        "vendor management"
+      ],
+      "actions": [
+        "评估供货商",
+        "审核资质",
+        "维护关系"
+      ],
+      "objects": [
+        "供应商",
+        "绩效",
+        "合同"
+      ],
+      "example_queries": [
+        "如何评估供应商交付表现"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 55,
         "basic": 26,
@@ -7338,13 +7492,27 @@
     },
     "S237": {
       "name": "订单管理",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "处理客户采购订单及状态变化",
+      "aliases": [
+        "处理订单",
+        "订单跟进",
+        "业务订单"
+      ],
+      "actions": [
+        "录入订单",
+        "确认订单",
+        "修改订单"
+      ],
+      "objects": [
+        "采购订单",
+        "订单号",
+        "交期"
+      ],
+      "example_queries": [
+        "客户订单数量变了需要更新"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 33,
@@ -7355,13 +7523,27 @@
     },
     "S238": {
       "name": "库存管理",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "管理仓库货品数量和库存周转",
+      "aliases": [
+        "仓库库存",
+        "存货管理",
+        "库存盘点"
+      ],
+      "actions": [
+        "盘点库存",
+        "检查缺货",
+        "补货"
+      ],
+      "objects": [
+        "库存",
+        "仓库",
+        "SKU"
+      ],
+      "example_queries": [
+        "仓库库存不足需要补货"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 33,
         "basic": 19,
@@ -7372,13 +7554,27 @@
     },
     "S239": {
       "name": "物流与交付",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "组织运输与商品最终交付客户",
+      "aliases": [
+        "物流交货",
+        "货物配送",
+        "订单交付"
+      ],
+      "actions": [
+        "安排发货",
+        "跟踪运输",
+        "确认签收"
+      ],
+      "objects": [
+        "物流",
+        "交付日期",
+        "运单"
+      ],
+      "example_queries": [
+        "客户的设备什么时候可以交付"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 39,
         "basic": 21,
@@ -7389,13 +7585,27 @@
     },
     "S240": {
       "name": "客户服务",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "响应客户咨询并提供使用支持",
+      "aliases": [
+        "客服",
+        "客户支持",
+        "售后客服"
+      ],
+      "actions": [
+        "回答咨询",
+        "提供支持",
+        "解决问题"
+      ],
+      "objects": [
+        "客户",
+        "服务工单",
+        "支持渠道"
+      ],
+      "example_queries": [
+        "客户不会使用产品需要客服帮助"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 35,
         "basic": 33,
@@ -7406,13 +7616,27 @@
     },
     "S241": {
       "name": "处理投诉",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "接收和处理客户对于产品服务的投诉",
+      "aliases": [
+        "客诉处理",
+        "客户投诉",
+        "投诉响应"
+      ],
+      "actions": [
+        "记录投诉",
+        "安抚客户",
+        "协商解决"
+      ],
+      "objects": [
+        "投诉单",
+        "客户",
+        "产品问题"
+      ],
+      "example_queries": [
+        "客户投诉产品有质量问题"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 42,
         "basic": 38,
@@ -7423,13 +7647,27 @@
     },
     "S242": {
       "name": "市场调研",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "了解市场规模趋势竞争者和用户",
+      "aliases": [
+        "市场研究",
+        "行业调研",
+        "竞争分析"
+      ],
+      "actions": [
+        "调查市场",
+        "研究竞品",
+        "分析消费者"
+      ],
+      "objects": [
+        "市场规模",
+        "竞品",
+        "消费者"
+      ],
+      "example_queries": [
+        "准备进入新市场先做市场调研"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 57,
         "basic": 31,
@@ -7440,13 +7678,27 @@
     },
     "S243": {
       "name": "品牌推广",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过活动和传播提升品牌认知",
+      "aliases": [
+        "品牌宣传",
+        "品牌营销",
+        "推广品牌"
+      ],
+      "actions": [
+        "策划推广",
+        "传达定位",
+        "提高知名度"
+      ],
+      "objects": [
+        "品牌",
+        "传播活动",
+        "目标受众"
+      ],
+      "example_queries": [
+        "我们想推广新品牌提升知名度"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 38,
         "basic": 22,
@@ -7457,13 +7709,27 @@
     },
     "S244": {
       "name": "广告投放",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "购买广告媒体资源并评估投放成效",
+      "aliases": [
+        "投广告",
+        "广告营销",
+        "广告投放优化"
+      ],
+      "actions": [
+        "设置广告",
+        "选择受众",
+        "分析点击"
+      ],
+      "objects": [
+        "广告平台",
+        "预算",
+        "转化率"
+      ],
+      "example_queries": [
+        "如何在网上投放广告"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 44,
         "basic": 21,
@@ -7474,13 +7740,27 @@
     },
     "S245": {
       "name": "商务社交",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "在商务活动中结识并维持商业联系",
+      "aliases": [
+        "商务人脉",
+        "商业社交",
+        "商务networking"
+      ],
+      "actions": [
+        "交换名片",
+        "结识客户",
+        "维护联系"
+      ],
+      "objects": [
+        "商务酒会",
+        "名片",
+        "联系人"
+      ],
+      "example_queries": [
+        "参加行业展会结识合作伙伴"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 36,
         "basic": 34,
@@ -7491,13 +7771,27 @@
     },
     "S246": {
       "name": "财务预算",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "规划企业收入支出与资金使用计划",
+      "aliases": [
+        "编预算",
+        "财务预算",
+        "年度预算"
+      ],
+      "actions": [
+        "预测支出",
+        "安排预算",
+        "审批预算"
+      ],
+      "objects": [
+        "预算表",
+        "收入",
+        "费用"
+      ],
+      "example_queries": [
+        "下年度部门财务预算怎么编制"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 56,
         "basic": 38,
@@ -7508,13 +7802,27 @@
     },
     "S247": {
       "name": "成本控制",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过分析费用和流程减少运营成本",
+      "aliases": [
+        "降本",
+        "费用控制",
+        "节约成本"
+      ],
+      "actions": [
+        "识别成本",
+        "优化开支",
+        "降低费用"
+      ],
+      "objects": [
+        "成本",
+        "费用",
+        "节省方案"
+      ],
+      "example_queries": [
+        "怎样减少生产成本"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 45,
         "basic": 22,
@@ -7525,13 +7833,27 @@
     },
     "S248": {
       "name": "经营分析",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "通过业务指标分析公司经营表现",
+      "aliases": [
+        "运营数据分析",
+        "经营报表",
+        "业务经营分析"
+      ],
+      "actions": [
+        "分析利润",
+        "比较指标",
+        "评估经营"
+      ],
+      "objects": [
+        "营业收入",
+        "利润",
+        "KPI"
+      ],
+      "example_queries": [
+        "季度经营分析报告怎么写"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 49,
         "basic": 23,
@@ -7542,13 +7864,27 @@
     },
     "S249": {
       "name": "风险管理",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "识别评估与控制业务中的潜在风险",
+      "aliases": [
+        "企业风险管理",
+        "风险评估",
+        "风险控制"
+      ],
+      "actions": [
+        "识别风险",
+        "评估影响",
+        "制定预案"
+      ],
+      "objects": [
+        "风险清单",
+        "概率",
+        "应对措施"
+      ],
+      "example_queries": [
+        "项目有哪些经营风险需要管控"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 49,
         "basic": 23,
@@ -7559,13 +7895,27 @@
     },
     "S250": {
       "name": "战略规划",
-      "description_enriched": "",
-      "aliases": [],
-      "actions": [],
-      "objects": [],
-      "example_queries": [],
-      "quality": "name_only_fallback",
-      "review_status": "not_started",
+      "description_enriched": "规划企业长期方向竞争定位与目标",
+      "aliases": [
+        "企业战略",
+        "战略制定",
+        "战略路线图"
+      ],
+      "actions": [
+        "分析环境",
+        "制定战略",
+        "确定方向"
+      ],
+      "objects": [
+        "战略目标",
+        "竞争优势",
+        "发展方向"
+      ],
+      "example_queries": [
+        "公司未来三年的战略如何规划"
+      ],
+      "review_status": "draft_unverified",
+      "quality": "draft_unverified",
       "counts": {
         "all": 50,
         "basic": 31,
