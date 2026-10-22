@@ -4,7 +4,7 @@ const cp=require('node:child_process');
 cp.execFileSync(process.execPath,['scripts/build-scene500-recommendation-catalog.cjs'],{stdio:'inherit'});
 const full=JSON.parse(fs.readFileSync('data/scene500-recommendation-catalog-v0.1.json','utf8'));
 const compact=JSON.parse(fs.readFileSync('scene500-recommendation/catalog-v0.2.json','utf8'));
-const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.7.json','utf8'));
+const overlay=JSON.parse(fs.readFileSync('data/scene500-semantic-overlay-v0.8.json','utf8'));
 const expected=Object.keys(overlay.scenes).length;
 assert.equal(Object.keys(full.scenes).length,500);
 assert.equal(Object.keys(compact.scenes).length,500);
