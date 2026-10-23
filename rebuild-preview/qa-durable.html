@@ -14,7 +14,7 @@ async function deleteDB(name){await new Promise((resolve,reject)=>{const request
 button.onclick=async()=>{
  button.disabled=true;lines.length=0;output.className='';
  const name='pai-word-qa-tmp-'+Date.now()+'-'+Math.random().toString(36).slice(2);
- let a=null,b=null;
+ let a=null,b=null,reopened=null;
  try{
   if(!window.indexedDB)throw Error('此浏览器不支持 IndexedDB');
   const response=await fetch('./ku-durable-store.js',{cache:'no-store'});
@@ -50,12 +50,12 @@ button.onclick=async()=>{
   const retry=await store.commit(b,{snapshot:{records:{word1:{grade:'good'},word3:{grade:'again'}}},attemptId:'qa-attempt-aborted',expectedVersion:1});
   assert(retry.status==='committed'&&retry.version===2,'Aborted attempt ID is not left behind');
   a.close();a=null;b.close();b=null;
-  const reopened=await store.open();const persisted=await store.read(reopened);reopened.close();
+  reopened=await store.open();const persisted=await store.read(reopened);reopened.close();reopened=null;
   assert(persisted.version===2&&!!persisted.snapshot.records.word3,'Committed state survives reopen');
   log('完成：所有测试通过。未触碰用户学习数据。');
  }catch(e){log('FAIL '+String(e?.stack||e),false)}
  finally{
-  try{a?.close();b?.close();await deleteDB(name);log('临时 QA 数据库已清理')}catch(e){log('临时 QA 数据库清理失败：'+String(e),false)}
+  try{a?.close();b?.close();reopened?.close();await deleteDB(name);log('临时 QA 数据库已清理')}catch(e){log('临时 QA 数据库清理失败：'+String(e),false)}
   button.disabled=false;
  }
 };
