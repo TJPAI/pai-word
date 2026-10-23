@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-reset-qa-visible-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-reset-blocked-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -22,8 +22,19 @@
    window.PAI_KU_DURABLE_DB?.close();
    await new Promise((resolve,reject)=>{
     const req=indexedDB.deleteDatabase(window.PAI_KU_DURABLE_DB_NAME||'pai-word-preview-ku-durable-v2');
-    req.onsuccess=resolve;
-    req.onerror=()=>reject(req.error||Error('数据库删除失败'));
+    let done=false;
+    const timeout=setTimeout(()=>{
+     if(done)return;
+     done=true;
+     reject(Error('数据库删除被其他标签页阻塞。请关闭其他 PAI Word 页面后重试。'));
+    },5000);
+    const finish=(error)=>{
+     if(done)return;
+     done=true;clearTimeout(timeout);
+     if(error)reject(error);else resolve();
+    };
+    req.onsuccess=()=>finish();
+    req.onerror=()=>finish(req.error||Error('数据库删除失败'));
     req.onblocked=()=>{window.PAI_RESET_BLOCKED=true};
    });
    localStorage.removeItem('pai-word-core20k-rebuild-preview-v21');
