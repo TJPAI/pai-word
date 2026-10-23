@@ -1,0 +1,55 @@
+{
+  "version": "V0.10.16",
+  "type": "contextual_evidence_requirements",
+  "baseline": "V0.10.15",
+  "items": [
+    {
+      "term": "指着",
+      "term_id": "zh_0188c70d24e06a8f2c01",
+      "hypotheses": [
+        "指/着 (aspect particle)",
+        "指着 as conventional verb phrase"
+      ],
+      "needed": "Gold segmented contextual sentences with sense/part-of-speech labels",
+      "status": "UNRESOLVED"
+    },
+    {
+      "term": "一战",
+      "term_id": "zh_0548394caa199fefe088",
+      "hypotheses": [
+        "一战 = First World War abbreviation",
+        "一/战 numeral plus noun/verb"
+      ],
+      "needed": "Domain-annotated historical vs compositional examples",
+      "status": "UNRESOLVED"
+    },
+    {
+      "term": "三维模型",
+      "term_id": "zh_0387ec6db1c0802d06e0",
+      "hypotheses": [
+        "domain term / query phrase",
+        "三维/模型 multi-token sequence"
+      ],
+      "needed": "Technical corpus segmented attestations; distinguish lexical membership and phrase recognition",
+      "status": "UNRESOLVED"
+    },
+    {
+      "term": "一般而言",
+      "term_id": "zh_0305fb426bde2664c8a0",
+      "hypotheses": [
+        "formulaic discourse marker",
+        "一般/而言 segmentation"
+      ],
+      "needed": "Annotated sentence contexts and dictionary entry evidence",
+      "status": "UNRESOLVED"
+    }
+  ],
+  "qa": {
+    "reviewed": 4,
+    "external_attestations_new": 0,
+    "approved_changes": 0,
+    "term_id_changes": 0,
+    "runtime_changes": 0
+  },
+  "policy": "No deletion, forced segmentation or new frequency without attested contextual evidence. Avoid repeated AI relabeling; next batch must fetch new independent evidence."
+}
