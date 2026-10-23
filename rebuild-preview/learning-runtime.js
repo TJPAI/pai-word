@@ -1078,13 +1078,13 @@
      draft.learningSession.attempts=(draft.learningSession.attempts||0)+1;
    }
    if(!previous){
-     const today=dayKey(),old=draft.dailyNewProgress;
+     const today=date(),old=draft.dailyNewProgress;
      const p=old?.date===today?old:{date:today,completed:[],newWordsCompleted:[],reinforcementCompleted:[]};
      p.completed=Array.isArray(p.completed)?p.completed:[];
      p.newWordsCompleted=Array.isArray(p.newWordsCompleted)?p.newWordsCompleted:[];
      p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
      if(!p.completed.includes(k))p.completed.push(k);
-     const wordId=key=>{const u=findUnitByKey(key);return u?.w?.rank??u?.w?.w??null};
+     const wordId=key=>{const u=byKey(key);return u?.w?.rank??u?.w?.w??null};
      const id=wordId(k);
      const alreadyIntroduced=id!==null&&Object.keys(before.records||{}).some(key=>wordId(key)===id);
      const alreadyCounted=id!==null&&p.newWordsCompleted.some(key=>wordId(key)===id);
