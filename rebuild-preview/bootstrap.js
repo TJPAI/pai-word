@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-rated-batch-fix-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-preview-isolation-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -16,18 +16,18 @@
    await window.PAI_PERSISTENCE_FLUSH?.();
    window.PAI_KU_DURABLE_DB?.close();
    await new Promise((resolve,reject)=>{
-    const req=indexedDB.deleteDatabase('pai-word-ku-durable-v1');
+    const req=indexedDB.deleteDatabase(window.PAI_KU_DURABLE_DB_NAME||'pai-word-preview-ku-durable-v2');
     req.onsuccess=resolve;req.onerror=()=>reject(req.error||Error('数据库删除失败'));
     req.onblocked=()=>reject(Error('数据库正在被其他页面使用，请先关闭其他 PAI Word 标签页'));
    });
-   for(const key of Object.keys(localStorage))if(key==='pai-word-core20k-rebuild-preview-v21'||key==='pai-word-home-visual-v1'||key.startsWith('pai-word-'))localStorage.removeItem(key);
-   for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-'))sessionStorage.removeItem(key);
+   for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
+   for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
    location.reload();
   }catch(error){alert('重置未完成：'+String(error?.message||error));if(button&&'disabled'in button)button.disabled=false}
  };
 
  // Read-only visual snapshot: never trust restored markup for actions or learning state.
- const SNAPSHOT_KEY='pai-word-home-visual-v1';
+ const SNAPSHOT_KEY='pai-word-preview-v2-home-visual';
  let snapshotVisible=false;
  try{
   const saved=JSON.parse(localStorage.getItem(SNAPSHOT_KEY)||'null');
