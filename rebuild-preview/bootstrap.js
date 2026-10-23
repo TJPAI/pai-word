@@ -118,19 +118,22 @@
   const catalogStarted=performance.now();
   const catalogReady=loadLearningCatalog();
   await catalogReady;mark('catalog');timings.catalogDurationMs=Math.round(performance.now()-catalogStarted);
-  const sceneInputs=await sceneInputsReady;
-  if(sceneInputs.error)throw sceneInputs.error;
-  [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=sceneInputs.values;
-  mark('memberships');
-  // The HTML preloads runtime scripts in parallel. Execute sequentially here
-  // so a load failure cannot run dependent scripts after an incomplete predecessor.
-  const startupScripts=['rebuild-preview/memory-schedulers.js','rebuild-preview/learning-runtime.js','audio-compat.js','scene500-integrated.js','scene500-sense-review.js','scene-search.js','rebuild-preview/home-dashboard.js','rebuild-preview/round-policy.js'];
+  // Base learning scripts depend on the restored Core catalog, not the two
+  // Scene500 membership responses. Run them while those network requests settle.
   const scriptDurations={};
-  for(const src of startupScripts){
+  async function loadTimedScript(src){
    const before=performance.now();
    await script(src);
    scriptDurations[src]=Math.round(performance.now()-before);
   }
+  for(const src of ['rebuild-preview/memory-schedulers.js','rebuild-preview/learning-runtime.js','audio-compat.js'])await loadTimedScript(src);
+  mark('baseScriptsReady');
+  const sceneInputs=await sceneInputsReady;
+  if(sceneInputs.error)throw sceneInputs.error;
+  [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=sceneInputs.values;
+  mark('memberships');
+  // Keep dependency-sensitive Scene500 overlays in their established order.
+  for(const src of ['scene500-integrated.js','scene500-sense-review.js','scene-search.js','rebuild-preview/home-dashboard.js','rebuild-preview/round-policy.js'])await loadTimedScript(src);
   window.PAI_BOOT_SCRIPT_DURATIONS=scriptDurations;
   mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
