@@ -883,7 +883,7 @@
      await ensureUnits([target.k]);
      if(request!==browseToken||!active||state.view!=='learning')return false;
      ++token;PAI_TAP_FLOW.cancel();window.PAI_AUDIO?.stop();
-     browsedUnit=target;browseIndex=null;state.revealed=false;error='';loading=false;
+     browsedUnit=target;browseIndex=keys.indexOf(target.k);state.revealed=false;error='';loading=false;
      PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),false);
      captureLearningCursor();render();
      if(state.autoPronounce.question&&!document.hidden)speak(target.w.w);
@@ -912,7 +912,7 @@
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
   const keys=cycleKeys();if(!keys.length)return false;
-  const index=browseIndex===null?Math.max(0,keys.indexOf(window.getVisibleLearningUnit().k)):browseIndex;
+  const index=Math.max(0,keys.indexOf(window.getVisibleLearningUnit().k));
   const next=(index+direction+keys.length)%keys.length;
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=PAI_TAP_FLOW.pageState()==='ANSWER';
   // Preload without changing the current card: a user rating can still win the race.
