@@ -94,6 +94,7 @@
     const status=`今日新词 ${b.dailyCompleted}/${b.dailyLimit} · 每轮 ${b.roundLimit}${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
     return `<div class="home-dashboard"><div class="home-shell">
       <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
+      <div class="pai-build-sha" aria-label="当前加速版部署版本" style="font-size:10px;line-height:1.4;opacity:.42;text-align:right;padding:0 6px 2px;min-height:14px;user-select:text"><span id="pai-deployed-sha"></span></div>
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
         <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(display?.name||'开始一个场景')}</h2><p>${esc(status)}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="continueScene500('${esc(continueId)}','${esc(continueDifficulty)}')">${resume?'继续本轮':'继续'}</button>`:''}${b.reinforcementRemaining?`<button class="continue-review" onclick="openReinforcement()">强化 ${b.reinforcementRemaining}</button>`:''}${b.due?`<button class="continue-review" onclick="openReview()">复习 ${b.due}</button>`:''}</div></section>
         <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
@@ -218,12 +219,32 @@
     reconcileCountSlots(root);
     window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
   };
+  // Read actual deployed SHA, not GitHub branch HEAD. Non-blocking and cosmetic.
+  let deployedShaRequest=null,deployedShaText='';
+  function refreshDeployedSha(){
+    const node=document.getElementById('pai-deployed-sha');
+    if(!node)return;
+    if(deployedShaText){node.textContent=deployedShaText;return}
+    if(!deployedShaRequest){
+      deployedShaRequest=fetch(new URL('preview-source-sha.txt',document.baseURI),{cache:'no-store'})
+        .then(r=>{if(!r.ok)throw Error('DEPLOY_SHA_HTTP_'+r.status);return r.text()})
+        .then(raw=>{
+          const sha=raw.trim();
+          if(!/^[a-f0-9]{40}$/.test(sha))throw Error('DEPLOY_SHA_INVALID');
+          deployedShaText='Build '+sha.slice(0,12);
+          document.getElementById('pai-deployed-sha')?.replaceChildren(document.createTextNode(deployedShaText));
+          window.PAI_DEPLOYED_SOURCE_SHA=sha;
+        }).catch(()=>{deployedShaText='';});
+    }
+  }
+  const renderWithBuild=renderHome;
+  // Keep the release marker out of the learning screen and off the critical boot path.
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
   window.render=function(){if(state.view==='scenes'){
     const root=document.getElementById('app'),oldCounts=new Map();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(slot.innerHTML.trim())oldCounts.set(slot.getAttribute('data-scene-id'),slot.innerHTML);
     root.innerHTML=renderHome();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(!slot.innerHTML.trim()&&oldCounts.has(slot.getAttribute('data-scene-id')))slot.innerHTML=oldCounts.get(slot.getAttribute('data-scene-id'));
-    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);return
+    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);queueMicrotask(refreshDeployedSha);return
   }return baseRender()};
 })();
