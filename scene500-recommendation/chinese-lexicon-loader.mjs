@@ -12,7 +12,7 @@ const format=(base)=>Object.freeze({
  },
  getPage:(snapshot,pageIndex=0,pageSize=5)=>base.getPage(snapshot,pageIndex,pageSize)
 });
-export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal}={}){
+export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal,onDiagnostic}={}){
  const fallback=format(createScene500Recommender({catalog}));
  if(!lexiconUrl||!associationUrl)return fallback;
  const controller=new AbortController();
@@ -67,7 +67,11 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
   return Object.freeze({...engine,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false});
   })();
   return await Promise.race([work,abortPromise]);
- }catch(_err){
+ }catch(err){
+  // Preserve stable fallback contract, but make offline E2E failures observable.
+  if(typeof onDiagnostic==='function'){
+   try{onDiagnostic({code:'SCENE500_ASSET_FALLBACK',reason:String(err?.message??err)});}catch{}
+  }
   return fallback;
  }finally{
   clearTimeout(timer);
