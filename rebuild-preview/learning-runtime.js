@@ -1054,7 +1054,15 @@
   const sceneId=s.kind==='scene'?(s.scene500SceneId||state.selectedScene):null;
   const sceneKUs=sceneId&&typeof allUnits==='function'
     ?new Set((allUnits(sceneId)||[]).map(u=>u?.k||unitKey(u.w,u.sid)).filter(Boolean)).size:null;
-  const progress=`本轮已完成 ${sessionCompleted}/${sessionTotal}${sceneKUs!==null?` · 场景词池 ${sceneKUs} KU`:''}`;
+  const sceneKeys=sceneId?sceneBrowseKeys():[];
+  const batchSize=Math.max(1,Number(state.wordsPerRound)||10);
+  const visibleIndex=sceneKeys.indexOf(u?.k);
+  const batchIndex=Math.floor(Math.max(0,visibleIndex)/batchSize);
+  const batchKeys=visibleIndex>=0?sceneKeys.slice(batchIndex*batchSize,(batchIndex+1)*batchSize):[];
+  const batchStudied=batchKeys.filter(k=>!!state.records?.[k]).length;
+  const progress=sceneKeys.length&&visibleIndex>=0
+    ?`第${batchIndex+1}/${Math.ceil(sceneKeys.length/batchSize)}批 · 本批已学习 ${batchStudied}/${batchKeys.length} · 场景 ${sceneKeys.length} KU`
+    :`本轮已完成 ${sessionCompleted}/${sessionTotal}${sceneKUs!==null?` · 场景词池 ${sceneKUs} KU`:''}`;
   if(loading||error)return `<div class="screen study-screen learning-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div><div class="recall-correction" role="group" aria-label="词卡加载中，按钮暂不可用"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const selectedGrade=PAI_TAP_FLOW.selectedGradeFor(u.k);
