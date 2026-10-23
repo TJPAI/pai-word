@@ -857,14 +857,21 @@
  window.retryLearningLoad=()=>showCurrent();
  let browseIndex=null,browseToken=0,browsedUnit=null;
  window.PAI_CANCEL_PENDING_BROWSE=()=>{++browseToken};
- const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
+ const sceneBrowseKeys=()=>{
+   const scene=state.learningSession?.scene500SceneId||state.selectedScene;
+   if(!scene)return [];
+   const difficulty=state.scene500DifficultyByScene?.[scene]||'all';
+   const allowed=rank=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
+   return [...new Set((allUnits(scene)||[]).filter(u=>allowed(Number(u.w?.rank)||999999)).map(u=>unitKey(u.w,u.sid)))].filter(byKey);
+ };
+ const cycleKeys=()=>state.learningSession?.kind==='scene'
+   ?sceneBrowseKeys()
+   :[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
  window.PAI_CHANGE_BATCH=async(direction)=>{
    if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress)return false;
    const scene=state.learningSession?.scene500SceneId||state.selectedScene;
    if(!scene)return false;
-   const difficulty=state.scene500DifficultyByScene?.[scene]||'all';
-   const allowed=rank=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
-   const keys=[...new Set((allUnits(scene)||[]).filter(u=>allowed(Number(u.w?.rank)||999999)).map(u=>unitKey(u.w,u.sid)))].filter(byKey);
+   const keys=sceneBrowseKeys();
    if(!keys.length)return false;
    const size=Math.max(1,Number(state.wordsPerRound)||10),batches=Math.ceil(keys.length/size);
    if(batches<2)return false;
