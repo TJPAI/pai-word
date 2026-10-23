@@ -55,9 +55,17 @@ async function vector(text) {
  return Float32Array.from(out.data);
 }
 const sceneEmbeds=[],passages=catalogIds.map(passage);
-for(let i=0;i<passages.length;i++){
- sceneEmbeds.push(await vector(passages[i]));
- if((i+1)%100===0)process.stderr.write('encoded '+(i+1)+'/500 scenes\n');
+const batchSize=Math.max(1,Math.min(16,Number(process.env.SCENE500_E5_BATCH||8)));
+for(let i=0;i<passages.length;i+=batchSize){
+ const chunk=passages.slice(i,i+batchSize);
+ const output=await extractor(chunk,{pooling:'mean',normalize:true});
+ const dims=output.dims;
+ if(dims.length!==2||dims[0]!==chunk.length)throw Error('BAD_BATCH_DIMS:'+JSON.stringify(dims));
+ const dim=dims[1];
+ for(let j=0;j<chunk.length;j++)
+   sceneEmbeds.push(Float32Array.from(output.data.slice(j*dim,(j+1)*dim)));
+ if((i+chunk.length)%100===0||i+chunk.length===passages.length)
+   process.stderr.write('encoded '+(i+chunk.length)+'/500 scenes\n');
 }
 const dim=sceneEmbeds[0].length;
 if(!sceneEmbeds.every(x=>x.length===dim))throw Error('VECTOR_DIMENSION_MISMATCH');
