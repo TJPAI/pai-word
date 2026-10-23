@@ -1,0 +1,114 @@
+{
+  "schema": "scene500-keyword-diagnostic-v0.1",
+  "status": "independently_authored_editorial_unreviewed_not_blind",
+  "annotation_rule": "keywords are explicit query spans denoting domain objects or actions; they are not derived from engine output; each is an exact string in query. Only lexicon-identifiable gold spans count for primary extractor PRF; out-of-vocabulary spans are separately reported.",
+  "cases": [
+    {
+      "query": "我要去酒店前台办理入住",
+      "keywords": [
+        "酒店",
+        "前台",
+        "入住"
+      ],
+      "category": "hotel"
+    },
+    {
+      "query": "我想购买火车票并查询退票规则",
+      "keywords": [
+        "火车票",
+        "退票"
+      ],
+      "category": "travel"
+    },
+    {
+      "query": "机场托运行李后去安检",
+      "keywords": [
+        "机场",
+        "行李",
+        "安检"
+      ],
+      "category": "airport"
+    },
+    {
+      "query": "在医院预约眼科医生",
+      "keywords": [
+        "医院",
+        "眼科",
+        "医生"
+      ],
+      "category": "medical"
+    },
+    {
+      "query": "写论文需要引用参考文献",
+      "keywords": [
+        "论文",
+        "引用",
+        "参考文献"
+      ],
+      "category": "academic"
+    },
+    {
+      "query": "使用云存储备份电脑文件",
+      "keywords": [
+        "云存储",
+        "备份",
+        "电脑",
+        "文件"
+      ],
+      "category": "digital"
+    },
+    {
+      "query": "怎么回复审稿人的修改意见",
+      "keywords": [
+        "回复",
+        "审稿人",
+        "修改",
+        "意见"
+      ],
+      "category": "research"
+    },
+    {
+      "query": "乘公交车去学校然后买交通卡",
+      "keywords": [
+        "公交车",
+        "学校",
+        "交通卡"
+      ],
+      "category": "mixed"
+    },
+    {
+      "query": "公司要求进行财务预算与成本控制",
+      "keywords": [
+        "公司",
+        "财务预算",
+        "成本控制"
+      ],
+      "category": "business"
+    },
+    {
+      "query": "我要练瑜伽和游泳",
+      "keywords": [
+        "瑜伽",
+        "游泳"
+      ],
+      "category": "sport"
+    },
+    {
+      "query": "问邻居能否帮忙照顾宠物",
+      "keywords": [
+        "邻居",
+        "照顾",
+        "宠物"
+      ],
+      "category": "household"
+    },
+    {
+      "query": "如何配置Wi-Fi连接",
+      "keywords": [
+        "Wi-Fi",
+        "连接"
+      ],
+      "category": "technology"
+    }
+  ]
+}
