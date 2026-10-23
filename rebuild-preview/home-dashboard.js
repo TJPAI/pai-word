@@ -139,17 +139,30 @@
     if(canResumeScene(scene)&&resumableScene()?.difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
-  window.PAI_HOME_REFRESH_COUNTS=function(){
-    if(state.view!=='scenes')return;
-    const root=document.getElementById('app');
-    const difficulty=ui().difficulty;
+  // Update text in place rather than reassigning innerHTML on every count.
+  // Existing DOM nodes retain their layout, focus and accessibility identity.
+  function reconcileCountSlots(root){
     let changed=false;
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]')){
       const id=slot.getAttribute('data-scene-id');
-      const html=countHtml(inventory(id,difficulty));
-      if(slot.innerHTML!==html){slot.innerHTML=html;changed=true}
+      const html=countHtml(inventory(id,ui().difficulty));
+      if(!html)continue; // Never replace a known snapshot value with empty data.
+      const holder=document.createElement('span');holder.innerHTML=html;
+      const next=holder.querySelector('.scene-result-count');
+      const old=slot.querySelector('.scene-result-count');
+      if(!next)continue;
+      if(old&&old.children.length===next.children.length&&[...old.children].every((node,i)=>node.tagName===next.children[i].tagName)){
+        for(let i=0;i<old.children.length;i++){
+          if(old.children[i].textContent!==next.children[i].textContent){old.children[i].textContent=next.children[i].textContent;changed=true}
+        }
+      }else if(slot.innerHTML!==html){slot.replaceChildren(next);changed=true}
     }
-    if(changed)window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
+    return changed;
+  }
+  window.PAI_HOME_REFRESH_COUNTS=function(){
+    if(state.view!=='scenes')return;
+    const root=document.getElementById('app');
+    if(reconcileCountSlots(root))window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
   };
   window.PAI_HOME_RECONCILE=function(){
     if(state.view!=='scenes')return;
@@ -169,11 +182,7 @@
     }
     // Update the right-hand numbers only, retaining previous displayed values
     // until a valid replacement is ready; never blank a cached count.
-    for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]')){
-      const id=slot.getAttribute('data-scene-id');
-      const html=countHtml(inventory(id,ui().difficulty));
-      if(html&&slot.innerHTML!==html)slot.innerHTML=html;
-    }
+    reconcileCountSlots(root);
     window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
   };
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
