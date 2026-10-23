@@ -8,9 +8,7 @@ test('review gate refuses candidate-only and accepts only independently evidence
  const dir=fs.mkdtempSync(path.join(os.tmpdir(),'scene500-gate-'));
  try{
   const paths=['lex','catalog','baseline','review','out'].map(x=>path.join(dir,x+'.json'));
-  const lex={data_version:'0.10.1-evidence-compat',source_version:'0.10.1-evidence-compat',terms:[
-   {term_id:'zh_1',term:'数学',normalized_term:'数学',aliases:[],source_version:'source'}
-  ]};
+  const lex={data_version:'0.10.1-evidence-compat',source_version:'0.10.1-evidence-compat',terms:Array.from({length:20000},(_,i)=>({term_id:'zh_'+i,term:i===1?'数学':'词项'+i,normalized_term:i===1?'数学':'词项'+i,aliases:[],source_version:'source'}))};
   const catalog={scene_count:500,scenes:Object.fromEntries(Array.from({length:500},(_,i)=>{
    const id='S'+String(i+1).padStart(3,'0');return [id,{name:id}];
   }))};
