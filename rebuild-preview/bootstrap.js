@@ -33,6 +33,8 @@
   const saved=JSON.parse(localStorage.getItem(SNAPSHOT_KEY)||'null');
   if(saved?.schema===1&&typeof saved.html==='string'&&saved.html.length<180000&&saved.html.startsWith('<div class="home-dashboard">')){
    const safe=document.createElement('div');safe.innerHTML=saved.html;
+   // Cached markup is visual only; normalize historical CTA wording before first paint.
+   safe.querySelectorAll('.continue-primary').forEach(button=>{button.textContent='继续学习'});
    safe.querySelectorAll('script,iframe,object,embed,form').forEach(node=>node.remove());
    safe.querySelectorAll('*').forEach(node=>{for(const attr of [...node.attributes])if(attr.name.startsWith('on'))node.removeAttribute(attr.name)});
    safe.querySelectorAll('button,input,textarea,select,a').forEach(node=>{node.setAttribute('disabled','');node.setAttribute('tabindex','-1')});
