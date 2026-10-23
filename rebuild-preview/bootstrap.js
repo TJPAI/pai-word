@@ -171,6 +171,11 @@
     if(window.PAI_SCENE500_TOP100_READY)await window.PAI_SCENE500_TOP100_READY;
     // Refresh count labels only after the entire Top100 dataset is ready.
     if(typeof window.PAI_HOME_RECONCILE==='function')window.PAI_HOME_RECONCILE();
+    // Restore only a query that previously had no usable results. Never rerank
+    // an existing recommendation snapshot or erase an in-progress IME draft.
+    if(state.view==='scenes' && state.sceneSearchUi?.query &&
+       (!Array.isArray(state.sceneSearchUi.resultIds)||!state.sceneSearchUi.resultIds.length))
+      window.restoreScene500Recommendations?.();
     // Snapshot recommendation positions stay fixed until an explicit search.
    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
   })();
