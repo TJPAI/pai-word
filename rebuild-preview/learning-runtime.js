@@ -848,7 +848,11 @@
    persist();window.resumeLearning();return true;
  };
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
- window.goScenes=()=>{flushLearningCursor();window.PAI_AUTOBROWSE?.stop();previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
+ // Keep the home document's previous scroll position across study navigation.
+ let sceneHomeScrollY=0,restoreSceneHomeScroll=false;
+ const rememberSceneHomePosition=()=>{if(state.view==='scenes')sceneHomeScrollY=window.scrollY||document.scrollingElement?.scrollTop||0};
+ document.addEventListener('click',rememberSceneHomePosition,true);
+ window.goScenes=()=>{restoreSceneHomeScroll=true;flushLearningCursor();window.PAI_AUTOBROWSE?.stop();previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render();if(restoreSceneHomeScroll){restoreSceneHomeScroll=false;requestAnimationFrame(()=>window.scrollTo(0,sceneHomeScrollY))}};
  window.openPanel=kind=>{flushLearningCursor();window.PAI_AUTOBROWSE?.stop();previousUnit=null;PAI_TAP_FLOW.cancel();active=false;state.view=kind;persist();render()};
  window.reveal=()=>{if(!active||loading||error||!unit())return;PAI_TAP_FLOW.tap()};
  window.retryLearningLoad=()=>showCurrent();
