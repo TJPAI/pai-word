@@ -76,7 +76,10 @@
   function resumableScene(){
     const session=state.learningSession;
     const id=session?.scene500SceneId||state.selectedScene;
-    if(!session||!Array.isArray(session.queue)||!session.queue.length)return null;
+    if(!session||!Array.isArray(session.queue))return null;
+    const cursor=window.PAI_LEARNING_CURSOR?.();
+    const bookmarkValid=!!cursor?.ku_id&&[...(session.queue||[]),...(session.completed||[])].includes(cursor.ku_id);
+    if(!session.queue.length&&!bookmarkValid)return null;
     if(!id||!displayName(id))return null;
     // Never present a stale or unresolvable queue as an active session.
     if(!session.queue.every(k=>window.PAI_CORE?.byKU?.has(k)))return null;
@@ -161,7 +164,10 @@
   window.continueScene500=function(scene,difficulty='all'){
     // An unfinished, saved KU queue takes priority over opening a new scene.
     // Do not require difficulty/scene metadata to match: older sessions lack it.
-    if(state.learningSession?.queue?.length && state.learningSession.queue.every(k=>window.PAI_CORE?.byKU?.has(k)) && typeof window.resumeLearning==='function')return window.resumeLearning();
+    const session=state.learningSession,cursor=window.PAI_LEARNING_CURSOR?.();
+    const resumable=session?.queue?.length&&session.queue.every(k=>window.PAI_CORE?.byKU?.has(k));
+    const bookmarked=cursor?.ku_id&&[...(session?.queue||[]),...(session?.completed||[])].includes(cursor.ku_id)&&window.PAI_CORE?.byKU?.has(cursor.ku_id);
+    if((resumable||bookmarked)&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
   // Update text in place rather than reassigning innerHTML on every count.
