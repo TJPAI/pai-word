@@ -1,0 +1,11 @@
+import {validateSemanticOverlay} from './semantic-overlay-validator.mjs';
+import assert from 'node:assert/strict';
+const ids=new Set(['S001','S002']);
+const valid={schema_version:'scene500-semantic-overlay-v1',scenes:[{scene_id:'S001',expressions:['早晨起床','闹钟叫醒我']}]};
+assert.equal(validateSemanticOverlay(valid,ids).ok,true);
+assert.equal(validateSemanticOverlay({...valid,schema_version:'wrong'},ids).ok,false);
+assert.equal(validateSemanticOverlay({...valid,scenes:[{scene_id:'S999',expressions:['abc']}]},ids).ok,false);
+assert.equal(validateSemanticOverlay({...valid,scenes:[valid.scenes[0],valid.scenes[0]]},ids).ok,false);
+assert.equal(validateSemanticOverlay({...valid,scenes:[{scene_id:'S001',expressions:['早晨起床','早晨起床']}]},ids).ok,false);
+assert.equal(validateSemanticOverlay(null,ids).ok,false);
+console.log('PASS semantic overlay validation smoke tests');
