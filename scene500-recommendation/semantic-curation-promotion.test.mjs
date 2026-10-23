@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {promoteReviewedCuration} from './semantic-curation-promotion.mjs';
+const ids=new Set(['S002']);
+const pending={schema_version:'scene500-curation-review-v1',scenes:[{scene_id:'S002',expressions:['洗脸时眼睛进泡沫了'],review_status:'needs_independent_review'}]};
+assert.equal(promoteReviewedCuration(pending,ids).ok,false);
+const approved={...pending,scenes:[{...pending.scenes[0],review_status:'independently_approved',reviewer_id:'qa-reviewer',reviewed_at:'2026-10-24T12:00:00+08:00',review_evidence:['checked against scene definition']}]};
+assert.equal(promoteReviewedCuration(approved,ids).ok,true);
+assert.equal(promoteReviewedCuration({...approved,scenes:[...approved.scenes,...approved.scenes]},ids).ok,false);
+assert.equal(promoteReviewedCuration({...approved,scenes:[{...approved.scenes[0],review_evidence:[]}]},ids).ok,false);
+assert.equal(promoteReviewedCuration(approved,new Set(['S999'])).ok,false);
+console.log('PASS semantic curation promotion tests');
