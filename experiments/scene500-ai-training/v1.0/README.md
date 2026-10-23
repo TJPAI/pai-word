@@ -9,7 +9,7 @@ From the repository root (with Python 3 and Node >=18):
 ```bash
 python experiments/scene500-ai-training/v1.0/verify-extract.py multilingual-e5-small-q8.zip --dest /tmp/scene500-e5-local
 npm install --no-save @huggingface/transformers@^3
-SCENE500_E5_LOCAL_ROOT=/tmp/scene500-e5-local node experiments/scene500-ai-training/v0.7/eval-e5.mjs
+SCENE500_E5_LOCAL_ROOT=/tmp/scene500-e5-local SCENE500_E5_CACHE=/tmp/scene500-e5-vectors.json node experiments/scene500-ai-training/v0.7/eval-e5.mjs
 node experiments/scene500-ai-training/v0.8/analyze-results.mjs experiments/scene500-ai-training/v0.7/e5-results-local.json
 ```
 
@@ -27,3 +27,7 @@ The offline loader explicitly uses `env.allowRemoteModels=false`, `env.allowLoca
 ## Must validate before deployment
 
 Check correct ONNX model load and shape, compare positive top-k recall with existing 18/59 draft baseline, validate out-of-taxonomy rejection on new annotations, measure real mobile Safari cold-start, and keep the current recommender as fallback. The package is too large for unconditional homepage loading.
+
+## Repeated evaluation optimization
+
+Setting `SCENE500_E5_CACHE` saves the 500 precomputed float-vector representations and reuses them on subsequent evaluation runs. Cache identity includes the actual local ONNX SHA-256 plus every scene passage text; changing weights or scene text forces re-encoding. Model initialization is still required. A plain JSON cache can be a few megabytes. The model and cache are **local only** and must not be committed to GitHub.
