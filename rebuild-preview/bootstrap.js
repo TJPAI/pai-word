@@ -88,6 +88,7 @@
   // Read-only Scene500 fetches may overlap IndexedDB restore; attach rejection handlers
   // immediately so a slow storage operation never leaves an unhandled rejection.
 
+  const storageStarted=performance.now();
   let durableDB=null;
   try{
    durableDB=await window.PAI_KU_DURABLE.open();
@@ -108,28 +109,29 @@
    state.view='scenes';state.revealed=false;
    window.PAI_KU_DURABLE_DB=durableDB;
    window.PAI_KU_STORAGE_READY=true;
-   mark('storageReady');
+   mark('storageReady');timings.storageDurationMs=Math.round(performance.now()-storageStarted);
   }catch(storageError){
    window.PAI_KU_STORAGE_READY=false;
    window.PAI_KU_STORAGE_FATAL=true;
    console.warn('Durable KU storage unavailable; rating writes must not silently succeed',storageError);
   }
+  const catalogStarted=performance.now();
   const catalogReady=loadLearningCatalog();
-  await catalogReady;mark('catalog');
+  await catalogReady;mark('catalog');timings.catalogDurationMs=Math.round(performance.now()-catalogStarted);
   const sceneInputs=await sceneInputsReady;
   if(sceneInputs.error)throw sceneInputs.error;
   [window.PAI_SCENE500_MEMBERSHIP_POLICY,window.PAI_SCENE500_MEMBERSHIP]=sceneInputs.values;
   mark('memberships');
   // The HTML preloads runtime scripts in parallel. Execute sequentially here
   // so a load failure cannot run dependent scripts after an incomplete predecessor.
-  await script('rebuild-preview/memory-schedulers.js');
-  await script('rebuild-preview/learning-runtime.js');
-  await script('audio-compat.js');
-  await script('scene500-integrated.js');
-  await script('scene500-sense-review.js');
-  await script('scene-search.js');
-  await script('rebuild-preview/home-dashboard.js');
-  await script('rebuild-preview/round-policy.js');
+  const startupScripts=['rebuild-preview/memory-schedulers.js','rebuild-preview/learning-runtime.js','audio-compat.js','scene500-integrated.js','scene500-sense-review.js','scene-search.js','rebuild-preview/home-dashboard.js','rebuild-preview/round-policy.js'];
+  const scriptDurations={};
+  for(const src of startupScripts){
+   const before=performance.now();
+   await script(src);
+   scriptDurations[src]=Math.round(performance.now()-before);
+  }
+  window.PAI_BOOT_SCRIPT_DURATIONS=scriptDurations;
   mark('startupScripts');
   // Canonical Scene500 Top100 is integrated into the existing search and learning UI.
   const preboot=window.PAI_PREVIEW_PENDING_SEARCH;
@@ -150,7 +152,7 @@
    const nav=performance.getEntriesByType('navigation')[0];
    const start=nav?.startTime||0;
    return {version:VERSION,homeReadyMs:t.homeRendered??null,
-    stagesMs:{...t},core20kMs:{...c},
+    stagesMs:{...t},scriptLoadMs:{...(window.PAI_BOOT_SCRIPT_DURATIONS||{})},core20kMs:{...c},
     navigationMs:nav?{domContentLoaded:Math.round(nav.domContentLoadedEventEnd-start),loadEvent:Math.round(nav.loadEventEnd-start)}:null};
   };
   // Optional Top100 taxonomy runs only after the real homepage is visible.
