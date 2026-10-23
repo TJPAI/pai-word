@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-reset-legacy-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-reset-verified-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -20,7 +20,9 @@
     req.onsuccess=resolve;req.onerror=()=>reject(req.error||Error('数据库删除失败'));
     req.onblocked=()=>reject(Error('数据库正在被其他页面使用，请先关闭其他 PAI Word 标签页'));
    });
-   // preview-state.js restores this legacy backup BEFORE IndexedDB opens.\n   // Without deleting it, initialize(db,state) seeds the fresh DB with OLD learning data.\n   localStorage.removeItem('pai-word-core20k-rebuild-preview-v21');\n   for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
+   // Remove legacy backup loaded by preview-state.js before IndexedDB opens.
+   localStorage.removeItem('pai-word-core20k-rebuild-preview-v21');
+   for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
    for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
    location.replace(location.pathname+'?resetFresh='+Date.now());
   }catch(error){alert('重置未完成：'+String(error?.message||error));if(button&&'disabled'in button)button.disabled=false}
