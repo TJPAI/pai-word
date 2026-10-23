@@ -447,7 +447,31 @@
  function beginExample(){if(!['answer','repeating','example','answer-paused'].includes(phase))return false;generation++;if(timer!==null)clearTimeout(timer);timer=null;phase='example';window.render?.();return true}
  function interruptRepeatForExample(){return beginExample()}
  function exampleFinished(){if(phase!=='example')return;phase='answer-paused';window.render?.()}
- function resumeFailedCommit(){if(phase!=='committing')return;ratedVisibleKey=null;phase='answer-paused';onAdvance=null;window.render?.();let el=document.getElementById('pai-ku-commit-error');if(!el){el=document.createElement('div');el.id='pai-ku-commit-error';el.setAttribute('role','alert');el.style.cssText='position:fixed;top:calc(65px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:12px;border-radius:10px;font:14px system-ui;pointer-events:none';document.body.appendChild(el)}el.textContent='KU 评分未保存，当前单词不会自动跳过。请检查 Safari 存储后重试。';setTimeout(()=>el.remove(),7000)}
+ function resumeFailedCommit(){
+  if(phase!=='committing')return;
+  ratedVisibleKey=null;phase='answer-paused';onAdvance=null;window.render?.();
+  const raw=String(window.PAI_LAST_SAVE_ERROR||'Unknown KU persistence failure');
+  const code=/IndexedDB unavailable|InvalidStateError|database connection is closing/i.test(raw)?'IDB_UNAVAILABLE':
+   /QuotaExceededError|quota|disk full/i.test(raw)?'IDB_QUOTA':
+   /KU write conflict/i.test(raw)?'KU_VERSION_CONFLICT':
+   /KU write duplicate/i.test(raw)?'KU_DUPLICATE':
+   /DataCloneError|structuredClone/i.test(raw)?'KU_CLONE_ERROR':
+   /TransactionInactiveError|AbortError|transaction aborted/i.test(raw)?'KU_TX_ABORT':'KU_SAVE_ERROR';
+  window.PAI_KU_RATING_FAILURE={code,message:raw,at:Date.now(),phase,storageReady:!!window.PAI_KU_STORAGE_READY,version:window.PAI_KU_DURABLE_VERSION??null,visibleKU:window.getVisibleLearningUnit?.()?.k||null};
+  const detail=code==='IDB_QUOTA'?'Safari 存储空间不足或数据库容量受限':
+   code==='IDB_UNAVAILABLE'?'IndexedDB 当前不可用或连接已关闭':
+   code==='KU_VERSION_CONFLICT'?'学习记录版本冲突，需重新同步':
+   code==='KU_DUPLICATE'?'检测到重复评分请求':
+   code==='KU_CLONE_ERROR'?'评分数据无法复制到数据库':
+   code==='KU_TX_ABORT'?'数据库事务中断':'评分计算或持久化失败';
+  let el=document.getElementById('pai-ku-commit-error');
+  if(!el){el=document.createElement('div');el.id='pai-ku-commit-error';el.setAttribute('role','alert');el.style.cssText='position:fixed;top:calc(65px + env(safe-area-inset-top,0px));left:12px;right:12px;z-index:99999;background:#7f1d1d;color:white;padding:12px;border-radius:10px;font:14px system-ui;pointer-events:auto';document.body.appendChild(el)}
+  el.replaceChildren();
+  const message=document.createElement('span');message.textContent='KU 评分未保存（'+code+'）：'+detail+'。当前单词未跳过。';
+  const copy=document.createElement('button');copy.type='button';copy.textContent='复制错误详情';copy.style.cssText='margin-left:10px;padding:5px 8px;border:1px solid white;border-radius:6px;color:white;background:transparent;font:12px system-ui';
+  copy.addEventListener('click',ev=>{ev.stopPropagation();const report=JSON.stringify(window.PAI_KU_RATING_FAILURE,null,2);if(navigator.clipboard?.writeText)navigator.clipboard.writeText(report).then(()=>{copy.textContent='已复制'},()=>{copy.textContent='复制失败'});else copy.textContent=code;});
+  el.append(message,copy);setTimeout(()=>{if(el.isConnected)el.remove()},12000);
+ }
  function cancel(){clear()}
  window.setTapTiming=(k,value,refresh=true)=>{if(!(k in defaults)||value===''||!Number.isFinite(Number(value)))return;state.tapTiming={...config(),[k]:Number(value)};state.tapTiming=config();save();if(refresh)window.render?.()};
  window.resetTapTiming=()=>{state.tapTiming={...defaults};save();window.render?.()};
