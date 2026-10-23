@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-reset-qa-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-reset-qa-visible-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -120,7 +120,18 @@
     };
     window.PAI_LAST_RESET_QA={passed:Object.values(checks).every(Boolean),checks,at:Date.now()};
     sessionStorage.removeItem('pai-word-preview-reset-check');
-    if(!window.PAI_LAST_RESET_QA.passed)console.error('PAI_RESET_QA_FAILED',window.PAI_LAST_RESET_QA);
+    if(!window.PAI_LAST_RESET_QA.passed){
+     console.error('PAI_RESET_QA_FAILED',window.PAI_LAST_RESET_QA);
+     const failed=Object.entries(checks).filter(([,ok])=>!ok).map(([name])=>name).join(', ');
+     window.PAI_RESET_QA_WARNING='系统重置校验未通过：'+failed+'。请勿继续学习，先反馈此信息。';
+     window.addEventListener('load',()=>{
+      const notice=document.createElement('div');
+      notice.setAttribute('role','alert');
+      notice.style.cssText='position:fixed;top:12px;left:12px;right:12px;z-index:2147483647;padding:14px;border-radius:10px;background:#7f1d1d;color:#fff;font:14px system-ui';
+      notice.textContent=window.PAI_RESET_QA_WARNING;
+      document.body.appendChild(notice);
+     },{once:true});
+    }
    }
    window.PAI_KU_STORAGE_READY=true;
    mark('storageReady');timings.storageDurationMs=Math.round(performance.now()-storageStarted);
