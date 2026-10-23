@@ -30,6 +30,9 @@ export function validateCore20KPack(manifest,pack,{existingKUIds=new Set(),known
   identity.add(id);eligible.push(row)
  }
  if(manifest.record_count!==pack.records.length)throw Error('CORE20K_PACK_COUNT_MISMATCH');
+ if(manifest.release_eligible!==true || eligible.length===0)throw Error('CORE20K_PACK_NOT_RELEASE_ELIGIBLE');
+ if(blocked.length)throw Error('CORE20K_PACK_CONTAINS_BLOCKED_KU');
+ if(manifest.production_ready_ku_count!==eligible.length)throw Error('CORE20K_PACK_ELIGIBLE_COUNT_MISMATCH');
  return Object.freeze({eligible,blocked,total:pack.records.length,packVersion:pack.pack_version,
    sourceCommitSha:manifest.source_commit_sha});
 }
