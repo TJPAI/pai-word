@@ -3,9 +3,11 @@ export function withExperimentalSceneExtension(base,{catalog,extension,enabled=f
  if(!enabled)return base;
  if(extension?.schema!=='scene500-experimental-compound-extension-v0.1'||
     extension.status!=='EXPERIMENTAL_NOT_APPROVED'||extension.requires_opt_in!==true||
-    extension.production_ready!==false||!Array.isArray(extension.candidates)||
+    extension.production_ready!==false||extension.lexicon_version!=='0.10.1-evidence-compat'||
+    !Number.isInteger(extension.baseline_count)||extension.baseline_count!==3553||
+    !Array.isArray(extension.candidates)||
     !catalog?.scenes)throw Error('SCENE500_INVALID_EXPERIMENTAL_EXTENSION');
- const index=new Map(),seen=new Set();
+ const index=new Map(),seen=new Set(),termOwners=new Map();
  for(const p of extension.candidates){
   const key=JSON.stringify([p.term_id,p.scene_id]);
   if(seen.has(key)||!catalog.scenes[p.scene_id]||p.release_eligible!==false||
@@ -13,6 +15,10 @@ export function withExperimentalSceneExtension(base,{catalog,extension,enabled=f
      p.term.length<2||!Number.isFinite(p.score)||p.score<=0||p.score>.45)
     throw Error('SCENE500_INVALID_EXPERIMENTAL_EDGE');
   seen.add(key);
+  const surface=p.term.normalize('NFKC');
+  if(termOwners.has(surface)&&termOwners.get(surface)!==p.term_id)
+   throw Error('SCENE500_AMBIGUOUS_EXPERIMENTAL_TERM');
+  termOwners.set(surface,p.term_id);
   if(!index.has(p.term))index.set(p.term,[]);
   index.get(p.term).push(p);
  }
