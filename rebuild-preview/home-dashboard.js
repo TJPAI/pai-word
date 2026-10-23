@@ -91,7 +91,7 @@
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
-        const result=await bridge.recommend(q,{difficulty,inventory,limit:500});
+        const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:playable().map(x=>x.id),limit:500});
         ids=result.ids;mode=result.mode;elapsedMs=performance.now()-start;cacheHit=!!result.cacheHit;
       }catch(error){window.PAI_SCENE500_LAST_ERROR=String(error);bridgePromise=null}
     }
