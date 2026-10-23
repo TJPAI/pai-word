@@ -24,3 +24,15 @@ test('smoke subset requires explicit safe envelope normalization',()=>{
  assert.equal(validateBatch136Fixture(normalized,identity).accepted.length,1);
  assert.equal(normalizeBatch136Smoke({...smoke,release_eligible:true}),null);
 });
+
+test('smoke loader accepts safe subset only in explicit smoke mode',async()=>{
+ const smoke={test_only:true,release_eligible:false,records:[record()]};
+ const fetcher=async()=>({ok:true,json:async()=>smoke});
+ const ordinary=await loadBatch136Fixture({enabled:true,url:'/smoke.json',identity,fetcher});
+ assert.equal(ordinary.enabled,false);
+ const enabled=await loadBatch136Fixture({enabled:true,url:'/smoke.json',identity,smoke:true,fetcher});
+ assert.equal(enabled.enabled,true);
+ assert.equal(enabled.accepted.length,1);
+ assert.equal(enabled.accepted[0].automated_srs_scoring_enabled,false);
+ assert.equal(enabled.accepted[0].render_only,true);
+});
