@@ -28,7 +28,10 @@ export function getSubjectSceneCandidates(query,{catalog,eligibleSceneIds=null}=
 }
 export function mergeSubjectCandidates(snapshot,query,{catalog,eligibleSceneIds=null,limit=20}={}){
  const candidates=getSubjectSceneCandidates(query,{catalog,eligibleSceneIds});
- if(!candidates.length)return snapshot;
+ if(!candidates.length){
+  const n=Number.isFinite(Number(limit))?Math.max(0,Math.min(500,Math.floor(Number(limit)))):20;
+  return {...snapshot,results:(snapshot.results??[]).slice(0,n)};
+ }
  const map=new Map((snapshot.results??[]).map(x=>[x.sceneId,{...x}]));
  for(const x of candidates){
   const prev=map.get(x.sceneId);
