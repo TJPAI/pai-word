@@ -35,3 +35,16 @@ test('hybrid and fallback both recover bare subjects without fabricating special
  assert.ok(fallback.search('数学',{limit:5}).results.length>0);
  assert.deepEqual(fallback.search('数学',{limit:5,eligibleSceneIds:['S137']}).results.map(x=>x.sceneId),['S137']);
 });
+
+test('non-subject hybrid requests respect requested Top5 and zero limit',()=>{
+ const lexicon={source_version:'fixture',terms:[{term_id:'t1',term:'书',normalized_term:'书',aliases:[],source_version:'fixture'}]};
+ const associations={association_version:'fixture',links:[]};
+ const engine=createScene500ContractAdapter({catalog,lexicon,associations,minimumScore:0});
+ const five=engine.search('未知词语',{limit:5});
+ assert.equal(five.results.length,5);
+ assert.equal(five.total,500);
+ assert.equal(engine.search('未知词语',{limit:0}).results.length,0);
+ const filtered=engine.search('未知词语',{limit:5,eligibleSceneIds:['S001','S002','S003','S004','S005','S006']});
+ assert.equal(filtered.results.length,5);
+ assert.equal(filtered.total,6);
+});
