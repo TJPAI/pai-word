@@ -9,7 +9,9 @@
  * No pretrained weights or packages are bundled. No production integration.
  * Evaluation labels are SINGLE-PASS EDITORIAL, not independently gold.
  */
-import { readFileSync, writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync, existsSync, createReadStream } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { join } from 'node:path';
 import { performance } from 'node:perf_hooks';
 const root = 'experiments/scene500-ai-training/';
 const read = path => JSON.parse(readFileSync(path, 'utf8'));
@@ -62,18 +64,40 @@ async function vector(text) {
  const out=await extractor(text,{pooling:'mean',normalize:true});
  return Float32Array.from(out.data);
 }
+// Optional cache bound to exact source passages + model file hash.
 const sceneEmbeds=[],passages=catalogIds.map(passage);
-const batchSize=Math.max(1,Math.min(16,Number(process.env.SCENE500_E5_BATCH||8)));
-for(let i=0;i<passages.length;i+=batchSize){
- const chunk=passages.slice(i,i+batchSize);
- const output=await extractor(chunk,{pooling:'mean',normalize:true});
- const dims=output.dims;
- if(dims.length!==2||dims[0]!==chunk.length)throw Error('BAD_BATCH_DIMS:'+JSON.stringify(dims));
- const dim=dims[1];
- for(let j=0;j<chunk.length;j++)
-   sceneEmbeds.push(Float32Array.from(output.data.slice(j*dim,(j+1)*dim)));
- if((i+chunk.length)%100===0||i+chunk.length===passages.length)
-   process.stderr.write('encoded '+(i+chunk.length)+'/500 scenes\n');
+async function fileHash(path){
+ const hash=createHash('sha256');
+ for await(const chunk of createReadStream(path))hash.update(chunk);
+ return hash.digest('hex');
+}
+const cachePath=process.env.SCENE500_E5_CACHE;
+const modelSha=localRoot?await fileHash(join(localRoot,'multilingual-e5-small','onnx','model_quantized.onnx')):'remote-model-not-verified';
+const cacheKey=createHash('sha256').update(JSON.stringify({passages,modelSha,MODEL,dtype:'q8'})).digest('hex');
+let cacheHit=false;
+if(cachePath&&existsSync(cachePath)){
+ try {
+  const cached=JSON.parse(readFileSync(cachePath,'utf8'));
+  if(cached.key===cacheKey&&cached.ids.join(',')===catalogIds.join(',')&&cached.embeddings.length===500){
+   for(const v of cached.embeddings)sceneEmbeds.push(Float32Array.from(v));
+   cacheHit=true;
+  }
+ }catch(e){console.error('Ignoring invalid scene embedding cache: '+e.message);}
+}
+if(!cacheHit){
+ const batchSize=Math.max(1,Math.min(16,Number(process.env.SCENE500_E5_BATCH||8)));
+ for(let i=0;i<passages.length;i+=batchSize){
+  const chunk=passages.slice(i,i+batchSize);
+  const output=await extractor(chunk,{pooling:'mean',normalize:true});
+  const dims=output.dims;
+  if(dims.length!==2||dims[0]!==chunk.length)throw Error('BAD_BATCH_DIMS:'+JSON.stringify(dims));
+  const vectorDim=dims[1];
+  for(let j=0;j<chunk.length;j++)
+    sceneEmbeds.push(Float32Array.from(output.data.slice(j*vectorDim,(j+1)*vectorDim)));
+  if((i+chunk.length)%100===0||i+chunk.length===passages.length)
+    process.stderr.write('encoded '+(i+chunk.length)+'/500 scenes\\n');
+ }
+ if(cachePath)writeFileSync(cachePath,JSON.stringify({key:cacheKey,ids:catalogIds,embeddings:sceneEmbeds.map(a=>[...a])}));
 }
 const dim=sceneEmbeds[0].length;
 if(!sceneEmbeds.every(x=>x.length===dim))throw Error('VECTOR_DIMENSION_MISMATCH');
@@ -99,7 +123,7 @@ function count(lang){const p=lang?positive.filter(x=>x.language===lang):positive
 const timings=evaluated.map(x=>x.inferenceMs).sort((a,b)=>a-b);
 const result={schema:'scene500-e5-offline-evaluation-v1',model:MODEL,dtype:'q8',
   device,sceneCount:catalogIds.length,vectorDimension:dim,
-  startupLoadMs:loadedMs,subjectToModelDownload:!localRoot,localMode:!!localRoot,
+  startupLoadMs:loadedMs,subjectToModelDownload:!localRoot,localMode:!!localRoot,sceneEmbeddingCacheHit:cacheHit,
   singleQueryInferenceMs:{p50:timings[Math.floor(timings.length*.5)],p95:timings[Math.floor(timings.length*.95)]},
   warning:'No independent gold labels; no calibrated no-match threshold; no deployment recommendation.',
   editorialRecall:{all:count(),zh:count('zh'),en:count('en')},
