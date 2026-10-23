@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {validateBatch136Fixture,loadBatch136Fixture} from '../rebuild-preview/core20k-batch136-runtime-gate.mjs';
+import {validateBatch136Fixture,loadBatch136Fixture,normalizeBatch136Smoke} from '../rebuild-preview/core20k-batch136-runtime-gate.mjs';
 const identity={knownKuIds:new Set(['k1','k2']),knownSenseIds:new Set(['s1']),knownHeadwordIds:new Set(['h1'])};
 const record=(x={})=>({ku_id:'k1',sense_id:'s1',headword_id:'h1',ku_type:'sense',render_kind:'cloze',question:'Go ___.',response:{answer:'out',example_en:'Go out.',example_zh:'出去。'},risk_flags:[],triage:{ku_id:'k1',release_eligible:false,risk_flags:[]},test_only:true,release_eligible:false,semantic_verified:false,requires_review:true,...x,triage:{ku_id:x.ku_id||'k1',release_eligible:false,risk_flags:[],...x.triage}});
 const pack=records=>({schema_version:'core20k-runtime-fixture-v1-test-guarded',test_only:true,release_eligible:false,default_enabled:false,records});
@@ -15,3 +15,12 @@ test('recognition cards remain recognition, not cloze',()=>{const r=validateBatc
 
 test('missing triage risk flags fail closed',()=>{const r=validateBatch136Fixture(pack([record({triage:{risk_flags:null}})]),identity);assert.equal(r.accepted.length,0);assert.ok(r.quarantined[0].reasons.includes('risk_flags'))});
 test('triage KU mismatch is quarantined',()=>{const r=validateBatch136Fixture(pack([record({triage:{ku_id:'other'}})]),identity);assert.equal(r.accepted.length,0);assert.ok(r.quarantined[0].reasons.includes('triage_contract'))});
+
+test('smoke subset requires explicit safe envelope normalization',()=>{
+ const smoke={test_only:true,release_eligible:false,records:[record()]};
+ const normalized=normalizeBatch136Smoke(smoke);
+ assert.equal(normalized.default_enabled,false);
+ assert.equal(normalized.schema_version,'core20k-runtime-fixture-v1-test-guarded');
+ assert.equal(validateBatch136Fixture(normalized,identity).accepted.length,1);
+ assert.equal(normalizeBatch136Smoke({...smoke,release_eligible:true}),null);
+});
