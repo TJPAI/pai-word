@@ -99,7 +99,7 @@
     const lemma=u=>u?.w?.rank??u?.w?.w??null;
     const wordId=lemma(candidate);
     const countedWord=wordId!==null&&p.newWordsCompleted.some(done=>lemma(findUnitByKey(done))===wordId);
-    if((d.newWordKeys.includes(k)||isPreviouslyUnintroduced)&&!countedWord&&p.newWordsCompleted.length<state.newPerDay)p.newWordsCompleted.push(k);
+    if((d.newWordKeys.includes(k)||isPreviouslyUnintroduced)&&!countedWord )p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
@@ -463,13 +463,13 @@
   save();window.PAI_AUTOBROWSE?.restart();window.render?.();
  };
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'</div>'}
- function hint(){return state.revealed?'点空白回题目，左右滑切词，点底部按钮训练记忆':'点空白看答案，左右滑切词，点底部按钮训练记忆'}
+ function hint(){return state.revealed?'点空白回题目，左右滑切词，上下滑换批，点底部按钮训练记忆':'点空白看答案，左右滑切词，上下滑换批，点底部按钮训练记忆'}
  window.PAI_TAP_FLOW={ready,answer,browseReady,choose,resetPage,syncPage,pageState:()=>pageState,commitEarly,takeSwipeDirection,takeHoldAfterRating,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),ratingLocked:k=>ratedVisibleKey===k,clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
  document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+700},{passive:true});
- document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||Math.abs(x)<65||Math.abs(x)<Math.abs(y)*1.3||e.target.closest('button,a,input,select,textarea'))return;window.__paiTapSuppressUntil=Date.now()+700;window.PAI_NAVIGATE_LEARNING?.(x>0?-1:1,'swipe')},{passive:true});
+ document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||e.target.closest('button,a,input,select,textarea'))return;const horizontal=Math.abs(x)>=65&&Math.abs(x)>=Math.abs(y)*1.3,vertical=Math.abs(y)>=75&&Math.abs(y)>=Math.abs(x)*1.3;if(!horizontal&&!vertical)return;window.__paiTapSuppressUntil=Date.now()+700;if(vertical)window.PAI_CHANGE_BATCH?.(y<0?1:-1);else window.PAI_NAVIGATE_LEARNING?.(x>0?-1:1,'swipe')},{passive:true});
  // Backgrounding never turns an already revealed answer into a fresh timed question.
  let hiddenAt=0,hiddenPhase=null;
  document.addEventListener('visibilitychange',()=>{
@@ -858,6 +858,31 @@
  let browseIndex=null,browseToken=0,browsedUnit=null;
  window.PAI_CANCEL_PENDING_BROWSE=()=>{++browseToken};
  const cycleKeys=()=>[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
+ window.PAI_CHANGE_BATCH=async(direction)=>{
+   if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress)return false;
+   const scene=state.learningSession?.scene500SceneId||state.selectedScene;
+   if(!scene)return false;
+   const difficulty=state.scene500DifficultyByScene?.[scene]||'all';
+   const allowed=rank=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
+   const keys=[...new Set((allUnits(scene)||[]).filter(u=>allowed(Number(u.w?.rank)||999999)).map(u=>unitKey(u.w,u.sid)))].filter(byKey);
+   if(!keys.length)return false;
+   const size=Math.max(1,Number(state.wordsPerRound)||10),batches=Math.ceil(keys.length/size);
+   if(batches<2)return false;
+   const visible=window.getVisibleLearningUnit?.(),position=Math.max(0,keys.indexOf(visible?.k));
+   const nextBatch=(Math.floor(position/size)+direction+batches)%batches;
+   const target=byKey(keys[nextBatch*size]),request=++browseToken;
+   if(!target)return false;
+   try{
+     await ensureUnits([target.k]);
+     if(request!==browseToken||!active||state.view!=='learning')return false;
+     ++token;PAI_TAP_FLOW.cancel();window.PAI_AUDIO?.stop();
+     browsedUnit=target;browseIndex=null;state.revealed=false;error='';loading=false;
+     PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),false);
+     captureLearningCursor();render();
+     if(state.autoPronounce.question&&!document.hidden)speak(target.w.w);
+     window.PAI_AUTOBROWSE?.restart();return true;
+   }catch(e){window.PAI_BATCH_ERROR=String(e);return false}
+ };
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
