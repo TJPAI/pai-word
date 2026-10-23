@@ -65,3 +65,31 @@ test('subject-only queries are not fabricated as dedicated scenes', () => {
     }
   }
 });
+
+test('catalog examples map to their own scenes without cross-query state', () => {
+  const cases = [
+    ['早晨起床后应该做什么', 'S001'],
+    ['如何正确刷牙洗脸', 'S002'],
+    ['今天怎么搭配衣服', 'S003'],
+    ['我想整理凌乱的房间', 'S004'],
+    ['今天要做家务', 'S005'],
+    ['洗衣机怎么洗衣服', 'S006'],
+  ];
+  for (const [query, expected] of cases) {
+    const results = ids(query, {limit: 10});
+    assert.ok(results.includes(expected), query + ' should retrieve ' + expected);
+    assert.deepEqual(results, ids(query, {limit: 10}), 'repeat search must be stable');
+  }
+});
+
+test('every catalog scene example retrieves its own scene', () => {
+  const failures = [];
+  for (const [sceneId, scene] of Object.entries(catalog.scenes)) {
+    for (const query of scene.example_queries || []) {
+      const found = ids(query, {limit: 500});
+      if (!found.includes(sceneId)) failures.push({sceneId, query});
+    }
+  }
+  // Record diagnostic failures rather than claiming the draft catalog is fully validated.
+  assert.equal(failures.length, 0, JSON.stringify(failures.slice(0, 12)));
+});
