@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PAI Word · Scene500 搜索回归 QA</title>
+<style>body{font:15px/1.6 system-ui,-apple-system,sans-serif;margin:24px auto;max-width:980px;padding:0 16px;background:#f6f8fa;color:#182335}h1{font-size:24px}table{border-collapse:collapse;width:100%;background:#fff}td,th{border-bottom:1px solid #dce1e6;text-align:left;padding:9px 12px;vertical-align:top}.pass{color:#176f45}.fail{color:#a51919}.note{color:#526071}code{font-size:12px}button{padding:10px 16px;cursor:pointer}</style>
+</head><body><h1>Scene500 搜索回归 QA</h1>
+<p>独立加载当前目录及推荐引擎，不写入学习记录或设置。区分引擎召回与可学习场景过滤。该测试不代表真实手机 UI 或 KU 覆盖率验收。</p>
+<button id="run" type="button">重新运行测试</button><p id="summary" role="status">准备运行…</p>
+<table><thead><tr><th>测试</th><th>期望</th><th>结果</th><th>详情</th></tr></thead><tbody id="results"></tbody></table>
+<script type="module">
+const fixtures=[
+ ['阅读量子物理论文','S153'],['分析经济数据','S159'],['设计化学实验','S156'],
+ ['查找天文学文献','S152'],['绘制数学图表','S161'],['经济学统计检验','S160'],
+ ['撰写化学论文摘要','S163'],['讨论物理研究','S300'],
+ ['阅读哲学论文','S153'],['分析天文观测数据','S159']
+];
+const report=(name,expected,ok,details)=>{
+ const row=document.createElement('tr');
+ for(const [text,clazz] of [[name,''],[expected,''],[ok?'PASS':'FAIL',ok?'pass':'fail'],[details,'note']]){
+  const cell=document.createElement('td');cell.textContent=text;if(clazz)cell.className=clazz;row.appendChild(cell);
+ }
+ document.getElementById('results').appendChild(row);
+ return ok;
+};
+async function run(){
+ const btn=document.getElementById('run');btn.disabled=true;
+ document.getElementById('results').replaceChildren();
+ const summary=document.getElementById('summary');summary.textContent='正在加载真实推荐目录及引擎…';
+ let total=0,passed=0;
+ const check=(a,b,c,d)=>{total++;if(report(a,b,c,d))passed++};
+ try{
+  const base=new URL('../scene500-recommendation/',location.href);
+  const [module,response]=await Promise.all([
+   import(new URL('engine.mjs',base).href),
+   fetch(new URL('catalog-v0.2.json?v=academic-task-aliases-20261024',base),{cache:'no-store'})
+  ]);
+  if(!response.ok)throw Error('CATALOG_HTTP_'+response.status);
+  const catalog=await response.json(),engine=module.createScene500Recommender({catalog});
+  check('目录规模','500 个场景',Object.keys(catalog.scenes||{}).length===500,String(Object.keys(catalog.scenes||{}).length));
+  for(const [query,id] of fixtures){
+   const result=engine.search(query,{limit:500});
+   const rank=result.results.findIndex(x=>x.sceneId===id);
+   check(query,id+' 应被召回',rank>=0,rank<0?'未召回':('第 '+(rank+1)+' 位，得分 '+result.results[rank].score));
+  }
+  const a=engine.search('阅读量子物理论文',{limit:500}).results.map(x=>x.sceneId).join(',');
+  const b=engine.search('分析经济数据',{limit:500}).results.map(x=>x.sceneId).join(',');
+  check('切换完全不同的查询','结果应重新计算',a!==b,'两次推荐结果 '+(a===b?'完全相同':'不同'));
+  const noMatch=engine.search('zzzxxyy987654',{limit:500}).results;
+  check('无意义查询','无推荐',noMatch.length===0,'实际结果数 '+noMatch.length);
+  const restricted=engine.search('阅读量子物理论文',{eligibleSceneIds:['S159'],limit:500});
+  check('可学习场景过滤','排除不在 eligibleSceneIds 的场景',restricted.results.every(x=>x.sceneId==='S159'),JSON.stringify(restricted.results.map(x=>x.sceneId)));
+  const empty=engine.search('阅读量子物理论文',{eligibleSceneIds:[],limit:500});
+  check('没有可学习场景','返回 0，不使用旧结果',empty.results.length===0,'实际结果数 '+empty.results.length);
+ }catch(error){check('初始化','加载成功',false,String(error?.stack||error))}
+ summary.textContent='完成：'+passed+'/'+total+' PASS；'+(total-passed)+' FAIL。静态浏览器引擎测试，不包含 Safari 主页面交互验证。';
+ summary.className=passed===total?'pass':'fail';btn.disabled=false;
+}
+document.getElementById('run').addEventListener('click',run);
+run();
+</script></body></html>
