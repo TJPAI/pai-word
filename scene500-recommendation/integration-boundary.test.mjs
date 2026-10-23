@@ -53,3 +53,32 @@ test('HTTP failure -> rule fallback',async()=>{
  const engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'/lexicon',associationUrl:'/links',fetchImpl:async()=>({ok:false,status:503})});
  assert.equal(engine.mode,'rule_fallback');
 });
+
+test('deadline guarantees fallback when fetch ignores AbortSignal',async()=>{
+ const began=performance.now();
+ const engine=await loadScene500WithChineseLexicon({
+  catalog,lexiconUrl:'/lexicon',associationUrl:'/links',timeoutMs:25,
+  fetchImpl:()=>new Promise(()=>{})
+ });
+ assert.equal(engine.mode,'rule_fallback');
+ assert.ok(performance.now()-began<1000,'timeout must not hang forever');
+});
+
+test('deadline covers JSON parsing stage and rejects late hybrid',async()=>{
+ const engine=await loadScene500WithChineseLexicon({
+  catalog,lexiconUrl:'/lexicon',associationUrl:'/links',timeoutMs:25,
+  fetchImpl:async()=>({ok:true,json:()=>new Promise(()=>{})})
+ });
+ assert.equal(engine.mode,'rule_fallback');
+});
+
+test('external abort after request begins guarantees fallback',async()=>{
+ const abort=new AbortController();
+ const request=loadScene500WithChineseLexicon({
+  catalog,lexiconUrl:'/lexicon',associationUrl:'/links',timeoutMs:5000,
+  signal:abort.signal,fetchImpl:()=>new Promise(()=>{})
+ });
+ abort.abort();
+ const engine=await request;
+ assert.equal(engine.mode,'rule_fallback');
+});
