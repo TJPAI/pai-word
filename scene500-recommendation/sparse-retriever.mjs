@@ -8,7 +8,7 @@ export function createSparseSceneRetriever({registry, catalog}={}){
  const postings=new Map();
  for(const [term,values] of Object.entries(registry.terms)){
   const key=normalize(term);
-  if(key.length<2||!Array.isArray(values)||values.length>50)throw new Error('SCENE500_INVALID_TERM: '+term);
+  if(!key||!Array.isArray(values)||values.length>50)throw new Error('SCENE500_INVALID_TERM: '+term);
   const seen=new Set();
   for(const {sceneId,weight} of values){
    if(!catalog.scenes[sceneId]||seen.has(sceneId)||!Number.isFinite(weight)||weight<0||weight>1)
@@ -26,7 +26,8 @@ export function createSparseSceneRetriever({registry, catalog}={}){
    const allowed=eligibleSceneIds===null?null:new Set(eligibleSceneIds);
    const chosen=[];
    for(const term of sorted){
-    if(!q.includes(term))continue;
+    // Single-character terms only match the entire query, never substrings of sentences.
+    if(term.length===1?q!==term:!q.includes(term))continue;
     // Do not double count a substring of an already selected compound phrase.
     if(chosen.some(x=>x.includes(term)))continue;
     chosen.push(term);
