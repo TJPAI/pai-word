@@ -155,7 +155,8 @@
       ids=(searchApi()?.search(q,difficulty,500)||[]).filter(x=>Number(inventory(x.id,difficulty).reviewedCount)>0).map(x=>x.id);
       mode='legacy_fallback';
     }
-    if(restore&&!ids.length&&previous.query===q&&previous.difficulty===difficulty)ids=previous.resultIds||[];
+    // A fresh successful zero-result search is authoritative. Never resurrect
+    // saved recommendations from an earlier snapshot during restoration.
     ids=[...new Set(ids)].filter(id=>Number(inventory(id,difficulty).reviewedCount)>0);
     state.sceneSearchUi={query:q,difficulty,resultIds:ids,page:restore&&previous.query===q?Math.min(previous.page||0,Math.max(0,Math.ceil(ids.length/5)-1)):0};
     window.PAI_SCENE500_SEARCH_REPORT={query:q,difficulty,mode,cacheHit,count:ids.length,emptyReason,unfilteredCandidateCount,elapsedMs:Math.round(performance.now()-started),at:Date.now()};
