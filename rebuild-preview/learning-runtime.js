@@ -861,9 +861,13 @@
    const allowed=rank=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
    return [...new Set((allUnits(scene)||[]).filter(u=>allowed(Number(u.w?.rank)||999999)).map(u=>unitKey(u.w,u.sid)))].filter(byKey);
  };
- const cycleKeys=()=>state.learningSession?.kind==='scene'
-   ?sceneBrowseKeys()
-   :[...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
+ const cycleKeys=()=>{
+   if(state.learningSession?.kind!=='scene')return [...new Set([...(state.learningSession?.completed||[]),...(state.learningSession?.queue||[])])].filter(byKey);
+   const all=sceneBrowseKeys(),size=[10,25,50].includes(Number(state.wordsPerRound))?Number(state.wordsPerRound):10;
+   const visible=browsedUnit?.k||unit()?.k;
+   const index=Math.max(0,all.indexOf(visible)),start=Math.floor(index/size)*size;
+   return all.slice(start,start+size);
+ };
  window.PAI_CHANGE_BATCH=async(direction)=>{
    if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress)return false;
    const scene=state.learningSession?.scene500SceneId||state.selectedScene;
