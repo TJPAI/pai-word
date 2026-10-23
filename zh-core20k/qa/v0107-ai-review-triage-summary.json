@@ -1,0 +1,18 @@
+{
+  "version": "V0.10.7-ai-assisted-triage",
+  "baseline_sha256": "0f23193f94accd24a4705966e0f96aa27c9330260d4ce3eceb8ef6524b92f327",
+  "total_records": 20000,
+  "id_check": "PASS",
+  "flagged": 829,
+  "priority_counts": {
+    "high": 6,
+    "medium": 8,
+    "low": 815
+  },
+  "shards": 5,
+  "membership_changes": 0,
+  "frequency_changes": 0,
+  "decision_status": "NO_AUTOMATIC_REMOVALS",
+  "evidence_status": "structural heuristics only; no LLM adjudication yet",
+  "run_note": "5 JSONL shards generated locally but Library upload failed: Container session expired; replay using committed script"
+}
