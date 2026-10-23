@@ -118,7 +118,7 @@
     document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending')?.remove();
     state.sceneSearchUi={...ui(),query:'',resultIds:[],page:0};
   };
-  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs?v=academic-task-aliases-20261024',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
+  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs?v=diagnostic-no-match-20261024',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
   window.PAI_SCENE_PAGE=function(delta){
     if(state.view!=='scenes')return;
     const current=ui(),maximum=Math.max(0,Math.ceil((current.resultIds||[]).length/5)-1);
@@ -135,13 +135,13 @@
     const oldResults=document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending');
     if(oldResults)oldResults.outerHTML='<p class="scene-search-pending" role="status">正在匹配场景…</p>';
     else document.querySelector('.scene-search-controls')?.insertAdjacentHTML('afterend','<p class="scene-search-pending" role="status">正在匹配场景…</p>');
-    let ids=[],mode='legacy_fallback',cacheHit=false,engineSucceeded=false;
+    let ids=[],mode='legacy_fallback',cacheHit=false,engineSucceeded=false,emptyReason=null,unfilteredCandidateCount=null;
     const started=performance.now();
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
         const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:500});
-        ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;engineSucceeded=true;
+        ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;emptyReason=result.emptyReason||null;unfilteredCandidateCount=result.unfilteredCandidateCount??null;engineSucceeded=true;
       }catch(e){window.PAI_SCENE500_LAST_ERROR=String(e);bridgePromise=null}
     }
     if(ticket!==querySerial||state.view!=='scenes')return;
@@ -152,7 +152,7 @@
     if(restore&&!ids.length&&previous.query===q&&previous.difficulty===difficulty)ids=previous.resultIds||[];
     ids=[...new Set(ids)].filter(id=>Number(inventory(id,difficulty).reviewedCount)>0);
     state.sceneSearchUi={query:q,difficulty,resultIds:ids,page:restore&&previous.query===q?Math.min(previous.page||0,Math.max(0,Math.ceil(ids.length/5)-1)):0};
-    window.PAI_SCENE500_SEARCH_REPORT={query:q,difficulty,mode,cacheHit,count:ids.length,elapsedMs:Math.round(performance.now()-started),at:Date.now()};
+    window.PAI_SCENE500_SEARCH_REPORT={query:q,difficulty,mode,cacheHit,count:ids.length,emptyReason,unfilteredCandidateCount,elapsedMs:Math.round(performance.now()-started),at:Date.now()};
     save();render();
   }
   window.restoreScene500Recommendations=function(){
