@@ -1,0 +1,647 @@
+{
+  "schema": "scene500-semantic-overrides-v1",
+  "status": "EDITORIAL_CANDIDATE_NOT_E5_VALIDATED",
+  "canonicalSource": "scene500-recommendation/catalog-v0.2.json",
+  "preserveIdentity": true,
+  "scenes": {
+    "S326": {
+      "name": "健身房注册",
+      "description": "办理健身房会员、选择套餐、了解设施和合同条款",
+      "query_intents": [
+        "会员卡",
+        "健身房办卡"
+      ],
+      "boundary": "不是私人教练课程"
+    },
+    "S327": {
+      "name": "热身",
+      "description": "运动前通过动态动作提高体温并激活关节和肌肉",
+      "query_intents": [
+        "运动热身",
+        "warm up"
+      ],
+      "boundary": "不是运动后拉伸"
+    },
+    "S328": {
+      "name": "力量训练",
+      "description": "使用哑铃杠铃或自重练习肌肉力量、次数和负重",
+      "query_intents": [
+        "举铁",
+        "抗阻训练"
+      ],
+      "boundary": "不是有氧耐力训练"
+    },
+    "S329": {
+      "name": "有氧训练",
+      "description": "通过持续心肺活动提升耐力，讨论心率区间和训练强度",
+      "query_intents": [
+        "有氧运动",
+        "cardio"
+      ],
+      "boundary": "不是单纯力量训练"
+    },
+    "S330": {
+      "name": "跑步",
+      "description": "讨论慢跑、配速、跑步姿势、距离和跑步训练",
+      "query_intents": [
+        "跑步配速",
+        "慢跑"
+      ],
+      "boundary": "不是徒步旅行"
+    },
+    "S331": {
+      "name": "游泳",
+      "description": "讨论泳姿、泳池安全、换气、游泳训练和装备",
+      "query_intents": [
+        "自由泳",
+        "蛙泳"
+      ],
+      "boundary": "不是其他球类运动"
+    },
+    "S332": {
+      "name": "骑行",
+      "description": "讨论骑自行车、骑行路线、车况、头盔和骑行训练",
+      "query_intents": [
+        "自行车骑行",
+        "公路车"
+      ],
+      "boundary": "不是室内健身房注册"
+    },
+    "S333": {
+      "name": "徒步",
+      "description": "规划徒步路线、地形、登山步道和户外行走装备",
+      "query_intents": [
+        "徒步旅行",
+        "hiking"
+      ],
+      "boundary": "不是日常跑步"
+    },
+    "S334": {
+      "name": "篮球",
+      "description": "讨论篮球投篮、运球、防守、比赛规则和球队配合",
+      "query_intents": [
+        "打篮球",
+        "投篮"
+      ],
+      "boundary": "不是足球"
+    },
+    "S335": {
+      "name": "足球",
+      "description": "讨论足球传球、射门、越位、球队和比赛规则",
+      "query_intents": [
+        "踢足球",
+        "足球比赛"
+      ],
+      "boundary": "不是篮球"
+    },
+    "S336": {
+      "name": "网球",
+      "description": "讨论网球发球、正反手击球、球场和比赛计分",
+      "query_intents": [
+        "打网球",
+        "tennis"
+      ],
+      "boundary": "不是羽毛球"
+    },
+    "S337": {
+      "name": "羽毛球",
+      "description": "讨论羽毛球发球、扣杀、球拍和单双打比赛",
+      "query_intents": [
+        "打羽毛球",
+        "badminton"
+      ],
+      "boundary": "不是网球"
+    },
+    "S338": {
+      "name": "乒乓球",
+      "description": "讨论乒乓球旋转、发球、球台、拍法和比赛",
+      "query_intents": [
+        "打乒乓球",
+        "table tennis"
+      ],
+      "boundary": "不是网球"
+    },
+    "S339": {
+      "name": "高尔夫",
+      "description": "讨论高尔夫球杆、挥杆、果岭、球场和杆数",
+      "query_intents": [
+        "打高尔夫",
+        "golf"
+      ],
+      "boundary": "不是其他球类比赛"
+    },
+    "S341": {
+      "name": "滑雪",
+      "description": "讨论雪道、滑雪板、雪具、缆车和滑雪安全",
+      "query_intents": [
+        "双板滑雪",
+        "单板滑雪"
+      ],
+      "boundary": "不是滑冰"
+    },
+    "S342": {
+      "name": "滑冰",
+      "description": "讨论冰场、冰刀、滑冰动作和冰上安全",
+      "query_intents": [
+        "溜冰",
+        "ice skating"
+      ],
+      "boundary": "不是滑雪"
+    },
+    "S343": {
+      "name": "瑜伽",
+      "description": "练习瑜伽体式、呼吸、平衡和瑜伽课程",
+      "query_intents": [
+        "瑜伽体式",
+        "yoga"
+      ],
+      "boundary": "不是一般拉伸恢复"
+    },
+    "S344": {
+      "name": "拉伸与恢复",
+      "description": "运动后拉伸肌肉、放松筋膜、安排休息与恢复",
+      "query_intents": [
+        "拉伸",
+        "肌肉恢复"
+      ],
+      "boundary": "不是运动前热身"
+    },
+    "S345": {
+      "name": "私人教练",
+      "description": "预约私人健身教练，讨论动作指导、课程安排和费用",
+      "query_intents": [
+        "私教",
+        "personal trainer"
+      ],
+      "boundary": "不是健身房会员注册"
+    },
+    "S346": {
+      "name": "运动装备",
+      "description": "选购和使用运动鞋、运动服、护具及训练器材",
+      "query_intents": [
+        "运动鞋",
+        "运动器材"
+      ],
+      "boundary": "不是制定训练计划"
+    },
+    "S347": {
+      "name": "比赛报名",
+      "description": "报名体育赛事、了解参赛资格、报名费和赛程",
+      "query_intents": [
+        "马拉松报名",
+        "赛事注册"
+      ],
+      "boundary": "不是观看比赛"
+    },
+    "S348": {
+      "name": "训练计划",
+      "description": "制定每周训练安排、强度、目标、周期和恢复日",
+      "query_intents": [
+        "健身计划",
+        "训练周期"
+      ],
+      "boundary": "不是单次动作教学"
+    },
+    "S349": {
+      "name": "运动受伤",
+      "description": "描述运动扭伤、拉伤、疼痛与恢复及就医需求",
+      "query_intents": [
+        "跑步受伤",
+        "肌肉拉伤"
+      ],
+      "boundary": "不是常规运动训练"
+    },
+    "S350": {
+      "name": "观看体育比赛",
+      "description": "购买门票或观看赛事直播，讨论比分、球队和观赛体验",
+      "query_intents": [
+        "看球赛",
+        "体育直播"
+      ],
+      "boundary": "不是参加比赛"
+    },
+    "S351": {
+      "name": "看电影",
+      "description": "讨论电影剧情、类型、演员、观影感受与推荐",
+      "query_intents": [
+        "电影推荐",
+        "观影"
+      ],
+      "boundary": "不是电影院购票流程"
+    },
+    "S352": {
+      "name": "电影院购票",
+      "description": "查询电影场次、选择座位、购买电影票和退改票",
+      "query_intents": [
+        "买电影票",
+        "选座"
+      ],
+      "boundary": "不是评论电影剧情"
+    },
+    "S353": {
+      "name": "电视剧与流媒体",
+      "description": "选择电视剧或在线视频剧集，讨论追剧、季数和流媒体平台",
+      "query_intents": [
+        "追剧",
+        "streaming series"
+      ],
+      "boundary": "不是单部电影"
+    },
+    "S354": {
+      "name": "音乐",
+      "description": "讨论歌曲、歌手、乐器、曲风、听歌和音乐推荐",
+      "query_intents": [
+        "听音乐",
+        "歌曲推荐"
+      ],
+      "boundary": "不是演唱会入场"
+    },
+    "S355": {
+      "name": "演唱会",
+      "description": "查询演唱会、购买门票、入场及讨论现场音乐表演",
+      "query_intents": [
+        "演唱会门票",
+        "live concert"
+      ],
+      "boundary": "不是日常听歌"
+    },
+    "S356": {
+      "name": "戏剧与舞台剧",
+      "description": "观看戏剧、话剧、音乐剧，讨论舞台演出与剧院座位",
+      "query_intents": [
+        "话剧",
+        "舞台表演"
+      ],
+      "boundary": "不是电影放映"
+    },
+    "S357": {
+      "name": "阅读小说",
+      "description": "阅读虚构故事、人物、情节、文学体裁并讨论小说",
+      "query_intents": [
+        "小说阅读",
+        "fiction"
+      ],
+      "boundary": "不是非虚构读物"
+    },
+    "S358": {
+      "name": "阅读非虚构作品",
+      "description": "阅读传记、历史、科普和纪实作品并讨论事实观点",
+      "query_intents": [
+        "非虚构",
+        "传记阅读"
+      ],
+      "boundary": "不是虚构小说"
+    },
+    "S359": {
+      "name": "摄影",
+      "description": "使用相机或手机拍照，讨论构图、曝光、镜头和照片编辑",
+      "query_intents": [
+        "拍照片",
+        "摄影技巧"
+      ],
+      "boundary": "不是绘画"
+    },
+    "S360": {
+      "name": "绘画",
+      "description": "使用铅笔、水彩、油画等进行绘画并讨论色彩和构图",
+      "query_intents": [
+        "画画",
+        "素描"
+      ],
+      "boundary": "不是摄影"
+    },
+    "S361": {
+      "name": "游戏",
+      "description": "讨论电子游戏玩法、角色、关卡、操作和多人联机",
+      "query_intents": [
+        "电子游戏",
+        "打游戏"
+      ],
+      "boundary": "不是桌面棋盘游戏"
+    },
+    "S362": {
+      "name": "桌游",
+      "description": "讨论棋盘游戏、卡牌、规则、轮次和桌游聚会",
+      "query_intents": [
+        "桌面游戏",
+        "board game"
+      ],
+      "boundary": "不是电子游戏"
+    },
+    "S363": {
+      "name": "短视频",
+      "description": "制作、观看、剪辑和分享短视频内容",
+      "query_intents": [
+        "短视频剪辑",
+        "刷短视频"
+      ],
+      "boundary": "不是长篇影视剧"
+    },
+    "S364": {
+      "name": "播客",
+      "description": "收听、订阅、录制和讨论音频播客节目",
+      "query_intents": [
+        "podcast",
+        "播客节目"
+      ],
+      "boundary": "不是音乐歌曲"
+    },
+    "S366": {
+      "name": "美术馆",
+      "description": "参观美术馆、欣赏展览、讨论艺术作品和导览",
+      "query_intents": [
+        "艺术展",
+        "美术馆参观"
+      ],
+      "boundary": "不是历史遗迹"
+    },
+    "S367": {
+      "name": "历史遗迹",
+      "description": "参观古迹、遗址和历史建筑，了解历史背景与保护",
+      "query_intents": [
+        "历史古迹",
+        "文化遗产"
+      ],
+      "boundary": "不是现代美术馆"
+    },
+    "S368": {
+      "name": "节日活动",
+      "description": "参加节庆、庆典、集市和传统节日活动",
+      "query_intents": [
+        "节日庆祝",
+        "festival"
+      ],
+      "boundary": "不是常规朋友聚会"
+    },
+    "S369": {
+      "name": "主题公园",
+      "description": "游玩游乐园设施、购买门票、排队和规划项目",
+      "query_intents": [
+        "游乐园",
+        "过山车"
+      ],
+      "boundary": "不是动物园"
+    },
+    "S370": {
+      "name": "动物园",
+      "description": "参观动物园、观察动物、了解展区和动物保护",
+      "query_intents": [
+        "看动物",
+        "zoo"
+      ],
+      "boundary": "不是主题游乐园"
+    },
+    "S371": {
+      "name": "露营",
+      "description": "规划帐篷露营、营地、篝火和户外过夜装备",
+      "query_intents": [
+        "野营",
+        "camping"
+      ],
+      "boundary": "不是白天徒步"
+    },
+    "S372": {
+      "name": "钓鱼",
+      "description": "准备鱼竿鱼饵、选择钓点、讨论鱼种和钓鱼规则",
+      "query_intents": [
+        "垂钓",
+        "fishing"
+      ],
+      "boundary": "不是水上游泳"
+    },
+    "S373": {
+      "name": "园艺",
+      "description": "种植花草、浇水、施肥、修剪和处理植物病虫害",
+      "query_intents": [
+        "种花",
+        "种植物"
+      ],
+      "boundary": "不是手工制作"
+    },
+    "S374": {
+      "name": "手工与DIY",
+      "description": "制作手工物品、修理或改造用品并讨论材料和工具",
+      "query_intents": [
+        "手工制作",
+        "DIY"
+      ],
+      "boundary": "不是园艺种植"
+    },
+    "S375": {
+      "name": "收藏与兴趣社群",
+      "description": "收集藏品、交流收藏兴趣、参加爱好者社群活动",
+      "query_intents": [
+        "收藏品",
+        "兴趣小组"
+      ],
+      "boundary": "不是普通社交寒暄"
+    },
+    "S377": {
+      "name": "介绍自己",
+      "description": "向他人介绍姓名、背景、兴趣和个人经历",
+      "query_intents": [
+        "自我介绍",
+        "introduce myself"
+      ],
+      "boundary": "不是介绍第三人"
+    },
+    "S378": {
+      "name": "介绍他人",
+      "description": "向朋友或同事介绍第三人的身份、关系和背景",
+      "query_intents": [
+        "介绍朋友",
+        "介绍同事"
+      ],
+      "boundary": "不是自我介绍"
+    },
+    "S379": {
+      "name": "寒暄",
+      "description": "初次见面或日常相遇时打招呼、问候和闲聊",
+      "query_intents": [
+        "打招呼",
+        "small talk"
+      ],
+      "boundary": "不是正式自我介绍"
+    },
+    "S380": {
+      "name": "邀请",
+      "description": "邀请别人参加活动、聚餐、会议或约会并商量时间",
+      "query_intents": [
+        "邀请朋友",
+        "发出邀请"
+      ],
+      "boundary": "不是接受邀请"
+    },
+    "S381": {
+      "name": "接受邀请",
+      "description": "礼貌答应他人的活动邀请并确认安排",
+      "query_intents": [
+        "答应邀请",
+        "接受约会"
+      ],
+      "boundary": "不是发出邀请"
+    },
+    "S382": {
+      "name": "婉拒邀请",
+      "description": "礼貌拒绝活动或聚会邀请，解释原因并表达感谢",
+      "query_intents": [
+        "拒绝邀请",
+        "婉拒聚会"
+      ],
+      "boundary": "不是接受邀请"
+    },
+    "S383": {
+      "name": "朋友聚会",
+      "description": "组织和参加朋友聚餐、聚会及集体社交活动",
+      "query_intents": [
+        "朋友聚餐",
+        "朋友聚会"
+      ],
+      "boundary": "不是两人约会"
+    },
+    "S384": {
+      "name": "约会",
+      "description": "安排浪漫约会、选择地点、交流约会体验与期待",
+      "query_intents": [
+        "约会安排",
+        "dating"
+      ],
+      "boundary": "不是一般朋友聚会"
+    },
+    "S385": {
+      "name": "表达喜欢",
+      "description": "向他人表达对事物、活动或人的喜欢和偏好",
+      "query_intents": [
+        "我喜欢",
+        "表达喜爱"
+      ],
+      "boundary": "不是表达感谢"
+    },
+    "S386": {
+      "name": "表达感谢",
+      "description": "感谢他人帮助、礼物、关心并回应致谢",
+      "query_intents": [
+        "谢谢",
+        "thank you"
+      ],
+      "boundary": "不是道歉"
+    },
+    "S387": {
+      "name": "道歉",
+      "description": "为失误、迟到或冒犯向他人道歉并寻求谅解",
+      "query_intents": [
+        "对不起",
+        "apologize"
+      ],
+      "boundary": "不是感谢"
+    },
+    "S388": {
+      "name": "祝贺",
+      "description": "祝贺他人生日、升职、毕业、成功等喜事",
+      "query_intents": [
+        "恭喜",
+        "congratulations"
+      ],
+      "boundary": "不是安慰"
+    },
+    "S389": {
+      "name": "安慰",
+      "description": "安慰遇到困难、失落或悲伤的人并给予支持",
+      "query_intents": [
+        "安慰朋友",
+        "comfort"
+      ],
+      "boundary": "不是祝贺"
+    },
+    "S390": {
+      "name": "鼓励",
+      "description": "鼓励他人坚持、尝试或克服挑战并表达信心",
+      "query_intents": [
+        "加油",
+        "鼓励朋友"
+      ],
+      "boundary": "不是安慰悲伤"
+    },
+    "S391": {
+      "name": "表达关心",
+      "description": "询问他人近况、健康与感受并表达体贴",
+      "query_intents": [
+        "关心朋友",
+        "你还好吗"
+      ],
+      "boundary": "不是请求帮助"
+    },
+    "S392": {
+      "name": "请求帮助",
+      "description": "向他人提出求助，说明困难、所需协助和礼貌请求",
+      "query_intents": [
+        "请帮忙",
+        "求助"
+      ],
+      "boundary": "不是主动提供帮助"
+    },
+    "S393": {
+      "name": "提供帮助",
+      "description": "主动询问是否需要协助，提出支持并说明能做什么",
+      "query_intents": [
+        "我来帮你",
+        "提供协助"
+      ],
+      "boundary": "不是请求别人帮助"
+    },
+    "S395": {
+      "name": "处理误会",
+      "description": "澄清表达歧义、纠正误解并确认双方真实意思",
+      "query_intents": [
+        "误会澄清",
+        "解释清楚"
+      ],
+      "boundary": "不是激烈冲突调解"
+    },
+    "S396": {
+      "name": "解决冲突",
+      "description": "处理意见争执、协调分歧、协商解决方案与和解",
+      "query_intents": [
+        "吵架和解",
+        "解决争执"
+      ],
+      "boundary": "不是一般误会澄清"
+    },
+    "S397": {
+      "name": "设定边界",
+      "description": "礼貌表达个人界限、拒绝越界要求并说明可接受的行为",
+      "query_intents": [
+        "个人边界",
+        "拒绝不合理要求"
+      ],
+      "boundary": "不是普通婉拒活动邀请"
+    },
+    "S398": {
+      "name": "谈论家庭关系",
+      "description": "谈论父母、兄弟姐妹、亲子互动和家庭成员关系",
+      "query_intents": [
+        "家庭关系",
+        "亲子关系"
+      ],
+      "boundary": "不是友谊"
+    },
+    "S399": {
+      "name": "谈论友谊",
+      "description": "讨论朋友关系、信任、陪伴、友谊维系和友情矛盾",
+      "query_intents": [
+        "友谊",
+        "朋友关系"
+      ],
+      "boundary": "不是家庭关系"
+    },
+    "S400": {
+      "name": "告别与保持联系",
+      "description": "结束会面时告别、交换联系方式并约定后续联络",
+      "query_intents": [
+        "再见",
+        "保持联系"
+      ],
+      "boundary": "不是初次寒暄"
+    }
+  }
+}
