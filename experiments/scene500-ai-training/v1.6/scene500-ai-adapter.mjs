@@ -52,7 +52,12 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
      // An unavailable model/index must not block the existing rule recommender.
     }
    }
-   if(index)validateIdentity(normalized,index);
+   if(index){
+    try{validateIdentity(normalized,index)}catch(error){
+     if(typeof fallback!=='function')throw error;
+     index=null; // Reject stale/corrupt vectors and retain rules.
+    }
+   }
    state={catalog:normalized,index};
   })().finally(()=>{pending=null});
   return pending;
@@ -68,6 +73,7 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
    await initialize();assertActive(signal);
    const {catalog,index}=state;
    const allowed=eligibleSceneIds?new Set(await eligibleSceneIds()):null;
+   assertActive(signal);
    const items=[];
    if(index&&typeof embedQuery==='function'){
     try{
@@ -90,6 +96,7 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
    }
    if(typeof fallback==='function'){
     const ids=await fallback(query.trim(),{topK,locale,signal});assertActive(signal);
+    if(!Array.isArray(ids))throw TypeError('Fallback must return scene ID array');
     const recommendations=[...new Set(ids)].filter(id=>catalog.scenes[id]&&(!allowed||allowed.has(id))).slice(0,topK).map((id,i)=>({sceneId:id,rank:i+1,score:null,displayName:catalog.scenes[id].name}));
     return response(recommendations.length?'ok':'no_match',recommendations,'none','rules_fallback',catalog.taxonomyFingerprint,start);
    }
