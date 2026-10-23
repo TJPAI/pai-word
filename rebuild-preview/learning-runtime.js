@@ -889,7 +889,7 @@
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
  window.restartLearningQuestion=()=>{if(active)showCurrent()};
- window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k),next=keys.length?keys[(index+1+keys.length)%keys.length]:null;PAI_TAP_FLOW.syncPage();if(!next)return false;showCurrent();return true};
+ window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k);if(index<0||!keys.length)return false;PAI_TAP_FLOW.syncPage();void window.browseAnswer(1);return true};
  // All swipe and auto-browse navigation passes through this single guarded entry.
  let manualBrowsePending=0;
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
