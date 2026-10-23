@@ -29,3 +29,16 @@ test('incomplete teaching cards are quarantined',()=>{
  assert.equal(r.accepted.length,0);
  assert.ok(r.quarantined[0].reasons.includes('incomplete_card'));
 });
+
+test('missing identity baseline quarantines every candidate without accepting any',()=>{
+ const r=validateTeachingCandidatePack(pack([candidate(),candidate({ku_id:'ku2'})]));
+ assert.equal(r.ok,false);
+ assert.equal(r.accepted.length,0);
+ assert.equal(r.quarantined.length,2);
+ assert.deepEqual(r.errors,['identity_sets_required']);
+});
+test('unknown schema is rejected even with valid-looking candidates',()=>{
+ const r=validateTeachingCandidatePack({schema_version:'unknown',candidates:[candidate()]},ids);
+ assert.equal(r.ok,false);
+ assert.ok(r.errors.includes('schema_version'));
+});
