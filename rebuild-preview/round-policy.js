@@ -159,20 +159,18 @@
     const out=baseRender();
     if(state.view==='settings'){
       const rows=[...document.querySelectorAll('.setting-row')];
-      const dailyRow=rows.find(x=>x.querySelector('span')?.textContent?.trim()==='每日新词');
-      if(dailyRow){
-        const dailySelect=dailyRow.querySelector('select');
-        if(dailySelect){
-          dailySelect.innerHTML=[25,50,100,200].map(n=>`<option value="${n}" ${dailyLimit()===n?'selected':''}>${n}</option>`).join('');
-          dailySelect.setAttribute('onchange','setNewPerDay(+this.value)');
-        }
-        if(!rows.some(x=>x.querySelector('span')?.textContent?.trim()==='每轮单词数')){
-          const options=[10,25,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
-          dailyRow.insertAdjacentHTML('afterend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
-        }
+      // Batch size is a user setting, independent of any discontinued daily quota.
+      const batchRow=rows.find(x=>x.querySelector('span')?.textContent?.trim()==='每轮单词数');
+      const options=[10,25,50].map(n=>`<option value="${n}" ${roundSize()===n?'selected':''}>${n}</option>`).join('');
+      if(batchRow){
+        const select=batchRow.querySelector('select');
+        if(select){select.innerHTML=options;select.setAttribute('onchange','setWordsPerRound(+this.value)')}
+      }else{
+        const settingsRoot=document.querySelector('.setting-row')?.parentElement;
+        if(settingsRoot)settingsRoot.insertAdjacentHTML('beforeend',`<div class="setting-row"><span>每轮单词数</span><select onchange="setWordsPerRound(+this.value)">${options}</select></div>`);
       }
       for(const el of document.querySelectorAll('.panel-block.muted')){
-        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词限制全天新词数量；每轮单词数限制本轮KU总数，到期复习优先占位，新词填补剩余名额。到期复习与强化不占每日新词额度。';
+        if(el.textContent.includes('新词数量固定')||el.textContent.includes('每轮新词数量固定')||el.textContent.includes('每日新词控制'))el.textContent='每日新词只用于统计，不限制学习数量；每轮单词数可选择10、25或50。';
       }
     }
     return out;
