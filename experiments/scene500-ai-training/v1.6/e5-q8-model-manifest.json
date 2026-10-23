@@ -1,0 +1,45 @@
+{
+  "schema": "scene500-e5-model-artifact-manifest-v1",
+  "source": "Muse-provided model ZIP previously retrieved from connected Google Drive",
+  "archive": {
+    "name": "multilingual-e5-small-q8.zip",
+    "sizeBytes": 85063290,
+    "sha256": "fa1db774784487728752e6d5d4cffd1bdde3466367f4f0ff712735b1e303dd7d"
+  },
+  "files": [
+    {
+      "path": "multilingual-e5-small/onnx/model_quantized.onnx",
+      "sizeBytes": 118308185,
+      "sha256": "f80102d3f2a1229f387d3c81909990d8945513e347b0eab049f7de3c6f98c193"
+    },
+    {
+      "path": "multilingual-e5-small/tokenizer.json",
+      "sizeBytes": 17082730,
+      "sha256": "0b44a9d7b51c3c62626640cda0e2c2f70fdacdc25bbbd68038369d14ebdf4c39"
+    },
+    {
+      "path": "multilingual-e5-small/config.json",
+      "sizeBytes": 658,
+      "sha256": "cb99455288675345e1a4f411438d5d0adbba5fbd3a67ea4fb03c015433b996c1"
+    },
+    {
+      "path": "multilingual-e5-small/tokenizer_config.json",
+      "sizeBytes": 443,
+      "sha256": "a1d6bc8734a6f635dc158508bef000f8e2e5a759c7d92f984b2c86e5ff53425b"
+    },
+    {
+      "path": "multilingual-e5-small/special_tokens_map.json",
+      "sizeBytes": 167,
+      "sha256": "d05497f1da52c5e09554c0cd874037a083e1dc1b9cfd48034d1c717f1afc07a7"
+    }
+  ],
+  "qa": {
+    "zipIntegrity": "PASS",
+    "fileHashes": "VERIFIED_FROM_PRIOR_LOCAL_ARTIFACT_AUDIT",
+    "runtimeInference": "NOT_RUN_IN_THIS_ENVIRONMENT",
+    "license": "NOT_VERIFIED",
+    "upstreamRevision": "NOT_VERIFIED",
+    "browserSafari": "NOT_RUN"
+  },
+  "warning": "Artifact integrity does not establish license, model revision, browser compatibility, or exact C2 embedding equivalence."
+}
