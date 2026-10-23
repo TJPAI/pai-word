@@ -76,7 +76,8 @@ async function fileHash(path){
 }
 const cachePath=process.env.SCENE500_E5_CACHE;
 const modelSha=localRoot?await fileHash(join(localRoot,'multilingual-e5-small','onnx','model_quantized.onnx')):'remote-model-not-verified';
-const cacheKey=createHash('sha256').update(JSON.stringify({passages,modelSha,MODEL,dtype:'q8'})).digest('hex');
+const tokenizerSha=localRoot?await fileHash(join(localRoot,'multilingual-e5-small','tokenizer.json')):'remote-tokenizer-not-verified';
+const cacheKey=createHash('sha256').update(JSON.stringify({passages,modelSha,tokenizerSha,MODEL,dtype:'q8',pooling:'mean',normalize:true})).digest('hex');
 let cacheHit=false;
 if(cachePath&&existsSync(cachePath)){
  try {
@@ -127,7 +128,7 @@ function count(lang){const p=lang?positive.filter(x=>x.language===lang):positive
 const timings=evaluated.map(x=>x.inferenceMs).sort((a,b)=>a-b);
 const result={schema:'scene500-e5-offline-evaluation-v1',model:MODEL,dtype:'q8',
   device,sceneCount:catalogIds.length,vectorDimension:dim,
-  startupLoadMs:loadedMs,subjectToModelDownload:!localRoot,localMode:!!localRoot,sceneEmbeddingCacheHit:cacheHit,
+  startupLoadMs:loadedMs,subjectToModelDownload:!localRoot,localMode:!!localRoot,sceneEmbeddingCacheHit:cacheHit,modelSha256:localRoot?modelSha:null,tokenizerSha256:localRoot?tokenizerSha:null,
   singleQueryInferenceMs:{p50:timings[Math.floor(timings.length*.5)],p95:timings[Math.floor(timings.length*.95)]},
   warning:'No independent gold labels; no calibrated no-match threshold; no deployment recommendation.',
   editorialRecall:{all:count(),zh:count('zh'),en:count('en')},
