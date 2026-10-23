@@ -44,9 +44,17 @@ const textUnits = s => (s.match(/[A-Za-z]+(?:['’-][A-Za-z]+)*|[\u3400-\u9fff]|
 if(cases.some(x=>textUnits(x.query)<1||textUnits(x.query)>20))
   throw Error('BAD_QUERY_UNITS');
 const {pipeline,env}=await import('@huggingface/transformers');
-env.allowRemoteModels=true;
+// Fully offline mode: path containing multilingual-e5-small/ extracted from Muse ZIP.
+const localRoot=process.env.SCENE500_E5_LOCAL_ROOT;
+if(localRoot){
+ env.allowRemoteModels=false;
+ env.allowLocalModels=true;
+ env.localModelPath=localRoot.endsWith('/')?localRoot:localRoot+'/';
+}else{
+ env.allowRemoteModels=true;
+}
 const started=performance.now();
-const MODEL='Xenova/multilingual-e5-small';
+const MODEL=localRoot?'multilingual-e5-small':'Xenova/multilingual-e5-small';
 const device=process.env.SCENE500_E5_DEVICE||'wasm';
 const extractor=await pipeline('feature-extraction',MODEL,{device,dtype:'q8'});
 const loadedMs=Math.round(performance.now()-started);
@@ -91,7 +99,7 @@ function count(lang){const p=lang?positive.filter(x=>x.language===lang):positive
 const timings=evaluated.map(x=>x.inferenceMs).sort((a,b)=>a-b);
 const result={schema:'scene500-e5-offline-evaluation-v1',model:MODEL,dtype:'q8',
   device,sceneCount:catalogIds.length,vectorDimension:dim,
-  startupLoadMs:loadedMs,subjectToModelDownload:true,
+  startupLoadMs:loadedMs,subjectToModelDownload:!localRoot,localMode:!!localRoot,
   singleQueryInferenceMs:{p50:timings[Math.floor(timings.length*.5)],p95:timings[Math.floor(timings.length*.95)]},
   warning:'No independent gold labels; no calibrated no-match threshold; no deployment recommendation.',
   editorialRecall:{all:count(),zh:count('zh'),en:count('en')},
