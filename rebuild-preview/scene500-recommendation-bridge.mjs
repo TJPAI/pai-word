@@ -7,7 +7,7 @@ async function initialize(){
  const [rules,loader,response]=await Promise.all([
   import(new URL('engine.mjs',ROOT).href),
   import(new URL('chinese-lexicon-loader.mjs',ROOT).href),
-  fetch(new URL('catalog-v0.2.json',ROOT),{cache:'force-cache'})
+  fetch(new URL('catalog-v0.2.json?v=academic-task-aliases-20261024',ROOT),{cache:'force-cache'})
  ]);
  if(!response.ok)throw Error('SCENE500_CATALOG_HTTP_'+response.status);
  const catalog=await response.json();
