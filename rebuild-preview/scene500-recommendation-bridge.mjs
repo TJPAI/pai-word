@@ -2,6 +2,17 @@
 let readyPromise=null,instance=null,hybridReady=null,lastError=null,hybridSettled=false;
 const queryCache=new Map();
 const ROOT=new URL('../scene500-recommendation/',import.meta.url);
+// Explicit opt-in; the default hybrid ranking remains untouched.
+const semanticEnabled=()=>new URLSearchParams(globalThis.location?.search||'').get('scene500semantic')==='1';
+let semanticPromise=null;
+async function optionalOverlay(){
+ if(!semanticEnabled())return null;
+ if(!semanticPromise)semanticPromise=import(new URL('semantic-overlay-loader.mjs',ROOT).href)
+  .then(m=>m.loadOptionalSemanticOverlay({enabled:true,url:new URL('semantic-overlay-pilot-12.json',ROOT).href,sceneIds:Object.keys(instance.catalog.scenes)}))
+  .catch(()=>({enabled:false,reason:'load_error'}));
+ return semanticPromise;
+}
+
 
 async function initialize(){
  const [rules,loader,response]=await Promise.all([
@@ -38,18 +49,25 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
   try{await Promise.race([hybridReady,new Promise(resolve=>{timeout=setTimeout(resolve,350)})])}
   finally{clearTimeout(timeout)}
  }
+ const overlay=await optionalOverlay();
  const allowed=eligibleSceneIds===null?null:new Set(eligibleSceneIds);
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
   (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
  );
- const key=instance.mode+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
+ const key=instance.mode+'|'+(overlay?.enabled?'pilot12':'baseline')+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
  const cached=queryCache.get(key);
  if(cached)return {...cached,cacheHit:true,elapsedMs:0};
  const started=performance.now();
  const snapshot=instance.engine.search(query,{eligibleSceneIds:eligible,limit:Math.min(500,limit)});
- const answer={ids:[...new Set(snapshot.results.map(x=>x.sceneId))],
+ // Pilot only: exact full-expression match, never fuzzy guessing or changing the catalog.
+ const phrase=String(query??'').normalize('NFKC').trim();
+ const experimentalId=overlay?.enabled?overlay.overlay.scenes.find(s=>s.expressions.some(x=>x.normalize('NFKC').trim()===phrase))?.scene_id:null;
+ const baseIds=snapshot.results.map(x=>x.sceneId);
+ const mergedIds=experimentalId&&eligible.includes(experimentalId)?[experimentalId,...baseIds.filter(id=>id!==experimentalId)]:baseIds;
+ const answer={ids:[...new Set(mergedIds)],
   total:snapshot.total,mode:instance.mode,
-  elapsedMs:Math.round(performance.now()-started),error:lastError,cacheHit:false};
+  elapsedMs:Math.round(performance.now()-started),error:lastError,cacheHit:false,
+  semanticPilot:overlay?.enabled?'enabled':(semanticEnabled()?overlay?.reason||'unavailable':'disabled')};
  queryCache.set(key,answer);
  if(queryCache.size>24)queryCache.delete(queryCache.keys().next().value);
  return answer;
