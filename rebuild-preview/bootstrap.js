@@ -78,12 +78,14 @@
   }
   // Match public preview: search again after the optional Scene500 word pool
   // finishes installing. Early home rendering must not permanently store zero results.
-  if(state.sceneSearchUi?.query&&typeof window.restoreScene500Recommendations==='function'){
+  // Always render the real homepage, including when a persisted recommendation
+  // already exists. The optional restore search must never own first paint.
+  render();
+  if(state.sceneSearchUi?.query&&(!Array.isArray(state.sceneSearchUi?.resultIds)||!state.sceneSearchUi.resultIds.length)&&
+     typeof window.restoreScene500Recommendations==='function'){
    window.restoreScene500Recommendations();
    mark('recommendationsAfterPacks');
   }
-
-  if(!state.sceneSearchUi?.query)render();
   mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
