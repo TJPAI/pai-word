@@ -55,7 +55,7 @@
     const n=Number(r.reviewedCount);
     const known=Number.isFinite(n)&&n>=0;
     if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1'))
-      return known&&n>0?`<span class="scene-result-count"><b>${n}</b><small>可学 KU</small></span>`:'';
+      return known&&n>0?`<span class="scene-result-count"><b>${n}</b><small>可学词</small></span>`:'';
     if(Number.isFinite(r.candidateCount))return `<span class="scene-result-count"><b>${r.candidateCount}</b><small>候选</small><em>${known?n:'—'} 已审核</em></span>`;
     return known&&n>0?`<span class="scene-result-count"><b>${n}</b><small>已审核</small></span>`:'';
   }
