@@ -41,4 +41,6 @@ test('unknown schema is rejected even with valid-looking candidates',()=>{
  const r=validateTeachingCandidatePack({schema_version:'unknown',candidates:[candidate()]},ids);
  assert.equal(r.ok,false);
  assert.ok(r.errors.includes('schema_version'));
+ assert.deepEqual(r.accepted,[]);
+ assert.equal(r.ok,false);
 });
