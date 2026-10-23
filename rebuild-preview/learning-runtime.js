@@ -200,7 +200,7 @@
     try{window.PAI_AUDIO.stop();refreshVoices();window.PAI_LAST_AUDIO_RESUME={at:Date.now(),backgroundMs,status:'queue-reset',voiceCount:speechVoices.length}}
     catch(error){window.PAI_LAST_AUDIO_RESUME={at:Date.now(),backgroundMs,status:'error',error:String(error)}}
   });
-  window.speak=(text,rate=.84)=>window.PAI_AUDIO.play(text,rate);
+  window.speak=(text,rate=.84)=>{if(state.view==='learning'&&String(text)!==String(window.getVisibleLearningUnit?.()?.w?.w||''))return;return window.PAI_AUDIO.play(text,rate)};
   function speakCurrent(delay=60){const u=window.getVisibleLearningUnit?.()||currentVisibleUnit();if(!u)return;const key=u.k,word=u.w?.w;setTimeout(()=>{const current=window.getVisibleLearningUnit?.()||currentVisibleUnit();if(current?.k===key&&current?.w?.w===word&&word)speak(word)},delay)}
 
   // Synonym comparison parsing for the compact per-word format.
