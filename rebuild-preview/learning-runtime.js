@@ -406,7 +406,7 @@
   if(phase!=='answer'){window.PAI_AUTOBROWSE?.stop();window.PAI_CANCEL_PENDING_BROWSE?.();if(!pageRevealed())responseMs=Math.max(0,Date.now()-began)}
   startRatedSequence(score);
  }
- function browseReady(k,advance,revealed=true,preserveAudio=false){syncPage();ready(k,preserveAudio)}
+ function browseReady(k,advance,revealed=true,preserveAudio=false){pageState=revealed?'ANSWER':'QUESTION';syncPage();ready(k,preserveAudio)}
  function commitEarly(direction){
   if(phase!=='answer'||![-1,1].includes(direction)||!visibleKey)return false;
   pendingSwipeDirection=direction;
@@ -988,11 +988,35 @@
   if(window.PAI_SAVE_DEFERRED===true||historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
   historicalCommitInProgress=true;
   const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
-  const record={...prev,last:now,lastKnown:grade==='good',lastGrade:grade,reps:(prev.reps||0)+1,
-   responseMs:PAI_TAP_FLOW.snapshot().responseMs??null,learningPending:grade!=='good',srsPolicy:'session-retrieval-v3'};
-  if(grade!=='good'){record.due=now;record.interval=0}
-  else {const prior=prev.lastStableInterval||prev.interval||0;const days=prior<DAY?1:prior<3*DAY?3:Math.max(3,Math.round(prior/DAY*2));record.interval=days*DAY;record.lastStableInterval=record.interval;record.due=now+record.interval}
-  draft.records[k]=record;draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
+  const hasPrior=!!before.records[k],seen=Number(draft.learningSession?.seen?.[k]||0);
+  const repeat=grade!=='good'||(!hasPrior&&seen===0);
+  // Entry route must not determine KU scheduling.
+  const record=window.PAI_MEMORY_SCHEDULERS.review('basic',{
+    previous:hasPrior?before.records[k]:undefined,grade,now,repeat,
+    sessionKind:draft.learningSession?.kind||'scene'
+  });
+  record.responseMs=PAI_TAP_FLOW.snapshot().responseMs??null;
+  draft.records[k]=record;
+  if(draft.learningSession){
+    draft.learningSession.seen=draft.learningSession.seen||{};
+    draft.learningSession.seen[k]=seen+1;
+    draft.learningSession.attempts=(draft.learningSession.attempts||0)+1;
+  }
+  if(!hasPrior){
+    const today=dayKey(),old=draft.dailyNewProgress;
+    const p=old?.date===today?old:{date:today,completed:[],newWordsCompleted:[],reinforcementCompleted:[]};
+    p.completed=Array.isArray(p.completed)?p.completed:[];
+    p.newWordsCompleted=Array.isArray(p.newWordsCompleted)?p.newWordsCompleted:[];
+    p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
+    if(!p.completed.includes(k))p.completed.push(k);
+    const wordId=key=>{const u=findUnitByKey(key);return u?.w?.rank??u?.w?.w??null};
+    const id=wordId(k);
+    const alreadyIntroduced=id!==null&&Object.keys(before.records||{}).some(key=>wordId(key)===id);
+    const alreadyCounted=id!==null&&p.newWordsCompleted.some(key=>wordId(key)===id);
+    if(id!==null&&!alreadyIntroduced&&!alreadyCounted)p.newWordsCompleted.push(k);
+    draft.dailyNewProgress=p;
+  }
+  draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;try{save()}catch(cacheError){try{console.warn('Durable KU committed; optional local backup failed',cacheError)}catch{}}}else throw Error('IndexedDB unavailable: refusing unsafe fallback')}catch(e){window.PAI_SAVE_DEFERRED=false;state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
