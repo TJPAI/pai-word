@@ -873,7 +873,7 @@
    return all.slice(start,start+size);
  };
  window.PAI_CHANGE_BATCH=async(direction)=>{
-   if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress)return false;
+   if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress){recordNavigationFailure('batch','batch-guard');return false;}
    const scene=state.learningSession?.scene500SceneId||state.selectedScene;
    if(!scene)return false;
    const keys=sceneBrowseKeys();
@@ -904,9 +904,22 @@
  window.advanceBrowsedAnswer=()=>{if(!active||!browsedUnit)return false;const keys=cycleKeys(),index=keys.indexOf(browsedUnit.k);if(index<0||!keys.length)return false;PAI_TAP_FLOW.syncPage();void window.browseAnswer(1);return true};
  // All swipe and auto-browse navigation passes through this single guarded entry.
  let manualBrowsePending=0;
+ window.PAI_NAVIGATION_DIAG=()=>({
+   at:Date.now(),active,loading,error:String(error||''),view:state.view,
+   phase:PAI_TAP_FLOW.snapshot().phase,visibleKU:window.getVisibleLearningUnit?.()?.k||null,
+   saveDeferred:!!window.PAI_SAVE_DEFERRED,historicalCommitInProgress,
+   browseToken,manualBrowsePending,autoBrowseEnabled:!!state.autoBrowseEnabled,
+   documentHidden:document.hidden,storageReady:!!window.PAI_KU_STORAGE_READY,
+   lastSaveError:window.PAI_LAST_SAVE_ERROR||null
+ });
+ const navigationFailures=window.PAI_NAVIGATION_FAILURES||(window.PAI_NAVIGATION_FAILURES=[]);
+ function recordNavigationFailure(source,reason){
+   navigationFailures.push({...window.PAI_NAVIGATION_DIAG(),source,reason});
+   if(navigationFailures.length>30)navigationFailures.shift();
+ }
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
   const phase=PAI_TAP_FLOW.snapshot().phase;
-  if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused','answer'].includes(phase))return false;
+  if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused','answer'].includes(phase)){recordNavigationFailure(source,'navigation-guard');return false;}
    if(phase==='answer')return source==='swipe'&&PAI_TAP_FLOW.commitEarly(direction);
   // Explicit swipes take priority over a simultaneous automatic navigation.
   if(source==='auto'&&manualBrowsePending>0)return false;
@@ -924,7 +937,7 @@
   const next=(index+direction+keys.length)%keys.length;
   const u=byKey(keys[next]),id=++browseToken,wasRevealed=PAI_TAP_FLOW.pageState()==='ANSWER';
   // Preload without changing the current card: a user rating can still win the race.
-  try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning'||!active||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))return false;
+  try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning'||!active||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase)){recordNavigationFailure('browse','async-guard');return false;}
    PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
    window.PAI_AUDIO?.stop();browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
    render();
