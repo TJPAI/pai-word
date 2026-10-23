@@ -57,5 +57,10 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
  if(queryCache.size>24)queryCache.delete(queryCache.keys().next().value);
  return answer;
 }
+// Explicit preview diagnostics: the caller can inspect the active engine without
+// confusing an experimental upstream branch with deployed runtime assets.
 export const status=()=>({initialized:!!instance,error:lastError,
- mode:instance?.mode||'unloaded',hybridLoading:!!hybridReady&&!hybridSettled});
+ mode:instance?.mode||'unloaded',hybridLoading:!!hybridReady&&!hybridSettled,
+ catalogSchema:instance?.catalog?.schema||null,
+ lexiconAsset:'zh-core20k-v094.min.json',
+ associationAsset:'v094-lexical-associations.json'});
