@@ -3,6 +3,7 @@ import {createScene500Recommender} from './engine.mjs';
 import {createScene500ContractAdapter} from './contract-adapter.mjs';
 import {createChineseV094Index} from './zh-v094-runtime-bridge.mjs';
 import {mergeSubjectCandidates} from './subject-intent.mjs';
+import {withExperimentalSceneExtension} from './experimental-association-adapter.mjs';
 const format=(base,catalog)=>Object.freeze({
  version:'scene500-rule-fallback-v0.1',
  mode:'rule_fallback',
@@ -13,7 +14,7 @@ const format=(base,catalog)=>Object.freeze({
  },
  getPage:(snapshot,pageIndex=0,pageSize=5)=>base.getPage(snapshot,pageIndex,pageSize)
 });
-export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal,onDiagnostic}={}){
+export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal,onDiagnostic,experimentalExtension=null,enableExperimentalExtension=false}={}){
  const fallback=format(createScene500Recommender({catalog}),catalog);
  if(!lexiconUrl||!associationUrl)return fallback;
  const controller=new AbortController();
@@ -65,7 +66,11 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
   }
   const engine=createScene500ContractAdapter({catalog,lexicon,associations});
   if(controller.signal.aborted)throw Error('SCENE500_ASSET_ABORTED');
-  return Object.freeze({...engine,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false});
+  // Extension is always opt-in and must use the exact V0.10.1 identity space.
+  // Invalid extension rolls back to the known baseline rather than silently mixing edges.
+  const active=enableExperimentalExtension?
+   withExperimentalSceneExtension(engine,{catalog,extension:experimentalExtension,enabled:true}):engine;
+  return Object.freeze({...active,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false});
   })();
   return await Promise.race([work,abortPromise]);
  }catch(err){
