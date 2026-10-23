@@ -802,7 +802,7 @@
    const target=index>=0?byKey(bookmark.ku_id):null;
    // Resolve the visible bookmarked KU BEFORE any initial render or audio.
    // Starting showCurrent() first can speak queue[0] while the bookmark displays another word.
-   if(target?.k&&target.k!==session?.queue?.[0]){
+   if(target?.k){
      const request=++browseToken;++token;PAI_TAP_FLOW.cancel();
      window.PAI_AUDIO?.stop();browseIndex=index;browsedUnit=target;
      state.revealed=bookmark.page==='answer';loading=!target.w.loaded;error='';
@@ -816,13 +816,7 @@
      }).catch(err=>{if(request===browseToken){loading=false;error=String(err);render()}});
      return;
    }
-   void showCurrent().then(()=>{
-     if(!active||state.view!=='learning')return;
-     // No bookmarked override: showCurrent already uses the visible queue-front KU.
-     if(bookmark?.ku_id===session?.queue?.[0]&&bookmark.page==='answer'){
-       state.revealed=true;render();captureLearningCursor();
-     }
-   });
+   void showCurrent();
    window.PAI_AUTOBROWSE?.restart();
  };
  window.PAI_RESUME_SCENE_BOOKMARK=(scene)=>{
