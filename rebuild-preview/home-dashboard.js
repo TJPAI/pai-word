@@ -173,7 +173,17 @@
     const next=document.createElement('div');next.innerHTML=renderHome();
     for(const selector of ['.continue-card','.home-recent']){
       const before=root.querySelector(selector),after=next.querySelector(selector);
-      if(before&&after&&before.innerHTML!==after.innerHTML)before.innerHTML=after.innerHTML;
+      if(before&&after&&before.innerHTML!==after.innerHTML){
+        if(selector==='.continue-card'){
+          // Patch matching elements in place; preserve stable card and buttons.
+          const oldTitle=before.querySelector('h2'),newTitle=after.querySelector('h2');
+          const oldStatus=before.querySelector('p'),newStatus=after.querySelector('p');
+          if(oldTitle&&newTitle&&oldTitle.textContent!==newTitle.textContent)oldTitle.textContent=newTitle.textContent;
+          if(oldStatus&&newStatus&&oldStatus.textContent!==newStatus.textContent)oldStatus.textContent=newStatus.textContent;
+          const oldActions=before.querySelector('.continue-actions'),newActions=after.querySelector('.continue-actions');
+          if(oldActions&&newActions&&oldActions.innerHTML!==newActions.innerHTML)oldActions.innerHTML=newActions.innerHTML;
+        }else before.innerHTML=after.innerHTML;
+      }
       else if(before&&!after)before.remove();
       else if(after&&!before){
         if(selector==='.home-recent')root.querySelector('.browse-link')?.before(after);
