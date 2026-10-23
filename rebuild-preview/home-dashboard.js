@@ -37,7 +37,7 @@
   function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
   const sceneCategories=['日常起居与家庭生活','餐饮与食品','购物与消费','出行与城市交通','旅行与旅游','学校与学习','大学与学术研究','工作与职场','求职与职业发展','商务与企业经营','数字生活与互联网','科技、AI与工程','医疗与健康','运动与健身','娱乐、文化与休闲','社交、人际与情感','公共服务、法律与社会生活','语言功能与沟通任务','自然、环境与世界','认知、表达与高级思维'];
   function stableSceneDescription(id){
-    const canonical=/^S(\\d{3})$/.exec(id);
+    const canonical=/^S(\d{3})$/.exec(id);
     if(canonical){const n=Number(canonical[1]);if(n>=1&&n<=500)return sceneCategories[Math.floor((n-1)/25)]+' · 场景词汇';}
     return indexedScenes().byId.get(id)?.desc||'';
   }
