@@ -30,3 +30,11 @@ test('negating compound cannot inherit positive base association',()=>{
  assert.equal(engine.search('不可再生能源').results.some(x=>x.experimental),false);
  assert.equal(engine.search('太阳能电池').results.some(x=>x.experimental),true);
 });
+
+test('experimental query does not match a positive phrase inside a negated compound',()=>{
+ const positive={...edge,term:'可再生能源',term_id:'zh_positive',anchor_term:'能源'};
+ const engine=withExperimentalSceneExtension(base,{catalog,extension:{...ext,candidates:[positive]},enabled:true});
+ assert.equal(engine.search('可再生能源',{limit:5}).results.length,1);
+ assert.equal(engine.search('不可再生能源',{limit:5}).results.length,0);
+ assert.equal(engine.search('研究不可再生能源与可再生能源',{limit:5}).results.length,1);
+});
