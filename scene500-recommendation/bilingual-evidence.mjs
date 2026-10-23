@@ -16,7 +16,7 @@ export function extractMixedLanguageEvidence(input,{entries=defaults,maxMatches=
   if(typeof item?.en!=='string'||typeof item?.zh!=='string'||!item.en.trim()||!item.zh.trim())throw Error('INVALID_BILINGUAL_ENTRY');
   const en=norm(item.en.trim());
   // Require English token boundaries. Do not match 'meeting' in 'premeeting'.
-  const pattern=new RegExp('(^|[^a-z0-9])('+en.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\\ /g,'\\s+')+')(?=$|[^a-z0-9])','g');
+  const pattern=new RegExp('(^|[^a-z0-9])('+en.replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,'\\s+')+')(?=$|[^a-z0-9])','g');
   let match;
   while((match=pattern.exec(source))){
    const start=match.index+match[1].length;
