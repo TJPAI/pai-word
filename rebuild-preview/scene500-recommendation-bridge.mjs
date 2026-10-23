@@ -9,9 +9,9 @@ async function create(){
  if(!response.ok)throw Error('SCENE500_CATALOG_HTTP_'+response.status);
  const catalog=await response.json();
  if(catalog?.scene_count!==500||Object.keys(catalog.scenes||{}).length!==500)throw Error('SCENE500_INVALID_CATALOG');
- // Approved 20K/3553-edge assets are not yet published in this branch.
- // Never silently activate unverified experimental associations.
- const engine=await module.loadScene500WithChineseLexicon({catalog});
+ // Only the baseline 20K/3553-edge assets are included; the 3693-edge
+ // candidate overlay remains excluded. Invalid assets revert to rule search.
+ const engine=await module.loadScene500WithChineseLexicon({catalog,lexiconUrl:new URL('zh-core20k-v094.min.json',ROOT).href,associationUrl:new URL('v094-lexical-associations.json',ROOT).href,timeoutMs:8000});
  return {engine,catalog};
 }
 export async function recommend(query,{difficulty='all',inventory,limit=500}={}){
