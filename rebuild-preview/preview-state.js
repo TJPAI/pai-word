@@ -99,6 +99,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)void windo
 window.addEventListener('pageshow',()=>{void window.PAI_STORAGE_PROBE()});
 window.PAI_PERSISTENCE_FLUSH=()=>Promise.allSettled([paiHomeQueue,paiSettingsQueue]);
 function save(){
+   if(window.PAI_RESET_IN_PROGRESS)return false;
   if(window.PAI_SAVE_DEFERRED===true)return true;
   persistIndependentSettings();
   persistHomeState();
