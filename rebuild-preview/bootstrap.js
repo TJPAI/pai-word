@@ -58,20 +58,6 @@
    window.openSceneCatalog();
   }catch(error){console.error('Scene500 catalog unavailable',error);alert('场景目录加载失败，请重试');}
  };
- // Independent version strip: survives home redraws, catalog navigation and failed SHA reads.
- window.PAI_PERF_SOURCE_SHA=null;
- if(location.pathname.includes('/perf-preview/')){
-  const strip=document.createElement('aside');
-  strip.id='pai-perf-version-strip';
-  strip.setAttribute('aria-label','加速版部署版本');
-  strip.style.cssText='position:fixed;top:0;left:0;right:0;z-index:2147483000;background:#f1f5f9;color:#334155;border-bottom:1px solid #cbd5e1;padding:calc(5px + env(safe-area-inset-top)) 8px 5px;font:11px/1.45 system-ui,sans-serif;text-align:center;overflow-wrap:anywhere;pointer-events:none';
-  strip.textContent='加速版 SHA：读取中…';
-  document.body.appendChild(strip);
-  void fetch(new URL('preview-source-sha.txt',document.baseURI),{cache:'no-store'})
-   .then(response=>{if(!response.ok)throw Error('SHA_HTTP_'+response.status);return response.text()})
-   .then(value=>{const sha=value.trim();if(!/^[0-9a-f]{40}$/.test(sha))throw Error('SHA_INVALID');window.PAI_PERF_SOURCE_SHA=sha;strip.textContent='加速版 SHA：'+sha})
-   .catch(error=>{window.PAI_PERF_SHA_ERROR=String(error);strip.textContent='加速版 SHA：读取失败（请检查部署）'});
- }
  async function json(src){const r=await fetch(src+'?v='+VERSION,{cache:'default'});if(!r.ok)throw Error('数据文件加载失败: '+src);return r.json()}
  async function sceneMembership(){
   try{return await json('data/scene500-playable-membership-v2.json')}
