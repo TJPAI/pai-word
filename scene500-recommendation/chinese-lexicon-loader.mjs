@@ -50,8 +50,8 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
   }
   const engine=createScene500ContractAdapter({catalog,lexicon,associations});
   return Object.freeze({...engine,mode:'hybrid'});
- }catch(_err){
-  return fallback;
+ }catch(error){
+  return Object.freeze({...fallback,failure:String(error?.message||error)});
  }finally{
   clearTimeout(timer);
   signal?.removeEventListener('abort',externalAbort);
