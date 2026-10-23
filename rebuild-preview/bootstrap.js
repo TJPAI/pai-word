@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-entry-timing-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-entry-samples-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -192,7 +192,7 @@
    const start=nav?.startTime||0;
    return {version:VERSION,homeReadyMs:t.homeRendered??null,
     stagesMs:{...t},scriptLoadMs:{...(window.PAI_BOOT_SCRIPT_DURATIONS||{})},core20kMs:{...c},
-    navigationMs:nav?{domContentLoaded:Math.round(nav.domContentLoadedEventEnd-start),loadEvent:Math.round(nav.loadEventEnd-start)}:null,learningEntry:window.PAI_LAST_LEARNING_ENTRY||null};
+    navigationMs:nav?{domContentLoaded:Math.round(nav.domContentLoadedEventEnd-start),loadEvent:Math.round(nav.loadEventEnd-start)}:null,learningEntry:window.PAI_LAST_LEARNING_ENTRY||null,learningEntrySamples:[...(window.PAI_LEARNING_ENTRY_SAMPLES||[])]};
   };
   // Optional Top100 taxonomy runs only after the real homepage is visible.
   // Its shard-ready promise triggers the same recommendation refresh as before.
