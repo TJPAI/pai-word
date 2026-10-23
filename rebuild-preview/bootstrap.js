@@ -202,16 +202,22 @@
   // V2.1 isolation: preview must never register the shared root-scope worker.
   // Dedicated scoped offline support will be introduced after worker isolation tests.
   window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registering';
+  // Service worker registration is not needed to render or interact with the
+  // already loaded home. Postpone browser worker startup until after first paint.
   if('serviceWorker' in navigator){
-    const previewUrl=new URL('rebuild-preview/',document.baseURI);
-    const workerUrl=new URL('sw.js',previewUrl);
-    navigator.serviceWorker.register(workerUrl.href,{scope:previewUrl.pathname,updateViaCache:'none'})
-      .then(reg=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registered';
-        // Existing root workers can control the first load. Scoped worker takes over after claim/reload.
-        if(!navigator.serviceWorker.controller||!navigator.serviceWorker.controller.scriptURL.startsWith(previewUrl.href))
-          window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_waiting_for_control';
-      })
-      .catch(error=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_failed';console.warn('Preview worker unavailable',error)});
+    const registerPreviewWorker=()=>{
+      const previewUrl=new URL('rebuild-preview/',document.baseURI);
+      const workerUrl=new URL('sw.js',previewUrl);
+      navigator.serviceWorker.register(workerUrl.href,{scope:previewUrl.pathname,updateViaCache:'none'})
+        .then(reg=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_registered';
+          if(!navigator.serviceWorker.controller||!navigator.serviceWorker.controller.scriptURL.startsWith(previewUrl.href))
+            window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_waiting_for_control';
+        })
+        .catch(error=>{window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_failed';console.warn('Preview worker unavailable',error)});
+    };
+    window.PAI_PREVIEW_OFFLINE_STATUS='scoped_worker_deferred';
+    if(typeof requestIdleCallback==='function')requestIdleCallback(registerPreviewWorker,{timeout:6000});
+    else setTimeout(registerPreviewWorker,1600);
   }
  }catch(e){app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();
