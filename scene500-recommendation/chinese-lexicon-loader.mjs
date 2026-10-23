@@ -19,8 +19,15 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
  const externalAbort=()=>controller.abort();
  if(signal?.aborted)return fallback;
  signal?.addEventListener('abort',externalAbort,{once:true});
- const timer=setTimeout(()=>controller.abort(),Math.max(1,timeoutMs));
+ const deadline=Number.isFinite(Number(timeoutMs))?Math.max(1,Number(timeoutMs)):4000;
+ let onAbort;
+ const abortPromise=new Promise((_,reject)=>{
+  onAbort=()=>reject(Error('SCENE500_ASSET_ABORTED'));
+  controller.signal.addEventListener('abort',onAbort,{once:true});
+ });
+ const timer=setTimeout(()=>controller.abort(),deadline);
  try{
+  const work=(async()=>{
   const [lex,assoc]=await Promise.all([fetchImpl(lexiconUrl,{signal:controller.signal,cache:'force-cache'}),fetchImpl(associationUrl,{signal:controller.signal,cache:'force-cache'})]);
   if(!lex.ok||!assoc.ok)throw Error('SCENE500_ASSET_HTTP_FAILED');
   let [lexicon,associations]=await Promise.all([lex.json(),assoc.json()]);
@@ -32,11 +39,15 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
    }))};
   }
   const engine=createScene500ContractAdapter({catalog,lexicon,associations});
+  if(controller.signal.aborted)throw Error('SCENE500_ASSET_ABORTED');
   return Object.freeze({...engine,mode:'hybrid'});
+  })();
+  return await Promise.race([work,abortPromise]);
  }catch(_err){
   return fallback;
  }finally{
   clearTimeout(timer);
+  controller.signal.removeEventListener('abort',onAbort);
   signal?.removeEventListener('abort',externalAbort);
  }
 }
