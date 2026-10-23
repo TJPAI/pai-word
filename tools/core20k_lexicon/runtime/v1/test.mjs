@@ -1,0 +1,13 @@
+import fs from 'node:fs';import crypto from 'node:crypto';import assert from 'node:assert/strict';
+const base=new URL('.',import.meta.url),read=n=>fs.readFileSync(new URL(n,base)),j=n=>JSON.parse(read(n));
+const p=j('teaching-pack.json'),m=j('manifest.json'),x=j('identity-crosswalk.json'),s=j('scene500-mapping.json');
+let done=0;const t=(name,fn)=>{fn();console.log('PASS',name);done++};
+t('schema',()=>{assert.equal(m.schema_version,'pai-core20k-teaching-pack-v1');assert.equal(p.schema_version,m.schema_version)});
+t('commit SHA',()=>assert.match(m.source_commit_sha,/^[a-f0-9]{40}$/));
+t('version and count',()=>{assert.equal(m.pack_version,p.pack_version);assert.equal(m.record_count,p.records.length)});
+t('SHA actual bytes',()=>assert.equal(m.pack_sha256,crypto.createHash('sha256').update(read('teaching-pack.json')).digest('hex')));
+t('fail closed',()=>{assert.equal(m.release_eligible,false);assert.equal(p.records.length,0)});
+t('identity safe',()=>assert.equal(x.reviewed_crosswalk.length,0));
+t('scene safe',()=>assert.equal(s.records.length,0));
+t('frozen hash',()=>assert.equal(m.frozen_membership_sha256,'e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca'));
+console.log(done+'/8 PASS; teaching release blocked');
