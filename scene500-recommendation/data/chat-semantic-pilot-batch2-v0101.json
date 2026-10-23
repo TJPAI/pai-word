@@ -1,0 +1,209 @@
+{
+  "schema": "scene500-chat-model-semantic-pilot-v0.2",
+  "data_version": "0.10.1-evidence-compat",
+  "status": "EDITORIAL_REVIEW_REQUIRED",
+  "production_ready": false,
+  "method": "chat_model_semantic_editorial",
+  "edges": [
+    {
+      "term_id": "zh_db29ae4928bce5fe3c03",
+      "term": "远程教育",
+      "scene_id": "S138",
+      "scene_name": "线上课程",
+      "rationale_zh": "远程教学直接对应线上课程的教学活动",
+      "counterexample_zh": "不包含线下教育全部活动",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_847110160226f2be0d1d",
+      "term": "视频课程",
+      "scene_id": "S138",
+      "scene_name": "线上课程",
+      "rationale_zh": "视频课程是线上课程的常见课程交付形式",
+      "counterexample_zh": "不涉及普通娱乐视频",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_e8c68b5e46c674276f06",
+      "term": "路由器",
+      "scene_id": "S258",
+      "scene_name": "Wi-Fi连接",
+      "rationale_zh": "路由器是家庭或办公 Wi-Fi 连接配置的关键设备",
+      "counterexample_zh": "不能泛指任意网络协议研究",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_c6c6c1a78bfed55286bb",
+      "term": "网络连接",
+      "scene_id": "S258",
+      "scene_name": "Wi-Fi连接",
+      "rationale_zh": "配置 Wi-Fi 时直接处理设备网络连接",
+      "counterexample_zh": "不等同所有互联网骨干网问题",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_7e94809fe3c8c4211efa",
+      "term": "无线信号",
+      "scene_id": "S258",
+      "scene_name": "Wi-Fi连接",
+      "rationale_zh": "设备连接 Wi-Fi 需要检查无线信号",
+      "counterexample_zh": "不等同卫星无线信号分析",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_9f2a9bf22ad9b8e196ae",
+      "term": "信号强度",
+      "scene_id": "S258",
+      "scene_name": "Wi-Fi连接",
+      "rationale_zh": "Wi-Fi 连接排障涉及信号强弱",
+      "counterexample_zh": "不指医学检测信号",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_de43684d1b2fbf0f93b9",
+      "term": "网速",
+      "scene_id": "S258",
+      "scene_name": "Wi-Fi连接",
+      "rationale_zh": "Wi-Fi 连接体验直接受网速影响",
+      "counterexample_zh": "不包括所有网络工程优化",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_cbce51541dc2b76050c1",
+      "term": "断网",
+      "scene_id": "S258",
+      "scene_name": "Wi-Fi连接",
+      "rationale_zh": "Wi-Fi 掉线是网络连接故障的一种",
+      "counterexample_zh": "不涵盖运营商基础设施检修",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_7a1590d68e0078eea6f2",
+      "term": "引用格式",
+      "scene_id": "S145",
+      "scene_name": "引用与参考文献",
+      "rationale_zh": "参考文献引用需要核对引文格式",
+      "counterexample_zh": "不指社交媒体转发格式",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_e3d1f155cd45b92e8a40",
+      "term": "期刊论文",
+      "scene_id": "S144",
+      "scene_name": "论文写作",
+      "rationale_zh": "期刊论文是正式论文写作的直接成果形式",
+      "counterexample_zh": "不指阅读一切期刊报道",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_ef94275bd96fe534e028",
+      "term": "实验设备",
+      "scene_id": "S134",
+      "scene_name": "实验课",
+      "rationale_zh": "实验课程要求操作实验设备",
+      "counterexample_zh": "不是购买全部工业机器的场景",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_bf7a0e6e3cc3fc35d047",
+      "term": "测量误差",
+      "scene_id": "S157",
+      "scene_name": "数据采集",
+      "rationale_zh": "数据采集需要记录和控制测量误差",
+      "counterexample_zh": "不代表纯理论误差分析",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_9b3bfc39a75f8ebc85db",
+      "term": "副作用",
+      "scene_id": "S317",
+      "scene_name": "处方与药物说明",
+      "rationale_zh": "药物使用说明直接涉及潜在副作用",
+      "counterexample_zh": "不泛指非药物行为的副作用",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_72bb85d865ce189a116d",
+      "term": "不良反应",
+      "scene_id": "S317",
+      "scene_name": "处方与药物说明",
+      "rationale_zh": "药物说明应提示不良反应",
+      "counterexample_zh": "不泛指任何负面社会反应",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_24ef7a3769683ddb6ac7",
+      "term": "用药指导",
+      "scene_id": "S317",
+      "scene_name": "处方与药物说明",
+      "rationale_zh": "处方与说明中包含正确用药指导",
+      "counterexample_zh": "不是一般生活指导",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_b64d25e0125c1369aba2",
+      "term": "血压计",
+      "scene_id": "S305",
+      "scene_name": "测量血压",
+      "rationale_zh": "血压计是测量血压的直接工具",
+      "counterexample_zh": "不指所有心血管研究",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_524eeae89f3f0950aa6f",
+      "term": "研究课题",
+      "scene_id": "S174",
+      "scene_name": "科研合作",
+      "rationale_zh": "科研合作常围绕明确的研究课题协调任务",
+      "counterexample_zh": "单人独立研究未必属于合作",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_13a1dd7a206cd8a65390",
+      "term": "课题组",
+      "scene_id": "S174",
+      "scene_name": "科研合作",
+      "rationale_zh": "科研合作中的研究团队常以课题组组织",
+      "counterexample_zh": "不指普通课堂小组",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_1510f4a25c5410f9d11f",
+      "term": "科研项目",
+      "scene_id": "S174",
+      "scene_name": "科研合作",
+      "rationale_zh": "科研合作通常以科研项目为组织单元",
+      "counterexample_zh": "独立科研项目未必涉及合作",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    },
+    {
+      "term_id": "zh_a049dca9d8f1e021c139",
+      "term": "项目管理",
+      "scene_id": "S174",
+      "scene_name": "科研合作",
+      "rationale_zh": "科研合作涉及项目任务协调和管理",
+      "counterexample_zh": "普通建筑项目管理不属于科研合作",
+      "evidence_source": "chat_model_editorial",
+      "release_eligible": false
+    }
+  ]
+}
