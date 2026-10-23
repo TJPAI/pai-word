@@ -49,6 +49,9 @@ const {pipeline,env}=await import('@huggingface/transformers');
 // Fully offline mode: path containing multilingual-e5-small/ extracted from Muse ZIP.
 const localRoot=process.env.SCENE500_E5_LOCAL_ROOT;
 if(localRoot){
+ const required=['config.json','tokenizer.json','tokenizer_config.json','special_tokens_map.json','onnx/model_quantized.onnx'];
+ const missing=required.filter(p=>!existsSync(join(localRoot,'multilingual-e5-small',p)));
+ if(missing.length)throw Error('LOCAL_MODEL_FILES_MISSING: '+missing.join(', '));
  env.allowRemoteModels=false;
  env.allowLocalModels=true;
  env.localModelPath=localRoot.endsWith('/')?localRoot:localRoot+'/';
@@ -78,7 +81,7 @@ let cacheHit=false;
 if(cachePath&&existsSync(cachePath)){
  try {
   const cached=JSON.parse(readFileSync(cachePath,'utf8'));
-  if(cached.key===cacheKey&&cached.ids.join(',')===catalogIds.join(',')&&cached.embeddings.length===500){
+  if(cached.key===cacheKey&&Array.isArray(cached.ids)&&cached.ids.join(',')===catalogIds.join(',')&&Array.isArray(cached.embeddings)&&cached.embeddings.length===500&&cached.embeddings.every(v=>Array.isArray(v)&&v.length===384&&v.every(Number.isFinite))){
    for(const v of cached.embeddings)sceneEmbeds.push(Float32Array.from(v));
    cacheHit=true;
   }
