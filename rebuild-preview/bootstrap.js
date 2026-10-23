@@ -174,6 +174,7 @@
     // Restore only a query that previously had no usable results. Never rerank
     // an existing recommendation snapshot or erase an in-progress IME draft.
     if(state.view==='scenes' && state.sceneSearchUi?.query &&
+       (document.getElementById('scene-query')?.value||'').trim()===state.sceneSearchUi.query.trim() &&
        (!Array.isArray(state.sceneSearchUi.resultIds)||!state.sceneSearchUi.resultIds.length))
       window.restoreScene500Recommendations?.();
     // Snapshot recommendation positions stay fixed until an explicit search.
