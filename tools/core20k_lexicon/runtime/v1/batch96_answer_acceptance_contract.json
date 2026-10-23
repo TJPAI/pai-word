@@ -1,0 +1,123 @@
+{
+  "schema": "pai-core20k-answer-contract-v1",
+  "batch": 96,
+  "record_count": 6,
+  "records": [
+    {
+      "ku_id": "w_0266_person_ku01",
+      "headword": "person",
+      "sense_id": "w_0266_person_s01",
+      "prompt": "In the sentence 'One person is waiting outside', what does person mean?",
+      "example_en": "One person is waiting outside.",
+      "reference_answer": "一个人；个人",
+      "acceptable_zh_examples": [
+        "人",
+        "个人",
+        "一个人"
+      ],
+      "assessment_contract": {
+        "mode": "SELF_RATING_WITH_EXISTING_THREE_BUTTONS",
+        "automatic_chinese_string_matching": false,
+        "answer_visibility": "EXISTING_ANSWER_PAGE",
+        "srs_owner": "MAIN_APP_UNCHANGED"
+      },
+      "review_status": "AI_EDITORIAL_QA_PENDING_INDEPENDENT_SIGNOFF"
+    },
+    {
+      "ku_id": "w_0049_time_ku01",
+      "headword": "time",
+      "sense_id": "w_0049_time_s01",
+      "prompt": "In 'We need more time to finish', what does time mean?",
+      "example_en": "We need more time to finish.",
+      "reference_answer": "时间；完成事情所需的时长",
+      "acceptable_zh_examples": [
+        "时间",
+        "时长"
+      ],
+      "assessment_contract": {
+        "mode": "SELF_RATING_WITH_EXISTING_THREE_BUTTONS",
+        "automatic_chinese_string_matching": false,
+        "answer_visibility": "EXISTING_ANSWER_PAGE",
+        "srs_owner": "MAIN_APP_UNCHANGED"
+      },
+      "review_status": "AI_EDITORIAL_QA_PENDING_INDEPENDENT_SIGNOFF"
+    },
+    {
+      "ku_id": "w_0041_know_ku01",
+      "headword": "know",
+      "sense_id": "w_0041_know_s01",
+      "prompt": "In 'I know the answer', what does know mean?",
+      "example_en": "I know the answer.",
+      "reference_answer": "知道；了解",
+      "acceptable_zh_examples": [
+        "知道",
+        "了解"
+      ],
+      "assessment_contract": {
+        "mode": "SELF_RATING_WITH_EXISTING_THREE_BUTTONS",
+        "automatic_chinese_string_matching": false,
+        "answer_visibility": "EXISTING_ANSWER_PAGE",
+        "srs_owner": "MAIN_APP_UNCHANGED"
+      },
+      "review_status": "AI_EDITORIAL_QA_PENDING_INDEPENDENT_SIGNOFF"
+    },
+    {
+      "ku_id": "w_0057_people_ku01",
+      "headword": "people",
+      "sense_id": "w_0057_people_s01",
+      "prompt": "In 'Many people live here', what does people mean?",
+      "example_en": "Many people live here.",
+      "reference_answer": "人们；许多人",
+      "acceptable_zh_examples": [
+        "人们",
+        "人"
+      ],
+      "assessment_contract": {
+        "mode": "SELF_RATING_WITH_EXISTING_THREE_BUTTONS",
+        "automatic_chinese_string_matching": false,
+        "answer_visibility": "EXISTING_ANSWER_PAGE",
+        "srs_owner": "MAIN_APP_UNCHANGED"
+      },
+      "review_status": "AI_EDITORIAL_QA_PENDING_INDEPENDENT_SIGNOFF"
+    },
+    {
+      "ku_id": "w_0139_talk_ku01",
+      "headword": "talk",
+      "sense_id": "w_0139_talk_s01",
+      "prompt": "In 'We talk every evening', what does talk mean?",
+      "example_en": "We talk every evening.",
+      "reference_answer": "交谈；说话",
+      "acceptable_zh_examples": [
+        "说话",
+        "交谈"
+      ],
+      "assessment_contract": {
+        "mode": "SELF_RATING_WITH_EXISTING_THREE_BUTTONS",
+        "automatic_chinese_string_matching": false,
+        "answer_visibility": "EXISTING_ANSWER_PAGE",
+        "srs_owner": "MAIN_APP_UNCHANGED"
+      },
+      "review_status": "AI_EDITORIAL_QA_PENDING_INDEPENDENT_SIGNOFF"
+    },
+    {
+      "ku_id": "w_0099_here_ku01",
+      "headword": "here",
+      "sense_id": "w_0099_here_s01",
+      "prompt": "In 'Please come here', what does here mean?",
+      "example_en": "Please come here.",
+      "reference_answer": "这里；到这里",
+      "acceptable_zh_examples": [
+        "这里",
+        "到这里"
+      ],
+      "assessment_contract": {
+        "mode": "SELF_RATING_WITH_EXISTING_THREE_BUTTONS",
+        "automatic_chinese_string_matching": false,
+        "answer_visibility": "EXISTING_ANSWER_PAGE",
+        "srs_owner": "MAIN_APP_UNCHANGED"
+      },
+      "review_status": "AI_EDITORIAL_QA_PENDING_INDEPENDENT_SIGNOFF"
+    }
+  ],
+  "release_eligible": false
+}
