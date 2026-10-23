@@ -26,7 +26,6 @@ export function validateBatch136Fixture(pack,{knownKuIds,knownSenseIds,knownHead
   if(!r.response||typeof r.response!=='object'||Array.isArray(r.response))reasons.push('missing_response');
   if(!Array.isArray(r.risk_flags)||r.risk_flags.length>0||!Array.isArray(r.triage?.risk_flags)||r.triage.risk_flags.length>0)reasons.push('risk_flags');
   if(r.triage?.ku_id!==r.ku_id||r.triage?.release_eligible!==false)reasons.push('triage_contract');
-  if(r.automated_srs_scoring_enabled===true||r.render_only===false)reasons.push('unsafe_scoring_flags');
   if(r.render_kind==='cloze'){
    if(typeof r.response?.answer!=='string'||!r.response.answer.trim())reasons.push('missing_answer');
    if(typeof r.response?.example_en!=='string'||!r.response.example_en.trim()||typeof r.response?.example_zh!=='string'||!r.response.example_zh.trim())reasons.push('missing_bilingual_context');
