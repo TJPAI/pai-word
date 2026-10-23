@@ -5,6 +5,7 @@ export function teachingCandidatesEnabled(search='') {
  return new URLSearchParams(String(search).replace(/^\?/, '')).get(TEACHING_FLAG)==='1';
 }
 const allowedTypes=new Set(['sense','grammar','collocation','contrast','pronunciation','usage','risk']);
+const REQUIRED_CARD_FIELDS=Object.freeze({sense:['prompt','answer'],grammar:['prompt','answer'],collocation:['prompt','answer'],contrast:['prompt','answer'],pronunciation:['prompt','answer'],usage:['prompt','answer'],risk:['prompt','answer']});
 export function validateTeachingCandidatePack(pack,{knownKuIds,knownSenseIds,knownHeadwordIds}={}) {
  const errors=[];
  if(!pack||typeof pack!=='object'||Array.isArray(pack))return {ok:false,errors:['invalid_pack'],accepted:[],quarantined:[]};
@@ -23,6 +24,7 @@ export function validateTeachingCandidatePack(pack,{knownKuIds,knownSenseIds,kno
   seen.add(c.ku_id);
   if(c.review_status!=='approved'||c.semantic_risk===true)reason.push('unapproved_or_risky');
   if(!c.card||typeof c.card!=='object'||Array.isArray(c.card))reason.push('missing_card');
+  else if(allowedTypes.has(c.ku_type)&&REQUIRED_CARD_FIELDS[c.ku_type].some(k=>typeof c.card[k]!=='string'||!c.card[k].trim()))reason.push('incomplete_card');
   if(reason.length)quarantined.push({index,ku_id:c.ku_id,reasons:reason});else accepted.push(c);
  }
  return {ok:errors.length===0,errors,accepted,quarantined,total:pack.candidates.length};
