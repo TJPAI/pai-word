@@ -1,0 +1,174 @@
+{
+  "version": "0.10.6-zhihu-character-crosscheck-001",
+  "type": "independent_character_frequency_validation_only",
+  "source": {
+    "repo": "forfudan/chinese-characters-frequency",
+    "file": "tables/六億知乎語料通規漢字字頻表.csv",
+    "license": "Apache-2.0 as displayed at repository root; underlying corpus provenance requires separate review",
+    "basis": "Zhihu responses ~600M characters",
+    "source_rows": 7423
+  },
+  "results": {
+    "master_single_character_terms": 1755,
+    "source_exact_matches": 1752,
+    "source_absent": 3,
+    "source_zero_count": 0,
+    "source_top1755_not_in_master": 299,
+    "source_top1755_missing_examples": [
+      {
+        "character": "欢",
+        "count": 502967
+      },
+      {
+        "character": "朋",
+        "count": 419668
+      },
+      {
+        "character": "孩",
+        "count": 339945
+      },
+      {
+        "character": "概",
+        "count": 231174
+      },
+      {
+        "character": "况",
+        "count": 185841
+      },
+      {
+        "character": "验",
+        "count": 185716
+      },
+      {
+        "character": "效",
+        "count": 182671
+      },
+      {
+        "character": "究",
+        "count": 159730
+      },
+      {
+        "character": "择",
+        "count": 158205
+      },
+      {
+        "character": "诉",
+        "count": 151239
+      },
+      {
+        "character": "育",
+        "count": 133873
+      },
+      {
+        "character": "示",
+        "count": 120644
+      },
+      {
+        "character": "坚",
+        "count": 116163
+      },
+      {
+        "character": "努",
+        "count": 112359
+      },
+      {
+        "character": "荐",
+        "count": 109659
+      },
+      {
+        "character": "构",
+        "count": 104272
+      },
+      {
+        "character": "爷",
+        "count": 104269
+      },
+      {
+        "character": "激",
+        "count": 102300
+      },
+      {
+        "character": "虑",
+        "count": 100590
+      },
+      {
+        "character": "频",
+        "count": 100375
+      },
+      {
+        "character": "享",
+        "count": 100359
+      },
+      {
+        "character": "姑",
+        "count": 97117
+      },
+      {
+        "character": "暴",
+        "count": 94750
+      },
+      {
+        "character": "幸",
+        "count": 94563
+      },
+      {
+        "character": "括",
+        "count": 93424
+      },
+      {
+        "character": "趣",
+        "count": 92247
+      },
+      {
+        "character": "麻",
+        "count": 91406
+      },
+      {
+        "character": "触",
+        "count": 89779
+      },
+      {
+        "character": "默",
+        "count": 88818
+      },
+      {
+        "character": "益",
+        "count": 88818
+      },
+      {
+        "character": "弟",
+        "count": 88345
+      },
+      {
+        "character": "估",
+        "count": 84012
+      },
+      {
+        "character": "偶",
+        "count": 82724
+      },
+      {
+        "character": "颜",
+        "count": 82701
+      },
+      {
+        "character": "础",
+        "count": 78976
+      }
+    ],
+    "master_absent_examples": [
+      "妳",
+      "牠",
+      "屌"
+    ]
+  },
+  "policy": {
+    "do_not_apply_to_multichar_words": true,
+    "do_not_assign_general_frequency_rank": true,
+    "membership_changes": 0,
+    "id_changes": 0,
+    "production_ready": false,
+    "corpus_specific": true
+  },
+  "interpretation": "Character frequencies are not word frequencies. Missing coverage or zero count is a review signal only."
+}
