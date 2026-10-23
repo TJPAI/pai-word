@@ -1,0 +1,1488 @@
+{
+  "version": "0.6",
+  "evaluation_is_gold": false,
+  "holdout_prompt_count": 72,
+  "train_queries": 2158,
+  "prior_overlap": [],
+  "baseline": {
+    "top5_draft_primary_hits": 18,
+    "positive_drafts": 59,
+    "empty_draft_with_predictions": 3,
+    "empty_drafts": 13,
+    "abstained_total": 29,
+    "language": {
+      "zh": {
+        "hits": 18,
+        "count": 41
+      },
+      "en": {
+        "hits": 0,
+        "count": 18
+      }
+    }
+  },
+  "anchor_hybrid": {
+    "top5_draft_primary_hits": 18,
+    "positive_drafts": 59,
+    "empty_draft_with_predictions": 3,
+    "empty_drafts": 13,
+    "abstained_total": 29,
+    "language": {
+      "zh": {
+        "hits": 18,
+        "count": 41
+      },
+      "en": {
+        "hits": 0,
+        "count": 18
+      }
+    }
+  },
+  "failures": [
+    {
+      "query": "我计划明年坐飞机去东京",
+      "expected": [
+        "S101"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "How do I claim missing luggage",
+      "expected": [
+        "S112"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "I would like to reserve a room",
+      "expected": [
+        "S113"
+      ],
+      "predicted": [
+        "S195"
+      ]
+    },
+    {
+      "query": "酒店把我的订单取消了",
+      "expected": [
+        "S117"
+      ],
+      "predicted": [
+        "S113"
+      ]
+    },
+    {
+      "query": "Can I get a refund for this shirt",
+      "expected": [
+        "S070"
+      ],
+      "predicted": [
+        "S120"
+      ]
+    },
+    {
+      "query": "这台电脑买回来就坏了能保修吗",
+      "expected": [
+        "S072"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "请问这件衬衫有没有大一号",
+      "expected": [
+        "S061"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "我要找一下订单的物流状态",
+      "expected": [
+        "S074"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "I'd like to rent a bicycle",
+      "expected": [
+        "S083"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "请告诉司机到机场怎么走",
+      "expected": [
+        "S080"
+      ],
+      "predicted": [
+        "S076"
+      ]
+    },
+    {
+      "query": "Could you bring the menu please",
+      "expected": [
+        "S034"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "I forgot my email password",
+      "expected": [
+        "S256"
+      ],
+      "predicted": [
+        "S195"
+      ]
+    },
+    {
+      "query": "我准备创建一个新账户",
+      "expected": [
+        "S254"
+      ],
+      "predicted": [
+        "S007"
+      ]
+    },
+    {
+      "query": "电脑连不上无线网",
+      "expected": [
+        "S258"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "How do I protect my online privacy",
+      "expected": [
+        "S273"
+      ],
+      "predicted": [
+        "S187"
+      ]
+    },
+    {
+      "query": "这个程序启动就闪退了",
+      "expected": [
+        "S275"
+      ],
+      "predicted": [
+        "S019"
+      ]
+    },
+    {
+      "query": "Let's discuss network protocols",
+      "expected": [
+        "S289"
+      ],
+      "predicted": [
+        "S167",
+        "S223",
+        "S245"
+      ]
+    },
+    {
+      "query": "Explain blockchain consensus",
+      "expected": [
+        "S292"
+      ],
+      "predicted": [
+        "S104"
+      ]
+    },
+    {
+      "query": "我想学写前端网站",
+      "expected": [
+        "S296"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "程序一直报错我不知道怎么排查",
+      "expected": [
+        "S297"
+      ],
+      "predicted": [
+        "S019"
+      ]
+    },
+    {
+      "query": "Help me describe a software architecture",
+      "expected": [
+        "S298"
+      ],
+      "predicted": [
+        "S110"
+      ]
+    },
+    {
+      "query": "我想研究训练数据里的过拟合",
+      "expected": [
+        "S279"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "What makes neural nets generalize",
+      "expected": [
+        "S280"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "我要让聊天机器人回答得更好",
+      "expected": [
+        "S278"
+      ],
+      "predicted": [
+        "S012"
+      ]
+    },
+    {
+      "query": "Where can I find peer reviewed papers",
+      "expected": [
+        "S152"
+      ],
+      "predicted": [
+        "S168",
+        "S169"
+      ]
+    },
+    {
+      "query": "我想申请一个实习岗位",
+      "expected": [
+        "S201"
+      ],
+      "predicted": [
+        "S149"
+      ]
+    },
+    {
+      "query": "Could you help me polish my CV",
+      "expected": [
+        "S203"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "我该怎么跟老板谈涨工资",
+      "expected": [
+        "S224"
+      ],
+      "predicted": [
+        "S214"
+      ]
+    },
+    {
+      "query": "会议结束后整理决议和行动项",
+      "expected": [
+        "S185"
+      ],
+      "predicted": [
+        "S004"
+      ]
+    },
+    {
+      "query": "This supplier delivered the wrong items",
+      "expected": [
+        "S236"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "和新客户沟通产品需求",
+      "expected": [
+        "S228"
+      ],
+      "predicted": [
+        "S022"
+      ]
+    },
+    {
+      "query": "我突然开始胸口发紧",
+      "expected": [
+        "S301"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "Could you explain my blood test result",
+      "expected": [
+        "S316"
+      ],
+      "predicted": [
+        "S166"
+      ]
+    },
+    {
+      "query": "我晚上总是睡不着怎么办",
+      "expected": [
+        "S324"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "What is the admission fee for this museum",
+      "expected": [
+        "S122"
+      ],
+      "predicted": [
+        "S120",
+        "S167"
+      ]
+    },
+    {
+      "query": "我想与朋友和解",
+      "expected": [
+        "S396"
+      ],
+      "predicted": [
+        "S376",
+        "S383"
+      ]
+    },
+    {
+      "query": "Can you help me apologize politely",
+      "expected": [
+        "S387"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "如何委婉拒绝朋友的邀请",
+      "expected": [
+        "S382"
+      ],
+      "predicted": [
+        "S016",
+        "S218"
+      ]
+    },
+    {
+      "query": "请帮我比较两个产品的优缺点",
+      "expected": [
+        "S491"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "What evidence supports this argument",
+      "expected": [
+        "S495"
+      ],
+      "predicted": []
+    },
+    {
+      "query": "我希望客观地反驳他",
+      "expected": [
+        "S496"
+      ],
+      "predicted": []
+    }
+  ],
+  "results": [
+    {
+      "id": "H001",
+      "query": "我计划明年坐飞机去东京",
+      "expected_scene_ids": [
+        "S101"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H002",
+      "query": "国际航班转机需要重新检查吗",
+      "expected_scene_ids": [
+        "S108"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S108"
+      ],
+      "anchor_hybrid": [
+        "S108"
+      ]
+    },
+    {
+      "id": "H003",
+      "query": "How do I claim missing luggage",
+      "expected_scene_ids": [
+        "S112"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H004",
+      "query": "我到宾馆想拿房卡",
+      "expected_scene_ids": [
+        "S114"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S114"
+      ],
+      "anchor_hybrid": [
+        "S114"
+      ]
+    },
+    {
+      "id": "H005",
+      "query": "I would like to reserve a room",
+      "expected_scene_ids": [
+        "S113"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S195"
+      ],
+      "anchor_hybrid": [
+        "S195"
+      ]
+    },
+    {
+      "id": "H006",
+      "query": "能不能请酒店送来一条毛巾",
+      "expected_scene_ids": [
+        "S116"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S116"
+      ],
+      "anchor_hybrid": [
+        "S116"
+      ]
+    },
+    {
+      "id": "H007",
+      "query": "酒店把我的订单取消了",
+      "expected_scene_ids": [
+        "S117"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S113"
+      ],
+      "anchor_hybrid": [
+        "S113"
+      ]
+    },
+    {
+      "id": "H008",
+      "query": "Can I get a refund for this shirt",
+      "expected_scene_ids": [
+        "S070"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S120"
+      ],
+      "anchor_hybrid": [
+        "S120"
+      ]
+    },
+    {
+      "id": "H009",
+      "query": "这台电脑买回来就坏了能保修吗",
+      "expected_scene_ids": [
+        "S072"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H010",
+      "query": "请问这件衬衫有没有大一号",
+      "expected_scene_ids": [
+        "S061"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H011",
+      "query": "我要找一下订单的物流状态",
+      "expected_scene_ids": [
+        "S074"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H012",
+      "query": "刷信用卡是否要输密码",
+      "expected_scene_ids": [
+        "S067"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S067"
+      ],
+      "anchor_hybrid": [
+        "S067"
+      ]
+    },
+    {
+      "id": "H013",
+      "query": "附近哪里可以给车充电",
+      "expected_scene_ids": [
+        "S086"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S086"
+      ],
+      "anchor_hybrid": [
+        "S086"
+      ]
+    },
+    {
+      "id": "H014",
+      "query": "地铁坐过站了怎么办",
+      "expected_scene_ids": [
+        "S093"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S093"
+      ],
+      "anchor_hybrid": [
+        "S093"
+      ]
+    },
+    {
+      "id": "H015",
+      "query": "I'd like to rent a bicycle",
+      "expected_scene_ids": [
+        "S083"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H016",
+      "query": "请告诉司机到机场怎么走",
+      "expected_scene_ids": [
+        "S080"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S076"
+      ],
+      "anchor_hybrid": [
+        "S076"
+      ]
+    },
+    {
+      "id": "H017",
+      "query": "我今晚想吃一家中餐厅",
+      "expected_scene_ids": [
+        "S031"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S031"
+      ],
+      "anchor_hybrid": [
+        "S031"
+      ]
+    },
+    {
+      "id": "H018",
+      "query": "Could you bring the menu please",
+      "expected_scene_ids": [
+        "S034"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H019",
+      "query": "我不能吃花生酱",
+      "expected_scene_ids": [
+        "S037"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S037"
+      ],
+      "anchor_hybrid": [
+        "S037"
+      ]
+    },
+    {
+      "id": "H020",
+      "query": "这款食品什么时候过期",
+      "expected_scene_ids": [
+        "S050"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S050",
+        "S239"
+      ],
+      "anchor_hybrid": [
+        "S050",
+        "S239"
+      ]
+    },
+    {
+      "id": "H021",
+      "query": "I forgot my email password",
+      "expected_scene_ids": [
+        "S256"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S195"
+      ],
+      "anchor_hybrid": [
+        "S195"
+      ]
+    },
+    {
+      "id": "H022",
+      "query": "我准备创建一个新账户",
+      "expected_scene_ids": [
+        "S254"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S007"
+      ],
+      "anchor_hybrid": [
+        "S007"
+      ]
+    },
+    {
+      "id": "H023",
+      "query": "电脑连不上无线网",
+      "expected_scene_ids": [
+        "S258"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H024",
+      "query": "How do I protect my online privacy",
+      "expected_scene_ids": [
+        "S273"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S187"
+      ],
+      "anchor_hybrid": [
+        "S187"
+      ]
+    },
+    {
+      "id": "H025",
+      "query": "这个程序启动就闪退了",
+      "expected_scene_ids": [
+        "S275"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S019"
+      ],
+      "anchor_hybrid": [
+        "S019"
+      ]
+    },
+    {
+      "id": "H026",
+      "query": "我在做机器人路径规划",
+      "expected_scene_ids": [
+        "S284"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S284"
+      ],
+      "anchor_hybrid": [
+        "S284"
+      ]
+    },
+    {
+      "id": "H027",
+      "query": "想设计低功耗传感器",
+      "expected_scene_ids": [
+        "S288"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S288"
+      ],
+      "anchor_hybrid": [
+        "S288"
+      ]
+    },
+    {
+      "id": "H028",
+      "query": "Let's discuss network protocols",
+      "expected_scene_ids": [
+        "S289"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S167",
+        "S223",
+        "S245"
+      ],
+      "anchor_hybrid": [
+        "S167",
+        "S223",
+        "S245"
+      ]
+    },
+    {
+      "id": "H029",
+      "query": "Explain blockchain consensus",
+      "expected_scene_ids": [
+        "S292"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S104"
+      ],
+      "anchor_hybrid": [
+        "S104"
+      ]
+    },
+    {
+      "id": "H030",
+      "query": "我想学写前端网站",
+      "expected_scene_ids": [
+        "S296"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H031",
+      "query": "程序一直报错我不知道怎么排查",
+      "expected_scene_ids": [
+        "S297"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S019"
+      ],
+      "anchor_hybrid": [
+        "S019"
+      ]
+    },
+    {
+      "id": "H032",
+      "query": "Help me describe a software architecture",
+      "expected_scene_ids": [
+        "S298"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S110"
+      ],
+      "anchor_hybrid": [
+        "S110"
+      ]
+    },
+    {
+      "id": "H033",
+      "query": "我想研究训练数据里的过拟合",
+      "expected_scene_ids": [
+        "S279"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H034",
+      "query": "What makes neural nets generalize",
+      "expected_scene_ids": [
+        "S280"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H035",
+      "query": "我要让聊天机器人回答得更好",
+      "expected_scene_ids": [
+        "S278"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S012"
+      ],
+      "anchor_hybrid": [
+        "S012"
+      ]
+    },
+    {
+      "id": "H036",
+      "query": "构建大语言模型应用",
+      "expected_scene_ids": [
+        "S281"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S281"
+      ],
+      "anchor_hybrid": [
+        "S281"
+      ]
+    },
+    {
+      "id": "H037",
+      "query": "如何设计数据采集实验",
+      "expected_scene_ids": [
+        "S156"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S157",
+        "S156"
+      ],
+      "anchor_hybrid": [
+        "S157",
+        "S156"
+      ]
+    },
+    {
+      "id": "H038",
+      "query": "Where can I find peer reviewed papers",
+      "expected_scene_ids": [
+        "S152"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S168",
+        "S169"
+      ],
+      "anchor_hybrid": [
+        "S168",
+        "S169"
+      ]
+    },
+    {
+      "id": "H039",
+      "query": "我需要回应第二轮审稿意见",
+      "expected_scene_ids": [
+        "S169"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S169",
+        "S168"
+      ],
+      "anchor_hybrid": [
+        "S169",
+        "S168"
+      ]
+    },
+    {
+      "id": "H040",
+      "query": "我想申请一个实习岗位",
+      "expected_scene_ids": [
+        "S201"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S149"
+      ],
+      "anchor_hybrid": [
+        "S149"
+      ]
+    },
+    {
+      "id": "H041",
+      "query": "Could you help me polish my CV",
+      "expected_scene_ids": [
+        "S203"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H042",
+      "query": "用英语回答为什么换工作的面试题",
+      "expected_scene_ids": [
+        "S209"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S209"
+      ],
+      "anchor_hybrid": [
+        "S209"
+      ]
+    },
+    {
+      "id": "H043",
+      "query": "我该怎么跟老板谈涨工资",
+      "expected_scene_ids": [
+        "S224"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S214"
+      ],
+      "anchor_hybrid": [
+        "S214"
+      ]
+    },
+    {
+      "id": "H044",
+      "query": "会议结束后整理决议和行动项",
+      "expected_scene_ids": [
+        "S185"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S004"
+      ],
+      "anchor_hybrid": [
+        "S004"
+      ]
+    },
+    {
+      "id": "H045",
+      "query": "请帮我规划季度预算",
+      "expected_scene_ids": [
+        "S246"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S246"
+      ],
+      "anchor_hybrid": [
+        "S246"
+      ]
+    },
+    {
+      "id": "H046",
+      "query": "This supplier delivered the wrong items",
+      "expected_scene_ids": [
+        "S236"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H047",
+      "query": "和新客户沟通产品需求",
+      "expected_scene_ids": [
+        "S228"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S022"
+      ],
+      "anchor_hybrid": [
+        "S022"
+      ]
+    },
+    {
+      "id": "H048",
+      "query": "我突然开始胸口发紧",
+      "expected_scene_ids": [
+        "S301"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H049",
+      "query": "我想预约明天下午去看牙",
+      "expected_scene_ids": [
+        "S320"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S320"
+      ],
+      "anchor_hybrid": [
+        "S320"
+      ]
+    },
+    {
+      "id": "H050",
+      "query": "Could you explain my blood test result",
+      "expected_scene_ids": [
+        "S316"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S166"
+      ],
+      "anchor_hybrid": [
+        "S166"
+      ]
+    },
+    {
+      "id": "H051",
+      "query": "我晚上总是睡不着怎么办",
+      "expected_scene_ids": [
+        "S324"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H052",
+      "query": "我要练习羽毛球发球",
+      "expected_scene_ids": [
+        "S337"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S337"
+      ],
+      "anchor_hybrid": [
+        "S337"
+      ]
+    },
+    {
+      "id": "H053",
+      "query": "What is the admission fee for this museum",
+      "expected_scene_ids": [
+        "S122"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S120",
+        "S167"
+      ],
+      "anchor_hybrid": [
+        "S120",
+        "S167"
+      ]
+    },
+    {
+      "id": "H054",
+      "query": "我想与朋友和解",
+      "expected_scene_ids": [
+        "S396"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S376",
+        "S383"
+      ],
+      "anchor_hybrid": [
+        "S376",
+        "S383"
+      ]
+    },
+    {
+      "id": "H055",
+      "query": "Can you help me apologize politely",
+      "expected_scene_ids": [
+        "S387"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H056",
+      "query": "如何委婉拒绝朋友的邀请",
+      "expected_scene_ids": [
+        "S382"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [
+        "S016",
+        "S218"
+      ],
+      "anchor_hybrid": [
+        "S016",
+        "S218"
+      ]
+    },
+    {
+      "id": "H057",
+      "query": "请帮我比较两个产品的优缺点",
+      "expected_scene_ids": [
+        "S491"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H058",
+      "query": "What evidence supports this argument",
+      "expected_scene_ids": [
+        "S495"
+      ],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H059",
+      "query": "我希望客观地反驳他",
+      "expected_scene_ids": [
+        "S496"
+      ],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "candidate primary relevant scene",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H060",
+      "query": "A quantum superposition experiment",
+      "expected_scene_ids": [],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [
+        "S220",
+        "S222",
+        "S169"
+      ],
+      "anchor_hybrid": [
+        "S220",
+        "S222",
+        "S169"
+      ]
+    },
+    {
+      "id": "H061",
+      "query": "拉格朗日乘数法",
+      "expected_scene_ids": [],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H062",
+      "query": "形而上学是什么",
+      "expected_scene_ids": [],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [
+        "S024"
+      ],
+      "anchor_hybrid": [
+        "S024"
+      ]
+    },
+    {
+      "id": "H063",
+      "query": "What is dark matter",
+      "expected_scene_ids": [],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H064",
+      "query": "宏观经济模型里的通货膨胀",
+      "expected_scene_ids": [],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H065",
+      "query": "三角函数的恒等变换",
+      "expected_scene_ids": [],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H066",
+      "query": "ㅎㅇㅂㅈㄷ",
+      "expected_scene_ids": [],
+      "language": "mixed",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H067",
+      "query": "🍎🍎🍎",
+      "expected_scene_ids": [],
+      "language": "mixed",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H068",
+      "query": "000000000000",
+      "expected_scene_ids": [],
+      "language": "mixed",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H069",
+      "query": "???",
+      "expected_scene_ids": [],
+      "language": "mixed",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H070",
+      "query": "我想学高等数学",
+      "expected_scene_ids": [],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H071",
+      "query": "电磁场的麦克斯韦方程",
+      "expected_scene_ids": [],
+      "language": "zh",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [],
+      "anchor_hybrid": []
+    },
+    {
+      "id": "H072",
+      "query": "I need to learn calculus",
+      "expected_scene_ids": [],
+      "language": "en",
+      "review_status": "single_pass_editorial_unverified",
+      "label_scope": "direct_scene_only",
+      "reason": "out-of-taxonomy topic or noise; provisional abstention",
+      "baseline": [
+        "S110",
+        "S194"
+      ],
+      "anchor_hybrid": [
+        "S110",
+        "S194"
+      ]
+    }
+  ]
+}
