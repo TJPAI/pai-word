@@ -1,0 +1,129 @@
+{
+  "schema": "pai-scene500-baseline-diagnostic-v0.3",
+  "run_date": "2026-10-24",
+  "engine": "in-memory JS char(1,2,3)-gram binary TF-IDF + document nearest neighbors + per-scene max cosine",
+  "source_branch": "scene500-ai-training-pilot",
+  "training_file": "v0.2/weak-semantic-seeds.jsonl",
+  "evaluation_file": "v0.2/evaluation-draft.jsonl",
+  "training_weak_samples": 2158,
+  "evaluation_draft_samples": 61,
+  "positive_drafts": 49,
+  "unverified_empty_drafts": 12,
+  "feature_count": 12227,
+  "trained_model_persisted": false,
+  "gold_evaluation": false,
+  "metric_caveat": "Candidate labels are unreviewed. Empty labels include long-tail taxonomy gaps; not gold negatives. Values are diagnostics only.",
+  "threshold_sweep": [
+    {
+      "threshold": 0.15,
+      "hits_at5": 39,
+      "positive_count": 49,
+      "nonGoldEmptyRecommended": 8,
+      "empty_count": 12
+    },
+    {
+      "threshold": 0.25,
+      "hits_at5": 37,
+      "positive_count": 49,
+      "nonGoldEmptyRecommended": 5,
+      "empty_count": 12
+    },
+    {
+      "threshold": 0.35,
+      "hits_at5": 35,
+      "positive_count": 49,
+      "nonGoldEmptyRecommended": 1,
+      "empty_count": 12
+    },
+    {
+      "threshold": 0.45,
+      "hits_at5": 26,
+      "positive_count": 49,
+      "nonGoldEmptyRecommended": 1,
+      "empty_count": 12
+    },
+    {
+      "threshold": 0.55,
+      "hits_at5": 24,
+      "positive_count": 49,
+      "nonGoldEmptyRecommended": 1,
+      "empty_count": 12
+    }
+  ],
+  "selected_threshold_for_diagnostics": 0.35,
+  "probes": [
+    {
+      "query": "machine learning",
+      "predicted": [
+        {
+          "scene_id": "S187",
+          "score": 0.363
+        }
+      ]
+    },
+    {
+      "query": "深度学习",
+      "predicted": [
+        {
+          "scene_id": "S280",
+          "score": 0.754
+        }
+      ]
+    },
+    {
+      "query": "买机票",
+      "predicted": [
+        {
+          "scene_id": "S103",
+          "score": 1
+        }
+      ]
+    },
+    {
+      "query": "天文学",
+      "predicted": []
+    },
+    {
+      "query": "量子纠缠",
+      "predicted": []
+    },
+    {
+      "query": "asdfghjkl",
+      "predicted": []
+    },
+    {
+      "query": "😀😀😀",
+      "predicted": []
+    },
+    {
+      "query": "宏观经济学",
+      "predicted": []
+    },
+    {
+      "query": "微积分",
+      "predicted": [
+        {
+          "scene_id": "S064",
+          "score": 0.581
+        }
+      ]
+    },
+    {
+      "query": "机场安检",
+      "predicted": [
+        {
+          "scene_id": "S105",
+          "score": 0.5
+        }
+      ]
+    },
+    {
+      "query": "我想学AI",
+      "predicted": []
+    },
+    {
+      "query": "哲学",
+      "predicted": []
+    }
+  ]
+}
