@@ -140,8 +140,8 @@
     await installScene500Top100();
     if(window.PAI_SCENE500_TOP100_READY)await window.PAI_SCENE500_TOP100_READY;
     // Refresh count labels only after the entire Top100 dataset is ready.
-    if(typeof window.PAI_HOME_RECONCILE==='function')window.PAI_HOME_RECONCILE({rerank:true});
-    // Never rerank or replace the search draft during background data hydration.
+    if(typeof window.PAI_HOME_RECONCILE==='function')window.PAI_HOME_RECONCILE();
+    // Snapshot recommendation positions stay fixed until an explicit search.
    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
   })();
   // Inventory and audit are not required to present or use the home screen.
