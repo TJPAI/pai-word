@@ -10,7 +10,7 @@ export function validateTeachingCandidatePack(pack,{knownKuIds,knownSenseIds,kno
  if(!pack||typeof pack!=='object'||Array.isArray(pack))return {ok:false,errors:['invalid_pack'],accepted:[],quarantined:[]};
  if(pack.schema_version!=='pai-core20k-teaching-candidates-v1')errors.push('schema_version');
  if(!Array.isArray(pack.candidates))return {ok:false,errors:[...errors,'missing_candidates'],accepted:[],quarantined:[]};
- if(!(knownKuIds instanceof Set)||!(knownSenseIds instanceof Set)||!(knownHeadwordIds instanceof Set))errors.push('identity_sets_required');
+ if(!(knownKuIds instanceof Set)||!(knownSenseIds instanceof Set)||!(knownHeadwordIds instanceof Set))return {ok:false,errors:['identity_sets_required'],accepted:[],quarantined:pack.candidates.map((c,index)=>({index,ku_id:c?.ku_id,reasons:['identity_sets_required']})),total:pack.candidates.length};
  const seen=new Set(),accepted=[],quarantined=[];
  for(const [index,c] of pack.candidates.entries()){
   const reason=[];
