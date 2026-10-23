@@ -30,3 +30,9 @@ const bootToken=boot.match(token)?.[0];
 assert(bootToken&&html.includes(bootToken),'Preview cache tokens agree');
 console.log('PASS rating contract: scope, commit ordering, duplicate/version guards, batch recovery, cache token');
 console.log('LIMITATION: source contracts only; execute Safari and two-tab scenarios separately.');
+
+const previewDB=durable.match(/const NAME='([^']+)'/)?.[1];
+assert.equal(previewDB,'pai-word-preview-ku-durable-v2','Preview DB must have isolated name');
+assert(boot.includes("key.startsWith('pai-word-preview-v2-')"),'Reset must be scoped to preview');
+assert(!boot.includes("key.startsWith('pai-word-')"),'Reset must not clear all origin-wide PAI keys');
+console.log('PASS preview database namespace and scoped reset');
