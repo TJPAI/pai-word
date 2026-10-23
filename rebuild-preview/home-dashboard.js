@@ -164,10 +164,11 @@
   window.continueScene500=function(scene,difficulty='all'){
     // An unfinished, saved KU queue takes priority over opening a new scene.
     // Do not require difficulty/scene metadata to match: older sessions lack it.
-    const session=state.learningSession,cursor=window.PAI_LEARNING_CURSOR?.();
+    const session=state.learningSession,cursor=window.PAI_LEARNING_CURSOR?.(scene);
     const resumable=session?.queue?.length&&session.queue.every(k=>window.PAI_CORE?.byKU?.has(k));
     const bookmarked=cursor?.ku_id&&[...(session?.queue||[]),...(session?.completed||[])].includes(cursor.ku_id)&&window.PAI_CORE?.byKU?.has(cursor.ku_id);
-    if((resumable||bookmarked)&&typeof window.resumeLearning==='function')return window.resumeLearning();
+    if(window.PAI_RESUME_SCENE_BOOKMARK?.(scene))return;
+    if((resumable||bookmarked)&&typeof window.resumeLearning==='function' && (session?.scene500SceneId||state.selectedScene)===scene)return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
   // Update text in place rather than reassigning innerHTML on every count.
