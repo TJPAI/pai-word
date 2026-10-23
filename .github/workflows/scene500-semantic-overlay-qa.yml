@@ -1,0 +1,21 @@
+name: Scene500 semantic overlay QA
+on:
+  push:
+    branches: [scene500-recommendation-dev]
+    paths:
+      - 'scene500-recommendation/semantic-overlay-*.mjs'
+      - 'scene500-recommendation/semantic-overlay-*.json'
+      - '.github/workflows/scene500-semantic-overlay-qa.yml'
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run isolated overlay tests
+        run: |
+          node scene500-recommendation/semantic-overlay-validator.test.mjs
+          node scene500-recommendation/semantic-overlay-loader.test.mjs
