@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-reset-verified-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-reset-guarded-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -13,19 +13,27 @@
   if(!confirm('最后确认：这些测试数据无法恢复。是否重置为全新系统？'))return;
   const button=document.activeElement;if(button&&'disabled'in button)button.disabled=true;
   try{
-   await window.PAI_PERSISTENCE_FLUSH?.();
+   // Stop all future state writes in this document before deleting the database.
+   window.PAI_RESET_IN_PROGRESS=true;
+   window.PAI_SAVE_DEFERRED=true;
+   const settled=await window.PAI_PERSISTENCE_FLUSH?.();
+   if(settled?.some(item=>item.status==='rejected'))throw Error('尚有未完成的持久化写入');
+   window.PAI_KU_STORAGE_READY=false;
    window.PAI_KU_DURABLE_DB?.close();
    await new Promise((resolve,reject)=>{
     const req=indexedDB.deleteDatabase(window.PAI_KU_DURABLE_DB_NAME||'pai-word-preview-ku-durable-v2');
-    req.onsuccess=resolve;req.onerror=()=>reject(req.error||Error('数据库删除失败'));
-    req.onblocked=()=>reject(Error('数据库正在被其他页面使用，请先关闭其他 PAI Word 标签页'));
+    req.onsuccess=resolve;
+    req.onerror=()=>reject(req.error||Error('数据库删除失败'));
+    req.onblocked=()=>{window.PAI_RESET_BLOCKED=true};
    });
-   // Remove legacy backup loaded by preview-state.js before IndexedDB opens.
    localStorage.removeItem('pai-word-core20k-rebuild-preview-v21');
    for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
    for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
+   // Verify no stale legacy state can re-seed a newly initialized database.
+   if(localStorage.getItem('pai-word-core20k-rebuild-preview-v21')!==null)throw Error('旧学习数据仍存在');
+   sessionStorage.setItem('pai-word-preview-reset-check','1');
    location.replace(location.pathname+'?resetFresh='+Date.now());
-  }catch(error){alert('重置未完成：'+String(error?.message||error));if(button&&'disabled'in button)button.disabled=false}
+  }catch(error){alert('重置未完成：'+String(error?.message||error));window.PAI_RESET_IN_PROGRESS=false;window.PAI_SAVE_DEFERRED=false;if(button&&'disabled'in button)button.disabled=false}
  };
 
  // Read-only visual snapshot: never trust restored markup for actions or learning state.
