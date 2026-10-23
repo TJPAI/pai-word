@@ -50,9 +50,21 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
     pos:r.pos??null,aliases:r.aliases??[],source_version:r.source_version??version
    }))};
   }
+  // V0.10.1 evidence-compatible delivery exposes full terms[] rather than id/t/n/s.
+  // Do not replace each record's provenance source_version with the release version.
+  const releaseVersion=String(lexicon?.data_version??lexicon?.source_version??'');
+  const isV0101=releaseVersion==='0.10.1-evidence-compat';
+  if(isV0101){
+   if(lexicon?.integration_ready!==true||lexicon?.production_ready!==false||
+      lexicon?.terms?.length!==20000||lexicon?.contract_version!=='1.1')
+    throw Error('SCENE500_INVALID_V0101_DELIVERY');
+   if(lexicon.terms.some(t=>!t||typeof t.term_id!=='string'||!t.term_id||
+      typeof t.term!=='string'||typeof t.normalized_term!=='string'))
+    throw Error('SCENE500_INVALID_V0101_TERM');
+  }
   const engine=createScene500ContractAdapter({catalog,lexicon,associations});
   if(controller.signal.aborted)throw Error('SCENE500_ASSET_ABORTED');
-  return Object.freeze({...engine,mode:'hybrid'});
+  return Object.freeze({...engine,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false});
   })();
   return await Promise.race([work,abortPromise]);
  }catch(_err){
