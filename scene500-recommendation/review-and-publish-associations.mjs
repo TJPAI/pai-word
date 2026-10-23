@@ -1,6 +1,6 @@
 // Safe consolidation and explicit-review promotion of Scene500 lexical candidates.
 // Node: node scene500-recommendation/review-and-publish-associations.mjs lexicon.json catalog.json baseline.json reviews.json output.json
-// Reviews require exact identity, independent assessor, supporting evidence, and explicit approval.
+// Review records self-declare evidence; this tool validates structure, not authenticity of reviewers/evidence.
 // No candidate-only workset can ever become production automatically.
 import fs from 'node:fs';
 import {validateChineseLexiconContract,validateAssociations} from './contract-adapter.mjs';
@@ -45,10 +45,10 @@ for(const r of accepted.sort((a,b)=>a.term_id.localeCompare(b.term_id)||a.scene_
 const full={...base,links:augmented};
 validateAssociations({lexicon:lex,associations:full,catalog});
 const out={schema:'scene500-reviewed-association-release-v0.1',
- status:'REVIEWED_NOT_DEPLOYED',source_runtime:lex.data_version,
+ status:'REVIEW_CLAIMS_VALIDATED_NOT_CERTIFIED',source_runtime:lex.data_version,
  existing_links:base.links.length,approved_added:accepted.length,
  rejected:rejected.length,pending:pending.length,
  associations:full,
- warning:'Output is a locally verified release candidate; production deploy and independent semantic QA remain separate'};
+ warning:'Reviewer identity, evidence authenticity and production authorization are self-attested in input. This tool cannot independently certify them. Output must NOT be treated as production-approved or independently verified.'};
 fs.writeFileSync(outPath,JSON.stringify(out,null,2)+'\n');
 console.log(JSON.stringify({status:out.status,baseline:out.existing_links,approvedAdded:out.approved_added,total:full.links.length}));
