@@ -1,5 +1,5 @@
 // Explicitly opted-in experiment. Preserves baseline engine and keeps provenance visible.
-export function withExperimentalSceneExtension(base,{catalog,extension,enabled=false}={}){
+const hasNonNegatedOccurrence=(q,term)=>{\n let at=q.indexOf(term);\n while(at!==-1){\n  if(at===0||!/[不非无反未失]/u.test(q[at-1]))return true;\n  at=q.indexOf(term,at+1);\n }\n return false;\n};\nexport function withExperimentalSceneExtension(base,{catalog,extension,enabled=false}={}){
  if(!enabled)return base;
  if(extension?.schema!=='scene500-experimental-compound-extension-v0.1'||
     extension.status!=='EXPERIMENTAL_NOT_APPROVED'||extension.requires_opt_in!==true||
@@ -37,7 +37,7 @@ export function withExperimentalSceneExtension(base,{catalog,extension,enabled=f
    const map=new Map(baseline.results.map(x=>[x.sceneId,{...x}]));
    const matched=[];
    for(const term of terms){
-    if(!q.includes(term)||matched.some(parent=>parent.includes(term)))continue;
+    if(!hasNonNegatedOccurrence(q,term)||matched.some(parent=>parent.includes(term)))continue;
     matched.push(term);if(matched.length>=10)break;
    }
    for(const term of matched)for(const p of index.get(term)){
