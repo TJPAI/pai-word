@@ -94,7 +94,7 @@
     // Do not invent a default study target from an asynchronously hydrated scene index.
     const continueId=display?.id||null,continueDifficulty=session?.difficulty||(last?searchApi()?.recentDifficulty?.(last.id)||'all':'all');
     const resume=!!session;
-    const status=`今日新词 ${b.dailyCompleted}/${b.dailyLimit} · 每轮 ${b.roundLimit}${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
+    const status=`今日新学 ${b.dailyCompleted} 词 · 每批 ${b.roundLimit} KU${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
     return `<div class="home-dashboard"><div class="home-shell">
       <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p><small id="pai-home-source-sha" style="display:block;margin-top:3px;font-size:10px;opacity:.45;line-height:1.3;overflow-wrap:anywhere" aria-label="当前部署提交"></small></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
