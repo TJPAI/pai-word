@@ -1061,16 +1061,16 @@
   // Compute on an isolated draft; never mutate live memory before persistence succeeds.
   let before,draft;
   try{before=state;draft=structuredClone(state)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分状态复制失败',e);PAI_TAP_FLOW.resumeFailedCommit();return}
-  window.PAI_SAVE_DEFERRED=true;state=draft;
+  window.PAI_SAVE_DEFERRED=true;
   try{
-  const {repeat}=projectRatedKU(state,before,k,grade,now,
+  const {repeat}=projectRatedKU(draft,before,k,grade,now,
     PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt));
-  rebuildDailyAssignments();
-  const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
-  PAI_TAP_FLOW.syncPage();state.learningSession.currentAttempt={...attempt,committed:true};
-  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;try{save()}catch(cacheError){try{console.warn('Durable KU committed; optional local backup failed',cacheError)}catch{}}}
+  // Rebuild after the durable commit, not while the draft is unpublished.
+  const qi=draft.learningSession.queue.indexOf(k);if(qi>=0)draft.learningSession.queue.splice(qi,1);draft.learningSession.completed=draft.learningSession.completed.filter(x=>x!==k);if(repeat)draft.learningSession.queue.splice(Math.min(4,draft.learningSession.queue.length),0,k);else draft.learningSession.completed.push(k);
+  draft.learningSession.currentAttempt={...attempt,committed:true};
+  if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:draft,attemptId:attempt.attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;state=draft;window.PAI_SAVE_DEFERRED=false;rebuildDailyAssignments();try{save()}catch(cacheError){try{console.warn('Durable KU committed; optional local backup failed',cacheError)}catch{}}}
   else {window.PAI_SAVE_DEFERRED=false;throw Error('IndexedDB unavailable: refusing unsafe KU write')};
-  }catch(e){window.PAI_SAVE_DEFERRED=false;state=before;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
+  }catch(e){window.PAI_SAVE_DEFERRED=false;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
   PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
