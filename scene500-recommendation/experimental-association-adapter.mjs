@@ -1,5 +1,13 @@
 // Explicitly opted-in experiment. Preserves baseline engine and keeps provenance visible.
-const hasNonNegatedOccurrence=(q,term)=>{\n let at=q.indexOf(term);\n while(at!==-1){\n  if(at===0||!/[不非无反未失]/u.test(q[at-1]))return true;\n  at=q.indexOf(term,at+1);\n }\n return false;\n};\nexport function withExperimentalSceneExtension(base,{catalog,extension,enabled=false}={}){
+const hasNonNegatedOccurrence=(q,term)=>{
+ let at=q.indexOf(term);
+ while(at!==-1){
+  if(at===0||!/[不非无反未失]/u.test(q[at-1]))return true;
+  at=q.indexOf(term,at+1);
+ }
+ return false;
+};
+export function withExperimentalSceneExtension(base,{catalog,extension,enabled=false}={}){
  if(!enabled)return base;
  if(extension?.schema!=='scene500-experimental-compound-extension-v0.1'||
     extension.status!=='EXPERIMENTAL_NOT_APPROVED'||extension.requires_opt_in!==true||
