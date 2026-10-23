@@ -26,7 +26,7 @@ async function initialize(){
  }).catch(error=>{lastError=String(error);return 'rule_fallback'});
  return instance;
 }
-export async function recommend(query,{difficulty='all',inventory,limit=500}={}){
+export async function recommend(query,{difficulty='all',inventory,eligibleSceneIds=null,limit=500}={}){
  if(!readyPromise)readyPromise=initialize().catch(error=>{readyPromise=null;lastError=String(error);throw error});
  await readyPromise;
  // Give a cache-warm hybrid a brief chance, but never keep the search page
@@ -36,8 +36,9 @@ export async function recommend(query,{difficulty='all',inventory,limit=500}={})
   try{await Promise.race([hybridReady,new Promise(resolve=>{timeout=setTimeout(resolve,350)})])}
   finally{clearTimeout(timeout)}
  }
+ const allowed=eligibleSceneIds===null?null:new Set(eligibleSceneIds);
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
-  typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
+  (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
  );
  const key=instance.mode+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
  const cached=queryCache.get(key);
