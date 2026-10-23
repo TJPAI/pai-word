@@ -2,18 +2,19 @@
 import {createScene500Recommender} from './engine.mjs';
 import {createScene500ContractAdapter} from './contract-adapter.mjs';
 import {createChineseV094Index} from './zh-v094-runtime-bridge.mjs';
-const format=(base)=>Object.freeze({
+import {mergeSubjectCandidates} from './subject-intent.mjs';
+const format=(base,catalog)=>Object.freeze({
  version:'scene500-rule-fallback-v0.1',
  mode:'rule_fallback',
  search(query,options={}){
   const all=base.search(query,{...options,limit:500}).results.map((r,i)=>({...r,rank:i+1,matchedTerms:[],reason:['rule_match']}));
   const n=Number.isFinite(Number(options.limit))?Math.max(0,Math.min(500,Math.floor(Number(options.limit)))):20;
-  return {query:String(query??''),total:all.length,results:all.slice(0,n)};
+  return mergeSubjectCandidates({query:String(query??''),total:all.length,results:all},query,{catalog,eligibleSceneIds:options.eligibleSceneIds??null,limit:n});
  },
  getPage:(snapshot,pageIndex=0,pageSize=5)=>base.getPage(snapshot,pageIndex,pageSize)
 });
 export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal,onDiagnostic}={}){
- const fallback=format(createScene500Recommender({catalog}));
+ const fallback=format(createScene500Recommender({catalog}),catalog);
  if(!lexiconUrl||!associationUrl)return fallback;
  const controller=new AbortController();
  const externalAbort=()=>controller.abort();
