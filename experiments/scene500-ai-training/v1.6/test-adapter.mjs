@@ -22,4 +22,13 @@ const f=await fallback.recommend({query:'hello'});
 assert.equal(f.modeUsed,'rules_fallback');assert.deepEqual(f.recommendations.map(x=>x.sceneId),['S002','S001']);
 const bad={...index,taxonomyFingerprint:'wrong'};
 assert.throws(()=>validateIdentity({...catalog,taxonomyFingerprint:fp},bad));
+
+// Fail-open regression: index network failure must not hide the existing recommender.
+const indexFail=createScene500AI({loadCatalog:async()=>catalog,loadIndex:async()=>{throw Error('offline')},fallback:async()=>['S001']});
+assert.equal((await indexFail.recommend({query:'早晨'})).modeUsed,'rules_fallback');
+// Fail-open regression: E5 inference failure must fall back.
+const inferenceFail=createScene500AI({loadCatalog:async()=>catalog,loadIndex:async()=>index,embedQuery:async()=>{throw Error('WASM failure')},fallback:async()=>['S002']});
+const degraded=await inferenceFail.recommend({query:'旅行'});
+assert.equal(degraded.modeUsed,'rules_fallback');
+assert.equal(degraded.recommendations[0].sceneId,'S002');
 console.log('PASS adapter schema, 500 identity, SHA-256, index, ranking, lazy load, abort, fallback, dedup');
