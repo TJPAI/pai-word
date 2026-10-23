@@ -1017,7 +1017,11 @@
    const sessionTotal=Math.max(0,Number.isFinite(Number(s.total))?Math.floor(Number(s.total)):0);
    const sessionCompleted=Math.min(new Set((s.completed||[]).filter(k=>window.PAI_CORE?.byKU?.has(k))).size,sessionTotal);
   if(!u)return `<div class="screen study-screen">${top(s.title,'完成')}<div class="done"><div><h2>本轮回忆已完成</h2><p>${sessionCompleted} 项已通过本轮回忆，共作答 ${s.attempts} 次。<br>本轮错词已重新出现；长期记忆仍需后续复习。</p>${(s.kind==='topic'||s.kind==='proposed')?`<p>当前场景候选共 ${state.topicStudyTotal||0} 个 KU；每轮最多 ${TOPIC_BATCH_SIZE} 个。</p><button class="primary-btn" onclick="${s.kind==='proposed'?'continueProposedScene()':'continueTopicStudy()'}">继续本场景</button>`:''}${s.kind==='scene'?`<p>此分类还有 ${unlearned(state.selectedScene).length} 个未接触词。</p><button class="primary-btn" onclick="openScene('${state.selectedScene}')">再学 10 个</button>`:''}<button class="secondary-btn" onclick="goScenes()">返回首页</button></div></div></div>`;
-  const progress=`已完成 ${sessionCompleted} / ${sessionTotal}`;
+  // This counter describes the assigned round, not the whole Scene500 catalog.
+  const sceneId=s.kind==='scene'?(s.scene500SceneId||state.selectedScene):null;
+  const sceneKUs=sceneId&&typeof allUnits==='function'
+    ?new Set((allUnits(sceneId)||[]).map(u=>u?.k||unitKey(u.w,u.sid)).filter(Boolean)).size:null;
+  const progress=`本轮已完成 ${sessionCompleted}/${sessionTotal}${sceneKUs!==null?` · 场景词池 ${sceneKUs} KU`:''}`;
   if(loading||error)return `<div class="screen study-screen learning-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div><div class="recall-correction" role="group" aria-label="词卡加载中，按钮暂不可用"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
   const selectedGrade=PAI_TAP_FLOW.selectedGradeFor(u.k);
