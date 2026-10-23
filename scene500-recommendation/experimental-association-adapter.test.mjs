@@ -22,3 +22,11 @@ test('reject any unsafe or falsely promoted association extension',()=>{
  assert.throws(()=>withExperimentalSceneExtension(base,{catalog,extension:{...ext,lexicon_version:'0.9.4-rc.2'},enabled:true}));
  assert.throws(()=>withExperimentalSceneExtension(base,{catalog,extension:{...ext,candidates:[edge,{...edge,term_id:'zh_other',scene_id:'S001'}]},enabled:true}),/AMBIGUOUS_EXPERIMENTAL_TERM/);
 });
+
+test('negating compound cannot inherit positive base association',()=>{
+ const inverted={...edge,term_id:'zh_negative',term:'不可再生能源',anchor_term:'可再生能源'};
+ const other={...edge,term_id:'zh_positive',term:'太阳能电池',anchor_term:'电池'};
+ const engine=withExperimentalSceneExtension(base,{catalog,extension:{...ext,candidates:[inverted,other]},enabled:true});
+ assert.equal(engine.search('不可再生能源').results.some(x=>x.experimental),false);
+ assert.equal(engine.search('太阳能电池').results.some(x=>x.experimental),true);
+});
