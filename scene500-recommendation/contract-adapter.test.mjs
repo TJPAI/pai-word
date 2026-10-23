@@ -30,3 +30,17 @@ test('bad association references and duplicate term IDs fail closed',()=>{
  assert.throws(()=>validateChineseLexiconContract({...lexicon,terms:[...lexicon.terms,lexicon.terms[0]]}),/INVALID_CHINESE_TERM/);
  assert.throws(()=>validateAssociations({lexicon,catalog,associations:{...associations,links:[{...associations.links[0],scene_id:'S999'}]}}),/INVALID_ASSOCIATION/);
 });
+
+test('ambiguous normalized lookup does not merge distinct term_id scene postings',()=>{
+ const terms=[
+  {term_id:'zh-a',term:'甲词',normalized_term:'同形词',frequency_rank:null,frequency_score:null,pos:null,aliases:[],source_version:'test-v1'},
+  {term_id:'zh-b',term:'乙词',normalized_term:'同形词',frequency_rank:null,frequency_score:null,pos:null,aliases:[],source_version:'test-v1'}
+ ];
+ const links=[
+  {term_id:'zh-a',scene_id:'S155',score:1,rank:1,evidence_type:'fixture',confidence:1,association_version:'collision-fixture'},
+  {term_id:'zh-b',scene_id:'S494',score:1,rank:1,evidence_type:'fixture',confidence:1,association_version:'collision-fixture'}
+ ];
+ const engine=createScene500ContractAdapter({catalog,lexicon:{source_version:'test-v1',terms},associations:{association_version:'collision-fixture',links}});
+ const result=engine.search('同形词',{eligibleSceneIds:['S155','S494'],limit:20});
+ assert.ok(result.results.every(r=>!r.reason.includes('term_scene_association')),'ambiguous lookup must not blend unrelated term IDs');
+});
