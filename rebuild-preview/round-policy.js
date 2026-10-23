@@ -69,6 +69,7 @@
 
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
+    if(window.PAI_RESUME_SCENE_BOOKMARK?.(scene))return;
     // Opening the same scene must not recreate its unfinished KU queue.
     const pending=state.learningSession;
     if(pending?.kind==='scene'&&Array.isArray(pending.queue)&&pending.queue.length&&
