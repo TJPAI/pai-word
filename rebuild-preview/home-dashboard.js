@@ -36,7 +36,7 @@
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
     if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
-    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String((Math.max(0,Math.floor(Number(s.page)||0))*5)+i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}${s.resultIds.length>5?`<div class="scene-pages" style="display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0"><button type="button" onclick="PAI_SCENE_PAGE(-1)" ${(s.page||0)<=0?'disabled':''}>上一页</button><span>${(s.page||0)+1} / ${Math.ceil(s.resultIds.length/5)}</span><button type="button" onclick="PAI_SCENE_PAGE(1)" ${((s.page||0)+1)*5>=s.resultIds.length?'disabled':''}>下一页</button></div>`:''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" data-scene-id="${esc(r.id)}" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String((Math.max(0,Math.floor(Number(s.page)||0))*5)+i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span>${countHtml(r)}</button>`).join('')}${s.resultIds.length>5?`<div class="scene-pages" style="display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0"><button type="button" onclick="PAI_SCENE_PAGE(-1)" ${(s.page||0)<=0?'disabled':''}>上一页</button><span>${(s.page||0)+1} / ${Math.ceil(s.resultIds.length/5)}</span><button type="button" onclick="PAI_SCENE_PAGE(1)" ${((s.page||0)+1)*5>=s.resultIds.length?'disabled':''}>下一页</button></div>`:''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
     const rows=searchApi()?.recent?.()||[];if(!rows.length)return'';
@@ -130,6 +130,24 @@
   window.continueScene500=function(scene,difficulty='all'){
     if(canResumeScene(scene)&&state.learningSession.scene500Difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
+  };
+  window.PAI_HOME_ON_TOP100_READY=function(){
+    if(state.view!=='scenes')return;
+    const app=document.getElementById('app'),s=ui();
+    if(!app?.querySelector('.home-dashboard'))return;
+    const draft=app.querySelector('#scene-query');
+    // Never wipe a live Chinese IME draft just because background data arrived.
+    for(const btn of app.querySelectorAll('.scene-result[data-scene-id]')){
+      const id=btn.getAttribute('data-scene-id');
+      const next=countHtml(inventory(id,s.difficulty));
+      const old=btn.querySelector('.scene-result-count');
+      if(!next)continue;
+      if(old){
+        if(old.outerHTML!==next)old.outerHTML=next;
+      }else btn.insertAdjacentHTML('beforeend',next);
+    }
+    if(!s.resultIds?.length&&s.query)window.restoreScene500Recommendations?.();
+    else if(!s.query&&!draft?.value)render();
   };
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
   window.render=function(){if(state.view==='scenes'){document.getElementById('app').innerHTML=renderHome();return}return baseRender()};
