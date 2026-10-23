@@ -60,7 +60,7 @@ if(localRoot){
 }
 const started=performance.now();
 const MODEL=localRoot?'multilingual-e5-small':'Xenova/multilingual-e5-small';
-const device=process.env.SCENE500_E5_DEVICE||'wasm';
+const device=process.env.SCENE500_E5_DEVICE||'cpu';
 const extractor=await pipeline('feature-extraction',MODEL,{device,dtype:'q8'});
 const loadedMs=Math.round(performance.now()-started);
 async function vector(text) {
@@ -98,17 +98,18 @@ if(!cacheHit){
   for(let j=0;j<chunk.length;j++)
     sceneEmbeds.push(Float32Array.from(output.data.slice(j*vectorDim,(j+1)*vectorDim)));
   if((i+chunk.length)%100===0||i+chunk.length===passages.length)
-    process.stderr.write('encoded '+(i+chunk.length)+'/500 scenes\\n');
+    process.stderr.write('encoded '+(i+chunk.length)+'/500 scenes\n');
  }
  if(cachePath)writeFileSync(cachePath,JSON.stringify({key:cacheKey,ids:catalogIds,embeddings:sceneEmbeds.map(a=>[...a])}));
 }
 const dim=sceneEmbeds[0].length;
-if(!sceneEmbeds.every(x=>x.length===dim))throw Error('VECTOR_DIMENSION_MISMATCH');
+if(dim!==384||!sceneEmbeds.every(x=>x.length===dim&&[...x].every(Number.isFinite)))throw Error('VECTOR_DIMENSION_OR_VALUE_MISMATCH');
 function dot(a,b){let n=0;for(let i=0;i<a.length;i++)n+=a[i]*b[i];return n}
 const evaluated=[];
 for(const example of cases) {
  const t0=performance.now();
  const q=await vector('query: '+example.query);
+ if(q.length!==dim||![...q].every(Number.isFinite))throw Error('QUERY_VECTOR_INVALID:'+example.id);
  const matches=sceneEmbeds.map((v,i)=>({id:catalogIds[i],score:dot(v,q)}))
    .sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id)).slice(0,10);
  evaluated.push({id:example.id,query:example.query,language:example.language,
