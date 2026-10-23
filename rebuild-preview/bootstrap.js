@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-reset-guarded-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-reset-qa-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -108,6 +108,20 @@
    }
    state.view='scenes';state.revealed=false;
    window.PAI_KU_DURABLE_DB=durableDB;
+   if(sessionStorage.getItem('pai-word-preview-reset-check')==='1'){
+    const actual=await window.PAI_KU_DURABLE.read(durableDB);
+    const actualSettings=await window.PAI_KU_DURABLE.readSettings(durableDB);
+    const actualHome=await window.PAI_KU_DURABLE.readHome(durableDB);
+    const checks={
+     records:Object.keys(actual?.snapshot?.records||{}).length===0,
+     settings:!actualSettings||Object.keys(actualSettings).length===0,
+     home:!actualHome||Object.keys(actualHome).length===0,
+     legacy:localStorage.getItem('pai-word-core20k-rebuild-preview-v21')===null
+    };
+    window.PAI_LAST_RESET_QA={passed:Object.values(checks).every(Boolean),checks,at:Date.now()};
+    sessionStorage.removeItem('pai-word-preview-reset-check');
+    if(!window.PAI_LAST_RESET_QA.passed)console.error('PAI_RESET_QA_FAILED',window.PAI_LAST_RESET_QA);
+   }
    window.PAI_KU_STORAGE_READY=true;
    mark('storageReady');timings.storageDurationMs=Math.round(performance.now()-storageStarted);
   }catch(storageError){
