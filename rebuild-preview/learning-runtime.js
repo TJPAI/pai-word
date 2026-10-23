@@ -503,28 +503,43 @@
  // Presentation bookmark is independent of the grading queue and SRS.
  // In-memory on navigation; durable only on exit or when Safari backgrounds.
  const LEARNING_CURSOR_KEY='pai-word-learning-cursor-v1';
- let learningCursor=null;
- try{const old=JSON.parse(localStorage.getItem(LEARNING_CURSOR_KEY)||'null');
-   if(old?.schema===1&&typeof old.ku_id==='string')learningCursor=old;
+ const SCENE_CURSORS_KEY='pai-word-scene-cursors-v2';
+ let learningCursor=null,sceneCursors={};
+ try{
+   const stored=JSON.parse(localStorage.getItem(SCENE_CURSORS_KEY)||'null');
+   if(stored?.schema===2&&stored.scenes&&typeof stored.scenes==='object')sceneCursors=stored.scenes;
+   const old=JSON.parse(localStorage.getItem(LEARNING_CURSOR_KEY)||'null');
+   if(old?.schema===1&&typeof old.ku_id==='string'&&typeof old.scene_id==='string'){
+     learningCursor=old;
+     if(!sceneCursors[old.scene_id])sceneCursors[old.scene_id]=old;
+   }
  }catch(_){}
  function captureLearningCursor(){
    const shown=typeof browsedUnit!=='undefined'&&browsedUnit||unit();
    if(!shown?.k||state.view!=='learning')return;
    const scene=state.learningSession?.scene500SceneId||state.selectedScene||null;
+   if(!scene)return;
+   const session=state.learningSession||{};
    learningCursor={schema:1,ku_id:shown.k,scene_id:scene,
      page:PAI_TAP_FLOW.pageState()==='ANSWER'?'answer':'question',
-     mode:state.autoBrowseEnabled?'auto':'normal',updated_at:Date.now()};
+     mode:state.autoBrowseEnabled?'auto':'normal',updated_at:Date.now(),
+     queue:Array.isArray(session.queue)?[...session.queue]:[],
+     completed:Array.isArray(session.completed)?[...session.completed]:[],
+     title:session.title||''};
+   sceneCursors[scene]=learningCursor;
  }
  function flushLearningCursor(){
    if(state.view==='learning')captureLearningCursor();
    if(!learningCursor)return;
-   try{localStorage.setItem(LEARNING_CURSOR_KEY,JSON.stringify(learningCursor))}
-   catch(error){window.PAI_LEARNING_CURSOR_ERROR=String(error)}
+   try{
+     localStorage.setItem(SCENE_CURSORS_KEY,JSON.stringify({schema:2,scenes:sceneCursors,last_scene_id:learningCursor.scene_id}));
+     localStorage.setItem(LEARNING_CURSOR_KEY,JSON.stringify(learningCursor));
+   }catch(error){window.PAI_LEARNING_CURSOR_ERROR=String(error)}
  }
- window.PAI_LEARNING_CURSOR=()=>learningCursor&&{...learningCursor};
+ window.PAI_LEARNING_CURSOR=(scene)=>{const c=scene?sceneCursors[scene]:learningCursor;return c&&{...c}};
+ window.PAI_RECENT_LEARNING_SCENE=()=>learningCursor?.scene_id||null;
  window.addEventListener('pagehide',flushLearningCursor);
  document.addEventListener('visibilitychange',()=>{if(document.hidden)flushLearningCursor()});
-
  const unlearned=id=>{const units=core.byScene.get(id)||[],introduced=new Set(units.filter(u=>state.records[u.k]).map(u=>u.w.rank)),seen=new Set();return units.filter(u=>{if(introduced.has(u.w.rank)||seen.has(u.w.rank))return false;seen.add(u.w.rank);return true})};
  function persist(strict=false){const ok=save();if(strict&&ok===false)throw new Error('学习状态未保存：浏览器存储空间不足');return ok}
  function current(){return active?unit():null}window.currentUnit=current;
@@ -804,6 +819,27 @@
      }
    });
    window.PAI_AUTOBROWSE?.restart();
+ };
+ window.PAI_RESUME_SCENE_BOOKMARK=(scene)=>{
+   const cursor=sceneCursors[scene];
+   if(!cursor?.ku_id||!byKey(cursor.ku_id))return false;
+   const existing=state.learningSession;
+   if(existing?.kind==='scene'&&(existing.scene500SceneId||state.selectedScene)===scene&&
+     [...(existing.queue||[]),...(existing.completed||[])].includes(cursor.ku_id)){
+     learningCursor=cursor;state.selectedScene=scene;window.resumeLearning();return true;
+   }
+   const queue=Array.isArray(cursor.queue)?cursor.queue.filter(byKey):[];
+   const completed=Array.isArray(cursor.completed)?cursor.completed.filter(byKey):[];
+   if(![...queue,...completed].includes(cursor.ku_id))queue.unshift(cursor.ku_id);
+   if(!queue.length&&!completed.length)return false;
+   state.selectedScene=scene;
+   state.learningSession={date:date(),kind:'scene',title:cursor.title||SCENES[scene]+' · 继续学习',
+     queue:[...new Set(queue)],completed:[...new Set(completed)],total:new Set([...queue,...completed]).size,
+     seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null,
+     scene500SceneId:scene,scene500Difficulty:state.scene500DifficultyByScene?.[scene]||'all'};
+   learningCursor=cursor;
+   // Save scene switch atomically with the active session; never alter SRS records.
+   persist();window.resumeLearning();return true;
  };
  window.selectLearningScene=id=>{state.selectedScene=id;rebuildDailyAssignments();persist();render()};
  window.goScenes=()=>{flushLearningCursor();window.PAI_AUTOBROWSE?.stop();previousUnit=null;browseIndex=null;++browseToken;PAI_TAP_FLOW.cancel();++token;active=false;loading=false;error='';state.view='scenes';state.revealed=false;if('speechSynthesis'in window)speechSynthesis.cancel();persist();render()};
