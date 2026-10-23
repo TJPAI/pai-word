@@ -82,3 +82,16 @@ test('external abort after request begins guarantees fallback',async()=>{
  const engine=await request;
  assert.equal(engine.mode,'rule_fallback');
 });
+
+test('V0.10.1 asset fallback emits an optional diagnostic instead of silently claiming hybrid',async()=>{
+ const diagnostics=[];
+ const engine=await loadScene500WithChineseLexicon({
+  catalog,lexiconUrl:'/lexicon',associationUrl:'/links',
+  fetchImpl:async url=>jsonResponse(url==='/lexicon'?{source_version:'broken',terms:[]}:associations),
+  onDiagnostic:x=>diagnostics.push(x)
+ });
+ assert.equal(engine.mode,'rule_fallback');
+ assert.equal(diagnostics.length,1);
+ assert.equal(diagnostics[0].code,'SCENE500_ASSET_FALLBACK');
+ assert.ok(diagnostics[0].reason.includes('INVALID_CHINESE_LEXICON'));
+});
