@@ -45,7 +45,13 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
    const catalog=await loadCatalog();
    const fp=await fingerprintIdentity(catalog);
    const normalized={...catalog,taxonomyFingerprint:fp};
-   const index=typeof loadIndex==='function'?await loadIndex():null;
+   let index=null;
+   if(typeof loadIndex==='function'){
+    try{index=await loadIndex()}catch(error){
+     if(typeof fallback!=='function')throw error;
+     // An unavailable model/index must not block the existing rule recommender.
+    }
+   }
    if(index)validateIdentity(normalized,index);
    state={catalog:normalized,index};
   })().finally(()=>{pending=null});
@@ -64,6 +70,7 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
    const allowed=eligibleSceneIds?new Set(await eligibleSceneIds()):null;
    const items=[];
    if(index&&typeof embedQuery==='function'){
+    try{
     const q=await embedQuery('query: '+query.trim(),{signal,locale});
     assertActive(signal);
     if(!Array.isArray(q)||q.length!==index.scenes[0].vector.length||q.some(v=>!Number.isFinite(v)))throw Error('Invalid query vector');
@@ -75,6 +82,11 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
     const recommendations=items.slice(0,topK).map((x,i)=>({...x,rank:i+1,displayName:catalog.scenes[x.sceneId].name}));
     // Cosine is NOT calibrated for abstention. Do not guess no_match from score.
     return response(recommendations.length?'ok':'no_match',recommendations,'cosine_similarity','e5',catalog.taxonomyFingerprint,start);
+    }catch(error){
+     if(error?.name==='AbortError'||signal?.aborted)throw abortError();
+     if(typeof fallback!=='function')throw error;
+     // Runtime inference failure degrades to existing rules, not empty results.
+    }
    }
    if(typeof fallback==='function'){
     const ids=await fallback(query.trim(),{topK,locale,signal});assertActive(signal);
