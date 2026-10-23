@@ -829,9 +829,9 @@
   // Preload without changing the current card: a user rating can still win the race.
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning'||!active||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))return false;
    PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
-   browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;captureLearningCursor();
+   browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
    render();
-   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
+   PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);captureLearningCursor();render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
   }catch(_){return false}
  };
  // Auto-browse is presentation-only: never score or commit a KU.
