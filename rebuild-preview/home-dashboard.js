@@ -78,7 +78,11 @@
     if(state.view!=='scenes')return;
     const current=ui(),maximum=Math.max(0,Math.ceil((current.resultIds||[]).length/5)-1);
     const page=Math.max(0,Math.min(maximum,(Number(current.page)||0)+step));
-    if(page!==(current.page||0)){state.sceneSearchUi={...current,page};save();render()}
+    if(page!==(current.page||0)){
+      state.sceneSearchUi={...current,page};save();
+      const section=document.querySelector('.scene-results');
+      if(section)section.outerHTML=resultHtml();else render();
+    }
   };
   async function runSceneSearch(q,difficulty,{restore=false}={}){
     const ticket=++searchSerial;
