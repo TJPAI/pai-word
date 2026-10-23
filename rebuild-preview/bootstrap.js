@@ -4,6 +4,25 @@
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
  mark('bootstrap');
+ // Test-only destructive reset. Clear app state after pending writes settle.
+ window.PAI_RESET_TEST_SYSTEM=async()=>{
+  if(!confirm('重置系统将永久删除本浏览器内 PAI Word 的所有学习记录、复习进度、设置及首页快照。确定继续？'))return;
+  if(!confirm('最后确认：这些测试数据无法恢复。是否重置为全新系统？'))return;
+  const button=document.activeElement;if(button&&'disabled'in button)button.disabled=true;
+  try{
+   await window.PAI_PERSISTENCE_FLUSH?.();
+   window.PAI_KU_DURABLE_DB?.close();
+   await new Promise((resolve,reject)=>{
+    const req=indexedDB.deleteDatabase('pai-word-ku-durable-v1');
+    req.onsuccess=resolve;req.onerror=()=>reject(req.error||Error('数据库删除失败'));
+    req.onblocked=()=>reject(Error('数据库正在被其他页面使用，请先关闭其他 PAI Word 标签页'));
+   });
+   for(const key of Object.keys(localStorage))if(key==='pai-word-core20k-rebuild-preview-v21'||key==='pai-word-home-visual-v1'||key.startsWith('pai-word-'))localStorage.removeItem(key);
+   for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-'))sessionStorage.removeItem(key);
+   location.reload();
+  }catch(error){alert('重置未完成：'+String(error?.message||error));if(button&&'disabled'in button)button.disabled=false}
+ };
+
  // Read-only visual snapshot: never trust restored markup for actions or learning state.
  const SNAPSHOT_KEY='pai-word-home-visual-v1';
  let snapshotVisible=false;
