@@ -14,6 +14,10 @@ const lexicon=raw.terms?.length===20000&&raw.terms[0]?.id&&raw.terms[0]?.t?
   term_id:t.id,term:t.t,normalized_term:t.n,aliases:[],source_version:String(raw.version??'0.9.4-rc.2')
  }))}:raw;
 const associations=read(linkFile);
+// A 20k membership match does not establish release compatibility.
+// Distinct source versions must be reported rather than silently presented as a synced release.
+const sourceLexiconVersion=String(raw.version??raw.source_version??'');
+const associationSourceVersion=String(associations.source?.lexicon_version??associations.source?.lexiconVersion??'');
 validateChineseLexiconContract(lexicon);
 validateAssociations({lexicon,associations,catalog});
 const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
@@ -76,6 +80,7 @@ const result={
  status:'CANDIDATES_NOT_APPROVED',catalog_version:catalog.schema,
  lexicon_version:lexicon.source_version,association_version:associations.association_version,
  baseline:{terms:lexicon.terms.length,links:associations.links.length,linkedTerms:counts.size},
+ provenance:{sourceLexiconVersion,associationSourceVersion,versionMatch:associationSourceVersion?associationSourceVersion===sourceLexiconVersion:null},
  proposed:{links:proposals.length,newTerms:new Set(proposals.filter(p=>!counts.has(p.term_id)).map(p=>p.term_id)).size},
  exclusions:{ambiguousTermIds:ambiguous.length,unlinkedWithoutExactEvidence:insufficient.length},
  method:'indexed exact profile evidence; single-character keys only when at most 3 scenes; no automatic promotion',
