@@ -62,7 +62,13 @@
   function resultHtml(){
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
-    if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
+    if(!rows.length){
+      const reason=window.PAI_SCENE500_SEARCH_REPORT?.query===s.query?window.PAI_SCENE500_SEARCH_REPORT?.emptyReason:null;
+      const msg=reason==='filtered_no_playable_scene'
+        ?'找到了语义相关场景，但当前难度下尚无可直接学习的已审核词汇。请切换难度，或浏览场景目录。'
+        :'没有找到相关的可学习场景。可尝试补充具体动作，例如“阅读物理论文”或“分析经济数据”。';
+      return '<div class="scene-search-empty" role="status">'+esc(msg)+'</div>';
+    }
     return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String((Math.max(0,Number(s.page)||0))*5+i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="pai-count-slot" data-scene-id="${esc(r.id)}">${countHtml(r)}</span></button>`).join('')}${s.resultIds.length>5?`<div class="scene-pages"><button onclick="PAI_SCENE_PAGE(-1)" ${(s.page||0)===0?'disabled':''}>上一页</button><span>${(s.page||0)+1} / ${Math.ceil(s.resultIds.length/5)}</span><button onclick="PAI_SCENE_PAGE(1)" ${((s.page||0)+1)*5>=s.resultIds.length?'disabled':''}>下一页</button></div>`:''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
