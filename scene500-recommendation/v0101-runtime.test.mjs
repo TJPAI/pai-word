@@ -65,6 +65,8 @@ test('real loader defaults experimental extension off and requires valid opt-in'
  assert.equal(enabled.engine.experimentalExtension,'ENABLED_UNVERIFIED');
  assert.ok(enabled.engine.search('测试扩展词').results.some(x=>x.experimental));
  const invalid=await configure(true,{...extension,production_ready:true});
- assert.equal(invalid.engine.mode,'rule_fallback');
- assert.equal(invalid.diagnostics[0].code,'SCENE500_ASSET_FALLBACK');
+ assert.equal(invalid.engine.mode,'hybrid');
+ assert.equal(invalid.engine.experimentalExtension,undefined);
+ assert.equal(invalid.diagnostics[0].code,'SCENE500_EXPERIMENTAL_EXTENSION_REJECTED');
+ assert.equal(invalid.engine.search('洗漱',{limit:5}).results[0].sceneId,'S002');
 });
