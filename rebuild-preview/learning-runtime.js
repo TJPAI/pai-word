@@ -192,9 +192,14 @@
       const voice=speechVoices.find(v=>String(v.lang).toLowerCase()===lang.toLowerCase())||speechVoices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
       const u=new SpeechSynthesisUtterance(String(text));u.lang=lang;u.rate=Math.min(10,rate*(Number(state.speechSpeed)||100)/100);u.voice=voice;window.__paiUtterance=u;
       let ended=false;const done=()=>{if(ended||id!==audioGeneration)return;ended=true;clearAudioWatchdog();activeSpeech=false;notifyAudioIdle();onDone?.()};
-      u.onend=done;u.onerror=done;
+      // Bounded diagnostic trace; an API call is not proof of audible playback.
+      const trace={requestId:id,kuId:window.getVisibleLearningUnit?.()?.k||null,word:String(text),at:Date.now(),status:'requested',voice:voice?.name||null};
+      const history=window.PAI_AUDIO_TRACE||(window.PAI_AUDIO_TRACE=[]);history.push(trace);if(history.length>60)history.shift();
+      u.onstart=()=>{if(id===audioGeneration){trace.status='started';trace.startedAt=Date.now()}};
+      u.onend=()=>{trace.status=trace.startedAt?'ended':'ended-without-start';trace.endedAt=Date.now();done()};
+      u.onerror=e=>{trace.status='error';trace.error=String(e?.error||'unknown');trace.endedAt=Date.now();done()};
       if(synth.paused)synth.resume();
-      try{synth.speak(u);const scaledRate=Math.max(.5,Math.min(2,Number(u.rate)||1));const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));audioWatchdog=setTimeout(()=>{if(id!==audioGeneration||ended)return;console.warn('Speech synthesis completion timed out');if(synth.speaking||synth.pending)synth.cancel();done()},maxWait)}catch(e){console.warn('Speech synthesis failed',e);done()}
+      try{synth.speak(u);const scaledRate=Math.max(.5,Math.min(2,Number(u.rate)||1));const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));audioWatchdog=setTimeout(()=>{if(id!==audioGeneration||ended)return;trace.status=trace.startedAt?'timeout-after-start':'timeout-before-start';trace.endedAt=Date.now();console.warn('Speech synthesis completion timed out');if(synth.speaking||synth.pending)synth.cancel();done()},maxWait)}catch(e){trace.status='exception';trace.error=String(e);trace.endedAt=Date.now();console.warn('Speech synthesis failed',e);done()}
     }
   };
   // iOS Safari can return from suspension with a stuck speech queue or stale voices.
