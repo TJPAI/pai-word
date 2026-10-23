@@ -792,7 +792,8 @@
  window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
  window.resumeLearning=()=>{
    previousUnit=null;active=true;state.view='learning';PAI_TAP_FLOW.syncPage();
-   const bookmark=learningCursor,session=state.learningSession,keys=cycleKeys();
+   const session=state.learningSession,scene=session?.scene500SceneId||state.selectedScene;
+   const bookmark=sceneCursors[scene]?.scene_id===scene?sceneCursors[scene]:null,keys=cycleKeys();
    const index=bookmark?.ku_id?keys.indexOf(bookmark.ku_id):-1;
    const target=index>=0?byKey(bookmark.ku_id):null;
    // Resolve the visible bookmarked KU BEFORE any initial render or audio.
