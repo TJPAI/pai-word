@@ -1,0 +1,67 @@
+{
+  "version": "V0.10.11-chat-ai-two-layer-adjudication",
+  "parent": "V0.10.10-chat-ai-21sample",
+  "method": "AI linguistic analysis of exact-member-checked cases; not independent lexicographic or contextual corpus verification",
+  "policy": {
+    "membership": "never remove or add on AI judgment alone",
+    "recognition": "query-time multiword spans may be recognized without creating lexicon members",
+    "frequency": "source-specific evidence not general-frequency ranking",
+    "id": "existing term_id immutable",
+    "release": "quality overlay only; Scene500 runtime untouched"
+  },
+  "in_master": {
+    "provisional_protect": [
+      "可以",
+      "通过",
+      "算法",
+      "量子计算"
+    ],
+    "contextual_phrase_review": [
+      "人有",
+      "中有",
+      "人来",
+      "我要",
+      "他会",
+      "这是",
+      "一种",
+      "两个"
+    ],
+    "ambiguous_form_review": [
+      "这会"
+    ]
+  },
+  "absent": {
+    "colloquial_scene_candidates": [
+      "伙计",
+      "救命",
+      "住手"
+    ],
+    "everyday_candidates": [
+      "箱子"
+    ],
+    "domain_candidates": [
+      "民警",
+      "北京时间",
+      "肝",
+      "肿"
+    ]
+  },
+  "special_cautions": {
+    "这会": "区别‘这会儿/这会’时间表达与‘这+会’组合，不能一概拆分",
+    "通过": "可以作动词或介词，字符串可拆分不代表非词",
+    "肿": "可能作形容/语素；医学检索需要上下文而不是直接收为一般词项",
+    "北京时间": "多词专名/时间表达的查询识别不等于必须进入20K成员",
+    "救命": "作为独立交际功能表达值得后续语料确认，不能因没入库就删去召回",
+    "我要": "组合短语通常不是一个独立词项，但可用于查询意图解析"
+  },
+  "quality_gates": {
+    "reviewed_21": 21,
+    "in_master_13": 13,
+    "absent_8": 8,
+    "externally_verified": 0,
+    "approved_membership_changes": 0,
+    "approved_id_changes": 0,
+    "source_specific_general_rank_changes": 0
+  },
+  "next_required": "For every proposed member change attach independent attested tokenized sentences + cross-domain frequency + lexical/source provenance; then run migration and Scene500 association checks"
+}
