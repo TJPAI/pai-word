@@ -1,0 +1,18 @@
+{
+  "version": "0.7",
+  "status": "evaluation_script_committed_not_executed",
+  "source_branch": "scene500-ai-training-pilot",
+  "model": "Xenova/multilingual-e5-small",
+  "model_weights_downloaded": false,
+  "inference_executed": false,
+  "source_catalog_path": "scene500-recommendation/catalog-v0.2.json",
+  "evaluation_path": "experiments/scene500-ai-training/v0.6/unseen-evaluation-draft.jsonl",
+  "evaluation_cases": 72,
+  "positive_drafts": 59,
+  "abstention_drafts": 13,
+  "baseline_hits_at5": 18,
+  "baseline_positive_count": 59,
+  "embedding_metrics": null,
+  "model_card": "https://huggingface.co/Xenova/multilingual-e5-small",
+  "minimum_gate": "independently labeled and sealed holdout, calibrated abstention, mobile runtime evidence"
+}
