@@ -91,7 +91,15 @@
     if(!k)return;const p=ensureProgress(),d=ensureDaily();
     if(!p.completed.includes(k))p.completed.push(k);
     // Count only KUs originally assigned as new, before saving their SRS records.
-    if(d.newWordKeys.includes(k)&&!p.newWordsCompleted.includes(k))p.newWordsCompleted.push(k);
+    const candidate=findUnitByKey(k);
+    const isPreviouslyUnintroduced=!!candidate?.w&&!wordIntroduced(candidate.w);
+    // Scene500-selected new words must count toward the same daily word quota,
+    // even when they were not in the legacy daily assignment list.
+    // One headword counts once across its KU senses and across different scenes.
+    const lemma=u=>u?.w?.rank??u?.w?.w??null;
+    const wordId=lemma(candidate);
+    const countedWord=wordId!==null&&p.newWordsCompleted.some(done=>lemma(findUnitByKey(done))===wordId);
+    if((d.newWordKeys.includes(k)||isPreviouslyUnintroduced)&&!countedWord&&p.newWordsCompleted.length<state.newPerDay)p.newWordsCompleted.push(k);
     if(d.reinforcementKeys.includes(k)&&!p.reinforcementCompleted.includes(k))p.reinforcementCompleted.push(k);
     oldSave();
   };
