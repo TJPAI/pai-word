@@ -872,13 +872,18 @@
    const index=Math.max(0,all.indexOf(visible)),start=Math.floor(index/size)*size;
    return all.slice(start,start+size);
  };
+ let pendingRatedBatchDirection=0;
+ const takePendingRatedBatch=()=>{const d=pendingRatedBatchDirection;pendingRatedBatchDirection=0;return d};
  window.PAI_CHANGE_BATCH=async(direction)=>{
    if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress){recordNavigationFailure('batch','batch-guard');return false;}
-   // A vertical gesture during the rating countdown commits the grade first.
-   // Do not cancel the rating and silently lose the user's answer.
+   // Commit the rated KU first, then perform the requested batch change.
    if(PAI_TAP_FLOW.snapshot().phase==='answer'){
-     recordNavigationFailure('batch','rating-countdown-await-commit');
-     return false;
+     pendingRatedBatchDirection=direction;
+     return PAI_TAP_FLOW.commitEarly(1);
+   }
+   if(PAI_TAP_FLOW.snapshot().phase==='committing'){
+     if(pendingRatedBatchDirection)pendingRatedBatchDirection=direction;
+     recordNavigationFailure('batch','rating-write-in-progress');return false;
    }
    const scene=state.learningSession?.scene500SceneId||state.selectedScene;
    if(!scene)return false;
@@ -1080,8 +1085,8 @@
    window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return;
   }
   window.PAI_SAVE_DEFERRED=true;
-  try{await commitRatedDraft(draft,attemptId)}catch(e){window.PAI_SAVE_DEFERRED=false;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
-  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();if(PAI_TAP_FLOW.takeHoldAfterRating()){PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection()||1;PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(direction);window.PAI_AUTOBROWSE?.restart()
+  try{await commitRatedDraft(draft,attemptId)}catch(e){window.PAI_SAVE_DEFERRED=false;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;takePendingRatedBatch();PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
+  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.PAI_CHANGE_BATCH(ratedBatch);return}if(PAI_TAP_FLOW.takeHoldAfterRating()){PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection()||1;PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(direction);window.PAI_AUTOBROWSE?.restart()
  };
  window.PAI_RELOAD_KU_AFTER_CONFLICT=async()=>{
   if(!window.PAI_KU_STORAGE_READY)return false;
@@ -1113,10 +1118,10 @@
   await commitRatedDraft(draft,attempt.attemptId);
   // Assignment refresh is non-critical after durable commit: it must never mark a successful rating as failed.
   try{rebuildDailyAssignments()}catch(refreshError){console.warn('Post-commit assignment refresh failed',refreshError)}
-  }catch(e){window.PAI_SAVE_DEFERRED=false;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
+  }catch(e){window.PAI_SAVE_DEFERRED=false;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);takePendingRatedBatch();PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
-  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
+  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();await window.PAI_CHANGE_BATCH(ratedBatch);return}if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
  };
  function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
  function home(){
