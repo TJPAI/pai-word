@@ -9,18 +9,19 @@ const gold=JSON.parse(fs.readFileSync(goldFile,'utf8'));
 const preds=JSON.parse(fs.readFileSync(predFile,'utf8'));
 if(!Array.isArray(gold)||!Array.isArray(preds))throw Error('EXPECTED_ARRAYS');
 const byId=new Map(preds.map(p=>[p.id,p]));
+if(preds.some(p=>typeof p.id!=='string'||!p.id))throw Error('INVALID_PREDICTION_ID');
 if(byId.size!==preds.length)throw Error('DUPLICATE_PREDICTION_ID');
 const seen=new Set();
 let hit=0,mrr=0,ndcg=0,kwTP=0,kwFP=0,kwFN=0,kwCases=0;
 for(const item of gold){
- if(!item.id||seen.has(item.id))throw Error('DUPLICATE_OR_EMPTY_GOLD_ID');
+ if(typeof item.id!=='string'||!item.id||seen.has(item.id))throw Error('DUPLICATE_OR_EMPTY_GOLD_ID');
  seen.add(item.id);
  const target=item.relevantSceneIds;
- if(!Array.isArray(target)||!target.length||new Set(target).size!==target.length)throw Error('INVALID_GOLD '+item.id);
+ if(!Array.isArray(target)||!target.length||target.some(x=>typeof x!=='string'||!/^S(?:00[1-9]|0[1-9][0-9]|[1-4][0-9]{2}|500)$/.test(x))||new Set(target).size!==target.length)throw Error('INVALID_GOLD '+item.id);
  const p=byId.get(item.id);
  if(!p||!Array.isArray(p.results))throw Error('MISSING_PREDICTION '+item.id);
  const top=p.results.slice(0,5).map(x=>typeof x==='string'?x:x.sceneId);
- if(top.some(x=>typeof x!=='string')||new Set(top).size!==top.length)throw Error('INVALID_RANKING '+item.id);
+ if(top.some(x=>typeof x!=='string'||!/^S(?:00[1-9]|0[1-9][0-9]|[1-4][0-9]{2}|500)$/.test(x))||new Set(top).size!==top.length)throw Error('INVALID_RANKING '+item.id);
  const rel=new Set(target);
  const hits=top.filter(x=>rel.has(x)).length;
  hit+=hits/rel.size; // graded multi-intent recall, macro-averaged
@@ -32,7 +33,7 @@ for(const item of gold){
   if(!Array.isArray(item.keywords)||!Array.isArray(p.keywords))throw Error('MISSING_KEYWORDS '+item.id);
   kwCases++;
   const a=new Set(item.keywords),b=new Set(p.keywords);
-  if(a.size!==item.keywords.length||b.size!==p.keywords.length)throw Error('DUPLICATE_KEYWORDS '+item.id);
+  if([...a,...b].some(x=>typeof x!=='string'||!x.trim())||a.size!==item.keywords.length||b.size!==p.keywords.length)throw Error('DUPLICATE_KEYWORDS '+item.id);
   for(const x of b){if(a.has(x))kwTP++;else kwFP++;}
   for(const x of a)if(!b.has(x))kwFN++;
  }
