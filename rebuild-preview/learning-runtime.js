@@ -811,7 +811,7 @@
      if(entrySpoken)window.PAI_AUDIO?.play(target.w.w);
      void ensureUnits([target.k]).then(()=>{
        if(request!==browseToken||!active||state.view!=='learning'||browsedUnit?.k!==target.k)return;
-       loading=false;PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),state.revealed);
+       loading=false;PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),state.revealed,entrySpoken);
        render();captureLearningCursor();
        if(!entrySpoken&&state.autoPronounce.question&&!document.hidden&&state.revealed===false)speak(target.w.w);
        window.PAI_AUTOBROWSE?.restart();
