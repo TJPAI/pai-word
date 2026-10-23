@@ -77,14 +77,17 @@
    return json('data/scene500-playable-membership-v1.json');
   }
  }
- try{
-  await script('rebuild-preview/ku-durable-store.js');
-  // Read-only Scene500 fetches may overlap IndexedDB restore; attach rejection handlers
-  // immediately so a slow storage operation never leaves an unhandled rejection.
+ // Start read-only network requests before the first dependency script loads.
+ // The data is applied only after catalog initialization and durable-state restore.
   const sceneInputsReady=Promise.all([
    json('data/scene500-ranked-membership-policy-v1.json'),
    sceneMembership()
   ]).then(values=>({values}),error=>({error}));
+ try{
+  await script('rebuild-preview/ku-durable-store.js');
+  // Read-only Scene500 fetches may overlap IndexedDB restore; attach rejection handlers
+  // immediately so a slow storage operation never leaves an unhandled rejection.
+
   let durableDB=null;
   try{
    durableDB=await window.PAI_KU_DURABLE.open();
