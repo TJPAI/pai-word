@@ -10,6 +10,7 @@ test('offline expansion preserves term IDs, excludes ambiguous keys and existing
  try{
   const lex={source_version:'fixture',terms:[
    {term_id:'t1',term:'洗衣服',normalized_term:'洗衣服',aliases:[],source_version:'fixture'},
+   {term_id:'t4',term:'猫',normalized_term:'猫',aliases:[],source_version:'fixture'},
    {term_id:'t2',term:'碰撞甲',normalized_term:'冲突',aliases:[],source_version:'fixture'},
    {term_id:'t3',term:'碰撞乙',normalized_term:'冲突',aliases:[],source_version:'fixture'}
   ]};
@@ -21,7 +22,9 @@ test('offline expansion preserves term IDs, excludes ambiguous keys and existing
   const result=JSON.parse(fs.readFileSync(out,'utf8'));
   assert.equal(result.status,'CANDIDATES_NOT_APPROVED');
   assert.ok(result.candidates.some(c=>c.term_id==='t1'&&c.scene_id==='S006'));
-  assert.ok(result.candidates.every(c=>c.term_id==='t1'));
+  assert.ok(result.candidates.some(c=>c.term_id==='t4'&&c.scene_id==='S015'));
+  assert.ok(result.candidates.every(c=>['t1','t4'].includes(c.term_id)));
+  assert.equal(new Set(result.candidates.map(c=>c.term_id+'|'+c.scene_id)).size,result.candidates.length);
   assert.equal(result.exclusions.ambiguousTermIds,2);
   assert.ok(result.candidates.every(c=>c.status==='candidate_review_only'));
  }finally{fs.rmSync(dir,{recursive:true,force:true});}
