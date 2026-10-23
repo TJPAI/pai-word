@@ -121,7 +121,10 @@
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
     const difficulty=document.getElementById('scene-difficulty')?.value||'all';
-    void runSceneSearch(q,difficulty);
+    void runSceneSearch(q,difficulty).then(()=>{
+      if(state.view==='scenes'&&q&&ui().query===q)
+        requestAnimationFrame(()=>document.querySelector('.scene-results,.scene-search-empty')?.scrollIntoView({block:'nearest',behavior:'smooth'}));
+    });
   };
   window.refreshScene500Difficulty=function(difficulty){
     const s=ui(),q=(document.getElementById('scene-query')?.value||s.query||'').trim();
