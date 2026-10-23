@@ -1,0 +1,863 @@
+{
+  "schema": "scene500-semantic-overrides-v1",
+  "status": "EDITORIAL_CANDIDATE_NOT_E5_VALIDATED",
+  "canonicalSource": "scene500-recommendation/catalog-v0.2.json",
+  "preserveIdentity": true,
+  "scenes": {
+    "S401": {
+      "name": "邮局",
+      "description": "寄送信件包裹、购买邮票、填写邮寄地址和查询物流",
+      "query_intents": [
+        "寄快递",
+        "邮寄包裹"
+      ],
+      "boundary": "不是网购下单"
+    },
+    "S402": {
+      "name": "银行柜台",
+      "description": "在银行网点办理存取款、汇款和柜台业务",
+      "query_intents": [
+        "银行柜台",
+        "取现金"
+      ],
+      "boundary": "不是开设新账户"
+    },
+    "S403": {
+      "name": "开银行账户",
+      "description": "申请新银行账户、提交身份证明并了解账户类型和费用",
+      "query_intents": [
+        "开户",
+        "开储蓄账户"
+      ],
+      "boundary": "不是日常柜台取款"
+    },
+    "S404": {
+      "name": "政府办事窗口",
+      "description": "到政府服务中心咨询政策、排队取号和提交办事材料",
+      "query_intents": [
+        "政务大厅",
+        "政府办事"
+      ],
+      "boundary": "不是银行柜台"
+    },
+    "S405": {
+      "name": "申请证件",
+      "description": "申请或补办身份证件、护照和许可文件并查询办理进度",
+      "query_intents": [
+        "办护照",
+        "证件补办"
+      ],
+      "boundary": "不是签署一般合同"
+    },
+    "S406": {
+      "name": "警察报案",
+      "description": "向警方报告盗窃、诈骗或其他案件并提供案情证据",
+      "query_intents": [
+        "报案",
+        "警察局做笔录"
+      ],
+      "boundary": "不是紧急报警求救"
+    },
+    "S407": {
+      "name": "失物招领",
+      "description": "报告遗失物品、查询失物招领处并认领物品",
+      "query_intents": [
+        "丢钱包",
+        "寻找失物"
+      ],
+      "boundary": "不是刑事报案"
+    },
+    "S408": {
+      "name": "报警求助",
+      "description": "遭遇即时危险时联系警方或紧急热线，说明位置与紧急情况",
+      "query_intents": [
+        "紧急报警",
+        "call police"
+      ],
+      "boundary": "不是事后报案"
+    },
+    "S409": {
+      "name": "消防与紧急疏散",
+      "description": "识别火警、使用消防设施并按照逃生路线疏散",
+      "query_intents": [
+        "火灾逃生",
+        "消防演练"
+      ],
+      "boundary": "不是普通公共安全提示"
+    },
+    "S410": {
+      "name": "法律咨询",
+      "description": "向律师询问法律权利、责任、程序和法律文件含义",
+      "query_intents": [
+        "找律师",
+        "法律问题"
+      ],
+      "boundary": "不是签署文件动作"
+    },
+    "S411": {
+      "name": "签署文件",
+      "description": "阅读文件条款、确认身份、签字盖章和保存签署副本",
+      "query_intents": [
+        "签合同",
+        "电子签名"
+      ],
+      "boundary": "不是专门的租房合同谈判"
+    },
+    "S412": {
+      "name": "租房合同",
+      "description": "讨论租约期限、租金、押金、违约责任和续租条款",
+      "query_intents": [
+        "租赁合同",
+        "租约条款"
+      ],
+      "boundary": "不是寻找房源"
+    },
+    "S413": {
+      "name": "房屋租赁",
+      "description": "寻找出租房、看房、与房东联系、申请租住和交接钥匙",
+      "query_intents": [
+        "找房租房",
+        "看出租房"
+      ],
+      "boundary": "不是合同条款细读"
+    },
+    "S414": {
+      "name": "物业管理",
+      "description": "联系物业处理维修、公共设施、物业费和住户投诉",
+      "query_intents": [
+        "物业费",
+        "报修物业"
+      ],
+      "boundary": "不是水电账户开户"
+    },
+    "S415": {
+      "name": "水电开户",
+      "description": "申请开通或转移住宅水电燃气账户、抄表与缴费",
+      "query_intents": [
+        "开通电费账户",
+        "水电过户"
+      ],
+      "boundary": "不是物业维修"
+    },
+    "S416": {
+      "name": "公共图书馆",
+      "description": "办理借书证、查找图书、借还书和预约图书馆资源",
+      "query_intents": [
+        "借书",
+        "图书馆办证"
+      ],
+      "boundary": "不是阅读小说内容"
+    },
+    "S417": {
+      "name": "社区服务",
+      "description": "了解社区活动、居民服务、邻里支持和公共设施",
+      "query_intents": [
+        "社区中心",
+        "居民服务"
+      ],
+      "boundary": "不是政府证件办理"
+    },
+    "S418": {
+      "name": "投票与公共事务",
+      "description": "了解选民登记、投票流程、选举和社区公共议题",
+      "query_intents": [
+        "选举投票",
+        "选民登记"
+      ],
+      "boundary": "不是新闻阅读"
+    },
+    "S419": {
+      "name": "慈善与志愿服务",
+      "description": "参与志愿活动、捐赠物资或资金并协调公益服务",
+      "query_intents": [
+        "做义工",
+        "慈善捐赠"
+      ],
+      "boundary": "不是普通朋友聚会"
+    },
+    "S420": {
+      "name": "宗教与文化场所礼仪",
+      "description": "参观宗教和文化场所时遵守服饰、行为和参观礼仪",
+      "query_intents": [
+        "寺庙礼仪",
+        "教堂参观"
+      ],
+      "boundary": "不是节日庆典"
+    },
+    "S421": {
+      "name": "新闻与社会事件",
+      "description": "阅读和讨论新闻报道、时事背景与社会事件",
+      "query_intents": [
+        "时事新闻",
+        "社会热点"
+      ],
+      "boundary": "不是发表正式论证"
+    },
+    "S422": {
+      "name": "公共安全提示",
+      "description": "理解安全标志、警示信息和公共场所安全建议",
+      "query_intents": [
+        "安全告示",
+        "公共警报"
+      ],
+      "boundary": "不是火灾紧急疏散"
+    },
+    "S423": {
+      "name": "消费者权益",
+      "description": "了解退货退款、保修、商品质量和消费者法定权利",
+      "query_intents": [
+        "消费者投诉",
+        "商品维权"
+      ],
+      "boundary": "不是公共服务投诉"
+    },
+    "S424": {
+      "name": "保险理赔",
+      "description": "发生损失后提交保险索赔、证明材料并跟踪赔付",
+      "query_intents": [
+        "保险索赔",
+        "理赔申请"
+      ],
+      "boundary": "不是购买保险"
+    },
+    "S425": {
+      "name": "投诉公共服务",
+      "description": "对交通、政务或公共设施服务提出投诉并跟踪处理",
+      "query_intents": [
+        "投诉公交",
+        "政务投诉"
+      ],
+      "boundary": "不是商品消费维权"
+    },
+    "S428": {
+      "name": "请求许可",
+      "description": "询问是否被允许做某事，征求对方同意或授权",
+      "query_intents": [
+        "我可以吗",
+        "征求许可"
+      ],
+      "boundary": "不是普通请求帮助"
+    },
+    "S429": {
+      "name": "给予许可",
+      "description": "明确允许他人进行某项行为并说明条件或限制",
+      "query_intents": [
+        "你可以",
+        "批准许可"
+      ],
+      "boundary": "不是请求许可"
+    },
+    "S430": {
+      "name": "提出请求",
+      "description": "礼貌请求他人完成动作或提供物品与信息",
+      "query_intents": [
+        "请你做",
+        "提出要求"
+      ],
+      "boundary": "不是询问行为许可"
+    },
+    "S431": {
+      "name": "接受请求",
+      "description": "答应他人的请求并确认自己会执行的事项",
+      "query_intents": [
+        "好的我来",
+        "答应帮忙"
+      ],
+      "boundary": "不是接受活动邀请"
+    },
+    "S432": {
+      "name": "拒绝请求",
+      "description": "礼貌拒绝他人的要求并说明原因或替代方案",
+      "query_intents": [
+        "不能帮忙",
+        "拒绝要求"
+      ],
+      "boundary": "不是拒绝聚会邀请"
+    },
+    "S433": {
+      "name": "提出建议",
+      "description": "针对问题推荐方案、做法或选择并解释理由",
+      "query_intents": [
+        "我建议",
+        "给建议"
+      ],
+      "boundary": "不是提出强制请求"
+    },
+    "S434": {
+      "name": "接受建议",
+      "description": "认可他人的建议并说明采纳后的安排",
+      "query_intents": [
+        "采纳建议",
+        "听你的建议"
+      ],
+      "boundary": "不是同意一般观点"
+    },
+    "S435": {
+      "name": "反对建议",
+      "description": "对他人提出的方案表达异议并解释风险或替代选择",
+      "query_intents": [
+        "不赞成方案",
+        "反对提议"
+      ],
+      "boundary": "不是反驳抽象论点"
+    },
+    "S436": {
+      "name": "表达观点",
+      "description": "就话题陈述个人看法、态度与立场",
+      "query_intents": [
+        "我认为",
+        "表达意见"
+      ],
+      "boundary": "不是证据论证"
+    },
+    "S437": {
+      "name": "同意",
+      "description": "明确表示赞同对方说法、判断或立场",
+      "query_intents": [
+        "我同意",
+        "赞同观点"
+      ],
+      "boundary": "不是接受具体建议"
+    },
+    "S439": {
+      "name": "比较与对比",
+      "description": "按相同维度比较两个对象的共同点和不同点",
+      "query_intents": [
+        "比较差异",
+        "对比两个东西"
+      ],
+      "boundary": "不是专门权衡利弊"
+    },
+    "S440": {
+      "name": "解释原因",
+      "description": "说明事件发生的原因、动机或理由",
+      "query_intents": [
+        "为什么",
+        "解释缘由"
+      ],
+      "boundary": "不是描述结果"
+    },
+    "S441": {
+      "name": "描述结果",
+      "description": "说明行动或事件产生的后果、产出与影响",
+      "query_intents": [
+        "最终结果",
+        "造成什么后果"
+      ],
+      "boundary": "不是解释原因"
+    },
+    "S442": {
+      "name": "举例",
+      "description": "用具体事例支持或说明抽象观点和概念",
+      "query_intents": [
+        "举个例子",
+        "for example"
+      ],
+      "boundary": "不是定义术语"
+    },
+    "S444": {
+      "name": "确认理解",
+      "description": "复述要点、询问是否理解正确并确认信息一致",
+      "query_intents": [
+        "我理解得对吗",
+        "确认意思"
+      ],
+      "boundary": "不是纠正事实错误"
+    },
+    "S445": {
+      "name": "纠正信息",
+      "description": "指出事实、数字或表述中的错误并给出正确信息",
+      "query_intents": [
+        "更正错误",
+        "纠正说法"
+      ],
+      "boundary": "不是一般澄清误会"
+    },
+    "S446": {
+      "name": "总结",
+      "description": "提炼长篇内容的主要信息、结论和关键点",
+      "query_intents": [
+        "概括要点",
+        "总结文章"
+      ],
+      "boundary": "不是逐句转述"
+    },
+    "S447": {
+      "name": "转述",
+      "description": "用自己的话重新表达他人原话或文本内容",
+      "query_intents": [
+        "换句话说",
+        "paraphrase"
+      ],
+      "boundary": "不是提炼总结"
+    },
+    "S448": {
+      "name": "推测",
+      "description": "根据有限线索猜测可能发生的情况或原因",
+      "query_intents": [
+        "我猜",
+        "推测原因"
+      ],
+      "boundary": "不是确定事实"
+    },
+    "S449": {
+      "name": "表达可能性",
+      "description": "用也许、可能、大概等表达不确定的概率判断",
+      "query_intents": [
+        "也许会",
+        "可能发生"
+      ],
+      "boundary": "不是表达确定性"
+    },
+    "S450": {
+      "name": "表达确定性",
+      "description": "用肯定、必然、确信等表达明确判断和信心",
+      "query_intents": [
+        "我确定",
+        "肯定会"
+      ],
+      "boundary": "不是不确定猜测"
+    },
+    "S451": {
+      "name": "天气",
+      "description": "描述当前气温、晴雨、风力、湿度和体感天气",
+      "query_intents": [
+        "今天天气",
+        "下雨了"
+      ],
+      "boundary": "不是未来天气预报"
+    },
+    "S452": {
+      "name": "天气预报",
+      "description": "查看未来几天降雨、温度、风速和天气预警预测",
+      "query_intents": [
+        "明天天气",
+        "未来一周预报"
+      ],
+      "boundary": "不是当前天气"
+    },
+    "S453": {
+      "name": "季节",
+      "description": "讨论春夏秋冬、季节变化及季节性活动",
+      "query_intents": [
+        "四季",
+        "春天秋天"
+      ],
+      "boundary": "不是长期气候变化"
+    },
+    "S454": {
+      "name": "气候变化",
+      "description": "讨论全球变暖、温室气体、长期气候趋势和影响",
+      "query_intents": [
+        "全球变暖",
+        "climate change"
+      ],
+      "boundary": "不是每日天气"
+    },
+    "S455": {
+      "name": "自然灾害",
+      "description": "讨论各类自然灾害的预防、影响、救援和灾后恢复",
+      "query_intents": [
+        "灾害预警",
+        "自然灾害"
+      ],
+      "boundary": "不是特定地震知识"
+    },
+    "S456": {
+      "name": "地震",
+      "description": "讨论地震震级、震源、避震、余震和震后安全",
+      "query_intents": [
+        "地震避险",
+        "earthquake"
+      ],
+      "boundary": "不是洪水"
+    },
+    "S457": {
+      "name": "洪水",
+      "description": "讨论河水暴涨、城市内涝、洪水预警和撤离",
+      "query_intents": [
+        "水灾",
+        "flood"
+      ],
+      "boundary": "不是台风风力"
+    },
+    "S458": {
+      "name": "台风与飓风",
+      "description": "讨论热带气旋路径、强风、风暴潮及防范措施",
+      "query_intents": [
+        "台风路径",
+        "hurricane"
+      ],
+      "boundary": "不是地震"
+    },
+    "S459": {
+      "name": "森林与野外",
+      "description": "描述森林生态、野生环境、林地探索和野外生存",
+      "query_intents": [
+        "森林生态",
+        "野外环境"
+      ],
+      "boundary": "不是山地地形专项"
+    },
+    "S460": {
+      "name": "山地",
+      "description": "描述山脉、海拔、坡度、山地地形和山区环境",
+      "query_intents": [
+        "山脉",
+        "山区地形"
+      ],
+      "boundary": "不是徒步活动安排"
+    },
+    "S461": {
+      "name": "河流湖泊",
+      "description": "描述河流流向、湖泊、水域生态和淡水环境",
+      "query_intents": [
+        "江河",
+        "湖泊"
+      ],
+      "boundary": "不是海洋"
+    },
+    "S462": {
+      "name": "海洋",
+      "description": "讨论海洋环境、海流、潮汐、海洋生物与海岸",
+      "query_intents": [
+        "大海",
+        "海洋生态"
+      ],
+      "boundary": "不是淡水河流"
+    },
+    "S463": {
+      "name": "动物",
+      "description": "描述动物种类、行为、栖息地与生物特征",
+      "query_intents": [
+        "野生动物",
+        "动物习性"
+      ],
+      "boundary": "不是动物园参观"
+    },
+    "S464": {
+      "name": "植物",
+      "description": "描述植物结构、生长、繁殖、分类与生态",
+      "query_intents": [
+        "植物生长",
+        "植物种类"
+      ],
+      "boundary": "不是家庭园艺操作"
+    },
+    "S465": {
+      "name": "农业",
+      "description": "讨论农作物种植、农田管理、农业技术和收成",
+      "query_intents": [
+        "农业生产",
+        "种庄稼"
+      ],
+      "boundary": "不是家庭种花"
+    },
+    "S466": {
+      "name": "能源",
+      "description": "讨论电力、化石燃料、能源供应与能源需求",
+      "query_intents": [
+        "能源结构",
+        "石油天然气"
+      ],
+      "boundary": "不是专门可再生能源"
+    },
+    "S467": {
+      "name": "可再生能源",
+      "description": "讨论太阳能、风能、水能等可再生发电与储能",
+      "query_intents": [
+        "光伏",
+        "风力发电"
+      ],
+      "boundary": "不是化石燃料"
+    },
+    "S468": {
+      "name": "污染",
+      "description": "讨论空气、水体、土壤污染来源、危害与治理",
+      "query_intents": [
+        "空气污染",
+        "水污染"
+      ],
+      "boundary": "不是垃圾分类操作"
+    },
+    "S469": {
+      "name": "垃圾与回收",
+      "description": "分类生活垃圾、回收材料、处理废弃物和再利用",
+      "query_intents": [
+        "垃圾分类",
+        "recycling"
+      ],
+      "boundary": "不是整体环境保护政策"
+    },
+    "S470": {
+      "name": "节能减排",
+      "description": "减少用电、燃油和碳排放，改善能效与低碳行为",
+      "query_intents": [
+        "节约能源",
+        "减少碳排放"
+      ],
+      "boundary": "不是能源生产"
+    },
+    "S471": {
+      "name": "地理位置",
+      "description": "描述地点坐标、方位、经纬度及相对位置",
+      "query_intents": [
+        "地理方位",
+        "经纬度"
+      ],
+      "boundary": "不是国家地区介绍"
+    },
+    "S472": {
+      "name": "国家与地区",
+      "description": "介绍国家、地区、国界、国名与区域差异",
+      "query_intents": [
+        "国家介绍",
+        "地区分布"
+      ],
+      "boundary": "不是城市与乡村对比"
+    },
+    "S473": {
+      "name": "城市与乡村",
+      "description": "描述城市设施、乡村生活、城乡环境与差异",
+      "query_intents": [
+        "城市生活",
+        "农村"
+      ],
+      "boundary": "不是人口统计"
+    },
+    "S474": {
+      "name": "人口与社会",
+      "description": "讨论人口规模、年龄结构、迁移与社会组成",
+      "query_intents": [
+        "人口结构",
+        "人口变化"
+      ],
+      "boundary": "不是地理位置"
+    },
+    "S475": {
+      "name": "环境保护",
+      "description": "保护生态系统、野生生物和自然资源，讨论环保政策",
+      "query_intents": [
+        "生态保护",
+        "环保行动"
+      ],
+      "boundary": "不是垃圾分类单项操作"
+    },
+    "S476": {
+      "name": "描述人物",
+      "description": "描述人的外貌、性格、背景和行为特征",
+      "query_intents": [
+        "人物描写",
+        "长相性格"
+      ],
+      "boundary": "不是自我介绍"
+    },
+    "S477": {
+      "name": "描述物体",
+      "description": "说明物品形状、尺寸、材质、颜色与用途",
+      "query_intents": [
+        "物品外观",
+        "东西长什么样"
+      ],
+      "boundary": "不是描述地点"
+    },
+    "S478": {
+      "name": "描述地点",
+      "description": "说明场所位置、布局、氛围、设施与环境",
+      "query_intents": [
+        "地点描写",
+        "介绍一个地方"
+      ],
+      "boundary": "不是地理坐标专项"
+    },
+    "S479": {
+      "name": "描述事件",
+      "description": "说明某件事情发生的时间、参与者和经过",
+      "query_intents": [
+        "讲述事件",
+        "发生了什么"
+      ],
+      "boundary": "不是抽象过程步骤"
+    },
+    "S480": {
+      "name": "描述过程",
+      "description": "按步骤说明事情如何操作、演变或完成",
+      "query_intents": [
+        "流程说明",
+        "操作步骤"
+      ],
+      "boundary": "不是时间先后词语本身"
+    },
+    "S481": {
+      "name": "描述变化",
+      "description": "说明事物从旧状态到新状态的转变和差异",
+      "query_intents": [
+        "发生变化",
+        "前后改变"
+      ],
+      "boundary": "不是长期趋势统计"
+    },
+    "S482": {
+      "name": "描述趋势",
+      "description": "描述数据随时间上升、下降、波动和长期走向",
+      "query_intents": [
+        "增长趋势",
+        "下降曲线"
+      ],
+      "boundary": "不是单次变化"
+    },
+    "S483": {
+      "name": "时间顺序",
+      "description": "用首先、然后、最后等表达事件先后关系",
+      "query_intents": [
+        "先后顺序",
+        "时间线"
+      ],
+      "boundary": "不是描述具体操作流程"
+    },
+    "S484": {
+      "name": "空间关系",
+      "description": "表达物体在上方、旁边、内部、远近等位置关系",
+      "query_intents": [
+        "方位关系",
+        "空间位置"
+      ],
+      "boundary": "不是地图导航"
+    },
+    "S485": {
+      "name": "数量与程度",
+      "description": "表达多少、频率、大小、强弱和程度差别",
+      "query_intents": [
+        "数量多少",
+        "程度副词"
+      ],
+      "boundary": "不是趋势分析"
+    },
+    "S486": {
+      "name": "分类",
+      "description": "依据共同特征把事物分组、归类和划分类型",
+      "query_intents": [
+        "分类标准",
+        "归类"
+      ],
+      "boundary": "不是定义单一概念"
+    },
+    "S487": {
+      "name": "定义",
+      "description": "解释术语的准确含义、类别和必要特征",
+      "query_intents": [
+        "什么是",
+        "概念定义"
+      ],
+      "boundary": "不是举例说明"
+    },
+    "S488": {
+      "name": "因果分析",
+      "description": "分析多个因素如何导致结果，区分原因与相关性",
+      "query_intents": [
+        "因果关系",
+        "原因分析"
+      ],
+      "boundary": "不是只描述结果"
+    },
+    "S489": {
+      "name": "问题诊断",
+      "description": "识别问题症状、排查根因并确定故障所在",
+      "query_intents": [
+        "分析问题",
+        "找出原因"
+      ],
+      "boundary": "不是提出解决方案"
+    },
+    "S490": {
+      "name": "提出解决方案",
+      "description": "针对已识别的问题提出可执行措施、步骤和替代方案",
+      "query_intents": [
+        "解决办法",
+        "给方案"
+      ],
+      "boundary": "不是只诊断原因"
+    },
+    "S491": {
+      "name": "权衡利弊",
+      "description": "比较方案或产品的优点、缺点、成本、收益和取舍",
+      "query_intents": [
+        "比较优缺点",
+        "pros and cons"
+      ],
+      "boundary": "不是单纯介绍产品功能"
+    },
+    "S492": {
+      "name": "做决定",
+      "description": "根据目标和条件选择最终方案并说明决策依据",
+      "query_intents": [
+        "选择方案",
+        "决定买哪个"
+      ],
+      "boundary": "不是列出优缺点"
+    },
+    "S493": {
+      "name": "预测",
+      "description": "依据证据、数据或规律预测未来结果和发展",
+      "query_intents": [
+        "预测未来",
+        "forecast"
+      ],
+      "boundary": "不是表达主观可能性"
+    },
+    "S495": {
+      "name": "论证观点",
+      "description": "提出主张并用证据、理由和逻辑支持结论",
+      "query_intents": [
+        "证据支持观点",
+        "论证理由"
+      ],
+      "boundary": "不是简单表达个人看法"
+    },
+    "S496": {
+      "name": "反驳观点",
+      "description": "识别对方论证弱点，提出反例、证据和反对理由",
+      "query_intents": [
+        "反驳论点",
+        "counterargument"
+      ],
+      "boundary": "不是只表示不同意"
+    },
+    "S497": {
+      "name": "概括与抽象",
+      "description": "从具体事例提取共性、上位概念和一般规律",
+      "query_intents": [
+        "抽象概念",
+        "归纳共同点"
+      ],
+      "boundary": "不是简单文本摘要"
+    },
+    "S498": {
+      "name": "类比",
+      "description": "用熟悉事物的相似结构解释陌生概念或关系",
+      "query_intents": [
+        "打比方",
+        "analogy"
+      ],
+      "boundary": "不是一般举例"
+    },
+    "S499": {
+      "name": "批判性思考",
+      "description": "审查证据可信度、识别偏见与逻辑漏洞并评估结论",
+      "query_intents": [
+        "批判思维",
+        "质疑证据"
+      ],
+      "boundary": "不是直接反驳个人"
+    },
+    "S500": {
+      "name": "创造性构思",
+      "description": "通过头脑风暴、跨领域联想和新组合产生原创想法",
+      "query_intents": [
+        "创意发想",
+        "brainstorming"
+      ],
+      "boundary": "不是常规决策"
+    }
+  }
+}
