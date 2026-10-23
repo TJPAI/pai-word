@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {loadOptionalSemanticOverlay} from './semantic-overlay-loader.mjs';
+const ids=new Set(['S001']);
+const good={schema_version:'scene500-semantic-overlay-v1',scenes:[{scene_id:'S001',expressions:['闹钟响了']}]};
+const okFetch=async()=>({ok:true,json:async()=>good});
+assert.equal((await loadOptionalSemanticOverlay({fetcher:okFetch,sceneIds:ids})).reason,'disabled');
+assert.equal((await loadOptionalSemanticOverlay({enabled:true,url:'/test',fetcher:okFetch,sceneIds:ids})).enabled,true);
+assert.equal((await loadOptionalSemanticOverlay({enabled:true,url:'/test',fetcher:async()=>({ok:false}),sceneIds:ids})).reason,'http_error');
+assert.equal((await loadOptionalSemanticOverlay({enabled:true,url:'/test',fetcher:async()=>({ok:true,json:async()=>({...good,scenes:[{scene_id:'S999',expressions:['错误场景']}]} )}),sceneIds:ids})).reason,'invalid_schema');
+assert.equal((await loadOptionalSemanticOverlay({enabled:true,url:'/test',fetcher:async()=>{throw Error('offline')},sceneIds:ids})).reason,'load_error');
+console.log('PASS optional semantic overlay loader tests');
