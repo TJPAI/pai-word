@@ -151,6 +151,36 @@
     }
     if(changed)window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
   };
+  window.PAI_HOME_RECONCILE=function({rerank=false}={}){
+    if(state.view!=='scenes')return;
+    const root=document.getElementById('app');
+    if(!root?.querySelector('.home-dashboard'))return;
+    const current=ui(),query=current.query||'',difficulty=current.difficulty||'all';
+    if(rerank&&query){
+      const results=searchApi()?.search(query,difficulty,5)||[];
+      // Avoid replacing previously valid recommendations with a transient empty index.
+      if(results.length){
+        const next=results.map(x=>x.id);
+        if(JSON.stringify(next)!==JSON.stringify(current.resultIds||[])){
+          state.sceneSearchUi={...current,resultIds:next};
+          save();
+        }
+      }
+    }
+    // Update only the affected home sections: keep search textarea, focus and
+    // other user input untouched while background data is reconciled.
+    const next=document.createElement('div');next.innerHTML=renderHome();
+    for(const selector of ['.continue-card','.scene-results','.scene-search-empty','.home-recent']){
+      const before=root.querySelector(selector),after=next.querySelector(selector);
+      if(before&&after){if(before.innerHTML!==after.innerHTML)before.innerHTML=after.innerHTML}
+      else if(before&&!after)before.remove();
+      else if(after&&!before){
+        if(selector==='.home-recent')root.querySelector('.browse-link')?.before(after);
+        else root.querySelector('.scene-search-controls')?.after(after);
+      }
+    }
+    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
+  };
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
   window.render=function(){if(state.view==='scenes'){const html=renderHome();document.getElementById('app').innerHTML=html;window.PAI_SAVE_HOME_VISUAL?.(html);return}return baseRender()};
 })();
