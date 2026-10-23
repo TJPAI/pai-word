@@ -777,19 +777,31 @@
  window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
  window.resumeLearning=()=>{
    previousUnit=null;active=true;state.view='learning';PAI_TAP_FLOW.syncPage();
-   const bookmark=learningCursor,session=state.learningSession;
-   void showCurrent().then(async()=>{
-     if(!bookmark?.ku_id||!active||state.view!=='learning'||!session)return;
-     const keys=cycleKeys(),at=keys.indexOf(bookmark.ku_id);
-     if(at<0||!keys.length||window.getVisibleLearningUnit?.()?.k===bookmark.ku_id)return;
-     const target=byKey(bookmark.ku_id);if(!target)return;
-     try{
-       await ensureUnits([target.k]);if(!active||state.view!=='learning')return;
-       ++browseToken;PAI_TAP_FLOW.cancel();window.PAI_AUDIO?.stop();browseIndex=at;browsedUnit=target;
-       state.revealed=bookmark.page==='answer';
-       PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),state.revealed);
+   const bookmark=learningCursor,session=state.learningSession,keys=cycleKeys();
+   const index=bookmark?.ku_id?keys.indexOf(bookmark.ku_id):-1;
+   const target=index>=0?byKey(bookmark.ku_id):null;
+   // Resolve the visible bookmarked KU BEFORE any initial render or audio.
+   // Starting showCurrent() first can speak queue[0] while the bookmark displays another word.
+   if(target?.k&&target.k!==session?.queue?.[0]){
+     const request=++browseToken;++token;PAI_TAP_FLOW.cancel();
+     window.PAI_AUDIO?.stop();browseIndex=index;browsedUnit=target;
+     state.revealed=bookmark.page==='answer';loading=!target.w.loaded;error='';
+     render();
+     void ensureUnits([target.k]).then(()=>{
+       if(request!==browseToken||!active||state.view!=='learning'||browsedUnit?.k!==target.k)return;
+       loading=false;PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),state.revealed);
        render();captureLearningCursor();
-     }catch(error){window.PAI_LEARNING_CURSOR_ERROR=String(error)}
+       if(state.autoPronounce.question&&!document.hidden&&state.revealed===false)speak(target.w.w);
+       window.PAI_AUTOBROWSE?.restart();
+     }).catch(err=>{if(request===browseToken){loading=false;error=String(err);render()}});
+     return;
+   }
+   void showCurrent().then(()=>{
+     if(!active||state.view!=='learning')return;
+     // No bookmarked override: showCurrent already uses the visible queue-front KU.
+     if(bookmark?.ku_id===session?.queue?.[0]&&bookmark.page==='answer'){
+       state.revealed=true;render();captureLearningCursor();
+     }
    });
    window.PAI_AUTOBROWSE?.restart();
  };
