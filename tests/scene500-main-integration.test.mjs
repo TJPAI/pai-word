@@ -31,7 +31,7 @@ for(const q of queries){
  const repeat=hybrid.search(q,{limit:500});
  assert.deepEqual(repeat,first,'deterministic query '+q);
  assert.equal(first.results.length,new Set(first.results.map(r=>r.sceneId)).size);
- assert(first.results.every(r=>/^S\\d{3}$/.test(r.sceneId)&&catalog.scenes[r.sceneId]));
+ assert(first.results.every(r=>/^S\d{3}$/.test(r.sceneId)&&catalog.scenes[r.sceneId]));
  const seen=new Set();
  for(let page=0;page<Math.ceil(first.results.length/5);page++)
   for(const item of hybrid.getPage(first,page,5)){
