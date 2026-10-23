@@ -1,0 +1,24 @@
+name: Scene500 isolated QA
+on:
+  push:
+    branches: [scene500-recommendation-dev]
+    paths:
+      - 'scene500-recommendation/**'
+      - '.github/workflows/scene500-isolated-qa.yml'
+  workflow_dispatch:
+jobs:
+  scene500:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Isolated deterministic tests
+        run: |
+          node --test scene500-recommendation/engine.test.mjs scene500-recommendation/contract-adapter.test.mjs scene500-recommendation/integration-boundary.test.mjs scene500-recommendation/evaluate-holdout.test.mjs scene500-recommendation/semantic-diagnostic.test.mjs
+      - name: Profile coverage audit
+        run: node scene500-recommendation/audit-profile-coverage.mjs
