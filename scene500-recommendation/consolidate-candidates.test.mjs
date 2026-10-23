@@ -23,5 +23,12 @@ test('unified queue deduplicates and preserves review-only status',()=>{
   assert.equal(x.rows[0].evidence.length,2);
   assert.equal(x.newlyCoveredIfApproved,1);
   assert.equal(x.rows[0].release_eligible,false);
+  // A derived review-priority queue is not a second independent source.
+  const derivative={schema:'scene500-semantic-priority-queue-v0.1',status:'REVIEW_ONLY_NOT_APPROVED',queue:[row],deferred:[]};
+  fs.writeFileSync(names[5],JSON.stringify(derivative));
+  const retry=spawnSync(process.execPath,[new URL('./consolidate-candidates.mjs',import.meta.url).pathname,...names],{encoding:'utf8'});
+  assert.equal(retry.status,0,retry.stderr);
+  const revised=JSON.parse(fs.readFileSync(names[3],'utf8'));
+  assert.equal(revised.rows[0].evidence.length,1);
  }finally{fs.rmSync(d,{recursive:true,force:true});}
 });
