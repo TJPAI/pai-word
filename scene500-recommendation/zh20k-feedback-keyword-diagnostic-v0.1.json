@@ -1,0 +1,43 @@
+{
+  "schema": "scene500-chinese-lexicon-feedback-v0.1",
+  "status": "candidate_feedback_not_membership_request",
+  "source": "12 manually authored diagnostic sentences, actual v094 RC2 20K runtime compact",
+  "observed_oov_count": 5,
+  "examples": [
+    {
+      "query": "我要去酒店前台办理入住",
+      "surface_term": "前台",
+      "issue_type": "词项未收录",
+      "example_count": 1
+    },
+    {
+      "query": "我想购买火车票并查询退票规则",
+      "surface_term": "火车票",
+      "issue_type": "词项未收录",
+      "example_count": 1
+    },
+    {
+      "query": "公司要求进行财务预算与成本控制",
+      "surface_term": "财务预算",
+      "issue_type": "词项未收录",
+      "example_count": 1
+    },
+    {
+      "query": "我要练瑜伽和游泳",
+      "surface_term": "瑜伽",
+      "issue_type": "词项未收录",
+      "example_count": 1
+    },
+    {
+      "query": "如何配置Wi-Fi连接",
+      "surface_term": "Wi-Fi",
+      "issue_type": "词项未收录",
+      "example_count": 1
+    }
+  ],
+  "expected_behavior": "Preserve input spans in raw query; recommendation engine handles fallback even for OOV; lexicon team may independently review if these are deserving membership",
+  "observed_behavior": "The exact surface terms have no standalone exact V094 membership; other substring words may still be extracted",
+  "severity": "low_to_medium",
+  "recommendation": "Evidence for independent future membership review only; do not renumber term IDs or change current 20K payload without official release.",
+  "role_boundary": "Scene500 owns term-to-scene association; ChineseCore20K owns membership and morphology; do not infer scene labels from this file."
+}
