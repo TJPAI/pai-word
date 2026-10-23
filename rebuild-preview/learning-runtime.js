@@ -874,6 +874,12 @@
  };
  window.PAI_CHANGE_BATCH=async(direction)=>{
    if(!active||state.view!=='learning'||loading||window.PAI_SAVE_DEFERRED||historicalCommitInProgress){recordNavigationFailure('batch','batch-guard');return false;}
+   // A vertical gesture during the rating countdown commits the grade first.
+   // Do not cancel the rating and silently lose the user's answer.
+   if(PAI_TAP_FLOW.snapshot().phase==='answer'){
+     recordNavigationFailure('batch','rating-countdown-await-commit');
+     return false;
+   }
    const scene=state.learningSession?.scene500SceneId||state.selectedScene;
    if(!scene)return false;
    const keys=sceneBrowseKeys();
@@ -920,7 +926,10 @@
  window.PAI_NAVIGATE_LEARNING=async(direction,source='swipe')=>{
   const phase=PAI_TAP_FLOW.snapshot().phase;
   if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||document.hidden||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused','answer'].includes(phase)){recordNavigationFailure(source,'navigation-guard');return false;}
-   if(phase==='answer')return source==='swipe'&&PAI_TAP_FLOW.commitEarly(direction);
+   if(phase==='answer'){
+     if(source==='auto')return false; // Auto mode must not commit a rating prematurely.
+     if(source==='swipe')return PAI_TAP_FLOW.commitEarly(direction);
+   }
   // Explicit swipes take priority over a simultaneous automatic navigation.
   if(source==='auto'&&manualBrowsePending>0)return false;
   if(source==='swipe')manualBrowsePending++;
