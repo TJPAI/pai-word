@@ -69,6 +69,13 @@
 
   const baseOpenScene=window.openScene;
   window.openScene=function(scene){
+    // Opening the same scene must not recreate its unfinished KU queue.
+    const pending=state.learningSession;
+    if(pending?.kind==='scene'&&Array.isArray(pending.queue)&&pending.queue.length&&
+       (pending.scene500SceneId||state.selectedScene)===scene&&
+       pending.queue.every(k=>window.PAI_CORE?.byKU?.has(k))){
+      window.resumeLearning?.();return;
+    }
     if(isScene500(scene)&&typeof window.PAI_START_POLICY_SESSION==='function'){
       state.selectedScene=scene;
       window.rebuildDailyAssignments?.();
