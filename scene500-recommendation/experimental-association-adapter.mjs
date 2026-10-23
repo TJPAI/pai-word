@@ -15,6 +15,10 @@ export function withExperimentalSceneExtension(base,{catalog,extension,enabled=f
      p.term.length<2||!Number.isFinite(p.score)||p.score<=0||p.score>.45)
     throw Error('SCENE500_INVALID_EXPERIMENTAL_EDGE');
   seen.add(key);
+  // A negating compound may invert the anchor's meaning; never expose its
+  // inherited scene in the opt-in experiment without an independent review.
+  if(typeof p.anchor_term==='string'&&/^(不|非|无|反|未|失)/u.test(p.term)&&
+     !/^(不|非|无|反|未|失)/u.test(p.anchor_term))continue;
   const surface=p.term.normalize('NFKC');
   if(termOwners.has(surface)&&termOwners.get(surface)!==p.term_id)
    throw Error('SCENE500_AMBIGUOUS_EXPERIMENTAL_TERM');
