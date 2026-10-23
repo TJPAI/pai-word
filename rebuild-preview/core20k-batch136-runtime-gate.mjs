@@ -41,13 +41,16 @@ export function normalizeBatch136Smoke(smoke){
  if(!smoke||typeof smoke!=='object'||Array.isArray(smoke)||smoke.test_only!==true||smoke.release_eligible!==false||!Array.isArray(smoke.records))return null;
  return {schema_version:'core20k-runtime-fixture-v1-test-guarded',test_only:true,release_eligible:false,default_enabled:false,records:smoke.records};
 }
-export async function loadBatch136Fixture({enabled=false,url,identity,fetcher=globalThis.fetch}={}){
+export async function loadBatch136Fixture({enabled=false,url,identity,smoke=false,fetcher=globalThis.fetch}={}){
  if(!enabled)return {enabled:false,reason:'disabled',accepted:[],quarantined:[]};
  if(!url)return {enabled:false,reason:'missing_fixture',accepted:[],quarantined:[]};
  try{
   const res=await fetcher(url,{cache:'no-store'});
   if(!res?.ok)return {enabled:false,reason:'http_error',accepted:[],quarantined:[]};
-  const result=validateBatch136Fixture(await res.json(),identity);
+  const raw=await res.json();
+  const fixture=smoke?normalizeBatch136Smoke(raw):raw;
+  if(!fixture)return {enabled:false,reason:'invalid_smoke_envelope',accepted:[],quarantined:[]};
+  const result=validateBatch136Fixture(fixture,identity);
   return {...result,enabled:result.ok,reason:result.ok?'test_only_render_only':'invalid_fixture'};
  }catch{return {enabled:false,reason:'load_error',accepted:[],quarantined:[]}}
 }
