@@ -1,0 +1,11 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+const dir=new URL('.',import.meta.url);
+const raw=readFileSync(new URL('batch93_nonrelease_teaching_pack.json',dir));
+const pack=JSON.parse(raw);
+if(pack.records.length!==6||new Set(pack.records.map(r=>r.ku_id)).size!==6)throw Error('count or ID failed');
+if(pack.records.some(r=>r.quality_status==='PRODUCTION_READY'||r.evidence_status==='PRODUCTION_READY'))throw Error('unsafe approval');
+const sha=createHash('sha256').update(raw).digest('hex');
+const manifest={schema_version:pack.schema_version,pack_version:pack.pack_version,frozen_membership_version:pack.frozen_membership_version,source_commit_sha:'59bfbbb1bae0c5420c43e2f1f8a14af047fda42e',pack_url:'batch93_nonrelease_teaching_pack.json',pack_sha256:sha,record_count:pack.records.length,production_ready_ku_count:0,release_eligible:false};
+writeFileSync(new URL('batch93_nonrelease_manifest.json',dir),JSON.stringify(manifest,null,2)+'\n');
+console.log('PASS: staging only; records='+pack.records.length+' SHA256='+sha);
