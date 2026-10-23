@@ -36,6 +36,11 @@ export function validateBatch136Fixture(pack,{knownKuIds,knownSenseIds,knownHead
  }
  return {ok:true,errors,accepted,quarantined,total:pack.records.length,release_eligible:false,test_only:true};
 }
+// The 482-item smoke file is a subset without a schema header; normalize only after explicit opt-in.
+export function normalizeBatch136Smoke(smoke){
+ if(!smoke||typeof smoke!=='object'||Array.isArray(smoke)||smoke.test_only!==true||smoke.release_eligible!==false||!Array.isArray(smoke.records))return null;
+ return {schema_version:'core20k-runtime-fixture-v1-test-guarded',test_only:true,release_eligible:false,default_enabled:false,records:smoke.records};
+}
 export async function loadBatch136Fixture({enabled=false,url,identity,fetcher=globalThis.fetch}={}){
  if(!enabled)return {enabled:false,reason:'disabled',accepted:[],quarantined:[]};
  if(!url)return {enabled:false,reason:'missing_fixture',accepted:[],quarantined:[]};
