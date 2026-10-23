@@ -42,3 +42,29 @@ test('V0.10.1 invalid integration flag fails closed',async()=>{
  assert.equal((await load({...runtime,production_ready:true})).mode,'rule_fallback');
  assert.equal((await load({...runtime,contract_version:'2'})).mode,'rule_fallback');
 });
+
+test('real loader defaults experimental extension off and requires valid opt-in',async()=>{
+ const extension={schema:'scene500-experimental-compound-extension-v0.1',
+  status:'EXPERIMENTAL_NOT_APPROVED',requires_opt_in:true,production_ready:false,
+  lexicon_version:'0.10.1-evidence-compat',baseline_count:3553,
+  candidates:[{term_id:id(1),term:'测试扩展词',scene_id:'S002',score:.3,
+   status:'EXPERIMENTAL_UNVERIFIED',release_eligible:false}]};
+ const configure=async(enabled,ext=extension)=>{
+  const diagnostics=[];
+  const engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'lex',
+   associationUrl:'links',fetchImpl:async url=>response(url==='lex'?runtime:associations),
+   enableExperimentalExtension:enabled,experimentalExtension:ext,timeoutMs:30000,
+   onDiagnostic:x=>diagnostics.push(x)});
+  return {engine,diagnostics};
+ };
+ const disabled=await configure(false);
+ assert.equal(disabled.engine.mode,'hybrid');
+ assert.equal(disabled.engine.search('测试扩展词').results.some(x=>x.experimental),false);
+ const enabled=await configure(true);
+ assert.equal(enabled.engine.mode,'hybrid');
+ assert.equal(enabled.engine.experimentalExtension,'ENABLED_UNVERIFIED');
+ assert.ok(enabled.engine.search('测试扩展词').results.some(x=>x.experimental));
+ const invalid=await configure(true,{...extension,production_ready:true});
+ assert.equal(invalid.engine.mode,'rule_fallback');
+ assert.equal(invalid.diagnostics[0].code,'SCENE500_ASSET_FALLBACK');
+});
