@@ -76,8 +76,8 @@
   function resumableScene(){
     const session=state.learningSession;
     const id=session?.scene500SceneId||state.selectedScene;
-    if(session?.scene500SceneId&&session.scene500SceneId!==state.selectedScene)return null;
-    if(session?.kind!=='scene'||!id||!displayName(id)||!Array.isArray(session.queue)||!session.queue.length)return null;
+    if(!session||!Array.isArray(session.queue)||!session.queue.length)return null;
+    if(!id||!displayName(id))return null;
     // Never present a stale or unresolvable queue as an active session.
     if(!session.queue.every(k=>window.PAI_CORE?.byKU?.has(k)))return null;
     return {id,name:displayName(id),difficulty:session.scene500Difficulty||searchApi()?.recentDifficulty?.(id)||'all'};
@@ -93,7 +93,7 @@
     const resume=!!session;
     const status=`今日新词 ${b.dailyCompleted}/${b.dailyLimit} · 每轮 ${b.roundLimit}${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
     return `<div class="home-dashboard"><div class="home-shell">
-      <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
+      <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p><small id="pai-home-source-sha" style="display:block;margin-top:3px;font-size:10px;opacity:.45;line-height:1.3;overflow-wrap:anywhere" aria-label="当前部署提交"></small></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
         <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(display?.name||'开始一个场景')}</h2><p>${esc(status)}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="continueScene500('${esc(continueId)}','${esc(continueDifficulty)}')">继续学习</button>`:''}${b.reinforcementRemaining?`<button class="continue-review" onclick="openReinforcement()">强化 ${b.reinforcementRemaining}</button>`:''}${b.due?`<button class="continue-review" onclick="openReview()">复习 ${b.due}</button>`:''}</div></section>
         <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
@@ -159,7 +159,9 @@
     void runSceneSearch(q,difficulty||'all');
   };
   window.continueScene500=function(scene,difficulty='all'){
-    if(canResumeScene(scene)&&resumableScene()?.difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
+    // An unfinished, saved KU queue takes priority over opening a new scene.
+    // Do not require difficulty/scene metadata to match: older sessions lack it.
+    if(state.learningSession?.queue?.length && state.learningSession.queue.every(k=>window.PAI_CORE?.byKU?.has(k)) && typeof window.resumeLearning==='function')return window.resumeLearning();
     return searchApi()?.open(scene,difficulty);
   };
   // Update text in place rather than reassigning innerHTML on every count.
@@ -218,12 +220,25 @@
     reconcileCountSlots(root);
     window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
   };
+  let displayedSourceSha='',sourceShaPromise=null;
+  function updateSourceSha(){
+    const node=document.getElementById('pai-home-source-sha');if(!node)return;
+    if(displayedSourceSha){node.textContent=displayedSourceSha;return}
+    if(sourceShaPromise)return;
+    sourceShaPromise=fetch(new URL('preview-source-sha.txt',document.baseURI),{cache:'no-store'})
+      .then(r=>{if(!r.ok)throw Error('SHA_HTTP_'+r.status);return r.text()})
+      .then(raw=>{const sha=raw.trim();if(!/^[a-f0-9]{40}$/.test(sha))throw Error('SHA_INVALID');
+        displayedSourceSha='SHA '+sha.slice(0,12);
+        const label=document.getElementById('pai-home-source-sha');
+        if(label)label.textContent=displayedSourceSha;
+      }).catch(()=>{sourceShaPromise=null});
+  }
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
   window.render=function(){if(state.view==='scenes'){
     const root=document.getElementById('app'),oldCounts=new Map();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(slot.innerHTML.trim())oldCounts.set(slot.getAttribute('data-scene-id'),slot.innerHTML);
     root.innerHTML=renderHome();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(!slot.innerHTML.trim()&&oldCounts.has(slot.getAttribute('data-scene-id')))slot.innerHTML=oldCounts.get(slot.getAttribute('data-scene-id'));
-    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);return
+    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);void updateSourceSha();return
   }return baseRender()};
 })();
