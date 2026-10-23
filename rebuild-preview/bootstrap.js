@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-progress-round-20261023';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-counts-audit-20261023';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
