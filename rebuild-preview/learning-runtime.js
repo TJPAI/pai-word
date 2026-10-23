@@ -510,16 +510,13 @@
  const unit=()=>byKey(state.learningSession?.queue[0]);
  // Presentation bookmark is independent of the grading queue and SRS.
  // In-memory on navigation; durable only on exit or when Safari backgrounds.
- const LEARNING_CURSOR_KEY='pai-word-learning-cursor-v1';
  const SCENE_CURSORS_KEY='pai-word-scene-cursors-v2';
  let learningCursor=null,sceneCursors={};
  try{
    const stored=JSON.parse(localStorage.getItem(SCENE_CURSORS_KEY)||'null');
-   if(stored?.schema===2&&stored.scenes&&typeof stored.scenes==='object')sceneCursors=stored.scenes;
-   const old=JSON.parse(localStorage.getItem(LEARNING_CURSOR_KEY)||'null');
-   if(old?.schema===1&&typeof old.ku_id==='string'&&typeof old.scene_id==='string'){
-     learningCursor=old;
-     if(!sceneCursors[old.scene_id])sceneCursors[old.scene_id]=old;
+   if(stored?.schema===2&&stored.scenes&&typeof stored.scenes==='object'){
+     sceneCursors=stored.scenes;
+     learningCursor=sceneCursors[stored.last_scene_id]||null;
    }
  }catch(_){}
  function captureLearningCursor(){
@@ -541,7 +538,6 @@
    if(!learningCursor)return;
    try{
      localStorage.setItem(SCENE_CURSORS_KEY,JSON.stringify({schema:2,scenes:sceneCursors,last_scene_id:learningCursor.scene_id}));
-     localStorage.setItem(LEARNING_CURSOR_KEY,JSON.stringify(learningCursor));
    }catch(error){window.PAI_LEARNING_CURSOR_ERROR=String(error)}
  }
  window.PAI_LEARNING_CURSOR=(scene)=>{const c=scene?sceneCursors[scene]:learningCursor;return c&&{...c}};
