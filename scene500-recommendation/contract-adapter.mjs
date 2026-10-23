@@ -56,7 +56,7 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
  for(const t of lexicon.terms){
   const key=norm(t.normalized_term);
   const links=(linksByTerm.get(t.term_id)||[]).sort((a,b)=>a.rank-b.rank);
-  if(key.length>1&&links.length&&owners.get(key).size===1){
+  if(key.length>=1&&links.length&&owners.get(key).size===1){
    const current=registry.terms[key]||[];
    const byScene=new Map(current.map(x=>[x.sceneId,x]));
    for(const p of links){
