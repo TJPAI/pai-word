@@ -44,7 +44,7 @@
   function resultRows(){
     const snapshot=ui();
     if(!snapshot.query||!Array.isArray(snapshot.resultIds))return [];
-    return snapshot.resultIds.slice(0,5).map(id=>{
+    return snapshot.resultIds.slice((Math.max(0,Number(snapshot.page)||0))*5,(Math.max(0,Number(snapshot.page)||0))*5+5).map(id=>{
       const name=window.PAI_SCENE_NAMES?.[id]||SCENES[id]||'';
       return name?{id,name,desc:stableSceneDescription(id),...inventory(id,snapshot.difficulty)}:null;
     }).filter(Boolean);
@@ -63,7 +63,7 @@
     const s=ui(),rows=resultRows();
     if(!s.query)return'';
     if(!rows.length)return '<div class="scene-search-empty">没有找到当前可直接学习的匹配场景。可换一种说法，或先浏览场景目录。</div>';
-    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String(i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="pai-count-slot" data-scene-id="${esc(r.id)}">${countHtml(r)}</span></button>`).join('')}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String((Math.max(0,Number(s.page)||0))*5+i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="pai-count-slot" data-scene-id="${esc(r.id)}">${countHtml(r)}</span></button>`).join('')}${s.resultIds.length>5?`<div class="scene-pages"><button onclick="PAI_SCENE_PAGE(-1)" ${(s.page||0)===0?'disabled':''}>上一页</button><span>${(s.page||0)+1} / ${Math.ceil(s.resultIds.length/5)}</span><button onclick="PAI_SCENE_PAGE(1)" ${((s.page||0)+1)*5>=s.resultIds.length?'disabled':''}>下一页</button></div>`:''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
   }
   function recentHtml(){
     // Recent history is already persisted. Never filter it through an index that
@@ -97,7 +97,7 @@
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
         <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(display?.name||'开始一个场景')}</h2><p>${esc(status)}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="continueScene500('${esc(continueId)}','${esc(continueDifficulty)}')">${resume?'继续本轮':'继续'}</button>`:''}${b.reinforcementRemaining?`<button class="continue-review" onclick="openReinforcement()">强化 ${b.reinforcementRemaining}</button>`:''}${b.due?`<button class="continue-review" onclick="openReview()">复习 ${b.due}</button>`:''}</div></section>
         <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
-          <textarea id="scene-query" class="scene-query" rows="3" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(s.query||'')}</textarea>
+          <textarea id="scene-query" class="scene-query" oninput="PAI_SCENE_QUERY_CHANGED()" oncompositionstart="PAI_SCENE_QUERY_CHANGED()" rows="3" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(s.query||'')}</textarea>
           <div class="scene-search-controls"><label>难度<select id="scene-difficulty" onchange="refreshScene500Difficulty(this.value)"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
           ${resultHtml()}
         </section>
@@ -106,34 +106,57 @@
       </main>
     </div></div>`;
   }
-  function runSceneSearch(q,difficulty,{restore=false}={}){
-    // A saved recommendation must not be replaced by a transient empty index
-    // during boot. Explicit user searches may legitimately have zero matches.
-    const results=searchApi()?.search(q,difficulty,5)||[];
-    const ids=results.map(x=>x.id);
-    const previous=ui();
-    const preserved=restore&&ids.length===0&&previous.query===q&&Array.isArray(previous.resultIds)&&previous.resultIds.length>0;
-    state.sceneSearchUi={query:q,difficulty,resultIds:preserved?previous.resultIds:ids};
-    if(!preserved)save();
-    render();
+  let querySerial=0,bridgePromise=null;
+  window.PAI_SCENE_QUERY_CHANGED=()=>{querySerial++};
+  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
+  window.PAI_SCENE_PAGE=function(delta){
+    if(state.view!=='scenes')return;
+    const current=ui(),maximum=Math.max(0,Math.ceil((current.resultIds||[]).length/5)-1);
+    const page=Math.min(maximum,Math.max(0,(Number(current.page)||0)+delta));
+    if(page===(current.page||0))return;
+    state.sceneSearchUi={...current,page};save();
+    const old=document.querySelector('.scene-results');
+    if(old)old.outerHTML=resultHtml();else render();
+  };
+  async function runSceneSearch(q,difficulty,{restore=false}={}){
+    const ticket=++querySerial,previous=ui();
+    if(!q){state.sceneSearchUi={query:'',difficulty,resultIds:[],page:0};save();render();return}
+    let ids=[],mode='legacy_fallback',cacheHit=false;
+    const started=performance.now();
+    if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
+      try{
+        const bridge=await getBridge();
+        const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:500});
+        ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;
+      }catch(e){window.PAI_SCENE500_LAST_ERROR=String(e);bridgePromise=null}
+    }
+    if(ticket!==querySerial||state.view!=='scenes')return;
+    if(!ids.length){
+      ids=(searchApi()?.search(q,difficulty,500)||[]).filter(x=>Number(inventory(x.id,difficulty).reviewedCount)>0).map(x=>x.id);
+      mode='legacy_fallback';
+    }
+    if(restore&&!ids.length&&previous.query===q&&previous.difficulty===difficulty)ids=previous.resultIds||[];
+    ids=[...new Set(ids)].filter(id=>Number(inventory(id,difficulty).reviewedCount)>0);
+    state.sceneSearchUi={query:q,difficulty,resultIds:ids,page:restore&&previous.query===q?Math.min(previous.page||0,Math.max(0,Math.ceil(ids.length/5)-1)):0};
+    window.PAI_SCENE500_SEARCH_REPORT={mode,cacheHit,count:ids.length,elapsedMs:Math.round(performance.now()-started),at:Date.now()};
+    save();render();
   }
   window.restoreScene500Recommendations=function(){
     const s=ui(),q=(s.query||'').trim();
-    if(!q)return;
-    // Recalculate against the current Scene500 index, without scrolling the page.
-    runSceneSearch(q,s.difficulty||'all',{restore:true});
+    if(!q||s.resultIds?.length)return;
+    void runSceneSearch(q,s.difficulty||'all',{restore:true});
   };
   window.findScene500=function(){
     const q=document.getElementById('scene-query')?.value?.trim()||'';
     const difficulty=document.getElementById('scene-difficulty')?.value||'all';
-    runSceneSearch(q,difficulty);
-    requestAnimationFrame(()=>document.querySelector('.scene-results,.scene-search-empty')?.scrollIntoView({block:'nearest',behavior:'smooth'}));
+    void runSceneSearch(q,difficulty).then(()=>{
+      if(state.view==='scenes'&&ui().query===q)
+        requestAnimationFrame(()=>document.querySelector('.scene-results,.scene-search-empty')?.scrollIntoView({block:'nearest',behavior:'smooth'}));
+    });
   };
   window.refreshScene500Difficulty=function(difficulty){
-    const s=ui();
-    const q=(document.getElementById('scene-query')?.value||s.query||'').trim();
-    if(!s.query||!q){state.sceneSearchUi={...s,difficulty};save();return}
-    runSceneSearch(q,difficulty||'all');
+    const s=ui(),q=(document.getElementById('scene-query')?.value||s.query||'').trim();
+    void runSceneSearch(q,difficulty||'all');
   };
   window.continueScene500=function(scene,difficulty='all'){
     if(canResumeScene(scene)&&resumableScene()?.difficulty===difficulty&&typeof window.resumeLearning==='function')return window.resumeLearning();
