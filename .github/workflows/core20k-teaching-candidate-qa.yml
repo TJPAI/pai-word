@@ -4,6 +4,8 @@ on:
     branches: [core20k-rebuild-v1]
     paths:
       - 'rebuild-preview/core20k-teaching-candidate-adapter.mjs'
+      - 'rebuild-preview/core20k-batch136-runtime-gate.mjs'
+      - 'tests/core20k-batch136-runtime-gate.test.mjs'
       - 'rebuild-preview/index.html'
       - 'tests/core20k-teaching-candidate-adapter.test.mjs'
       - '.github/workflows/core20k-teaching-candidate-qa.yml'
@@ -18,7 +20,7 @@ jobs:
         with:
           node-version: '22'
       - name: Run isolated candidate gate tests
-        run: node --test tests/core20k-teaching-candidate-adapter.test.mjs
+        run: node --test tests/core20k-teaching-candidate-adapter.test.mjs tests/core20k-batch136-runtime-gate.test.mjs
       - name: Check browser entry remains lazy and opt-in
         run: |
           node --input-type=module -e "import fs from 'node:fs'; const h=fs.readFileSync('rebuild-preview/index.html','utf8'); if(!h.includes(\"get('core20kteaching')==='1'\"))process.exit(1); if(!h.includes(\"import('./core20k-teaching-candidate-adapter.mjs')\"))process.exit(1);"
