@@ -800,7 +800,7 @@
  window.openFreeReview=()=>start(Object.keys(state.records).filter(byKey),'自由复习','free');
  window.openScene=id=>{state.selectedScene=id;rebuildDailyAssignments();start([...due().filter(k=>byKey(k).s.scene===id),...unlearned(id).slice(0,10).map(u=>u.k)],SCENES[id]+' · 定向学习','scene')};
  window.resumeLearning=()=>{
-   previousUnit=null;active=true;state.view='learning';PAI_TAP_FLOW.syncPage();
+   previousUnit=null;active=true;state.view='learning';
    const session=state.learningSession,scene=session?.scene500SceneId||state.selectedScene;
    const bookmark=sceneCursors[scene]?.scene_id===scene?sceneCursors[scene]:null,keys=cycleKeys();
    const index=bookmark?.ku_id?keys.indexOf(bookmark.ku_id):-1;
@@ -812,13 +812,13 @@
      window.PAI_AUDIO?.stop();browseIndex=index;browsedUnit=target;
      state.revealed=bookmark.page==='answer';loading=!target.w.loaded;error='';
      render();
-     const entrySpoken=state.autoPronounce.question&&!state.revealed&&!document.hidden&&!!target.w?.w;
+     const entrySpoken=!!(state.revealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden&&!!target.w?.w;
      if(entrySpoken)window.PAI_AUDIO?.play(target.w.w);
      void ensureUnits([target.k]).then(()=>{
        if(request!==browseToken||!active||state.view!=='learning'||browsedUnit?.k!==target.k)return;
        loading=false;PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),state.revealed,entrySpoken);
        render();captureLearningCursor();
-       if(!entrySpoken&&state.autoPronounce.question&&!document.hidden&&state.revealed===false)speak(target.w.w);
+       if(!entrySpoken&&(state.revealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(target.w.w);
        window.PAI_AUTOBROWSE?.restart();
      }).catch(err=>{if(request===browseToken){loading=false;error=String(err);render()}});
      return;
@@ -888,7 +888,7 @@
    stopAutoBrowse();
    try{
      await ensureUnits([target.k]);
-     if(request!==browseToken||!active||state.view!=='learning'||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||window.getVisibleLearningUnit?.()?.k!==originKey)return false;
+     if(request!==browseToken||!active||state.view!=='learning'||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||window.getVisibleLearningUnit?.()?.k!==originKey||(PAI_TAP_FLOW.pageState()==='ANSWER')!==originalFace)return false;
      ++token;PAI_TAP_FLOW.cancel();window.PAI_AUDIO?.stop();
      browsedUnit=target;browseIndex=keys.indexOf(target.k);state.revealed=originalFace;error='';loading=false;
      PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),originalFace);
