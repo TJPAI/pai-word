@@ -176,7 +176,7 @@
   })();
   // Inventory and audit are not required to present or use the home screen.
   // Run after the first complete paint, without triggering another home render.
-  setTimeout(async()=>{try{
+  const runDeferredMetadata=async()=>{try{
   // Display coarse Scene500 inventory separately from reviewed learning membership.
   if((window.PAI_CORE20K_ROOT===true||new URLSearchParams(location.search).get('core20k')==='1')){
    try{
@@ -193,7 +193,11 @@
    window.PAI_SCENE500_REVIEW_AUDIT=gate.validateReviewIndex(review);
   }
 
-  }catch(error){console.warn('Deferred Scene500 metadata unavailable',error)}},0);
+  }catch(error){console.warn('Deferred Scene500 metadata unavailable',error)}};
+  // Inventory and review audit do not participate in the home/learning boot.
+  // Prefer browser idle time; Safari fallback defers work beyond first paint.
+  if(typeof requestIdleCallback==='function')requestIdleCallback(()=>void runDeferredMetadata(),{timeout:8000});
+  else setTimeout(()=>void runDeferredMetadata(),2200);
   const lemma=new URLSearchParams(location.search).get('word'),w=window.PAI_CORE.byLemma.get(lemma)?.[0];if(w)openLexiconWord(w.rank);
   // V2.1 isolation: preview must never register the shared root-scope worker.
   // Dedicated scoped offline support will be introduced after worker isolation tests.
