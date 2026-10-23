@@ -67,7 +67,13 @@
   }
   let searchSerial=0,bridgePromise=null;
   window.PAI_SCENE_QUERY_CHANGED=()=>{searchSerial++};
-  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
+  const getBridge=()=>bridgePromise||(bridgePromise=(()=>{
+    let timeoutId;
+    const loaded=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs',document.baseURI).href);
+    const deadline=new Promise((_,reject)=>{timeoutId=setTimeout(()=>reject(Error('SCENE500_BRIDGE_TIMEOUT')),12000)});
+    return Promise.race([loaded,deadline]).finally(()=>clearTimeout(timeoutId))
+      .catch(e=>{bridgePromise=null;throw e});
+  })());
   window.PAI_SCENE_PAGE=function(step){
     if(state.view!=='scenes')return;
     const current=ui(),maximum=Math.max(0,Math.ceil((current.resultIds||[]).length/5)-1);
@@ -80,13 +86,13 @@
     const same=restore&&previous.query===q&&previous.difficulty===difficulty;
     // Never blank a displayed result while the lazy recommendation module loads.
     if(!q){state.sceneSearchUi={query:'',difficulty,resultIds:[],page:0};save();render();return}
-    let ids=[],mode='legacy_fallback',elapsedMs=null;
+    let ids=[],mode='legacy_fallback',elapsedMs=null,cacheHit=false;
     const start=performance.now();
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
         const result=await bridge.recommend(q,{difficulty,inventory,limit:500});
-        ids=result.ids;mode=result.mode;elapsedMs=performance.now()-start;
+        ids=result.ids;mode=result.mode;elapsedMs=performance.now()-start;cacheHit=!!result.cacheHit;
       }catch(error){window.PAI_SCENE500_LAST_ERROR=String(error);bridgePromise=null}
     }
     if(ticket!==searchSerial||state.view!=='scenes')return;
@@ -95,7 +101,15 @@
     // The recommendation layer only returns scene identity; learning still uses
     // PAI_SCENE_SEARCH.open / existing English KU session flow.
     state.sceneSearchUi={query:q,difficulty,resultIds:[...new Set(ids)],page:same?Math.min(previous.page||0,Math.max(0,Math.ceil(ids.length/5)-1)):0};
-    window.PAI_SCENE500_SEARCH_REPORT={mode,elapsedMs:Math.round(elapsedMs??(performance.now()-start)),count:ids.length,at:Date.now()};
+    const report={mode,elapsedMs:Math.round(elapsedMs??(performance.now()-start)),count:ids.length,cacheHit,at:Date.now()};
+    window.PAI_SCENE500_SEARCH_REPORT=report;
+    const metrics=window.PAI_SCENE500_METRICS||{searches:0,fallbacks:0,noResults:0,firstMs:null,samples:[]};
+    metrics.searches++;
+    if(mode!=='hybrid')metrics.fallbacks++;
+    if(!ids.length)metrics.noResults++;
+    if(metrics.firstMs===null)metrics.firstMs=report.elapsedMs;
+    metrics.samples.push(report);if(metrics.samples.length>30)metrics.samples.shift();
+    window.PAI_SCENE500_METRICS=metrics;
     save();render();
   }
   window.restoreScene500Recommendations=function(){
