@@ -11,3 +11,15 @@ test('unknown IDs and duplicate KU are quarantined',()=>{const r=validateTeachin
 test('type identity is preserved, not converted into a generic question',()=>{const r=validateTeachingCandidatePack(pack([candidate({ku_type:'contrast',card:{comparison:'a vs b'}})]),ids);assert.equal(r.accepted[0].ku_type,'contrast');assert.equal(r.accepted[0].card.comparison,'a vs b')});
 test('disabled flag performs no fetch',async()=>{const r=await loadTeachingCandidates({enabled:false,fetcher:()=>{throw Error('must not fetch')}});assert.equal(r.reason,'disabled')});
 test('failed fetch safely falls back',async()=>{const r=await loadTeachingCandidates({enabled:true,url:'/missing.json',fetcher:async()=>({ok:false})});assert.equal(r.enabled,false);assert.equal(r.reason,'http_error')});
+
+test('missing runtime pack fails closed without requesting a network asset',async()=>{
+ const r=await loadTeachingCandidates({enabled:true});
+ assert.equal(r.enabled,false);
+ assert.equal(r.reason,'missing_pack');
+ assert.deepEqual(r.accepted,[]);
+});
+test('unknown KU types are never coerced to sense',()=>{
+ const r=validateTeachingCandidatePack(pack([candidate({ku_type:'unsupported'})]),ids);
+ assert.equal(r.accepted.length,0);
+ assert.ok(r.quarantined[0].reasons.includes('unknown_ku_type'));
+});
