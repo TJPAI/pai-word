@@ -110,7 +110,14 @@
     </div></div>`;
   }
   let querySerial=0,bridgePromise=null;
-  window.PAI_SCENE_QUERY_CHANGED=()=>{querySerial++};
+  window.PAI_SCENE_QUERY_CHANGED=()=>{
+    querySerial++;
+    const field=document.getElementById('scene-query');
+    if(!field||field.value.trim()===(ui().query||'').trim())return;
+    // Preserve focus and IME composition: remove only the stale results DOM.
+    document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending')?.remove();
+    state.sceneSearchUi={...ui(),query:'',resultIds:[],page:0};
+  };
   const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
   window.PAI_SCENE_PAGE=function(delta){
     if(state.view!=='scenes')return;
@@ -124,6 +131,10 @@
   async function runSceneSearch(q,difficulty,{restore=false}={}){
     const ticket=++querySerial,previous=ui();
     if(!q){state.sceneSearchUi={query:'',difficulty,resultIds:[],page:0};save();render();return}
+    state.sceneSearchUi={query:q,difficulty,resultIds:[],page:0};
+    const oldResults=document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending');
+    if(oldResults)oldResults.outerHTML='<p class="scene-search-pending" role="status">正在匹配场景…</p>';
+    else document.querySelector('.scene-search-controls')?.insertAdjacentHTML('afterend','<p class="scene-search-pending" role="status">正在匹配场景…</p>');
     let ids=[],mode='legacy_fallback',cacheHit=false;
     const started=performance.now();
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
