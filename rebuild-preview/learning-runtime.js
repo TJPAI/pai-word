@@ -201,7 +201,7 @@
     catch(error){window.PAI_LAST_AUDIO_RESUME={at:Date.now(),backgroundMs,status:'error',error:String(error)}}
   });
   window.speak=(text,rate=.84)=>window.PAI_AUDIO.play(text,rate);
-  function speakCurrent(delay=60){const u=currentVisibleUnit();if(u)setTimeout(()=>speak(u.w.w),delay)}
+  function speakCurrent(delay=60){const u=window.getVisibleLearningUnit?.()||currentVisibleUnit();if(!u)return;const key=u.k,word=u.w?.w;setTimeout(()=>{const current=window.getVisibleLearningUnit?.()||currentVisibleUnit();if(current?.k===key&&current?.w?.w===word&&word)speak(word)},delay)}
 
   // Synonym comparison parsing for the compact per-word format.
   function normalizeText(value){return String(value||'').toLowerCase().replace(/[’']/g,"'").replace(/[^a-z0-9' -]/g,' ')}
@@ -290,7 +290,7 @@
     document.getElementById('app').innerHTML=html;requestAnimationFrame(fitAnswer);
   };
 
-  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.beginExample();window.PAI_AUDIO.play(text,btn.hasAttribute('data-word-audio')?.84:.9,()=>{if(btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.exampleFinished()})}},true);
+  document.addEventListener('click',event=>{const btn=event.target.closest('[data-example-audio],[data-word-audio]');if(!btn)return;event.preventDefault();event.stopPropagation();const text=btn.getAttribute('data-speak');if(text){if(state.view==='learning'&&btn.hasAttribute('data-word-audio')&&text!==(window.getVisibleLearningUnit?.()?.w?.w||''))return;if(state.view==='learning'&&btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.beginExample();window.PAI_AUDIO.play(text,btn.hasAttribute('data-word-audio')?.84:.9,()=>{if(btn.hasAttribute('data-example-audio'))window.PAI_TAP_FLOW?.exampleFinished()})}},true);
   let sx=0,sy=0,st=0;
   document.addEventListener('touchstart',e=>{if(!e.touches||e.touches.length!==1)return;const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now()},{passive:true});
   document.addEventListener('touchend',e=>{if(!['study','review'].includes(state.view))return;if(!e.changedTouches||e.changedTouches.length!==1||e.target.closest('button,select,a'))return;const t=e.changedTouches[0],dx=t.clientX-sx,dy=t.clientY-sy,dt=Date.now()-st;if(dt>700||Math.abs(dx)<55||Math.abs(dx)<Math.abs(dy)*1.25)return;e.preventDefault();window.__paiSwipeUntil=Date.now()+350;swipeWord(dx<0?1:-1)},{passive:false});
@@ -785,7 +785,7 @@
      const target=byKey(bookmark.ku_id);if(!target)return;
      try{
        await ensureUnits([target.k]);if(!active||state.view!=='learning')return;
-       ++browseToken;PAI_TAP_FLOW.cancel();browseIndex=at;browsedUnit=target;
+       ++browseToken;PAI_TAP_FLOW.cancel();window.PAI_AUDIO?.stop();browseIndex=at;browsedUnit=target;
        state.revealed=bookmark.page==='answer';
        PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),state.revealed);
        render();captureLearningCursor();
@@ -829,7 +829,7 @@
   // Preload without changing the current card: a user rating can still win the race.
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning'||!active||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))return false;
    PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
-   browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
+   window.PAI_AUDIO?.stop();browseIndex=next;browsedUnit=u;state.revealed=wasRevealed;
    render();
    PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed);captureLearningCursor();render();if((wasRevealed?state.autoPronounce.swipe:state.autoPronounce.question)&&!document.hidden)speak(u.w.w);return true;
   }catch(_){return false}
