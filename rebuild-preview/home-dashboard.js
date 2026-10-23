@@ -78,7 +78,7 @@
     const id=session?.scene500SceneId||state.selectedScene;
     if(!session||!Array.isArray(session.queue))return null;
     const cursor=window.PAI_LEARNING_CURSOR?.();
-    const bookmarkValid=!!cursor?.ku_id&&[...(session.queue||[]),...(session.completed||[])].includes(cursor.ku_id);
+    const bookmarkValid=!!cursor?.ku_id&&cursor.scene_id===id&&[...(session.queue||[]),...(session.completed||[])].includes(cursor.ku_id);
     if(!session.queue.length&&!bookmarkValid)return null;
     if(!id||!displayName(id))return null;
     // Never present a stale or unresolvable queue as an active session.
