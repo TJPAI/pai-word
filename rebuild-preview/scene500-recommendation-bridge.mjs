@@ -47,8 +47,11 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
  if(cached)return {...cached,cacheHit:true,elapsedMs:0};
  const started=performance.now();
  const snapshot=instance.engine.search(query,{eligibleSceneIds:eligible,limit:Math.min(500,limit)});
+ const allCandidates=snapshot.results.length?null:instance.engine.search(query,{limit:500});
  const answer={ids:[...new Set(snapshot.results.map(x=>x.sceneId))],
   total:snapshot.total,mode:instance.mode,
+  emptyReason:snapshot.results.length?null:(allCandidates?.results?.length?'filtered_no_playable_scene':'no_semantic_match'),
+  unfilteredCandidateCount:allCandidates?.results?.length??null,
   elapsedMs:Math.round(performance.now()-started),error:lastError,cacheHit:false};
  queryCache.set(key,answer);
  if(queryCache.size>24)queryCache.delete(queryCache.keys().next().value);
