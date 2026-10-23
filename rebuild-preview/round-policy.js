@@ -13,7 +13,7 @@
   const dailyLimit=()=>DAILY_ALLOWED.has(Number(state.newPerDay))?Number(state.newPerDay):50;
   const dailyCompleted=()=>Math.max(0,Number(window.globalNewCompleted?.()||0));
   const dailyRemaining=()=>Math.max(0,dailyLimit()-dailyCompleted());
-  const freshLimit=()=>Math.min(roundSize(),dailyRemaining());
+  const freshLimit=()=>roundSize(); // Daily total is informational, never a learning cap.
   const isScene500=scene=>(window.PAI_SCENE500?.sceneIds||[]).includes(scene);
   const rankAllowed=(rank,difficulty)=>difficulty==='basic'?rank<=4000:difficulty==='common'?rank>4000&&rank<=8000:difficulty==='advanced'?rank>8000&&rank<=11000:difficulty==='high'?rank>11000:true;
   const unitKeyOf=u=>unitKey(u.w,u.sid);
@@ -44,7 +44,7 @@
   }
 
   function freshKeys(scene,excluded=new Set()){
-    const limit=freshLimit();if(limit<=0)return[];
+    const limit=freshLimit();
     if(isScene500(scene)){
       const difficulty=state.scene500DifficultyByScene?.[scene]||'all',out=[],seenWords=new Set();
       for(const k of excluded){const word=window.PAI_CORE?.byKU?.get(k)?.w;if(word)seenWords.add(word.rank??word.w)}
