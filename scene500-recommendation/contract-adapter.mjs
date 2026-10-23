@@ -87,7 +87,7 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
    const rows=[...map.values()].sort((a,b)=>b.score-a.score||a.sceneId.localeCompare(b.sceneId));
    rows.forEach((x,i)=>{x.rank=i+1;x.score=Math.round(x.score*1000)/1000;});
    const n=Number.isFinite(Number(limit))?Math.max(0,Math.min(500,Math.floor(Number(limit)))):20;
-   return mergeSubjectCandidates({query:String(query??''),total:rows.length,results:rows.slice(0,n)},query,{catalog,eligibleSceneIds,limit:n});
+   return mergeSubjectCandidates({query:String(query??''),total:rows.length,results:rows},query,{catalog,eligibleSceneIds,limit:n});
   },
   getPage(snapshot,pageIndex=0,pageSize=5){return base.getPage(snapshot,pageIndex,pageSize);}
  });
