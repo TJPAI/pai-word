@@ -19,7 +19,8 @@ for(const file of sourceFiles){
   if(baselinePairs.has(key))continue;
   if(!merged.has(key))merged.set(key,{term_id:x.term_id,term:x.term,scene_id:x.scene_id,scene_name:catalog.scenes[x.scene_id].name,status:'REVIEW_REQUIRED',release_eligible:false,evidence:[]});
   const dest=merged.get(key);
-  if(!dest.evidence.some(e=>e.schema===data.schema))dest.evidence.push({schema:data.schema,type:x.evidence_type??null});
+  const origin=data.schema==='scene500-semantic-priority-queue-v0.1'?'scene500-semantic-workset-v0.1':data.schema;
+  if(!dest.evidence.some(e=>e.schema===origin))dest.evidence.push({schema:origin,type:x.evidence_type??null});
  }
  sources.push({schema:data.schema,count:rows.length});
 }
@@ -27,6 +28,6 @@ const rows=[...merged.values()].sort((a,b)=>a.term_id.localeCompare(b.term_id)||
 const baselineTerms=new Set(base.links.map(x=>x.term_id));
 const result={schema:'scene500-unified-review-queue-v0.1',status:'REVIEW_ONLY_NOT_APPROVED',sourceVersion:lex.data_version,
  baselineLinks:base.links.length,uniqueCandidates:rows.length,candidateTerms:new Set(rows.map(x=>x.term_id)).size,
- newlyCoveredIfApproved:new Set(rows.filter(x=>!baselineTerms.has(x.term_id)).map(x=>x.term_id)).size,sources,rows};
+ newlyCoveredIfApproved:new Set(rows.filter(x=>!baselineTerms.has(x.term_id)).map(x=>x.term_id)).size,sources,provenancePolicy:'Prioritization queues are derivatives of semantic-workset and never independent evidence.',rows};
 fs.writeFileSync(outputFile,JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify({candidates:result.uniqueCandidates,terms:result.candidateTerms,newTerms:result.newlyCoveredIfApproved}));
