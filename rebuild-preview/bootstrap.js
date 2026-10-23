@@ -120,6 +120,8 @@
   // Restore persisted recommendation IDs exactly; only explicit user actions rerank.
   render();
   mark('homeRendered');app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
+  // Restore the snapshot first; reconcile real progress/recents after first paint.
+  requestAnimationFrame(()=>window.PAI_HOME_RECONCILE?.({rerank:false}));
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
    const t=window.PAI_BOOT_TIMINGS||{},c=window.PAI_CORE20K_LOAD_TIMINGS||{};
@@ -138,7 +140,7 @@
     await installScene500Top100();
     if(window.PAI_SCENE500_TOP100_READY)await window.PAI_SCENE500_TOP100_READY;
     // Refresh count labels only after the entire Top100 dataset is ready.
-    if(typeof window.PAI_HOME_REFRESH_COUNTS==='function')window.PAI_HOME_REFRESH_COUNTS();
+    if(typeof window.PAI_HOME_RECONCILE==='function')window.PAI_HOME_RECONCILE({rerank:true});
     // Never rerank or replace the search draft during background data hydration.
    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
   })();
