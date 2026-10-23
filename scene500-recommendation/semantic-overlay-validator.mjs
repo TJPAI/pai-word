@@ -11,7 +11,7 @@ export function validateSemanticOverlay(payload, validSceneIds) {
   for(const [i,scene] of payload.scenes.entries()){
     if(!scene||typeof scene!=='object'){errors.push('invalid scene at '+i);continue;}
     const id=scene.scene_id;
-    if(typeof id!=='string'||!/^S\\d{3}$/.test(id)||!valid.has(id))errors.push('unknown scene_id at '+i);
+    if(typeof id!=='string'||!/^S\d{3}$/.test(id)||!valid.has(id))errors.push('unknown scene_id at '+i);
     if(seen.has(id))errors.push('duplicate scene_id '+id);
     seen.add(id);
     if(!Array.isArray(scene.expressions)||scene.expressions.length>50){errors.push('invalid expressions for '+id);continue;}
