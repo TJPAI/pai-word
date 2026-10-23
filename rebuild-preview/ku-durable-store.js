@@ -2,7 +2,8 @@
 // This layer does not delete localStorage or other databases.
 (function(){
  'use strict';
- const NAME='pai-word-ku-durable-v1';
+ const NAME='pai-word-preview-ku-durable-v2';
+ window.PAI_KU_DURABLE_DB_NAME=NAME;
  const KEY='current';
  function open(){
   return new Promise((resolve,reject)=>{
