@@ -55,8 +55,13 @@ test('candidate eligibility and semantic relevance are separable', () => {
   assert.ok(ids('刷牙洗脸', {eligibleSceneIds: ['S002']}).includes('S002'));
 });
 
-test('abbreviated science names without explicit activity are not forced', () => {
-  // Deliberately accepts zero: catalog is task-based, not a subject ontology.
-  assert.ok(ids('哲学').length <= 500);
-  assert.ok(ids('量子物理').length <= 500);
+test('subject-only queries are not fabricated as dedicated scenes', () => {
+  for (const query of ['哲学', '量子物理']) {
+    const result = engine.search(query, {limit: 10});
+    assert.ok(result.results.length <= 10);
+    for (const row of result.results) {
+      assert.ok(catalog.scenes[row.sceneId], 'returned scene must exist');
+      assert.ok(row.score >= 3, 'result must meet semantic score threshold');
+    }
+  }
 });
