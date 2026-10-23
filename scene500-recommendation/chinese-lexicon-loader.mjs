@@ -38,6 +38,18 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
     pos:null,aliases:[],source_version:index.version
    }))};
   }
+  // Full Core20K deliverables use records[], while compact runtime uses terms[].
+  // Preserve every term_id, never derive identity from row positions.
+  if(Array.isArray(lexicon?.records)){
+   if(lexicon.records.length!==20000)throw Error('SCENE500_INVALID_CHINESE_RECORD_COUNT');
+   const version=String(lexicon.source_version??lexicon.version??'');
+   if(!version)throw Error('SCENE500_MISSING_CHINESE_SOURCE_VERSION');
+   lexicon={source_version:version,terms:lexicon.records.map(r=>({
+    term_id:r.term_id,term:r.term,normalized_term:r.normalized_term,
+    frequency_rank:r.frequency_rank??null,frequency_score:r.frequency_score??null,
+    pos:r.pos??null,aliases:r.aliases??[],source_version:r.source_version??version
+   }))};
+  }
   const engine=createScene500ContractAdapter({catalog,lexicon,associations});
   if(controller.signal.aborted)throw Error('SCENE500_ASSET_ABORTED');
   return Object.freeze({...engine,mode:'hybrid'});
