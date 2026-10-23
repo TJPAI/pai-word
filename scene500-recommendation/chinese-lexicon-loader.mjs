@@ -68,8 +68,17 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
   if(controller.signal.aborted)throw Error('SCENE500_ASSET_ABORTED');
   // Extension is always opt-in and must use the exact V0.10.1 identity space.
   // Invalid extension rolls back to the known baseline rather than silently mixing edges.
-  const active=enableExperimentalExtension?
-   withExperimentalSceneExtension(engine,{catalog,extension:experimentalExtension,enabled:true}):engine;
+  let active=engine;
+  if(enableExperimentalExtension){
+   try{
+    active=withExperimentalSceneExtension(engine,{catalog,extension:experimentalExtension,enabled:true});
+   }catch(extensionError){
+    // Invalid optional experimentation must NEVER disable a valid lexical Hybrid base.
+    if(typeof onDiagnostic==='function'){
+     try{onDiagnostic({code:'SCENE500_EXPERIMENTAL_EXTENSION_REJECTED',reason:String(extensionError?.message??extensionError)});}catch{}
+    }
+   }
+  }
   return Object.freeze({...active,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false});
   })();
   return await Promise.race([work,abortPromise]);
