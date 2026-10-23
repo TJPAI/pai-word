@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-v22-preview-isolation-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-v22-fresh-home-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -30,7 +30,8 @@
  const SNAPSHOT_KEY='pai-word-preview-v2-home-visual';
  let snapshotVisible=false;
  try{
-  const saved=JSON.parse(localStorage.getItem(SNAPSHOT_KEY)||'null');
+  localStorage.removeItem(SNAPSHOT_KEY);
+  const saved=null; // No cached HTML restoration.
   if(saved?.schema===1&&typeof saved.html==='string'&&saved.html.length<180000&&saved.html.startsWith('<div class="home-dashboard">')){
    const safe=document.createElement('div');safe.innerHTML=saved.html;
    // Cached markup is visual only; normalize historical CTA wording before first paint.
@@ -44,9 +45,7 @@
    snapshotVisible=true;mark('snapshotPaint');
   }
  }catch(error){console.warn('Visual snapshot unavailable',error)}
- window.PAI_SAVE_HOME_VISUAL=html=>{
-  try{if(typeof html==='string'&&html.length<180000)localStorage.setItem(SNAPSHOT_KEY,JSON.stringify({schema:1,html}))}catch(error){console.warn('Visual snapshot write skipped',error)}
- };
+ window.PAI_SAVE_HOME_VISUAL=()=>{}; // Always render genuine state.
 
 
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.async=false;el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
