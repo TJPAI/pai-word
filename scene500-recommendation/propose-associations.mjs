@@ -30,23 +30,35 @@ const profiles=Object.entries(catalog.scenes).map(([sceneId,s])=>({
   name:[s.name],alias:s.aliases??[],action:s.actions??[],object:s.objects??[],
  }, negatives:(s.negative_terms??[]).map(normalize)
 }));
+// Index exact field values once: avoid scanning all 500 scenes for every one of 20k terms.
+const index=new Map();
+for(const profile of profiles){
+ for(const [kind,values] of Object.entries(profile.fields)){
+  for(const value of values){
+   const key=normalize(value);
+   if(!key)continue;
+   if(!index.has(key))index.set(key,new Map());
+   const byScene=index.get(key);
+   if(!byScene.has(profile.sceneId))byScene.set(profile.sceneId,{profile,evidence:new Set()});
+   byScene.get(profile.sceneId).evidence.add(kind+'_exact');
+  }
+ }
+}
 const proposals=[],ambiguous=[],insufficient=[];
 for(const t of lexicon.terms){
  const key=normalize(t.normalized_term);
- if(key.length<2)continue;
+ if(!key)continue;
  if(owners.get(key).size>1){ambiguous.push(t.term_id);continue;}
  let n=counts.get(t.term_id)||0;
  if(n>=50)continue;
  const candidate=[];
- for(const s of profiles){
+ for(const {profile:s,evidence:matched} of index.get(key)?.values()??[]){
   if(existing.has(t.term_id+'\0'+s.sceneId))continue;
   if(s.negatives.some(x=>x&&key.includes(x)))continue;
-  const evidence=[];
-  for(const [kind,values] of Object.entries(s.fields)){
-   if(values.some(v=>normalize(v)===key))evidence.push(kind+'_exact');
-  }
-  // Do not infer strong semantic association from substrings or generic words.
-  if(!evidence.length)continue;
+  const evidence=[...matched];
+  // An isolated single character is only useful when it is distinctive.
+  // High-ambiguity keys remain unmatched rather than generating dozens of guesses.
+  if(key.length===1&&index.get(key).size>3)continue;
   // Explicit alias/action/object is direct profile evidence, but not verified truth.
   const score=evidence.includes('name_exact')?.9:
    evidence.includes('alias_exact')?.8:
@@ -66,7 +78,7 @@ const result={
  baseline:{terms:lexicon.terms.length,links:associations.links.length,linkedTerms:counts.size},
  proposed:{links:proposals.length,newTerms:new Set(proposals.filter(p=>!counts.has(p.term_id)).map(p=>p.term_id)).size},
  exclusions:{ambiguousTermIds:ambiguous.length,unlinkedWithoutExactEvidence:insufficient.length},
- method:'exact match to scene name/alias/action/object; no substring expansion, no automatic promotion',
+ method:'indexed exact profile evidence; single-character keys only when at most 3 scenes; no automatic promotion',
  candidates:proposals
 };
 const serialized=JSON.stringify(result,null,2);
