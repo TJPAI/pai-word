@@ -41,7 +41,10 @@ export async function installScene500Top100({fetcher=fetch,base='data/scene500-t
   for(const [id,units] of pending)core.byScene.set(id,units);
   Object.assign(window.PAI_SCENE500.qa,{total,eligible,blocked:total-eligible,loading:false});
   Object.assign(window.PAI_SCENE500_TOP100,{eligible,blocked:total-eligible,loading:false});
-  if(typeof window.render==='function'&&typeof state!=='undefined'&&state.view==='scenes')window.render();
+  if(typeof state!=='undefined'&&state.view==='scenes'){
+   if(typeof window.PAI_HOME_ON_TOP100_READY==='function')window.PAI_HOME_ON_TOP100_READY();
+   else if(typeof window.render==='function')window.render();
+  }
   return window.PAI_SCENE500_TOP100;
  })();
  window.PAI_SCENE500_TOP100_READY.catch(error=>{
