@@ -1,16 +1,27 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PAI Word · IndexedDB 隔离测试</title>
+<title>PAI Word · IndexedDB 隔离测试 V3</title>
 <style>body{font:16px system-ui,sans-serif;max-width:780px;margin:28px auto;padding:0 16px;line-height:1.55}button{font:inherit;padding:10px 18px}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#f3f5f7;padding:16px;border-radius:8px}.pass{color:#087a37}.fail{color:#b42318}</style></head>
 <body><h1>PAI Word · IndexedDB 事务测试</h1>
 <p>此页面只使用临时 QA 数据库，不会打开、修改或清空正式版及预览版的学习记录。点击按钮运行真实浏览器 IndexedDB 测试。</p>
-<button id="run">运行测试</button><pre id="log" aria-live="polite">等待开始</pre>
+<button id="run">运行测试</button><pre id="log" aria-live="polite">QA V3 · 等待开始</pre>
 <script>
 const output=document.querySelector('#log'),button=document.querySelector('#run');
 const lines=[];function log(s,ok){lines.push(s);output.textContent=lines.join('\n');if(ok===false)output.className='fail';}
 function assert(condition,message){if(!condition)throw Error(message);log('PASS '+message,true)}
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
-async function deleteDB(name){await new Promise((resolve,reject)=>{const request=indexedDB.deleteDatabase(name);request.onsuccess=resolve;request.onerror=()=>reject(request.error);request.onblocked=()=>reject(Error('Temporary QA database blocked by another tab'))})}
+async function deleteDB(name){
+ await new Promise((resolve,reject)=>{
+  const request=indexedDB.deleteDatabase(name);
+  let settled=false;
+  const timeout=setTimeout(()=>{if(!settled){settled=true;reject(Error('Temporary QA database deletion still blocked after 8 seconds'))}},8000);
+  const finish=(error)=>{if(settled)return;settled=true;clearTimeout(timeout);error?reject(error):resolve()};
+  request.onsuccess=()=>finish();
+  request.onerror=()=>finish(request.error||Error('Temporary QA database deletion failed'));
+  // onblocked is a notification, NOT a terminal failure: a close() may still be settling.
+  request.onblocked=()=>log('INFO 临时数据库删除等待连接释放（最多8秒）');
+ });
+}
 button.onclick=async()=>{
  button.disabled=true;lines.length=0;output.className='';
  const name='pai-word-qa-tmp-'+Date.now()+'-'+Math.random().toString(36).slice(2);
