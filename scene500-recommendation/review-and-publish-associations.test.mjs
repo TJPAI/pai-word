@@ -26,7 +26,7 @@ test('review gate refuses candidate-only and accepts only independently evidence
   ]}));
   r=run();assert.equal(r.status,0,r.stderr);
   const out=JSON.parse(fs.readFileSync(paths[4],'utf8'));
-  assert.equal(out.status,'REVIEWED_NOT_DEPLOYED');
+  assert.equal(out.status,'REVIEW_CLAIMS_VALIDATED_NOT_CERTIFIED');
   assert.equal(out.approved_added,1);
   assert.equal(out.associations.links[0].term_id,'zh_1');
   assert.equal(out.associations.links[0].association_version,'v');
