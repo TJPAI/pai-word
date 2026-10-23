@@ -4,6 +4,26 @@
  const bootStarted=performance.now(),timings={};
  const mark=label=>{timings[label]=Math.round(performance.now()-bootStarted);window.PAI_BOOT_TIMINGS={...timings}};
  mark('bootstrap');
+ // Read-only visual snapshot: never trust restored markup for actions or learning state.
+ const SNAPSHOT_KEY='pai-word-home-visual-v1';
+ let snapshotVisible=false;
+ try{
+  const saved=JSON.parse(localStorage.getItem(SNAPSHOT_KEY)||'null');
+  if(saved?.schema===1&&typeof saved.html==='string'&&saved.html.length<180000&&saved.html.startsWith('<div class="home-dashboard">')){
+   const safe=document.createElement('div');safe.innerHTML=saved.html;
+   safe.querySelectorAll('script,iframe,object,embed,form').forEach(node=>node.remove());
+   safe.querySelectorAll('*').forEach(node=>{for(const attr of [...node.attributes])if(attr.name.startsWith('on'))node.removeAttribute(attr.name)});
+   safe.querySelectorAll('button,input,textarea,select,a').forEach(node=>{node.setAttribute('disabled','');node.setAttribute('tabindex','-1')});
+   app.replaceChildren(...safe.childNodes);
+   app.setAttribute('aria-busy','true');
+   document.body.classList.add('pai-snapshot-visible');
+   snapshotVisible=true;mark('snapshotPaint');
+  }
+ }catch(error){console.warn('Visual snapshot unavailable',error)}
+ window.PAI_SAVE_HOME_VISUAL=html=>{
+  try{if(typeof html==='string'&&html.length<180000)localStorage.setItem(SNAPSHOT_KEY,JSON.stringify({schema:1,html}))}catch(error){console.warn('Visual snapshot write skipped',error)}
+ };
+
 
  function script(src){return new Promise((resolve,reject)=>{const el=document.createElement('script');el.async=false;el.src=src+'?v='+VERSION;el.onload=resolve;el.onerror=()=>reject(Error('应用文件加载失败: '+src));document.body.appendChild(el)})}
  // Catalog is not required for the initial home paint. Install it at first use only.
@@ -99,7 +119,7 @@
 
   // Restore persisted recommendation IDs exactly; only explicit user actions rerank.
   render();
-  mark('homeRendered');app.removeAttribute('role');document.body.classList.add('pai-boot-ready');
+  mark('homeRendered');app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
    const t=window.PAI_BOOT_TIMINGS||{},c=window.PAI_CORE20K_LOAD_TIMINGS||{};
@@ -117,6 +137,8 @@
     const {installScene500Top100}=await import(new URL('scripts/scene500-top100-loader.mjs',document.baseURI).href);
     await installScene500Top100();
     if(window.PAI_SCENE500_TOP100_READY)await window.PAI_SCENE500_TOP100_READY;
+    // Refresh count labels only after the entire Top100 dataset is ready.
+    if(typeof window.PAI_HOME_REFRESH_COUNTS==='function')window.PAI_HOME_REFRESH_COUNTS();
     // Never rerank or replace the search draft during background data hydration.
    }catch(error){console.warn('Optional Scene500 data unavailable; homepage remains usable',error)}
   })();
