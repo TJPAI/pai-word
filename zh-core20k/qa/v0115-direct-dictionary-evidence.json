@@ -1,0 +1,76 @@
+{
+  "schema": "pai-zh-core20k-lexical-evidence-v1",
+  "version": "V0.10.15-dictionary-entry-evidence",
+  "base": "V0.10.14",
+  "evaluation_scope": "direct online dictionary entries; independent corpus frequency unverified",
+  "entries": [
+    {
+      "term": "取得",
+      "term_id": "zh_03ecfee0d013719b0575",
+      "previous": "PROTECT_LEXICAL_CANDIDATE",
+      "evidence": [
+        {
+          "url": "https://zdic.net/hans/%E5%8F%96%E5%BE%97",
+          "source": "汉典",
+          "evidence_type": "dictionary_headword_entry",
+          "result": "词条存在，解释含‘获得’"
+        }
+      ],
+      "decision": "DICTIONARY_ATTESTED_LEXEME",
+      "membership_action": "NO_CHANGE",
+      "frequency_status": "UNVERIFIED"
+    },
+    {
+      "term": "一致性",
+      "term_id": "zh_05b09b88bdac617e1c72",
+      "previous": "PROTECT_LEXICAL_CANDIDATE",
+      "evidence": [
+        {
+          "url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=149569&la=0&powerMode=0",
+          "source": "台湾教育部《重编国语辞典修订本》",
+          "evidence_type": "official_dictionary_headword_entry",
+          "result": "独立词条存在，释义‘共同性’"
+        },
+        {
+          "url": "https://zdic.net/hant/%E4%B8%80%E8%87%B4%E6%80%A7",
+          "source": "汉典",
+          "evidence_type": "dictionary_headword_entry",
+          "result": "词条存在"
+        }
+      ],
+      "decision": "DICTIONARY_ATTESTED_LEXEME",
+      "membership_action": "NO_CHANGE",
+      "frequency_status": "UNVERIFIED"
+    },
+    {
+      "term": "穿过",
+      "term_id": "zh_0d3bf0380d4a7843dce3",
+      "previous": "MORPHOLOGY_BOUNDARY_REVIEW",
+      "evidence": [
+        {
+          "url": "https://zdic.net/hans/%E7%A9%BF%E8%BF%87",
+          "source": "汉典",
+          "evidence_type": "dictionary_headword_entry",
+          "result": "独立动词词条，表示从一侧到另一侧穿行"
+        }
+      ],
+      "decision": "DICTIONARY_ATTESTED_LEXEME_WITH_MORPHOLOGY_CAVEAT",
+      "membership_action": "NO_CHANGE",
+      "frequency_status": "UNVERIFIED"
+    }
+  ],
+  "qa": {
+    "reviewed": 3,
+    "individually_attested": 3,
+    "official_dictionary_attested": 1,
+    "all_ids_from_verified_v0113": true,
+    "approved_membership_changes": 0,
+    "approved_rank_changes": 0,
+    "app_runtime_changes": 0
+  },
+  "caveats": [
+    "Dictionary recognition is not corpus frequency evidence.",
+    "漢典 may incorporate educational dictionary contents; count independent textual traditions conservatively.",
+    "Existing lexemes can remain marked for contextual segmentation testing even when headword attested."
+  ]
+}
