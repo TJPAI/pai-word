@@ -984,39 +984,43 @@
   render();window.PAI_AUTOBROWSE?.restart();
   return true;
  };
+ // Shared rating projection: same KU history and grade yield the same SRS record
+ // regardless of whether the card was entered via queue, swipe, batch or bookmark.
+ function projectRatedKU(draft,before,k,grade,now,responseMs){
+   const previous=before.records?.[k],seen=Number(draft.learningSession?.seen?.[k]||0);
+   const repeat=grade!=='good'||(!previous&&seen===0);
+   const record=window.PAI_MEMORY_SCHEDULERS.review('basic',{
+     previous,grade,now,repeat,sessionKind:draft.learningSession?.kind||'scene'
+   });
+   record.responseMs=responseMs??null;
+   draft.records[k]=record;
+   if(draft.learningSession){
+     draft.learningSession.seen=draft.learningSession.seen||{};
+     draft.learningSession.seen[k]=seen+1;
+     draft.learningSession.attempts=(draft.learningSession.attempts||0)+1;
+   }
+   if(!previous){
+     const today=dayKey(),old=draft.dailyNewProgress;
+     const p=old?.date===today?old:{date:today,completed:[],newWordsCompleted:[],reinforcementCompleted:[]};
+     p.completed=Array.isArray(p.completed)?p.completed:[];
+     p.newWordsCompleted=Array.isArray(p.newWordsCompleted)?p.newWordsCompleted:[];
+     p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
+     if(!p.completed.includes(k))p.completed.push(k);
+     const wordId=key=>{const u=findUnitByKey(key);return u?.w?.rank??u?.w?.w??null};
+     const id=wordId(k);
+     const alreadyIntroduced=id!==null&&Object.keys(before.records||{}).some(key=>wordId(key)===id);
+     const alreadyCounted=id!==null&&p.newWordsCompleted.some(key=>wordId(key)===id);
+     if(id!==null&&!alreadyIntroduced&&!alreadyCounted)p.newWordsCompleted.push(k);
+     draft.dailyNewProgress=p;
+   }
+   draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
+   return {record,repeat};
+ }
  window.rateBrowsedLearning=async(grade,k)=>{
   if(window.PAI_SAVE_DEFERRED===true||historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
   historicalCommitInProgress=true;
   const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
-  const hasPrior=!!before.records[k],seen=Number(draft.learningSession?.seen?.[k]||0);
-  const repeat=grade!=='good'||(!hasPrior&&seen===0);
-  // Entry route must not determine KU scheduling.
-  const record=window.PAI_MEMORY_SCHEDULERS.review('basic',{
-    previous:hasPrior?before.records[k]:undefined,grade,now,repeat,
-    sessionKind:draft.learningSession?.kind||'scene'
-  });
-  record.responseMs=PAI_TAP_FLOW.snapshot().responseMs??null;
-  draft.records[k]=record;
-  if(draft.learningSession){
-    draft.learningSession.seen=draft.learningSession.seen||{};
-    draft.learningSession.seen[k]=seen+1;
-    draft.learningSession.attempts=(draft.learningSession.attempts||0)+1;
-  }
-  if(!hasPrior){
-    const today=dayKey(),old=draft.dailyNewProgress;
-    const p=old?.date===today?old:{date:today,completed:[],newWordsCompleted:[],reinforcementCompleted:[]};
-    p.completed=Array.isArray(p.completed)?p.completed:[];
-    p.newWordsCompleted=Array.isArray(p.newWordsCompleted)?p.newWordsCompleted:[];
-    p.reinforcementCompleted=Array.isArray(p.reinforcementCompleted)?p.reinforcementCompleted:[];
-    if(!p.completed.includes(k))p.completed.push(k);
-    const wordId=key=>{const u=findUnitByKey(key);return u?.w?.rank??u?.w?.w??null};
-    const id=wordId(k);
-    const alreadyIntroduced=id!==null&&Object.keys(before.records||{}).some(key=>wordId(key)===id);
-    const alreadyCounted=id!==null&&p.newWordsCompleted.some(key=>wordId(key)===id);
-    if(id!==null&&!alreadyIntroduced&&!alreadyCounted)p.newWordsCompleted.push(k);
-    draft.dailyNewProgress=p;
-  }
-  draft.stats[grade==='good'?'known':'unknown']=(draft.stats[grade==='good'?'known':'unknown']||0)+1;
+  projectRatedKU(draft,before,k,grade,now,PAI_TAP_FLOW.snapshot().responseMs);
   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;try{save()}catch(cacheError){try{console.warn('Durable KU committed; optional local backup failed',cacheError)}catch{}}}else throw Error('IndexedDB unavailable: refusing unsafe fallback')}catch(e){window.PAI_SAVE_DEFERRED=false;state=before;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
@@ -1044,15 +1048,9 @@
   try{before=state;draft=structuredClone(state)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分状态复制失败',e);PAI_TAP_FLOW.resumeFailedCommit();return}
   window.PAI_SAVE_DEFERRED=true;state=draft;
   try{
-  if(!prev)markDailyNewComplete(k);
-  const seen=state.learningSession.seen[k]||0;state.learningSession.seen[k]=seen+1;state.learningSession.attempts++;
-  // New material gets a second retrieval; mistakes never disappear behind a timer.
-  const repeat=grade!=='good'||(!prev&&seen===0);
-  const r=window.PAI_MEMORY_SCHEDULERS.review('basic',{
-   previous:prev,grade,now,repeat,sessionKind:state.learningSession.kind
-  });
-  r.responseMs=PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt);
-  state.records[k]=r;rebuildDailyAssignments();state.stats[grade==='good'?'known':'unknown']=(state.stats[grade==='good'?'known':'unknown']||0)+1;
+  const {repeat}=projectRatedKU(state,before,k,grade,now,
+    PAI_TAP_FLOW.snapshot().responseMs??Math.max(0,now-startedAt));
+  rebuildDailyAssignments();
   const qi=state.learningSession.queue.indexOf(k);if(qi>=0)state.learningSession.queue.splice(qi,1);state.learningSession.completed=state.learningSession.completed.filter(x=>x!==k);if(repeat)state.learningSession.queue.splice(Math.min(4,state.learningSession.queue.length),0,k);else state.learningSession.completed.push(k);
   PAI_TAP_FLOW.syncPage();state.learningSession.currentAttempt={...attempt,committed:true};
   if(window.PAI_KU_STORAGE_READY){const result=await window.PAI_KU_DURABLE.commit(window.PAI_KU_DURABLE_DB,{snapshot:state,attemptId:attempt.attemptId,expectedVersion:window.PAI_KU_DURABLE_VERSION});if(result.status!=='committed')throw Error('KU write '+result.status);window.PAI_KU_DURABLE_VERSION=result.version;window.PAI_SAVE_DEFERRED=false;try{save()}catch(cacheError){try{console.warn('Durable KU committed; optional local backup failed',cacheError)}catch{}}}
