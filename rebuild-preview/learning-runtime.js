@@ -1068,9 +1068,17 @@
  window.rateBrowsedLearning=async(grade,k)=>{
   if(window.PAI_SAVE_DEFERRED===true||historicalCommitInProgress||!active||!browsedUnit||browsedUnit.k!==k||!['again','hard','good'].includes(grade))return;
   historicalCommitInProgress=true;
-  const attemptId=newAttemptId(),before=state;let draft;try{draft=structuredClone(state)}catch(e){historicalCommitInProgress=false;window.PAI_LAST_SAVE_ERROR=String(e);return}const now=Date.now(),prev=state.records[k]||{};
-  projectRatedKU(draft,before,k,grade,now,PAI_TAP_FLOW.snapshot().responseMs);
-  draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
+  let attemptId,draft;
+  try{
+   attemptId=newAttemptId();
+   const before=state,now=Date.now();
+   draft=structuredClone(state);
+   projectRatedKU(draft,before,k,grade,now,PAI_TAP_FLOW.snapshot().responseMs);
+   draft.historyReviewAttempts={...(draft.historyReviewAttempts||{}),[attemptId]:{kuId:k,grade,at:now}};
+  }catch(e){
+   historicalCommitInProgress=false;window.PAI_SAVE_DEFERRED=false;
+   window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();return;
+  }
   window.PAI_SAVE_DEFERRED=true;
   try{await commitRatedDraft(draft,attemptId)}catch(e){window.PAI_SAVE_DEFERRED=false;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();if(PAI_TAP_FLOW.takeHoldAfterRating()){PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection()||1;PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(direction);window.PAI_AUTOBROWSE?.restart()
@@ -1102,7 +1110,9 @@
   // Rebuild after the durable commit, not while the draft is unpublished.
   const qi=draft.learningSession.queue.indexOf(k);if(qi>=0)draft.learningSession.queue.splice(qi,1);draft.learningSession.completed=draft.learningSession.completed.filter(x=>x!==k);if(repeat)draft.learningSession.queue.splice(Math.min(4,draft.learningSession.queue.length),0,k);else draft.learningSession.completed.push(k);
   draft.learningSession.currentAttempt={...attempt,committed:true};
-  await commitRatedDraft(draft,attempt.attemptId);rebuildDailyAssignments();
+  await commitRatedDraft(draft,attempt.attemptId);
+  // Assignment refresh is non-critical after durable commit: it must never mark a successful rating as failed.
+  try{rebuildDailyAssignments()}catch(refreshError){console.warn('Post-commit assignment refresh failed',refreshError)}
   }catch(e){window.PAI_SAVE_DEFERRED=false;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
