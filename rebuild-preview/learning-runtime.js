@@ -873,11 +873,13 @@
    if(batches<2)return false;
    const visible=window.getVisibleLearningUnit?.(),position=Math.max(0,keys.indexOf(visible?.k));
    const nextBatch=(Math.floor(position/size)+direction+batches)%batches;
-   const target=byKey(keys[nextBatch*size]),request=++browseToken;
+   const target=byKey(keys[nextBatch*size]),originKey=visible?.k,request=++browseToken;
    if(!target)return false;
+   // Invalidate an already scheduled auto-advance while the next batch is loading.
+   stopAutoBrowse();
    try{
      await ensureUnits([target.k]);
-     if(request!==browseToken||!active||state.view!=='learning')return false;
+     if(request!==browseToken||!active||state.view!=='learning'||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||window.getVisibleLearningUnit?.()?.k!==originKey)return false;
      ++token;PAI_TAP_FLOW.cancel();window.PAI_AUDIO?.stop();
      browsedUnit=target;browseIndex=keys.indexOf(target.k);state.revealed=false;error='';loading=false;
      PAI_TAP_FLOW.browseReady(target.k,()=>window.advanceBrowsedAnswer(),false);
@@ -885,6 +887,7 @@
      if(state.autoPronounce.question&&!document.hidden)speak(target.w.w);
      window.PAI_AUTOBROWSE?.restart();return true;
    }catch(e){window.PAI_BATCH_ERROR=String(e);return false}
+   finally{if(request===browseToken&&active&&state.view==='learning')window.PAI_AUTOBROWSE?.restart()}
  };
  window.getBrowsedUnit=()=>browsedUnit;
  window.getVisibleLearningUnit=()=>browsedUnit||unit();
