@@ -1,0 +1,195 @@
+{
+  "schema": "pai-zh-core20k-reviewed-triage-v1",
+  "version": "V0.10.10-chat-ai-21sample",
+  "baseline": "0.10.1-evidence-compat",
+  "baseline_branch_sha": "a96a505d8c8ccf7089765015f5b9f1ec9555941a",
+  "scope": "21 directly validated runtime terms; AI linguistic triage only",
+  "method": "chat-language assessment + exact membership from entire 20K Runtime; previous BCC/SUBTLEX report used only for triage, not item-level counts",
+  "counts": {
+    "total": 21,
+    "present": 13,
+    "absent": 8,
+    "provisional_decisions": 21,
+    "external_dictionary_verified": 0,
+    "approved_membership_changes": 0
+  },
+  "items": [
+    {
+      "term": "人有",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "人+有通常为跨词组合，需上下文证据",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "中有",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "中+有通常涉及方位词与谓词跨界",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "人来",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "人+来多为主谓或名动组合",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "我要",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "我+要通常为代词与情态动词组合",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "他会",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "他+会一般为代词与助动词组合",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "这会",
+      "in_master": true,
+      "decision": "polysemy_review",
+      "ai_assessment": "有‘这会儿’时间义可能，不能自动拆分",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "这是",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "这+是多为指示代词与系词组合",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "一种",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "一+种含数量结构，需保留整体检索可能",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "两个",
+      "in_master": true,
+      "decision": "boundary_review",
+      "ai_assessment": "两+个为数量结构，不等于独立词",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "可以",
+      "in_master": true,
+      "decision": "protect_keep",
+      "ai_assessment": "高价值词汇化情态表达，不因规则命中删除",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "通过",
+      "in_master": true,
+      "decision": "protect_keep",
+      "ai_assessment": "独立动词或介词用法，不因分词规则删除",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "算法",
+      "in_master": true,
+      "decision": "protect_keep",
+      "ai_assessment": "独立科技专业词",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "量子计算",
+      "in_master": true,
+      "decision": "protect_keep",
+      "ai_assessment": "独立技术术语，专业领域保留优先",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "伙计",
+      "in_master": false,
+      "decision": "oral_colloquial_candidate",
+      "ai_assessment": "字幕语料高频缺词候选，需跨域验证",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "救命",
+      "in_master": false,
+      "decision": "oral_function_candidate",
+      "ai_assessment": "口语呼救功能词，需多源匹配",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "住手",
+      "in_master": false,
+      "decision": "oral_function_candidate",
+      "ai_assessment": "指令场景词，需上下文核验",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "箱子",
+      "in_master": false,
+      "decision": "everyday_object_candidate",
+      "ai_assessment": "日常物体词，需词典及跨域频率",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "民警",
+      "in_master": false,
+      "decision": "news_law_candidate",
+      "ai_assessment": "新闻与法律/公共安全领域词",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "北京时间",
+      "in_master": false,
+      "decision": "news_time_candidate",
+      "ai_assessment": "新闻与时间表述领域词",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "肝",
+      "in_master": false,
+      "decision": "medicine_candidate",
+      "ai_assessment": "医学和人体词项，需技术领域语料",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    },
+    {
+      "term": "肿",
+      "in_master": false,
+      "decision": "medicine_candidate",
+      "ai_assessment": "医学词汇或词素边界待审",
+      "verdict": "PROVISIONAL",
+      "admission_approved": false
+    }
+  ],
+  "quality_gate": {
+    "term_id_mutated": false,
+    "membership_mutated": false,
+    "frequency_rank_mutated": false,
+    "scene500_unchanged": true,
+    "external_token_level_evidence_required": true,
+    "existing_ids_stable": true
+  },
+  "next": "Gather licensed domain-balanced frequency and contextual tokenization before approving membership replacements"
+}
