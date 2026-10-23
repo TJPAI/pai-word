@@ -43,11 +43,20 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
   linksByTerm.get(link.term_id).push(link);
  }
  const registry={scene_count:500,terms:{}};
+ // An identical lookup key may belong to multiple distinct term IDs. A bare
+ // substring cannot disambiguate those identities, so exclude ambiguous
+ // postings rather than silently combining unrelated scenes.
+ const owners=new Map();
+ for(const t of lexicon.terms){
+  const key=norm(t.normalized_term);
+  if(!owners.has(key))owners.set(key,new Set());
+  owners.get(key).add(t.term_id);
+ }
 
  for(const t of lexicon.terms){
   const key=norm(t.normalized_term);
   const links=(linksByTerm.get(t.term_id)||[]).sort((a,b)=>a.rank-b.rank);
-  if(key.length>1&&links.length){
+  if(key.length>1&&links.length&&owners.get(key).size===1){
    const current=registry.terms[key]||[];
    const byScene=new Map(current.map(x=>[x.sceneId,x]));
    for(const p of links){
