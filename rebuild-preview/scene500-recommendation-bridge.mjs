@@ -18,7 +18,8 @@ async function initialize(){
  hybridReady=loader.loadScene500WithChineseLexicon({
   catalog,lexiconUrl:new URL('zh-core20k-v094.min.json',ROOT).href,
   associationUrl:new URL('v094-lexical-associations.json',ROOT).href,
-  timeoutMs:4000
+  timeoutMs:4000,
+  onDiagnostic:event=>{lastError=event?.code?String(event.code)+': '+String(event.reason??''):String(event)}
  }).then(engine=>{
   hybridSettled=true;
   if(engine?.failure)lastError=engine.failure;
