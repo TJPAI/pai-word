@@ -124,7 +124,7 @@
     document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending')?.remove();
     state.sceneSearchUi={...ui(),query:'',resultIds:[],page:0};
   };
-  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs?v=diagnostic-no-match-20261024',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
+  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs?v=handoff-4f01be8-20261024',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
   window.PAI_SCENE_PAGE=function(delta){
     if(state.view!=='scenes')return;
     const current=ui(),maximum=Math.max(0,Math.ceil((current.resultIds||[]).length/5)-1);
@@ -146,7 +146,7 @@
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
-        const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:500});
+        const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:10});
         ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;emptyReason=result.emptyReason||null;unfilteredCandidateCount=result.unfilteredCandidateCount??null;engineSucceeded=true;
       }catch(e){window.PAI_SCENE500_LAST_ERROR=String(e);bridgePromise=null}
     }
