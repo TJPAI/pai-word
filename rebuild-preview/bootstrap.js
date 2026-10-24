@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-header-two-line-20261024b';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-welcome-v1-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -185,6 +185,16 @@
   mark('homeRendered');app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
   // Restore the snapshot first; reconcile real progress/recents after first paint.
   requestAnimationFrame(()=>window.PAI_HOME_RECONCILE?.({rerank:false}));
+  // Warm the existing catalog module after the home has painted; do not delay first interaction.
+  // scene-catalog.js wraps window.render, so it must never load before home runtime is ready.
+  if(window.PAI_WELCOME_VISIBLE || window.PAI_WELCOME_OPEN_CATALOG_ON_READY){
+    if(!catalogScriptPromise)catalogScriptPromise=script('rebuild-preview/scene-catalog.js').catch(error=>{catalogScriptPromise=null;console.warn('Catalog warmup failed',error)});
+    if(window.PAI_WELCOME_OPEN_CATALOG_ON_READY){
+      window.PAI_WELCOME_OPEN_CATALOG_ON_READY=false;
+      void window.PAI_OPEN_CATALOG_LAZY();
+    }
+  }
+
   // Read-only diagnostics: available from the console; never persist or alter study state.
   window.PAI_STARTUP_REPORT=()=>{
    const t=window.PAI_BOOT_TIMINGS||{},c=window.PAI_CORE20K_LOAD_TIMINGS||{};
