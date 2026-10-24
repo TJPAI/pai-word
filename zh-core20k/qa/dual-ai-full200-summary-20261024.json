@@ -1,0 +1,75 @@
+{
+  "schema": "zh-core20k-dual-ai-full200-summary-v1",
+  "date": "2026-10-24",
+  "sources": {
+    "chatgpt_170_sha256": "43d3a8d2855058074fd668881423e59786d0e95b4e7264023e4d4f1a88db8a5f",
+    "chatgpt_qa_sha256": "f543a182852a542fbad8b2ec80a2a399c9ba47d9ed67afdb58ca2a5c26d87f85",
+    "chatgpt_locked30_sha256": "6d38394926a63501f06aa8663500fc5a781d4e330b055d3eaf0464d3ce63c0c3",
+    "muse_200_sha256": "806767c995ab7257466edfaa80420c3d0239140c803b68af58159914964b58bc",
+    "blind_200_sha256": "319607783bed778b934eccc89a9c21b8101cd09860275e508c41c9d13d070663"
+  },
+  "full_report_sha256": "2dfca8c847334b9cab6e364efe4cdd97529279d2141f51c49929b401ab8ee26d",
+  "counts": {
+    "total": 200,
+    "DUAL_AI_VERIFIED": 159,
+    "DISPUTED": 19,
+    "DOMAIN_FACT_CHECK_PENDING": 12,
+    "UNCERTAIN_PENDING": 10
+  },
+  "qa": {
+    "all_input_sha256_verified": true,
+    "exact_200_term_id_alignment": true,
+    "identity_mismatches": 0,
+    "locked_chatgpt170_plus30_no_overlap": true,
+    "mutations_to_runtime": 0,
+    "release_approved": 0
+  },
+  "disputed_terms": [
+    "用地",
+    "这边",
+    "一万",
+    "几何",
+    "五十",
+    "不下",
+    "十二",
+    "不远",
+    "不太",
+    "一号",
+    "更新包",
+    "十九",
+    "五千",
+    "不难",
+    "不住",
+    "五百",
+    "一处",
+    "有着",
+    "不愿"
+  ],
+  "uncertain_terms": [
+    "一期",
+    "一丝",
+    "来得",
+    "一回",
+    "一道",
+    "一班",
+    "一家",
+    "四周",
+    "美的",
+    "不起"
+  ],
+  "domain_fact_check_terms": [
+    "不良反应",
+    "违法所得",
+    "一审",
+    "三维建模",
+    "最优化",
+    "B轮",
+    "阶地",
+    "宅基地",
+    "台地",
+    "最值",
+    "最低工资",
+    "三维重建"
+  ],
+  "note": "Dual-AI agreement denotes semantic agreement only; domain fact-check and membership release gates remain separate. Input reviewer verdicts are unchanged."
+}
