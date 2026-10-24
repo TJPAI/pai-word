@@ -19,3 +19,9 @@ Received the actual Google Drive ZIP (91,911,160 bytes) and unpacked it locally.
 4. No production branch changes until end-to-end mobile QA.
 
 Decision: accept as an experimental engineering artifact, not production-ready.
+
+## 2026-10-24 follow-up: actual patched archive replay
+- Unpacked `scene500-e5-v16-patched.zip`; executed `node runtime/encoder/test-worker-lifecycle.mjs` => **PASS worker lifecycle**.
+- Executed delivered browser-compatible `verifyC2Index` under Node 22 against actual `runtime/assets/catalog-v0.2.json` and `runtime/assets/scene500-c2-index.json` => **PASS**, 500 x 384; exact SHA256 catalog `35a680bee9ec2fe207c877c82da306b1bc1c77685457cfb489193732453bc4e8`, identity `b410d8c253f5c0f4576f9b27c5a44d96f45d4483bc00eb5ab736ad592cc0d754`, index `eae39123c0f21800990bb68468331de95f1b45e8a7ed086598ac62959e680254`.
+- **Important browser QA gap**: Muse `scripts/run-browser-e2e.mjs` explicitly serves COOP `same-origin`, COEP `require-corp` and CORP `same-origin`. GitHub Pages does not permit configuring these headers; the prior Chromium success is **not** evidence for Pages-equivalent isolation. Run a second browser E2E with those headers removed and nested `/rebuild-preview/` path before release.
+- Browser E2E under Pages-equivalent headers and iPhone Safari: **NOT_RUN** in this follow-up. Do not infer production readiness from Node tests.
