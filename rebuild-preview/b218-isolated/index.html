@@ -10,12 +10,12 @@ const json=b=>JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(b));
 function stopAuto(){auto=false;clearTimeout(timer)}
 function speak(){if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(rows[index].headword);utterance.lang='en-US';utterance.rate=.85;window.speechSynthesis.speak(utterance)}
 function home(){stopAuto();phase='home';render()}
-function start(){index=0;answers=[];phase='question';render()}
-function next(){stopAuto();index++;phase=index>=rows.length?'done':'question';render()}
+function start(){stopAuto();index=0;answers=[];lastResult=null;phase='question';render()}
+function next(){const wasAuto=auto;clearTimeout(timer);index++;lastResult=null;phase=index>=rows.length?'done':'question';if(phase==='done')auto=false;render();if(wasAuto&&auto)schedule()}
 function reveal(){phase='answer';render()}
 function score(v){answers[index]={ku_id:rows[index].ku_id,rating:v,typed:lastResult};phase='rated';render()}
 function schedule(){clearTimeout(timer);if(!auto)return;timer=setTimeout(()=>{if(phase==='question')reveal();else if(phase==='answer'||phase==='rated')next();if(auto&&phase!=='done')schedule()},3500)}
-function toggleAuto(){auto=!auto;if(auto)schedule();else clearTimeout(timer);render()}
+function toggleAuto(){auto=!auto;clearTimeout(timer);render();if(auto)schedule()}
 function render(){
  const r=rows[index];const header='<p class="muted">仅当前页面内存 · '+answers.length+'/6 已评分 · '+(phase==='home'?'准备开始':phase==='done'?'已结束':(index+1)+'/6')+'</p>';
  if(phase==='home'){app.innerHTML=header+'<h2>首批六词学习流程</h2><p>person · time · know · people · talk · here</p><p>题目 → 输入中文 → 显示答案 → 三按钮自评 → 下一词</p><div class="actions"><button class="primary" id="start">进入学习</button></div>';document.getElementById('start').onclick=start;return}
