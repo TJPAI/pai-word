@@ -1148,7 +1148,7 @@
   PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();const ratedFace=PAI_TAP_FLOW.pageState()==='ANSWER';browsedUnit=u;state.revealed=ratedFace;PAI_TAP_FLOW.browseReady(k,null,ratedFace);const moved=await window.PAI_CHANGE_BATCH(ratedBatch);if(!moved)await showCurrent();return}if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
  };
  function top(title,progress=''){
-  const batch=String(progress).match(/^第(\d+\/\d+)批 · 本批已学习 (\d+\/\d+) · 场景 (\d+) KU$/);
+  const batch=String(progress).match(/^第(\d+\/\d+)批 · 本批已学习 (\d+\/\d+)$/);
   const status=batch?`<span class="study-batch-line">第${batch[1]}批</span><span class="study-batch-line">本批已学 ${batch[2]}</span>`:esc(progress);
   return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress"${batch?` title="${esc(progress)}"`:''}>${status}</div></div>`;
  }
@@ -1174,7 +1174,7 @@
   const batchKeys=visibleIndex>=0?sceneKeys.slice(batchIndex*batchSize,(batchIndex+1)*batchSize):[];
   const batchStudied=batchKeys.filter(k=>!!state.records?.[k]).length;
   const progress=sceneKeys.length&&visibleIndex>=0
-    ?`第${batchIndex+1}/${Math.ceil(sceneKeys.length/batchSize)}批 · 本批已学习 ${batchStudied}/${batchKeys.length} · 场景 ${sceneKeys.length} KU`
+    ?`第${batchIndex+1}/${Math.ceil(sceneKeys.length/batchSize)}批 · 本批已学习 ${batchStudied}/${batchKeys.length}`
     :`本轮已完成 ${sessionCompleted}/${sessionTotal}${sceneKUs!==null?` · 场景词池 ${sceneKUs} KU`:''}`;
   if(loading||error)return `<div class="screen study-screen learning-screen">${top(s.title,progress)}<div class="done" role="status"><div><p>${error?esc(error):'正在准备本轮词卡…'}</p>${error?'<button class="primary-btn" onclick="retryLearningLoad()">重试下载</button>':'<div class="skeleton-line"></div>'}</div></div><div class="recall-correction" role="group" aria-label="词卡加载中，按钮暂不可用"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div></div>`;
   const hidden=state.hideWord&&!state.revealed?' listen-only':'';
