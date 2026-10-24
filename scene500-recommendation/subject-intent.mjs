@@ -9,9 +9,14 @@ const SCENE_PRIORITY=Object.freeze({
  '天文':['S137','S126','S151','S122','S132'],
  '哲学':['S132','S137','S126','S151','S144'],
  '政治':['S418','S421','S132','S137','S474'],
- '经济':['S421','S132','S137','S126','S151']
+ '经济':['S421','S132','S137','S126','S151'],
+ '人工智能':['S137','S151','S132','S126','S296'],
+ 'ai':['S137','S151','S132','S126','S296'],
+ '量子计算':['S137','S151','S132','S126','S134'],
+ 'quantum computing':['S137','S151','S132','S126','S134'],
+ 'artificial intelligence':['S137','S151','S132','S126','S296']
 });
-const normalize=s=>String(s??'').normalize('NFKC').trim();
+const normalize=s=>String(s??'').normalize('NFKC').trim().toLowerCase();
 export function getSubjectSceneCandidates(query,{catalog,eligibleSceneIds=null}={}){
  const key=normalize(query);
  const ids=SCENE_PRIORITY[key];
