@@ -25,8 +25,15 @@ After first home paint, lazy import chinese-lexicon-loader.mjs, then call loadSc
 ## Acceptance gates (NOT YET PASS)
 - Revalidate actual deployed lexicon, associations and catalog SHA256 before enabling hybrid.
 - Run Node tests for engine, loader, contract, subject intent, integration boundaries, then 10 representative Top10 searches with actual files and timings.
-- Verify Chinese, English, math, physics, AI, quantum queries. Seven exact academic subject mappings exist, but AI and quantum are not in that mapping.
+- Verify Chinese, English, math, physics, AI, quantum queries. Exact academic subject mappings now include AI/人工智能 and quantum computing/量子计算 in the recommendation branch; verify runtime Top5 against actual catalog and eligible scene IDs.
 - Test iPhone Safari cold load, timeout/offline fallback, no duplicate IDs, no SRS/home regressions.
 - If any failure: disable hybrid asset URLs/flag and retain rule_fallback; if rule fallback fails, revert only recommendation integration.
 
 No GitHub Actions PASS, Safari PASS, benchmark, or full production semantic certification is claimed by this handoff.
+
+## 2026-10-24 explicit integration decision / dedup audit
+User approved using the recommendation branch's `chinese-lexicon-loader.mjs` as the **single loader source**. Do not rewrite a third loader or merge the old target loader line-by-line. Target branch `home-perf-safe-load-20261022` was checked against recommendation branch: `engine.mjs`, `catalog-v0.2.json`, `contract-adapter.mjs`, and `sparse-retriever.mjs` have identical Git blob SHAs and **must not be recopied**. `chinese-lexicon-loader.mjs` and `subject-intent.mjs` differ; transfer only these necessary deltas and `experimental-association-adapter.mjs` if missing (required static import, extension OFF by default). Check `zh-v094-runtime-bridge.mjs` presence and import paths before use. Preserve host UI, search request freshness, learning flow and SRS.
+
+Security caveat: the recommendation loader does **not** enforce the target loader's hard-coded asset SHA256 pins. Validate exact deployed asset SHA256/provenance at release and ensure fallback behavior on malformed/404/offline/timeouts. The recommendation loader's schema checks are not a cryptographic authenticity check. This is a consciously accepted single-loader integration choice, **not** a claim that integrity checks are equivalent.
+
+The `real-assets-top10-qa.mjs` script has been committed but has not yet been verified as executed against all three real assets; do not report its PASS until run. No edits to host branch authorized here.
