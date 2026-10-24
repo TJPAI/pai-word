@@ -1,0 +1,30 @@
+{
+  "schema": "pai-core20k-b179-b178-ci-acceptance-v1",
+  "acceptance": "PASS_SCOPE_LIMITED",
+  "source_drive_qa": "https://drive.google.com/file/d/1i3ewJL8USYVGrTMi5rRbAjojd-WhI4RT/view?usp=drivesdk",
+  "source_drive_log": "https://drive.google.com/file/d/1MDdpAQZDtEcix_59SEkQfeRfcWcjcKkM/view?usp=drivesdk",
+  "ci_url": "https://github.com/TJPAI/pai-word/actions/runs/40098004819",
+  "run_id": 40098004819,
+  "job_id": 120884199059,
+  "commit": "17d93cc52f206ca977930ea3dbaa6d6ec5e60c3e",
+  "node": "22.23.3",
+  "tests": 4,
+  "passed": 4,
+  "failed": 0,
+  "runtime_contract": "NOT_APPLICABLE_SELF_RATING",
+  "closed_runtime_case_policy_blockers": [
+    "w_1139_regular_ku_s01",
+    "w_2575_click_ku_s01"
+  ],
+  "semantic_certification": "UNCHANGED_PENDING",
+  "production_ready": false,
+  "release_eligible": false,
+  "srs_write_allowed": false,
+  "limits": [
+    "No actual typed-answer scorer",
+    "Test variants sourced from test fixture, not real runtime",
+    "No real SRS/browser E2E proof",
+    "CI report based on browser-visible job logs; API log download 403"
+  ],
+  "notes": "Do not rewrite Muse's original verdict; this is a separate resolved interface-contract evidence overlay."
+}
