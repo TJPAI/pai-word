@@ -1,0 +1,27 @@
+name: B217 Overlay QA
+on:
+  push:
+    branches: [home-perf-safe-load-20261022]
+    paths:
+      - 'scripts/core20k-approved-*.mjs'
+      - '.github/workflows/b217-overlay-qa.yml'
+  workflow_dispatch:
+jobs:
+  overlay-qa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Overlay contract and loader tests
+        run: |
+          node scripts/core20k-approved-teaching-overlay.test.mjs
+          node scripts/core20k-approved-overlay-loader.test.mjs
+      - name: Static integration gate checks
+        run: |
+          node --check scripts/core20k-approved-overlay-boot.mjs
+          node --check scripts/core20k-dev-boot.mjs
+          node --check rebuild-preview/learning-runtime.js
