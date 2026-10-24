@@ -1,0 +1,21 @@
+name: Core20K B207 reservation regression
+on:
+  push:
+    branches: [core20k-teaching-qa-b162-20261024]
+    paths:
+      - 'tools/core20k_lexicon/staging/b206_reservation_plan.mjs'
+      - 'tools/core20k_lexicon/staging/b206_reservation_plan.test.mjs'
+      - '.github/workflows/core20k-b207-reservation.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tools/core20k_lexicon/staging/b206_reservation_plan.test.mjs
