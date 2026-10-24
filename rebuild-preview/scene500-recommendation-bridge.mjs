@@ -8,7 +8,7 @@ let e5Provider=null,e5ProviderPromise=null;
 async function getE5Provider(){
  if(e5Provider)return e5Provider;
  if(!e5ProviderPromise)e5ProviderPromise=import('./create-e5-provider.mjs').then(m=>{
-  const p=m.createE5Provider({baseUrl:new URL('../../scene500-e5/',import.meta.url).href,timeoutMs:60000});
+  const p=m.createE5Provider({baseUrl:new URL('../scene500-e5/',import.meta.url).href,timeoutMs:60000});
   e5Provider=p;return p;
  }).catch(error=>{e5ProviderPromise=null;throw error});
  return e5ProviderPromise;
