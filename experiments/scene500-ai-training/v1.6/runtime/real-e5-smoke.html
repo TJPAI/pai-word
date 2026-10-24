@@ -1,0 +1,20 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Scene500 real E5 smoke</title><style>body{font:16px system-ui;padding:20px;max-width:740px;margin:auto}pre{white-space:pre-wrap;overflow-wrap:anywhere}button{padding:12px}</style><h1>Scene500 真正E5浏览器验收</h1><p>必须部署完整Muse V1.6 runtime：models/、vendor/、assets/、adapter/、encoder/。本页面不会使用模拟向量。</p><button id="run">运行真实推理</button><pre id="status">待运行</pre><script type="module">
+import {createScene500AI} from './adapter/scene500-ai-adapter.mjs';
+import {createE5Encoder} from './encoder/scene500-e5-encoder.mjs';
+import {verifyC2Index} from './adapter/verify-c2-index.mjs';
+const output=document.querySelector('#status');const button=document.querySelector('#run');
+button.onclick=async()=>{button.disabled=true;let encoder;const t0=performance.now();const log=(message)=>output.textContent+='\n'+message;output.textContent='开始；crossOriginIsolated='+crossOriginIsolated;
+try{
+ const [cr,ir]=await Promise.all([fetch('./assets/catalog-v0.2.json'),fetch('./assets/scene500-c2-index.json')]);
+ if(!cr.ok||!ir.ok)throw Error('Assets HTTP '+cr.status+'/'+ir.status);
+ const [catalogText,indexText]=await Promise.all([cr.text(),ir.text()]);const catalog=JSON.parse(catalogText),index=JSON.parse(indexText);
+ const verified=await verifyC2Index({catalogText,index,indexText,expectedCatalogSha256:index.catalogFileSha256,expectedIndexSha256:'eae39123c0f21800990bb68468331de95f1b45e8a7ed086598ac62959e680254'});
+ if(verified?.valid===false)throw Error('Index verification failed');
+ log('索引校验通过；500 x 384');
+ encoder=createE5Encoder();const warmStart=performance.now();await encoder.warmup();log('E5实际加载完成 '+Math.round(performance.now()-warmStart)+'ms');
+ const engine=createScene500AI({loadCatalog:async()=>catalog,loadIndex:async()=>index,embedQuery:(text,{signal})=>encoder.encode(text,{signal})});
+ const result=await engine.recommend({query:'早上起床刷牙',topK:5});
+ if(result.modeUsed!=='e5'||result.status!=='ok'||!result.recommendations.length)throw Error('E5 not used: '+JSON.stringify(result));
+ log('PASS REAL E5 '+JSON.stringify(result.recommendations));log('总耗时 '+Math.round(performance.now()-t0)+'ms');
+}catch(error){log('FAIL '+(error?.stack||String(error)))}finally{encoder?.dispose();button.disabled=false}};
+</script></html>
