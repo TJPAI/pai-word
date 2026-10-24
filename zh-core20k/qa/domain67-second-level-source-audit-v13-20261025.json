@@ -1,0 +1,38 @@
+{
+  "schema": "zh-core20k-domain67-second-level-audit-v13-summary",
+  "artifact_sha256": "f0e6dff89759e580f6ddf05ea881f1a0d4a206fd49c118009fcbef328544ca41",
+  "drive_url": "https://drive.google.com/file/d/1pZ4Q5M8r9Drmr58aUNME-bYp-Dy8hH--/view",
+  "counts": {
+    "total": 67,
+    "pass": 42,
+    "needs_recheck": 16,
+    "not_rechecked": 9,
+    "fail": 0,
+    "release_approved": 0
+  },
+  "new_pass": [
+    {
+      "term": "暗能量",
+      "url": "https://www.ncsti.gov.cn/kjdt/kjrd/qtrd_kjrd/202412/t20241225_190586.html",
+      "evidence": "Direct complete-term usage and qualified cosmological explanation in official news republication"
+    },
+    {
+      "term": "不动产权证",
+      "url": "https://app.www.gov.cn/govdata/gov/201608/28/388043/article.html",
+      "evidence": "Direct term usage and explanation in State Council portal republication"
+    }
+  ],
+  "still_blocked": [
+    {
+      "term": "生产者价格指数",
+      "reason": "Official-index direct definition available but live opening timed out; no PASS"
+    }
+  ],
+  "qa": {
+    "term_id_hash_valid": 67,
+    "unique_ids": 67,
+    "status_sum": 67,
+    "release_approved": 0
+  },
+  "scope": "External original term/sense match only, not membership or lexicality certification."
+}
