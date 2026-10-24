@@ -1,0 +1,38 @@
+{
+  "schema_version": "pai-core20k-overlay-manifest-v1",
+  "version": "2026.10.25-batch93-release-candidate-v1",
+  "status": "STAGING_ONLY",
+  "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+  "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+  "source_commit": "66ee1c4fb32e1f53d6485350a9ec3f6d5b030765",
+  "ku_ids": [
+    "w_0266_person_ku01",
+    "w_0049_time_ku01",
+    "w_0041_know_ku01",
+    "w_0057_people_ku01",
+    "w_0139_talk_ku01",
+    "w_0099_here_ku01"
+  ],
+  "authority": {
+    "registrar_signed": false,
+    "semantic_certified": true,
+    "license_approved": false,
+    "release_signed": false,
+    "registrar_id": "",
+    "release_id": ""
+  },
+  "reviewed_crosswalk": [],
+  "assessment": {
+    "runtime_mode": "post_reveal_self_rating",
+    "typed_answer_scoring": "NOT_APPLICABLE",
+    "reference_contract": "b216_scoring_contract.md"
+  },
+  "open_gates": [
+    "registrar_authority_designation",
+    "signed_crosswalk_and_sense_binding",
+    "production_display_license",
+    "release_signoff",
+    "formal_learning_e2e"
+  ],
+  "activation_allowed": false
+}
