@@ -33,7 +33,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {reserveWithTransaction} from './b209_reservation_transaction.mjs';
 
-const URL = process.env.CORE20K_QA_DATABASE_URL;
+const CONNECTION_URL = process.env.CORE20K_QA_DATABASE_URL;
 const PREFIX = `b214-acceptance-${Date.now()}-`;
 const H1 = 'c'.repeat(64);
 const H2 = 'd'.repeat(64);
@@ -57,7 +57,7 @@ const verify = async (r) => ({
   runtime_sha256: r.runtime_sha256,
 });
 
-test('real postgres reservation acceptance', {skip: !URL, timeout: 120000}, async () => {
+test('real postgres reservation acceptance', {skip: !CONNECTION_URL, timeout: 120000}, async () => {
   // ESM import() does not consult NODE_PATH, so load the driver through
   // createRequire: require() honors NODE_PATH, which is how a scratch
   // pg install (outside this repo) is found at QA-run time.
@@ -68,7 +68,7 @@ test('real postgres reservation acceptance', {skip: !URL, timeout: 120000}, asyn
   } catch {
     throw new Error('pg driver not installed: run `npm i pg` in a scratch directory and retry with NODE_PATH=<scratch>/node_modules');
   }
-  const pool = new pg.Pool({connectionString: URL, max: 4});
+  const pool = new pg.Pool({connectionString: CONNECTION_URL, max: 4});
   const countRows = async (keyPattern) => {
     const r = await pool.query(
       'SELECT (SELECT count(*) FROM core20k_qa.ku_reservations WHERE reservation_key LIKE $1) AS res, (SELECT count(*) FROM core20k_qa.registration_events WHERE reservation_key LIKE $1) AS ev',
