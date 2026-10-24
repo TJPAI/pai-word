@@ -2,10 +2,12 @@
 (function(){
  const qs=new URLSearchParams(location.search);
  const forced=qs.get('welcome')==='1';
- const suppressed=qs.get('welcome')==='0'||qs.has('resetFresh');
+ const resetLanding=qs.has('resetFresh');
+ const suppressed=qs.get('welcome')==='0';
  let seen=false;
  try{seen=localStorage.getItem('pai-word-welcome-seen-v1')==='1'}catch{}
- if(suppressed||(!forced&&seen))return;
+ if(suppressed||(!forced&&seen&&!resetLanding))return;
+ function showWelcome(){
  const shell=document.createElement('section');
  shell.className='pai-welcome';
  shell.id='pai-welcome';
@@ -37,4 +39,8 @@
  }
  shell.querySelector('.pai-welcome-enter').addEventListener('click',()=>close(false));
  shell.querySelector('.pai-welcome-catalog').addEventListener('click',()=>close(true));
+ }
+ // Reset landing is displayed only after durable reset QA confirms an empty system.
+ if(resetLanding){window.PAI_SHOW_WELCOME_AFTER_RESET=()=>{if(window.PAI_LAST_RESET_QA?.passed)showWelcome()};return;}
+ showWelcome();
 })();
