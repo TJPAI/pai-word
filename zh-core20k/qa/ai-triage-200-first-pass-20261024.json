@@ -1,0 +1,40 @@
+{
+  "version": "v0117-ai-triage-200-first-pass-20261024",
+  "source": "Library v0112-queue-02 first 200; /mnt/data/zh-core20k-ai-review-200.json",
+  "source_sha256": "dacde509de4a6b7f992938f8dd36f9b9dc4704698d74999c23a594bf2116c8b1",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "scope": {
+    "rows": 200,
+    "unique_identities": 200
+  },
+  "ai_hypothesis_buckets": {
+    "AMBIGUOUS_LEXICALIZATION_REVIEW": 73,
+    "NUMERAL_CLASSIFIER_PHRASE_CANDIDATE": 42,
+    "COMMON_LEXEME_PROTECT_CANDIDATE": 39,
+    "CONTEXTUAL_COMPOSITION_CANDIDATE": 26,
+    "DOMAIN_OR_TECHNICAL_PROTECT_CANDIDATE": 19,
+    "MIXED_SCRIPT_REVIEW": 1
+  },
+  "external_attestations": [
+    {
+      "term": "违法所得",
+      "evidence_class": "OFFICIAL_LEGAL_TERM",
+      "url": "https://www.moj.gov.cn/pub/sfbgw/flfggz/flfggzbmgz/202605/t20260518_535125.html",
+      "claim": "Official regulation defines term in article 3"
+    },
+    {
+      "term": "三维建模",
+      "evidence_class": "INDUSTRY_TECHNICAL_TERM",
+      "url": "https://www.autodesk.com.cn/solutions/3d-modeling-software",
+      "claim": "Industry documentation gives specific definition"
+    }
+  ],
+  "constraints": {
+    "membership_mutations": 0,
+    "rank_mutations": 0,
+    "id_mutations": 0,
+    "all_other_rows_external_evidence": "NOT_VERIFIED",
+    "method": "First-pass heuristic categories, do not promote to dictionary verified"
+  },
+  "next": "Review 73 ambiguous items and 42 numeral classifier items with independent attestations before any membership proposal."
+}
