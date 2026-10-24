@@ -5,7 +5,7 @@ const unit={w:{w:'time',rank:111,pos:'n.'},s:{ku_id:ku,kuType:'sense',e:[],m:'�
 const base={byKU:new Map([[ku,unit]])};
 const record={ku_id:ku,sense_binding:'registrar:time:sense1',content_certified:true,production_ready:true,gloss_zh:'时间；时长',example_en:'We need more time to finish.',example_zh:'我们需要更多时间才能完成。',answer_policy:{certified:true,accepted:['时间','时长','完成事情所需的时长']}};
 const overlay={schema_version:'pai-core20k-approved-overlay-v1',version:'test-v1',runtime_sha256:'runtimehash',pack_sha256:'packhash',records:[record]};
-const manifest={schema_version:'pai-core20k-overlay-manifest-v1',status:'PRODUCTION_READY',version:'test-v1',runtime_sha256:'runtimehash',pack_sha256:'packhash',authority:{registrar_signed:true,semantic_certified:true,license_approved:true,release_signed:true,registrar_id:'test-registrar',release_id:'test-release'},reviewed_crosswalk:[{ku_id:ku,lemma:'time',rank:111,pos:'n.',ku_type:'sense',sense_binding:'registrar:time:sense1',registrar_approved:true}]};
+const manifest={schema_version:'pai-core20k-overlay-manifest-v1',status:'PRODUCTION_READY',activation_allowed:true,version:'test-v1',runtime_sha256:'runtimehash',pack_sha256:'packhash',authority:{registrar_signed:true,semantic_certified:true,license_approved:true,release_signed:true,registrar_id:'test-registrar',release_id:'test-release'},reviewed_crosswalk:[{ku_id:ku,lemma:'time',rank:111,pos:'n.',ku_type:'sense',sense_binding:'registrar:time:sense1',registrar_approved:true}]};
 const checks=[];
 const check=(name,fn)=>{fn();checks.push(name)};
 check('flag off',()=>assert.equal(validateApprovedOverlay({base,overlay,manifest}).reason,'disabled'));
@@ -15,6 +15,7 @@ check('missing crosswalk rejected',()=>assert.equal(validateApprovedOverlay({bas
 check('KU mismatch rejected',()=>assert.equal(validateApprovedOverlay({base,overlay:{...overlay,records:[{...record,ku_id:'other'}]},manifest,enabled:true,verifiedRuntimeSha256:'runtimehash',verifiedPackSha256:'packhash'}).reason,'identity_mismatch'));
 check('sense mismatch rejected',()=>assert.equal(validateApprovedOverlay({base,overlay:{...overlay,records:[{...record,sense_binding:'wrong'}]},manifest,enabled:true,verifiedRuntimeSha256:'runtimehash',verifiedPackSha256:'packhash'}).reason,'ownership_mismatch'));
 check('no certified answer policy rejected',()=>assert.equal(validateApprovedOverlay({base,overlay:{...overlay,records:[{...record,answer_policy:{certified:false,accepted:['时间']}}]},manifest,enabled:true,verifiedRuntimeSha256:'runtimehash',verifiedPackSha256:'packhash'}).reason,'answer_policy'));
+check('activation flag rejects',()=>assert.equal(validateApprovedOverlay({base,overlay,manifest:{...manifest,activation_allowed:false},enabled:true,verifiedRuntimeSha256:'runtimehash',verifiedPackSha256:'packhash'}).reason,'release_gate'));
 check('unverified bytes rejected',()=>assert.equal(validateApprovedOverlay({base,overlay,manifest,enabled:true}).reason,'unverified_source_bytes'));
 check('wrong runtime bytes rejected',()=>assert.equal(validateApprovedOverlay({base,overlay,manifest,enabled:true,verifiedRuntimeSha256:'wrong',verifiedPackSha256:'packhash'}).reason,'unverified_source_bytes'));
 check('approved path works',()=>{const result=validateApprovedOverlay({base,overlay,manifest,enabled:true,verifiedRuntimeSha256:'runtimehash',verifiedPackSha256:'packhash'});assert.equal(result.enabled,true);assert.equal(teachingDisplay(unit,result).example_zh,record.example_zh)});
@@ -24,5 +25,6 @@ check('time accepted variant 2',()=>assert.equal(gradeChineseEquivalent('时长'
 check('time accepted variant 3',()=>assert.equal(gradeChineseEquivalent('完成事情所需的时长。',record.answer_policy).correct,true));
 check('time unrelated rejected',()=>assert.equal(gradeChineseEquivalent('钟表',record.answer_policy).correct,false));
 check('unapproved policy ungraded',()=>assert.equal(gradeChineseEquivalent('时间',{certified:false,accepted:['时间']}).graded,false));
+check('meaningful prefix retained',()=>assert.equal(normalizeChineseAnswer('一个人'),'一个人'));
 check('normalization',()=>assert.equal(normalizeChineseAnswer(' 时 长。'),'时长'));
 console.log('B217 overlay unit QA:',checks.length+'/'+checks.length,'PASS');
