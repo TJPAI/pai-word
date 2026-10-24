@@ -1,0 +1,20 @@
+{
+  "schema_version": "pai-core20k-b160-intake-audit-v1",
+  "source": "Library core20k_batch158_normalized_staging_290.jsonl",
+  "audit_sources": [
+    "core20k_batch159_qa_report.json",
+    "core20k_batch160_quality_gate_report.json"
+  ],
+  "rows": 290,
+  "unique_ku": 290,
+  "review_priority_ku": 26,
+  "review_flags": 30,
+  "unflagged_but_uncertified": 264,
+  "semantically_certified": 0,
+  "release_eligible": 0,
+  "authoritative_registry_checked": false,
+  "production_runtime_changed": false,
+  "quarantine_sha256": "13e6b83e600b59489ec9885e6171c42bcadf77df9c74b569826d25ce1a133583",
+  "quarantine_delivery": "ChatGPT generated attachment, not committed to GitHub",
+  "blocking": "Cannot establish production KU overlap or publishable count without authoritative registry and independent semantic certification"
+}
