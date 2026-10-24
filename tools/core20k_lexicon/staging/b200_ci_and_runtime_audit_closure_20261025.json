@@ -1,0 +1,81 @@
+{
+  "schema": "pai-core20k-b200-ci-runtime-audit-closure-v1",
+  "source_reports": {
+    "runtime": "https://drive.google.com/file/d/1AO1Ju9Kk1JNnQCPSYcbWGxqd-wGCXtxv/view?usp=drivesdk",
+    "qa": "https://drive.google.com/file/d/1Kh61roSVqcE9oA9Xld7VqwXH8-Xxg0JW/view?usp=drivesdk"
+  },
+  "verdicts": {
+    "b189_ci": "PASS_8_OF_8",
+    "b192_b195_readonly_identity": "PASS_SCOPED",
+    "b198_artifact": "UPLOADED_IN_RUN_NOT_INDEPENDENTLY_DOWNLOADED",
+    "formal_registration": "BLOCKED"
+  },
+  "workflow_runs": {
+    "b189": "https://github.com/TJPAI/pai-word/actions/runs/40113249533",
+    "runtime": [
+      "https://github.com/TJPAI/pai-word/actions/runs/40114909623",
+      "https://github.com/TJPAI/pai-word/actions/runs/40115206009",
+      "https://github.com/TJPAI/pai-word/actions/runs/40119787547",
+      "https://github.com/TJPAI/pai-word/actions/runs/40124912959"
+    ]
+  },
+  "runtime": {
+    "sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "headwords": 20000,
+    "unique_ku_ids": 16617
+  },
+  "candidates": [
+    {
+      "id": "B180-P002",
+      "phrase": "bear in mind",
+      "lemma": "bear",
+      "rank": 714,
+      "existingKUs": 5,
+      "rank_lemma_match": true,
+      "exact_phrase_gloss_hits": 0,
+      "authoritative_sense_id": null,
+      "new_ku_id": null
+    },
+    {
+      "id": "B180-P005",
+      "phrase": "package deal",
+      "lemma": "package",
+      "rank": 720,
+      "existingKUs": 2,
+      "rank_lemma_match": true,
+      "exact_phrase_gloss_hits": 0,
+      "authoritative_sense_id": null,
+      "new_ku_id": null
+    },
+    {
+      "id": "B180-P006",
+      "phrase": "on board",
+      "lemma": "board",
+      "rank": 721,
+      "existingKUs": 4,
+      "rank_lemma_match": true,
+      "exact_phrase_gloss_hits": 0,
+      "authoritative_sense_id": null,
+      "new_ku_id": null
+    },
+    {
+      "id": "B180-P007",
+      "phrase": "cut down on",
+      "lemma": "cut",
+      "rank": 722,
+      "existingKUs": 5,
+      "rank_lemma_match": true,
+      "exact_phrase_gloss_hits": 0,
+      "authoritative_sense_id": null,
+      "new_ku_id": null
+    }
+  ],
+  "limitations": [
+    "Glosstext exact string matching cannot prove absence in examples or unrelated instructional content",
+    "Runtime tuple contains no sense_id; the formal Sense authority remains missing",
+    "Run artifact reported but not independently downloaded",
+    "Registered identities and source license approval remain blocked"
+  ],
+  "new_registered_ku": 0,
+  "production_ready": false
+}
