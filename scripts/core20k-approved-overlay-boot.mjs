@@ -18,7 +18,7 @@ export async function bootApprovedOverlay(config=window.PAI_APPROVED_OVERLAY_CON
  try{
   const [manifestBytes,overlayBytes,runtimeBytes,packBytes]=await Promise.all([
    fetchBytes(config.manifestUrl),fetchBytes(config.overlayUrl),
-   fetchBytes('data/core20k-runtime.json.gz'),fetchBytes(config.packUrl)
+   fetchBytes(new URL('../data/core20k-runtime.json.gz',import.meta.url).href),fetchBytes(config.packUrl)
   ]);
   const parse=bytes=>JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
   const manifest=parse(manifestBytes),overlay=parse(overlayBytes);
