@@ -1,0 +1,16 @@
+{
+  "schema": "pai-core20k-b161-targeted-audit-v1",
+  "input_sha256": "6fc407b1a5ecc6155e3651e2ed4b5953c2b8161c4957a6259eb90a0c77176371",
+  "records": 290,
+  "unique_ku": 290,
+  "missing_explicit_pos": 94,
+  "priority_review_ku": 26,
+  "example_translation_conflict": [
+    "w_0409_wait_ku02"
+  ],
+  "release_isolation_errors": 0,
+  "certified_for_release": 0,
+  "registry_join": "NOT_RUN",
+  "stage": "QA_ONLY_NO_PRODUCTION_DATA_MUTATION",
+  "recommendation": "Require explicit POS for new intake and backfill from authoritative source with independent verification; do not infer from lemma."
+}
