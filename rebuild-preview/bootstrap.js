@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-auto-word-icon-v3-20261025';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-fast-welcome-p0-20261025';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -181,12 +181,15 @@
   state.view='scenes';state.revealed=false;
   // Assemble final home content behind the boot gate; expose it only once.
 
+  // The app must never become visible with missing CSS, even when styles load asynchronously.
+  await window.PAI_APP_STYLES_READY;
   // Restore persisted recommendation IDs exactly; only explicit user actions rerank.
   render();
   mark('homeRendered');
   // A successful full reset starts as a new user, including first-run welcome.
   if(window.PAI_LAST_RESET_QA?.passed)window.PAI_SHOW_WELCOME_AFTER_RESET?.();
   app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
+  window.dispatchEvent(new Event('pai-home-ready'));
   // Restore the snapshot first; reconcile real progress/recents after first paint.
   requestAnimationFrame(()=>window.PAI_HOME_RECONCILE?.({rerank:false}));
   // Warm the existing catalog module after the home has painted; do not delay first interaction.
