@@ -258,7 +258,10 @@
     const report=window.PAI_SCENE500_SEARCH_REPORT;
     const mode=report?.mode;
     const label=mode==='hybrid'?'Hybrid 已加载':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
-    node.textContent='引擎：Scene500 '+label+' · 中文词库：Core20K V0.9.4（当前配置）';
+    const asset=report?.lexiconAsset||window.PAI_SCENE500_BRIDGE_STATUS?.lexiconAsset||'';
+    const version=report?.runtimeDataVersion||report?.dataVersion||'';
+    const lexicon=version==='0.10.1-evidence-compat'?'Core20K V0.10.1（已加载）':version?'Core20K '+version+'（已加载）':asset.includes('v0101')?'Core20K V0.10.1（配置，加载未验证）':'Core20K（运行版本未确认）';
+    node.textContent='引擎：Scene500 '+label+' · 中文词库：'+lexicon;
   }
   let displayedSourceSha='',sourceShaPromise=null;
   function updateSourceSha(){
