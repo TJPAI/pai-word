@@ -1,0 +1,34 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v5-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "579f7180665708efd1a39e2925c271992c3c3b692078047f541fea2e2375a887",
+  "drive_url": "https://drive.google.com/file/d/1f-GwHBZ_pyftjDF78AjEkJ7VRmOW3s5A/view",
+  "counts": {
+    "total": 67,
+    "pass": 22,
+    "fail": 2,
+    "needs_recheck": 8,
+    "not_rechecked": 35,
+    "new_pass": 5,
+    "new_fail": 1,
+    "release_approved": 0
+  },
+  "new_pass": [
+    "C轮",
+    "A轮",
+    "三叶虫化石",
+    "抗炎药",
+    "透镜"
+  ],
+  "new_fail": {
+    "term": "三连音",
+    "reason": "Original Jinan University syllabus page has no literal 三连音 in retrievable full text"
+  },
+  "qa": {
+    "identity_hash_valid": 67,
+    "unique_ids": 67,
+    "status_totals": 67,
+    "original_reviews_unchanged": true
+  },
+  "caveat": "PASS validates specialist usage/meaning only, not dictionary headword membership or core20k admission."
+}
