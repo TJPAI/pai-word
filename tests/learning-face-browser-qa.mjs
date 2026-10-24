@@ -46,6 +46,7 @@ try{
   assert.equal(beforeSwitch.bg,'rgb(36, 117, 230)');
   assert.equal(beforeSwitch.fg,'rgb(255, 255, 255)');
   await page.locator('.auto-word-toggle input').click();
+  await page.waitForTimeout(220); // Wait past the actual 150ms state-color transition.
   const afterSwitch=await page.evaluate(()=>{
    const i=document.querySelector('.auto-word-toggle input');
    const b=document.querySelector('.auto-word-symbol');
