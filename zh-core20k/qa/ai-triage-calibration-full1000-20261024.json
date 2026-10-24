@@ -1,0 +1,50 @@
+{
+  "version": "ai-triage-calibration-full1000-2026-10-24",
+  "baseline_runtime": "0.10.1-evidence-compat",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_files": [
+    "Library /PAI_Lexicon/zh-core20k-v0101-scene500-delivery/v0112-queue-01.jsonl",
+    "Library /PAI_Lexicon/zh-core20k-v0101-scene500-delivery/v0112-queue-02.jsonl",
+    "Library /PAI_Lexicon/zh-core20k-v0101-scene500-delivery/v0112-queue-03.jsonl",
+    "Library /PAI_Lexicon/zh-core20k-v0101-scene500-delivery/v0112-queue-04.jsonl"
+  ],
+  "checks": {
+    "rows": 1000,
+    "unique_ids": 1000,
+    "missing_ids": 0,
+    "term_mismatch": 0,
+    "sha256_derived_identity_mismatch": 0,
+    "duplicate_ids": 0,
+    "score_histogram": {
+      "1": 186,
+      "2": 171,
+      "3": 630,
+      "4": 4,
+      "5": 9
+    }
+  },
+  "high_structural_score_terms": [
+    "两地",
+    "他们",
+    "她们",
+    "不得",
+    "不过",
+    "你们",
+    "我们",
+    "它们",
+    "不了",
+    "不可多得",
+    "一席之地",
+    "一举两得",
+    "他妈的"
+  ],
+  "finding": "Structural signals have false positives for established pronouns, adverbs and idioms. They are prioritization only, NEVER deletion evidence.",
+  "status": "FULL_QUEUE_STRUCTURAL_QA_PASS_NOT_DICTIONARY_VERIFICATION",
+  "quality_gates": {
+    "membership_changes": 0,
+    "term_id_changes": 0,
+    "frequency_updates": 0,
+    "external_dictionary_verified_in_this_pass": 0
+  },
+  "method": "Local Python parsed all four materialized original JSONL shards, checked against materialized actual 20K expanded runtime, SHA256-derived identity and unique ID/surface. Full Node safety script test not claimed."
+}
