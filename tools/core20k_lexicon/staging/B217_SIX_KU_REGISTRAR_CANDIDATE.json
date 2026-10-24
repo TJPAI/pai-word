@@ -1,0 +1,149 @@
+{
+  "schema_version": "pai-core20k-b217-registrar-candidate-v1",
+  "status": "CANDIDATE_AWAITING_RUNTIME_REGISTRAR_APPROVAL",
+  "registration_authority_signed": false,
+  "production_ready": false,
+  "release_eligible": false,
+  "source_runtime": {
+    "branch": "core20k-lexicon-production-v1",
+    "commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "path": "data/core20k-runtime.json.gz",
+    "sha256_reported_and_verified_by_b215": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "sha256_recomputed_by_b217": false,
+    "blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c"
+  },
+  "source_pack": {
+    "path": "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+    "sha256_b215": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15"
+  },
+  "evidence_paths": [
+    "tools/core20k_lexicon/staging/b215_identity_and_review_evidence.json",
+    "tools/core20k_lexicon/staging/b215_independent_qa_report.md",
+    "tools/core20k_lexicon/staging/b216_second_party_certification_report.md",
+    "tools/core20k_lexicon/staging/B217_RELEASE_GATE_OWNER_HANDOFF.md"
+  ],
+  "sense_binding_decision": {
+    "proposed": "KU_ANCHORED_SENSE_BINDING",
+    "reason": "Runtime has no independent sense_id; do not mint one or infer from s01 suffix. Bind only to exact runtime KU with type sense and stable rank/lemma ownership.",
+    "authority_approval_required": true,
+    "official_sense_id": null
+  },
+  "records": [
+    {
+      "lemma": "person",
+      "rank": 108,
+      "pos": "n.",
+      "ku_id": "w_0266_person_ku01",
+      "ku_type": "sense",
+      "runtime_gloss_zh_b215": "人；个人",
+      "runtime_gloss_en_b215": "human individual",
+      "ku_match_evidence": "B215 direct runtime exact KU match",
+      "sense_binding": {
+        "kind": "KU_ANCHORED_PROPOSED",
+        "anchor_ku_id": "w_0266_person_ku01",
+        "official_sense_id": null
+      },
+      "registration_status": "PENDING_REGISTRAR_SIGNOFF",
+      "release_eligible": false
+    },
+    {
+      "lemma": "time",
+      "rank": 111,
+      "pos": "n.",
+      "ku_id": "w_0049_time_ku01",
+      "ku_type": "sense",
+      "runtime_gloss_zh_b215": "时间",
+      "runtime_gloss_en_b215": "measured duration",
+      "ku_match_evidence": "B215 direct runtime exact KU match",
+      "sense_binding": {
+        "kind": "KU_ANCHORED_PROPOSED",
+        "anchor_ku_id": "w_0049_time_ku01",
+        "official_sense_id": null
+      },
+      "registration_status": "PENDING_REGISTRAR_SIGNOFF",
+      "release_eligible": false
+    },
+    {
+      "lemma": "know",
+      "rank": 138,
+      "pos": "v.",
+      "ku_id": "w_0041_know_ku01",
+      "ku_type": "sense",
+      "runtime_gloss_zh_b215": "知道；了解",
+      "runtime_gloss_en_b215": "have knowledge",
+      "ku_match_evidence": "B215 direct runtime exact KU match",
+      "sense_binding": {
+        "kind": "KU_ANCHORED_PROPOSED",
+        "anchor_ku_id": "w_0041_know_ku01",
+        "official_sense_id": null
+      },
+      "registration_status": "PENDING_REGISTRAR_SIGNOFF",
+      "release_eligible": false
+    },
+    {
+      "lemma": "people",
+      "rank": 142,
+      "pos": "n.",
+      "ku_id": "w_0057_people_ku01",
+      "ku_type": "sense",
+      "runtime_gloss_zh_b215": "人；人们",
+      "runtime_gloss_en_b215": "persons collectively",
+      "ku_match_evidence": "B215 direct runtime exact KU match",
+      "sense_binding": {
+        "kind": "KU_ANCHORED_PROPOSED",
+        "anchor_ku_id": "w_0057_people_ku01",
+        "official_sense_id": null
+      },
+      "registration_status": "PENDING_REGISTRAR_SIGNOFF",
+      "release_eligible": false
+    },
+    {
+      "lemma": "talk",
+      "rank": 145,
+      "pos": "v.",
+      "ku_id": "w_0139_talk_ku01",
+      "ku_type": "sense",
+      "runtime_gloss_zh_b215": "说话；交谈",
+      "runtime_gloss_en_b215": "speak/converse",
+      "ku_match_evidence": "B215 direct runtime exact KU match",
+      "sense_binding": {
+        "kind": "KU_ANCHORED_PROPOSED",
+        "anchor_ku_id": "w_0139_talk_ku01",
+        "official_sense_id": null
+      },
+      "registration_status": "PENDING_REGISTRAR_SIGNOFF",
+      "release_eligible": false
+    },
+    {
+      "lemma": "here",
+      "rank": 153,
+      "pos": "adv.",
+      "ku_id": "w_0099_here_ku01",
+      "ku_type": "sense",
+      "runtime_gloss_zh_b215": "这里；在这里",
+      "runtime_gloss_en_b215": "in this place",
+      "ku_match_evidence": "B215 direct runtime exact KU match",
+      "sense_binding": {
+        "kind": "KU_ANCHORED_PROPOSED",
+        "anchor_ku_id": "w_0099_here_ku01",
+        "official_sense_id": null
+      },
+      "registration_status": "PENDING_REGISTRAR_SIGNOFF",
+      "release_eligible": false
+    }
+  ],
+  "qa_contract": {
+    "reject_on": [
+      "runtime_sha256_mismatch",
+      "missing_or_duplicate_ku_id",
+      "ku_type_not_sense",
+      "rank_lemma_ownership_drift",
+      "pos_mismatch",
+      "missing_registrar_approval",
+      "pack_sha256_mismatch"
+    ],
+    "expected_count": 6,
+    "unique_ku_ids": true,
+    "all_release_blocked": true
+  }
+}
