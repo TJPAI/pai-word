@@ -1,0 +1,26 @@
+{
+  "schema": "zh-core20k-reaudit500-dual-ai-crosscheck-v3-summary",
+  "date": "2026-10-24",
+  "source_sha256": {
+    "chatgpt_review": "a2eefd4d796075338ff5a019d7420cee5133e1a89c2ce0eb6149f1cae80d9ea9",
+    "chatgpt_qa": "c690038dfd255b93ad60c5a1613a6667909790acb4649932885bd0f2ae0e498c",
+    "muse_review": "ac7179283ca716333e4bc26164bb416921267b433c8ba2a1f67c982b8968e23d"
+  },
+  "full_report_sha256": "611b2bef6b59af52a1a61edd68d97913f9272ea1e8c3689acd3992122da7b9e2",
+  "counts": {
+    "total": 500,
+    "DUAL_AI_SEMANTIC_AGREEMENT": 358,
+    "DOMAIN_FACT_CHECK_PENDING": 67,
+    "DISPUTED": 51,
+    "UNCERTAIN_PENDING": 24
+  },
+  "qa": {
+    "identity_and_alignment_errors": 0,
+    "chatgpt_unique_review_ids": 500,
+    "muse_unique_review_ids": 500,
+    "distinct_chatgpt_reasons_after_term_mask": 500,
+    "release_approved": 0
+  },
+  "policy": "Semantic agreement only; no automatic membership or Runtime release; DOMAIN fact-check required; all disputes and uncertainty retained",
+  "originals_unchanged": true
+}
