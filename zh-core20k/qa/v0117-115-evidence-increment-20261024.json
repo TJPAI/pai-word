@@ -1,0 +1,39 @@
+{
+  "schema": "zh-core20k-115-evidence-increment-v2",
+  "date": "2026-10-24",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_review": "zh-core20k/qa/v0117-115-bucket-qc-20261024.json",
+  "local_row_level_artifact": "zh-core20k-risk-recalibration-115-evidence-v2.json",
+  "local_row_level_sha256": "77fe98c113cc0fbed7d82927d9c310167300bc0819621d037d15cd7236572c51",
+  "qa": {
+    "rows": 115,
+    "identities_verified": 115,
+    "new_direct_dictionary_headword_evidence": 2,
+    "identity_errors": 0,
+    "membership_changes": 0,
+    "frequency_changes": 0
+  },
+  "entries": [
+    {
+      "term": "一部分",
+      "term_id": "zh_7a84d120e36df939813c",
+      "queue_row": 59,
+      "grade": "MOE_CONCISED_DICTIONARY_DIRECT_HEADWORD",
+      "source_url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=39983&la=0&powerMode=0",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL_PENDING_FREQUENCY"
+    },
+    {
+      "term": "不足以",
+      "term_id": "zh_7ef46f39affc7e328c73",
+      "queue_row": 68,
+      "grade": "MOE_REVISED_DICTIONARY_DIRECT_HEADWORD",
+      "source_url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=21711&la=0&powerMode=0",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL_PENDING_FREQUENCY"
+    }
+  ],
+  "limitations": [
+    "Dictionary entry is not independent frequency evidence",
+    "No Core20K membership or ID updates",
+    "Remaining 113 not independently verified by this increment"
+  ]
+}
