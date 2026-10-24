@@ -1,0 +1,29 @@
+{
+  "schema": "zh-core20k-dual-ai-integrity-v2",
+  "date": "2026-10-24",
+  "source": {
+    "muse_url": "https://drive.google.com/file/d/17z4kVE4N6o88NIE7mjdSVWMQGW7SHnFe/view?usp=drivesdk",
+    "muse_sha256": "806767c995ab7257466edfaa80420c3d0239140c803b68af58159914964b58bc",
+    "chatgpt_locked30_sha256": "6d38394926a63501f06aa8663500fc5a781d4e330b055d3eaf0464d3ce63c0c3",
+    "blind200_sha256": "319607783bed778b934eccc89a9c21b8101cd09860275e508c41c9d13d070663"
+  },
+  "checks": {
+    "files_sha256_verified": 3,
+    "blind_rows": 200,
+    "muse_rows": 200,
+    "chatgpt_locked_rows": 30,
+    "term_alignment_errors": 0
+  },
+  "status_counts": {
+    "AWAITING_SECOND_INDEPENDENT_REVIEW": 170,
+    "DUAL_AI_SEMANTIC_AGREEMENT": 23,
+    "DOMAIN_FACT_CHECK_PENDING": 5,
+    "UNCERTAIN": 1,
+    "DISPUTED": 1
+  },
+  "disputed_term": "不愿",
+  "uncertain_term": "不起",
+  "release_approved": false,
+  "membership_updates": 0,
+  "warning": "The model that has seen Muse output cannot retroactively claim independent review of rows 1-170. New clean review run required. Source evidence may resolve disputed adjudication, but cannot overwrite original divergent reviewer decisions."
+}
