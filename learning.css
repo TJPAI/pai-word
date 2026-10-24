@@ -76,14 +76,13 @@
   opacity:0;cursor:pointer;z-index:1
 }
 .learning-screen .word-hero .auto-word-symbol{
-  display:grid;place-items:center;width:28px;height:28px;
-  border:1.5px solid #b6c0cb;border-radius:50%;
-  background:#f7f9fc;color:#6d7a8b;
-  transition:background .15s ease,border-color .15s ease,color .15s ease
+  display:grid;place-items:center;width:29px;height:25px;
+  border:0;border-radius:0;background:transparent;color:#87909e;
+  transition:color .15s ease,opacity .15s ease
 }
-.learning-screen .word-hero .auto-word-symbol svg{width:19px;height:19px}
+.learning-screen .word-hero .auto-word-symbol svg{width:27px;height:23px}
 .learning-screen .word-hero .auto-word-toggle input:checked + .auto-word-symbol{
-  background:#e8f2ff;border-color:#2b76e5;color:#1665d8
+  background:transparent;border:0;color:#2475e6
 }
 .learning-screen .word-hero .auto-word-toggle input:focus-visible + .auto-word-symbol{
   outline:3px solid #2b76e5;outline-offset:2px
