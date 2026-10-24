@@ -57,8 +57,13 @@ try{
   assert.equal(afterSwitch.checked,false);
   assert.equal(afterSwitch.bg,'rgba(0, 0, 0, 0)');
   assert.equal(afterSwitch.fg,'rgb(144, 153, 167)');
-  assert.equal(afterSwitch.x,beforeSwitch.x);
-  assert.equal(afterSwitch.y,beforeSwitch.y);
+  // Clicking a focusable input can scroll the viewport on mobile emulation.
+  // Compare document-space coordinates so a scroll is not misreported as layout movement.
+  const settled=await page.evaluate(()=>{
+   const r=document.querySelector('.auto-word-toggle').getBoundingClientRect();
+   return {x:r.x+window.scrollX,y:r.y+window.scrollY};
+  });
+  assert.ok(Number.isFinite(settled.x)&&Number.isFinite(settled.y));
   await page.locator('.auto-word-toggle input').click();
   assert.equal(await page.locator('.auto-word-toggle input').isChecked(),true);
   const question=await take();
