@@ -345,7 +345,8 @@
     if(type==='sense'){
       const scene=(typeof SCENES!=='undefined'&&SCENES[u.s?.scene])||u.s?.scene||'';title='释义';meta=[u.s?.pos||u.w?.pos||'',scene].filter(Boolean).join(' · ');
     }else{
-      title=u.s?.kuTitle||label;meta=label;
+      // Listening-only questions must never expose a KU title containing the answer.
+      title=state.hideWord&&!state.revealed?'听音回忆知识点':(u.s?.kuTitle||label);meta=label;
     }
     const cue=document.createElement('div');cue.className='ku-front-prompt';cue.innerHTML=`<span class="pos-chip">${esc(meta||label)}</span><span class="ku-cue-title">${esc(title)}</span>`;
     const hint=hero.querySelector('.tap-hint');hint?hero.insertBefore(cue,hint):hero.appendChild(cue);
@@ -1182,7 +1183,7 @@
   const gradeAttrs=g=>` ${PAI_TAP_FLOW.snapshot().phase==='committing'?'disabled aria-disabled="true"':''} data-grade="${g}" aria-pressed="${selectedGrade===g?'true':'false'}" class="${selectedGrade===g?'is-selected':''}"`;
   const repeat=s.seen[u.k]>0;
   const autoSwitch=`<label style="display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-size:12px"><input type="checkbox" ${state.autoBrowseEnabled?'checked':''} onchange="setAutoBrowse(this.checked)" aria-label="自动浏览开关">自动浏览</label>`;
-  const label=u.s.kuType==='sense'?'回忆词义':u.s.kuTitle;
+  const label=u.s.kuType==='sense'?'回忆词义':(state.hideWord&&!state.revealed?'听音回忆知识点':u.s.kuTitle);
   return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div>${autoSwitch}</div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p></div><div class="study-body">${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
