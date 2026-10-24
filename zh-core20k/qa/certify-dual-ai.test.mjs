@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {certifyDualAI} from './certify-dual-ai.mjs';
+const term='天气',term_id='zh_'+createHash('sha256').update(term).digest('hex').slice(0,20);
+const pair=()=>[{term,term_id,verdict:'LEXICALIZED',reason:'lexical use',review_id:'a1',model_run_id:'chatgpt-run-1',independent_review:true},{term,term_id,verdict:'LEXICALIZED',reason:'lexical use',review_id:'b1',model_run_id:'muse-run-1',independent_review:true}];
+test('independent agreement is dual AI verified',()=>{const [a,b]=pair();const r=certifyDualAI([a],[b]);assert.equal(r.ok,true);assert.equal(r.counts.dual_ai_verified,1);assert.equal(r.rows[0].release_approved,false);});
+test('missing Muse is not certified',()=>{const [a]=pair();assert.equal(certifyDualAI([a],[]).counts?.dual_ai_verified??0,0);});
+test('disagreement is disputed',()=>{const [a,b]=pair();b.verdict='COMPOSITIONAL';assert.equal(certifyDualAI([a],[b]).rows[0].status,'DISPUTED');});
+test('shared model run is rejected',()=>{const [a,b]=pair();b.model_run_id=a.model_run_id;assert.equal(certifyDualAI([a],[b]).ok,false);});
+test('unconfirmed independence rejected',()=>{const [a,b]=pair();b.independent_review=false;assert.equal(certifyDualAI([a],[b]).ok,false);});
+test('invalid identity rejected',()=>{const [a,b]=pair();a.term_id='zh_fake';assert.equal(certifyDualAI([a],[b]).ok,false);});
+test('uncertain agreement not promoted',()=>{const [a,b]=pair();a.verdict=b.verdict='UNCERTAIN';assert.equal(certifyDualAI([a],[b]).counts.dual_ai_verified,0);});
