@@ -58,9 +58,13 @@ const verify = async (r) => ({
 });
 
 test('real postgres reservation acceptance', {skip: !URL, timeout: 120000}, async () => {
+  // ESM import() does not consult NODE_PATH, so load the driver through
+  // createRequire: require() honors NODE_PATH, which is how a scratch
+  // pg install (outside this repo) is found at QA-run time.
   let pg;
   try {
-    pg = await import('pg');
+    const {createRequire} = await import('node:module');
+    pg = createRequire(import.meta.url)('pg');
   } catch {
     throw new Error('pg driver not installed: run `npm i pg` in a scratch directory and retry with NODE_PATH=<scratch>/node_modules');
   }
