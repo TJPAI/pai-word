@@ -7,6 +7,8 @@ export const sha256=b=>createHash('sha256').update(b).digest('hex');
 const ID=t=>'zh_'+sha256(Buffer.from(t,'utf8')).slice(0,20);
 export function auditReviewOverlay(runtime,queue,overlay){
  const errors=[],notes=[];
+ if(!Array.isArray(queue)||queue.length===0)errors.push('EMPTY_QUEUE');
+ if(!Array.isArray(overlay?.entries)||overlay.entries.length===0)errors.push('EMPTY_OR_INVALID_OVERLAY');
  const terms=new Map((runtime?.terms??[]).map(t=>[t.term_id,t]));
  const rows=new Map();
  for(const q of queue){
