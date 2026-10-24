@@ -36,4 +36,13 @@ jobs:
       - name: Verify frozen hashes and audit exact headword ranks
         run: |
           node --version
-          node qa/tools/core20k_lexicon/staging/b192_runtime_identity_audit.mjs production/data/core20k-runtime.json.gz b184/rebuild-preview/b184-recognition/candidates-b184.jsonl
+          node qa/tools/core20k_lexicon/staging/b192_runtime_identity_audit.mjs production/data/core20k-runtime.json.gz b184/rebuild-preview/b184-recognition/candidates-b184.jsonl > b192-runtime-identity-result.json
+          node -e "const x=require('./b192-runtime-identity-result.json'); if(x.records.length!==4 || x.registration_allowed!==0) process.exit(1); console.log(JSON.stringify({runtime_sha256:x.runtime_sha256, headwords:x.runtime_headwords, candidates:x.records.map(r=>({id:r.candidate_id,match:r.rank_lemma_match,gloss_hits:r.exact_phrase_gloss_hits_all_20k.length}))}))"
+      - name: Archive full read-only identity evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: b192-runtime-identity-evidence
+          path: b192-runtime-identity-result.json
+          if-no-files-found: warn
+          retention-days: 30
