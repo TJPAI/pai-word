@@ -12,7 +12,7 @@ export function gradeChineseEquivalent(answer,policy){
  return {graded:true,correct:accepted.includes(normalized)};
 }
 // The answer policy is an explicitly approved allowlist, not a semantic inference engine.
-export function validateApprovedOverlay({base,overlay,manifest,enabled=false}={}){
+export function validateApprovedOverlay({base,overlay,manifest,enabled=false,verifiedRuntimeSha256,verifiedPackSha256}={}){
  if(!enabled)return {enabled:false,accepted:new Map(),reason:'disabled'};
  const deny=reason=>({enabled:false,accepted:new Map(),reason});
  if(!base?.byKU||!(base.byKU instanceof Map))return deny('base_runtime_missing');
@@ -21,6 +21,8 @@ export function validateApprovedOverlay({base,overlay,manifest,enabled=false}={}
  if(manifest.status!=='PRODUCTION_READY'||manifest.authority?.registrar_signed!==true||manifest.authority?.semantic_certified!==true||manifest.authority?.license_approved!==true||manifest.authority?.release_signed!==true)return deny('release_gate');
  if(!isText(manifest.runtime_sha256)||!isText(manifest.pack_sha256)||!isText(manifest.version)||!isText(manifest.authority?.registrar_id)||!isText(manifest.authority?.release_id))return deny('manifest_incomplete');
  if(manifest.runtime_sha256!==overlay.runtime_sha256||manifest.pack_sha256!==overlay.pack_sha256||manifest.version!==overlay.version)return deny('version_pin_mismatch');
+ // Hashes must come from verified raw bytes, never from untrusted manifest self-claims.
+ if(verifiedRuntimeSha256!==manifest.runtime_sha256||verifiedPackSha256!==manifest.pack_sha256)return deny('unverified_source_bytes');
  if(!Array.isArray(manifest.reviewed_crosswalk)||manifest.reviewed_crosswalk.length!==overlay.records.length)return deny('crosswalk_missing');
  const crosswalk=new Map();
  for(const row of manifest.reviewed_crosswalk){
