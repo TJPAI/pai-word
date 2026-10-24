@@ -39,9 +39,11 @@ async function initialize(){
  }).catch(error=>{hybridSettled=true;lastError=String(error);return 'rule_fallback'});
  return instance;
 }
-export async function recommend(query,{difficulty='all',inventory,eligibleSceneIds=null,limit=500}={}){
+export async function recommend(query,{difficulty='all',inventory,eligibleSceneIds=null,limit=500,signal}={}){
+ if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
  if(!readyPromise)readyPromise=initialize().catch(error=>{readyPromise=null;lastError=String(error);throw error});
  await readyPromise;
+ if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
  // Give a cache-warm hybrid a brief chance, but never keep the search page
  // waiting for slow Chinese lexicon downloads or a dead connection.
  if(instance.mode!=='hybrid'&&hybridReady){
@@ -49,13 +51,16 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
   try{await Promise.race([hybridReady,new Promise(resolve=>{timeout=setTimeout(resolve,350)})])}
   finally{clearTimeout(timeout)}
  }
+ if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
  const overlay=await optionalOverlay();
+ if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
  const allowed=eligibleSceneIds===null?null:new Set(eligibleSceneIds);
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
   (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
  );
  const key=instance.mode+'|'+(overlay?.enabled?'pilot12':'baseline')+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
  const cached=queryCache.get(key);
+ if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
  if(cached)return {...cached,cacheHit:true,elapsedMs:0};
  const started=performance.now();
  const snapshot=instance.engine.search(query,{eligibleSceneIds:eligible,limit:Math.min(500,limit)});
