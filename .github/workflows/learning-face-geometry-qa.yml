@@ -1,0 +1,33 @@
+name: Learning face geometry QA
+on:
+  push:
+    branches: [home-perf-safe-load-20261022]
+    paths:
+      - 'learning.css'
+      - 'mobile.css'
+      - 'ux-fix.css'
+      - 'rebuild-preview/learning-runtime.js'
+      - 'rebuild-preview/index.html'
+      - 'tests/learning-face-geometry.test.mjs'
+      - 'tests/learning-face-browser-qa.mjs'
+      - '.github/workflows/learning-face-geometry-qa.yml'
+  workflow_dispatch:
+jobs:
+  stable-faces:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static question-answer geometry assertions
+        run: node --test tests/learning-face-geometry.test.mjs tests/welcome-first-paint.test.mjs
+      - name: Install isolated browser harness
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify question-answer element coordinates at four phone sizes
+        run: node tests/learning-face-browser-qa.mjs
