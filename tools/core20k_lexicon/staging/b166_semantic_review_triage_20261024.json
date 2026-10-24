@@ -1,0 +1,17 @@
+{
+  "schema": "pai-core20k-b166-semantic-triage-summary-v1",
+  "source_runtime_commit": "c4442bc3e0a97bb6cdf9a077d1f56374f2f0824b",
+  "candidates": 290,
+  "matched": 285,
+  "matched_multi_ku_headwords": 263,
+  "matched_single_ku_headwords": 22,
+  "unmatched": 5,
+  "missing_pos_matched": 93,
+  "missing_pos_total": 94,
+  "explicit_review_flagged": 20,
+  "semantic_certified": 0,
+  "release_eligible": 0,
+  "stage": "QUARANTINE_ONLY",
+  "report_sha256": "9977d83b0aefa07ad377b2cb4ca0f691f82ea956efb73f1682b7d84ed7c0ad95",
+  "primary_blocker": "Identity registry does not include the runtime source gloss_en / gloss_zh, so semantic sameness under matching KU cannot be tested yet"
+}
