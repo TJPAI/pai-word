@@ -1,0 +1,100 @@
+{
+  "schema_version": "pai-core20k-b216-six-identity-gate-v1",
+  "status": "BLOCKED_PENDING_AUTHORITATIVE_RUNTIME_ROW_VALIDATION",
+  "runtime_branch": "core20k-lexicon-production-v1",
+  "runtime_branch_head": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+  "runtime_path": "data/core20k-runtime.json.gz",
+  "runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "runtime_sha256_reported_prior": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+  "runtime_sha256_recomputed_this_audit": false,
+  "blocker": "GitHub connector rejects binary gzip and container cannot access github.com; actual Runtime rows cannot be extracted here. Historical aggregate QA is insufficient for six row-level attestations.",
+  "records": [
+    {
+      "headword": "person",
+      "legacy_headword_id": "core20k:rank:108",
+      "legacy_sense_id": "w_0266_person_s01",
+      "legacy_ku_id": "w_0266_person_ku01",
+      "legacy_gloss_en": "individual human being",
+      "status": "BLOCKED_RUNTIME_ROW_NOT_READ",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "identity_evidence": "Batch93 staging record only; no direct authoritative Runtime row comparison",
+      "safe_to_publish": false
+    },
+    {
+      "headword": "time",
+      "legacy_headword_id": "core20k:rank:111",
+      "legacy_sense_id": "w_0049_time_s01",
+      "legacy_ku_id": "w_0049_time_ku01",
+      "legacy_gloss_en": "measurable duration",
+      "status": "BLOCKED_RUNTIME_ROW_NOT_READ",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "identity_evidence": "Batch93 staging record only; no direct authoritative Runtime row comparison",
+      "safe_to_publish": false
+    },
+    {
+      "headword": "know",
+      "legacy_headword_id": "core20k:rank:138",
+      "legacy_sense_id": "w_0041_know_s01",
+      "legacy_ku_id": "w_0041_know_ku01",
+      "legacy_gloss_en": "possess information",
+      "status": "BLOCKED_RUNTIME_ROW_NOT_READ",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "identity_evidence": "Batch93 staging record only; no direct authoritative Runtime row comparison",
+      "safe_to_publish": false
+    },
+    {
+      "headword": "people",
+      "legacy_headword_id": "core20k:rank:142",
+      "legacy_sense_id": "w_0057_people_s01",
+      "legacy_ku_id": "w_0057_people_ku01",
+      "legacy_gloss_en": "human beings collectively",
+      "status": "BLOCKED_RUNTIME_ROW_NOT_READ",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "identity_evidence": "Batch93 staging record only; no direct authoritative Runtime row comparison",
+      "safe_to_publish": false
+    },
+    {
+      "headword": "talk",
+      "legacy_headword_id": "core20k:rank:145",
+      "legacy_sense_id": "w_0139_talk_s01",
+      "legacy_ku_id": "w_0139_talk_ku01",
+      "legacy_gloss_en": "speak or converse",
+      "status": "BLOCKED_RUNTIME_ROW_NOT_READ",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "identity_evidence": "Batch93 staging record only; no direct authoritative Runtime row comparison",
+      "safe_to_publish": false
+    },
+    {
+      "headword": "here",
+      "legacy_headword_id": "core20k:rank:153",
+      "legacy_sense_id": "w_0099_here_s01",
+      "legacy_ku_id": "w_0099_here_ku01",
+      "legacy_gloss_en": "at or to this place",
+      "status": "BLOCKED_RUNTIME_ROW_NOT_READ",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "identity_evidence": "Batch93 staging record only; no direct authoritative Runtime row comparison",
+      "safe_to_publish": false
+    }
+  ],
+  "reviewed_crosswalk": [],
+  "release_eligible_count": 0,
+  "qa": {
+    "record_count": 6,
+    "unique_legacy_ku_ids": true,
+    "no_authoritative_id_invented": true,
+    "all_blocked": true,
+    "production_overlay_unchanged": true
+  }
+}
