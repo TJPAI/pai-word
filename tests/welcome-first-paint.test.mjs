@@ -43,6 +43,12 @@ test('welcome reset and SRS boundaries remain safe',()=>{
 
 test('comic preload has first priority; returning visitor app styles remain immediate',()=>{
  assert.ok(html.includes("comic.rel='preload';comic.as='image'"));
+ assert.ok(html.includes("comic.type='image/webp'"));
+ assert.ok(html.includes('pai-ai-mathematicians-comic.webp?v=comic-webp-q88-v1'));
+ assert.ok(welcome.includes('<picture class="pai-welcome-comic-picture">'));
+ assert.ok(welcome.includes('type="image/webp"'));
+ assert.ok(welcome.includes('pai-ai-mathematicians-comic.jpg?v=comic-v2'));
+
  assert.ok(html.includes("comic.fetchPriority='high'"));
  assert.ok(html.includes(":loadAppStyles()"));
 });
