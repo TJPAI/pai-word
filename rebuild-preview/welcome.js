@@ -23,7 +23,7 @@
  <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true">▥</span><div><strong>简洁专注</strong><small>无干扰设计，专注提升学习效率</small></div></div>
  </div><div class="pai-welcome-actions">
  <button type="button" class="pai-welcome-enter">开始学习 →</button>
- <button type="button" class="pai-welcome-catalog">先看看场景目录 ›</button>
+ <button type="button" class="pai-welcome-catalog">浏览场景目录 ›</button>
  </div></div>`;
  document.body.appendChild(shell);
  window.PAI_WELCOME_VISIBLE=true;
