@@ -1,0 +1,35 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v15-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "5f4cb7635c9ed2f3f9a5131f474d782be310e1e04f568bbc38ab5ea557ca3879",
+  "drive_url": "https://drive.google.com/file/d/1Wsk68ExYn90OPw2anvc_PBhQkhs9o5HS/view",
+  "counts": {
+    "total": 67,
+    "pass": 47,
+    "needs_recheck": 12,
+    "not_rechecked": 8,
+    "fail": 0,
+    "new_pass": 2,
+    "release_approved": 0
+  },
+  "new_pass": [
+    {
+      "term": "音程",
+      "url": "https://yjsb.shcmusic.edu.cn/_t3/2018/0703/c2694a1383/page.htm",
+      "evidence": "Shanghai Conservatory of Music directly defines narrow sense as distance between notes, and discusses broader interval sense"
+    },
+    {
+      "term": "刑事辩护",
+      "url": "https://sfj.beijing.gov.cn/sfj/zwgk/2024zcwj/744120751/fl91/744123065/index.html",
+      "evidence": "Beijing Justice Bureau hosts complete Legal Aid Law, article 2 and article 22 directly use term"
+    }
+  ],
+  "qa": {
+    "term_id_hash_pass": 67,
+    "unique_ids": 67,
+    "row_derived_count_pass": true,
+    "raw_review_verdicts_unchanged": true,
+    "release_approved": 0
+  },
+  "note": "Audit initially blocked an incorrectly expected status distribution; actual per-row status counts were used. Term evidence PASS does not authorize lexicon membership or Runtime release."
+}
