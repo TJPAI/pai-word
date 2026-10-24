@@ -1,0 +1,36 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v12-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "e8c67d9e07959feea8e54581a26cddbc35f2472313f9f214eaf3176c1ba0dd59",
+  "drive_url": "https://drive.google.com/file/d/1TVy8LXXd62ftSFBDmX4hi5dizv1PGudO/view",
+  "counts": {
+    "total": 67,
+    "pass": 40,
+    "fail": 0,
+    "needs_recheck": 17,
+    "not_rechecked": 10,
+    "new_pass": 1,
+    "release_approved": 0
+  },
+  "new_pass": {
+    "term": "三级跳远",
+    "source": "https://tyj.beijing.gov.cn/bjsports/ztzl/bjsdsqjydh/jsxm31/qsnjjz32/744024333/index.html",
+    "evidence": "Official 2026 competition regulations explicitly list the event"
+  },
+  "blocked": [
+    "IP地址",
+    "两栖类",
+    "不确定性",
+    "访问控制"
+  ],
+  "search_index_only_not_pass": [
+    "生产者价格指数"
+  ],
+  "qa": {
+    "unique_ids": 67,
+    "term_hashes_valid": 67,
+    "all_release_approved_false": true,
+    "original_ai_reviews_unchanged": true
+  },
+  "qualification": "PASS validates source use, not lexicographic identity, Core20K membership or release."
+}
