@@ -115,7 +115,13 @@
       </main>
     </div></div>`;
   }
-  let querySerial=0,bridgePromise=null;
+  let querySerial=0,bridgePromise=null,hybridListenerInstalled=false;
+  function refreshActiveHybrid(){
+    const active=ui(),q=(active.query||'').trim();
+    const typed=document.getElementById('scene-query')?.value?.trim();
+    if(state.view!=='scenes'||!q||typed!==q)return;
+    void runSceneSearch(q,active.difficulty||'all',{restore:true});
+  }
   window.PAI_SCENE_QUERY_CHANGED=()=>{
     querySerial++;
     const field=document.getElementById('scene-query');
@@ -146,6 +152,7 @@
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
+        if(!hybridListenerInstalled){bridge.onHybridReady(refreshActiveHybrid);hybridListenerInstalled=true;}
         const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:10});
         ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;emptyReason=result.emptyReason||null;unfilteredCandidateCount=result.unfilteredCandidateCount??null;engineSucceeded=true;
       }catch(e){window.PAI_SCENE500_LAST_ERROR=String(e);bridgePromise=null}
