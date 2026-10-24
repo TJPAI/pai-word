@@ -1,0 +1,35 @@
+{
+  "schema": "pai-core20k-b185-b184-review-reconciliation-v1",
+  "sources": {
+    "muse_independent": "https://drive.google.com/file/d/1nVrKyznShJIfSSmEe1xhaIyZCxUEcuSj/view?usp=drivesdk",
+    "muse_qa": "https://drive.google.com/file/d/1HJ0gLZWameETodD0jVxatCtSluH0vYqz/view?usp=drivesdk",
+    "b184_candidates": "https://drive.google.com/file/d/1FupjTWLcaK-_jHExapm25Njl0A3RUqp9/view?usp=drivesdk"
+  },
+  "verdict": "CONTENT_PASS_WITH_RENDER_CONDITIONS",
+  "count": {
+    "pass": 4,
+    "fail": 0,
+    "unresolved": 0
+  },
+  "items": [
+    "B180-P002",
+    "B180-P005",
+    "B180-P006",
+    "B180-P007"
+  ],
+  "limitations": [
+    "choice shuffling metadata not executed",
+    "context hiding metadata not executed",
+    "renderer absent",
+    "browser E2E not run",
+    "phrase-level US IPA 0/4",
+    "dictionary evidence incomplete",
+    "official KU/sense IDs not allocated"
+  ],
+  "production_ready": false,
+  "registered_ku": 0,
+  "identity_status": "UNREGISTERED_PROVISIONAL",
+  "semantic_certification": "PENDING_RELEASE_GATES",
+  "release_eligible": false,
+  "srs_write_allowed": false
+}
