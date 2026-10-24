@@ -1,6 +1,16 @@
 // Host-only Scene500 bridge: independently loaded; never mutates KU, SRS or study state.
 let readyPromise=null,instance=null,hybridReady=null,lastError=null,hybridSettled=false;
 const queryCache=new Map();
+// E5 V1.6 is opt-in only. The independently deployed demo is not a documented
+// importable inference API, so do not fabricate E5 scores or silently use rules
+// under an E5 label. A verified host adapter can be registered later.
+let e5Provider=null;
+export function registerE5Provider(provider){
+ if(!provider||typeof provider.recommend!=='function')throw TypeError('E5 provider must implement recommend');
+ e5Provider=provider;
+}
+const e5Enabled=()=>new URLSearchParams(globalThis.location?.search||'').get('scene500e5')==='1';
+
 const ROOT=new URL('../scene500-recommendation/',import.meta.url);
 // Explicit opt-in; the default hybrid ranking remains untouched.
 const semanticEnabled=()=>new URLSearchParams(globalThis.location?.search||'').get('scene500semantic')==='1';
@@ -58,6 +68,16 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
   (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
  );
+ if(e5Enabled()&&e5Provider){
+  try{
+   const ai=await e5Provider.recommend({query:String(query),topK:Math.min(10,Math.max(1,Number(limit)||5)),signal,eligibleSceneIds:eligible});
+   if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
+   if(ai?.status==='ok'&&ai?.modeUsed==='e5'&&Array.isArray(ai.recommendations)){
+    const ids=[...new Set(ai.recommendations.map(x=>x.sceneId).filter(id=>eligible.includes(id)))].slice(0,10);
+    if(ids.length)return {ids,total:ids.length,mode:'e5',elapsedMs:ai.latencyMs??null,cacheHit:false,semanticPilot:'disabled'};
+   }
+  }catch(error){if(error?.name==='AbortError'||signal?.aborted)throw error;lastError=String(error)}
+ }
  const key=instance.mode+'|'+(overlay?.enabled?'pilot12':'baseline')+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
  const cached=queryCache.get(key);
  if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
