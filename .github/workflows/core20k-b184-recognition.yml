@@ -1,0 +1,22 @@
+name: Core20K B184 isolated recognition QA
+on:
+  push:
+    branches: [core20k-b184-recognition-isolated]
+    paths:
+      - 'rebuild-preview/b184-recognition/**'
+      - 'tests/core20k-b184-recognition.test.mjs'
+      - '.github/workflows/core20k-b184-recognition.yml'
+  workflow_dispatch:
+jobs:
+  isolated-recognition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test isolated B184 recognition contract and renderer boundaries
+        run: node --test tests/core20k-b184-recognition.test.mjs
