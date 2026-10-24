@@ -1,0 +1,48 @@
+name: Optimize welcome comic asset
+on:
+  push:
+    branches: [home-perf-safe-load-20261022]
+    paths:
+      - '.github/workflows/optimize-welcome-comic.yml'
+      - 'rebuild-preview/assets/pai-ai-mathematicians-comic.jpg'
+  workflow_dispatch:
+jobs:
+  webp:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate full-resolution quality-controlled WebP
+        run: |
+          npm install --no-save --no-package-lock sharp@0.34.4
+          node --input-type=module <<'NODE'
+          import sharp from 'sharp';
+          import {readFileSync,statSync} from 'node:fs';
+          const input='rebuild-preview/assets/pai-ai-mathematicians-comic.jpg';
+          const output='rebuild-preview/assets/pai-ai-mathematicians-comic.webp';
+          const origin=await sharp(input).metadata();
+          if(origin.width!==1536||origin.height!==1024)throw Error('unexpected comic dimensions');
+          await sharp(input).webp({quality:88,effort:6}).toFile(output);
+          const final=await sharp(output).metadata();
+          const originalBytes=statSync(input).size,webpBytes=statSync(output).size;
+          if(final.width!==1536||final.height!==1024)throw Error('loss of resolution');
+          if(webpBytes>originalBytes*.9)throw Error('not enough compression benefit');
+          console.log(JSON.stringify({originalBytes,webpBytes,savingsPercent:Math.round((1-webpBytes/originalBytes)*100),width:final.width,height:final.height,quality:88}));
+          NODE
+      - name: Commit new asset only if generated
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rebuild-preview/assets/pai-ai-mathematicians-comic.webp
+          if git diff --cached --quiet; then echo "WebP already current"; exit 0; fi
+          git commit -m "assets(welcome): add optimized full-resolution comic WebP"
+          git fetch origin home-perf-safe-load-20261022
+          git rebase origin/home-perf-safe-load-20261022
+          git push origin HEAD:home-perf-safe-load-20261022
