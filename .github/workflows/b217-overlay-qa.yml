@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/core20k-approved-*.mjs'
       - 'scripts/core20k-b218-*.mjs'
+      - 'rebuild-preview/b218-isolated/**'
       - '.github/workflows/b217-overlay-qa.yml'
   workflow_dispatch:
 jobs:
@@ -27,3 +28,5 @@ jobs:
           node --check scripts/core20k-approved-overlay-boot.mjs
           node --check scripts/core20k-dev-boot.mjs
           node --check rebuild-preview/learning-runtime.js
+          node -e "const fs=require('node:fs');const s=fs.readFileSync('rebuild-preview/b218-isolated/index.html','utf8');const m=s.match(/<script type=\\\"module\\\">([\\s\\S]*?)<\\/script>/);if(!m)process.exit(1);fs.writeFileSync('/tmp/b218-browser-module.mjs',m[1]);"
+          node --check /tmp/b218-browser-module.mjs
