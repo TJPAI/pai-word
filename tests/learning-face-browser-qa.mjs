@@ -33,6 +33,33 @@ try{
    const selectors={top:'.study-top',word:'.word',ipa:'.ipa',speaker:'.speak-btn',switch:'.auto-word-toggle',cue:'.recall-cue',ratings:'.recall-correction',row:'.recall-controls-row'};
    const o={};for(const [key,s] of Object.entries(selectors)){const e=document.querySelector(s);const r=e.getBoundingClientRect();const c=getComputedStyle(e);o[key]={x:r.x,y:r.y,width:r.width,height:r.height,display:c.display,visibility:c.visibility};}return o;
   });
+  // Verify toggling the glyph updates both checkbox state and computed colors
+  // without moving the hitbox or triggering question/answer flip.
+  const beforeSwitch=await page.evaluate(()=>{
+   const i=document.querySelector('.auto-word-toggle input');
+   const b=document.querySelector('.auto-word-symbol');
+   const r=document.querySelector('.auto-word-toggle').getBoundingClientRect();
+   return {checked:i.checked,bg:getComputedStyle(b).backgroundColor,
+     fg:getComputedStyle(b).color,x:r.x,y:r.y};
+  });
+  assert.equal(beforeSwitch.checked,true);
+  assert.equal(beforeSwitch.bg,'rgb(36, 117, 230)');
+  assert.equal(beforeSwitch.fg,'rgb(255, 255, 255)');
+  await page.locator('.auto-word-symbol').click();
+  const afterSwitch=await page.evaluate(()=>{
+   const i=document.querySelector('.auto-word-toggle input');
+   const b=document.querySelector('.auto-word-symbol');
+   const r=document.querySelector('.auto-word-toggle').getBoundingClientRect();
+   return {checked:i.checked,bg:getComputedStyle(b).backgroundColor,
+     fg:getComputedStyle(b).color,x:r.x,y:r.y};
+  });
+  assert.equal(afterSwitch.checked,false);
+  assert.equal(afterSwitch.bg,'rgba(0, 0, 0, 0)');
+  assert.equal(afterSwitch.fg,'rgb(144, 153, 167)');
+  assert.equal(afterSwitch.x,beforeSwitch.x);
+  assert.equal(afterSwitch.y,beforeSwitch.y);
+  await page.locator('.auto-word-symbol').click();
+  assert.equal(await page.locator('.auto-word-toggle input').isChecked(),true);
   const question=await take();
   assert.equal(question.word.visibility,'hidden',`word should be hidden: ${viewport.width}`);
   assert.equal(question.ipa.visibility,'hidden',`ipa should be hidden: ${viewport.width}`);
