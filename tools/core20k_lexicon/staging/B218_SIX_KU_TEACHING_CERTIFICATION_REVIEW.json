@@ -1,0 +1,97 @@
+{
+  "schema": "pai-core20k-b218-teaching-review-v1",
+  "source_pack": "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+  "source_pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+  "registered_crosswalk_commit": "2eac7dff46bf2aaccfc2f717586841e016333d67",
+  "reviewer": "ChatGPT English teaching content line",
+  "review_scope": "Independent review of six Batch93 contextual sense questions, translations, IPA and accepted Chinese answer policy",
+  "reviewed_count": 6,
+  "semantic_pass_count": 6,
+  "certification_status": "CONDITIONAL_PASS_PENDING_GRADING_IMPLEMENTATION_AND_SOURCE_ATTESTATION",
+  "records": [
+    {
+      "lemma": "person",
+      "ku_id": "w_0266_person_ku01",
+      "semantic_review": "PASS",
+      "example_translation_review": "PASS",
+      "answer_policy": [
+        "一个人",
+        "人",
+        "个人"
+      ],
+      "answer_policy_scope": "Only for the exact Batch93 contextual question; no blanket synonym acceptance.",
+      "notes": "No blocking semantic error observed."
+    },
+    {
+      "lemma": "time",
+      "ku_id": "w_0049_time_ku01",
+      "semantic_review": "PASS",
+      "example_translation_review": "PASS",
+      "answer_policy": [
+        "时间",
+        "时长",
+        "一段时间"
+      ],
+      "answer_policy_scope": "Only for the exact Batch93 contextual question; no blanket synonym acceptance.",
+      "notes": "Accept 时长 for duration context; reject 时刻 and 次数."
+    },
+    {
+      "lemma": "know",
+      "ku_id": "w_0041_know_ku01",
+      "semantic_review": "PASS",
+      "example_translation_review": "PASS",
+      "answer_policy": [
+        "知道",
+        "了解"
+      ],
+      "answer_policy_scope": "Only for the exact Batch93 contextual question; no blanket synonym acceptance.",
+      "notes": "No blocking semantic error observed."
+    },
+    {
+      "lemma": "people",
+      "ku_id": "w_0057_people_ku01",
+      "semantic_review": "PASS",
+      "example_translation_review": "PASS",
+      "answer_policy": [
+        "人们",
+        "许多人",
+        "人"
+      ],
+      "answer_policy_scope": "Only for the exact Batch93 contextual question; no blanket synonym acceptance.",
+      "notes": "No blocking semantic error observed."
+    },
+    {
+      "lemma": "talk",
+      "ku_id": "w_0139_talk_ku01",
+      "semantic_review": "PASS",
+      "example_translation_review": "PASS",
+      "answer_policy": [
+        "交谈",
+        "说话"
+      ],
+      "answer_policy_scope": "Only for the exact Batch93 contextual question; no blanket synonym acceptance.",
+      "notes": "Teaching /tɑːk/ acceptable General American; Runtime /tˈɔk/ differs; do not mutate Runtime."
+    },
+    {
+      "lemma": "here",
+      "ku_id": "w_0099_here_ku01",
+      "semantic_review": "PASS",
+      "example_translation_review": "PASS",
+      "answer_policy": [
+        "这里",
+        "到这里",
+        "在这里"
+      ],
+      "answer_policy_scope": "Only for the exact Batch93 contextual question; no blanket synonym acceptance.",
+      "notes": "Directional 到这里 acceptable for come here; static 在这里 acceptable for locative sense."
+    }
+  ],
+  "blocking_conditions": [
+    "Main developer must implement context-specific Chinese answer grading and demonstrate positive and negative tests.",
+    "Formal teaching certificate must not treat staging pack's legacy sense_id as Runtime authority; use approved KU_ANCHORED_SENSE.",
+    "External dictionary source attestations in source pack were not independently re-fetched during this review.",
+    "Main developer deployment and publication gates remain separate."
+  ],
+  "release_eligible": false,
+  "production_ready": false
+}
