@@ -70,13 +70,10 @@ async function initialize(){
 export async function recommend(query,{difficulty='all',inventory,eligibleSceneIds=null,limit=500}={}){
  if(!readyPromise)readyPromise=initialize().catch(error=>{readyPromise=null;lastError=String(error);throw error});
  await readyPromise;
- // Give a cache-warm hybrid a brief chance, but never keep the search page
- // waiting for slow Chinese lexicon downloads or a dead connection.
- if(instance.mode!=='hybrid'&&hybridReady){
-  let timeout;
-  try{await Promise.race([hybridReady,new Promise(resolve=>{timeout=setTimeout(resolve,350)})])}
-  finally{clearTimeout(timeout)}
- }
+ // Return the first rule recommendation without an artificial hybrid wait.
+ // The existing onHybridReady listener upgrades visible results asynchronously.
+ // This avoids penalizing every cold search by up to 350ms.
+
  const allowed=eligibleSceneIds===null?null:new Set(eligibleSceneIds);
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
   (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
