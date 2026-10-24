@@ -56,10 +56,18 @@
 
 /* Fixed controls: never follow word or IPA length. */
 .learning-screen .word-hero{position:relative}
-.learning-screen .word-hero .word-line{width:100%;justify-content:center;padding:30px 8px 0;box-sizing:border-box}
+.learning-screen .word-hero .word-line{width:100%;justify-content:center;padding:0 8px;box-sizing:border-box}
 .learning-screen .word-hero .word{min-width:0;text-align:center}
+.learning-screen .word-hero .recall-controls-row{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:100%;min-height:44px;flex:0 0 44px
+}
+.learning-screen .word-hero .recall-controls-row .recall-cue{
+  margin:0!important;min-width:0;max-width:calc(100% - 150px);
+  text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap
+}
 .learning-screen .word-hero .auto-word-toggle{
-  position:absolute;right:12px;top:15px;
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
   display:inline-flex;align-items:center;justify-content:flex-end;
   gap:5px;white-space:nowrap;min-height:44px;
   font-size:12px;cursor:pointer;z-index:2
@@ -73,7 +81,7 @@
   width:44px;min-width:44px;height:44px;min-height:44px
 }
 @media(max-width:380px){
-  .learning-screen .word-hero .word-line{padding:30px 6px 0}
+  .learning-screen .word-hero .word-line{padding:0 6px}
   .learning-screen .word-hero .ipa-line{padding:0 52px 0 12px}
   .learning-screen .word-hero .auto-word-toggle{right:8px}
   .learning-screen .word-hero .ipa-line .speak-btn{right:8px}
