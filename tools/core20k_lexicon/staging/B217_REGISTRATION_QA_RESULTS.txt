@@ -1,0 +1,67 @@
+=== B217 REGISTRATION QA TRANSCRIPT (v2 script) ===
+Runtime gzip SHA-256 (recomputed): e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b
+Batch93 pack SHA-256 (recomputed): 21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15
+
+--- 1. Verify registered crosswalk (final run) ---
+IDENTITY w_0266_person_ku01: PASS
+IDENTITY w_0049_time_ku01: PASS
+IDENTITY w_0041_know_ku01: PASS
+IDENTITY w_0057_people_ku01: PASS
+IDENTITY w_0139_talk_ku01: PASS
+IDENTITY w_0099_here_ku01: PASS
+IDENTITY overall: PASS
+BINDING ADMISSION overall: PASS
+PUBLICATION GATE overall: CLOSED (correct: release_eligible and production_ready remain false, overlay NOT_PUBLISHED)
+NOTE: binding admission PASS means only that the identity binding is registered. It does NOT mark release_eligible, PRODUCTION_READY, or publish any overlay; those require the separate teaching-certification and deployment gates.
+exit=0
+
+--- 2. Self-test, 13 numbered tests (final run) ---
+IDENTITY w_0266_person_ku01: PASS
+IDENTITY w_0049_time_ku01: PASS
+IDENTITY w_0041_know_ku01: PASS
+IDENTITY w_0057_people_ku01: PASS
+IDENTITY w_0139_talk_ku01: PASS
+IDENTITY w_0099_here_ku01: PASS
+IDENTITY overall: PASS
+BINDING ADMISSION overall: PASS
+PUBLICATION GATE overall: CLOSED (correct: release_eligible and production_ready remain false, overlay NOT_PUBLISHED)
+NOTE: binding admission PASS means only that the identity binding is registered. It does NOT mark release_eligible, PRODUCTION_READY, or publish any overlay; those require the separate teaching-certification and deployment gates.
+
+SELF-TEST fault injections (each must be REJECTED):
+  PASS injection_rejected:runtime_sha_mismatch
+  PASS injection_rejected:pack_sha_mismatch
+  PASS injection_rejected:ku_id_missing
+  PASS injection_rejected:duplicate_ku_id_cross_headword
+  PASS injection_rejected:rank_lemma_mismatch
+  PASS injection_rejected:pos_mismatch
+  PASS injection_rejected:ku_type_not_sense
+  PASS injection_rejected:unapproved_binding_admission
+  PASS control:approved_record_admits
+  PASS injection_rejected:release_eligible_flip_boundary_violation
+  PASS injection_rejected:registry_registry_missing
+  PASS injection_rejected:registry_registry_corrupt
+  PASS injection_rejected:registry_registry_version_incompatible
+  PASS READ-ONLY assertion (unnumbered): inputs_unchanged (Runtime + pack hashes identical before/after)
+
+SELF-TEST: 13/13 passed
+exit=0
+
+--- 3. Control: old PENDING authority record under v2 (admission must still reject) ---
+IDENTITY w_0266_person_ku01: PASS
+IDENTITY w_0049_time_ku01: PASS
+IDENTITY w_0041_know_ku01: PASS
+IDENTITY w_0057_people_ku01: PASS
+IDENTITY w_0139_talk_ku01: PASS
+IDENTITY w_0099_here_ku01: PASS
+IDENTITY overall: PASS
+BINDING ADMISSION overall: REJECTED (fail-closed) ['w_0266_person_ku01:admission_rejected', 'w_0049_time_ku01:admission_rejected', 'w_0041_know_ku01:admission_rejected', 'w_0057_people_ku01:admission_rejected', 'w_0139_talk_ku01:admission_rejected', 'w_0099_here_ku01:admission_rejected']
+PUBLICATION GATE overall: CLOSED (correct: release_eligible and production_ready remain false, overlay NOT_PUBLISHED)
+NOTE: binding admission PASS means only that the identity binding is registered. It does NOT mark release_eligible, PRODUCTION_READY, or publish any overlay; those require the separate teaching-certification and deployment gates.
+exit=0
+
+--- 4. Script-bug note (honest record) ---
+First self-test run after the v2 patch scored 12/13: the approved-record control failed because the script's authorization-source literal ('project_owner_instruction') did not match the crosswalk's recorded source ('project_owner_instruction_in_conversation'). The gate itself was not loosened: the fix corrected the literal in the script only; the crosswalk was not edited to fit the script, and scope/SHA/no-signature checks are unchanged. Re-run after the fix: 13/13, exit 0.
+
+--- 5. Read-only guarantee ---
+Runtime gzip SHA after all runs: e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b
+Batch93 pack SHA after all runs: 21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15

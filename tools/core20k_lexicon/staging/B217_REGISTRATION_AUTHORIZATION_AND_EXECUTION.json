@@ -1,0 +1,101 @@
+{
+  "schema": "pai-core20k-b217-registration-execution-v1",
+  "document": "Record of the project-owner authorization and of Muse's execution of the first-batch six-KU binding registration. Roles are kept separate: the owner authorizes, Muse executes, automated QA re-verifies. No owner signature is claimed.",
+  "authorization": {
+    "authorized_by": "PAI Word project owner",
+    "authorization_source": "project_owner_instruction_in_conversation",
+    "authorization_date": "2026-10-25",
+    "authorization_scope": {
+      "batch": "first batch, six English Core20K KUs only",
+      "ku_ids": [
+        "w_0266_person_ku01",
+        "w_0049_time_ku01",
+        "w_0041_know_ku01",
+        "w_0057_people_ku01",
+        "w_0139_talk_ku01",
+        "w_0099_here_ku01"
+      ],
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "binding_rules": {
+        "anchor_ku_id": "the formal ku_id in the Runtime",
+        "official_sense_id": null,
+        "create_new_sense_id": false,
+        "modify_existing_ku_id": false,
+        "modify_headword_identity": false,
+        "modify_srs_keys": false
+      },
+      "pinned_assets": {
+        "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+        "batch93_pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15"
+      }
+    },
+    "owner_signature": {
+      "handwritten_signature_provided": false,
+      "github_signature_provided": false,
+      "note": "No handwritten or GitHub signature was provided, and none is fabricated here. The authorization evidence is the project owner's instruction itself (scope, binding rules and pinned SHAs as recorded above). The blank signature fields in the earlier authorization_text_for_signature are intentionally left blank."
+    },
+    "executor": "Muse, acting as the authorized registration executor for this batch only",
+    "roles": {
+      "project_owner": "authorizes the binding registration (this record)",
+      "muse_executor": "executes the registration and writes the registered crosswalk",
+      "independent_qa": "automated re-verification by the fail-closed QA script (identity + fault injections); this is NOT a substitute for the separate teaching-certification gate or the deployment gate"
+    },
+    "publication_boundary": {
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_written_to_formal_learning_pool": false,
+      "note": "This authorization covers Sense identity binding registration only, not teaching-content publication. release_eligible and production_ready are deliberately left false and are enforced false by the v2 QA script."
+    }
+  },
+  "execution": {
+    "executor": "Muse (authorized registration executor, batch scope only)",
+    "steps": [
+      "Re-read commit 80e53f640eea403d3ad563124af4deb10e265a90 and confirmed its decision document is byte-identical to the local copy.",
+      "Re-verified Runtime gzip SHA-256 e91e2ab3... and Batch93 pack SHA-256 21d83151... from freshly fetched files (no carried-over hashes).",
+      "Recorded the authorization in B217_SENSE_BINDING_DECISION_AND_AUTHORIZATION.json (v2), preserving the original proposal and blank signature fields.",
+      "Wrote the registered crosswalk B217_SIX_KU_REGISTERED_CROSSWALK.json with six APPROVED rows, release_eligible false, production_ready false, overlay NOT_PUBLISHED.",
+      "Updated the fail-closed QA script to v2 (authorization-by-instruction path + publication-boundary enforcement) and re-ran identity QA and the 13 fault-injection self-tests against the registered crosswalk.",
+      "Submitted all files to the teaching QA isolation branch only; no change to main, Runtime, SRS, or learning records."
+    ],
+    "artifacts": [
+      "tools/core20k_lexicon/staging/B217_SENSE_BINDING_DECISION_AND_AUTHORIZATION.json (updated, v2)",
+      "tools/core20k_lexicon/staging/B217_SIX_KU_REGISTERED_CROSSWALK.json (new)",
+      "tools/core20k_lexicon/staging/B217_REGISTRATION_AUTHORIZATION_AND_EXECUTION.json (new, this file)",
+      "tools/core20k_lexicon/staging/B217_FAIL_CLOSED_IDENTITY_QA.py (updated, v2)",
+      "tools/core20k_lexicon/staging/B217_REGISTRATION_QA_RESULTS.json (new)",
+      "tools/core20k_lexicon/staging/B217_REGISTRATION_QA_RESULTS.txt (new)",
+      "tools/core20k_lexicon/staging/B217_REGISTRATION_EXECUTION_REPORT.md (new)"
+    ],
+    "untouched": [
+      "formal Runtime data/core20k-runtime.json.gz (production branch)",
+      "main branch",
+      "SRS data",
+      "user learning records",
+      "tools/core20k_lexicon/runtime/v1/identity-crosswalk.json (16,816 legacy records)",
+      "B189 83-item batch (not mixed into this registration)"
+    ]
+  },
+  "registration_result": {
+    "registered": 6,
+    "target": 6,
+    "conflicts": 0,
+    "blocked": 0,
+    "ku_ids": [
+      "w_0266_person_ku01",
+      "w_0049_time_ku01",
+      "w_0041_know_ku01",
+      "w_0057_people_ku01",
+      "w_0139_talk_ku01",
+      "w_0099_here_ku01"
+    ]
+  },
+  "remaining_gates": {
+    "identity_registration": "CLOSED for these six KUs (binding APPROVED under owner authorization)",
+    "teaching_final_certification": "OPEN - owned by the ChatGPT English teaching line, not by this registration",
+    "deployment": "OPEN - owned by the main developer; overlay must not be written to the formal learning pool until both this registration and the two gates above are satisfied",
+    "teaching_line_manual_reviews": [
+      "talk pronunciation value (package /tɑːk/ vs Runtime /tˈɔk/)",
+      "time gloss addition of '时长' (teaching-side answer policy)"
+    ]
+  }
+}

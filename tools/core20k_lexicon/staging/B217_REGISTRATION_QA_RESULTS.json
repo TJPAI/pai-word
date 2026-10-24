@@ -1,0 +1,69 @@
+{
+  "schema": "pai-core20k-b217-registration-qa-results-v1",
+  "registered_crosswalk": "B217_SIX_KU_REGISTERED_CROSSWALK.json",
+  "qa_script": "B217_FAIL_CLOSED_IDENTITY_QA.py (v2)",
+  "pinned_shas_recomputed": {
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "batch93_pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15"
+  },
+  "identity": {
+    "passed": 6,
+    "total": 6,
+    "ku_ids": [
+      "w_0266_person_ku01",
+      "w_0049_time_ku01",
+      "w_0041_know_ku01",
+      "w_0057_people_ku01",
+      "w_0139_talk_ku01",
+      "w_0099_here_ku01"
+    ]
+  },
+  "binding_admission": {
+    "result": "PASS",
+    "ku_ids_admitted": 6
+  },
+  "publication_gate": {
+    "result": "CLOSED",
+    "release_eligible": false,
+    "production_ready": false,
+    "overlay_publication_status": "NOT_PUBLISHED"
+  },
+  "self_test": {
+    "passed": 13,
+    "total": 13,
+    "tests": [
+      "runtime_sha_mismatch",
+      "pack_sha_mismatch",
+      "ku_id_missing",
+      "duplicate_ku_id_cross_headword",
+      "rank_lemma_mismatch",
+      "pos_mismatch",
+      "ku_type_not_sense",
+      "unapproved_binding_admission",
+      "approved_record_admits",
+      "release_eligible_flip_boundary_violation",
+      "registry_missing",
+      "registry_corrupt",
+      "registry_version_incompatible"
+    ],
+    "read_only_assertion": "PASS (inputs unchanged)",
+    "first_run_note": "First v2 self-test run scored 12/13 because the script's authorization-source literal did not match the crosswalk's recorded source string. Fixed the script literal only (crosswalk untouched, gate checks unchanged); final re-run 13/13, exit 0."
+  },
+  "control_old_pending_record": {
+    "identity": "PASS 6/6",
+    "binding_admission": "REJECTED (fail-closed, correct)"
+  },
+  "registration": {
+    "registered": 6,
+    "target": 6,
+    "conflicts": 0,
+    "blocked": 0
+  },
+  "file_shas": {
+    "B217_FAIL_CLOSED_IDENTITY_QA.py": "2adc2c9eafc149ff96c4efb32ea8aa9e962138d17974dc203c64a0e0e03716b6",
+    "B217_REGISTRATION_AUTHORIZATION_AND_EXECUTION.json": "3764421c73d9fe304bcf23fcf2559499275073dbb0b84c62666e08b89a816360",
+    "B217_REGISTRATION_QA_RESULTS.txt": "e60b51d88e2101abf4491fd9d910acda61c61d7fdaba41b172701bef359df3e5",
+    "B217_SENSE_BINDING_DECISION_AND_AUTHORIZATION.json": "3ccee790380b040bab393ad4fe79e8987f445c67c920f80ae1cef8e9243499d2",
+    "B217_SIX_KU_REGISTERED_CROSSWALK.json": "25d4e5378d6e30cd6254c7d6c8147be05d66080b0dcc672f40324308746b30b5"
+  }
+}

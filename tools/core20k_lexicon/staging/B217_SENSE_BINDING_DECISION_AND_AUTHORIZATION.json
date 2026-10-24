@@ -1,11 +1,11 @@
 {
-  "document": "B217_SENSE_BINDING_DECISION_AND_AUTHORIZATION",
+  "document": "B217_SENSE_BINDING_DECISION_AND_AUTHORIZATION (v2: authorization recorded 2026-10-25; binding registration approved, publication not approved)",
   "schema": "pai-core20k-b217-binding-decision-v1",
   "proposed_binding": {
     "binding_kind": "KU_ANCHORED_SENSE",
     "anchor_ku_id_field": "Runtime ku_id of the kind=sense KU row",
     "official_sense_id": null,
-    "binding_status": "PROPOSED_NOT_APPROVED"
+    "binding_status": "APPROVED_BY_PROJECT_OWNER_AUTHORIZATION"
   },
   "technical_feasibility": "FEASIBLE",
   "feasibility_basis": [
@@ -76,6 +76,64 @@
     "qa_branch": "core20k-teaching-qa-b162-20261024",
     "qa_branch_head_at_check": "ccbdd21"
   },
-  "registration_status_overall": "PENDING_REGISTRAR_SIGNOFF",
-  "approved_count": 0
+  "registration_status_overall": "APPROVED_BINDING_REGISTRATION_ONLY",
+  "approved_count": 6,
+  "authorization_record": {
+    "authorized_by": "PAI Word project owner",
+    "authorization_source": "project_owner_instruction_in_conversation",
+    "authorization_date": "2026-10-25",
+    "authorization_scope": {
+      "batch": "first batch, six English Core20K KUs only",
+      "ku_ids": [
+        "w_0266_person_ku01",
+        "w_0049_time_ku01",
+        "w_0041_know_ku01",
+        "w_0057_people_ku01",
+        "w_0139_talk_ku01",
+        "w_0099_here_ku01"
+      ],
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "binding_rules": {
+        "anchor_ku_id": "the formal ku_id in the Runtime",
+        "official_sense_id": null,
+        "create_new_sense_id": false,
+        "modify_existing_ku_id": false,
+        "modify_headword_identity": false,
+        "modify_srs_keys": false
+      },
+      "pinned_assets": {
+        "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+        "batch93_pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15"
+      }
+    },
+    "owner_signature": {
+      "handwritten_signature_provided": false,
+      "github_signature_provided": false,
+      "note": "No handwritten or GitHub signature was provided, and none is fabricated here. The authorization evidence is the project owner's instruction itself (scope, binding rules and pinned SHAs as recorded above). The blank signature fields in the earlier authorization_text_for_signature are intentionally left blank."
+    },
+    "executor": "Muse, acting as the authorized registration executor for this batch only",
+    "roles": {
+      "project_owner": "authorizes the binding registration (this record)",
+      "muse_executor": "executes the registration and writes the registered crosswalk",
+      "independent_qa": "automated re-verification by the fail-closed QA script (identity + fault injections); this is NOT a substitute for the separate teaching-certification gate or the deployment gate"
+    },
+    "publication_boundary": {
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_written_to_formal_learning_pool": false,
+      "note": "This authorization covers Sense identity binding registration only, not teaching-content publication. release_eligible and production_ready are deliberately left false and are enforced false by the v2 QA script."
+    }
+  },
+  "changelog": [
+    {
+      "version": "v1",
+      "commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+      "status": "PROPOSED_NOT_APPROVED, approved_count 0, signature fields blank: Muse held no explicitly granted registration authority."
+    },
+    {
+      "version": "v2",
+      "date": "2026-10-25",
+      "status": "APPROVED_BINDING_REGISTRATION_ONLY, approved_count 6: project owner authorized Muse as registration executor for exactly these six KUs under KU_ANCHORED_SENSE, pinned to the SHAs above. Original proposal text and blank signature fields are preserved unchanged; authorization is recorded as an instruction, not as a signature. Publication gates remain closed."
+    }
+  ]
 }
