@@ -1,0 +1,50 @@
+{
+  "version": "V0.10.17-followup-200-structure-triage",
+  "date": "2026-10-24",
+  "scope": "Original Library v0112-queue-02.jsonl first 200 records; batch selection by original row order",
+  "runtime": "0.10.1-evidence-compat",
+  "source": "/PAI_Lexicon/zh-core20k-v0101-scene500-delivery/v0112-queue-02.jsonl",
+  "method": "Locally parsed original JSONL. Counted recorded structural signals; no independent dictionary/corpus verification or AI-generated deletion decisions.",
+  "results": {
+    "rows": 200,
+    "triage_score_3": 200,
+    "prefix_splittable": 159,
+    "suffix_splittable": 40,
+    "mixed_numeric": 1,
+    "other": 0,
+    "mixed_numeric_example": "B轮"
+  },
+  "observations": {
+    "false_positive_warning_examples": [
+      "难过",
+      "你好",
+      "几乎",
+      "十分",
+      "不必",
+      "不能",
+      "不良反应"
+    ],
+    "potential_contextual_phrase_examples": [
+      "我家",
+      "几句",
+      "一位",
+      "一根",
+      "我会",
+      "十个",
+      "三天"
+    ],
+    "reason": "These are example hypotheses, not independently verified dictionary outcomes; structural split signals alone do not establish lexical invalidity."
+  },
+  "qa": {
+    "membership_changes": 0,
+    "term_id_changes": 0,
+    "frequency_updates": 0,
+    "dictionary_verified_this_batch": 0
+  },
+  "next_gates": [
+    "Check term identities against exact V0.10.1 runtime before action",
+    "Separate standardized lexicalized entries from quantifier phrases and syntactic fragments",
+    "Obtain independent lexicographic and corpus context for any proposed change",
+    "Evaluate scene query effects prior to release"
+  ]
+}
