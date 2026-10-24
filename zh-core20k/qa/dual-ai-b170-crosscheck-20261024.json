@@ -1,0 +1,30 @@
+{
+  "schema": "zh-core20k-dual-ai-crosscheck-v1",
+  "date": "2026-10-24",
+  "muse_source": "https://drive.google.com/file/d/17z4kVE4N6o88NIE7mjdSVWMQGW7SHnFe/view?usp=drivesdk",
+  "muse_sha256": "806767c995ab7257466edfaa80420c3d0239140c803b68af58159914964b58bc",
+  "chatgpt_blind_sha256": "6d38394926a63501f06aa8663500fc5a781d4e330b055d3eaf0464d3ce63c0c3",
+  "crosscheck_sha256": "a810d0cef256f019dd36e6dce702edc02d7991bf9c0d68afa24957be1d9151dc",
+  "checked": 30,
+  "semantic_agreement": 23,
+  "domain_term_agreement_external_evidence_pending": 5,
+  "uncertain": [
+    "不起"
+  ],
+  "disputed": [
+    {
+      "term": "不愿",
+      "chatgpt": "COMPOSITIONAL",
+      "muse": "LEXICALIZED"
+    }
+  ],
+  "not_independently_blind_reviewed_by_chatgpt": 170,
+  "muse_source_integrity": {
+    "sha256_verified": true,
+    "rows": 200,
+    "identity_errors": 0,
+    "queue_alignment": 200
+  },
+  "certification_limits": "23 eligible for dual AI semantic agreement; five domain agreements need external facts, one uncertain and one disputed; 170 lack independent pre-exposure ChatGPT review. No production release or membership changes.",
+  "audit_file": "zh_core20k_dual_ai_crosscheck_200_20261024.json"
+}
