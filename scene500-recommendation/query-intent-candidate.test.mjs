@@ -4,8 +4,12 @@ const cases=[
  ['不要地铁，改坐公交','地铁',true],
  ['不要地铁，改坐公交','公交',false],
  ['我想坐地铁','地铁',false],
+ ['不要坐地铁，改坐公交','地铁',true],
+ ['不要坐地铁，改坐公交','公交',false],
+ ['不乘地铁','地铁',true],
+ ['改坐地铁','地铁',false],
  ['避免开车','开车',true],
- ['坐公交不要坐地铁','地铁',false], // long negation phrase not yet reliably scoped; safe non-suppression
+ ['坐公交不要坐地铁','地铁',true], // explicit local negation after transit verb
  ['不想洗碗','洗碗',true],
  ['学习人工智能','人工智能',false]
 ];
