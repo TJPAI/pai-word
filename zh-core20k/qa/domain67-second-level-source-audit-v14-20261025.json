@@ -1,0 +1,42 @@
+{
+  "schema": "zh-core20k-domain67-second-level-audit-v14-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "6f302240bdc9a1f072f4079a4659034b90dfd2922c67c4106e4abe3f76372451",
+  "drive_url": "https://drive.google.com/file/d/1XmGnmlel8lFL4-OGVWcU65QbRUSwfDf5/view",
+  "counts": {
+    "total": 67,
+    "pass": 45,
+    "needs_recheck": 14,
+    "not_rechecked": 8,
+    "new_pass": 3,
+    "release_approved": 0
+  },
+  "new_pass": [
+    {
+      "term": "生产者价格指数",
+      "url": "https://www.jingyuan.gov.cn/zfxxgk/zc/zczxwdk/xtjj/art/2024/art_f4f6c73620564cedabe4e6888c05971d.html",
+      "evidence_type": "opened local-statistics definition"
+    },
+    {
+      "term": "IP地址",
+      "url": "https://ic.bjtu.edu.cn/fwzn/wlfwzn/185052.htm",
+      "evidence_type": "opened university network-support direct usage"
+    },
+    {
+      "term": "盆地",
+      "url": "https://www.sjzkq.gov.cn/columns/b90eb7ae-e29c-4244-98e7-2de4cac76ef5/202107/07/d88e1614-d8f5-47ad-8d1a-fa8c99c22528.html",
+      "evidence_type": "opened local government geology direct usage"
+    }
+  ],
+  "excluded": {
+    "term": "消费者价格指数",
+    "reason": "Existing opened source says 居民消费价格指数, not exact original term"
+  },
+  "qa": {
+    "term_id_hash_pass": 67,
+    "unique_ids": 67,
+    "status_total": 67,
+    "release_blocked": true
+  },
+  "scope": "Term-use facts only; not Core20K membership, learner data, or Runtime certification."
+}
