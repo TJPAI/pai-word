@@ -50,9 +50,13 @@ export function createE5Provider({
   if(signal?.aborted)controller.abort(signal.reason);
   const timer=setTimeout(()=>controller.abort(new DOMException('E5 timeout','TimeoutError')),timeout);
   try{
-   const instance=await engine();
+   const cancelled=new Promise((_,reject)=>{
+    if(controller.signal.aborted){reject(abortError());return}
+    controller.signal.addEventListener('abort',()=>reject(abortError()),{once:true});
+   });
+   const instance=await Promise.race([engine(),cancelled]);
    if(controller.signal.aborted)throw abortError();
-   return await instance.recommend({query,topK,locale,signal:controller.signal});
+   return await Promise.race([instance.recommend({query,topK,locale,signal:controller.signal}),cancelled]);
   }catch(e){
    if(controller.signal.aborted){
     if(signal?.aborted)throw abortError();
