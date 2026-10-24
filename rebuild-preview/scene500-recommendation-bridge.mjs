@@ -54,7 +54,7 @@ async function initialize(){
  // Loading the approved 20K lexicon and 3553 links is optional and never
  // blocks the first rule recommendation. Asset SHA verification is a release gate.
  hybridReady=loader.loadScene500WithChineseLexicon({
-  catalog,lexiconUrl:new URL('zh-core20k-v094.min.json',ROOT).href,
+  catalog,lexiconUrl:new URL('zh-core20k-v0101-scene500-runtime.json',ROOT).href,
   associationUrl:new URL('v094-lexical-associations.json',ROOT).href,
   timeoutMs:4000,
   onDiagnostic:event=>{lastError=event?.code?String(event.code)+': '+String(event.reason??''):String(event)}
@@ -100,5 +100,5 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
 export const status=()=>({initialized:!!instance,error:lastError,
  mode:instance?.mode||'unloaded',semanticEnabled,semanticReason,semanticReady:!!semanticOverlay,hybridLoading:!!hybridReady&&!hybridSettled,
  catalogSchema:instance?.catalog?.schema||null,
- lexiconAsset:'zh-core20k-v094.min.json',
+ lexiconAsset:'zh-core20k-v0101-scene500-runtime.json',
  associationAsset:'v094-lexical-associations.json'});
