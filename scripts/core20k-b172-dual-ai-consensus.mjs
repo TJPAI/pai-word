@@ -33,8 +33,8 @@ const items=rows.map(row=>{
  if(a&&b)for(const f of fields){if(a.fields?.[f]!==b.fields?.[f])reasons.push('DISAGREEMENT_'+f);else if(a.fields?.[f]!=='PASS')reasons.push('NONPASS_'+f)}
  if(row.test_only!==true||row.release_eligible!==false||row.srs_write_allowed!==false)reasons.push('STAGING_SAFETY_VIOLATION');
  if(!['LOW','MEDIUM'].includes(row.risk_level))reasons.push('HIGH_OR_UNASSESSED_RISK_REQUIRES_DIRECT_EVIDENCE');
- return {ku_id:row.ku_id,candidate_sha256:sha,status:issues.length===0&&reasons.length===0?'DUAL_AI_SEMANTIC_CONSENSUS':'STAGING_REVIEW_REQUIRED',release_eligible:false,srs_write_allowed:false,reasons:[...new Set(reasons)]};
+ return {ku_id:row.ku_id,candidate_sha256:sha,status:issues.length===0&&reasons.length===0?'DUAL_AI_CONSENSUS_CANDIDATE':'STAGING_REVIEW_REQUIRED',release_eligible:false,srs_write_allowed:false,reasons:[...new Set(reasons)]};
 });
-const approved=items.filter(x=>x.status==='DUAL_AI_SEMANTIC_CONSENSUS').length;
-console.log(JSON.stringify({schema:'pai-core20k-b172-dual-ai-consensus-v1',input_rows:rows.length,review_headers_valid:issues.length===0,provenance_status:'SELF_DECLARED_UNTIL_OPERATOR_VERIFICATION',global_issues:issues,dual_ai_consensus:approved,staging_review_required:rows.length-approved,production_ready:0,items},null,2));
+const approved=items.filter(x=>x.status==='DUAL_AI_CONSENSUS_CANDIDATE').length;
+console.log(JSON.stringify({schema:'pai-core20k-b172-dual-ai-consensus-v1',input_rows:rows.length,review_headers_valid:issues.length===0,provenance_status:'SELF_DECLARED_UNTIL_OPERATOR_VERIFICATION',global_issues:issues,dual_ai_consensus_candidates:approved,semantic_certified:0,staging_review_required:rows.length-approved,production_ready:0,items},null,2));
 process.exitCode=issues.length||items.some(x=>x.reasons.includes('STAGING_SAFETY_VIOLATION'))?1:0;
