@@ -130,7 +130,7 @@
     document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending')?.remove();
     state.sceneSearchUi={...ui(),query:'',resultIds:[],page:0};
   };
-  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs?v=handoff-4f01be8-20261024',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
+  const getBridge=()=>bridgePromise||(bridgePromise=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs?v=first-result-no-wait-20261025',document.baseURI).href).catch(e=>{bridgePromise=null;throw e}));
   window.PAI_SCENE_PAGE=function(delta){
     if(state.view!=='scenes')return;
     const current=ui(),maximum=Math.max(0,Math.ceil((current.resultIds||[]).length/5)-1);
