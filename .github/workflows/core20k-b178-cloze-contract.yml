@@ -1,0 +1,23 @@
+name: Core20K B178 cloze contract
+on:
+  push:
+    branches: [home-perf-safe-load-20261022]
+    paths:
+      - 'scripts/core20k-b178-cloze-contract.test.mjs'
+      - 'rebuild-preview/core20k-batch136-runtime-gate.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/core20k-b178-cloze-contract.yml'
+  workflow_dispatch:
+jobs:
+  b178-self-rating:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify B178 self-rating isolation and future variant contract
+        run: node --test scripts/core20k-b178-cloze-contract.test.mjs
