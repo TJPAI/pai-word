@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {analyzeSceneQuery,isLocallyNegatedTerm} from './query-intent-candidate.mjs';
+const cases=[
+ ['不要地铁，改坐公交','地铁',true],
+ ['不要地铁，改坐公交','公交',false],
+ ['我想坐地铁','地铁',false],
+ ['避免开车','开车',true],
+ ['坐公交不要坐地铁','地铁',false], // long negation phrase not yet reliably scoped; safe non-suppression
+ ['不想洗碗','洗碗',true],
+ ['学习人工智能','人工智能',false]
+];
+for(const [q,t,want] of cases)assert.equal(isLocallyNegatedTerm(q,t),want,q+' / '+t);
+assert.equal(analyzeSceneQuery('AI和人工智能').mixedLanguage,true);
+assert.equal(analyzeSceneQuery('不要地铁，改成公交').hasContrast,true);
+console.log('PASS: query-intent candidate conservative unit checks',cases.length);
