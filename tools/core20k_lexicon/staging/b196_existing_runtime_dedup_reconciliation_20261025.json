@@ -1,0 +1,50 @@
+{
+  "schema": "pai-core20k-b196-crosswalk-evidence-reconciliation-v1",
+  "reference": "Muse B181 full-runtime dedup QA report",
+  "evidence_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+  "source_report": "core20k_b181_full_runtime_dedup_qa_report.json",
+  "status": "HISTORICAL_EVIDENCE_RECONCILED_NOT_FRESH_CI",
+  "records": [
+    {
+      "candidate_id": "B180-P002",
+      "phrase": "bear in mind",
+      "classification": "NO_DUPLICATE_TRULY_INDEPENDENT",
+      "runtime_gloss_exact_hits": 0,
+      "reason": "Remember/consider idiom not represented under bear senses",
+      "decision": "REVISE_THEN_KEEP"
+    },
+    {
+      "candidate_id": "B180-P005",
+      "phrase": "package deal",
+      "classification": "PARTIAL_SENSE_OVERLAP_WITH_PHRASE_INCREMENT",
+      "runtime_gloss_exact_hits": 0,
+      "reason": "Package noun already mentions bundled services; distinct fixed noun phrase merits teaching",
+      "decision": "KEEP"
+    },
+    {
+      "candidate_id": "B180-P006",
+      "phrase": "on board",
+      "classification": "NO_DUPLICATE_TRULY_INDEPENDENT",
+      "runtime_gloss_exact_hits": 0,
+      "reason": "Existing board verb action differs from on-board state",
+      "decision": "KEEP"
+    },
+    {
+      "candidate_id": "B180-P007",
+      "phrase": "cut down on",
+      "classification": "PARTIAL_SENSE_OVERLAP_WITH_PHRASE_INCREMENT",
+      "runtime_gloss_exact_hits": 0,
+      "reason": "Generic reduce sense exists, but particle sequence and consumption-object restriction add knowledge",
+      "decision": "KEEP"
+    }
+  ],
+  "limitations": [
+    "Independent re-run of B192/B195 CI NOT verified",
+    "Previous complete-Runtime dedup sourced to independently authored B181 report, not freshly recomputed by this agent",
+    "Runtime gloss exact search cannot rule out phrase duplication in omitted examples or staging",
+    "No authoritative sense owner allocated",
+    "No formal KU IDs registered"
+  ],
+  "release_eligible": false,
+  "registered_new_ku": 0
+}
