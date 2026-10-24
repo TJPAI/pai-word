@@ -1,0 +1,208 @@
+{
+  "document": "B189_GRADING_CONTRACT",
+  "schema": "pai-core20k-grading-contract-v1",
+  "ownership": "Muse provides this contract and its test cases only. Scorer code is implemented by the main developer; this file is not code and must not be executed as a scorer.",
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_branch_head_subject": "qa(core20k): establish fail-closed dual AI review pilot for 30 matched KUs",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_decompressed_bytes": 2438913,
+    "runtime_decompressed_sha256": "fd7f1d82267b1144d139526cf71580f6630c67d2421841b3cba2f1ed2369c145",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "66ee1c4fb32e1f53d6485350a9ec3f6d5b030765",
+    "b216_gate_commit": "7bbd69bd882091f2f07c7ca0c426780c950c513f",
+    "b216_gate_file": "tools/core20k_lexicon/staging/B216_SIX_KU_IDENTITY_GATE_BLOCKED.json",
+    "retrieval_method": "git fetch from origin (https) + git show to local files; gzip decompressed locally. No GitHub push, no main modification, no Runtime/SRS/learning-record write."
+  },
+  "normalisation": [
+    "Trim leading/trailing whitespace.",
+    "Unicode NFC normalisation.",
+    "Curly apostrophe U+2019 -> straight apostrophe U+0027 (equivalent). A straight-vs-curly difference alone must NEVER fail an answer.",
+    "Casefold (case-insensitive comparison). Sentence-initial capitalisation (e.g. Remote) therefore passes, and capitalised inflections pass.",
+    "After normalisation, require exact equality with the canonical answer. No stemming, no lemma fallback, no edit-distance tolerance.",
+    "Answers must be a single token (no spaces). Multi-token input is rejected even if it contains the canonical form."
+  ],
+  "mandatory_suffix_rule": "For the five contracted items, the inflected or possessive suffix is part of the answer. The bare lemma is REJECTED even though it is a real word: function != functions, strike != struck, degree != degrees, master != master's, academic != academics. This is the direct lesson of the B188 extra error: surface form, not lemma identity, is what the item teaches.",
+  "items": [
+    {
+      "ku_id": "w_0714_function_ku02",
+      "lemma": "function",
+      "canonical_answer": "functions",
+      "example_en": "The old machine still functions well.",
+      "prompt": "The old machine still ___ well.",
+      "why_inflected": "Third-person singular subject requires -s."
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "lemma": "strike",
+      "canonical_answer": "struck",
+      "example_en": "An idea suddenly struck me on the bus.",
+      "prompt": "An idea suddenly ___ me on the bus.",
+      "why_inflected": "Past-tense narrative requires the irregular past form, not the base form or regularised *striked."
+    },
+    {
+      "ku_id": "w_0811_degree_ku01",
+      "lemma": "degree",
+      "canonical_answer": "degrees",
+      "example_en": "The temperature rose by three degrees.",
+      "prompt": "The temperature rose by three ___.",
+      "why_inflected": "Numeral 'three' requires the plural."
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "lemma": "master",
+      "canonical_answer": "master's",
+      "example_en": "She earned a master's degree in chemistry.",
+      "prompt": "She earned a ___ degree in chemistry.",
+      "why_inflected": "The degree name is master's degree; master's is a genitive noun, not an adjective, and the apostrophe+s is mandatory. 'master' alone must fail, while master's with either apostrophe shape must pass."
+    },
+    {
+      "ku_id": "w_1777_academic_ku_s02",
+      "lemma": "academic",
+      "canonical_answer": "academics",
+      "example_en": "The conference attracted academics from many countries.",
+      "prompt": "The conference attracted ___ from many countries.",
+      "why_inflected": "Plural context ('from many countries', attracted people) requires the plural noun."
+    },
+    {
+      "ku_id": "w_2558_remote_ku_s02",
+      "lemma": "remote",
+      "canonical_answer": "Remote",
+      "example_en": "Remote access lets staff work from home.",
+      "prompt": "___ access lets staff work from home.",
+      "why_inflected": "Sentence-initial capitalisation only: 'remote' (lowercase) must also pass after casefold normalisation; this is a case policy, not an inflection rule, and must not be confused with the suffix rule above."
+    }
+  ],
+  "test_cases": [
+    {
+      "ku_id": "w_0714_function_ku02",
+      "input": "functions",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_0714_function_ku02",
+      "input": "Functions",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_0714_function_ku02",
+      "input": "function",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_0714_function_ku02",
+      "input": "functioned",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "input": "struck",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "input": "Struck",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "input": "strike",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "input": "striked",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "input": "strikes",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_0811_degree_ku01",
+      "input": "degrees",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_0811_degree_ku01",
+      "input": "degree",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_0811_degree_ku01",
+      "input": "degree s",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "input": "master's",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "input": "master’s",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "input": "Master's",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "input": "master",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "input": "masters",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "input": "master s",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_1777_academic_ku_s02",
+      "input": "academics",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_1777_academic_ku_s02",
+      "input": "academic",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_1777_academic_ku_s02",
+      "input": "academia",
+      "expected": "REJECT"
+    },
+    {
+      "ku_id": "w_2558_remote_ku_s02",
+      "input": "Remote",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_2558_remote_ku_s02",
+      "input": "remote",
+      "expected": "ACCEPT"
+    },
+    {
+      "ku_id": "w_2558_remote_ku_s02",
+      "input": "remotely",
+      "expected": "REJECT"
+    }
+  ],
+  "fail_closed": "If the scorer cannot normalise an input (undecodable bytes, empty input), it must REJECT, not guess. If Runtime SHA, ku_id, kind, or gloss changes, the contracted items must be re-verified before scoring resumes."
+}

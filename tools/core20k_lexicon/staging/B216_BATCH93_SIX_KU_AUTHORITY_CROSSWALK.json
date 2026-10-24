@@ -1,0 +1,267 @@
+{
+  "document": "B216_BATCH93_SIX_KU_AUTHORITY_CROSSWALK",
+  "schema": "pai-core20k-b216-authority-crosswalk-v1",
+  "authority_statement": "Authoritative source is the Runtime file itself on branch core20k-lexicon-production-v1 at the pinned commit/SHA in source_runtime. This file is QA-verified mapping evidence against that authority; it is NOT a registrar signature (B217 registrar attestation remains a separate decision) and it does NOT authorise formal overlay publication.",
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_branch_head_subject": "qa(core20k): establish fail-closed dual AI review pilot for 30 matched KUs",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_decompressed_bytes": 2438913,
+    "runtime_decompressed_sha256": "fd7f1d82267b1144d139526cf71580f6630c67d2421841b3cba2f1ed2369c145",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "66ee1c4fb32e1f53d6485350a9ec3f6d5b030765",
+    "b216_gate_commit": "7bbd69bd882091f2f07c7ca0c426780c950c513f",
+    "b216_gate_file": "tools/core20k_lexicon/staging/B216_SIX_KU_IDENTITY_GATE_BLOCKED.json",
+    "retrieval_method": "git fetch from origin (https) + git show to local files; gzip decompressed locally. No GitHub push, no main modification, no Runtime/SRS/learning-record write."
+  },
+  "status_counts": {
+    "EXACT_MATCH": 0,
+    "VERIFIED_HISTORICAL_MAPPING": 6,
+    "CONFLICT": 0,
+    "BLOCKED_INSUFFICIENT_EVIDENCE": 0
+  },
+  "status_definitions": {
+    "EXACT_MATCH": "Would require a Runtime field value identical to the legacy field value. Not used for any of the six, because Runtime has no sense_id or headword_id field to match exactly; claiming EXACT_MATCH for sense/headword identity would misrepresent the schema.",
+    "VERIFIED_HISTORICAL_MAPPING": "KU identity verified exactly (verbatim ku_id in Runtime) and sense correspondence verified historically (shared w_ stem, kind=sense, gloss semantic equivalence). This is the strongest status the Runtime schema supports for these six.",
+    "CONFLICT": "Runtime row contradicts the legacy record on rank, lemma, POS, kind, or sense (none found). Gloss wording variances itemised per record are not conflicts: they are paraphrase/order/abbreviation differences on the same sense.",
+    "BLOCKED_INSUFFICIENT_EVIDENCE": "Mapping cannot be proven from the Runtime row (none for these six; the prior 7bbd69b BLOCKED status was an evidence-availability blocker, now removed by reading the rows)."
+  },
+  "records": [
+    {
+      "headword": "person",
+      "legacy_headword_id": "core20k:rank:108",
+      "legacy_sense_id": "w_0266_person_s01",
+      "legacy_ku_id": "w_0266_person_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "headwords[] entry with rank=108 and lemma=person (Runtime carries no headword_id field; do not copy the legacy string into a Runtime-id slot)",
+      "runtime_sense_identity": {
+        "representation": "The Runtime KU row itself: ku_id of a kind=sense row. Runtime schema pai-core20k-runtime-v1 has no sense_id field (0 occurrences of a sense_id key in the decompressed file).",
+        "sense_row_ku_id": "w_0266_person_ku01",
+        "sense_row_kind": "sense",
+        "legacy_sense_to_runtime_sense": "legacy s01 corresponds to Runtime ku01 by shared w_ stem, first sense-kind row position, and gloss semantic equivalence. This is a verified historical correspondence, NOT a Runtime sense_id field equality (no such field exists)."
+      },
+      "runtime_ku_id": "w_0266_person_ku01",
+      "runtime_pos": {
+        "pos_raw_headword_display": "n.",
+        "ku_level_pos_from_legacy_and_syntax": "n."
+      },
+      "runtime_gloss": {
+        "gloss_zh": "人；个人",
+        "gloss_en": "human individual"
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": {
+        "ku_id_match": "EXACT: legacy ku_id string occurs verbatim in the authoritative Runtime, in the row whose rank, lemma, and headword pos_raw all match the legacy record.",
+        "sense_match": "VERIFIED_HISTORICAL: no Runtime sense_id field exists to match exactly; the sense correspondence is verified by shared w_ stem (a non-rank legacy index preserved verbatim in Runtime), kind=sense, first-sense-row position, and gloss semantic equivalence (see gloss_note).",
+        "headword_match": "LOCATOR: Runtime has no headword_id field. The legacy core20k:rank:N number coincides with the Runtime row rank N for the same lemma; it is recorded as a locator, not claimed as a Runtime field value.",
+        "gloss_note": "English gloss is a word-order paraphrase (individual human being vs human individual); Chinese gloss is character-exact. Same sense, not a different sense.",
+        "ipa_note": "Pack /ˈpɝː.sən/ vs Runtime /pˈɝsən/: same segments, stress-mark placement and length-mark convention differ only.",
+        "not_used_as_evidence": "String similarity alone, Batch91 aggregate checks, and the prior BLOCKED gate's staging-only evidence were NOT used as mapping evidence. Only the direct Runtime row comparison above is used."
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "safe_to_publish_formal_overlay": false,
+      "release_note": "Identity gate passes, but release_eligible stays false: formal overlay publication additionally requires (1) final certification gate by the ChatGPT English teaching line, (2) registrar attestation decision per B217 (Sense registry OR approved KU-anchored binding), and (3) main-developer deployment gate. This crosswalk is QA evidence, not a registrar signature and not a publication authorisation."
+    },
+    {
+      "headword": "time",
+      "legacy_headword_id": "core20k:rank:111",
+      "legacy_sense_id": "w_0049_time_s01",
+      "legacy_ku_id": "w_0049_time_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "headwords[] entry with rank=111 and lemma=time (Runtime carries no headword_id field; do not copy the legacy string into a Runtime-id slot)",
+      "runtime_sense_identity": {
+        "representation": "The Runtime KU row itself: ku_id of a kind=sense row. Runtime schema pai-core20k-runtime-v1 has no sense_id field (0 occurrences of a sense_id key in the decompressed file).",
+        "sense_row_ku_id": "w_0049_time_ku01",
+        "sense_row_kind": "sense",
+        "legacy_sense_to_runtime_sense": "legacy s01 corresponds to Runtime ku01 by shared w_ stem, first sense-kind row position, and gloss semantic equivalence. This is a verified historical correspondence, NOT a Runtime sense_id field equality (no such field exists)."
+      },
+      "runtime_ku_id": "w_0049_time_ku01",
+      "runtime_pos": {
+        "pos_raw_headword_display": "n.",
+        "ku_level_pos_from_legacy_and_syntax": "n."
+      },
+      "runtime_gloss": {
+        "gloss_zh": "时间",
+        "gloss_en": "measured duration"
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": {
+        "ku_id_match": "EXACT: legacy ku_id string occurs verbatim in the authoritative Runtime, in the row whose rank, lemma, and headword pos_raw all match the legacy record.",
+        "sense_match": "VERIFIED_HISTORICAL: no Runtime sense_id field exists to match exactly; the sense correspondence is verified by shared w_ stem (a non-rank legacy index preserved verbatim in Runtime), kind=sense, first-sense-row position, and gloss semantic equivalence (see gloss_note).",
+        "headword_match": "LOCATOR: Runtime has no headword_id field. The legacy core20k:rank:N number coincides with the Runtime row rank N for the same lemma; it is recorded as a locator, not claimed as a Runtime field value.",
+        "gloss_note": "Chinese teaching gloss adds 时长 (legacy 时间；时长 vs Runtime 时间) and English measurable vs measured. Sense is duration in both; the 时长 addition is a teaching-gloss variance, recorded here, not an identity conflict. The teaching line's alternative-answer policy for time (B217 OPEN item) must cover 时长-inclusive answers.",
+        "ipa_note": "Pack /taɪm/ vs Runtime /tˈaɪm/: same segments; monosyllable stress mark differs only.",
+        "not_used_as_evidence": "String similarity alone, Batch91 aggregate checks, and the prior BLOCKED gate's staging-only evidence were NOT used as mapping evidence. Only the direct Runtime row comparison above is used."
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "safe_to_publish_formal_overlay": false,
+      "release_note": "Identity gate passes, but release_eligible stays false: formal overlay publication additionally requires (1) final certification gate by the ChatGPT English teaching line, (2) registrar attestation decision per B217 (Sense registry OR approved KU-anchored binding), and (3) main-developer deployment gate. This crosswalk is QA evidence, not a registrar signature and not a publication authorisation."
+    },
+    {
+      "headword": "know",
+      "legacy_headword_id": "core20k:rank:138",
+      "legacy_sense_id": "w_0041_know_s01",
+      "legacy_ku_id": "w_0041_know_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "headwords[] entry with rank=138 and lemma=know (Runtime carries no headword_id field; do not copy the legacy string into a Runtime-id slot)",
+      "runtime_sense_identity": {
+        "representation": "The Runtime KU row itself: ku_id of a kind=sense row. Runtime schema pai-core20k-runtime-v1 has no sense_id field (0 occurrences of a sense_id key in the decompressed file).",
+        "sense_row_ku_id": "w_0041_know_ku01",
+        "sense_row_kind": "sense",
+        "legacy_sense_to_runtime_sense": "legacy s01 corresponds to Runtime ku01 by shared w_ stem, first sense-kind row position, and gloss semantic equivalence. This is a verified historical correspondence, NOT a Runtime sense_id field equality (no such field exists)."
+      },
+      "runtime_ku_id": "w_0041_know_ku01",
+      "runtime_pos": {
+        "pos_raw_headword_display": "v.",
+        "ku_level_pos_from_legacy_and_syntax": "v."
+      },
+      "runtime_gloss": {
+        "gloss_zh": "知道；了解",
+        "gloss_en": "have knowledge"
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": {
+        "ku_id_match": "EXACT: legacy ku_id string occurs verbatim in the authoritative Runtime, in the row whose rank, lemma, and headword pos_raw all match the legacy record.",
+        "sense_match": "VERIFIED_HISTORICAL: no Runtime sense_id field exists to match exactly; the sense correspondence is verified by shared w_ stem (a non-rank legacy index preserved verbatim in Runtime), kind=sense, first-sense-row position, and gloss semantic equivalence (see gloss_note).",
+        "headword_match": "LOCATOR: Runtime has no headword_id field. The legacy core20k:rank:N number coincides with the Runtime row rank N for the same lemma; it is recorded as a locator, not claimed as a Runtime field value.",
+        "gloss_note": "English gloss is a paraphrase (possess information vs have knowledge); Chinese gloss is character-exact. Same sense.",
+        "ipa_note": "Pack /noʊ/ vs Runtime /nˈoʊ/: same segments; stress mark differs only.",
+        "not_used_as_evidence": "String similarity alone, Batch91 aggregate checks, and the prior BLOCKED gate's staging-only evidence were NOT used as mapping evidence. Only the direct Runtime row comparison above is used."
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "safe_to_publish_formal_overlay": false,
+      "release_note": "Identity gate passes, but release_eligible stays false: formal overlay publication additionally requires (1) final certification gate by the ChatGPT English teaching line, (2) registrar attestation decision per B217 (Sense registry OR approved KU-anchored binding), and (3) main-developer deployment gate. This crosswalk is QA evidence, not a registrar signature and not a publication authorisation."
+    },
+    {
+      "headword": "people",
+      "legacy_headword_id": "core20k:rank:142",
+      "legacy_sense_id": "w_0057_people_s01",
+      "legacy_ku_id": "w_0057_people_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "headwords[] entry with rank=142 and lemma=people (Runtime carries no headword_id field; do not copy the legacy string into a Runtime-id slot)",
+      "runtime_sense_identity": {
+        "representation": "The Runtime KU row itself: ku_id of a kind=sense row. Runtime schema pai-core20k-runtime-v1 has no sense_id field (0 occurrences of a sense_id key in the decompressed file).",
+        "sense_row_ku_id": "w_0057_people_ku01",
+        "sense_row_kind": "sense",
+        "legacy_sense_to_runtime_sense": "legacy s01 corresponds to Runtime ku01 by shared w_ stem, first sense-kind row position, and gloss semantic equivalence. This is a verified historical correspondence, NOT a Runtime sense_id field equality (no such field exists)."
+      },
+      "runtime_ku_id": "w_0057_people_ku01",
+      "runtime_pos": {
+        "pos_raw_headword_display": "n.",
+        "ku_level_pos_from_legacy_and_syntax": "n."
+      },
+      "runtime_gloss": {
+        "gloss_zh": "人；人们",
+        "gloss_en": "persons collectively"
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": {
+        "ku_id_match": "EXACT: legacy ku_id string occurs verbatim in the authoritative Runtime, in the row whose rank, lemma, and headword pos_raw all match the legacy record.",
+        "sense_match": "VERIFIED_HISTORICAL: no Runtime sense_id field exists to match exactly; the sense correspondence is verified by shared w_ stem (a non-rank legacy index preserved verbatim in Runtime), kind=sense, first-sense-row position, and gloss semantic equivalence (see gloss_note).",
+        "headword_match": "LOCATOR: Runtime has no headword_id field. The legacy core20k:rank:N number coincides with the Runtime row rank N for the same lemma; it is recorded as a locator, not claimed as a Runtime field value.",
+        "gloss_note": "Chinese gloss is the same two terms in swapped order (人们；人 vs 人；人们); English is a paraphrase (human beings collectively vs persons collectively). Same sense.",
+        "ipa_note": "Pack /ˈpiː.pəl/ vs Runtime /pˈipəl/: same segments modulo length mark.",
+        "not_used_as_evidence": "String similarity alone, Batch91 aggregate checks, and the prior BLOCKED gate's staging-only evidence were NOT used as mapping evidence. Only the direct Runtime row comparison above is used."
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "safe_to_publish_formal_overlay": false,
+      "release_note": "Identity gate passes, but release_eligible stays false: formal overlay publication additionally requires (1) final certification gate by the ChatGPT English teaching line, (2) registrar attestation decision per B217 (Sense registry OR approved KU-anchored binding), and (3) main-developer deployment gate. This crosswalk is QA evidence, not a registrar signature and not a publication authorisation."
+    },
+    {
+      "headword": "talk",
+      "legacy_headword_id": "core20k:rank:145",
+      "legacy_sense_id": "w_0139_talk_s01",
+      "legacy_ku_id": "w_0139_talk_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "headwords[] entry with rank=145 and lemma=talk (Runtime carries no headword_id field; do not copy the legacy string into a Runtime-id slot)",
+      "runtime_sense_identity": {
+        "representation": "The Runtime KU row itself: ku_id of a kind=sense row. Runtime schema pai-core20k-runtime-v1 has no sense_id field (0 occurrences of a sense_id key in the decompressed file).",
+        "sense_row_ku_id": "w_0139_talk_ku01",
+        "sense_row_kind": "sense",
+        "legacy_sense_to_runtime_sense": "legacy s01 corresponds to Runtime ku01 by shared w_ stem, first sense-kind row position, and gloss semantic equivalence. This is a verified historical correspondence, NOT a Runtime sense_id field equality (no such field exists)."
+      },
+      "runtime_ku_id": "w_0139_talk_ku01",
+      "runtime_pos": {
+        "pos_raw_headword_display": "v.",
+        "ku_level_pos_from_legacy_and_syntax": "v."
+      },
+      "runtime_gloss": {
+        "gloss_zh": "说话；交谈",
+        "gloss_en": "speak/converse"
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": {
+        "ku_id_match": "EXACT: legacy ku_id string occurs verbatim in the authoritative Runtime, in the row whose rank, lemma, and headword pos_raw all match the legacy record.",
+        "sense_match": "VERIFIED_HISTORICAL: no Runtime sense_id field exists to match exactly; the sense correspondence is verified by shared w_ stem (a non-rank legacy index preserved verbatim in Runtime), kind=sense, first-sense-row position, and gloss semantic equivalence (see gloss_note).",
+        "headword_match": "LOCATOR: Runtime has no headword_id field. The legacy core20k:rank:N number coincides with the Runtime row rank N for the same lemma; it is recorded as a locator, not claimed as a Runtime field value.",
+        "gloss_note": "English gloss differs only by punctuation (speak or converse vs speak/converse); Chinese gloss is character-exact. Same sense.",
+        "ipa_note": "Pack /tɑːk/ vs Runtime /tˈɔk/: vowel differs (ɑː vs ɔ). IPA is not identity evidence; the teaching line's IPA verification (B216 second-party, Cambridge US pages) governs which value ships. Recorded, not an identity blocker.",
+        "not_used_as_evidence": "String similarity alone, Batch91 aggregate checks, and the prior BLOCKED gate's staging-only evidence were NOT used as mapping evidence. Only the direct Runtime row comparison above is used."
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "safe_to_publish_formal_overlay": false,
+      "release_note": "Identity gate passes, but release_eligible stays false: formal overlay publication additionally requires (1) final certification gate by the ChatGPT English teaching line, (2) registrar attestation decision per B217 (Sense registry OR approved KU-anchored binding), and (3) main-developer deployment gate. This crosswalk is QA evidence, not a registrar signature and not a publication authorisation."
+    },
+    {
+      "headword": "here",
+      "legacy_headword_id": "core20k:rank:153",
+      "legacy_sense_id": "w_0099_here_s01",
+      "legacy_ku_id": "w_0099_here_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "headwords[] entry with rank=153 and lemma=here (Runtime carries no headword_id field; do not copy the legacy string into a Runtime-id slot)",
+      "runtime_sense_identity": {
+        "representation": "The Runtime KU row itself: ku_id of a kind=sense row. Runtime schema pai-core20k-runtime-v1 has no sense_id field (0 occurrences of a sense_id key in the decompressed file).",
+        "sense_row_ku_id": "w_0099_here_ku01",
+        "sense_row_kind": "sense",
+        "legacy_sense_to_runtime_sense": "legacy s01 corresponds to Runtime ku01 by shared w_ stem, first sense-kind row position, and gloss semantic equivalence. This is a verified historical correspondence, NOT a Runtime sense_id field equality (no such field exists)."
+      },
+      "runtime_ku_id": "w_0099_here_ku01",
+      "runtime_pos": {
+        "pos_raw_headword_display": "adv.",
+        "ku_level_pos_from_legacy_and_syntax": "adv."
+      },
+      "runtime_gloss": {
+        "gloss_zh": "这里；在这里",
+        "gloss_en": "in this place"
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": {
+        "ku_id_match": "EXACT: legacy ku_id string occurs verbatim in the authoritative Runtime, in the row whose rank, lemma, and headword pos_raw all match the legacy record.",
+        "sense_match": "VERIFIED_HISTORICAL: no Runtime sense_id field exists to match exactly; the sense correspondence is verified by shared w_ stem (a non-rank legacy index preserved verbatim in Runtime), kind=sense, first-sense-row position, and gloss semantic equivalence (see gloss_note).",
+        "headword_match": "LOCATOR: Runtime has no headword_id field. The legacy core20k:rank:N number coincides with the Runtime row rank N for the same lemma; it is recorded as a locator, not claimed as a Runtime field value.",
+        "gloss_note": "Runtime English gloss abbreviates the dictionary sense (in this place vs legacy at or to this place); Chinese gloss is character-exact. The teaching example 'Please come here' is directional, and standard dictionary treatment unifies in/at/to this place as one sense, but the Runtime row text itself does not spell out the directional side. Recorded as a gloss-completeness note, not an identity conflict: the ku_id, rank, lemma, POS, kind, and Chinese gloss all match, and no separate directional KU row exists under here (ku02 is 'at this point', temporal). If the teaching line requires the directional side to be separately registered, that is a Runtime gloss question for the Runtime owner, not a reason to invent a sense ID here.",
+        "ipa_note": "Pack /hɪr/ vs Runtime /hˈiɹ/: same segments modulo rhotic notation.",
+        "not_used_as_evidence": "String similarity alone, Batch91 aggregate checks, and the prior BLOCKED gate's staging-only evidence were NOT used as mapping evidence. Only the direct Runtime row comparison above is used."
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "safe_to_publish_formal_overlay": false,
+      "release_note": "Identity gate passes, but release_eligible stays false: formal overlay publication additionally requires (1) final certification gate by the ChatGPT English teaching line, (2) registrar attestation decision per B217 (Sense registry OR approved KU-anchored binding), and (3) main-developer deployment gate. This crosswalk is QA evidence, not a registrar signature and not a publication authorisation."
+    }
+  ],
+  "supersedes": {
+    "gate_file": "tools/core20k_lexicon/staging/B216_SIX_KU_IDENTITY_GATE_BLOCKED.json",
+    "gate_commit": "7bbd69bd882091f2f07c7ca0c426780c950c513f",
+    "gate_status_superseded_for_identity_only": "BLOCKED_RUNTIME_ROW_NOT_READ -> VERIFIED_HISTORICAL_MAPPING (identity evidence only; publication gates unchanged and still closed)."
+  }
+}

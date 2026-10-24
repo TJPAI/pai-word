@@ -1,0 +1,120 @@
+{
+  "document": "B189_HISTORY_ADJUDICATION",
+  "schema": "pai-core20k-b189-history-adjudication-v1",
+  "rule": "Original audit history is preserved verbatim in the 'history' list; nothing is deleted or rewritten. Final rulings live only in 'adjudications' with their own evidence, so a reader can always tell what was originally said from what is finally decided.",
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_branch_head_subject": "qa(core20k): establish fail-closed dual AI review pilot for 30 matched KUs",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_decompressed_bytes": 2438913,
+    "runtime_decompressed_sha256": "fd7f1d82267b1144d139526cf71580f6630c67d2421841b3cba2f1ed2369c145",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "66ee1c4fb32e1f53d6485350a9ec3f6d5b030765",
+    "b216_gate_commit": "7bbd69bd882091f2f07c7ca0c426780c950c513f",
+    "b216_gate_file": "tools/core20k_lexicon/staging/B216_SIX_KU_IDENTITY_GATE_BLOCKED.json",
+    "retrieval_method": "git fetch from origin (https) + git show to local files; gzip decompressed locally. No GitHub push, no main modification, no Runtime/SRS/learning-record write."
+  },
+  "history": [
+    {
+      "date": "2026-10-25",
+      "stage": "B187 first-round Muse independent review (83 KUs, blind)",
+      "record": "Muse judged POS from syntax+sense before reading ChatGPT material. Initial: PASS 80, REVISE 3 (extra/master/chart), FAIL 0, NEEDS_EVIDENCE 0. ChatGPT preliminary (read only afterwards): 77 PASS, 5 REVIEW_REQUIRED, 1 FAIL. POS agreement 83/83.",
+      "preserved_in": "core20k_b187_muse_independent_review_83.json, core20k_b187_chatgpt_muse_diff_83.json"
+    },
+    {
+      "date": "2026-10-25",
+      "stage": "B188 Muse revisions",
+      "record": "extra -> 'We ordered an extra battery for the camera.'; master -> \"a master's degree\" with answer master's; chart -> 'chart a course down the river'. All three re-checked by substitution at the time.",
+      "preserved_in": "core20k_b188_revised_candidates_83.json"
+    },
+    {
+      "date": "2026-10-25",
+      "stage": "ChatGPT recheck of B188 (substantive catch)",
+      "record": "ChatGPT found the B188 extra revision wrong: 'an extra battery' makes extra an attributive adjective, contradicting the noun target (additional thing) and candidate_pos n. This was a real error in Muse's revision, not a labelling difference.",
+      "preserved_in": "User task message 2026-10-25 05:34; b188-patch-1 correction_acknowledged field"
+    },
+    {
+      "date": "2026-10-25",
+      "stage": "Muse b188-patch-1",
+      "record": "extra redesigned as comma-appositive noun: 'We ordered an extra, a spare battery, for the camera.' Master/chart re-verified unchanged (master's = genitive noun, degree sense kept; chart a course = plan-a-course side of gloss). Patch explicitly claimed no 83/83 dual-AI certification.",
+      "preserved_in": "core20k_b188_patch_extra_master_chart.json, core20k_b188_patch_qa.json"
+    },
+    {
+      "date": "2026-10-25",
+      "stage": "B189 ChatGPT extra + Muse independent recheck",
+      "record": "ChatGPT new extra: 'The camera came with an extra: a spare battery.' / 这台相机附带了一件额外物品：一块备用电池。 / prompt 'The camera came with an ___: a spare battery.' / answer extra. Muse independently rechecked: PASS (noun syntax via came-with + colon specification; sense, translation, cloze, teaching value all pass). B189 wording supersedes patch-1 wording; patch-1 is not merged.",
+      "preserved_in": "core20k_b189_dual_ai_reconciled_83.json, core20k_b189_muse_recheck_and_qa.json"
+    },
+    {
+      "date": "2026-10-25",
+      "stage": "B189 identity verification (this delivery)",
+      "record": "All 83 KUs verified against pinned Runtime: ku_id exists, rank/lemma/gloss exact, kind=sense, playable, substitution exact. Sense numbering sNN corresponds to kuNN for all 83. No Runtime sense_id field exists.",
+      "preserved_in": "B189_83_RUNTIME_IDENTITY_CHECKLIST.json (this commit)"
+    }
+  ],
+  "adjudications": [
+    {
+      "item": "B188 extra adjective error",
+      "ruling": "RESOLVED",
+      "evidence": "B189 extra sentence restores unambiguous noun syntax; Muse recheck PASS; B188 wording appears nowhere in the reconciled file. The original flawed wording is preserved in history above and in the B188 file, not deleted.",
+      "still_open": "None on content; byte-diff against an original ChatGPT B189 JSON remains open only as a provenance check (see below)."
+    },
+    {
+      "item": "master / chart B188 revisions",
+      "ruling": "RESOLVED (content)",
+      "evidence": "Both retained verbatim in B189 and re-verified in patch-1 and again in this identity check (gloss exact, substitution exact). Grading contract for master's is in B189_GRADING_CONTRACT.json.",
+      "still_open": "Scorer implementation by main developer (Muse provides contract + tests only)."
+    },
+    {
+      "item": "touch / quiet B187 disagreements",
+      "ruling": "RESOLVED (content, recorded)",
+      "evidence": "touch PASS by Cambridge/Collins dictionary evidence (get in touch under touch noun); quiet PASS by learner-material attestation of 'a sudden quiet fell'. Recorded in the B187 diff report; both records are identity-verified in this checklist.",
+      "still_open": "None."
+    },
+    {
+      "item": "Sense identity: no Runtime sense_id field",
+      "ruling": "UNRESOLVED (schema decision, not a per-record failure)",
+      "evidence": "Decompressed Runtime contains 0 sense_id keys; sense identity is the kind=sense KU row itself. KU-anchored binding is documented as the working proposal (see QA report), but only the Runtime registrar can approve it or establish a Sense registry (B217 options a/b).",
+      "still_open": "Registrar decision required before any formal overlay claims a sense_id."
+    },
+    {
+      "item": "B189 provenance: original ChatGPT B189 JSON not separately located",
+      "ruling": "UNRESOLVED (provenance check, low content risk)",
+      "evidence": "Drive searches (name + recency) found no separate ChatGPT B189 candidate JSON; the reconciled file was built from B188 + the extra wording quoted verbatim in the task message, and its Drive copy was verified identical to the local canonical file except CLI retrieved_at metadata. Content risk is low because the only change (extra) was fully quoted, but a byte-diff remains the correct close-out.",
+      "still_open": "Provide the original ChatGPT B189 JSON link if it exists; byte-diff it against the reconciled file before the final certification gate."
+    },
+    {
+      "item": "Final certification gate",
+      "ruling": "UNRESOLVED (separate gate)",
+      "evidence": "This delivery verifies identity and preserves teaching content; it does not pass the final certification gate, which belongs to the ChatGPT English teaching line.",
+      "still_open": "Final certification gate decision."
+    },
+    {
+      "item": "Main-system deployment gate",
+      "ruling": "UNRESOLVED (separate gate)",
+      "evidence": "No deployment, no SRS write, no main modification in this delivery.",
+      "still_open": "Main-developer deployment acceptance, including scorer implementation and isolation tests."
+    },
+    {
+      "item": "Talk IPA variance (Batch93 pack /tɑːk/ vs Runtime /tˈɔk/)",
+      "ruling": "NEEDS_HUMAN_REVIEW (teaching line)",
+      "evidence": "Vowel differs; IPA does not affect identity. B216 second-party verified pack IPA against Cambridge US pages; the Runtime value differs. Teaching line must decide which IPA ships in a formal overlay.",
+      "still_open": "Teaching-line IPA decision for talk."
+    },
+    {
+      "item": "Time teaching gloss variance (Batch93 legacy 时间；时长 vs Runtime 时间)",
+      "ruling": "NEEDS_HUMAN_REVIEW (teaching line)",
+      "evidence": "Identity is verified (same ku01 row, same duration sense); the 时长 addition affects answer acceptance, not identity. B217 alternative-answer scorer item for time is still OPEN.",
+      "still_open": "Alternative-answer policy for time must accept 时长-inclusive equivalents; scorer tests owned by main developer."
+    }
+  ]
+}

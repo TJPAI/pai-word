@@ -1,0 +1,3373 @@
+{
+  "document": "B189_83_RUNTIME_IDENTITY_CHECKLIST",
+  "schema": "pai-core20k-b189-runtime-identity-checklist-v1",
+  "source_reconciled_file": {
+    "drive_file": "core20k_b189_dual_ai_reconciled_83.json",
+    "drive_file_id": "1wX55A_XpPc17hhcuUvGi6qIgm5MCmIYI",
+    "local_sha256": "6ec639dd4e6da6df7f197d3ee3246dd393c851470a11ca8b292963e3e2303910",
+    "status": "RECONCILED_STAGING_NOT_CERTIFIED",
+    "drive_verification_note": "Drive copy downloaded and parsed: identical to the local canonical file except the CLI-added retrieved_at metadata field. The separately-generated ChatGPT B189 JSON was not located on Drive; the reconciled file was built from B188 plus the ChatGPT extra wording quoted verbatim in the 2026-10-25 task message, and that provenance limit is preserved here."
+  },
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_branch_head_subject": "qa(core20k): establish fail-closed dual AI review pilot for 30 matched KUs",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_decompressed_bytes": 2438913,
+    "runtime_decompressed_sha256": "fd7f1d82267b1144d139526cf71580f6630c67d2421841b3cba2f1ed2369c145",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "66ee1c4fb32e1f53d6485350a9ec3f6d5b030765",
+    "b216_gate_commit": "7bbd69bd882091f2f07c7ca0c426780c950c513f",
+    "b216_gate_file": "tools/core20k_lexicon/staging/B216_SIX_KU_IDENTITY_GATE_BLOCKED.json",
+    "retrieval_method": "git fetch from origin (https) + git show to local files; gzip decompressed locally. No GitHub push, no main modification, no Runtime/SRS/learning-record write."
+  },
+  "status_counts": {
+    "EXACT_MATCH": 0,
+    "VERIFIED_HISTORICAL_MAPPING": 83,
+    "CONFLICT": 0,
+    "BLOCKED_INSUFFICIENT_EVIDENCE": 0
+  },
+  "status_note": "EXACT_MATCH is not used for sense identity for the same schema reason as B216: Runtime has no sense_id field. KU identity itself is exact for all 83; the overall status is therefore VERIFIED_HISTORICAL_MAPPING. No record is identity-BLOCKED. Identity-gate pass means 'eligible to enter the final certification gate', not 'certified' and not 'deployable'.",
+  "pos_raw_flags_not_conflicts": {
+    "w_0830_natural_ku03": {
+      "candidate_pos": "n.",
+      "pos_raw": "adj.",
+      "note": "Headword pos_raw is a display summary, not KU-level authority; KU-level POS was judged from sense + syntax in B187. Flagged, not a conflict."
+    },
+    "w_2471_float_ku_s02": {
+      "candidate_pos": "n.",
+      "pos_raw": "v.",
+      "note": "Headword pos_raw is a display summary, not KU-level authority; KU-level POS was judged from sense + syntax in B187. Flagged, not a conflict."
+    }
+  },
+  "records": [
+    {
+      "ku_id": "w_0488_white_ku02",
+      "lemma": "white",
+      "rank": 795,
+      "legacy_headword_id_form": "core20k:rank:795",
+      "candidate_sense_id_unverified": "w_0488_white_s02",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 795,
+        "lemma": "white",
+        "pos_raw": "n./adj.",
+        "ipa": "/wˈaɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "苍白的；浅色的",
+        "gloss_en": "pale/light",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "苍白的；浅色的",
+        "gloss_en": "pale/light"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0539_kill_ku01",
+      "lemma": "kill",
+      "rank": 789,
+      "legacy_headword_id_form": "core20k:rank:789",
+      "candidate_sense_id_unverified": "w_0539_kill_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 789,
+        "lemma": "kill",
+        "pos_raw": "v.",
+        "ipa": "/kˈɪl/",
+        "ku_kind": "sense",
+        "gloss_zh": "杀死；致死",
+        "gloss_en": "cause death",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "杀死；致死",
+        "gloss_en": "cause death"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0539_kill_ku02",
+      "lemma": "kill",
+      "rank": 789,
+      "legacy_headword_id_form": "core20k:rank:789",
+      "candidate_sense_id_unverified": "w_0539_kill_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 789,
+        "lemma": "kill",
+        "pos_raw": "v.",
+        "ipa": "/kˈɪl/",
+        "ku_kind": "sense",
+        "gloss_zh": "终止；破坏",
+        "gloss_en": "stop or destroy",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "终止；破坏",
+        "gloss_en": "stop or destroy"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0638_article_ku02",
+      "lemma": "article",
+      "rank": 736,
+      "legacy_headword_id_form": "core20k:rank:736",
+      "candidate_sense_id_unverified": "w_0638_article_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 736,
+        "lemma": "article",
+        "pos_raw": "n.",
+        "ipa": "/ˈɑːɹɾɪkəl/",
+        "ku_kind": "sense",
+        "gloss_zh": "物品；条款",
+        "gloss_en": "particular item or object",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "物品；条款",
+        "gloss_en": "particular item or object"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0648_drop_ku01",
+      "lemma": "drop",
+      "rank": 773,
+      "legacy_headword_id_form": "core20k:rank:773",
+      "candidate_sense_id_unverified": "w_0648_drop_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 773,
+        "lemma": "drop",
+        "pos_raw": "n./v.",
+        "ipa": "/dɹˈɑːp/",
+        "ku_kind": "sense",
+        "gloss_zh": "落下；掉落",
+        "gloss_en": "fall or let fall",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "落下；掉落",
+        "gloss_en": "fall or let fall"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0648_drop_ku02",
+      "lemma": "drop",
+      "rank": 773,
+      "legacy_headword_id_form": "core20k:rank:773",
+      "candidate_sense_id_unverified": "w_0648_drop_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 773,
+        "lemma": "drop",
+        "pos_raw": "n./v.",
+        "ipa": "/dɹˈɑːp/",
+        "ku_kind": "sense",
+        "gloss_zh": "下降；减少",
+        "gloss_en": "decrease",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "下降；减少",
+        "gloss_en": "decrease"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0648_drop_ku03",
+      "lemma": "drop",
+      "rank": 773,
+      "legacy_headword_id_form": "core20k:rank:773",
+      "candidate_sense_id_unverified": "w_0648_drop_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 773,
+        "lemma": "drop",
+        "pos_raw": "n./v.",
+        "ipa": "/dɹˈɑːp/",
+        "ku_kind": "sense",
+        "gloss_zh": "滴；少量",
+        "gloss_en": "small amount of liquid",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "滴；少量",
+        "gloss_en": "small amount of liquid"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0648_drop_ku04",
+      "lemma": "drop",
+      "rank": 773,
+      "legacy_headword_id_form": "core20k:rank:773",
+      "candidate_sense_id_unverified": "w_0648_drop_s04",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 773,
+        "lemma": "drop",
+        "pos_raw": "n./v.",
+        "ipa": "/dɹˈɑːp/",
+        "ku_kind": "sense",
+        "gloss_zh": "放弃；取消",
+        "gloss_en": "stop doing or remove",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "放弃；取消",
+        "gloss_en": "stop doing or remove"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0675_notice_ku03",
+      "lemma": "notice",
+      "rank": 751,
+      "legacy_headword_id_form": "core20k:rank:751",
+      "candidate_sense_id_unverified": "w_0675_notice_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 751,
+        "lemma": "notice",
+        "pos_raw": "n./v.",
+        "ipa": "/nˈoʊɾɪs/",
+        "ku_kind": "sense",
+        "gloss_zh": "提前通知；通知期",
+        "gloss_en": "advance warning",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "提前通知；通知期",
+        "gloss_en": "advance warning"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0707_hit_ku01",
+      "lemma": "hit",
+      "rank": 781,
+      "legacy_headword_id_form": "core20k:rank:781",
+      "candidate_sense_id_unverified": "w_0707_hit_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 781,
+        "lemma": "hit",
+        "pos_raw": "v./n.",
+        "ipa": "/hˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "打；击中",
+        "gloss_en": "strike something",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "打；击中",
+        "gloss_en": "strike something"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0707_hit_ku02",
+      "lemma": "hit",
+      "rank": 781,
+      "legacy_headword_id_form": "core20k:rank:781",
+      "candidate_sense_id_unverified": "w_0707_hit_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 781,
+        "lemma": "hit",
+        "pos_raw": "v./n.",
+        "ipa": "/hˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "达到；命中",
+        "gloss_en": "reach a level or target",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "达到；命中",
+        "gloss_en": "reach a level or target"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0707_hit_ku03",
+      "lemma": "hit",
+      "rank": 781,
+      "legacy_headword_id_form": "core20k:rank:781",
+      "candidate_sense_id_unverified": "w_0707_hit_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 781,
+        "lemma": "hit",
+        "pos_raw": "v./n.",
+        "ipa": "/hˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "热门作品；成功事物",
+        "gloss_en": "successful popular item",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "热门作品；成功事物",
+        "gloss_en": "successful popular item"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0712_fit_ku01",
+      "lemma": "fit",
+      "rank": 756,
+      "legacy_headword_id_form": "core20k:rank:756",
+      "candidate_sense_id_unverified": "w_0712_fit_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 756,
+        "lemma": "fit",
+        "pos_raw": "v./adj./n.",
+        "ipa": "/fˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "适合；合身",
+        "gloss_en": "be the right size or shape",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "适合；合身",
+        "gloss_en": "be the right size or shape"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0712_fit_ku02",
+      "lemma": "fit",
+      "rank": 756,
+      "legacy_headword_id_form": "core20k:rank:756",
+      "candidate_sense_id_unverified": "w_0712_fit_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 756,
+        "lemma": "fit",
+        "pos_raw": "v./adj./n.",
+        "ipa": "/fˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "适合；符合",
+        "gloss_en": "be suitable",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "适合；符合",
+        "gloss_en": "be suitable"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0712_fit_ku03",
+      "lemma": "fit",
+      "rank": 756,
+      "legacy_headword_id_form": "core20k:rank:756",
+      "candidate_sense_id_unverified": "w_0712_fit_s03",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 756,
+        "lemma": "fit",
+        "pos_raw": "v./adj./n.",
+        "ipa": "/fˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "健康的；健壮的",
+        "gloss_en": "healthy and strong",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "健康的；健壮的",
+        "gloss_en": "healthy and strong"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0712_fit_ku04",
+      "lemma": "fit",
+      "rank": 756,
+      "legacy_headword_id_form": "core20k:rank:756",
+      "candidate_sense_id_unverified": "w_0712_fit_s04",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 756,
+        "lemma": "fit",
+        "pos_raw": "v./adj./n.",
+        "ipa": "/fˈɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "一阵；发作",
+        "gloss_en": "sudden episode such as coughing",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "一阵；发作",
+        "gloss_en": "sudden episode such as coughing"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0714_function_ku01",
+      "lemma": "function",
+      "rank": 762,
+      "legacy_headword_id_form": "core20k:rank:762",
+      "candidate_sense_id_unverified": "w_0714_function_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 762,
+        "lemma": "function",
+        "pos_raw": "n./v.",
+        "ipa": "/fˈʌŋkʃən/",
+        "ku_kind": "sense",
+        "gloss_zh": "功能；作用",
+        "gloss_en": "purpose or role",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "功能；作用",
+        "gloss_en": "purpose or role"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0714_function_ku02",
+      "lemma": "function",
+      "rank": 762,
+      "legacy_headword_id_form": "core20k:rank:762",
+      "candidate_sense_id_unverified": "w_0714_function_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 762,
+        "lemma": "function",
+        "pos_raw": "n./v.",
+        "ipa": "/fˈʌŋkʃən/",
+        "ku_kind": "sense",
+        "gloss_zh": "运行；起作用",
+        "gloss_en": "work or operate",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "运行；起作用",
+        "gloss_en": "work or operate"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0726_contract_ku01",
+      "lemma": "contract",
+      "rank": 775,
+      "legacy_headword_id_form": "core20k:rank:775",
+      "candidate_sense_id_unverified": "w_0726_contract_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 775,
+        "lemma": "contract",
+        "pos_raw": "n./v.",
+        "ipa": "/kˈɑːntɹækt/",
+        "ku_kind": "sense",
+        "gloss_zh": "合同；契约",
+        "gloss_en": "legal agreement",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "合同；契约",
+        "gloss_en": "legal agreement"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0726_contract_ku02",
+      "lemma": "contract",
+      "rank": 775,
+      "legacy_headword_id_form": "core20k:rank:775",
+      "candidate_sense_id_unverified": "w_0726_contract_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 775,
+        "lemma": "contract",
+        "pos_raw": "n./v.",
+        "ipa": "/kˈɑːntɹækt/",
+        "ku_kind": "sense",
+        "gloss_zh": "收缩",
+        "gloss_en": "become smaller or tighter",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "收缩",
+        "gloss_en": "become smaller or tighter"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0726_contract_ku03",
+      "lemma": "contract",
+      "rank": 775,
+      "legacy_headword_id_form": "core20k:rank:775",
+      "candidate_sense_id_unverified": "w_0726_contract_s03",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 775,
+        "lemma": "contract",
+        "pos_raw": "n./v.",
+        "ipa": "/kˈɑːntɹækt/",
+        "ku_kind": "sense",
+        "gloss_zh": "感染；染上",
+        "gloss_en": "catch a disease",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "感染；染上",
+        "gloss_en": "catch a disease"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0754_holiday_ku01",
+      "lemma": "holiday",
+      "rank": 768,
+      "legacy_headword_id_form": "core20k:rank:768",
+      "candidate_sense_id_unverified": "w_0754_holiday_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 768,
+        "lemma": "holiday",
+        "pos_raw": "n.",
+        "ipa": "/hˈɑːlɪdˌeɪ/",
+        "ku_kind": "sense",
+        "gloss_zh": "假日；节日",
+        "gloss_en": "day of celebration or no work",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "假日；节日",
+        "gloss_en": "day of celebration or no work"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0754_holiday_ku02",
+      "lemma": "holiday",
+      "rank": 768,
+      "legacy_headword_id_form": "core20k:rank:768",
+      "candidate_sense_id_unverified": "w_0754_holiday_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 768,
+        "lemma": "holiday",
+        "pos_raw": "n.",
+        "ipa": "/hˈɑːlɪdˌeɪ/",
+        "ku_kind": "sense",
+        "gloss_zh": "假期；度假",
+        "gloss_en": "vacation",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "假期；度假",
+        "gloss_en": "vacation"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0788_strike_ku01",
+      "lemma": "strike",
+      "rank": 761,
+      "legacy_headword_id_form": "core20k:rank:761",
+      "candidate_sense_id_unverified": "w_0788_strike_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 761,
+        "lemma": "strike",
+        "pos_raw": "v./n.",
+        "ipa": "/stɹˈaɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "击打；撞击",
+        "gloss_en": "hit forcefully",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "击打；撞击",
+        "gloss_en": "hit forcefully"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0788_strike_ku02",
+      "lemma": "strike",
+      "rank": 761,
+      "legacy_headword_id_form": "core20k:rank:761",
+      "candidate_sense_id_unverified": "w_0788_strike_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 761,
+        "lemma": "strike",
+        "pos_raw": "v./n.",
+        "ipa": "/stɹˈaɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "罢工；停止工作抗议",
+        "gloss_en": "stop work as protest",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "罢工；停止工作抗议",
+        "gloss_en": "stop work as protest"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0788_strike_ku03",
+      "lemma": "strike",
+      "rank": 761,
+      "legacy_headword_id_form": "core20k:rank:761",
+      "candidate_sense_id_unverified": "w_0788_strike_s03",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 761,
+        "lemma": "strike",
+        "pos_raw": "v./n.",
+        "ipa": "/stɹˈaɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "突然想到；袭击",
+        "gloss_en": "happen suddenly to the mind or place",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "突然想到；袭击",
+        "gloss_en": "happen suddenly to the mind or place"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0791_ability_ku01",
+      "lemma": "ability",
+      "rank": 778,
+      "legacy_headword_id_form": "core20k:rank:778",
+      "candidate_sense_id_unverified": "w_0791_ability_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 778,
+        "lemma": "ability",
+        "pos_raw": "n.",
+        "ipa": "/ɐbˈɪləɾi/",
+        "ku_kind": "sense",
+        "gloss_zh": "能力；才能",
+        "gloss_en": "skill or capacity to do something",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "能力；才能",
+        "gloss_en": "skill or capacity to do something"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0811_degree_ku01",
+      "lemma": "degree",
+      "rank": 776,
+      "legacy_headword_id_form": "core20k:rank:776",
+      "candidate_sense_id_unverified": "w_0811_degree_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 776,
+        "lemma": "degree",
+        "pos_raw": "n.",
+        "ipa": "/dɪɡɹˈiː/",
+        "ku_kind": "sense",
+        "gloss_zh": "度",
+        "gloss_en": "unit of angle or temperature",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "度",
+        "gloss_en": "unit of angle or temperature"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0811_degree_ku03",
+      "lemma": "degree",
+      "rank": 776,
+      "legacy_headword_id_form": "core20k:rank:776",
+      "candidate_sense_id_unverified": "w_0811_degree_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 776,
+        "lemma": "degree",
+        "pos_raw": "n.",
+        "ipa": "/dɪɡɹˈiː/",
+        "ku_kind": "sense",
+        "gloss_zh": "程度；级别",
+        "gloss_en": "extent or level",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "程度；级别",
+        "gloss_en": "extent or level"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0830_natural_ku01",
+      "lemma": "natural",
+      "rank": 779,
+      "legacy_headword_id_form": "core20k:rank:779",
+      "candidate_sense_id_unverified": "w_0830_natural_s01",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 779,
+        "lemma": "natural",
+        "pos_raw": "adj.",
+        "ipa": "/nˈætʃɚɹəl/",
+        "ku_kind": "sense",
+        "gloss_zh": "自然的；天然的",
+        "gloss_en": "existing in nature",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "自然的；天然的",
+        "gloss_en": "existing in nature"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0830_natural_ku02",
+      "lemma": "natural",
+      "rank": 779,
+      "legacy_headword_id_form": "core20k:rank:779",
+      "candidate_sense_id_unverified": "w_0830_natural_s02",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 779,
+        "lemma": "natural",
+        "pos_raw": "adj.",
+        "ipa": "/nˈætʃɚɹəl/",
+        "ku_kind": "sense",
+        "gloss_zh": "自然的；正常的",
+        "gloss_en": "normal or expected",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "自然的；正常的",
+        "gloss_en": "normal or expected"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0830_natural_ku03",
+      "lemma": "natural",
+      "rank": 779,
+      "legacy_headword_id_form": "core20k:rank:779",
+      "candidate_sense_id_unverified": "w_0830_natural_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 779,
+        "lemma": "natural",
+        "pos_raw": "adj.",
+        "ipa": "/nˈætʃɚɹəl/",
+        "ku_kind": "sense",
+        "gloss_zh": "天生的；有天赋的",
+        "gloss_en": "having an inborn ability",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "天生的；有天赋的",
+        "gloss_en": "having an inborn ability"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": false
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": "Headword pos_raw is a display summary, not KU-level authority; KU-level POS was judged from sense + syntax in B187. Flagged, not a conflict."
+    },
+    {
+      "ku_id": "w_0848_touch_ku01",
+      "lemma": "touch",
+      "rank": 763,
+      "legacy_headword_id_form": "core20k:rank:763",
+      "candidate_sense_id_unverified": "w_0848_touch_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 763,
+        "lemma": "touch",
+        "pos_raw": "v./n.",
+        "ipa": "/tˈʌtʃ/",
+        "ku_kind": "sense",
+        "gloss_zh": "触摸；接触",
+        "gloss_en": "put a hand or body part on",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "触摸；接触",
+        "gloss_en": "put a hand or body part on"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0848_touch_ku02",
+      "lemma": "touch",
+      "rank": 763,
+      "legacy_headword_id_form": "core20k:rank:763",
+      "candidate_sense_id_unverified": "w_0848_touch_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 763,
+        "lemma": "touch",
+        "pos_raw": "v./n.",
+        "ipa": "/tˈʌtʃ/",
+        "ku_kind": "sense",
+        "gloss_zh": "一点；少许",
+        "gloss_en": "small amount or feature",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "一点；少许",
+        "gloss_en": "small amount or feature"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0848_touch_ku03",
+      "lemma": "touch",
+      "rank": 763,
+      "legacy_headword_id_form": "core20k:rank:763",
+      "candidate_sense_id_unverified": "w_0848_touch_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 763,
+        "lemma": "touch",
+        "pos_raw": "v./n.",
+        "ipa": "/tˈʌtʃ/",
+        "ku_kind": "sense",
+        "gloss_zh": "联系；联络",
+        "gloss_en": "communicate with",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "联系；联络",
+        "gloss_en": "communicate with"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0867_throw_ku03",
+      "lemma": "throw",
+      "rank": 731,
+      "legacy_headword_id_form": "core20k:rank:731",
+      "candidate_sense_id_unverified": "w_0867_throw_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 731,
+        "lemma": "throw",
+        "pos_raw": "v./n.",
+        "ipa": "/θɹˈoʊ/",
+        "ku_kind": "sense",
+        "gloss_zh": "投掷；投掷距离",
+        "gloss_en": "distance or act of throwing",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "投掷；投掷距离",
+        "gloss_en": "distance or act of throwing"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0899_pattern_ku01",
+      "lemma": "pattern",
+      "rank": 791,
+      "legacy_headword_id_form": "core20k:rank:791",
+      "candidate_sense_id_unverified": "w_0899_pattern_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 791,
+        "lemma": "pattern",
+        "pos_raw": "n.",
+        "ipa": "/pˈætɚn/",
+        "ku_kind": "sense",
+        "gloss_zh": "模式；规律",
+        "gloss_en": "repeated or regular arrangement",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "模式；规律",
+        "gloss_en": "repeated or regular arrangement"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0899_pattern_ku02",
+      "lemma": "pattern",
+      "rank": 791,
+      "legacy_headword_id_form": "core20k:rank:791",
+      "candidate_sense_id_unverified": "w_0899_pattern_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 791,
+        "lemma": "pattern",
+        "pos_raw": "n.",
+        "ipa": "/pˈætɚn/",
+        "ku_kind": "sense",
+        "gloss_zh": "图案；样式",
+        "gloss_en": "design or decorative arrangement",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "图案；样式",
+        "gloss_en": "design or decorative arrangement"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_0899_pattern_ku03",
+      "lemma": "pattern",
+      "rank": 791,
+      "legacy_headword_id_form": "core20k:rank:791",
+      "candidate_sense_id_unverified": "w_0899_pattern_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 791,
+        "lemma": "pattern",
+        "pos_raw": "n.",
+        "ipa": "/pˈætɚn/",
+        "ku_kind": "sense",
+        "gloss_zh": "模板；范式",
+        "gloss_en": "template or model",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "模板；范式",
+        "gloss_en": "template or model"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1025_survey_ku_s01",
+      "lemma": "survey",
+      "rank": 771,
+      "legacy_headword_id_form": "core20k:rank:771",
+      "candidate_sense_id_unverified": "w_1025_survey_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 771,
+        "lemma": "survey",
+        "pos_raw": "n./v.",
+        "ipa": "/sɚvˈeɪ/",
+        "ku_kind": "sense",
+        "gloss_zh": "调查；调查研究",
+        "gloss_en": "a systematic study or collection of information, often using questions",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "调查；调查研究",
+        "gloss_en": "a systematic study or collection of information, often using questions"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1025_survey_ku_s02",
+      "lemma": "survey",
+      "rank": 771,
+      "legacy_headword_id_form": "core20k:rank:771",
+      "candidate_sense_id_unverified": "w_1025_survey_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 771,
+        "lemma": "survey",
+        "pos_raw": "n./v.",
+        "ipa": "/sɚvˈeɪ/",
+        "ku_kind": "sense",
+        "gloss_zh": "调查；审视",
+        "gloss_en": "examine or consider something comprehensively",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "调查；审视",
+        "gloss_en": "examine or consider something comprehensively"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1025_survey_ku_s03",
+      "lemma": "survey",
+      "rank": 771,
+      "legacy_headword_id_form": "core20k:rank:771",
+      "candidate_sense_id_unverified": "w_1025_survey_s03",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 771,
+        "lemma": "survey",
+        "pos_raw": "n./v.",
+        "ipa": "/sɚvˈeɪ/",
+        "ku_kind": "sense",
+        "gloss_zh": "测量；测绘",
+        "gloss_en": "measure and map land",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "测量；测绘",
+        "gloss_en": "measure and map land"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1055_copy_ku_s01",
+      "lemma": "copy",
+      "rank": 785,
+      "legacy_headword_id_form": "core20k:rank:785",
+      "candidate_sense_id_unverified": "w_1055_copy_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 785,
+        "lemma": "copy",
+        "pos_raw": "n./v.",
+        "ipa": "/kˈɑpi/",
+        "ku_kind": "sense",
+        "gloss_zh": "副本；复制品",
+        "gloss_en": "something made to look exactly like another thing",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "副本；复制品",
+        "gloss_en": "something made to look exactly like another thing"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1055_copy_ku_s02",
+      "lemma": "copy",
+      "rank": 785,
+      "legacy_headword_id_form": "core20k:rank:785",
+      "candidate_sense_id_unverified": "w_1055_copy_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 785,
+        "lemma": "copy",
+        "pos_raw": "n./v.",
+        "ipa": "/kˈɑpi/",
+        "ku_kind": "sense",
+        "gloss_zh": "文稿；稿件",
+        "gloss_en": "written material for publication or advertising",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "文稿；稿件",
+        "gloss_en": "written material for publication or advertising"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1055_copy_ku_s03",
+      "lemma": "copy",
+      "rank": 785,
+      "legacy_headword_id_form": "core20k:rank:785",
+      "candidate_sense_id_unverified": "w_1055_copy_s03",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 785,
+        "lemma": "copy",
+        "pos_raw": "n./v.",
+        "ipa": "/kˈɑpi/",
+        "ku_kind": "sense",
+        "gloss_zh": "复制；抄写",
+        "gloss_en": "make a copy of something",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "复制；抄写",
+        "gloss_en": "make a copy of something"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1077_extra_ku_s02",
+      "lemma": "extra",
+      "rank": 752,
+      "legacy_headword_id_form": "core20k:rank:752",
+      "candidate_sense_id_unverified": "w_1077_extra_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 752,
+        "lemma": "extra",
+        "pos_raw": "adj./n./adv.",
+        "ipa": "/ˈɛkstɹə/",
+        "ku_kind": "sense",
+        "gloss_zh": "额外部分；附加物",
+        "gloss_en": "an additional thing or amount",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "额外部分；附加物",
+        "gloss_en": "an additional thing or amount"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1077_extra_ku_s03",
+      "lemma": "extra",
+      "rank": 752,
+      "legacy_headword_id_form": "core20k:rank:752",
+      "candidate_sense_id_unverified": "w_1077_extra_s03",
+      "candidate_pos": "adv.",
+      "runtime_row": {
+        "rank": 752,
+        "lemma": "extra",
+        "pos_raw": "adj./n./adv.",
+        "ipa": "/ˈɛkstɹə/",
+        "ku_kind": "sense",
+        "gloss_zh": "额外地；另外收费",
+        "gloss_en": "in addition to the usual amount or price",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "额外地；另外收费",
+        "gloss_en": "in addition to the usual amount or price"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1221_scale_ku_s01",
+      "lemma": "scale",
+      "rank": 772,
+      "legacy_headword_id_form": "core20k:rank:772",
+      "candidate_sense_id_unverified": "w_1221_scale_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 772,
+        "lemma": "scale",
+        "pos_raw": "n./v.",
+        "ipa": "/skˈeɪl/",
+        "ku_kind": "sense",
+        "gloss_zh": "尺度；等级；比例尺",
+        "gloss_en": "a system or range for measuring or comparing things",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "尺度；等级；比例尺",
+        "gloss_en": "a system or range for measuring or comparing things"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1221_scale_ku_s02",
+      "lemma": "scale",
+      "rank": 772,
+      "legacy_headword_id_form": "core20k:rank:772",
+      "candidate_sense_id_unverified": "w_1221_scale_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 772,
+        "lemma": "scale",
+        "pos_raw": "n./v.",
+        "ipa": "/skˈeɪl/",
+        "ku_kind": "sense",
+        "gloss_zh": "秤",
+        "gloss_en": "an instrument for weighing",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "秤",
+        "gloss_en": "an instrument for weighing"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1221_scale_ku_s03",
+      "lemma": "scale",
+      "rank": 772,
+      "legacy_headword_id_form": "core20k:rank:772",
+      "candidate_sense_id_unverified": "w_1221_scale_s03",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 772,
+        "lemma": "scale",
+        "pos_raw": "n./v.",
+        "ipa": "/skˈeɪl/",
+        "ku_kind": "sense",
+        "gloss_zh": "按比例调整；扩大",
+        "gloss_en": "increase or reduce something proportionally or in size",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "按比例调整；扩大",
+        "gloss_en": "increase or reduce something proportionally or in size"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1241_flight_ku_s01",
+      "lemma": "flight",
+      "rank": 777,
+      "legacy_headword_id_form": "core20k:rank:777",
+      "candidate_sense_id_unverified": "w_1241_flight_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 777,
+        "lemma": "flight",
+        "pos_raw": "n.",
+        "ipa": "/flˈaɪt/",
+        "ku_kind": "sense",
+        "gloss_zh": "飞行；航班",
+        "gloss_en": "a journey through the air, especially by aircraft",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "飞行；航班",
+        "gloss_en": "a journey through the air, especially by aircraft"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1272_meal_ku_s01",
+      "lemma": "meal",
+      "rank": 792,
+      "legacy_headword_id_form": "core20k:rank:792",
+      "candidate_sense_id_unverified": "w_1272_meal_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 792,
+        "lemma": "meal",
+        "pos_raw": "n.",
+        "ipa": "/mˈil/",
+        "ku_kind": "sense",
+        "gloss_zh": "一餐；饭",
+        "gloss_en": "an occasion when food is eaten, or the food eaten then",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "一餐；饭",
+        "gloss_en": "an occasion when food is eaten, or the food eaten then"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1308_gather_ku_s01",
+      "lemma": "gather",
+      "rank": 794,
+      "legacy_headword_id_form": "core20k:rank:794",
+      "candidate_sense_id_unverified": "w_1308_gather_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 794,
+        "lemma": "gather",
+        "pos_raw": "v.",
+        "ipa": "/ɡˈæðɚ/",
+        "ku_kind": "sense",
+        "gloss_zh": "聚集；收集",
+        "gloss_en": "come together or bring people or things together",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "聚集；收集",
+        "gloss_en": "come together or bring people or things together"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1308_gather_ku_s02",
+      "lemma": "gather",
+      "rank": 794,
+      "legacy_headword_id_form": "core20k:rank:794",
+      "candidate_sense_id_unverified": "w_1308_gather_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 794,
+        "lemma": "gather",
+        "pos_raw": "v.",
+        "ipa": "/ɡˈæðɚ/",
+        "ku_kind": "sense",
+        "gloss_zh": "推断；认为",
+        "gloss_en": "understand or believe something from information",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "推断；认为",
+        "gloss_en": "understand or believe something from information"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1335_quiet_ku_s01",
+      "lemma": "quiet",
+      "rank": 790,
+      "legacy_headword_id_form": "core20k:rank:790",
+      "candidate_sense_id_unverified": "w_1335_quiet_s01",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 790,
+        "lemma": "quiet",
+        "pos_raw": "adj./n./v.",
+        "ipa": "/kwˈaɪət/",
+        "ku_kind": "sense",
+        "gloss_zh": "安静的",
+        "gloss_en": "making little or no noise",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "安静的",
+        "gloss_en": "making little or no noise"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1335_quiet_ku_s02",
+      "lemma": "quiet",
+      "rank": 790,
+      "legacy_headword_id_form": "core20k:rank:790",
+      "candidate_sense_id_unverified": "w_1335_quiet_s02",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 790,
+        "lemma": "quiet",
+        "pos_raw": "adj./n./v.",
+        "ipa": "/kwˈaɪət/",
+        "ku_kind": "sense",
+        "gloss_zh": "平静的；清静的",
+        "gloss_en": "calm and without much activity",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "平静的；清静的",
+        "gloss_en": "calm and without much activity"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1335_quiet_ku_s03",
+      "lemma": "quiet",
+      "rank": 790,
+      "legacy_headword_id_form": "core20k:rank:790",
+      "candidate_sense_id_unverified": "w_1335_quiet_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 790,
+        "lemma": "quiet",
+        "pos_raw": "adj./n./v.",
+        "ipa": "/kwˈaɪət/",
+        "ku_kind": "sense",
+        "gloss_zh": "安静；寂静",
+        "gloss_en": "a period or state of silence",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "安静；寂静",
+        "gloss_en": "a period or state of silence"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1335_quiet_ku_s04",
+      "lemma": "quiet",
+      "rank": 790,
+      "legacy_headword_id_form": "core20k:rank:790",
+      "candidate_sense_id_unverified": "w_1335_quiet_s04",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 790,
+        "lemma": "quiet",
+        "pos_raw": "adj./n./v.",
+        "ipa": "/kwˈaɪət/",
+        "ku_kind": "sense",
+        "gloss_zh": "使安静；使平静；安静下来",
+        "gloss_en": "become or cause someone or something to become calmer or less noisy",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "使安静；使平静；安静下来",
+        "gloss_en": "become or cause someone or something to become calmer or less noisy"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1410_recall_ku_s01",
+      "lemma": "recall",
+      "rank": 796,
+      "legacy_headword_id_form": "core20k:rank:796",
+      "candidate_sense_id_unverified": "w_1410_recall_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 796,
+        "lemma": "recall",
+        "pos_raw": "n./v.",
+        "ipa": "/ɹˈikˌɔl/",
+        "ku_kind": "sense",
+        "gloss_zh": "回想；记起",
+        "gloss_en": "remember a past event or piece of information",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "回想；记起",
+        "gloss_en": "remember a past event or piece of information"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1410_recall_ku_s02",
+      "lemma": "recall",
+      "rank": 796,
+      "legacy_headword_id_form": "core20k:rank:796",
+      "candidate_sense_id_unverified": "w_1410_recall_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 796,
+        "lemma": "recall",
+        "pos_raw": "n./v.",
+        "ipa": "/ɹˈikˌɔl/",
+        "ku_kind": "sense",
+        "gloss_zh": "召回",
+        "gloss_en": "order someone or something to return",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "召回",
+        "gloss_en": "order someone or something to return"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1477_load_ku_s01",
+      "lemma": "load",
+      "rank": 765,
+      "legacy_headword_id_form": "core20k:rank:765",
+      "candidate_sense_id_unverified": "w_1477_load_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 765,
+        "lemma": "load",
+        "pos_raw": "n./v.",
+        "ipa": "/lˈoʊd/",
+        "ku_kind": "sense",
+        "gloss_zh": "负载；装载量",
+        "gloss_en": "the amount carried or handled at one time",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "负载；装载量",
+        "gloss_en": "the amount carried or handled at one time"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1477_load_ku_s02",
+      "lemma": "load",
+      "rank": 765,
+      "legacy_headword_id_form": "core20k:rank:765",
+      "candidate_sense_id_unverified": "w_1477_load_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 765,
+        "lemma": "load",
+        "pos_raw": "n./v.",
+        "ipa": "/lˈoʊd/",
+        "ku_kind": "sense",
+        "gloss_zh": "装载；加载",
+        "gloss_en": "put goods, data, or material into something",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "装载；加载",
+        "gloss_en": "put goods, data, or material into something"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1558_rank_ku_s01",
+      "lemma": "rank",
+      "rank": 786,
+      "legacy_headword_id_form": "core20k:rank:786",
+      "candidate_sense_id_unverified": "w_1558_rank_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 786,
+        "lemma": "rank",
+        "pos_raw": "n./v.",
+        "ipa": "/ɹˈæŋk/",
+        "ku_kind": "sense",
+        "gloss_zh": "等级；级别；军衔",
+        "gloss_en": "a position in an organization or scale of status",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "等级；级别；军衔",
+        "gloss_en": "a position in an organization or scale of status"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1558_rank_ku_s02",
+      "lemma": "rank",
+      "rank": 786,
+      "legacy_headword_id_form": "core20k:rank:786",
+      "candidate_sense_id_unverified": "w_1558_rank_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 786,
+        "lemma": "rank",
+        "pos_raw": "n./v.",
+        "ipa": "/ɹˈæŋk/",
+        "ku_kind": "sense",
+        "gloss_zh": "排名；列为",
+        "gloss_en": "give something a position in an ordered list",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "排名；列为",
+        "gloss_en": "give something a position in an ordered list"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1580_master_ku_s02",
+      "lemma": "master",
+      "rank": 724,
+      "legacy_headword_id_form": "core20k:rank:724",
+      "candidate_sense_id_unverified": "w_1580_master_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 724,
+        "lemma": "master",
+        "pos_raw": "n./v./adj.",
+        "ipa": "/mˈæstɚ/",
+        "ku_kind": "sense",
+        "gloss_zh": "硕士；硕士学位",
+        "gloss_en": "a postgraduate degree after a bachelor's degree",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "硕士；硕士学位",
+        "gloss_en": "a postgraduate degree after a bachelor's degree"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1580_master_ku_s04",
+      "lemma": "master",
+      "rank": 724,
+      "legacy_headword_id_form": "core20k:rank:724",
+      "candidate_sense_id_unverified": "w_1580_master_s04",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 724,
+        "lemma": "master",
+        "pos_raw": "n./v./adj.",
+        "ipa": "/mˈæstɚ/",
+        "ku_kind": "sense",
+        "gloss_zh": "主控的；总的；母版的",
+        "gloss_en": "main, controlling, or original",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "主控的；总的；母版的",
+        "gloss_en": "main, controlling, or original"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1767_chart_ku_s02",
+      "lemma": "chart",
+      "rank": 744,
+      "legacy_headword_id_form": "core20k:rank:744",
+      "candidate_sense_id_unverified": "w_1767_chart_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 744,
+        "lemma": "chart",
+        "pos_raw": "n./v.",
+        "ipa": "/tʃˈɑɹt/",
+        "ku_kind": "sense",
+        "gloss_zh": "绘图；记录；规划",
+        "gloss_en": "record or show information on a chart; plan a course",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "绘图；记录；规划",
+        "gloss_en": "record or show information on a chart; plan a course"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1777_academic_ku_s01",
+      "lemma": "academic",
+      "rank": 780,
+      "legacy_headword_id_form": "core20k:rank:780",
+      "candidate_sense_id_unverified": "w_1777_academic_s01",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 780,
+        "lemma": "academic",
+        "pos_raw": "adj./n.",
+        "ipa": "/ˌækədˈɛmɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "学术的；学校的",
+        "gloss_en": "relating to education, study, or scholarship",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "学术的；学校的",
+        "gloss_en": "relating to education, study, or scholarship"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1777_academic_ku_s02",
+      "lemma": "academic",
+      "rank": 780,
+      "legacy_headword_id_form": "core20k:rank:780",
+      "candidate_sense_id_unverified": "w_1777_academic_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 780,
+        "lemma": "academic",
+        "pos_raw": "adj./n.",
+        "ipa": "/ˌækədˈɛmɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "大学教师；学者",
+        "gloss_en": "a teacher or researcher at a university",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "大学教师；学者",
+        "gloss_en": "a teacher or researcher at a university"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1882_freeze_ku_s02",
+      "lemma": "freeze",
+      "rank": 767,
+      "legacy_headword_id_form": "core20k:rank:767",
+      "candidate_sense_id_unverified": "w_1882_freeze_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 767,
+        "lemma": "freeze",
+        "pos_raw": "n./v.",
+        "ipa": "/fɹˈiz/",
+        "ku_kind": "sense",
+        "gloss_zh": "冻结；冰冻期",
+        "gloss_en": "a period or act of freezing or stopping change",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "冻结；冰冻期",
+        "gloss_en": "a period or act of freezing or stopping change"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1901_classic_ku_s01",
+      "lemma": "classic",
+      "rank": 784,
+      "legacy_headword_id_form": "core20k:rank:784",
+      "candidate_sense_id_unverified": "w_1901_classic_s01",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 784,
+        "lemma": "classic",
+        "pos_raw": "adj./n.",
+        "ipa": "/klˈæsɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "经典的；典型的",
+        "gloss_en": "of high quality and lasting value, or typical of an established style",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "经典的；典型的",
+        "gloss_en": "of high quality and lasting value, or typical of an established style"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1901_classic_ku_s02",
+      "lemma": "classic",
+      "rank": 784,
+      "legacy_headword_id_form": "core20k:rank:784",
+      "candidate_sense_id_unverified": "w_1901_classic_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 784,
+        "lemma": "classic",
+        "pos_raw": "adj./n.",
+        "ipa": "/klˈæsɪk/",
+        "ku_kind": "sense",
+        "gloss_zh": "经典作品；经典之作",
+        "gloss_en": "a work or product recognized as an outstanding and lasting example",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "经典作品；经典之作",
+        "gloss_en": "a work or product recognized as an outstanding and lasting example"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1937_chip_ku_s03",
+      "lemma": "chip",
+      "rank": 742,
+      "legacy_headword_id_form": "core20k:rank:742",
+      "candidate_sense_id_unverified": "w_1937_chip_s03",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 742,
+        "lemma": "chip",
+        "pos_raw": "n./v.",
+        "ipa": "/tʃˈɪp/",
+        "ku_kind": "sense",
+        "gloss_zh": "薯条；薯片等油炸小片",
+        "gloss_en": "a small piece of fried food, especially potato",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "薯条；薯片等油炸小片",
+        "gloss_en": "a small piece of fried food, especially potato"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1989_sequence_ku_s01",
+      "lemma": "sequence",
+      "rank": 769,
+      "legacy_headword_id_form": "core20k:rank:769",
+      "candidate_sense_id_unverified": "w_1989_sequence_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 769,
+        "lemma": "sequence",
+        "pos_raw": "n./v.",
+        "ipa": "/sˈikwəns/",
+        "ku_kind": "sense",
+        "gloss_zh": "顺序；序列",
+        "gloss_en": "a set of things in a particular order",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "顺序；序列",
+        "gloss_en": "a set of things in a particular order"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_1989_sequence_ku_s02",
+      "lemma": "sequence",
+      "rank": 769,
+      "legacy_headword_id_form": "core20k:rank:769",
+      "candidate_sense_id_unverified": "w_1989_sequence_s02",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 769,
+        "lemma": "sequence",
+        "pos_raw": "n./v.",
+        "ipa": "/sˈikwəns/",
+        "ku_kind": "sense",
+        "gloss_zh": "排序；测序",
+        "gloss_en": "arrange or determine the order of elements, especially genetic material",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "排序；测序",
+        "gloss_en": "arrange or determine the order of elements, especially genetic material"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2056_layer_ku_s01",
+      "lemma": "layer",
+      "rank": 788,
+      "legacy_headword_id_form": "core20k:rank:788",
+      "candidate_sense_id_unverified": "w_2056_layer_s01",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 788,
+        "lemma": "layer",
+        "pos_raw": "n.",
+        "ipa": "/lˈeɪɚ/",
+        "ku_kind": "sense",
+        "gloss_zh": "层；层次",
+        "gloss_en": "a thickness, level, or covering of material",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "层；层次",
+        "gloss_en": "a thickness, level, or covering of material"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2088_port_ku_s02",
+      "lemma": "port",
+      "rank": 760,
+      "legacy_headword_id_form": "core20k:rank:760",
+      "candidate_sense_id_unverified": "w_2088_port_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 760,
+        "lemma": "port",
+        "pos_raw": "n.",
+        "ipa": "/pˈɔɹt/",
+        "ku_kind": "sense",
+        "gloss_zh": "端口",
+        "gloss_en": "a connection point in a computer or electronic device",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "端口",
+        "gloss_en": "a connection point in a computer or electronic device"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2471_float_ku_s01",
+      "lemma": "float",
+      "rank": 774,
+      "legacy_headword_id_form": "core20k:rank:774",
+      "candidate_sense_id_unverified": "w_2471_float_s01",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 774,
+        "lemma": "float",
+        "pos_raw": "v.",
+        "ipa": "/flˈoʊt/",
+        "ku_kind": "sense",
+        "gloss_zh": "漂浮；飘动",
+        "gloss_en": "stay or move on the surface of a liquid or in air",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "漂浮；飘动",
+        "gloss_en": "stay or move on the surface of a liquid or in air"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2471_float_ku_s02",
+      "lemma": "float",
+      "rank": 774,
+      "legacy_headword_id_form": "core20k:rank:774",
+      "candidate_sense_id_unverified": "w_2471_float_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 774,
+        "lemma": "float",
+        "pos_raw": "v.",
+        "ipa": "/flˈoʊt/",
+        "ku_kind": "sense",
+        "gloss_zh": "彩车；浮体",
+        "gloss_en": "a platform used in a parade or a floating object",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "彩车；浮体",
+        "gloss_en": "a platform used in a parade or a floating object"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": false
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": "Headword pos_raw is a display summary, not KU-level authority; KU-level POS was judged from sense + syntax in B187. Flagged, not a conflict."
+    },
+    {
+      "ku_id": "w_2471_float_ku_s03",
+      "lemma": "float",
+      "rank": 774,
+      "legacy_headword_id_form": "core20k:rank:774",
+      "candidate_sense_id_unverified": "w_2471_float_s03",
+      "candidate_pos": "v.",
+      "runtime_row": {
+        "rank": 774,
+        "lemma": "float",
+        "pos_raw": "v.",
+        "ipa": "/flˈoʊt/",
+        "ku_kind": "sense",
+        "gloss_zh": "浮动",
+        "gloss_en": "allow a price or currency value to change freely",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "浮动",
+        "gloss_en": "allow a price or currency value to change freely"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2484_journal_ku_s02",
+      "lemma": "journal",
+      "rank": 770,
+      "legacy_headword_id_form": "core20k:rank:770",
+      "candidate_sense_id_unverified": "w_2484_journal_s02",
+      "candidate_pos": "n.",
+      "runtime_row": {
+        "rank": 770,
+        "lemma": "journal",
+        "pos_raw": "n.",
+        "ipa": "/dʒˈɝnəl/",
+        "ku_kind": "sense",
+        "gloss_zh": "日志；日记",
+        "gloss_en": "a personal or professional record of events",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "日志；日记",
+        "gloss_en": "a personal or professional record of events"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2558_remote_ku_s01",
+      "lemma": "remote",
+      "rank": 766,
+      "legacy_headword_id_form": "core20k:rank:766",
+      "candidate_sense_id_unverified": "w_2558_remote_s01",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 766,
+        "lemma": "remote",
+        "pos_raw": "adj.",
+        "ipa": "/ɹɪmˈoʊt/",
+        "ku_kind": "sense",
+        "gloss_zh": "偏远的；遥远的",
+        "gloss_en": "far away in distance or time",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "偏远的；遥远的",
+        "gloss_en": "far away in distance or time"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    },
+    {
+      "ku_id": "w_2558_remote_ku_s02",
+      "lemma": "remote",
+      "rank": 766,
+      "legacy_headword_id_form": "core20k:rank:766",
+      "candidate_sense_id_unverified": "w_2558_remote_s02",
+      "candidate_pos": "adj.",
+      "runtime_row": {
+        "rank": 766,
+        "lemma": "remote",
+        "pos_raw": "adj.",
+        "ipa": "/ɹɪmˈoʊt/",
+        "ku_kind": "sense",
+        "gloss_zh": "远程的",
+        "gloss_en": "operated or accessed from another location",
+        "playable": true
+      },
+      "candidate_gloss": {
+        "gloss_zh": "远程的",
+        "gloss_en": "operated or accessed from another location"
+      },
+      "checks": {
+        "ku_id_exists_in_runtime": true,
+        "rank_matches": true,
+        "lemma_matches": true,
+        "headword_id_form_matches_rank": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": true,
+        "ku_kind_is_sense": true,
+        "playable": true,
+        "prompt_substitution_reproduces_example": true,
+        "sense_number_correspondence_sNN_to_kuNN": true,
+        "candidate_pos_in_headword_pos_raw": true
+      },
+      "mapping_status": "VERIFIED_HISTORICAL_MAPPING",
+      "mapping_evidence": "KU identity exact (verbatim ku_id in Runtime, rank/lemma/gloss exact, kind=sense, playable). Sense correspondence verified historically: candidate_sense_id_unverified (sNN) shares stem and number with the Runtime kuNN row; Runtime has no sense_id field, so candidate_sense_id_unverified must NOT be written into a formal overlay as an authority sense_id - it is retained here only as a legacy reference. See sense_safety_proposal in the QA report.",
+      "identity_gate_pass": true,
+      "release_eligible": false,
+      "identity_note": ""
+    }
+  ]
+}

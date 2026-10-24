@@ -1,0 +1,486 @@
+{
+  "document": "B216_BATCH93_SIX_KU_RUNTIME_EXTRACT",
+  "schema": "pai-core20k-b216-runtime-extract-v1",
+  "purpose": "Row-level evidence that replaces the 7bbd69b gate's BLOCKED_RUNTIME_ROW_NOT_READ status with direct Runtime row comparisons. It does not mint identities and does not publish an overlay.",
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_branch_head_subject": "qa(core20k): establish fail-closed dual AI review pilot for 30 matched KUs",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_decompressed_bytes": 2438913,
+    "runtime_decompressed_sha256": "fd7f1d82267b1144d139526cf71580f6630c67d2421841b3cba2f1ed2369c145",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "66ee1c4fb32e1f53d6485350a9ec3f6d5b030765",
+    "b216_gate_commit": "7bbd69bd882091f2f07c7ca0c426780c950c513f",
+    "b216_gate_file": "tools/core20k_lexicon/staging/B216_SIX_KU_IDENTITY_GATE_BLOCKED.json",
+    "retrieval_method": "git fetch from origin (https) + git show to local files; gzip decompressed locally. No GitHub push, no main modification, no Runtime/SRS/learning-record write."
+  },
+  "teaching_pack": {
+    "file": "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+    "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+    "pack_version": "2026.10.23-batch93-staging",
+    "frozen_membership_version": "Core20K Long-Term V2.0.6 FINAL_FROZEN",
+    "frozen_membership_sha256": "e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca",
+    "source_commit_sha": "59bfbbb1bae0c5420c43e2f1f8a14af047fda42e",
+    "record_count": 6
+  },
+  "runtime_data_structure": {
+    "file": "data/core20k-runtime.json.gz (decompressed JSON)",
+    "top_level_keys": [
+      "schema",
+      "release",
+      "headwords",
+      "compatibility_orphans"
+    ],
+    "headword_row": "[rank (int), lemma (string), pos_raw (string, headword-level display summary), ipa (string), kus (list)]",
+    "ku_row": "[ku_id (string), kind (string: sense/collocation/grammar/morphology), gloss_zh (string), gloss_en (string), playable (bool)]",
+    "identity_fields_present": "rank, lemma, pos_raw, ipa, ku_id, kind, glosses, playable.",
+    "identity_fields_absent": "No headword_id field and no sense_id field anywhere in the decompressed Runtime (sense_id key occurrences: 0). Sense identity in Runtime is therefore the KU row itself (ku_id of a kind=sense row).",
+    "ku_id_pattern": "w_<4-digit legacy index>_<lemma>_ku<NN>, where the 4-digit index is NOT the rank (e.g. rank 1 'out' carries w_0055; rank 108 'person' carries w_0266). Rank and w_ index must never be conflated.",
+    "compatibility_orphans": [
+      {
+        "lemma": "dem",
+        "ku_ids": [
+          "w_11029_dem_ku_s01"
+        ]
+      },
+      {
+        "lemma": "nome",
+        "ku_ids": [
+          "w_12948_nome_ku_s01"
+        ]
+      }
+    ],
+    "orphans_relevance": "Neither orphan (dem, nome) is one of the six headwords; they do not affect this mapping."
+  },
+  "records": [
+    {
+      "headword": "person",
+      "legacy_teaching_record": {
+        "headword_id": "core20k:rank:108",
+        "rank": 108,
+        "sense_id": "w_0266_person_s01",
+        "ku_id": "w_0266_person_ku01",
+        "ku_type": "Sense",
+        "pos": "n.",
+        "gloss_zh": "人；个人",
+        "gloss_en": "individual human being",
+        "us_ipa": "/ˈpɝː.sən/",
+        "example_en": "One person is waiting outside.",
+        "example_zh": "有一个人在外面等候。",
+        "correct_answer": "一个人；个人"
+      },
+      "runtime_headword_row_verbatim": {
+        "rank": 108,
+        "lemma": "person",
+        "pos_raw": "n.",
+        "ipa": "/pˈɝsən/",
+        "kus": [
+          {
+            "ku_id": "w_0266_person_ku01",
+            "kind": "sense",
+            "gloss_zh": "人；个人",
+            "gloss_en": "human individual",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0266_person_ku02",
+            "kind": "morphology",
+            "gloss_zh": "人；个人",
+            "gloss_en": "human individual",
+            "playable": true
+          }
+        ]
+      },
+      "runtime_row_count_for_headword": 2,
+      "target_runtime_ku_row_verbatim": {
+        "ku_id": "w_0266_person_ku01",
+        "kind": "sense",
+        "gloss_zh": "人；个人",
+        "gloss_en": "human individual",
+        "playable": true
+      },
+      "comparison": {
+        "ku_id_verbatim_in_runtime": true,
+        "rank_matches_legacy_headword_id_number": true,
+        "lemma_matches": true,
+        "pos_raw_matches_legacy_pos": true,
+        "kind_is_sense": true,
+        "playable": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": false,
+        "gloss_note": "English gloss is a word-order paraphrase (individual human being vs human individual); Chinese gloss is character-exact. Same sense, not a different sense.",
+        "ipa_note": "Pack /ˈpɝː.sən/ vs Runtime /pˈɝsən/: same segments, stress-mark placement and length-mark convention differ only.",
+        "sibling_rows_same_gloss_note": "Gloss text alone does not identify the row: sibling rows under the same headword share gloss text with different kinds (e.g. morphology/grammar/collocation rows). Identification here rests on the verbatim ku_id string plus kind=sense, not on gloss text alone."
+      }
+    },
+    {
+      "headword": "time",
+      "legacy_teaching_record": {
+        "headword_id": "core20k:rank:111",
+        "rank": 111,
+        "sense_id": "w_0049_time_s01",
+        "ku_id": "w_0049_time_ku01",
+        "ku_type": "Sense",
+        "pos": "n.",
+        "gloss_zh": "时间；时长",
+        "gloss_en": "measurable duration",
+        "us_ipa": "/taɪm/",
+        "example_en": "We need more time to finish.",
+        "example_zh": "我们需要更多时间才能完成。",
+        "correct_answer": "时间；完成事情所需的时长"
+      },
+      "runtime_headword_row_verbatim": {
+        "rank": 111,
+        "lemma": "time",
+        "pos_raw": "n.",
+        "ipa": "/tˈaɪm/",
+        "kus": [
+          {
+            "ku_id": "w_0049_time_ku01",
+            "kind": "sense",
+            "gloss_zh": "时间",
+            "gloss_en": "measured duration",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0049_time_ku02",
+            "kind": "sense",
+            "gloss_zh": "次；时候",
+            "gloss_en": "occasion",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0049_time_ku03",
+            "kind": "collocation",
+            "gloss_zh": "时间",
+            "gloss_en": "measured duration",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0049_time_ku04",
+            "kind": "sense",
+            "gloss_zh": "时期；时代",
+            "gloss_en": "period/era",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0049_time_ku05",
+            "kind": "sense",
+            "gloss_zh": "安排时间；计时",
+            "gloss_en": "schedule/timing",
+            "playable": true
+          }
+        ]
+      },
+      "runtime_row_count_for_headword": 5,
+      "target_runtime_ku_row_verbatim": {
+        "ku_id": "w_0049_time_ku01",
+        "kind": "sense",
+        "gloss_zh": "时间",
+        "gloss_en": "measured duration",
+        "playable": true
+      },
+      "comparison": {
+        "ku_id_verbatim_in_runtime": true,
+        "rank_matches_legacy_headword_id_number": true,
+        "lemma_matches": true,
+        "pos_raw_matches_legacy_pos": true,
+        "kind_is_sense": true,
+        "playable": true,
+        "gloss_zh_exact": false,
+        "gloss_en_exact": false,
+        "gloss_note": "Chinese teaching gloss adds 时长 (legacy 时间；时长 vs Runtime 时间) and English measurable vs measured. Sense is duration in both; the 时长 addition is a teaching-gloss variance, recorded here, not an identity conflict. The teaching line's alternative-answer policy for time (B217 OPEN item) must cover 时长-inclusive answers.",
+        "ipa_note": "Pack /taɪm/ vs Runtime /tˈaɪm/: same segments; monosyllable stress mark differs only.",
+        "sibling_rows_same_gloss_note": "Gloss text alone does not identify the row: sibling rows under the same headword share gloss text with different kinds (e.g. morphology/grammar/collocation rows). Identification here rests on the verbatim ku_id string plus kind=sense, not on gloss text alone."
+      }
+    },
+    {
+      "headword": "know",
+      "legacy_teaching_record": {
+        "headword_id": "core20k:rank:138",
+        "rank": 138,
+        "sense_id": "w_0041_know_s01",
+        "ku_id": "w_0041_know_ku01",
+        "ku_type": "Sense",
+        "pos": "v.",
+        "gloss_zh": "知道；了解",
+        "gloss_en": "possess information",
+        "us_ipa": "/noʊ/",
+        "example_en": "I know the answer.",
+        "example_zh": "我知道答案。",
+        "correct_answer": "知道；了解"
+      },
+      "runtime_headword_row_verbatim": {
+        "rank": 138,
+        "lemma": "know",
+        "pos_raw": "v.",
+        "ipa": "/nˈoʊ/",
+        "kus": [
+          {
+            "ku_id": "w_0041_know_ku01",
+            "kind": "sense",
+            "gloss_zh": "知道；了解",
+            "gloss_en": "have knowledge",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0041_know_ku02",
+            "kind": "sense",
+            "gloss_zh": "认识；熟悉",
+            "gloss_en": "be familiar with",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0041_know_ku03",
+            "kind": "grammar",
+            "gloss_zh": "知道；了解",
+            "gloss_en": "have knowledge",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0041_know_ku04",
+            "kind": "sense",
+            "gloss_zh": "辨认出；意识到",
+            "gloss_en": "recognize",
+            "playable": true
+          }
+        ]
+      },
+      "runtime_row_count_for_headword": 4,
+      "target_runtime_ku_row_verbatim": {
+        "ku_id": "w_0041_know_ku01",
+        "kind": "sense",
+        "gloss_zh": "知道；了解",
+        "gloss_en": "have knowledge",
+        "playable": true
+      },
+      "comparison": {
+        "ku_id_verbatim_in_runtime": true,
+        "rank_matches_legacy_headword_id_number": true,
+        "lemma_matches": true,
+        "pos_raw_matches_legacy_pos": true,
+        "kind_is_sense": true,
+        "playable": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": false,
+        "gloss_note": "English gloss is a paraphrase (possess information vs have knowledge); Chinese gloss is character-exact. Same sense.",
+        "ipa_note": "Pack /noʊ/ vs Runtime /nˈoʊ/: same segments; stress mark differs only.",
+        "sibling_rows_same_gloss_note": "Gloss text alone does not identify the row: sibling rows under the same headword share gloss text with different kinds (e.g. morphology/grammar/collocation rows). Identification here rests on the verbatim ku_id string plus kind=sense, not on gloss text alone."
+      }
+    },
+    {
+      "headword": "people",
+      "legacy_teaching_record": {
+        "headword_id": "core20k:rank:142",
+        "rank": 142,
+        "sense_id": "w_0057_people_s01",
+        "ku_id": "w_0057_people_ku01",
+        "ku_type": "Sense",
+        "pos": "n.",
+        "gloss_zh": "人们；人",
+        "gloss_en": "human beings collectively",
+        "us_ipa": "/ˈpiː.pəl/",
+        "example_en": "Many people live here.",
+        "example_zh": "许多人住在这里。",
+        "correct_answer": "人们；许多人"
+      },
+      "runtime_headword_row_verbatim": {
+        "rank": 142,
+        "lemma": "people",
+        "pos_raw": "n.",
+        "ipa": "/pˈipəl/",
+        "kus": [
+          {
+            "ku_id": "w_0057_people_ku01",
+            "kind": "sense",
+            "gloss_zh": "人；人们",
+            "gloss_en": "persons collectively",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0057_people_ku02",
+            "kind": "sense",
+            "gloss_zh": "民族；人民",
+            "gloss_en": "nation/community",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0057_people_ku03",
+            "kind": "grammar",
+            "gloss_zh": "人；人们",
+            "gloss_en": "persons collectively",
+            "playable": true
+          }
+        ]
+      },
+      "runtime_row_count_for_headword": 3,
+      "target_runtime_ku_row_verbatim": {
+        "ku_id": "w_0057_people_ku01",
+        "kind": "sense",
+        "gloss_zh": "人；人们",
+        "gloss_en": "persons collectively",
+        "playable": true
+      },
+      "comparison": {
+        "ku_id_verbatim_in_runtime": true,
+        "rank_matches_legacy_headword_id_number": true,
+        "lemma_matches": true,
+        "pos_raw_matches_legacy_pos": true,
+        "kind_is_sense": true,
+        "playable": true,
+        "gloss_zh_exact": false,
+        "gloss_en_exact": false,
+        "gloss_note": "Chinese gloss is the same two terms in swapped order (人们；人 vs 人；人们); English is a paraphrase (human beings collectively vs persons collectively). Same sense.",
+        "ipa_note": "Pack /ˈpiː.pəl/ vs Runtime /pˈipəl/: same segments modulo length mark.",
+        "sibling_rows_same_gloss_note": "Gloss text alone does not identify the row: sibling rows under the same headword share gloss text with different kinds (e.g. morphology/grammar/collocation rows). Identification here rests on the verbatim ku_id string plus kind=sense, not on gloss text alone."
+      }
+    },
+    {
+      "headword": "talk",
+      "legacy_teaching_record": {
+        "headword_id": "core20k:rank:145",
+        "rank": 145,
+        "sense_id": "w_0139_talk_s01",
+        "ku_id": "w_0139_talk_ku01",
+        "ku_type": "Sense",
+        "pos": "v.",
+        "gloss_zh": "说话；交谈",
+        "gloss_en": "speak or converse",
+        "us_ipa": "/tɑːk/",
+        "example_en": "We talk every evening.",
+        "example_zh": "我们每天晚上交谈。",
+        "correct_answer": "交谈；说话"
+      },
+      "runtime_headword_row_verbatim": {
+        "rank": 145,
+        "lemma": "talk",
+        "pos_raw": "v.",
+        "ipa": "/tˈɔk/",
+        "kus": [
+          {
+            "ku_id": "w_0139_talk_ku01",
+            "kind": "sense",
+            "gloss_zh": "说话；交谈",
+            "gloss_en": "speak/converse",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0139_talk_ku02",
+            "kind": "sense",
+            "gloss_zh": "谈话；讲话",
+            "gloss_en": "discussion/speech",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0139_talk_ku03",
+            "kind": "sense",
+            "gloss_zh": "讨论；谈判",
+            "gloss_en": "discuss formally",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0139_talk_ku04",
+            "kind": "grammar",
+            "gloss_zh": "说话；交谈",
+            "gloss_en": "speak/converse",
+            "playable": true
+          }
+        ]
+      },
+      "runtime_row_count_for_headword": 4,
+      "target_runtime_ku_row_verbatim": {
+        "ku_id": "w_0139_talk_ku01",
+        "kind": "sense",
+        "gloss_zh": "说话；交谈",
+        "gloss_en": "speak/converse",
+        "playable": true
+      },
+      "comparison": {
+        "ku_id_verbatim_in_runtime": true,
+        "rank_matches_legacy_headword_id_number": true,
+        "lemma_matches": true,
+        "pos_raw_matches_legacy_pos": true,
+        "kind_is_sense": true,
+        "playable": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": false,
+        "gloss_note": "English gloss differs only by punctuation (speak or converse vs speak/converse); Chinese gloss is character-exact. Same sense.",
+        "ipa_note": "Pack /tɑːk/ vs Runtime /tˈɔk/: vowel differs (ɑː vs ɔ). IPA is not identity evidence; the teaching line's IPA verification (B216 second-party, Cambridge US pages) governs which value ships. Recorded, not an identity blocker.",
+        "sibling_rows_same_gloss_note": "Gloss text alone does not identify the row: sibling rows under the same headword share gloss text with different kinds (e.g. morphology/grammar/collocation rows). Identification here rests on the verbatim ku_id string plus kind=sense, not on gloss text alone."
+      }
+    },
+    {
+      "headword": "here",
+      "legacy_teaching_record": {
+        "headword_id": "core20k:rank:153",
+        "rank": 153,
+        "sense_id": "w_0099_here_s01",
+        "ku_id": "w_0099_here_ku01",
+        "ku_type": "Sense",
+        "pos": "adv.",
+        "gloss_zh": "这里；在这里",
+        "gloss_en": "at or to this place",
+        "us_ipa": "/hɪr/",
+        "example_en": "Please come here.",
+        "example_zh": "请到这里来。",
+        "correct_answer": "这里；到这里"
+      },
+      "runtime_headword_row_verbatim": {
+        "rank": 153,
+        "lemma": "here",
+        "pos_raw": "adv.",
+        "ipa": "/hˈiɹ/",
+        "kus": [
+          {
+            "ku_id": "w_0099_here_ku01",
+            "kind": "sense",
+            "gloss_zh": "这里；在这里",
+            "gloss_en": "in this place",
+            "playable": true
+          },
+          {
+            "ku_id": "w_0099_here_ku02",
+            "kind": "sense",
+            "gloss_zh": "在这一点；此时",
+            "gloss_en": "at this point",
+            "playable": true
+          }
+        ]
+      },
+      "runtime_row_count_for_headword": 2,
+      "target_runtime_ku_row_verbatim": {
+        "ku_id": "w_0099_here_ku01",
+        "kind": "sense",
+        "gloss_zh": "这里；在这里",
+        "gloss_en": "in this place",
+        "playable": true
+      },
+      "comparison": {
+        "ku_id_verbatim_in_runtime": true,
+        "rank_matches_legacy_headword_id_number": true,
+        "lemma_matches": true,
+        "pos_raw_matches_legacy_pos": true,
+        "kind_is_sense": true,
+        "playable": true,
+        "gloss_zh_exact": true,
+        "gloss_en_exact": false,
+        "gloss_note": "Runtime English gloss abbreviates the dictionary sense (in this place vs legacy at or to this place); Chinese gloss is character-exact. The teaching example 'Please come here' is directional, and standard dictionary treatment unifies in/at/to this place as one sense, but the Runtime row text itself does not spell out the directional side. Recorded as a gloss-completeness note, not an identity conflict: the ku_id, rank, lemma, POS, kind, and Chinese gloss all match, and no separate directional KU row exists under here (ku02 is 'at this point', temporal). If the teaching line requires the directional side to be separately registered, that is a Runtime gloss question for the Runtime owner, not a reason to invent a sense ID here.",
+        "ipa_note": "Pack /hɪr/ vs Runtime /hˈiɹ/: same segments modulo rhotic notation.",
+        "sibling_rows_same_gloss_note": "Gloss text alone does not identify the row: sibling rows under the same headword share gloss text with different kinds (e.g. morphology/grammar/collocation rows). Identification here rests on the verbatim ku_id string plus kind=sense, not on gloss text alone."
+      }
+    }
+  ],
+  "counts": {
+    "headwords": 6,
+    "runtime_ku_rows_extracted": 20
+  }
+}
