@@ -1,0 +1,39 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v7-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "e5e036d1c9727a7043309035813a57cadd273ea4492ec31775923234e868b782",
+  "drive_url": "https://drive.google.com/file/d/1vSwiB1oHZjztvpaGevYKGHVBTgxWgNQb/view",
+  "counts": {
+    "total": 67,
+    "pass": 28,
+    "fail": 0,
+    "needs_recheck": 9,
+    "not_rechecked": 30,
+    "new_pass": 3,
+    "prior_failed_sources_replaced": 2,
+    "release_approved": 0
+  },
+  "new_pass": [
+    {
+      "term": "净利率",
+      "source": "https://www.bicpaedu.com/cpazhidao/20190506/44043.html",
+      "level": "CPA training source explicitly identifies 营业净利率简称净利率; old source failure preserved"
+    },
+    {
+      "term": "三连音",
+      "source": "https://www.lncu.edu.cn/zhaosheng/19805.html",
+      "level": "University published art examination syllabus exact musical term; old source failure preserved"
+    },
+    {
+      "term": "F1分数",
+      "source": "https://journal.ecust.edu.cn/cn/article/doi/10.14135/j.cnki.1006-3080.20240925001",
+      "level": "Peer-reviewed journal abstract direct term usage, not a formal definition"
+    }
+  ],
+  "qa": {
+    "unique_term_ids": 67,
+    "identity_hash_matches": 67,
+    "all_release_approved_false": true
+  },
+  "scope": "External term/sense usage evidence only, not lexicographic membership release. Original independent reviews unchanged."
+}
