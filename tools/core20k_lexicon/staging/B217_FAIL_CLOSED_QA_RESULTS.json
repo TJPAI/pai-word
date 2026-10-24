@@ -1,0 +1,40 @@
+{
+  "document": "B217_FAIL_CLOSED_QA_RESULTS",
+  "schema": "pai-core20k-b217-qa-results-v1",
+  "script": "B217_FAIL_CLOSED_IDENTITY_QA.py",
+  "inputs": {
+    "runtime_gz": "data/core20k-runtime.json.gz (production HEAD c7aae5a)",
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "pack": "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+    "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+    "record": "B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+    "record_sha256": "93fc4bd057ec3cb6154ccbfa81287625d4bea335abb9a31ee5a3b8e0e56d49b6"
+  },
+  "verify_mode": {
+    "identity": "PASS 6/6 (person/time/know/people/talk/here)",
+    "overlay_admission": "REJECTED 6/6 — CORRECT fail-closed outcome because registration_status is PENDING_REGISTRAR_SIGNOFF and registration_authority_signed=false. Admission rejection here is not a failure.",
+    "exit_code": 0
+  },
+  "self_test_mode": {
+    "total": 13,
+    "passed": 13,
+    "failed": 0,
+    "cases": [
+      "runtime_sha_mismatch -> REJECTED",
+      "pack_sha_mismatch -> REJECTED",
+      "ku_id_missing -> REJECTED",
+      "duplicate_ku_id_cross_headword -> REJECTED",
+      "rank_lemma_mismatch -> REJECTED",
+      "pos_mismatch -> REJECTED",
+      "ku_type_not_sense -> REJECTED",
+      "unapproved_binding_admission -> REJECTED",
+      "control: approved_record_admits (in-memory only, never written) -> ADMITS (proves the gate opens when approval exists)",
+      "registry_missing -> REJECTED",
+      "registry_corrupt -> REJECTED",
+      "registry_version_incompatible -> REJECTED",
+      "inputs_unchanged_readonly (Runtime + pack hashes identical before/after) -> PASS"
+    ]
+  },
+  "read_only_guarantee": "The QA script writes nothing to the Runtime, pack, SRS, or main; input hashes before and after the run are identical (see self-test).",
+  "full_transcript_file": "B217_FAIL_CLOSED_QA_RESULTS.txt (same commit)"
+}

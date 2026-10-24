@@ -1,0 +1,81 @@
+{
+  "document": "B217_SENSE_BINDING_DECISION_AND_AUTHORIZATION",
+  "schema": "pai-core20k-b217-binding-decision-v1",
+  "proposed_binding": {
+    "binding_kind": "KU_ANCHORED_SENSE",
+    "anchor_ku_id_field": "Runtime ku_id of the kind=sense KU row",
+    "official_sense_id": null,
+    "binding_status": "PROPOSED_NOT_APPROVED"
+  },
+  "technical_feasibility": "FEASIBLE",
+  "feasibility_basis": [
+    "Runtime ku_ids are globally unique (16,617/16,617 verified in this delivery), so one anchor identifies exactly one row; no one-to-many ambiguity exists in the current Runtime.",
+    "Each of the six headwords has exactly one headword row (no duplicate-lemma rows), so ku_id cannot be cross-headword ambiguous for this batch.",
+    "All six anchors are kind=sense and playable, so the binding selects sense rows, not morphology/grammar/collocation rows.",
+    "Binding mints zero new identifiers, so it cannot collide with existing Runtime KU IDs or SRS keys; SRS data is untouched and its keys are unchanged."
+  ],
+  "risks_and_mitigations": [
+    {
+      "risk": "Duplicate attribution via shared gloss text",
+      "assessment": "REAL if keyed by gloss: sibling rows share gloss text with different kinds (e.g. person ku02 morphology shares ku01 gloss). Mitigation (implemented in the QA script): binding keys ONLY on ku_id + kind=sense + rank/lemma/pos/gloss re-verification; gloss text alone never identifies a row."
+    },
+    {
+      "risk": "Future sense expansion / Runtime revision makes a binding stale",
+      "assessment": "REAL. Mitigation: every binding pins runtime_sha256 and the exact Runtime gloss text; the fail-closed loader must re-verify SHA, ku_id, kind, and gloss on every load and reject on any drift. A new Runtime version requires re-review, never silent carryover."
+    },
+    {
+      "risk": "Multiple teaching packs referencing the same anchor",
+      "assessment": "NOT a binding conflict: the binding is 1:1 between a sense and a KU row. Overlay builds must list each ku_id once; pack-level duplication is an overlay-build dedup rule, not a reason to mint a second sense identity."
+    },
+    {
+      "risk": "A future consumer requiring a sense_id field",
+      "assessment": "OPEN. Such a consumer must consume the binding document's anchor_ku_id mapping; it must not invent an sNN value. If a sense_id field becomes mandatory, that is a registrar schema decision, not something QA can supply by renaming s01."
+    },
+    {
+      "risk": "SRS compatibility",
+      "assessment": "NO NEW RISK INTRODUCED: no identifier is added, removed, or renamed, so existing SRS keys are unaffected. This delivery performs zero SRS writes and the QA script asserts its inputs are unchanged after running."
+    }
+  ],
+  "authority_finding": {
+    "conclusion": "Muse holds NO explicitly granted formal Runtime identity registration authority. No APPROVED status is set in this delivery.",
+    "evidence_searched": [
+      "B190_AUTHORITY_AND_EVIDENCE_PROTOCOL.md: registration predicate is a local field check only; novel KU allocation is not delegated to any authority; each state transition needs an explicit authorization actor; the document is a QA policy proposal that changes no predicate or Runtime state.",
+      "b216_sense_registration_proposal.json: explicitly PROPOSAL_NOT_SIGNED; registration authority is 'to be designated by the user as product owner'; unsigned proposals change nothing.",
+      "B217_RELEASE_GATE_OWNER_HANDOFF.md (66ee1c4): proposed accountable owner is the English Core20K Runtime / identity-registration maintainer; a proposal of ownership is not a grant to Muse.",
+      "B217_SIX_KU_REGISTRAR_CANDIDATE.json (f85e271): authority_approval_required=true, registration_authority_signed=false, all records PENDING_REGISTRAR_SIGNOFF.",
+      "ENGLISH_CORE20K_INTEGRATION_CONTRACT.md and B201/B204 preflight artifacts: no designation of Muse (or any AI reviewer) as registrar; preflight artifacts are staging-only and do not mint IDs.",
+      "No CODEOWNERS entry, signed delegation, or user message in this conversation grants Muse formal registration authority. The user's own instruction in this task confirms the rule: without explicit authority, do not self-sign approval."
+    ],
+    "what_would_constitute_authority": "A signed statement by the product owner / Runtime maintainer designating the registrar (by name/role) for this scope, or that registrar's own signed commit approving these six bindings. The authorization text below is drafted for exactly that signature; it is blank until signed."
+  },
+  "authorization_text_for_signature": {
+    "note": "This block is UNSIGNED. It becomes effective only when the product owner / designated registrar completes the signature fields and commits it (or signs an equivalent commit). Until then, registration_status remains PENDING_REGISTRAR_SIGNOFF and approved_count remains 0.",
+    "text": "I, the undersigned product owner / designated Runtime registrar for TJPAI/pai-word English Core20K, approve the KU-anchored sense binding (binding_kind=KU_ANCHORED_SENSE, official_sense_id=null) for exactly the following six Runtime KU rows, pinned to Runtime data/core20k-runtime.json.gz SHA-256 e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b (production branch HEAD c7aae5a662b2e32843dae8c2473cb7ceab3e0053) and Batch93 teaching pack SHA-256 21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15: person w_0266_person_ku01, time w_0049_time_ku01, know w_0041_know_ku01, people w_0057_people_ku01, talk w_0139_talk_ku01, here w_0099_here_ku01. This approval covers sense binding ONLY. It does not by itself certify teaching content, approve the formal overlay for publication, or authorise main-system deployment, each of which requires its own separate gate. Any change to the pinned Runtime SHA, ku_id, kind, or gloss text voids this approval for the affected row until re-reviewed.",
+    "signature_fields": {
+      "registrar_name": "",
+      "registrar_role": "",
+      "signature": "",
+      "signed_at": "",
+      "approving_commit": ""
+    }
+  },
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_gz_sha256_recomputed_in_this_delivery": true,
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "runtime_ku_id_globally_unique": true,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "ccbdd21"
+  },
+  "registration_status_overall": "PENDING_REGISTRAR_SIGNOFF",
+  "approved_count": 0
+}

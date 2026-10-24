@@ -1,0 +1,26 @@
+IDENTITY w_0266_person_ku01: PASS
+IDENTITY w_0049_time_ku01: PASS
+IDENTITY w_0041_know_ku01: PASS
+IDENTITY w_0057_people_ku01: PASS
+IDENTITY w_0139_talk_ku01: PASS
+IDENTITY w_0099_here_ku01: PASS
+IDENTITY overall: PASS
+OVERLAY ADMISSION overall: REJECTED (fail-closed) ['w_0266_person_ku01:admission_rejected', 'w_0049_time_ku01:admission_rejected', 'w_0041_know_ku01:admission_rejected', 'w_0057_people_ku01:admission_rejected', 'w_0139_talk_ku01:admission_rejected', 'w_0099_here_ku01:admission_rejected']
+NOTE: admission REJECTED on an unsigned record is the CORRECT fail-closed outcome, not a test failure.
+
+SELF-TEST fault injections (each must be REJECTED):
+  PASS injection_rejected:runtime_sha_mismatch
+  PASS injection_rejected:pack_sha_mismatch
+  PASS injection_rejected:ku_id_missing
+  PASS injection_rejected:duplicate_ku_id_cross_headword
+  PASS injection_rejected:rank_lemma_mismatch
+  PASS injection_rejected:pos_mismatch
+  PASS injection_rejected:ku_type_not_sense
+  PASS injection_rejected:unapproved_binding_admission
+  PASS control:approved_record_admits
+  PASS injection_rejected:registry_registry_missing
+  PASS injection_rejected:registry_registry_corrupt
+  PASS injection_rejected:registry_registry_version_incompatible
+  PASS inputs_unchanged_readonly (Runtime + pack hashes identical before/after)
+
+SELF-TEST: 13/13 passed
