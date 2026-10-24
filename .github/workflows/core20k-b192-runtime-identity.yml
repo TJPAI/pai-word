@@ -1,0 +1,39 @@
+name: Core20K B192 runtime identity audit
+on:
+  push:
+    branches: [core20k-teaching-qa-b162-20261024]
+    paths:
+      - 'tools/core20k_lexicon/staging/b192_runtime_identity_audit.mjs'
+      - '.github/workflows/core20k-b192-runtime-identity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readonly-runtime-crosswalk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout isolated QA tooling
+        uses: actions/checkout@v4
+        with:
+          path: qa
+          persist-credentials: false
+      - name: Checkout pinned production Runtime source
+        uses: actions/checkout@v4
+        with:
+          ref: c7aae5a662b2e32843dae8c2473cb7ceab3e0053
+          path: production
+          persist-credentials: false
+      - name: Checkout pinned B184 candidates
+        uses: actions/checkout@v4
+        with:
+          ref: 393651b8e9089956502ea9c97f6aca3d5415f332
+          path: b184
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify frozen hashes and audit exact headword ranks
+        run: |
+          node --version
+          node qa/tools/core20k_lexicon/staging/b192_runtime_identity_audit.mjs production/data/core20k-runtime.json.gz b184/rebuild-preview/b184-recognition/candidates-b184.jsonl
