@@ -1,0 +1,47 @@
+# Copy into the dedicated preview repository at .github/workflows/deploy-scene500-e5.yml.
+# Intentionally NOT active in the source repository.
+name: Deploy Scene500 E5 staging
+on:
+  workflow_dispatch:
+    inputs:
+      runtime_zip_url:
+        description: Direct HTTPS download URL of the pinned patched Muse V1.6 ZIP (not a Drive view page)
+        required: true
+        type: string
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: scene500-e5-pages
+  cancel-in-progress: false
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout source staging builder
+        uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: scene500-ai-training-pilot
+          path: source
+      - name: Download pinned runtime
+        env:
+          RUNTIME_ZIP_URL: ${{ inputs.runtime_zip_url }}
+        run: |
+          case "$RUNTIME_ZIP_URL" in https://*) ;; *) echo "HTTPS required"; exit 1;; esac
+          curl --fail --location --retry 3 --connect-timeout 30 --max-time 600 "$RUNTIME_ZIP_URL" --output runtime.zip
+      - name: Verify archive and stage
+        run: |
+          python3 source/experiments/scene500-ai-training/v1.6/prepare-pages.py runtime.zip _site/rebuild-preview/scene500-e5/
+          test -f _site/rebuild-preview/scene500-e5/index.html
+          printf '%s\n' '<!doctype html><meta http-equiv="refresh" content="0;url=rebuild-preview/scene500-e5/"><a href="rebuild-preview/scene500-e5/">Scene500 E5 test</a>' > _site/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
