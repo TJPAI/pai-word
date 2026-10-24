@@ -1,0 +1,22 @@
+name: Core20K B202 authority preflight regression
+on:
+  push:
+    branches: [core20k-teaching-qa-b162-20261024]
+    paths:
+      - 'tools/core20k_lexicon/staging/b201_authority_preflight.mjs'
+      - 'tools/core20k_lexicon/staging/b201_authority_preflight.test.mjs'
+      - '.github/workflows/core20k-b202-authority-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test fail-closed approval logic
+        run: node --test tools/core20k_lexicon/staging/b201_authority_preflight.test.mjs
