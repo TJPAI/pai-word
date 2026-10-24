@@ -1,0 +1,34 @@
+{
+  "schema": "pai-core20k-b163-risk-triage-summary-v1",
+  "runtime_snapshot_commit": "c4442bc3e0a97bb6cdf9a077d1f56374f2f0824b",
+  "candidate_count": 290,
+  "exact_ku_matches": 285,
+  "absent_ku_count": 5,
+  "missing_explicit_pos": 94,
+  "explicit_pos_discrepancies_including_unmatched": 9,
+  "translation_subject_conflicts": 1,
+  "independent_semantic_certified": 0,
+  "release_eligible": 0,
+  "runtime_mutation": false,
+  "unmatched_ids": [
+    "w_2852_filter_ku01",
+    "w_2852_filter_ku02",
+    "w_2852_filter_ku03",
+    "w_0582_wrong_ku05",
+    "w_0908_career_ku02"
+  ],
+  "pos_discrepancy_ids": [
+    "w_2598_chat_ku_s01",
+    "w_2575_click_ku_s01",
+    "w_2575_click_ku_s03",
+    "w_2852_filter_ku02",
+    "w_2248_pose_ku_s01",
+    "w_2359_deposit_ku_s03",
+    "w_0908_career_ku02",
+    "w_2313_briefly_ku_s01",
+    "w_2663_flag_ku_s03"
+  ],
+  "report_sha256": "4553cd7a776b473989c4d3ea90cfda4857e341ad4e386876f19e0bf5713a17be",
+  "release_status": "BLOCKED_SEMANTIC_CERTIFICATION_AND_IDENTITY",
+  "notes": "The runtime POS is headword-level. POS discrepancy flags are not proof of incorrect teaching sense. No independent dictionary authentication completed."
+}
