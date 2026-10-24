@@ -45,7 +45,7 @@ try{
   assert.equal(beforeSwitch.checked,true);
   assert.equal(beforeSwitch.bg,'rgb(36, 117, 230)');
   assert.equal(beforeSwitch.fg,'rgb(255, 255, 255)');
-  await page.locator('.auto-word-symbol').click();
+  await page.locator('.auto-word-toggle input').click();
   const afterSwitch=await page.evaluate(()=>{
    const i=document.querySelector('.auto-word-toggle input');
    const b=document.querySelector('.auto-word-symbol');
@@ -58,7 +58,7 @@ try{
   assert.equal(afterSwitch.fg,'rgb(144, 153, 167)');
   assert.equal(afterSwitch.x,beforeSwitch.x);
   assert.equal(afterSwitch.y,beforeSwitch.y);
-  await page.locator('.auto-word-symbol').click();
+  await page.locator('.auto-word-toggle input').click();
   assert.equal(await page.locator('.auto-word-toggle input').isChecked(),true);
   const question=await take();
   assert.equal(question.word.visibility,'hidden',`word should be hidden: ${viewport.width}`);
