@@ -1,0 +1,26 @@
+name: Core20K B204 trusted authority boundary
+on:
+  push:
+    branches: [core20k-teaching-qa-b162-20261024]
+    paths:
+      - 'tools/core20k_lexicon/staging/b201_authority_preflight.mjs'
+      - 'tools/core20k_lexicon/staging/b201_authority_preflight.test.mjs'
+      - 'tools/core20k_lexicon/staging/b204_verified_authority_boundary.mjs'
+      - 'tools/core20k_lexicon/staging/b204_verified_authority_boundary.test.mjs'
+      - '.github/workflows/core20k-b204-trusted-authority.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run authorization boundary regression
+        run: |
+          node --version
+          node --test tools/core20k_lexicon/staging/b201_authority_preflight.test.mjs tools/core20k_lexicon/staging/b204_verified_authority_boundary.test.mjs
