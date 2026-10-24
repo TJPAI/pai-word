@@ -1,0 +1,49 @@
+{
+  "schema": "zh-core20k-domain67-authority-evidence-v11-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "f16bb2df739a640a8f42fea621f2c519dd6e9943deddc1622c8efb413f24d769",
+  "drive_url": "https://drive.google.com/file/d/17b6MHeDP6CmcA6zsbC7cqrEJzpI0rmWI/view",
+  "counts": {
+    "total": 67,
+    "previous": 46,
+    "new": 4,
+    "with_evidence": 50,
+    "pending": 17,
+    "release_approved": 0
+  },
+  "new_sources": [
+    {
+      "term": "三连音",
+      "url": "https://music.ujn.edu.cn/info/1096/2699.htm",
+      "type": "university_music_curriculum_usage"
+    },
+    {
+      "term": "十六分音符",
+      "url": "https://fz.imac.edu.cn/html-fz/jxgl/20250915/42274.shtml",
+      "type": "music_school_instruction_usage"
+    },
+    {
+      "term": "主机名",
+      "url": "https://its.pku.edu.cn/faq.jsp",
+      "type": "university_network_support_explanation"
+    },
+    {
+      "term": "自动控制",
+      "url": "https://ee.bjtu.edu.cn/bksjy/jscg/zykcjs/a865a9040ef5487197de65faf14b452c.htm",
+      "type": "university_core_course_description"
+    }
+  ],
+  "excluded_source": {
+    "term": "不饱和溶液",
+    "reason": "Suzhou educational page incorrectly defines non-saturated solution as unable to dissolve additional solute",
+    "url": "https://szteacher.suzhou.edu.cn/News.aspx?ID=99141&NTID=63"
+  },
+  "qa": {
+    "valid_term_id_hashes": 67,
+    "unique_ids": 67,
+    "source_presence": 50,
+    "raw_reviews_unchanged": true,
+    "runtime_changed": false,
+    "release_approved": 0
+  }
+}
