@@ -1,0 +1,37 @@
+{
+  "schema": "pai-core20k-b164-snapshot-reconciliation-v1",
+  "source_snapshot": "core20k_batch163_staging_290.jsonl",
+  "source_sha256": "6363190d0d4b4b3908391f7907d97edc602a2a8dfec934bca800411f9a7dac6f",
+  "records": 290,
+  "unique_ku": 290,
+  "unique_headwords": 135,
+  "mechanical_failures": {
+    "CLOZE_RECONSTRUCTION": 0,
+    "ISOLATION": 0,
+    "MISSING_ID": 0
+  },
+  "unresolved": {
+    "RANK_UNRESOLVED": 290,
+    "IPA_UNRESOLVED": 290,
+    "VARIANT_REVIEW_PENDING": 290
+  },
+  "flagged_unique_ku": 26,
+  "flag_instances": 38,
+  "flag_counts": {
+    "AUTHORITY_SENSE_CHECK_REQUIRED": 4,
+    "BATCH161_EDITORIAL_REVISION": 4,
+    "DOMAIN_SENSE": 1,
+    "INTERNAL_TRANSLATION_CORRECTED_EXTERNAL_CERT_PENDING": 1,
+    "MIXED_SENSE_GLOSS": 1,
+    "MULTI_SENSE_GLOSS": 1,
+    "RUNTIME_ID_NOT_FOUND_QUARANTINE": 5,
+    "SOURCE_POS_CONFLICT": 1,
+    "SUPERSEDED_DUPLICATE": 20
+  },
+  "duplicate_question_text": 0,
+  "duplicate_sense_id": 0,
+  "runtime_missing_id_count": 5,
+  "semantic_certified": 0,
+  "release_eligible": 0,
+  "note": "Corrects B162/B163 reported counts: 26 flagged KU and 38 flag instances in actual B163 snapshot, including five quarantined runtime IDs; historical superseded marks are not live duplicate records."
+}
