@@ -56,18 +56,64 @@
       "url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=20543&la=0&powerMode=0",
       "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL",
       "note": "Dictionary entry exists; some documented senses historical, modern distribution remains unverified"
+    },
+    {
+      "term": "她们",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "汉典",
+      "url": "https://zdic.net/hans/%E5%A5%B9%E4%BB%AC",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    },
+    {
+      "term": "你们",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "汉典",
+      "url": "https://zdic.net/hans/%E4%BD%A0%E4%BB%AC",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    },
+    {
+      "term": "我们",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "汉典",
+      "url": "https://zdic.net/hans/%E6%88%91%E4%BB%AC",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    },
+    {
+      "term": "他妈的",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "汉典",
+      "url": "https://www.zdic.net/hans/%E4%BB%96%E5%A6%88%E7%9A%84",
+      "decision": "LEXICALITY_ATTESTED_PEDAGOGICAL_PRIORITY_PENDING",
+      "note": "Profane expression; independent entry does not settle Core20K instructional priority."
+    },
+    {
+      "term": "它们",
+      "status": "COMPONENT_DICTIONARY_USAGE_ATTESTED",
+      "authority": "汉典 它 字条目",
+      "url": "https://zdic.net/hans/%E5%AE%83",
+      "decision": "PROTECT_PENDING_DIRECT_ENTRY",
+      "note": "Listed among common compound words but this is not independently verified as its own headword."
     }
   ],
   "limits": [
-    "Dictionary headword supports lexical legitimacy only, not Core20K membership priority or frequency",
-    "Remaining 6 high-score terms not individually dictionary-verified by this overlay",
-    "No identity, membership or frequency changes"
+    "12 high-risk terms have some recorded evidence, but direct headword status is confirmed for 11 only; 两地 remains contextual-only",
+    "Dictionary headword does not establish frequency, retained utility, or Core20K inclusion priority",
+    "No changes to term_id, membership, runtime or rank"
   ],
   "approved_changes": {
     "membership": 0,
     "identity": 0,
     "frequency": 0
   },
-  "reviewed_count": 7,
-  "dictionary_evidence_check_date": "2026-10-24"
+  "reviewed_count": 12,
+  "dictionary_evidence_check_date": "2026-10-24",
+  "pending": [
+    {
+      "term": "两地",
+      "status": "CONTEXT_ATTESTED_NO_DIRECT_HEADWORD",
+      "url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=91044&la=0&powerMode=0",
+      "note": "Appears within example definition of 交界; not independent entry evidence."
+    }
+  ],
+  "direct_dictionary_headword_count": 11
 }
