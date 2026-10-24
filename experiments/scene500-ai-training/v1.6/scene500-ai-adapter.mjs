@@ -18,7 +18,7 @@ export function validateIdentity(catalog,index){
   for(const item of index.scenes){
    if(!catalog.scenes[item.sceneId]||seen.has(item.sceneId))throw Error('Invalid/duplicate index ID '+item.sceneId);
    seen.add(item.sceneId);
-   if(!Array.isArray(item.vector)||!item.vector.length||item.vector.some(v=>!Number.isFinite(v)))throw Error('Invalid vector '+item.sceneId);
+   if(!Array.isArray(item.vector)||!item.vector.length||item.vector.some(v=>!Number.isFinite(v))||!item.vector.some(v=>v!==0))throw Error('Invalid vector '+item.sceneId);
   }
   const dim=index.scenes[0].vector.length;
   if(index.scenes.some(x=>x.vector.length!==dim))throw Error('Vector dimension mismatch');
@@ -79,7 +79,7 @@ export function createScene500AI({loadCatalog,loadIndex,embedQuery,fallback,elig
     try{
     const q=await embedQuery('query: '+query.trim(),{signal,locale});
     assertActive(signal);
-    if(!Array.isArray(q)||q.length!==index.scenes[0].vector.length||q.some(v=>!Number.isFinite(v)))throw Error('Invalid query vector');
+    if(!Array.isArray(q)||q.length!==index.scenes[0].vector.length||q.some(v=>!Number.isFinite(v))||!q.some(v=>v!==0))throw Error('Invalid query vector');
     for(const item of index.scenes){
      if(allowed&&!allowed.has(item.sceneId))continue;
      items.push({sceneId:item.sceneId,score:cosine(q,item.vector)});
