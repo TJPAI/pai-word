@@ -1,0 +1,36 @@
+name: Welcome startup browser QA
+on:
+  push:
+    branches: [home-perf-safe-load-20261022]
+    paths:
+      - 'rebuild-preview/welcome.js'
+      - 'rebuild-preview/welcome.css'
+      - 'rebuild-preview/bootstrap.js'
+      - 'rebuild-preview/index.html'
+      - 'tests/welcome-startup-browser-qa.mjs'
+      - 'tests/welcome-first-paint.test.mjs'
+      - '.github/workflows/welcome-startup-browser-qa.yml'
+  workflow_dispatch:
+jobs:
+  startup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check welcome boot contract
+        run: node --test tests/welcome-first-paint.test.mjs
+      - name: Install isolated Chromium harness
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Launch local static application
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/pai-welcome-server.log 2>&1 &
+          sleep 1
+      - name: Verify first-visit, returning, and early-click flows
+        run: node tests/welcome-startup-browser-qa.mjs
