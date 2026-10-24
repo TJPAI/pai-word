@@ -1,0 +1,57 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PAI Word B218 · 隔离学习验收</title><style>
+:root{font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1c2c39;background:#f4f7fa}*{box-sizing:border-box}body{margin:0}.wrap{max-width:680px;margin:auto;padding:20px}h1{font-size:24px}.warning{background:#fff3d8;border:1px solid #d9a33d;padding:14px;border-radius:12px;line-height:1.55}.panel{background:white;border:1px solid #dae2eb;border-radius:16px;padding:24px;margin-top:20px;min-height:290px}button{border:1px solid #abc0d0;border-radius:9px;background:#f8fbff;padding:12px 15px;font-size:16px;cursor:pointer}button.primary{background:#195aa5;color:white;border-color:#195aa5}button:disabled{opacity:.4}button:focus-visible{outline:3px solid #d48b25}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.muted{color:#647382;font-size:14px}.word{font-size:36px;font-weight:700;margin:15px 0}.example{font-size:20px;margin:14px 0}.translation{border-top:1px solid #dfe7ee;padding-top:14px;margin-top:15px;color:#334e65}input{width:100%;padding:12px;border:1px solid #a9b9c8;border-radius:9px;font-size:18px}.ok{color:#19704c}.bad{color:#aa3e29}.badge{font-weight:700;color:#924b13}#app{min-height:300px}</style></head><body><main class="wrap"><h1>PAI Word · B218 六词隔离学习</h1><div class="warning"><strong>STAGING_ONLY · 非正式学习池</strong><div>本页面仅用于六条教学内容的工程验收。进度仅存在当前页面内存中；不读取、不修改正式学习记录或SRS。刷新即清空。</div></div><p id="status" class="muted">正在核验冻结Runtime及B217/B218证据……</p><section class="panel" id="app" aria-live="polite"></section></main><script type="module">
+import {scoreB218Context,validateB218Binding,B218_RUNTIME_SHA,B218_PACK_SHA} from '../../scripts/core20k-b218-contextual-grading.mjs';
+const app=document.getElementById('app'),status=document.getElementById('status');
+let rows=[],index=0,phase='home',answers=[],lastResult=null,auto=false,timer=null;
+const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const sha=async b=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',b))).map(x=>x.toString(16).padStart(2,'0')).join('');
+async function read(url){const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status+' '+url);return new Uint8Array(await r.arrayBuffer())}
+const json=b=>JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(b));
+function stopAuto(){auto=false;clearTimeout(timer)}
+function speak(){if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(rows[index].headword);utterance.lang='en-US';utterance.rate=.85;window.speechSynthesis.speak(utterance)}
+function home(){stopAuto();phase='home';render()}
+function start(){index=0;answers=[];phase='question';render()}
+function next(){stopAuto();index++;phase=index>=rows.length?'done':'question';render()}
+function reveal(){phase='answer';render()}
+function score(v){answers[index]={ku_id:rows[index].ku_id,rating:v,typed:lastResult};phase='rated';render()}
+function schedule(){clearTimeout(timer);if(!auto)return;timer=setTimeout(()=>{if(phase==='question')reveal();else if(phase==='answer'||phase==='rated')next();if(auto&&phase!=='done')schedule()},3500)}
+function toggleAuto(){auto=!auto;if(auto)schedule();else clearTimeout(timer);render()}
+function render(){
+ const r=rows[index];const header='<p class="muted">仅当前页面内存 · '+answers.length+'/6 已评分 · '+(phase==='home'?'准备开始':phase==='done'?'已结束':(index+1)+'/6')+'</p>';
+ if(phase==='home'){app.innerHTML=header+'<h2>首批六词学习流程</h2><p>person · time · know · people · talk · here</p><p>题目 → 输入中文 → 显示答案 → 三按钮自评 → 下一词</p><div class="actions"><button class="primary" id="start">进入学习</button></div>';document.getElementById('start').onclick=start;return}
+ if(phase==='done'){app.innerHTML=header+'<h2>本次隔离学习结束</h2><p>完成 '+answers.length+' 条评分，未写入正式SRS。</p><div class="actions"><button class="primary" id="again">重新开始</button><button id="home">返回首页</button></div>';document.getElementById('again').onclick=start;document.getElementById('home').onclick=home;return}
+ const common='<div class="word">'+esc(r.headword)+'</div><button id="speak" aria-label="播放美式发音">🔊 美式发音</button> <span class="muted">'+esc(r.us_ipa)+'</span>';
+ if(phase==='question')app.innerHTML=header+common+'<p class="example">'+esc(r.example_en)+'</p><p class="muted">请根据英文语境写出目标词的中文意思。</p><input id="typed" autocomplete="off" aria-label="中文答案"><div class="actions"><button class="primary" id="reveal">显示答案</button><button id="check">检查输入</button><button id="auto">'+(auto?'暂停':'自动浏览')+'</button><button id="home">首页</button></div><p id="feedback" aria-live="polite"></p>';
+ else app.innerHTML=header+common+'<p class="example">'+esc(r.example_en)+'</p><div class="translation"><strong>中文翻译</strong><p>'+esc(r.example_zh)+'</p><strong>词义</strong><p>'+esc(r.gloss_zh)+'</p></div>'+(lastResult?'<p class="'+(lastResult.correct?'ok':'bad')+'">刚才的输入：'+(lastResult.correct?'语境内接受':'不在本语境的已审核答案表内')+'</p>':'')+'<p class="muted">按实际记忆情况自评，不以输入判分直接改写SRS。</p><div class="actions"><button data-rating="again">不认识</button><button data-rating="hard">模糊</button><button data-rating="good">认识</button><button id="next" class="primary">'+(phase==='rated'?'下一词':'跳过评分 / 下一词')+'</button><button id="auto">'+(auto?'暂停':'自动浏览')+'</button><button id="home">首页</button></div>';
+ document.getElementById('speak').onclick=speak;
+ document.getElementById('home').onclick=home;
+ document.getElementById('auto').onclick=toggleAuto;
+ if(phase==='question'){
+  document.getElementById('reveal').onclick=reveal;
+  document.getElementById('check').onclick=()=>{const answer=document.getElementById('typed').value;lastResult=scoreB218Context({ku_id:r.ku_id,context_ku_id:r.ku_id,answer});const f=document.getElementById('feedback');f.className=lastResult.correct?'ok':'bad';f.textContent=lastResult.correct?'语境答案接受':'未匹配当前语境的已审核答案';};
+  document.getElementById('typed').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();document.getElementById('check').click()}};
+ }else{for(const b of app.querySelectorAll('[data-rating]'))b.onclick=()=>score(b.dataset.rating);document.getElementById('next').onclick=next}
+}
+let startX=null;app.addEventListener('touchstart',e=>{startX=e.touches[0]?.clientX??null},{passive:true});app.addEventListener('touchend',e=>{if(startX===null)return;const d=(e.changedTouches[0]?.clientX??startX)-startX;startX=null;if(Math.abs(d)<75)return;if(phase==='question')reveal();else if(phase==='answer'||phase==='rated')next()},{passive:true});
+try{
+ if(!crypto?.subtle)throw Error('SHA-256不可用，请使用HTTPS');
+ const [runtimeBytes,packBytes,registeredBytes,reviewBytes]=await Promise.all([
+ read('../../data/core20k-runtime.json.gz'),read('./batch93_nonrelease_teaching_pack.json'),read('./B217_SIX_KU_REGISTERED_CROSSWALK.json'),read('./B218_SIX_KU_TEACHING_CERTIFICATION_REVIEW.json')]);
+ const [runtimeSha,packSha]=await Promise.all([sha(runtimeBytes),sha(packBytes)]);
+ if(runtimeSha!==B218_RUNTIME_SHA||packSha!==B218_PACK_SHA)throw Error('Runtime或教学包SHA不符');
+ const registered=json(registeredBytes),review=json(reviewBytes),pack=json(packBytes);
+ if(!('DecompressionStream'in window))throw Error('浏览器不支持gzip解压');
+ const inflated=new Response(new Blob([runtimeBytes]).stream().pipeThrough(new DecompressionStream('gzip')));
+ const core=json(new Uint8Array(await inflated.arrayBuffer()));
+ const raw=core.words||core.headwords||core.records;
+ if(!Array.isArray(raw))throw Error('Runtime结构未知，拒绝猜测');
+ const byKU=new Map();
+ for(const w of raw){for(const s of (w.s||w.senses||[])){const id=s.ku_id;if(id)byKU.set(id,{w,s})}}
+ const binding=validateB218Binding({registered,review,verifiedRuntimeSha:runtimeSha,verifiedPackSha:packSha,runtimeByKU:byKU});
+ if(!binding.valid)throw Error('绑定验证失败：'+binding.reason);
+ rows=pack.records;
+ if(rows.length!==6||rows.some(r=>!binding.ku_ids.includes(r.ku_id)||!r.prompt||!r.example_en||!r.example_zh||!r.us_ipa))throw Error('教学题目缺失或漂移');
+ status.textContent='已核验：Runtime SHA、原始教学包SHA、6条KU身份及释义；隔离学习就绪';
+ render();
+}catch(e){status.textContent='FAIL-CLOSED：'+e.message;app.innerHTML='<h2>隔离学习未启用</h2><p>校验未通过，禁止进入学习。</p>'}
+</script></body></html>
