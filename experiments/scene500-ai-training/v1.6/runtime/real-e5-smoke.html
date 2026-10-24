@@ -9,9 +9,9 @@ try{
  if(!cr.ok||!ir.ok)throw Error('Assets HTTP '+cr.status+'/'+ir.status);
  const [catalogText,indexText]=await Promise.all([cr.text(),ir.text()]);const catalog=JSON.parse(catalogText),index=JSON.parse(indexText);
  const verified=await verifyC2Index({catalogText,index,indexText,expectedCatalogSha256:index.catalogFileSha256,expectedIndexSha256:'eae39123c0f21800990bb68468331de95f1b45e8a7ed086598ac62959e680254'});
- if(verified?.valid===false)throw Error('Index verification failed');
+ if(verified.sceneCount!==500||verified.vectorDimensions!==384)throw Error('Index verification failed');
  log('索引校验通过；500 x 384');
- encoder=createE5Encoder();const warmStart=performance.now();await encoder.warmup();log('E5实际加载完成 '+Math.round(performance.now()-warmStart)+'ms');
+ encoder=createE5Encoder({workerUrl:new URL('./encoder/scene500-e5-worker.mjs',import.meta.url)});const warmStart=performance.now();await encoder.warmup();log('E5实际加载完成 '+Math.round(performance.now()-warmStart)+'ms');
  const engine=createScene500AI({loadCatalog:async()=>catalog,loadIndex:async()=>index,embedQuery:(text,{signal})=>encoder.encode(text,{signal})});
  const result=await engine.recommend({query:'早上起床刷牙',topK:5});
  if(result.modeUsed!=='e5'||result.status!=='ok'||!result.recommendations.length)throw Error('E5 not used: '+JSON.stringify(result));
