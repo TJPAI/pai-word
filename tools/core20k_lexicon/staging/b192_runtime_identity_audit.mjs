@@ -27,10 +27,14 @@ const records=cs.map(c=>{
  const rank=Number(c.rank),w=ranks.get(rank);
  const lemmaMatch=!!w&&w.lemma.toLowerCase()===c.headword.toLowerCase();
  const exactPhraseKUs=w?.kus.filter(k=>[k[2],k[3]].some(v=>typeof v==='string'&&v.toLowerCase().includes(c.collocation_en.toLowerCase())))||[];
+ const crossHeadwordMatches=[...used.values()].filter(u=>[u.ku[2],u.ku[3]].some(v=>typeof v==='string'&&v.toLowerCase().includes(c.collocation_en.toLowerCase())));
+ const existingIdMatches=c.ku_id ? used.has(c.ku_id) : false;
  return {candidate_id:c.provisional_candidate_id,phrase:c.collocation_en,candidate_rank:rank,candidate_headword:c.headword,
    runtime_lemma:w?.lemma??null,rank_lemma_match:lemmaMatch,
    existing_ku_count:w?.kus.length??null,
    possible_existing_ku_matches:exactPhraseKUs.map(k=>({ku_id:k[0],type:k[1],gloss_zh:k[2],gloss_en:k[3]})),
+   exact_phrase_gloss_hits_all_20k:crossHeadwordMatches.map(u=>({headword:u.lemma,rank:u.rank,ku_id:u.ku[0],type:u.ku[1],gloss_zh:u.ku[2],gloss_en:u.ku[3]})),
+   existing_ku_id_collision:existingIdMatches,
    formal_sense_id:null,
    identity_verdict:lemmaMatch?'HEADWORD_RANK_VERIFIED_SENSE_OWNER_UNRESOLVED':'HEADWORD_RANK_MISMATCH',
    status:'NO_ID_ALLOCATED'};
@@ -40,3 +44,5 @@ const out={schema:'pai-core20k-b192-readonly-runtime-identity-audit-v1',runtime_
   records,registration_allowed:0,production_ready:0};
 console.log(JSON.stringify(out,null,2));
 if(records.some(r=>!r.rank_lemma_match))process.exitCode=2;
+// Full-text gloss screening is necessary but cannot prove absence of phrase use in examples or other training assets.
+// Exact phrase hits flag review; they do not automatically license new KU identity allocation.
