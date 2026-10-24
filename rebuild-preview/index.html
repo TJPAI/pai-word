@@ -2,15 +2,26 @@
  const q=new URLSearchParams(location.search);
  let seen=false;try{seen=localStorage.getItem('pai-word-welcome-seen-v1')==='1'}catch(e){}
  window.PAI_WELCOME_FAST=q.get('welcome')!=='0'&&(q.get('welcome')==='1'||q.has('resetFresh')||!seen);
+ // Ask for the comic before learning/app CSS competes for network.
+ if(window.PAI_WELCOME_FAST&&!q.has('resetFresh')){
+   const comic=document.createElement('link');
+   comic.rel='preload';comic.as='image';
+   comic.href='rebuild-preview/assets/pai-ai-mathematicians-comic.jpg?v=comic-v2';
+   comic.fetchPriority='high';document.head.appendChild(comic);
+ }
  // The existing app stays hidden behind its atomic boot gate until all CSS is ready.
- const sheets=["mobile.css?v=6","ux-fix.css?v=learning-v3.1","product-v2.css?v=learning-v3.1","learning.css?v=recall-icon-small-v4","home-dashboard.css?v=scene-search-v1"];
- window.PAI_APP_STYLES_READY=Promise.all(sheets.map(href=>new Promise(resolve=>{
+ const sheets=["mobile.css?v=6","ux-fix.css?v=learning-v3.1","product-v2.css?v=learning-v3.1","learning.css?v=repeat-arrows-v5","home-dashboard.css?v=scene-search-v1"];
+ const loadAppStyles=()=>Promise.all(sheets.map(href=>new Promise(resolve=>{
    const el=document.createElement('link');el.rel='stylesheet';el.href=href;
    el.media='print';
    const finish=()=>{el.media='all';resolve()};
    el.onload=finish;el.onerror=()=>{console.warn('App stylesheet unavailable',href);finish()};
    document.head.appendChild(el);
  })));
+ // Delay learning/app styles only on welcome visits, without delaying returning users.
+ window.PAI_APP_STYLES_READY=window.PAI_WELCOME_FAST
+   ?new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>loadAppStyles().then(resolve))))
+   :loadAppStyles();
 })();</script><link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="apple-touch-icon.png"><style id="pai-preview-rating-bar">.learning-screen .recall-correction{order:10;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:0 0 auto;width:100%;position:relative;bottom:auto;z-index:15;box-sizing:border-box;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:#fff;border-top:1px solid #e6e9e7}.learning-screen .recall-correction button{min-height:68px;min-width:0;width:100%;border-radius:16px;font-size:19px;font-weight:700}.learning-screen .study-body{min-height:0;flex:1;overflow-y:auto}.learning-screen .recall-note{order:8;flex:0 0 auto;min-height:24px;padding:5px 12px}.learning-screen:not(.revealed) .recall-correction{visibility:visible}.learning-screen .session-footnote{order:7} .learning-screen .recall-correction button:disabled{opacity:.42;cursor:default;filter:grayscale(.5)}.learning-screen .word-hero{flex:0 0 174px!important;height:174px!important;min-height:174px!important;max-height:174px!important;padding:6px 18px;box-sizing:border-box;overflow:hidden}.learning-screen.revealed .word-hero{flex:0 0 174px!important;height:174px!important;min-height:174px!important;max-height:174px!important}.learning-screen .ipa-line{display:flex;align-items:center;justify-content:center;gap:4px;min-height:44px}.learning-screen .ipa-line .ipa{margin:0}.learning-screen .ipa-line .speak-btn{position:static;display:grid;place-items:center;flex:0 0 44px;min-width:44px;min-height:44px}.learning-screen .study-body{min-height:0;flex:1;overflow-y:auto;padding:8px 18px 12px!important}.learning-screen .recall-note{order:8;flex:0 0 30px!important;min-height:30px!important;padding:5px 12px!important}.learning-screen .session-footnote{display:none!important}.learning-screen .recall-correction{order:10;margin-top:auto;flex-shrink:0}@media(max-height:680px){.learning-screen .word-hero,.learning-screen.revealed .word-hero{flex-basis:145px!important;height:145px!important;min-height:145px!important;max-height:145px!important}}/* Stable shared bottom rail on both learning screens. */
 .learning-screen{height:100dvh!important;min-height:0!important;overflow:hidden;display:flex;flex-direction:column}
 .learning-screen .word-hero,.learning-screen.revealed .word-hero{flex:0 0 126px!important;height:126px!important;min-height:126px!important;max-height:126px!important;padding:0 14px!important}
