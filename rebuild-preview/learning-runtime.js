@@ -324,7 +324,9 @@
     const label=labels[type]||u.s.kuTitle||'知识点',title=u.s.kuTitle&&u.s.kuTitle!==label?u.s.kuTitle:'';
     const pattern=kc.pattern_or_example?`<div class="ku-pattern"><div class="answer-label">模式 / 例子</div><div>${esc(kc.pattern_or_example)}</div></div>`:'';
     const context=u.s?.m?`<details class="answer-section ku-context"><summary>相关义项</summary><div class="definition">${esc(u.s.m)}</div></details>`:'';
-    return `<div class="answer ku-answer" onclick="event.stopPropagation()"><div class="answer-section ku-primary"><div class="ku-head"><span class="pos-chip">${esc(label)}</span>${title?`<span class="ku-title">${esc(title)}</span>`:''}</div><div class="definition ku-rule">${esc(kc.content_zh)}</div>${pattern}</div>${context}</div>`;
+    const examples=state.showExamples&&Array.isArray(u.s?.e)&&u.s.e.length?`<details class="answer-section"><summary>相关例句</summary>${u.s.e.slice(0,3).map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${esc(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${esc(u.s.exampleAudio?.[i]||e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</details>`:'';
+    const collocations=state.showCollocations&&u.s?.c?`<details class="answer-section"><summary>相关搭配</summary><div class="collocations">${esc(u.s.c)}</div></details>`:'';
+    return `<div class="answer ku-answer" onclick="event.stopPropagation()"><div class="answer-section ku-primary"><div class="ku-head"><span class="pos-chip">${esc(label)}</span>${title?`<span class="ku-title">${esc(title)}</span>`:''}</div><div class="definition ku-rule">${esc(kc.content_zh)}</div>${pattern}</div>${examples}${collocations}${context}</div>`;
   };
   function unitForCurrentView(){
     if(!window.PAI_CORE?.byKU)return null;
