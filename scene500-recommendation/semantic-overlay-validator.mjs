@@ -14,7 +14,7 @@ export function validateSemanticOverlay(payload, validSceneIds) {
     if(typeof id!=='string'||!/^S\d{3}$/.test(id)||!valid.has(id))errors.push('unknown scene_id at '+i);
     if(seen.has(id))errors.push('duplicate scene_id '+id);
     seen.add(id);
-    if(!Array.isArray(scene.expressions)||scene.expressions.length>50){errors.push('invalid expressions for '+id);continue;}
+    if(!Array.isArray(scene.expressions)||scene.expressions.length===0||scene.expressions.length>50){errors.push('invalid expressions for '+id);continue;}
     const terms=new Set();
     for(const value of scene.expressions){
       if(typeof value!=='string'||value.trim().length<2||value.length>120){errors.push('invalid expression for '+id);continue;}
