@@ -1,0 +1,82 @@
+{
+  "schema": "pai-core20k-b191-source-grounded-identity-crosswalk-v1",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "core20k-b184-recognition-isolated",
+    "path": "rebuild-preview/b184-recognition/candidates-b184.jsonl",
+    "target_commit": "393651b8e9089956502ea9c97f6aca3d5415f332"
+  },
+  "production_registry": {
+    "repo": "TJPAI/pai-word",
+    "branch": "core20k-lexicon-production-v1",
+    "commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_path": "data/core20k-runtime.json.gz",
+    "blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "access_status": "BLOCKED_BINARY_FETCH_UNICODE_DECODE_AND_CONTAINER_NETWORK",
+    "headword_membership_verified": false,
+    "sense_ownership_verified": false,
+    "ku_collision_verified": false
+  },
+  "items": [
+    {
+      "candidate_id": "B180-P002",
+      "collocation": "bear in mind",
+      "source_headword": "bear",
+      "source_headword_id": "core20k:rank:714",
+      "source_pos": "v.",
+      "source_id_authority": "B184_CANDIDATE_REFERENCE_ONLY",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "source_sense_id": null,
+      "source_ku_id": null,
+      "identity_verdict": "UNRESOLVED_PENDING_RUNTIME_JOIN"
+    },
+    {
+      "candidate_id": "B180-P005",
+      "collocation": "package deal",
+      "source_headword": "package",
+      "source_headword_id": "core20k:rank:720",
+      "source_pos": "n.",
+      "source_id_authority": "B184_CANDIDATE_REFERENCE_ONLY",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "source_sense_id": null,
+      "source_ku_id": null,
+      "identity_verdict": "UNRESOLVED_PENDING_RUNTIME_JOIN"
+    },
+    {
+      "candidate_id": "B180-P006",
+      "collocation": "on board",
+      "source_headword": "board",
+      "source_headword_id": "core20k:rank:721",
+      "source_pos": "n.",
+      "source_id_authority": "B184_CANDIDATE_REFERENCE_ONLY",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "source_sense_id": null,
+      "source_ku_id": null,
+      "identity_verdict": "UNRESOLVED_PENDING_RUNTIME_JOIN"
+    },
+    {
+      "candidate_id": "B180-P007",
+      "collocation": "cut down on",
+      "source_headword": "cut",
+      "source_headword_id": "core20k:rank:722",
+      "source_pos": "v.",
+      "source_id_authority": "B184_CANDIDATE_REFERENCE_ONLY",
+      "authoritative_headword_id": null,
+      "authoritative_sense_id": null,
+      "authoritative_ku_id": null,
+      "source_sense_id": null,
+      "source_ku_id": null,
+      "identity_verdict": "UNRESOLVED_PENDING_RUNTIME_JOIN"
+    }
+  ],
+  "no_new_registrations": true,
+  "release_eligible": false,
+  "production_ready": false,
+  "next_verified_step": "Obtain byte-authenticated binary runtime snapshot and parse 20k records; match exact headword IDs to lexemes, inspect senses and KUs, confirm collisions and owner mapping; never infer from source rank alone"
+}
