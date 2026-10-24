@@ -1147,7 +1147,11 @@
   // On refresh the committed marker prevents replaying this rating.
   PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();const ratedFace=PAI_TAP_FLOW.pageState()==='ANSWER';browsedUnit=u;state.revealed=ratedFace;PAI_TAP_FLOW.browseReady(k,null,ratedFace);const moved=await window.PAI_CHANGE_BATCH(ratedBatch);if(!moved)await showCurrent();return}if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
  };
- function top(title,progress=''){return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress">${progress}</div></div>`}
+ function top(title,progress=''){
+  const batch=String(progress).match(/^第(\d+\/\d+)批 · 本批已学习 (\d+\/\d+) · 场景 (\d+) KU$/);
+  const status=batch?`<span class="study-batch-line">第${batch[1]}批</span><span class="study-batch-line">本批已学 ${batch[2]}</span>`:esc(progress);
+  return `<div class="study-top"><button class="back-btn" aria-label="返回首页" onclick="goScenes()">‹</button><div class="study-scene">${esc(title)}</div><div class="study-progress"${batch?` title="${esc(progress)}"`:''}>${status}</div></div>`;
+ }
  function home(){
   const n=fresh().length,r=due().length,completed=globalNewCompleted(),resume=state.learningSession?.queue?.length;
   const topicCards=()=>topicCatalog().map(t=>`<button class="scene-card" onclick="setTopicInput('${esc(t.name)}');startTopicStudy()"><span class="scene-name">${esc(t.name)}</span><span class="scene-count"><b>${t.words}</b><small>单词 · ${t.ku} KU</small></span></button>`).join('');
