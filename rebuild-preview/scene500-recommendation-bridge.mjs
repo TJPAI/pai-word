@@ -7,7 +7,7 @@ async function initialize(){
  const [rules,loader,response]=await Promise.all([
   import(new URL('engine.mjs',ROOT).href),
   import(new URL('chinese-lexicon-loader.mjs',ROOT).href),
-  fetch(new URL('catalog-v0.2.json?v=academic-task-aliases-20261024',ROOT),{cache:'force-cache'})
+  fetch(new URL('catalog-v0.2.json?v=handoff-4f01be8-20261024',ROOT),{cache:'force-cache'})
  ]);
  if(!response.ok)throw Error('SCENE500_CATALOG_HTTP_'+response.status);
  const catalog=await response.json();
@@ -18,7 +18,7 @@ async function initialize(){
  hybridReady=loader.loadScene500WithChineseLexicon({
   catalog,lexiconUrl:new URL('zh-core20k-v094.min.json',ROOT).href,
   associationUrl:new URL('v094-lexical-associations.json',ROOT).href,
-  timeoutMs:8000
+  timeoutMs:4000
  }).then(engine=>{
   hybridSettled=true;
   if(engine?.failure)lastError=engine.failure;
