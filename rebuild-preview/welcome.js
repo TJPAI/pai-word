@@ -35,6 +35,10 @@
  </div></div>`;
  document.body.appendChild(shell);
  window.PAI_WELCOME_VISIBLE=true;
+ // Diagnostics are read-only. DOM insertion is not the same as a painted frame.
+ const diagnostics=window.PAI_WELCOME_TIMINGS={domInsertedMs:Math.round(performance.now()),imageLoadedMs:null,appReadyMs:null};
+ window.addEventListener('pai-home-ready',()=>{diagnostics.appReadyMs=Math.round(performance.now())},{once:true});
+ shell.querySelector('.pai-welcome-comic-image').addEventListener('load',()=>{diagnostics.imageLoadedMs=Math.round(performance.now())},{once:true});
  let entering=false;
  function close(catalog){
    if(entering)return;
