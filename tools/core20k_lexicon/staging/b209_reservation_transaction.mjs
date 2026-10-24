@@ -7,8 +7,11 @@ export async function reserveWithTransaction(client, request, verifyAuthority) {
  if(!request||!['reservation_key','candidate_id','headword_id','sense_id','revision_sha256','authority_release_id','runtime_sha256']
   .every(k=>typeof request[k]==='string'&&request[k].trim()))
   return {status:'BLOCKED',reason:'INVALID_REQUEST'};
+ if(!/^[0-9a-f]{64}$/.test(request.revision_sha256)||!/^[0-9a-f]{64}$/.test(request.runtime_sha256))
+  return {status:'BLOCKED',reason:'INVALID_HASH'};
  const auth=await verifyAuthority(request);
  if(auth?.status!=='VERIFIED'||auth.candidate_id!==request.candidate_id||
+    auth.headword_id!==request.headword_id||auth.sense_id!==request.sense_id||
     auth.revision_sha256!==request.revision_sha256||
     auth.runtime_sha256!==request.runtime_sha256||
     auth.authority_release_id!==request.authority_release_id)
@@ -25,7 +28,9 @@ export async function reserveWithTransaction(client, request, verifyAuthority) {
   await client.query('COMMIT');started=false;
   return {status:'RESERVED',formal_ku_id:null,release_eligible:false,srs_write_allowed:false};
  }catch(e){
-  if(started)await client.query('ROLLBACK');
+  if(started){try{await client.query('ROLLBACK');}catch(rollbackError){
+   throw new AggregateError([e,rollbackError],'RESERVATION_AND_ROLLBACK_FAILED');
+  }}
   if(e?.code==='23505')return {status:'CONFLICT',reason:'DUPLICATE_RESERVATION'};
   if(e?.code==='40001')return {status:'RETRYABLE',reason:'SERIALIZATION_FAILURE'};
   throw e;
