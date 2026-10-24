@@ -48,3 +48,22 @@ test('incorrect or malformed hash does not pass even with matching registry valu
  const result=preflightAuthority({...provisional,revision_hash:'bad'},registry);
  assert.ok(result.errors.includes('EDITORIAL_REVISION_NOT_APPROVED'));
 });
+
+test('untrusted self-asserted registry can satisfy shape checks but never grant registration',()=>{
+ const hash='b'.repeat(64);
+ const fake={schema:'pai-core20k-authoritative-registry-v1',
+   runtime_sha256:hash,headwords:{bear:{rank:714}},
+   senses:{fabricated:{headword:'bear',approval:'APPROVED'}},
+   approved_editorial_reviews:{'B180-P002':{revision_hash:hash}},
+   source_licenses:{fabricated:'APPROVED'},
+   registrar_approval:{status:'APPROVED',runtime_sha256:hash}};
+ const result=preflightAuthority({
+   ...provisional,revision_hash:hash,sense_id:'fabricated',
+   source_id:'fabricated',evidence_locator:'fabricated',evidence_scope:'fabricated'
+ },fake);
+ // This is a documented trust-boundary failure, NOT production authorization.
+ assert.equal(result.eligible_for_id_reservation,true);
+ assert.equal(result.registered,false);
+ assert.equal(result.release_eligible,false);
+ assert.equal(result.srs_write_allowed,false);
+});
