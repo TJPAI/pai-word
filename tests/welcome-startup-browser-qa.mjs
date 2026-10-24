@@ -28,6 +28,10 @@ try{
  await comic.evaluate(el=>el.decode().catch(()=>{}));
  const natural=await comic.evaluate(el=>el.naturalWidth);
  assert.ok(natural>=800,'Comic must load at readable resolution; missing/failed image is not a pass');
+ const imageUrl=await comic.evaluate(el=>el.currentSrc);
+ assert.ok(imageUrl.includes('pai-ai-mathematicians-comic.webp'),'Chromium should choose the optimized WebP');
+ const dimensions=await comic.evaluate(el=>({width:el.naturalWidth,height:el.naturalHeight}));
+ assert.deepEqual(dimensions,{width:1170,height:780},'WebP must preserve original comic dimensions');
  let before=await collect(page);
  assert.ok(before.welcomeDomMs!==null,'welcome insert timing recorded');
  assert.ok(before.imageLoadedMs!==null,'comic load timing recorded');
