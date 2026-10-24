@@ -94,20 +94,31 @@ node --test tools/core20k_lexicon/staging/b188_registration_preflight.test.mjs \
   CONFLICT 或 RETRYABLE、恰一行一事件）、直接 ROLLBACK 后两表均无行、
   审计一致性（预留数 == 事件数、无孤儿事件、无缺事件预留）、按前缀清理。
 - 该文件不打印、不记录、不存储连接串；数据库用户须仅限隔离 QA 项目。
+- 驱动加载修正：ESM import() 不读 NODE_PATH，初版测试在已装 pg 时仍报驱动
+  缺失；已改为经 createRequire 加载，使 NODE_PATH 指定的仓库外驱动可被找到
+  （该问题在直连被拦之前暴露，与数据库本身无关）。
 
-## 6. 真实数据库联调状态：NOT_RUN（唯一阻塞项）
+## 6. 真实数据库联调状态：NOT_RUN（被运行时出口权限阻断，非凭证问题）
 
 - 目标：Neon 隔离 QA 项目 `PAI Word Core20K Isolated QA`
   （项目 ID old-hill-15850097，PostgreSQL 18，AWS 新加坡，schema core20k_qa）。
-- 本机环境中不存在 Neon 连接凭证：无 Neon 连接器、无 neon/psql CLI、
-  无相关环境变量、Secure Vault 仅存 github.com 登录、分支内无连接文档。
-  因此真实数据库测试**尚未执行**，不得宣称为 PASS。
-- 解锁方式（二选一）：（a）由用户临时提供该项目的连接串，本助手仅经环境变量
-  传入测试进程，不写入 GitHub、日志、报告或记忆，用后丢弃；（b）用户在自有
-  环境以 `CORE20K_QA_DATABASE_URL=<连接串> node --test <本文件>` 自行执行，
-  回传测试输出计数。
-- 除凭证外，真实库联调无其他已知前置缺失：pg 驱动已在仓库外备妥
-  （`npm i pg`，不进仓库），集成测试文件已就绪。
+- 连接信息已通过 Neon 控制台安全取得：浏览器经已保存的 GitHub OAuth 会话
+  登录控制台（未输入密码、未用验证码），项目名称与 ID 逐项核对一致，
+  版本显示为 18，连接为池化端点。连接串仅一次性临时使用，未写入 GitHub、
+  日志、报告或记忆，也未要求用户在聊天中粘贴。
+- **阻断点（已精确定位）**：本机直接发起 PostgreSQL 线协议连接时，运行时
+  出口网关以明文拒绝，而非连通 Neon。TCP 能接通，但网关在协议层返回
+  拒绝信息，大意是：该助手的数据直连被关闭，须由用户在 Muse 设置 →
+  Permissions → Direct network protocols 中把 databases 从 Deny 改为 Ask。
+  因此这不是 Neon 侧问题、不是凭证错误、不是网络不通：同一连接串经控制台
+  核验无误，但直连协议被本机运行时策略拦下。
+- 影响：集成测试在首条版本查询处即失败，**未执行任何 SQL**，未建表、
+  未写行、未创建任何数据库/分支/项目；schema core20k_qa 的既有状态
+  未被本任务改变。测试文件本身无需修改，待权限放开后可直接重跑。
+- 解锁方式：用户在 Muse 设置中把 Direct network protocols 下的 databases
+  由 Deny 改为 Ask，改完通知本助手重跑；届时连接很可能弹出一次授权确认，
+  属正常流程，不是错误。此前“待凭证”的说法现已修正：凭证已取得，
+  缺的是这项运行时许可。
 
 ## 7. 调用方契约（执行器不兜底的部分，须遵守）
 
@@ -122,7 +133,7 @@ node --test tools/core20k_lexicon/staging/b188_registration_preflight.test.mjs \
 
 ## 8. 剩余阻碍与风险
 
-1. 真实数据库联调 NOT_RUN（待凭证，见第 6 节）——下一阶段可信审批集成
+1. 真实数据库联调 NOT_RUN（被运行时出口权限阻断，见第 6 节）——下一阶段可信审批集成
    的技术条件**尚未完全满足**，缺的正是真实库一环。
 2. 池形防护依赖 pg Pool 的可观测形态；非标准池对象仍需调用方自律。
 3. B208 schema 的 `REJECTED` 事件类型目前无任何写入路径（执行器只写
@@ -134,7 +145,9 @@ node --test tools/core20k_lexicon/staging/b188_registration_preflight.test.mjs \
 
 ## 9. 下一阶段可信审批集成的技术条件判定
 
-- 单元与契约层：**已满足**（36/36 PASS，含池防护与全字段绑定）。
-- 真实数据库层：**未满足**（NOT_RUN，待凭证）。
+- 单元与契约层：**已满足**（36/36 PASS，含池防护与全字段绑定；
+  CI Node 22 下 B209 14/14 PASS）。
+- 真实数据库层：**未满足**（NOT_RUN，原因不是凭证也不是代码，而是本机
+  运行时出口权限 databases: Deny 拦下了直连协议；见第 6 节）。
 - 因此：可信审批集成在工程上已就绪待联调，但**在真实库测试通过之前，
   不得宣称联调完成，也不得将本阶段结果用于任何正式注册决策**。
