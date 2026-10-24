@@ -8,4 +8,7 @@ assert.equal(promoteReviewedCuration(approved,ids).ok,true);
 assert.equal(promoteReviewedCuration({...approved,scenes:[...approved.scenes,...approved.scenes]},ids).ok,false);
 assert.equal(promoteReviewedCuration({...approved,scenes:[{...approved.scenes[0],review_evidence:[]}]},ids).ok,false);
 assert.equal(promoteReviewedCuration(approved,new Set(['S999'])).ok,false);
+assert.equal(promoteReviewedCuration({...approved,scenes:[]},ids).ok,false);
+assert.equal(promoteReviewedCuration({...approved,scenes:[{...approved.scenes[0],review_evidence:['   ']}]},ids).ok,false);
+assert.equal(promoteReviewedCuration({...approved,scenes:[{...approved.scenes[0],expressions:[]}]},ids).ok,false);
 console.log('PASS semantic curation promotion tests');
