@@ -1,0 +1,19 @@
+{
+  "schema": "pai-core20k-pos-evidence-triage-v1",
+  "staging_sha256": "6fc407b1a5ecc6155e3651e2ed4b5953c2b8161c4957a6259eb90a0c77176371",
+  "records_checked": 290,
+  "missing_pos": 94,
+  "source_classification": {
+    "no_staging_pos_evidence": 74,
+    "multiple_pos_ambiguous": 7,
+    "same_headword_one_pos_unverified": 13
+  },
+  "same_sense_pos_evidence": 0,
+  "pos_auto_backfilled": 0,
+  "semantically_certified": 0,
+  "release_eligible": 0,
+  "qa_artifact_sha256": "1843d3829cea789a4d2a31d71a6eb326df632338c995580609e316e51b143dc6",
+  "qa_artifact_location": "conversation attachment, not yet repository",
+  "production_registry_join": "PENDING",
+  "notes": "Same-headword POS does not prove target Sense POS; no production content modified."
+}
