@@ -1,0 +1,39 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v10-summary",
+  "date": "2026-10-25",
+  "sha256": "efcb323b41ce2e6e7e55c8f88911e08af926cee55050f2bed5101fb3df5fdfe5",
+  "counts": {
+    "total": 67,
+    "pass": 36,
+    "fail": 0,
+    "needs_recheck": 11,
+    "not_rechecked": 20,
+    "new_pass": 2,
+    "release_approved": 0
+  },
+  "new_pass": [
+    {
+      "term": "金融市场",
+      "url": "https://dfjrjgj.hunan.gov.cn/dfjrjgj/jrbk/jrzs/202601/t20260112_33890608.html",
+      "evidence": "Official explanatory definition"
+    },
+    {
+      "term": "无线网络",
+      "url": "https://www.cac.gov.cn/2016-12/26/c_1120190457.htm",
+      "evidence": "Direct government practical use, not a formal definition"
+    }
+  ],
+  "recheck": {
+    "term": "主机名",
+    "url": "https://its.pku.edu.cn/faq.jsp",
+    "reason": "Opened page does not contain exact term"
+  },
+  "qa": {
+    "term_id_sha256_valid": 67,
+    "unique_ids": 67,
+    "status_sum": 67,
+    "release_approved": 0,
+    "original_reviews_unchanged": true
+  },
+  "note": "Second-level source match PASS only; lexicality, frequency, and Core20K membership unmodified."
+}
