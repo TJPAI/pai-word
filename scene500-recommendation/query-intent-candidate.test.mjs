@@ -11,7 +11,14 @@ const cases=[
  ['避免开车','开车',true],
  ['坐公交不要坐地铁','地铁',true], // explicit local negation after transit verb
  ['不想洗碗','洗碗',true],
- ['学习人工智能','人工智能',false]
+ ['学习人工智能','人工智能',false],
+ ['不想学习机器学习','机器学习',true],
+ ['我想学习机器学习','机器学习',false],
+ ['不要点咖啡','咖啡',true],
+ ['我要点咖啡','咖啡',false],
+ ['不要吃早餐，改喝咖啡','早餐',true],
+ ['不要吃早餐，改喝咖啡','咖啡',false],
+ ['不要学习机器学习，但是我要学习机器学习','机器学习',false]
 ];
 for(const [q,t,want] of cases)assert.equal(isLocallyNegatedTerm(q,t),want,q+' / '+t);
 assert.equal(analyzeSceneQuery('AI和人工智能').mixedLanguage,true);
