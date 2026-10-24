@@ -1,0 +1,47 @@
+{
+  "schema": "zh-core20k-dictionary-evidence-overlay-v1",
+  "date": "2026-10-24",
+  "scope": "High structural-risk lexical entries from V0.10.12; dictionary entry verification only",
+  "source_runtime": "0.10.1-evidence-compat",
+  "reviewed": [
+    {
+      "term": "不可多得",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "Taiwan Ministry of Education idiom dictionary",
+      "url": "https://dict.idioms.moe.edu.tw/idiomView.jsp?ID=13646&la=0&webMd=2",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    },
+    {
+      "term": "一席之地",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "Taiwan Ministry of Education Revised Mandarin Dictionary",
+      "url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=149502&la=0&powerMode=0",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    },
+    {
+      "term": "一举两得",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "Taiwan Ministry of Education Revised Mandarin Dictionary (traditional script)",
+      "url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=149435&la=1&powerMode=0",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL",
+      "note": "Headword appears as 一舉兩得; traditional/simplified equivalence, not an identity rewrite"
+    },
+    {
+      "term": "不得",
+      "status": "DICTIONARY_HEADWORD_ATTESTED",
+      "authority": "Taiwan Ministry of Education Revised Mandarin Dictionary",
+      "url": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=20277&q=1&word=42",
+      "decision": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    }
+  ],
+  "limits": [
+    "Dictionary attestation supports lexicality, not corpus frequency, ranking, or membership priority",
+    "Other 9 high-score terms not externally verified by this overlay",
+    "No changes to term_id, membership or runtime"
+  ],
+  "approved_changes": {
+    "membership": 0,
+    "identity": 0,
+    "frequency": 0
+  }
+}
