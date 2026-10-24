@@ -1,0 +1,56 @@
+{
+  "schema": "zh-core20k-risk-recalibration-115-summary-v1",
+  "date": "2026-10-24",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "input": "Library v0112-queue-02.jsonl first 200 rows; local preliminary-200.json exact 200 term IDs",
+  "scope": {
+    "first_pass_ambiguous": 73,
+    "first_pass_numeral_classifier": 42,
+    "selected": 115
+  },
+  "verified": {
+    "identity_errors": 0,
+    "expert_heuristic_corrections": 16,
+    "remaining_unresolved": 99,
+    "external_dictionary_approved_new": 0,
+    "membership_changes": 0
+  },
+  "correction_examples": {
+    "DEICTIC_PRONOMINAL_CONSTRUCTION": [
+      "这种",
+      "那些",
+      "这个"
+    ],
+    "LEXICALIZED_QUANTITY_EXPRESSION_REVIEW": [
+      "一部分"
+    ],
+    "TIME_MEASUREMENT_EXPRESSION_REVIEW": [
+      "一分钟"
+    ],
+    "MEASUREMENT_RATIO_EXPRESSION_REVIEW": [
+      "一倍"
+    ],
+    "TEMPORAL_LEXICALIZATION_REVIEW": [
+      "一刻"
+    ],
+    "NEGATED_ADJECTIVE_REVIEW": [
+      "不合理"
+    ],
+    "MODAL_CONSTRUCTION_REVIEW": [
+      "不足以"
+    ],
+    "FREQUENCY_TIME_ADVERBIAL_REVIEW": [
+      "每月",
+      "每周",
+      "每次"
+    ],
+    "CARDINAL_NUMBER_REVIEW": [
+      "三十",
+      "一万",
+      "五十",
+      "十二"
+    ]
+  },
+  "limits": "AI/QC heuristics, not external lexical verification. Full 115-row artifact generated locally but not committed; use source queue and original IDs to reproduce. No membership changes.",
+  "next_gate": "Review these exact 16 cases independently with authoritative dictionary or tokenized corpus before any lexicon decision."
+}
