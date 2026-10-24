@@ -6,6 +6,7 @@ import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
 
+export const EXPECTED_SHA256=Object.freeze({runtime:'18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093',associations:'d6de9818f5056330b6d57d6b7c728a1457e66a4d241aac173ba7eb1c5f770213'});
 export function verifyScene500V0101(runtime, associations) {
   const errors=[];
   const fail=(code,detail)=>{ if(errors.length<30) errors.push({code,detail}); };
@@ -24,6 +25,7 @@ export function verifyScene500V0101(runtime, associations) {
     if(bySurface.has(t.term)) fail('DUPLICATE_TERM',t.term);
     byId.set(t.term_id,t);bySurface.add(t.term);
   }
+  if(associations?.source?.lexicon_version!=='0.9.4-rc.2' || associations?.source?.lexicon_sha256!=='9be43c35c1e0d1b1926c11726acb2d707bb052634e1ebc60ed445e4b35c63335') fail('ASSOCIATION_PROVENANCE','Unexpected legacy lexicon source');
   const links=associations?.links;
   if(!Array.isArray(links)||links.length!==3553) fail('ASSOCIATION_COUNT',links?.length);
   const seen=new Set(),sceneIds=new Set(),linkedIds=new Set();
@@ -42,7 +44,13 @@ export function verifyScene500V0101(runtime, associations) {
 }
 if(process.argv[1] && import.meta.url===pathToFileURL(process.argv[1]).href){
   assert.equal(process.argv.length,4,'Usage: node verify-scene500-v0101.mjs runtime.json associations.json');
-  const result=verifyScene500V0101(...process.argv.slice(2).map(p=>JSON.parse(fs.readFileSync(p,'utf8'))));
+  const files=process.argv.slice(2).map(p=>fs.readFileSync(p));
+  const sha256=files.map(b=>createHash('sha256').update(b).digest('hex'));
+  const result=verifyScene500V0101(...files.map(b=>JSON.parse(b.toString('utf8'))));
+  result.input_sha256={runtime:sha256[0],associations:sha256[1]};
+  if(sha256[0]!==EXPECTED_SHA256.runtime || sha256[1]!==EXPECTED_SHA256.associations){
+    result.ok=false; result.errors.push({code:'INPUT_SHA256_MISMATCH',detail:'Use the exact audited baseline files'});
+  }
   console.log(JSON.stringify(result,null,2));
   if(!result.ok)process.exitCode=1;
 }
