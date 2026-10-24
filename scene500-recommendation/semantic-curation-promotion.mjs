@@ -6,6 +6,7 @@ export function promoteReviewedCuration(queue, validSceneIds) {
   if(queue?.schema_version!=='scene500-curation-review-v1'||!Array.isArray(queue?.scenes))
     return {ok:false,errors:['invalid curation review queue'],overlay:null};
   const seen=new Set(),scenes=[];
+  if(queue.scenes.length===0)return {ok:false,errors:['empty review queue'],overlay:null};
   for(const [i,item] of queue.scenes.entries()){
     if(!item||typeof item!=='object'){errors.push('invalid item '+i);continue;}
     const id=item.scene_id;
@@ -17,7 +18,8 @@ export function promoteReviewedCuration(queue, validSceneIds) {
     }
     if(typeof item.reviewer_id!=='string'||!item.reviewer_id.trim()||
        typeof item.reviewed_at!=='string'||!/^\d{4}-\d{2}-\d{2}T/.test(item.reviewed_at)||
-       !Array.isArray(item.review_evidence)||item.review_evidence.length===0){
+       !Array.isArray(item.review_evidence)||item.review_evidence.length===0||
+       item.review_evidence.some(e=>typeof e!=='string'||!e.trim())){
       errors.push('missing review evidence '+id);continue;
     }
     scenes.push({scene_id:id,expressions:item.expressions});
