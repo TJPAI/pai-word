@@ -31,5 +31,18 @@
     "deployed asset SHA",
     "mobile Safari"
   ],
-  "production_ready": false
+  "production_ready": false,
+  "node_retest": {
+    "environment": "Node.js v22.16.0 local container",
+    "negative_test_cases": 7,
+    "negative_test_passed": 7,
+    "original_runtime_association_check": "PASS",
+    "terms": 20000,
+    "edges": 3553,
+    "linked_terms": 1613,
+    "linked_scenes": 500,
+    "errors": 0,
+    "sha256_match": true,
+    "verification_limit": "Local Node execution using faithful copies of current GitHub verification source; not GitHub Actions, browser integration, recommendation ranking, or deployed E2E"
+  }
 }
