@@ -8,5 +8,7 @@ export function rerankNegationCandidate(snapshot,query,{catalog,limit=5}={}){
   const negative=tokens.some(t=>isLocallyNegatedTerm(query,t));
   return {...row,negationCandidate:negative,scoreCandidate:negative?Math.max(0,row.score-100):row.score};
  }).sort((a,b)=>b.scoreCandidate-a.scoreCandidate||a.sceneId.localeCompare(b.sceneId));
- return {...snapshot,results:rows.slice(0,limit),total:rows.length,candidateOnly:true};
+ const safeLimit=Number.isFinite(Number(limit))?Math.max(0,Math.min(500,Math.floor(Number(limit)))):5;
+ const results=rows.slice(0,safeLimit).map((row,i)=>({...row,rank:i+1}));
+ return {...snapshot,results,total:rows.length,candidateOnly:true};
 }
