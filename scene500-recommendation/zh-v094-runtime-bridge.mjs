@@ -26,11 +26,10 @@ export function createChineseV094Index(payload,{aliases={}}={}){
   const q=raw.normalize('NFC'),out=[],seen=new Set();
   const push=(t,kind)=>{if(t&&!seen.has(t.term_id)){seen.add(t.term_id);out.push({...t,match_type:kind});}};
   push(byTerm.get(q),'exact');
-  // Align with Chinese branch exact-first lookup: never mix normalized/variant
-  // candidates into a confirmed exact lexical identity.
+  // Explicit aliases follow exact matches, but normalized siblings stay excluded.
+  for(const target of aliasIndex.get(q)||[])push(byTerm.get(target),'variant_candidate');
   if(out.length)return out;
   for(const t of byNorm.get(q)||[])push(t,'normalized_candidate');
-  for(const target of aliasIndex.get(q)||[])push(byTerm.get(target),'variant_candidate');
   return out;
  }
  // Overlapping candidate extraction: Trie built on demand, not on initial Home render.
