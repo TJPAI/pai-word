@@ -1,0 +1,43 @@
+{
+  "version": "ai-triage-calibration-2026-10-24",
+  "baseline_runtime": "0.10.1-evidence-compat",
+  "source_queue": "Library V0.10.12 review shard 01, 02, 04",
+  "scope_note": "750/1000 queue rows visible and locally read; shard 03 inaccessible, not part of this report",
+  "rows_checked": 750,
+  "unique_ids": 750,
+  "missing_ids": 0,
+  "surface_mismatches": 0,
+  "score_histogram": {
+    "1": 186,
+    "2": 64,
+    "3": 487,
+    "4": 4,
+    "5": 9
+  },
+  "risk_findings": [
+    "High structural risk scores include established common words and idioms; score is not a deletion probability.",
+    "Splittability of terms is not sufficient proof against lexicality.",
+    "Low-score queue includes domain vocabulary; risk score is not general-language frequency."
+  ],
+  "protected_examples": [
+    "他们",
+    "她们",
+    "你们",
+    "我们",
+    "它们",
+    "不得",
+    "不过",
+    "不可多得",
+    "一席之地",
+    "一举两得"
+  ],
+  "gate": "No bulk deletion or auto-membership mutation permitted; externally substantiate term-level evidence first.",
+  "verified": "local Python membership and exact-surface comparison against materialized runtime; source-shard scope explicit",
+  "not_verified": [
+    "V0.10.12 shard 03",
+    "dictionary attestation for all 750",
+    "independent domain frequency",
+    "GitHub Actions Node run"
+  ],
+  "approved_membership_changes": 0
+}
