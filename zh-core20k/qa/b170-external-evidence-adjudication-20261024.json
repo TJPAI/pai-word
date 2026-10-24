@@ -1,0 +1,69 @@
+{
+  "schema": "zh-core20k-b170-external-evidence-v1",
+  "date": "2026-10-24",
+  "base_report": "zh-core20k/qa/dual-ai-b170-crosscheck-20261024.json",
+  "scope": {
+    "independently_compared": 30,
+    "semantic_agreement": 23,
+    "domain_agreement": 5,
+    "disputed": 1,
+    "uncertain": 1,
+    "not_preexposure_blind": 170
+  },
+  "adjudication": [
+    {
+      "term": "不愿",
+      "original_chatgpt": "COMPOSITIONAL",
+      "original_muse": "LEXICALIZED",
+      "source": "https://dict.revised.moe.edu.tw/dictView.jsp?ID=21986&la=0&powerMode=0",
+      "evidence": "Direct dictionary headword 不願 with two senses (unwilling; not wishing)",
+      "decision": "EXTERNAL_EVIDENCE_FAVORS_LEXICALIZED",
+      "preserve_dispute_log": true
+    },
+    {
+      "term": "不起",
+      "original_chatgpt": "UNCERTAIN",
+      "original_muse": "COMPOSITIONAL",
+      "decision": "PENDING_CONTEXT_OR_DICTIONARY",
+      "source": null
+    }
+  ],
+  "domain_evidence": [
+    {
+      "term": "宅基地",
+      "status": "OFFICIAL_POLICY_ATTESTED",
+      "source": "https://nyncj.nanjing.gov.cn/njsnywyh/202307/t20230706_3955763.html"
+    },
+    {
+      "term": "台地",
+      "status": "DIRECT_DICTIONARY_ATTESTED",
+      "source": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=10068&la=0&powerMode=0",
+      "orthographic_note": "Traditional 臺地 corresponds to simplified 台地"
+    },
+    {
+      "term": "最低工资",
+      "status": "OFFICIAL_LEGAL_ATTESTED",
+      "source": "https://www.mohrss.gov.cn/xxgk2020/gzk/gz/202112/t20211228_431587.html?eqid=969b02cd00006c970000000264675adc"
+    },
+    {
+      "term": "三维重建",
+      "status": "OFFICIAL_STANDARD_TITLE_ATTESTED",
+      "source": "https://openstd.samr.gov.cn/bzgk/std/newGbInfo?hcno=FF82537FBADF85860DCE21F345F5E567",
+      "standard": "GB/T 47022-2026"
+    },
+    {
+      "term": "最值",
+      "status": "EXTERNAL_EVIDENCE_PENDING",
+      "source": null
+    }
+  ],
+  "qa": {
+    "evidence_confirmed_of_five_domain_terms": 4,
+    "dispute_evidence_obtained": 1,
+    "term_id_mutations": 0,
+    "runtime_mutations": 0,
+    "membership_mutations": 0,
+    "release_approved": false
+  },
+  "warning": "External source supports lexical legitimacy or technical usage only; does not itself prove high frequency, ranked membership or validity of the underlying two independent reviewer decisions. Do not turn adjudicated dispute into independent agreement."
+}
