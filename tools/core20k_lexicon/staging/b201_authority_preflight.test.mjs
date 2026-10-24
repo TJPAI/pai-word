@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {preflightAuthority} from './b201_authority_preflight.mjs';
 const provisional={candidate_id:'B180-P002',headword:'bear',rank:714,sense_id:null,
- revision_hash:'revision',source_id:'Cambridge',evidence_locator:null,evidence_scope:null};
+ revision_hash:'a'.repeat(64),source_id:'Cambridge',evidence_locator:null,evidence_scope:null};
 test('four B184 provisional candidates remain blocked without authority',()=>{
  for(const [candidate_id,headword,rank] of [
  ['B180-P002','bear',714],['B180-P005','package',720],
@@ -26,7 +26,7 @@ test('even a complete synthetic authorization fixture never registers or publish
  const registry={schema:'pai-core20k-authoritative-registry-v1',
  runtime_sha256:'e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b',
  headwords:{bear:{rank:714}},senses:{s1:{headword:'bear',approval:'APPROVED'}},
- approved_editorial_reviews:{'B180-P002':{revision_hash:'revision'}},
+ approved_editorial_reviews:{'B180-P002':{revision_hash:'a'.repeat(64)}},
  source_licenses:{example:'APPROVED'},
  registrar_approval:{status:'APPROVED',runtime_sha256:'e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b'}};
  const v=preflightAuthority({...provisional,sense_id:'s1',source_id:'example',
@@ -35,4 +35,16 @@ test('even a complete synthetic authorization fixture never registers or publish
  assert.equal(v.registered,false);
  assert.equal(v.release_eligible,false);
  assert.equal(v.srs_write_allowed,false);
+});
+
+test('absent hashes on both sides never count as editorial approval',()=>{
+ const registry={schema:'pai-core20k-authoritative-registry-v1',approved_editorial_reviews:{'B180-P002':{}}};
+ const result=preflightAuthority({...provisional,revision_hash:undefined},registry);
+ assert.equal(result.eligible_for_id_reservation,false);
+ assert.ok(result.errors.includes('EDITORIAL_REVISION_NOT_APPROVED'));
+});
+test('incorrect or malformed hash does not pass even with matching registry value',()=>{
+ const registry={approved_editorial_reviews:{'B180-P002':{revision_hash:'bad'}}};
+ const result=preflightAuthority({...provisional,revision_hash:'bad'},registry);
+ assert.ok(result.errors.includes('EDITORIAL_REVISION_NOT_APPROVED'));
 });
