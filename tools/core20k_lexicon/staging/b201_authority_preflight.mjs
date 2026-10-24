@@ -10,7 +10,8 @@ export function preflightAuthority(record, registry) {
   fail(!!owner&&owner.rank===record?.rank,'HEADWORD_OWNER_NOT_VERIFIED');
   const sense=registry?.senses?.[record?.sense_id];
   fail(!!sense&&sense.headword===record?.headword&&sense.approval==='APPROVED','SENSE_OWNER_NOT_APPROVED');
-  fail(registry?.approved_editorial_reviews?.[record?.candidate_id]?.revision_hash===record?.revision_hash,'EDITORIAL_REVISION_NOT_APPROVED');
+  fail(typeof record?.revision_hash==='string'&&/^[a-f0-9]{64}$/.test(record.revision_hash)&&
+    registry?.approved_editorial_reviews?.[record?.candidate_id]?.revision_hash===record.revision_hash,'EDITORIAL_REVISION_NOT_APPROVED');
   fail(registry?.source_licenses?.[record?.source_id]==='APPROVED','SOURCE_LICENSE_NOT_APPROVED');
   fail(typeof record?.evidence_locator==='string'&&!!record.evidence_locator&&
        typeof record?.evidence_scope==='string'&&!!record.evidence_scope,'FIELD_EVIDENCE_MISSING');
