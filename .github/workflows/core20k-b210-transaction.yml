@@ -1,0 +1,21 @@
+name: Core20K B210 transaction tests
+on:
+  push:
+    branches: [core20k-teaching-qa-b162-20261024]
+    paths:
+      - 'tools/core20k_lexicon/staging/b209_reservation_transaction.mjs'
+      - 'tools/core20k_lexicon/staging/b209_reservation_transaction.test.mjs'
+      - '.github/workflows/core20k-b210-transaction.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tools/core20k_lexicon/staging/b209_reservation_transaction.test.mjs
