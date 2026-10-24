@@ -14,13 +14,15 @@ const cbytes=fs.readFileSync(candidatePath);const csha=crypto.createHash('sha256
 if(csha!=='ce69a6686107697d9a5b07e3fb06c2e308811d51afbef7f03729398c2151095c')throw Error('B184_SHA_MISMATCH:'+csha);
 const cs=cbytes.toString('utf8').trim().split(/\r?\n/).map(JSON.parse);
 if(cs.length!==4)throw Error('CANDIDATE_COUNT');
-const used=new Map(),ranks=new Map();
+const used=new Map(),ranks=new Map(),lemmas=new Set();
 for(const row of runtime.headwords){
  const [rank,lemma,pos,ipa,kus]=row;
- if(ranks.has(rank)||typeof lemma!=='string'||!Array.isArray(kus))throw Error('INVALID_HEADWORD_ROW');
+ if(!Number.isInteger(rank)||rank<1||rank>20000||ranks.has(rank)||typeof lemma!=='string'||!lemma.trim()||lemmas.has(lemma.toLowerCase())||!Array.isArray(kus))throw Error('INVALID_HEADWORD_ROW');
+ lemmas.add(lemma.toLowerCase());
  ranks.set(rank,{lemma,pos,kus});
  for(const ku of kus){const id=ku[0];if(used.has(id))throw Error('DUPLICATE_OFFICIAL_KU:'+id);used.set(id,{rank,lemma,ku});}
 }
+for(let i=1;i<=20000;i++)if(!ranks.has(i))throw Error('MISSING_RUNTIME_RANK:'+i);
 const records=cs.map(c=>{
  const rank=Number(c.rank),w=ranks.get(rank);
  const lemmaMatch=!!w&&w.lemma.toLowerCase()===c.headword.toLowerCase();
