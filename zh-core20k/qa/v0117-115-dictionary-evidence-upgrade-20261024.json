@@ -1,0 +1,36 @@
+{
+  "schema": "zh-core20k-v0117-115-evidence-upgrade-v1",
+  "date": "2026-10-24",
+  "source_review": "zh-core20k/qa/v0117-115-bucket-qc-20261024.json",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "verified": [
+    {
+      "term": "这个",
+      "term_id": "zh_979e2bc35b14bf4c6dfe",
+      "queue_row": 130,
+      "prior_label": "DEICTIC_PRONOMINAL_CONSTRUCTION",
+      "new_evidence_grade": "DIRECT_DICTIONARY_HEADWORD",
+      "source_url": "https://zdic.net/hans/%E8%BF%99%E4%B8%AA",
+      "observed": "Direct headword 这个 has demonstrative and discourse-filler senses",
+      "action": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    },
+    {
+      "term": "一刻",
+      "term_id": "zh_654579825d2621108e9a",
+      "queue_row": 7,
+      "prior_label": "TEMPORAL_LEXICALIZATION_REVIEW",
+      "new_evidence_grade": "OFFICIAL_DICTIONARY_HEADWORD",
+      "source_url": "https://dict.concised.moe.edu.tw/dictView.jsp?ID=40086&la=0&powerMode=0",
+      "observed": "Direct headword 一刻 means a quarter-hour or a brief moment",
+      "action": "PROTECT_FROM_STRUCTURAL_AUTO_REMOVAL"
+    }
+  ],
+  "checks": {
+    "exact_source_rows_found": 2,
+    "term_id_matches": 2,
+    "remaining_115_without_new_dictionary_verification": 113,
+    "approved_membership_changes": 0,
+    "approved_rank_changes": 0
+  },
+  "note": "Evidence only for these two entries; previous bucket counts are heuristic and must not be called independent certification."
+}
