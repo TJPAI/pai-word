@@ -1,0 +1,28 @@
+{
+  "schema": "pai-core20k-b178-runtime-case-contract-audit-v1",
+  "audited_branch": "home-perf-safe-load-20261022",
+  "audited_path": "rebuild-preview/learning-runtime.js",
+  "search_terms": [
+    "canonical_answer",
+    "accepted_variants",
+    "gradeAnswer",
+    "checkAnswer",
+    "input type=\"text\""
+  ],
+  "search_results": "NO_MATCH_IN_AUDITED_RUNTIME_FILE",
+  "observed_flow": "Navigation and rating / three-button self-assessment present",
+  "conclusion": "Cannot confirm automatic cloze answer normalization or acceptance of lowercase variants. No automatic cloze grading contract identified in audited file.",
+  "blockers": [
+    "w_1139_regular_ku_s01",
+    "w_2575_click_ku_s01"
+  ],
+  "resolution": "Main developer must identify actual typed-answer grading module, if one exists, and run executable casing tests; or explicitly document cloze questions as display-only with self-rating, so runtime_case_policy is NOT_APPLICABLE rather than PASS.",
+  "muse_b176": {
+    "PASS": 4,
+    "FAIL": 0,
+    "UNRESOLVED": 2
+  },
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "modified_runtime": false
+}
