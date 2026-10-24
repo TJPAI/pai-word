@@ -1,0 +1,19 @@
+{
+  "schema": "pai-core20k-b171-ipa-evidence-crosscheck-v1",
+  "source": "B170 290 staging candidates",
+  "source_sha256": "68ee8d833309e14e5f9ea68f55f4defb391a33c10531a29d3299131353f0aa5b",
+  "overlay": "PAI_Lexicon_Core20000_BaselineQuality_P0_DictionaryVerified_465_V2.12.csv",
+  "overlay_sha256": "0df2326b07fc2d1c65e187f535e0935613f7ca5eaa8e325a13e8def0eb5c763c",
+  "overlay_rows": 465,
+  "join_keys": [
+    "core20k_rank",
+    "lemma_casefold"
+  ],
+  "candidates": 290,
+  "matched": 0,
+  "us_ipa_still_missing": 290,
+  "staging_data_unchanged": true,
+  "semantic_certified": 0,
+  "release_eligible": 0,
+  "notes": "No overlap with authoritative overlay. No IPA inferred. Direct dictionaries not independently accessed; no certification. Need alternate verified source or curated direct evidence."
+}
