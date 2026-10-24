@@ -1,6 +1,12 @@
 // Host-only Scene500 bridge: independently loaded; never mutates KU, SRS or study state.
 let readyPromise=null,instance=null,hybridReady=null,lastError=null,hybridSettled=false;
 const queryCache=new Map();
+const promotionListeners=new Set();
+export function onHybridReady(listener){
+ if(typeof listener!=='function')throw TypeError('SCENE500_LISTENER_REQUIRED');
+ promotionListeners.add(listener);
+ return ()=>promotionListeners.delete(listener);
+}
 const ROOT=new URL('../scene500-recommendation/',import.meta.url);
 
 async function initialize(){
@@ -14,7 +20,7 @@ async function initialize(){
  const rule=rules.createScene500Recommender({catalog});
  instance={catalog,engine:rule,mode:'rule_fallback'};
  // Loading the approved 20K lexicon and 3553 links is optional and never
- // blocks the first rule recommendation. The loader validates SHA-256/assets.
+ // blocks the first rule recommendation. Asset SHA verification is a release gate.
  hybridReady=loader.loadScene500WithChineseLexicon({
   catalog,lexiconUrl:new URL('zh-core20k-v094.min.json',ROOT).href,
   associationUrl:new URL('v094-lexical-associations.json',ROOT).href,
@@ -23,7 +29,7 @@ async function initialize(){
  }).then(engine=>{
   hybridSettled=true;
   if(engine?.failure)lastError=engine.failure;
-  if(engine?.mode==='hybrid'){instance.engine=engine;instance.mode='hybrid';queryCache.clear()}
+  if(engine?.mode==='hybrid'){instance.engine=engine;instance.mode='hybrid';queryCache.clear();for(const listener of promotionListeners){try{listener()}catch(error){console.warn('SCENE500_PROMOTION_LISTENER',error)}}}
   else{instance.mode='rule_fallback'}
   return instance.mode;
  }).catch(error=>{hybridSettled=true;lastError=String(error);return 'rule_fallback'});
