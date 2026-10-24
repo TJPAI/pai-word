@@ -39,7 +39,16 @@
     "membership_changes": 0,
     "term_id_changes": 0,
     "frequency_updates": 0,
-    "dictionary_verified_this_batch": 0
+    "dictionary_verified_this_batch": 0,
+    "identity_crosscheck": {
+      "original_runtime_records": 20000,
+      "rows_checked": 200,
+      "distinct_ids": 200,
+      "missing_or_mismatched_ids": 0,
+      "missing_external_evidence": 200,
+      "unauthorized_membership_actions": 0,
+      "method": "Local Python exact join to materialized 20K runtime plus UTF-8 SHA256 derivation"
+    }
   },
   "next_gates": [
     "Check term identities against exact V0.10.1 runtime before action",
