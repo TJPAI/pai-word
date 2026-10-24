@@ -28,5 +28,5 @@ test('page-toggle is a shared hero, with answer contents below it',()=>{
  assert.ok(runtime.includes('<div class="study-body">${state.revealed?answerHtml(u):\'\'}</div>'));
 });
 test('Safari receives the corrected stylesheet URL',()=>{
- assert.ok(html.includes('learning.css?v=repeat-align-left-v8'));
+ assert.ok(html.includes('learning.css?v=repeat-contrast-v9'));
 });
