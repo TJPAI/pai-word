@@ -25,7 +25,9 @@ export function rerankExplicitReplacementCandidate(snapshot,query,{catalog,limit
   const v=norm(x),p=norm(part),stem=v.replace(VERB,'');
   // Prefix/suffix phrase anchoring; never match a token in the middle of a word.
   return p===v||p.startsWith(v)||p.endsWith(v)||
-   (stem.length>=2&&(p===stem||p.startsWith(stem)||p.endsWith(stem)));
+   (stem.length>=2&&(p===stem||p.startsWith(stem)||p.endsWith(stem)))||
+   // Short exact action phrase can anchor a longer catalog alias (开车 -> 开车出行).
+   (p.length>=2&&v.startsWith(p)&&/^(?:开车|坐车|乘车)$/u.test(p));
  });
  const negativeIds=new Set(original.filter(x=>match(catalog?.scenes?.[x.sceneId],negative)).map(x=>x.sceneId));
  const positiveIds=new Set(original.filter(x=>match(catalog?.scenes?.[x.sceneId],positive)).map(x=>x.sceneId));
