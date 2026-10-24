@@ -31,8 +31,11 @@ export function isLocallyNegatedTerm(query,term){
  const neg=/^(?:不要|不想|不坐|不乘|不用|别|避免|拒绝|不|没|无|not|without|avoid|never|dont|don't)$/u;
  let start=q.indexOf(t),positive=false,negative=false;
  while(start!==-1){
-  const left=q.slice(Math.max(0,start-4),start);
-  const scoped=['不要','不想','不坐','不乘','不用','别','避免','拒绝','不','没','无','not','without','avoid','never','dont',"don't"].some(n=>left.endsWith(n));
+  const left=q.slice(Math.max(0,start-8),start);
+  // Permit only tightly scoped Chinese transit verbs between a negator and term.
+  // Do not suppress a later positive clause merely because an earlier clause is negated.
+  const scoped=/(?:不要|不想|不坐|不乘|不用|别|避免|拒绝|不|没|无)(?:坐|乘|乘坐|搭乘|搭|使用)?$/u.test(left)
+   ||/(?:not|without|avoid|never|dont|don't)$/u.test(left);
   if(scoped)negative=true;else positive=true;
   start=q.indexOf(t,start+Math.max(1,t.length));
  }
