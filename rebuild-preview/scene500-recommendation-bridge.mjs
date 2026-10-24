@@ -82,6 +82,7 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
    if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
    const ai=await provider.recommend(String(query),{topK:10,signal});
    if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
+   if(ai?.status==='unavailable')lastError='E5_'+(ai.errorCode||'unavailable');
    if(ai?.status==='ok'&&ai?.modeUsed==='e5'&&Array.isArray(ai.recommendations)){
     const ids=[...new Set(ai.recommendations.map(x=>x.sceneId).filter(id=>eligible.includes(id)))].slice(0,10);
     if(ids.length)return {ids,total:ids.length,mode:'e5',elapsedMs:ai.latencyMs??null,cacheHit:false,semanticPilot:'disabled'};
