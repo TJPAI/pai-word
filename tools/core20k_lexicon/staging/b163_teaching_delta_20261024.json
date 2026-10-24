@@ -1,0 +1,56 @@
+{
+  "schema": "pai-core20k-b163-delta-v1",
+  "parent_snapshot_sha256": "7ffcae423814eef67b10549dea1b66d887ee1645b47928a58f795b7d0ed0ffbc",
+  "result_snapshot_sha256": "6363190d0d4b4b3908391f7907d97edc602a2a8dfec934bca800411f9a7dac6f",
+  "rows": 290,
+  "unique_ku": 290,
+  "mechanical_errors": 0,
+  "translation_corrections": 1,
+  "quarantined_unmatched_ids": 5,
+  "rank_unresolved": 290,
+  "us_ipa_unresolved": 290,
+  "semantic_certified": 0,
+  "release_eligible": 0,
+  "test_only": true,
+  "srs_write_allowed": false,
+  "patches": [
+    {
+      "ku_id": "w_0409_wait_ku02",
+      "field": "question.context_zh",
+      "old": "她在酒店餐厅当服务员。",
+      "new": "他们在酒店餐厅为顾客服务。",
+      "reason": "They plural; wait on customers means serve customers",
+      "semantic_certified": false
+    },
+    {
+      "ku_id": "w_2852_filter_ku01",
+      "field": "runtime_status",
+      "new": "QUARANTINE_UNMATCHED_RUNTIME_ID",
+      "semantic_certified": false
+    },
+    {
+      "ku_id": "w_2852_filter_ku02",
+      "field": "runtime_status",
+      "new": "QUARANTINE_UNMATCHED_RUNTIME_ID",
+      "semantic_certified": false
+    },
+    {
+      "ku_id": "w_2852_filter_ku03",
+      "field": "runtime_status",
+      "new": "QUARANTINE_UNMATCHED_RUNTIME_ID",
+      "semantic_certified": false
+    },
+    {
+      "ku_id": "w_0582_wrong_ku05",
+      "field": "runtime_status",
+      "new": "QUARANTINE_UNMATCHED_RUNTIME_ID",
+      "semantic_certified": false
+    },
+    {
+      "ku_id": "w_0908_career_ku02",
+      "field": "runtime_status",
+      "new": "QUARANTINE_UNMATCHED_RUNTIME_ID",
+      "semantic_certified": false
+    }
+  ]
+}
