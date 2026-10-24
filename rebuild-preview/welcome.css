@@ -3,25 +3,26 @@
 .pai-welcome{position:fixed;inset:0;z-index:10000;overflow-y:auto;overscroll-behavior:contain;background:#f5f9ff;color:#102648;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 .pai-welcome *{box-sizing:border-box}
 .pai-welcome-inner{position:relative;min-height:100%;max-width:650px;margin:auto;padding:calc(52px + env(safe-area-inset-top,0px)) 22px calc(24px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;isolation:isolate}
-.pai-welcome-landscape{position:absolute;inset:0 0 auto;height:min(56vh,460px);z-index:-1;overflow:hidden;background:linear-gradient(165deg,#d9ebfd 0%,#f7faff 47%,#fff6e9 100%)}
+.pai-welcome-landscape{position:absolute;inset:0 0 auto;height:min(47vh,390px);z-index:-1;overflow:hidden;background:linear-gradient(165deg,#e2effd 0%,#f9fbfe 53%,#fff9f3 100%);-webkit-mask-image:linear-gradient(#000 0%,#000 65%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 65%,transparent 100%)}
 .pai-welcome-landscape::before,.pai-welcome-landscape::after{content:"";position:absolute;width:150%;height:58%;left:-20%;bottom:-27%;border-radius:48% 52% 0 0}
-.pai-welcome-landscape::before{background:#bdd6f0;transform:rotate(9deg)}
-.pai-welcome-landscape::after{background:linear-gradient(145deg,#94bce6,#e1ecf8);bottom:-38%;transform:rotate(-8deg)}
+.pai-welcome-landscape::before{background:#d8e6f6;transform:rotate(7deg)}
+.pai-welcome-landscape::after{background:linear-gradient(145deg,#c0d8f1,#eaf2fa);bottom:-38%;transform:rotate(-7deg)}
 .pai-welcome h1{margin:0;font-size:clamp(42px,12vw,64px);letter-spacing:-2.5px;line-height:1.12;color:#071b42}
 .pai-welcome-head{text-align:center;margin:30px 0 0}
 .pai-welcome-tagline{margin:13px 0 4px;font-size:clamp(19px,5vw,26px);font-weight:750;color:#155ed2}
 .pai-welcome-sub{margin:7px auto 0;max-width:350px;font-size:15px;line-height:1.7;color:#53647b}
 .pai-welcome-scenery{height:clamp(102px,18vh,172px);flex-shrink:0}
 .pai-welcome-features{display:grid;grid-template-columns:1fr;gap:9px}
-.pai-welcome-feature{display:grid;grid-template-columns:46px minmax(0,1fr);align-items:center;gap:12px;padding:11px 15px;border-radius:17px;background:rgba(255,255,255,.89);box-shadow:0 4px 18px #294f8612}
+.pai-welcome-feature{display:grid;grid-template-columns:46px minmax(0,1fr);align-items:center;gap:12px;padding:11px 15px;border-radius:17px;background:rgba(255,255,255,.95);box-shadow:0 4px 18px #294f860d}
 .pai-welcome-feature-icon{width:43px;height:43px;display:grid;place-items:center;border-radius:13px;font-size:23px;background:#e3f0ff;color:#1873ea}
+.pai-welcome-feature-icon svg{width:26px;height:26px;display:block;flex:none}
 .pai-welcome-feature:nth-child(2) .pai-welcome-feature-icon{background:#e2f7ed;color:#119d79}
 .pai-welcome-feature:nth-child(3) .pai-welcome-feature-icon{background:#fff0e7;color:#e07f37}
 .pai-welcome-feature:nth-child(4) .pai-welcome-feature-icon{background:#eeeaff;color:#7561d9}
 .pai-welcome-feature strong{display:block;font-size:16px;line-height:1.3}.pai-welcome-feature small{display:block;margin-top:3px;font-size:12px;line-height:1.4;color:#66758b}
 .pai-welcome-actions{margin-top:42px;display:grid;gap:8px}
 .pai-welcome-actions button{border:0;font:inherit;cursor:pointer;min-height:48px}
-.pai-welcome-enter{background:#2476f6;color:#fff;border-radius:18px;font-size:17px!important;font-weight:700!important}
+.pai-welcome-enter{background:#2476f6;color:#fff;border-radius:18px;font-size:17px!important;font-weight:700!important;box-shadow:0 8px 18px #2476f62b}
 .pai-welcome-catalog{background:transparent;color:#1768da;font-size:14px!important;font-weight:650!important}
 .pai-welcome button:focus-visible{outline:3px solid #143c89;outline-offset:3px}
 @media(max-height:700px){.pai-welcome-inner{padding-top:calc(20px + env(safe-area-inset-top,0px))}.pai-welcome-head{margin-top:12px}.pai-welcome-scenery{height:65px}.pai-welcome-feature{padding:8px 12px}.pai-welcome-actions{margin-top:22px}}
