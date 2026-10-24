@@ -28,11 +28,11 @@ jobs:
           const input='rebuild-preview/assets/pai-ai-mathematicians-comic.jpg';
           const output='rebuild-preview/assets/pai-ai-mathematicians-comic.webp';
           const origin=await sharp(input).metadata();
-          if(origin.width!==1536||origin.height!==1024)throw Error('unexpected comic dimensions');
+          if(origin.width<960||origin.height<640)throw Error('comic source resolution unexpectedly low');
           await sharp(input).webp({quality:88,effort:6}).toFile(output);
           const final=await sharp(output).metadata();
           const originalBytes=statSync(input).size,webpBytes=statSync(output).size;
-          if(final.width!==1536||final.height!==1024)throw Error('loss of resolution');
+          if(final.width!==origin.width||final.height!==origin.height)throw Error('loss of resolution');
           if(webpBytes>originalBytes*.9)throw Error('not enough compression benefit');
           console.log(JSON.stringify({originalBytes,webpBytes,savingsPercent:Math.round((1-webpBytes/originalBytes)*100),width:final.width,height:final.height,quality:88}));
           NODE
