@@ -78,7 +78,7 @@
 .learning-screen .word-hero .auto-word-symbol{
   display:grid;place-items:center;width:29px;height:25px;
   border:0;border-radius:0;background:transparent;color:#87909e;
-  transition:color .15s ease,opacity .15s ease
+  transform:translateX(-5px);transition:color .15s ease,opacity .15s ease
 }
 .learning-screen .word-hero .auto-word-symbol svg{width:27px;height:23px}
 .learning-screen .word-hero .auto-word-toggle input:checked + .auto-word-symbol{
