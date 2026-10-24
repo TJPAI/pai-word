@@ -56,7 +56,7 @@
 
 /* Fixed controls: never follow word or IPA length. */
 .learning-screen .word-hero{position:relative}
-.learning-screen .word-hero .word-line{width:100%;justify-content:center;padding:0 96px;box-sizing:border-box}
+.learning-screen .word-hero .word-line{width:100%;justify-content:center;padding:30px 8px 0;box-sizing:border-box}
 .learning-screen .word-hero .word{min-width:0;text-align:center}
 .learning-screen .word-hero .auto-word-toggle{
   position:absolute;right:12px;top:15px;
@@ -73,7 +73,7 @@
   width:44px;min-width:44px;height:44px;min-height:44px
 }
 @media(max-width:380px){
-  .learning-screen .word-hero .word-line{padding:0 90px 0 10px}
+  .learning-screen .word-hero .word-line{padding:30px 6px 0}
   .learning-screen .word-hero .ipa-line{padding:0 52px 0 12px}
   .learning-screen .word-hero .auto-word-toggle{right:8px}
   .learning-screen .word-hero .ipa-line .speak-btn{right:8px}
