@@ -1,6 +1,7 @@
 // Scene500 independent contract adapter v0.1; additive and does not change legacy engine.
 import {createScene500Recommender} from './engine.mjs';
 import {createSparseSceneRetriever} from './sparse-retriever.mjs';
+import {mergeSubjectCandidates} from './subject-intent.mjs';
 export const RECOMMENDATION_CONTRACT_VERSION='scene500-recommendation-contract-v0.1';
 const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
 const finite=x=>typeof x==='number'&&Number.isFinite(x);
@@ -86,7 +87,7 @@ export function createScene500ContractAdapter({catalog,lexicon,associations,mini
    const rows=[...map.values()].sort((a,b)=>b.score-a.score||a.sceneId.localeCompare(b.sceneId));
    rows.forEach((x,i)=>{x.rank=i+1;x.score=Math.round(x.score*1000)/1000;});
    const n=Number.isFinite(Number(limit))?Math.max(0,Math.min(500,Math.floor(Number(limit)))):20;
-   return {query:String(query??''),total:rows.length,results:rows.slice(0,n)};
+   return mergeSubjectCandidates({query:String(query??''),total:rows.length,results:rows},query,{catalog,eligibleSceneIds,limit:n});
   },
   getPage(snapshot,pageIndex=0,pageSize=5){return base.getPage(snapshot,pageIndex,pageSize);}
  });
