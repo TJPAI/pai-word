@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-welcome-v1-20261024';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-welcome-reset-v2-20261024';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -38,6 +38,7 @@
     req.onblocked=()=>{window.PAI_RESET_BLOCKED=true};
    });
    localStorage.removeItem('pai-word-core20k-rebuild-preview-v21');
+   localStorage.removeItem('pai-word-welcome-seen-v1');
    for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
    for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
    // Verify no stale legacy state can re-seed a newly initialized database.
@@ -182,7 +183,10 @@
 
   // Restore persisted recommendation IDs exactly; only explicit user actions rerank.
   render();
-  mark('homeRendered');app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
+  mark('homeRendered');
+  // A successful full reset starts as a new user, including first-run welcome.
+  if(window.PAI_LAST_RESET_QA?.passed)window.PAI_SHOW_WELCOME_AFTER_RESET?.();
+  app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
   // Restore the snapshot first; reconcile real progress/recents after first paint.
   requestAnimationFrame(()=>window.PAI_HOME_RECONCILE?.({rerank:false}));
   // Warm the existing catalog module after the home has painted; do not delay first interaction.
