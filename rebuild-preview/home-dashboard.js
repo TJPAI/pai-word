@@ -65,8 +65,8 @@
       </main>
     </div></div>`;
   }
-  let searchSerial=0,bridgePromise=null;
-  window.PAI_SCENE_QUERY_CHANGED=()=>{searchSerial++};
+  let searchSerial=0,bridgePromise=null,searchController=null;
+  window.PAI_SCENE_QUERY_CHANGED=()=>{searchSerial++;searchController?.abort();searchController=null};
   const getBridge=()=>bridgePromise||(bridgePromise=(()=>{
     let timeoutId;
     const loaded=import(new URL('rebuild-preview/scene500-recommendation-bridge.mjs',document.baseURI).href);
@@ -86,6 +86,9 @@
   };
   async function runSceneSearch(q,difficulty,{restore=false}={}){
     const ticket=++searchSerial;
+    searchController?.abort();
+    const controller=new AbortController();
+    searchController=controller;
     const previous=ui();
     const same=restore&&previous.query===q&&previous.difficulty===difficulty;
     // Never blank a displayed result while the lazy recommendation module loads.
@@ -95,9 +98,9 @@
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
-        const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:playable().map(x=>x.id),limit:500});
+        const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:playable().map(x=>x.id),limit:500,signal:controller.signal});
         ids=result.ids;mode=result.mode;elapsedMs=performance.now()-start;cacheHit=!!result.cacheHit;
-      }catch(error){window.PAI_SCENE500_LAST_ERROR=String(error);bridgePromise=null}
+      }catch(error){if(error?.name!=='AbortError'){window.PAI_SCENE500_LAST_ERROR=String(error);bridgePromise=null}}
     }
     if(ticket!==searchSerial||state.view!=='scenes')return;
     if(!ids.length){ids=(searchApi()?.search(q,difficulty,5)||[]).map(x=>x.id);mode='legacy_fallback'}
