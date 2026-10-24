@@ -1,0 +1,30 @@
+{
+  "schema": "pai-core20k-b161-runtime-identity-crosscheck-v1",
+  "baseline_commit": "c4442bc3e0a97bb6cdf9a077d1f56374f2f0824b",
+  "registry_sha256": "5dc2843828eeb1e87c45e193f29487109a4f0e7d34a1532156ebb83f473cfc82",
+  "staging_sha256": "6fc407b1a5ecc6155e3651e2ed4b5953c2b8161c4957a6259eb90a0c77176371",
+  "staging": 290,
+  "runtime_ku_total": 16617,
+  "ku_id_exact_and_rank_lemma_match": 285,
+  "ku_id_absent": 5,
+  "rank_lemma_match": 290,
+  "identity_conflicts_for_matching_ku": 0,
+  "candidate_sense_id_equals_runtime_sense_identity": 0,
+  "notes": [
+    "Runtime has no standalone sense_id; registry denotes sense identity as ku_id. Candidate separate sense_id requires approved mapping, not an equality assertion.",
+    "Candidate headword_id is core20k:rank:<rank>; runtime headword_id is legacy w-number. Do not equate them.",
+    "Five absent KU IDs are not authorized new records and remain quarantined.",
+    "Frozen V2.0.6 CSV bytes not independently checked; compare is only against runtime at baseline commit.",
+    "No semantic review certification; no release."
+  ],
+  "absent_ku_ids": [
+    "w_2852_filter_ku01",
+    "w_2852_filter_ku02",
+    "w_2852_filter_ku03",
+    "w_0582_wrong_ku05",
+    "w_0908_career_ku02"
+  ],
+  "certified": 0,
+  "release_eligible": 0,
+  "production_runtime_changed": false
+}
