@@ -1,0 +1,30 @@
+{
+  "schema": "pai-core20k-b172-consensus-implementation-qa-v1",
+  "source_snapshot": "core20k_batch170_editorial_staging_290.jsonl",
+  "snapshot_rows": 290,
+  "unique_ku": 290,
+  "declared_risk_level_count": 0,
+  "actual_muse_reviews_received": 0,
+  "dual_ai_consensus": 0,
+  "production_ready": 0,
+  "synthetic_tests": {
+    "total": 5,
+    "pass": 5,
+    "cases": [
+      "agree_low_risk",
+      "missing_muse_review",
+      "field_disagreement",
+      "high_risk_without_evidence",
+      "unsafe_release_flag"
+    ]
+  },
+  "dry_run": {
+    "rows": 290,
+    "dual_ai_consensus": 0,
+    "staging_review_required": 290
+  },
+  "test_scope": "Local synthetic fixtures and real 290-candidate missing-review dry run; no external Muse verification",
+  "candidate_revision_count": 0,
+  "certification_policy": "A consensus report is a semantic quality approval, not automatically external lexical evidence or official production authorization",
+  "next_action": "Request actual independently authored Muse review with per-KU SHA256 and rationale. Do not invent it."
+}
