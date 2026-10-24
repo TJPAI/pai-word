@@ -1,0 +1,26 @@
+{
+  "schema": "zh-core20k-next500-quality-gate-v2",
+  "date": "2026-10-24",
+  "sources": {
+    "chatgpt_sha256": "e1e5a289312d0e3936ecea4136a34320404c463a9ee9d1bd164d02bcab07c49f",
+    "muse_sha256": "ac7179283ca716333e4bc26164bb416921267b433c8ba2a1f67c982b8968e23d"
+  },
+  "result": {
+    "total": 500,
+    "identity_mismatch": 0,
+    "provisional_semantic_agreement": 334,
+    "provisional_domain_agreement": 56,
+    "disputed": 76,
+    "uncertain": 34
+  },
+  "critical_qa": {
+    "chatgpt_review_id_unique": 1,
+    "per_item_reason_template_count_after_term_mask": 7,
+    "non_individualized_reason_rows": 500,
+    "originals_unmodified": true,
+    "derived_trace_id_policy": "Supplemental indexing only; never pretend newly derived IDs were in locked original",
+    "certification_gate": "BLOCKED_INSUFFICIENT_PER_ITEM_REASONING",
+    "release_approved": false
+  },
+  "required": "Independent substantive re-audit with individualized lexical analyses for ChatGPT 500 rows; retain locked Muse review; separate re-audit from initial run and rerun certification."
+}
