@@ -1,0 +1,30 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v2-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "eb69d8991b85fb6f5be3c88c2d79fa8cddd2f0f45cfd313655a3dad927e99d3d",
+  "drive_url": "https://drive.google.com/file/d/1xGPfnCtjrFoGbJXFMQWlGjGCMLys22On/view",
+  "total": 67,
+  "results": {
+    "PASS": 8,
+    "FAIL": 1,
+    "NEEDS_RECHECK": 4,
+    "NOT_RECHECKED": 54
+  },
+  "new_pass": [
+    "每股收益",
+    "引力",
+    "栖息地",
+    "最优控制"
+  ],
+  "new_recheck_blocked": [
+    "生产者价格指数: source timeout",
+    "刑事辩护: redirect loop"
+  ],
+  "qa": {
+    "identity_hash_pass": 67,
+    "unique_ids": 67,
+    "raw_review_verdicts_unchanged": true,
+    "release_approved": 0
+  },
+  "policy": "Source-pointer coverage 67/67 is distinct from independently reopened verified sources (8/67), and source failures are not counted as passes."
+}
