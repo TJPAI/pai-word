@@ -1,0 +1,23 @@
+{
+  "schema": "zh-core20k-next500-crosscheck-gate-v1",
+  "date": "2026-10-24",
+  "source_sha256": {
+    "chatgpt": "e1e5a289312d0e3936ecea4136a34320404c463a9ee9d1bd164d02bcab07c49f",
+    "chatgpt_qa": "48d26622bd9792a59f2661de4412203ad9207fe87d2fa284542ec1838433c049",
+    "muse": "ac7179283ca716333e4bc26164bb416921267b433c8ba2a1f67c982b8968e23d",
+    "muse_qa": "88c4603f0d318f765a0bc3d599640642208a16b2a86a4118ca3eb82845dc129b"
+  },
+  "source_alignment": 500,
+  "term_identity_errors": 0,
+  "provisional_counts": {
+    "semantic_agreement": 334,
+    "domain_fact_check_pending": 56,
+    "disputed": 76,
+    "uncertain_pending": 34
+  },
+  "blocking_error": "CHATGPT_REVIEW_ID_NOT_UNIQUE: distinct 1 of 500",
+  "certification_gate": "FAIL_CLOSED",
+  "release_approved": 0,
+  "required_remediation": "Preserve locked original reviewer file SHA; add uniquely indexed per-row review references as separate signed metadata overlay then revalidate. Never rewrite original verdict or reason.",
+  "full_local_report_sha256": "f967856774c93830e99dc8700c8e309e4e68dc8d8e5aace4c13a0a0d35be4b05"
+}
