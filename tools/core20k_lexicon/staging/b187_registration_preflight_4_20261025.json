@@ -1,0 +1,145 @@
+{
+  "schema": "pai-core20k-b187-registration-preflight-v1",
+  "purpose": "Map four B184 content-and-preview accepted provisional collocations to EXISTING production registration gate prerequisites without minting IDs or release status",
+  "evidence_anchor": {
+    "registration_gate": "scripts/core20k-ku-registration-gate.mjs",
+    "gate_branch": "core20k-lexicon-production-v1",
+    "gate_head": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "staging_gate": "scripts/core20k-production-staging-gate.mjs",
+    "preview_commit": "393651b8e9089956502ea9c97f6aca3d5415f332",
+    "source_review": "https://drive.google.com/file/d/1nVrKyznShJIfSSmEe1xhaIyZCxUEcuSj/view?usp=drivesdk",
+    "preview_acceptance": "https://drive.google.com/file/d/1lnGkZuE3hbRIoFK0iSeZrPNJ_6ns1o_R/view?usp=drivesdk"
+  },
+  "gate_findings": [
+    "canRegisterKU requires candidate_id + target_sense_id, pos/gloss_zh/gloss_en, review_status accepted, source.license_status approved, evidence_locator/evidence_scope, new noncolliding ku_id",
+    "Existing staging gate requires non-null ku_id/sense_id/headword_id, and B161 supports only cloze/inflected_cloze; B184 recognition pack cannot be fed into it unmodified",
+    "B184 provisional IDs and B184 isolated preview success cannot substitute for registration authority"
+  ],
+  "records": [
+    {
+      "provisional_candidate_id": "B180-P002",
+      "phrase": "bear in mind",
+      "headword_id": "core20k:rank:714",
+      "existing_registration_gate": {
+        "candidate_id": "B180-P002",
+        "target_sense_id": null,
+        "ku_id": null,
+        "pos": "COLLOCATION_PHRASE_POS_REQUIRES_REGISTRATION_MAPPING",
+        "gloss_zh": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "gloss_en": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "review_status": "B184_CONTENT_PASS_NOT_FORMAL_ACCEPTED",
+        "evidence_locator": null,
+        "evidence_scope": null,
+        "source_license_status": "UNVERIFIED"
+      },
+      "gates": {
+        "content_quality": "PASS_CONDITIONAL_ON_TESTED_RENDERING",
+        "isolation_preview": "PASS_CHROMIUM_ONLY",
+        "formal_sense_ownership": "BLOCKED_NO_TARGET_SENSE_ID",
+        "ku_id": "BLOCKED_UNREGISTERED",
+        "source_attribution": "BLOCKED_FIELD_EVIDENCE_NOT_ATTACHED",
+        "license": "BLOCKED_NOT_APPROVED",
+        "editorial_accepted": "BLOCKED_NOT_SET",
+        "phrase_us_ipa": "PENDING_0_OF_4",
+        "production_release": "BLOCKED"
+      }
+    },
+    {
+      "provisional_candidate_id": "B180-P005",
+      "phrase": "package deal",
+      "headword_id": "core20k:rank:720",
+      "existing_registration_gate": {
+        "candidate_id": "B180-P005",
+        "target_sense_id": null,
+        "ku_id": null,
+        "pos": "COLLOCATION_PHRASE_POS_REQUIRES_REGISTRATION_MAPPING",
+        "gloss_zh": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "gloss_en": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "review_status": "B184_CONTENT_PASS_NOT_FORMAL_ACCEPTED",
+        "evidence_locator": null,
+        "evidence_scope": null,
+        "source_license_status": "UNVERIFIED"
+      },
+      "gates": {
+        "content_quality": "PASS_CONDITIONAL_ON_TESTED_RENDERING",
+        "isolation_preview": "PASS_CHROMIUM_ONLY",
+        "formal_sense_ownership": "BLOCKED_NO_TARGET_SENSE_ID",
+        "ku_id": "BLOCKED_UNREGISTERED",
+        "source_attribution": "BLOCKED_FIELD_EVIDENCE_NOT_ATTACHED",
+        "license": "BLOCKED_NOT_APPROVED",
+        "editorial_accepted": "BLOCKED_NOT_SET",
+        "phrase_us_ipa": "PENDING_0_OF_4",
+        "production_release": "BLOCKED"
+      }
+    },
+    {
+      "provisional_candidate_id": "B180-P006",
+      "phrase": "on board",
+      "headword_id": "core20k:rank:721",
+      "existing_registration_gate": {
+        "candidate_id": "B180-P006",
+        "target_sense_id": null,
+        "ku_id": null,
+        "pos": "COLLOCATION_PHRASE_POS_REQUIRES_REGISTRATION_MAPPING",
+        "gloss_zh": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "gloss_en": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "review_status": "B184_CONTENT_PASS_NOT_FORMAL_ACCEPTED",
+        "evidence_locator": null,
+        "evidence_scope": null,
+        "source_license_status": "UNVERIFIED"
+      },
+      "gates": {
+        "content_quality": "PASS_CONDITIONAL_ON_TESTED_RENDERING",
+        "isolation_preview": "PASS_CHROMIUM_ONLY",
+        "formal_sense_ownership": "BLOCKED_NO_TARGET_SENSE_ID",
+        "ku_id": "BLOCKED_UNREGISTERED",
+        "source_attribution": "BLOCKED_FIELD_EVIDENCE_NOT_ATTACHED",
+        "license": "BLOCKED_NOT_APPROVED",
+        "editorial_accepted": "BLOCKED_NOT_SET",
+        "phrase_us_ipa": "PENDING_0_OF_4",
+        "production_release": "BLOCKED"
+      }
+    },
+    {
+      "provisional_candidate_id": "B180-P007",
+      "phrase": "cut down on",
+      "headword_id": "core20k:rank:722",
+      "existing_registration_gate": {
+        "candidate_id": "B180-P007",
+        "target_sense_id": null,
+        "ku_id": null,
+        "pos": "COLLOCATION_PHRASE_POS_REQUIRES_REGISTRATION_MAPPING",
+        "gloss_zh": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "gloss_en": "AVAILABLE_IN_B184_CANDIDATE_NOT_COPIED",
+        "review_status": "B184_CONTENT_PASS_NOT_FORMAL_ACCEPTED",
+        "evidence_locator": null,
+        "evidence_scope": null,
+        "source_license_status": "UNVERIFIED"
+      },
+      "gates": {
+        "content_quality": "PASS_CONDITIONAL_ON_TESTED_RENDERING",
+        "isolation_preview": "PASS_CHROMIUM_ONLY",
+        "formal_sense_ownership": "BLOCKED_NO_TARGET_SENSE_ID",
+        "ku_id": "BLOCKED_UNREGISTERED",
+        "source_attribution": "BLOCKED_FIELD_EVIDENCE_NOT_ATTACHED",
+        "license": "BLOCKED_NOT_APPROVED",
+        "editorial_accepted": "BLOCKED_NOT_SET",
+        "phrase_us_ipa": "PENDING_0_OF_4",
+        "production_release": "BLOCKED"
+      }
+    }
+  ],
+  "counts": {
+    "reviewed": 4,
+    "new_registered": 0,
+    "ready_for_formal_registration": 0
+  },
+  "next_safe_actions": [
+    "Define explicit owner sense for each collocation and authoritative no-collision KU allocation protocol",
+    "Collect source licenses, field evidence locators and review acceptance from actual certified authorities",
+    "Decide whether existing registration gate should support structure_recognition through a separate audited adapter, without weakening isolation",
+    "Do not require phrase-level IPA based on a gate rule that does not currently check IPA; track it as separately required teaching content certification"
+  ],
+  "production_ready": false,
+  "release_eligible": false
+}
