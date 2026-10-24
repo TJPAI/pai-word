@@ -1,0 +1,32 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v1-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "d1c96e7af042935be32feabe3ecb7e0c25b68c7a93ece551ee065077b7246209",
+  "drive_url": "https://drive.google.com/file/d/1W5jM2D_J5ndCLC1EI5Tknjr6RZI5oUQx/view",
+  "source_pointer_coverage": 67,
+  "second_level_results": {
+    "direct_page_match_pass": 4,
+    "exact_term_mismatch_fail": 1,
+    "source_unavailable_or_unlocated": 2,
+    "not_rechecked_in_this_round": 60
+  },
+  "examples": {
+    "fail": "净利率 source actually defines 净利润率",
+    "needs_recheck": [
+      "不饱和溶液 PDF text search did not locate exact term and PDF screenshot failed",
+      "在线教育 ministry webpage redirect loop"
+    ],
+    "pass": [
+      "有期徒刑",
+      "四分音符",
+      "八分音符",
+      "五线谱"
+    ]
+  },
+  "qa": {
+    "unique_ids": 67,
+    "identity_hash_pass": 67,
+    "release_approved": 0
+  },
+  "policy": "Do not claim 67 evidence-pointers represent 67 high-grade verified definitions; original evidence overlay and reviewers remain unchanged."
+}
