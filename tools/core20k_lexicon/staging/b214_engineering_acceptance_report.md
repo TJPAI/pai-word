@@ -45,8 +45,15 @@ node --test tools/core20k_lexicon/staging/b188_registration_preflight.test.mjs \
 - 工作流：`.github/workflows/core20k-b210-transaction.yml`，push 到 QA 分支且命中
   b209 实现/测试/工作流文件时触发；`workflow_dispatch` 存在但因工作流文件不在
   默认分支 main 上，网页无手动按钮（与 B189/B192 情形相同，属正常规则）。
-- 本报告提交后，B210 应在新提交上自动运行；本报告中的 CI 段以实际运行记录为准，
-  不得用本地 Node 24 结果冒充 CI。
+- 基线（`a73c9cd`）：Run 40133897590，Node v22.23.3，B209 测试 7/7 PASS。
+  此前 `aa37ebd` 的一次 Failure 已查实为 fixture 与执行器不匹配（旧 fixture
+  缺 headword_id/sense_id），`a73c9cd` 仅改测试文件后恢复，执行器未动。
+- 本次提交：Run 40134720899 @`364365ee`（执行器防护提交），Success；
+  Run 40134842605 @`3558bd1a`（扩展测试提交），Node v22.23.3，
+  B209 测试 14/14 PASS（作业 5 秒；警告仅为 Node 20 弃用与 ubuntu-latest
+  迁移提示，与测试无关）。
+- 本报告的 CI 数字以以上运行记录为准；本地 Node 24 结果（36/36 + 1 skipped）
+  不冒充 CI。
 
 ## 5. 本次修复（均在隔离 QA 分支内）
 
