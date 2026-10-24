@@ -1,0 +1,35 @@
+{
+  "audit": "V0.10.1_vs_V0.9.4_RC2_3553_links",
+  "date": "2026-10-24",
+  "status": "PASS_DATA_COMPATIBILITY_ONLY",
+  "inputs": {
+    "runtime": {
+      "library_path": "/PAI_Lexicon/zh-core20k-v0101-scene500-delivery/zh-core20k-v0101-scene500-runtime.json",
+      "sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093"
+    },
+    "associations": {
+      "library_filename": "v094-lexical-associations.json",
+      "sha256": "d6de9818f5056330b6d57d6b7c728a1457e66a4d241aac173ba7eb1c5f770213"
+    }
+  },
+  "checks": {
+    "terms": 20000,
+    "term_id_hash_mismatches": 0,
+    "edges": 3553,
+    "linked_terms": 1613,
+    "linked_scenes": 500,
+    "invalid_foreign_keys": 0,
+    "surface_mismatches": 0,
+    "invalid_scene_ids": 0,
+    "duplicate_edges": 0,
+    "total_errors": 0
+  },
+  "method": "Direct local Python read of materialized original JSON bytes, sha256 and row-by-row checks; not a Node script CI run",
+  "not_verified": [
+    "Scene500 ranking regression",
+    "browser integration",
+    "deployed asset SHA",
+    "mobile Safari"
+  ],
+  "production_ready": false
+}
