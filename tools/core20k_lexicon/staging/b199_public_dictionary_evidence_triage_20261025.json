@@ -1,0 +1,51 @@
+{
+  "schema": "pai-core20k-b199-public_dictionary_evidence_triage-v1",
+  "observed_on": "2026-10-25",
+  "evidence_type": "PUBLIC_DICTIONARY_PAGES_INDEPENDENTLY_OPENED",
+  "candidate_source": "rebuild-preview/b184-recognition/candidates-b184.jsonl",
+  "verdict": "LEXICAL_FORM_AND_SCOPE_SUPPORTED_4_OF_4",
+  "items": [
+    {
+      "candidate_id": "B180-P002",
+      "phrase": "bear in mind",
+      "url": "https://dictionary.cambridge.org/dictionary/english/bear-keep-in-mind",
+      "evidence_scope": "FIXED_PHRASE_SEMANTICS",
+      "finding": "Cambridge treats bear/keep something in mind as a phrase: remember or take information into account when deciding/thinking",
+      "phrase_ipa": "NOT_VERIFIED"
+    },
+    {
+      "candidate_id": "B180-P005",
+      "phrase": "package deal",
+      "url": "https://dictionary.cambridge.org/us/dictionary/english/package-deal",
+      "evidence_scope": "FIXED_NOUN_PHRASE_SEMANTICS_AND_US_IPA",
+      "finding": "Cambridge lists noun [C] for grouped offers/services at one price; also distinct bundled acceptance and vacation senses; candidate covers bundled-offer meaning",
+      "phrase_ipa": "/ˈpæk.ɪdʒ ˌdiːl/",
+      "ipa_status": "PUBLIC_DICTIONARY_US_PRONUNCIATION_OBSERVED_NOT_LICENSE_CLEARED"
+    },
+    {
+      "candidate_id": "B180-P006",
+      "phrase": "on board",
+      "url": "https://dictionary.cambridge.org/us/dictionary/english/on-board",
+      "evidence_scope": "PREPOSITIONAL_PHRASE_TRANSPORT_STATE",
+      "finding": "Cambridge lists on board as transport occupancy phrase; also team-membership/agreement senses. Hyphenated on-board adjective IPA should NOT be asserted as IPA of unhyphenated phrase.",
+      "phrase_ipa": "NOT_VERIFIED"
+    },
+    {
+      "candidate_id": "B180-P007",
+      "phrase": "cut down on",
+      "url": "https://dictionary.cambridge.org/us/dictionary/english/cut-down?topic=becoming-and-making-smaller-or-less",
+      "evidence_scope": "PHRASAL_VERB_PATTERN",
+      "finding": "Cambridge cut down lists construction cut down on with caffeine example, to do/use less; matches canonical learning target, not restricted to sugar.",
+      "phrase_ipa": "NOT_VERIFIED"
+    }
+  ],
+  "important_limits": [
+    "Public dictionary evidence does not grant reuse of proprietary text, audio or examples in the released app",
+    "source_license_status is NOT APPROVED; no content bulk copied",
+    "Only package deal direct phrase US IPA observed; all other candidate us_ipa remain null",
+    "Cross-model signoff, official Sense/KU owner and identity allocation remain pending",
+    "GitHub Actions B189/B192 verified run logs are unavailable; not claimed PASS"
+  ],
+  "registered_new_ku": 0,
+  "production_ready": false
+}
