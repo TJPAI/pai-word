@@ -71,6 +71,7 @@ export async function tryInstallCore20K({url='data/core20k-runtime.json.gz',fetc
     window.downloadOfflineLexicon=async()=>{};
     window.PAI_LOCAL_LEXICON={supported:true,offlineReady:true,shellReady:false,loadedChunks:1,totalChunks:1,release:'Core20K-dev'};
     window.PAI_CORE_QA={release:'Core20K-dev',words:core.qa.words,units:core.qa.activeKU,playable:core.qa.playableSense};
+    window.dispatchEvent(new Event('pai-core-ready'));
     return core;
   }catch(error){
     window.PAI_CORE=previous;WORDS.splice(0,WORDS.length,...previousWords);
