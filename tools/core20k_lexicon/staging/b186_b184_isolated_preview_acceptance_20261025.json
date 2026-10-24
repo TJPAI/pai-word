@@ -1,0 +1,26 @@
+{
+  "schema": "pai-core20k-b186-isolated-preview-acceptance-v1",
+  "source_commit": "393651b8e9089956502ea9c97f6aca3d5415f332",
+  "preview_url": "https://tjpai.github.io/pai-word-preview/b184-recognition/",
+  "reports": {
+    "ci": "https://drive.google.com/file/d/1uOFNC7kcnWy5mL7CuoBeU7y8KYtd814P/view?usp=drivesdk",
+    "browser_e2e": "https://drive.google.com/file/d/12id_HytlST9g5paiwUESHmlruWOttexG/view?usp=drivesdk",
+    "final": "https://drive.google.com/file/d/1lnGkZuE3hbRIoFK0iSeZrPNJ_6ns1o_R/view?usp=drivesdk"
+  },
+  "verdicts": {
+    "ci": "PASS_NODE_22_7_OF_7",
+    "pages_deployment": "PASS",
+    "chromium_browser_e2e": "PASS",
+    "safari": "NOT_RUN",
+    "production_ku": "NOT_READY"
+  },
+  "limits": [
+    "isolated preview only",
+    "No Safari verification",
+    "No formal SRS writes observed in examined browser storage/network scope; not a universal assertion",
+    "No official sense/ku IDs allocated",
+    "Phrase-level IPA 0/4 verified; external lexicographic evidence not complete"
+  ],
+  "new_registered_kus": 0,
+  "production_ready": false
+}
