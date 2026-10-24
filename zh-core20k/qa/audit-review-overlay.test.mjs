@@ -9,3 +9,5 @@ test('fake headword without URL rejected',()=>{const f=fixture();f.overlay.entri
 test('invented identity rejected',()=>{const f=fixture();f.overlay.entries[0].term_id='zh_'+'f'.repeat(20);assert(auditReviewOverlay(f.runtime,f.queue,f.overlay).errors.some(s=>s.startsWith('OVERLAY_IDENTITY')));});
 test('attempted membership alteration rejected',()=>{const f=fixture();f.overlay.entries[0].membership_action='DELETE';assert(auditReviewOverlay(f.runtime,f.queue,f.overlay).errors.some(s=>s.startsWith('FORBIDDEN_MEMBERSHIP_ACTION')));});
 test('attempted frequency alteration rejected',()=>{const f=fixture();f.overlay.entries[0].frequency_rank=1;assert(auditReviewOverlay(f.runtime,f.queue,f.overlay).errors.some(s=>s.startsWith('FORBIDDEN_FREQUENCY_MUTATION')));});
+
+test('empty or incompatible overlays fail closed',()=>{const f=fixture();f.overlay={verified:[]};assert(auditReviewOverlay(f.runtime,f.queue,f.overlay).errors.includes('EMPTY_OR_INVALID_OVERLAY'));});
