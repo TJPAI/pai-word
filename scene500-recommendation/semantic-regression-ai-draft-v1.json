@@ -1,0 +1,176 @@
+{
+  "schema": "scene500-semantic-regression-v1",
+  "status": "AI_DRAFT_AWAITING_INDEPENDENT_REVIEW",
+  "purpose": "Evaluate semantic correctness separately from runtime structural PASS; do not use as production ground truth until independently reviewed.",
+  "cases": [
+    {
+      "query": "How to order coffee",
+      "expectedTop5Any": [
+        "S029",
+        "S034"
+      ],
+      "reason": "English query; coffee venue or ordering",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "我想去咖啡馆",
+      "expectedTop5Any": [
+        "S029"
+      ],
+      "reason": "Chinese venue",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "我想点餐",
+      "expectedTop5Any": [
+        "S034"
+      ],
+      "reason": "Chinese action",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "不要坐地铁，改坐公交",
+      "expectedTop5Any": [
+        "S078"
+      ],
+      "reason": "Negation and contrast; S079 should not outrank S078",
+      "reviewStatus": "AI_PROPOSED",
+      "constraints": {
+        "mustRankBefore": [
+          [
+            "S078",
+            "S079"
+          ]
+        ]
+      }
+    },
+    {
+      "query": "坐地铁换乘",
+      "expectedTop5Any": [
+        "S079"
+      ],
+      "reason": "Positive subway intent",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "我不坐公交，我坐地铁",
+      "expectedTop5Any": [
+        "S079"
+      ],
+      "reason": "Reverse contrast",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "洗衣服和晾衣服",
+      "expectedTop5Any": [
+        "S006"
+      ],
+      "reason": "Laundry",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "早餐怎么准备",
+      "expectedTop5Any": [
+        "S026"
+      ],
+      "reason": "Breakfast",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "我要坐公交车",
+      "expectedTop5Any": [
+        "S078"
+      ],
+      "reason": "Bus",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "coffee shop",
+      "expectedTop5Any": [
+        "S029"
+      ],
+      "reason": "English short phrase",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "order food",
+      "expectedTop5Any": [
+        "S034"
+      ],
+      "reason": "English food ordering",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "洗衣",
+      "expectedTop5Any": [
+        "S006"
+      ],
+      "reason": "Chinese short phrase",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "机器学习",
+      "expectedTop5Any": [
+        "S279"
+      ],
+      "reason": "Exact technical subject",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "深度学习",
+      "expectedTop5Any": [
+        "S280"
+      ],
+      "reason": "Exact technical subject",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "学习英语发音",
+      "expectedTop5Any": [],
+      "reason": "No fabricated positive target: exclude S279/S280 from top5; exact target requires catalog review",
+      "reviewStatus": "AI_PROPOSED",
+      "constraints": {
+        "excludeTop5": [
+          "S279",
+          "S280"
+        ]
+      }
+    },
+    {
+      "query": "不要坐地铁",
+      "expectedTop5Any": [],
+      "reason": "Negative-only query; do not force S079 as positive recommendation",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "不想洗衣服",
+      "expectedTop5Any": [],
+      "reason": "Negative-only query; do not force S006 as positive recommendation",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "地铁",
+      "expectedTop5Any": [
+        "S079"
+      ],
+      "reason": "One-word transit",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "公交",
+      "expectedTop5Any": [
+        "S078"
+      ],
+      "reason": "One-word transit",
+      "reviewStatus": "AI_PROPOSED"
+    },
+    {
+      "query": "咖啡",
+      "expectedTop5Any": [
+        "S029"
+      ],
+      "reason": "One-word venue",
+      "reviewStatus": "AI_PROPOSED"
+    }
+  ]
+}
