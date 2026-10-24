@@ -1,0 +1,35 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v9-summary",
+  "date": "2026-10-25",
+  "artifact_sha256": "b51143bb75e2abb6023eb4fa32ee057353d241a4ab4e8f717f2d17bcf8d0c049",
+  "drive_url": "https://drive.google.com/file/d/13myz99LdV3sKPQX6oOe0-dVo2j3unG65/view",
+  "counts": {
+    "total": 67,
+    "pass": 34,
+    "needs_recheck": 11,
+    "not_rechecked": 22,
+    "fail": 0,
+    "new_pass": 2,
+    "release_approved": 0
+  },
+  "new_pass": [
+    {
+      "term": "一次性密码",
+      "url": "https://fgw.sh.gov.cn/ys-hqjrfw-1.3.3.2-h5/20240821/104142ffe9214dff88bda56853c23a37.html",
+      "type": "official_payment_regulation_exact_term_usage"
+    },
+    {
+      "term": "不动产登记",
+      "url": "https://xzfg.moj.gov.cn/mobile/law/detail?LawID=1717",
+      "type": "State_Council_regulation_direct_term_definition"
+    }
+  ],
+  "qa": {
+    "unique_ids": 67,
+    "term_id_hash_matches": 67,
+    "status_total": 67,
+    "locked_reviews_unchanged": true,
+    "release_approved": 0
+  },
+  "notes": "Only fully opened direct term passages are counted. Several other webpages timed out or returned empty content, no pass assigned."
+}
