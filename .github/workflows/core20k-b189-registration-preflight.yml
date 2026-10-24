@@ -1,0 +1,25 @@
+name: Core20K B189 registration preflight
+on:
+  push:
+    branches: [core20k-teaching-qa-b162-20261024]
+    paths:
+      - 'tools/core20k_lexicon/staging/b187_registration_preflight_4_20261025.json'
+      - 'tools/core20k_lexicon/staging/b188_registration_preflight.test.mjs'
+      - 'scripts/core20k-ku-registration-gate.mjs'
+      - '.github/workflows/core20k-b189-registration-preflight.yml'
+  workflow_dispatch:
+jobs:
+  registration-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run actual KU registration gate and four-candidate preflight
+        run: |
+          node --version
+          node --test scripts/core20k-ku-registration-gate.test.mjs tools/core20k_lexicon/staging/b188_registration_preflight.test.mjs
