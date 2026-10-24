@@ -1,0 +1,49 @@
+{
+  "schema": "zh-core20k-dispute-triage-v1",
+  "date": "2026-10-24",
+  "source_full_comparison": "zh-core20k/qa/dual-ai-full200-summary-20261024.json",
+  "disputed": 19,
+  "category_counts": {
+    "NUMBER_LEXEME_VS_GENERATIVE_RULE": 6,
+    "NEGATION_CONSTRUCTION_VS_LEXICALIZED_SENSE": 6,
+    "DOMAIN_VS_GENERAL_LEXEME": 3,
+    "DEICTIC_OR_REFERENCE_SENSE": 3,
+    "ASPECT_OR_PARTICLE_BOUNDARY": 1
+  },
+  "disputed_terms": {
+    "NUMBER_LEXEME_VS_GENERATIVE_RULE": [
+      "一万",
+      "五十",
+      "十二",
+      "十九",
+      "五千",
+      "五百"
+    ],
+    "NEGATION_CONSTRUCTION_VS_LEXICALIZED_SENSE": [
+      "不下",
+      "不远",
+      "不太",
+      "不难",
+      "不住",
+      "不愿"
+    ],
+    "DOMAIN_VS_GENERAL_LEXEME": [
+      "用地",
+      "几何",
+      "更新包"
+    ],
+    "DEICTIC_OR_REFERENCE_SENSE": [
+      "这边",
+      "一号",
+      "一处"
+    ],
+    "ASPECT_OR_PARTICLE_BOUNDARY": [
+      "有着"
+    ]
+  },
+  "action": "POLICY_ALIGNMENT_AND_EXTERNAL_EVIDENCE_PENDING",
+  "membership_changes": 0,
+  "release_approved": false,
+  "artifact_sha256": "e77e6dcde8c7628a1c25e8c6c434bda362905f48cffc491de3af30db90181b41",
+  "note": "Original ChatGPT and Muse verdicts retained unchanged in row-level local artifact. No disputed term promoted as dual AI agreement."
+}
