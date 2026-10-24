@@ -1,0 +1,60 @@
+{
+  "version": "V0.10.17-membership-reality-check-20261024",
+  "status": "verified_membership_only_not_lexicographic_judgment",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_review": "zh-core20k/qa/v0117-cross-corpus-evidence-priority.json",
+  "method": "Parsed the actual 20,000-item V0.10.1 Library runtime and checked exact term surface membership; preserve all IDs and candidate status.",
+  "observed": {
+    "obvious_compositional_present": [
+      [
+        "人有",
+        "zh_6a1e41ff46d024bee3c4"
+      ],
+      [
+        "中有",
+        "zh_74f3800fdb640ed4aa35"
+      ],
+      [
+        "人来",
+        "zh_2c97e4b2b6ee11c31e8b"
+      ],
+      [
+        "我要",
+        "zh_30bc5c7b4c3708448fbf"
+      ],
+      [
+        "是从",
+        "zh_572742f0bd3db7d5da0a"
+      ],
+      [
+        "坐在",
+        "zh_ce15a15a48fe1f2c7fd3"
+      ],
+      [
+        "看过",
+        "zh_6256bf58984773e5e2d5"
+      ]
+    ],
+    "high_value_candidates_absent": [
+      "民警",
+      "北京时间",
+      "肝",
+      "肿",
+      "中国人",
+      "两国",
+      "尤其是",
+      "不可能",
+      "餐",
+      "射手"
+    ]
+  },
+  "summary": {
+    "documented_compositional_samples_present": 7,
+    "documented_high_value_candidates_absent": 10,
+    "membership_changes": 0,
+    "term_id_changes": 0,
+    "frequency_rank_changes": 0,
+    "external_dictionary_verified": 0
+  },
+  "next_step": "For each high-risk incumbent and absent candidate, gather independent dictionary evidence, contextual frequency by domain, and segmentation quality, then review matched replacement pairs without changing the 20K runtime until independently approved."
+}
