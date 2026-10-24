@@ -1,0 +1,34 @@
+{
+  "date": "2026-10-24",
+  "schema": "zh-core20k-ai-overlay-runtime-gate-v1",
+  "branch": "chinese-core20k-dev",
+  "runtime_version": "0.10.1-evidence-compat",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_queue": "Library /PAI_Lexicon/zh-core20k-v0101-scene500-delivery/v0112-queue-02.jsonl",
+  "selected": "first 200 records in original order",
+  "test_execution": {
+    "environment": "local Node.js v22.16.0",
+    "unit_cases": 6,
+    "unit_pass": 6,
+    "unit_fail": 0,
+    "real_queue_rows": 200,
+    "real_queue_pass": true,
+    "overlay_rows": 200,
+    "identity_errors": 0,
+    "evidence_grades": {
+      "AI_PRELIMINARY": 200
+    },
+    "evidence_certified_by_this_run": 0
+  },
+  "method": "Executed local copies matching current GitHub audit-review-overlay.mjs and audit-review-overlay.test.mjs logic, and a 200-row overlay materialized from original queue and full runtime; no GitHub Actions or browser run claimed.",
+  "quality_constraints": {
+    "membership_mutations": 0,
+    "id_mutations": 0,
+    "frequency_mutations": 0
+  },
+  "remaining": [
+    "Provenance links are syntactically checked, not independently content-verified",
+    "The 200 candidates are still preliminary, not dictionary-certified",
+    "Run CI against GitHub HEAD and add stable representative golden test cases"
+  ]
+}
