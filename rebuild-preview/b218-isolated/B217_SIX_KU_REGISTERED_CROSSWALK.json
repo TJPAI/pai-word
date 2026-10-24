@@ -1,0 +1,448 @@
+{
+  "schema": "pai-core20k-b217-registered-crosswalk-v1",
+  "document": "B217 first-batch six-KU formal binding registration (KU_ANCHORED_SENSE), executed by Muse under project-owner authorization dated 2026-10-25. This is a NEW registration artifact; it does not modify the 16,816 legacy records in tools/core20k_lexicon/runtime/v1/identity-crosswalk.json, the formal Runtime, SRS data, learning records, or main.",
+  "source_runtime": {
+    "repository": "TJPAI/pai-word",
+    "runtime_branch": "core20k-lexicon-production-v1",
+    "runtime_branch_head_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_file": "data/core20k-runtime.json.gz",
+    "runtime_gz_bytes": 712478,
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_gz_sha256_recomputed_in_this_delivery": true,
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "runtime_schema": "pai-core20k-runtime-v1",
+    "runtime_release": "core20k-unified-mvp-1",
+    "runtime_headword_count": 20000,
+    "runtime_ku_count": 16617,
+    "runtime_ku_id_globally_unique": true,
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head_at_check": "ccbdd21",
+    "qa_branch_head_at_execution": "80b87cd",
+    "predecessor_b217_commit": "80e53f640eea403d3ad563124af4deb10e265a90"
+  },
+  "source_pack": {
+    "file": "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+    "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+    "pack_sha256_recomputed_in_this_delivery": true,
+    "pack_version": "2026.10.23-batch93-staging",
+    "frozen_membership_version": "Core20K Long-Term V2.0.6 FINAL_FROZEN",
+    "frozen_membership_sha256": "e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca",
+    "record_count": 6
+  },
+  "authorization": {
+    "authorized_by": "PAI Word project owner",
+    "authorization_source": "project_owner_instruction_in_conversation",
+    "authorization_date": "2026-10-25",
+    "authorization_scope": {
+      "batch": "first batch, six English Core20K KUs only",
+      "ku_ids": [
+        "w_0266_person_ku01",
+        "w_0049_time_ku01",
+        "w_0041_know_ku01",
+        "w_0057_people_ku01",
+        "w_0139_talk_ku01",
+        "w_0099_here_ku01"
+      ],
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "binding_rules": {
+        "anchor_ku_id": "the formal ku_id in the Runtime",
+        "official_sense_id": null,
+        "create_new_sense_id": false,
+        "modify_existing_ku_id": false,
+        "modify_headword_identity": false,
+        "modify_srs_keys": false
+      },
+      "pinned_assets": {
+        "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+        "batch93_pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15"
+      }
+    },
+    "owner_signature": {
+      "handwritten_signature_provided": false,
+      "github_signature_provided": false,
+      "note": "No handwritten or GitHub signature was provided, and none is fabricated here. The authorization evidence is the project owner's instruction itself (scope, binding rules and pinned SHAs as recorded above). The blank signature fields in the earlier authorization_text_for_signature are intentionally left blank."
+    },
+    "executor": "Muse, acting as the authorized registration executor for this batch only",
+    "roles": {
+      "project_owner": "authorizes the binding registration (this record)",
+      "muse_executor": "executes the registration and writes the registered crosswalk",
+      "independent_qa": "automated re-verification by the fail-closed QA script (identity + fault injections); this is NOT a substitute for the separate teaching-certification gate or the deployment gate"
+    },
+    "publication_boundary": {
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_written_to_formal_learning_pool": false,
+      "note": "This authorization covers Sense identity binding registration only, not teaching-content publication. release_eligible and production_ready are deliberately left false and are enforced false by the v2 QA script."
+    }
+  },
+  "registration_authority_signed": false,
+  "registration_status_overall": "APPROVED_BINDING_REGISTRATION_ONLY",
+  "registered_count": 6,
+  "conflict_count": 0,
+  "blocked_count": 0,
+  "release_eligible_count": 0,
+  "production_ready_count": 0,
+  "records": [
+    {
+      "legacy_headword_id": "core20k:rank:108",
+      "legacy_sense_id": "w_0266_person_s01",
+      "legacy_ku_id": "w_0266_person_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "Runtime has no headword_id field; the headword row is located by rank + lemma (see runtime_headword_row)",
+      "runtime_headword_row": {
+        "rank": 108,
+        "lemma": "person",
+        "pos_raw": "n.",
+        "ipa": "/pˈɝsən/",
+        "ku_count_for_headword": 2
+      },
+      "runtime_sense_identity": {
+        "kind": "sense",
+        "anchor_ku_id": "w_0266_person_ku01",
+        "note": "Runtime has no sense_id field; Sense identity is the kind=sense KU row itself, anchored by its ku_id"
+      },
+      "runtime_ku_id": "w_0266_person_ku01",
+      "ku_id": "w_0266_person_ku01",
+      "lemma": "person",
+      "rank": 108,
+      "pos": "n.",
+      "runtime_gloss_zh": "人；个人",
+      "runtime_gloss_en": "human individual",
+      "runtime_ipa": "/pˈɝsən/",
+      "ku_type": "sense",
+      "playable": true,
+      "gloss_note": "English gloss word-order paraphrase; Chinese exact. Same sense.",
+      "identity_verification": "PASS",
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "anchor_ku_id": "w_0266_person_ku01",
+      "official_sense_id": null,
+      "registration_status": "APPROVED",
+      "registration_executor": "Muse (authorized registration executor)",
+      "authorization": {
+        "source": "project_owner_instruction_in_conversation",
+        "date": "2026-10-25",
+        "scope_ku_ids": [
+          "w_0266_person_ku01",
+          "w_0049_time_ku01",
+          "w_0041_know_ku01",
+          "w_0057_people_ku01",
+          "w_0139_talk_ku01",
+          "w_0099_here_ku01"
+        ]
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+      "evidence": {
+        "authority_record": "tools/core20k_lexicon/staging/B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+        "authority_commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+        "b216_crosswalk_commit": "da5fb94b119eea2e696da65eaef036784fd796cf",
+        "history_preserved": "B216 historical QA evidence is referenced, not overwritten; the 16,816 legacy crosswalk records in identity-crosswalk.json are untouched by this file"
+      },
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "legacy_headword_id": "core20k:rank:111",
+      "legacy_sense_id": "w_0049_time_s01",
+      "legacy_ku_id": "w_0049_time_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "Runtime has no headword_id field; the headword row is located by rank + lemma (see runtime_headword_row)",
+      "runtime_headword_row": {
+        "rank": 111,
+        "lemma": "time",
+        "pos_raw": "n.",
+        "ipa": "/tˈaɪm/",
+        "ku_count_for_headword": 5
+      },
+      "runtime_sense_identity": {
+        "kind": "sense",
+        "anchor_ku_id": "w_0049_time_ku01",
+        "note": "Runtime has no sense_id field; Sense identity is the kind=sense KU row itself, anchored by its ku_id"
+      },
+      "runtime_ku_id": "w_0049_time_ku01",
+      "ku_id": "w_0049_time_ku01",
+      "lemma": "time",
+      "rank": 111,
+      "pos": "n.",
+      "runtime_gloss_zh": "时间",
+      "runtime_gloss_en": "measured duration",
+      "runtime_ipa": "/tˈaɪm/",
+      "ku_type": "sense",
+      "playable": true,
+      "gloss_note": "Teaching Chinese adds 时长; English measurable vs measured. Same duration sense; 时长 answer policy remains a teaching-line item, not an identity conflict.",
+      "identity_verification": "PASS",
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "anchor_ku_id": "w_0049_time_ku01",
+      "official_sense_id": null,
+      "registration_status": "APPROVED",
+      "registration_executor": "Muse (authorized registration executor)",
+      "authorization": {
+        "source": "project_owner_instruction_in_conversation",
+        "date": "2026-10-25",
+        "scope_ku_ids": [
+          "w_0266_person_ku01",
+          "w_0049_time_ku01",
+          "w_0041_know_ku01",
+          "w_0057_people_ku01",
+          "w_0139_talk_ku01",
+          "w_0099_here_ku01"
+        ]
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+      "evidence": {
+        "authority_record": "tools/core20k_lexicon/staging/B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+        "authority_commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+        "b216_crosswalk_commit": "da5fb94b119eea2e696da65eaef036784fd796cf",
+        "history_preserved": "B216 historical QA evidence is referenced, not overwritten; the 16,816 legacy crosswalk records in identity-crosswalk.json are untouched by this file"
+      },
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "legacy_headword_id": "core20k:rank:138",
+      "legacy_sense_id": "w_0041_know_s01",
+      "legacy_ku_id": "w_0041_know_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "Runtime has no headword_id field; the headword row is located by rank + lemma (see runtime_headword_row)",
+      "runtime_headword_row": {
+        "rank": 138,
+        "lemma": "know",
+        "pos_raw": "v.",
+        "ipa": "/nˈoʊ/",
+        "ku_count_for_headword": 4
+      },
+      "runtime_sense_identity": {
+        "kind": "sense",
+        "anchor_ku_id": "w_0041_know_ku01",
+        "note": "Runtime has no sense_id field; Sense identity is the kind=sense KU row itself, anchored by its ku_id"
+      },
+      "runtime_ku_id": "w_0041_know_ku01",
+      "ku_id": "w_0041_know_ku01",
+      "lemma": "know",
+      "rank": 138,
+      "pos": "v.",
+      "runtime_gloss_zh": "知道；了解",
+      "runtime_gloss_en": "have knowledge",
+      "runtime_ipa": "/nˈoʊ/",
+      "ku_type": "sense",
+      "playable": true,
+      "gloss_note": "English paraphrase; Chinese exact. Same sense.",
+      "identity_verification": "PASS",
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "anchor_ku_id": "w_0041_know_ku01",
+      "official_sense_id": null,
+      "registration_status": "APPROVED",
+      "registration_executor": "Muse (authorized registration executor)",
+      "authorization": {
+        "source": "project_owner_instruction_in_conversation",
+        "date": "2026-10-25",
+        "scope_ku_ids": [
+          "w_0266_person_ku01",
+          "w_0049_time_ku01",
+          "w_0041_know_ku01",
+          "w_0057_people_ku01",
+          "w_0139_talk_ku01",
+          "w_0099_here_ku01"
+        ]
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+      "evidence": {
+        "authority_record": "tools/core20k_lexicon/staging/B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+        "authority_commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+        "b216_crosswalk_commit": "da5fb94b119eea2e696da65eaef036784fd796cf",
+        "history_preserved": "B216 historical QA evidence is referenced, not overwritten; the 16,816 legacy crosswalk records in identity-crosswalk.json are untouched by this file"
+      },
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "legacy_headword_id": "core20k:rank:142",
+      "legacy_sense_id": "w_0057_people_s01",
+      "legacy_ku_id": "w_0057_people_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "Runtime has no headword_id field; the headword row is located by rank + lemma (see runtime_headword_row)",
+      "runtime_headword_row": {
+        "rank": 142,
+        "lemma": "people",
+        "pos_raw": "n.",
+        "ipa": "/pˈipəl/",
+        "ku_count_for_headword": 3
+      },
+      "runtime_sense_identity": {
+        "kind": "sense",
+        "anchor_ku_id": "w_0057_people_ku01",
+        "note": "Runtime has no sense_id field; Sense identity is the kind=sense KU row itself, anchored by its ku_id"
+      },
+      "runtime_ku_id": "w_0057_people_ku01",
+      "ku_id": "w_0057_people_ku01",
+      "lemma": "people",
+      "rank": 142,
+      "pos": "n.",
+      "runtime_gloss_zh": "人；人们",
+      "runtime_gloss_en": "persons collectively",
+      "runtime_ipa": "/pˈipəl/",
+      "ku_type": "sense",
+      "playable": true,
+      "gloss_note": "Chinese terms swapped in order; English paraphrase. Same sense.",
+      "identity_verification": "PASS",
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "anchor_ku_id": "w_0057_people_ku01",
+      "official_sense_id": null,
+      "registration_status": "APPROVED",
+      "registration_executor": "Muse (authorized registration executor)",
+      "authorization": {
+        "source": "project_owner_instruction_in_conversation",
+        "date": "2026-10-25",
+        "scope_ku_ids": [
+          "w_0266_person_ku01",
+          "w_0049_time_ku01",
+          "w_0041_know_ku01",
+          "w_0057_people_ku01",
+          "w_0139_talk_ku01",
+          "w_0099_here_ku01"
+        ]
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+      "evidence": {
+        "authority_record": "tools/core20k_lexicon/staging/B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+        "authority_commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+        "b216_crosswalk_commit": "da5fb94b119eea2e696da65eaef036784fd796cf",
+        "history_preserved": "B216 historical QA evidence is referenced, not overwritten; the 16,816 legacy crosswalk records in identity-crosswalk.json are untouched by this file"
+      },
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "legacy_headword_id": "core20k:rank:145",
+      "legacy_sense_id": "w_0139_talk_s01",
+      "legacy_ku_id": "w_0139_talk_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "Runtime has no headword_id field; the headword row is located by rank + lemma (see runtime_headword_row)",
+      "runtime_headword_row": {
+        "rank": 145,
+        "lemma": "talk",
+        "pos_raw": "v.",
+        "ipa": "/tˈɔk/",
+        "ku_count_for_headword": 4
+      },
+      "runtime_sense_identity": {
+        "kind": "sense",
+        "anchor_ku_id": "w_0139_talk_ku01",
+        "note": "Runtime has no sense_id field; Sense identity is the kind=sense KU row itself, anchored by its ku_id"
+      },
+      "runtime_ku_id": "w_0139_talk_ku01",
+      "ku_id": "w_0139_talk_ku01",
+      "lemma": "talk",
+      "rank": 145,
+      "pos": "v.",
+      "runtime_gloss_zh": "说话；交谈",
+      "runtime_gloss_en": "speak/converse",
+      "runtime_ipa": "/tˈɔk/",
+      "ku_type": "sense",
+      "playable": true,
+      "gloss_note": "English differs only by punctuation; Chinese exact. Same sense. IPA variance (pack /tɑːk/ vs Runtime /tˈɔk/) is a teaching-line decision, not identity evidence.",
+      "identity_verification": "PASS",
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "anchor_ku_id": "w_0139_talk_ku01",
+      "official_sense_id": null,
+      "registration_status": "APPROVED",
+      "registration_executor": "Muse (authorized registration executor)",
+      "authorization": {
+        "source": "project_owner_instruction_in_conversation",
+        "date": "2026-10-25",
+        "scope_ku_ids": [
+          "w_0266_person_ku01",
+          "w_0049_time_ku01",
+          "w_0041_know_ku01",
+          "w_0057_people_ku01",
+          "w_0139_talk_ku01",
+          "w_0099_here_ku01"
+        ]
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+      "evidence": {
+        "authority_record": "tools/core20k_lexicon/staging/B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+        "authority_commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+        "b216_crosswalk_commit": "da5fb94b119eea2e696da65eaef036784fd796cf",
+        "history_preserved": "B216 historical QA evidence is referenced, not overwritten; the 16,816 legacy crosswalk records in identity-crosswalk.json are untouched by this file"
+      },
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_publication_status": "NOT_PUBLISHED"
+    },
+    {
+      "legacy_headword_id": "core20k:rank:153",
+      "legacy_sense_id": "w_0099_here_s01",
+      "legacy_ku_id": "w_0099_here_ku01",
+      "runtime_headword_id": null,
+      "runtime_headword_locator": "Runtime has no headword_id field; the headword row is located by rank + lemma (see runtime_headword_row)",
+      "runtime_headword_row": {
+        "rank": 153,
+        "lemma": "here",
+        "pos_raw": "adv.",
+        "ipa": "/hˈiɹ/",
+        "ku_count_for_headword": 2
+      },
+      "runtime_sense_identity": {
+        "kind": "sense",
+        "anchor_ku_id": "w_0099_here_ku01",
+        "note": "Runtime has no sense_id field; Sense identity is the kind=sense KU row itself, anchored by its ku_id"
+      },
+      "runtime_ku_id": "w_0099_here_ku01",
+      "ku_id": "w_0099_here_ku01",
+      "lemma": "here",
+      "rank": 153,
+      "pos": "adv.",
+      "runtime_gloss_zh": "这里；在这里",
+      "runtime_gloss_en": "in this place",
+      "runtime_ipa": "/hˈiɹ/",
+      "ku_type": "sense",
+      "playable": true,
+      "gloss_note": "Runtime English gloss abbreviates the dictionary sense (in this place vs legacy at or to this place); Chinese exact. No separate directional KU row exists under here (ku02 is temporal 'at this point'). Gloss-completeness note, not an identity conflict.",
+      "identity_verification": "PASS",
+      "binding_kind": "KU_ANCHORED_SENSE",
+      "anchor_ku_id": "w_0099_here_ku01",
+      "official_sense_id": null,
+      "registration_status": "APPROVED",
+      "registration_executor": "Muse (authorized registration executor)",
+      "authorization": {
+        "source": "project_owner_instruction_in_conversation",
+        "date": "2026-10-25",
+        "scope_ku_ids": [
+          "w_0266_person_ku01",
+          "w_0049_time_ku01",
+          "w_0041_know_ku01",
+          "w_0057_people_ku01",
+          "w_0139_talk_ku01",
+          "w_0099_here_ku01"
+        ]
+      },
+      "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+      "evidence": {
+        "authority_record": "tools/core20k_lexicon/staging/B217_SIX_KU_RUNTIME_AUTHORITY_RECORD.json",
+        "authority_commit": "80e53f640eea403d3ad563124af4deb10e265a90",
+        "b216_crosswalk_commit": "da5fb94b119eea2e696da65eaef036784fd796cf",
+        "history_preserved": "B216 historical QA evidence is referenced, not overwritten; the 16,816 legacy crosswalk records in identity-crosswalk.json are untouched by this file"
+      },
+      "release_eligible": false,
+      "production_ready": false,
+      "overlay_publication_status": "NOT_PUBLISHED"
+    }
+  ],
+  "drift_rule": "If the Runtime SHA-256, a ku_id, a ku_type, or a gloss changes, the affected binding MUST be refused at load time and re-reviewed; a drifted row is never silently re-approved.",
+  "publication_boundary": {
+    "release_eligible": false,
+    "production_ready": false,
+    "overlay_written_to_formal_learning_pool": false,
+    "note": "This authorization covers Sense identity binding registration only, not teaching-content publication. release_eligible and production_ready are deliberately left false and are enforced false by the v2 QA script."
+  }
+}
