@@ -28,10 +28,11 @@ test('page-toggle is a shared hero, with answer contents below it',()=>{
  assert.ok(runtime.includes('<div class="study-body">${state.revealed?answerHtml(u):\'\'}</div>'));
 });
 test('Safari receives the corrected stylesheet URL',()=>{
- assert.ok(html.includes('learning.css?v=repeat-centered-v10'));
+ assert.ok(html.includes('learning.css?v=repeat-left2-v11'));
 });
 
-test('filled repeat control is centered with the speaker and retains contrast',()=>{
+test('filled repeat control has precise 2px visual offset and retains contrast',()=>{
+ assert.ok(css.includes('transform:translateX(-2px)'));
  assert.ok(!css.includes('transform:translateX(-5px)'));
  assert.ok(css.includes('background:#2475e6;color:#fff'));
  assert.ok(css.includes('background:transparent;color:#9099a7'));
