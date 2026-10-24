@@ -25,7 +25,7 @@
  <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 19h16M6 16v-4m6 4V8m6 8V5" stroke-linecap="round"/><path d="m4 10 6-4 4 3 6-6"/></svg></span><div><strong>简洁专注</strong><small>无干扰设计，专注提升学习效率</small></div></div>
  </div><div class="pai-welcome-comic-slot">
  <div class="pai-welcome-comic-frame">
- <img class="pai-welcome-comic-image" src="rebuild-preview/assets/pai-ai-mathematicians-comic.jpg?v=comic-v2" alt="数学家面对AI解开数学猜想的漫画，右侧对白写着：这……这怎么可能！一切AI都是反动派！" decoding="async">
+ <img class="pai-welcome-comic-image" fetchpriority="high" loading="eager" src="rebuild-preview/assets/pai-ai-mathematicians-comic.jpg?v=comic-v2" alt="数学家面对AI解开数学猜想的漫画，右侧对白写着：这……这怎么可能！一切AI都是反动派！" decoding="async">
  <button type="button" class="pai-welcome-comic-hotspot" aria-label="点击漫画对白：一切AI都是反动派！进入系统" title="进入 PAI Word"><span class="pai-visually-hidden">进入系统</span></button>
  </div>
 <p class="pai-welcome-comic-hint">点击「一切AI都是反动派！」进入 阿.莲 系统</p>
@@ -35,13 +35,20 @@
  </div></div>`;
  document.body.appendChild(shell);
  window.PAI_WELCOME_VISIBLE=true;
+ let entering=false;
  function close(catalog){
-   try{localStorage.setItem('pai-word-welcome-seen-v1','1')}catch{}
-   shell.remove();window.PAI_WELCOME_VISIBLE=false;
-   if(catalog){
-     if(document.body.classList.contains('pai-boot-ready'))window.PAI_OPEN_CATALOG_LAZY?.();
-     else window.PAI_WELCOME_OPEN_CATALOG_ON_READY=true;
-   }
+   if(entering)return;
+   entering=true;
+   const finish=()=>{
+     try{localStorage.setItem('pai-word-welcome-seen-v1','1')}catch{}
+     shell.remove();window.PAI_WELCOME_VISIBLE=false;
+     if(catalog&&!window.PAI_APP_BOOT_FAILED)window.PAI_OPEN_CATALOG_LAZY?.();
+   };
+   // Keep the welcome visible until the actual app is interactive.
+   if(!document.body.classList.contains('pai-boot-ready')){
+     shell.querySelector('.pai-welcome-comic-hint').textContent='正在准备系统…';
+     window.addEventListener('pai-home-ready',finish,{once:true});
+   }else finish();
  }
  // Transparent hot area tracks the lower-right comic speech bubble at all image widths.
  shell.querySelector('.pai-welcome-comic-hotspot').addEventListener('click',()=>close(false));
