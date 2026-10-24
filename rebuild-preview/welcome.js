@@ -28,10 +28,10 @@
  <img class="pai-welcome-comic-image" src="rebuild-preview/assets/pai-ai-mathematicians-comic.jpg?v=comic-v1" alt="数学家面对AI解开数学猜想的漫画，右侧对白写着：这……这怎么可能！一切AI都是反动派！" decoding="async">
  <button type="button" class="pai-welcome-comic-hotspot" aria-label="点击漫画对白：一切AI都是反动派！进入系统" title="进入 PAI Word"><span class="pai-visually-hidden">进入系统</span></button>
  </div>
- <p class="pai-welcome-comic-hint">点击漫画中的「一切AI都是反动派！」进入系统</p>
+<p class="pai-welcome-comic-hint">点击「一切AI都是反动派！」进入 阿.莲 系统</p>
  </div><div class="pai-welcome-actions">
  <button type="button" class="pai-welcome-enter pai-welcome-fallback" hidden>进入系统 →</button>
- <button type="button" class="pai-welcome-catalog">浏览场景目录 ›</button>
+<button type="button" class="pai-welcome-catalog">浏览 阿.莲 目录 ›</button>
  </div></div>`;
  document.body.appendChild(shell);
  window.PAI_WELCOME_VISIBLE=true;
