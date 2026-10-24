@@ -8,4 +8,5 @@ assert.equal(validateSemanticOverlay({...valid,scenes:[{scene_id:'S999',expressi
 assert.equal(validateSemanticOverlay({...valid,scenes:[valid.scenes[0],valid.scenes[0]]},ids).ok,false);
 assert.equal(validateSemanticOverlay({...valid,scenes:[{scene_id:'S001',expressions:['早晨起床','早晨起床']}]},ids).ok,false);
 assert.equal(validateSemanticOverlay(null,ids).ok,false);
+assert.equal(validateSemanticOverlay({...valid,scenes:[{scene_id:'S001',expressions:[]}]},ids).ok,false);
 console.log('PASS semantic overlay validation smoke tests');
