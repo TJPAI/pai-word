@@ -2,7 +2,7 @@
 // Read-only QA: checks identity and prevents promoting supporting/contextual citations to headword evidence.
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-const validGrades=new Set(['DIRECT_DICTIONARY_HEADWORD','COMPONENT_DICTIONARY_USAGE_ONLY','LONGER_IDIOM_ONLY','LONGER_CONSTRUCTION_ONLY','NEAR_FORM_NOT_EQUIVALENT','AI_TRIAGE_ONLY']);
+const validGrades=new Set(['DIRECT_DICTIONARY_HEADWORD','COMPONENT_DICTIONARY_USAGE_ONLY','COMPONENT_USAGE_ONLY','LONGER_IDIOM_ONLY','LONGER_CONSTRUCTION_ONLY','NEAR_FORM_NOT_EQUIVALENT','AI_TRIAGE_ONLY']);
 export function validateEvidence(review,runtime){
  const errors=[],terms=new Map((runtime?.terms||[]).map(t=>[t.term,t]));
  if(review?.input_runtime_sha256!=='18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093')errors.push('UNEXPECTED_RUNTIME_BASELINE');
