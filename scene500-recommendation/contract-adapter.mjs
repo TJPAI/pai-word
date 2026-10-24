@@ -6,7 +6,7 @@ export const RECOMMENDATION_CONTRACT_VERSION='scene500-recommendation-contract-v
 const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
 const finite=x=>typeof x==='number'&&Number.isFinite(x);
 export function validateChineseLexiconContract(lexicon){
- if(!lexicon||typeof lexicon.source_version!=='string'||!lexicon.source_version.trim()||!Array.isArray(lexicon.terms))throw Error('SCENE500_INVALID_CHINESE_LEXICON');
+ if(!lexicon||typeof lexicon.source_version!=='string'||!lexicon.source_version.trim()||(!Array.isArray(lexicon.terms)||lexicon.terms.length===0))throw Error('SCENE500_INVALID_CHINESE_LEXICON');
  const ids=new Set();
  for(const t of lexicon.terms){
   if(!t||typeof t.term_id!=='string'||!t.term_id.trim()||typeof t.term!=='string'||!t.term.trim()||
