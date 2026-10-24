@@ -100,3 +100,51 @@
   .learning-screen .word-hero .auto-word-toggle{right:8px}
   .learning-screen .word-hero .ipa-line .speak-btn{right:8px}
 }
+
+
+/* Stable question/answer geometry: hide listening prompts visually, never remove
+   their layout boxes. Both faces share the same word, IPA and control anchors. */
+.learning-screen .word-hero{
+  justify-content:flex-start!important;
+  align-items:stretch!important;
+  transition:none!important;
+}
+.learning-screen .word-hero .word-line{
+  flex:0 0 45px;
+  height:45px;
+  min-height:45px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.learning-screen .word-hero .ipa-line{
+  flex:0 0 40px;
+  height:40px;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.learning-screen .word-hero .recall-controls-row{
+  flex:0 0 41px;
+  height:41px;
+  min-height:41px;
+}
+.learning-screen .word-hero.listen-only .word,
+.learning-screen .word-hero.listen-only .ipa{
+  display:block!important;
+  visibility:hidden!important;
+}
+.learning-screen .word-hero .word,
+.learning-screen .word-hero .ipa{
+  transition:none!important;
+}
+.learning-screen .word-hero.listen-only .speak-btn,
+.learning-screen .word-hero.listen-only .auto-word-toggle{
+  visibility:visible!important;
+}
+@media(max-height:680px){
+  .learning-screen .word-hero .word-line{flex-basis:35px;height:35px;min-height:35px}
+  .learning-screen .word-hero .ipa-line{flex-basis:35px;height:35px;min-height:35px}
+  .learning-screen .word-hero .recall-controls-row{flex-basis:34px;height:34px;min-height:34px}
+}
