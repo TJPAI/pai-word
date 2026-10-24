@@ -275,5 +275,5 @@
     if(typeof requestIdleCallback==='function')requestIdleCallback(registerPreviewWorker,{timeout:6000});
     else setTimeout(registerPreviewWorker,1600);
   }
- }catch(e){app.style.visibility='visible';document.body.classList.add('pai-boot-ready');app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
+ }catch(e){window.PAI_APP_BOOT_FAILED=true;app.style.visibility='visible';document.body.classList.add('pai-boot-ready');window.dispatchEvent(new Event('pai-home-ready'));app.innerHTML='<div class="screen"><h1>PAI Word</h1><p id="load-error"></p><button onclick="location.reload()">重新加载</button></div>';document.getElementById('load-error').textContent=e.message;console.error(e)}
 })();
