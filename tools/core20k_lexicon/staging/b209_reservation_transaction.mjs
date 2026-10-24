@@ -1,9 +1,23 @@
 // B209: reservation transaction executor; requires an injected trusted authority verifier.
-// Caller MUST provide a real PostgreSQL client with query and transactional connection ownership.
+// Caller MUST provide a dedicated PostgreSQL connection (a pg Client, or a
+// PoolClient obtained via pool.connect()) and MUST own its lifecycle
+// (connect before, release after). Never pass a pg Pool: Pool.query routes
+// each statement to an arbitrary pooled connection, which silently breaks
+// BEGIN/INSERT/COMMIT ownership. Pool-shaped clients are rejected below.
 // Never accepts a boolean 'approved' from the candidate as authority.
+// A RETRYABLE result means the caller must recheck authority, then retry;
+// the executor itself never retries. BLOCKED attempts write no database
+// rows by design: audit coverage is reservations plus their RESERVED events.
 export async function reserveWithTransaction(client, request, verifyAuthority) {
  if(!client||typeof client.query!=='function'||typeof verifyAuthority!=='function')
   throw new TypeError('TRUSTED_DEPENDENCIES_REQUIRED');
+ // pg Pool exposes .connect plus pool counters (totalCount/idleCount/
+ // waitingCount); dedicated clients (pg Client, PoolClient) expose neither
+ // counter. Rejecting on this shape keeps a shared pool from silently
+ // scattering one transaction across connections.
+ if(typeof client.connect==='function'&&(typeof client.totalCount==='number'||
+    typeof client.idleCount==='number'||typeof client.waitingCount==='number'))
+  throw new TypeError('DEDICATED_CLIENT_REQUIRED');
  if(!request||!['reservation_key','candidate_id','headword_id','sense_id','revision_sha256','authority_release_id','runtime_sha256']
   .every(k=>typeof request[k]==='string'&&request[k].trim()))
   return {status:'BLOCKED',reason:'INVALID_REQUEST'};
