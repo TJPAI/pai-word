@@ -36,16 +36,23 @@
  document.body.appendChild(shell);
  window.PAI_WELCOME_VISIBLE=true;
  // Diagnostics are read-only. DOM insertion is not the same as a painted frame.
- const diagnostics=window.PAI_WELCOME_TIMINGS={domInsertedMs:Math.round(performance.now()),imageLoadedMs:null,appReadyMs:null};
+ const diagnostics=window.PAI_WELCOME_TIMINGS={
+   domInsertedMs:Math.round(performance.now()),firstFrameMs:null,
+   imageLoadedMs:null,appReadyMs:null,entryRequestedMs:null,enteredMs:null
+ };
+ // A double RAF observes the earliest opportunity to paint without forcing layout.
+ requestAnimationFrame(()=>requestAnimationFrame(()=>{diagnostics.firstFrameMs=Math.round(performance.now())}));
  window.addEventListener('pai-home-ready',()=>{diagnostics.appReadyMs=Math.round(performance.now())},{once:true});
  shell.querySelector('.pai-welcome-comic-image').addEventListener('load',()=>{diagnostics.imageLoadedMs=Math.round(performance.now())},{once:true});
  let entering=false;
  function close(catalog){
    if(entering)return;
    entering=true;
+   diagnostics.entryRequestedMs=Math.round(performance.now());
    const finish=()=>{
      try{localStorage.setItem('pai-word-welcome-seen-v1','1')}catch{}
      shell.remove();window.PAI_WELCOME_VISIBLE=false;
+     diagnostics.enteredMs=Math.round(performance.now());
      if(catalog&&!window.PAI_APP_BOOT_FAILED)window.PAI_OPEN_CATALOG_LAZY?.();
    };
    // Keep the welcome visible until the actual app is interactive.
