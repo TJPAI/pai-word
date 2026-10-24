@@ -31,26 +31,34 @@
     {
       "term": "人有",
       "term_id": "zh_6a1e41ff46d024bee3c4",
-      "evidence_grade": "AI_TRIAGE_ONLY",
-      "action": "PENDING"
+      "evidence_grade": "LONGER_CONSTRUCTION_ONLY",
+      "action": "PENDING_CONTEXTUAL_SEGMENTATION",
+      "source": "https://zdic.net/hans/%E5%90%84%E6%9C%89%E5%90%84%E7%9A%84",
+      "finding": "The dictionary documents 各有各的 with human-subject examples; does not attest 人有 as an independent headword."
     },
     {
       "term": "我要",
       "term_id": "zh_30bc5c7b4c3708448fbf",
-      "evidence_grade": "AI_TRIAGE_ONLY",
-      "action": "PENDING"
+      "evidence_grade": "COMPONENT_DICTIONARY_USAGE_ONLY",
+      "action": "PENDING_CONTEXTUAL_SEGMENTATION",
+      "source": "https://zdic.net/hans/%E8%A6%81",
+      "finding": "Dictionary entry for 要 directly illustrates its modal/verb use with 我 as subject; this attests ordinary syntactic combination, not standalone headword 我要."
     },
     {
       "term": "是从",
       "term_id": "zh_572742f0bd3db7d5da0a",
-      "evidence_grade": "AI_TRIAGE_ONLY",
-      "action": "PENDING"
+      "evidence_grade": "COMPONENT_DICTIONARY_USAGE_ONLY",
+      "action": "PENDING_CONTEXTUAL_SEGMENTATION",
+      "source": "https://zdic.net/hans/%E4%BB%8E",
+      "finding": "从 is a preposition expressing origin; existing component description does not provide headword evidence for 是从."
     },
     {
       "term": "看过",
       "term_id": "zh_6256bf58984773e5e2d5",
-      "evidence_grade": "AI_TRIAGE_ONLY",
-      "action": "PENDING"
+      "evidence_grade": "NEAR_FORM_NOT_EQUIVALENT",
+      "action": "PENDING_DIRECT_ENTRY_OR_CORPUS_SEGMENTATION",
+      "source": "https://zdic.net/hans/%E7%9C%8B%E5%BE%97%E8%BF%87",
+      "finding": "The dictionary has 看得过, which is not the same lexical form or meaning as 看过; do not use it as direct positive or negative headword evidence."
     }
   ],
   "qa": {
@@ -59,12 +67,16 @@
     "frequency_rank": null,
     "member_changes": 0,
     "identity_changes": 0,
-    "frequency_changes": 0
+    "frequency_changes": 0,
+    "evidence_updated_for_pending": 4,
+    "direct_independent_headwords": 1,
+    "component_or_longer_or_near_form_evidence": 6
   },
-  "interpretation": "Dictionary entries, component examples, and longer expressions are distinct evidence levels. Do not auto-delete based on corpus exact mismatch or splittability.",
+  "interpretation": "Dictionary entries, component examples, and longer expressions are distinct evidence levels. Do not auto-delete based on corpus exact mismatch or splittability. This revision explicitly avoids treating component, longer construction, or near-form citations as independent headword attestations.",
   "unverified": [
-    "Independent corpus context for all seven",
+    "No exhaustive dictionary headword search across all seven",
+    "No independent token-level corpus contexts for these seven",
     "General-frequency rank",
-    "Scene query degradation from removing any term"
+    "Scene recommendation A/B regression"
   ]
 }
