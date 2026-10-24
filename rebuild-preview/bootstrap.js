@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='core20k-firstpaint-repeat-v2-20261025';window.PAI_APP_VERSION=VERSION;
+ const VERSION='core20k-repeat-toggle-safe-v3-20261025';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
