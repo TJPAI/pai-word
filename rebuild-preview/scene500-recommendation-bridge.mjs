@@ -4,7 +4,15 @@ const queryCache=new Map();
 // E5 V1.6 is opt-in only. The independently deployed demo is not a documented
 // importable inference API, so do not fabricate E5 scores or silently use rules
 // under an E5 label. A verified host adapter can be registered later.
-let e5Provider=null;
+let e5Provider=null,e5ProviderPromise=null;
+async function getE5Provider(){
+ if(e5Provider)return e5Provider;
+ if(!e5ProviderPromise)e5ProviderPromise=import('./create-e5-provider.mjs').then(m=>{
+  const p=m.createE5Provider({baseUrl:new URL('../../scene500-e5/',import.meta.url).href,timeoutMs:60000});
+  e5Provider=p;return p;
+ }).catch(error=>{e5ProviderPromise=null;throw error});
+ return e5ProviderPromise;
+}
 export function registerE5Provider(provider){
  if(!provider||typeof provider.recommend!=='function')throw TypeError('E5 provider must implement recommend');
  e5Provider=provider;
@@ -68,9 +76,11 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
   (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
  );
- if(e5Enabled()&&e5Provider){
+ if(e5Enabled()&&eligible.some(id=>/^S\\d{3}$/.test(id))){
   try{
-   const ai=await e5Provider.recommend({query:String(query),topK:Math.min(10,Math.max(1,Number(limit)||5)),signal,eligibleSceneIds:eligible});
+   const provider=await getE5Provider();
+   if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
+   const ai=await provider.recommend(String(query),{topK:10,signal});
    if(signal?.aborted)throw new DOMException('Scene search cancelled','AbortError');
    if(ai?.status==='ok'&&ai?.modeUsed==='e5'&&Array.isArray(ai.recommendations)){
     const ids=[...new Set(ai.recommendations.map(x=>x.sceneId).filter(id=>eligible.includes(id)))].slice(0,10);
