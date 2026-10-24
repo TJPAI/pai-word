@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {createScene500AI,fingerprintIdentity,validateIdentity} from './scene500-ai-adapter.mjs';
+const scenes=Object.fromEntries(Array.from({length:500},(_,i)=>{const id=`S${String(i+1).padStart(3,'0')}`;return [id,{name:i?'场景'+id:'起床与晨间准备'}]}));
+const catalog={scenes};const fp=await fingerprintIdentity(catalog);
+const index={taxonomyVersion:'scene500-taxonomy-20x25-v1',taxonomyFingerprint:fp,scenes:Object.keys(scenes).map(sceneId=>({sceneId,vector:[1,0]}))};
+assert.throws(()=>validateIdentity({...catalog,taxonomyFingerprint:fp},{...index,scenes:index.scenes.map((x,i)=>i?x:{...x,vector:[0,0]})}),/Invalid vector/);
+const engine=createScene500AI({loadCatalog:async()=>catalog,loadIndex:async()=>index,embedQuery:async()=>[0,0],fallback:async()=>['S001']});
+const result=await engine.recommend({query:'早晨起床'});
+assert.equal(result.modeUsed,'rules_fallback');assert.equal(result.recommendations[0].sceneId,'S001');
+const noFallback=createScene500AI({loadCatalog:async()=>catalog,loadIndex:async()=>index,embedQuery:async()=>[0,0]});
+assert.equal((await noFallback.recommend({query:'早晨起床'})).status,'unavailable');
+console.log('PASS zero-vector rejection, fallback and unavailable');
