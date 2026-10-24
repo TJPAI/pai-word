@@ -24,3 +24,11 @@ Owner actions:
 - English Core20K: maintain independent KU/learning contract; do not mutate on recommendation import.
 
 Status: CONTRACT ALIGNMENT DOCUMENTED; actual cross-branch integration and deployed end-to-end compatibility NOT VERIFIED.
+
+## 2026-10-24 subsequent verified audit
+
+Current checked heads at audit start: Chinese 5a0f4ea63ac693319603fa5bc13ec2233e23e3c1; Scene500 6e11f145071405777a6e56d79332b2b8e891580f; host 2994b151d4997546e72953b60c4ba31769bd11d7; rebuild d8549fe4a5e966989bc8f42a7804f7afeb858036. Earlier head snapshot above is historical.
+
+Materialized canonical Library V0.10.1 expanded runtime: exactly 6,454,987 bytes, SHA-256 18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093, matching Library manifest and host V0101_SHA256. Parsed 20,000 terms, 20,000 distinct term_id, 20,000 distinct term spellings, zero SHA-256 identity mismatches or duplicates. The release flags are integration_ready=true and production_ready=false. **These are real local Python checks, not deployed browser results.**
+
+Added `zh-core20k/verify-scene500-v0101.mjs` as a strict gate for full runtime plus 3,553-edge association file: 20K size, release flags, SHA-derived IDs, unique identity/surface, association FK, exact term surface, valid scene IDs and duplicate edges. Script has not yet been executed on the paired original association file; no claims of 3,553-edge validation or deployed E2E success. Keep the V0.9.4 RC2 association baseline until that passes. Do not transplant loader into Chinese branch.
