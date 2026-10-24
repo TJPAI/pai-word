@@ -42,11 +42,11 @@ try{
  const registered=json(registeredBytes),review=json(reviewBytes),pack=json(packBytes);
  if(!('DecompressionStream'in window))throw Error('浏览器不支持gzip解压');
  const inflated=new Response(new Blob([runtimeBytes]).stream().pipeThrough(new DecompressionStream('gzip')));
- const core=json(new Uint8Array(await inflated.arrayBuffer()));
- const raw=core.words||core.headwords||core.records;
- if(!Array.isArray(raw))throw Error('Runtime结构未知，拒绝猜测');
- const byKU=new Map();
- for(const w of raw){for(const s of (w.s||w.senses||[])){const id=s.ku_id;if(id)byKU.set(id,{w,s})}}
+ const runtime=json(new Uint8Array(await inflated.arrayBuffer()));
+ const {buildCore20KRuntime}=await import('../../scripts/core20k-unified-runtime-adapter.mjs');
+ const core=buildCore20KRuntime(runtime);
+ if(core.qa.words!==20000||core.qa.activeKU<16000)throw Error('Runtime结构校验失败');
+ const byKU=core.byKU;
  const binding=validateB218Binding({registered,review,verifiedRuntimeSha:runtimeSha,verifiedPackSha:packSha,runtimeByKU:byKU});
  if(!binding.valid)throw Error('绑定验证失败：'+binding.reason);
  rows=pack.records;
