@@ -1,0 +1,37 @@
+{
+  "schema": "zh-core20k-domain67-second-level-source-audit-v11-summary",
+  "date": "2026-10-25",
+  "file_sha256": "03d51bc87be7093caa68bd6be2348a58836867c27d87245952a6bcdc7c3e5249",
+  "drive_url": "https://drive.google.com/file/d/1mIFoUkwvnKu1ibzZk5kFgebRetGk1Jkt/view",
+  "counts": {
+    "total": 67,
+    "pass": 39,
+    "fail": 0,
+    "needs_recheck": 13,
+    "not_rechecked": 15,
+    "net_new_pass": 3,
+    "new_recheck": 2,
+    "release_approved": 0
+  },
+  "new_pass": [
+    "中文分词",
+    "自动控制",
+    "公共政策"
+  ],
+  "new_recheck": [
+    {
+      "term": "定理",
+      "reason": "Page about 三足定理 does not define standalone 定理"
+    },
+    {
+      "term": "实证",
+      "reason": "Page defines 实证研究 rather than standalone lexical sense 实证"
+    }
+  ],
+  "qa": {
+    "identity_hash_pass": 67,
+    "unique_ids": 67,
+    "all_release_approved_false": true
+  },
+  "note": "Exact professional use evidence only; Core20K membership and original independent reviews remain frozen."
+}
