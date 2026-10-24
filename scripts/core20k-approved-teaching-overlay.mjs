@@ -2,7 +2,7 @@
 export const OVERLAY_SCHEMA='pai-core20k-approved-overlay-v1';
 const isText=x=>typeof x==='string'&&x.trim().length>0;
 export function normalizeChineseAnswer(value){
- return String(value??'').normalize('NFKC').trim().replace(/[\s\u3000，。！？；：、,.!?;:（）()]/g,'').replace(/^(一个|这段)/,'');
+ return String(value??'').normalize('NFKC').trim().replace(/[\s\u3000，。！？；：、,.!?;:（）()]/g,'');
 }
 export function gradeChineseEquivalent(answer,policy){
  if(!policy||policy.certified!==true||!Array.isArray(policy.accepted)||!policy.accepted.length)return {graded:false,reason:'uncertified_answer_policy'};
@@ -18,7 +18,8 @@ export function validateApprovedOverlay({base,overlay,manifest,enabled=false,ver
  if(!base?.byKU||!(base.byKU instanceof Map))return deny('base_runtime_missing');
  if(overlay?.schema_version!==OVERLAY_SCHEMA||!Array.isArray(overlay.records))return deny('overlay_schema');
  if(manifest?.schema_version!=='pai-core20k-overlay-manifest-v1')return deny('manifest_schema');
- if(manifest.status!=='PRODUCTION_READY'||manifest.authority?.registrar_signed!==true||manifest.authority?.semantic_certified!==true||manifest.authority?.license_approved!==true||manifest.authority?.release_signed!==true)return deny('release_gate');
+ if(manifest.activation_allowed!==true||manifest.status!=='PRODUCTION_READY'||manifest.authority?.registrar_signed!==true||manifest.authority?.semantic_certified!==true||manifest.authority?.license_approved!==true||manifest.authority?.release_signed!==true)return deny('release_gate');
+ if(overlay.records.length===0)return deny('empty_overlay');
  if(!isText(manifest.runtime_sha256)||!isText(manifest.pack_sha256)||!isText(manifest.version)||!isText(manifest.authority?.registrar_id)||!isText(manifest.authority?.release_id))return deny('manifest_incomplete');
  if(manifest.runtime_sha256!==overlay.runtime_sha256||manifest.pack_sha256!==overlay.pack_sha256||manifest.version!==overlay.version)return deny('version_pin_mismatch');
  // Hashes must come from verified raw bytes, never from untrusted manifest self-claims.
