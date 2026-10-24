@@ -2,6 +2,7 @@
 // Usage: node zh-core20k/verify-scene500-v0101.mjs <runtime.json> <associations.json>
 // This script never mutates runtime membership or association content.
 import fs from 'node:fs';
+import {createHash} from 'node:crypto';
 import assert from 'node:assert/strict';
 import { pathToFileURL } from 'node:url';
 
@@ -17,6 +18,8 @@ export function verifyScene500V0101(runtime, associations) {
   for(const t of Array.isArray(terms)?terms:[]){
     if(!/^zh_[a-f0-9]{20}$/.test(t?.term_id??'') || typeof t?.term!=='string' ||
        !t.term || typeof t.normalized_term!=='string') {fail('INVALID_TERM',t?.term_id);continue;}
+    const derived='zh_'+createHash('sha256').update(t.term,'utf8').digest('hex').slice(0,20);
+    if(t.term_id!==derived) fail('TERM_ID_HASH_MISMATCH',t.term_id);
     if(byId.has(t.term_id)) fail('DUPLICATE_TERM_ID',t.term_id);
     if(bySurface.has(t.term)) fail('DUPLICATE_TERM',t.term);
     byId.set(t.term_id,t);bySurface.add(t.term);
