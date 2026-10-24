@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {rerankNegationCandidate} from './negation-rerank-candidate.mjs';
-const catalog={scenes:{S078:{name:'乘坐公交'},S079:{name:'乘坐地铁'}}};
+const catalog={scenes:{S078:{name:'乘坐公交',aliases:['坐公交','公交车']},S079:{name:'乘坐地铁',aliases:['坐地铁','地铁出行'],objects:['地铁站']}}};
 const snapshot={results:[{sceneId:'S079',score:20,matchedTerms:['地铁']},{sceneId:'S078',score:12,matchedTerms:['公交']}]};
 const run=q=>rerankNegationCandidate(snapshot,q,{catalog});
 assert.equal(run('不要坐地铁，改坐公交').results[0].sceneId,'S078');
@@ -8,4 +8,7 @@ assert.equal(run('我想坐地铁').results[0].sceneId,'S079');
 assert.equal(run('不要坐地铁，但是我要坐地铁').results[0].sceneId,'S079');
 assert.equal(run('不想坐公交，我想坐地铁').results[0].sceneId,'S079');
 assert.equal(run('不要坐地铁，改坐公交').results[1].negationCandidate,true);
+const aliasOnly={results:[{sceneId:'S079',score:20,matchedTerms:[]},{sceneId:'S078',score:12,matchedTerms:[]}]};
+assert.equal(rerankNegationCandidate(aliasOnly,'不要坐地铁，改坐公交',{catalog}).results[0].sceneId,'S078');
+assert.equal(rerankNegationCandidate(aliasOnly,'我想坐地铁',{catalog}).results[0].sceneId,'S079');
 console.log('PASS 5 candidate rerank checks');
