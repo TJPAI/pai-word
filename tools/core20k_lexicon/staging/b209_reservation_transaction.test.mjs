@@ -36,3 +36,68 @@ test('rollback failure preserves original error',async()=>{
   e=>e instanceof AggregateError&&e.errors[0]===original&&e.errors[1]===rollback
  );
 });
+
+// B214: authority must bind ALL six identity fields, not only headword/sense.
+test('authority must bind all six identity fields',async()=>{
+ for(const field of ['candidate_id','headword_id','sense_id','revision_sha256','runtime_sha256','authority_release_id']){
+  const sql=[];const result=await reserveWithTransaction({query:async q=>sql.push(q)},req,
+   async r=>({...await verify(r),[field]:field.includes('sha256')?'0'.repeat(64):'wrong'}));
+  assert.deepEqual(result,{status:'BLOCKED',reason:'AUTHORITY_NOT_VERIFIED'},field);
+  assert.equal(sql.length,0,field);
+ }
+});
+
+// B214: a mock approval flag is not authority in any shape.
+test('mock approval flags cannot bypass authority',async()=>{
+ const mocks=[
+  async()=>({approved:true}),
+  async r=>({...await verify(r), status:'APPROVED'}),
+  async r=>{const v=await verify(r);delete v.runtime_sha256;return v;},
+  async()=>({status:'VERIFIED'}),
+ ];
+ for(const mock of mocks){
+  const sql=[];const result=await reserveWithTransaction({query:async q=>sql.push(q)},req,mock);
+  assert.equal(result.status,'BLOCKED');assert.equal(result.reason,'AUTHORITY_NOT_VERIFIED');
+  assert.equal(sql.length,0);
+ }
+});
+
+// B214: an 'approved' flag smuggled inside the request is ignored.
+test('approved flag inside request is ignored',async()=>{
+ const sql=[];const result=await reserveWithTransaction({query:async q=>sql.push(q)},
+  {...req,approved:true},async()=>({status:'REJECTED'}));
+ assert.equal(result.status,'BLOCKED');assert.equal(sql.length,0);
+});
+
+// B214: malformed requests block before authority and SQL.
+test('invalid request blocks before authority and SQL',async()=>{
+ for(const bad of [{...req,candidate_id:''},{...req,sense_id:'   '}]){
+  let called=false;const sql=[];
+  const result=await reserveWithTransaction({query:async q=>sql.push(q)},bad,async()=>{called=true;return verify(bad)});
+  assert.deepEqual(result,{status:'BLOCKED',reason:'INVALID_REQUEST'});
+  assert.equal(called,false);assert.equal(sql.length,0);
+ }
+});
+
+// B214: missing trusted dependencies fail closed with TypeError.
+test('missing client or verifier throws',async()=>{
+ await assert.rejects(reserveWithTransaction(null,req,verify),e=>e instanceof TypeError&&e.message==='TRUSTED_DEPENDENCIES_REQUIRED');
+ await assert.rejects(reserveWithTransaction({query:async()=>{}},req,null),e=>e instanceof TypeError&&e.message==='TRUSTED_DEPENDENCIES_REQUIRED');
+});
+
+// B214: a throwing verifier fails closed instead of degrading to BLOCKED.
+test('throwing verifier propagates, never degrades to BLOCKED',async()=>{
+ const boom=new Error('authority unavailable');
+ await assert.rejects(reserveWithTransaction({query:async()=>{}},req,async()=>{throw boom;}),e=>e===boom);
+});
+
+// B214: pool-shaped clients are rejected; dedicated-client-shaped clients pass.
+test('pool-shaped client is rejected, dedicated client shape is accepted',async()=>{
+ const poolLike={query:async()=>{},connect:async()=>{},totalCount:1,idleCount:1};
+ await assert.rejects(reserveWithTransaction(poolLike,req,verify),
+  e=>e instanceof TypeError&&e.message==='DEDICATED_CLIENT_REQUIRED');
+ const sql=[];const dedicated={query:async q=>sql.push(q),release:()=>{}};
+ const result=await reserveWithTransaction(dedicated,req,verify);
+ assert.equal(result.status,'RESERVED');
+ assert.deepEqual([sql[0],sql.at(-1)],['BEGIN ISOLATION LEVEL SERIALIZABLE','COMMIT']);
+});
