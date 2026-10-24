@@ -17,10 +17,10 @@
  <p class="pai-welcome-sub">在真实场景中，高效掌握最有用的英语词汇</p></header>
  <div class="pai-welcome-scenery" aria-hidden="true"></div>
  <div class="pai-welcome-features" aria-label="产品特点">
- <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true">▣</span><div><strong>20,000 高频词</strong><small>覆盖日常学习、工作和生活场景</small></div></div>
- <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true">◎</span><div><strong>500 个真实场景</strong><small>从实际使用出发，学了就能用</small></div></div>
- <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true">✦</span><div><strong>科学的记忆系统</strong><small>基于 SRS，让记忆更持久</small></div></div>
- <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true">▥</span><div><strong>简洁专注</strong><small>无干扰设计，专注提升学习效率</small></div></div>
+ <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 7c-2.5-1.6-5.2-1.8-9-1v13c3.8-.8 6.5-.6 9 1m0-13c2.5-1.6 5.2-1.8 9-1v13c-3.8-.8-6.5-.6-9 1m0-13v13"/></svg></span><div><strong>20,000 高频词</strong><small>覆盖日常学习、工作和生活场景</small></div></div>
+ <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></span><div><strong>500 个真实场景</strong><small>从实际使用出发，学了就能用</small></div></div>
+ <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M12 5c-1.6-2.2-5.5-1.7-6.2 1.2C2.9 6 2 10 4.7 11.6 3 14.5 5 18 8 17.8c.4 2.2 3.1 3.5 4 1.4.9 2.1 3.6.8 4-1.4 3 .2 5-3.3 3.3-6.2C22 10 21.1 6 18.2 6.2 17.5 3.3 13.6 2.8 12 5Z"/><path d="M12 5v14M8 9l4 3 4-3M8 15l4-3 4 3"/></svg></span><div><strong>科学的记忆系统</strong><small>基于 SRS，让记忆更持久</small></div></div>
+ <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 19h16M6 16v-4m6 4V8m6 8V5" stroke-linecap="round"/><path d="m4 10 6-4 4 3 6-6"/></svg></span><div><strong>简洁专注</strong><small>无干扰设计，专注提升学习效率</small></div></div>
  </div><div class="pai-welcome-actions">
  <button type="button" class="pai-welcome-enter">开始学习 →</button>
  <button type="button" class="pai-welcome-catalog">浏览场景目录 ›</button>
