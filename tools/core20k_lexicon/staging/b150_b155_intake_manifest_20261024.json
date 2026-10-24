@@ -1,0 +1,33 @@
+{
+  "schema_version": "pai-core20k-production-intake-manifest-v1",
+  "source_batches": [
+    150,
+    151,
+    152,
+    153,
+    154,
+    155
+  ],
+  "audit_batches": [
+    156,
+    157
+  ],
+  "branch": "core20k-lexicon-production-v1",
+  "source_rows": 310,
+  "unique_ku_ids": 290,
+  "duplicate_ku_occurrences": 20,
+  "identity_tuple_conflicts_within_source": 0,
+  "original_missing_explicit_test_only": 94,
+  "non_lemma_answer_review": 5,
+  "independent_semantic_certified": 0,
+  "release_eligible": 0,
+  "runtime_mutated": false,
+  "staging_file": "core20k_b150_b155_staging_test_only.json",
+  "staging_file_sha256": "508351c1dc5ce396d6c22b64f82763628bb50401d22a99ce6df8a783f32e1d75",
+  "staging_file_location": "ChatGPT delivered artifact, not yet committed to this repository",
+  "limitations": [
+    "Production runtime cross-check not yet completed",
+    "No independent semantic certification",
+    "Only six available source files, not cumulative 2717 Q1"
+  ]
+}
