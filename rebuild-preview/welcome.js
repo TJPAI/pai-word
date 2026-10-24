@@ -25,7 +25,7 @@
  <div class="pai-welcome-feature"><span class="pai-welcome-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" focusable="false"><path d="M4 19h16M6 16v-4m6 4V8m6 8V5" stroke-linecap="round"/><path d="m4 10 6-4 4 3 6-6"/></svg></span><div><strong>简洁专注</strong><small>无干扰设计，专注提升学习效率</small></div></div>
  </div><div class="pai-welcome-comic-slot">
  <div class="pai-welcome-comic-frame">
- <img class="pai-welcome-comic-image" fetchpriority="high" loading="eager" src="rebuild-preview/assets/pai-ai-mathematicians-comic.jpg?v=comic-v2" alt="数学家面对AI解开数学猜想的漫画，右侧对白写着：这……这怎么可能！一切AI都是反动派！" decoding="async">
+ <picture class="pai-welcome-comic-picture"><source type="image/webp" srcset="rebuild-preview/assets/pai-ai-mathematicians-comic.webp?v=comic-webp-q88-v1"><img class="pai-welcome-comic-image" fetchpriority="high" loading="eager" src="rebuild-preview/assets/pai-ai-mathematicians-comic.jpg?v=comic-v2" alt="数学家面对AI解开数学猜想的漫画，右侧对白写着：这……这怎么可能！一切AI都是反动派！" decoding="async"></picture>
  <button type="button" class="pai-welcome-comic-hotspot" aria-label="点击漫画对白：一切AI都是反动派！进入系统" title="进入 PAI Word"><span class="pai-visually-hidden">进入系统</span></button>
  </div>
 <p class="pai-welcome-comic-hint">点击「一切AI都是反动派！」进入 阿.莲 系统</p>
