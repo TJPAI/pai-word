@@ -8,6 +8,37 @@ export function onHybridReady(listener){
  return ()=>promotionListeners.delete(listener);
 }
 const ROOT=new URL('../scene500-recommendation/',import.meta.url);
+// Opt-in V1.2 draft reranker: only reorders eligible Hybrid candidates.
+// It never creates playable scenes, changes scene IDs or touches KU/SRS.
+const semanticEnabled=typeof location!=='undefined'&&new URLSearchParams(location.search).get('scene500semantic')==='1';
+let semanticPromise=null,semanticOverlay=null,semanticReason='disabled';
+async function loadSemantic(){
+ if(!semanticEnabled)return null;
+ if(!semanticPromise)semanticPromise=import(new URL('semantic-overlay-loader.mjs',ROOT).href).then(m=>m.loadOptionalSemanticOverlay({enabled:true,url:new URL('../data/scene500-semantic-overlay-v1.2.json',import.meta.url).href,sceneIds:Object.keys(instance.catalog.scenes)})).then(result=>{semanticReason=result.reason;semanticOverlay=result.overlay;queryCache.clear();for(const fn of promotionListeners){try{fn()}catch{}}return semanticOverlay}).catch(e=>{semanticReason=String(e);return null});
+ return semanticPromise;
+}
+function semanticRank(query,results){
+ if(!semanticOverlay||!Array.isArray(results)||results.length<2)return results;
+ const q=String(query).normalize('NFKC').toLowerCase().replace(/\\s+/g,'');
+ if(q.length<2)return results;
+ const score=(id)=>{
+  const profile=semanticOverlay.scenes[id];if(!profile)return {value:0,reasons:[]};
+  let value=0;const reasons=[];
+  const groups=[['actions',4.5],['objects',3],['aliases',2.5],['example_queries',1.1]];
+  for(const [field,weight] of groups){let best=0,hit='';for(const raw of profile[field]||[]){const term=String(raw).normalize('NFKC').toLowerCase().replace(/\\s+/g,'');if(term.length<2||term.length>q.length||!q.includes(term))continue;const strength=term.length<3?0.35:term.length<4?0.65:1;const v=weight*strength;if(v>best){best=v;hit=raw}}if(best){value+=best;reasons.push(field+':'+hit)}}
+  for(const raw of profile.negative_terms||[]){const term=String(raw).normalize('NFKC').toLowerCase();if(term.length>=2&&q.includes(term))value-=8}
+  return {value,reasons};
+ };
+ const enriched=results.map((id,index)=>({id,index,...score(id)}));
+ const winner=Math.max(...enriched.map(x=>x.value));
+ // Require multiple independent signals or a strong action/object match;
+ // otherwise preserve original Hybrid order exactly.
+ if(winner<5.5)return results;
+ enriched.sort((a,b)=>b.value-a.value||a.index-b.index);
+ globalThis.PAI_SCENE500_SEMANTIC_DIAGNOSTIC={query,triggered:true,reasons:enriched.filter(x=>x.value>0).slice(0,5).map(x=>({sceneId:x.id,score:x.value,reasons:x.reasons}))};
+ return enriched.map(x=>x.id);
+}
+
 
 async function initialize(){
  const [rules,loader,response]=await Promise.all([
@@ -19,6 +50,7 @@ async function initialize(){
  const catalog=await response.json();
  const rule=rules.createScene500Recommender({catalog});
  instance={catalog,engine:rule,mode:'rule_fallback'};
+ if(semanticEnabled)void loadSemantic();
  // Loading the approved 20K lexicon and 3553 links is optional and never
  // blocks the first rule recommendation. Asset SHA verification is a release gate.
  hybridReady=loader.loadScene500WithChineseLexicon({
@@ -55,7 +87,9 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
  const started=performance.now();
  const snapshot=instance.engine.search(query,{eligibleSceneIds:eligible,limit:Math.min(500,limit)});
  const allCandidates=snapshot.results.length?null:instance.engine.search(query,{limit:500});
- const answer={ids:[...new Set(snapshot.results.map(x=>x.sceneId))],
+ const baseIds=[...new Set(snapshot.results.map(x=>x.sceneId))];
+ const rankedIds=semanticEnabled&&instance.mode==='hybrid'?semanticRank(query,baseIds):baseIds;
+ const answer={ids:rankedIds,
   total:snapshot.total,mode:instance.mode,
   emptyReason:snapshot.results.length?null:(allCandidates?.results?.length?'filtered_no_playable_scene':'no_semantic_match'),
   unfilteredCandidateCount:allCandidates?.results?.length??null,
@@ -67,7 +101,7 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
 // Explicit preview diagnostics: the caller can inspect the active engine without
 // confusing an experimental upstream branch with deployed runtime assets.
 export const status=()=>({initialized:!!instance,error:lastError,
- mode:instance?.mode||'unloaded',hybridLoading:!!hybridReady&&!hybridSettled,
+ mode:instance?.mode||'unloaded',semanticEnabled,semanticReason,semanticReady:!!semanticOverlay,hybridLoading:!!hybridReady&&!hybridSettled,
  catalogSchema:instance?.catalog?.schema||null,
  lexiconAsset:'zh-core20k-v094.min.json',
  associationAsset:'v094-lexical-associations.json'});
