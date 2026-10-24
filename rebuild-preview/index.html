@@ -10,7 +10,7 @@
    comic.fetchPriority='high';document.head.appendChild(comic);
  }
  // The existing app stays hidden behind its atomic boot gate until all CSS is ready.
- const sheets=["mobile.css?v=6","ux-fix.css?v=learning-v3.1","product-v2.css?v=learning-v3.1","learning.css?v=curved-repeat-v6","home-dashboard.css?v=scene-search-v1"];
+ const sheets=["mobile.css?v=6","ux-fix.css?v=learning-v3.1","product-v2.css?v=learning-v3.1","learning.css?v=stable-question-answer-v7","home-dashboard.css?v=scene-search-v1"];
  const loadAppStyles=()=>Promise.all(sheets.map(href=>new Promise(resolve=>{
    const el=document.createElement('link');el.rel='stylesheet';el.href=href;
    el.media='print';
