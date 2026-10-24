@@ -1,0 +1,93 @@
+{
+  "schema": "pai-zh-core20k-ai-triage-evidence-v1",
+  "date": "2026-10-24",
+  "runtime_version": "0.10.1-evidence-compat",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_review": "zh-core20k/qa/v0117-cross-corpus-evidence-priority.json",
+  "method": "ChatGPT linguistic triage on verified existing/absent exact surface entries; independent online dictionary verification for explicitly linked items only; no inferred frequency or automatic membership change.",
+  "evidence_graded": [
+    {
+      "candidate": "民警",
+      "runtime_membership": "absent",
+      "ai_label": "established_abbreviation",
+      "dictionary_evidence": {
+        "url": "https://www.zhongwen.cn/cidian/minjing/",
+        "observed": "Independent noun entry defines 民警 as abbreviation of 人民警察 and cites usage",
+        "grade": "dictionary_entry_attested"
+      },
+      "remaining_gates": [
+        "general and domain frequency",
+        "replacement opportunity cost",
+        "scene-query impact"
+      ],
+      "recommendation": "advance_to_frequency_review_not_auto_add"
+    },
+    {
+      "candidate": "尤其是",
+      "runtime_membership": "absent",
+      "ai_label": "common_compositional_expression",
+      "dictionary_evidence": {
+        "url": "https://zdic.net/hans/%E5%B0%A4%E5%85%B6",
+        "observed": "Dictionary headword 尤其 is defined independently; 是 occurs in usage contexts, not evidence that 尤其是 is one indivisible headword",
+        "grade": "component_entry_only"
+      },
+      "in_runtime_component": {
+        "term": "尤其",
+        "term_id": "zh_18ab2766da3ba78be981"
+      },
+      "recommendation": "do_not_auto_add_phrase; improve query segmentation/phrase matching if needed"
+    }
+  ],
+  "verified_existing_high_risk": [
+    {
+      "term": "人有",
+      "term_id": "zh_6a1e41ff46d024bee3c4"
+    },
+    {
+      "term": "中有",
+      "term_id": "zh_74f3800fdb640ed4aa35"
+    },
+    {
+      "term": "人来",
+      "term_id": "zh_2c97e4b2b6ee11c31e8b"
+    },
+    {
+      "term": "我要",
+      "term_id": "zh_30bc5c7b4c3708448fbf"
+    },
+    {
+      "term": "是从",
+      "term_id": "zh_572742f0bd3db7d5da0a"
+    },
+    {
+      "term": "坐在",
+      "term_id": "zh_ce15a15a48fe1f2c7fd3"
+    },
+    {
+      "term": "看过",
+      "term_id": "zh_6256bf58984773e5e2d5"
+    }
+  ],
+  "verified_absent_candidates": [
+    "民警",
+    "北京时间",
+    "肝",
+    "肿",
+    "中国人",
+    "两国",
+    "尤其是",
+    "不可能",
+    "餐",
+    "射手"
+  ],
+  "quality_control": {
+    "ai_proposal_is_not_verification": true,
+    "membership_changes": 0,
+    "term_id_changes": 0,
+    "rank_changes": 0,
+    "needs_second_source_or_context_for_removal": true,
+    "dictionary_verified_candidate_count": 1,
+    "proven_not_to_be_independent_headword_count": 0
+  },
+  "next": "Scale AI first-pass over existing V0.10.12 queues; review high confidence risk items against dictionary sources and corpus context; record explicit disposition with evidence URL and avoid changing base 20K."
+}
