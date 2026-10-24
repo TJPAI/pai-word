@@ -14,7 +14,7 @@ const targets=[{width:320,height:650},{width:375,height:667},{width:390,height:8
 try{
  for(const viewport of targets){
   const page=await browser.newPage({viewport,deviceScaleFactor:2,hasTouch:true,isMobile:true});
-  await page.setContent(`<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style></head><body>
+  await page.setContent(`<!doctype html><html><head><meta name="viewport" content="width=device-width, initial-scale=1"><style>${css}</style></head><body class="pai-boot-ready">
    <div id="app"><div class="screen study-screen learning-screen">
     <div class="study-top"><button class="back-btn">‹</button><div class="study-scene">日常生活</div><div class="study-progress">本批已学习 1/10</div></div>
     <div class="word-hero listen-only">
