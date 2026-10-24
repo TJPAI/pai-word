@@ -102,7 +102,7 @@
     const resume=!!session;
     const status=`今日新学 ${b.dailyCompleted} 词 · 每批 ${b.roundLimit} KU${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
     return `<div class="home-dashboard"><div class="home-shell">
-      <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p><small id="pai-home-source-sha" style="display:block;margin-top:3px;font-size:10px;opacity:.45;line-height:1.3;overflow-wrap:anywhere" aria-label="当前部署提交"></small><small style="display:block;margin-top:2px;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="当前引擎与中文词库版本">引擎：Scene500 Hybrid（V0.9.4资产） · 中文词库：Core20K V0.9.4</small><small style="display:block;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="英文词库生产与教学版本">英文生产：Core20K V2.0.6冻结基线 · 英文教学：2026.10.23-staging-001（正式KU 0；隔离6 Sense）</small></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
+      <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p><small id="pai-home-source-sha" style="display:block;margin-top:3px;font-size:10px;opacity:.45;line-height:1.3;overflow-wrap:anywhere" aria-label="当前部署提交"></small><small style="display:block;margin-top:2px;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="当前引擎与中文词库版本"><span id="pai-engine-version">引擎：Scene500（尚未加载） · 中文词库：V0.9.4（配置）</span></small><small style="display:block;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="英文词库生产与教学版本">英文生产：Core20K V2.0.6冻结基线 · 英文教学：2026.10.23-staging-001（正式KU 0；隔离6 Sense）</small></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
         <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(display?.name||'开始一个场景')}</h2><p>${esc(status)}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="continueScene500('${esc(continueId)}','${esc(continueDifficulty)}')">继续学习</button>`:''}${b.reinforcementRemaining?`<button class="continue-review" onclick="openReinforcement()">强化 ${b.reinforcementRemaining}</button>`:''}${b.due?`<button class="continue-review" onclick="openReview()">复习 ${b.due}</button>`:''}</div></section>
         <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
@@ -253,6 +253,13 @@
     reconcileCountSlots(root);
     window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);
   };
+  function updateEngineVersion(){
+    const node=document.getElementById('pai-engine-version');if(!node)return;
+    const report=window.PAI_SCENE500_SEARCH_REPORT;
+    const mode=report?.mode;
+    const label=mode==='hybrid'?'Hybrid 已加载':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
+    node.textContent='引擎：Scene500 '+label+' · 中文词库：Core20K V0.9.4（当前配置）';
+  }
   let displayedSourceSha='',sourceShaPromise=null;
   function updateSourceSha(){
     const node=document.getElementById('pai-home-source-sha');if(!node)return;
@@ -271,6 +278,7 @@
     const root=document.getElementById('app'),oldCounts=new Map();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(slot.innerHTML.trim())oldCounts.set(slot.getAttribute('data-scene-id'),slot.innerHTML);
     root.innerHTML=renderHome();
+    updateEngineVersion();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(!slot.innerHTML.trim()&&oldCounts.has(slot.getAttribute('data-scene-id')))slot.innerHTML=oldCounts.get(slot.getAttribute('data-scene-id'));
     window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);void updateSourceSha();return
   }return baseRender()};
