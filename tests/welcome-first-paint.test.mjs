@@ -13,7 +13,8 @@ test('welcome runs before state and core initialization',()=>{
  assert.ok(html.indexOf('rebuild-preview/welcome.css?v=')<html.indexOf('pai-first-paint-gate'));
 });
 test('non-welcome styles are loaded without blocking welcome CSS first paint',()=>{
- assert.match(html,/window\.PAI_APP_STYLES_READY=Promise\.all/);
+ assert.match(html,/window\.PAI_APP_STYLES_READY=window\.PAI_WELCOME_FAST/);
+ assert.match(html,/requestAnimationFrame/);
  for(const href of ['mobile.css','ux-fix.css','product-v2.css','learning.css','home-dashboard.css'])
    assert.ok(html.includes(href));
  assert.match(html,/el\.media='print'/);
@@ -38,4 +39,10 @@ test('welcome reset and SRS boundaries remain safe',()=>{
  assert.ok(bootstrap.includes("localStorage.removeItem('pai-word-welcome-seen-v1')"));
  assert.ok(welcome.includes('fetchpriority="high" loading="eager"'));
  assert.ok(!welcome.includes('PAI_KU_DURABLE'));
+});
+
+test('comic preload has first priority; returning visitor app styles remain immediate',()=>{
+ assert.ok(html.includes("comic.rel='preload';comic.as='image'"));
+ assert.ok(html.includes("comic.fetchPriority='high'"));
+ assert.ok(html.includes(":loadAppStyles()"));
 });
