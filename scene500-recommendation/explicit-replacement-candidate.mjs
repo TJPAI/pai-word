@@ -3,8 +3,9 @@
 // Never interpret learning about negation (不同意/拒绝请求) as a negative scene.
 const norm=x=>String(x??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
 const split=raw=>String(raw??'').normalize('NFKC').split(/[，,。；;！？!?]/u).map(x=>x.trim()).filter(Boolean);
-const NEG=/^(?:不要|不想|不愿|别|避免)(?:去|坐|乘坐|乘|吃|喝|点|订|开|用|选择|搭乘|搭|打)?/u;
+const NEG=/^(?:不要|不想|不愿|别|避免)/u;
 const POS=/^(?:改为|改成|改去|改坐|改乘|改吃|改喝|改点|换成|换去|换坐|换乘|转而|而是|我要|我想要|我选择|选择|改打|自己)/u;
+const VERB=/^(?:乘坐|搭乘|准备|乘|坐|吃|喝|点|叫|去|打|开|做|订)/u;
 const anchors=scene=>[scene?.name,...(scene?.aliases||[])].filter(x=>typeof x==='string'&&norm(x).length>=2);
 export function rerankExplicitReplacementCandidate(snapshot,query,{catalog,limit=5}={}){
  const original=snapshot?.results||[];
@@ -20,7 +21,12 @@ export function rerankExplicitReplacementCandidate(snapshot,query,{catalog,limit
  const negative=norm(negativeClause.slice(nm[0].length));
  const positive=norm(positiveClause.slice(pm[0].length));
  if(negative.length<2||positive.length<2)return unchanged();
- const match=(scene,part)=>anchors(scene).some(x=>part.includes(norm(x)));
+ const match=(scene,part)=>anchors(scene).some(x=>{
+  const v=norm(x),p=norm(part),stem=v.replace(VERB,'');
+  // Prefix/suffix phrase anchoring; never match a token in the middle of a word.
+  return p===v||p.startsWith(v)||p.endsWith(v)||
+   (stem.length>=2&&(p===stem||p.startsWith(stem)||p.endsWith(stem)));
+ });
  const negativeIds=new Set(original.filter(x=>match(catalog?.scenes?.[x.sceneId],negative)).map(x=>x.sceneId));
  const positiveIds=new Set(original.filter(x=>match(catalog?.scenes?.[x.sceneId],positive)).map(x=>x.sceneId));
  // Ambiguity and missing positive retrieval: never rerank.
