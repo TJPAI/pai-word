@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {validatePlayableKuIdentity} from './english-core20k-playable-identity-gate.mjs';
+const headwords=new Map([['h1',{}],['h2',{}]]);
+const senses=new Map([['s1',{headword_id:'h1'}],['s2',{headword_id:'h2'}]]);
+const kus=new Map([['k1',{sense_id:'s1',headword_id:'h1',independent_semantic_certification:'PASS',release_eligible:true,production_status:'PRODUCTION_READY'}],['k2',{sense_id:'s2',headword_id:'h2',independent_semantic_certification:'PENDING',release_eligible:false,production_status:'STAGING'}]]);
+const refs={headwords,senses,kus};
+const good={headword_id:'h1',sense_id:'s1',ku_id:'k1'};
+assert.equal(validatePlayableKuIdentity([good],refs).ok,true);
+assert.equal(validatePlayableKuIdentity([{...good,sense_id:'s2'}],refs).ok,false);
+assert.equal(validatePlayableKuIdentity([{headword_id:'h2',sense_id:'s2',ku_id:'k2'}],refs).ok,false);
+assert.equal(validatePlayableKuIdentity([{...good,staging:true}],refs).ok,false);
+assert.equal(validatePlayableKuIdentity([good,good],refs).ok,false);
+assert.equal(validatePlayableKuIdentity([good],{}).ok,false);
+console.log('PASS: English KU identity tuple and publication gate (6 cases)');
