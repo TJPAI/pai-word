@@ -1,0 +1,189 @@
+{
+  "schema": "pai-core20k-b218-dual-ai-delivery-manifest-v1",
+  "document": "Dual-AI agreement reconciliation for Batch93 six KUs under the unified six-line convention (TJPAI/pai-word Issue #1, revised 2026-10-25, unified notice 2026-10-26; the old four-line wording is void). This file does not re-certify content and does not publish anything: it reconciles the two existing independent reviews, records zero divergences, and hands the six items to the main-dev line for isolated integration testing.",
+  "convention": {
+    "issue": "https://github.com/TJPAI/pai-word/issues/1",
+    "rule": "Two independent AI judgments; dual approval passes; divergences rechecked per item only; no extra Staging/RC/Release/re-review gates; passed batches roll to main dev without waiting for the full 20K; engineering QA (runtime correctness, UI/SRS regression, preview protection) belongs to main dev, not to language certification."
+  },
+  "anchors_verified_this_session": {
+    "qa_branch": "core20k-teaching-qa-b162-20261024",
+    "qa_branch_head": "00f79ebfdbe7d0c5874012385dee34e625ec4918",
+    "qa_branch_head_subject": "qa(core20k): record B218 six-KU teaching review and answer policy without release approval",
+    "production_branch": "core20k-lexicon-production-v1",
+    "production_branch_head": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+    "runtime_gz_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "main_dev_branch": "home-perf-safe-load-20261022",
+    "main_dev_branch_head": "334ce8c7b3b4f77d047a2833866ae108f25f7772",
+    "correction_note": "An earlier fetch in this session used FETCH_HEAD only, leaving the cached QA ref at 2eac7df and making the B218 file appear absent. A fresh explicit-refspec fetch corrected this: the QA tip is 00f79ebf, and the B218 file is present there. Do not cite 2eac7df as the QA tip."
+  },
+  "source_pack": {
+    "path": "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+    "sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+    "records": 6
+  },
+  "identity_registration": {
+    "file": "tools/core20k_lexicon/staging/B217_SIX_KU_REGISTERED_CROSSWALK.json",
+    "commit": "2eac7dff46bf2aaccfc2f717586841e016333d67",
+    "registered": 6,
+    "binding": "KU_ANCHORED_SENSE",
+    "official_sense_id": null,
+    "note": "Identity recording for these six is closed via this separate registered crosswalk. The legacy tools/core20k_lexicon/runtime/v1/identity-crosswalk.json reviewed array remains empty; main dev must consume the registered crosswalk, not wait for the legacy file."
+  },
+  "dual_ai_reviews": {
+    "muse": {
+      "file": "tools/core20k_lexicon/staging/b216_second_party_certification.json",
+      "scope": "Per-item semantic certification with criteria C1 sense fit, C2 example discrimination against every sister KU, C3 translation, C4 POS and Cambridge US IPA, C5 Cambridge evidence grade, C6 teaching value",
+      "verdict": "PASS 6/6",
+      "evidence_grade": "STRONG 6/6",
+      "production_ready": "NOT GRANTED (content layer only)"
+    },
+    "chatgpt": {
+      "file": "tools/core20k_lexicon/staging/B218_SIX_KU_TEACHING_CERTIFICATION_REVIEW.json",
+      "blob": "1ab0c76af394d1bb1fd57091fac3aa74cb0e12da",
+      "scope": "Semantic review, example-translation review, per-item Chinese answer policy",
+      "semantic": "PASS 6/6",
+      "translation": "PASS 6/6",
+      "certification_status_in_file": "CONDITIONAL_PASS_PENDING_GRADING_IMPLEMENTATION_AND_SOURCE_ATTESTATION",
+      "release_eligible": false,
+      "production_ready": false
+    }
+  },
+  "fresh_consistency_check_this_session": {
+    "method": "Muse judged the six pack items from the pack text alone (gloss, example, translation, prompt, answer), then compared with the two reviews above.",
+    "semantic": "PASS 6/6",
+    "translation": "PASS 6/6",
+    "answer_policy_agreement": "agrees with B218 policies on all six items",
+    "role": "Consistency check only; the dual-AI pair is the B216 Muse review and the B218 ChatGPT review. This check does not add a third vote and does not change either review."
+  },
+  "per_item": [
+    {
+      "ku_id": "w_0266_person_ku01",
+      "lemma": "person",
+      "muse_b216": "PASS",
+      "chatgpt_b218_semantic": "PASS",
+      "chatgpt_b218_translation": "PASS",
+      "divergence": "none",
+      "answer_policy": [
+        "一个人",
+        "人",
+        "个人"
+      ],
+      "note": "Singular count reading in 'One person is waiting outside'; sister morphology KU excluded by ku_type."
+    },
+    {
+      "ku_id": "w_0049_time_ku01",
+      "lemma": "time",
+      "muse_b216": "PASS",
+      "chatgpt_b218_semantic": "PASS",
+      "chatgpt_b218_translation": "PASS",
+      "divergence": "none",
+      "answer_policy": [
+        "时间",
+        "时长",
+        "一段时间"
+      ],
+      "answer_rejects": [
+        "时刻",
+        "次数"
+      ],
+      "note": "'Need more time to finish' is amount-of-duration only; 时长 accepted in duration context, never as point-in-time or count."
+    },
+    {
+      "ku_id": "w_0041_know_ku01",
+      "lemma": "know",
+      "muse_b216": "PASS",
+      "chatgpt_b218_semantic": "PASS",
+      "chatgpt_b218_translation": "PASS",
+      "divergence": "none",
+      "answer_policy": [
+        "知道",
+        "了解"
+      ],
+      "note": "Possession of information ('I know the answer'); acquaintance sense (认识) correctly excluded by the object."
+    },
+    {
+      "ku_id": "w_0057_people_ku01",
+      "lemma": "people",
+      "muse_b216": "PASS",
+      "chatgpt_b218_semantic": "PASS",
+      "chatgpt_b218_translation": "PASS",
+      "divergence": "none",
+      "answer_policy": [
+        "人们",
+        "许多人",
+        "人"
+      ],
+      "note": "Collective plural in 'Many people live here'; nation/community sister sense excluded by context."
+    },
+    {
+      "ku_id": "w_0139_talk_ku01",
+      "lemma": "talk",
+      "muse_b216": "PASS",
+      "chatgpt_b218_semantic": "PASS",
+      "chatgpt_b218_translation": "PASS",
+      "divergence": "none",
+      "answer_policy": [
+        "交谈",
+        "说话"
+      ],
+      "note": "Habitual conversing ('We talk every evening'); noun/formal-discussion sisters excluded by verb form and context. IPA: teaching /tɑːk/ is General American; Runtime /tˈɔk/ differs; do not mutate Runtime; teaching audio uses the pack value."
+    },
+    {
+      "ku_id": "w_0099_here_ku01",
+      "lemma": "here",
+      "muse_b216": "PASS",
+      "chatgpt_b218_semantic": "PASS",
+      "chatgpt_b218_translation": "PASS",
+      "divergence": "none",
+      "answer_policy": [
+        "这里",
+        "到这里",
+        "在这里"
+      ],
+      "note": "Directional 'come here' = 到这里; locative 在这里 acceptable as paraphrase of the same place sense; discourse 'at this point' sister excluded."
+    }
+  ],
+  "dual_ai_language_verdict": {
+    "result": "PASS",
+    "items_passed": 6,
+    "items_total": 6,
+    "divergences": 0,
+    "meaning": "Both independent language judgments approve all six items. Under Issue #1 this is the language-certification outcome; it is not a publication approval."
+  },
+  "reclassification_of_b218_conditions_per_issue_1": {
+    "grading_implementation": "Main-dev engineering task, not a language blocker. It applies only if a typed-answer path actually exists; the current flow is self-assessed. Main dev demonstrates positive/negative tests if and when it builds that path.",
+    "source_attestation_refetch": "Not re-fetched in this reconciliation either, stated honestly. Pack dictionary URLs are cited in the pack; re-fetching them is an optional attestation step, not a language-certification gate under Issue #1.",
+    "legacy_sense_id": "Already handled: formal binding uses KU_ANCHORED_SENSE with official_sense_id null; the pack's legacy sense_id must never be treated as Runtime authority.",
+    "deployment_and_publication": "Separate main-dev gates. This manifest does not grant them."
+  },
+  "delivery_to_main_dev": {
+    "status": "READY_FOR_ISOLATED_INTEGRATION_TESTING",
+    "items": 6,
+    "assets": [
+      "tools/core20k_lexicon/runtime/v1/batch93_nonrelease_teaching_pack.json",
+      "tools/core20k_lexicon/staging/B217_SIX_KU_REGISTERED_CROSSWALK.json",
+      "tools/core20k_lexicon/staging/b216_second_party_certification.json",
+      "tools/core20k_lexicon/staging/B218_SIX_KU_TEACHING_CERTIFICATION_REVIEW.json",
+      "tools/core20k_lexicon/staging/B218_DUAL_AI_AGREEMENT_AND_MAIN_DEV_DELIVERY.json (this file)"
+    ],
+    "main_dev_owns": [
+      "Isolated integration testing and test URL",
+      "UI/SRS regression and stable-preview protection",
+      "Scorer implementation if a typed-answer path is built",
+      "Publication decision"
+    ]
+  },
+  "publication_flags": {
+    "release_eligible": false,
+    "production_ready": false,
+    "overlay_written_to_formal_learning_pool": false,
+    "runtime_mutated": false,
+    "srs_mutated": false,
+    "main_mutated": false
+  },
+  "not_blocking_these_six": [
+    "Batch79 it ku01 / they ku02 identity mounting (separate items,定向修正, do not hold up these six under rolling delivery)",
+    "B189 83-item batch (separate batch, not mixed into this delivery)",
+    "Full 20K completion (rolling delivery per Issue #1)"
+  ]
+}
