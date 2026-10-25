@@ -252,12 +252,12 @@
     // This does not activate the production teaching overlay, modify KU objects, or touch SRS.
     const previewEnabled=new URLSearchParams(location.search).get('teachingPreview')==='1';
     const previewRecords={
-      'w_0266_person_ku01':['individual human being','One person is waiting outside.','有一个人在外面等候。'],
-      'w_0049_time_ku01':['measurable duration','We need more time to finish.','我们需要更多时间才能完成。'],
-      'w_0041_know_ku01':['have information in mind','I know the answer.','我知道答案。'],
-      'w_0057_people_ku01':['human beings collectively','Many people live here.','许多人住在这里。'],
-      'w_0139_talk_ku01':['speak to someone','We talk every evening.','我们每天晚上交谈。'],
-      'w_0099_here_ku01':['in or at this place','Please come here.','请到这里来。']
+      'w_0266_person_ku01':["individual human being","One person is waiting outside.","有一个人在外面等候。"],
+      'w_0049_time_ku01':["measurable duration","We need more time to finish.","我们需要更多时间才能完成。"],
+      'w_0041_know_ku01':["possess information","I know the answer.","我知道答案。"],
+      'w_0057_people_ku01':["human beings collectively","Many people live here.","许多人住在这里。"],
+      'w_0139_talk_ku01':["speak or converse","We talk every evening.","我们每天晚上交谈。"],
+      'w_0099_here_ku01':["at or to this place","Please come here.","请到这里来。"]
     };
     const preview=previewEnabled?previewRecords[u.s.ku_id]:null;
     const previewTeaching=preview?`<div class="answer-section" data-teaching-preview="true"><div class="answer-label">临时教学内容预览 · 未认证发布</div><div class="definition">${escapeHtml(preview[0])}</div><div class="example">${escapeHtml(preview[1])}</div><div class="example-translation">${escapeHtml(preview[2])}</div></div>`:'';
