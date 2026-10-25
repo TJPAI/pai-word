@@ -284,10 +284,5 @@
     updateEngineVersion();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(!slot.innerHTML.trim()&&oldCounts.has(slot.getAttribute('data-scene-id')))slot.innerHTML=oldCounts.get(slot.getAttribute('data-scene-id'));
     window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);void updateSourceSha();return
-  }
-    if(typeof baseRender==='function')return baseRender();
-    console.error('PAI_RENDER_BASE_UNAVAILABLE: underlying renderer not initialized');
-    const root=document.getElementById('app');
-    if(root)root.innerHTML='<div role="alert" style="padding:24px">学习界面尚未就绪，请刷新页面重试。</div>';
-  };
+  }return baseRender()};
 })();
