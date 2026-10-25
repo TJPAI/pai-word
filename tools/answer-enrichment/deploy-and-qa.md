@@ -5,14 +5,14 @@
 当前开发分支：`answer-enrichment-main-dev-20261026`
 包含原答案页教学字段增强及Safari后台恢复后的设置/首页状态重试。**未经浏览器QA，不得宣称已部署或修复完成。**
 
-## 部署阻碍
-`TJPAI/pai-word-preview` 的 `.github/workflows/deploy-preview.yml` 中 `Checkout complete performance source` 固定 `ref: home-perf-safe-load-20261022`。当前GitHub连接对预览仓库写入返回403。
+## 既有部署机制（已核验）
+预览仓库 `TJPAI/pai-word-preview` 的现有定时工作流会从源仓库 `home-perf-safe-load-20261022` 检出源码，生成同一 `/perf-preview/` 页面和 `preview-source-sha.txt`。首页移除教学候选入口的提交 `5b36b936107a427a6533cadb8e2ea453334bf72f` 已通过此路径在原网址生效，无须更改预览仓库权限或工作流。
 
-## 授权后操作
-1. 在Work云端浏览器打开预览仓库工作流，核验真实文件；仅把 `Checkout complete performance source` 的 `ref` 改成待验收的**固定完整commit SHA**（不要改其他preview环境）。
-2. 首先运行隔离浏览器回归：启动、首页、进入场景、答案页、发音、左右滑、自动浏览、评分及SRS持久化；模拟Safari后台/前台恢复，检查设置、场景状态写入失败后的重试与刷新保持。
-3. 若未通过，保留现有perf-preview，不执行部署；在源开发分支修复后重新验收。
-4. 通过后部署到**同一** `/perf-preview/rebuild-preview/index.html`，读取 `/perf-preview/preview-source-sha.txt` 并核对首页显示的SHA与源提交一致，核验JS实际加载版本。
+## 上线门槛和顺序
+1. 先核验真实可发布的教学包：manifest 必须 `PRODUCTION_READY` 且 release gate、crosswalk、runtime/pack 哈希一致；当前尚未确认有符合条件的教学包。
+2. 对开发分支执行隔离回归：启动、首页、进入场景、答案页、发音、左右滑、自动浏览、评分、SRS持久化；模拟Safari后台/前台恢复及失败重试。**未经浏览器QA不得宣称已通过。**
+3. 回归通过后，按最小差异把增强改动合入源仓库 `home-perf-safe-load-20261022`，不要修改预览仓库，不要强制移动分支。
+4. 等待现有定时部署，核对 `/perf-preview/preview-source-sha.txt`、首页SHA、实际加载JS版本，确认答案页有真实已认证内容；如果无已认证数据，不得宣称教学内容增强已交付。
 5. 不重置、不清理用户学习数据，不覆盖其他preview目录。
 
 ## 已有代码核验
