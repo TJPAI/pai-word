@@ -91,8 +91,18 @@ function persistIndependentSettings(){
 // Do not touch SRS versions or overwrite records. Writes reopen on recognized transient failures.
 window.PAI_STORAGE_PROBE=async()=>{
  const at=Date.now(),info={at,hidden:document.hidden,settings:'not-ready'};
- try{const db=window.PAI_KU_DURABLE_DB;if(!db)throw Error('DB not initialized');await window.PAI_KU_DURABLE.readSettings(db);info.settings='ok'}
- catch(error){info.settings='failed';info.errorName=error?.name||'Error';info.errorMessage=String(error?.message||error);}
+ if(!window.PAI_KU_STORAGE_READY||!window.PAI_KU_DURABLE_DB){window.PAI_LAST_FOREGROUND_STORAGE_PROBE=info;return info}
+ try{
+  // Safari may invalidate an idle connection while suspended. Reopen on a
+  // recognized connection failure; do not overwrite SRS or read stale settings.
+  await paiWriteWithConnectionRecovery('readSettings');
+  info.settings='ok';
+  // A previously failed async settings/home write is NOT retried by the
+  // original code until another UI change. Reconcile current in-memory state
+  // after foreground return instead of silently losing the last change.
+  if(window.PAI_SETTINGS_SAVE_ERROR){persistIndependentSettings();info.settingsRetry='queued'}
+  if(window.PAI_HOME_SAVE_ERROR){persistHomeState();info.homeRetry='queued'}
+ }catch(error){info.settings='failed';info.errorName=error?.name||'Error';info.errorMessage=String(error?.message||error);}
  window.PAI_LAST_FOREGROUND_STORAGE_PROBE=info;return info;
 };
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)void window.PAI_STORAGE_PROBE()});
