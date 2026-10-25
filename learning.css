@@ -149,3 +149,22 @@
   .learning-screen .word-hero .ipa-line{flex-basis:35px;height:35px;min-height:35px}
   .learning-screen .word-hero .recall-controls-row{flex-basis:34px;height:34px;min-height:34px}
 }
+
+/* Answer-page single-text teaching examples have no number/audio grid cells.
+   Keep the three-column layout for existing numbered examples with play buttons. */
+.learning-screen .answer-section[data-test-teaching="example"] .example,
+.learning-screen .answer-section[data-approved-teaching-ku] .example{
+  display:block;
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  overflow-wrap:break-word;
+  white-space:normal;
+}
+.learning-screen .answer-section[data-test-teaching="example"] .example-translation,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-translation{
+  display:block;
+  width:100%;
+  min-width:0;
+  overflow-wrap:break-word;
+}
