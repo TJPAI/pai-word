@@ -16,6 +16,12 @@ const unit={s:{ku_id:'KU-1',m:'原有释义',pos:'n.',c:'常用搭配',e:['原�
 const original=window.answerHtml(unit);
 assert(original.includes('原有释义')&&original.includes('常用搭配')&&original.includes('原有例句'));
 assert(!original.includes('英文释义')&&!original.includes('认证教学例句'));
+// Core20K runtime carries an English definition even without an approved overlay.
+const runtimeUnit={...unit,s:{...unit.s,definition:'a brief account of the main points'}};
+const runtimeHtml=window.answerHtml(runtimeUnit);
+assert(runtimeHtml.includes('英文释义')&&runtimeHtml.includes('a brief account of the main points'));
+assert(!runtimeHtml.includes('认证教学例句'));
+
 window.PAI_APPROVED_TEACHING_OVERLAY={enabled:true,accepted:null};
 assert.equal(window.answerHtml(unit),original,'malformed overlay must fail closed');
 window.PAI_APPROVED_TEACHING_OVERLAY={enabled:false,accepted:new Map([['KU-1',{gloss_en:'disabled'}]])};
@@ -33,4 +39,4 @@ const escaped=window.answerHtml(unit);
 assert(!escaped.includes('<script>')&&!escaped.includes('<img src=x'));
 assert(escaped.includes('&lt;script&gt;')&&escaped.includes('&lt;img'));
 assert(!('records' in state),'renderer must not write SRS records');
-console.log('PASS: base rendering, disabled/malformed overlay, approved content, toggles, HTML escaping');
+console.log('PASS: base rendering, Core20K runtime English definition, disabled/malformed overlay, approved content, toggles, HTML escaping');
