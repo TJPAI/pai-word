@@ -111,7 +111,6 @@
           ${resultHtml()}
         </section>
         ${recentHtml()}
-        <div style="margin:10px 0 14px;font-size:13px"><a href="rebuild-preview/teaching-staging.html" style="color:#1d63aa;text-decoration:underline">体验新版Core20K教学候选（6条Sense · Staging，独立于正式学习记录）</a></div>
         <div class="browse-link"><button type="button" class="catalog-back" onclick="PAI_OPEN_CATALOG_LAZY()">浏览场景目录 →</button><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
       </main>
     </div></div>`;
