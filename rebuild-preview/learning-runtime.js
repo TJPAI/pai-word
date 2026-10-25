@@ -248,8 +248,21 @@
     // B217: approved overlays add display content only; never modify KU or SRS.
     const approvedCard=window.PAI_APPROVED_TEACHING_OVERLAY?.enabled===true?window.PAI_APPROVED_TEACHING_OVERLAY.accepted?.get(u.s.ku_id):null;
     const approvedExamples=approvedCard&&state.showExamples?`<div class="answer-section examples-section" data-approved-teaching-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">认证教学例句</div><div class="example">${escapeHtml(approvedCard.example_en)}</div><div class="example-translation">${escapeHtml(approvedCard.example_zh)}</div></div>`:'';
+    // Explicit, read-only Batch93 teaching preview on the EXISTING study/answer page.
+    // This does not activate the production teaching overlay, modify KU objects, or touch SRS.
+    const previewEnabled=new URLSearchParams(location.search).get('teachingPreview')==='1';
+    const previewRecords={
+      'w_0266_person_ku01':['individual human being','One person is waiting outside.','有一个人在外面等候。'],
+      'w_0049_time_ku01':['measurable duration','We need more time to finish.','我们需要更多时间才能完成。'],
+      'w_0041_know_ku01':['have information in mind','I know the answer.','我知道答案。'],
+      'w_0057_people_ku01':['human beings collectively','Many people live here.','许多人住在这里。'],
+      'w_0139_talk_ku01':['speak to someone','We talk every evening.','我们每天晚上交谈。'],
+      'w_0099_here_ku01':['in or at this place','Please come here.','请到这里来。']
+    };
+    const preview=previewEnabled?previewRecords[u.s.ku_id]:null;
+    const previewTeaching=preview?`<div class="answer-section" data-teaching-preview="true"><div class="answer-label">临时教学内容预览 · 未认证发布</div><div class="definition">${escapeHtml(preview[0])}</div><div class="example">${escapeHtml(preview[1])}</div><div class="example-translation">${escapeHtml(preview[2])}</div></div>`:'';
     const comparison=state.showCompare&&compare.items.length?`<div class="answer-section"><div class="answer-label">近义 / 易混词辨析</div>${compare.items.length?`<div class="contrast-examples">${compare.items.map(item=>`<div class="contrast-item"><div class="contrast-summary"><span class="contrast-word">${escapeHtml(item.word)}</span><span>：${escapeHtml(item.brief)}</span></div><div class="contrast-sentence">${escapeHtml(item.text)}${item.zh?`<div class="contrast-translation">${escapeHtml(item.zh)}</div>`:''}</div></div>`).join('')}</div>`:'<span class="muted">待补充</span>'}</div>`:'';
-    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div>${u.w.root?`<div class="root merged-root">${escapeHtml(u.w.root)}</div>`:''}${reminder}</div>${extra}${collocations}${examples}${approvedExamples}${comparison}</div>`;
+    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div>${u.w.root?`<div class="root merged-root">${escapeHtml(u.w.root)}</div>`:''}${reminder}</div>${extra}${collocations}${examples}${approvedExamples}${previewTeaching}${comparison}</div>;
   };
 
   // Settings actions
