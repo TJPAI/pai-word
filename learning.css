@@ -154,7 +154,10 @@
    Keep the three-column layout for existing numbered examples with play buttons. */
 .learning-screen .answer-section[data-test-teaching="example"] .example,
 .learning-screen .answer-section[data-approved-teaching-ku] .example{
-  display:block;
+  display:grid;
+  grid-template-columns:16px minmax(0,1fr) 34px;
+  gap:6px;
+  align-items:start;
   width:100%;
   min-width:0;
   box-sizing:border-box;
@@ -168,3 +171,13 @@
   min-width:0;
   overflow-wrap:break-word;
 }
+
+/* Bilingual examples: translation stays underneath English in the middle column. */
+.learning-screen .answer-section[data-test-teaching="example"] .example-text,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-text{min-width:0;overflow-wrap:break-word}
+.learning-screen .answer-section[data-test-teaching="example"] .example-en,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-en{white-space:normal}
+.learning-screen .answer-section[data-test-teaching="example"] .example-translation,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-translation{color:#666;font-size:.88em;line-height:1.5;margin-top:4px}
+.learning-screen .answer-section[data-test-teaching="example"] .example-play,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-play{justify-self:center;align-self:start}
