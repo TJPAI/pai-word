@@ -250,7 +250,9 @@
     const approvedCard=approvedOverlay?.enabled===true&&approvedOverlay.accepted instanceof Map?approvedOverlay.accepted.get(u.s.ku_id):null;
     // Enrich the EXISTING answer page only; optional certified fields never alter learning state.
     const certifiedText=(key)=>typeof approvedCard?.[key]==='string'?approvedCard[key].trim():'';
-    const approvedGloss=certifiedText('gloss_en')?`<div class="answer-section" data-approved-gloss-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">英文释义</div><div class="definition">${escapeHtml(certifiedText('gloss_en'))}</div></div>`:'';
+    const runtimeGloss=typeof u.s.definition==='string'?u.s.definition.trim():'';
+    const approvedGlossText=certifiedText('gloss_en')||runtimeGloss;
+    const approvedGloss=approvedGlossText?`<div class="answer-section" data-approved-gloss-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">英文释义</div><div class="definition">${escapeHtml(approvedGlossText)}</div></div>`:'';
     const approvedExamples=approvedCard&&state.showExamples&&certifiedText('example_en')?`<div class="answer-section examples-section" data-approved-teaching-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">认证教学例句</div><div class="example">${escapeHtml(certifiedText('example_en'))}</div>${certifiedText('example_zh')?`<div class="example-translation">${escapeHtml(certifiedText('example_zh'))}</div>`:''}</div>`:'';
     const approvedUsage=approvedCard&&state.showCollocations&&certifiedText('collocation')?`<div class="answer-section" data-approved-collocation-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">典型搭配</div><div class="collocations">${escapeHtml(certifiedText('collocation'))}</div></div>`:'';
     const approvedGrammar=certifiedText('grammar_note')?`<div class="answer-section" data-approved-grammar-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">语法与用法</div><div class="definition">${escapeHtml(certifiedText('grammar_note'))}</div></div>`:'';
