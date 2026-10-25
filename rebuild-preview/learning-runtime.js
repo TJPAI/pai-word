@@ -246,7 +246,8 @@
     const collocations=state.showCollocations&&u.s.c?`<div class="answer-section"><div class="answer-label">${u.w.allSenses?.length>1?'词条搭配（含不同义项）':'高频搭配'}</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>`:'';
     const examples=state.showExamples&&Array.isArray(u.s.e)&&u.s.e.length?`<div class="answer-section examples-section"><div class="answer-label">${u.w.allSenses?.length>1?'词条例句（含不同义项）':'例句'}</div>${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(u.s.exampleAudio?.[i]||e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>`:'';
     // B217: approved overlays add display content only; never modify KU or SRS.
-    const approvedCard=window.PAI_APPROVED_TEACHING_OVERLAY?.enabled===true?window.PAI_APPROVED_TEACHING_OVERLAY.accepted?.get(u.s.ku_id):null;
+    const approvedOverlay=window.PAI_APPROVED_TEACHING_OVERLAY;
+    const approvedCard=approvedOverlay?.enabled===true&&approvedOverlay.accepted instanceof Map?approvedOverlay.accepted.get(u.s.ku_id):null;
     // Enrich the EXISTING answer page only; optional certified fields never alter learning state.
     const certifiedText=(key)=>typeof approvedCard?.[key]==='string'?approvedCard[key].trim():'';
     const approvedGloss=certifiedText('gloss_en')?`<div class="answer-section" data-approved-gloss-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">英文释义</div><div class="definition">${escapeHtml(certifiedText('gloss_en'))}</div></div>`:'';
