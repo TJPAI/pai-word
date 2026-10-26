@@ -1,0 +1,239 @@
+{
+  "schema": "pai-cg-qa-enlex-ready-301-350-v1",
+  "source_commit": "9521733ea369821da4074337e44e7b30c7464268",
+  "source_path": "tools/core20k_lexicon/qa/ENLEX_AI_EDITORIAL_BATCH_301_350.v1.json",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "summary": {
+    "reviewed": 22,
+    "pass": 19,
+    "conditional": 3,
+    "hold_source_not_reviewed": 28,
+    "new_dual_ai_pass": 0
+  },
+  "records": [
+    {
+      "queue_index": 301,
+      "rank": 3179,
+      "lemma": "bonus",
+      "ku_id": "w_3093_bonus_ku_s01",
+      "source_gloss_zh": "奖金；额外好处",
+      "proposed_gloss_en": "an extra payment or benefit given in addition to what is normally expected",
+      "verdict": "PASS",
+      "reason": "奖金及非现金额外好处均强调超出通常预期的附加利益，英文额外付款或利益准确。"
+    },
+    {
+      "queue_index": 302,
+      "rank": 3180,
+      "lemma": "hospice",
+      "ku_id": "w_9863_hospice_ku_s01",
+      "source_gloss_zh": "临终关怀机构；安宁疗护",
+      "proposed_gloss_en": "a place or service that cares for people with a serious illness near the end of life",
+      "verdict": "PASS",
+      "reason": "以生命末期照护的机构或服务界定hospice，避免误写成治愈性治疗，英汉范围吻合。"
+    },
+    {
+      "queue_index": 303,
+      "rank": 3182,
+      "lemma": "rhetorical",
+      "ku_id": "w_7082_rhetorical_ku_s01",
+      "source_gloss_zh": "修辞的",
+      "proposed_gloss_en": "relating to the use of language to persuade or create a particular effect",
+      "verdict": "PASS",
+      "reason": "修辞手段包括劝说和制造表达效果，适用于rhetorical device与rhetorical question等语境。"
+    },
+    {
+      "queue_index": 304,
+      "rank": 3186,
+      "lemma": "entity",
+      "ku_id": "w_3014_entity_ku_s01",
+      "source_gloss_zh": "实体；独立存在的事物",
+      "proposed_gloss_en": "something that exists as a separate and identifiable thing or organization",
+      "verdict": "PASS",
+      "reason": "独立可识别的事物或组织符合实体义；不误限于有形物体。"
+    },
+    {
+      "queue_index": 307,
+      "rank": 3191,
+      "lemma": "politic",
+      "ku_id": "w_12292_politic_ku_s01",
+      "source_gloss_zh": "明智的；圆滑得体的",
+      "proposed_gloss_en": "wise and careful in order to achieve an advantage without offending others",
+      "verdict": "CONDITIONAL_REGISTER",
+      "reason": "politic作‘审慎明智、权宜得体’的形容词偏正式且不常见，定义‘achieve an advantage without offending’会把政治审慎限定为获利；建议‘wise and prudent in the circumstances; tactful’并标注formal，另须与politics/political分开。"
+    },
+    {
+      "queue_index": 311,
+      "rank": 3197,
+      "lemma": "textbook",
+      "ku_id": "w_4628_textbook_ku_s01",
+      "source_gloss_zh": "教科书",
+      "proposed_gloss_en": "a book used for studying or teaching a subject",
+      "verdict": "PASS",
+      "reason": "教学或学习课程使用的书对应教科书，核心名词义准确。"
+    },
+    {
+      "queue_index": 312,
+      "rank": 3199,
+      "lemma": "decode",
+      "ku_id": "w_8223_decode_ku_s01",
+      "source_gloss_zh": "解码；破译",
+      "proposed_gloss_en": "to change a coded message or data into a form that can be understood",
+      "verdict": "PASS",
+      "reason": "把编码信息恢复为可理解内容涵盖解码与破译的基本义，不把加密解密混为唯一形式。"
+    },
+    {
+      "queue_index": 313,
+      "rank": 3200,
+      "lemma": "evacuation",
+      "ku_id": "w_7496_evacuation_ku_s01",
+      "source_gloss_zh": "撤离",
+      "proposed_gloss_en": "the act of moving people from a dangerous place to safety",
+      "verdict": "PASS",
+      "reason": "从危险处有组织地转移到安全地带的行为对应撤离名词义。"
+    },
+    {
+      "queue_index": 319,
+      "rank": 3207,
+      "lemma": "buffalo",
+      "ku_id": "w_7224_buffalo_ku_s01",
+      "source_gloss_zh": "水牛",
+      "proposed_gloss_en": "a large wild bovine animal with heavy horns",
+      "verdict": "CONDITIONAL_TAXONOMY",
+      "reason": "buffalo既可指水牛、非洲水牛，也在美式英语用来指American bison；英文a large wild bovine animal过泛，中文仅‘水牛’过窄，且家养水牛非wild。应以明确物种组和地区用法标记或将KU限定water buffalo。"
+    },
+    {
+      "queue_index": 321,
+      "rank": 3209,
+      "lemma": "hiss",
+      "ku_id": "w_7063_hiss_ku_s01",
+      "source_gloss_zh": "发嘶嘶声",
+      "proposed_gloss_en": "to make a long sharp sound like escaping air or a snake",
+      "verdict": "PASS",
+      "reason": "蛇声及空气喷出般的尖锐持续嘶嘶声是常见发声动词义。"
+    },
+    {
+      "queue_index": 323,
+      "rank": 3211,
+      "lemma": "folder",
+      "ku_id": "w_5172_folder_ku_s01",
+      "source_gloss_zh": "文件夹；文件夹目录",
+      "proposed_gloss_en": "a cover or electronic location used to keep related documents together",
+      "verdict": "PASS",
+      "reason": "纸质文件夹与电脑文件夹共同存放相关文件，宽泛定义覆盖双中文义。"
+    },
+    {
+      "queue_index": 324,
+      "rank": 3212,
+      "lemma": "heed",
+      "ku_id": "w_7196_heed_ku_s01",
+      "source_gloss_zh": "注意",
+      "proposed_gloss_en": "to pay careful attention to advice, warnings, or instructions",
+      "verdict": "PASS",
+      "reason": "认真听取警告、建议、指示符合heed及物动词用法。"
+    },
+    {
+      "queue_index": 325,
+      "rank": 3214,
+      "lemma": "ponder",
+      "ku_id": "w_5967_ponder_ku_s01",
+      "source_gloss_zh": "仔细思考",
+      "proposed_gloss_en": "to think carefully about something for some time",
+      "verdict": "PASS",
+      "reason": "持续仔细思考问题是ponder核心义，未把短暂考虑误写成深思。"
+    },
+    {
+      "queue_index": 326,
+      "rank": 3217,
+      "lemma": "crossroad",
+      "ku_id": "w_7268_crossroad_ku_s01",
+      "source_gloss_zh": "十字路口",
+      "proposed_gloss_en": "a place where two roads cross or meet",
+      "verdict": "CONDITIONAL_FORM",
+      "reason": "两路交叉地点通常名词形式crossroads（可作单复同形地点词）；crossroad单数确实存在，较不常见。英文two roads cross or meet在meet处过泛（汇合并非必然十字路口），需要标注单复数及与intersection用法差别。"
+    },
+    {
+      "queue_index": 328,
+      "rank": 3220,
+      "lemma": "cooker",
+      "ku_id": "w_5020_cooker_ku_s01",
+      "source_gloss_zh": "炊具；炉灶",
+      "proposed_gloss_en": "a device used for cooking food, especially a stove or special cooking appliance",
+      "verdict": "PASS",
+      "reason": "炊具炉灶或特殊加热设备涵盖英式cooker和rice cooker；美语stove分布另可注明。"
+    },
+    {
+      "queue_index": 329,
+      "rank": 3221,
+      "lemma": "infancy",
+      "ku_id": "w_6833_infancy_ku_s01",
+      "source_gloss_zh": "婴儿期",
+      "proposed_gloss_en": "the period when a child is a baby",
+      "verdict": "PASS",
+      "reason": "幼儿为婴儿时的阶段对应婴儿期，另有事物初创期比喻义但非本KU所需。"
+    },
+    {
+      "queue_index": 331,
+      "rank": 3224,
+      "lemma": "sleepy",
+      "ku_id": "w_7246_sleepy_ku_s01",
+      "source_gloss_zh": "困倦的",
+      "proposed_gloss_en": "feeling tired and ready to sleep",
+      "verdict": "PASS",
+      "reason": "疲倦想睡的形容词准确，区别sleeping（正在睡）清楚。"
+    },
+    {
+      "queue_index": 337,
+      "rank": 3236,
+      "lemma": "destination",
+      "ku_id": "w_3006_destination_ku_s01",
+      "source_gloss_zh": "目的地",
+      "proposed_gloss_en": "the place to which someone or something is traveling",
+      "verdict": "PASS",
+      "reason": "人或物前往的终点地点，目的地名词义准确。"
+    },
+    {
+      "queue_index": 341,
+      "rank": 3242,
+      "lemma": "brood",
+      "ku_id": "w_6969_brood_ku_s01",
+      "source_gloss_zh": "一窝幼鸟",
+      "proposed_gloss_en": "a group of young birds hatched at about the same time",
+      "verdict": "PASS",
+      "reason": "同一时期孵出的雏鸟群是brood的名词核心义，排除‘闷闷不乐地想’动词。"
+    },
+    {
+      "queue_index": 343,
+      "rank": 3244,
+      "lemma": "forefront",
+      "ku_id": "w_6948_forefront_ku_s01",
+      "source_gloss_zh": "最前沿",
+      "proposed_gloss_en": "the most important or leading position in an activity or development",
+      "verdict": "PASS",
+      "reason": "处于领域领先或最重要位置，能够表示最前沿的抽象位置。"
+    },
+    {
+      "queue_index": 345,
+      "rank": 3246,
+      "lemma": "systematic",
+      "ku_id": "w_3943_systematic_ku_s01",
+      "source_gloss_zh": "系统的；有条理的",
+      "proposed_gloss_en": "done according to an organized method or plan",
+      "verdict": "PASS",
+      "reason": "遵照有组织的方法、步骤做事涵盖系统的/有条理的，须与systemic区分但不阻断。"
+    },
+    {
+      "queue_index": 350,
+      "rank": 3254,
+      "lemma": "turf",
+      "ku_id": "w_6472_turf_ku_s01",
+      "source_gloss_zh": "草皮",
+      "proposed_gloss_en": "grass and the surface soil in which it grows",
+      "verdict": "PASS",
+      "reason": "草及其表土层对应草皮，排除势力范围的引申义。"
+    }
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
