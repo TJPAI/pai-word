@@ -181,3 +181,12 @@
 .learning-screen .answer-section[data-approved-teaching-ku] .example-translation{color:#666;font-size:.88em;line-height:1.5;margin-top:4px}
 .learning-screen .answer-section[data-test-teaching="example"] .example-play,
 .learning-screen .answer-section[data-approved-teaching-ku] .example-play{justify-self:center;align-self:start}
+
+
+/* Question-only, ephemeral finger-writing region. Never selectable/scrollable. */
+.learning-screen:not(.revealed) .study-body{position:relative;min-height:0;flex:1;display:flex}
+.learning-screen .pai-scratch-area{position:relative;flex:1;width:100%;min-height:130px;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.learning-screen .pai-scratch-canvas{display:block;width:100%;height:100%;touch-action:none;-webkit-user-select:none;user-select:none}
+.learning-screen .pai-scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;color:#a3aeba;font-size:18px;font-weight:500;white-space:nowrap}
+.learning-screen .pai-scratch-hint small{display:block;margin-top:7px;font-size:13px;font-weight:400}
+.learning-screen .pai-scratch-hint[hidden]{display:none}
