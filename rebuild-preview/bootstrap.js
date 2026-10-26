@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='answer-bilingual-audio-v3-20261026';window.PAI_APP_VERSION=VERSION;
+ const VERSION='batch93-isolated-main-flow-v1-20261026';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -37,14 +37,14 @@
     req.onerror=()=>finish(req.error||Error('数据库删除失败'));
     req.onblocked=()=>{window.PAI_RESET_BLOCKED=true};
    });
-   localStorage.removeItem('pai-word-core20k-rebuild-preview-v21');
+   localStorage.removeItem(new URLSearchParams(location.search).get('batch93')==='1'?'pai-word-core20k-batch93-isolated-v1':'pai-word-core20k-rebuild-preview-v21');
    localStorage.removeItem('pai-word-welcome-seen-v1');
    for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
    for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
    // Verify no stale legacy state can re-seed a newly initialized database.
-   if(localStorage.getItem('pai-word-core20k-rebuild-preview-v21')!==null)throw Error('旧学习数据仍存在');
+   if(localStorage.getItem(new URLSearchParams(location.search).get('batch93')==='1'?'pai-word-core20k-batch93-isolated-v1':'pai-word-core20k-rebuild-preview-v21')!==null)throw Error('旧学习数据仍存在');
    sessionStorage.setItem('pai-word-preview-reset-check','1');
-   location.replace(location.pathname+'?resetFresh='+Date.now());
+   location.replace(location.pathname+(new URLSearchParams(location.search).get('batch93')==='1'?'?batch93=1&welcome=0&resetFresh=':'?resetFresh=')+Date.now());
   }catch(error){alert('重置未完成：'+String(error?.message||error));window.PAI_RESET_IN_PROGRESS=false;window.PAI_SAVE_DEFERRED=false;if(button&&'disabled'in button)button.disabled=false}
  };
 
@@ -191,6 +191,11 @@
   // Restore persisted recommendation IDs exactly; only explicit user actions rerank.
   render();
   mark('homeRendered');
+  // The existing learning screen and three self-rating buttons, not a separate page.
+  if(window.PAI_BATCH93_ISOLATED?.enabled===true){
+    if(typeof window.PAI_START_POLICY_SESSION!=='function')throw Error('BATCH93_LEARNING_FLOW_UNAVAILABLE');
+    window.PAI_START_POLICY_SESSION([...window.PAI_BATCH93_ISOLATED.accepted.keys()],'Batch93 六词 · 隔离集成测试','scene');
+  }
   // A successful full reset starts as a new user, including first-run welcome.
   if(window.PAI_LAST_RESET_QA?.passed)window.PAI_SHOW_WELCOME_AFTER_RESET?.();
   app.removeAttribute('role');app.removeAttribute('aria-busy');document.body.classList.remove('pai-snapshot-visible');document.body.classList.add('pai-boot-ready');
