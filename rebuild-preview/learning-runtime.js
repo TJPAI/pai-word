@@ -440,7 +440,7 @@
  function finish(g){if(!valid(g)||phase==='idle'||phase==='committing')return;const fn=onAdvance;onAdvance=null;if(typeof fn!=='function'){phase='answer-paused';window.render?.();return}phase='committing';try{fn(grade)}catch(e){window.PAI_LAST_SAVE_ERROR=String(e);console.error('评分提交回调失败',e);resumeFailedCommit()}}
  function repeat(g){if(!valid(g)||phase!=='repeating')return;const u=window.getVisibleLearningUnit?.();if(!u)return;
   repeated++;window.render?.();const c=config();
-  const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>{if(!valid(g)||phase!=='repeating')return;const k=visibleKey;state.revealed=false;ready(k,true);window.render?.()},c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
+  const done=()=>{if(!valid(g)||phase!=='repeating')return;if(repeated>=c.repeatCount)later(()=>{if(!valid(g)||phase!=='repeating')return;const k=visibleKey;resetPage();ready(k,true);window.render?.()},c.repeatGap*1000);else later(()=>repeat(g),c.repeatGap*1000)};
   if(state.autoPronounce?.question&&window.PAI_AUDIO?.play)window.PAI_AUDIO.play(u.w.w,.84,done);else later(done,1000);
  }
  function tap(){
