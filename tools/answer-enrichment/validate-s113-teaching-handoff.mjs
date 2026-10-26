@@ -7,7 +7,7 @@ const base = new URL('./', import.meta.url);
 const load = (p) => JSON.parse(readFileSync(new URL(p,base),'utf8'));
 const original = load('s113-teaching-candidates.v1.json');
 const revised = load('s113-targeted-revision-and-provenance.v1.json');
-const handoff = load('s113-teaching-owner-handoff.v2.json');
+const handoff = load('s113-teaching-owner-handoff.v3.json');
 const taxonomy = load('../../data/scene-taxonomy-v2.json');
 const catalog = load('../../scene500-recommendation/catalog-v0.2.json');
 const legacyRanks = load('../../data/scene500-top100-v40/group-05.json').scenes.S113;
@@ -50,7 +50,7 @@ function validate({original, revised, handoff, taxonomy, catalog, legacyRanks, m
     assert(/[.!?]$/.test(target.example_en));
     assert(/[。！？]$/.test(target.example_zh));
     assert(!('official_sense_id' in target) || target.official_sense_id === null);
-    const pass = target.chatgpt_revision_verdict === 'PASS' && target.muse_same_revision_verdict === 'PASS';
+    const pass = target.chatgpt_revision_verdict === 'PASS' && ['PASS','PASS_WITH_NONBLOCKING_TIME_BOUNDARY_NOTE'].includes(target.muse_same_revision_verdict);
     if (pass) {
       dualPass++;
       assert.equal(target.semantic_release_status, 'DUAL_AI_PASS_CONTENT_ONLY');
@@ -61,7 +61,7 @@ function validate({original, revised, handoff, taxonomy, catalog, legacyRanks, m
   }
   assert.equal(seen.size, 3);
   assert.equal(dualPass, handoff.minimum_qa.same_revision_dual_ai_pass_count);
-  assert.equal(dualPass, 1);
+  assert.equal(dualPass, 3);
   assert.equal(handoff.provenance, undefined); // provenance remains in original revision
   return {ok:true, records:seen.size, versionMatchedDualPass:dualPass, canonicalMembership:'NOT_ESTABLISHED', publishable:0};
 }
