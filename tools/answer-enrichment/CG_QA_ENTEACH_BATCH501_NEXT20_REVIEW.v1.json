@@ -1,0 +1,140 @@
+{
+  "schema": "cg-qa-enteach501-next20-v1",
+  "source_commit": "f266d55389dab9c75eeee6620d93aa82843c1c41",
+  "source_path": "tools/answer-enrichment/enteach-next20-batch501-teaching-draft.v1.json",
+  "reviewer": "CG-QA",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "summary": {
+    "reviewed": 20,
+    "pass": 18,
+    "revise_collocation": 1,
+    "conditional_base_sense_scope": 1,
+    "new_dual_ai_pass": 0
+  },
+  "records": [
+    {
+      "headword": "pinpoint",
+      "ku_id": "w_7031_pinpoint_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "网络故障原因准确定位体现及物动词pinpoint，三个搭配、译文与guess区别一致。"
+    },
+    {
+      "headword": "repayment",
+      "ku_id": "w_7252_repayment_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "monthly repayment既可指一次还款也可指其金额；贷款协议和中文金额译法在语境中成立，区别payment正确。"
+    },
+    {
+      "headword": "fade",
+      "ku_id": "w_3018_fade_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "阳光下窗帘渐褪色与fade颜色/亮度渐弱义一致，fade away与disappear的过程差异合理。"
+    },
+    {
+      "headword": "quirk",
+      "ku_id": "w_11313_quirk_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "键盘特殊布局可称quirk且不必认定功能缺陷，a design quirk搭配恰当。"
+    },
+    {
+      "headword": "maximize",
+      "ku_id": "w_4225_maximize_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "调整桌子布局使空间利用最大化的例句准确，maximize与单纯increase区别合理。"
+    },
+    {
+      "headword": "referral",
+      "ku_id": "w_5572_referral_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "转诊到专科医生的场景和referral to搭配准确，区别非正式recommendation合理。"
+    },
+    {
+      "headword": "publicly",
+      "ku_id": "w_3126_publicly_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "公开公布结果的例句与publicly announce搭配正确，和officially的维度不同。"
+    },
+    {
+      "headword": "flicker",
+      "ku_id": "w_6139_flicker_ku_s01",
+      "verdict": "REVISE_COLLOCATION",
+      "linguistic_reason": "例句灯光在风暴中忽明忽暗正确；但‘candle flame flicker’缺失限定/词形，不能作为自然搭配直接呈现。建议‘a flickering candle flame’或‘a candle flame flickers’，其余保持。"
+    },
+    {
+      "headword": "wrench",
+      "ku_id": "w_7081_wrench_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "用扳手松开螺栓的英语及译文准确，wrench/screwdriver及可数名词提示正确。"
+    },
+    {
+      "headword": "homework",
+      "ku_id": "w_3361_homework_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "晚饭前完成课外作业合乎homework不可数，和housework区分明确。"
+    },
+    {
+      "headword": "phenomenal",
+      "ku_id": "w_7479_phenomenal_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "运动员进步惊人符合phenomenal非凡强度，progress、growth搭配准确。"
+    },
+    {
+      "headword": "fig",
+      "ku_id": "w_3469_fig_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "将切碎无花果放入沙拉准确，鲜/干无花果及date的水果区别正确。"
+    },
+    {
+      "headword": "pact",
+      "ku_id": "w_7137_pact_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "城镇间共享应急资源的正式约定符合pact，sign a pact搭配恰当。"
+    },
+    {
+      "headword": "airplane",
+      "ku_id": "w_3264_airplane_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "固定翼动力飞机、安全降落、英美拼写和直升机对照均准确。"
+    },
+    {
+      "headword": "workplace",
+      "ku_id": "w_3518_workplace_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "workplace safety rules与公司工作场所安全新规定对应，workforce对照正确。"
+    },
+    {
+      "headword": "inclusive",
+      "ku_id": "w_6496_inclusive_ku_s01",
+      "verdict": "CONDITIONAL_BASE_SENSE_SCOPE",
+      "linguistic_reason": "社会包容语境内的inclusive design/environment及例句正确，但基础KU w_6154_inclusive_ku_s01是否只覆盖社会包容义仍未与‘inclusive of tax/dates’范围完成正式确认，不能把教学局部PASS冒充基础Sense定案。"
+    },
+    {
+      "headword": "encode",
+      "ku_id": "w_6170_encode_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "保存前将信息编码与encode data结构准确，区别编码与加密有重要教学价值。"
+    },
+    {
+      "headword": "defect",
+      "ku_id": "w_3561_defect_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "金属框架瑕疵与defect名词义相符，名词/动词异读提醒准确。"
+    },
+    {
+      "headword": "stationary",
+      "ku_id": "w_5970_stationary_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "车辆红绿灯前静止的语义自然，stationary与stationery同音异拼辨析正确。"
+    },
+    {
+      "headword": "flexibility",
+      "ku_id": "w_3194_flexibility_ku_s01",
+      "verdict": "PASS",
+      "linguistic_reason": "日程弹性与身体柔韧两类用法均被定义覆盖，例句与rigidity反义对照清楚。"
+    }
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
