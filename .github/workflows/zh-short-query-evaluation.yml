@@ -32,7 +32,9 @@ jobs:
       - name: QA segmentation candidates (fixture dictionary)
         run: node scripts/test-zh-short-query-candidates.mjs
       - name: Evaluate real Core20K dictionary
-        run: node scripts/evaluate-zh-short-query-core20k.mjs | tee zh-short-query-core20k-evaluation.json
+        run: |
+          set -o pipefail
+          node scripts/evaluate-zh-short-query-core20k.mjs | tee zh-short-query-core20k-evaluation.json
       - name: Upload measured results
         if: always()
         uses: actions/upload-artifact@v4
