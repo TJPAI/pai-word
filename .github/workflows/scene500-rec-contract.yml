@@ -39,6 +39,7 @@ jobs:
           node scene500-recommendation/v0101-hybrid-runtime-qa.mjs             "$RUNNER_TEMP/scene500/catalog-v0.2.json"             "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json"             "$RUNNER_TEMP/scene500/v094-lexical-associations.json"             | tee "$RUNNER_TEMP/scene500/hybrid-report.json"
       - name: Evaluate 20-query independent editorial holdout
         run: |
+          set -o pipefail
           node scene500-recommendation/qa/evaluate-holdout.mjs \
             "$RUNNER_TEMP/scene500/catalog-v0.2.json" \
             "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json" \
