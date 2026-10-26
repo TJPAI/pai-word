@@ -1,0 +1,510 @@
+{
+  "schema": "cg-qa-200-batch01-progress-v1",
+  "target_batch_size": 200,
+  "reviewed_in_this_artifact": 59,
+  "remaining_to_target": 141,
+  "source_positions": "551-650 READY only",
+  "sources": [
+    {
+      "commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "batch": "551_575"
+    },
+    {
+      "commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "batch": "576_600"
+    },
+    {
+      "commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "batch": "601_625"
+    },
+    {
+      "commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "batch": "626_650"
+    }
+  ],
+  "review_state": "PARTIAL_BATCH_IN_PROGRESS_CHATGPT_ONLY_PROVISIONAL",
+  "summary": {
+    "pass": 54,
+    "conditional": 5,
+    "hold_excluded": 41,
+    "dual_ai_certifications": 0
+  },
+  "records": [
+    {
+      "queue_index": 554,
+      "ku_id": "w_6419_focal_ku_s01",
+      "lemma": "focal",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "关注点或活动中心的形容词含义覆盖focal point等常见结构。"
+    },
+    {
+      "queue_index": 558,
+      "ku_id": "w_6503_provocative_ku_s01",
+      "lemma": "provocative",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "激发愤怒、争议或兴趣等强反应的限定合理，不误限挑衅。"
+    },
+    {
+      "queue_index": 559,
+      "ku_id": "w_6416_reiterate_ku_s01",
+      "lemma": "reiterate",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "重申陈述以强调或澄清，符合及物动词语义。"
+    },
+    {
+      "queue_index": 560,
+      "ku_id": "w_7367_chilly_ku_s01",
+      "lemma": "chilly",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "令人感到冷但未必冰点以下，适用于天气和房间。"
+    },
+    {
+      "queue_index": 562,
+      "ku_id": "w_6358_seafood_ku_s01",
+      "lemma": "seafood",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "以供食用的鱼及其他海生动物界定海鲜，不混入海藻。"
+    },
+    {
+      "queue_index": 563,
+      "ku_id": "w_7735_endurance_ku_s01",
+      "lemma": "endurance",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "持续承受艰难活动或不适的能力，涵盖耐力与忍耐力。"
+    },
+    {
+      "queue_index": 564,
+      "ku_id": "w_7042_skinny_ku_s01",
+      "lemma": "skinny",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "非常瘦并可能有消瘦评价色彩，定义未误作中性slim。"
+    },
+    {
+      "queue_index": 565,
+      "ku_id": "w_6802_fasten_ku_s01",
+      "lemma": "fasten",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "扣合、系牢或固定使之稳固，语义上位关系合理。"
+    },
+    {
+      "queue_index": 569,
+      "ku_id": "w_7746_traverse_ku_s01",
+      "lemma": "traverse",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "穿行复杂地形或横穿空间，符合traverse较正式的移动义。"
+    },
+    {
+      "queue_index": 570,
+      "ku_id": "w_6399_redesign_ku_s01",
+      "lemma": "redesign",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "重新设计来修改或改善既有事物，与初次design区别明确。"
+    },
+    {
+      "queue_index": 571,
+      "ku_id": "w_3548_accuracy_ku_s01",
+      "lemma": "accuracy",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "正确或精确程度的名词义准确，可用于测量和陈述。"
+    },
+    {
+      "queue_index": 574,
+      "ku_id": "w_3167_merit_ku_s01",
+      "lemma": "merit",
+      "source_commit": "a386a99219b12e430d1d2eec908a86e30222133f",
+      "verdict": "PASS",
+      "reason": "优点或值得考虑的长处，未将merit当作纯道德美德。"
+    },
+    {
+      "queue_index": 578,
+      "ku_id": "w_6302_walker_ku_s01",
+      "lemma": "walker",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "CONDITIONAL_SCOPE",
+      "reason": "只给步行人义合理但walker也高频指辅助行走器；应确认同一KU是否限定person。"
+    },
+    {
+      "queue_index": 579,
+      "ku_id": "w_7098_pi_ku_s01",
+      "lemma": "pi",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "圆周与直径之比的数学常数是π的标准定义。"
+    },
+    {
+      "queue_index": 582,
+      "ku_id": "w_3101_fourteen_ku_s01",
+      "lemma": "fourteen",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "数词十四与number 14直接对应，未误作次序数。"
+    },
+    {
+      "queue_index": 584,
+      "ku_id": "w_6605_incremental_ku_s01",
+      "lemma": "incremental",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "通过一系列小增量/变化逐步推进，符合incremental change。"
+    },
+    {
+      "queue_index": 585,
+      "ku_id": "w_4545_trainee_ku_s01",
+      "lemma": "trainee",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "经培训掌握岗位技能的人，区分实习与正式岗位并不必要。"
+    },
+    {
+      "queue_index": 586,
+      "ku_id": "w_3249_popularity_ku_s01",
+      "lemma": "popularity",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "受许多人喜爱或支持的程度，适用于人物及产品人气。"
+    },
+    {
+      "queue_index": 587,
+      "ku_id": "w_6720_adaptive_ku_s01",
+      "lemma": "adaptive",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "随新情境调整的能力，形容词义恰当。"
+    },
+    {
+      "queue_index": 590,
+      "ku_id": "w_6111_mint_ku_s01",
+      "lemma": "mint",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "芳香草本薄荷的食用叶片义，排除硬币制造所另一词义。"
+    },
+    {
+      "queue_index": 591,
+      "ku_id": "w_3408_contractor_ku_s01",
+      "lemma": "contractor",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "根据合同承担项目或服务的个人/企业，承包人范围一致。"
+    },
+    {
+      "queue_index": 592,
+      "ku_id": "w_3148_physician_ku_s01",
+      "lemma": "physician",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "CONDITIONAL_SCOPE",
+      "reason": "medical doctor可靠，但especially one who treats illness without surgery带英美语域与专科差异；不应让学习者理解所有physician都不做手术。"
+    },
+    {
+      "queue_index": 593,
+      "ku_id": "w_6239_lucrative_ku_s01",
+      "lemma": "lucrative",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "带来可观金钱或利润，与单纯有益不同。"
+    },
+    {
+      "queue_index": 596,
+      "ku_id": "w_5260_simulate_ku_s01",
+      "lemma": "simulate",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "模仿现实过程或条件以进行仿真，符合技术与训练语境。"
+    },
+    {
+      "queue_index": 597,
+      "ku_id": "w_6816_password_ku_s01",
+      "lemma": "password",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "用于验证身份/获得系统访问的秘密字符序列，对应登录口令。"
+    },
+    {
+      "queue_index": 598,
+      "ku_id": "w_5646_insurer_ku_s01",
+      "lemma": "insurer",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "提供保险保障换取保费的承保主体，不混淆被保险人。"
+    },
+    {
+      "queue_index": 599,
+      "ku_id": "w_6044_cyclist_ku_s01",
+      "lemma": "cyclist",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "骑自行车者，不限比赛选手。"
+    },
+    {
+      "queue_index": 600,
+      "ku_id": "w_6620_projector_ku_s01",
+      "lemma": "projector",
+      "source_commit": "de6d57bdbbd32a6a1e35cde944a90f19b7ff9752",
+      "verdict": "PASS",
+      "reason": "向屏幕或表面投放放大影像的设备，涵盖投影机。"
+    },
+    {
+      "queue_index": 601,
+      "ku_id": "w_5381_inflict_ku_s01",
+      "lemma": "inflict",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "使他人遭受疼痛或损害，动词主要与负面影响搭配。"
+    },
+    {
+      "queue_index": 605,
+      "ku_id": "w_3068_oocyte_ku_s01",
+      "lemma": "oocyte",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "卵母细胞处于成熟卵之前的细胞发育阶段，非受精卵。"
+    },
+    {
+      "queue_index": 606,
+      "ku_id": "w_5845_rainy_ku_s01",
+      "lemma": "rainy",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "CONDITIONAL_SCOPE",
+      "reason": "rainy day可仅当天有降雨，不必frequent或substantial；定义改为‘with rain or characterized by much rain’才能兼顾单日和季节。"
+    },
+    {
+      "queue_index": 609,
+      "ku_id": "w_6813_delta_ku_s01",
+      "lemma": "delta",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "河口分流与沉积形成低平区域符合河流三角洲核心地貌。"
+    },
+    {
+      "queue_index": 611,
+      "ku_id": "w_6063_validate_ku_s01",
+      "lemma": "validate",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "核验正确性/可接受性或正式有效性，覆盖validate多领域共同操作。"
+    },
+    {
+      "queue_index": 612,
+      "ku_id": "w_7249_rearrange_ku_s01",
+      "lemma": "rearrange",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "改变次序或摆放方式，区别改变内容本身。"
+    },
+    {
+      "queue_index": 613,
+      "ku_id": "w_3089_actress_ku_s01",
+      "lemma": "actress",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "女性戏剧影视表演者的传统名词义恰当，演员称呼actor也可适用女性但非错误。"
+    },
+    {
+      "queue_index": 615,
+      "ku_id": "w_3283_eighty_ku_s01",
+      "lemma": "eighty",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "数词八十对应80，无歧义。"
+    },
+    {
+      "queue_index": 616,
+      "ku_id": "w_4445_evidently_ku_s01",
+      "lemma": "evidently",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "根据可得证据看来明显，与可推断性相符。"
+    },
+    {
+      "queue_index": 617,
+      "ku_id": "w_6838_downstream_ku_s01",
+      "lemma": "downstream",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "沿河水流向较下游的方位义，基础地理sense明确。"
+    },
+    {
+      "queue_index": 618,
+      "ku_id": "w_7432_clog_ku_s01",
+      "lemma": "clog",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "堵塞使空气液体或材料难以通过，强调流通受阻。"
+    },
+    {
+      "queue_index": 619,
+      "ku_id": "w_6749_deduct_ku_s01",
+      "lemma": "deduct",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "从总额扣除数值，尤其金钱，及物动词范围正确。"
+    },
+    {
+      "queue_index": 620,
+      "ku_id": "w_3208_lamp_ku_s01",
+      "lemma": "lamp",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "依靠电力或燃料发光的灯具，上位定义稳妥。"
+    },
+    {
+      "queue_index": 622,
+      "ku_id": "w_6694_crook_ku_s01",
+      "lemma": "crook",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "不诚实尤其盗窃或诈骗的人，口语坏人义覆盖。"
+    },
+    {
+      "queue_index": 625,
+      "ku_id": "w_6516_heave_ku_s01",
+      "lemma": "heave",
+      "source_commit": "a7ccfbd16faca083ab8762d4b9546d2c3a13d68b",
+      "verdict": "PASS",
+      "reason": "费力举拉推重物的动词义正确，区别轻易lift。"
+    },
+    {
+      "queue_index": 626,
+      "ku_id": "w_3417_similarity_ku_s01",
+      "lemma": "similarity",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "事物相似程度或共同点，单复可区分抽象性质与相似处。"
+    },
+    {
+      "queue_index": 627,
+      "ku_id": "w_6372_mortar_ku_s01",
+      "lemma": "mortar",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "水泥砂水混合黏结砖石的建筑砂浆义，未混军用迫击炮。"
+    },
+    {
+      "queue_index": 628,
+      "ku_id": "w_4295_habitat_ku_s01",
+      "lemma": "habitat",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "动植物通常生存的自然环境，满足栖息地义。"
+    },
+    {
+      "queue_index": 630,
+      "ku_id": "w_7275_pore_ku_s01",
+      "lemma": "pore",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "CONDITIONAL_SCOPE",
+      "reason": "皮肤毛孔的定义正确，但pore也指多孔材料的微孔，应限定皮肤Sense；否则中文毛孔范围偏窄。"
+    },
+    {
+      "queue_index": 631,
+      "ku_id": "w_9765_dataset_ku_s01",
+      "lemma": "dataset",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "为处理分析组织的相关数据集合，对数据集含义准确。"
+    },
+    {
+      "queue_index": 632,
+      "ku_id": "w_4748_pillow_ku_s01",
+      "lemma": "pillow",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "睡觉时支撑头部的软垫，基本义清楚。"
+    },
+    {
+      "queue_index": 633,
+      "ku_id": "w_6966_jockey_ku_s01",
+      "lemma": "jockey",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "参加赛马的骑师职业义恰当。"
+    },
+    {
+      "queue_index": 634,
+      "ku_id": "w_5867_jointly_ku_s01",
+      "lemma": "jointly",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "与一个或多个主体共同开展事情的副词义准确。"
+    },
+    {
+      "queue_index": 636,
+      "ku_id": "w_7691_validation_ku_s01",
+      "lemma": "validation",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "检查正确性或有效性的过程名词，可用于数据及程序。"
+    },
+    {
+      "queue_index": 637,
+      "ku_id": "w_6341_navigate_ku_s01",
+      "lemma": "navigate",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "寻找并沿路线到达目的地，基础导航义正确。"
+    },
+    {
+      "queue_index": 638,
+      "ku_id": "w_8592_shun_ku_s01",
+      "lemma": "shun",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "有意识持续避免某人或事，强于偶然避开。"
+    },
+    {
+      "queue_index": 639,
+      "ku_id": "w_6607_disconnect_ku_s01",
+      "lemma": "disconnect",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "切断装置之间电源或通讯连接的及物动词用法正确。"
+    },
+    {
+      "queue_index": 641,
+      "ku_id": "w_6754_refreshment_ku_s01",
+      "lemma": "refreshment",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "CONDITIONAL_NUMBER",
+      "reason": "small amounts of food and drink是refreshments复数常见义；单数refreshment更常为精神恢复/提神，教学需注明复数并验证KU形态。"
+    },
+    {
+      "queue_index": 642,
+      "ku_id": "w_7018_indicative_ku_s01",
+      "lemma": "indicative",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "作为征兆表明某状态可能属实，符合be indicative of搭配。"
+    },
+    {
+      "queue_index": 644,
+      "ku_id": "w_7248_etch_ku_s01",
+      "lemma": "etch",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "在硬表面机械或化学刻出图案，蚀刻义准确。"
+    },
+    {
+      "queue_index": 650,
+      "ku_id": "w_7272_fuzzy_ku_s01",
+      "lemma": "fuzzy",
+      "source_commit": "65a46df584f1a17548b243b5da39d252184ef9e4",
+      "verdict": "PASS",
+      "reason": "不清晰或轮廓模糊的形容词义成立，毛茸茸的另一sense需独立处理。"
+    }
+  ],
+  "release": {
+    "activation_allowed": false,
+    "production_ready": false
+  }
+}
