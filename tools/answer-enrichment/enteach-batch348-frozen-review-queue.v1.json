@@ -1,0 +1,2956 @@
+{
+  "schema_version": "pai-word-enteach-348-ku-frozen-review-queue-v1",
+  "owner": "CG-ENTEACH",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "source_files": [
+    {
+      "index": 0,
+      "path": "tools/answer-enrichment/enteach-batch23-composed-staging.v2.json",
+      "git_blob_sha": "d9a4672d634a272776479b09e8bbf415d6814cf2"
+    },
+    {
+      "index": 1,
+      "path": "tools/answer-enrichment/enteach-next15-batch101-teaching-draft.v2.json",
+      "git_blob_sha": "ebdaea8b7a19e7626d799c7dae19bf38b12595a7"
+    },
+    {
+      "index": 2,
+      "path": "tools/answer-enrichment/enteach-next10-batch101-teaching-draft.v1.json",
+      "git_blob_sha": "4a94e4538ab80926c4e912bb752871195c5e5124"
+    },
+    {
+      "index": 3,
+      "path": "tools/answer-enrichment/enteach-next15-batch151-teaching-draft.v2.json",
+      "git_blob_sha": "4ef7508e4616ef0e74b395650b06a72b15c43a79"
+    },
+    {
+      "index": 4,
+      "path": "tools/answer-enrichment/enteach-next10-batch151-teaching-draft.v1.json",
+      "git_blob_sha": "e9f51a49aae57af346ec57b0670f7c73bea60a44"
+    },
+    {
+      "index": 5,
+      "path": "tools/answer-enrichment/enteach-next15-batch301-teaching-draft.v2.json",
+      "git_blob_sha": "a21898e1918b30f86638743714f26ae1acd2067c"
+    },
+    {
+      "index": 6,
+      "path": "tools/answer-enrichment/enteach-next20-batch351-teaching-draft.v1.json",
+      "git_blob_sha": "7af31bbdcba4f6fb54f769a9ab1aebe8e1b4409c"
+    },
+    {
+      "index": 7,
+      "path": "tools/answer-enrichment/enteach-next15-batch401-teaching-draft.v1.json",
+      "git_blob_sha": "9e710e07460bff4ecbfa578bcd4d7056b32893b0"
+    },
+    {
+      "index": 8,
+      "path": "tools/answer-enrichment/enteach-next15-batch451-teaching-draft.v1.json",
+      "git_blob_sha": "b088e3aa7d912bd1d3618998f3416a850ef0943e"
+    },
+    {
+      "index": 9,
+      "path": "tools/answer-enrichment/enteach-next20-batch501-teaching-draft.v2.json",
+      "git_blob_sha": "f94428e70b9d5b1742b150427d1d006fb4430a46"
+    },
+    {
+      "index": 10,
+      "path": "tools/answer-enrichment/enteach-next15-batch551-teaching-draft.v1.json",
+      "git_blob_sha": "d718be3606f6eb28919fff1273fc2e081ea89092"
+    },
+    {
+      "index": 11,
+      "path": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "git_blob_sha": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d"
+    },
+    {
+      "index": 12,
+      "path": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+      "git_blob_sha": "175fb8ac770437a6ddd0497bceb6840a180e8a6b"
+    },
+    {
+      "index": 13,
+      "path": "tools/answer-enrichment/enteach-batch200-part03-25.v1.json",
+      "git_blob_sha": "6c607d92be8b3c06bd091a5791391954432a960c"
+    },
+    {
+      "index": 14,
+      "path": "tools/answer-enrichment/enteach-batch200-part04-25.v1.json",
+      "git_blob_sha": "31eb9fde7da0cd0dd39e5426f2601e35571767fc"
+    },
+    {
+      "index": 15,
+      "path": "tools/answer-enrichment/enteach-batch200-part05-15.v1.json",
+      "git_blob_sha": "df6d839c1a9293e09819f10df7adcf253bcd33d2"
+    },
+    {
+      "index": 16,
+      "path": "tools/answer-enrichment/enteach-batch200-part06-05.v1.json",
+      "git_blob_sha": "eba1a38e260395c5de4e6bc96adb9ac62a3c0b97"
+    },
+    {
+      "index": 17,
+      "path": "tools/answer-enrichment/enteach-batch200-part07-07.v1.json",
+      "git_blob_sha": "d501c6160b3d55e938a2fbc31cfa108690211ea2"
+    },
+    {
+      "index": 18,
+      "path": "tools/answer-enrichment/enteach-batch200-part08-10.v1.json",
+      "git_blob_sha": "65f2a4d203e5fd6632c3387d175df13176bf7b2a"
+    },
+    {
+      "index": 19,
+      "path": "tools/answer-enrichment/enteach-batch200-part09-13.v1.json",
+      "git_blob_sha": "5ec7447eb5eb35648e9039924d5d52a0dad32731"
+    },
+    {
+      "index": 20,
+      "path": "tools/answer-enrichment/enteach-batch200-part10-15.v1.json",
+      "git_blob_sha": "b0ab13e6b4de7bfe26b9701bcbee46426c486ff7"
+    }
+  ],
+  "totals": {
+    "cross_topic_distinct_ku": 348,
+    "s113_prior_dual_ai_records": 7,
+    "total_drafted_teaching_records": 355,
+    "full_teaching_dual_ai_approved_cross_topic": 0,
+    "pending_muse_full_teaching_ku": 348,
+    "activation_count": 0
+  },
+  "review_after_resume": "Only after explicit user announcement and CG-MAIN RESUME. Review the exact frozen source blobs; never reuse provisional editorial passes as Muse review.",
+  "rows": [
+    {
+      "ku_id": "w_5575_scanner_ku_s01",
+      "headword": "scanner",
+      "source_index": 0,
+      "rank": 359,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4094_amid_ku_s01",
+      "headword": "amid",
+      "source_index": 0,
+      "rank": 589,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5798_liter_ku_s01",
+      "headword": "liter",
+      "source_index": 0,
+      "rank": 1188,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3607_gym_ku_s01",
+      "headword": "gym",
+      "source_index": 0,
+      "rank": 1725,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4104_noun_ku_s01",
+      "headword": "noun",
+      "source_index": 0,
+      "rank": 1731,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "headword": "compatibility",
+      "source_index": 0,
+      "rank": 1785,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5464_prototype_ku_s01",
+      "headword": "prototype",
+      "source_index": 0,
+      "rank": 1991,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4404_additionally_ku_s01",
+      "headword": "additionally",
+      "source_index": 0,
+      "rank": 2015,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5210_quiz_ku_s01",
+      "headword": "quiz",
+      "source_index": 0,
+      "rank": 2104,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5081_garbage_ku_s01",
+      "headword": "garbage",
+      "source_index": 0,
+      "rank": 2168,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3004_compute_ku_s01",
+      "headword": "compute",
+      "source_index": 0,
+      "rank": 2286,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5332_visa_ku_s01",
+      "headword": "visa",
+      "source_index": 0,
+      "rank": 2299,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5339_logo_ku_s01",
+      "headword": "logo",
+      "source_index": 0,
+      "rank": 2313,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "headword": "kilometer",
+      "source_index": 0,
+      "rank": 2390,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "headword": "adjustable",
+      "source_index": 0,
+      "rank": 2422,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8469_unification_ku_s01",
+      "headword": "unification",
+      "source_index": 0,
+      "rank": 1850,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5622_gateway_ku_s01",
+      "headword": "gateway",
+      "source_index": 0,
+      "rank": 2101,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7254_snapshot_ku_s01",
+      "headword": "snapshot",
+      "source_index": 0,
+      "rank": 2274,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5852_tier_ku_s01",
+      "headword": "tier",
+      "source_index": 0,
+      "rank": 2293,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6138_intercept_ku_s01",
+      "headword": "intercept",
+      "source_index": 0,
+      "rank": 2363,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3095_mayor_ku_s01",
+      "headword": "mayor",
+      "source_index": 0,
+      "rank": 2388,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3069_painful_ku_s01",
+      "headword": "painful",
+      "source_index": 0,
+      "rank": 2416,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3514_officially_ku_s01",
+      "headword": "officially",
+      "source_index": 0,
+      "rank": 2421,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5999_compress_ku_s01",
+      "headword": "compress",
+      "source_index": 1,
+      "rank": 2665,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3715_fry_ku_s01",
+      "headword": "fry",
+      "source_index": 1,
+      "rank": 2667,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6877_politely_ku_s01",
+      "headword": "politely",
+      "source_index": 1,
+      "rank": 2675,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6985_personalize_ku_s01",
+      "headword": "personalize",
+      "source_index": 1,
+      "rank": 2702,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7447_additive_ku_s01",
+      "headword": "additive",
+      "source_index": 1,
+      "rank": 2716,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6056_ramp_ku_s01",
+      "headword": "ramp",
+      "source_index": 1,
+      "rank": 2717,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5142_rugby_ku_s01",
+      "headword": "rugby",
+      "source_index": 1,
+      "rank": 2720,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3046_curtain_ku_s01",
+      "headword": "curtain",
+      "source_index": 1,
+      "rank": 2760,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6328_appendix_ku_s01",
+      "headword": "appendix",
+      "source_index": 1,
+      "rank": 2797,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4067_prolong_ku_s01",
+      "headword": "prolong",
+      "source_index": 1,
+      "rank": 2805,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5491_postal_ku_s01",
+      "headword": "postal",
+      "source_index": 1,
+      "rank": 2813,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6052_trumpet_ku_s01",
+      "headword": "trumpet",
+      "source_index": 1,
+      "rank": 2823,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7799_unsafe_ku_s01",
+      "headword": "unsafe",
+      "source_index": 1,
+      "rank": 2828,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7283_mundane_ku_s01",
+      "headword": "mundane",
+      "source_index": 1,
+      "rank": 2829,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3161_registration_ku_s01",
+      "headword": "registration",
+      "source_index": 1,
+      "rank": 2836,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6132_lash_ku_s01",
+      "headword": "lash",
+      "source_index": 2,
+      "rank": 2671,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5385_maid_ku_s01",
+      "headword": "maid",
+      "source_index": 2,
+      "rank": 2677,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5125_insider_ku_s01",
+      "headword": "insider",
+      "source_index": 2,
+      "rank": 2718,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6042_contention_ku_s01",
+      "headword": "contention",
+      "source_index": 2,
+      "rank": 2721,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7172_dodge_ku_s01",
+      "headword": "dodge",
+      "source_index": 2,
+      "rank": 2735,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7292_bailout_ku_s01",
+      "headword": "bailout",
+      "source_index": 2,
+      "rank": 2804,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7428_refinement_ku_s01",
+      "headword": "refinement",
+      "source_index": 2,
+      "rank": 2806,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6748_hassle_ku_s01",
+      "headword": "hassle",
+      "source_index": 2,
+      "rank": 2835,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6621_solicit_ku_s01",
+      "headword": "solicit",
+      "source_index": 2,
+      "rank": 2837,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7351_rebate_ku_s01",
+      "headword": "rebate",
+      "source_index": 2,
+      "rank": 2839,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5871_souvenir_ku_s01",
+      "headword": "souvenir",
+      "source_index": 3,
+      "rank": 2868,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3115_fiber_ku_s01",
+      "headword": "fiber",
+      "source_index": 3,
+      "rank": 2874,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7129_wink_ku_s01",
+      "headword": "wink",
+      "source_index": 3,
+      "rank": 2876,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6541_lament_ku_s01",
+      "headword": "lament",
+      "source_index": 3,
+      "rank": 2880,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4865_generalize_ku_s01",
+      "headword": "generalize",
+      "source_index": 3,
+      "rank": 2885,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6252_baggage_ku_s01",
+      "headword": "baggage",
+      "source_index": 3,
+      "rank": 2888,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3681_genre_ku_s01",
+      "headword": "genre",
+      "source_index": 3,
+      "rank": 2902,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3990_individually_ku_s01",
+      "headword": "individually",
+      "source_index": 3,
+      "rank": 2909,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5156_wallet_ku_s01",
+      "headword": "wallet",
+      "source_index": 3,
+      "rank": 2911,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3295_clarify_ku_s01",
+      "headword": "clarify",
+      "source_index": 3,
+      "rank": 2913,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5868_baseline_ku_s01",
+      "headword": "baseline",
+      "source_index": 3,
+      "rank": 2915,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6316_pasture_ku_s01",
+      "headword": "pasture",
+      "source_index": 3,
+      "rank": 2920,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5064_awesome_ku_s01",
+      "headword": "awesome",
+      "source_index": 3,
+      "rank": 2931,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6409_rinse_ku_s01",
+      "headword": "rinse",
+      "source_index": 3,
+      "rank": 2949,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6229_sensor_ku_s01",
+      "headword": "sensor",
+      "source_index": 3,
+      "rank": 2956,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5036_certify_ku_s01",
+      "headword": "certify",
+      "source_index": 4,
+      "rank": 2849,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6014_boycott_ku_s01",
+      "headword": "boycott",
+      "source_index": 4,
+      "rank": 2891,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6332_claw_ku_s01",
+      "headword": "claw",
+      "source_index": 4,
+      "rank": 2893,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5656_periodic_ku_s01",
+      "headword": "periodic",
+      "source_index": 4,
+      "rank": 2947,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4183_adverse_ku_s01",
+      "headword": "adverse",
+      "source_index": 4,
+      "rank": 2950,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7425_waive_ku_s01",
+      "headword": "waive",
+      "source_index": 4,
+      "rank": 2922,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6326_paste_ku_s01",
+      "headword": "paste",
+      "source_index": 4,
+      "rank": 2964,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5425_sneak_ku_s01",
+      "headword": "sneak",
+      "source_index": 4,
+      "rank": 2965,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4318_racism_ku_s01",
+      "headword": "racism",
+      "source_index": 4,
+      "rank": 2841,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6476_torment_ku_s01",
+      "headword": "torment",
+      "source_index": 4,
+      "rank": 2886,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3093_bonus_ku_s01",
+      "headword": "bonus",
+      "source_index": 5,
+      "rank": 3179,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7082_rhetorical_ku_s01",
+      "headword": "rhetorical",
+      "source_index": 5,
+      "rank": 3182,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3014_entity_ku_s01",
+      "headword": "entity",
+      "source_index": 5,
+      "rank": 3186,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4628_textbook_ku_s01",
+      "headword": "textbook",
+      "source_index": 5,
+      "rank": 3197,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8223_decode_ku_s01",
+      "headword": "decode",
+      "source_index": 5,
+      "rank": 3199,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7496_evacuation_ku_s01",
+      "headword": "evacuation",
+      "source_index": 5,
+      "rank": 3200,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7063_hiss_ku_s01",
+      "headword": "hiss",
+      "source_index": 5,
+      "rank": 3209,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5172_folder_ku_s01",
+      "headword": "folder",
+      "source_index": 5,
+      "rank": 3211,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7196_heed_ku_s01",
+      "headword": "heed",
+      "source_index": 5,
+      "rank": 3212,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5967_ponder_ku_s01",
+      "headword": "ponder",
+      "source_index": 5,
+      "rank": 3214,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5020_cooker_ku_s01",
+      "headword": "cooker",
+      "source_index": 5,
+      "rank": 3220,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7246_sleepy_ku_s01",
+      "headword": "sleepy",
+      "source_index": 5,
+      "rank": 3224,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3006_destination_ku_s01",
+      "headword": "destination",
+      "source_index": 5,
+      "rank": 3236,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6948_forefront_ku_s01",
+      "headword": "forefront",
+      "source_index": 5,
+      "rank": 3244,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3943_systematic_ku_s01",
+      "headword": "systematic",
+      "source_index": 5,
+      "rank": 3246,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3525_hobby_ku_s01",
+      "headword": "hobby",
+      "source_index": 6,
+      "rank": 3257,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6866_tentative_ku_s01",
+      "headword": "tentative",
+      "source_index": 6,
+      "rank": 3258,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_10530_grueling_ku_s01",
+      "headword": "grueling",
+      "source_index": 6,
+      "rank": 3260,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_11825_nonstop_ku_s01",
+      "headword": "nonstop",
+      "source_index": 6,
+      "rank": 3270,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6644_mesh_ku_s01",
+      "headword": "mesh",
+      "source_index": 6,
+      "rank": 3276,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7144_intern_ku_s01",
+      "headword": "intern",
+      "source_index": 6,
+      "rank": 3277,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6852_preface_ku_s01",
+      "headword": "preface",
+      "source_index": 6,
+      "rank": 3278,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7909_sustainability_ku_s01",
+      "headword": "sustainability",
+      "source_index": 6,
+      "rank": 3283,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7069_plaza_ku_s01",
+      "headword": "plaza",
+      "source_index": 6,
+      "rank": 3286,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6625_fluent_ku_s01",
+      "headword": "fluent",
+      "source_index": 6,
+      "rank": 3287,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6057_beginner_ku_s01",
+      "headword": "beginner",
+      "source_index": 6,
+      "rank": 3291,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3007_electrical_ku_s01",
+      "headword": "electrical",
+      "source_index": 6,
+      "rank": 3293,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5490_timely_ku_s01",
+      "headword": "timely",
+      "source_index": 6,
+      "rank": 3294,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_9684_cashier_ku_s01",
+      "headword": "cashier",
+      "source_index": 6,
+      "rank": 3297,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7263_spa_ku_s01",
+      "headword": "spa",
+      "source_index": 6,
+      "rank": 3299,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3086_clinic_ku_s01",
+      "headword": "clinic",
+      "source_index": 6,
+      "rank": 3303,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_9385_lantern_ku_s01",
+      "headword": "lantern",
+      "source_index": 6,
+      "rank": 3306,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7210_customize_ku_s01",
+      "headword": "customize",
+      "source_index": 6,
+      "rank": 3310,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4678_laptop_ku_s01",
+      "headword": "laptop",
+      "source_index": 6,
+      "rank": 3313,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3245_privacy_ku_s01",
+      "headword": "privacy",
+      "source_index": 6,
+      "rank": 3323,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_GLOSS_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_SCOPE_REVISE_FROM_CG_QA"
+    },
+    {
+      "ku_id": "w_5262_aisle_ku_s01",
+      "headword": "aisle",
+      "source_index": 7,
+      "rank": 3324,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7359_depot_ku_s01",
+      "headword": "depot",
+      "source_index": 7,
+      "rank": 3330,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7427_transient_ku_s01",
+      "headword": "transient",
+      "source_index": 7,
+      "rank": 3332,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7215_filthy_ku_s01",
+      "headword": "filthy",
+      "source_index": 7,
+      "rank": 3335,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6752_mast_ku_s01",
+      "headword": "mast",
+      "source_index": 7,
+      "rank": 3338,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5221_librarian_ku_s01",
+      "headword": "librarian",
+      "source_index": 7,
+      "rank": 3344,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_10030_restate_ku_s01",
+      "headword": "restate",
+      "source_index": 7,
+      "rank": 3346,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5435_irregular_ku_s01",
+      "headword": "irregular",
+      "source_index": 7,
+      "rank": 3353,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6433_milestone_ku_s01",
+      "headword": "milestone",
+      "source_index": 7,
+      "rank": 3356,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6867_boiler_ku_s01",
+      "headword": "boiler",
+      "source_index": 7,
+      "rank": 3370,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6105_frost_ku_s01",
+      "headword": "frost",
+      "source_index": 7,
+      "rank": 3372,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7758_hairdresser_ku_s01",
+      "headword": "hairdresser",
+      "source_index": 7,
+      "rank": 3379,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7065_sponge_ku_s01",
+      "headword": "sponge",
+      "source_index": 7,
+      "rank": 3389,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6511_muddy_ku_s01",
+      "headword": "muddy",
+      "source_index": 7,
+      "rank": 3381,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_9180_perplex_ku_s01",
+      "headword": "perplex",
+      "source_index": 7,
+      "rank": 3383,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5940_messenger_ku_s01",
+      "headword": "messenger",
+      "source_index": 8,
+      "rank": 3397,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7800_lipstick_ku_s01",
+      "headword": "lipstick",
+      "source_index": 8,
+      "rank": 3402,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4147_tray_ku_s01",
+      "headword": "tray",
+      "source_index": 8,
+      "rank": 3405,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6897_autograph_ku_s01",
+      "headword": "autograph",
+      "source_index": 8,
+      "rank": 3408,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7301_contentious_ku_s01",
+      "headword": "contentious",
+      "source_index": 8,
+      "rank": 3409,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7053_neural_ku_s01",
+      "headword": "neural",
+      "source_index": 8,
+      "rank": 3410,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7443_mileage_ku_s01",
+      "headword": "mileage",
+      "source_index": 8,
+      "rank": 3411,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4523_verify_ku_s01",
+      "headword": "verify",
+      "source_index": 8,
+      "rank": 3412,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7324_jersey_ku_s01",
+      "headword": "jersey",
+      "source_index": 8,
+      "rank": 3416,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6854_yarn_ku_s01",
+      "headword": "yarn",
+      "source_index": 8,
+      "rank": 3418,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4355_unify_ku_s01",
+      "headword": "unify",
+      "source_index": 8,
+      "rank": 3419,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7419_mainframe_ku_s01",
+      "headword": "mainframe",
+      "source_index": 8,
+      "rank": 3422,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5204_modem_ku_s01",
+      "headword": "modem",
+      "source_index": 8,
+      "rank": 3426,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8546_overstate_ku_s01",
+      "headword": "overstate",
+      "source_index": 8,
+      "rank": 3428,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4848_luggage_ku_s01",
+      "headword": "luggage",
+      "source_index": 8,
+      "rank": 3438,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7031_pinpoint_ku_s01",
+      "headword": "pinpoint",
+      "source_index": 9,
+      "rank": 3463,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7252_repayment_ku_s01",
+      "headword": "repayment",
+      "source_index": 9,
+      "rank": 3464,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3018_fade_ku_s01",
+      "headword": "fade",
+      "source_index": 9,
+      "rank": 3465,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_11313_quirk_ku_s01",
+      "headword": "quirk",
+      "source_index": 9,
+      "rank": 3467,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4225_maximize_ku_s01",
+      "headword": "maximize",
+      "source_index": 9,
+      "rank": 3468,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5572_referral_ku_s01",
+      "headword": "referral",
+      "source_index": 9,
+      "rank": 3473,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3126_publicly_ku_s01",
+      "headword": "publicly",
+      "source_index": 9,
+      "rank": 3474,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6139_flicker_ku_s01",
+      "headword": "flicker",
+      "source_index": 9,
+      "rank": 3478,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7081_wrench_ku_s01",
+      "headword": "wrench",
+      "source_index": 9,
+      "rank": 3486,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3361_homework_ku_s01",
+      "headword": "homework",
+      "source_index": 9,
+      "rank": 3490,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7479_phenomenal_ku_s01",
+      "headword": "phenomenal",
+      "source_index": 9,
+      "rank": 3491,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3469_fig_ku_s01",
+      "headword": "fig",
+      "source_index": 9,
+      "rank": 3492,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7137_pact_ku_s01",
+      "headword": "pact",
+      "source_index": 9,
+      "rank": 3496,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3264_airplane_ku_s01",
+      "headword": "airplane",
+      "source_index": 9,
+      "rank": 3498,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3518_workplace_ku_s01",
+      "headword": "workplace",
+      "source_index": 9,
+      "rank": 3504,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6496_inclusive_ku_s01",
+      "headword": "inclusive",
+      "source_index": 9,
+      "rank": 3505,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6170_encode_ku_s01",
+      "headword": "encode",
+      "source_index": 9,
+      "rank": 3506,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3561_defect_ku_s01",
+      "headword": "defect",
+      "source_index": 9,
+      "rank": 3508,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5970_stationary_ku_s01",
+      "headword": "stationary",
+      "source_index": 9,
+      "rank": 3516,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3194_flexibility_ku_s01",
+      "headword": "flexibility",
+      "source_index": 9,
+      "rank": 3517,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6419_focal_ku_s01",
+      "headword": "focal",
+      "source_index": 10,
+      "rank": 3527,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6503_provocative_ku_s01",
+      "headword": "provocative",
+      "source_index": 10,
+      "rank": 3531,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6416_reiterate_ku_s01",
+      "headword": "reiterate",
+      "source_index": 10,
+      "rank": 3532,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7367_chilly_ku_s01",
+      "headword": "chilly",
+      "source_index": 10,
+      "rank": 3534,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6358_seafood_ku_s01",
+      "headword": "seafood",
+      "source_index": 10,
+      "rank": 3538,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7735_endurance_ku_s01",
+      "headword": "endurance",
+      "source_index": 10,
+      "rank": 3539,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7042_skinny_ku_s01",
+      "headword": "skinny",
+      "source_index": 10,
+      "rank": 3540,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6802_fasten_ku_s01",
+      "headword": "fasten",
+      "source_index": 10,
+      "rank": 3541,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7746_traverse_ku_s01",
+      "headword": "traverse",
+      "source_index": 10,
+      "rank": 3546,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6399_redesign_ku_s01",
+      "headword": "redesign",
+      "source_index": 10,
+      "rank": 3547,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3548_accuracy_ku_s01",
+      "headword": "accuracy",
+      "source_index": 10,
+      "rank": 3549,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3167_merit_ku_s01",
+      "headword": "merit",
+      "source_index": 10,
+      "rank": 3553,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6691_audition_ku_s01",
+      "headword": "audition",
+      "source_index": 10,
+      "rank": 3511,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3284_organizer_ku_s01",
+      "headword": "organizer",
+      "source_index": 10,
+      "rank": 3519,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5780_dusty_ku_s01",
+      "headword": "dusty",
+      "source_index": 10,
+      "rank": 3521,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6302_walker_ku_s01",
+      "headword": "walker",
+      "source_index": 11,
+      "rank": 3557,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_ALTERNATE_WALKING_AID_SENSE"
+    },
+    {
+      "ku_id": "w_3101_fourteen_ku_s01",
+      "headword": "fourteen",
+      "source_index": 11,
+      "rank": 3563,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6605_incremental_ku_s01",
+      "headword": "incremental",
+      "source_index": 11,
+      "rank": 3565,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4545_trainee_ku_s01",
+      "headword": "trainee",
+      "source_index": 11,
+      "rank": 3566,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3249_popularity_ku_s01",
+      "headword": "popularity",
+      "source_index": 11,
+      "rank": 3567,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6720_adaptive_ku_s01",
+      "headword": "adaptive",
+      "source_index": 11,
+      "rank": 3568,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6111_mint_ku_s01",
+      "headword": "mint",
+      "source_index": 11,
+      "rank": 3571,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3408_contractor_ku_s01",
+      "headword": "contractor",
+      "source_index": 11,
+      "rank": 3572,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3148_physician_ku_s01",
+      "headword": "physician",
+      "source_index": 11,
+      "rank": 3573,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_SURGICAL_SCOPE"
+    },
+    {
+      "ku_id": "w_6239_lucrative_ku_s01",
+      "headword": "lucrative",
+      "source_index": 11,
+      "rank": 3574,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5260_simulate_ku_s01",
+      "headword": "simulate",
+      "source_index": 11,
+      "rank": 3578,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6816_password_ku_s01",
+      "headword": "password",
+      "source_index": 11,
+      "rank": 3580,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5646_insurer_ku_s01",
+      "headword": "insurer",
+      "source_index": 11,
+      "rank": 3581,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6044_cyclist_ku_s01",
+      "headword": "cyclist",
+      "source_index": 11,
+      "rank": 3582,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6620_projector_ku_s01",
+      "headword": "projector",
+      "source_index": 11,
+      "rank": 3583,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5381_inflict_ku_s01",
+      "headword": "inflict",
+      "source_index": 11,
+      "rank": 3586,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5845_rainy_ku_s01",
+      "headword": "rainy",
+      "source_index": 11,
+      "rank": 3596,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_FREQUENCY_OVERRESTRICTION"
+    },
+    {
+      "ku_id": "w_6813_delta_ku_s01",
+      "headword": "delta",
+      "source_index": 11,
+      "rank": 3599,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6063_validate_ku_s01",
+      "headword": "validate",
+      "source_index": 11,
+      "rank": 3602,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7249_rearrange_ku_s01",
+      "headword": "rearrange",
+      "source_index": 11,
+      "rank": 3603,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3089_actress_ku_s01",
+      "headword": "actress",
+      "source_index": 11,
+      "rank": 3606,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3283_eighty_ku_s01",
+      "headword": "eighty",
+      "source_index": 11,
+      "rank": 3609,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4445_evidently_ku_s01",
+      "headword": "evidently",
+      "source_index": 11,
+      "rank": 3611,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6838_downstream_ku_s01",
+      "headword": "downstream",
+      "source_index": 11,
+      "rank": 3612,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7432_clog_ku_s01",
+      "headword": "clog",
+      "source_index": 11,
+      "rank": 3613,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6749_deduct_ku_s01",
+      "headword": "deduct",
+      "source_index": 11,
+      "rank": 3614,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3208_lamp_ku_s01",
+      "headword": "lamp",
+      "source_index": 11,
+      "rank": 3615,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6516_heave_ku_s01",
+      "headword": "heave",
+      "source_index": 11,
+      "rank": 3621,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3417_similarity_ku_s01",
+      "headword": "similarity",
+      "source_index": 11,
+      "rank": 3622,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6372_mortar_ku_s01",
+      "headword": "mortar",
+      "source_index": 11,
+      "rank": 3623,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4295_habitat_ku_s01",
+      "headword": "habitat",
+      "source_index": 11,
+      "rank": 3624,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7275_pore_ku_s01",
+      "headword": "pore",
+      "source_index": 11,
+      "rank": 3626,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_SKIN_SCOPE"
+    },
+    {
+      "ku_id": "w_9765_dataset_ku_s01",
+      "headword": "dataset",
+      "source_index": 11,
+      "rank": 3628,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4748_pillow_ku_s01",
+      "headword": "pillow",
+      "source_index": 11,
+      "rank": 3629,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6966_jockey_ku_s01",
+      "headword": "jockey",
+      "source_index": 11,
+      "rank": 3631,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5867_jointly_ku_s01",
+      "headword": "jointly",
+      "source_index": 11,
+      "rank": 3632,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7691_validation_ku_s01",
+      "headword": "validation",
+      "source_index": 11,
+      "rank": 3634,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6341_navigate_ku_s01",
+      "headword": "navigate",
+      "source_index": 11,
+      "rank": 3636,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8592_shun_ku_s01",
+      "headword": "shun",
+      "source_index": 11,
+      "rank": 3638,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6607_disconnect_ku_s01",
+      "headword": "disconnect",
+      "source_index": 11,
+      "rank": 3639,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6754_refreshment_ku_s01",
+      "headword": "refreshment",
+      "source_index": 11,
+      "rank": 3641,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_PLURAL_FOOD_DRINK_SCOPE"
+    },
+    {
+      "ku_id": "w_7018_indicative_ku_s01",
+      "headword": "indicative",
+      "source_index": 11,
+      "rank": 3642,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7248_etch_ku_s01",
+      "headword": "etch",
+      "source_index": 11,
+      "rank": 3645,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7272_fuzzy_ku_s01",
+      "headword": "fuzzy",
+      "source_index": 11,
+      "rank": 3651,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5244_elicit_ku_s01",
+      "headword": "elicit",
+      "source_index": 12,
+      "rank": 3655,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6875_sequel_ku_s01",
+      "headword": "sequel",
+      "source_index": 12,
+      "rank": 3656,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5239_unlimited_ku_s01",
+      "headword": "unlimited",
+      "source_index": 12,
+      "rank": 3657,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6779_nude_ku_s01",
+      "headword": "nude",
+      "source_index": 12,
+      "rank": 3660,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6301_backyard_ku_s01",
+      "headword": "backyard",
+      "source_index": 12,
+      "rank": 3661,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6449_cube_ku_s01",
+      "headword": "cube",
+      "source_index": 12,
+      "rank": 3663,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6242_diploma_ku_s01",
+      "headword": "diploma",
+      "source_index": 12,
+      "rank": 3666,
+      "full_teaching_muse": "PENDING_USER_RESUME_AND_ENLEX_SCOPE",
+      "production_ready": false,
+      "editorial_blocker": "BASE_GLOSS_DIPLOMA_CERTIFICATE_VS_QUALIFICATION_SCOPE"
+    },
+    {
+      "ku_id": "w_4372_passport_ku_s01",
+      "headword": "passport",
+      "source_index": 12,
+      "rank": 3667,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7378_plank_ku_s01",
+      "headword": "plank",
+      "source_index": 12,
+      "rank": 3669,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3876_subsidy_ku_s01",
+      "headword": "subsidy",
+      "source_index": 12,
+      "rank": 3671,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3958_postpone_ku_s01",
+      "headword": "postpone",
+      "source_index": 12,
+      "rank": 3673,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6984_bleach_ku_s01",
+      "headword": "bleach",
+      "source_index": 12,
+      "rank": 3676,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3393_liberty_ku_s01",
+      "headword": "liberty",
+      "source_index": 12,
+      "rank": 3677,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7098_pi_ku_s01",
+      "headword": "pi",
+      "source_index": 12,
+      "rank": 3559,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3068_oocyte_ku_s01",
+      "headword": "oocyte",
+      "source_index": 12,
+      "rank": 3593,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6694_crook_ku_s01",
+      "headword": "crook",
+      "source_index": 12,
+      "rank": 3617,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3037_royal_ku_s01",
+      "headword": "royal",
+      "source_index": 13,
+      "rank": 3678,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3279_ethics_ku_s01",
+      "headword": "ethics",
+      "source_index": 13,
+      "rank": 3680,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6711_perennial_ku_s01",
+      "headword": "perennial",
+      "source_index": 13,
+      "rank": 3681,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3300_seventy_ku_s01",
+      "headword": "seventy",
+      "source_index": 13,
+      "rank": 3683,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5864_hub_ku_s01",
+      "headword": "hub",
+      "source_index": 13,
+      "rank": 3685,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6593_irrational_ku_s01",
+      "headword": "irrational",
+      "source_index": 13,
+      "rank": 3687,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7368_wizard_ku_s01",
+      "headword": "wizard",
+      "source_index": 13,
+      "rank": 3688,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6616_affiliation_ku_s01",
+      "headword": "affiliation",
+      "source_index": 13,
+      "rank": 3690,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7340_glamor_ku_s01",
+      "headword": "glamor",
+      "source_index": 13,
+      "rank": 3691,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5192_vacant_ku_s01",
+      "headword": "vacant",
+      "source_index": 13,
+      "rank": 3694,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5390_census_ku_s01",
+      "headword": "census",
+      "source_index": 13,
+      "rank": 3695,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3809_pill_ku_s01",
+      "headword": "pill",
+      "source_index": 13,
+      "rank": 3696,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7173_confide_ku_s01",
+      "headword": "confide",
+      "source_index": 13,
+      "rank": 3697,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6931_baffle_ku_s01",
+      "headword": "baffle",
+      "source_index": 13,
+      "rank": 3698,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7251_kin_ku_s01",
+      "headword": "kin",
+      "source_index": 13,
+      "rank": 3702,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4382_follower_ku_s01",
+      "headword": "follower",
+      "source_index": 13,
+      "rank": 3704,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3207_ingredient_ku_s01",
+      "headword": "ingredient",
+      "source_index": 13,
+      "rank": 3705,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3049_policeman_ku_s01",
+      "headword": "policeman",
+      "source_index": 13,
+      "rank": 3709,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_10887_hurriedly_ku_s01",
+      "headword": "hurriedly",
+      "source_index": 13,
+      "rank": 3710,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3355_duration_ku_s01",
+      "headword": "duration",
+      "source_index": 13,
+      "rank": 3712,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6208_ensemble_ku_s01",
+      "headword": "ensemble",
+      "source_index": 13,
+      "rank": 3713,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5735_emit_ku_s01",
+      "headword": "emit",
+      "source_index": 13,
+      "rank": 3724,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3064_urgent_ku_s01",
+      "headword": "urgent",
+      "source_index": 13,
+      "rank": 3726,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7700_pertinent_ku_s01",
+      "headword": "pertinent",
+      "source_index": 13,
+      "rank": 3733,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5107_excursion_ku_s01",
+      "headword": "excursion",
+      "source_index": 13,
+      "rank": 3736,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6833_infancy_ku_s01",
+      "headword": "infancy",
+      "source_index": 14,
+      "rank": 3221,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6969_brood_ku_s01",
+      "headword": "brood",
+      "source_index": 14,
+      "rank": 3242,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6472_turf_ku_s01",
+      "headword": "turf",
+      "source_index": 14,
+      "rank": 3254,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3172_politically_ku_s01",
+      "headword": "politically",
+      "source_index": 14,
+      "rank": 3281,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6805_tolerant_ku_s01",
+      "headword": "tolerant",
+      "source_index": 14,
+      "rank": 3316,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3011_wipe_ku_s01",
+      "headword": "wipe",
+      "source_index": 14,
+      "rank": 3321,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7226_mercury_ku_s01",
+      "headword": "mercury",
+      "source_index": 14,
+      "rank": 3328,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3202_immigration_ku_s01",
+      "headword": "immigration",
+      "source_index": 14,
+      "rank": 3341,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6964_gulf_ku_s01",
+      "headword": "gulf",
+      "source_index": 14,
+      "rank": 3343,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6397_domination_ku_s01",
+      "headword": "domination",
+      "source_index": 14,
+      "rank": 3345,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6440_compression_ku_s01",
+      "headword": "compression",
+      "source_index": 14,
+      "rank": 3361,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6308_clown_ku_s01",
+      "headword": "clown",
+      "source_index": 14,
+      "rank": 3366,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6564_gloom_ku_s01",
+      "headword": "gloom",
+      "source_index": 14,
+      "rank": 3388,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6635_awfully_ku_s01",
+      "headword": "awfully",
+      "source_index": 14,
+      "rank": 3390,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6710_proprietary_ku_s01",
+      "headword": "proprietary",
+      "source_index": 14,
+      "rank": 3396,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6918_allergy_ku_s01",
+      "headword": "allergy",
+      "source_index": 14,
+      "rank": 3414,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_11054_hotline_ku_s01",
+      "headword": "hotline",
+      "source_index": 14,
+      "rank": 3433,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6515_windy_ku_s01",
+      "headword": "windy",
+      "source_index": 14,
+      "rank": 3434,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5958_vacancy_ku_s01",
+      "headword": "vacancy",
+      "source_index": 14,
+      "rank": 3439,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7149_turbulent_ku_s01",
+      "headword": "turbulent",
+      "source_index": 14,
+      "rank": 3450,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3475_robot_ku_s01",
+      "headword": "robot",
+      "source_index": 14,
+      "rank": 3452,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6461_sprinkle_ku_s01",
+      "headword": "sprinkle",
+      "source_index": 14,
+      "rank": 3455,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6303_conditional_ku_s01",
+      "headword": "conditional",
+      "source_index": 14,
+      "rank": 3457,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3002_commonly_ku_s01",
+      "headword": "commonly",
+      "source_index": 14,
+      "rank": 3459,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6836_mitigate_ku_s01",
+      "headword": "mitigate",
+      "source_index": 14,
+      "rank": 3460,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8915_unanswered_ku_s01",
+      "headword": "unanswered",
+      "source_index": 15,
+      "rank": 3803,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6706_hallway_ku_s01",
+      "headword": "hallway",
+      "source_index": 15,
+      "rank": 3804,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4441_sibling_ku_s01",
+      "headword": "sibling",
+      "source_index": 15,
+      "rank": 3805,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_9729_cookery_ku_s01",
+      "headword": "cookery",
+      "source_index": 15,
+      "rank": 3806,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5015_arouse_ku_s01",
+      "headword": "arouse",
+      "source_index": 15,
+      "rank": 3807,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7902_writ_ku_s01",
+      "headword": "writ",
+      "source_index": 15,
+      "rank": 3808,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7408_peach_ku_s01",
+      "headword": "peach",
+      "source_index": 15,
+      "rank": 3809,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6977_footage_ku_s01",
+      "headword": "footage",
+      "source_index": 15,
+      "rank": 3812,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4846_auditor_ku_s01",
+      "headword": "auditor",
+      "source_index": 15,
+      "rank": 3813,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7232_preventive_ku_s01",
+      "headword": "preventive",
+      "source_index": 15,
+      "rank": 3815,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6675_consortium_ku_s01",
+      "headword": "consortium",
+      "source_index": 15,
+      "rank": 3816,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3387_merge_ku_s01",
+      "headword": "merge",
+      "source_index": 15,
+      "rank": 3817,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7176_conveniently_ku_s01",
+      "headword": "conveniently",
+      "source_index": 15,
+      "rank": 3818,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4811_fluctuate_ku_s01",
+      "headword": "fluctuate",
+      "source_index": 15,
+      "rank": 3820,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5830_luxurious_ku_s01",
+      "headword": "luxurious",
+      "source_index": 15,
+      "rank": 3823,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5369_abruptly_ku_s01",
+      "headword": "abruptly",
+      "source_index": 16,
+      "rank": 3825,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3647_commodity_ku_s01",
+      "headword": "commodity",
+      "source_index": 16,
+      "rank": 3829,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6687_mend_ku_s01",
+      "headword": "mend",
+      "source_index": 16,
+      "rank": 3830,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5037_withhold_ku_s01",
+      "headword": "withhold",
+      "source_index": 16,
+      "rank": 3833,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5291_booklet_ku_s01",
+      "headword": "booklet",
+      "source_index": 16,
+      "rank": 3834,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6197_tram_ku_s01",
+      "headword": "tram",
+      "source_index": 17,
+      "rank": 3836,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7161_slippery_ku_s01",
+      "headword": "slippery",
+      "source_index": 17,
+      "rank": 3839,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6926_diffusion_ku_s01",
+      "headword": "diffusion",
+      "source_index": 17,
+      "rank": 3841,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5284_informative_ku_s01",
+      "headword": "informative",
+      "source_index": 17,
+      "rank": 3842,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5533_contaminate_ku_s01",
+      "headword": "contaminate",
+      "source_index": 17,
+      "rank": 3847,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5310_shopper_ku_s01",
+      "headword": "shopper",
+      "source_index": 17,
+      "rank": 3851,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6729_waterfall_ku_s01",
+      "headword": "waterfall",
+      "source_index": 17,
+      "rank": 3856,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5154_woodland_ku_s01",
+      "headword": "woodland",
+      "source_index": 18,
+      "rank": 3858,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3054_consensus_ku_s01",
+      "headword": "consensus",
+      "source_index": 18,
+      "rank": 3859,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8490_sincerity_ku_s01",
+      "headword": "sincerity",
+      "source_index": 18,
+      "rank": 3864,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3714_learner_ku_s01",
+      "headword": "learner",
+      "source_index": 18,
+      "rank": 3866,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3130_prediction_ku_s01",
+      "headword": "prediction",
+      "source_index": 18,
+      "rank": 3871,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6925_authenticity_ku_s01",
+      "headword": "authenticity",
+      "source_index": 18,
+      "rank": 3873,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3003_boyfriend_ku_s01",
+      "headword": "boyfriend",
+      "source_index": 18,
+      "rank": 3875,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7950_unlucky_ku_s01",
+      "headword": "unlucky",
+      "source_index": 18,
+      "rank": 3877,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7329_barge_ku_s01",
+      "headword": "barge",
+      "source_index": 18,
+      "rank": 3880,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3591_solar_ku_s01",
+      "headword": "solar",
+      "source_index": 18,
+      "rank": 3881,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3539_surplus_ku_s01",
+      "headword": "surplus",
+      "source_index": 19,
+      "rank": 3885,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6892_injunction_ku_s01",
+      "headword": "injunction",
+      "source_index": 19,
+      "rank": 3889,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4266_prince_ku_s01",
+      "headword": "prince",
+      "source_index": 19,
+      "rank": 3891,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7362_amnesty_ku_s01",
+      "headword": "amnesty",
+      "source_index": 19,
+      "rank": 3893,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6089_crave_ku_s01",
+      "headword": "crave",
+      "source_index": 19,
+      "rank": 3894,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7013_discontent_ku_s01",
+      "headword": "discontent",
+      "source_index": 19,
+      "rank": 3895,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7349_paramount_ku_s01",
+      "headword": "paramount",
+      "source_index": 19,
+      "rank": 3899,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6162_slab_ku_s01",
+      "headword": "slab",
+      "source_index": 19,
+      "rank": 3902,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6543_cleanse_ku_s01",
+      "headword": "cleanse",
+      "source_index": 19,
+      "rank": 3910,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4031_hierarchy_ku_s01",
+      "headword": "hierarchy",
+      "source_index": 19,
+      "rank": 3912,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3870_taxpayer_ku_s01",
+      "headword": "taxpayer",
+      "source_index": 19,
+      "rank": 3913,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7309_rust_ku_s01",
+      "headword": "rust",
+      "source_index": 19,
+      "rank": 3917,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3552_whoever_ku_s01",
+      "headword": "whoever",
+      "source_index": 19,
+      "rank": 3919,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6818_streamline_ku_s01",
+      "headword": "streamline",
+      "source_index": 20,
+      "rank": 3920,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7375_clump_ku_s01",
+      "headword": "clump",
+      "source_index": 20,
+      "rank": 3923,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3565_cave_ku_s01",
+      "headword": "cave",
+      "source_index": 20,
+      "rank": 3924,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3529_recruitment_ku_s01",
+      "headword": "recruitment",
+      "source_index": 20,
+      "rank": 3925,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3785_glove_ku_s01",
+      "headword": "glove",
+      "source_index": 20,
+      "rank": 3926,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7422_akin_ku_s01",
+      "headword": "akin",
+      "source_index": 20,
+      "rank": 3929,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6639_stink_ku_s01",
+      "headword": "stink",
+      "source_index": 20,
+      "rank": 3933,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5906_urgently_ku_s01",
+      "headword": "urgently",
+      "source_index": 20,
+      "rank": 3935,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3357_loyalty_ku_s01",
+      "headword": "loyalty",
+      "source_index": 20,
+      "rank": 3936,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6108_hinge_ku_s01",
+      "headword": "hinge",
+      "source_index": 20,
+      "rank": 3938,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3594_lad_ku_s01",
+      "headword": "lad",
+      "source_index": 20,
+      "rank": 3939,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4563_bucket_ku_s01",
+      "headword": "bucket",
+      "source_index": 20,
+      "rank": 3945,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_9599_telegram_ku_s01",
+      "headword": "telegram",
+      "source_index": 20,
+      "rank": 3947,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3317_venue_ku_s01",
+      "headword": "venue",
+      "source_index": 20,
+      "rank": 3948,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6272_causal_ku_s01",
+      "headword": "causal",
+      "source_index": 20,
+      "rank": 3949,
+      "full_teaching_muse": "PENDING_USER_RESUME",
+      "production_ready": false
+    }
+  ],
+  "publication": {
+    "production_ready": false,
+    "activation_allowed": false,
+    "source_rights_cleared": false,
+    "official_scene_membership_verified": false
+  },
+  "blocking_scope_proposal": {
+    "path": "tools/answer-enrichment/enteach-privacy-scope-proposal.v1.json",
+    "blob_sha": "463c6bb98ae4d452769a14389eae83cff329ec76",
+    "ku_id": "w_3245_privacy_ku_s01",
+    "requires": "CG-ENLEX owns base gloss field, CG-QA same-version verify"
+  },
+  "active_batch": {
+    "target_count": 200,
+    "completed_source_verified_count": 175,
+    "remaining_count": 25,
+    "batch_part01_path": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+    "stage": "OPEN_NOT_FULL",
+    "note": "Count batch completion only after 200 individually-authored records and source-level checks. Do not count other 173 records toward this batch.",
+    "batch_part02_path": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+    "known_base_scope_blockers": [
+      "walker",
+      "physician",
+      "rainy",
+      "pore",
+      "refreshment"
+    ],
+    "notes": "60 individually authored draft records; 5 with CG-QA reported source-sense scope issues not counted as cleared for release.",
+    "batch_part03_path": "tools/answer-enrichment/enteach-batch200-part03-25.v1.json",
+    "batch_part04_path": "tools/answer-enrichment/enteach-batch200-part04-25.v1.json",
+    "batch_part05_path": "tools/answer-enrichment/enteach-batch200-part05-15.v1.json",
+    "batch_part06_path": "tools/answer-enrichment/enteach-batch200-part06-05.v1.json",
+    "batch_part07_path": "tools/answer-enrichment/enteach-batch200-part07-07.v1.json",
+    "batch_part08_path": "tools/answer-enrichment/enteach-batch200-part08-10.v1.json",
+    "batch_part09_path": "tools/answer-enrichment/enteach-batch200-part09-13.v1.json",
+    "batch_part10_path": "tools/answer-enrichment/enteach-batch200-part10-15.v1.json"
+  },
+  "revision": {
+    "previous_queue_path": "tools/answer-enrichment/enteach-batch333-frozen-review-queue.v1.json",
+    "previous_queue_blob": "a6119e3b7b57f924c601f517cd253af48f2a36f2",
+    "change": "Fifteen new provisional source-verified teaching drafts; no activation"
+  }
+}
