@@ -1,0 +1,505 @@
+{
+  "schema_version": "pai-word-enteach-batch200-proposed-field-deltas-v1",
+  "owner": "CG-ENTEACH",
+  "status": "PREVIEW_ONLY_PENDING_INDEPENDENT_QA",
+  "manifest_blob": "fa83cb861622259aea637e14a0dd7bf7891907f1",
+  "count": 27,
+  "field_delta_count": 33,
+  "changes": [
+    {
+      "ku_id": "w_7490_salient_ku_s01",
+      "headword": "salient",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part11-12.v1.json",
+      "source_blob": "ac7757faa5f3d743d04a34a60dcd0e8916083dd2",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "报告突出了两项方案之间三个显著的差异。",
+          "after": "报告突出说明了这两项方案之间的三个显著差异。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_5224_supreme_ku_s01",
+      "headword": "supreme",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part12-13.v1.json",
+      "source_blob": "f4b44c677e85d11e8716cf2287832b8786407f7e",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "The constitution gives the court supreme authority in this area.",
+          "after": "The court has supreme authority over certain constitutional questions."
+        },
+        {
+          "field": "example_zh",
+          "before": "宪法赋予该法院在这一领域的最高权威。",
+          "after": "该法院对某些宪法问题拥有最高裁决权。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_3870_taxpayer_ku_s01",
+      "headword": "taxpayer",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part09-13.v1.json",
+      "source_blob": "5ec7447eb5eb35648e9039924d5d52a0dad32731",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "Taxpayers funded the renovation through public revenue.",
+          "after": "Local taxpayers helped fund the library renovation."
+        },
+        {
+          "field": "example_zh",
+          "before": "这次翻修由纳税人缴纳的公共收入出资。",
+          "after": "当地纳税人共同承担了图书馆翻修的费用。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_9072_retina_ku_s01",
+      "headword": "retina",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part12-13.v1.json",
+      "source_blob": "f4b44c677e85d11e8716cf2287832b8786407f7e",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "The retina converts incoming light into signals for the brain.",
+          "after": "Light-sensitive cells in the retina help turn light into signals sent to the brain."
+        },
+        {
+          "field": "example_zh",
+          "before": "视网膜将入射光转化为传向大脑的信号。",
+          "after": "视网膜中的感光细胞帮助将光转换成传向大脑的信号。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_7375_clump_ku_s01",
+      "headword": "clump",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part10-15.v1.json",
+      "source_blob": "b0ab13e6b4de7bfe26b9701bcbee46426c486ff7",
+      "field_deltas": [
+        {
+          "field": "grammar_note",
+          "before": "可数名词；a clump of + 复数植物或物质。",
+          "after": "可数名词；a clump of后既可接复数可数名词（trees），也可接不可数物质名词（grass、soil）。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_9599_telegram_ku_s01",
+      "headword": "telegram",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part10-15.v1.json",
+      "source_blob": "b0ab13e6b4de7bfe26b9701bcbee46426c486ff7",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "Her grandfather kept the telegram announcing his first job.",
+          "after": "Her grandfather kept the telegram telling him that he had been offered his first job."
+        },
+        {
+          "field": "example_zh",
+          "before": "她祖父保留着那封通知他获得第一份工作的电报。",
+          "after": "她的祖父一直保存着那封通知他获得第一份工作的电报。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_3130_prediction_ku_s01",
+      "headword": "prediction",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part08-10.v1.json",
+      "source_blob": "65f2a4d203e5fd6632c3387d175df13176bf7b2a",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "预报中预测星期五会下大雨。",
+          "after": "天气预报说星期五可能会下大雨。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_5533_contaminate_ku_s01",
+      "headword": "contaminate",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part07-07.v1.json",
+      "source_blob": "d501c6160b3d55e938a2fbc31cfa108690211ea2",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "A leaking pipe could contaminate the drinking water.",
+          "after": "A damaged sewer pipe could contaminate nearby drinking water."
+        },
+        {
+          "field": "example_zh",
+          "before": "漏水的管道可能污染饮用水。",
+          "after": "破损的污水管可能污染附近的饮用水。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_7950_unlucky_ku_s01",
+      "headword": "unlucky",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part08-10.v1.json",
+      "source_blob": "65f2a4d203e5fd6632c3387d175df13176bf7b2a",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "an unlucky day · feel unlucky · an unlucky accident",
+          "after": "an unlucky day · feel unlucky · an unlucky break"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_5037_withhold_ku_s01",
+      "headword": "withhold",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part06-05.v1.json",
+      "source_blob": "eba1a38e260395c5de4e6bc96adb9ac62a3c0b97",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "该机构在调查结束前暂未公布报告。",
+          "after": "该机构在调查结束前一直扣着这份报告，没有对外提供。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_4441_sibling_ku_s01",
+      "headword": "sibling",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part05-15.v1.json",
+      "source_blob": "df6d839c1a9293e09819f10df7adcf253bcd33d2",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "她有两个兄弟姐妹，一个哥哥和一个妹妹。",
+          "after": "她有一个哥哥和一个妹妹。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_4846_auditor_ku_s01",
+      "headword": "auditor",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part05-15.v1.json",
+      "source_blob": "df6d839c1a9293e09819f10df7adcf253bcd33d2",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "an independent auditor · an external auditor · an internal auditor",
+          "after": "an independent auditor · an internal auditor · appoint an auditor"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6833_infancy_ku_s01",
+      "headword": "infancy",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part04-25.v1.json",
+      "source_blob": "31eb9fde7da0cd0dd39e5426f2601e35571767fc",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "during infancy · early infancy · infant development",
+          "after": "during infancy · early infancy · in its infancy"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6303_conditional_ku_s01",
+      "headword": "conditional",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part04-25.v1.json",
+      "source_blob": "31eb9fde7da0cd0dd39e5426f2601e35571767fc",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "conditional approval · conditional offer · conditional on",
+          "after": "conditional approval · conditional offer · be conditional on approval"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6964_gulf_ku_s01",
+      "headword": "gulf",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part04-25.v1.json",
+      "source_blob": "31eb9fde7da0cd0dd39e5426f2601e35571767fc",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "large gulf · coastal gulf · the Gulf of Mexico",
+          "after": "a wide gulf · cross the gulf · the Gulf of Mexico"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_3279_ethics_ku_s01",
+      "headword": "ethics",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part03-25.v1.json",
+      "source_blob": "6c607d92be8b3c06bd091a5791391954432a960c",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "The committee reviewed the research ethics of the study.",
+          "after": "The committee reviewed whether the study met research ethics standards."
+        },
+        {
+          "field": "example_zh",
+          "before": "委员会审查了这项研究的伦理规范。",
+          "after": "委员会审查了这项研究是否符合科研伦理规范。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_7173_confide_ku_s01",
+      "headword": "confide",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part03-25.v1.json",
+      "source_blob": "6c607d92be8b3c06bd091a5791391954432a960c",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "confide in a friend · confide a secret · confide that ...",
+          "after": "confide in a friend · confide a secret to someone · confide that something happened"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_7700_pertinent_ku_s01",
+      "headword": "pertinent",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part03-25.v1.json",
+      "source_blob": "6c607d92be8b3c06bd091a5791391954432a960c",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "她的问题与讨论主题直接相关。",
+          "after": "她的问题与这一主题直接相关。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_5239_unlimited_ku_s01",
+      "headword": "unlimited",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+      "source_blob": "175fb8ac770437a6ddd0497bceb6840a180e8a6b",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "该订阅服务允许不限次数地访问课程资料库。",
+          "after": "该订阅服务提供对课程资料库的无限制访问权限。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6875_sequel_ku_s01",
+      "headword": "sequel",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+      "source_blob": "175fb8ac770437a6ddd0497bceb6840a180e8a6b",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "制片公司宣布将拍摄那部热门电影的续集。",
+          "after": "制片公司宣布了那部热门电影的续集计划。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6694_crook_ku_s01",
+      "headword": "crook",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+      "source_blob": "175fb8ac770437a6ddd0497bceb6840a180e8a6b",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "侦探怀疑那名访客是个骗子。",
+          "after": "侦探怀疑那名访客是个不法之徒。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_5646_insurer_ku_s01",
+      "headword": "insurer",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "health insurer · insurance provider · contact the insurer",
+          "after": "health insurer · major insurer · contact the insurer"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6044_cyclist_ku_s01",
+      "headword": "cyclist",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "road cyclist · cyclist helmet · group of cyclists",
+          "after": "road cyclist · experienced cyclist · group of cyclists"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_4748_pillow_ku_s01",
+      "headword": "pillow",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "soft pillow · pillowcase · rest your head on a pillow",
+          "after": "soft pillow · pillow cover · rest your head on a pillow"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6966_jockey_ku_s01",
+      "headword": "jockey",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "horse-racing jockey · professional jockey · jockey rides a horse",
+          "after": "professional jockey · champion jockey · a jockey rides in a race"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_7018_indicative_ku_s01",
+      "headword": "indicative",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+      "field_deltas": [
+        {
+          "field": "collocation",
+          "before": "indicative of · indicative sign · indicative evidence",
+          "after": "be indicative of a trend · indicative results · indicative price"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_7248_etch_ku_s01",
+      "headword": "etch",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+      "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+      "field_deltas": [
+        {
+          "field": "contrast_note",
+          "before": "etch指在硬质表面刻出图案；paint是将颜料涂在表面。",
+          "after": "etch指通过刻划或腐蚀在表面形成图案；paint通常是涂上颜料。"
+        }
+      ],
+      "review_status": "CG_QA_PENDING",
+      "applied": false,
+      "production_ready": false,
+      "activation_allowed": false
+    }
+  ],
+  "existing_scope_hold": "w_6242_diploma_ku_s01",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "notes": "No frozen source is overwritten; all changes are suggested and not certified."
+}
