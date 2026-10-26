@@ -25,6 +25,9 @@ const normalized=segmentCandidates('e\u0301',new Set(['é']));
 assert.equal(normalized.candidates[0].tokens.join(''),'é','NFC_NORMALIZATION_LOSS');
 assert.equal(normalized.query,'e\u0301','ORIGINAL_QUERY_LOST');
 assert.equal(normalized.normalizedQuery,'é','NORMALIZED_QUERY_MISSING');
+const decomposedLexicon=segmentCandidates('é',new Set(['e\u0301']));
+assert.equal(decomposedLexicon.candidates[0].knownChars,1,'LEXICON_NFC_MATCH_MISSING');
+assert.throws(()=>segmentCandidates('甲',new Set([null])),/INVALID_LEXICON_TERM/);
 assert.throws(()=>segmentCandidates('甲',new Set(),null),/INVALID_OPTIONS/);
 assert.throws(()=>segmentCandidates('甲',new Set(),[]),/INVALID_OPTIONS/);
 for (const cap of [NaN, Infinity, 0, -1, 1.5, 21, '3']) {
@@ -33,4 +36,4 @@ for (const cap of [NaN, Infinity, 0, -1, 1.5, 21, '3']) {
 assert.throws(()=>segmentCandidates('甲',null),/INVALID_LEXICON/);
 assert.throws(()=>segmentCandidates('甲',{}),/INVALID_LEXICON/);
 assert.equal(segmentCandidates('甲',new Set(),{maxCandidates:20}).candidates.length,1);
-console.log(JSON.stringify({status:'PASS',checks:25,scope:'EDGE_CASES_ONLY',production_ready:false,scene500_tested:false}));
+console.log(JSON.stringify({status:'PASS',checks:27,scope:'EDGE_CASES_ONLY',production_ready:false,scene500_tested:false}));
