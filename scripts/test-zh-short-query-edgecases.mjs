@@ -23,7 +23,7 @@ assert.throws(()=>segmentCandidates('甲'.repeat(21),new Set()),/QUERY_LENGTH/);
 assert.throws(()=>segmentCandidates(3,new Set()),/INVALID_QUERY/);
 const normalized=segmentCandidates('e\u0301',new Set(['é']));
 assert.equal(normalized.candidates[0].tokens.join(''),'é','NFC_NORMALIZATION_LOSS');
-assert.equal(normalized.query,'e\\u0301','ORIGINAL_QUERY_LOST');
+assert.equal(normalized.query,'e\u0301','ORIGINAL_QUERY_LOST');
 assert.equal(normalized.normalizedQuery,'é','NORMALIZED_QUERY_MISSING');
 assert.throws(()=>segmentCandidates('甲',new Set(),null),/INVALID_OPTIONS/);
 assert.throws(()=>segmentCandidates('甲',new Set(),[]),/INVALID_OPTIONS/);
