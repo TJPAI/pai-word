@@ -209,3 +209,7 @@
 .learning-screen .pai-scratch-area:not(.is-drawing){pointer-events:none!important;height:0!important;min-height:0!important;flex:0 0 0!important;overflow:hidden!important}
 .learning-screen .pai-scratch-area:not(.is-drawing) .pai-scratch-canvas{pointer-events:none!important}
 .learning-screen.pai-scratch-active .recall-note{visibility:hidden}
+
+/* iOS Safari: ordinary-face long press must enter scratch, not select text. */
+.learning-screen .study-top,.learning-screen .word-hero,.learning-screen .study-body,.learning-screen .recall-note,.learning-screen .session-footnote,.learning-screen .pai-scratch-area{ -webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important }
+.learning-screen .recall-correction,.learning-screen .recall-correction *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
