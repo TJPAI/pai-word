@@ -12,6 +12,7 @@ on:
       - 'data/zh-core20k-v0101-scene500-runtime.json.gz.b64'
       - 'tools/answer-enrichment/test-standard-answer-cleanup.mjs'
       - 'rebuild-preview/learning-runtime.js'
+      - 'rebuild-preview/ku-durable-store.js'
   workflow_dispatch:
 permissions:
   contents: read
@@ -42,5 +43,7 @@ jobs:
         run: node tools/integration/test-four-line-contract.mjs
       - name: Verify staged S113 teaching cards against frozen English runtime without activation
         run: node tools/integration/test-s113-staging-overlay.mjs
+      - name: Check isolated V2.2 durable storage namespace
+        run: node tools/integration/test-storage-namespace.mjs
       - name: Check S500 search bridge and reject unsafe mapping
         run: node tools/integration/test-four-line-scene-bridge.mjs
