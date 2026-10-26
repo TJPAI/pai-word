@@ -23,4 +23,10 @@ assert.throws(()=>segmentCandidates('甲'.repeat(21),new Set()),/QUERY_LENGTH/);
 assert.throws(()=>segmentCandidates(3,new Set()),/INVALID_QUERY/);
 const normalized=segmentCandidates('e\u0301',new Set(['é']));
 assert.equal(normalized.candidates[0].tokens.join(''),'é','NFC_NORMALIZATION_LOSS');
-console.log(JSON.stringify({status:'PASS',checks:11,scope:'EDGE_CASES_ONLY',production_ready:false,scene500_tested:false}));
+for (const cap of [NaN, Infinity, 0, -1, 1.5, 21, '3']) {
+ assert.throws(()=>segmentCandidates('两个人',new Set(['两','个','人']),{maxCandidates:cap}),/INVALID_MAX_CANDIDATES/);
+}
+assert.throws(()=>segmentCandidates('甲',null),/INVALID_LEXICON/);
+assert.throws(()=>segmentCandidates('甲',{}),/INVALID_LEXICON/);
+assert.equal(segmentCandidates('甲',new Set(),{maxCandidates:20}).candidates.length,1);
+console.log(JSON.stringify({status:'PASS',checks:21,scope:'EDGE_CASES_ONLY',production_ready:false,scene500_tested:false}));
