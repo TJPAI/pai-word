@@ -4,8 +4,11 @@ export function segmentCandidates(query, lexicon, options = {}) {
   if (typeof query !== 'string') throw Error('INVALID_QUERY');
   const chars = Array.from(query.normalize('NFC'));
   if (chars.length < 1 || chars.length > 20) throw Error('QUERY_LENGTH');
+  if (lexicon == null || typeof lexicon[Symbol.iterator] !== 'function') throw Error('INVALID_LEXICON');
   const dict = lexicon instanceof Set ? lexicon : new Set(lexicon);
-  const maxCandidates = Math.min(20, Math.max(1, options.maxCandidates ?? 8));
+  const requested = options.maxCandidates ?? 8;
+  if (!Number.isInteger(requested) || requested < 1 || requested > 20) throw Error('INVALID_MAX_CANDIDATES');
+  const maxCandidates = requested;
   const perPosition = chars.map((_,i) => {
     const matches=[];
     for(let n=1;n<=Math.min(12,chars.length-i);n++){
