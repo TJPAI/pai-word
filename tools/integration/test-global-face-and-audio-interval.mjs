@@ -18,4 +18,15 @@ assert(s.includes("const autoEntrySpeech=state.autoPronounce[window.PAI_PREFERRE
 assert(s.includes('if(gestureSpeech&&autoEntrySpeech&&u.w?.w)'),'gesture speech follows preferred face');
 assert(s.includes('if(!gestureSpeech&&autoEntrySpeech)speak(u.w.w)'),'deferred scene-entry speech follows preferred face');
 assert(auto.includes('if(autoBrowseTimer!==null)return;'),'prevent duplicate automatic timers');
+
+const autoIntervalDecl=s.match(/const autoInterval=\(speechEnded=false\)=>\{[^\n]+\};/);
+assert(autoIntervalDecl,'dual interval mapping present');
+const vm=await import('node:vm');
+for(const [tier,spokenMs,silentMs] of [[0.9,200,900],[1.5,600,1500],[3,2000,3000],[6,5000,6000]]){
+  const context={state:{autoBrowseInterval:tier},Math,Number};
+  const result=vm.runInNewContext(autoIntervalDecl[0]+'[autoInterval(true),autoInterval(false)]',context);
+  assert.deepEqual(Array.from(result),[spokenMs,silentMs],'interval tier '+tier);
+}
+assert(auto.includes('scheduleAutoBrowse(true);'),'speech completion chooses speech-ended interval');
+assert(auto.includes('autoInterval(speechEnded)'),'scheduler must use selected interval mode');
 console.log('PASS global card-face preference and speech-ended interval invariants');
