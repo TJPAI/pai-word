@@ -32,6 +32,7 @@ const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<
 new Function('window','state','escapeHtml','contrastData',source.slice(start,end))(window,state,escapeHtml,()=>({items:[]}));
 for(const u of units){
  const card=approved.accepted.get(u.k),html=window.answerHtml(u);
+ assert(html.includes(escapeHtml(card.gloss_en)),'must display Batch93 teaching English gloss');
  assert(html.includes(escapeHtml(card.example_en)));
  assert(html.includes(escapeHtml(card.example_zh)));
  assert(html.includes('class="example-num">1.'));
