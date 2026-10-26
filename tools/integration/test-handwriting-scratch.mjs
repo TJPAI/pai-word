@@ -49,4 +49,6 @@ assert(!js.includes('pai-scratch-hint">长按手写或擦除'),'center hint remo
 assert(scratch.includes("if(activeMode&&!moved&&hold!==null)"),'tap exits drawing mode without flipping face');
 assert(scratch.includes("document.addEventListener('pointerdown'"),'hold recognized outside canvas on both faces');
 assert(css.includes('.learning-screen.pai-scratch-active .recall-note{visibility:hidden}'),'lower hint hidden while drawing');
+assert(scratch.includes('const alpha=distance>14?0.92:distance>6?0.82:0.68'),'adaptive smoothing follows stroke speed');
+assert(scratch.includes('if(distance<0.35)continue'),'tiny jitter is filtered');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
