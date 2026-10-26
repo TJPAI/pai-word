@@ -1,3 +1,4 @@
+import {applyObservedQueryCorrections} from './observed-query-corrections.mjs';
 // Reviewed routing hypotheses for seven bare academic/public subjects.
 // These are generic Scene500 learning/discussion scenes, NOT subject-specific scenes.
 // Exact single-subject queries only: do not infer a user's intent from substrings.
@@ -35,7 +36,7 @@ export function mergeSubjectCandidates(snapshot,query,{catalog,eligibleSceneIds=
  const candidates=getSubjectSceneCandidates(query,{catalog,eligibleSceneIds});
  if(!candidates.length){
   const n=Number.isFinite(Number(limit))?Math.max(0,Math.min(500,Math.floor(Number(limit)))):20;
-  return {...snapshot,results:(snapshot.results??[]).slice(0,n)};
+  return applyObservedQueryCorrections(snapshot,query,{catalog,eligibleSceneIds,limit:n});
  }
  const map=new Map((snapshot.results??[]).map(x=>[x.sceneId,{...x}]));
  for(const x of candidates){
@@ -48,5 +49,5 @@ export function mergeSubjectCandidates(snapshot,query,{catalog,eligibleSceneIds=
  const rows=[...map.values()].sort((a,b)=>b.score-a.score||a.sceneId.localeCompare(b.sceneId));
  rows.forEach((row,i)=>{row.rank=i+1;});
  const n=Number.isFinite(Number(limit))?Math.max(0,Math.min(500,Math.floor(Number(limit)))):20;
- return {...snapshot,total:rows.length,results:rows.slice(0,n)};
+ return applyObservedQueryCorrections({...snapshot,total:rows.length,results:rows},query,{catalog,eligibleSceneIds,limit:n});
 }
