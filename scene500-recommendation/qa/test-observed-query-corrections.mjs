@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {applyObservedQueryCorrections} from '../observed-query-corrections.mjs';
+const catalog={scenes:{S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
+const row=(sceneId,score)=>({sceneId,name:catalog.scenes[sceneId].name,score,reason:['baseline']});
+const search=(query,results,options={})=>applyObservedQueryCorrections({query,total:results.length,results},query,{catalog,limit:10,...options});
+assert.equal(search('How to order coffee',[]).results[0]?.sceneId,'S039');
+assert.equal(search('学习英语发音',[row('S279',4),row('S280',3),row('S135',2)]).results.some(r=>['S279','S280'].includes(r.sceneId)),false);
+const bus=search('不要坐地铁，改坐公交',[row('S079',15.644),row('S078',15.329)]);
+assert.equal(bus.results[0]?.sceneId,'S078');
+assert.equal(bus.results.some(r=>r.sceneId==='S079'),false);
+assert.equal(search('不要坐地铁，改坐公交',[row('S079',15.644)],{eligibleSceneIds:['S079']}).results.length,0);
+assert.equal(search('学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
+assert.equal(search('坐地铁',[row('S079',5)]).results[0]?.sceneId,'S079');
+assert.equal(search('How to order tea',[]).results.length,0);
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 7 assertions');
