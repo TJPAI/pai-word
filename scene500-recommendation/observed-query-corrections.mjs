@@ -2,7 +2,7 @@
 // Separate from optional experimental negation re-ranking V1/V2.
 const norm=s=>String(s??'').normalize('NFKC').trim().toLowerCase();
 // Bounded English food-order intent: a compositional action+object match, not a generic translation system.
-const foodOrder=/^(?:(?:how\s+(?:to|do\s+i|can\s+i)\s+)|(?:i\s+(?:want|would\s+like)\s+to\s+)|(?:i'd\s+like\s+to\s+)|(?:please\s+)|(?:could\s+i\s+))?order\s+(?:(?:a|an|some)\s+)?(?:sandwich|burger|pizza|salad|soup|meal|food)(?:\s+please)?[?.]?$/i;
+const foodOrder=/^(?:(?:how\s+(?:to|do\s+i|can\s+i)\s+)|(?:i\s+(?:want|would\s+like)\s+to\s+)|(?:i'd\s+like\s+to\s+)|(?:please\s+)|(?:(?:could|can|may)\s+i\s+))?order\s+(?:(?:a|an|some)\s+)?(?:sandwich|burger|pizza|salad|soup|meal|food)(?:\s+please)?[?.]?$/i;
 // Directional transport-switch parser. Only route when the new mode is explicit;
  // do not infer intent from a bare negation or a mention of both modes.
 const transitMode=t=>/^(?:坐|乘|乘坐)?(?:地铁|地下铁)$/.test(t)?'S079':/^(?:坐|乘|乘坐)?(?:公交|公交车|公共汽车)$/.test(t)?'S078':null;
