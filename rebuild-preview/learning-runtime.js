@@ -1338,6 +1338,14 @@
  },true);
  document.addEventListener('pointerup',e=>{if(ordinaryPress?.id===e.pointerId)clearOrdinary()},true);
  document.addEventListener('pointercancel',e=>{if(ordinaryPress?.id===e.pointerId)clearOrdinary()},true);
+ // Safari selection menu can win the 600ms hold race unless selection is suppressed.
+ // Restrict this to the study surface, leaving settings and unrelated text intact.
+ const scratchSelectionTarget=target=>{
+  const screen=target?.closest?.('.learning-screen');
+  return !!screen&&!!target.closest('.study-top,.word-hero,.study-body,.pai-scratch-area,.recall-note,.recall-correction,.session-footnote');
+ };
+ document.addEventListener('selectstart',e=>{if(state.view==='learning'&&scratchSelectionTarget(e.target))e.preventDefault()},true);
+ document.addEventListener('contextmenu',e=>{if(state.view==='learning'&&scratchSelectionTarget(e.target))e.preventDefault()},true);
  let pendingAutoRestore=false,ratingWasDrawing=false;
  window.PAI_SCRATCH_BEGIN_RATING=()=>{if(activeMode)ratingWasDrawing=true};
  window.PAI_SCRATCH_FINISH_RATING=()=>{
