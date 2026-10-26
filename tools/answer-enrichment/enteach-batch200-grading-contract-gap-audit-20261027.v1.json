@@ -1,0 +1,75 @@
+{
+  "schema_version": "pai-word-enteach-grading-gap-audit-v1",
+  "status": "STRUCTURAL_AUDIT_PASS_RELEASE_CONTRACT_HOLD",
+  "owner": "CG-ENTEACH",
+  "scope": {
+    "branch": "answer-enrichment-main-dev-20261026",
+    "source_queue": "tools/answer-enrichment/enteach-batch373-frozen-review-queue.v1.json",
+    "source_queue_blob": "8ffb14ac9f0c8a7e99389bd35074505791cf8ad2",
+    "part_files": 12,
+    "records": 200,
+    "distinct_ku_ids": 200,
+    "source_blob_matches": 12
+  },
+  "field_presence_out_of_200": {
+    "ku_id": 200,
+    "render_kind": 0,
+    "question": 0,
+    "response": 0,
+    "correct_answer": 0,
+    "acceptable_answers": 0,
+    "sense_id": 0,
+    "official_sense_id": 0,
+    "source_attribution": 0,
+    "source_rights_cleared": 0,
+    "binding_kind": 0,
+    "binding_registered": 0,
+    "binding_authorized": 0
+  },
+  "main_release_gate": {
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "scripts/approved-teaching-release-gate.mjs",
+    "git_blob": "30a5e960fa8aef55218fe436b17b57212efa6ede",
+    "required_release_conditions": [
+      "status=PRODUCTION_READY",
+      "production_ready=true",
+      "activation.allowed=true",
+      "source_rights_cleared=true",
+      "official_membership_verified=true",
+      "records array"
+    ],
+    "required_record_conditions": [
+      "ku_id nonempty unique",
+      "official_sense_id nonempty OR authorized registered KU_ANCHORED_SENSE binding",
+      "activation_allowed=true"
+    ]
+  },
+  "findings": [
+    {
+      "code": "NO_EXPLICIT_GRADING_ITEM",
+      "severity": "BLOCKING_FOR_SCORED_TEACHING",
+      "detail": "No render_kind/question/response/correct_answer/acceptable_answers in any of 200 content-enrichment rows; cannot claim an evaluable cloze or recognition task from these files alone."
+    },
+    {
+      "code": "NO_OFFICIAL_SENSE_BINDING",
+      "severity": "BLOCKING_FOR_RELEASE",
+      "detail": "official_sense_id absent/non-populated for all 200; no authorized registered KU_ANCHORED_SENSE binding fields."
+    },
+    {
+      "code": "NO_RIGHTS_AND_MEMBERSHIP_ASSERTIONS",
+      "severity": "BLOCKING_FOR_RELEASE",
+      "detail": "No per-row source attribution or source rights assertion; release-level rights and official membership also remain unverified."
+    }
+  ],
+  "recommendations": [
+    "Keep records as display-only provisional enrichment; do not infer correct answers or automatic scoring.",
+    "Build isolated render-kind/response contract candidates with source-anchored KU identity, variants and discriminative distractors, then independently QA.",
+    "Obtain verified official sense binding, attribution/rights and independent semantic approvals before release."
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false,
+    "approved_records": 0
+  },
+  "interpretation": "Absence of fields in this batch does not prove the wider application lacks a separate renderer; this audit is confined to the 12 teaching content part files and examined release gate."
+}
