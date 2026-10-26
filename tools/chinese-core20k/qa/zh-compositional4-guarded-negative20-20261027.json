@@ -1,0 +1,42 @@
+{
+  "schema": "pai-word-zh-compositional4-guarded-negative20-v1",
+  "date": "2026-10-27",
+  "role": "CG-ZH",
+  "status": "LOCAL_IN_SAMPLE_ABLATION_ONLY",
+  "production_ready": false,
+  "changes_runtime": false,
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "input_report": "zh-negative/report.json (prior local 20-query evaluation)",
+  "gate": "Surface phrase false-boundary sentinels + narrow explicit negation prefix suppression (only guarded positive-intent field; original tokens preserved)",
+  "results": {
+    "query_count": 20,
+    "boundary_risks": 3,
+    "boundary_blocked": 3,
+    "explicit_positive_cases": 9,
+    "explicit_positive_retained": 9,
+    "negated_cases": 4,
+    "negated_positive_suppressed": 4,
+    "paraphrase_coverage": 0
+  },
+  "sentinels": [
+    {
+      "surface": "火车票",
+      "blocked_frame": "火车票务"
+    },
+    {
+      "surface": "单人间",
+      "blocked_frame": "单人间隔离"
+    },
+    {
+      "surface": "绘本",
+      "blocked_frame": "手绘本"
+    }
+  ],
+  "limitations": [
+    "Derived from exactly the same 20 queries as sentinel selection, not independent generalization",
+    "A negated phrase remains lexically mentioned but is suppressed from positive-intent interpretation",
+    "No real Scene500 hybrid or blind independent evaluation",
+    "Not a generic segmentation or negation model"
+  ],
+  "decision": "HOLD_NO_PRODUCTION_INTEGRATION"
+}
