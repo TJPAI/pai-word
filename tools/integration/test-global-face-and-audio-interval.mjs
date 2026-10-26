@@ -13,4 +13,9 @@ assert(auto.indexOf('window.PAI_AUDIO.whenIdle(')>auto.indexOf('window.PAI_AUDIO
 assert(auto.indexOf('autoBrowseTimer=setTimeout')>auto.indexOf('window.PAI_AUDIO.whenIdle('));
 assert(auto.includes('if(generation===autoBrowseGeneration)scheduleAutoBrowse()'));
 assert(s.includes('if(autoAudioUnsubscribe){autoAudioUnsubscribe();autoAudioUnsubscribe=null}'));
+
+assert(s.includes("const autoEntrySpeech=state.autoPronounce[window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'?'swipe':'question']"),'scene entry must use preferred face audio setting');
+assert(s.includes('if(gestureSpeech&&autoEntrySpeech&&u.w?.w)'),'gesture speech follows preferred face');
+assert(s.includes('if(!gestureSpeech&&autoEntrySpeech)speak(u.w.w)'),'deferred scene-entry speech follows preferred face');
+assert(auto.includes('if(autoBrowseTimer!==null)return;'),'prevent duplicate automatic timers');
 console.log('PASS global card-face preference and speech-ended interval invariants');
