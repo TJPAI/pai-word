@@ -12,4 +12,9 @@ assert.equal(search('不要坐地铁，改坐公交',[row('S079',15.644)],{eligi
 assert.equal(search('学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
 assert.equal(search('坐地铁',[row('S079',5)]).results[0]?.sceneId,'S079');
 assert.equal(search('How to order tea',[]).results.length,0);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 7 assertions');
+assert.equal(search('Could I order a coffee please?',[]).results[0]?.sceneId,'S039');
+assert.equal(search('How can I order coffee?',[]).results[0]?.sceneId,'S039');
+assert.equal(search('我不坐地铁了，改乘公交车',[row('S079',15.6),row('S078',12.1)]).results[0]?.sceneId,'S078');
+assert.equal(search('我不坐地铁了，改乘公交车',[row('S079',15.6),row('S078',12.1)]).results.some(r=>r.sceneId==='S079'),false);
+assert.equal(search('如何学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 12 assertions');
