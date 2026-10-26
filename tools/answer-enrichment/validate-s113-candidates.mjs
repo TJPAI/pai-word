@@ -39,7 +39,7 @@ for(const c of candidates.records){
  assert(/[.!?]$/.test(c.example_en),'English sentence lacks end punctuation');
  assert(/[。！？]$/.test(c.example_zh),'Chinese translation lacks end punctuation');
  assert(!('content_certified' in c)||c.content_certified===false,'uncertified pack claims certification');
- const genericGloss=/^core modern learner use of[\\s“"']/i.test(sense[3]);
+ const genericGloss=/^core modern learner use of[\s“"']/i.test(sense[3]);
  const multipleChineseSenses=/[；;]/.test(sense[2]);
  const risks=[genericGloss?'generic_English_gloss_needs_sense_review':null,multipleChineseSenses?'multiple_Chinese_meanings_needs_binding_review':null].filter(Boolean);
  report.push({scene_rank:c.scene_rank,headword:c.headword,ku_id:c.ku_id,gloss_zh:sense[2],gloss_en:sense[3],fields:['collocation','example_en','example_zh','contrast_note'],risks,status:risks.length?'IDENTITY_VERIFIED_SEMANTIC_REVIEW_REQUIRED':'IDENTITY_VERIFIED_EDITORIAL_REVIEW_REQUIRED'});
