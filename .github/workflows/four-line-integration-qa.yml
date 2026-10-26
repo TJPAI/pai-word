@@ -1,0 +1,33 @@
+name: Four-line integration contract QA
+on:
+  push:
+    branches:
+      - main-answer-cleanup-20261026
+    paths:
+      - '.github/workflows/four-line-integration-qa.yml'
+      - 'scripts/four-line-*.mjs'
+      - 'tools/integration/**'
+      - 'tools/answer-enrichment/test-standard-answer-cleanup.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  contract-and-answer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify pinned English Core20K runtime exists
+        run: |
+          test -s data/core20k-runtime.json.gz
+          node -e "const z=require('zlib'),f=require('fs');const j=JSON.parse(z.gunzipSync(f.readFileSync('data/core20k-runtime.json.gz')));if(j.headwords?.length!==20000)throw Error('English Core20K count');console.log('PASS English Core20K 20000 headwords')"
+      - name: Check standard answer page cleanup
+        run: node tools/answer-enrichment/test-standard-answer-cleanup.mjs
+      - name: Check four-line identity and activation contract
+        run: node tools/integration/test-four-line-contract.mjs
+      - name: Check S500 search bridge and reject unsafe mapping
+        run: node tools/integration/test-four-line-scene-bridge.mjs
