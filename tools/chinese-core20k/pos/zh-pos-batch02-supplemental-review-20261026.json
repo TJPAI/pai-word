@@ -1,0 +1,117 @@
+{
+  "schema": "pai-word-zh-core20k-pos-review-supplement-v1",
+  "role": "CG-ZH",
+  "date": "2026-10-26",
+  "source_branch": "chinese-core20k-dev",
+  "source_batch_blob_sha": "99eac4f9d1c9e1611d4ca535bbeeb33053d68f82",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "scope": "8 additional rows; no replacement of original batches or prior 15-row errata",
+  "production_ready": false,
+  "runtime_mutated": false,
+  "term_ids_mutated": false,
+  "selection_count": 8,
+  "rows": [
+    {
+      "term": "么",
+      "term_id": "zh_073339935f0c9b3c3458",
+      "runtime_index": 254,
+      "source_primary": "PART",
+      "source_secondary": [],
+      "issue_type": "BOUND_MORPHEME",
+      "linguistic_rationale_zh": "“什么、怎么、这么”中的“么”是构词/语法后缀，通常不能像独立助词一样在现代普通话中自由移动；保留PART仅作为现有有限标签集里的临时兼容表示，需标注bound_morpheme。",
+      "editorial_action": "FLAG_BOUND_MORPHEME",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "者",
+      "term_id": "zh_5618dc0903030d38d24c",
+      "runtime_index": 255,
+      "source_primary": "PART",
+      "source_secondary": [
+        "NOUN"
+      ],
+      "issue_type": "MORPHEME_NOT_NOUN",
+      "linguistic_rationale_zh": "“读者、强者”中的“者”是附着名词化后缀；整个“强者”指人不等于“者”单独是名词。古汉语独用“者”的证据需要与现代中文目标语域区分。",
+      "editorial_action": "PROPOSE_REMOVE_NOUN",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "最后",
+      "term_id": "zh_445905122e87b9907cf5",
+      "runtime_index": 261,
+      "source_primary": "NOUN",
+      "source_secondary": [
+        "ADV"
+      ],
+      "issue_type": "REVIEW_TAXONOMY",
+      "linguistic_rationale_zh": "“最后一道题”是次序限定；“到了最后”可进入介词结构，“最后才到”担任时间状语。状语句法功能不自动证明独立ADV词汇类别；须区分时间名词/方位词与顺序副词。",
+      "editorial_action": "KEEP_PENDING",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "runtime_index": 274,
+      "source_primary": "NUM",
+      "source_secondary": [
+        "DET"
+      ],
+      "issue_type": "ANALYZABLE_QUANTITY_PHRASE",
+      "linguistic_rationale_zh": "“两个学生”中“两”为数词、“个”为量词；整串可以作名词短语数量限定语，但不能据此推断“两个”是单一NUM或DET词。词库可保留该稳定词项供短查询匹配，分词需允许“两/个”组成分析。",
+      "editorial_action": "DO_NOT_PUBLISH_AS_ATOMIC_NUM",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "runtime_index": 288,
+      "source_primary": "NUM",
+      "source_secondary": [
+        "DET"
+      ],
+      "issue_type": "ANALYZABLE_QUANTITY_PHRASE",
+      "linguistic_rationale_zh": "“一种办法”由数词“一”与量词“种”组成，整个数量结构修饰“办法”；DET是结构功能而非另一独立词性证据。检索词项可保留，切分须允许一/种。",
+      "editorial_action": "DO_NOT_PUBLISH_AS_ATOMIC_NUM",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "当时",
+      "term_id": "zh_9819d260756e945655f2",
+      "runtime_index": 311,
+      "source_primary": "NOUN",
+      "source_secondary": [
+        "ADV"
+      ],
+      "issue_type": "NOMINAL_TEMPORAL_ADVERBIAL",
+      "linguistic_rationale_zh": "“在当时”体现时间名词性成分可作介词宾语；“当时没注意”中处于状语位置，并不能独立证明ADV词类。避免将时间短语的句法功能直接充当词性证据。",
+      "editorial_action": "PROPOSE_REMOVE_ADV",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "runtime_index": 324,
+      "source_primary": "NOUN",
+      "source_secondary": [
+        "ADV"
+      ],
+      "issue_type": "REMOVE_FUNCTION_DERIVED_ADV",
+      "linguistic_rationale_zh": "“在国内”由介词“在”加处所名词性成分构成；“国内市场”是定语；“国内已推广”即使在句首作状语也不证明词汇ADV。NOUN可保留，ADV候选缺乏独立证据。",
+      "editorial_action": "PROPOSE_REMOVE_ADV",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    },
+    {
+      "term": "无法",
+      "term_id": "zh_402590868fff593d9c75",
+      "runtime_index": 336,
+      "source_primary": "AUX",
+      "source_secondary": [
+        "ADV"
+      ],
+      "issue_type": "TAXONOMY_DEPENDENT",
+      "linguistic_rationale_zh": "“无法完成”可分析为否定能力/可能性的固定谓词性结构；与“不能完成”的AUX并非完全同一分布，“无法解释”并不额外证明ADV词性。保留AUX暂用标签，但需记录为情态性固定表达并阻止把ADV自动发布。",
+      "editorial_action": "KEEP_AUX_PENDING",
+      "status": "CG_ZH_SUPPLEMENTAL_REVIEW_NOT_CERTIFIED"
+    }
+  ]
+}
