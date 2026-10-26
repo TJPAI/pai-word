@@ -9,6 +9,7 @@ on:
       - 'tools/core20k_lexicon/qa/ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json'
       - 'tools/core20k_lexicon/qa/ENLEX_23_DUAL_AI_PASS_GLOSS_PREACTIVATION.v1.json'
       - 'tools/core20k_lexicon/qa/validate_enlex_23_dual_ai_package.py'
+      - 'tools/core20k_lexicon/qa/prepare_enlex_23_gloss_overlay.py'
   workflow_dispatch:
 
 permissions:
@@ -28,6 +29,8 @@ jobs:
         run: python tools/core20k_lexicon/qa/validate_enlex_26_gloss_overlay.py
       - name: Validate 23 dual-AI agreed glosses against production Runtime
         run: python tools/core20k_lexicon/qa/validate_enlex_23_dual_ai_package.py
+      - name: Dry-run exact KU 23 gloss overlay with no Runtime modification
+        run: python tools/core20k_lexicon/qa/prepare_enlex_23_gloss_overlay.py
       - name: Publish read-only audit result
         uses: actions/upload-artifact@v4
         with:
