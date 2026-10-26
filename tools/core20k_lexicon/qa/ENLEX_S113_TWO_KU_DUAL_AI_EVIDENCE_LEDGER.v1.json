@@ -1,0 +1,60 @@
+{
+  "schema": "pai-enlex-s113-two-ku-dual-ai-evidence-ledger-v1",
+  "role": "CG-ENLEX",
+  "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+  "source_overlay_path": "tools/core20k_lexicon/staging/ENLEX_S113_TWO_KU_GLOSS_CORRECTION_OVERLAY.v1.json",
+  "source_overlay_blob": "97ac9c456bc01220e69106b74494a8b0fd2c731b",
+  "muse_review_path": "tools/core20k_lexicon/staging/MU_ENLEX_TWO_KU_AFTER_GLOSS_REVIEW.v1.json",
+  "muse_review_blob": "71278e5e862fcc8b5943b6a0f3d7c9dc78696e6a",
+  "records": [
+    {
+      "lemma": "reservation",
+      "ku_id": "w_3084_reservation_ku_s01",
+      "rank": 4035,
+      "old_gloss": {
+        "gloss_zh": "预订；保留意见",
+        "gloss_en": "core modern learner use of “reservation”"
+      },
+      "new_gloss": {
+        "gloss_zh": "预订；预约",
+        "gloss_en": "an arrangement made in advance to reserve a room, table, seat, or service"
+      },
+      "cg_qa_verdict": "PASS",
+      "cg_qa_evidence": "Issue#1 comment 6410750578",
+      "muse_verdict": "PASS",
+      "muse_blob": "71278e5e862fcc8b5943b6a0f3d7c9dc78696e6a",
+      "exact_text_match": false,
+      "identity_policy": "STABLE_KU_ID; no new sense identity minted"
+    },
+    {
+      "lemma": "cancellation",
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "rank": 5149,
+      "old_gloss": {
+        "gloss_zh": "取消；注销",
+        "gloss_en": "core modern learner use of “cancellation”"
+      },
+      "new_gloss": {
+        "gloss_zh": "取消；取消的行为",
+        "gloss_en": "the act of cancelling a planned event, booking, or service"
+      },
+      "cg_qa_verdict": "PASS",
+      "cg_qa_evidence": "Issue#1 comment 6410750578",
+      "muse_verdict": "PASS",
+      "muse_blob": "71278e5e862fcc8b5943b6a0f3d7c9dc78696e6a",
+      "exact_text_match": false,
+      "identity_policy": "STABLE_KU_ID; no new sense identity minted"
+    }
+  ],
+  "summary": {
+    "same_text_dual_ai_pass": 0,
+    "record_count": 2,
+    "activation_allowed": false,
+    "production_ready": false,
+    "reason": "Linguistic approval only; historical SRS semantic drift and additive reservation doubt sense remain unhandled"
+  },
+  "source_notes": "CG-QA exact after-gloss PASS recorded in issue comment 6410750578; MU-ENLEX exact text independent review committed df26fdc9. Not claimed blind.",
+  "runtime_mutated": false,
+  "srs_mutated": false,
+  "main_mutated": false
+}
