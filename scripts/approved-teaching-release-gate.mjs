@@ -7,7 +7,7 @@ export function createApprovedTeachingMap(release){
  const accepted=new Map();
  for(const card of release.records){
   if(typeof card?.ku_id!=='string'||!card.ku_id.trim()||
-     typeof card?.official_sense_id!=='string'||!card.official_sense_id.trim()||
+     !((typeof card?.official_sense_id==='string'&&!!card.official_sense_id.trim())||(card?.binding_kind==='KU_ANCHORED_SENSE'&&card?.official_sense_id===null&&card?.binding_registered===true&&card?.binding_authorized===true&&card?.binding_ku_id===card.ku_id))||
      card.activation_allowed!==true||accepted.has(card.ku_id))
    return Object.freeze({enabled:false,accepted:new Map()});
   accepted.set(card.ku_id,card);
