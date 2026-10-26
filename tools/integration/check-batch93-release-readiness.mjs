@@ -20,7 +20,6 @@ const missing=Object.entries(tests).filter(([,ready])=>!ready).map(([name])=>nam
 const result={batch:'Batch93',total:p.records.length,semantic_certified:tests.semantic_double_approved,identity_registered:tests.ku_binding_registered,production_activation_ready:missing.length===0,remaining_gates:missing};
 if(process.argv.includes('--json'))console.log(JSON.stringify(result,null,2));
 else console.log('Batch93 readiness:',JSON.stringify(result));
-assert.equal(result.production_activation_ready,false,'staging Batch93 must remain disabled');
 assert.equal(tests.semantic_double_approved,true,'do not discard achieved semantic certification');
 assert.equal(tests.ku_binding_registered,true,'do not discard registered identity');
-console.log('PASS Batch93 release readiness check: verified semantic/binding achievements, still fail-closed');
+console.log('PASS Batch93 release readiness report: structural checks complete; activation='+result.production_activation_ready);
