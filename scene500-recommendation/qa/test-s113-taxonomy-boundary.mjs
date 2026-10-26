@@ -7,7 +7,7 @@ const catalog=read('scene500-recommendation/catalog-v0.2.json');
 const legacy=fs.readFileSync('data/scene500-taxonomy-20x25-v1.txt','utf8');
 const taxonomy=read('data/scene-taxonomy-v2.json');
 const membership=read('data/scene500-playable-membership-v2.json');
-const candidates=read('tools/answer-enrichment/s113-teaching-candidates.v1.json');
+const candidates=read('scene500-recommendation/qa/fixtures/s113-teaching-candidates-source-75d1325.json');
 const scene=(id)=>taxonomy.scenes.find(x=>x.id===id);
 assert.equal(catalog.scenes.S113.name,'预订酒店');
 assert.match(legacy,/^S113\s+预订酒店$/m);
