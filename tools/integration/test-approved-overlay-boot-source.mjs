@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+globalThis.window={PAI_APPROVED_OVERLAY_CONFIG:{enabled:false}};
+const {approvedOverlaySourceUrl,bootApprovedOverlay}=await import('../../scripts/core20k-approved-overlay-boot.mjs');
+const base='https://tjpai.github.io/pai-word-preview/v22-integration/rebuild-preview/index.html';
+for(const good of ['../data/approved.json','https://tjpai.github.io/pai-word-preview/v22-integration/data/approved.json']){
+ assert.equal(approvedOverlaySourceUrl(good,base)?.startsWith('https://tjpai.github.io/'),true);
+}
+for(const bad of ['https://evil.example/pack.json','//evil.example/pack.json','javascript:alert(1)','data:text/plain,hello','https://user:pass@tjpai.github.io/x','/foo.json?version=1','/foo.json#fragment']){
+ assert.equal(approvedOverlaySourceUrl(bad,base),null,bad);
+}
+assert.equal((await bootApprovedOverlay()).enabled,false);
+assert.equal(window.PAI_APPROVED_TEACHING_OVERLAY.enabled,false);
+console.log('PASS approved overlay boot refuses cross-origin/unsafe URLs and stays default-off');
