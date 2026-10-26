@@ -1,0 +1,58 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion06-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_QA_PENDING",
+  "scope": {
+    "reviewed_part": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+    "source_blob": "175fb8ac770437a6ddd0497bceb6840a180e8a6b",
+    "new_reviewed_ku": 16,
+    "previous_reviewed_ku": 140,
+    "cumulative_distinct_reviewed_ku": 156,
+    "total_batch_ku": 200
+  },
+  "findings": [
+    {
+      "headword": "unlimited",
+      "ku_id": "w_5239_unlimited_ku_s01",
+      "severity": "MEDIUM",
+      "field": "example_zh",
+      "original": "该订阅服务允许不限次数地访问课程资料库。",
+      "issue": "unlimited access不只表示访问次数无限，原译限制成次数维度。",
+      "proposed": "该订阅服务提供对课程资料库的无限制访问权限。",
+      "action": "REWRITE_RECOMMENDED"
+    },
+    {
+      "headword": "sequel",
+      "ku_id": "w_6875_sequel_ku_s01",
+      "severity": "LOW",
+      "field": "example_zh",
+      "original": "制片公司宣布将拍摄那部热门电影的续集。",
+      "issue": "announced a sequel不必然明确已经安排拍摄，中文增加了将拍摄的承诺。",
+      "proposed": "制片公司宣布了那部热门电影的续集计划。",
+      "action": "TRANSLATION_PRECISION_RECOMMENDED"
+    },
+    {
+      "headword": "crook",
+      "ku_id": "w_6694_crook_ku_s01",
+      "severity": "MEDIUM",
+      "field": "example_zh",
+      "original": "侦探怀疑那名访客是个骗子。",
+      "issue": "crook覆盖不诚实的人或罪犯；『骗子』仅包含其中较窄的诈骗义，此句缺乏诈骗上下文。",
+      "proposed": "侦探怀疑那名访客是个不法之徒。",
+      "action": "SENSE_SCOPE_REWRITE_RECOMMENDED"
+    },
+    {
+      "headword": "diploma",
+      "ku_id": "w_6242_diploma_ku_s01",
+      "severity": "BLOCKED_EXISTING_QA",
+      "field": "source_sense_scope",
+      "issue": "Previous CG-QA source-sense scope issue has not been independently resolved; internally readable example does not constitute scope clearance.",
+      "action": "MAINTAIN_HOLD_NO_RELEASE"
+    }
+  ],
+  "notes": "16 source-fixed records were read and internally reviewed. No independently approved correction or independent semantic QA is claimed. Historical diploma source-sense issue stays blocked.",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
