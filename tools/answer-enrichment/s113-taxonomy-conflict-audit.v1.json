@@ -1,0 +1,89 @@
+{
+  "schema_version": "pai-word-scene-taxonomy-conflict-v1",
+  "status": "UNRESOLVED_TAXONOMY_CONFLICT",
+  "scene_id": "S113",
+  "verified_sources": [
+    {
+      "path": "scene500-recommendation/catalog-v0.2.json",
+      "branch": "scene500-recommendation-dev",
+      "git_blob_sha": "0b1e9023eb21e99311b58e82bbe1518c04a63d76",
+      "label": "预订酒店",
+      "quality": "draft_unverified"
+    },
+    {
+      "path": "data/scene500-top100-v40/group-05.json",
+      "branch": "scene500-recommendation-dev",
+      "git_blob_sha": "6eaeaec7360a9d6a373c28d2ee4082b4d3c09401",
+      "label_context": "预订酒店",
+      "membership_top4": [
+        {
+          "scene_rank": 1,
+          "headword": "hotel",
+          "ku_id": "w_0771_hotel_ku01"
+        },
+        {
+          "scene_rank": 2,
+          "headword": "guest",
+          "ku_id": "w_1452_guest_ku_s01"
+        },
+        {
+          "scene_rank": 3,
+          "headword": "reservation",
+          "ku_id": "w_3084_reservation_ku_s01"
+        },
+        {
+          "scene_rank": 4,
+          "headword": "cancellation",
+          "ku_id": "w_6567_cancellation_ku_s01"
+        }
+      ]
+    }
+  ],
+  "reported_conflict": {
+    "taxonomy": "taxonomy-v2",
+    "label": "公园游览",
+    "verification": "REPORTED_BY_QA_LINE_NOT_YET_LOCATED_IN_CURRENT_REPOSITORY"
+  },
+  "policy": {
+    "no_scene_id_only_join": true,
+    "require_taxonomy_version_and_source_commit": true,
+    "require_membership_provenance": true,
+    "prohibit_s113_candidate_release": true,
+    "preserve_batch93_independent": true,
+    "do_not_modify_learning_ui_or_srs": true
+  },
+  "candidate_status": [
+    {
+      "ku_id": "w_1452_guest_ku_s01",
+      "semantic": "DUAL_AI_PASS",
+      "release": "STAGING",
+      "blockers": [
+        "formal_sense_id_missing",
+        "source_license_incomplete",
+        "taxonomy_conflict"
+      ]
+    },
+    {
+      "ku_id": "w_3084_reservation_ku_s01",
+      "semantic": "REVISE",
+      "release": "STAGING",
+      "blockers": [
+        "sense_revision",
+        "targeted_review",
+        "formal_sense_id_missing",
+        "source_license_incomplete",
+        "taxonomy_conflict"
+      ]
+    },
+    {
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "semantic": "ACCEPTABLE_AFTER_TARGETED_REVIEW",
+      "release": "STAGING",
+      "blockers": [
+        "formal_sense_id_missing",
+        "source_license_incomplete",
+        "taxonomy_conflict"
+      ]
+    }
+  ]
+}
