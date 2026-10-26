@@ -1,0 +1,47 @@
+{
+  "schema": "pai-enlex-three-conditional-ku-resolution-proposal-v1",
+  "source_overlay_blob": "3f551a3ba9c3803541081f8e189306ee93d59a14",
+  "source_runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+  "records": [
+    {
+      "lemma": "media",
+      "gloss_zh": "大众媒体；大众传播媒介",
+      "gloss_en": "television, radio, newspapers, websites, and other channels that share news or information",
+      "reason": "明确为新闻/信息大众传媒，排除科学介质及艺术媒介。",
+      "status": "TARGETED_TEXT_REVISION_PENDING_SAME_VERSION_MUSE",
+      "ku_id": "w_5359_media_ku_s01",
+      "rank": 1978,
+      "original_zh": "媒体；媒介",
+      "original_en": "core modern learner use of “media”",
+      "source_candidate_en": "television, radio, newspapers, websites, and other channels that share news or information"
+    },
+    {
+      "lemma": "checkpoint",
+      "gloss_zh": "检查站；实体检查点",
+      "gloss_en": "a place where people or vehicles are stopped so that officials can check them",
+      "reason": "与人员/车辆接受官方检查的实体地点范围对齐；软件存档点另义。",
+      "status": "TARGETED_TEXT_REVISION_PENDING_SAME_VERSION_MUSE",
+      "ku_id": "w_7612_checkpoint_ku_s01",
+      "rank": 2222,
+      "original_zh": "检查点；检查站",
+      "original_en": "core modern learner use of “checkpoint”",
+      "source_candidate_en": "a place where people or vehicles are stopped so that officials can check them"
+    },
+    {
+      "lemma": "found",
+      "gloss_zh": "建立；创办",
+      "gloss_en": "to start an organization, institution, or business",
+      "reason": "文本已清楚表达创办义，关键问题是同形find过去式与源POS身份；先验证Runtime词头级POS/重复身份，不改定义。",
+      "status": "IDENTITY_HOMOGRAPH_CHECK_PENDING",
+      "ku_id": "w_5396_found_ku_s01",
+      "rank": 2345,
+      "original_zh": "建立；创办",
+      "original_en": "core modern learner use of “found”",
+      "source_candidate_en": "to start an organization, institution, or business"
+    }
+  ],
+  "activation_allowed": false,
+  "production_ready": false,
+  "requires_recheck": "changed media and checkpoint Chinese scope must be checked by Muse; found requires runtime identity validation",
+  "do_not_change_ku_ids": true
+}
