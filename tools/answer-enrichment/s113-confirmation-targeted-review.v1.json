@@ -1,0 +1,37 @@
+{
+  "schema_version": "pai-word-s113-confirmation-targeted-review-v1",
+  "owner_role": "CG-ENTEACH",
+  "date": "2026-10-26",
+  "source_v1_commit": "2036066caa57285f8a17e3fef53cd8d210b4ee9b",
+  "source_v2_commit": "d5a3f476e39fdb79e5345bb9cca77bbe4ebfe31e",
+  "source_v2_path": "tools/answer-enrichment/s113-next4-hotel-booking-teaching-draft.v2.json",
+  "source_v2_blob_sha": "ce75a0c4ac366072d380acd1fe73ea733f1974fb",
+  "ku_id": "w_3678_confirmation_ku_s01",
+  "scene_id": "S113",
+  "scene_rank_candidate": 19,
+  "chatgpt_verdict": "PASS_REVISED_GLOSS",
+  "review_reason": "The English and Chinese glosses now each explicitly describe both the act of confirming a hotel booking and the message confirming that booking. Existing booking confirmation, confirmation email and confirmation number collocations remain idiomatic; the bilingual example is accurate. This does not imply a distinct official Runtime sense_id or canonical Scene500 membership.",
+  "muse_independent_verdict": "NOT_YET_RECORDED_FOR_V2",
+  "record_status": "STAGING_PENDING_INDEPENDENT_MUSE_REVIEW",
+  "formal_sense_id": null,
+  "production_ready": false,
+  "activation_allowed": false,
+  "qa_source": "Direct GitHub fetch_file v1, v2, V40 S113 and JS assertions run in functions runtime",
+  "qa_results": {
+    "checked": 8,
+    "passed": 8,
+    "failed": 0,
+    "checks": [
+      "four records",
+      "same four KU IDs",
+      "other three records bytewise-equivalent at parsed JSON level",
+      "historical V40 rank alignment",
+      "six teaching fields nonempty",
+      "confirmation Chinese/English scope parallel",
+      "both activation flags false",
+      "all examples unchanged"
+    ],
+    "node_cli": "NOT_RUN_NO_NETWORK_FROM_CONTAINER"
+  },
+  "handoff": "S113-NEXT4-TEACHING-20261026"
+}
