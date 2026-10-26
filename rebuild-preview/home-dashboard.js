@@ -285,6 +285,21 @@
         if(label)label.textContent=displayedSourceSha;
       }).catch(()=>{sourceShaPromise=null});
   }
+  // Initialize Scene500 after the first home paint, never inside the first query.
+  // Idle scheduling protects low-end Safari devices from blocking home rendering.
+  let sceneWarmupQueued=false;
+  function queueSceneWarmup(){
+    if(sceneWarmupQueued||new URLSearchParams(location.search).get('scene500engine')==='0')return;
+    sceneWarmupQueued=true;
+    const run=()=>{void getBridge().then(bridge=>{
+      if(!hybridListenerInstalled){bridge.onHybridReady(refreshActiveHybrid);hybridListenerInstalled=true;}
+      return bridge.warmup?.();
+    }).then(status=>{if(status){window.PAI_SCENE500_BRIDGE_STATUS=status;updateEngineVersion();}}).catch(e=>{
+      window.PAI_SCENE500_WARMUP_ERROR=String(e);
+    });};
+    if(typeof requestIdleCallback==='function')requestIdleCallback(run,{timeout:1200});
+    else setTimeout(run,250);
+  }
   window.PAI_HOME_DASHBOARD_RENDER=renderHome;
   window.render=function(){if(state.view==='scenes'){
     const root=document.getElementById('app'),oldCounts=new Map();
@@ -292,6 +307,6 @@
     root.innerHTML=renderHome();
     updateEngineVersion();
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]'))if(!slot.innerHTML.trim()&&oldCounts.has(slot.getAttribute('data-scene-id')))slot.innerHTML=oldCounts.get(slot.getAttribute('data-scene-id'));
-    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);void updateSourceSha();return
+    window.PAI_SAVE_HOME_VISUAL?.(root.innerHTML);void updateSourceSha();queueSceneWarmup();return
   }return baseRender()};
 })();
