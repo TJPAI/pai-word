@@ -7,6 +7,7 @@ on:
       - 'tools/chinese-core20k/qa/zh-short-query-segmentation-fixtures-20261026.json'
       - 'scripts/evaluate-zh-short-query-core20k.mjs'
       - 'scripts/test-zh-short-query-candidates.mjs'
+      - 'scripts/test-zh-short-query-edgecases.mjs'
       - 'scripts/test-zh-short-query-segmentation-fixtures.mjs'
       - 'scripts/materialize-zh-core20k-v0101.mjs'
       - 'data/zh-core20k-v0101-scene500-runtime.json.gz.b64'
@@ -31,6 +32,8 @@ jobs:
         run: node scripts/test-zh-short-query-segmentation-fixtures.mjs
       - name: QA segmentation candidates (fixture dictionary)
         run: node scripts/test-zh-short-query-candidates.mjs
+      - name: QA edge cases and deterministic candidate generation
+        run: node scripts/test-zh-short-query-edgecases.mjs
       - name: Evaluate real Core20K dictionary
         run: |
           set -o pipefail
