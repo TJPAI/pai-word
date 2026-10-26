@@ -1,0 +1,112 @@
+{
+  "schema": "cg-qa-200-batch01-progress-part02-v1",
+  "target_batch_size": 200,
+  "prior_reviewed": 59,
+  "new_reviewed": 13,
+  "cumulative_reviewed": 72,
+  "remaining": 128,
+  "source_commit": "8a8ebb78e78b592e30d138d3eedf8c8e96637ff0",
+  "source_path": "tools/core20k_lexicon/qa/ENLEX_AI_EDITORIAL_BATCH_651_675.v1.json",
+  "status": "CHATGPT_ONLY_PROVISIONAL_PARTIAL",
+  "summary": {
+    "pass": 12,
+    "conditional": 1,
+    "source_hold_excluded": 12,
+    "new_dual_ai_pass": 0
+  },
+  "records": [
+    {
+      "queue_index": 654,
+      "ku_id": "w_5244_elicit_ku_s01",
+      "lemma": "elicit",
+      "verdict": "PASS",
+      "reason": "引出回应或信息，及物动词义正确，区别主动提供信息。"
+    },
+    {
+      "queue_index": 655,
+      "ku_id": "w_6875_sequel_ku_s01",
+      "lemma": "sequel",
+      "verdict": "PASS",
+      "reason": "故事续集而非前传，书与电影都适用。"
+    },
+    {
+      "queue_index": 656,
+      "ku_id": "w_5239_unlimited_ku_s01",
+      "lemma": "unlimited",
+      "verdict": "PASS",
+      "reason": "不设固定上限或限制的形容词义准确，实际服务可有公平使用条款但不影响核心义。"
+    },
+    {
+      "queue_index": 658,
+      "ku_id": "w_6779_nude_ku_s01",
+      "lemma": "nude",
+      "verdict": "PASS",
+      "reason": "未穿衣服的状态与裸体义一致，避免混入颜色义。"
+    },
+    {
+      "queue_index": 659,
+      "ku_id": "w_6301_backyard_ku_s01",
+      "lemma": "backyard",
+      "verdict": "PASS",
+      "reason": "住宅后面的院地，围栏并非必要条件，often限定合理。"
+    },
+    {
+      "queue_index": 661,
+      "ku_id": "w_6449_cube_ku_s01",
+      "lemma": "cube",
+      "verdict": "PASS",
+      "reason": "六个相等正方形面的立体定义准确，立方体对应。"
+    },
+    {
+      "queue_index": 664,
+      "ku_id": "w_6242_diploma_ku_s01",
+      "lemma": "diploma",
+      "verdict": "CONDITIONAL_SCOPE",
+      "reason": "毕业证书与课程结业证书在制度中不等同；diploma也可指特定资格证书，应避免将所有diploma直接译为毕业证。"
+    },
+    {
+      "queue_index": 665,
+      "ku_id": "w_4372_passport_ku_s01",
+      "lemma": "passport",
+      "verdict": "PASS",
+      "reason": "政府颁发的国际旅行身份证件核心义准确。"
+    },
+    {
+      "queue_index": 667,
+      "ku_id": "w_7378_plank_ku_s01",
+      "lemma": "plank",
+      "verdict": "PASS",
+      "reason": "长而平的木板及建筑用途，物理对象义准确。"
+    },
+    {
+      "queue_index": 669,
+      "ku_id": "w_3876_subsidy_ku_s01",
+      "lemma": "subsidy",
+      "verdict": "PASS",
+      "reason": "政府或组织为减轻活动服务成本而提供资金，补助义准确。"
+    },
+    {
+      "queue_index": 671,
+      "ku_id": "w_3958_postpone_ku_s01",
+      "lemma": "postpone",
+      "verdict": "PASS",
+      "reason": "把已计划事件改到较晚时间，区别取消。"
+    },
+    {
+      "queue_index": 674,
+      "ku_id": "w_6984_bleach_ku_s01",
+      "lemma": "bleach",
+      "verdict": "PASS",
+      "reason": "化学漂白剂可去色或增白，名词物质义明确。"
+    },
+    {
+      "queue_index": 675,
+      "ku_id": "w_3393_liberty_ku_s01",
+      "lemma": "liberty",
+      "verdict": "PASS",
+      "reason": "不受不必要限制地行动和选择的自由，政治法律细分义另可单列。"
+    }
+  ],
+  "production_ready": false,
+  "activation_allowed": false
+}
