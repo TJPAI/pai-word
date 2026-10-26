@@ -53,6 +53,7 @@ jobs:
                 "| Runtime terms | "+r.term_count+" |",
                 "| Gold paths found | "+r.gold_paths_found+"/"+r.fixture_count+" |",
                 "| Gold paths missing | "+r.gold_paths_missing+" |",
+                "| Recall by candidate cap | "+r.recall_by_candidate_cap.map(x=>"K"+x.k+": "+x.gold_paths_found+"/"+r.fixture_count).join("; ")+" |",
                 "| Total measured latency (ms) | "+r.elapsed_ms_total+" |",
                 "",
                 "**Non-production experiment; this is not Scene500 semantic certification.**"
