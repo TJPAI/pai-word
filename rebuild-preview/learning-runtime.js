@@ -251,7 +251,7 @@
     // Enrich the EXISTING answer page only; optional certified fields never alter learning state.
     const certifiedText=(key)=>typeof approvedCard?.[key]==='string'?approvedCard[key].trim():'';
     const runtimeGloss=typeof u.s.definition==='string'?u.s.definition.trim():'';
-    const approvedGlossText=certifiedText('gloss_en')||runtimeGloss;
+    const approvedGlossText=certifiedText('gloss_en')||(/^core modern learner use of\s*[“"']/i.test(runtimeGloss)?'':runtimeGloss);
     const approvedGloss=approvedGlossText?`<div class="answer-section" data-approved-gloss-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">英文释义</div><div class="definition">${escapeHtml(approvedGlossText)}</div></div>`:'';
     const approvedExamples=approvedCard&&state.showExamples&&certifiedText('example_en')?`<div class="answer-section examples-section" data-approved-teaching-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">认证教学例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en">${escapeHtml(certifiedText('example_en'))}</div>${certifiedText('example_zh')?`<div class="example-translation">${escapeHtml(certifiedText('example_zh'))}</div>`:''}</div><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(certifiedText('example_en'))}" aria-label="播放例句 1">🔊</button></div></div>`:'';
     const approvedUsage=approvedCard&&state.showCollocations&&certifiedText('collocation')?`<div class="answer-section" data-approved-collocation-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">典型搭配</div><div class="collocations">${escapeHtml(certifiedText('collocation'))}</div></div>`:'';
