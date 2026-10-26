@@ -19,7 +19,7 @@ assert(css.includes('.pai-scratch-area.is-drawing{position:absolute!important'),
 assert(css.includes('.recall-correction button{user-select:none;-webkit-user-select:none'), 'rating labels not selectable');
 assert(scratch.includes('screen.appendChild(surface)'),'active drawing overlay must escape clipped study-body');
 assert(css.includes('.learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing'),'overlay must cover header and hero as screen child');
-assert(html.includes('learning.css?v=v22-scratch-dualface-20261027-v1'),'Safari loads updated CSS');
+assert(html.includes('learning.css?v=v22-scratch-ios-selection-20261027-v1'),'Safari loads updated CSS');
 assert(!/localStorage|indexedDB|fetch\(/.test(scratch),'scratch data never saved or transmitted');
 assert(js.includes("const keepDrawing=source==='auto'&&window.PAI_SCRATCH_DRAWING?.()===true"),'only auto transitions retain drawing');
 assert(js.includes("if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true"),'capture mode before auto navigation');
@@ -51,4 +51,9 @@ assert(scratch.includes("document.addEventListener('pointerdown'"),'hold recogni
 assert(css.includes('.learning-screen.pai-scratch-active .recall-note{visibility:hidden}'),'lower hint hidden while drawing');
 assert(scratch.includes('const alpha=distance>14?0.92:distance>6?0.82:0.68'),'adaptive smoothing follows stroke speed');
 assert(scratch.includes('if(distance<0.35)continue'),'tiny jitter is filtered');
+assert(css.includes('-webkit-touch-callout:none!important'),'Safari touch callout suppressed');
+assert(css.includes('.learning-screen .word-hero'),'normal learning header also nonselectable');
+assert(scratch.includes("document.addEventListener('selectstart'"),'block selected-text toolbar');
+assert(scratch.includes("document.addEventListener('contextmenu'"),'block callout menu');
+assert(scratch.includes("state.view==='learning'&&scratchSelectionTarget(e.target)"),'do not suppress selection elsewhere');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
