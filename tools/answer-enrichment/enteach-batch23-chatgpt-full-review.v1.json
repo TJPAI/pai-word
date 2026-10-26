@@ -1,0 +1,444 @@
+{
+  "schema_version": "pai-word-enteach-batch23-chatgpt-full-content-review-v1",
+  "owner_role": "CG-ENTEACH",
+  "review_date": "2026-10-26",
+  "source": {
+    "branch": "answer-enrichment-main-dev-20261026",
+    "paths": [
+      "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json"
+    ],
+    "blobs": [
+      "fd46a0ddff8519dccadd90a471c6f93c3570f886",
+      "ee22f3bc113bdafafd211598459eb7d0d7250a37"
+    ]
+  },
+  "counts": {
+    "reviewed": 23,
+    "pass": 20,
+    "minor_revision": 3,
+    "muse_reviewed": 0,
+    "dual_ai_full_teaching_pass": 0
+  },
+  "status": "CHATGPT_FULL_TEACHING_REVIEW_COMPLETE_MUSE_PENDING",
+  "scope": "Initial full teaching content review; base ENLEX 23 semantic-gloss status is distinct",
+  "records": [
+    {
+      "headword": "scanner",
+      "ku_id": "w_5575_scanner_ku_s01",
+      "rank": 359,
+      "verdict": "PASS",
+      "reason": "设备与scan动作的区分准确；例句展示纸质表格扫描；barcode scanner搭配未误称是单独义项。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "amid",
+      "ku_id": "w_4094_amid_ku_s01",
+      "rank": 589,
+      "verdict": "PASS",
+      "reason": "amid + 名词结构正确，噪声背景中的情感状态与翻译吻合；among的复数群体对比有助于避免错误替换。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "liter",
+      "ku_id": "w_5798_liter_ku_s01",
+      "rank": 1188,
+      "verdict": "PASS",
+      "reason": "1,000 milliliters数值准确；one liter及复数liters一致；容量与质量区分明确。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "gym",
+      "ku_id": "w_3607_gym_ku_s01",
+      "rank": 1725,
+      "verdict": "PASS",
+      "reason": "gym membership与go to the gym自然；school gym覆盖体育馆而不强制大型stadium。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "noun",
+      "ku_id": "w_4104_noun_ku_s01",
+      "rank": 1731,
+      "verdict": "PASS",
+      "reason": "名词释义包括抽象事物和性质；hotel例句为词类判断，语法术语没有超出目标KU。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "compatibility",
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "rank": 1785,
+      "verdict": "PASS",
+      "reason": "compatibility with的搭配及软件旧设备例句正确；与similarity的对比有辨别力。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "prototype",
+      "ku_id": "w_5464_prototype_ku_s01",
+      "rank": 1991,
+      "verdict": "PASS",
+      "reason": "样机在量产前测试合理；working prototype不是最终商业化产品，与中文“原型；样机”吻合。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "additionally",
+      "ku_id": "w_4404_additionally_ku_s01",
+      "rank": 2015,
+      "verdict": "REVISE_MINOR_STYLE",
+      "reason": "additional信息句首副词用法和逗号正确；搭配列表中的additionally, ...不属于完整搭配，另两个分词搭配不够清晰，应换成具有独立语境的常见短语。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "quiz",
+      "ku_id": "w_5210_quiz_ku_s01",
+      "rank": 2104,
+      "verdict": "PASS",
+      "reason": "vocabulary quiz和take a quiz自然，short quiz与exam规模/正式度的区别加了非绝对化措辞。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "garbage",
+      "ku_id": "w_5081_garbage_ku_s01",
+      "rank": 2168,
+      "verdict": "PASS",
+      "reason": "take out the garbage以及不可数语法适配美式词义；句中empty box可以视情形回收，但语言表达本身正确。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "compute",
+      "ku_id": "w_3004_compute_ku_s01",
+      "rank": 2286,
+      "verdict": "PASS",
+      "reason": "compute average和数值结果搭配准确，程序每小时计算的频率、英汉例句一致；estimate不是精确计算。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "visa",
+      "ku_id": "w_5332_visa_ku_s01",
+      "rank": 2299,
+      "verdict": "PASS",
+      "reason": "申请签证句法正确；签证与护照功能区别清楚，虽并非每趟旅行均需签证，例句表达特定情境义务，不是普遍政策断言。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "logo",
+      "ku_id": "w_5339_logo_ku_s01",
+      "rank": 2313,
+      "verdict": "PASS",
+      "reason": "图形标识语义精确；公司包装例句与slogan的文字宣传区分正确。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "kilometer",
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "rank": 2390,
+      "verdict": "PASS",
+      "reason": "公制数值和英美拼写正确，hotel/station两公里例句真实自然；mile区分避免误做同单位。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "adjustable",
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "rank": 2422,
+      "verdict": "PASS",
+      "reason": "adjustable backrest与形容词结构自然；adaptable含环境适应义而非仅机械调节。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "unification",
+      "ku_id": "w_8469_unification_ku_s01",
+      "rank": 1850,
+      "verdict": "PASS",
+      "reason": "两个部门整合属于合并成一体的典型抽象义；the unification of搭配与cooperation区分准确。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "gateway",
+      "ku_id": "w_5622_gateway_ku_s01",
+      "rank": 2101,
+      "verdict": "REVISE_MINOR_PRAGMATICS",
+      "reason": "payment gateway搭配与网关义匹配，但例句中securely无来源保证且对词义教学无必要；建议去除安全断言，仅描述处理支付。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "snapshot",
+      "ku_id": "w_7254_snapshot_ku_s01",
+      "rank": 2274,
+      "verdict": "PASS",
+      "reason": "a snapshot of在比喻义下自然；报告呈现某时点概况的译文与预测forecast形成对照。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "tier",
+      "ku_id": "w_5852_tier_ku_s01",
+      "rank": 2293,
+      "verdict": "PASS",
+      "reason": "pricing tiers例句展示分级收费，three-tier复合形容词语法提示准确。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "intercept",
+      "ku_id": "w_6138_intercept_ku_s01",
+      "rank": 2363,
+      "verdict": "PASS",
+      "reason": "足球传球途中拦截与intercept和interrupt的动作差别准确；一般及物用法清晰。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "mayor",
+      "ku_id": "w_3095_mayor_ku_s01",
+      "rank": 2388,
+      "verdict": "REVISE_MINOR_COLLOCATION",
+      "reason": "the city mayor虽可理解但英语中常偏冗余，应改为mayor of the city或the mayor of [city]；职位差别随辖区而变，辨析总体合理。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "painful",
+      "ku_id": "w_3069_painful_ku_s01",
+      "rank": 2416,
+      "verdict": "PASS",
+      "reason": "painful to talk about对应精神痛苦，painful injury对应身体疼痛，sore对比符合常见使用范围。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    },
+    {
+      "headword": "officially",
+      "ku_id": "w_3514_officially_ku_s01",
+      "rank": 2421,
+      "verdict": "PASS",
+      "reason": "officially opened to the public与正式开放英汉一致；officially/publicly对照不把公开视作官方认可。",
+      "field_scope": [
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note",
+        "gloss_zh",
+        "gloss_en"
+      ],
+      "independent_muse_same_version": "PENDING",
+      "production_ready": false
+    }
+  ],
+  "production_ready": false,
+  "activation_allowed": false,
+  "next": "Make narrowly scoped style changes with stable KU before requesting version-matched Muse review; no automatic publication."
+}
