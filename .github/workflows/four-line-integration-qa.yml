@@ -47,6 +47,8 @@ jobs:
         run: |
           node --check rebuild-preview/scene500-recommendation-bridge.mjs
           node -e "const fs=require('fs');const b=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8'),h=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');if(!b.includes('runtimeDataVersion:instance?.mode')||!h.includes('diagnostic=bridge.status?.()')||!h.includes('lexiconVerifiedLoaded,elapsedMs:'))throw Error('NO_RUNTIME_VERSION_BRIDGE');console.log('PASS runtime diagnostic wiring')"
+      - name: Execute KU anchored release to runtime dual gate
+        run: node tools/integration/test-ku-anchored-release-to-runtime.mjs
       - name: Verify Batch93 reviewed teaching remains staging
         run: node tools/integration/test-batch93-staging-failclosed.mjs
       - name: Execute IndexedDB transaction API regression
