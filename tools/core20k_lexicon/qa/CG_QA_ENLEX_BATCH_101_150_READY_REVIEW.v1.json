@@ -1,0 +1,297 @@
+{
+  "schema": "pai-cg-qa-enlex-batch101-150-ready-review-v1",
+  "source_commit": "92e7a888b77cf405e7402e429d33fac459ed1469",
+  "source_path": "tools/core20k_lexicon/qa/ENLEX_AI_EDITORIAL_BATCH_101_150.v1.json",
+  "reviewer_role": "CG-QA",
+  "review_scope": "28 READY entries only; HOLD excluded",
+  "summary": {
+    "reviewed": 28,
+    "pass": 25,
+    "conditional": 3,
+    "muse_review": "PENDING",
+    "dual_ai_certified": 0,
+    "production_ready": false
+  },
+  "records": [
+    {
+      "source_position": 102,
+      "rank": 2665,
+      "lemma": "compress",
+      "ku_id": "w_5999_compress_ku_s01",
+      "source_gloss_zh": "压缩；压紧",
+      "proposed_gloss_en": "to press or squeeze something so that it takes up less space",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "动词压紧/压缩的空间缩减核心义准确，数据压缩是引申；不把名词compress混入。"
+    },
+    {
+      "source_position": 103,
+      "rank": 2667,
+      "lemma": "fry",
+      "ku_id": "w_3715_fry_ku_s01",
+      "source_gloss_zh": "油炸；煎",
+      "proposed_gloss_en": "to cook food in hot oil or fat",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "热油或油脂烹调涵盖煎和炸，原英汉语义一致。"
+    },
+    {
+      "source_position": 105,
+      "rank": 2671,
+      "lemma": "lash",
+      "ku_id": "w_6132_lash_ku_s01",
+      "source_gloss_zh": "鞭打",
+      "proposed_gloss_en": "to strike someone or something with a whip or similar object",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "鞭或类似工具抽打准确，动词也有猛烈抨击的引申义，本次限定物理鞭打。"
+    },
+    {
+      "source_position": 107,
+      "rank": 2675,
+      "lemma": "politely",
+      "ku_id": "w_6877_politely_ku_s01",
+      "source_gloss_zh": "礼貌地",
+      "proposed_gloss_en": "in a way that shows good manners and respect for other people",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "礼貌、尊重的行为方式与副词词性吻合。"
+    },
+    {
+      "source_position": 108,
+      "rank": 2677,
+      "lemma": "maid",
+      "ku_id": "w_5385_maid_ku_s01",
+      "source_gloss_zh": "女佣；女仆",
+      "proposed_gloss_en": "a woman employed to clean or do household work",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "受雇从事家务清洁工作的女性，与女佣义吻合，但提醒语境中职务称呼可能有更中性的说法。"
+    },
+    {
+      "source_position": 112,
+      "rank": 2702,
+      "lemma": "personalize",
+      "ku_id": "w_6985_personalize_ku_s01",
+      "source_gloss_zh": "个性化",
+      "proposed_gloss_en": "to change or design something to suit a particular person",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "为特定个人需求作个性化设计/调整，动词释义充分。"
+    },
+    {
+      "source_position": 114,
+      "rank": 2716,
+      "lemma": "additive",
+      "ku_id": "w_7447_additive_ku_s01",
+      "source_gloss_zh": "添加剂",
+      "proposed_gloss_en": "a substance added to something to improve or change its properties",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "添加以改变性质的物质，名词义准确；不误作形容词。"
+    },
+    {
+      "source_position": 115,
+      "rank": 2717,
+      "lemma": "ramp",
+      "ku_id": "w_6056_ramp_ku_s01",
+      "source_gloss_zh": "坡道",
+      "proposed_gloss_en": "a sloping surface connecting two different levels",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "连接高低两个平面的斜坡结构，覆盖坡道义。"
+    },
+    {
+      "source_position": 116,
+      "rank": 2718,
+      "lemma": "insider",
+      "ku_id": "w_5125_insider_ku_s01",
+      "source_gloss_zh": "内部人士；知情者",
+      "proposed_gloss_en": "a person who has special knowledge about a group or organization because they belong to it",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "组织内成员掌握特殊信息的身份义准确，属比一般知情者更窄的典型义。"
+    },
+    {
+      "source_position": 118,
+      "rank": 2720,
+      "lemma": "rugby",
+      "ku_id": "w_5142_rugby_ku_s01",
+      "source_gloss_zh": "橄榄球",
+      "proposed_gloss_en": "a team sport played with an oval ball that players carry, pass, or kick",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "椭圆球、持球传球踢球的团队体育，明确rugby而非美式football即可。"
+    },
+    {
+      "source_position": 119,
+      "rank": 2721,
+      "lemma": "contention",
+      "ku_id": "w_6042_contention_ku_s01",
+      "source_gloss_zh": "争论",
+      "proposed_gloss_en": "a disagreement or argument about something",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "争议/争论义成立；其‘主张/论点’另一义不包含在源中文中。"
+    },
+    {
+      "source_position": 122,
+      "rank": 2735,
+      "lemma": "dodge",
+      "ku_id": "w_7172_dodge_ku_s01",
+      "source_gloss_zh": "躲避",
+      "proposed_gloss_en": "to move quickly aside to avoid being hit or caught",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "迅速闪躲避开碰撞或抓捕，是自然动词定义。"
+    },
+    {
+      "source_position": 123,
+      "rank": 2748,
+      "lemma": "logistic",
+      "ku_id": "w_5363_logistic_ku_s01",
+      "source_gloss_zh": "物流的；后勤的",
+      "proposed_gloss_en": "relating to the detailed organization and supply of an operation",
+      "chatgpt_verdict": "CONDITIONAL_SCOPE_OR_POS",
+      "specific_reason": "释义涉及组织与供应的后勤义，但logistic单数形容词还有数学logistic function及生物人口增长义，且后勤语境logistical更常用；必须标明KU词性与义项。"
+    },
+    {
+      "source_position": 124,
+      "rank": 2760,
+      "lemma": "curtain",
+      "ku_id": "w_3046_curtain_ku_s01",
+      "source_gloss_zh": "窗帘；幕",
+      "proposed_gloss_en": "a piece of cloth hung to cover a window or separate an area",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "窗帘/布幕共同材料与遮挡分隔功能准确。"
+    },
+    {
+      "source_position": 125,
+      "rank": 2764,
+      "lemma": "alright",
+      "ku_id": "w_4160_alright_ku_s01",
+      "source_gloss_zh": "好的；没问题",
+      "proposed_gloss_en": "acceptable, satisfactory, or not causing a problem",
+      "chatgpt_verdict": "CONDITIONAL_SCOPE_OR_POS",
+      "specific_reason": "仅形容词acceptable/satisfactory，未覆盖‘好的；没问题’中应答、同意的口语副词/感叹词用法，需扩充或限定。"
+    },
+    {
+      "source_position": 131,
+      "rank": 2797,
+      "lemma": "appendix",
+      "ku_id": "w_6328_appendix_ku_s01",
+      "source_gloss_zh": "附录",
+      "proposed_gloss_en": "a section of extra information placed at the end of a book or document",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "书/文档末附加部分对应附录，非身体阑尾义；源中文范围明确。"
+    },
+    {
+      "source_position": 133,
+      "rank": 2804,
+      "lemma": "bailout",
+      "ku_id": "w_7292_bailout_ku_s01",
+      "source_gloss_zh": "救助",
+      "proposed_gloss_en": "financial help given to a person, company, or institution in serious difficulty",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "困难企业或机构的紧急财务援助，金额用途均不夸张。"
+    },
+    {
+      "source_position": 134,
+      "rank": 2805,
+      "lemma": "prolong",
+      "ku_id": "w_4067_prolong_ku_s01",
+      "source_gloss_zh": "延长",
+      "proposed_gloss_en": "to make something last longer than it otherwise would",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "使持续时间延长，动词定义准确。"
+    },
+    {
+      "source_position": 135,
+      "rank": 2806,
+      "lemma": "refinement",
+      "ku_id": "w_7428_refinement_ku_s01",
+      "source_gloss_zh": "改进",
+      "proposed_gloss_en": "a small change that makes something more effective, accurate, or suitable",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "改进的细小调整义准确；其他提炼/精炼义不在当前源中文内。"
+    },
+    {
+      "source_position": 136,
+      "rank": 2813,
+      "lemma": "postal",
+      "ku_id": "w_5491_postal_ku_s01",
+      "source_gloss_zh": "邮政的",
+      "proposed_gloss_en": "connected with sending and delivering letters or parcels",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "与信件包裹收寄运送有关的形容词。"
+    },
+    {
+      "source_position": 139,
+      "rank": 2823,
+      "lemma": "trumpet",
+      "ku_id": "w_6052_trumpet_ku_s01",
+      "source_gloss_zh": "小号",
+      "proposed_gloss_en": "a brass musical instrument played by blowing into a mouthpiece",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "吹嘴发声的铜管乐器对应小号。"
+    },
+    {
+      "source_position": 141,
+      "rank": 2828,
+      "lemma": "unsafe",
+      "ku_id": "w_7799_unsafe_ku_s01",
+      "source_gloss_zh": "不安全的",
+      "proposed_gloss_en": "not protected against danger or likely to cause harm",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "不安全或易致伤害，覆盖潜在风险。"
+    },
+    {
+      "source_position": 142,
+      "rank": 2829,
+      "lemma": "mundane",
+      "ku_id": "w_7283_mundane_ku_s01",
+      "source_gloss_zh": "平凡的",
+      "proposed_gloss_en": "ordinary and not especially interesting or exciting",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "日常普通且不引人入胜的形容词意义吻合。"
+    },
+    {
+      "source_position": 145,
+      "rank": 2835,
+      "lemma": "hassle",
+      "ku_id": "w_6748_hassle_ku_s01",
+      "source_gloss_zh": "麻烦",
+      "proposed_gloss_en": "a situation or task that causes annoying trouble or inconvenience",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "恼人的繁琐/麻烦情形，对应常见名词义，动词另属不同词性。"
+    },
+    {
+      "source_position": 146,
+      "rank": 2836,
+      "lemma": "registration",
+      "ku_id": "w_3161_registration_ku_s01",
+      "source_gloss_zh": "登记；注册",
+      "proposed_gloss_en": "the act of officially recording a name or details on a list or system",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "在名单或系统登记名称资料的行为，涵盖登记/注册。"
+    },
+    {
+      "source_position": 147,
+      "rank": 2837,
+      "lemma": "solicit",
+      "ku_id": "w_6621_solicit_ku_s01",
+      "source_gloss_zh": "征求",
+      "proposed_gloss_en": "to ask for something such as help, money, or information",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "主动征求帮助、钱款或资料，与征求相符；区分寻求服务/招揽等其他用法。"
+    },
+    {
+      "source_position": 148,
+      "rank": 2838,
+      "lemma": "courier",
+      "ku_id": "w_6853_courier_ku_s01",
+      "source_gloss_zh": "快递员；信使",
+      "proposed_gloss_en": "a person or company that delivers documents or parcels",
+      "chatgpt_verdict": "CONDITIONAL_SCOPE_OR_POS",
+      "specific_reason": "个人或企业递送文件、包裹的义项与‘快递员；信使’基本吻合，英文company扩展为快递公司略宽，宜备注。"
+    },
+    {
+      "source_position": 149,
+      "rank": 2839,
+      "lemma": "rebate",
+      "ku_id": "w_7351_rebate_ku_s01",
+      "source_gloss_zh": "返利",
+      "proposed_gloss_en": "a partial return of money paid for a product or service",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "购买后返还部分款项，对应返利（注意与降价/折扣不同）。"
+    }
+  ]
+}
