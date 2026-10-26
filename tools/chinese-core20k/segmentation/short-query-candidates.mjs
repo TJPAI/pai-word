@@ -2,10 +2,12 @@
 // Pure utility, no dependency on Scene500 ranking or production Runtime.
 export function segmentCandidates(query, lexicon, options = {}) {
   if (typeof query !== 'string') throw Error('INVALID_QUERY');
-  const chars = Array.from(query.normalize('NFC'));
+  const normalizedQuery = query.normalize('NFC');
+  const chars = Array.from(normalizedQuery);
   if (chars.length < 1 || chars.length > 20) throw Error('QUERY_LENGTH');
   if (lexicon == null || typeof lexicon[Symbol.iterator] !== 'function') throw Error('INVALID_LEXICON');
   const dict = lexicon instanceof Set ? lexicon : new Set(lexicon);
+  if (options === null || typeof options !== 'object' || Array.isArray(options)) throw Error('INVALID_OPTIONS');
   const requested = options.maxCandidates ?? 8;
   if (!Number.isInteger(requested) || requested < 1 || requested > 20) throw Error('INVALID_MAX_CANDIDATES');
   const maxCandidates = requested;
@@ -32,5 +34,5 @@ export function segmentCandidates(query, lexicon, options = {}) {
     for(const x of out){const key=x.tokens.join('\u0000');if(!seen.has(key)){dedup.push(x);seen.add(key)}if(dedup.length>=maxCandidates)break}
     memo.set(i,dedup);return dedup;
   }
-  return {query,source:'LEXICON_CANDIDATES_NOT_RANKED_SCENE500',candidates:solve(0)};
+  return {query,normalizedQuery,source:'LEXICON_CANDIDATES_NOT_RANKED_SCENE500',candidates:solve(0)};
 }
