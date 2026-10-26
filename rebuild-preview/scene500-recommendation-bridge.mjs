@@ -100,5 +100,7 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
 export const status=()=>({initialized:!!instance,error:lastError,
  mode:instance?.mode||'unloaded',semanticEnabled,semanticReason,semanticReady:!!semanticOverlay,hybridLoading:!!hybridReady&&!hybridSettled,
  catalogSchema:instance?.catalog?.schema||null,
+ runtimeDataVersion:instance?.mode==='hybrid'?instance.engine?.runtimeDataVersion||null:null,
+ lexiconVerifiedLoaded:instance?.mode==='hybrid'&&!!instance.engine?.runtimeDataVersion,
  lexiconAsset:'zh-core20k-v0101-scene500-runtime.json',
  associationAsset:'v094-lexical-associations.json'});
