@@ -1,0 +1,61 @@
+// Batch93 integration regression on the *regular* learning renderer, not an isolated page.
+// Run: node tools/answer-enrichment/test-batch93-main-integration.mjs
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {installBatch93Isolated} from '../../scripts/batch93-isolated-adapter.mjs';
+const json=path=>JSON.parse(readFileSync(new URL(path,import.meta.url),'utf8'));
+const pack=json('../../rebuild-preview/batch93-sixku-isolated.json');
+assert.equal(pack.records.length,6);
+assert.equal(pack.production_ready,false);
+globalThis.location={search:'?batch93=1'};
+const units=pack.records.map(row=>{
+ const w={w:row.headword,rank:row.rank,pos:row.pos,allSenses:[]};
+ return {w,k:row.ku_id,sid:row.ku_id,s:{ku_id:row.ku_id,kuType:'sense',playable:true,m:row.gloss_zh,definition:row.gloss_en,c:'',e:[]}};
+});
+const byKU=new Map(units.map(unit=>[unit.k,unit]));
+const core={words:Array(20000),byKU,byRank:new Map(units.map(unit=>[unit.w.rank,unit.w]))};
+const fetcher=async()=>({ok:true,json:async()=>pack});
+const scope={PAI_CORE_QA:{release:'Core20K-dev'}};
+const before=JSON.stringify(units);
+const approved=await installBatch93Isolated({fetcher,scope,core});
+assert.equal(approved.enabled,true);
+assert.equal(approved.accepted.size,6);
+assert.equal(approved.production_ready,false);
+assert.equal(JSON.stringify(units),before,'runtime source must remain immutable');
+const source=readFileSync(new URL('../../rebuild-preview/learning-runtime.js',import.meta.url),'utf8');
+const start=source.indexOf('  window.answerHtml=function(u){');
+const end=source.indexOf('\n  // Settings actions',start);
+assert(start>=0&&end>start);
+const state={showExamples:true,showCollocations:true,showCompare:true};
+const window={PAI_BATCH93_ISOLATED:approved,PAI_APPROVED_TEACHING_OVERLAY:null,PAI_CORE_QA:scope.PAI_CORE_QA};
+const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+new Function('window','state','escapeHtml','contrastData',source.slice(start,end))(window,state,escapeHtml,()=>({items:[]}));
+for(const u of units){
+ const card=approved.accepted.get(u.k),html=window.answerHtml(u);
+ assert(html.includes(escapeHtml(card.example_en)));
+ assert(html.includes(escapeHtml(card.example_zh)));
+ assert(html.includes('class="example-num">1.'));
+ assert(html.includes('data-example-audio'));
+ assert(html.includes('data-speak="'+escapeHtml(card.example_en)+'"'));
+ assert(!html.includes('测试搭配（未认证）'));
+}
+assert(!window.answerHtml({...units[0],s:{...units[0].s,ku_id:'not-in-batch93'}}).includes('data-batch93-isolated-ku'));
+state.showExamples=false;
+assert(!window.answerHtml(units[0]).includes('data-batch93-isolated-ku'));
+state.showExamples=true;
+window.PAI_BATCH93_ISOLATED={enabled:false,accepted:approved.accepted};
+assert(!window.answerHtml(units[0]).includes('data-batch93-isolated-ku'));
+const badRank={...core,byRank:new Map(core.byRank)};
+badRank.byRank.set(units[0].w.rank,{w:'wrong',rank:units[0].w.rank,pos:units[0].w.pos});
+await assert.rejects(installBatch93Isolated({fetcher,scope:{PAI_CORE_QA:{release:'Core20K-dev'}},core:badRank}),/BATCH93_IDENTITY/);
+await assert.rejects(installBatch93Isolated({fetcher,scope:{PAI_CORE_QA:{release:'not-Core20K'}},core}),/BATCH93_CORE20K_REQUIRED/);
+const boot=readFileSync(new URL('../../rebuild-preview/bootstrap.js',import.meta.url),'utf8');
+assert(boot.includes('PAI_START_POLICY_SESSION([...window.PAI_BATCH93_ISOLATED.accepted.keys()]'));
+assert(boot.includes('Batch93 六词 · 隔离集成测试'));
+assert(boot.includes('pai-word-core20k-batch93-isolated-v1'));
+const storage=readFileSync(new URL('../../rebuild-preview/ku-durable-store.js',import.meta.url),'utf8');
+assert(storage.includes('pai-word-preview-ku-durable-batch93-v1'));
+const legacy=readFileSync(new URL('../../rebuild-preview/preview-state.js',import.meta.url),'utf8');
+assert(legacy.includes('pai-word-core20k-batch93-isolated-v1'));
+assert.equal(JSON.stringify(units),before,'no learning state mutation during rendering');
+console.log('PASS Batch93: 6 identities, bilingual numbered audio answers, toggles, fail-closed, main-flow entry, isolated storage');
