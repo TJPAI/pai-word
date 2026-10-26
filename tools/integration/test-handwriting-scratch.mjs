@@ -14,4 +14,8 @@ assert(css.includes('touch-action:none;')&&css.includes('-webkit-user-select:non
 assert(css.includes('.learning-screen:not(.revealed) .study-body'),'answer UI stays untouched');
 assert(js.includes("if(state.view==='learning')requestAnimationFrame(initScratch)"),'rebuild canvas after navigating words');
 assert(!/localStorage|indexedDB|fetch\(/.test(js.slice(js.indexOf('// Scratch surface is presentation-only:'))),'no scratch persistence or network transport');
+const html=fs.readFileSync('rebuild-preview/index.html','utf8');
+assert(html.includes('learning.css?v=v22-handwriting-scratch-20261026-fix1'),'scratch CSS cache version must change on deploy');
+assert(css.includes('min-height:180px;flex:1 1 auto;display:flex;overflow:hidden'),'question body must allocate visible sketch height');
+assert(css.includes('height:100%;min-height:180px;overflow:hidden'),'canvas surface must occupy available screen space');
 console.log('PASS question scratch gesture, clearing, rendering and no persistence invariants');
