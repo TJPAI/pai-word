@@ -55,6 +55,8 @@ jobs:
         run: node tools/integration/test-approved-overlay-boot-source.mjs
       - name: Execute KU anchored release to runtime dual gate
         run: node tools/integration/test-ku-anchored-release-to-runtime.mjs
+      - name: Evaluate Batch93 real release readiness
+        run: node tools/integration/check-batch93-release-readiness.mjs
       - name: Verify Batch93 reviewed teaching remains staging
         run: node tools/integration/test-batch93-staging-failclosed.mjs
       - name: Execute IndexedDB transaction API regression
