@@ -1,0 +1,23 @@
+// Ensure the existing answer page never mixes unapproved demo content and released teaching.
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const src=readFileSync(new URL('../../rebuild-preview/learning-runtime.js',import.meta.url),'utf8');
+const a=src.indexOf('  window.answerHtml=function(u){');
+const b=src.indexOf('\n  // Settings actions',a);
+assert(a>=0&&b>a,'renderer boundaries');
+const window={PAI_CORE_QA:{release:'Core20K-dev'},PAI_APPROVED_TEACHING_OVERLAY:null};
+const state={showCollocations:true,showExamples:true,showCompare:true};
+const escapeHtml=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+new Function('window','state','escapeHtml','contrastData',src.slice(a,b))(window,state,escapeHtml,()=>({items:[]}));
+const u={w:{w:'hotel',allSenses:[]},s:{ku_id:'w_0771_hotel_ku01',m:'酒店；旅馆',definition:'a place to stay',c:'',e:[]}};
+const demo=window.answerHtml(u);
+assert(demo.includes('测试搭配（未认证）')&&demo.includes('测试英汉例句（未认证）')&&demo.includes('测试辨析（未认证）'));
+assert(demo.includes('data-example-audio')&&demo.includes('example-num'));
+window.PAI_APPROVED_TEACHING_OVERLAY={enabled:true,accepted:new Map([[u.s.ku_id,{example_en:'The hotel is nearby.',example_zh:'酒店在附近。',collocation:'a nearby hotel',contrast_note:'hotel and hostel differ'}]])};
+const released=window.answerHtml(u);
+for(const label of ['测试搭配（未认证）','测试英汉例句（未认证）','测试辨析（未认证）'])assert(!released.includes(label),label);
+for(const value of ['The hotel is nearby.','酒店在附近。','a nearby hotel','hotel and hostel differ','data-example-audio'])assert(released.includes(value),value);
+assert.equal(window.answerHtml({...u,s:{...u.s,ku_id:'other-ku'}}).includes('测试搭配（未认证）'),false);
+assert.equal(u.s.c,'');
+assert.deepEqual(u.s.e,[]);
+console.log('PASS: staging demo and certified overlay never mix; audio/number/toggles preserved');
