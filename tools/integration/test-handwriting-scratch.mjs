@@ -32,4 +32,10 @@ assert(scratch.includes('ctx.lineTo(lastInk.x,lastInk.y);ctx.stroke()'),'complet
 assert(scratch.includes('ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk.midY??startY)'), 'each stroke segment starts anew, avoiding accumulated overpainting');
 assert(scratch.includes('midX:mid.x,midY:mid.y'),'retain midpoint for seamless segments');
 assert(scratch.includes('lastInk=null;pointer=null'),'reset stroke state between fingers');
+assert(js.includes('window.PAI_SCRATCH_BEGIN_RATING?.();'),'capture drawing state on grade selection');
+assert(scratch.includes('ratingWasDrawing=true'),'remember drawing mode through answer/voice');
+assert(scratch.includes('window.PAI_SCRATCH_FINISH_RATING=()=>'),'restore only after grade commit');
+assert(js.includes('await showCurrent();if(direction===-1)await window.browseAnswer(-1);window.PAI_SCRATCH_FINISH_RATING?.()'),'restore after normal grade advances');
+assert(js.includes('await window.browseAnswer(direction);window.PAI_SCRATCH_FINISH_RATING?.()'),'restore after historical grade advances');
+assert(scratch.includes("if(state.view!=='learning'||state.revealed)return"),'never mask answer during rating');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
