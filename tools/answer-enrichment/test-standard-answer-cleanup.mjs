@@ -35,4 +35,17 @@ state.showExamples=true;state.showCollocations=false;
 assert(!window.answerHtml(unit).includes('stay at a hotel'),'collocation setting must work');
 state.showCollocations=true;state.showCompare=false;
 assert(!window.answerHtml(unit).includes('Not a hostel'),'comparison setting must work');
+// Generic Runtime placeholder glosses are not published as English definitions.
+window.PAI_APPROVED_TEACHING_OVERLAY={enabled:false,accepted:new Map()};
+state.showCompare=true;
+const placeholderUnit={...unit,s:{...unit.s,ku_id:'w_3084_reservation_ku_s01',definition:'core modern learner use of “reservation”'}};
+const placeholderHtml=window.answerHtml(placeholderUnit);
+assert(!placeholderHtml.includes('core modern learner use of'),'known placeholder must not render as English definition');
+assert(!placeholderHtml.includes('data-approved-gloss-ku'),'missing valid gloss must omit the gloss section');
+const normalHtml=window.answerHtml(unit);
+assert(normalHtml.includes('a place where travelers can stay'),'genuine runtime definition must remain');
+window.PAI_APPROVED_TEACHING_OVERLAY={enabled:true,accepted:new Map([[placeholderUnit.s.ku_id,{gloss_en:'an arrangement made in advance'}]])};
+assert(window.answerHtml(placeholderUnit).includes('an arrangement made in advance'),'approved glossary overlay must override placeholder');
+assert(!window.answerHtml(placeholderUnit).includes('core modern learner use of'),'placeholder must not leak after overlay');
+console.log('PASS standard answer: placeholder suppressed, genuine and approved glosses retained');
 console.log('PASS standard answer: no uncertified hotel demo, certified overlay and settings preserved');
