@@ -1,0 +1,280 @@
+{
+  "schema": "pai-word-zh-core20k-pos-targeted-errata-v1",
+  "role": "CG-ZH",
+  "date": "2026-10-26",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_git_blobs": [
+    {
+      "path": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch01-20261026.json",
+      "git_blob_sha": "6a518e6efdfb855016fa4bb4b663b43f7c8c26e7"
+    },
+    {
+      "path": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "git_blob_sha": "99eac4f9d1c9e1611d4ca535bbeeb33053d68f82"
+    }
+  ],
+  "scope": "15 evidence-sensitive POS rows among 174 editorial candidates; replaces neither source batch nor Runtime",
+  "release": {
+    "production_ready": false,
+    "term_membership_mutated": false,
+    "term_ids_mutated": false,
+    "runtime_mutated": false,
+    "requires_independent_content_review": true
+  },
+  "counts": {
+    "reviewed": 174,
+    "flagged": 15,
+    "proposed_secondary_removals": 9
+  },
+  "rows": [
+    {
+      "term": "单位",
+      "term_id": "zh_80b19d68b1494dac82aa",
+      "runtime_index": 318,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "NOUN",
+      "old_secondary": [
+        "CLF"
+      ],
+      "proposed_primary": "NOUN",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“十个单位”里“个”才是量词；“单位”仍是名词。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "便",
+      "term_id": "zh_b33cf8e29901d129a101",
+      "runtime_index": 347,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "ADV",
+      "old_secondary": [
+        "VERB"
+      ],
+      "proposed_primary": "ADV",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“方便”是整词，不证明“便”独立作动词。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "应",
+      "term_id": "zh_6244c4c963a8b55a89cf",
+      "runtime_index": 337,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "AUX",
+      "old_secondary": [
+        "VERB"
+      ],
+      "proposed_primary": "AUX",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“回应”中“应”是语素，“应遵守规定”才可证明独立情态用法。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "本",
+      "term_id": "zh_83831c3f910cf940c661",
+      "runtime_index": 352,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "DET",
+      "old_secondary": [
+        "CLF",
+        "NOUN"
+      ],
+      "proposed_primary": "DET",
+      "proposed_secondary": [
+        "CLF"
+      ],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“书本”不能证明“本”独立作名词；“三本书”仍可证明量词。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "runtime_index": 289,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "CLF",
+      "old_secondary": [
+        "NOUN"
+      ],
+      "proposed_primary": "CLF",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“元素”不能证明“元”独立作名词；货币单位义暂保待词性体系确认。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "个人",
+      "term_id": "zh_15dec507959ec950e366",
+      "runtime_index": 346,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "NOUN",
+      "old_secondary": [
+        "ADJ"
+      ],
+      "proposed_primary": "NOUN",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“个人看法”为名词性定语，不足以证明词汇类别是形容词。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "一次",
+      "term_id": "zh_d736c7e459521de9cfa4",
+      "runtime_index": 334,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "NUM",
+      "old_secondary": [
+        "ADV"
+      ],
+      "proposed_primary": "NUM",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“再试一次”里的“一次”为数量补语，句法位置不等于副词词性。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "正",
+      "term_id": "zh_d657ee1d4abbab428311",
+      "runtime_index": 335,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "ADV",
+      "old_secondary": [
+        "ADJ"
+      ],
+      "proposed_primary": "ADV",
+      "proposed_secondary": [
+        "ADJ"
+      ],
+      "issue_type": "REPLACE_EVIDENCE_ONLY",
+      "linguistic_rationale_zh": "“正在”是另一个词，应以“他正写作业”证明“正”独立作副词。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "道",
+      "term_id": "zh_00a9d5bd97c269b44f95",
+      "runtime_index": 316,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "CLF",
+      "old_secondary": [
+        "NOUN",
+        "VERB"
+      ],
+      "proposed_primary": "CLF",
+      "proposed_secondary": [
+        "NOUN",
+        "VERB"
+      ],
+      "issue_type": "REPLACE_EVIDENCE_ONLY",
+      "linguistic_rationale_zh": "“道路”不能作独立“道”的名词例证；可用“一条道”检验。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "分",
+      "term_id": "zh_b6a993c256ef577abb04",
+      "runtime_index": 299,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "VERB",
+      "old_secondary": [
+        "NOUN",
+        "CLF"
+      ],
+      "proposed_primary": "VERB",
+      "proposed_secondary": [
+        "NOUN",
+        "CLF"
+      ],
+      "issue_type": "REPLACE_EVIDENCE_ONLY",
+      "linguistic_rationale_zh": "“三分”存在分数/时间单位歧义，不能单凭此例确定量词身份。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "过去",
+      "term_id": "zh_3774af744856e7f5a705",
+      "runtime_index": 312,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "VERB",
+      "old_secondary": [
+        "NOUN",
+        "ADV"
+      ],
+      "proposed_primary": "VERB",
+      "proposed_secondary": [
+        "NOUN",
+        "ADV"
+      ],
+      "issue_type": "REPLACE_EVIDENCE_ONLY",
+      "linguistic_rationale_zh": "“走过去”中“过去”为趋向补语，不是独立动词的充分证据；另用“过去看看”检验。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "继续",
+      "term_id": "zh_7c9691192f1b73408bbe",
+      "runtime_index": 260,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "VERB",
+      "old_secondary": [
+        "ADV"
+      ],
+      "proposed_primary": "VERB",
+      "proposed_secondary": [
+        "ADV"
+      ],
+      "issue_type": "EVIDENCE_INSUFFICIENT",
+      "linguistic_rationale_zh": "“继续往前走”中状语位置不自动证明副词类；需独立词汇分布验证。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "之后",
+      "term_id": "zh_28ff471d9a227562ea95",
+      "runtime_index": 265,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "NOUN",
+      "old_secondary": [
+        "ADP"
+      ],
+      "proposed_primary": "NOUN",
+      "proposed_secondary": [
+        "ADP"
+      ],
+      "issue_type": "TAXONOMY_DEPENDENT",
+      "linguistic_rationale_zh": "“三天之后”可按时间方位词/后置关系词分析，单凭后置位置无法选定标签。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "完全",
+      "term_id": "zh_c9174343f70d61ed190f",
+      "runtime_index": 313,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "ADV",
+      "old_secondary": [
+        "ADJ"
+      ],
+      "proposed_primary": "ADV",
+      "proposed_secondary": [],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“过程很完全”搭配不自然，不足以支持形容词类；暂保副词。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "runtime_index": 356,
+      "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "old_primary": "CLF",
+      "old_secondary": [
+        "NOUN",
+        "ADJ"
+      ],
+      "proposed_primary": "CLF",
+      "proposed_secondary": [
+        "NOUN"
+      ],
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "linguistic_rationale_zh": "“著名”中“名”是构词语素而非独立形容词证据。",
+      "status": "CG_ZH_TARGETED_SEMANTIC_ERRATUM_NOT_CERTIFIED"
+    }
+  ]
+}
