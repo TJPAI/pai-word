@@ -1,0 +1,153 @@
+{
+  "schema": "scene500-generalization-probe-v1",
+  "status": "EXPLORATORY_UNBLINDED_NOT_CERTIFIED",
+  "taxonomy": "scene500-20x25-v1",
+  "cases": [
+    {
+      "query": "Can I order a sandwich please?",
+      "expected": [
+        "S034"
+      ],
+      "group": "english_food"
+    },
+    {
+      "query": "I'd like a burger",
+      "expected": [
+        "S034",
+        "S030"
+      ],
+      "group": "english_food"
+    },
+    {
+      "query": "May I have a bowl of soup?",
+      "expected": [
+        "S034"
+      ],
+      "group": "english_food"
+    },
+    {
+      "query": "I need to book a hotel room",
+      "expected": [
+        "S113"
+      ],
+      "group": "english_hotel"
+    },
+    {
+      "query": "Where can I check in at the hotel?",
+      "expected": [
+        "S114"
+      ],
+      "group": "english_hotel"
+    },
+    {
+      "query": "Can you help me with a software issue?",
+      "expected": [
+        "S275"
+      ],
+      "group": "english_technical"
+    },
+    {
+      "query": "I want to practice speaking English",
+      "group": "english_learning",
+      "openEnded": true
+    },
+    {
+      "query": "练习英语口语怎么开始",
+      "group": "chinese_learning",
+      "openEnded": true
+    },
+    {
+      "query": "我打算明天坐公共汽车去公司",
+      "expected": [
+        "S078"
+      ],
+      "group": "chinese_transport"
+    },
+    {
+      "query": "原计划坐地铁，现在换公交",
+      "expected": [
+        "S078"
+      ],
+      "excluded": [
+        "S079"
+      ],
+      "group": "chinese_negation"
+    },
+    {
+      "query": "改坐地铁，不坐公交车",
+      "expected": [
+        "S079"
+      ],
+      "excluded": [
+        "S078"
+      ],
+      "group": "chinese_negation"
+    },
+    {
+      "query": "今天不坐公交，改乘地铁",
+      "expected": [
+        "S079"
+      ],
+      "excluded": [
+        "S078"
+      ],
+      "group": "chinese_negation"
+    },
+    {
+      "query": "我想预约酒店房间",
+      "expected": [
+        "S113"
+      ],
+      "group": "chinese_hotel"
+    },
+    {
+      "query": "咖啡馆里想买拿铁",
+      "expected": [
+        "S029",
+        "S039"
+      ],
+      "group": "chinese_food"
+    },
+    {
+      "query": "帮我找一条适合跑步的路线",
+      "group": "chinese_daily",
+      "openEnded": true
+    },
+    {
+      "query": "我要修改网上点的外卖订单",
+      "expected": [
+        "S035",
+        "S042"
+      ],
+      "group": "chinese_food"
+    },
+    {
+      "query": "我要联系房东退还押金",
+      "expected": [
+        "S412"
+      ],
+      "group": "chinese_housing"
+    },
+    {
+      "query": "AI深度学习模型如何训练",
+      "expected": [
+        "S280",
+        "S279"
+      ],
+      "group": "chinese_technical"
+    },
+    {
+      "query": "英语学习，不是机器学习",
+      "excluded": [
+        "S279",
+        "S280"
+      ],
+      "group": "chinese_negation"
+    },
+    {
+      "query": "如何申请旅游签证",
+      "group": "chinese_travel",
+      "openEnded": true
+    }
+  ]
+}
