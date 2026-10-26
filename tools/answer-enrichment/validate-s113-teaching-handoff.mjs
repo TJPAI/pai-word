@@ -74,7 +74,7 @@ const tests = [
   ['incorrect membership claim', v => {v.membership.scenes={...(v.membership.scenes||{}),S113:{}};}],
   ['rank drift', v => {v.handoff.records[0].scene_rank_candidate=7;}],
   ['KU mismatch', v => {v.handoff.records[1].ku_id='bogus';}],
-  ['false Muse PASS', v => {v.handoff.records[0].muse_same_revision_verdict='PASS';}],
+  ['contradictory Muse verdict', v => {v.handoff.records[0].muse_same_revision_verdict='NOT_VERIFIED';}],
   ['removed teaching gloss',v => {v.handoff.records[1].gloss_en='';}],
 ];
 const input={original,revised,handoff,taxonomy,catalog,legacyRanks,membership};
