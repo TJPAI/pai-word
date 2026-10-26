@@ -1,0 +1,124 @@
+{
+  "schema_version": "pai-word-s113-targeted-teaching-revision-v1",
+  "status": "STAGING_ONLY_TAXONOMY_CONFLICT_AND_MEMBERSHIP_UNRESOLVED",
+  "source_commit": "75d1325026282dcd98710426c1c7764de4ab391b",
+  "revision_scope": "Three S113 candidate KUs only. Preserve source candidates, KU IDs, scene_rank, Runtime and application/SRS unmodified.",
+  "source_paths": [
+    "tools/answer-enrichment/s113-teaching-candidates.v1.json",
+    "tools/answer-enrichment/s113-candidate-audit.v1.json"
+  ],
+  "taxonomy_evidence": [
+    {
+      "path": "data/scene500-taxonomy-20x25-v1.txt",
+      "S113": "预订酒店",
+      "blob_sha": "fc9d621f8ce885d3dc2384ccae9b1a7336e1055c"
+    },
+    {
+      "path": "scene500-recommendation/catalog-v0.2.json",
+      "S113": "预订酒店",
+      "blob_sha": "0b1e9023eb21e99311b58e82bbe1518c04a63d76",
+      "quality": "draft_unverified"
+    },
+    {
+      "path": "data/scene-taxonomy-v2.json",
+      "S113": "公园游览",
+      "blob_sha": "13912051755eada3a65d8141199ef947e420bf92",
+      "mappingStatus": "pending_ku_semantic_review"
+    },
+    {
+      "path": "data/scene500-top100-v40/group-05.json",
+      "S113": "hotel-booking membership candidates (historical top100 V40)",
+      "blob_sha": "6eaeaec7360a9d6a373c28d2ee4082b4d3c09401",
+      "policy": "no scene_sense_verified_claim"
+    }
+  ],
+  "membership_evaluation": {
+    "historical_rank_match": "3/3 verified from V40 shard",
+    "canonical_scene_membership": "NOT_ESTABLISHED",
+    "reason": "data/scene500-sense-membership-schema-v1.json requires scene_id + genuine sense_id and review/evidence fields; historical top100 KU rows alone are not canonical qualified membership.",
+    "scene_owner_action": "Declare pinned canonical taxonomy name/version and resolve S113 mapping without silently renumbering."
+  },
+  "records": [
+    {
+      "headword": "guest",
+      "ku_id": "w_1452_guest_ku_s01",
+      "scene_rank": 2,
+      "semantic": "DUAL_AI_PASS",
+      "gloss_zh": "（酒店）住客；客人",
+      "gloss_en": "a person staying at a hotel",
+      "collocation": "hotel guest · a guest room · welcome guests",
+      "example_en": "The guest checked in at the front desk.",
+      "example_zh": "客人在前台办理了入住手续。",
+      "contrast_note": "guest 是受到接待的客人或住客；host 是接待客人的主人或主办方。",
+      "notes": "The example concerns hotel check-in, adjacent to rather than strictly a reservation transaction. Keep in historical scene candidate only pending membership resolution.",
+      "sources": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/learner-english/guest",
+          "purpose": "Guest HOTEL sense evidence"
+        }
+      ]
+    },
+    {
+      "headword": "reservation",
+      "ku_id": "w_3084_reservation_ku_s01",
+      "scene_rank": 3,
+      "semantic": "TARGETED_REVISION_FOR_MUSE_REVIEW",
+      "gloss_zh": "预订；预先订好的房间或服务",
+      "gloss_en": "an arrangement made in advance to keep a hotel room or another service available for someone",
+      "collocation": "make a reservation · confirm a reservation · hotel reservation",
+      "example_en": "I'd like to confirm my reservation for tonight.",
+      "example_zh": "我想确认今晚的酒店预订。",
+      "contrast_note": "reservation 在酒店场景指预订；booking 常可指同一预订安排。have reservations about something 则表示对某事有疑虑或保留意见，属于不同义项，不可将“保留意见”混进酒店预订释义。",
+      "sources": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/learner-english/reservation",
+          "purpose": "ARRANGEMENT vs DOUBT senses"
+        },
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/english/reservation",
+          "purpose": "make/confirm a reservation; reservations about"
+        }
+      ]
+    },
+    {
+      "headword": "cancellation",
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "scene_rank": 4,
+      "semantic": "TARGETED_REVIEW_ACCEPTABLE",
+      "gloss_zh": "取消预订；预订的取消",
+      "gloss_en": "the act of cancelling a booking or reservation",
+      "collocation": "free cancellation · cancellation fee · cancellation policy",
+      "example_en": "Free cancellation is available until Friday.",
+      "example_zh": "周五之前可以免费取消预订。",
+      "contrast_note": "cancellation 是名词，指取消这一行为或结果；cancel 是动词。用于酒店时通常是取消预订，不要与行政性注销混为一个教学义项。",
+      "optional_edit": "If Friday itself is included, use 'Free cancellation is available through Friday.' / '截至周五仍可免费取消预订。' Only use if source policy explicitly includes Friday.",
+      "sources": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/english/cancellation",
+          "purpose": "cancellation of a booking/order and fee"
+        }
+      ]
+    }
+  ],
+  "provenance": {
+    "source_use": "Cambridge webpages checked for lexical meaning and sense distinctions; all glosses and teaching example sentences here are newly authored or retained original internal draft, not verbatim Cambridge examples.",
+    "reviewed_on": "2026-10-26",
+    "copyright_license": "NOT_CLEARED_FOR_REUSE_OF_EXTERNAL_DICTIONARY_CONTENT",
+    "external_dictionary_text_embedded": false,
+    "internal_draft_authorship": "Source candidate reports manual_editorial_drafts_for_qa; creator rights/permission not independently evidenced",
+    "policy": "Reference URLs alone demonstrate linguistic provenance, not redistribution permission. No Cambridge definition/example is reproduced verbatim.",
+    "official_sense_id": null,
+    "ku_id_stable": true
+  },
+  "qa": {
+    "original_candidate_unchanged": true,
+    "runtime_unchanged": true,
+    "production_ready": false,
+    "requires_targeted_muse_review": [
+      "reservation"
+    ],
+    "requires_scene_owner_decision": true,
+    "requires_canonical_membership_confirmation": true,
+    "qa_status": "STAGING_NO_AUTO_ACTIVATION"
+  }
+}
