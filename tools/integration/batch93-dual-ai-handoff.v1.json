@@ -24,9 +24,15 @@
   "staging_only": true,
   "open_engineering_items": [
     "Formal activation manifest remains STAGING_ONLY with no signed release.",
-    "Registered KU-anchored binding has official_sense_id null; current generic release gate demands a nonempty official_sense_id, requiring an explicit contract decision.",
     "talk IPA variation between pack and runtime must remain attributable.",
     "Self-rating applies; typed-answer accepted variants do not influence SRS in current production flow."
   ],
-  "notes": "Dual-AI semantic certification is accepted evidence; it is not equivalent to source-rights clearance or permission to activate an unsigned production release. This handoff does not add a new certification stage."
+  "notes": "Dual-AI semantic certification is accepted evidence; it is not equivalent to source-rights clearance or permission to activate an unsigned production release. This handoff does not add a new certification stage.",
+  "resolved_engineering_items": [
+    {
+      "issue": "Generic release gate rejected null official_sense_id",
+      "resolution": "Supports KU_ANCHORED_SENSE only with explicit binding_registered/binding_authorized and matching binding_ku_id",
+      "commit": "6a9f7dc5766205a8bb801508a244bb81deffb639"
+    }
+  ]
 }
