@@ -1,0 +1,257 @@
+{
+  "schema": "pai-cg-qa-enteach-next15-full-teaching-review-v1",
+  "reviewer": "CG-QA",
+  "source_commit": "fabe86b0c1c268131b4d448332f0520cf8235dd2",
+  "source_asset": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+  "scope": "Full bilingual teaching fields; editorial judgement independent from Muse results",
+  "summary": {
+    "reviewed": 15,
+    "pass": 12,
+    "conditional": 3,
+    "muse_same_version": "PENDING",
+    "dual_ai_full_teaching_pass": 0,
+    "activation": false
+  },
+  "records": [
+    {
+      "ku_id": "w_5575_scanner_ku_s01",
+      "headword": "scanner",
+      "core_rank": 359,
+      "verdict": "CONDITIONAL_MINOR_EDIT",
+      "specific_reason": "scan a document 属于scan的动词搭配，不是scanner的词项搭配；flatbed scanner/barcode scanner正确。建议改document scanner；其余例句、翻译、辨析准确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_4094_amid_ku_s01",
+      "headword": "amid",
+      "core_rank": 589,
+      "verdict": "PASS",
+      "specific_reason": "介词搭配amid uncertainty/growing concerns自然；后接名词短语规则正确；例句Amid the noise及译文对应，among辨析有用。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_5798_liter_ku_s01",
+      "headword": "liter",
+      "core_rank": 1188,
+      "verdict": "PASS",
+      "specific_reason": "公制体积单位、1000毫升、单复数与美英拼写均正确；瓶子一升水译文准确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_3607_gym_ku_s01",
+      "headword": "gym",
+      "core_rank": 1725,
+      "verdict": "PASS",
+      "specific_reason": "go to the gym与school gym覆盖健身房/校内体育馆，例句自然；与stadium体量对比适当。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_4104_noun_ku_s01",
+      "headword": "noun",
+      "core_rank": 1731,
+      "verdict": "PASS",
+      "specific_reason": "countable/proper/plural noun为真实搭配；例句中hotel为名词，复数nouns及动词辨析正确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "headword": "compatibility",
+      "core_rank": 1785,
+      "verdict": "PASS",
+      "specific_reason": "compatibility with older devices句法正确；例句译文传递测试新软件兼容性，和similarity的辨析有效。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_5464_prototype_ku_s01",
+      "headword": "prototype",
+      "core_rank": 1991,
+      "verdict": "PASS",
+      "specific_reason": "build/test a prototype搭配恰当；mass production之前测试样机与中文对应，非成品辨析正确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_4404_additionally_ku_s01",
+      "headword": "additionally",
+      "core_rank": 2015,
+      "verdict": "PASS",
+      "specific_reason": "句首连接副词与逗号规则正确；添加信息而非转折，此外的翻译准确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_5210_quiz_ku_s01",
+      "headword": "quiz",
+      "core_rank": 2104,
+      "verdict": "PASS",
+      "specific_reason": "take/vocabulary quiz、短测验与exam比较自然；英汉例句准确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_5081_garbage_ku_s01",
+      "headword": "garbage",
+      "core_rank": 2168,
+      "verdict": "PASS",
+      "specific_reason": "take out the garbage/garbage bin地道，美式garbage与英式rubbish对比恰当，不可数规则正确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_3004_compute_ku_s01",
+      "headword": "compute",
+      "core_rank": 2286,
+      "verdict": "PASS",
+      "specific_reason": "compute average/total为正确及物计算搭配，程序每小时计算均值的英汉句对齐。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_5332_visa_ku_s01",
+      "headword": "visa",
+      "core_rank": 2299,
+      "verdict": "CONDITIONAL_CONTEXT",
+      "specific_reason": "例句You must apply for a visa before your trip无特定国籍、目的地，表达普遍强制要求不成立；应改成特定需要签证者语境，例如I need to apply for a visa before my trip / 我需要在旅行前申请签证。定义、搭配和护照辨析可保留。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_5339_logo_ku_s01",
+      "headword": "logo",
+      "core_rank": 2313,
+      "verdict": "CONDITIONAL_TRANSLATION",
+      "specific_reason": "The company's logo appears on every package准确，但译文‘公司的标志印在每件包装上’搭配生硬，且‘印在’比appears on更具体；建议‘每个包装上都有这家公司的徽标。’",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "headword": "kilometer",
+      "core_rank": 2390,
+      "verdict": "PASS",
+      "specific_reason": "千米=1000米、US/UK拼写、距离two kilometers from站点例句均准确。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    },
+    {
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "headword": "adjustable",
+      "core_rank": 2422,
+      "verdict": "PASS",
+      "specific_reason": "adjustable backrest/height构式恰当，靠背可调例句与译文一致；与adaptable区分有效。",
+      "checked_fields": [
+        "gloss_zh",
+        "gloss_en",
+        "collocation",
+        "example_en",
+        "example_zh",
+        "grammar_note",
+        "contrast_note"
+      ]
+    }
+  ]
+}
