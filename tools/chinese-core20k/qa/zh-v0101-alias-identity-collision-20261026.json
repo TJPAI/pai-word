@@ -1,0 +1,82 @@
+{
+  "schema": "pai-word-zh-core20k-normalization-identity-collision-handoff-v1",
+  "date": "2026-10-26",
+  "role": "CG-ZH",
+  "branch": "chinese-core20k-dev",
+  "source": {
+    "runtime_version": "0.10.1-evidence-compat",
+    "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+    "runtime_drive_url": "https://drive.google.com/file/d/1HaB-_iA-NdqCVYFzdXB0gckvrSEoAoSc/view",
+    "full_qa_url": "https://drive.google.com/file/d/1x-_RV_WyI509m2-uz5bUpAMBRgAErDpG/view",
+    "full_qa_sha256": "06b3ad0b6d2bab812cc2827c8d1fd57802f81230bd0b498eb26f71ac97e7978c"
+  },
+  "qa": {
+    "term_count": 20000,
+    "distinct_term_count": 20000,
+    "distinct_normalized_term_count": 20000,
+    "stable_id_mismatch_count": 0,
+    "aliases_count": 8,
+    "alias_shadowing_existing_member_count": 8,
+    "alias_identity_ambiguity": true
+  },
+  "alias_pairs": [
+    {
+      "alias": "瞭解",
+      "alias_term_id": "zh_0af38dfa047967fba544",
+      "canonical": "了解",
+      "canonical_term_id": "zh_aecbe4cbd4449c9ad081",
+      "distinct_ids": true
+    },
+    {
+      "alias": "计画",
+      "alias_term_id": "zh_f8f655a6be65573ec9e3",
+      "canonical": "计划",
+      "canonical_term_id": "zh_0f6b1949b093e3526699",
+      "distinct_ids": true
+    },
+    {
+      "alias": "部份",
+      "alias_term_id": "zh_8ce6425ffcbcac862039",
+      "canonical": "部分",
+      "canonical_term_id": "zh_1bb5512d7923a6f19ea6",
+      "distinct_ids": true
+    },
+    {
+      "alias": "身分",
+      "alias_term_id": "zh_e1d9222fd0b47c125987",
+      "canonical": "身份",
+      "canonical_term_id": "zh_2a9c9e9976421a9d9726",
+      "distinct_ids": true
+    },
+    {
+      "alias": "帐号",
+      "alias_term_id": "zh_2ecac2ccd577eb8d11b9",
+      "canonical": "账号",
+      "canonical_term_id": "zh_311bb313fdeca6aa2ce7",
+      "distinct_ids": true
+    },
+    {
+      "alias": "帐户",
+      "alias_term_id": "zh_d99c326523d93baa7131",
+      "canonical": "账户",
+      "canonical_term_id": "zh_061246bd31e084a7d6cc",
+      "distinct_ids": true
+    },
+    {
+      "alias": "藉口",
+      "alias_term_id": "zh_4c7c93acb3295c103973",
+      "canonical": "借口",
+      "canonical_term_id": "zh_ee80e38d7ab1dc038458",
+      "distinct_ids": true
+    },
+    {
+      "alias": "亚州",
+      "alias_term_id": "zh_743b993d1efd1aead6b6",
+      "canonical": "亚洲",
+      "canonical_term_id": "zh_d6b5711fea6d45301743",
+      "distinct_ids": true
+    }
+  ],
+  "decision": "No mutation. Exact term/member lookup should preserve original stable term_id; only expand alias as a separate recall alternative after lexical identity resolution. Confirm engine execution order with CG-REC.",
+  "limit": "Static runtime audit. Actual tokenizer/Hybrid Top5 impact NOT_TESTED. May be intended aliases, not evidence of implementation bug."
+}
