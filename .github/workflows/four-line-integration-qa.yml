@@ -40,5 +40,7 @@ jobs:
         run: node tools/answer-enrichment/test-standard-answer-cleanup.mjs
       - name: Check four-line identity and activation contract
         run: node tools/integration/test-four-line-contract.mjs
+      - name: Verify staged S113 teaching cards against frozen English runtime without activation
+        run: node tools/integration/test-s113-staging-overlay.mjs
       - name: Check S500 search bridge and reject unsafe mapping
         run: node tools/integration/test-four-line-scene-bridge.mjs
