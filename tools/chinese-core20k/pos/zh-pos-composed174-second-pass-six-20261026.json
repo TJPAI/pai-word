@@ -1,0 +1,112 @@
+{
+  "schema": "pai-word-zh-pos-composed174-second-pass-targeted-review-v1",
+  "date": "2026-10-26",
+  "role": "CG-ZH",
+  "source_composed_path": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-composed174-20261026.json",
+  "source_composed_git_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "scope": "Second-pass high-confidence corrections not included in first 15 errata",
+  "policy": {
+    "runtime_mutated": false,
+    "membership_mutated": false,
+    "stable_ids_mutated": false,
+    "independent_muse_review_completed": false,
+    "ready_for_production": false
+  },
+  "counts": {
+    "reviewed": 6,
+    "remove_unsupported_secondary": 6
+  },
+  "rows": [
+    {
+      "term": "者",
+      "term_id": "zh_5618dc0903030d38d24c",
+      "runtime_index": 255,
+      "previous_primary": "PART",
+      "previous_secondary": [
+        "NOUN"
+      ],
+      "proposed_primary": "PART",
+      "proposed_secondary": [],
+      "linguistic_rationale_zh": "“读者”“强者”只证明“者”作为名词化后缀或构词成分，不能证明“者”能够独立充当普通名词中心语。保留PART；历史/书面用法需按语境另审。",
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_composed_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+      "status": "CHATGPT_TARGETED_REVIEW_PROPOSAL"
+    },
+    {
+      "term": "许多",
+      "term_id": "zh_1df1ae654a196b96cff4",
+      "runtime_index": 268,
+      "previous_primary": "DET",
+      "previous_secondary": [
+        "ADJ"
+      ],
+      "proposed_primary": "DET",
+      "proposed_secondary": [],
+      "linguistic_rationale_zh": "“许多学生”可直接证明量化限定功能，但不能由定语位置推出形容词身份；“学生许多”不成立。保留DET，移除无独立谓语证据的ADJ候选。",
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_composed_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+      "status": "CHATGPT_TARGETED_REVIEW_PROPOSAL"
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "runtime_index": 274,
+      "previous_primary": "NUM",
+      "previous_secondary": [
+        "DET"
+      ],
+      "proposed_primary": "NUM",
+      "proposed_secondary": [],
+      "linguistic_rationale_zh": "“两个”整体为“二+个”的数量短语，后接名词的限定功能不构成第二个独立DET词性证据。当前记录NUM只是工程折叠标签，建议长期用NUM+CLF结构标记。",
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_composed_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+      "status": "CHATGPT_TARGETED_REVIEW_PROPOSAL"
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "runtime_index": 288,
+      "previous_primary": "NUM",
+      "previous_secondary": [
+        "DET"
+      ],
+      "proposed_primary": "NUM",
+      "proposed_secondary": [],
+      "linguistic_rationale_zh": "“一种”是“一+种”数量结构；修饰“办法”说明短语作限定语，不说明它又是一个独立DET词。保留NUM折叠标签并提示结构性。",
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_composed_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+      "status": "CHATGPT_TARGETED_REVIEW_PROPOSAL"
+    },
+    {
+      "term": "目前",
+      "term_id": "zh_937f63a4fb51ec9e264c",
+      "runtime_index": 273,
+      "previous_primary": "NOUN",
+      "previous_secondary": [
+        "ADV"
+      ],
+      "proposed_primary": "NOUN",
+      "proposed_secondary": [],
+      "linguistic_rationale_zh": "“截至目前”及“目前尚未”分别体现时间名词的宾语位置与状语功能；仅有时间状语位置不能确认已词汇化成ADV。保留NOUN，移除缺乏独立分布证据的ADV。",
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_composed_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+      "status": "CHATGPT_TARGETED_REVIEW_PROPOSAL"
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "runtime_index": 324,
+      "previous_primary": "NOUN",
+      "previous_secondary": [
+        "ADV"
+      ],
+      "proposed_primary": "NOUN",
+      "proposed_secondary": [],
+      "linguistic_rationale_zh": "“在国内”是处所/方位名词宾语，“国内市场”是名词性定语；无独立副词分布例证，移除ADV并保留NOUN。",
+      "issue_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_composed_blob": "263ab7c2c6002954d2e3ee3ef25c55b2b9142390",
+      "status": "CHATGPT_TARGETED_REVIEW_PROPOSAL"
+    }
+  ]
+}
