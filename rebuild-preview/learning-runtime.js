@@ -1288,10 +1288,12 @@
     const events=samples.length?samples:[e];
     for(const sample of events){
      const v=point(sample);
-     if(!lastInk){lastInk={x:startX,y:startY};ctx.beginPath();ctx.moveTo(startX,startY)}
+     if(!lastInk)lastInk={x:startX,y:startY};
      const mid={x:(lastInk.x+v.x)/2,y:(lastInk.y+v.y)/2};
+     // Commit only the new segment; never repaint the entire stroke on each move.
+     ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk.midY??startY);
      ctx.quadraticCurveTo(lastInk.x,lastInk.y,mid.x,mid.y);
-     lastInk=v;
+     lastInk={x:v.x,y:v.y,midX:mid.x,midY:mid.y};
     }
     ctx.stroke();suppress();
    }
@@ -1300,7 +1302,7 @@
    if(pointer!==e.pointerId)return;
    cancelHold();
    if(moved&&activeMode)suppress();
-   if(lastInk&&ctx){ctx.lineTo(lastInk.x,lastInk.y);ctx.stroke()}lastInk=null;pointer=null;if(activeMode)readyToInk=true;
+   if(lastInk&&ctx){ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk.midY??startY);ctx.lineTo(lastInk.x,lastInk.y);ctx.stroke()}lastInk=null;pointer=null;if(activeMode)readyToInk=true;
   };
   canvas.addEventListener('pointerup',finish);
   canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;lastInk=null;suppress()}});
