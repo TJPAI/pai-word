@@ -1,0 +1,67 @@
+{
+  "schema_version": "pai-word-enteach-targeted-editorial-review-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_NON_INDEPENDENT_EDITORIAL_REVIEW",
+  "scope": {
+    "parts": [
+      "part09-13",
+      "part11-12",
+      "part12-13"
+    ],
+    "ku_reviewed": 38,
+    "source_identity": "Previously reconciled; not recertified here",
+    "source_blobs": [
+      "5ec7447eb5eb35648e9039924d5d52a0dad32731",
+      "ac7757faa5f3d743d04a34a60dcd0e8916083dd2",
+      "f4b44c677e85d11e8716cf2287832b8786407f7e"
+    ]
+  },
+  "findings": [
+    {
+      "headword": "salient",
+      "ku_id": "w_7490_salient_ku_s01",
+      "severity": "LOW",
+      "field": "example_zh",
+      "issue": "现译文『两项方案之间三个显著的差异』量词结构不够自然。",
+      "proposed_replacement": "报告突出说明了这两项方案之间的三个显著差异。",
+      "action": "EDITORIAL_REWRITE_RECOMMENDED"
+    },
+    {
+      "headword": "supreme",
+      "ku_id": "w_5224_supreme_ku_s01",
+      "severity": "MEDIUM",
+      "field": "example_en/example_zh",
+      "issue": "举例以泛称宪法赋予某法院某领域最高权威，缺乏司法辖区上下文，可能被误读成真实制度断言。",
+      "proposed_example_en": "The court has supreme authority over certain constitutional questions.",
+      "proposed_example_zh": "该法院对某些宪法问题拥有最高裁决权。",
+      "action": "EDITORIAL_CONTEXT_REWRITE_RECOMMENDED"
+    },
+    {
+      "headword": "taxpayer",
+      "ku_id": "w_3870_taxpayer_ku_s01",
+      "severity": "LOW",
+      "field": "example_en/example_zh",
+      "issue": "Taxpayers funded the renovation through public revenue 语义略循环且表达生硬。",
+      "proposed_example_en": "Local taxpayers helped fund the library renovation.",
+      "proposed_example_zh": "当地纳税人共同承担了图书馆翻修的费用。",
+      "action": "EDITORIAL_REWRITE_RECOMMENDED"
+    },
+    {
+      "headword": "retina",
+      "ku_id": "w_9072_retina_ku_s01",
+      "severity": "LOW",
+      "field": "example_en",
+      "issue": "The retina converts incoming light into signals for the brain 可接受作教学简化，精确教学时宜指出感光细胞处理光并经视神经传输。",
+      "proposed_example_en": "Light-sensitive cells in the retina help turn light into signals sent to the brain.",
+      "proposed_example_zh": "视网膜中的感光细胞帮助将光转换成传向大脑的信号。",
+      "action": "PRECISION_REWRITE_OPTIONAL"
+    }
+  ],
+  "blocked_findings": [],
+  "notes": "These are ChatGPT self-editorial observations only, not CG-QA independent evaluation; remaining non-flagged records not certified or asserted error-free. Source records unchanged; proposed rewrites need review before patching staging assets.",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false,
+    "independent_semantic_certification": "PENDING"
+  }
+}
