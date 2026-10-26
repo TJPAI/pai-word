@@ -1,0 +1,28 @@
+{
+  "schema_version": "pai-word-enteach-proposed-deltas-preflight-v1",
+  "owner": "CG-ENTEACH",
+  "status": "MECHANICAL_PREFLIGHT_PASS_QA_PENDING",
+  "source": {
+    "path": "tools/answer-enrichment/enteach-batch200-proposed-field-deltas-20261027.v1.json",
+    "git_blob_sha": "e48e46da512d8c8ab773a9f900e0298f5a408f0e"
+  },
+  "checks": {
+    "affected_parts": 12,
+    "unique_ku": 27,
+    "field_deltas": 33,
+    "source_blob_matches": 12,
+    "source_field_before_mismatches": 0,
+    "missing_ku": 0,
+    "applied_patches": 0,
+    "independent_qa_approved": 0
+  },
+  "caveats": [
+    "This is only diff preflight, not linguistic review or approval",
+    "No source files changed",
+    "Current GitHub Issue #1 does not contain any found CG-QA acceptance of these 27 deltas"
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
