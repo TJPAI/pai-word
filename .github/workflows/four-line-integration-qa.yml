@@ -13,6 +13,7 @@ on:
       - 'tools/answer-enrichment/test-standard-answer-cleanup.mjs'
       - 'rebuild-preview/learning-runtime.js'
       - 'rebuild-preview/ku-durable-store.js'
+      - 'rebuild-preview/home-dashboard.js'
   workflow_dispatch:
 permissions:
   contents: read
@@ -37,6 +38,10 @@ jobs:
         run: |
           test -s scene500-recommendation/zh-core20k-v0101-scene500-runtime.json
           node -e "const fs=require('fs'),crypto=require('crypto');const b=fs.readFileSync('scene500-recommendation/zh-core20k-v0101-scene500-runtime.json');const h=crypto.createHash('sha256').update(b).digest('hex');if(h!=='18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093'||b.length!==6454987)throw Error('ZH_V0101_BINARY_DRIFT');console.log('PASS Chinese Core20K V0.10.1 source identity')"
+      - name: Check home status copy is not stale or overclaiming
+        run: |
+          node --check rebuild-preview/home-dashboard.js
+          node -e "const s=require('fs').readFileSync('rebuild-preview/home-dashboard.js','utf8');if(s.includes('隔离6 Sense')||s.includes(\"mode==='hybrid'?'Hybrid 已加载'\"))throw Error('STALE_OR_OVERCLAIMING_HOME_STATUS');console.log('PASS home version status wording')"
       - name: Check standard answer page cleanup
         run: node tools/answer-enrichment/test-standard-answer-cleanup.mjs
       - name: Check four-line identity and activation contract
