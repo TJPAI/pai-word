@@ -1,0 +1,153 @@
+{
+  "schema_version": "pai-word-s113-hotel-booking-next4-draft-v2",
+  "owner_role": "CG-ENTEACH",
+  "scene": {
+    "id": "S113",
+    "taxonomy_namespace": "scene500-20x25-v1",
+    "name_zh": "预订酒店",
+    "canonical_membership": "NOT_ESTABLISHED"
+  },
+  "source": {
+    "branch": "answer-enrichment-main-dev-20261026",
+    "historical_ranking_asset": "data/scene500-top100-v40/group-05.json",
+    "reconciliation_note": "All four scene_rank_candidate, core_rank, ku_id are transcribed from S113 historical v40 rows; this is not canonical Sense membership.",
+    "supersedes_source_blob": "42460a54d20523f0f65b65328aa638d7d189fc4e",
+    "revision_reason": "CG-QA confirmation Chinese/English gloss scope mismatch; all other records immutable",
+    "review_source_issue_comment": "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6410451424"
+  },
+  "status": "EDITORIAL_STAGING_TARGETED_REVISION",
+  "production_ready": false,
+  "activation_allowed": false,
+  "records": [
+    {
+      "scene_rank_candidate": 1,
+      "core_rank": 525,
+      "headword": "hotel",
+      "ku_id": "w_0771_hotel_ku01",
+      "gloss_zh": "酒店；旅馆",
+      "gloss_en": "a place where people pay to stay for a short time",
+      "collocation": "book a hotel room · stay at a hotel · hotel reservation",
+      "example_en": "We booked a hotel room for two nights.",
+      "example_zh": "我们预订了一间酒店客房，住两晚。",
+      "grammar_note": null,
+      "contrast_note": "hotel通常指提供付费住宿服务的酒店；hostel常指设施较简单、可能有多人宿舍房型的旅舍，二者不可一概等同。",
+      "issue": "A hotel is the accommodation provider; the booked object in context is a room, so teach book a hotel room rather than assume book a hotel always means reserving the entire hotel.",
+      "source_refs": [
+        "https://dictionary.cambridge.org/dictionary/english/hotel"
+      ],
+      "editorial_origin": "newly authored contextual teaching draft; no verbatim dictionary examples copied",
+      "official_sense_id": null,
+      "reference_urls_for_independent_verification": [
+        "https://dictionary.cambridge.org/dictionary/english/hotel"
+      ],
+      "reference_checked_status": "REFERENCE_LINK_RECORDED_NOT_INDEPENDENTLY_RETRIEVED",
+      "license_status": "DO_NOT_REPUBLISH_EXTERNAL_DICTIONARY_TEXT",
+      "semantic_review": "PENDING_INDEPENDENT_CHATGPT_AND_MUSE_QA_ON_FIXED_DRAFT"
+    },
+    {
+      "scene_rank_candidate": 14,
+      "core_rank": 4056,
+      "headword": "availability",
+      "ku_id": "w_3287_availability_ku_s01",
+      "gloss_zh": "（客房等的）可订情况；是否有空房",
+      "gloss_en": "the state of being available, especially whether rooms can be booked",
+      "collocation": "check room availability · room availability · limited availability",
+      "example_en": "Could you check room availability for next weekend?",
+      "example_zh": "你能查一下下周末还有没有空房吗？",
+      "grammar_note": "availability为不可数名词；询问空房时可用 room availability 或 whether rooms are available。",
+      "contrast_note": "availability表示是否可获得或可预订；reservation表示已经作出的预订安排。",
+      "issue": "Generic availability may refer to a person's schedule or goods supply; this record is expressly hotel-room context only.",
+      "source_refs": [
+        "https://dictionary.cambridge.org/dictionary/english/availability"
+      ],
+      "editorial_origin": "newly authored contextual teaching draft; no verbatim dictionary examples copied",
+      "official_sense_id": null,
+      "reference_urls_for_independent_verification": [
+        "https://dictionary.cambridge.org/dictionary/english/availability"
+      ],
+      "reference_checked_status": "REFERENCE_LINK_RECORDED_NOT_INDEPENDENTLY_RETRIEVED",
+      "license_status": "DO_NOT_REPUBLISH_EXTERNAL_DICTIONARY_TEXT",
+      "semantic_review": "PENDING_INDEPENDENT_CHATGPT_AND_MUSE_QA_ON_FIXED_DRAFT"
+    },
+    {
+      "scene_rank_candidate": 18,
+      "core_rank": 1171,
+      "headword": "cancel",
+      "ku_id": "w_2445_cancel_ku_s01",
+      "gloss_zh": "取消（预订）",
+      "gloss_en": "to arrange for a booking or reservation not to go ahead",
+      "collocation": "cancel a reservation · cancel a booking · cancel without a fee",
+      "example_en": "I need to cancel my hotel reservation.",
+      "example_zh": "我需要取消我的酒店预订。",
+      "grammar_note": "cancel是动词；过去式和过去分词有canceled/cancelled两种常见拼写。",
+      "contrast_note": "cancel是动词，cancellation是名词；取消预订不等于更改预订（change a reservation）。",
+      "issue": "Ensure KU is the general cancellation sense and not an unrelated technical sense before runtime activation.",
+      "source_refs": [
+        "https://dictionary.cambridge.org/dictionary/english/cancel"
+      ],
+      "editorial_origin": "newly authored contextual teaching draft; no verbatim dictionary examples copied",
+      "official_sense_id": null,
+      "reference_urls_for_independent_verification": [
+        "https://dictionary.cambridge.org/dictionary/english/cancel"
+      ],
+      "reference_checked_status": "REFERENCE_LINK_RECORDED_NOT_INDEPENDENTLY_RETRIEVED",
+      "license_status": "DO_NOT_REPUBLISH_EXTERNAL_DICTIONARY_TEXT",
+      "semantic_review": "PENDING_INDEPENDENT_CHATGPT_AND_MUSE_QA_ON_FIXED_DRAFT"
+    },
+    {
+      "scene_rank_candidate": 19,
+      "core_rank": 3329,
+      "headword": "confirmation",
+      "ku_id": "w_3678_confirmation_ku_s01",
+      "gloss_zh": "确认预订；预订确认信息",
+      "gloss_en": "the act of confirming a booking, or a message showing that the booking has been made",
+      "collocation": "booking confirmation · confirmation email · confirmation number",
+      "example_en": "Please send me a confirmation email for my reservation.",
+      "example_zh": "请给我发送一封预订确认邮件。",
+      "grammar_note": null,
+      "contrast_note": "confirmation是确认信息或确认行为；reservation是预订安排本身，二者不可直接互换。",
+      "issue": "The revised Chinese and English glosses both describe the action and confirmation message within the hotel-booking context; this does not grant global Runtime sense identity.",
+      "source_refs": [
+        "https://dictionary.cambridge.org/dictionary/english/confirmation"
+      ],
+      "editorial_origin": "newly authored contextual teaching draft; no verbatim dictionary examples copied",
+      "official_sense_id": null,
+      "reference_urls_for_independent_verification": [
+        "https://dictionary.cambridge.org/dictionary/english/confirmation"
+      ],
+      "reference_checked_status": "REFERENCE_LINK_RECORDED_NOT_INDEPENDENTLY_RETRIEVED",
+      "license_status": "DO_NOT_REPUBLISH_EXTERNAL_DICTIONARY_TEXT",
+      "semantic_review": "TARGETED_CHATGPT_REVISED_PENDING_INDEPENDENT_MUSE_REVIEW"
+    }
+  ],
+  "tests": {
+    "identity_verified_against_v40_rows_only": true,
+    "original_kus_unchanged": true,
+    "requires_base_runtime_ku_binding_check": true,
+    "requires_version_matched_dual_ai_semantic_review": true,
+    "requires_canonical_membership_before_production": true
+  },
+  "next": "Content-line ChatGPT and Muse independently review contextual gloss/collocations/examples on these exact four KU IDs; resolve only specific content disagreements; do not infer publishability from V40.",
+  "qa": {
+    "scope": "ONE_RECORD_GLOSS_ZH_EN_ONLY",
+    "source_candidate_records": 4,
+    "preserved_records": [
+      "hotel",
+      "availability",
+      "cancel"
+    ],
+    "changes": [
+      {
+        "ku_id": "w_3678_confirmation_ku_s01",
+        "fields": [
+          "gloss_zh",
+          "gloss_en"
+        ],
+        "semantic_reason": "Keep Chinese and English sense scope parallel without adding new Runtime Sense identity"
+      }
+    ],
+    "dual_ai_pass": false,
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
