@@ -1294,9 +1294,10 @@
      // Commit only the new segment; never repaint the entire stroke on each move.
      ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk.midY??startY);
      ctx.quadraticCurveTo(lastInk.x,lastInk.y,mid.x,mid.y);
+     ctx.stroke(); // Each beginPath must be painted before the next sample replaces it.
      lastInk={x:v.x,y:v.y,midX:mid.x,midY:mid.y};
     }
-    ctx.stroke();suppress();
+    suppress();
    }
   });
   const finish=e=>{
