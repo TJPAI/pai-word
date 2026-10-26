@@ -1,0 +1,44 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_NOT_INDEPENDENT_CERTIFICATION",
+  "prior_report": "tools/answer-enrichment/enteach-targeted-editorial-review-20261027.v1.json",
+  "scope": {
+    "new_reviewed_part": "tools/answer-enrichment/enteach-batch200-part10-15.v1.json",
+    "source_blob": "b0ab13e6b4de7bfe26b9701bcbee46426c486ff7",
+    "new_reviewed_ku": 15,
+    "prior_reviewed_ku": 38,
+    "cumulative_distinct_reviewed_ku": 53
+  },
+  "findings": [
+    {
+      "ku_id": "w_7375_clump_ku_s01",
+      "headword": "clump",
+      "severity": "LOW",
+      "field": "grammar_note",
+      "existing": "可数名词；a clump of + 复数植物或物质。",
+      "issue": "『复数植物或物质』易误导：clump of grass可接不可数物质名词，clump of trees可接复数可数名词。",
+      "proposed": "可数名词；a clump of后既可接复数可数名词（trees），也可接不可数物质名词（grass、soil）。"
+    },
+    {
+      "ku_id": "w_9599_telegram_ku_s01",
+      "headword": "telegram",
+      "severity": "LOW",
+      "field": "example_en",
+      "existing": "Her grandfather kept the telegram announcing his first job.",
+      "issue": "announcing his first job略显省略，可能指其首次任职而非获录用通知，阅读精确度可提高。",
+      "proposed": "Her grandfather kept the telegram telling him that he had been offered his first job.",
+      "proposed_zh": "她的祖父一直保存着那封通知他获得第一份工作的电报。"
+    }
+  ],
+  "mechanical_validation": {
+    "reviewed_source_blob_verified": true,
+    "source_ku_id_match": true,
+    "independent_semantic_certification": "PENDING"
+  },
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "notes": "Editorial suggestions are not independently assessed. No teaching source overwritten; prior four findings remain open."
+}
