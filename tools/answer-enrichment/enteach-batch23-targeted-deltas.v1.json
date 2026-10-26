@@ -1,0 +1,58 @@
+{
+  "schema_version": "pai-word-enteach-batch23-targeted-content-deltas-v1",
+  "owner_role": "CG-ENTEACH",
+  "source_branch": "answer-enrichment-main-dev-20261026",
+  "source_blobs": [
+    {
+      "path": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "blob_sha": "fd46a0ddff8519dccadd90a471c6f93c3570f886"
+    },
+    {
+      "path": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "blob_sha": "ee22f3bc113bdafafd211598459eb7d0d7250a37"
+    }
+  ],
+  "revision_scope": "ONLY_3_KU_4_FIELDS",
+  "deltas": [
+    {
+      "headword": "additionally",
+      "ku_id": "w_4404_additionally_ku_s01",
+      "field": "collocation",
+      "old": "additionally, ... · additionally required · additionally provided",
+      "new": "additionally, we need ... · additionally, the report notes ... · additionally, there is ...",
+      "reason": "Use explicit sentence-initial connective patterns rather than treating punctuation plus ellipsis as a lexical collocation; label as usage patterns."
+    },
+    {
+      "headword": "gateway",
+      "ku_id": "w_5622_gateway_ku_s01",
+      "field": "example_en",
+      "old": "The payment gateway processes online transactions securely.",
+      "new": "The payment gateway handles online payments.",
+      "reason": "Avoid an unnecessary security-performance claim that is not integral to the sense."
+    },
+    {
+      "headword": "gateway",
+      "ku_id": "w_5622_gateway_ku_s01",
+      "field": "example_zh",
+      "old": "支付网关安全地处理在线交易。",
+      "new": "支付网关处理在线支付。",
+      "reason": "Keep Chinese aligned with the simplified English example."
+    },
+    {
+      "headword": "mayor",
+      "ku_id": "w_3095_mayor_ku_s01",
+      "field": "collocation",
+      "old": "elect a mayor · the city mayor · mayor's office",
+      "new": "elect a mayor · mayor of the city · mayor's office",
+      "reason": "Prefer a natural positional phrase to a somewhat awkward redundant noun phrase."
+    }
+  ],
+  "record_semantic_status": "CHATGPT_TARGETED_REVIEW_PASS_MUSE_PENDING",
+  "production_ready": false,
+  "activation_allowed": false,
+  "notes": [
+    "Original 15 and 8 KU fixed-source files remain immutable for audit.",
+    "Merge only by matching ku_id and expected original field value.",
+    "Independent Muse full-field reviews should evaluate the composed effective record version, not mistake original candidate for revised content."
+  ]
+}
