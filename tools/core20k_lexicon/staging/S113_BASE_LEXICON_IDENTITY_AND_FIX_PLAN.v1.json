@@ -1,0 +1,68 @@
+{
+  "schema": "pai-core20k-s113-identity-preserving-sense-triage-v1",
+  "date": "2026-10-26",
+  "role": "English Core20K base lexicon production line",
+  "source": {
+    "repository": "TJPAI/pai-word",
+    "branch": "core20k-lexicon-production-v1",
+    "runtime": "data/core20k-runtime.json.gz",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "identity_evidence": "Previously generated local read-only production identity registry, derived from this same Runtime blob; not a fresh extraction of full gloss tuples.",
+    "raw_gloss_rows_verified": false
+  },
+  "items": [
+    {
+      "lemma": "reservation",
+      "rank": 4035,
+      "headword_id": "w_3084",
+      "ku_id": "w_3084_reservation_ku_s01",
+      "ku_count": 1,
+      "kind": "sense",
+      "risk": "HIGH",
+      "issue": "Reported generic English gloss and conflation of booking and doubt/qualification senses in Chinese gloss; raw tuple verification remains pending.",
+      "proposal": {
+        "primary_sense": {
+          "gloss_en": "an arrangement to reserve a room, table, or seat for later use",
+          "gloss_zh": "预订；预约",
+          "examples": [
+            "I made a reservation for two at seven."
+          ]
+        },
+        "secondary_sense": {
+          "gloss_en": "a doubt or concern that makes you less willing to agree",
+          "gloss_zh": "保留意见；顾虑",
+          "examples": [
+            "I have reservations about the plan."
+          ]
+        },
+        "identity_policy": "Keep w_3084_reservation_ku_s01 unchanged and resolvable; before allocating any secondary KU confirm its prior examples, scene bindings and SRS semantic expectations; new identity, if warranted, must be allocated by the base lexicon line via a versioned additive registry."
+      }
+    },
+    {
+      "lemma": "cancellation",
+      "rank": 5149,
+      "headword_id": "w_6567",
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "ku_count": 1,
+      "kind": "sense",
+      "risk": "MEDIUM_UNVERIFIED",
+      "issue": "No independently observed concrete defect in full Runtime gloss. Avoid speculative split.",
+      "proposal": {
+        "primary_sense": {
+          "gloss_en": "the act of cancelling a planned event, booking, or service",
+          "gloss_zh": "取消；撤销"
+        },
+        "identity_policy": "Keep w_6567_cancellation_ku_s01; verify whether examples refer to the cancellation action or a cancelled booking; split only with clear distinct usage and references."
+      }
+    }
+  ],
+  "actions": [
+    "Extract the complete raw Runtime tuples for both KU IDs and enumerate their scene/teaching links.",
+    "Identify existing KU semantic commitments before any gloss replacement.",
+    "Apply gloss-only corrections if semantically identical; where reservation sense conflation is confirmed, retain old ID for its evidenced principal sense and introduce additional sense identity additively with explicit old-to-new mapping.",
+    "Deliver minimal schema-compatible content overlay to main developer for isolated integration; do not mutate frozen Runtime or production SRS without regression evidence.",
+    "Use the existing independent ChatGPT+Muse review process only for changed linguistic records; no additional RC or release layers."
+  ],
+  "status": "IDENTITY_CONFIRMED_GLOSS_TRIAGE_PENDING",
+  "production_ready": false
+}
