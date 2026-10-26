@@ -1,0 +1,51 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion04-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_QA_PENDING",
+  "scope": {
+    "reviewed_part": "tools/answer-enrichment/enteach-batch200-part04-25.v1.json",
+    "source_blob": "31eb9fde7da0cd0dd39e5426f2601e35571767fc",
+    "new_reviewed_ku": 25,
+    "previous_reviewed_ku": 90,
+    "cumulative_distinct_reviewed_ku": 115,
+    "total_batch_ku": 200
+  },
+  "findings": [
+    {
+      "ku_id": "w_6833_infancy_ku_s01",
+      "headword": "infancy",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "during infancy · early infancy · infant development",
+      "issue": "第三搭配为派生词infant而非本KU目标词infancy，不能直接用来训练infancy搭配。",
+      "proposed": "during infancy · early infancy · in its infancy",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_6303_conditional_ku_s01",
+      "headword": "conditional",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "conditional approval · conditional offer · conditional on",
+      "issue": "conditional on只是未完成的框架，要求表明完整用法。",
+      "proposed": "conditional approval · conditional offer · be conditional on approval",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_6964_gulf_ku_s01",
+      "headword": "gulf",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "large gulf · coastal gulf · the Gulf of Mexico",
+      "issue": "coastal gulf语义重叠且不典型；建议改为固定名称或自然动作搭配。",
+      "proposed": "a wide gulf · cross the gulf · the Gulf of Mexico",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    }
+  ],
+  "review_character": "CG-ENTEACH self-editorial check only; not independent certification",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "notes": "No staging teaching records overwritten; suggestions require independent CG-QA adjudication."
+}
