@@ -1,0 +1,160 @@
+{
+  "schema": "pai-cg-qa-zh-pos15-targeted-independent-review-v1",
+  "source_commit": "2590f35923b3409c09fcc494fb9ba30c2e8fd6cb",
+  "reviewer": "CG-QA",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "interpretation": "Reviews linguistic evidential validity of proposed POS errata, not a replacement POS schema",
+  "summary": {
+    "reviewed": 15,
+    "PASS": 7,
+    "CONDITIONAL": 5,
+    "REVIEW_REQUIRED": 3,
+    "dual_ai_pass": 0
+  },
+  "rows": [
+    {
+      "term": "单位",
+      "term_id": "zh_80b19d68b1494dac82aa",
+      "verdict": "PASS",
+      "linguistic_reason": "‘单位’在‘十个单位’中为名词，‘个’才承担量词功能；撤销CLF证据成立。",
+      "source_proposed_primary": "NOUN",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "便",
+      "term_id": "zh_b33cf8e29901d129a101",
+      "verdict": "PASS",
+      "linguistic_reason": "‘方便’的便是语素，不能证明单字便独立作动词；独立‘便’的副词用法如‘随后便走’更稳。",
+      "source_proposed_primary": "ADV",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "应",
+      "term_id": "zh_6244c4c963a8b55a89cf",
+      "verdict": "CONDITIONAL",
+      "linguistic_reason": "‘回应’确实不能用来证明‘应’独立动词，但‘应声而起’、‘应答’的独立与构词需具体区别；暂撤VERB候选可接受，不能据此否定所有回应义。",
+      "source_proposed_primary": "AUX",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "本",
+      "term_id": "zh_83831c3f910cf940c661",
+      "verdict": "PASS",
+      "linguistic_reason": "‘书本’中本是构词语素而非独立名词证据；‘三本书’可证明CLF。",
+      "source_proposed_primary": "DET",
+      "source_proposed_secondary": [
+        "CLF"
+      ]
+    },
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "verdict": "REVIEW_REQUIRED",
+      "linguistic_reason": "‘元素’不足以证明NOUN，但‘十元、人民币元、元为计价单位’中的元有货币名词/量词双重分析。仅依错误例句就永久删NOUN不充分；需定义货币单位标签体系。",
+      "source_proposed_primary": "CLF",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "个人",
+      "term_id": "zh_15dec507959ec950e366",
+      "verdict": "PASS",
+      "linguistic_reason": "‘个人看法’中的个人名词作定语不足以建立独立ADJ类别，保留NOUN合理。",
+      "source_proposed_primary": "NOUN",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "一次",
+      "term_id": "zh_d736c7e459521de9cfa4",
+      "verdict": "PASS",
+      "linguistic_reason": "‘再试一次’中‘一次’是数词与量词性单位的数量补语，非独立副词。",
+      "source_proposed_primary": "NUM",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "正",
+      "term_id": "zh_d657ee1d4abbab428311",
+      "verdict": "PASS",
+      "linguistic_reason": "‘他正写作业’支持正的独立副词用法；‘正在’不能拆作独立例证。其他ADJ义如‘正面’需独立例证。",
+      "source_proposed_primary": "ADV",
+      "source_proposed_secondary": [
+        "ADJ"
+      ]
+    },
+    {
+      "term": "道",
+      "term_id": "zh_00a9d5bd97c269b44f95",
+      "verdict": "CONDITIONAL",
+      "linguistic_reason": "‘一条道’可证明独立名词，‘道路’不行；VERB如‘道出实情’中需区分道出整体动词与独立‘道了一声谢’，相关证据仍不足。",
+      "source_proposed_primary": "CLF",
+      "source_proposed_secondary": [
+        "NOUN",
+        "VERB"
+      ]
+    },
+    {
+      "term": "分",
+      "term_id": "zh_b6a993c256ef577abb04",
+      "verdict": "CONDITIONAL",
+      "linguistic_reason": "‘三分’存在计量、时间与分数结构多义，不能证明某一词性；NOUN、CLF保留须逐义证据，不视已证实。",
+      "source_proposed_primary": "VERB",
+      "source_proposed_secondary": [
+        "NOUN",
+        "CLF"
+      ]
+    },
+    {
+      "term": "过去",
+      "term_id": "zh_3774af744856e7f5a705",
+      "verdict": "CONDITIONAL",
+      "linguistic_reason": "‘走过去’为趋向补语构式，不能单独证明主谓动词；‘他已经过去了’中的过去可为动词，‘在过去’为时间名词，ADV标记需单独确认。",
+      "source_proposed_primary": "VERB",
+      "source_proposed_secondary": [
+        "NOUN",
+        "ADV"
+      ]
+    },
+    {
+      "term": "继续",
+      "term_id": "zh_7c9691192f1b73408bbe",
+      "verdict": "REVIEW_REQUIRED",
+      "linguistic_reason": "‘继续往前走’的继续可分析为控制性动词/状语化动词，确实不足以证明ADV；保留ADV候选但无独立分布证据，建议pending而非可确认POS。",
+      "source_proposed_primary": "VERB",
+      "source_proposed_secondary": [
+        "ADV"
+      ]
+    },
+    {
+      "term": "之后",
+      "term_id": "zh_28ff471d9a227562ea95",
+      "verdict": "CONDITIONAL",
+      "linguistic_reason": "‘三天之后’按时间方位词或后置关系标记划分依标注体系而变，保留NOUN/ADP候选必须标明体系。",
+      "source_proposed_primary": "NOUN",
+      "source_proposed_secondary": [
+        "ADP"
+      ]
+    },
+    {
+      "term": "完全",
+      "term_id": "zh_c9174343f70d61ed190f",
+      "verdict": "REVIEW_REQUIRED",
+      "linguistic_reason": "‘过程很完全’不自然不能证明形容词义缺失；‘完全不同’为ADV，‘完全的解决方案’较书面但可成立；需语料及形容词可作谓语/定语分布验证，暂不把删ADJ当已认证。",
+      "source_proposed_primary": "ADV",
+      "source_proposed_secondary": []
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "verdict": "PASS",
+      "linguistic_reason": "‘著名’的名单字是构词成分，不能据此支持独立ADJ；‘三名学生’为量词，‘人名’不能单独证明名词但‘报上名来’可。",
+      "source_proposed_primary": "CLF",
+      "source_proposed_secondary": [
+        "NOUN"
+      ]
+    }
+  ],
+  "guardrails": {
+    "no_runtime_mutation": true,
+    "no_term_id_mutation": true,
+    "muse_paused": true
+  }
+}
