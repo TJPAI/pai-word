@@ -1,0 +1,64 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion03-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_QA_PENDING",
+  "scope": {
+    "reviewed_parts": [
+      {
+        "path": "tools/answer-enrichment/enteach-batch200-part05-15.v1.json",
+        "blob": "df6d839c1a9293e09819f10df7adcf253bcd33d2",
+        "ku": 15
+      },
+      {
+        "path": "tools/answer-enrichment/enteach-batch200-part06-05.v1.json",
+        "blob": "eba1a38e260395c5de4e6bc96adb9ac62a3c0b97",
+        "ku": 5
+      }
+    ],
+    "new_reviewed_ku": 20,
+    "previous_reviewed_ku": 70,
+    "cumulative_reviewed_ku": 90,
+    "total_batch_ku": 200
+  },
+  "findings": [
+    {
+      "ku_id": "w_5037_withhold_ku_s01",
+      "headword": "withhold",
+      "severity": "MEDIUM",
+      "field": "example_zh",
+      "original": "该机构在调查结束前暂未公布报告。",
+      "issue": "withheld意为有意保留/不予提供，原中文『暂未公布』弱化了主动扣留的信息，与仅未发布的情况混淆。",
+      "proposed": "该机构在调查结束前一直扣着这份报告，没有对外提供。",
+      "action": "REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_4441_sibling_ku_s01",
+      "headword": "sibling",
+      "severity": "LOW",
+      "field": "example_zh",
+      "original": "她有两个兄弟姐妹，一个哥哥和一个妹妹。",
+      "issue": "中文『两个兄弟姐妹』略显生硬，可以直接说一位哥哥和一位妹妹。",
+      "proposed": "她有一个哥哥和一个妹妹。",
+      "action": "REWRITE_OPTIONAL"
+    },
+    {
+      "ku_id": "w_4846_auditor_ku_s01",
+      "headword": "auditor",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "an independent auditor · an external auditor · an internal auditor",
+      "issue": "三个搭配全部使用形容词加auditor，缺少常见动作语块，降低搭配训练的结构多样性。",
+      "proposed": "an independent auditor · an internal auditor · appoint an auditor",
+      "action": "PEDAGOGICAL_VARIATION_RECOMMENDED"
+    }
+  ],
+  "qa_limits": [
+    "Author self-review only, does not constitute independent CG-QA semantic certification",
+    "Unflagged KUs not presumed certified",
+    "No changes to locked source records or runtime"
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
