@@ -43,6 +43,8 @@ jobs:
         run: |
           node --check rebuild-preview/scene500-recommendation-bridge.mjs
           node -e "const fs=require('fs');const b=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8'),h=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');if(!b.includes('runtimeDataVersion:instance?.mode')||!h.includes('diagnostic=bridge.status?.()')||!h.includes('lexiconVerifiedLoaded,elapsedMs:'))throw Error('NO_RUNTIME_VERSION_BRIDGE');console.log('PASS runtime diagnostic wiring')"
+      - name: Execute home engine status display assertions
+        run: node tools/integration/test-home-engine-status.mjs
       - name: Check home status copy is not stale or overclaiming
         run: |
           node --check rebuild-preview/home-dashboard.js
