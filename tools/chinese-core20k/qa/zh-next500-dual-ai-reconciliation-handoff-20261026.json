@@ -1,0 +1,47 @@
+{
+  "schema": "pai-word-zh-core20k-dual-ai-reconciliation-handoff-v1",
+  "date": "2026-10-26",
+  "role": "CG-ZH",
+  "status": "CLASSIFICATION_RECONCILIATION_ONLY",
+  "source": {
+    "runtime_version": "0.10.1-evidence-compat",
+    "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+    "runtime_drive_url": "https://drive.google.com/file/d/1HaB-_iA-NdqCVYFzdXB0gckvrSEoAoSc/view",
+    "report_drive_url": "https://drive.google.com/file/d/1_ymkzPV5lQL5qy9sBiE6OQXD_U3sX4cm/view",
+    "report_filename": "zh_core20k_dual_ai_next500_reconciliation_20261026.json",
+    "report_bytes": 137303,
+    "report_sha256": "b7451c6e74ebd268ae5a1a213faa68650cf07c3d880b9a050faf0e43a8f620f2"
+  },
+  "qa": {
+    "rows": 500,
+    "runtime_match": 500,
+    "term_id_hash_match": 500,
+    "alignment_match": 500,
+    "agreed": 390,
+    "disagreed": 110,
+    "agreed_classes": {
+      "LEXICALIZED": 250,
+      "COMPOSITIONAL": 84,
+      "DOMAIN_TERM": 56
+    },
+    "low_confidence_either_le_0_70": 83,
+    "errors": []
+  },
+  "policy": {
+    "term_membership_unchanged": true,
+    "term_id_unchanged": true,
+    "runtime_unchanged": true,
+    "classification_agreement_is_not_deletion_approval": true,
+    "external_frequency_verified": false,
+    "hybrid_top5_impact_tested": false
+  },
+  "handoff": {
+    "to": [
+      "CG-QA",
+      "MU-ZH",
+      "CG-REC",
+      "CG-MAIN"
+    ],
+    "next": "Targeted adjudication of 110 classification disagreements; preserve current 20K assets and rolling integration; classify independently of domain applicability."
+  }
+}
