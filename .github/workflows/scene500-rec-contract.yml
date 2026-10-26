@@ -1,0 +1,24 @@
+name: Scene500 REC contract regression
+on:
+  push:
+    branches: [scene500-recommendation-dev]
+    paths:
+      - 'scene500-recommendation/**'
+      - 'data/scene-taxonomy-v2.json'
+      - 'data/scene500-taxonomy-20x25-v1.txt'
+      - 'data/scene500-playable-membership-v2.json'
+      - 'tools/answer-enrichment/s113-teaching-candidates.v1.json'
+      - '.github/workflows/scene500-rec-contract.yml'
+  workflow_dispatch:
+jobs:
+  taxonomy-boundary:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 20x25 taxonomy pin and S113 membership status
+        run: node scene500-recommendation/qa/test-s113-taxonomy-boundary.mjs
