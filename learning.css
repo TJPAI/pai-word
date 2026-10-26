@@ -181,3 +181,18 @@
 .learning-screen .answer-section[data-approved-teaching-ku] .example-translation{color:#666;font-size:.88em;line-height:1.5;margin-top:4px}
 .learning-screen .answer-section[data-test-teaching="example"] .example-play,
 .learning-screen .answer-section[data-approved-teaching-ku] .example-play{justify-self:center;align-self:start}
+
+/* Batch93 isolated preview uses the SAME regular answer-page grid and buttons. */
+.learning-screen .answer-section[data-batch93-isolated-ku] .example{
+ display:grid;grid-template-columns:16px minmax(0,1fr) 34px;
+ gap:6px;align-items:start;width:100%;min-width:0;box-sizing:border-box;
+ white-space:normal;overflow-wrap:break-word;
+}
+.learning-screen .answer-section[data-batch93-isolated-ku] .example-text{min-width:0;overflow-wrap:break-word}
+.learning-screen .answer-section[data-batch93-isolated-ku] .example-en{white-space:normal}
+.learning-screen .answer-section[data-batch93-isolated-ku] .example-translation{display:block;color:#666;font-size:.88em;line-height:1.5;margin-top:4px}
+.learning-screen .answer-section[data-batch93-isolated-ku] .example-play{justify-self:center;align-self:start}
+.learning-screen .batch93-context-question{
+ font-size:14px;line-height:1.5;padding:8px 10px;margin:4px 0 12px;
+ border-inline-start:3px solid #94a3b8;overflow-wrap:break-word;
+}
