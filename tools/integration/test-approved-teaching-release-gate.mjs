@@ -19,4 +19,9 @@ for(const patch of [
  assert.equal(result.enabled,false,JSON.stringify(patch));
  assert.equal(result.accepted.size,0,'never partly activate rejected release');
 }
+const anchor={ku_id:'approved-ku',official_sense_id:null,binding_kind:'KU_ANCHORED_SENSE',binding_ku_id:'approved-ku',binding_registered:true,binding_authorized:true,activation_allowed:true};
+assert.equal(check({records:[anchor]}).enabled,true);
+for(const patch of [{binding_registered:false},{binding_authorized:false},{binding_ku_id:'wrong'},{activation_allowed:false}])assert.equal(check({records:[{...anchor,...patch}]}).enabled,false);
+assert.equal(check({records:[anchor],status:'STAGING_ONLY'}).enabled,false);
+assert.equal(check({records:[anchor],source_rights_cleared:false}).enabled,false);
 console.log('PASS staged teaching cannot bypass identity, rights, membership and activation gate');
