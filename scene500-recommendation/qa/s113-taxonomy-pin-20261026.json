@@ -1,0 +1,90 @@
+{
+  "schema": "pai-word-scene500-s113-taxonomy-pin-v1",
+  "verified_source_commit": "75d1325026282dcd98710426c1c7764de4ab391b",
+  "recommendation_branch": "scene500-recommendation-dev",
+  "decision": {
+    "recommendation_runtime_taxonomy": "scene500-20x25-v1",
+    "recommendation_catalog": "scene500-recommendation/catalog-v0.2.json",
+    "S113": "预订酒店",
+    "cross_taxonomy_mapping_required": true,
+    "do_not_relabel_scene_ids": true
+  },
+  "conflict": [
+    {
+      "source": "data/scene500-taxonomy-20x25-v1.txt",
+      "S113": "预订酒店",
+      "S104": "机场值机"
+    },
+    {
+      "source": "scene500-recommendation/catalog-v0.2.json",
+      "S113": "预订酒店"
+    },
+    {
+      "source": "data/scene-taxonomy-v2.json",
+      "S113": "公园游览",
+      "S104": "预订酒店"
+    },
+    {
+      "source": "data/scene500-seeds-c02-c05-v1.json",
+      "S113": {
+        "headwords": [
+          "park"
+        ],
+        "senseEn": [
+          "public park",
+          "walk in a park",
+          "park entrance"
+        ]
+      }
+    }
+  ],
+  "candidate_file": "tools/answer-enrichment/s113-teaching-candidates.v1.json",
+  "candidate_status": "EDITORIAL_STAGING_UNCERTIFIED",
+  "scene_rank_trace": [
+    {
+      "headword": "guest",
+      "candidate_rank": 2,
+      "membership_cs043": 9,
+      "membership_cs044": 7,
+      "verified": false
+    },
+    {
+      "headword": "reservation",
+      "candidate_rank": 3,
+      "membership_cs043": 3,
+      "membership_cs044": 10,
+      "verified": false
+    },
+    {
+      "headword": "cancellation",
+      "candidate_rank": 4,
+      "membership_cs043": null,
+      "membership_cs044": null,
+      "related_cancel_verb_cs043": 6,
+      "verified": false
+    }
+  ],
+  "membership": {
+    "source": "data/scene500-playable-membership-v2.json",
+    "S113_present": false,
+    "scene_rank_provenance": "UNVERIFIED",
+    "note": "cs043/cs044 are distinct scene key namespace, not proven equivalent to S113"
+  },
+  "publish": {
+    "guest": "STAGING",
+    "reservation": "STAGING_REVISE",
+    "cancellation": "STAGING",
+    "reason": [
+      "taxonomy ID ambiguity across assets",
+      "candidate ranks lack formally traced membership",
+      "sense_id missing; source licenses unverified"
+    ],
+    "main_developer": "Do not enable three candidate KUs, retain stable answer UI and SRS"
+  },
+  "qa": {
+    "source_read": "PASS",
+    "two_taxonomy_conflict": "CONFIRMED",
+    "rank_membership_alignment": "FAIL",
+    "production_ready": false
+  }
+}
