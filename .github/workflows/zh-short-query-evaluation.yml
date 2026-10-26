@@ -57,7 +57,7 @@ jobs:
                 "",
                 "**Non-production experiment; this is not Scene500 semantic certification.**"
               ];
-              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join("\\n")+"\\n");
+              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join("\n")+"\n");
             '
           else
             echo "Evaluation JSON absent; inspect failed steps" >> "$GITHUB_STEP_SUMMARY"
