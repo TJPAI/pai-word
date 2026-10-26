@@ -1,0 +1,165 @@
+{
+  "schema_version": "pai-word-enteach-seven-ku-answer-overlay-v1",
+  "owner": "CG-ENTEACH",
+  "source_commit": "c06028d90262450dac5d7680273290968724cd98",
+  "source_refs": [
+    {
+      "path": "tools/answer-enrichment/s113-teaching-owner-handoff.v3.json",
+      "blob_sha": "dfa0f0bac48e0b128cb808042b78bc5b765b7b6b"
+    },
+    {
+      "path": "tools/answer-enrichment/s113-next4-hotel-booking-teaching-draft.v2.json",
+      "blob_sha": "ce75a0c4ac366072d380acd1fe73ea733f1974fb"
+    },
+    {
+      "path": "tools/answer-enrichment/s113-seven-content-delivery-ledger.v2.json",
+      "blob_sha": "d123d61de01c1b36661f756664dd7b06b85cd9aa"
+    }
+  ],
+  "scene": {
+    "scene_id": "S113",
+    "taxonomy_namespace": "scene500-20x25-v1",
+    "name_zh": "预订酒店",
+    "canonical_membership": "NOT_ESTABLISHED"
+  },
+  "activation": {
+    "allowed": false,
+    "reason": "No authoritative scene/Sense membership or source-rights clearance; do not write to formal learning pool"
+  },
+  "production_ready": false,
+  "content_semantic_review": "DUAL_AI_PASS_7_OF_7_EXACT_CONTENT",
+  "records": [
+    {
+      "ku_id": "w_1452_guest_ku_s01",
+      "headword": "guest",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 2,
+      "official_sense_id": null,
+      "gloss_zh": "（酒店）住客；客人",
+      "gloss_en": "a person staying at a hotel",
+      "collocation": "hotel guest · a guest room · welcome guests",
+      "example_en": "The guest checked in at the front desk.",
+      "example_zh": "客人在前台办理了入住手续。",
+      "grammar_note": null,
+      "contrast_note": "guest 指接受接待的客人或住客；host 指接待客人的主人或主办方。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-teaching-owner-handoff.v3.json",
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_3084_reservation_ku_s01",
+      "headword": "reservation",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 3,
+      "official_sense_id": null,
+      "gloss_zh": "预订；预先订好的房间或服务",
+      "gloss_en": "an arrangement made in advance to keep a hotel room or another service available for someone",
+      "collocation": "make a reservation · confirm a reservation · hotel reservation",
+      "example_en": "I'd like to confirm my reservation for tonight.",
+      "example_zh": "我想确认今晚的酒店预订。",
+      "grammar_note": null,
+      "contrast_note": "reservation 在酒店语境指预订，与 booking 通常近义。have reservations about something 则表示对某事有疑虑或保留意见，不属于此酒店预订义项。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-teaching-owner-handoff.v3.json",
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "headword": "cancellation",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 4,
+      "official_sense_id": null,
+      "gloss_zh": "取消预订；预订的取消",
+      "gloss_en": "the act of cancelling a booking or reservation",
+      "collocation": "free cancellation · cancellation fee · cancellation policy",
+      "example_en": "Free cancellation is available until Friday.",
+      "example_zh": "周五之前可以免费取消预订。",
+      "grammar_note": null,
+      "contrast_note": "cancellation 是名词，表示取消行为或结果；cancel 是动词。酒店语境通常为取消预订，与行政性注销不同。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-teaching-owner-handoff.v3.json",
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_0771_hotel_ku01",
+      "headword": "hotel",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 1,
+      "official_sense_id": null,
+      "gloss_zh": "酒店；旅馆",
+      "gloss_en": "a place where people pay to stay for a short time",
+      "collocation": "book a hotel room · stay at a hotel · hotel reservation",
+      "example_en": "We booked a hotel room for two nights.",
+      "example_zh": "我们预订了一间酒店客房，住两晚。",
+      "grammar_note": null,
+      "contrast_note": "hotel通常指提供付费住宿服务的酒店；hostel常指设施较简单、可能有多人宿舍房型的旅舍，二者不可一概等同。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-next4-hotel-booking-teaching-draft.v2.json",
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_3287_availability_ku_s01",
+      "headword": "availability",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 14,
+      "official_sense_id": null,
+      "gloss_zh": "（客房等的）可订情况；是否有空房",
+      "gloss_en": "the state of being available, especially whether rooms can be booked",
+      "collocation": "check room availability · room availability · limited availability",
+      "example_en": "Could you check room availability for next weekend?",
+      "example_zh": "你能查一下下周末还有没有空房吗？",
+      "grammar_note": "availability为不可数名词；询问空房时可用 room availability 或 whether rooms are available。",
+      "contrast_note": "availability表示是否可获得或可预订；reservation表示已经作出的预订安排。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-next4-hotel-booking-teaching-draft.v2.json",
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_2445_cancel_ku_s01",
+      "headword": "cancel",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 18,
+      "official_sense_id": null,
+      "gloss_zh": "取消（预订）",
+      "gloss_en": "to arrange for a booking or reservation not to go ahead",
+      "collocation": "cancel a reservation · cancel a booking · cancel without a fee",
+      "example_en": "I need to cancel my hotel reservation.",
+      "example_zh": "我需要取消我的酒店预订。",
+      "grammar_note": "cancel是动词；过去式和过去分词有canceled/cancelled两种常见拼写。",
+      "contrast_note": "cancel是动词，cancellation是名词；取消预订不等于更改预订（change a reservation）。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-next4-hotel-booking-teaching-draft.v2.json",
+      "activation_allowed": false
+    },
+    {
+      "ku_id": "w_3678_confirmation_ku_s01",
+      "headword": "confirmation",
+      "scene_id": "S113",
+      "taxonomy_namespace": "scene500-20x25-v1",
+      "scene_rank_candidate": 19,
+      "official_sense_id": null,
+      "gloss_zh": "确认预订；预订确认信息",
+      "gloss_en": "the act of confirming a booking, or a message showing that the booking has been made",
+      "collocation": "booking confirmation · confirmation email · confirmation number",
+      "example_en": "Please send me a confirmation email for my reservation.",
+      "example_zh": "请给我发送一封预订确认邮件。",
+      "grammar_note": null,
+      "contrast_note": "confirmation是确认信息或确认行为；reservation是预订安排本身，二者不可直接互换。",
+      "semantic_review": "DUAL_AI_PASS_CONTENT_ONLY",
+      "source_record": "s113-next4-hotel-booking-teaching-draft.v2.json",
+      "activation_allowed": false
+    }
+  ],
+  "notes": [
+    "Metadata scene_rank_candidate is historical V40 and NOT official qualified membership.",
+    "Do not invent official sense_id or replace KU ids.",
+    "All collocations and examples are internal drafted teaching content, not third-party dictionary quotations; provenance and reuse rights remain to be documented.",
+    "The existing answer page/SRS and main branch must not be modified by this content handoff."
+  ]
+}
