@@ -17,6 +17,7 @@ function switchedTransport(q){
  return null;
 }
 const rules=[
+ {id:'english_study_not_machine_learning',match:q=>/^(?:我想)?(?:学|学习|练习)?英语(?:学习|课程|口语|发音)?(?:而)?(?:不是|并非|而非)(?:机器学习|深度学习)[。.]?$/.test(q),promote:null,exclude:['S279','S280']},
  {id:'food_order_english_compositional',match:q=>foodOrder.test(q),promote:'S034',exclude:[]},
  {id:'coffee_order_english',match:q=>/^(?:how\s+(?:to|do\s+i|can\s+i)\s+order\s+(?:a\s+)?coffee\??|(?:(?:i\s+(?:want|would\s+like)\s+to|i'd\s+like\s+to)|please|could\s+i)\s+order\s+(?:a\s+)?coffee(?:\s+please)?[?.]?|order\s+(?:a\s+)?coffee[?.]?)$/i.test(q),promote:'S039',exclude:[]},
  {id:'english_pronunciation_zh',match:q=>/^(?:(?:我想|想|如何|怎么|怎样|请教)\s*)?(?:学习|练习|提高|学)?\s*英语发音(?:怎么学|技巧|练习|学习)?$/.test(q),promote:null,exclude:['S279','S280']},
