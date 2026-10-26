@@ -46,6 +46,8 @@ jobs:
         run: |
           node --check rebuild-preview/scene500-recommendation-bridge.mjs
           node -e "const fs=require('fs');const b=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8'),h=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');if(!b.includes('runtimeDataVersion:instance?.mode')||!h.includes('diagnostic=bridge.status?.()')||!h.includes('lexiconVerifiedLoaded,elapsedMs:'))throw Error('NO_RUNTIME_VERSION_BRIDGE');console.log('PASS runtime diagnostic wiring')"
+      - name: Verify handwriting scratch is temporary and gesture-safe
+        run: node tools/integration/test-handwriting-scratch.mjs
       - name: Guard global card-face preference and speech-ended auto interval
         run: node tools/integration/test-global-face-and-audio-interval.mjs
       - name: Check compact home query and settings heading alignment
