@@ -28,6 +28,8 @@ jobs:
         run: |
           test -s data/core20k-runtime.json.gz
           node -e "const z=require('zlib'),f=require('fs');const j=JSON.parse(z.gunzipSync(f.readFileSync('data/core20k-runtime.json.gz')));if(j.headwords?.length!==20000)throw Error('English Core20K count');console.log('PASS English Core20K 20000 headwords')"
+      - name: Verify real English KU adapter indices and playability
+        run: node scripts/core20k-unified-runtime-test.mjs data/core20k-runtime.json.gz
       - name: Materialize verified Chinese Core20K V0.10.1
         run: node scripts/materialize-zh-core20k-v0101.mjs
       - name: Assert exact bilingual runtime identity and size
