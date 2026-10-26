@@ -20,4 +20,7 @@ assert.equal(search('如何学习机器学习',[row('S279',5)]).results[0]?.scen
 assert.equal(search("I'd like to order a coffee.",[]).results[0]?.sceneId,'S039');
 assert.equal(search("I’d like to order coffee.",[]).results[0]?.sceneId,'S039');
 assert.equal(search("I'd like to order a sandwich.",[]).results.length,0);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 15 assertions');
+assert.equal(search('如何学习英语发音',[row('S279',4),row('S280',3),row('S135',2)]).results.some(r=>['S279','S280'].includes(r.sceneId)),false);
+assert.equal(search('我想学习英语发音',[row('S279',4),row('S280',3),row('S135',2)]).results.some(r=>['S279','S280'].includes(r.sceneId)),false);
+assert.equal(search('如何学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 18 assertions');
