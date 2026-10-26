@@ -34,12 +34,12 @@ assert.equal(verify({q:triple,target:'火车票',targetAt,operator:'改买',oper
 // The current simple verifier knows only one explicit comma boundary and cannot
 // adjudicate implicit clauses, repeated targets or embedded discussion.
 const unsupported=[
- {q:'不要单人间换双人间',reason:'IMPLICIT_CLAUSE'},
- {q:'不要单人间但要双人间',reason:'UNMARKED_CONTRAST'},
- {q:'不要单人间单人间也不行',reason:'REPEATED_TARGET'},
- {q:'如何拒绝单人间',reason:'METALINGUISTIC_REQUEST'},
- {q:'他说不要单人间',reason:'REPORTED_SPEECH'},
- {q:'不是不想要单人间',reason:'NESTED_NEGATION'}
+ {q:'不要单人间换双人间',reason:'IMPLICIT_CLAUSE',expected:'ABSTAIN_UNMARKED_CLAUSE'},
+ {q:'不要单人间但要双人间',reason:'UNMARKED_CONTRAST',expected:'ABSTAIN_UNMARKED_CLAUSE'},
+ {q:'不要单人间单人间也不行',reason:'REPEATED_TARGET',expected:'ABSTAIN_REPEATED_TARGET'},
+ {q:'如何拒绝单人间',reason:'METALINGUISTIC_REQUEST',expected:'ABSTAIN_CONTEXT'},
+ {q:'他说不要单人间',reason:'REPORTED_SPEECH',expected:'ABSTAIN_CONTEXT'},
+ {q:'不是不想要单人间',reason:'NESTED_NEGATION',expected:'ABSTAIN_NESTED_NEGATION'}
 ];
 function scopeGate(q){
  if (q.includes('如何') || q.startsWith('他说')) return 'ABSTAIN_CONTEXT';
@@ -48,5 +48,6 @@ function scopeGate(q){
  if (q.includes('不要单人间单人间')) return 'ABSTAIN_REPEATED_TARGET';
  return 'UNSUPPORTED_REVIEW_REQUIRED';
 }
-for (const x of unsupported) assert.match(scopeGate(x.q),/^ABSTAIN_/,'UNSAFE_SCOPE_ACCEPTED '+x.reason);
+for (const x of unsupported) assert.equal(scopeGate(x.q),x.expected,'INCORRECT_ABSTAIN_REASON '+x.reason);
+assert.equal(scopeGate('我想住双人间'),'UNSUPPORTED_REVIEW_REQUIRED','UNSUPPORTED_DEFAULT_NOT_EXPLICIT');
 console.log(JSON.stringify({status:'PASS',curated_pairs:4,mutations_rejected:3,multi_clause_positive:1,unsupported_abstained:unsupported.length,semantic_generalization_verified:false,production_ready:false}));
