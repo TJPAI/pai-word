@@ -10,6 +10,8 @@ function switchedTransport(q){
  const value=q.replace(/[。.!？?，,\s]/g,'');
  const m=value.match(/(?:原计划|原来|本来|今天)?(?:坐|乘|乘坐)?(地铁|公交车|公交|公共汽车)(?:现在|后来|了)?(?:不坐|不乘|不要|改坐|改乘|换乘|换坐|换|改)(地铁|公交车|公交|公共汽车)$/);
  if(m){const source=transitMode(m[1]),target=transitMode(m[2]);if(source&&target&&source!==target)return {id:'transport_switch_directional',promote:target,exclude:[source]};}
+ const reverse=value.match(/^(?:现在|今天|我)?(?:改坐|改乘|换坐|换乘|改|换)(地铁|公交车|公交|公共汽车)(?:不坐|不乘|不要坐|不要乘)(地铁|公交车|公交|公共汽车)$/);
+ if(reverse){const target=transitMode(reverse[1]),source=transitMode(reverse[2]);if(source&&target&&source!==target)return {id:'transport_reverse_switch_directional',promote:target,exclude:[source]};}
  const n=value.match(/^(?:今天|我)?(?:不坐|不乘|不要坐|不要乘)(公交车|公交|公共汽车|地铁)(?:了)?(?:改乘|改坐|换乘|换坐|改|换)(公交车|公交|公共汽车|地铁)$/);
  if(n){const source=transitMode(n[1]),target=transitMode(n[2]);if(source&&target&&source!==target)return {id:'transport_negation_directional',promote:target,exclude:[source]};}
  return null;
