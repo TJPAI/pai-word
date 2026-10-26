@@ -21,7 +21,10 @@ export function validateFourLineIntegration({catalog,english,activeSceneMembersh
          new Set(zhRuntime.terms.map(t=>t.term_id)).size!==20000)
    reject('INVALID_CHINESE_V0101');
  if(associations==null)warnings.push('ASSOCIATIONS_NOT_DELIVERED');
- else if(!text(associations.association_version)||!Array.isArray(associations.links)||
+ else if(!text(associations.association_version)||
+         associations.source_data_version!==zhRuntime?.data_version||
+         associations.taxonomy_namespace!=='scene500-20x25-v1'||
+         associations.provenance_verified!==true||!Array.isArray(associations.links)||
          associations.links.length===0||
          associations.links.some(x=>!text(x.term_id)||!sid(x.scene_id)))
    reject('INVALID_SCENE_ASSOCIATIONS');
