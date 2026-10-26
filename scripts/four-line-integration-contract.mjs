@@ -42,7 +42,7 @@ export function validateFourLineIntegration({catalog,english,activeSceneMembersh
      else{from.add(m.scene_id);to.add(m.legacy_id);}
    }
  }
- if(!sceneMappings.some(m=>m?.scene_id==='S113'&&m?.provenance_verified===true))
+ if(!Array.isArray(sceneMappings)||!sceneMappings.some(m=>m?.scene_id==='S113'&&m?.provenance_verified===true))
    warnings.push('S113_NOT_PLAYABLE_TAXONOMY_CONFLICT');
  if(teaching==null)warnings.push('NO_CERTIFIED_TEACHING_RELEASE');
  else if(teaching.production_ready!==true||teaching.activation_allowed!==true||
@@ -57,9 +57,9 @@ export function validateFourLineIntegration({catalog,english,activeSceneMembersh
      englishCore20k:!!english?.words&&english.words.length===20000&&english.byKU instanceof Map,
      chineseV0101:!!zhRuntime&&errors.indexOf('INVALID_CHINESE_V0101')===-1,
      recommendationHybrid:!!zhRuntime&&!!associations&&!errors.some(x=>x.startsWith('INVALID_')||x.includes('MISMATCH')),
-     recommendationSceneNavigation:sceneMappings.length>0&&errors.length===0,
+     recommendationSceneNavigation:Array.isArray(sceneMappings)&&sceneMappings.length>0&&errors.length===0,
      certifiedTeaching:teaching?.status==='PRODUCTION_READY'&&teaching?.production_ready===true&&teaching?.activation_allowed===true
    }),
-   sceneMappings:Object.freeze(errors.length?[]:sceneMappings.map(m=>Object.freeze({scene_id:m.scene_id,legacy_id:m.legacy_id})))
+   sceneMappings:Object.freeze(errors.length||!Array.isArray(sceneMappings)?[]:sceneMappings.map(m=>Object.freeze({scene_id:m.scene_id,legacy_id:m.legacy_id})))
  });
 }
