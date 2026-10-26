@@ -28,4 +28,14 @@ assert.equal(search('Please order a pizza',[]).results[0]?.sceneId,'S034');
 assert.equal(search('I want to order a salad',[]).results[0]?.sceneId,'S034');
 assert.equal(search('How to cancel a sandwich?',[]).results.length,0);
 assert.equal(search('How to order a sandwich?',[],{eligibleSceneIds:['S039']}).results.length,0);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 23 assertions');
+for(const [q,target,blocked] of [
+ ['原计划坐地铁，现在换公交','S078','S079'],
+ ['改坐地铁，不坐公交车','S079','S078'],
+ ['今天不坐公交，改乘地铁','S079','S078']
+]){
+ const out=search(q,[row('S079',15),row('S078',14)]);
+ assert.equal(out.results[0]?.sceneId,target,'SWITCH_TARGET '+q);
+ assert.ok(!out.results.some(r=>r.sceneId===blocked),'NEGATED_SCENE_LEAK '+q);
+}
+assert.equal(search('地铁和公交哪个快',[row('S079',15),row('S078',14)]).results.length,2);
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 30 assertions');
