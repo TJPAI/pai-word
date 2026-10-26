@@ -1,0 +1,32 @@
+{
+  "schema": "pai-main-batch93-dual-ai-handoff-v1",
+  "as_of": "2026-10-27",
+  "scope": "six KUs, semantic certification and identity binding only",
+  "upstream_branch": "core20k-teaching-qa-b162-20261024",
+  "upstream_commit": "d9484e127a19dc47367c3475c7574b04e1955419",
+  "evidence": {
+    "certification": "tools/core20k_lexicon/staging/sixline_dual_ai_certification_batch93.json",
+    "binding": "tools/core20k_lexicon/staging/B217_SIX_KU_REGISTERED_CROSSWALK.json",
+    "source_pack_sha256": "21d831519abdda34fadef88a601655373750ddf3385ea98d27370cfe2b1eec15",
+    "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b"
+  },
+  "semantic_certified_ku_ids": [
+    "w_0266_person_ku01",
+    "w_0049_time_ku01",
+    "w_0041_know_ku01",
+    "w_0057_people_ku01",
+    "w_0139_talk_ku01",
+    "w_0099_here_ku01"
+  ],
+  "binding_kind": "KU_ANCHORED_SENSE",
+  "sense_binding_registered": true,
+  "formal_release_activated": false,
+  "staging_only": true,
+  "open_engineering_items": [
+    "Formal activation manifest remains STAGING_ONLY with no signed release.",
+    "Registered KU-anchored binding has official_sense_id null; current generic release gate demands a nonempty official_sense_id, requiring an explicit contract decision.",
+    "talk IPA variation between pack and runtime must remain attributable.",
+    "Self-rating applies; typed-answer accepted variants do not influence SRS in current production flow."
+  ],
+  "notes": "Dual-AI semantic certification is accepted evidence; it is not equivalent to source-rights clearance or permission to activate an unsigned production release. This handoff does not add a new certification stage."
+}
