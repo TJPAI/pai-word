@@ -516,7 +516,7 @@
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
  let touch=null;document.addEventListener('touchstart',e=>{touch=state.view==='learning'&&e.touches?.length===1?{x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()}:null},{passive:true});
  document.addEventListener('touchmove',e=>{if(touch&&e.touches?.[0]&&(Math.abs(e.touches[0].clientX-touch.x)>10||Math.abs(e.touches[0].clientY-touch.y)>10))window.__paiTapSuppressUntil=Date.now()+700},{passive:true});
- document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||e.target.closest('button,a,input,select,textarea,.auto-word-toggle'))return;const horizontal=Math.abs(x)>=65&&Math.abs(x)>=Math.abs(y)*1.3,vertical=Math.abs(y)>=75&&Math.abs(y)>=Math.abs(x)*1.3;if(!horizontal&&!vertical)return;window.__paiTapSuppressUntil=Date.now()+700;if(vertical)window.PAI_CHANGE_BATCH?.(y<0?1:-1);else window.PAI_NAVIGATE_LEARNING?.(x>0?-1:1,'swipe')},{passive:true});
+ document.addEventListener('touchend',e=>{if(!touch||state.view!=='learning'||e.changedTouches?.length!==1)return;const x=e.changedTouches[0].clientX-touch.x,y=e.changedTouches[0].clientY-touch.y,dt=Date.now()-touch.time;touch=null;if(dt>700||e.target.closest('button,a,input,select,textarea,.auto-word-toggle,.pai-scratch-area'))return;const horizontal=Math.abs(x)>=65&&Math.abs(x)>=Math.abs(y)*1.3,vertical=Math.abs(y)>=75&&Math.abs(y)>=Math.abs(x)*1.3;if(!horizontal&&!vertical)return;window.__paiTapSuppressUntil=Date.now()+700;if(vertical)window.PAI_CHANGE_BATCH?.(y<0?1:-1);else window.PAI_NAVIGATE_LEARNING?.(x>0?-1:1,'swipe')},{passive:true});
  // Backgrounding never turns an already revealed answer into a fresh timed question.
  let hiddenAt=0,hiddenPhase=null;
  document.addEventListener('visibilitychange',()=>{
@@ -1216,7 +1216,7 @@
   const repeat=s.seen[u.k]>0;
   const autoSwitch=`<label class="auto-word-toggle" title="自动切词：点击开启或关闭"><input type="checkbox" ${state.autoBrowseEnabled?'checked':''} onchange="setAutoBrowse(this.checked)" aria-label="自动切词" aria-description="勾选后按照设置速度自动切换词卡"><span class="auto-word-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4L3 9"/><path d="M3 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4L21 15"/><path d="M16 15h5v5"/></svg></span></label>`;
   const label=u.s.kuType==='sense'?'回忆词义':(state.hideWord&&!state.revealed?'听音回忆知识点':u.s.kuTitle);
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<div class="recall-controls-row"><p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p>${autoSwitch}</div></div><div class="study-body">${state.revealed?answerHtml(u):''}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<div class="recall-controls-row"><p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p>${autoSwitch}</div></div><div class="study-body">${state.revealed?answerHtml(u):'<div class="pai-scratch-area" aria-label="手写记词草稿区，轻点显示答案，手写绘画，长按清空"><canvas class="pai-scratch-canvas"></canvas><div class="pai-scratch-hint">手写记词<small>长按擦除</small></div></div>'}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};
@@ -1231,4 +1231,62 @@
  };
  window.addEventListener('pai-offline-status',()=>{if(state.view==='settings')render()});
  window.PAI_LEARNING_QA={due,fresh,unlearned,current:unit};
+})();
+
+
+;
+// Scratch surface is presentation-only: strokes never enter KU records, SRS or persistence.
+(function(){
+ const scratchStates=new WeakMap();
+ function initScratch(){
+  const surface=document.querySelector('.learning-screen:not(.revealed) .pai-scratch-area');
+  if(!surface||scratchStates.has(surface))return;
+  const canvas=surface.querySelector('canvas'),hint=surface.querySelector('.pai-scratch-hint');
+  if(!canvas)return;
+  const dpr=Math.min(window.devicePixelRatio||1,3),rect=canvas.getBoundingClientRect();
+  canvas.width=Math.max(1,Math.round(rect.width*dpr));canvas.height=Math.max(1,Math.round(rect.height*dpr));
+  const ctx=canvas.getContext('2d');if(!ctx)return;
+  ctx.scale(dpr,dpr);ctx.strokeStyle='#243347';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round';
+  const st={pointer:null,x:0,y:0,startX:0,startY:0,moved:false,long:false,timeout:null};
+  scratchStates.set(surface,st);
+  const clearHold=()=>{if(st.timeout!==null){clearTimeout(st.timeout);st.timeout=null}};
+  const point=e=>{const box=canvas.getBoundingClientRect();return {x:e.clientX-box.left,y:e.clientY-box.top}};
+  const suppress=()=>{window.__paiTapSuppressUntil=Date.now()+800};
+  canvas.addEventListener('pointerdown',e=>{
+   if(st.pointer!==null||!e.isPrimary||e.pointerType==='mouse'&&e.button!==0)return;
+   const p=point(e);st.pointer=e.pointerId;st.x=st.startX=p.x;st.y=st.startY=p.y;st.moved=false;st.long=false;
+   try{canvas.setPointerCapture(e.pointerId)}catch{}
+   st.timeout=setTimeout(()=>{
+    st.timeout=null;if(st.pointer===null||st.moved)return;
+    ctx.clearRect(0,0,canvas.width/dpr,canvas.height/dpr);
+    hint.hidden=false;st.long=true;suppress();
+   },600);
+  });
+  canvas.addEventListener('pointermove',e=>{
+   if(st.pointer!==e.pointerId||st.long)return;
+   const p=point(e);
+   if(!st.moved&&Math.hypot(p.x-st.startX,p.y-st.startY)>8){
+    st.moved=true;clearHold();hint.hidden=true;suppress();
+    ctx.beginPath();ctx.moveTo(st.startX,st.startY);
+   }
+   if(st.moved){ctx.lineTo(p.x,p.y);ctx.stroke();suppress()}
+   st.x=p.x;st.y=p.y;
+  });
+  const finish=e=>{
+   if(st.pointer!==e.pointerId)return;
+   clearHold();
+   if(st.moved||st.long)suppress(); // suppress tap-flow's document click
+   st.pointer=null;
+  };
+  canvas.addEventListener('pointerup',finish);
+  canvas.addEventListener('pointercancel',e=>{if(st.pointer===e.pointerId){clearHold();st.pointer=null;suppress()}});
+  canvas.addEventListener('contextmenu',e=>e.preventDefault());
+ }
+ const previousRender=window.render;
+ if(typeof previousRender==='function')window.render=function(...args){
+  const result=previousRender.apply(this,args);
+  if(state.view==='learning')requestAnimationFrame(initScratch);
+  return result;
+ };
+ if(state.view==='learning')requestAnimationFrame(initScratch);
 })();
