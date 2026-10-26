@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const home=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');
+const bridge=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8');
+assert(bridge.includes('export async function warmup()'),'bridge exposes warmup');
+assert(bridge.includes('await readyPromise;'),'warmup waits for catalog/rule initialization');
+assert(home.includes('queueSceneWarmup();return'),'home initiates warmup after rendering');
+assert(home.includes("typeof requestIdleCallback==='function'"),'idle priority for slow phones');
+assert(home.includes('else setTimeout(run,250)'),'fallback for Safari lacking idle callback');
+assert(home.includes('sceneWarmupQueued=true;'),'one-time warmup');
+assert(home.includes("get('scene500engine')==='0'"),'respect disabled engine');
+assert(home.includes('bridge.warmup?.()'),'call actual bridge initialization');
+assert(home.includes('bridge.onHybridReady(refreshActiveHybrid)'),'still handle asynchronously promoted Chinese lexicon');
+console.log('PASS Scene500 warmup is non-blocking, single-shot and honors engine opt-out');
