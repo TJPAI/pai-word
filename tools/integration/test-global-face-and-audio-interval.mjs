@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const s=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+assert(s.includes("let preferredPageState='QUESTION';let pageState='QUESTION'"));
+assert(s.includes('preferredPageState=pageState;syncPage()'),'blank tap updates global preference');
+assert(s.includes('function resetPage(){pageState=preferredPageState;syncPage()}'),'new scene inherits preferred face');
+assert(s.includes("wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'"),'next word inherits preferred face');
+assert(s.includes("originalFace=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'"),'next batch inherits preferred face');
+assert(s.includes('isActive(){return activeSpeech}'),'speech state available to scheduler');
+const auto=s.slice(s.indexOf('function scheduleAutoBrowse(){'),s.indexOf('let autoWakeLock='));
+assert(auto.indexOf('window.PAI_AUDIO?.isActive?.()')>=0);
+assert(auto.indexOf('window.PAI_AUDIO.whenIdle(')>auto.indexOf('window.PAI_AUDIO?.isActive?.()'));
+assert(auto.indexOf('autoBrowseTimer=setTimeout')>auto.indexOf('window.PAI_AUDIO.whenIdle('));
+assert(auto.includes('if(generation===autoBrowseGeneration)scheduleAutoBrowse()'));
+assert(s.includes('if(autoAudioUnsubscribe){autoAudioUnsubscribe();autoAudioUnsubscribe=null}'));
+console.log('PASS global card-face preference and speech-ended interval invariants');
