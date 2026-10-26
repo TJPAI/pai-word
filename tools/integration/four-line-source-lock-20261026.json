@@ -1,0 +1,87 @@
+{
+  "schema": "pai-word-four-line-integration-manifest-v1",
+  "date": "2026-10-26",
+  "owner": "CG-MAIN",
+  "branch": "main-answer-cleanup-20261026",
+  "deployment_authorized": false,
+  "existing_learning_ui_only": true,
+  "sources": {
+    "english": {
+      "repo": "TJPAI/pai-word",
+      "branch": "core20k-lexicon-production-v1",
+      "asset": "data/core20k-runtime.json.gz",
+      "sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+      "identity": "headword/sense/KU stable",
+      "app_runtime_adapter": "scripts/core20k-unified-runtime-adapter.mjs",
+      "status": "ADAPTER_PRESENT_VERIFY_RUNTIME_BYTES"
+    },
+    "scene500": {
+      "branch": "scene500-recommendation-dev",
+      "catalog": "scene500-recommendation/catalog-v0.2.json",
+      "catalog_blob": "0b1e9023eb21e99311b58e82bbe1518c04a63d76",
+      "scene_id_namespace": "S001-S500",
+      "catalog_count": 500,
+      "s113": "预订酒店",
+      "existing_navigation_namespace": "csNNN",
+      "status": "RECOMMENDER_ASSETS_PRESENT_MAPPING_BLOCKED"
+    },
+    "chinese": {
+      "branch": "chinese-core20k-dev",
+      "runtime_name": "zh-core20k-v0101-scene500-runtime.json",
+      "drive_url": "https://drive.google.com/file/d/1HaB-_iA-NdqCVYFzdXB0gckvrSEoAoSc/view",
+      "sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+      "terms": 20000,
+      "contract_version": "1.1",
+      "data_version": "0.10.1-evidence-compat",
+      "integration_ready": true,
+      "production_ready": false,
+      "github_runtime_path_verified": false,
+      "status": "RETRIEVABLE_DRIVE_NOT_INTEGRATED_AT_VERIFIED_REPO_PATH"
+    },
+    "teaching": {
+      "branch": "answer-enrichment-main-dev-20261026",
+      "current_owner_handoff": "tools/answer-enrichment/s113-teaching-owner-handoff.v2.json",
+      "status": "STAGING_NOT_ACTIVATED",
+      "activation": false,
+      "existing_renderer": "rebuild-preview/learning-runtime.js",
+      "certified_overlay_loader": "scripts/core20k-approved-overlay-boot.mjs",
+      "release_gate": "PRODUCTION_READY_WITH_PROVENANCE_AND_LICENSE",
+      "six_word_separate_demo_cancelled": true
+    }
+  },
+  "invariants": [
+    "Do not infer S### to cs### mappings.",
+    "S113 20x25 hotel booking differs from taxonomy-v2 S113 park.",
+    "Never treat historical scene ranks as playable scene membership.",
+    "No raw Runtime/SRS/learning record mutation.",
+    "No six-word isolated browser test.",
+    "Stable perf-preview preserved until real regression."
+  ],
+  "action_items": [
+    {
+      "owner": "CG-REC",
+      "request": "Deliver authoritative S001-S500 to playable csNNN mapping with namespace and provenance, or explicit new S-scene membership; return source SHA and mapping QA.",
+      "status": "BLOCKED"
+    },
+    {
+      "owner": "CG-ZH",
+      "request": "Deliver actual V0.10.1 JSON to a reproducible GitHub asset path or release URL with SHA256; provide matching associations version + location in collaboration with CG-REC.",
+      "status": "BLOCKED"
+    },
+    {
+      "owner": "CG-ENLEX",
+      "request": "Confirm runtime SHA and KU identity compatibility with main current 20K adapter; flag targeted S113 sense changes without shifting existing IDs.",
+      "status": "PENDING"
+    },
+    {
+      "owner": "CG-ENTEACH",
+      "request": "Deliver only independently dual-reviewed, version-matched KU content with stable IDs and license/source status; do not activate S113 draft.",
+      "status": "PENDING"
+    },
+    {
+      "owner": "MU-MAIN",
+      "request": "Run four-line contract smoke and standard answer cleanup QA; do not deploy or restart cancelled Batch93 demo.",
+      "status": "PENDING"
+    }
+  ]
+}
