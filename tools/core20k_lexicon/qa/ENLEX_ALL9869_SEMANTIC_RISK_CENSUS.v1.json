@@ -1,0 +1,832 @@
+{
+  "schema": "pai-enlex-full-placeholder-identity-and-scope-risk-census-v1",
+  "owner": "CG-ENLEX",
+  "source": {
+    "frozen_runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "jsonl_git_blob": "87a5afdde82e8f0dab7141be949529cf16d74b83",
+    "selection": "All 9869 actual flagged KU rows, not an inferred sample"
+  },
+  "summary": {
+    "flagged_kus": 9869,
+    "unique_ku_ids": 9869,
+    "distinct_lemmas": 9865,
+    "chinese_multi_phrase_delimiter_rows": 7179,
+    "lemma_groups_with_multiple_flagged_kus": 4,
+    "flagged_kus_in_duplicate_lemma_groups": 8,
+    "simple_chinese_gloss_rows": 2690
+  },
+  "rank_bands": [
+    {
+      "label": "1-2000",
+      "min": 1,
+      "max": 2000,
+      "total": 19,
+      "multi_chinese_phrases": 16
+    },
+    {
+      "label": "2001-5000",
+      "min": 2001,
+      "max": 5000,
+      "total": 1858,
+      "multi_chinese_phrases": 1111
+    },
+    {
+      "label": "5001-10000",
+      "min": 5001,
+      "max": 10000,
+      "total": 4921,
+      "multi_chinese_phrases": 3706
+    },
+    {
+      "label": "10001-20000",
+      "min": 10001,
+      "max": 20000,
+      "total": 3071,
+      "multi_chinese_phrases": 2346
+    }
+  ],
+  "duplicate_lemma_identity_risks": [
+    {
+      "lemma": "dispatch",
+      "headword_rank": 3147,
+      "entries": [
+        {
+          "ku_id": "w_12586_dispatch_ku_s01",
+          "zh": "派遣；发送；迅速处理",
+          "en": "core modern learner use of “dispatch”"
+        },
+        {
+          "ku_id": "w_4034_dispatch_ku_s01",
+          "zh": "派遣；发送",
+          "en": "core modern learner use of “dispatch”"
+        }
+      ],
+      "investigation": "Potential identity collision or additional distinct Senses. Preserve both; do not deduplicate by lemma."
+    },
+    {
+      "lemma": "overt",
+      "headword_rank": 5218,
+      "entries": [
+        {
+          "ku_id": "w_12587_overt_ku_s01",
+          "zh": "公开的；明显的",
+          "en": "core modern learner use of “overt”"
+        },
+        {
+          "ku_id": "w_6737_overt_ku_s01",
+          "zh": "公开的",
+          "en": "core modern learner use of “overt”"
+        }
+      ],
+      "investigation": "Potential identity collision or additional distinct Senses. Preserve both; do not deduplicate by lemma."
+    },
+    {
+      "lemma": "drape",
+      "headword_rank": 8044,
+      "entries": [
+        {
+          "ku_id": "w_12590_drape_ku_s01",
+          "zh": "悬挂布；披挂",
+          "en": "core modern learner use of “drape”"
+        },
+        {
+          "ku_id": "w_6306_drape_ku_s01",
+          "zh": "悬挂",
+          "en": "core modern learner use of “drape”"
+        }
+      ],
+      "investigation": "Potential identity collision or additional distinct Senses. Preserve both; do not deduplicate by lemma."
+    },
+    {
+      "lemma": "pathological",
+      "headword_rank": 10628,
+      "entries": [
+        {
+          "ku_id": "w_12591_pathological_ku_s01",
+          "zh": "病理的；病态的",
+          "en": "core modern learner use of “pathological”"
+        },
+        {
+          "ku_id": "w_9188_pathological_ku_s01",
+          "zh": "病理的；病态的",
+          "en": "core modern learner use of “pathological”"
+        }
+      ],
+      "investigation": "Potential identity collision or additional distinct Senses. Preserve both; do not deduplicate by lemma."
+    }
+  ],
+  "first_100_multi_phrase_rows": [
+    {
+      "ku_id": "w_5575_scanner_ku_s01",
+      "rank": 359,
+      "lemma": "scanner",
+      "zh": "扫描仪；扫描器",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5515_commute_ku_s01",
+      "rank": 657,
+      "lemma": "commute",
+      "zh": "通勤；往返",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5454_jog_ku_s01",
+      "rank": 1108,
+      "lemma": "jog",
+      "zh": "慢跑；轻推",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3188_stun_ku_s01",
+      "rank": 1436,
+      "lemma": "stun",
+      "zh": "使震惊；击昏",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4829_landmark_ku_s01",
+      "rank": 1684,
+      "lemma": "landmark",
+      "zh": "地标；里程碑",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5072_peel_ku_s01",
+      "rank": 1687,
+      "lemma": "peel",
+      "zh": "剥皮；果皮",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3941_caption_ku_s01",
+      "rank": 1691,
+      "lemma": "caption",
+      "zh": "标题；字幕",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3607_gym_ku_s01",
+      "rank": 1725,
+      "lemma": "gym",
+      "zh": "健身房；体育馆",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "rank": 1785,
+      "lemma": "compatibility",
+      "zh": "兼容性；相容性",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5424_refund_ku_s01",
+      "rank": 1842,
+      "lemma": "refund",
+      "zh": "退款；退还",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_8469_unification_ku_s01",
+      "rank": 1850,
+      "lemma": "unification",
+      "zh": "统一；合并；一体化",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4200_tuition_ku_s01",
+      "rank": 1923,
+      "lemma": "tuition",
+      "zh": "学费；教学",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5451_hover_ku_s01",
+      "rank": 1939,
+      "lemma": "hover",
+      "zh": "悬停；徘徊",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_7668_waiver_ku_s01",
+      "rank": 1940,
+      "lemma": "waiver",
+      "zh": "放弃权利；豁免书",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5359_media_ku_s01",
+      "rank": 1978,
+      "lemma": "media",
+      "zh": "媒体；媒介",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5464_prototype_ku_s01",
+      "rank": 1991,
+      "lemma": "prototype",
+      "zh": "原型；样机",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_7678_curry_ku_s01",
+      "rank": 2034,
+      "lemma": "curry",
+      "zh": "梳理马毛；讨好",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_8343_primer_ku_s01",
+      "rank": 2039,
+      "lemma": "primer",
+      "zh": "入门读物；底漆；底火",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3251_assert_ku_s01",
+      "rank": 2060,
+      "lemma": "assert",
+      "zh": "断言；维护",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5406_reviewer_ku_s01",
+      "rank": 2084,
+      "lemma": "reviewer",
+      "zh": "评论者；审稿人",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5622_gateway_ku_s01",
+      "rank": 2101,
+      "lemma": "gateway",
+      "zh": "入口；网关",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5210_quiz_ku_s01",
+      "rank": 2104,
+      "lemma": "quiz",
+      "zh": "小测验；问答",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4559_wreck_ku_s01",
+      "rank": 2167,
+      "lemma": "wreck",
+      "zh": "残骸；毁坏",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5081_garbage_ku_s01",
+      "rank": 2168,
+      "lemma": "garbage",
+      "zh": "垃圾；废物",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5716_contingency_ku_s01",
+      "rank": 2220,
+      "lemma": "contingency",
+      "zh": "意外情况；应急方案",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_7612_checkpoint_ku_s01",
+      "rank": 2222,
+      "lemma": "checkpoint",
+      "zh": "检查点；检查站",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5489_laundry_ku_s01",
+      "rank": 2261,
+      "lemma": "laundry",
+      "zh": "洗衣；待洗衣物",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5852_tier_ku_s01",
+      "rank": 2293,
+      "lemma": "tier",
+      "zh": "层；级",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5339_logo_ku_s01",
+      "rank": 2313,
+      "lemma": "logo",
+      "zh": "标志；徽标",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_6018_novelty_ku_s01",
+      "rank": 2317,
+      "lemma": "novelty",
+      "zh": "新奇；新颖事物",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5396_found_ku_s01",
+      "rank": 2345,
+      "lemma": "found",
+      "zh": "建立；创办",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4813_controller_ku_s01",
+      "rank": 2349,
+      "lemma": "controller",
+      "zh": "控制器；主管",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5524_transit_ku_s01",
+      "rank": 2374,
+      "lemma": "transit",
+      "zh": "运输；通过；中转",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "rank": 2390,
+      "lemma": "kilometer",
+      "zh": "千米；公里",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5055_overtime_ku_s01",
+      "rank": 2401,
+      "lemma": "overtime",
+      "zh": "加班；加时",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3069_painful_ku_s01",
+      "rank": 2416,
+      "lemma": "painful",
+      "zh": "疼痛的；痛苦的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3514_officially_ku_s01",
+      "rank": 2421,
+      "lemma": "officially",
+      "zh": "正式地；官方地",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3595_medication_ku_s01",
+      "rank": 2429,
+      "lemma": "medication",
+      "zh": "药物；用药",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4740_invoice_ku_s01",
+      "rank": 2440,
+      "lemma": "invoice",
+      "zh": "发票；开票",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5784_zip_ku_s01",
+      "rank": 2453,
+      "lemma": "zip",
+      "zh": "拉链；快速移动；压缩文件",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5808_deployment_ku_s01",
+      "rank": 2465,
+      "lemma": "deployment",
+      "zh": "部署；调动",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5495_swift_ku_s01",
+      "rank": 2474,
+      "lemma": "swift",
+      "zh": "迅速的；雨燕",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3795_devise_ku_s01",
+      "rank": 2478,
+      "lemma": "devise",
+      "zh": "设计；想出",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5521_dilute_ku_s01",
+      "rank": 2508,
+      "lemma": "dilute",
+      "zh": "稀释；使变淡",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3045_drain_ku_s01",
+      "rank": 2510,
+      "lemma": "drain",
+      "zh": "排出；耗尽；排水管",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3792_leaflet_ku_s01",
+      "rank": 2512,
+      "lemma": "leaflet",
+      "zh": "传单；小册子",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5776_browser_ku_s01",
+      "rank": 2513,
+      "lemma": "browser",
+      "zh": "浏览器；浏览者",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5133_lag_ku_s01",
+      "rank": 2529,
+      "lemma": "lag",
+      "zh": "滞后；落后",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3692_formally_ku_s01",
+      "rank": 2531,
+      "lemma": "formally",
+      "zh": "正式地；形式上",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5819_qualitative_ku_s01",
+      "rank": 2534,
+      "lemma": "qualitative",
+      "zh": "定性的；性质上的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5068_safeguard_ku_s01",
+      "rank": 2544,
+      "lemma": "safeguard",
+      "zh": "保护；保障措施",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5620_harness_ku_s01",
+      "rank": 2556,
+      "lemma": "harness",
+      "zh": "利用；控制；马具",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5978_redundancy_ku_s01",
+      "rank": 2558,
+      "lemma": "redundancy",
+      "zh": "冗余；裁员",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5844_implicate_ku_s01",
+      "rank": 2560,
+      "lemma": "implicate",
+      "zh": "牵连；表明涉及",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5285_posture_ku_s01",
+      "rank": 2568,
+      "lemma": "posture",
+      "zh": "姿势；立场",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_8882_runaway_ku_s01",
+      "rank": 2572,
+      "lemma": "runaway",
+      "zh": "失控的；逃跑的；逃跑者",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5134_tenure_ku_s01",
+      "rank": 2589,
+      "lemma": "tenure",
+      "zh": "任期；终身教职；保有期",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5866_wholesale_ku_s01",
+      "rank": 2590,
+      "lemma": "wholesale",
+      "zh": "批发；大规模的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_10504_moot_ku_s01",
+      "rank": 2592,
+      "lemma": "moot",
+      "zh": "有争议的；已无实际意义的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5088_rattle_ku_s01",
+      "rank": 2604,
+      "lemma": "rattle",
+      "zh": "发出咔嗒声；使不安；响器",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4816_pragmatic_ku_s01",
+      "rank": 2611,
+      "lemma": "pragmatic",
+      "zh": "务实的；实用主义的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4484_marketplace_ku_s01",
+      "rank": 2613,
+      "lemma": "marketplace",
+      "zh": "市场；交易平台",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5704_campsite_ku_s01",
+      "rank": 2622,
+      "lemma": "campsite",
+      "zh": "营地；露营地",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5924_tout_ku_s01",
+      "rank": 2624,
+      "lemma": "tout",
+      "zh": "兜售；吹捧",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5474_congress_ku_s01",
+      "rank": 2629,
+      "lemma": "congress",
+      "zh": "国会；代表大会",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5384_variance_ku_s01",
+      "rank": 2640,
+      "lemma": "variance",
+      "zh": "差异；方差",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3480_appreciation_ku_s01",
+      "rank": 2660,
+      "lemma": "appreciation",
+      "zh": "欣赏；感激；升值",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3735_hike_ku_s01",
+      "rank": 2662,
+      "lemma": "hike",
+      "zh": "徒步旅行；大幅提高",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5999_compress_ku_s01",
+      "rank": 2665,
+      "lemma": "compress",
+      "zh": "压缩；压紧",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3715_fry_ku_s01",
+      "rank": 2667,
+      "lemma": "fry",
+      "zh": "油炸；煎",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5947_median_ku_s01",
+      "rank": 2669,
+      "lemma": "median",
+      "zh": "中位数；中间的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5639_dub_ku_s01",
+      "rank": 2673,
+      "lemma": "dub",
+      "zh": "给……起绰号；配音",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5385_maid_ku_s01",
+      "rank": 2677,
+      "lemma": "maid",
+      "zh": "女佣；女仆",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5305_lottery_ku_s01",
+      "rank": 2680,
+      "lemma": "lottery",
+      "zh": "彩票；抽签",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5043_pat_ku_s01",
+      "rank": 2681,
+      "lemma": "pat",
+      "zh": "轻拍；拍一拍",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3579_wow_ku_s01",
+      "rank": 2695,
+      "lemma": "wow",
+      "zh": "哇；使惊叹",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_7841_dent_ku_s01",
+      "rank": 2708,
+      "lemma": "dent",
+      "zh": "凹痕；损伤",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5125_insider_ku_s01",
+      "rank": 2718,
+      "lemma": "insider",
+      "zh": "内部人士；知情者",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5317_fountain_ku_s01",
+      "rank": 2719,
+      "lemma": "fountain",
+      "zh": "喷泉；源头",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5494_royalty_ku_s01",
+      "rank": 2727,
+      "lemma": "royalty",
+      "zh": "王室；版税",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5363_logistic_ku_s01",
+      "rank": 2748,
+      "lemma": "logistic",
+      "zh": "物流的；后勤的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3046_curtain_ku_s01",
+      "rank": 2760,
+      "lemma": "curtain",
+      "zh": "窗帘；幕",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4160_alright_ku_s01",
+      "rank": 2764,
+      "lemma": "alright",
+      "zh": "好的；没问题",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5355_miniature_ku_s01",
+      "rank": 2773,
+      "lemma": "miniature",
+      "zh": "微型的；缩影；小型模型",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5259_verge_ku_s01",
+      "rank": 2777,
+      "lemma": "verge",
+      "zh": "边缘；临近",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5647_redundant_ku_s01",
+      "rank": 2778,
+      "lemma": "redundant",
+      "zh": "多余的；冗余的；被裁员的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5630_metric_ku_s01",
+      "rank": 2785,
+      "lemma": "metric",
+      "zh": "度量；指标；公制的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_7937_better_ku_s01",
+      "rank": 2793,
+      "lemma": "better",
+      "zh": "较好的；改善",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5226_offshore_ku_s01",
+      "rank": 2799,
+      "lemma": "offshore",
+      "zh": "近海的；离岸的",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5378_ration_ku_s01",
+      "rank": 2815,
+      "lemma": "ration",
+      "zh": "配给量；定量供应",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_11424_blob_ku_s01",
+      "rank": 2819,
+      "lemma": "blob",
+      "zh": "一团；一滴；数据块",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5433_preview_ku_s01",
+      "rank": 2830,
+      "lemma": "preview",
+      "zh": "预览；预告",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5183_bob_ku_s01",
+      "rank": 2833,
+      "lemma": "bob",
+      "zh": "上下快速摆动；短发",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_3161_registration_ku_s01",
+      "rank": 2836,
+      "lemma": "registration",
+      "zh": "登记；注册",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_6853_courier_ku_s01",
+      "rank": 2838,
+      "lemma": "courier",
+      "zh": "快递员；信使",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5456_stereo_ku_s01",
+      "rank": 2843,
+      "lemma": "stereo",
+      "zh": "立体声；立体声音响",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5468_aye_ku_s01",
+      "rank": 2846,
+      "lemma": "aye",
+      "zh": "赞成票；是",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4600_transcript_ku_s01",
+      "rank": 2848,
+      "lemma": "transcript",
+      "zh": "文字记录；成绩单",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_5036_certify_ku_s01",
+      "rank": 2849,
+      "lemma": "certify",
+      "zh": "证明；认证",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    },
+    {
+      "ku_id": "w_4446_pavement_ku_s01",
+      "rank": 2862,
+      "lemma": "pavement",
+      "zh": "人行道；路面",
+      "reason": "Multiple Chinese gloss parts: may be synonyms, distinct senses, or POS mixing; requires semantic discrimination, not automatic split."
+    }
+  ],
+  "interpretation": "Chinese punctuation alone DOES NOT prove sense/POS errors; it marks editorial triage candidates. Same lemma with multiple stable KUs must not be collapsed or renumbered.",
+  "review_gate": {
+    "muse_paused_by_user": true,
+    "new_entries_status": "CHATGPT_ONLY_PROVISIONAL",
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "qa": {
+    "all_ku_unique": true,
+    "all_source_template": true,
+    "rank_range_valid": true
+  }
+}
