@@ -1,0 +1,399 @@
+{
+  "schema": "cg-qa-field-delta-review-v1",
+  "source_commit": "b738d5978fd2e321c62ff6c9b31608d918dcf859",
+  "source_path": "tools/answer-enrichment/enteach-batch200-proposed-field-deltas-20261027.v1.json",
+  "status": "CHATGPT_ONLY_PROVISIONAL",
+  "summary": {
+    "reviewed_ku": 27,
+    "reviewed_field_deltas": 33,
+    "accept": 22,
+    "revise": 5,
+    "reject": 0
+  },
+  "existing_scope_hold": "w_6242_diploma_ku_s01",
+  "records": [
+    {
+      "ku_id": "w_7490_salient_ku_s01",
+      "headword": "salient",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "报告突出了两项方案之间三个显著的差异。",
+          "after": "报告突出说明了这两项方案之间的三个显著差异。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5224_supreme_ku_s01",
+      "headword": "supreme",
+      "verdict": "REVISE",
+      "reason": "英文certain constitutional questions与中文最高裁决权大体相关，但supreme authority的语境需避免暗示法院对所有宪法问题拥有终局管辖。",
+      "fields": [
+        {
+          "field": "example_en",
+          "before": "The constitution gives the court supreme authority in this area.",
+          "after": "The court has supreme authority over certain constitutional questions."
+        },
+        {
+          "field": "example_zh",
+          "before": "宪法赋予该法院在这一领域的最高权威。",
+          "after": "该法院对某些宪法问题拥有最高裁决权。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_3870_taxpayer_ku_s01",
+      "headword": "taxpayer",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_en",
+          "before": "Taxpayers funded the renovation through public revenue.",
+          "after": "Local taxpayers helped fund the library renovation."
+        },
+        {
+          "field": "example_zh",
+          "before": "这次翻修由纳税人缴纳的公共收入出资。",
+          "after": "当地纳税人共同承担了图书馆翻修的费用。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_9072_retina_ku_s01",
+      "headword": "retina",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_en",
+          "before": "The retina converts incoming light into signals for the brain.",
+          "after": "Light-sensitive cells in the retina help turn light into signals sent to the brain."
+        },
+        {
+          "field": "example_zh",
+          "before": "视网膜将入射光转化为传向大脑的信号。",
+          "after": "视网膜中的感光细胞帮助将光转换成传向大脑的信号。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_7375_clump_ku_s01",
+      "headword": "clump",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "grammar_note",
+          "before": "可数名词；a clump of + 复数植物或物质。",
+          "after": "可数名词；a clump of后既可接复数可数名词（trees），也可接不可数物质名词（grass、soil）。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_9599_telegram_ku_s01",
+      "headword": "telegram",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_en",
+          "before": "Her grandfather kept the telegram announcing his first job.",
+          "after": "Her grandfather kept the telegram telling him that he had been offered his first job."
+        },
+        {
+          "field": "example_zh",
+          "before": "她祖父保留着那封通知他获得第一份工作的电报。",
+          "after": "她的祖父一直保存着那封通知他获得第一份工作的电报。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_3130_prediction_ku_s01",
+      "headword": "prediction",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "预报中预测星期五会下大雨。",
+          "after": "天气预报说星期五可能会下大雨。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5533_contaminate_ku_s01",
+      "headword": "contaminate",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_en",
+          "before": "A leaking pipe could contaminate the drinking water.",
+          "after": "A damaged sewer pipe could contaminate nearby drinking water."
+        },
+        {
+          "field": "example_zh",
+          "before": "漏水的管道可能污染饮用水。",
+          "after": "破损的污水管可能污染附近的饮用水。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_7950_unlucky_ku_s01",
+      "headword": "unlucky",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "an unlucky day · feel unlucky · an unlucky accident",
+          "after": "an unlucky day · feel unlucky · an unlucky break"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5037_withhold_ku_s01",
+      "headword": "withhold",
+      "verdict": "REVISE",
+      "reason": "‘一直扣着’口语且可能暗示非法扣押；建议‘该机构在调查结束前暂不提供这份报告’。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "该机构在调查结束前暂未公布报告。",
+          "after": "该机构在调查结束前一直扣着这份报告，没有对外提供。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_4441_sibling_ku_s01",
+      "headword": "sibling",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "她有两个兄弟姐妹，一个哥哥和一个妹妹。",
+          "after": "她有一个哥哥和一个妹妹。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_4846_auditor_ku_s01",
+      "headword": "auditor",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "an independent auditor · an external auditor · an internal auditor",
+          "after": "an independent auditor · an internal auditor · appoint an auditor"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6833_infancy_ku_s01",
+      "headword": "infancy",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "during infancy · early infancy · infant development",
+          "after": "during infancy · early infancy · in its infancy"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6303_conditional_ku_s01",
+      "headword": "conditional",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "conditional approval · conditional offer · conditional on",
+          "after": "conditional approval · conditional offer · be conditional on approval"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6964_gulf_ku_s01",
+      "headword": "gulf",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "large gulf · coastal gulf · the Gulf of Mexico",
+          "after": "a wide gulf · cross the gulf · the Gulf of Mexico"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_3279_ethics_ku_s01",
+      "headword": "ethics",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_en",
+          "before": "The committee reviewed the research ethics of the study.",
+          "after": "The committee reviewed whether the study met research ethics standards."
+        },
+        {
+          "field": "example_zh",
+          "before": "委员会审查了这项研究的伦理规范。",
+          "after": "委员会审查了这项研究是否符合科研伦理规范。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_7173_confide_ku_s01",
+      "headword": "confide",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "confide in a friend · confide a secret · confide that ...",
+          "after": "confide in a friend · confide a secret to someone · confide that something happened"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_7700_pertinent_ku_s01",
+      "headword": "pertinent",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "她的问题与讨论主题直接相关。",
+          "after": "她的问题与这一主题直接相关。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5239_unlimited_ku_s01",
+      "headword": "unlimited",
+      "verdict": "REVISE",
+      "reason": "无限制访问权限较‘不限次数访问’更绝对，可能引入无条件访问含义；应按英文原句精确表达。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "该订阅服务允许不限次数地访问课程资料库。",
+          "after": "该订阅服务提供对课程资料库的无限制访问权限。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6875_sequel_ku_s01",
+      "headword": "sequel",
+      "verdict": "REVISE",
+      "reason": "续集计划与‘宣布将拍摄续集’信息量不等价；须对照源英文例句确定是否只宣布计划。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "制片公司宣布将拍摄那部热门电影的续集。",
+          "after": "制片公司宣布了那部热门电影的续集计划。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6694_crook_ku_s01",
+      "headword": "crook",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "example_zh",
+          "before": "侦探怀疑那名访客是个骗子。",
+          "after": "侦探怀疑那名访客是个不法之徒。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5646_insurer_ku_s01",
+      "headword": "insurer",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "health insurer · insurance provider · contact the insurer",
+          "after": "health insurer · major insurer · contact the insurer"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6044_cyclist_ku_s01",
+      "headword": "cyclist",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "road cyclist · cyclist helmet · group of cyclists",
+          "after": "road cyclist · experienced cyclist · group of cyclists"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_4748_pillow_ku_s01",
+      "headword": "pillow",
+      "verdict": "REVISE",
+      "reason": "pillow cover可用但pillowcase更常见、更适合初级教学，建议保留原pillowcase而非替换。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "soft pillow · pillowcase · rest your head on a pillow",
+          "after": "soft pillow · pillow cover · rest your head on a pillow"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6966_jockey_ku_s01",
+      "headword": "jockey",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "horse-racing jockey · professional jockey · jockey rides a horse",
+          "after": "professional jockey · champion jockey · a jockey rides in a race"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_7018_indicative_ku_s01",
+      "headword": "indicative",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "collocation",
+          "before": "indicative of · indicative sign · indicative evidence",
+          "after": "be indicative of a trend · indicative results · indicative price"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_7248_etch_ku_s01",
+      "headword": "etch",
+      "verdict": "ACCEPT",
+      "reason": "修改后较原文更自然或语义更精确，且不改变目标KU的核心词义；仅认可本条所列字段差异。",
+      "fields": [
+        {
+          "field": "contrast_note",
+          "before": "etch指在硬质表面刻出图案；paint是将颜料涂在表面。",
+          "after": "etch指通过刻划或腐蚀在表面形成图案；paint通常是涂上颜料。"
+        }
+      ]
+    }
+  ],
+  "production_ready": false,
+  "activation_allowed": false
+}
