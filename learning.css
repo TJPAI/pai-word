@@ -204,3 +204,8 @@
 /* The active drawing surface is reparented to .learning-screen to avoid clipping. */
 .learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing{position:absolute!important;inset:0 0 auto 0!important;z-index:100!important;background:#fff!important;overflow:hidden!important}
 .learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing .pai-scratch-canvas{display:block;width:100%;height:100%}
+
+/* No central hint or touch interception on either ordinary face; hold uses delegated events. */
+.learning-screen .pai-scratch-area:not(.is-drawing){pointer-events:none!important;height:0!important;min-height:0!important;flex:0 0 0!important;overflow:hidden!important}
+.learning-screen .pai-scratch-area:not(.is-drawing) .pai-scratch-canvas{pointer-events:none!important}
+.learning-screen.pai-scratch-active .recall-note{visibility:hidden}
