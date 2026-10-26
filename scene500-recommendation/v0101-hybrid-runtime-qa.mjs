@@ -38,8 +38,25 @@ for(const query of queries){
  assert.ok(filtered.results.every(x=>allowed.has(x.sceneId)),'ELIGIBILITY_BYPASS');
  rows.push({query,ms:Number(ms.toFixed(3)),top5:r.results.slice(0,5).map(x=>({id:x.sceneId,name:x.name,score:x.score})),top10:r.results.map(x=>x.sceneId)});
 }
+// Separate non-exhaustive semantic smoke checks from structural proof.
+const topId=q=>engine.search(q,{limit:5}).results[0]?.sceneId??null;
+const ids=q=>engine.search(q,{limit:10}).results.map(x=>x.sceneId);
+const semanticSmoke=[
+ {query:'How to order coffee',expected:'S039'},
+ {query:'不要坐地铁，改坐公交',expected:'S078',excluded:'S079'},
+ {query:'我不坐地铁了，改乘公交车',expected:'S078',excluded:'S079'},
+ {query:'洗衣服和晾衣服',expected:'S006'},
+ {query:'软件打不开',expected:'S275'},
+ {query:'How can I order coffee?',expected:'S039'}
+];
+for(const row of semanticSmoke){
+ assert.equal(topId(row.query),row.expected,'SEMANTIC_SMOKE_TOP1: '+row.query);
+ if(row.excluded)assert.ok(!ids(row.query).includes(row.excluded),'SEMANTIC_SMOKE_EXCLUSION: '+row.query);
+}
+assert.ok(!ids('学习英语发音').includes('S279')&&!ids('学习英语发音').includes('S280'),'SEMANTIC_SMOKE_NO_FALSE_ML_DL');
+assert.equal(topId('坐地铁'),'S079','SEMANTIC_SMOKE_NON_TARGET_METRO');
 assert.equal(engine.search('',{limit:10}).results.length,0,'EMPTY_QUERY');
 const fallback=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'runtime',associationUrl:'associations',fetchImpl:async()=>({ok:false,status:404})});
 assert.equal(fallback.mode,'rule_fallback');
-const report={status:'PASS_RUNTIME_STRUCTURAL_ONLY',source:'real GitHub ESM + SHA-pinned input files',sha256:{catalog:sha[0],runtime:sha[1],associations:sha[2]},engineVersion:engine.version,mode:engine.mode,initMs:Number(initMs.toFixed(2)),queries:rows,fallback:fallback.mode,semanticQuality:'NOT_INDEPENDENTLY_GRADED',browserE2E:'NOT_TESTED'};
+const report={status:'PASS_RUNTIME_STRUCTURAL_ONLY',source:'real GitHub ESM + SHA-pinned input files',sha256:{catalog:sha[0],runtime:sha[1],associations:sha[2]},engineVersion:engine.version,mode:engine.mode,initMs:Number(initMs.toFixed(2)),queries:rows,fallback:fallback.mode,semanticQuality:'LIMITED_SMOKE_PASS_NOT_GENERAL_SEMANTIC_CERTIFICATION',semanticSmokeChecks:8,browserE2E:'NOT_TESTED'};
 console.log(JSON.stringify(report,null,2));
