@@ -1,5 +1,7 @@
 (async function(){
  const VERSION='batch93-isolated-main-flow-v1-20261026';window.PAI_APP_VERSION=VERSION;
+ const qaBatch93=new URLSearchParams(location.search).get('batch93')==='1';
+ const qaResetMarker=qaBatch93?'pai-word-batch93-reset-check':'pai-word-preview-reset-check';
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
@@ -38,18 +40,24 @@
     req.onblocked=()=>{window.PAI_RESET_BLOCKED=true};
    });
    localStorage.removeItem(new URLSearchParams(location.search).get('batch93')==='1'?'pai-word-core20k-batch93-isolated-v1':'pai-word-core20k-rebuild-preview-v21');
-   localStorage.removeItem('pai-word-welcome-seen-v1');
-   for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
-   for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
+   if(qaBatch93){
+     // QA reset never touches the stable preview's welcome, home, pending grades or cursors.
+     for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-batch93-'))localStorage.removeItem(key);
+     for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-batch93-'))sessionStorage.removeItem(key);
+   }else{
+     localStorage.removeItem('pai-word-welcome-seen-v1');
+     for(const key of Object.keys(localStorage))if(key.startsWith('pai-word-preview-v2-'))localStorage.removeItem(key);
+     for(const key of Object.keys(sessionStorage))if(key.startsWith('pai-word-preview-v2-'))sessionStorage.removeItem(key);
+   }
    // Verify no stale legacy state can re-seed a newly initialized database.
    if(localStorage.getItem(new URLSearchParams(location.search).get('batch93')==='1'?'pai-word-core20k-batch93-isolated-v1':'pai-word-core20k-rebuild-preview-v21')!==null)throw Error('旧学习数据仍存在');
-   sessionStorage.setItem('pai-word-preview-reset-check','1');
+   sessionStorage.setItem(qaResetMarker,'1');
    location.replace(location.pathname+(new URLSearchParams(location.search).get('batch93')==='1'?'?batch93=1&welcome=0&resetFresh=':'?resetFresh=')+Date.now());
   }catch(error){alert('重置未完成：'+String(error?.message||error));window.PAI_RESET_IN_PROGRESS=false;window.PAI_SAVE_DEFERRED=false;if(button&&'disabled'in button)button.disabled=false}
  };
 
  // Read-only visual snapshot: never trust restored markup for actions or learning state.
- const SNAPSHOT_KEY='pai-word-preview-v2-home-visual';
+ const SNAPSHOT_KEY=qaBatch93?'pai-word-batch93-home-visual-v1':'pai-word-preview-v2-home-visual';
  let snapshotVisible=false;
  try{
   localStorage.removeItem(SNAPSHOT_KEY);
@@ -120,7 +128,7 @@
    }
    state.view='scenes';state.revealed=false;
    window.PAI_KU_DURABLE_DB=durableDB;
-   if(sessionStorage.getItem('pai-word-preview-reset-check')==='1'){
+   if(sessionStorage.getItem(qaResetMarker)==='1'){
     const actual=await window.PAI_KU_DURABLE.read(durableDB);
     const actualSettings=await window.PAI_KU_DURABLE.readSettings(durableDB);
     const actualHome=await window.PAI_KU_DURABLE.readHome(durableDB);
@@ -128,10 +136,10 @@
      records:Object.keys(actual?.snapshot?.records||{}).length===0,
      settings:!actualSettings||Object.keys(actualSettings).length===0,
      home:!actualHome||Object.keys(actualHome).length===0,
-     legacy:localStorage.getItem('pai-word-core20k-rebuild-preview-v21')===null
+     legacy:localStorage.getItem(qaBatch93?'pai-word-core20k-batch93-isolated-v1':'pai-word-core20k-rebuild-preview-v21')===null
     };
     window.PAI_LAST_RESET_QA={passed:Object.values(checks).every(Boolean),checks,at:Date.now()};
-    sessionStorage.removeItem('pai-word-preview-reset-check');
+    sessionStorage.removeItem(qaResetMarker);
     if(!window.PAI_LAST_RESET_QA.passed){
      console.error('PAI_RESET_QA_FAILED',window.PAI_LAST_RESET_QA);
      const failed=Object.entries(checks).filter(([,ok])=>!ok).map(([name])=>name).join(', ');
