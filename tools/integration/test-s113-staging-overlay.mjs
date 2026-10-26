@@ -40,5 +40,13 @@ const deceptive={...overlay,status:'PRODUCTION_READY',production_ready:true,acti
 assert.equal(createApprovedTeachingMap(deceptive).enabled,false,'per-KU activation and official sense IDs must still gate release');
 const invalidDuplicate={...deceptive,records:[{...overlay.records[0],activation_allowed:true,official_sense_id:'official:test'}, {...overlay.records[0],activation_allowed:true,official_sense_id:'official:test'}]};
 assert.equal(createApprovedTeachingMap(invalidDuplicate).enabled,false,'duplicate KU cannot pass release gate');
+const eligible={...deceptive,records:[{...overlay.records[0],activation_allowed:true,official_sense_id:'official:test'}]};
+const approved=createApprovedTeachingMap(eligible);
+assert.equal(approved.enabled,true,'fully authorized future release should be consumable');
+assert.equal(approved.accepted.size,1);
+assert.equal(approved.accepted.get(eligible.records[0].ku_id)?.official_sense_id,'official:test');
+assert.equal(createApprovedTeachingMap({...eligible,source_rights_cleared:false}).enabled,false);
+assert.equal(createApprovedTeachingMap({...eligible,official_membership_verified:false}).enabled,false);
+
 
 console.log('PASS S113 staging overlay: 7 exact Runtime KU identities, complete teaching fields, activation disabled');
