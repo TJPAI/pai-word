@@ -35,6 +35,20 @@ for(const invalidMappings of [null,{},'S113',42]){
  assert.equal(rejected.capabilities.recommendationSceneNavigation,false);
  assert.deepEqual(rejected.sceneMappings,[]);
 }
+// Reject plausible but incorrectly versioned associations before Hybrid can activate.
+const validTerm=zh.terms[0].term_id;
+const sampleAssociations={association_version:'integration-qa-only',source_data_version:zh.data_version,taxonomy_namespace:'scene500-20x25-v1',provenance_verified:true,links:[{term_id:validTerm,scene_id:'S001'}]};
+const acceptedAssoc=validateFourLineIntegration({...input,zhRuntime:zh,associations:sampleAssociations});
+assert.deepEqual(acceptedAssoc.errors,[]);
+assert.equal(acceptedAssoc.capabilities.recommendationHybrid,true);
+for(const patch of [{source_data_version:'0.9.4'},{taxonomy_namespace:'taxonomy-v2'},{provenance_verified:false},{provenance_verified:undefined}]){
+ const mismatched=validateFourLineIntegration({...input,zhRuntime:zh,associations:{...sampleAssociations,...patch}});
+ assert(mismatched.errors.includes('INVALID_SCENE_ASSOCIATIONS'),'unverified or mismatched provenance must fail');
+ assert.equal(mismatched.capabilities.recommendationHybrid,false);
+}
+const unknownTerm=validateFourLineIntegration({...input,zhRuntime:zh,associations:{...sampleAssociations,links:[{term_id:'not-a-term',scene_id:'S001'}]}});
+assert(unknownTerm.errors.includes('ASSOCIATION_REFERENCE_MISMATCH'));
+assert.equal(unknownTerm.capabilities.recommendationHybrid,false);
 const corrupted={...zh,terms:zh.terms.slice(1)};
 assert(validateFourLineIntegration({...input,zhRuntime:corrupted}).errors.includes('INVALID_CHINESE_V0101'));
 const bad=validateFourLineIntegration({...input,sceneMappings:[{scene_id:'S113',legacy_id:'cs043',provenance_verified:false,source_sha:'not-proof'}]});
