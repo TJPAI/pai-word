@@ -12,7 +12,7 @@ const context={window,URL,Uint8Array,AbortController,TextDecoder,Promise,Map,Arr
 vm.runInNewContext(source+';globalThis.boot=bootApprovedOverlay;',context);
 const valid={enabled:true,mode:'production',manifestUrl:'./manifest.json',overlayUrl:'./overlay.json',packUrl:'./pack.json',manifestSha256:'placeholder',overlaySha256:'placeholder'};
 const bytes=x=>new TextEncoder().encode(JSON.stringify(x));
-const respond=(offset,data)=>{for(let i=offset;i<offset+4;i++)jobs[i].resolve({ok:true,arrayBuffer:async()=>bytes(i%4===0?data:{}).buffer})};
+const respond=(offset,data)=>{for(let i=offset;i<offset+4;i++)jobs[i].resolve({ok:true,url:jobs[i].url,redirected:false,arrayBuffer:async()=>bytes(i%4===0?data:{}).buffer})};
 const first=context.boot(valid);assert.equal(jobs.length,4);
 const second=context.boot(valid);assert.equal(jobs.length,8);
 respond(4,{status:'STAGING_ONLY',activation_allowed:false});
