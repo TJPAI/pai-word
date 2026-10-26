@@ -1022,6 +1022,9 @@
   autoBrowseTimer=setTimeout(async()=>{
    autoBrowseTimer=null;
    if(generation!==autoBrowseGeneration||!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
+   // A manually started or delayed utterance takes precedence over the pending timer.
+   // Restart the gap from its actual end, rather than interrupting speech.
+   if(window.PAI_AUDIO?.isActive?.()){scheduleAutoBrowse();return;}
    const phase=window.PAI_TAP_FLOW?.snapshot()?.phase;
    // Never interrupt a pending rating, storage commit or explicit answer replay.
    if(!loading&&!error&&!window.PAI_SAVE_DEFERRED&&['question','answer-paused'].includes(phase)){
