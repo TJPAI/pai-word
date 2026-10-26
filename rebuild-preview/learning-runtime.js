@@ -185,6 +185,7 @@
   const clearAudioWatchdog=()=>{if(audioWatchdog!==null){clearTimeout(audioWatchdog);audioWatchdog=null}};
   const notifyAudioIdle=()=>{if(!activeSpeech){for(const cb of [...audioIdleListeners]){audioIdleListeners.delete(cb);cb()}}};
   window.PAI_AUDIO={
+    isActive(){return activeSpeech},
     whenIdle(callback){if(!activeSpeech){callback();return ()=>{}}audioIdleListeners.add(callback);return ()=>audioIdleListeners.delete(callback)},
     stop(notify=true){clearAudioWatchdog();audioGeneration++;activeSpeech=false;if('speechSynthesis'in window&&(speechSynthesis.speaking||speechSynthesis.pending))speechSynthesis.cancel();if(notify)notifyAudioIdle()},
     play(text,rate=.84,onDone){if(!('speechSynthesis'in window)||!text){onDone?.();return}
@@ -378,9 +379,9 @@
  const labels={goodWithin:'想起了：点击阈值（秒）',hardWithin:'模糊：点击阈值（秒）',goodShow:'想起了：答案展示（秒）',hardShow:'模糊：答案展示（秒）',againShow:'没想起：答案展示（秒）',repeatCount:'重读次数',repeatGap:'每遍读完后的间隔（秒）'};
  const config=()=>{const c={...defaults,...state.tapTiming};for(const k in defaults){const n=Number(c[k]);c[k]=Number.isFinite(n)?Math.max(k==='repeatCount'?1:k==='repeatGap'?0:0.1,Math.min(k==='repeatCount'?10:60,n)):defaults[k]}c.repeatCount=Math.max(1,Math.round(c.repeatCount));c.hardWithin=Math.max(c.goodWithin,c.hardWithin);return c};
  let ratedVisibleKey=null;
- let pageState='QUESTION';const pageRevealed=()=>pageState==='ANSWER';
+ let preferredPageState='QUESTION';let pageState='QUESTION';const pageRevealed=()=>pageState==='ANSWER';
  function syncPage(){state.revealed=pageRevealed()}
- function resetPage(){pageState='QUESTION';syncPage()}
+ function resetPage(){pageState=preferredPageState;syncPage()}
  let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null,visualGrade='again';
  let ratingDeadline=0,pendingSwipeDirection=0,cancelAudioWait=null,ratingSpeechStarted=false,holdAfterRating=false;
  const PENDING_GRADE_STORAGE=(location.pathname.startsWith('/pai-word-preview/v22-integration/')?'v22-integration:':'')+'pai-word-preview-v2-pending-grades';
@@ -445,7 +446,7 @@
  function tap(){
   if(state.view!=='learning'||document.hidden||!window.getVisibleLearningUnit?.()||['committing','repeating'].includes(phase))return;
   const word=window.getVisibleLearningUnit?.()?.w?.w;
-  pageState=state.revealed?'QUESTION':'ANSWER';syncPage();
+  pageState=state.revealed?'QUESTION':'ANSWER';preferredPageState=pageState;syncPage();
   if(phase==='answer'){
    // A blank tap ends the rated countdown, commits once, and keeps this card visible.
    if(cancelAudioWait){cancelAudioWait();cancelAudioWait=null}window.PAI_AUDIO?.stop();ratingSpeechStarted=false;if(timer!==null)clearTimeout(timer);timer=null;
@@ -509,6 +510,7 @@
  };
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'</div>'}
  function hint(){return state.revealed?'点空白回题目，左右滑切词，上下滑换批，点底部按钮训练记忆':'点空白看答案，左右滑切词，上下滑换批，点底部按钮训练记忆'}
+ window.PAI_PREFERRED_CARD_FACE=()=>preferredPageState;
  window.PAI_TAP_FLOW={ready,answer,browseReady,choose,resetPage,syncPage,pageState:()=>pageState,commitEarly,takeSwipeDirection,takeHoldAfterRating,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),ratingLocked:k=>ratedVisibleKey===k,clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
  document.addEventListener('keydown',e=>{if(e.code!=='Space'||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)||state.view!=='learning')return;e.preventDefault();tap()});
@@ -603,7 +605,7 @@
   // Catalog lemmas exist before the deferred KU payload is loaded.
   const autoQuestion=state.autoPronounce.question;
   if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
-  try{const fetchStarted=performance.now();await ensureUnits([u.k]);const unitLoadMs=Math.round(performance.now()-fetchStarted);if(id!==token)return;const readyStarted=performance.now();ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);window.PAI_AUTO_RATED_FACE=null;render();window.PAI_LAST_LEARNING_ENTRY={elapsedMs:Math.round(performance.now()-entryStarted),loadingPaintMs,unitLoadMs,readyRenderMs:Math.round(performance.now()-readyStarted),coldUnit,kind:state.learningSession?.kind||null,at:Date.now()};window.PAI_LEARNING_ENTRY_SAMPLES=(window.PAI_LEARNING_ENTRY_SAMPLES||[]).concat(window.PAI_LAST_LEARNING_ENTRY).slice(-20);window.PAI_AUTOBROWSE?.restart();if(!gestureSpeech&&autoQuestion)speak(u.w.w);const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{});captureLearningCursor()}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+  try{const fetchStarted=performance.now();await ensureUnits([u.k]);const unitLoadMs=Math.round(performance.now()-fetchStarted);if(id!==token)return;const readyStarted=performance.now();ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);window.PAI_AUTO_RATED_FACE=null;render();window.PAI_LAST_LEARNING_ENTRY={elapsedMs:Math.round(performance.now()-entryStarted),loadingPaintMs,unitLoadMs,readyRenderMs:Math.round(performance.now()-readyStarted),coldUnit,kind:state.learningSession?.kind||null,at:Date.now()};window.PAI_LEARNING_ENTRY_SAMPLES=(window.PAI_LEARNING_ENTRY_SAMPLES||[]).concat(window.PAI_LAST_LEARNING_ENTRY).slice(-20);if(!gestureSpeech&&autoQuestion)speak(u.w.w);window.PAI_AUTOBROWSE?.restart();const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{});captureLearningCursor()}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){window.PAI_SCENE_ENTRY_STARTED=performance.now();previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';PAI_TAP_FLOW.resetPage();persist();showCurrent(true);window.PAI_AUTOBROWSE?.restart()}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
@@ -937,7 +939,7 @@
    if(batches<2)return false;
    const visible=window.getVisibleLearningUnit?.(),position=Math.max(0,keys.indexOf(visible?.k));
    const nextBatch=(Math.floor(position/size)+direction+batches)%batches;
-   const target=byKey(keys[nextBatch*size]),originKey=visible?.k,originalFace=PAI_TAP_FLOW.pageState()==='ANSWER',request=++browseToken;
+   const target=byKey(keys[nextBatch*size]),originKey=visible?.k,originalFace=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER',request=++browseToken;
    if(!target)return false;
    // Invalidate an already scheduled auto-advance while the next batch is loading.
    stopAutoBrowse();
@@ -993,7 +995,7 @@
   const keys=cycleKeys();if(!keys.length)return false;
   const index=Math.max(0,keys.indexOf(window.getVisibleLearningUnit().k));
   const next=(index+direction+keys.length)%keys.length;
-  const u=byKey(keys[next]),id=++browseToken,wasRevealed=PAI_TAP_FLOW.pageState()==='ANSWER';
+  const u=byKey(keys[next]),id=++browseToken,wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER';
   // Preload without changing the current card: a user rating can still win the race.
   try{await ensureUnits([u.k]);if(id!==browseToken||state.view!=='learning'||!active||window.PAI_SAVE_DEFERRED||historicalCommitInProgress||!['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase)){recordNavigationFailure('browse','async-guard');return false;}
    PAI_TAP_FLOW.cancel();historyRetest=false;historyAttemptId=null;++token;
@@ -1003,12 +1005,19 @@
   }catch(_){return false}
  };
  // Auto-browse is presentation-only: never score or commit a KU.
- let autoBrowseTimer=null,autoBrowseGeneration=0;
+ let autoBrowseTimer=null,autoBrowseGeneration=0,autoAudioUnsubscribe=null;
  const autoInterval=()=>Math.round(([0.9,1.5,3,6].includes(Number(state.autoBrowseInterval))?Number(state.autoBrowseInterval):1.5)*1000);
- function stopAutoBrowse(){autoBrowseGeneration++;if(autoBrowseTimer!==null)clearTimeout(autoBrowseTimer);autoBrowseTimer=null}
+ function stopAutoBrowse(){autoBrowseGeneration++;if(autoBrowseTimer!==null)clearTimeout(autoBrowseTimer);autoBrowseTimer=null;if(autoAudioUnsubscribe){autoAudioUnsubscribe();autoAudioUnsubscribe=null}}
  function scheduleAutoBrowse(){
   const generation=autoBrowseGeneration;
   if(!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
+  // Wait for speech completion before starting the configured interval.
+  if(window.PAI_AUDIO?.isActive?.()){
+   autoAudioUnsubscribe=window.PAI_AUDIO.whenIdle(()=>{
+    autoAudioUnsubscribe=null;
+    if(generation===autoBrowseGeneration)scheduleAutoBrowse();
+   });return;
+  }
   autoBrowseTimer=setTimeout(async()=>{
    autoBrowseTimer=null;
    if(generation!==autoBrowseGeneration||!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
