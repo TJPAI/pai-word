@@ -4,6 +4,8 @@ const s=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
 assert(s.includes("let preferredPageState='QUESTION';let pageState='QUESTION'"));
 assert(s.includes('preferredPageState=pageState;syncPage()'),'blank tap updates global preference');
 assert(s.includes('function resetPage(){pageState=preferredPageState;syncPage()}'),'new scene inherits preferred face');
+assert(s.includes('const k=visibleKey;resetPage();ready(k,true);window.render?.()'),'repeated pronunciation restores global face rather than forcing question');
+assert(!s.includes('const k=visibleKey;state.revealed=false;ready(k,true)'),'no local question reset following repetition');
 assert(s.includes("wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'"),'next word inherits preferred face');
 assert(s.includes("originalFace=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'"),'next batch inherits preferred face');
 assert(s.includes('isActive(){return activeSpeech}'),'speech state available to scheduler');
