@@ -1,0 +1,187 @@
+{
+  "schema": "cg-qa-enlex-501-525-ready-v1",
+  "source_commit": "6dc6aa8ccb29701467fac3e48f051e8323f8a664",
+  "source_path": "tools/core20k_lexicon/qa/ENLEX_AI_EDITORIAL_BATCH_501_525.v1.json",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "summary": {
+    "reviewed": 17,
+    "pass": 16,
+    "conditional": 1,
+    "unreviewed_hold": 8,
+    "new_dual_ai_pass": 0
+  },
+  "records": [
+    {
+      "queue_index": 501,
+      "rank": 3463,
+      "lemma": "pinpoint",
+      "ku_id": "w_7031_pinpoint_ku_s01",
+      "source_zh": "精确定位",
+      "proposed_en": "to locate or identify something with great precision",
+      "verdict": "PASS",
+      "reason": "动词精确找出位置或原因，覆盖原中文精确定位并扩展指出；不混淆名词图针。"
+    },
+    {
+      "queue_index": 502,
+      "rank": 3464,
+      "lemma": "repayment",
+      "ku_id": "w_7252_repayment_ku_s01",
+      "source_zh": "偿还；还款",
+      "proposed_en": "the act of paying back money that was borrowed or owed",
+      "verdict": "PASS",
+      "reason": "偿还借款或欠款的行为属repayment核心名词义，未误写为付款方式。"
+    },
+    {
+      "queue_index": 503,
+      "rank": 3465,
+      "lemma": "fade",
+      "ku_id": "w_3018_fade_ku_s01",
+      "source_zh": "褪色；逐渐消失",
+      "proposed_en": "to gradually lose colour, brightness, strength, or visibility",
+      "verdict": "PASS",
+      "reason": "颜色、光亮、力量渐弱乃至消失的过程合理，中文‘褪色/逐渐变淡’对应。"
+    },
+    {
+      "queue_index": 504,
+      "rank": 3466,
+      "lemma": "urine",
+      "ku_id": "w_6217_urine_ku_s01",
+      "source_zh": "尿液",
+      "proposed_en": "the liquid waste produced by the kidneys and passed out of the body",
+      "verdict": "PASS",
+      "reason": "肾脏形成并经身体排出的液态代谢废物定义与尿液相符。"
+    },
+    {
+      "queue_index": 505,
+      "rank": 3467,
+      "lemma": "quirk",
+      "ku_id": "w_11313_quirk_ku_s01",
+      "source_zh": "怪癖；独特之处",
+      "proposed_en": "an unusual habit, feature, or way of behaving that distinguishes someone or something",
+      "verdict": "PASS",
+      "reason": "古怪习惯或与众不同特点均可用quirk，非一概贬义的怪癖。"
+    },
+    {
+      "queue_index": 506,
+      "rank": 3468,
+      "lemma": "maximize",
+      "ku_id": "w_4225_maximize_ku_s01",
+      "source_zh": "最大化",
+      "proposed_en": "to make something as large, effective, or beneficial as possible",
+      "verdict": "PASS",
+      "reason": "使规模、成效或好处达到尽可能高水平，明确及物动词义。"
+    },
+    {
+      "queue_index": 508,
+      "rank": 3470,
+      "lemma": "saturate",
+      "ku_id": "w_6263_saturate_ku_s01",
+      "source_zh": "使饱和",
+      "proposed_en": "to make something completely soaked or filled, or to reach its capacity for absorbing something",
+      "verdict": "CONDITIONAL_SCOPE",
+      "reason": "浸透和达到吸收饱和是相关但不同搭配；‘completely filled’过宽，可能把装满容器也算saturate，建议限定浸透/充分充满特定介质或负载。"
+    },
+    {
+      "queue_index": 510,
+      "rank": 3473,
+      "lemma": "referral",
+      "ku_id": "w_5572_referral_ku_s01",
+      "source_zh": "转诊；转介",
+      "proposed_en": "the act of directing a person to another professional or service for assistance",
+      "verdict": "PASS",
+      "reason": "将个人引介给另一专业人士或服务支持，与转诊和转介对应；不限医疗语境。"
+    },
+    {
+      "queue_index": 511,
+      "rank": 3474,
+      "lemma": "publicly",
+      "ku_id": "w_3126_publicly_ku_s01",
+      "source_zh": "公开地",
+      "proposed_en": "in a way that is open to, or known by, other people",
+      "verdict": "PASS",
+      "reason": "公开地或当众为公众知悉的方式，与中文释义一致。"
+    },
+    {
+      "queue_index": 514,
+      "rank": 3478,
+      "lemma": "flicker",
+      "ku_id": "w_6139_flicker_ku_s01",
+      "source_zh": "闪烁；摇曳",
+      "proposed_en": "to shine or burn unsteadily, with rapid small changes in brightness",
+      "verdict": "PASS",
+      "reason": "火焰或灯光明暗快速微变并不稳定，覆盖闪烁摇曳的常见动词义。"
+    },
+    {
+      "queue_index": 515,
+      "rank": 3479,
+      "lemma": "antigen",
+      "ku_id": "w_7963_antigen_ku_s01",
+      "source_zh": "抗原",
+      "proposed_en": "a substance recognized by the immune system that can provoke an immune response",
+      "verdict": "PASS",
+      "reason": "能被免疫系统识别且可能引起免疫应答的物质，避免错误断言必然引起反应。"
+    },
+    {
+      "queue_index": 516,
+      "rank": 3480,
+      "lemma": "bovine",
+      "ku_id": "w_7260_bovine_ku_s01",
+      "source_zh": "牛的",
+      "proposed_en": "relating to cattle, especially cows or oxen",
+      "verdict": "PASS",
+      "reason": "涉及牛科家牛等动物的形容词义准确，特别说明cattle语境。"
+    },
+    {
+      "queue_index": 517,
+      "rank": 3481,
+      "lemma": "tilt",
+      "ku_id": "w_5232_tilt_ku_s01",
+      "source_zh": "倾斜；使倾斜",
+      "proposed_en": "to lean or cause something to lean away from a level or upright position",
+      "verdict": "PASS",
+      "reason": "朝偏离水平或竖直位置倾斜，兼及物与不及物构式；中文一致。"
+    },
+    {
+      "queue_index": 521,
+      "rank": 3486,
+      "lemma": "wrench",
+      "ku_id": "w_7081_wrench_ku_s01",
+      "source_zh": "扳手",
+      "proposed_en": "a hand tool used to grip and turn nuts, bolts, or similar fittings",
+      "verdict": "PASS",
+      "reason": "可夹持转动螺母螺栓等连接件的手动工具为扳手，名词义明确。"
+    },
+    {
+      "queue_index": 522,
+      "rank": 3487,
+      "lemma": "hurdle",
+      "ku_id": "w_6260_hurdle_ku_s01",
+      "source_zh": "障碍",
+      "proposed_en": "a problem or difficulty that must be overcome before progress is possible",
+      "verdict": "PASS",
+      "reason": "必须克服才可推进的困难对应障碍义；体育跨栏义不在本KU可另分。"
+    },
+    {
+      "queue_index": 524,
+      "rank": 3489,
+      "lemma": "covert",
+      "ku_id": "w_7412_covert_ku_s01",
+      "source_zh": "隐蔽的",
+      "proposed_en": "done secretly or concealed from observation, especially to avoid detection",
+      "verdict": "PASS",
+      "reason": "秘密实施或避免被发现的形容词语义恰当，含隐蔽行动而非一般隐私。"
+    },
+    {
+      "queue_index": 525,
+      "rank": 3490,
+      "lemma": "homework",
+      "ku_id": "w_3361_homework_ku_s01",
+      "source_zh": "家庭作业",
+      "proposed_en": "schoolwork assigned to students to be done outside class",
+      "verdict": "PASS",
+      "reason": "在课外完成的学校布置任务核心准确；不能误限于家庭场所。"
+    }
+  ],
+  "production_ready": false,
+  "activation_allowed": false
+}
