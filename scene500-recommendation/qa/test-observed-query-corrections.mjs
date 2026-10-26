@@ -17,4 +17,7 @@ assert.equal(search('How can I order coffee?',[]).results[0]?.sceneId,'S039');
 assert.equal(search('我不坐地铁了，改乘公交车',[row('S079',15.6),row('S078',12.1)]).results[0]?.sceneId,'S078');
 assert.equal(search('我不坐地铁了，改乘公交车',[row('S079',15.6),row('S078',12.1)]).results.some(r=>r.sceneId==='S079'),false);
 assert.equal(search('如何学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 12 assertions');
+assert.equal(search("I'd like to order a coffee.",[]).results[0]?.sceneId,'S039');
+assert.equal(search("I’d like to order coffee.",[]).results[0]?.sceneId,'S039');
+assert.equal(search("I'd like to order a sandwich.",[]).results.length,0);
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 15 assertions');
