@@ -1,0 +1,283 @@
+{
+  "schema": "pai-cg-qa-enlex-26-gloss-review-v1",
+  "reviewer": "CG-QA",
+  "source_commit": "c392ea9548d5273ec7fb5cba25fe1af67f28becc",
+  "source_asset": "tools/core20k_lexicon/qa/ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+  "review_basis": "Read exact frozen editorial entries; independent ChatGPT lexical-semantic assessment, not a second Muse review, not a Runtime row extraction",
+  "summary": {
+    "records": 26,
+    "semantic_pass": 23,
+    "conditional_scope_or_identity": 3,
+    "muse_same_version": "PENDING",
+    "dual_ai_complete": 0,
+    "production_ready": false
+  },
+  "records": [
+    {
+      "rank": 359,
+      "lemma": "scanner",
+      "ku_id": "w_5575_scanner_ku_s01",
+      "source_gloss_zh": "扫描仪；扫描器",
+      "proposed_gloss_zh": "扫描仪；扫描器",
+      "proposed_gloss_en": "a device that reads images or text and converts them into digital data",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Device definition fits 扫描仪/扫描器; not confused with scanning action."
+    },
+    {
+      "rank": 589,
+      "lemma": "amid",
+      "ku_id": "w_4094_amid_ku_s01",
+      "source_gloss_zh": "在……之中",
+      "proposed_gloss_zh": "在……之中",
+      "proposed_gloss_en": "in the middle of or surrounded by something",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Locative/surrounding sense fits 在……之中; other figurative uses do not negate this sense."
+    },
+    {
+      "rank": 1188,
+      "lemma": "liter",
+      "ku_id": "w_5798_liter_ku_s01",
+      "source_gloss_zh": "升",
+      "proposed_gloss_zh": "升（容量单位）",
+      "proposed_gloss_en": "a metric unit of volume equal to 1,000 milliliters",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Volume unit and 1,000 mL conversion are exact."
+    },
+    {
+      "rank": 1725,
+      "lemma": "gym",
+      "ku_id": "w_3607_gym_ku_s01",
+      "source_gloss_zh": "健身房；体育馆",
+      "proposed_gloss_zh": "健身房；体育馆",
+      "proposed_gloss_en": "a building or room equipped for exercise, physical training, or indoor sports",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Exercise/training room or indoor-sport building covers the supplied facility senses."
+    },
+    {
+      "rank": 1731,
+      "lemma": "noun",
+      "ku_id": "w_4104_noun_ku_s01",
+      "source_gloss_zh": "名词",
+      "proposed_gloss_zh": "名词",
+      "proposed_gloss_en": "a word used to name a person, place, thing, idea, or quality",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Names a person/place/thing/idea/quality; standard grammatical noun definition."
+    },
+    {
+      "rank": 1785,
+      "lemma": "compatibility",
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "source_gloss_zh": "兼容性；相容性",
+      "proposed_gloss_zh": "兼容性；相容性",
+      "proposed_gloss_en": "the ability of two things to work well together or exist together without conflict",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Coexistence without conflict and functional interoperability both supported."
+    },
+    {
+      "rank": 1850,
+      "lemma": "unification",
+      "ku_id": "w_8469_unification_ku_s01",
+      "source_gloss_zh": "统一；合并；一体化",
+      "proposed_gloss_zh": "统一；合并；一体化",
+      "proposed_gloss_en": "the process of bringing separate groups or parts together to form one whole",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Process of joining separate groups/parts captures 统一/合并/一体化."
+    },
+    {
+      "rank": 1978,
+      "lemma": "media",
+      "ku_id": "w_5359_media_ku_s01",
+      "source_gloss_zh": "媒体；媒介",
+      "proposed_gloss_zh": "媒体；传播媒介",
+      "proposed_gloss_en": "television, radio, newspapers, websites, and other channels that share news or information",
+      "chatgpt_verdict": "CONDITIONAL_SCOPE_OR_IDENTITY",
+      "specific_reason": "Current English describes news/information mass-media channels, while Chinese 媒介 can also refer to non-news transmission carriers and medium in science; either restrict Chinese to 媒体/大众传播媒介 or broaden/split explicit senses."
+    },
+    {
+      "rank": 1991,
+      "lemma": "prototype",
+      "ku_id": "w_5464_prototype_ku_s01",
+      "source_gloss_zh": "原型；样机",
+      "proposed_gloss_zh": "原型；样机",
+      "proposed_gloss_en": "an early model of a product or design made to test or develop its features",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Early test model of design/product captures 原型/样机 in this context."
+    },
+    {
+      "rank": 2015,
+      "lemma": "additionally",
+      "ku_id": "w_4404_additionally_ku_s01",
+      "source_gloss_zh": "此外",
+      "proposed_gloss_zh": "此外；另外",
+      "proposed_gloss_en": "in addition to what has already been mentioned",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Supplementary discourse marker, not sequence marker, aligns 此外/另外."
+    },
+    {
+      "rank": 2101,
+      "lemma": "gateway",
+      "ku_id": "w_5622_gateway_ku_s01",
+      "source_gloss_zh": "入口；网关",
+      "proposed_gloss_zh": "入口；网关",
+      "proposed_gloss_en": "an entrance or a point through which people, things, or information can pass",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Entrance or passage point is valid for physical and network gateway, but distinguish the technical sense during specialized teaching."
+    },
+    {
+      "rank": 2104,
+      "lemma": "quiz",
+      "ku_id": "w_5210_quiz_ku_s01",
+      "source_gloss_zh": "小测验；问答",
+      "proposed_gloss_zh": "小测验；问答",
+      "proposed_gloss_en": "a short test or set of questions used to check knowledge",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Short knowledge-check test captures 小测验; 问答 is broader but acceptable as contextual near-synonym, not exhaustive equivalence."
+    },
+    {
+      "rank": 2168,
+      "lemma": "garbage",
+      "ku_id": "w_5081_garbage_ku_s01",
+      "source_gloss_zh": "垃圾；废物",
+      "proposed_gloss_zh": "垃圾；废物",
+      "proposed_gloss_en": "things that are no longer wanted and are thrown away",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Discarded unwanted materials matches 垃圾/废物."
+    },
+    {
+      "rank": 2222,
+      "lemma": "checkpoint",
+      "ku_id": "w_7612_checkpoint_ku_s01",
+      "source_gloss_zh": "检查点；检查站",
+      "proposed_gloss_zh": "检查站；检查点",
+      "proposed_gloss_en": "a place where people or vehicles are stopped so that officials can check them",
+      "chatgpt_verdict": "CONDITIONAL_SCOPE_OR_IDENTITY",
+      "specific_reason": "English limits to physical official stop/check station, while Chinese 检查点 can denote an inspection milestone or software saved state; restrict Chinese to 检查站（实体检查点） for this KU or provide explicit separate sense."
+    },
+    {
+      "rank": 2274,
+      "lemma": "snapshot",
+      "ku_id": "w_7254_snapshot_ku_s01",
+      "source_gloss_zh": "快照",
+      "proposed_gloss_zh": "快照；瞬间记录",
+      "proposed_gloss_en": "a photograph or brief record showing a particular moment",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Quick photo or point-in-time record supports 快照 and software analogy."
+    },
+    {
+      "rank": 2286,
+      "lemma": "compute",
+      "ku_id": "w_3004_compute_ku_s01",
+      "source_gloss_zh": "计算",
+      "proposed_gloss_zh": "计算",
+      "proposed_gloss_en": "to calculate a result using numbers or data",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Calculate using numbers/data is correct mathematical/computational verb."
+    },
+    {
+      "rank": 2293,
+      "lemma": "tier",
+      "ku_id": "w_5852_tier_ku_s01",
+      "source_gloss_zh": "层；级",
+      "proposed_gloss_zh": "层级；等级",
+      "proposed_gloss_en": "one of several levels or ranks in an ordered system",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "One level in ordered hierarchy fits 层/级."
+    },
+    {
+      "rank": 2299,
+      "lemma": "visa",
+      "ku_id": "w_5332_visa_ku_s01",
+      "source_gloss_zh": "签证",
+      "proposed_gloss_zh": "签证",
+      "proposed_gloss_en": "official permission, often shown in a passport, to enter or stay in a country",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Official authorization to apply for entry/stay, subject to border discretion; current language does not promise guaranteed admission."
+    },
+    {
+      "rank": 2313,
+      "lemma": "logo",
+      "ku_id": "w_5339_logo_ku_s01",
+      "source_gloss_zh": "标志；徽标",
+      "proposed_gloss_zh": "徽标；标志",
+      "proposed_gloss_en": "a symbol or design used to identify a company, organization, or product",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Identifying graphic symbol/design fits 标志/徽标."
+    },
+    {
+      "rank": 2345,
+      "lemma": "found",
+      "ku_id": "w_5396_found_ku_s01",
+      "source_gloss_zh": "建立；创办",
+      "proposed_gloss_zh": "建立；创办",
+      "proposed_gloss_en": "to start an organization, institution, or business",
+      "chatgpt_verdict": "CONDITIONAL_SCOPE_OR_IDENTITY",
+      "specific_reason": "Lexical verb 'establish' is correctly defined, but homograph found (past of find) has different POS/identity; verify Runtime POS and existing same-spelling KU registration before upgrading to identity-anchored overlay."
+    },
+    {
+      "rank": 2363,
+      "lemma": "intercept",
+      "ku_id": "w_6138_intercept_ku_s01",
+      "source_gloss_zh": "拦截",
+      "proposed_gloss_zh": "拦截；截获",
+      "proposed_gloss_en": "to stop, catch, or take something while it is traveling from one place to another",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Stop/catch something in transit supports 拦截/截获."
+    },
+    {
+      "rank": 2388,
+      "lemma": "mayor",
+      "ku_id": "w_3095_mayor_ku_s01",
+      "source_gloss_zh": "市长",
+      "proposed_gloss_zh": "市长",
+      "proposed_gloss_en": "the elected or appointed leader of a city or town government",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "City/town civic leader is correct across election/appointment jurisdictions."
+    },
+    {
+      "rank": 2390,
+      "lemma": "kilometer",
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "source_gloss_zh": "千米；公里",
+      "proposed_gloss_zh": "千米；公里",
+      "proposed_gloss_en": "a unit of length equal to 1,000 meters",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Exactly 1,000 meters, and Chinese synonyms correct."
+    },
+    {
+      "rank": 2416,
+      "lemma": "painful",
+      "ku_id": "w_3069_painful_ku_s01",
+      "source_gloss_zh": "疼痛的；痛苦的",
+      "proposed_gloss_zh": "疼痛的；痛苦的",
+      "proposed_gloss_en": "causing physical pain or emotional distress",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Physical pain or emotional suffering meets source meanings."
+    },
+    {
+      "rank": 2421,
+      "lemma": "officially",
+      "ku_id": "w_3514_officially_ku_s01",
+      "source_gloss_zh": "正式地；官方地",
+      "proposed_gloss_zh": "正式地；官方地",
+      "proposed_gloss_en": "in a formal or authorized way, or according to an official statement",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Formal authorization/official-status sense valid, though not every formal act is 'official'."
+    },
+    {
+      "rank": 2422,
+      "lemma": "adjustable",
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "source_gloss_zh": "可调节的",
+      "proposed_gloss_zh": "可调节的",
+      "proposed_gloss_en": "able to be changed in size, position, or amount to suit a need",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "Capable of changing dimensions/amounts fits 可调节的."
+    }
+  ],
+  "policy": {
+    "preserve_ku_id": true,
+    "do_not_modify_runtime": true,
+    "do_not_claim_muse_review": true,
+    "do_not_auto_activate": true
+  }
+}
