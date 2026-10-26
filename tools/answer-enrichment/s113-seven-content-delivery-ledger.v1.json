@@ -1,0 +1,97 @@
+{
+  "schema_version": "pai-word-s113-seven-teaching-delivery-ledger-v1",
+  "owner_role": "CG-ENTEACH",
+  "date": "2026-10-26",
+  "status": "CONTENT_LEDGER_ONLY_NOT_RELEASE_AUTHORIZATION",
+  "taxonomy": {
+    "namespace": "scene500-20x25-v1",
+    "scene_id": "S113",
+    "scene_name": "预订酒店",
+    "historical_rank_reference": "data/scene500-top100-v40/group-05.json",
+    "official_membership": "NOT_ESTABLISHED"
+  },
+  "sources": {
+    "original_three_commit": "0a351a9641edf9505f7d5b762286dbd856367057",
+    "original_three_path": "tools/answer-enrichment/s113-teaching-owner-handoff.v3.json",
+    "new_four_original_commit": "2036066caa57285f8a17e3fef53cd8d210b4ee9b",
+    "new_four_original_path": "tools/answer-enrichment/s113-next4-hotel-booking-teaching-draft.v1.json",
+    "new_four_v2_commit": "d5a3f476e39fdb79e5345bb9cca77bbe4ebfe31e",
+    "new_four_v2_path": "tools/answer-enrichment/s113-next4-hotel-booking-teaching-draft.v2.json",
+    "muse_s113_review_commit": "40f1caab633424d371c572035ff07b960fa35f54",
+    "muse_review_path": "tools/core20k_lexicon/staging/s113_next4_and_v2_muse_review.json"
+  },
+  "records": [
+    {
+      "headword": "guest",
+      "ku_id": "w_1452_guest_ku_s01",
+      "content_certification": "DUAL_AI_PASS",
+      "source": "s113-teaching-owner-handoff.v3.json",
+      "activation_allowed": false
+    },
+    {
+      "headword": "reservation",
+      "ku_id": "w_3084_reservation_ku_s01",
+      "content_certification": "DUAL_AI_PASS",
+      "source": "s113-teaching-owner-handoff.v3.json",
+      "activation_allowed": false
+    },
+    {
+      "headword": "cancellation",
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "content_certification": "DUAL_AI_PASS_WITH_NONBLOCKING_TIME_BOUNDARY_NOTE",
+      "source": "s113-teaching-owner-handoff.v3.json",
+      "activation_allowed": false
+    },
+    {
+      "headword": "hotel",
+      "ku_id": "w_0771_hotel_ku01",
+      "scene_rank_candidate": 1,
+      "chatgpt_status": "PASS",
+      "muse_status": "PASS_ON_V1_UNCHANGED_RECORD",
+      "content_certification": "DUAL_AI_PASS_UNCHANGED_V1_FIELDS",
+      "official_sense_id": null,
+      "activation_allowed": false
+    },
+    {
+      "headword": "availability",
+      "ku_id": "w_3287_availability_ku_s01",
+      "scene_rank_candidate": 14,
+      "chatgpt_status": "PASS",
+      "muse_status": "PASS_ON_V1_UNCHANGED_RECORD",
+      "content_certification": "DUAL_AI_PASS_UNCHANGED_V1_FIELDS",
+      "official_sense_id": null,
+      "activation_allowed": false
+    },
+    {
+      "headword": "cancel",
+      "ku_id": "w_2445_cancel_ku_s01",
+      "scene_rank_candidate": 18,
+      "chatgpt_status": "PASS",
+      "muse_status": "PASS_ON_V1_UNCHANGED_RECORD",
+      "content_certification": "DUAL_AI_PASS_UNCHANGED_V1_FIELDS",
+      "official_sense_id": null,
+      "activation_allowed": false
+    },
+    {
+      "headword": "confirmation",
+      "ku_id": "w_3678_confirmation_ku_s01",
+      "scene_rank_candidate": 19,
+      "chatgpt_status": "PASS_REVISED_GLOSS",
+      "muse_status": "PENDING_V2_GLOSS_DELTA_REVIEW",
+      "content_certification": "PENDING_MUSE_V2_GLOSS_DELTA",
+      "official_sense_id": null,
+      "activation_allowed": false
+    }
+  ],
+  "counts": {
+    "record_count": 7,
+    "dual_ai_content_pass_at_current_record_version": 6,
+    "independent_muse_delta_pending": 1,
+    "officially_activated": 0
+  },
+  "scope_notice": "Muse judged NEXT4 on v1; confirmation was changed in v2 and needs independent opinion on the changed two glosses only. Other three NEXT4 records unchanged and inherit Muse verdict. Do not infer formal membership from V40 ranks.",
+  "release_eligible": false,
+  "production_ready": false,
+  "activation_allowed": false,
+  "source_rights_note": "Lexical reference URLs are not proof of external content redistribution rights. Avoid verbatim third-party text. Original candidate authorship needs attribution check before publication."
+}
