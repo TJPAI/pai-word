@@ -24,6 +24,7 @@ export async function bootApprovedOverlay(config=window.PAI_APPROVED_OVERLAY_CON
  const fetchBytes=async url=>{
   const response=await fetch(url,{cache:'no-store',credentials:'same-origin',signal:controller.signal});
   if(!response.ok)throw Error('HTTP_'+response.status);
+  if(response.redirected===true||!response.url||approvedOverlaySourceUrl(response.url,import.meta.url)!==url)throw Error('RESOURCE_REDIRECT_OR_MISMATCH');
   return new Uint8Array(await response.arrayBuffer());
  };
  try{
