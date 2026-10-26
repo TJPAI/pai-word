@@ -8,7 +8,7 @@ const foodOrder=/^(?:(?:how\s+(?:to|do\s+i|can\s+i)\s+)|(?:i\s+(?:want|would\s+l
 const transitMode=t=>/^(?:坐|乘|乘坐)?(?:地铁|地下铁)$/.test(t)?'S079':/^(?:坐|乘|乘坐)?(?:公交|公交车|公共汽车)$/.test(t)?'S078':null;
 function switchedTransport(q){
  const value=q.replace(/[。.!？?，,\s]/g,'');
- const m=value.match(/(?:原计划|原来|本来|今天)?(?:坐|乘|乘坐)?(地铁|公交车|公交|公共汽车)(?:现在|后来|了)?(?:不坐|不乘|不要|改坐|改乘|换乘|换坐|换|改)(地铁|公交车|公交|公共汽车)$/);
+ const m=value.match(/(?:原计划|原来|本来|今天)?(?:坐|乘|乘坐)?(地铁|公交车|公交|公共汽车)(?:现在|后来|了)?(?:改坐|改乘|换乘|换坐|换|改)(地铁|公交车|公交|公共汽车)$/);
  if(m){const source=transitMode(m[1]),target=transitMode(m[2]);if(source&&target&&source!==target)return {id:'transport_switch_directional',promote:target,exclude:[source]};}
  const reverse=value.match(/^(?:现在|今天|我)?(?:改坐|改乘|换坐|换乘|改|换)(地铁|公交车|公交|公共汽车)(?:不坐|不乘|不要坐|不要乘)(地铁|公交车|公交|公共汽车)$/);
  if(reverse){const target=transitMode(reverse[1]),source=transitMode(reverse[2]);if(source&&target&&source!==target)return {id:'transport_reverse_switch_directional',promote:target,exclude:[source]};}
