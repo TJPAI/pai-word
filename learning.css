@@ -184,8 +184,8 @@
 
 
 /* Question-only, ephemeral finger-writing region. Never selectable/scrollable. */
-.learning-screen:not(.revealed) .study-body{position:relative;min-height:0;flex:1;display:flex}
-.learning-screen .pai-scratch-area{position:relative;flex:1;width:100%;min-height:130px;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.learning-screen:not(.revealed) .study-body{position:relative;min-height:180px;flex:1 1 auto;display:flex;overflow:hidden}
+.learning-screen .pai-scratch-area{position:relative;display:block;flex:1 1 auto;width:100%;height:100%;min-height:180px;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
 .learning-screen .pai-scratch-canvas{display:block;width:100%;height:100%;touch-action:none;-webkit-user-select:none;user-select:none}
 .learning-screen .pai-scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;color:#a3aeba;font-size:18px;font-weight:500;white-space:nowrap}
 .learning-screen .pai-scratch-hint small{display:block;margin-top:7px;font-size:13px;font-weight:400}
