@@ -1295,12 +1295,13 @@
   canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;delete canvas.dataset.inking;suppress()}});
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
  }
+ let pendingAutoRestore=false;
  const previousRender=window.render;
  if(typeof previousRender==='function')window.render=function(...args){
-  const restoreDrawing=activeMode&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning'&&!state.revealed;
+  pendingAutoRestore=(pendingAutoRestore||activeMode)&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning'&&!state.revealed;
   reset();
   const result=previousRender.apply(this,args);
-  if(state.view==='learning')requestAnimationFrame(()=>{initScratch();if(restoreDrawing&&activeSurface&&!activeMode){const e=activeSurface.querySelector('canvas');if(e)window.PAI_SCRATCH_REENTER?.();}});
+  if(state.view==='learning')requestAnimationFrame(()=>{initScratch();if(pendingAutoRestore&&activeSurface&&!activeMode&&state.view==='learning'&&!state.revealed){pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.();}});
   return result;
  };
  if(state.view==='learning')requestAnimationFrame(initScratch);
