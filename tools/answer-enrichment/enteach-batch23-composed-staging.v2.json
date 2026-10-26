@@ -1,0 +1,674 @@
+{
+  "schema_version": "pai-word-enteach-batch23-composed-full-content-staging-v2",
+  "owner_role": "CG-ENTEACH",
+  "source_blobs": [
+    {
+      "path": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "sha": "fd46a0ddff8519dccadd90a471c6f93c3570f886"
+    },
+    {
+      "path": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "sha": "ee22f3bc113bdafafd211598459eb7d0d7250a37"
+    },
+    {
+      "path": "tools/answer-enrichment/enteach-batch23-targeted-deltas.v1.json",
+      "sha": "db329485eac2dbde1c7861eeabca9402d1aeb99b"
+    },
+    {
+      "path": "tools/answer-enrichment/enteach-batch23-chatgpt-full-review.v1.json",
+      "sha": "40c16b0778f51510fedc9fdfa3dd2aaaf3a95dc0"
+    }
+  ],
+  "status": "CHATGPT_REVISED_V2_MUSE_EXACT_VERSION_REVIEW_PENDING",
+  "ku_identity": "EXACT_SOURCE_KU",
+  "records": [
+    {
+      "headword": "scanner",
+      "ku_id": "w_5575_scanner_ku_s01",
+      "core_rank": 359,
+      "ku_kind": "sense",
+      "gloss_zh": "扫描仪；扫描器",
+      "gloss_en": "a device that reads images or text and converts them into digital data",
+      "collocation": "document scanner · flatbed scanner · barcode scanner",
+      "example_en": "Please scan the form with the office scanner.",
+      "example_zh": "请用办公室的扫描仪扫描这张表格。",
+      "grammar_note": null,
+      "contrast_note": "scanner是进行扫描的设备；scan可作动词，表示扫描或查看。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "amid",
+      "ku_id": "w_4094_amid_ku_s01",
+      "core_rank": 589,
+      "ku_kind": "sense",
+      "gloss_zh": "在……之中",
+      "gloss_en": "in the middle of or surrounded by something",
+      "collocation": "amid growing concerns · amid the noise · amid uncertainty",
+      "example_en": "Amid the noise, she remained calm.",
+      "example_zh": "在一片喧闹声中，她保持冷静。",
+      "grammar_note": "amid通常作介词，后接名词或名词短语；不能直接接完整的有限动词从句。",
+      "contrast_note": "amid表示处于某种环境或情况之中；among强调在一群人或事物之间。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "liter",
+      "ku_id": "w_5798_liter_ku_s01",
+      "core_rank": 1188,
+      "ku_kind": "sense",
+      "gloss_zh": "升（容量单位）",
+      "gloss_en": "a metric unit of volume equal to 1,000 milliliters",
+      "collocation": "a liter of water · two liters of milk · per liter",
+      "example_en": "The bottle holds one liter of water.",
+      "example_zh": "这个瓶子能装一升水。",
+      "grammar_note": "数词后通常用复数liters，one liter用单数；英式英语常拼作litre。",
+      "contrast_note": "liter是容量单位；kilogram是质量单位，不能混用。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "gym",
+      "ku_id": "w_3607_gym_ku_s01",
+      "core_rank": 1725,
+      "ku_kind": "sense",
+      "gloss_zh": "健身房；体育馆",
+      "gloss_en": "a building or room equipped for exercise, physical training, or indoor sports",
+      "collocation": "go to the gym · gym membership · school gym",
+      "example_en": "I go to the gym three times a week.",
+      "example_zh": "我每周去健身房三次。",
+      "grammar_note": null,
+      "contrast_note": "gym可以指健身场所或学校体育馆；stadium通常指大型体育场。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "noun",
+      "ku_id": "w_4104_noun_ku_s01",
+      "core_rank": 1731,
+      "ku_kind": "sense",
+      "gloss_zh": "名词",
+      "gloss_en": "a word used to name a person, place, thing, idea, or quality",
+      "collocation": "countable noun · proper noun · plural noun",
+      "example_en": "In this sentence, 'hotel' is a noun.",
+      "example_zh": "在这个句子里，hotel是一个名词。",
+      "grammar_note": "noun为可数名词，复数为nouns。",
+      "contrast_note": "noun是名词；verb是动词；同一词形在不同句子中可能具有不同词性。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "compatibility",
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "core_rank": 1785,
+      "ku_kind": "sense",
+      "gloss_zh": "兼容性；相容性",
+      "gloss_en": "the ability of two things to work well together or exist together without conflict",
+      "collocation": "software compatibility · compatibility issues · test compatibility",
+      "example_en": "We need to test the compatibility of the new software with older devices.",
+      "example_zh": "我们需要测试这款新软件与旧设备的兼容性。",
+      "grammar_note": "常用compatibility with表示与某物的兼容性。",
+      "contrast_note": "compatibility指事物能否共同运作或共存；similarity仅指相似程度。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "prototype",
+      "ku_id": "w_5464_prototype_ku_s01",
+      "core_rank": 1991,
+      "ku_kind": "sense",
+      "gloss_zh": "原型；样机",
+      "gloss_en": "an early model of a product or design made to test or develop its features",
+      "collocation": "build a prototype · working prototype · test a prototype",
+      "example_en": "The engineers tested a prototype before mass production.",
+      "example_zh": "工程师们在批量生产前测试了一台原型机。",
+      "grammar_note": null,
+      "contrast_note": "prototype是用于验证设计的早期模型，不等同正式上市的成品。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "additionally",
+      "ku_id": "w_4404_additionally_ku_s01",
+      "core_rank": 2015,
+      "ku_kind": "sense",
+      "gloss_zh": "此外；另外",
+      "gloss_en": "in addition to what has already been mentioned",
+      "collocation": "additionally, we need ... · additionally, the report notes ... · additionally, there is ...",
+      "example_en": "The room is quiet. Additionally, it has a desk.",
+      "example_zh": "房间很安静。此外，房内还配有书桌。",
+      "grammar_note": "句首连接副词additionally后通常用逗号。",
+      "contrast_note": "additionally添加另一条信息；however表示转折。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "quiz",
+      "ku_id": "w_5210_quiz_ku_s01",
+      "core_rank": 2104,
+      "ku_kind": "sense",
+      "gloss_zh": "小测验；问答",
+      "gloss_en": "a short test or set of questions used to check knowledge",
+      "collocation": "take a quiz · short quiz · vocabulary quiz",
+      "example_en": "We have a short vocabulary quiz tomorrow.",
+      "example_zh": "我们明天有一次简短的词汇测验。",
+      "grammar_note": null,
+      "contrast_note": "quiz通常指简短测验；exam通常更正式、范围也可能更广。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "garbage",
+      "ku_id": "w_5081_garbage_ku_s01",
+      "core_rank": 2168,
+      "ku_kind": "sense",
+      "gloss_zh": "垃圾；废物",
+      "gloss_en": "things that are no longer wanted and are thrown away",
+      "collocation": "take out the garbage · garbage bin · household garbage",
+      "example_en": "Please put the empty box in the garbage bin.",
+      "example_zh": "请把空盒子放进垃圾桶。",
+      "grammar_note": "garbage通常为不可数名词，指垃圾时一般不说a garbage。",
+      "contrast_note": "garbage在美式英语中常指垃圾；rubbish是英式英语中常用的近义表达。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "compute",
+      "ku_id": "w_3004_compute_ku_s01",
+      "core_rank": 2286,
+      "ku_kind": "sense",
+      "gloss_zh": "计算",
+      "gloss_en": "to calculate a result using numbers or data",
+      "collocation": "compute the total · compute the average · compute a result",
+      "example_en": "The program computes the average temperature each hour.",
+      "example_zh": "这个程序每小时计算一次平均温度。",
+      "grammar_note": "compute通常为及物动词，后接计算的数值或结果。",
+      "contrast_note": "compute强调通过计算得出结果；estimate强调估算。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "visa",
+      "ku_id": "w_5332_visa_ku_s01",
+      "core_rank": 2299,
+      "ku_kind": "sense",
+      "gloss_zh": "签证",
+      "gloss_en": "official permission, often shown in a passport, to enter or stay in a country",
+      "collocation": "apply for a visa · tourist visa · valid visa",
+      "example_en": "I need to apply for a visa before my trip.",
+      "example_zh": "我需要在出行前申请签证。",
+      "grammar_note": "visa为可数名词，复数visas。",
+      "contrast_note": "visa是入境或停留许可文件；passport是用于证明身份和国籍的旅行证件。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "logo",
+      "ku_id": "w_5339_logo_ku_s01",
+      "core_rank": 2313,
+      "ku_kind": "sense",
+      "gloss_zh": "徽标；标志",
+      "gloss_en": "a symbol or design used to identify a company, organization, or product",
+      "collocation": "company logo · design a logo · display a logo",
+      "example_en": "The company's logo appears on every package.",
+      "example_zh": "每个包装上都有这家公司的徽标。",
+      "grammar_note": null,
+      "contrast_note": "logo是用于识别组织或品牌的视觉标识；slogan是宣传口号。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "kilometer",
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "core_rank": 2390,
+      "ku_kind": "sense",
+      "gloss_zh": "千米；公里",
+      "gloss_en": "a unit of length equal to 1,000 meters",
+      "collocation": "five kilometers · kilometers per hour · one kilometer away",
+      "example_en": "The hotel is two kilometers from the station.",
+      "example_zh": "酒店距离车站两公里。",
+      "grammar_note": "kilometer在美式英语中常见；英式英语通常拼为kilometre。",
+      "contrast_note": "kilometer是长度单位，mile也是长度单位，但数值换算不同。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "adjustable",
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "core_rank": 2422,
+      "ku_kind": "sense",
+      "gloss_zh": "可调节的",
+      "gloss_en": "able to be changed in size, position, or amount to suit a need",
+      "collocation": "adjustable seat · adjustable height · fully adjustable",
+      "example_en": "This chair has an adjustable backrest.",
+      "example_zh": "这把椅子的靠背可以调节。",
+      "grammar_note": "adjustable为形容词，常修饰seat、height、backrest等名词。",
+      "contrast_note": "adjustable表示可以调节；adaptable强调能适应不同环境或用途。",
+      "source_gloss_candidate_status": {
+        "chatgpt": "EDITORIAL_CANDIDATE_NOT_FORMAL_VERDICT",
+        "muse": "PENDING",
+        "cross_ku_reference": "PENDING"
+      },
+      "full_teaching_semantic_certification": "NOT_YET_INDEPENDENTLY_REVIEWED_BY_MUSE",
+      "source_attribution": {
+        "reference": "ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+        "editorial_content": "newly authored CG-ENTEACH text; no external dictionary examples copied"
+      },
+      "production_ready": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "activation_allowed": false,
+      "official_sense_id": null
+    },
+    {
+      "headword": "unification",
+      "ku_id": "w_8469_unification_ku_s01",
+      "core_rank": 1850,
+      "ku_kind": "sense",
+      "gloss_zh": "统一；合并；一体化",
+      "gloss_en": "the process of bringing separate groups or parts together to form one whole",
+      "collocation": "political unification · national unification · the unification of two systems",
+      "example_en": "The unification of the two departments took several months.",
+      "example_zh": "两个部门的合并花了几个月。",
+      "grammar_note": "常用the unification of A and B或the unification of several groups等结构。",
+      "contrast_note": "unification强调使原本分开的部分成为一个整体；cooperation仅指合作，不必形成一个整体。",
+      "editorial_semantic_reason": "An abstract process noun. The example illustrates organizational joining; it does not claim every unification requires identical institutions.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "gateway",
+      "ku_id": "w_5622_gateway_ku_s01",
+      "core_rank": 2101,
+      "ku_kind": "sense",
+      "gloss_zh": "入口；网关",
+      "gloss_en": "an entrance or a point through which people, things, or information can pass",
+      "collocation": "gateway to the city · payment gateway · network gateway",
+      "example_en": "The payment gateway handles online payments.",
+      "example_zh": "支付网关处理在线支付。",
+      "grammar_note": "常见gateway to ...表示通往某处或实现某事的入口。",
+      "contrast_note": "gateway可指物理入口，也可指网络或支付系统的连接入口；doorway多指实际门口。",
+      "editorial_semantic_reason": "Metaphoric and technical extensions derive from access point, but the payment gateway context is not a guarantee of security in all implementations.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "snapshot",
+      "ku_id": "w_7254_snapshot_ku_s01",
+      "core_rank": 2274,
+      "ku_kind": "sense",
+      "gloss_zh": "快照；瞬间记录",
+      "gloss_en": "a photograph or brief record showing a particular moment",
+      "collocation": "take a snapshot · snapshot of the situation · system snapshot",
+      "example_en": "The report provides a snapshot of the local economy.",
+      "example_zh": "这份报告简要呈现了当地经济在某一时点的状况。",
+      "grammar_note": "snapshot是可数名词；比喻义常用a snapshot of ...。",
+      "contrast_note": "snapshot强调某一时点的瞬间记录或概况；forecast强调对未来的预测。",
+      "editorial_semantic_reason": "The report example illustrates point-in-time overview; distinct from an immutable full backup, so technical comparison is avoided.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "tier",
+      "ku_id": "w_5852_tier_ku_s01",
+      "core_rank": 2293,
+      "ku_kind": "sense",
+      "gloss_zh": "层级；等级",
+      "gloss_en": "one of several levels or ranks in an ordered system",
+      "collocation": "top tier · lower tier · three-tier system",
+      "example_en": "The service offers three pricing tiers.",
+      "example_zh": "这项服务提供三个不同的定价档位。",
+      "grammar_note": "tier为可数名词；three-tier可作复合形容词，修饰system或structure。",
+      "contrast_note": "tier通常指分层体系中的一个档次；level更泛指水平或等级，在部分语境可互换但并非处处相同。",
+      "editorial_semantic_reason": "Pricing tier is a rank within ordered service options and exemplifies the broad meaning without conflating physical stack and hierarchy.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "intercept",
+      "ku_id": "w_6138_intercept_ku_s01",
+      "core_rank": 2363,
+      "ku_kind": "sense",
+      "gloss_zh": "拦截；截获",
+      "gloss_en": "to stop, catch, or take something while it is traveling from one place to another",
+      "collocation": "intercept a message · intercept a pass · intercept a signal",
+      "example_en": "The defender managed to intercept the pass.",
+      "example_zh": "防守队员成功拦截了那次传球。",
+      "grammar_note": "intercept通常为及物动词，后接被截获的球、消息或信号等。",
+      "contrast_note": "intercept强调在传递途中截住；interrupt强调打断正在进行的过程，不一定截获物品或信息。",
+      "editorial_semantic_reason": "Sport example establishes transit/intervening target, avoids overpromising interception of encrypted content.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "mayor",
+      "ku_id": "w_3095_mayor_ku_s01",
+      "core_rank": 2388,
+      "ku_kind": "sense",
+      "gloss_zh": "市长",
+      "gloss_en": "the elected or appointed leader of a city or town government",
+      "collocation": "elect a mayor · mayor of the city · mayor's office",
+      "example_en": "The mayor announced plans to improve public transport.",
+      "example_zh": "市长宣布了改善公共交通的计划。",
+      "grammar_note": "作为职位称谓时常用the mayor；在姓名前作正式头衔时可用Mayor Smith等形式。",
+      "contrast_note": "mayor是城市或城镇的市政负责人；governor通常指州、省等更大行政区的负责人，各地职责不同。",
+      "editorial_semantic_reason": "Neutral civic vocabulary; title and institutional authority vary by jurisdiction, so no universal executive powers claimed.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "painful",
+      "ku_id": "w_3069_painful_ku_s01",
+      "core_rank": 2416,
+      "ku_kind": "sense",
+      "gloss_zh": "疼痛的；痛苦的",
+      "gloss_en": "causing physical pain or emotional distress",
+      "collocation": "painful experience · painful injury · painful memory",
+      "example_en": "It was painful for her to talk about the accident.",
+      "example_zh": "谈起那场事故让她感到很痛苦。",
+      "grammar_note": "可用It is painful for someone to do something表达某人做某事时感到痛苦。",
+      "contrast_note": "painful可指身体疼痛或精神痛苦；sore通常指身体某处酸痛或触痛，适用范围较窄。",
+      "editorial_semantic_reason": "Uses emotional distress extension that is explicitly included in source gloss; context and Chinese translation align.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    },
+    {
+      "headword": "officially",
+      "ku_id": "w_3514_officially_ku_s01",
+      "core_rank": 2421,
+      "ku_kind": "sense",
+      "gloss_zh": "正式地；官方地",
+      "gloss_en": "in a formal or authorized way, or according to an official statement",
+      "collocation": "officially announce · officially recognized · officially open",
+      "example_en": "The museum officially opened to the public on Monday.",
+      "example_zh": "博物馆于周一正式向公众开放。",
+      "grammar_note": "officially为副词，通常修饰动词或过去分词。",
+      "contrast_note": "officially表示得到官方确认或以正式方式进行；publicly仅表示公开地，不一定获得正式授权。",
+      "editorial_semantic_reason": "Avoids equating mere public action with authority. Open in the sentence means begin admission to the public.",
+      "source_gloss_candidate_status": "BASE_GLOSS_DUAL_AI_CONTENT_PASS_REPORTED_BUT_FULL_TEACHING_NOT_REVIEWED",
+      "teaching_chatgpt_verdict": "PASS_EDITORIAL_INITIAL",
+      "teaching_muse_verdict": "PENDING",
+      "official_sense_id": null,
+      "activation_allowed": false,
+      "full_teaching_chatgpt_review": "PASS_AFTER_TARGETED_EDITORIAL_CHANGES",
+      "full_teaching_muse_review": "NOT_REVIEWED_ON_COMPOSED_VERSION",
+      "production_ready": false
+    }
+  ],
+  "checks": {
+    "record_count": 23,
+    "unique_ku_count": 23,
+    "targeted_changed_fields": 8,
+    "structural_errors": 0,
+    "muse_full_teaching_approvals": 0,
+    "formal_activations": 0
+  },
+  "production_ready": false,
+  "activation_allowed": false,
+  "source_rights_cleared": false,
+  "official_membership_verified": false,
+  "note": "Composed editorial snapshot for precise independent QA; no new Sense identity or Scene500 membership is assigned. 23 ENLEX base glosses have separate content verdicts and do not attest to this full teaching record.",
+  "source_version": {
+    "parent_path": "tools/answer-enrichment/enteach-batch23-composed-staging.v1.json",
+    "parent_blob": "85ceda6a7e575c672a75c76b8491cf1fd3943807",
+    "qa_issue_comment": "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6411763782",
+    "targeted_changes": [
+      {
+        "lemma": "scanner",
+        "ku_id": "w_5575_scanner_ku_s01",
+        "field": "collocation",
+        "old": "scan a document · flatbed scanner · barcode scanner",
+        "new": "document scanner · flatbed scanner · barcode scanner",
+        "reason": "Teach lexical collocations of the scanner noun, not the scan verb."
+      },
+      {
+        "lemma": "visa",
+        "ku_id": "w_5332_visa_ku_s01",
+        "field": "example_en",
+        "old": "You must apply for a visa before your trip.",
+        "new": "I need to apply for a visa before my trip.",
+        "reason": "A contextual personal travel need, not a universal legal assertion."
+      },
+      {
+        "lemma": "visa",
+        "ku_id": "w_5332_visa_ku_s01",
+        "field": "example_zh",
+        "old": "你必须在旅行前申请签证。",
+        "new": "我需要在出行前申请签证。",
+        "reason": "Bilingual alignment to revised example."
+      },
+      {
+        "lemma": "logo",
+        "ku_id": "w_5339_logo_ku_s01",
+        "field": "example_zh",
+        "old": "公司的标志印在每件包装上。",
+        "new": "每个包装上都有这家公司的徽标。",
+        "reason": "More idiomatic and faithful to appears on every package."
+      }
+    ]
+  }
+}
