@@ -16,7 +16,7 @@ const overlay=bytes({records:[{ku_id:'ku'}]});
 const runtime=bytes({runtime:true}),pack=bytes({pack:true});
 const sha=async x=>Buffer.from(await webcrypto.subtle.digest('SHA-256',x)).toString('hex');
 const valid={enabled:true,mode:'production',manifestUrl:'./manifest.json',overlayUrl:'./overlay.json',packUrl:'./pack.json',manifestSha256:await sha(manifest),overlaySha256:await sha(overlay)};
-const respond=(i,data)=>calls[i].resolve({ok:true,arrayBuffer:async()=>data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength)});
+const respond=(i,data)=>calls[i].resolve({ok:true,url:calls[i].url,redirected:false,arrayBuffer:async()=>data.buffer.slice(data.byteOffset,data.byteOffset+data.byteLength)});
 const older=context.boot(valid);
 const newer=context.boot(valid);
 assert.equal(calls.length,8);
