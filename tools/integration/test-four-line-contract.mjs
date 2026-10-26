@@ -29,6 +29,12 @@ assert(withChinese.warnings.includes('ASSOCIATIONS_NOT_DELIVERED'));
 const emptyAssociations=validateFourLineIntegration({...input,zhRuntime:zh,associations:{association_version:'unverified-test',links:[]}});
 assert(emptyAssociations.errors.includes('INVALID_SCENE_ASSOCIATIONS'),'empty association list must be rejected');
 assert.equal(emptyAssociations.capabilities.recommendationHybrid,false,'empty association asset cannot enable Hybrid');
+for(const invalidMappings of [null,{},'S113',42]){
+ const rejected=validateFourLineIntegration({...input,sceneMappings:invalidMappings});
+ assert(rejected.errors.includes('MAPPING_SCHEMA'),'invalid mapping type must reject instead of throw');
+ assert.equal(rejected.capabilities.recommendationSceneNavigation,false);
+ assert.deepEqual(rejected.sceneMappings,[]);
+}
 const corrupted={...zh,terms:zh.terms.slice(1)};
 assert(validateFourLineIntegration({...input,zhRuntime:corrupted}).errors.includes('INVALID_CHINESE_V0101'));
 const bad=validateFourLineIntegration({...input,sceneMappings:[{scene_id:'S113',legacy_id:'cs043',provenance_verified:false,source_sha:'not-proof'}]});
