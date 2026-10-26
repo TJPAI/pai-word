@@ -1,4 +1,4 @@
-name: Scene500 REC contract regression
+name: Scene500 REC contract and Hybrid regression
 on:
   push:
     branches: [scene500-recommendation-dev]
@@ -10,15 +10,35 @@ on:
       - 'tools/answer-enrichment/s113-teaching-candidates.v1.json'
       - '.github/workflows/scene500-rec-contract.yml'
   workflow_dispatch:
+permissions:
+  contents: read
 jobs:
-  taxonomy-boundary:
+  taxonomy-and-hybrid:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Verify 20x25 taxonomy pin and S113 membership status
+      - name: Verify 20x25 taxonomy pin and S113 membership
         run: node scene500-recommendation/qa/test-s113-taxonomy-boundary.mjs
+      - name: Extract exact V0101 Runtime and three SHA-pinned assets from committed ZIP
+        run: |
+          mkdir -p "$RUNNER_TEMP/scene500"
+          ZIP=scene500-recommendation/assets/scene500-v0101-verified-assets.zip
+          echo '664eac841f0828a8eefe3e3646555452cca50c7db33c960cc9bcb8f7a6f6169a  '"$ZIP" | sha256sum -c -
+          for FILE in catalog-v0.2.json zh-core20k-v0101-scene500-runtime.json v094-lexical-associations.json; do
+            unzip -p "$ZIP" "$FILE" > "$RUNNER_TEMP/scene500/$FILE"
+            test -s "$RUNNER_TEMP/scene500/$FILE"
+          done
+      - name: Run real Hybrid V0.10.1 15-query Top5 gate
+        run: |
+          node scene500-recommendation/v0101-hybrid-runtime-qa.mjs             "$RUNNER_TEMP/scene500/catalog-v0.2.json"             "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json"             "$RUNNER_TEMP/scene500/v094-lexical-associations.json"             | tee "$RUNNER_TEMP/scene500/hybrid-report.json"
+      - name: Upload Hybrid query report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scene500-v0101-hybrid-report
+          path: ${{ runner.temp }}/scene500/hybrid-report.json
+          if-no-files-found: ignore
