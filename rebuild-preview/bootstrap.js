@@ -155,6 +155,11 @@
   const catalogStarted=performance.now();
   const catalogReady=loadLearningCatalog();
   await catalogReady;mark('catalog');timings.catalogDurationMs=Math.round(performance.now()-catalogStarted);
+  // Batch93 isolated integration; no changes to Core20K or learning state.
+  if(new URLSearchParams(location.search).get('batch93')==='1'){
+    const {installBatch93Isolated}=await import(new URL('scripts/batch93-isolated-adapter.mjs',document.baseURI).href);
+    await installBatch93Isolated();
+  }
   // Base learning scripts depend on the restored Core catalog, not the two
   // Scene500 membership responses. Run them while those network requests settle.
   const scriptDurations={};
