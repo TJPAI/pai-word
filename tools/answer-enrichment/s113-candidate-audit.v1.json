@@ -1,0 +1,48 @@
+{
+  "schema_version": "pai-word-s113-candidate-audit-v1",
+  "status": "IDENTITY_VERIFIED_SEMANTIC_CERTIFICATION_PENDING",
+  "source": {
+    "runtime": "data/core20k-runtime.json.gz",
+    "runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "scene_shard": "data/scene500-top100-v40/group-05.json",
+    "scene_id": "S113"
+  },
+  "checks": {
+    "headword_count": 20000,
+    "all_three_ids_exist": true,
+    "all_three_scene_rows_match": true,
+    "all_three_playable_sense": true,
+    "semantic_review_complete": false,
+    "certification_granted": false
+  },
+  "records": [
+    {
+      "headword": "guest",
+      "core_rank": 915,
+      "scene_rank": 2,
+      "ku_id": "w_1452_guest_ku_s01",
+      "runtime_gloss_zh": "客人；嘉宾",
+      "runtime_gloss_en": "a person invited to visit, stay, or take part in an event",
+      "risk": "hotel example narrows broad guest sense; contextual appropriateness requires review"
+    },
+    {
+      "headword": "reservation",
+      "core_rank": 4035,
+      "scene_rank": 3,
+      "ku_id": "w_3084_reservation_ku_s01",
+      "runtime_gloss_zh": "预订；保留意见",
+      "runtime_gloss_en": "core modern learner use of “reservation”",
+      "risk": "generic English gloss and disjoint Chinese senses; hotel sense binding not established"
+    },
+    {
+      "headword": "cancellation",
+      "core_rank": 5149,
+      "scene_rank": 4,
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "runtime_gloss_zh": "取消；注销",
+      "runtime_gloss_en": "core modern learner use of “cancellation”",
+      "risk": "generic English gloss and broad Chinese senses; hotel cancellation binding needs independent review"
+    }
+  ],
+  "release_gate": "NO_RELEASE_NO_AUTO_ACTIVATION"
+}
