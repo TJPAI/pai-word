@@ -1,0 +1,108 @@
+{
+  "schema": "pai-cg-qa-enteach301-full-semantic-review-v1",
+  "fixed_source_commit": "7421a7b0b2287b803e61fbed411a04ec078d53b9",
+  "fixed_source_path": "tools/answer-enrichment/enteach-next15-batch301-teaching-draft.v1.json",
+  "reviewer": "CG-QA",
+  "review_status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "summary": {
+    "reviewed": 15,
+    "chatgpt_semantic_pass": 15,
+    "nonblocking_style_notes": 1,
+    "muse_same_version_review": "PENDING",
+    "new_dual_ai_certifications": 0
+  },
+  "records": [
+    {
+      "ku_id": "w_3093_bonus_ku_s01",
+      "lemma": "bonus",
+      "verdict": "PASS",
+      "specific_reason": "年终bonus作为正常工资以外的额外奖金，英文和中文完全对应；an added bonus能覆盖非现金附加好处。"
+    },
+    {
+      "ku_id": "w_7082_rhetorical_ku_s01",
+      "lemma": "rhetorical",
+      "verdict": "PASS",
+      "specific_reason": "rhetorical question/device/effect自然，反问句作为强调观点的译文正确；不期待实际回答的语用提示准确。"
+    },
+    {
+      "ku_id": "w_3014_entity_ku_s01",
+      "lemma": "entity",
+      "verdict": "PASS",
+      "specific_reason": "separate entities合乎可数名词与组织独立身份语义，individual与entity的范围区别有教学价值。"
+    },
+    {
+      "ku_id": "w_4628_textbook_ku_s01",
+      "lemma": "textbook",
+      "verdict": "PASS",
+      "specific_reason": "history textbook和chapter搭配与译文准确；textbook作形容词可有a textbook example这类典型义，备注可具体举例。"
+    },
+    {
+      "ku_id": "w_8223_decode_ku_s01",
+      "lemma": "decode",
+      "verdict": "PASS",
+      "specific_reason": "decode message/data以及decoded into readable text的动词搭配准确；encode反义解释正确。"
+    },
+    {
+      "ku_id": "w_7496_evacuation_ku_s01",
+      "lemma": "evacuation",
+      "verdict": "PASS",
+      "specific_reason": "紧急疏散从报警开始的英汉语境准确，evacuation route与order an evacuation及departure辨析有效。"
+    },
+    {
+      "ku_id": "w_7063_hiss_ku_s01",
+      "lemma": "hiss",
+      "verdict": "PASS_STYLE_NOTE",
+      "specific_reason": "蛇朝接近的徒步者发嘶声，译文与名动词说明均准确；‘the snake hisses’属于主谓示例而非词组搭配，建议替换为‘hiss at someone’。"
+    },
+    {
+      "ku_id": "w_5172_folder_ku_s01",
+      "lemma": "folder",
+      "verdict": "PASS",
+      "specific_reason": "shared/file folder、create a folder和项目文件夹保存报告均自然；纸质/数字文件夹的范围与file区分合理。"
+    },
+    {
+      "ku_id": "w_7196_heed_ku_s01",
+      "lemma": "heed",
+      "verdict": "PASS",
+      "specific_reason": "heed warning与advice均地道，天气预警导致返程的例句体现注意并采纳，heed无需to符合语法。"
+    },
+    {
+      "ku_id": "w_5967_ponder_ku_s01",
+      "lemma": "ponder",
+      "verdict": "PASS",
+      "specific_reason": "ponder a question/the decision及ponder over a problem可接受，回答前深思的翻译自然。"
+    },
+    {
+      "ku_id": "w_5020_cooker_ku_s01",
+      "lemma": "cooker",
+      "verdict": "PASS",
+      "specific_reason": "rice cooker/pressure cooker和英式cooker‘炉灶’用法准确，电饭煲例句及cook辨析合理。"
+    },
+    {
+      "ku_id": "w_7246_sleepy_ku_s01",
+      "lemma": "sleepy",
+      "verdict": "PASS",
+      "specific_reason": "feel sleepy after a long day句法与中文对应，sleepy vs asleep的重要状态区分准确。"
+    },
+    {
+      "ku_id": "w_3006_destination_ku_s01",
+      "lemma": "destination",
+      "verdict": "PASS",
+      "specific_reason": "final/travel destination及巴黎目的地例句正确，depart point区别明确。"
+    },
+    {
+      "ku_id": "w_6948_forefront_ku_s01",
+      "lemma": "forefront",
+      "verdict": "PASS",
+      "specific_reason": "at the forefront of research搭配结构准确，实验室在电池研究前沿的译文恰当，与物理front不同。"
+    },
+    {
+      "ku_id": "w_3943_systematic_ku_s01",
+      "lemma": "systematic",
+      "verdict": "PASS",
+      "specific_reason": "systematic approach/review/analysis用法正确，逐条核查例句准确，systemic与systematic对比有区分力。"
+    }
+  ],
+  "activation_allowed": false,
+  "production_ready": false
+}
