@@ -1,0 +1,98 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion07-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_QA_PENDING",
+  "scope": {
+    "reviewed_part": "tools/answer-enrichment/enteach-batch200-part01-44.v2.json",
+    "source_blob": "edb7dba73d6e337411ae59c4cc44d7710f8aa82d",
+    "new_reviewed_ku": 44,
+    "previous_reviewed_ku": 156,
+    "cumulative_distinct_reviewed_ku": 200,
+    "total_batch_ku": 200
+  },
+  "findings": [
+    {
+      "ku_id": "w_5646_insurer_ku_s01",
+      "headword": "insurer",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "health insurer · insurance provider · contact the insurer",
+      "issue": "insurance provider是近义短语而非以目标词insurer为核心的搭配，削弱目标词训练。",
+      "proposed": "health insurer · major insurer · contact the insurer",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_6044_cyclist_ku_s01",
+      "headword": "cyclist",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "road cyclist · cyclist helmet · group of cyclists",
+      "issue": "cyclist helmet不如cyclist's helmet或cycling helmet自然；后者未出现目标词。",
+      "proposed": "road cyclist · experienced cyclist · group of cyclists",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_4748_pillow_ku_s01",
+      "headword": "pillow",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "soft pillow · pillowcase · rest your head on a pillow",
+      "issue": "pillowcase是由pillow派生的独立词，而非目标pillow本身的搭配。",
+      "proposed": "soft pillow · pillow cover · rest your head on a pillow",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_6966_jockey_ku_s01",
+      "headword": "jockey",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "horse-racing jockey · professional jockey · jockey rides a horse",
+      "issue": "jockey rides a horse更像句子片段而不是惯用搭配，建议改成目标词自然动作搭配。",
+      "proposed": "professional jockey · champion jockey · a jockey rides in a race",
+      "action": "PHRASE_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_7018_indicative_ku_s01",
+      "headword": "indicative",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "indicative of · indicative sign · indicative evidence",
+      "issue": "indicative of在教学搭配中没有补足宾语，且indicative sign存在含义重复。",
+      "proposed": "be indicative of a trend · indicative results · indicative price",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_7248_etch_ku_s01",
+      "headword": "etch",
+      "severity": "MEDIUM",
+      "field": "contrast_note",
+      "original": "etch指在硬质表面刻出图案；paint是将颜料涂在表面。",
+      "issue": "etch可以通过化学腐蚀形成图案，而非总是机械雕刻；现有对比过度缩小词义。",
+      "proposed": "etch指通过刻划或腐蚀在表面形成图案；paint通常是涂上颜料。",
+      "action": "SENSE_PRECISION_REWRITE_RECOMMENDED"
+    }
+  ],
+  "existing_source_scope_blocks": [
+    "w_6302_walker_ku_s01",
+    "w_3148_physician_ku_s01",
+    "w_5845_rainy_ku_s01",
+    "w_7275_pore_ku_s01",
+    "w_6754_refreshment_ku_s01"
+  ],
+  "summary": {
+    "new_suggestions": 6,
+    "prior_suggestions": 21,
+    "cumulative_internal_suggestions": 27,
+    "new_independent_certifications": 0
+  },
+  "limitations": [
+    "Author internal editorial review is not independent linguistic QA",
+    "No changes to base teaching source files",
+    "Historical scope-blocked KU remain on HOLD",
+    "Sentence/cloze grading renderer, rights and publishing gates not approved"
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
