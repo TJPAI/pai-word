@@ -403,7 +403,7 @@
  function resetPage(){pageState='QUESTION';syncPage()}
  let phase='idle',generation=0,timer=null,visibleKey=null,began=0,responseMs=null,grade=null,entryMode=null,repeated=0,onAdvance=null,visualGrade='again';
  let ratingDeadline=0,pendingSwipeDirection=0,cancelAudioWait=null,ratingSpeechStarted=false,holdAfterRating=false;
- const PENDING_GRADE_STORAGE='pai-word-preview-v2-pending-grades';
+ const PENDING_GRADE_STORAGE=new URLSearchParams(location.search).get('batch93')==='1'?'pai-word-batch93-pending-grades-v1':'pai-word-preview-v2-pending-grades';
  const pendingGrades=new Map();
  try{const saved=JSON.parse(localStorage.getItem(PENDING_GRADE_STORAGE)||'{}');if(saved&&typeof saved==='object'&&!Array.isArray(saved))for(const [k,v] of Object.entries(saved)){if(['again','hard','good'].includes(v))pendingGrades.set(k,v)}}catch(e){console.warn('无法恢复待提交评分',e)}
  function persistPending(){localStorage.setItem(PENDING_GRADE_STORAGE,JSON.stringify(Object.fromEntries(pendingGrades)))}
@@ -579,7 +579,7 @@
  const unit=()=>byKey(state.learningSession?.queue[0]);
  // Presentation bookmark is independent of the grading queue and SRS.
  // In-memory on navigation; durable only on exit or when Safari backgrounds.
- const SCENE_CURSORS_KEY='pai-word-preview-v2-scene-cursors';
+ const SCENE_CURSORS_KEY=new URLSearchParams(location.search).get('batch93')==='1'?'pai-word-batch93-scene-cursors-v1':'pai-word-preview-v2-scene-cursors';
  let learningCursor=null,sceneCursors={};
  try{
    const stored=JSON.parse(localStorage.getItem(SCENE_CURSORS_KEY)||'null');
