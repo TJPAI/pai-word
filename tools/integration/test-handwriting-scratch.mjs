@@ -17,6 +17,8 @@ assert(!js.includes("e.target.closest('button,a,input,select,textarea,.auto-word
 assert(css.includes(".pai-scratch-area:not(.is-drawing){touch-action:pan-x pan-y}"),'ordinary mode permits gestures');
 assert(css.includes('.pai-scratch-area.is-drawing{position:absolute!important'),'drawing mode overlays upper area');
 assert(css.includes('.recall-correction button{user-select:none;-webkit-user-select:none'), 'rating labels not selectable');
-assert(html.includes('learning.css?v=v22-handwriting-mode-20261026-v2'),'Safari loads updated CSS');
+assert(scratch.includes('screen.appendChild(surface)'),'active drawing overlay must escape clipped study-body');
+assert(css.includes('.learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing'),'overlay must cover header and hero as screen child');
+assert(html.includes('learning.css?v=v22-handwriting-overlay-20261026-v3'),'Safari loads updated CSS');
 assert(!/localStorage|indexedDB|fetch\(/.test(scratch),'scratch data never saved or transmitted');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
