@@ -8,7 +8,7 @@ const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const catalog=read(catalogPath),lexicon=read(lexiconPath),associations=read(associationPath);
 const set={...read('scene500-recommendation/qa/holdout-20-editorial-v1.json')};
 if(set.cases.length!==20||catalog.scene_count!==500||lexicon.terms.length!==20000||associations.links.length!==3553)throw Error('HOLDOUT_INPUT_COUNT_DRIFT');
-for(const c of set.cases){if(!(c.relevant||c.excluded)||[...(c.relevant||[]),...(c.excluded||[])].some(id=>!catalog.scenes[id]))throw Error('INVALID_EDITORIAL_CASE');}
+for(const c of set.cases){if(!(c.relevant||c.excluded||c.openEnded===true)||[...(c.relevant||[]),...(c.excluded||[])].some(id=>!catalog.scenes[id]))throw Error('INVALID_EDITORIAL_CASE');}
 const response=v=>({ok:true,json:async()=>v});
 const engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'lexicon',associationUrl:'associations',fetchImpl:async u=>response(u==='lexicon'?lexicon:associations)});
 if(engine.mode!=='hybrid')throw Error('HYBRID_NOT_LOADED');
