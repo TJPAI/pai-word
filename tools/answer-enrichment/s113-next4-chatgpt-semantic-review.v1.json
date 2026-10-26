@@ -1,0 +1,103 @@
+{
+  "schema_version": "pai-word-s113-next4-chatgpt-editorial-semantic-review-v1",
+  "date": "2026-10-26",
+  "reviewer_role": "CG-ENTEACH",
+  "source_commit": "2036066caa57285f8a17e3fef53cd8d210b4ee9b",
+  "source_path": "tools/answer-enrichment/s113-next4-hotel-booking-teaching-draft.v1.json",
+  "scene_id": "S113",
+  "taxonomy_namespace": "scene500-20x25-v1",
+  "reviewed": [
+    {
+      "headword": "hotel",
+      "ku_id": "w_0771_hotel_ku01",
+      "scene_rank_candidate": 1,
+      "verdict": "PASS",
+      "gloss_zh": "酒店；旅馆",
+      "gloss_en": "a place where people pay to stay for a short time",
+      "reason": "Meaning correctly denotes paid short-stay lodging; book a hotel room identifies a reservable room; the Chinese and English example match and do not imply renting the entire hotel.",
+      "collocation": "PASS",
+      "example_translation": "PASS",
+      "grammar_note": "OPTIONAL_ABSENT_OK",
+      "contrast_note": "PASS_WITH_CONTEXT_NOTE",
+      "notes": "hostel contrast should avoid categorical quality claims; current wording already says may have dormitory beds and is not automatically equivalent.",
+      "evidence": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/english/hotel",
+          "scope": "reference locator only; lexical identity not independently refetched this turn"
+        }
+      ]
+    },
+    {
+      "headword": "availability",
+      "ku_id": "w_3287_availability_ku_s01",
+      "scene_rank_candidate": 14,
+      "verdict": "PASS_WITH_NONBLOCKING_STYLE_EDIT",
+      "gloss_zh": "（酒店客房的）供应情况；是否有空房",
+      "gloss_en": "whether rooms are available to book and, sometimes, how many remain",
+      "reason": "English / Chinese hotel-room availability meaning fits the query and expression check room availability. Cambridge distinguishes availability of goods or opportunities from availability of a person's time, so context-specific gloss is warranted.",
+      "collocation": "PASS",
+      "example_translation": "PASS",
+      "grammar_note": "PASS",
+      "contrast_note": "PASS",
+      "notes": "Preferred Chinese gloss replaces mildly unnatural 可订情况; do not infer the only global Runtime sense is hotel rooms.",
+      "evidence": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/english/availability",
+          "scope": "Meaning of availability (goods/services, capacity) confirmed online"
+        }
+      ]
+    },
+    {
+      "headword": "cancel",
+      "ku_id": "w_2445_cancel_ku_s01",
+      "scene_rank_candidate": 18,
+      "verdict": "PASS",
+      "gloss_zh": "取消（预订）",
+      "gloss_en": "to arrange for a booking or reservation not to go ahead",
+      "reason": "Transitive cancel a reservation / booking is idiomatic; example accurately conveys need to terminate hotel reservation; distinguishes verb cancel from noun cancellation.",
+      "collocation": "PASS",
+      "example_translation": "PASS",
+      "grammar_note": "PASS_WITH_NONBLOCKING_US_UK_NOTE",
+      "contrast_note": "PASS",
+      "notes": "US canceled, UK cancelled both common; do not treat spelling difference as KU identity change.",
+      "evidence": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/english/cancel",
+          "scope": "reference locator only; lexical identity not independently refetched this turn"
+        }
+      ]
+    },
+    {
+      "headword": "confirmation",
+      "ku_id": "w_3678_confirmation_ku_s01",
+      "scene_rank_candidate": 19,
+      "verdict": "PASS",
+      "gloss_zh": "确认；（酒店预订的）确认信息",
+      "gloss_en": "a message or statement confirming that a booking has been made",
+      "reason": "Cambridge's confirmation-of-arrangement sense supports hotel-booking confirmation; booking confirmation / confirmation email / confirmation number natural; sentence and Chinese translation align.",
+      "collocation": "PASS",
+      "example_translation": "PASS",
+      "grammar_note": "OPTIONAL_ABSENT_OK",
+      "contrast_note": "PASS",
+      "notes": "Do not merge the booking confirmation sense with proof-of-truth or religious sense.",
+      "evidence": [
+        {
+          "url": "https://dictionary.cambridge.org/dictionary/english/confirmation",
+          "scope": "Booking arrangement confirmation sense independently checked online"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "reviewed_count": 4,
+    "substantive_content_pass_count": 4,
+    "nonblocking_style_edits": 1,
+    "independent_muse_verdicts_for_exact_draft": 0,
+    "publication_ready": 0
+  },
+  "status": "CHATGPT_CONTENT_REVIEW_COMPLETE_PENDING_MUSE_AND_MEMBERSHIP",
+  "release_eligible": false,
+  "production_ready": false,
+  "provenance_policy": "Dictionary links ground meaning, not source reuse rights. Proposed glosses are editorially authored; neither book/room membership nor official Sense binding is inferred from historical top100.",
+  "next": "MU-ENTEACH review these four exact candidate records independently; resolve only disagreements and commit a combined content artifact for CG-MAIN after canonical membership is sourced."
+}
