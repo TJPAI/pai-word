@@ -1,0 +1,157 @@
+{
+  "schema": "cg-qa-enlex-526-550-ready-v1",
+  "source_commit": "c83f86697061aadc5d3ba954a8f3c0a9b7949226",
+  "source_path": "tools/core20k_lexicon/qa/ENLEX_AI_EDITORIAL_BATCH_526_550.v1.json",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "summary": {
+    "reviewed": 14,
+    "pass": 13,
+    "conditional": 1,
+    "hold_not_reviewed": 11,
+    "new_dual_ai_pass": 0
+  },
+  "records": [
+    {
+      "queue_index": 526,
+      "rank": 3491,
+      "lemma": "phenomenal",
+      "ku_id": "w_7479_phenomenal_ku_s01",
+      "proposed_en": "extraordinarily impressive or remarkable in degree or quality",
+      "proposed_zh": "非凡的；惊人的",
+      "verdict": "PASS",
+      "specific_reason": "非凡、惊人程度或质量的形容词释义合理；并非哲学phenomenon名词义。"
+    },
+    {
+      "queue_index": 527,
+      "rank": 3492,
+      "lemma": "fig",
+      "ku_id": "w_3469_fig_ku_s01",
+      "proposed_en": "a soft, sweet fruit with many tiny seeds inside and a thin skin",
+      "proposed_zh": "无花果",
+      "verdict": "PASS",
+      "specific_reason": "无花果甜软果实、薄皮与内部小籽特征准确，属于水果义。"
+    },
+    {
+      "queue_index": 531,
+      "rank": 3496,
+      "lemma": "pact",
+      "ku_id": "w_7137_pact_ku_s01",
+      "proposed_en": "a formal agreement between two or more people, groups, or countries",
+      "proposed_zh": "协定；条约",
+      "verdict": "PASS",
+      "specific_reason": "团体、个人或国家之间有约束意味的协议，英汉协定语义吻合。"
+    },
+    {
+      "queue_index": 533,
+      "rank": 3498,
+      "lemma": "airplane",
+      "ku_id": "w_3264_airplane_ku_s01",
+      "proposed_en": "a powered flying vehicle with fixed wings that carries people or goods",
+      "proposed_zh": "飞机；固定翼飞机",
+      "verdict": "PASS",
+      "specific_reason": "有动力且固定机翼载客或载货的飞行器，对应英语airplane；排除直升机。"
+    },
+    {
+      "queue_index": 535,
+      "rank": 3504,
+      "lemma": "workplace",
+      "ku_id": "w_3518_workplace_ku_s01",
+      "proposed_en": "a place where people perform their jobs",
+      "proposed_zh": "工作场所",
+      "verdict": "PASS",
+      "specific_reason": "工作活动发生的场所，包含办公室、工地等，英汉对应。"
+    },
+    {
+      "queue_index": 536,
+      "rank": 3505,
+      "lemma": "inclusive",
+      "ku_id": "w_6496_inclusive_ku_s01",
+      "proposed_en": "welcoming and accommodating people of different backgrounds or needs",
+      "proposed_zh": "包容的；兼容并蓄的",
+      "verdict": "CONDITIONAL_SCOPE",
+      "specific_reason": "英译只覆盖对不同背景或需求人群的包容，却未覆盖inclusive of taxes/dates的‘包含在内’义；中文‘兼容并蓄’也偏人群。若目标KU仅社会包容义应明确Sense边界，不能覆盖其它用法。"
+    },
+    {
+      "queue_index": 537,
+      "rank": 3506,
+      "lemma": "encode",
+      "ku_id": "w_6170_encode_ku_s01",
+      "proposed_en": "to change information into a particular code or digital form for storage or transmission",
+      "proposed_zh": "编码；把信息转换为代码",
+      "verdict": "PASS",
+      "specific_reason": "按特定代码或数字形式表示信息的核心动词义，与decode区分，需避免暗示编码一定为了传输但该英文有storage or transmission。"
+    },
+    {
+      "queue_index": 539,
+      "rank": 3508,
+      "lemma": "defect",
+      "ku_id": "w_3561_defect_ku_s01",
+      "proposed_en": "a fault or imperfection that makes something less effective or satisfactory",
+      "proposed_zh": "缺陷；瑕疵",
+      "verdict": "PASS",
+      "specific_reason": "影响效果或满意度的故障瑕疵对应名词缺陷，范围合宜。"
+    },
+    {
+      "queue_index": 542,
+      "rank": 3511,
+      "lemma": "audition",
+      "ku_id": "w_6691_audition_ku_s01",
+      "proposed_en": "a performance or interview in which someone demonstrates suitability for a role",
+      "proposed_zh": "试镜；试演",
+      "verdict": "PASS",
+      "specific_reason": "为争取演艺角色或表演职位而试演/试镜，英文performance or interview可接受；不涵盖一般工作面试为佳。"
+    },
+    {
+      "queue_index": 544,
+      "rank": 3515,
+      "lemma": "invasion",
+      "ku_id": "w_3182_invasion_ku_s01",
+      "proposed_en": "the act of entering a place by force, especially with an army",
+      "proposed_zh": "入侵；侵略",
+      "verdict": "PASS",
+      "specific_reason": "强行进入某地，特别军队进入的侵略入侵义对应；其它侵犯隐私引申义不必混入。"
+    },
+    {
+      "queue_index": 545,
+      "rank": 3516,
+      "lemma": "stationary",
+      "ku_id": "w_5970_stationary_ku_s01",
+      "proposed_en": "not moving or changing position",
+      "proposed_zh": "静止的；不移动的",
+      "verdict": "PASS",
+      "specific_reason": "不移动或改变位置的形容词义准确，与stationery拼写混淆须另行提醒但非必要。"
+    },
+    {
+      "queue_index": 546,
+      "rank": 3517,
+      "lemma": "flexibility",
+      "ku_id": "w_3194_flexibility_ku_s01",
+      "proposed_en": "the ability to bend easily or to adapt to changing circumstances",
+      "proposed_zh": "柔韧性；灵活性",
+      "verdict": "PASS",
+      "specific_reason": "物理柔韧性及适应变化的灵活性可以同一上位能力表述，英汉一致。"
+    },
+    {
+      "queue_index": 548,
+      "rank": 3519,
+      "lemma": "organizer",
+      "ku_id": "w_3284_organizer_ku_s01",
+      "proposed_en": "a person who plans and arranges an event or activity",
+      "proposed_zh": "组织者；筹办者",
+      "verdict": "PASS",
+      "specific_reason": "策划安排活动的人对应组织者，未混入收纳用品的另一名词义。"
+    },
+    {
+      "queue_index": 550,
+      "rank": 3521,
+      "lemma": "dusty",
+      "ku_id": "w_5780_dusty_ku_s01",
+      "proposed_en": "covered with or full of fine dry particles of dirt",
+      "proposed_zh": "布满灰尘的；多尘的",
+      "verdict": "PASS",
+      "specific_reason": "表面布灰或环境尘土多的形容词义对应布满灰尘/多尘。"
+    }
+  ],
+  "production_ready": false,
+  "activation_allowed": false
+}
