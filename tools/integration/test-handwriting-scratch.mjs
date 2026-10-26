@@ -33,6 +33,7 @@ assert(scratch.includes('ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk
 assert(scratch.includes('midX:mid.x,midY:mid.y'),'retain midpoint for seamless segments');
 assert(scratch.includes('lastInk=null;pointer=null'),'reset stroke state between fingers');
 assert(js.includes('window.PAI_SCRATCH_BEGIN_RATING?.();'),'capture drawing state on grade selection');
+assert(js.includes('if(!moved)await showCurrent();window.PAI_SCRATCH_FINISH_RATING?.();return}'),'restore after batch progress');
 assert(scratch.includes('ratingWasDrawing=true'),'remember drawing mode through answer/voice');
 assert(scratch.includes('window.PAI_SCRATCH_FINISH_RATING=()=>'),'restore only after grade commit');
 assert(js.includes('await showCurrent();if(direction===-1)await window.browseAnswer(-1);window.PAI_SCRATCH_FINISH_RATING?.()'),'restore after normal grade advances');
