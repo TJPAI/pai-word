@@ -1,7 +1,10 @@
 // Minimal, deterministic correction for three CI-observed query failures.
 // Separate from optional experimental negation re-ranking V1/V2.
 const norm=s=>String(s??'').normalize('NFKC').trim().toLowerCase();
+// Bounded English food-order intent: a compositional action+object match, not a generic translation system.
+const foodOrder=/^(?:(?:how\\s+(?:to|do\\s+i|can\\s+i)\\s+)|(?:i\\s+(?:want|would\\s+like)\\s+to\\s+)|(?:i'd\\s+like\\s+to\\s+)|(?:please\\s+)|(?:could\\s+i\\s+))?order\\s+(?:(?:a|an|some)\\s+)?(?:sandwich|burger|pizza|salad|soup|meal|food)(?:\\s+please)?[?.]?$/i;
 const rules=[
+ {id:'food_order_english_compositional',match:q=>foodOrder.test(q),promote:'S034',exclude:[]},
  {id:'coffee_order_english',match:q=>/^(?:how\s+(?:to|do\s+i|can\s+i)\s+order\s+(?:a\s+)?coffee\??|(?:(?:i\s+(?:want|would\s+like)\s+to|i'd\s+like\s+to)|please|could\s+i)\s+order\s+(?:a\s+)?coffee(?:\s+please)?[?.]?|order\s+(?:a\s+)?coffee[?.]?)$/i.test(q),promote:'S039',exclude:[]},
  {id:'english_pronunciation_zh',match:q=>/^(?:(?:我想|想|如何|怎么|怎样|请教)\s*)?(?:学习|练习|提高|学)?\s*英语发音(?:怎么学|技巧|练习|学习)?$/.test(q),promote:null,exclude:['S279','S280']},
  {id:'not_metro_switch_to_bus',match:q=>/^(?:我)?(?:不要|不想|不坐|别坐|不乘)(?:再)?(?:坐|乘)?地铁(?:了)?[，,\s]*(?:改|换|转)(?:坐|乘)?公交(?:车)?[。.]?$/.test(q),promote:'S078',exclude:['S079']}
