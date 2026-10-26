@@ -39,4 +39,8 @@ assert(scratch.includes('window.PAI_SCRATCH_FINISH_RATING=()=>'),'restore only a
 assert(js.includes('await showCurrent();if(direction===-1)await window.browseAnswer(-1);window.PAI_SCRATCH_FINISH_RATING?.()'),'restore after normal grade advances');
 assert(js.includes('await window.browseAnswer(direction);window.PAI_SCRATCH_FINISH_RATING?.()'),'restore after historical grade advances');
 assert(scratch.includes("if(state.view!=='learning'||state.revealed)return"),'never mask answer during rating');
+const strokeBlock=scratch.slice(scratch.indexOf('for(const sample of events)'),scratch.indexOf('suppress();',scratch.indexOf('for(const sample of events)')));
+assert(strokeBlock.indexOf('ctx.beginPath()')>=0,'each coalesced sample creates its own curve');
+assert(strokeBlock.indexOf('ctx.stroke();')>strokeBlock.indexOf('ctx.quadraticCurveTo('),'stroke each curve before the next sample begins');
+assert(strokeBlock.indexOf('ctx.stroke();')<strokeBlock.indexOf('lastInk={x:v.x'),'stroke must be inside the coalesced sample loop');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
