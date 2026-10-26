@@ -1,0 +1,28 @@
+name: ENLEX frozen Runtime gloss census
+on:
+  push:
+    branches: [enlex-gloss-audit-20261026]
+    paths:
+      - 'tools/core20k_lexicon/qa/audit_runtime_glosses.py'
+      - '.github/workflows/enlex-gloss-census.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run frozen 20K census and strict SHA/identity checks
+        run: python tools/core20k_lexicon/qa/audit_runtime_glosses.py --runtime data/core20k-runtime.json.gz --out /tmp/enlex-gloss-census
+      - name: Publish read-only audit result
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-gloss-census-${{ github.sha }}
+          path: /tmp/enlex-gloss-census/
+          retention-days: 30
