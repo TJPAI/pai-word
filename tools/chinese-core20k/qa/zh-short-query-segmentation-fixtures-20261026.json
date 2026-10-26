@@ -1,0 +1,119 @@
+{
+  "schema": "pai-word-zh-short-query-segmentation-gold-fixtures-v1",
+  "role": "CG-ZH",
+  "date": "2026-10-26",
+  "scope": "Linguistically annotated intended token analyses, not measured engine output",
+  "max_query_characters": 20,
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "scoring_caution": "Multi-candidate segmentation is allowed; never claim matcher passes without running REC algorithm",
+  "production_ready": false,
+  "changes_runtime": false,
+  "fixtures": [
+    {
+      "query": "两个学生",
+      "expected_tokens": [
+        "两",
+        "个",
+        "学生"
+      ],
+      "pattern": "NUM_CLF_NOUN",
+      "why_zh": "不能将‘两个’不可分析地当作单一数词"
+    },
+    {
+      "query": "一种办法",
+      "expected_tokens": [
+        "一",
+        "种",
+        "办法"
+      ],
+      "pattern": "NUM_CLF_NOUN",
+      "why_zh": "保留词典检索命中时也须允许数量结构分解"
+    },
+    {
+      "query": "三本书",
+      "expected_tokens": [
+        "三",
+        "本",
+        "书"
+      ],
+      "pattern": "NUM_CLF_NOUN",
+      "why_zh": "本的量词义来自独立句法分布"
+    },
+    {
+      "query": "十个单位",
+      "expected_tokens": [
+        "十",
+        "个",
+        "单位"
+      ],
+      "pattern": "NUM_CLF_NOUN",
+      "why_zh": "单位是名词，量词为个"
+    },
+    {
+      "query": "一次会议",
+      "expected_tokens": [
+        "一",
+        "次",
+        "会议"
+      ],
+      "pattern": "NUM_CLF_NOUN",
+      "why_zh": "数量短语不是独立副词"
+    },
+    {
+      "query": "过去三天",
+      "expected_tokens": [
+        "过去",
+        "三",
+        "天"
+      ],
+      "pattern": "TEMPORAL_NUM_CLF",
+      "why_zh": "时间名词和数量时间结构须区分"
+    },
+    {
+      "query": "国内市场",
+      "expected_tokens": [
+        "国内",
+        "市场"
+      ],
+      "pattern": "NOUN_ATTRIBUTIVE",
+      "why_zh": "名词性定语不直接产生ADV"
+    },
+    {
+      "query": "学习英语发音",
+      "expected_tokens": [
+        "学习",
+        "英语",
+        "发音"
+      ],
+      "pattern": "VERB_OBJECT",
+      "why_zh": "应保留整体语义，避免‘学习’独词导致误推机器学习"
+    },
+    {
+      "query": "不要坐地铁，改坐公交",
+      "expected_tokens": [
+        "不要",
+        "坐",
+        "地铁",
+        "，",
+        "改",
+        "坐",
+        "公交"
+      ],
+      "pattern": "NEGATED_ALTERNATIVE",
+      "why_zh": "否定和替代作用域不可丢失"
+    },
+    {
+      "query": "我想点一杯咖啡",
+      "expected_tokens": [
+        "我",
+        "想",
+        "点",
+        "一",
+        "杯",
+        "咖啡"
+      ],
+      "pattern": "MODAL_VERB_NUM_CLF_NOUN",
+      "why_zh": "点单动词与一杯数量结构并存"
+    }
+  ]
+}
