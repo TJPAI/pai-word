@@ -984,11 +984,13 @@
   // Explicit swipes take priority over a simultaneous automatic navigation.
   if(source==='auto'&&manualBrowsePending>0)return false;
   if(source==='swipe')manualBrowsePending++;
+  const keepDrawing=source==='auto'&&window.PAI_SCRATCH_DRAWING?.()===true;
+  if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true;
   try{
    const moved=await window.browseAnswer(direction);
    if(source==='swipe'&&moved&&state.autoBrowseEnabled&&['question','answer-paused'].includes(PAI_TAP_FLOW.snapshot().phase))window.PAI_AUTOBROWSE?.restart();
    return moved;
-  }finally{if(source==='swipe')manualBrowsePending=Math.max(0,manualBrowsePending-1)}
+  }finally{if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false;if(source==='swipe')manualBrowsePending=Math.max(0,manualBrowsePending-1)}
  };
  window.browseAnswer=async direction=>{
   if(!active||loading||error||!window.getVisibleLearningUnit?.()||state.view!=='learning'||window.PAI_SAVE_DEFERRED)return false;
@@ -1253,6 +1255,7 @@
   size();
   const point=e=>{const r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}};
   const clear=()=>{if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height)};
+  window.PAI_SCRATCH_REENTER=()=>{if(!activeMode&&activeSurface)enter()};
   const enter=()=>{
    if(activeMode)return;
    activeMode=true;readyToInk=false;surface.classList.add('is-drawing');
@@ -1294,9 +1297,10 @@
  }
  const previousRender=window.render;
  if(typeof previousRender==='function')window.render=function(...args){
+  const restoreDrawing=activeMode&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning'&&!state.revealed;
   reset();
   const result=previousRender.apply(this,args);
-  if(state.view==='learning')requestAnimationFrame(initScratch);
+  if(state.view==='learning')requestAnimationFrame(()=>{initScratch();if(restoreDrawing&&activeSurface&&!activeMode){const e=activeSurface.querySelector('canvas');if(e)window.PAI_SCRATCH_REENTER?.();}});
   return result;
  };
  if(state.view==='learning')requestAnimationFrame(initScratch);
