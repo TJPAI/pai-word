@@ -1,0 +1,61 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion02-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_QA_PENDING",
+  "scope": {
+    "new_parts": [
+      "tools/answer-enrichment/enteach-batch200-part07-07.v1.json",
+      "tools/answer-enrichment/enteach-batch200-part08-10.v1.json"
+    ],
+    "source_git_blobs": [
+      "d501c6160b3d55e938a2fbc31cfa108690211ea2",
+      "65f2a4d203e5fd6632c3387d175df13176bf7b2a"
+    ],
+    "new_ku_reviewed": 17,
+    "prior_distinct_ku_reviewed": 53,
+    "cumulative_distinct_ku_reviewed": 70,
+    "total_batch_ku": 200
+  },
+  "findings": [
+    {
+      "ku_id": "w_3130_prediction_ku_s01",
+      "headword": "prediction",
+      "severity": "LOW",
+      "field": "example_zh",
+      "original": "预报中预测星期五会下大雨。",
+      "issue": "中文『预报中预测』同根重复，译文不够自然。",
+      "proposed": "天气预报说星期五可能会下大雨。",
+      "action": "REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_5533_contaminate_ku_s01",
+      "headword": "contaminate",
+      "severity": "MEDIUM",
+      "field": "example_en/example_zh",
+      "original": "A leaking pipe could contaminate the drinking water.",
+      "issue": "普通水管漏水本身不充分表明污染源；污染需要有害或不需要的物质进入供水。",
+      "proposed_en": "A damaged sewer pipe could contaminate nearby drinking water.",
+      "proposed_zh": "破损的污水管可能污染附近的饮用水。",
+      "action": "REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_7950_unlucky_ku_s01",
+      "headword": "unlucky",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "an unlucky day · feel unlucky · an unlucky accident",
+      "issue": "an unlucky accident的语用自然度较弱，accident本身通常已含不幸事件意味。",
+      "proposed": "an unlucky day · feel unlucky · an unlucky break",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    }
+  ],
+  "limitations": [
+    "All observations are author self-review, not independent language certification",
+    "No grading-renderer, rights, scene-membership or browser QA performed",
+    "The remaining 130 records are not asserted to be clean"
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
