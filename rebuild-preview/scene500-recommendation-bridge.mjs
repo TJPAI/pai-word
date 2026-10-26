@@ -67,6 +67,11 @@ async function initialize(){
  }).catch(error=>{hybridSettled=true;lastError=String(error);return 'rule_fallback'});
  return instance;
 }
+export async function warmup(){
+ if(!readyPromise)readyPromise=initialize().catch(error=>{readyPromise=null;lastError=String(error);throw error});
+ await readyPromise;
+ return status();
+}
 export async function recommend(query,{difficulty='all',inventory,eligibleSceneIds=null,limit=500}={}){
  if(!readyPromise)readyPromise=initialize().catch(error=>{readyPromise=null;lastError=String(error);throw error});
  await readyPromise;
