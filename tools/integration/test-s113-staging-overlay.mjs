@@ -1,5 +1,6 @@
 // Staging-only interface and identity verification. NEVER enables teaching or changes SRS.
 import assert from 'node:assert/strict';
+import {createApprovedTeachingMap} from '../../scripts/approved-teaching-release-gate.mjs';
 import fs from 'node:fs';
 import {gunzipSync} from 'node:zlib';
 const overlay=JSON.parse(fs.readFileSync('tools/integration/s113-seven-ku-answer-overlay.staging.v1.json','utf8'));
@@ -32,4 +33,12 @@ for(const r of overlay.records){
   assert(r[k]==null||(typeof r[k]==='string'),'malformed optional field: '+k);
 }
 assert.equal(ids.size,7);
+const quarantined=createApprovedTeachingMap(overlay);
+assert.equal(quarantined.enabled,false);
+assert.equal(quarantined.accepted.size,0,'S113 staging must never populate approved answer cards');
+const deceptive={...overlay,status:'PRODUCTION_READY',production_ready:true,activation:{allowed:true},source_rights_cleared:true,official_membership_verified:true};
+assert.equal(createApprovedTeachingMap(deceptive).enabled,false,'per-KU activation and official sense IDs must still gate release');
+const invalidDuplicate={...deceptive,records:[{...overlay.records[0],activation_allowed:true,official_sense_id:'official:test'}, {...overlay.records[0],activation_allowed:true,official_sense_id:'official:test'}]};
+assert.equal(createApprovedTeachingMap(invalidDuplicate).enabled,false,'duplicate KU cannot pass release gate');
+
 console.log('PASS S113 staging overlay: 7 exact Runtime KU identities, complete teaching fields, activation disabled');
