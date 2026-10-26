@@ -1,0 +1,62 @@
+{
+  "schema": "pai-cg-qa-zh-pos-six-second-pass-v1",
+  "source_commit": "10c883b884bb6d80fc6368f9922c98b413ecbf54",
+  "status": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "summary": {
+    "reviewed": 6,
+    "pass_or_schema_note": 4,
+    "conditional": 2,
+    "muse_review": "PENDING",
+    "production_ready": false
+  },
+  "records": [
+    {
+      "term": "者",
+      "term_id": "zh_5618dc0903030d38d24c",
+      "verdict": "CONDITIONAL",
+      "specific_reason": "读者/强者为派生名词，不能支持单字独立普通名词。古汉语‘者’有指称/名词化结构功能，保留PART可作当前体系选择，但应注明古书面结构不被单一标签穷尽。",
+      "proposed_primary": "PART",
+      "proposed_secondary": []
+    },
+    {
+      "term": "许多",
+      "term_id": "zh_1df1ae654a196b96cff4",
+      "verdict": "PASS",
+      "specific_reason": "许多学生作数量限定，不足以证明ADJ；学生许多不自然。DET单标在当前工程标签集合理。",
+      "proposed_primary": "DET",
+      "proposed_secondary": []
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "verdict": "PASS_WITH_SCHEMA_NOTE",
+      "specific_reason": "两个为数词+量词构式，NUM是工程折叠标签；不能因修饰名词就增加DET，建议未来结构拆分。",
+      "proposed_primary": "NUM",
+      "proposed_secondary": []
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "verdict": "PASS_WITH_SCHEMA_NOTE",
+      "specific_reason": "一种为一+种数量结构，限定功能并不等于额外DET；折叠NUM需显式标注。",
+      "proposed_primary": "NUM",
+      "proposed_secondary": []
+    },
+    {
+      "term": "目前",
+      "term_id": "zh_937f63a4fb51ec9e264c",
+      "verdict": "CONDITIONAL",
+      "specific_reason": "时间名词用于状语如目前尚未很常见，不能按句法位置直接判为词汇ADV；但若采用不同分词体系需确认名词标签惯例。",
+      "proposed_primary": "NOUN",
+      "proposed_secondary": []
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "verdict": "PASS",
+      "specific_reason": "在国内作方位处所名词性成分，国内市场为名词定语；缺乏独立副词词类证据。",
+      "proposed_primary": "NOUN",
+      "proposed_secondary": []
+    }
+  ]
+}
