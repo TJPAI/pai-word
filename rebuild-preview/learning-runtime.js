@@ -258,21 +258,8 @@
     const approvedGrammar=certifiedText('grammar_note')?`<div class="answer-section" data-approved-grammar-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">语法与用法</div><div class="definition">${escapeHtml(certifiedText('grammar_note'))}</div></div>`:'';
     const approvedContrast=state.showCompare&&certifiedText('contrast_note')?`<div class="answer-section" data-approved-contrast-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">易混词提示</div><div class="definition">${escapeHtml(certifiedText('contrast_note'))}</div></div>`:'';
 
-    // Test-only content on the EXISTING answer page, scoped to one verified Core20K KU.
-    // This is editorial staging, NOT certified lexicon data; never write to u.s or SRS.
-    const previewHotel=window.PAI_CORE_QA?.release==='Core20K-dev'
-      &&!approvedCard // Never mix unverified demo content with a released KU.
-      &&u.s.ku_id==='w_0771_hotel_ku01'&&u.w.w==='hotel'
-      &&/酒店|旅馆|宾馆/.test(String(u.s.m||''));
-    const testCollocation=previewHotel&&state.showCollocations&&!u.s.c
-      ?'<div class="answer-section" data-test-teaching="collocation"><div class="answer-label">测试搭配（未认证）</div><div class="collocations">book a hotel · stay at a hotel · hotel room</div></div>':'';
-    const testExample=previewHotel&&state.showExamples&&!(Array.isArray(u.s.e)&&u.s.e.length)
-      ?'<div class="answer-section examples-section" data-test-teaching="example"><div class="answer-label">测试英汉例句（未认证）</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en">We booked a hotel near the station.</div><div class="example-translation">我们在车站附近预订了一家酒店。</div></div><button type="button" class="example-play" data-example-audio data-speak="We booked a hotel near the station." aria-label="播放例句 1">🔊</button></div></div>':'';
-    const testContrast=previewHotel&&state.showCompare&&!compare.items.length
-      ?'<div class="answer-section" data-test-teaching="contrast"><div class="answer-label">测试辨析（未认证）</div><div class="definition">hotel：酒店；hostel：通常指提供较经济住宿的旅舍。两者并非完全同义。</div></div>':'';
-
     const comparison=state.showCompare&&compare.items.length?`<div class="answer-section"><div class="answer-label">近义 / 易混词辨析</div>${compare.items.length?`<div class="contrast-examples">${compare.items.map(item=>`<div class="contrast-item"><div class="contrast-summary"><span class="contrast-word">${escapeHtml(item.word)}</span><span>：${escapeHtml(item.brief)}</span></div><div class="contrast-sentence">${escapeHtml(item.text)}${item.zh?`<div class="contrast-translation">${escapeHtml(item.zh)}</div>`:''}</div></div>`).join('')}</div>`:'<span class="muted">待补充</span>'}</div>`:'';
-    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div>${u.w.root?`<div class="root merged-root">${escapeHtml(u.w.root)}</div>`:''}${reminder}</div>${extra}${approvedGloss}${collocations}${testCollocation}${approvedUsage}${examples}${testExample}${approvedExamples}${approvedGrammar}${comparison}${testContrast}${approvedContrast}</div>`;
+    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div>${u.w.root?`<div class="root merged-root">${escapeHtml(u.w.root)}</div>`:''}${reminder}</div>${extra}${approvedGloss}${collocations}${approvedUsage}${examples}${approvedExamples}${approvedGrammar}${comparison}${approvedContrast}</div>`;
   };
 
   // Settings actions
