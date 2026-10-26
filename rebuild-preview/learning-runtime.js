@@ -1258,7 +1258,11 @@
    activeMode=true;readyToInk=false;surface.classList.add('is-drawing');
    const screen=surface.closest('.learning-screen'),rating=screen?.querySelector('.recall-correction');
    if(screen&&rating){
+    // Escape study-body's overflow clipping and stacking context: the overlay
+    // must be a direct child of the learning screen, above the hero and header.
     const a=screen.getBoundingClientRect(),z=rating.getBoundingClientRect();
+    screen.appendChild(surface);
+    screen.classList.add('pai-scratch-active');
     surface.style.top='0px';surface.style.bottom='auto';
     surface.style.left='0px';surface.style.width='100%';
     surface.style.height=Math.max(180,z.top-a.top)+'px';
