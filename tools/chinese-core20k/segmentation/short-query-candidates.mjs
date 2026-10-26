@@ -6,7 +6,11 @@ export function segmentCandidates(query, lexicon, options = {}) {
   const chars = Array.from(normalizedQuery);
   if (chars.length < 1 || chars.length > 20) throw Error('QUERY_LENGTH');
   if (lexicon == null || typeof lexicon[Symbol.iterator] !== 'function') throw Error('INVALID_LEXICON');
-  const dict = lexicon instanceof Set ? lexicon : new Set(lexicon);
+  const dict = new Set();
+  for (const term of lexicon) {
+    if (typeof term !== 'string') throw Error('INVALID_LEXICON_TERM');
+    if (term.length > 0) dict.add(term.normalize('NFC'));
+  }
   if (options === null || typeof options !== 'object' || Array.isArray(options)) throw Error('INVALID_OPTIONS');
   const requested = options.maxCandidates ?? 8;
   if (!Number.isInteger(requested) || requested < 1 || requested > 20) throw Error('INVALID_MAX_CANDIDATES');
