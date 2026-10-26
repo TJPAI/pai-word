@@ -29,5 +29,7 @@ assert(scratch.includes('pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.()
 assert(scratch.includes("typeof e.getCoalescedEvents==='function'"),'use coalesced iOS pointer samples when available');
 assert(scratch.includes('ctx.quadraticCurveTo(lastInk.x,lastInk.y,mid.x,mid.y)'),'smooth sampled strokes with midpoint curves');
 assert(scratch.includes('ctx.lineTo(lastInk.x,lastInk.y);ctx.stroke()'),'complete final stroke endpoint');
+assert(scratch.includes('ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk.midY??startY)'), 'each stroke segment starts anew, avoiding accumulated overpainting');
+assert(scratch.includes('midX:mid.x,midY:mid.y'),'retain midpoint for seamless segments');
 assert(scratch.includes('lastInk=null;pointer=null'),'reset stroke state between fingers');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
