@@ -603,9 +603,9 @@
  async function showCurrent(gestureSpeech=false){PAI_TAP_FLOW.syncPage();historyRetest=false;historyAttemptId=null;browseIndex=null;browsedUnit=null;++browseToken;PAI_TAP_FLOW.cancel();const id=++token,u=unit(),entryStarted=window.PAI_SCENE_ENTRY_STARTED||performance.now(),coldUnit=!!u&&!u.w.loaded;window.PAI_SCENE_ENTRY_STARTED=null;error='';loading=coldUnit;if(coldUnit||!u)render();const loadingPaintMs=Math.round(performance.now()-entryStarted);if(!u)return;
   // First scene-entry speech must be initiated synchronously in the tap gesture on iOS Safari.
   // Catalog lemmas exist before the deferred KU payload is loaded.
-  const autoQuestion=state.autoPronounce.question;
-  if(gestureSpeech&&autoQuestion&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
-  try{const fetchStarted=performance.now();await ensureUnits([u.k]);const unitLoadMs=Math.round(performance.now()-fetchStarted);if(id!==token)return;const readyStarted=performance.now();ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoQuestion);window.PAI_AUTO_RATED_FACE=null;render();window.PAI_LAST_LEARNING_ENTRY={elapsedMs:Math.round(performance.now()-entryStarted),loadingPaintMs,unitLoadMs,readyRenderMs:Math.round(performance.now()-readyStarted),coldUnit,kind:state.learningSession?.kind||null,at:Date.now()};window.PAI_LEARNING_ENTRY_SAMPLES=(window.PAI_LEARNING_ENTRY_SAMPLES||[]).concat(window.PAI_LAST_LEARNING_ENTRY).slice(-20);if(!gestureSpeech&&autoQuestion)speak(u.w.w);window.PAI_AUTOBROWSE?.restart();const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{});captureLearningCursor()}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
+  const autoEntrySpeech=state.autoPronounce[window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'?'swipe':'question'];
+  if(gestureSpeech&&autoEntrySpeech&&u.w?.w)window.PAI_AUDIO?.play(u.w.w);
+  try{const fetchStarted=performance.now();await ensureUnits([u.k]);const unitLoadMs=Math.round(performance.now()-fetchStarted);if(id!==token)return;const readyStarted=performance.now();ensureAttempt();loading=false;startedAt=Date.now();PAI_TAP_FLOW.ready(u.k,gestureSpeech&&autoEntrySpeech);window.PAI_AUTO_RATED_FACE=null;render();window.PAI_LAST_LEARNING_ENTRY={elapsedMs:Math.round(performance.now()-entryStarted),loadingPaintMs,unitLoadMs,readyRenderMs:Math.round(performance.now()-readyStarted),coldUnit,kind:state.learningSession?.kind||null,at:Date.now()};window.PAI_LEARNING_ENTRY_SAMPLES=(window.PAI_LEARNING_ENTRY_SAMPLES||[]).concat(window.PAI_LAST_LEARNING_ENTRY).slice(-20);if(!gestureSpeech&&autoEntrySpeech)speak(u.w.w);window.PAI_AUTOBROWSE?.restart();const next=state.learningSession.queue.slice(1,5);ensureUnits(next).catch(()=>{});captureLearningCursor()}catch(e){if(id!==token)return;loading=false;error=e.message;render()}}
  function start(keys,title,kind){window.PAI_SCENE_ENTRY_STARTED=performance.now();previousUnit=null;browseIndex=null;const uniq=[...new Set(keys)].filter(byKey);state.learningSession={date:date(),kind,title,queue:uniq,total:uniq.length,completed:[],seen:{},attempts:0,sessionId:newAttemptId(),currentAttempt:null};active=true;state.view='learning';PAI_TAP_FLOW.resetPage();persist();showCurrent(true);window.PAI_AUTOBROWSE?.restart()}
  window.PAI_START_POLICY_SESSION=(keys,title,kind='scene')=>start(keys,title,kind);
  const foodTopicSets=[
@@ -1018,6 +1018,7 @@
     if(generation===autoBrowseGeneration)scheduleAutoBrowse();
    });return;
   }
+  if(autoBrowseTimer!==null)return; // Only one pending auto navigation per generation.
   autoBrowseTimer=setTimeout(async()=>{
    autoBrowseTimer=null;
    if(generation!==autoBrowseGeneration||!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
