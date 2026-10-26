@@ -23,6 +23,8 @@ jobs:
           node-version: '22'
       - name: Verify 20x25 taxonomy pin and S113 membership
         run: node scene500-recommendation/qa/test-s113-taxonomy-boundary.mjs
+      - name: Test narrow semantic correction and non-target invariants
+        run: node scene500-recommendation/qa/test-observed-query-corrections.mjs
       - name: Extract exact V0101 Runtime and three SHA-pinned assets from committed ZIP
         run: |
           mkdir -p "$RUNNER_TEMP/scene500"
