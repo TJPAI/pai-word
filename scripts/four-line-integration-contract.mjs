@@ -22,6 +22,7 @@ export function validateFourLineIntegration({catalog,english,activeSceneMembersh
    reject('INVALID_CHINESE_V0101');
  if(associations==null)warnings.push('ASSOCIATIONS_NOT_DELIVERED');
  else if(!text(associations.association_version)||!Array.isArray(associations.links)||
+         associations.links.length===0||
          associations.links.some(x=>!text(x.term_id)||!sid(x.scene_id)))
    reject('INVALID_SCENE_ASSOCIATIONS');
  if(zhRuntime&&associations&&errors.length===0){
