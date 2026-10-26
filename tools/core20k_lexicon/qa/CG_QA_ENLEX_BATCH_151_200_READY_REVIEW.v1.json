@@ -1,0 +1,307 @@
+{
+  "schema": "pai-cg-qa-enlex-batch151-200-ready-review-v1",
+  "reviewer": "CG-QA",
+  "source_commit": "680c6777a3969ff55ccfc35b492a4aa419f78851",
+  "source_path": "tools/core20k_lexicon/qa/ENLEX_AI_EDITORIAL_BATCH_151_200.v1.json",
+  "scope": "29 editorial READY rows only, without 21 HOLD rows",
+  "summary": {
+    "reviewed": 29,
+    "pass": 26,
+    "conditional": 3,
+    "dual_ai_pass_this_batch": 0,
+    "muse_same_version": "PENDING",
+    "production_ready": false
+  },
+  "records": [
+    {
+      "source_position": 151,
+      "rank": 2841,
+      "lemma": "racism",
+      "ku_id": "w_4318_racism_ku_s01",
+      "source_gloss_zh": "种族主义",
+      "proposed_gloss_en": "the belief that people of some racial groups are superior to others, or unfair treatment based on race",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "将种族优越论信念与基于种族的不平等待遇纳入定义，基本覆盖对应中文；注意不把单纯群体差别描述视为种族主义。"
+    },
+    {
+      "source_position": 155,
+      "rank": 2849,
+      "lemma": "certify",
+      "ku_id": "w_5036_certify_ku_s01",
+      "source_gloss_zh": "证明；认证",
+      "proposed_gloss_en": "to state or confirm officially that something meets a standard or is true",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "官方证明事实或符合标准的及物动词义准确，与认证/证明对应。"
+    },
+    {
+      "source_position": 158,
+      "rank": 2866,
+      "lemma": "wireless",
+      "ku_id": "w_4583_wireless_ku_s01",
+      "source_gloss_zh": "无线的；无线通信",
+      "proposed_gloss_en": "using radio signals instead of wires to send information",
+      "chatgpt_verdict": "CONDITIONAL_SENSE_OR_POS",
+      "specific_reason": "英文只定义无线传输手段；中文同时含‘无线通信’名词义，需词性/POS核验或限定形容词用法。"
+    },
+    {
+      "source_position": 159,
+      "rank": 2868,
+      "lemma": "souvenir",
+      "ku_id": "w_5871_souvenir_ku_s01",
+      "source_gloss_zh": "纪念品",
+      "proposed_gloss_en": "an object kept or bought to remind someone of a place or event",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "因地点或活动留下纪念的物件定义准确。"
+    },
+    {
+      "source_position": 162,
+      "rank": 2874,
+      "lemma": "fiber",
+      "ku_id": "w_3115_fiber_ku_s01",
+      "source_gloss_zh": "纤维",
+      "proposed_gloss_en": "a thin thread-like strand that forms part of cloth, plants, or other materials",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "细长丝状物可指纺织、植物等材料纤维，与现有中文相符。"
+    },
+    {
+      "source_position": 163,
+      "rank": 2876,
+      "lemma": "wink",
+      "ku_id": "w_7129_wink_ku_s01",
+      "source_gloss_zh": "眨眼",
+      "proposed_gloss_en": "to close and open one eye quickly, often to communicate silently",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "单眼短促闭合以表达信号，正确区分一般双眼眨动。"
+    },
+    {
+      "source_position": 164,
+      "rank": 2880,
+      "lemma": "lament",
+      "ku_id": "w_6541_lament_ku_s01",
+      "source_gloss_zh": "哀叹",
+      "proposed_gloss_en": "to express sadness or regret about something",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "表达悲痛或遗憾对应哀叹，可作动词；需维持动词词性。"
+    },
+    {
+      "source_position": 166,
+      "rank": 2885,
+      "lemma": "generalize",
+      "ku_id": "w_4865_generalize_ku_s01",
+      "source_gloss_zh": "概括；推广",
+      "proposed_gloss_en": "to make a broad statement or rule based on particular examples",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "由具体例子提炼一般规则的义正确；中文‘推广’若指推广营销则不在本义，应限定泛化推广。"
+    },
+    {
+      "source_position": 167,
+      "rank": 2886,
+      "lemma": "torment",
+      "ku_id": "w_6476_torment_ku_s01",
+      "source_gloss_zh": "折磨",
+      "proposed_gloss_en": "to cause someone severe physical or emotional suffering",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "使他人遭受严重身心痛苦，对应折磨的动词义。"
+    },
+    {
+      "source_position": 168,
+      "rank": 2888,
+      "lemma": "baggage",
+      "ku_id": "w_6252_baggage_ku_s01",
+      "source_gloss_zh": "行李",
+      "proposed_gloss_en": "bags and cases taken by someone on a journey",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "旅途携带包箱的集合名词义准确，可不覆盖抽象情感包袱。"
+    },
+    {
+      "source_position": 169,
+      "rank": 2891,
+      "lemma": "boycott",
+      "ku_id": "w_6014_boycott_ku_s01",
+      "source_gloss_zh": "抵制；联合抵制",
+      "proposed_gloss_en": "to refuse to buy from, use, or deal with someone as a form of protest",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "为抗议而拒买/拒用/拒往来，是抵制行为核心。"
+    },
+    {
+      "source_position": 170,
+      "rank": 2893,
+      "lemma": "claw",
+      "ku_id": "w_6332_claw_ku_s01",
+      "source_gloss_zh": "爪",
+      "proposed_gloss_en": "a sharp curved nail on the foot of an animal or bird",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "动物脚上弯曲尖爪义准确，非抓挠的动词义。"
+    },
+    {
+      "source_position": 173,
+      "rank": 2902,
+      "lemma": "genre",
+      "ku_id": "w_3681_genre_ku_s01",
+      "source_gloss_zh": "体裁；类型",
+      "proposed_gloss_en": "a category of art, music, literature, or film with a particular style",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "按风格区分艺术文学影视类型，对应体裁/类型。"
+    },
+    {
+      "source_position": 174,
+      "rank": 2904,
+      "lemma": "militia",
+      "ku_id": "w_5174_militia_ku_s01",
+      "source_gloss_zh": "民兵；民兵组织",
+      "proposed_gloss_en": "an armed group of civilians organized for military activity, not usually the regular army",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "非正规军的武装民间团体定义适合民兵组织义，但不同法域militia可纳入官方组织，不应过度限定非法武装。"
+    },
+    {
+      "source_position": 175,
+      "rank": 2909,
+      "lemma": "individually",
+      "ku_id": "w_3990_individually_ku_s01",
+      "source_gloss_zh": "分别地；个别地",
+      "proposed_gloss_en": "separately, one person or thing at a time",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "分别逐个处理人或事物，副词含义准确。"
+    },
+    {
+      "source_position": 176,
+      "rank": 2911,
+      "lemma": "wallet",
+      "ku_id": "w_5156_wallet_ku_s01",
+      "source_gloss_zh": "钱包",
+      "proposed_gloss_en": "a small case carried in a pocket or bag for money and cards",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "装钱和卡的随身小包，与钱包一致。"
+    },
+    {
+      "source_position": 177,
+      "rank": 2913,
+      "lemma": "clarify",
+      "ku_id": "w_3295_clarify_ku_s01",
+      "source_gloss_zh": "澄清；阐明",
+      "proposed_gloss_en": "to make a statement or situation easier to understand by explaining it",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "通过解释使陈述/情况清楚，与澄清阐明一致。"
+    },
+    {
+      "source_position": 178,
+      "rank": 2915,
+      "lemma": "baseline",
+      "ku_id": "w_5868_baseline_ku_s01",
+      "source_gloss_zh": "基线；基准",
+      "proposed_gloss_en": "a starting level or measurement used to compare later results",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "后续结果比较的初始测量或水平，基线与基准两义相容。"
+    },
+    {
+      "source_position": 180,
+      "rank": 2919,
+      "lemma": "blink",
+      "ku_id": "w_5409_blink_ku_s01",
+      "source_gloss_zh": "眨眼；闪烁",
+      "proposed_gloss_en": "to close and open your eyes quickly",
+      "chatgpt_verdict": "CONDITIONAL_SENSE_OR_POS",
+      "specific_reason": "英文只覆盖双眼快速闭合，中文‘闪烁’（灯光、屏幕）没有覆盖；需增加发光物闪烁义或拆义。"
+    },
+    {
+      "source_position": 181,
+      "rank": 2920,
+      "lemma": "pasture",
+      "ku_id": "w_6316_pasture_ku_s01",
+      "source_gloss_zh": "牧场",
+      "proposed_gloss_en": "land covered with grass where animals feed",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "覆盖牲畜放牧进食的草地，中文牧场若指整套牧业经营场所略宽，但常用草场义可成立。"
+    },
+    {
+      "source_position": 183,
+      "rank": 2922,
+      "lemma": "waive",
+      "ku_id": "w_7425_waive_ku_s01",
+      "source_gloss_zh": "放弃",
+      "proposed_gloss_en": "to choose not to use or demand a right, fee, or requirement",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "主动放弃行使权利、费用要求或规则条件义准确；尤其waive a fee是免除收取而非付费者自行放弃。"
+    },
+    {
+      "source_position": 186,
+      "rank": 2931,
+      "lemma": "awesome",
+      "ku_id": "w_5064_awesome_ku_s01",
+      "source_gloss_zh": "极好的；令人敬畏的",
+      "proposed_gloss_en": "extremely good or impressive",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "极好或令人印象深刻，涵盖常见积极评价；‘令人敬畏的’更正式语域需补注但不阻断。"
+    },
+    {
+      "source_position": 189,
+      "rank": 2936,
+      "lemma": "decisive",
+      "ku_id": "w_4918_decisive_ku_s01",
+      "source_gloss_zh": "决定性的；果断的",
+      "proposed_gloss_en": "able to make decisions quickly and confidently, or producing a clear result",
+      "chatgpt_verdict": "CONDITIONAL_SENSE_OR_POS",
+      "specific_reason": "英语合并‘人做决定果断’与‘因素/结果具有决定性’两义，中文两项均在但跨搭配语法角色，若KU按单Sense训练需区分或加语境标注。"
+    },
+    {
+      "source_position": 192,
+      "rank": 2947,
+      "lemma": "periodic",
+      "ku_id": "w_5656_periodic_ku_s01",
+      "source_gloss_zh": "周期性的；定期的",
+      "proposed_gloss_en": "happening or appearing at regular intervals",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "以规律间隔出现，周期性与定期均准确。"
+    },
+    {
+      "source_position": 193,
+      "rank": 2949,
+      "lemma": "rinse",
+      "ku_id": "w_6409_rinse_ku_s01",
+      "source_gloss_zh": "冲洗；漂洗",
+      "proposed_gloss_en": "to wash something quickly with clean water to remove soap or dirt",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "以清水快速冲洗去除污物/肥皂，与冲洗漂洗吻合；不限定必须快速完成。"
+    },
+    {
+      "source_position": 194,
+      "rank": 2950,
+      "lemma": "adverse",
+      "ku_id": "w_4183_adverse_ku_s01",
+      "source_gloss_zh": "不利的；负面的",
+      "proposed_gloss_en": "harmful or unfavorable",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "不利或造成损害的形容词，通常修饰conditions/effects，中文准确。"
+    },
+    {
+      "source_position": 195,
+      "rank": 2956,
+      "lemma": "sensor",
+      "ku_id": "w_6229_sensor_ku_s01",
+      "source_gloss_zh": "传感器",
+      "proposed_gloss_en": "a device that detects or measures changes such as light, heat, or movement",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "感测热光运动等物理变化的装置即传感器。"
+    },
+    {
+      "source_position": 198,
+      "rank": 2964,
+      "lemma": "paste",
+      "ku_id": "w_6326_paste_ku_s01",
+      "source_gloss_zh": "糊状物",
+      "proposed_gloss_en": "a soft thick mixture that can be spread on a surface",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "可涂抹浓稠混合物即糊状物，正确限制为名词非粘贴动词。"
+    },
+    {
+      "source_position": 199,
+      "rank": 2965,
+      "lemma": "sneak",
+      "ku_id": "w_5425_sneak_ku_s01",
+      "source_gloss_zh": "偷偷走；潜行",
+      "proposed_gloss_en": "to move quietly and secretly so that no one notices",
+      "chatgpt_verdict": "PASS_SEMANTIC_CONTENT",
+      "specific_reason": "悄悄秘密移动避免被发现，符合偷偷走/潜行。"
+    }
+  ]
+}
