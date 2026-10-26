@@ -11,12 +11,9 @@ function verify(record){
  const chars=Array.from(record.q);
  assert.equal(chars.slice(record.targetAt,record.targetAt+Array.from(record.target).length).join(''),record.target,'TARGET_SPAN_INVALID');
  assert.equal(chars.slice(record.operatorAt,record.operatorAt+Array.from(record.operator).length).join(''),record.operator,'OPERATOR_SPAN_INVALID');
- const comma=chars.findIndex(c=>'，,；;'.includes(c));
- if(comma!==-1){
-   const targetClause=record.targetAt<comma?0:1;
-   const operatorClause=record.operatorAt<comma?0:1;
-   assert.equal(operatorClause,targetClause,'CROSS_CLAUSE_OPERATOR_TARGET');
- }
+ // Count all explicit clause separators, not just the first comma.
+ const clauseAt=(offset)=>chars.slice(0,offset).filter(c=>'，,；;。！？!?'.includes(c)).length;
+ assert.equal(clauseAt(record.operatorAt),clauseAt(record.targetAt),'CROSS_CLAUSE_OPERATOR_TARGET');
  assert(['REQUESTED','REJECTED'].includes(record.stance));
  return true;
 }
@@ -25,6 +22,14 @@ const mutation={...cases[0],operator:'换',operatorAt:6};
 assert.throws(()=>verify(mutation),/CROSS_CLAUSE_OPERATOR_TARGET/);
 const wrongOffset={...cases[1],targetAt:2};
 assert.throws(()=>verify(wrongOffset),/TARGET_SPAN_INVALID/);
+// Regression: a second separator must not allow an operator from clause 2
+// to attach to a target in clause 3 (old first-comma logic falsely passed).
+const triple='不要单人间，想看绘本，改买火车票';
+const t=Array.from(triple);
+const targetAt=t.join('').indexOf('火车票');
+const operatorAt=t.join('').indexOf('想看');
+assert.throws(()=>verify({q:triple,target:'火车票',targetAt,operator:'想看',operatorAt,stance:'REQUESTED'}),/CROSS_CLAUSE_OPERATOR_TARGET/);
+assert.equal(verify({q:triple,target:'火车票',targetAt,operator:'改买',operatorAt:t.join('').indexOf('改买'),stance:'REQUESTED'}),true);
 // Adversarial structures must abstain rather than obtain a false scope PASS.
 // The current simple verifier knows only one explicit comma boundary and cannot
 // adjudicate implicit clauses, repeated targets or embedded discussion.
@@ -44,4 +49,4 @@ function scopeGate(q){
  return 'UNSUPPORTED_REVIEW_REQUIRED';
 }
 for (const x of unsupported) assert.match(scopeGate(x.q),/^ABSTAIN_/,'UNSAFE_SCOPE_ACCEPTED '+x.reason);
-console.log(JSON.stringify({status:'PASS',curated_pairs:4,mutations_rejected:2,unsupported_abstained:unsupported.length,semantic_generalization_verified:false,production_ready:false}));
+console.log(JSON.stringify({status:'PASS',curated_pairs:4,mutations_rejected:3,multi_clause_positive:1,unsupported_abstained:unsupported.length,semantic_generalization_verified:false,production_ready:false}));
