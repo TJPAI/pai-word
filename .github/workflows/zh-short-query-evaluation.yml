@@ -1,0 +1,42 @@
+name: ZH Core20K Short Query Evaluation
+on:
+  push:
+    branches: [chinese-core20k-dev]
+    paths:
+      - 'tools/chinese-core20k/segmentation/**'
+      - 'tools/chinese-core20k/qa/zh-short-query-segmentation-fixtures-20261026.json'
+      - 'scripts/evaluate-zh-short-query-core20k.mjs'
+      - 'scripts/test-zh-short-query-candidates.mjs'
+      - 'scripts/test-zh-short-query-segmentation-fixtures.mjs'
+      - 'scripts/materialize-zh-core20k-v0101.mjs'
+      - 'data/zh-core20k-v0101-scene500-runtime.json.gz.b64'
+      - '.github/workflows/zh-short-query-evaluation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Materialize and SHA verify canonical Chinese Core20K
+        run: node scripts/materialize-zh-core20k-v0101.mjs
+      - name: QA annotation integrity
+        run: node scripts/test-zh-short-query-segmentation-fixtures.mjs
+      - name: QA segmentation candidates (fixture dictionary)
+        run: node scripts/test-zh-short-query-candidates.mjs
+      - name: Evaluate real Core20K dictionary
+        run: node scripts/evaluate-zh-short-query-core20k.mjs | tee zh-short-query-core20k-evaluation.json
+      - name: Upload measured results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zh-short-query-core20k-evaluation
+          path: zh-short-query-core20k-evaluation.json
+          if-no-files-found: ignore
