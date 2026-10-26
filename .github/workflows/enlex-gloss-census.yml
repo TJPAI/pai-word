@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   census:
@@ -19,10 +19,19 @@ jobs:
         with:
           python-version: '3.11'
       - name: Run frozen 20K census and strict SHA/identity checks
-        run: python tools/core20k_lexicon/qa/audit_runtime_glosses.py --runtime data/core20k-runtime.json.gz --out /tmp/enlex-gloss-census
+        run: python tools/core20k_lexicon/qa/audit_runtime_glosses.py --runtime data/core20k-runtime.json.gz --out tools/core20k_lexicon/qa/gloss-census-out
       - name: Publish read-only audit result
         uses: actions/upload-artifact@v4
         with:
           name: enlex-gloss-census-${{ github.sha }}
-          path: /tmp/enlex-gloss-census/
+          path: tools/core20k_lexicon/qa/gloss-census-out/
           retention-days: 30
+      - name: Commit reproducible census output to isolated audit branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/qa/gloss-census-out/
+          if ! git diff --cached --quiet; then
+            git commit -m "qa(enlex): save frozen Runtime gloss census result"
+            git push origin HEAD:enlex-gloss-audit-20261026
+          fi
