@@ -1354,7 +1354,12 @@
   if(state.view!=='learning')return;
   // Commit and navigation have finished; rebuild the blank drawing surface
   // without displaying the next question's hero or affecting KU/SRS data.
-  requestAnimationFrame(()=>{initScratch();window.PAI_SCRATCH_REENTER?.()});
+  const expectedKU=window.getVisibleLearningUnit?.()?.k||null;
+  requestAnimationFrame(()=>{
+   if(state.view!=='learning'||document.hidden||!expectedKU||window.getVisibleLearningUnit?.()?.k!==expectedKU)return;
+   initScratch();
+   window.PAI_SCRATCH_REENTER?.();
+  });
  };
  const previousRender=window.render;
  if(typeof previousRender==='function')window.render=function(...args){
