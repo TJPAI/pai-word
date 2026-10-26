@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const js=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+const css=fs.readFileSync('learning.css','utf8');
+assert(js.includes("state.revealed?answerHtml(u):'<div class=\"pai-scratch-area\""),'scratch on question only');
+assert(js.includes('手写记词<small>长按擦除</small>'),'initial user hint');
+assert(js.includes("window.__paiTapSuppressUntil=Date.now()+800"),'prevent writing and long-hold from toggling answer');
+assert(js.includes('Math.hypot(p.x-st.startX,p.y-st.startY)>8'),'8px writing threshold');
+assert(js.includes('},600);'),'600ms still-finger erase');
+assert(js.includes("canvas.addEventListener('pointerup',finish)"),'release completes gesture');
+assert(js.includes("st.pointer=null;"),'pointer always released');
+assert(js.includes("'.pai-scratch-area'")||js.includes('.auto-word-toggle,.pai-scratch-area'),'scratch gestures bypass global touch-swipe handling');
+assert(css.includes('touch-action:none;')&&css.includes('-webkit-user-select:none'),'writing is not browser scrolling or text selection');
+assert(css.includes('.learning-screen:not(.revealed) .study-body'),'answer UI stays untouched');
+assert(js.includes("if(state.view==='learning')requestAnimationFrame(initScratch)"),'rebuild canvas after navigating words');
+assert(!/localStorage|indexedDB|fetch\(/.test(js.slice(js.indexOf('// Scratch surface is presentation-only:'))),'no scratch persistence or network transport');
+console.log('PASS question scratch gesture, clearing, rendering and no persistence invariants');
