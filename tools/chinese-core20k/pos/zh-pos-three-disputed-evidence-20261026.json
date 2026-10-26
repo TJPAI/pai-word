@@ -1,0 +1,74 @@
+{
+  "schema": "pai-word-zh-pos-evidence-resolution-v1",
+  "role": "CG-ZH",
+  "date": "2026-10-26",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_errata_blob": "0723904a179944812ecca98cff66c1983fd5a110",
+  "independent_review_commit": "a3d53d73e26295e14bd184ccb45544509bfde2ad",
+  "scope": "Three CG-QA REVIEW_REQUIRED cases; advisory overlay, never applies automatically",
+  "production_ready": false,
+  "runtime_mutated": false,
+  "count": 3,
+  "rows": [
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "runtime_index": 289,
+      "prior_errata_old_primary": "CLF",
+      "prior_errata_proposed_secondary": [],
+      "decision": "DEFER_SECONDARY_POS_REMOVAL",
+      "candidate_primary": "CLF",
+      "candidate_secondary": [
+        "NOUN"
+      ],
+      "reason_zh": "“十元”作为货币计量单位，与“人民币元是计价单位”中的名词性指称存在分类差异。构词例“元素”无效，却不能因此断言独立NOUN不成立；保持来源原有NOUN候选，依货币单位词性体系与独立语料核查决定。",
+      "evidence_examples": [
+        "花十元买票",
+        "人民币元是法定货币单位"
+      ],
+      "unresolved": "货币单位名词与量词的标注体系未冻结",
+      "status": "EDITORIAL_PENDING_NOT_CERTIFIED"
+    },
+    {
+      "term": "继续",
+      "term_id": "zh_7c9691192f1b73408bbe",
+      "runtime_index": 260,
+      "prior_errata_old_primary": "VERB",
+      "prior_errata_proposed_secondary": [
+        "ADV"
+      ],
+      "decision": "HOLD_ADV_UNVERIFIED",
+      "candidate_primary": "VERB",
+      "candidate_secondary": [
+        "ADV"
+      ],
+      "reason_zh": "“他们继续讨论”“会议继续”具有动词性谓语或带宾语/事件补足语的特征；“继续往前走”即便位于动词前，仍可能是连动或控制动词，并不充分证明词汇ADV类。保留ADV为待证假设，消费方不得把它当已核准兼类。",
+      "evidence_examples": [
+        "会议继续",
+        "他们继续讨论",
+        "继续往前走"
+      ],
+      "unresolved": "缺少可区分独立ADV和连动/控制结构的语料分布证据",
+      "status": "EDITORIAL_PENDING_NOT_CERTIFIED"
+    },
+    {
+      "term": "完全",
+      "term_id": "zh_c9174343f70d61ed190f",
+      "runtime_index": 313,
+      "prior_errata_old_primary": "ADV",
+      "prior_errata_proposed_secondary": [],
+      "decision": "DEFER_ADJ_REMOVAL",
+      "candidate_primary": "ADV",
+      "candidate_secondary": [
+        "ADJ"
+      ],
+      "reason_zh": "“完全不同”可支持程度ADV，“完全的解决方案”存在但书面且受语境限制；“过程很完全”不自然只能否定该例句，不能推翻所有形容词性定语用法。恢复旧ADJ候选为待证，不允许据此发布已认证ADJ。",
+      "evidence_examples": [
+        "完全不同",
+        "一个完全的解决方案"
+      ],
+      "unresolved": "形容词独立谓语及带‘的’定语分布尚待语料证据",
+      "status": "EDITORIAL_PENDING_NOT_CERTIFIED"
+    }
+  ]
+}
