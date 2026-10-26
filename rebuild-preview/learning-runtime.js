@@ -1255,7 +1255,7 @@
   size();
   const point=e=>{const r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}};
   const clear=()=>{if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height)};
-  window.PAI_SCRATCH_REENTER=()=>{if(!activeMode&&activeSurface)enter()};
+  window.PAI_SCRATCH_REENTER=()=>{if(!activeMode&&activeSurface){enter();readyToInk=true}};
   const enter=()=>{
    if(activeMode)return;
    activeMode=true;readyToInk=false;surface.classList.add('is-drawing');
