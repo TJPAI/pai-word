@@ -33,12 +33,12 @@ export async function bootApprovedOverlay(config=window.PAI_APPROVED_OVERLAY_CON
   ]);
   const parse=bytes=>JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));
   const manifest=parse(manifestBytes),overlay=parse(overlayBytes);
-  if(manifest.status!=='PRODUCTION_READY'||manifest.activation_allowed!==true)return fail('release_gate');
+  if(manifest.status!=='PRODUCTION_READY'||manifest.activation_allowed!==true)return epoch===bootEpoch?fail('release_gate'):{enabled:false,reason:'superseded'};
   // The SHA of the manifest and overlay can be pinned by the release channel.
-  if(!config.manifestSha256||!config.overlaySha256)return fail('unsigned_distribution');
+  if(!config.manifestSha256||!config.overlaySha256)return epoch===bootEpoch?fail('unsigned_distribution'):{enabled:false,reason:'superseded'};
   const digest=async b=>hex(new Uint8Array(await crypto.subtle.digest('SHA-256',b)));
   const [manifestHash,overlayHash]=await Promise.all([digest(manifestBytes),digest(overlayBytes)]);
-  if(manifestHash!==config.manifestSha256||overlayHash!==config.overlaySha256)return fail('distribution_hash_mismatch');
+  if(manifestHash!==config.manifestSha256||overlayHash!==config.overlaySha256)return epoch===bootEpoch?fail('distribution_hash_mismatch'):{enabled:false,reason:'superseded'};
   const result=await loadApprovedTeachingOverlay({enabled:true,base:core,runtimeBytes,packBytes,overlay,manifest});
   if(epoch!==bootEpoch)return {enabled:false,reason:'superseded'};
   return installApprovedTeachingOverlay(result,window);
