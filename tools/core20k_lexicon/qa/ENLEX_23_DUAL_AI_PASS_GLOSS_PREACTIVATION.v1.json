@@ -1,0 +1,370 @@
+{
+  "schema": "pai-enlex-dual-ai-23-gloss-release-candidate-v1",
+  "status": "DUAL_AI_CONTENT_PASS_PREACTIVATION",
+  "frozen_runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+  "source_overlay_blob": "3f551a3ba9c3803541081f8e189306ee93d59a14",
+  "cg_qa_review_blob": "8f480f55b6ad5e0d73c5be4f3823b01904525841",
+  "muse_review_blob": "3eae0ad1b1d364ef6bf8b83a86217b7a3eaa0e1f",
+  "records": [
+    {
+      "ku_id": "w_5575_scanner_ku_s01",
+      "rank": 359,
+      "lemma": "scanner",
+      "ku_kind": "sense",
+      "old_gloss_zh": "扫描仪；扫描器",
+      "old_gloss_en": "core modern learner use of “scanner”",
+      "new_gloss_zh": "扫描仪；扫描器",
+      "new_gloss_en": "a device that reads images or text and converts them into digital data",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Device definition fits 扫描仪/扫描器; not confused with scanning action.",
+        "mu_enlex_reason": "定义以设备功能界定（读取图像或文字并转为数字数据），与中文“扫描仪；扫描器”对齐；扫描仪作人（收银扫描员）的罕见用法不在本 KU 的中文范围内，不构成遗漏。"
+      }
+    },
+    {
+      "ku_id": "w_4094_amid_ku_s01",
+      "rank": 589,
+      "lemma": "amid",
+      "ku_kind": "sense",
+      "old_gloss_zh": "在……之中",
+      "old_gloss_en": "core modern learner use of “amid”",
+      "new_gloss_zh": "在……之中",
+      "new_gloss_en": "in the middle of or surrounded by something",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Locative/surrounding sense fits 在……之中; other figurative uses do not negate this sense.",
+        "mu_enlex_reason": "介词定义“在……之中或被……包围”覆盖 amid the crowd 与 amid concerns 两类典型搭配，中文“在……之中”与之对齐，无义项窄化。"
+      }
+    },
+    {
+      "ku_id": "w_5798_liter_ku_s01",
+      "rank": 1188,
+      "lemma": "liter",
+      "ku_kind": "sense",
+      "old_gloss_zh": "升",
+      "old_gloss_en": "core modern learner use of “liter”",
+      "new_gloss_zh": "升（容量单位）",
+      "new_gloss_en": "a metric unit of volume equal to 1,000 milliliters",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Volume unit and 1,000 mL conversion are exact.",
+        "mu_enlex_reason": "“公制容量单位，等于 1,000 毫升”在数值与单位属性上准确；中文补“（容量单位）”消除了“升”作动词（上升）的歧义可能。"
+      }
+    },
+    {
+      "ku_id": "w_3607_gym_ku_s01",
+      "rank": 1725,
+      "lemma": "gym",
+      "ku_kind": "sense",
+      "old_gloss_zh": "健身房；体育馆",
+      "old_gloss_en": "core modern learner use of “gym”",
+      "new_gloss_zh": "健身房；体育馆",
+      "new_gloss_en": "a building or room equipped for exercise, physical training, or indoor sports",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Exercise/training room or indoor-sport building covers the supplied facility senses.",
+        "mu_enlex_reason": "“配备运动、体能训练或室内运动设施的建筑或房间”覆盖健身房与体育馆两义；中文两项均属场所义，与定义一致。"
+      }
+    },
+    {
+      "ku_id": "w_4104_noun_ku_s01",
+      "rank": 1731,
+      "lemma": "noun",
+      "ku_kind": "sense",
+      "old_gloss_zh": "名词",
+      "old_gloss_en": "core modern learner use of “noun”",
+      "new_gloss_zh": "名词",
+      "new_gloss_en": "a word used to name a person, place, thing, idea, or quality",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Names a person/place/thing/idea/quality; standard grammatical noun definition.",
+        "mu_enlex_reason": "“用于命名人、地点、事物、观念或性质的词”是标准语法定义，四类所指覆盖名词的核心外延，无事实错误。"
+      }
+    },
+    {
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "rank": 1785,
+      "lemma": "compatibility",
+      "ku_kind": "sense",
+      "old_gloss_zh": "兼容性；相容性",
+      "old_gloss_en": "core modern learner use of “compatibility”",
+      "new_gloss_zh": "兼容性；相容性",
+      "new_gloss_en": "the ability of two things to work well together or exist together without conflict",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Coexistence without conflict and functional interoperability both supported.",
+        "mu_enlex_reason": "“两个事物能良好协作或无冲突共存的能力”同时覆盖技术兼容与人际相容，中文“兼容性；相容性”两项均被覆盖，无偏向一侧。"
+      }
+    },
+    {
+      "ku_id": "w_8469_unification_ku_s01",
+      "rank": 1850,
+      "lemma": "unification",
+      "ku_kind": "sense",
+      "old_gloss_zh": "统一；合并；一体化",
+      "old_gloss_en": "core modern learner use of “unification”",
+      "new_gloss_zh": "统一；合并；一体化",
+      "new_gloss_en": "the process of bringing separate groups or parts together to form one whole",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Process of joining separate groups/parts captures 统一/合并/一体化.",
+        "mu_enlex_reason": "“把分离的群体或部分合成为一个整体的过程”覆盖政治统一与一般合并，中文“统一；合并；一体化”三项均属该过程的不同表述。"
+      }
+    },
+    {
+      "ku_id": "w_5464_prototype_ku_s01",
+      "rank": 1991,
+      "lemma": "prototype",
+      "ku_kind": "sense",
+      "old_gloss_zh": "原型；样机",
+      "old_gloss_en": "core modern learner use of “prototype”",
+      "new_gloss_zh": "原型；样机",
+      "new_gloss_en": "an early model of a product or design made to test or develop its features",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Early test model of design/product captures 原型/样机 in this context.",
+        "mu_enlex_reason": "“为测试或开发功能而制的产品或设计的早期模型”准确刻画原型；“早期模型”已含首版试制义，无需另立“理想范例”引申义。"
+      }
+    },
+    {
+      "ku_id": "w_4404_additionally_ku_s01",
+      "rank": 2015,
+      "lemma": "additionally",
+      "ku_kind": "sense",
+      "old_gloss_zh": "此外",
+      "old_gloss_en": "core modern learner use of “additionally”",
+      "new_gloss_zh": "此外；另外",
+      "new_gloss_en": "in addition to what has already been mentioned",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Supplementary discourse marker, not sequence marker, aligns 此外/另外.",
+        "mu_enlex_reason": "“除已提及内容之外”准确表达副词的附加语义；中文补“另外”与“此外”同义，不扩大义项。"
+      }
+    },
+    {
+      "ku_id": "w_5622_gateway_ku_s01",
+      "rank": 2101,
+      "lemma": "gateway",
+      "ku_kind": "sense",
+      "old_gloss_zh": "入口；网关",
+      "old_gloss_en": "core modern learner use of “gateway”",
+      "new_gloss_zh": "入口；网关",
+      "new_gloss_en": "an entrance or a point through which people, things, or information can pass",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Entrance or passage point is valid for physical and network gateway, but distinguish the technical sense during specialized teaching.",
+        "mu_enlex_reason": "“人、物或信息可通过的入口或通道点”同时覆盖实体门户与网络网关，信息可通过一语使技术义自然成立，无需另立网关义。"
+      }
+    },
+    {
+      "ku_id": "w_5210_quiz_ku_s01",
+      "rank": 2104,
+      "lemma": "quiz",
+      "ku_kind": "sense",
+      "old_gloss_zh": "小测验；问答",
+      "old_gloss_en": "core modern learner use of “quiz”",
+      "new_gloss_zh": "小测验；问答",
+      "new_gloss_en": "a short test or set of questions used to check knowledge",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Short knowledge-check test captures 小测验; 问答 is broader but acceptable as contextual near-synonym, not exhaustive equivalence.",
+        "mu_enlex_reason": "“用于检查知识的简短测验或一组问题”覆盖小测验与问答两项中文；“简短”符合 quiz 区别于 exam 的典型特征。"
+      }
+    },
+    {
+      "ku_id": "w_5081_garbage_ku_s01",
+      "rank": 2168,
+      "lemma": "garbage",
+      "ku_kind": "sense",
+      "old_gloss_zh": "垃圾；废物",
+      "old_gloss_en": "core modern learner use of “garbage”",
+      "new_gloss_zh": "垃圾；废物",
+      "new_gloss_en": "things that are no longer wanted and are thrown away",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Discarded unwanted materials matches 垃圾/废物.",
+        "mu_enlex_reason": "“不再需要而被丢弃的东西”准确表达垃圾的字面义；中文“垃圾；废物”均属被丢弃物范畴。"
+      }
+    },
+    {
+      "ku_id": "w_7254_snapshot_ku_s01",
+      "rank": 2274,
+      "lemma": "snapshot",
+      "ku_kind": "sense",
+      "old_gloss_zh": "快照",
+      "old_gloss_en": "core modern learner use of “snapshot”",
+      "new_gloss_zh": "快照；瞬间记录",
+      "new_gloss_en": "a photograph or brief record showing a particular moment",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Quick photo or point-in-time record supports 快照 and software analogy.",
+        "mu_enlex_reason": "“呈现某一时刻的照片或简要记录”同时覆盖照片快照与“经济快照”类比喻用法；中文补“瞬间记录”使比喻义有据可依。"
+      }
+    },
+    {
+      "ku_id": "w_3004_compute_ku_s01",
+      "rank": 2286,
+      "lemma": "compute",
+      "ku_kind": "sense",
+      "old_gloss_zh": "计算",
+      "old_gloss_en": "core modern learner use of “compute”",
+      "new_gloss_zh": "计算",
+      "new_gloss_en": "to calculate a result using numbers or data",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Calculate using numbers/data is correct mathematical/computational verb.",
+        "mu_enlex_reason": "“用数字或数据计算结果”准确表达动词义；“用数据”一语使计算机处理义自然成立，无需另立计算义。"
+      }
+    },
+    {
+      "ku_id": "w_5852_tier_ku_s01",
+      "rank": 2293,
+      "lemma": "tier",
+      "ku_kind": "sense",
+      "old_gloss_zh": "层；级",
+      "old_gloss_en": "core modern learner use of “tier”",
+      "new_gloss_zh": "层级；等级",
+      "new_gloss_en": "one of several levels or ranks in an ordered system",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "One level in ordered hierarchy fits 层/级.",
+        "mu_enlex_reason": "“有序系统中的若干等级之一”准确表达层级义；中文“层级；等级”与定义中的 levels/ranks 对应。"
+      }
+    },
+    {
+      "ku_id": "w_5332_visa_ku_s01",
+      "rank": 2299,
+      "lemma": "visa",
+      "ku_kind": "sense",
+      "old_gloss_zh": "签证",
+      "old_gloss_en": "core modern learner use of “visa”",
+      "new_gloss_zh": "签证",
+      "new_gloss_en": "official permission, often shown in a passport, to enter or stay in a country",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Official authorization to apply for entry/stay, subject to border discretion; current language does not promise guaranteed admission.",
+        "mu_enlex_reason": "“通常显示在护照上、准许进入或居留某国的官方许可”准确；often 一词为电子签等非贴纸形式留了余地，定义不过度断言。"
+      }
+    },
+    {
+      "ku_id": "w_5339_logo_ku_s01",
+      "rank": 2313,
+      "lemma": "logo",
+      "ku_kind": "sense",
+      "old_gloss_zh": "标志；徽标",
+      "old_gloss_en": "core modern learner use of “logo”",
+      "new_gloss_zh": "徽标；标志",
+      "new_gloss_en": "a symbol or design used to identify a company, organization, or product",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Identifying graphic symbol/design fits 标志/徽标.",
+        "mu_enlex_reason": "“用于标识公司、组织或产品的符号或设计”标准且完整；中文两项顺序调整不改变义项。"
+      }
+    },
+    {
+      "ku_id": "w_6138_intercept_ku_s01",
+      "rank": 2363,
+      "lemma": "intercept",
+      "ku_kind": "sense",
+      "old_gloss_zh": "拦截",
+      "old_gloss_en": "core modern learner use of “intercept”",
+      "new_gloss_zh": "拦截；截获",
+      "new_gloss_en": "to stop, catch, or take something while it is traveling from one place to another",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Stop/catch something in transit supports 拦截/截获.",
+        "mu_enlex_reason": "“在某物从一地前往另一地途中将其拦下、截获”覆盖体育抢断、导弹拦截与信息截获；中文补“截获”使中途夺取义明确。"
+      }
+    },
+    {
+      "ku_id": "w_3095_mayor_ku_s01",
+      "rank": 2388,
+      "lemma": "mayor",
+      "ku_kind": "sense",
+      "old_gloss_zh": "市长",
+      "old_gloss_en": "core modern learner use of “mayor”",
+      "new_gloss_zh": "市长",
+      "new_gloss_en": "the elected or appointed leader of a city or town government",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "City/town civic leader is correct across election/appointment jurisdictions.",
+        "mu_enlex_reason": "“经选举或任命的市镇政府领导人”覆盖不同政体的市长产生方式；elected or appointed 的并列避免了只认选举制的片面。"
+      }
+    },
+    {
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "rank": 2390,
+      "lemma": "kilometer",
+      "ku_kind": "sense",
+      "old_gloss_zh": "千米；公里",
+      "old_gloss_en": "core modern learner use of “kilometer”",
+      "new_gloss_zh": "千米；公里",
+      "new_gloss_en": "a unit of length equal to 1,000 meters",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Exactly 1,000 meters, and Chinese synonyms correct.",
+        "mu_enlex_reason": "“等于 1,000 米的长度单位”数值准确；中文“千米；公里”均为该单位的标准译名。"
+      }
+    },
+    {
+      "ku_id": "w_3069_painful_ku_s01",
+      "rank": 2416,
+      "lemma": "painful",
+      "ku_kind": "sense",
+      "old_gloss_zh": "疼痛的；痛苦的",
+      "old_gloss_en": "core modern learner use of “painful”",
+      "new_gloss_zh": "疼痛的；痛苦的",
+      "new_gloss_en": "causing physical pain or emotional distress",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Physical pain or emotional suffering meets source meanings.",
+        "mu_enlex_reason": "“引起身体疼痛或情感痛苦”同时覆盖生理与情感两类用法；中文“疼痛的；痛苦的”两项各有对应。"
+      }
+    },
+    {
+      "ku_id": "w_3514_officially_ku_s01",
+      "rank": 2421,
+      "lemma": "officially",
+      "ku_kind": "sense",
+      "old_gloss_zh": "正式地；官方地",
+      "old_gloss_en": "core modern learner use of “officially”",
+      "new_gloss_zh": "正式地；官方地",
+      "new_gloss_en": "in a formal or authorized way, or according to an official statement",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Formal authorization/official-status sense valid, though not every formal act is 'official'.",
+        "mu_enlex_reason": "“以正式或授权方式，或根据官方声明”覆盖 officially announced 与 officially approved 两类副词用法。"
+      }
+    },
+    {
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "rank": 2422,
+      "lemma": "adjustable",
+      "ku_kind": "sense",
+      "old_gloss_zh": "可调节的",
+      "old_gloss_en": "core modern learner use of “adjustable”",
+      "new_gloss_zh": "可调节的",
+      "new_gloss_en": "able to be changed in size, position, or amount to suit a need",
+      "semantic_verdict": "DUAL_AI_PASS_CONTENT_ONLY",
+      "sources": {
+        "cg_qa_reason": "Capable of changing dimensions/amounts fits 可调节的.",
+        "mu_enlex_reason": "“可在大小、位置或数量上改变以适应需要”覆盖可调座椅、可调扳手、可调利率三类典型对象；三维列举使定义可验证。"
+      }
+    }
+  ],
+  "excluded_pending_scope": [
+    "media",
+    "checkpoint",
+    "found"
+  ],
+  "release_gates": {
+    "activation_allowed": false,
+    "production_ready": false,
+    "srs_history_semantic_compat": "NOT_VERIFIED",
+    "full_adapter_browser_e2e": "NOT_RUN",
+    "original_ku_id_must_remain": true,
+    "original_gloss_match_required": true,
+    "identity_reallocation": false
+  },
+  "record_count": 23
+}
