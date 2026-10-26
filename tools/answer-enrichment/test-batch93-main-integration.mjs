@@ -58,5 +58,12 @@ const storage=readFileSync(new URL('../../rebuild-preview/ku-durable-store.js',i
 assert(storage.includes('pai-word-preview-ku-durable-batch93-v1'));
 const legacy=readFileSync(new URL('../../rebuild-preview/preview-state.js',import.meta.url),'utf8');
 assert(legacy.includes('pai-word-core20k-batch93-isolated-v1'));
+assert(source.includes('pai-word-batch93-pending-grades-v1'));
+assert(source.includes('pai-word-batch93-scene-cursors-v1'));
+assert(boot.includes("if(qaBatch93){"));
+assert(boot.includes("key.startsWith('pai-word-batch93-')"));
+assert(boot.includes("const SNAPSHOT_KEY=qaBatch93?"));
+assert(boot.includes("sessionStorage.setItem(qaResetMarker,'1')"));
+
 assert.equal(JSON.stringify(units),before,'no learning state mutation during rendering');
-console.log('PASS Batch93: 6 identities, bilingual numbered audio answers, toggles, fail-closed, main-flow entry, isolated storage');
+console.log('PASS Batch93: 6 identities, bilingual numbered audio answers, toggles, fail-closed, main-flow entry, isolated storage and reset');
