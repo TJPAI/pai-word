@@ -38,6 +38,30 @@ jobs:
         run: |
           set -o pipefail
           node scripts/evaluate-zh-short-query-core20k.mjs | tee zh-short-query-core20k-evaluation.json
+      - name: Publish evaluation summary
+        if: always()
+        run: |
+          if test -s zh-short-query-core20k-evaluation.json; then
+            node -e '
+              const fs=require("fs");
+              const r=JSON.parse(fs.readFileSync("zh-short-query-core20k-evaluation.json","utf8"));
+              const lines=[
+                "## Chinese Core20K short-query evaluation",
+                "",
+                "| Measurement | Result |",
+                "|---|---:|",
+                "| Runtime terms | "+r.term_count+" |",
+                "| Gold paths found | "+r.gold_paths_found+"/"+r.fixture_count+" |",
+                "| Gold paths missing | "+r.gold_paths_missing+" |",
+                "| Total measured latency (ms) | "+r.elapsed_ms_total+" |",
+                "",
+                "**Non-production experiment; this is not Scene500 semantic certification.**"
+              ];
+              fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,lines.join("\\n")+"\\n");
+            '
+          else
+            echo "Evaluation JSON absent; inspect failed steps" >> "$GITHUB_STEP_SUMMARY"
+          fi
       - name: Upload measured results
         if: always()
         uses: actions/upload-artifact@v4
