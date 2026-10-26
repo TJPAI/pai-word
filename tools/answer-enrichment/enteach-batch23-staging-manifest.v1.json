@@ -1,0 +1,317 @@
+{
+  "schema_version": "pai-word-enteach-batch23-traceable-staging-v1",
+  "role": "CG-ENTEACH",
+  "review_date": "2026-10-26",
+  "status": "STAGING_FULL_TEACHING_MUSE_QA_PENDING",
+  "source_gloss": {
+    "branch": "enlex-gloss-audit-20261026",
+    "path": "tools/core20k_lexicon/qa/ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json",
+    "source_blob": "3f551a3ba9c3803541081f8e189306ee93d59a14",
+    "base_gloss_dual_ai_status": "23_OF_26_BASE_GLOSS_CONTENT_PASS_PER_CG_QA_ISSUE_6411409036; NOT FULL_TEACHING_PASS"
+  },
+  "inputs": [
+    {
+      "path": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "blob": "fd46a0ddff8519dccadd90a471c6f93c3570f886"
+    },
+    {
+      "path": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "blob": "ee22f3bc113bdafafd211598459eb7d0d7250a37"
+    }
+  ],
+  "counts": {
+    "teaching_candidate_records": 23,
+    "stable_unique_ku": 23,
+    "full_teaching_muse_pass": 0,
+    "full_teaching_double_pass": 0,
+    "held_scope_or_pos": 3,
+    "formal_activation": 0
+  },
+  "held_source_ku": [
+    "w_5359_media_ku_s01",
+    "w_7612_checkpoint_ku_s01",
+    "w_5396_found_ku_s01"
+  ],
+  "records": [
+    {
+      "ku_id": "w_5575_scanner_ku_s01",
+      "headword": "scanner",
+      "rank": 359,
+      "source_gloss_zh": "扫描仪；扫描器",
+      "source_gloss_en": "a device that reads images or text and converts them into digital data",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4094_amid_ku_s01",
+      "headword": "amid",
+      "rank": 589,
+      "source_gloss_zh": "在……之中",
+      "source_gloss_en": "in the middle of or surrounded by something",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5798_liter_ku_s01",
+      "headword": "liter",
+      "rank": 1188,
+      "source_gloss_zh": "升（容量单位）",
+      "source_gloss_en": "a metric unit of volume equal to 1,000 milliliters",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3607_gym_ku_s01",
+      "headword": "gym",
+      "rank": 1725,
+      "source_gloss_zh": "健身房；体育馆",
+      "source_gloss_en": "a building or room equipped for exercise, physical training, or indoor sports",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4104_noun_ku_s01",
+      "headword": "noun",
+      "rank": 1731,
+      "source_gloss_zh": "名词",
+      "source_gloss_en": "a word used to name a person, place, thing, idea, or quality",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8030_compatibility_ku_s01",
+      "headword": "compatibility",
+      "rank": 1785,
+      "source_gloss_zh": "兼容性；相容性",
+      "source_gloss_en": "the ability of two things to work well together or exist together without conflict",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5464_prototype_ku_s01",
+      "headword": "prototype",
+      "rank": 1991,
+      "source_gloss_zh": "原型；样机",
+      "source_gloss_en": "an early model of a product or design made to test or develop its features",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_4404_additionally_ku_s01",
+      "headword": "additionally",
+      "rank": 2015,
+      "source_gloss_zh": "此外；另外",
+      "source_gloss_en": "in addition to what has already been mentioned",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5210_quiz_ku_s01",
+      "headword": "quiz",
+      "rank": 2104,
+      "source_gloss_zh": "小测验；问答",
+      "source_gloss_en": "a short test or set of questions used to check knowledge",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5081_garbage_ku_s01",
+      "headword": "garbage",
+      "rank": 2168,
+      "source_gloss_zh": "垃圾；废物",
+      "source_gloss_en": "things that are no longer wanted and are thrown away",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3004_compute_ku_s01",
+      "headword": "compute",
+      "rank": 2286,
+      "source_gloss_zh": "计算",
+      "source_gloss_en": "to calculate a result using numbers or data",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5332_visa_ku_s01",
+      "headword": "visa",
+      "rank": 2299,
+      "source_gloss_zh": "签证",
+      "source_gloss_en": "official permission, often shown in a passport, to enter or stay in a country",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5339_logo_ku_s01",
+      "headword": "logo",
+      "rank": 2313,
+      "source_gloss_zh": "徽标；标志",
+      "source_gloss_en": "a symbol or design used to identify a company, organization, or product",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3270_kilometer_ku_s01",
+      "headword": "kilometer",
+      "rank": 2390,
+      "source_gloss_zh": "千米；公里",
+      "source_gloss_en": "a unit of length equal to 1,000 meters",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8798_adjustable_ku_s01",
+      "headword": "adjustable",
+      "rank": 2422,
+      "source_gloss_zh": "可调节的",
+      "source_gloss_en": "able to be changed in size, position, or amount to suit a need",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next15-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_8469_unification_ku_s01",
+      "headword": "unification",
+      "rank": 1850,
+      "source_gloss_zh": "统一；合并；一体化",
+      "source_gloss_en": "the process of bringing separate groups or parts together to form one whole",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5622_gateway_ku_s01",
+      "headword": "gateway",
+      "rank": 2101,
+      "source_gloss_zh": "入口；网关",
+      "source_gloss_en": "an entrance or a point through which people, things, or information can pass",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_7254_snapshot_ku_s01",
+      "headword": "snapshot",
+      "rank": 2274,
+      "source_gloss_zh": "快照；瞬间记录",
+      "source_gloss_en": "a photograph or brief record showing a particular moment",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_5852_tier_ku_s01",
+      "headword": "tier",
+      "rank": 2293,
+      "source_gloss_zh": "层级；等级",
+      "source_gloss_en": "one of several levels or ranks in an ordered system",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_6138_intercept_ku_s01",
+      "headword": "intercept",
+      "rank": 2363,
+      "source_gloss_zh": "拦截；截获",
+      "source_gloss_en": "to stop, catch, or take something while it is traveling from one place to another",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3095_mayor_ku_s01",
+      "headword": "mayor",
+      "rank": 2388,
+      "source_gloss_zh": "市长",
+      "source_gloss_en": "the elected or appointed leader of a city or town government",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3069_painful_ku_s01",
+      "headword": "painful",
+      "rank": 2416,
+      "source_gloss_zh": "疼痛的；痛苦的",
+      "source_gloss_en": "causing physical pain or emotional distress",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    },
+    {
+      "ku_id": "w_3514_officially_ku_s01",
+      "headword": "officially",
+      "rank": 2421,
+      "source_gloss_zh": "正式地；官方地",
+      "source_gloss_en": "in a formal or authorized way, or according to an official statement",
+      "teaching_fields_present": true,
+      "teaching_source": "tools/answer-enrichment/enteach-next8-ku-teaching-candidates.v1.json",
+      "full_teaching_chatgpt": "EDITORIAL_AUTHORING_COMPLETED_ONLY",
+      "full_teaching_muse": "PENDING_EXACT_SOURCE_REVIEW",
+      "production_ready": false
+    }
+  ],
+  "activation_allowed": false,
+  "production_ready": false,
+  "rights_and_identity": "External rights and official sense_id remain unverified. This report is a machine-readable staged work manifest only, not production content or authorization.",
+  "next": "MU-ENTEACH independent field-level review of both exact committed source packs; only semantic corrections re-evaluated. CG-ENTEACH consolidates version-matched verdicts without altering frozen Runtime identities."
+}
