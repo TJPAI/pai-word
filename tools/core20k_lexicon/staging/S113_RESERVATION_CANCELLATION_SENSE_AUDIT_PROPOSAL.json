@@ -1,0 +1,61 @@
+{
+  "schema": "pai-core20k-s113-sense-audit-proposal-v1",
+  "status": "PROPOSAL_NOT_RUNTIME_PATCH",
+  "date": "2026-10-26",
+  "source": {
+    "branch": "core20k-lexicon-production-v1",
+    "runtime_path": "data/core20k-runtime.json.gz",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "row_level_runtime_verified": false,
+    "reason": "Compressed Runtime asset presence verified; reservation/cancellation rows not extracted in this pass."
+  },
+  "items": [
+    {
+      "lemma": "reservation",
+      "observed_issue_from_user": "generic placeholder English gloss; Chinese combines 预订 and 保留意见",
+      "assessment": "HIGH_PRIORITY_SEMANTIC_SPLIT_CANDIDATE",
+      "proposed_senses": [
+        {
+          "gloss_en": "an arrangement to reserve a room, table, seat, etc.",
+          "gloss_zh": "预订；预约",
+          "scene": "S113"
+        },
+        {
+          "gloss_en": "a doubt or concern about a plan or decision",
+          "gloss_zh": "保留意见；疑虑",
+          "scene": "not S113 by default"
+        }
+      ],
+      "identity_action": "Preserve existing KU ID and headword ID; determine old KU usage before allocating any new Sense/KU identity."
+    },
+    {
+      "lemma": "cancellation",
+      "observed_issue_from_user": "S113 candidate requires verification; no row-specific defect independently confirmed",
+      "assessment": "AUDIT_REQUIRED",
+      "proposed_senses": [
+        {
+          "gloss_en": "the act of cancelling an arrangement, event, or service",
+          "gloss_zh": "取消；撤销",
+          "scene": "S113 in reservation context"
+        }
+      ],
+      "identity_action": "No split without corpus-backed distinct sense and reference audit."
+    }
+  ],
+  "compatibility_migration": [
+    "Export exact existing Runtime rows and all scene, teaching, SRS and answer-page references.",
+    "Classify each existing KU's current semantics using examples and references; preserve identity for the established primary sense.",
+    "If a genuinely distinct additional sense is needed, request allocation through the English base lexicon production line; do not reuse, rename or silently create KU IDs.",
+    "Add versioned old-to-new sense reference mapping and keep old KU resolvable; migrate scene/teaching references only after QA.",
+    "Validate S113 scene mapping, semantic certification, learning history compatibility, and main-app regression before runtime replacement."
+  ],
+  "risks": [
+    "A single old KU may currently represent two incompatible meanings.",
+    "Existing S113 mapping may rely on a word-level rather than sense-level match.",
+    "Blindly changing glosses could alter meaning of existing SRS records.",
+    "Creating new KU IDs without registry coordination risks identity collision.",
+    "Placeholder English glosses may be systemic; scan whole runtime after confirming row extraction."
+  ],
+  "handoff": "English base lexicon production line and main developer",
+  "release_gate": "Existing stable Runtime unchanged; do not add extra content certification layers."
+}
