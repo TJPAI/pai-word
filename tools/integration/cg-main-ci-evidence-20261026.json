@@ -1,0 +1,63 @@
+{
+  "schema": "pai-word-cg-main-qa-evidence-v1",
+  "date": "2026-10-26",
+  "role": "CG-MAIN",
+  "handoff": "FOUR-LINE-MAIN-INTEGRATION-20261026",
+  "base_branch": "main-answer-cleanup-20261026",
+  "base_sha": "364cf7c6a8a2e6c08b718451607411ca8ef04434",
+  "github_actions": {
+    "run_id": 40287423146,
+    "run_url": "https://github.com/TJPAI/pai-word/actions/runs/40287423146",
+    "head_sha": "364cf7c6a8a2e6c08b718451607411ca8ef04434",
+    "conclusion": "success",
+    "job_id": 121454279741,
+    "job_conclusion": "success",
+    "passed_steps": [
+      "Verify pinned English Core20K runtime exists",
+      "Materialize verified Chinese Core20K V0.10.1",
+      "Assert exact bilingual runtime identity and size",
+      "Check standard answer page cleanup",
+      "Check four-line identity and activation contract",
+      "Check S500 search bridge and reject unsafe mapping"
+    ],
+    "scope": "Node-based CI only; no browser E2E, recommendation hybrid Top5, or deployed preview validation"
+  },
+  "sources": {
+    "scene500": {
+      "head": "76a58cb577b6bfc862e3e5d70480cba023618296",
+      "taxonomy": "scene500-recommendation/catalog-v0.2.json",
+      "s113": "预订酒店",
+      "playable_membership": "NOT_ESTABLISHED"
+    },
+    "chinese": {
+      "head": "60a372a868aa694a892354db3ec66730621b5594",
+      "runtime": "data/zh-core20k-v0101-scene500-runtime.json.gz.b64",
+      "materializer": "scripts/materialize-zh-core20k-v0101.mjs",
+      "json_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+      "count": 20000
+    },
+    "english": {
+      "head": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+      "runtime": "data/core20k-runtime.json.gz",
+      "sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b"
+    },
+    "teaching": {
+      "head": "f04ef305328ec709e1d5cdba83c2063412b0039a",
+      "ledger": "tools/answer-enrichment/s113-seven-content-delivery-ledger.v1.json",
+      "ledger_blob": "8bb367981ed053791715b88d9d5f0d3a7aa2287c",
+      "content_dual_ai_pass": 6,
+      "confirmation_delta_pending": 1,
+      "release_eligible": false,
+      "officially_activated": 0
+    }
+  },
+  "open_blockers": [
+    "Scene500 official S### to playable membership mapping or native S-scene membership absent",
+    "Chinese v0.10.1 associations for Hybrid not yet verified",
+    "S113 scene namespace and official KU sense/member/source rights not release-ready",
+    "Real browser UI/SRS/audio/swipe/persistence E2E not run",
+    "Final preview deploy deliberately withheld"
+  ],
+  "deployment_authorized": false,
+  "batch93_six_word_demo_cancelled": true
+}
