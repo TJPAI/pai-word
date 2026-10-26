@@ -7,11 +7,11 @@ assert(s.includes('function resetPage(){pageState=preferredPageState;syncPage()}
 assert(s.includes("wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'"),'next word inherits preferred face');
 assert(s.includes("originalFace=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'"),'next batch inherits preferred face');
 assert(s.includes('isActive(){return activeSpeech}'),'speech state available to scheduler');
-const auto=s.slice(s.indexOf('function scheduleAutoBrowse(){'),s.indexOf('let autoWakeLock='));
+const auto=s.slice(s.indexOf('function scheduleAutoBrowse(speechEnded=false){'),s.indexOf('let autoWakeLock='));
 assert(auto.indexOf('window.PAI_AUDIO?.isActive?.()')>=0);
 assert(auto.indexOf('window.PAI_AUDIO.whenIdle(')>auto.indexOf('window.PAI_AUDIO?.isActive?.()'));
 assert(auto.indexOf('autoBrowseTimer=setTimeout')>auto.indexOf('window.PAI_AUDIO.whenIdle('));
-assert(auto.includes('if(generation===autoBrowseGeneration)scheduleAutoBrowse()'));
+assert(auto.includes('if(generation===autoBrowseGeneration)scheduleAutoBrowse(true);'));
 assert(s.includes('if(autoAudioUnsubscribe){autoAudioUnsubscribe();autoAudioUnsubscribe=null}'));
 
 assert(s.includes("const autoEntrySpeech=state.autoPronounce[window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'?'swipe':'question']"),'scene entry must use preferred face audio setting');
