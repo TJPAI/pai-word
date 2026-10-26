@@ -1,0 +1,22 @@
+{
+  "schema": "pai-word-zh-intent-scope-gold-v1",
+  "status": "ANNOTATION_CONTRACT_QA_PASS_PARSER_NOT_TESTED",
+  "cases": 16,
+  "labels": [
+    "REQUEST",
+    "INFORMATION",
+    "UNCERTAIN"
+  ],
+  "stances": [
+    "REQUESTED",
+    "REJECTED",
+    "NOT_REJECTED",
+    "UNRESOLVED"
+  ],
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "gold": "Editorial annotations of 16 phrase mentions, separately classifying user communicative intent and stance toward the target, with operator and object spans",
+  "important": "QA validates structure and SHA, NOT linguistic agreement or automatic intent recognition. Local full annotation and validator preserved as user artifacts.",
+  "production_ready": false,
+  "activation_allowed": false,
+  "changes_runtime": false
+}
