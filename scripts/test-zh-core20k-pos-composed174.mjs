@@ -31,8 +31,8 @@ assert(composed.source_runtime_sha256===one.source_runtime_sha256&&composed.sour
 const hash=(content)=>createHash('sha1').update(content).digest('hex');
 for(const item of composed.source_git_blobs){
  const b=readFileSync(item.path);
- // Git blob SHA is SHA1 over "blob <length>\\0" + bytes
- const h=createHash('sha1').update(Buffer.concat([Buffer.from('blob '+b.length+'\\0'),b])).digest('hex');
+ // Git blob SHA is SHA1 over "blob <length>\0" + bytes
+ const h=createHash('sha1').update(Buffer.concat([Buffer.from('blob '+b.length+'\0'),b])).digest('hex');
  assert(h===item.sha,'SOURCE_BLOB_DRIFT '+item.path);
 }
 console.log(JSON.stringify({status:'PASS',composed:174,errata_applied:15,multi_pos:composed.rows.filter(x=>x.other_pos_candidates.length).length,production_ready:false}));
