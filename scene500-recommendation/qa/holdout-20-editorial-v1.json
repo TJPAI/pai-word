@@ -1,0 +1,151 @@
+{
+  "schema": "scene500-retrieval-holdout-v1",
+  "status": "EDITORIAL_EXPECTATIONS_NOT_BLIND_CERTIFICATION",
+  "taxonomy": "scene500-20x25-v1",
+  "cases": [
+    {
+      "query": "我要预订下周的酒店",
+      "relevant": [
+        "S113"
+      ],
+      "category": "hotel"
+    },
+    {
+      "query": "到酒店前台办理入住手续",
+      "relevant": [
+        "S114"
+      ],
+      "category": "hotel"
+    },
+    {
+      "query": "想坐公交车去学校",
+      "relevant": [
+        "S078"
+      ],
+      "category": "transport"
+    },
+    {
+      "query": "地铁在哪换乘",
+      "relevant": [
+        "S094",
+        "S079"
+      ],
+      "category": "transport"
+    },
+    {
+      "query": "不坐地铁，改坐公交",
+      "relevant": [
+        "S078"
+      ],
+      "excluded": [
+        "S079"
+      ],
+      "category": "negation"
+    },
+    {
+      "query": "今天早上做早餐",
+      "relevant": [
+        "S026",
+        "S007"
+      ],
+      "category": "daily"
+    },
+    {
+      "query": "洗完衣服准备晾晒",
+      "relevant": [
+        "S006"
+      ],
+      "category": "daily"
+    },
+    {
+      "query": "我在菜市场买菜",
+      "relevant": [
+        "S045"
+      ],
+      "category": "shopping"
+    },
+    {
+      "query": "软件出了故障要找技术支持",
+      "relevant": [
+        "S275"
+      ],
+      "category": "technology"
+    },
+    {
+      "query": "租房合同怎么签",
+      "relevant": [
+        "S412"
+      ],
+      "category": "housing"
+    },
+    {
+      "query": "如何学习英语发音",
+      "excluded": [
+        "S279",
+        "S280"
+      ],
+      "category": "negative_control"
+    },
+    {
+      "query": "我想学习机器学习算法",
+      "relevant": [
+        "S279"
+      ],
+      "category": "technical"
+    },
+    {
+      "query": "我要查找研究资料",
+      "relevant": [
+        "S137"
+      ],
+      "category": "academic"
+    },
+    {
+      "query": "Could I order coffee?",
+      "relevant": [
+        "S039"
+      ],
+      "category": "english"
+    },
+    {
+      "query": "I'd like to order a coffee",
+      "relevant": [
+        "S039"
+      ],
+      "category": "english"
+    },
+    {
+      "query": "How do I order a coffee?",
+      "relevant": [
+        "S039"
+      ],
+      "category": "english"
+    },
+    {
+      "query": "How to order a sandwich?",
+      "category": "english_open"
+    },
+    {
+      "query": "Please help me practice English pronunciation",
+      "excluded": [
+        "S279",
+        "S280"
+      ],
+      "category": "english_open"
+    },
+    {
+      "query": "今天要参加期末考试",
+      "relevant": [
+        "S142"
+      ],
+      "category": "academic"
+    },
+    {
+      "query": "我想点一杯果汁",
+      "relevant": [
+        "S039"
+      ],
+      "category": "food"
+    }
+  ]
+}
