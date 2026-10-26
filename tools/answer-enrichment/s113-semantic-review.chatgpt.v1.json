@@ -1,0 +1,47 @@
+{
+  "schema_version": "pai-word-s113-teaching-semantic-review-v1",
+  "source_branch_head": "7628b3b351b2333701c6ab37d04bc7901e1ecfa7",
+  "source_candidates": "tools/answer-enrichment/s113-teaching-candidates.v1.json",
+  "source_audit": "tools/answer-enrichment/s113-candidate-audit.v1.json",
+  "status": "CHATGPT_SEMANTIC_REVIEW_COMPLETED_STAGING_ONLY",
+  "scene_id": "S113",
+  "records": [
+    {
+      "ku_id": "w_1452_guest_ku_s01",
+      "headword": "guest",
+      "semantic_verdict": "PASS",
+      "suggested_gloss_zh": "客人；（酒店）住客",
+      "suggested_gloss_en": "a person staying at a hotel or other accommodation",
+      "collocation_verdict": "PASS",
+      "example_verdict": "PASS",
+      "contrast_verdict": "PASS",
+      "notes": "Hotel-context refinement; do not narrow the base Runtime guest sense globally."
+    },
+    {
+      "ku_id": "w_3084_reservation_ku_s01",
+      "headword": "reservation",
+      "semantic_verdict": "REVISE_GLOSS",
+      "suggested_gloss_zh": "预订；预订的房间或名额",
+      "suggested_gloss_en": "an arrangement to have a room, seat, or service kept for you in advance",
+      "collocation_verdict": "PASS",
+      "example_verdict": "PASS",
+      "contrast_verdict": "PASS",
+      "notes": "Do not mix hotel booking with the separate '保留意见' sense. Existing English gloss is generic placeholder."
+    },
+    {
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "headword": "cancellation",
+      "semantic_verdict": "REVISE_GLOSS",
+      "suggested_gloss_zh": "取消预订；取消",
+      "suggested_gloss_en": "the act of cancelling a booking or reservation",
+      "collocation_verdict": "PASS",
+      "example_verdict": "PASS_WITH_TIME_BOUNDARY_NOTE",
+      "contrast_verdict": "PASS",
+      "notes": "Do not mix hotel booking cancellation with 注销. 'until Friday' can be time-boundary ambiguous; retain as-is or clarify policy cut-off in teaching context."
+    }
+  ],
+  "identity_policy": "Preserve all source ku_id and headword identities; do not invent or renumber sense_id; these are scene-specific sense refinements and require runtime KU semantic binding validation before activation.",
+  "production_ready": false,
+  "dual_ai_status": "CHATGPT_REVIEW_ONLY_PENDING_INDEPENDENT_MUSE_REVIEW",
+  "next_batch": "Review other high-frequency S113 KUs in groups of 20-50, then extend to adjacent travel/accommodation scenes; roll forward records with both independent AI semantic passes."
+}
