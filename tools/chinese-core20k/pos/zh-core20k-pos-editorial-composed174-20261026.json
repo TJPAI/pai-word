@@ -1,0 +1,2131 @@
+{
+  "schema": "pai-word-zh-core20k-pos-editorial-composed-v1",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_data_version": "0.10.1-evidence-compat",
+  "source_git_blobs": [
+    {
+      "path": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch01-20261026.json",
+      "sha": "6a518e6efdfb855016fa4bb4b663b43f7c8c26e7"
+    },
+    {
+      "path": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+      "sha": "99eac4f9d1c9e1611d4ca535bbeeb33053d68f82"
+    },
+    {
+      "path": "tools/chinese-core20k/pos/zh-pos-batch01-02-targeted-errata-20261026.json",
+      "sha": "0723904a179944812ecca98cff66c1983fd5a110"
+    }
+  ],
+  "status": "EDITORIAL_PROPOSAL_UNCERTIFIED",
+  "production_ready": false,
+  "runtime_mutated": false,
+  "count": 174,
+  "errata_applied": 15,
+  "rows": [
+    {
+      "term": "中国",
+      "term_id": "zh_f0e9521611bb290d7b09",
+      "runtime_index": 30,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "国家名称作为专名指称，不把其中的“中”单独当词性",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "美国",
+      "term_id": "zh_58857e5318f3090b61e8",
+      "runtime_index": 68,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "国家专名，不能按单字“美”的形容词性质推导整词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "日本",
+      "term_id": "zh_cf2abf0c5be326cb922a",
+      "runtime_index": 109,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "国名专指，区别于“日”时间名词和“本”量词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "香港",
+      "term_id": "zh_d448d143c4e04eb6b4f4",
+      "runtime_index": 154,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "地名专指，可作名词性定语但仍保留专名属性",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "北京",
+      "term_id": "zh_68c77e155132565e1cbb",
+      "runtime_index": 189,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "城市名称，专名优于普通名词标签",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "国家",
+      "term_id": "zh_0cc659a9f57c24934d08",
+      "runtime_index": 52,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "在“国家政策”中名词充当定语，非形容词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "公司",
+      "term_id": "zh_e06ff957ed48e868a41b",
+      "runtime_index": 96,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这家公司”可受指示量词短语限定，中心语为名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "政府",
+      "term_id": "zh_c492716d7fe4e4eb9eb5",
+      "runtime_index": 98,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“政府决定”中虽作定语，其词汇类别仍是名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "社会",
+      "term_id": "zh_e8643de5960e57cd34c9",
+      "runtime_index": 101,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“社会发展”中的前置成分为名词性修饰，不改为形容词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "世界",
+      "term_id": "zh_33650a369521ec29f2e2",
+      "runtime_index": 112,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“全世界”中可承受范围限定的名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "人民",
+      "term_id": "zh_0cfe1b3c1bb2914b6f86",
+      "runtime_index": 150,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“广大人民”为集合名词性表达",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "企业",
+      "term_id": "zh_409d0719010a46eecde9",
+      "runtime_index": 187,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一家企业”的名词中心语，可计量",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "网站",
+      "term_id": "zh_fb8d739d08b971680e9f",
+      "runtime_index": 153,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这个网站”的名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "学生",
+      "term_id": "zh_13a58ec2074e014ae64e",
+      "runtime_index": 197,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“三名学生”具名词计量框架",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "技术",
+      "term_id": "zh_4aa1a3c6743f7d8e154a",
+      "runtime_index": 199,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一项技术”是名词；技术性的形容功能不等于词性转换",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "电影",
+      "term_id": "zh_03a3a327af684099e7e8",
+      "runtime_index": 208,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一部电影”是可受量词限定的名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "时间",
+      "term_id": "zh_8b6ff498515bcc2ffdef",
+      "runtime_index": 118,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“多少时间”是抽象名词，不能因时间状语用途直接判为副词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "地区",
+      "term_id": "zh_0b5daa927681e86358f4",
+      "runtime_index": 129,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这个地区”名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "问题",
+      "term_id": "zh_33a8618cb6710e43488a",
+      "runtime_index": 61,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一个问题”的名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "情况",
+      "term_id": "zh_461d2dabe42580d52a69",
+      "runtime_index": 149,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这种情况”为名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "历史",
+      "term_id": "zh_b0385cfe4b424d835963",
+      "runtime_index": 144,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一段历史”是名词，历史性的修饰用法属派生组合",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "文化",
+      "term_id": "zh_b12e914c1f82d6ed3a04",
+      "runtime_index": 194,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“当地文化”名词，定语位置不直接证明为形容词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "经济",
+      "term_id": "zh_6ccc7bdbacf94018650c",
+      "runtime_index": 136,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“发展经济”为名词宾语；“很经济”在省钱义时可作形容词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "政治",
+      "term_id": "zh_50eccbd02fc92c73397c",
+      "runtime_index": 139,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“研究政治”中为名词宾语；政治方面属名词定语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "生活",
+      "term_id": "zh_15d208d1b4c98aae0cba",
+      "runtime_index": 158,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“城市生活”是名词；“在这里生活”可作动词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "工作",
+      "term_id": "zh_bc62d1b6b936c78dbbd0",
+      "runtime_index": 102,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“在公司工作”中为谓语；“一份工作”是名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "活动",
+      "term_id": "zh_9e9bead81498b8980af6",
+      "runtime_index": 137,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“一次活动”为名词；“活动一下关节”是动词用法",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "组织",
+      "term_id": "zh_b4d203dea5b9121c145d",
+      "runtime_index": 147,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“组织会议”为及物动词；“一个组织”为名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "研究",
+      "term_id": "zh_4ff0f1dda80ff5936c46",
+      "runtime_index": 214,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“研究问题”及物动词；“一项研究”为名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "计划",
+      "term_id": "zh_0f6b1949b093e3526699",
+      "runtime_index": 116,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“一项计划”为名词；“计划明天出发”为动词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "要求",
+      "term_id": "zh_268d6546e069788a475b",
+      "runtime_index": 203,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“要求他来”为动词；“提出要求”为名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "影响",
+      "term_id": "zh_dfdcd4e5e7bb21697af2",
+      "runtime_index": 191,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“影响结果”为动词；“产生影响”为名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "支持",
+      "term_id": "zh_d93373f81363e3cc82f2",
+      "runtime_index": 243,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“支持改革”为动词；“得到支持”为名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "提供",
+      "term_id": "zh_9e9470471ff0185de3af",
+      "runtime_index": 200,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“提供资料”为典型动宾框架",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "使用",
+      "term_id": "zh_cdfd0b34e4918648910b",
+      "runtime_index": 135,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“使用工具”为及物动词；使用方法是动词性定语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "发生",
+      "term_id": "zh_9dea2d989fd760414474",
+      "runtime_index": 152,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“事故发生”为不及物谓语，不能直接带一般受事宾语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "知道",
+      "term_id": "zh_d7b6472b11240bd231fe",
+      "runtime_index": 108,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“知道答案”为心理动词及物结构",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "认为",
+      "term_id": "zh_31e43519db636cc395e4",
+      "runtime_index": 120,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“认为这很重要”可带命题宾语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "发现",
+      "term_id": "zh_10493d06b90f6b186f60",
+      "runtime_index": 173,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“发现问题”可带宾语；名词化表达不预设独立名词义",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "成为",
+      "term_id": "zh_a315d6754645e9b07d6f",
+      "runtime_index": 117,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“成为老师”带结果身份宾语，属变化动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "应该",
+      "term_id": "zh_2e7e26a1e92c608a6a3b",
+      "runtime_index": 142,
+      "primary_pos_candidate": "AUX",
+      "other_pos_candidates": [],
+      "reason_zh": "“应该去”表达义务性情态，需后接谓词性成分",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "必须",
+      "term_id": "zh_2c08cddfb13b0ab0376d",
+      "runtime_index": 165,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "AUX"
+      ],
+      "reason_zh": "“必须完成”主要标示义务/必要，可分析为副词或情态助动词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "可以",
+      "term_id": "zh_0ef5c86fab94f13a7b7d",
+      "runtime_index": 38,
+      "primary_pos_candidate": "AUX",
+      "other_pos_candidates": [],
+      "reason_zh": "“可以参加”是情态许可/能力结构，也可省略后续动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "需要",
+      "term_id": "zh_c9e9a062f5d588f3adb4",
+      "runtime_index": 121,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "AUX"
+      ],
+      "reason_zh": "“需要帮助”为及物动词；“需要考虑”可引出谓词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "因为",
+      "term_id": "zh_795cfc96d4b55db76a8d",
+      "runtime_index": 70,
+      "primary_pos_candidate": "SCONJ",
+      "other_pos_candidates": [
+        "ADP"
+      ],
+      "reason_zh": "“因为下雨所以取消”为原因连词；“因为这件事”也可介词化",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "如果",
+      "term_id": "zh_7ca71b72d778ca8abba4",
+      "runtime_index": 107,
+      "primary_pos_candidate": "SCONJ",
+      "other_pos_candidates": [],
+      "reason_zh": "“如果下雨就取消”标记条件从句",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "虽然",
+      "term_id": "zh_bd2b80097697b0849da8",
+      "runtime_index": 239,
+      "primary_pos_candidate": "SCONJ",
+      "other_pos_candidates": [],
+      "reason_zh": "“虽然下雨但照常进行”引导让步小句",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "但是",
+      "term_id": "zh_8cb1f721c82e7933889b",
+      "runtime_index": 143,
+      "primary_pos_candidate": "CCONJ",
+      "other_pos_candidates": [],
+      "reason_zh": "“他来了，但是没说话”连接转折分句",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "所以",
+      "term_id": "zh_a2f7e42081a8eb137efd",
+      "runtime_index": 170,
+      "primary_pos_candidate": "CCONJ",
+      "other_pos_candidates": [],
+      "reason_zh": "“下雨了，所以取消”连接结果分句",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "而且",
+      "term_id": "zh_c193ed92f77db8a74366",
+      "runtime_index": 244,
+      "primary_pos_candidate": "CCONJ",
+      "other_pos_candidates": [],
+      "reason_zh": "“便宜而且好用”连接递进或并列成分",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "我们",
+      "term_id": "zh_bcacb40df81b94b7561a",
+      "runtime_index": 25,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [],
+      "reason_zh": "第一人称复数代词，在“我们的”中以助词构成定语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "他们",
+      "term_id": "zh_10518f8f0abf21a3b5a0",
+      "runtime_index": 33,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [],
+      "reason_zh": "第三人称复数代词，用于人称指代",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "自己",
+      "term_id": "zh_fb43354d2aaece5132e0",
+      "runtime_index": 60,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [],
+      "reason_zh": "反身代词，需依据句法语境判定约束先行项",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "谁",
+      "term_id": "zh_056b9c626275cd545ba7",
+      "runtime_index": 141,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [],
+      "reason_zh": "疑问代词，“谁来了”中占名词性论元位置",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "什么",
+      "term_id": "zh_c1b52e0e64a33deadd3a",
+      "runtime_index": 43,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [
+        "DET"
+      ],
+      "reason_zh": "“这是什么”作代词；“什么问题”中为疑问限定成分",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一些",
+      "term_id": "zh_1f5163c433ead049afad",
+      "runtime_index": 177,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "PRON"
+      ],
+      "reason_zh": "“一些学生”为不定数量限定；“留一些”可独立作名词性指代",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "这些",
+      "term_id": "zh_7a590a22cd94f6877df7",
+      "runtime_index": 88,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "PRON"
+      ],
+      "reason_zh": "“这些学生”为指示限定语；“这些很好”可作代词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "区",
+      "term_id": "zh_be9a84e045e6046afe2b",
+      "runtime_index": 251,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "在“这个区”中指行政或功能分区，具有名词中心语属性",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "约",
+      "term_id": "zh_5890c084b9317bb18f67",
+      "runtime_index": 252,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“约三十人”在数字前表示近似；“约朋友见面”表示邀约，为另一个动词词义",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一直",
+      "term_id": "zh_5a2650501f0eb052db03",
+      "runtime_index": 253,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [],
+      "reason_zh": "“一直等到天黑”修饰动作持续时间，不能按“一+直”拆成数词和形容词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "么",
+      "term_id": "zh_073339935f0c9b3c3458",
+      "runtime_index": 254,
+      "primary_pos_candidate": "PART",
+      "other_pos_candidates": [],
+      "reason_zh": "“这么、那么、怎么”中承担构词/语法成分，不宜作为独立实体名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "者",
+      "term_id": "zh_5618dc0903030d38d24c",
+      "runtime_index": 255,
+      "primary_pos_candidate": "PART",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“读者、记者”中为名词化后缀；“强者”可整体指人，但“者”独立词性边界有争议",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "市场",
+      "term_id": "zh_9c1e8bd22488de3be50d",
+      "runtime_index": 256,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“进入市场”和“一个市场”均以交易领域或场所为名词宾语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "城市",
+      "term_id": "zh_ed84a1665f79b6ca43e8",
+      "runtime_index": 257,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这座城市”能受量词“座”限定，为普通名词而非具体专名",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "太",
+      "term_id": "zh_e7ace7adf264b714b8ea",
+      "runtime_index": 258,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [],
+      "reason_zh": "“太贵了”程度副词，修饰后接形容词而不自身充当形容词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "家",
+      "term_id": "zh_c8ae97be80f3867c089e",
+      "runtime_index": 259,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "CLF"
+      ],
+      "reason_zh": "“回家”指居所名词；“三家公司”中的“家”为单位量词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "继续",
+      "term_id": "zh_7c9691192f1b73408bbe",
+      "runtime_index": 260,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“继续往前走”中状语位置不自动证明副词类；需独立词汇分布验证。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "EVIDENCE_INSUFFICIENT",
+      "source_reason_zh": "“继续工作”作为延续行为的动词，“继续往前走”也可分析为状语用法",
+      "editorial_warning": "EVIDENCE_INSUFFICIENT"
+    },
+    {
+      "term": "最后",
+      "term_id": "zh_445905122e87b9907cf5",
+      "runtime_index": 261,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“到了最后”可名词化指终点；“最后完成”作时间顺序副词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "由于",
+      "term_id": "zh_c8de8fb6cc1247754570",
+      "runtime_index": 262,
+      "primary_pos_candidate": "ADP",
+      "other_pos_candidates": [
+        "SCONJ"
+      ],
+      "reason_zh": "“由于天气原因”引入原因成分，“由于下雨，比赛取消”引导因果从句",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "东西",
+      "term_id": "zh_b1813501860b58c2bf43",
+      "runtime_index": 263,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这些东西”指物品的普通名词；东西方向在其它语境为另一名词义",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "教育",
+      "term_id": "zh_c883995ff5ab5961b4f6",
+      "runtime_index": 264,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“接受教育”为名词，“教育孩子”则为及物动词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "之后",
+      "term_id": "zh_28ff471d9a227562ea95",
+      "runtime_index": 265,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADP"
+      ],
+      "reason_zh": "“三天之后”可按时间方位词/后置关系词分析，单凭后置位置无法选定标签。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "TAXONOMY_DEPENDENT",
+      "source_reason_zh": "“三天之后”构成方位时间结构；作为后置关系词与时间名词分析依体系而异",
+      "editorial_warning": "TAXONOMY_DEPENDENT"
+    },
+    {
+      "term": "内容",
+      "term_id": "zh_7a688306423bec17ca6b",
+      "runtime_index": 266,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“具体内容”是可受形容词限定的名词性成分",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "对于",
+      "term_id": "zh_9b9ebc2e3aa73164bcdf",
+      "runtime_index": 267,
+      "primary_pos_candidate": "ADP",
+      "other_pos_candidates": [],
+      "reason_zh": "“对于这个问题”引入话题/对象，不能按“对+于”逐字判类",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "许多",
+      "term_id": "zh_1df1ae654a196b96cff4",
+      "runtime_index": 268,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“许多学生”是表示数量范围的限定成分；“学生许多”不自然，区别普通形容词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "问",
+      "term_id": "zh_4628c0e06f4b378d3399",
+      "runtime_index": 269,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“问老师一个问题”典型双宾语动词框架",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "特别",
+      "term_id": "zh_f02c4801c1c04ee312de",
+      "runtime_index": 270,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“特别喜欢”是程度副词，“特别的礼物”可作形容词修饰",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "获得",
+      "term_id": "zh_614b43059f310b31d06d",
+      "runtime_index": 271,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“获得批准”带宾语，典型获得类及物动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "开",
+      "term_id": "zh_39eae64cfc41ef3799b2",
+      "runtime_index": 272,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“开门”是动作动词；“门开着”表示结果状态，形容词分析依体系",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "目前",
+      "term_id": "zh_937f63a4fb51ec9e264c",
+      "runtime_index": 273,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“截至目前”以时间名词构成介词宾语；“目前尚未”呈时间状语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "runtime_index": 274,
+      "primary_pos_candidate": "NUM",
+      "other_pos_candidates": [
+        "DET"
+      ],
+      "reason_zh": "“两个孩子”是数词“二”的表层数量结构，含量词“个”，整体也发挥限定功能",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "资料",
+      "term_id": "zh_cba1ec75f4ca2162a80d",
+      "runtime_index": 275,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“查阅资料”作名词宾语；不可直接标为动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "学校",
+      "term_id": "zh_dc6e2aafeb9e125b69d1",
+      "runtime_index": 276,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一所学校”可用学校场所名词和量词“所”搭配",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "大学",
+      "term_id": "zh_4513bba5432d9eff5d7f",
+      "runtime_index": 277,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一所大学”是普通机构名词，具体校名另行标为专名",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "朋友",
+      "term_id": "zh_677aad1a0ee44cd64f79",
+      "runtime_index": 278,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“三个朋友”为人称类别普通名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "方式",
+      "term_id": "zh_91697a026c35d9c09733",
+      "runtime_index": 279,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“这种方式”名词中心语，用法上表示方法",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "站",
+      "term_id": "zh_2978ed85cb04ac1b0bf1",
+      "runtime_index": 280,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN",
+        "CLF"
+      ],
+      "reason_zh": "“站起来”动词；“车站的一站”可作站点名词或距离单位",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "表示",
+      "term_id": "zh_17efc6654ed280c70117",
+      "runtime_index": 282,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“表示感谢”及物动词；“这个符号表示停止”也有谓语功能",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "关于",
+      "term_id": "zh_52d25a9e30ba94f1fd31",
+      "runtime_index": 283,
+      "primary_pos_candidate": "ADP",
+      "other_pos_candidates": [],
+      "reason_zh": "“关于预算的报告”引入主题对象，为介词结构",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "安全",
+      "term_id": "zh_afb63a620bdcff15d8cd",
+      "runtime_index": 284,
+      "primary_pos_candidate": "ADJ",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“非常安全”形容词；“保障安全”以抽象性质名词作宾语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "因",
+      "term_id": "zh_a397a1ebc005a6d3413d",
+      "runtime_index": 285,
+      "primary_pos_candidate": "ADP",
+      "other_pos_candidates": [
+        "SCONJ"
+      ],
+      "reason_zh": "“因天气恶劣”引入原因，在“因…而…”句式有连接功能",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "成",
+      "term_id": "zh_55466f4976ec50afbd4f",
+      "runtime_index": 286,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "ADP"
+      ],
+      "reason_zh": "“变成老师”表结果变化动词；“分成两组”的结果标记有介词化分析",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "写",
+      "term_id": "zh_eecaf7bb139f9c37a82f",
+      "runtime_index": 287,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“写文章”有直接宾语，典型行为动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "runtime_index": 288,
+      "primary_pos_candidate": "NUM",
+      "other_pos_candidates": [
+        "DET"
+      ],
+      "reason_zh": "“一种办法”是数词+量词组成的数量短语，整体承担限定功能",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "runtime_index": 289,
+      "primary_pos_candidate": "CLF",
+      "other_pos_candidates": [],
+      "reason_zh": "“元素”不能证明“元”独立作名词；货币单位义暂保待词性体系确认。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“五十元”是货币单位量词；“元素”中‘元’另有构词意义",
+      "editorial_warning": null
+    },
+    {
+      "term": "孩子",
+      "term_id": "zh_5f887419f463425a6f06",
+      "runtime_index": 290,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“两个孩子”为可数人称类别名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "打",
+      "term_id": "zh_c6d764df544b17199c30",
+      "runtime_index": 291,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“打电话”“打篮球”动词搭配丰富；不能据单字直接推断具体动作义",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "大家",
+      "term_id": "zh_16b54b7ab3b5e9841d72",
+      "runtime_index": 292,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“大家都来了”集合代词指称；“大家风范”属于另一名词词义",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "部分",
+      "term_id": "zh_1bb5512d7923a6f19ea6",
+      "runtime_index": 293,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "DET"
+      ],
+      "reason_zh": "“整体的一部分”为名词；“部分学生”量化限定使用与名词义不同",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "运动",
+      "term_id": "zh_a9d130d79595672c8023",
+      "runtime_index": 294,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“参加运动”名词；“关节运动起来”可作动词谓语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "死",
+      "term_id": "zh_586af0c5092c7ad8c837",
+      "runtime_index": 295,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“人死了”是变化动词；“死树”表示状态性形容词义",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "非常",
+      "term_id": "zh_2ccec3b4199d4dcb4634",
+      "runtime_index": 296,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [],
+      "reason_zh": "“非常重要”程度副词，主要用于形容词或状态性谓语前",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "很多",
+      "term_id": "zh_1aa654f506a96754f92e",
+      "runtime_index": 297,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“很多人”是数量限定语，独立作谓语“钱很多”具有形容词性分析",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "见",
+      "term_id": "zh_b1c57d1cf6573f2e9387",
+      "runtime_index": 298,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“见朋友”“见过他”带宾语的见面或感知动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "分",
+      "term_id": "zh_b6a993c256ef577abb04",
+      "runtime_index": 299,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN",
+        "CLF"
+      ],
+      "reason_zh": "“三分”存在分数/时间单位歧义，不能单凭此例确定量词身份。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REPLACE_EVIDENCE_ONLY",
+      "source_reason_zh": "“分苹果”动词，“得了高分”名词，“三分”表示分数/时间单位",
+      "editorial_warning": "REPLACE_EVIDENCE_ONLY"
+    },
+    {
+      "term": "新闻",
+      "term_id": "zh_d39567b2b9f17d731d9b",
+      "runtime_index": 300,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一条新闻”可被量词“条”计量，属事件报道名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "买",
+      "term_id": "zh_2cd2507d65de178ff6e3",
+      "runtime_index": 301,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“买东西”及物购买动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "叫",
+      "term_id": "zh_b71852847d38252f4913",
+      "runtime_index": 302,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“叫他的名字”和“叫他过来”均为动词，语义框架不同",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "自由",
+      "term_id": "zh_d1047eed5dd5db0db2da",
+      "runtime_index": 303,
+      "primary_pos_candidate": "ADJ",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“很自由”形容词；“争取自由”抽象名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "建设",
+      "term_id": "zh_1a58afef9fd12de25f84",
+      "runtime_index": 304,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“建设城市”动词；“基础设施建设”名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "图",
+      "term_id": "zh_8013578e5e8731a68143",
+      "runtime_index": 305,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“一张图”为名词；“图方便”可解释为企图/谋求动词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "台湾",
+      "term_id": "zh_33db161daa042c42b9f9",
+      "runtime_index": 306,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "特定地理区域专名，可作定语而不改变专名身份",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "曾",
+      "term_id": "zh_5a8650445fc66c15d36a",
+      "runtime_index": 308,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [],
+      "reason_zh": "“曾去过北京”表示既往经历的时间副词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "那些",
+      "term_id": "zh_abd258db99698637abed",
+      "runtime_index": 309,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "PRON"
+      ],
+      "reason_zh": "“那些书”作指示限定语；“那些已经走了”可独立指称",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "参加",
+      "term_id": "zh_041ef3e9eb873e90b4d8",
+      "runtime_index": 310,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“参加会议”有事件名词宾语的参与动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "当时",
+      "term_id": "zh_9819d260756e945655f2",
+      "runtime_index": 311,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“在当时”可作时间名词宾语；“当时没注意”作时间状语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "过去",
+      "term_id": "zh_3774af744856e7f5a705",
+      "runtime_index": 312,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN",
+        "ADV"
+      ],
+      "reason_zh": "“走过去”中“过去”为趋向补语，不是独立动词的充分证据；另用“过去看看”检验。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REPLACE_EVIDENCE_ONLY",
+      "source_reason_zh": "“走过去”趋向补语，“回顾过去”时间名词，“过去经常”时间状语",
+      "editorial_warning": "REPLACE_EVIDENCE_ONLY"
+    },
+    {
+      "term": "完全",
+      "term_id": "zh_c9174343f70d61ed190f",
+      "runtime_index": 313,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [],
+      "reason_zh": "“过程很完全”搭配不自然，不足以支持形容词类；暂保副词。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“完全同意”程度副词；“过程很完全”少见，形容词义使用受限",
+      "editorial_warning": null
+    },
+    {
+      "term": "产品",
+      "term_id": "zh_aea82737cc01867d9d23",
+      "runtime_index": 314,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一种产品”是名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "即",
+      "term_id": "zh_7acc85882aa08d1ab67c",
+      "runtime_index": 315,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "CCONJ"
+      ],
+      "reason_zh": "“即将开始”表示紧接时间；“A即B”有解释/等同连接功能",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "道",
+      "term_id": "zh_00a9d5bd97c269b44f95",
+      "runtime_index": 316,
+      "primary_pos_candidate": "CLF",
+      "other_pos_candidates": [
+        "NOUN",
+        "VERB"
+      ],
+      "reason_zh": "“道路”不能作独立“道”的名词例证；可用“一条道”检验。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REPLACE_EVIDENCE_ONLY",
+      "source_reason_zh": "“一道题”量词；“道路”中是名词语素，“道出真相”为说出动词",
+      "editorial_warning": "REPLACE_EVIDENCE_ONLY"
+    },
+    {
+      "term": "会议",
+      "term_id": "zh_63d30f1a037d0771a3b3",
+      "runtime_index": 317,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“召开会议”是事件名词宾语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "单位",
+      "term_id": "zh_80b19d68b1494dac82aa",
+      "runtime_index": 318,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“十个单位”里“个”才是量词；“单位”仍是名词。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“工作单位”是名词，“十个单位”数量结构中单位为计量名词",
+      "editorial_warning": null
+    },
+    {
+      "term": "有关",
+      "term_id": "zh_85c9eab139fec8235de6",
+      "runtime_index": 319,
+      "primary_pos_candidate": "ADJ",
+      "other_pos_candidates": [
+        "VERB"
+      ],
+      "reason_zh": "“有关部门”为形容性修饰语；“此事与他有关”关系性谓词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "相关",
+      "term_id": "zh_7dfa43a32757b9c5007a",
+      "runtime_index": 320,
+      "primary_pos_candidate": "ADJ",
+      "other_pos_candidates": [],
+      "reason_zh": "“相关资料”“密切相关”描述关联属性，不是关系介词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "生产",
+      "term_id": "zh_76ab7d3b41f2326d7999",
+      "runtime_index": 321,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“生产汽车”动词；“工业生产”可作名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "得到",
+      "term_id": "zh_6805c7479b746a484ecb",
+      "runtime_index": 322,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“得到批准”是结果性获得动词，不能按‘得+到’逐字判类",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "建立",
+      "term_id": "zh_da34023b4bdaa4d8201b",
+      "runtime_index": 323,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“建立制度”有直接宾语的建立类动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "runtime_index": 324,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“国内市场”为方位/范围名词修饰，“在国内”可作方位宾语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "然后",
+      "term_id": "zh_ca4f5ee82e28628d1e14",
+      "runtime_index": 325,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "CCONJ"
+      ],
+      "reason_zh": "“先检查，然后提交”表承接连接，也可视为句间连接副词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "天",
+      "term_id": "zh_49da61ceeea2f2714263",
+      "runtime_index": 326,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "CLF"
+      ],
+      "reason_zh": "“今天是晴天”名词，“住三天”时间量词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "委员会",
+      "term_id": "zh_43c835c56a280f271622",
+      "runtime_index": 327,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“成立委员会”表示机构类普通名词，具体组织名称才是专名",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "选择",
+      "term_id": "zh_c11330b85234f9c0ad40",
+      "runtime_index": 328,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“选择课程”动词，“一种选择”名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "总",
+      "term_id": "zh_a2fdeab4826b76259b93",
+      "runtime_index": 329,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“总不来”频度副词，“总金额”中有总体属性的修饰用法",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "那个",
+      "term_id": "zh_fa6e73c549c6fe699bb1",
+      "runtime_index": 330,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "PRON"
+      ],
+      "reason_zh": "“那个学校”指示限定语；“那个很好”可以独立指称",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "人口",
+      "term_id": "zh_6909fc6ad79b398d70eb",
+      "runtime_index": 331,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“该地区人口”是人口数量的名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "领导",
+      "term_id": "zh_e7da3c16782e2da6912d",
+      "runtime_index": 332,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“领导团队”动词，“一位领导”职务人物名词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一切",
+      "term_id": "zh_f44b862142d99d4968ce",
+      "runtime_index": 333,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [
+        "DET"
+      ],
+      "reason_zh": "“一切都好”独立指称整体；“一切问题”作泛指限定语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一次",
+      "term_id": "zh_d736c7e459521de9cfa4",
+      "runtime_index": 334,
+      "primary_pos_candidate": "NUM",
+      "other_pos_candidates": [],
+      "reason_zh": "“再试一次”里的“一次”为数量补语，句法位置不等于副词词性。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“一次会议”数词量词结构；“再试一次”计次状语",
+      "editorial_warning": null
+    },
+    {
+      "term": "正",
+      "term_id": "zh_d657ee1d4abbab428311",
+      "runtime_index": 335,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“正在”是另一个词，应以“他正写作业”证明“正”独立作副词。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REPLACE_EVIDENCE_ONLY",
+      "source_reason_zh": "“正在”进行时副词成分；“很正”的正直/端正义为形容词",
+      "editorial_warning": "REPLACE_EVIDENCE_ONLY"
+    },
+    {
+      "term": "无法",
+      "term_id": "zh_402590868fff593d9c75",
+      "runtime_index": 336,
+      "primary_pos_candidate": "AUX",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“无法完成”是否定能力的情态性结构，“无法解释”可分析为状语",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "应",
+      "term_id": "zh_6244c4c963a8b55a89cf",
+      "runtime_index": 337,
+      "primary_pos_candidate": "AUX",
+      "other_pos_candidates": [],
+      "reason_zh": "“回应”中“应”是语素，“应遵守规定”才可证明独立情态用法。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“应当遵守”情态助动词，古典/正式语域“回应”中属另一个动词语素",
+      "editorial_warning": null
+    },
+    {
+      "term": "进入",
+      "term_id": "zh_f88182fcd575be3acf9e",
+      "runtime_index": 338,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“进入学校”方向性动词带处所宾语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "另",
+      "term_id": "zh_f52fec16b7b4ffccf559",
+      "runtime_index": 339,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“另一个方案”为限定语，“另行通知”中表达另外的副词性质",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "记者",
+      "term_id": "zh_5df8707c1e58ee5d8836",
+      "runtime_index": 340,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一名记者”从事新闻报道的人物类别名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "能够",
+      "term_id": "zh_ce1270fee4fa7ee486cc",
+      "runtime_index": 341,
+      "primary_pos_candidate": "AUX",
+      "other_pos_candidates": [],
+      "reason_zh": "“能够解决”表示能力或条件许可，通常作为情态助动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "管理",
+      "term_id": "zh_bb6d995724f49a72e190",
+      "runtime_index": 342,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“管理公司”动词，“企业管理”可以名词化",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "上海",
+      "term_id": "zh_4906a49adc5c472b3448",
+      "runtime_index": 344,
+      "primary_pos_candidate": "PROPN",
+      "other_pos_candidates": [],
+      "reason_zh": "城市地名专指，虽可修饰普通名词但保持专名性质",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "党",
+      "term_id": "zh_cc0b50fd16d7eb5a2fc5",
+      "runtime_index": 345,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一个党”泛指政党组织，具体党派名称才是专名",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "个人",
+      "term_id": "zh_15dec507959ec950e366",
+      "runtime_index": 346,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“个人看法”为名词性定语，不足以证明词汇类别是形容词。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“一个人”名词性指称，“个人看法”为与个体相关的限定性修饰",
+      "editorial_warning": null
+    },
+    {
+      "term": "便",
+      "term_id": "zh_b33cf8e29901d129a101",
+      "runtime_index": 347,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [],
+      "reason_zh": "“方便”是整词，不证明“便”独立作动词。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“便开始”接续副词；“方便”的便属于构词，不能直接当独立动词",
+      "editorial_warning": null
+    },
+    {
+      "term": "完成",
+      "term_id": "zh_c0b3fbff51ccc40b8bf1",
+      "runtime_index": 348,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“完成任务”表示动作达成的及物动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一般",
+      "term_id": "zh_91e25f4ddc6f6cd81cfe",
+      "runtime_index": 349,
+      "primary_pos_candidate": "ADJ",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“一般情况”形容词，“一般不会”表通常情况副词",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "发",
+      "term_id": "zh_05b5d32c723ad7039cec",
+      "runtime_index": 350,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“发邮件”动词；“发芽”中也表产生、发生过程",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "达",
+      "term_id": "zh_f5908d2dfbe8906706a4",
+      "runtime_index": 351,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“达到标准”中表抵达或达到的动词性质",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "本",
+      "term_id": "zh_83831c3f910cf940c661",
+      "runtime_index": 352,
+      "primary_pos_candidate": "DET",
+      "other_pos_candidates": [
+        "CLF"
+      ],
+      "reason_zh": "“书本”不能证明“本”独立作名词；“三本书”仍可证明量词。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“本项目”指示限定，“三本书”量词，“书本”中为名词语素",
+      "editorial_warning": null
+    },
+    {
+      "term": "干",
+      "term_id": "zh_9ee0280bc49cff49f255",
+      "runtime_index": 353,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“干活”动词，“衣服很干”形容词，两者读音/词义可能不同",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "环境",
+      "term_id": "zh_904dd029c768820dedff",
+      "runtime_index": 354,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“良好环境”受形容词修饰，作名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "网络",
+      "term_id": "zh_97b31b5d63f57e519643",
+      "runtime_index": 355,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一个网络”指互联结构或通信网络的普通名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "runtime_index": 356,
+      "primary_pos_candidate": "CLF",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“著名”中“名”是构词语素而非独立形容词证据。",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+      "erratum_type": "REMOVE_UNSUPPORTED_SECONDARY",
+      "source_reason_zh": "“三名学生”人数量词，“姓名”中为名词语素，“名作”中作修饰语素",
+      "editorial_warning": null
+    },
+    {
+      "term": "称",
+      "term_id": "zh_2de164d9671b38afb61d",
+      "runtime_index": 357,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“称他为专家”及物称谓动词框架",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "找",
+      "term_id": "zh_c277be8a4b92ee421a23",
+      "runtime_index": 358,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“找工作”有直接宾语的寻找动词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "提出",
+      "term_id": "zh_d02ae04518bbce10d3f4",
+      "runtime_index": 359,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“提出建议”带抽象名词宾语，典型述宾搭配",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "一点",
+      "term_id": "zh_148b16e60318fa66c5ee",
+      "runtime_index": 360,
+      "primary_pos_candidate": "NUM",
+      "other_pos_candidates": [
+        "ADV"
+      ],
+      "reason_zh": "“一点水”为数量结构；“快一点”表示程度或差量",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "保护",
+      "term_id": "zh_0f810a7901cf042261fa",
+      "runtime_index": 361,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [
+        "NOUN"
+      ],
+      "reason_zh": "“保护环境”动词，“生态保护”名词化活动名称",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "甚至",
+      "term_id": "zh_32962a1037e45d878a65",
+      "runtime_index": 362,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "CCONJ"
+      ],
+      "reason_zh": "“甚至没有通知”是递进强调副词，连接更强项时具有连接词作用",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "民主",
+      "term_id": "zh_012caf1f9222e7b4e21e",
+      "runtime_index": 363,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [
+        "ADJ"
+      ],
+      "reason_zh": "“争取民主”抽象名词，“民主决策”中具形容性限定",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "当然",
+      "term_id": "zh_0002e2d87fe9c9ab93de",
+      "runtime_index": 364,
+      "primary_pos_candidate": "ADV",
+      "other_pos_candidates": [
+        "INTJ"
+      ],
+      "reason_zh": "“当然可以”是肯定的语气副词，独立回答“当然！”具应答语性质",
+      "certainty": "MEDIUM",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "事件",
+      "term_id": "zh_c560201b331c54435b44",
+      "runtime_index": 365,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一起事件”可计数事件名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "过程",
+      "term_id": "zh_15b18a0a2ad921654e7e",
+      "runtime_index": 366,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“整个过程”为表示进行阶段的名词中心语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "视频",
+      "term_id": "zh_c20f7618d330a854e70c",
+      "runtime_index": 367,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一个视频”表示影像内容文件的名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "您",
+      "term_id": "zh_9bbfbbc76f7ac5e0f162",
+      "runtime_index": 368,
+      "primary_pos_candidate": "PRON",
+      "other_pos_candidates": [],
+      "reason_zh": "对受话人的敬称代词，区别普通名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "机构",
+      "term_id": "zh_4b8c5d61d15566c0c0cc",
+      "runtime_index": 369,
+      "primary_pos_candidate": "NOUN",
+      "other_pos_candidates": [],
+      "reason_zh": "“一家机构”表示组织实体的普通名词",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    },
+    {
+      "term": "玩",
+      "term_id": "zh_7d6739abb05e10909ca8",
+      "runtime_index": 370,
+      "primary_pos_candidate": "VERB",
+      "other_pos_candidates": [],
+      "reason_zh": "“玩游戏”动词带活动宾语",
+      "certainty": "HIGH",
+      "source_pos": null,
+      "status": "AI_EDITORIAL_PROPOSAL_NOT_CERTIFIED"
+    }
+  ]
+}
