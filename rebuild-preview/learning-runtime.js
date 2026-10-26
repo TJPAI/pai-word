@@ -250,13 +250,13 @@
     const approvedCard=approvedOverlay?.enabled===true&&approvedOverlay.accepted instanceof Map?approvedOverlay.accepted.get(u.s.ku_id):null;
     // Enrich the EXISTING answer page only; optional certified fields never alter learning state.
     const certifiedText=(key)=>typeof approvedCard?.[key]==='string'?approvedCard[key].trim():'';
-    const runtimeGloss=typeof u.s.definition==='string'?u.s.definition.trim():'';
-    const approvedGlossText=certifiedText('gloss_en')||runtimeGloss;
     // Issue #1 Batch93: language-approved, ISOLATED engineering test only.
     // Keep B217 KU_ANCHORED_SENSE IDs, do not alter runtime/SRS or production overlay.
     const batch93=window.PAI_BATCH93_ISOLATED?.enabled===true
       &&window.PAI_BATCH93_ISOLATED.accepted instanceof Map
       &&!approvedCard?window.PAI_BATCH93_ISOLATED.accepted.get(u.s.ku_id):null;
+    const runtimeGloss=typeof u.s.definition==='string'?u.s.definition.trim():'';
+    const approvedGlossText=certifiedText('gloss_en')||(batch93?.gloss_en||'')||runtimeGloss;
     const batch93Example=batch93&&state.showExamples?`<div class="answer-section examples-section" data-batch93-isolated-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">Batch93 双AI通过 · 隔离集成测试</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en">${escapeHtml(batch93.example_en)}</div><div class="example-translation">${escapeHtml(batch93.example_zh)}</div></div><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(batch93.example_en)}" aria-label="播放例句 1">🔊</button></div></div>`:'';
     const batch93Explanation=batch93&&batch93.explanation_zh?`<div class="answer-section" data-batch93-explanation><div class="answer-label">教学提示</div><div class="definition">${escapeHtml(batch93.explanation_zh)}</div></div>`:'';
     const approvedGloss=approvedGlossText?`<div class="answer-section" data-approved-gloss-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">英文释义</div><div class="definition">${escapeHtml(approvedGlossText)}</div></div>`:'';
