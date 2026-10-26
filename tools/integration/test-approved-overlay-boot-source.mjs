@@ -15,4 +15,6 @@ const boot=fs.readFileSync('scripts/core20k-approved-overlay-boot.mjs','utf8');
 for(const reason of ['release_gate','unsigned_distribution','distribution_hash_mismatch']){
  assert(boot.includes("return epoch===bootEpoch?fail('"+reason+"')"),'stale async failure must not clear newer overlay: '+reason);
 }
+assert(boot.includes('response.redirected===true'),'reject redirected responses');
+assert(boot.includes("approvedOverlaySourceUrl(response.url,import.meta.url)!==url"),'verify final response URL matches pinned requested URL');
 console.log('PASS approved overlay boot refuses cross-origin/unsafe URLs and stays default-off');
