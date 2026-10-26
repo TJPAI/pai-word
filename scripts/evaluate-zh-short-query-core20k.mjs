@@ -38,13 +38,16 @@ for(const f of gold.fixtures){
  for(const c of result.candidates)assert.equal(c.tokens.join(''),f.query.normalize('NFC'),'LOSSY '+f.query);
  const goldFound=result.candidates.some(c=>JSON.stringify(c.tokens)===JSON.stringify(f.expected_tokens));
  const missingGoldTokens=[...new Set(f.expected_tokens.filter(t=>!dict.has(t.normalize('NFC'))))];
+ const fallbackCompatible=missingGoldTokens.filter(t=>Array.from(t.normalize('NFC')).length===1);
+ const missingMultiCharTokens=missingGoldTokens.filter(t=>Array.from(t.normalize('NFC')).length>1);
  const goldIsLossless=f.expected_tokens.join('')===result.normalizedQuery;
  assert(goldIsLossless,'GOLD_ANNOTATION_NOT_LOSSLESS '+f.query);
  const diagnosis=goldFound?'GOLD_IN_TOP20':
-  missingGoldTokens.length?'GOLD_TOKENS_ABSENT_FROM_RUNTIME':
+  missingMultiCharTokens.length?'GOLD_MULTICHAR_TOKENS_ABSENT_FROM_RUNTIME':
   'GOLD_VALID_BUT_PRUNED_OR_RANKED_OUT';
  checks.push({query:f.query,gold_found:goldFound,diagnosis,
-  missing_gold_tokens:missingGoldTokens,candidates:result.candidates.length,elapsed_ms:ms,
+  missing_gold_tokens:missingGoldTokens,missing_multichar_tokens:missingMultiCharTokens,
+  fallback_compatible_single_chars:fallbackCompatible,candidates:result.candidates.length,elapsed_ms:ms,
   gold_tokens_all_in_runtime:missingGoldTokens.length===0,top_candidate:result.candidates[0].tokens});
 }
 const observed=checks.filter(x=>x.gold_found).length;
