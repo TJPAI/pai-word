@@ -1,0 +1,31 @@
+{
+  "schema": "pai-word-zh-compositional4-negative-ablation-v1",
+  "date": "2026-10-27",
+  "role": "CG-ZH",
+  "status": "LOCAL_MEASURED_NONPRODUCTION",
+  "source_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "note": "Full raw local report is available as conversation artifact; this isolated GitHub asset is an editorial handoff only",
+  "query_count": 20,
+  "changed_top": 15,
+  "negated_mentions_preserved_as_tokens": 4,
+  "boundary_risk_examples": [
+    {
+      "query": "火车票务服务",
+      "new_top": [
+        "火车票",
+        "务",
+        "服务"
+      ]
+    },
+    {
+      "query": "单人间隔离要求",
+      "new_top": [
+        "单人间",
+        "隔离",
+        "要求"
+      ]
+    }
+  ],
+  "production_ready": false,
+  "scene500_recommendation_evaluated": false
+}
