@@ -1,0 +1,17 @@
+{
+  "schema": "pai-word-zh-scope-v3-adversarial-binding-audit",
+  "status": "PASS_FOR_CURATED_RELATIONS_ONLY",
+  "source_annotation_count": 16,
+  "v2_allows_cross_clause_operator_mutation": true,
+  "curated_relation_checks": 4,
+  "wrong_relation_mutation_rejected": true,
+  "example": {
+    "query": "不要单人间，换双人间",
+    "target": "单人间",
+    "invalid_operator": "换",
+    "correct_operator": "不要",
+    "issue": "Both spans valid yet relation is incorrect"
+  },
+  "semantic_generalization_verified": false,
+  "production_ready": false
+}
