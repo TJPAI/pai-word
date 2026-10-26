@@ -1,0 +1,36 @@
+{
+  "schema": "pai-word-zh-compositional-phrase-ablation-v1",
+  "date": "2026-10-27",
+  "role": "CG-ZH",
+  "status": "EDITORIAL_ABLATION_NOT_CERTIFIED",
+  "production_ready": false,
+  "changes_runtime": false,
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_runtime_terms": 20000,
+  "method": "Runtime exact terms plus isolated experimental phrase surface Set; same segmentation algorithm and same 25 editorial gold queries, no production code or source word membership change",
+  "extra_phrase_surfaces": [
+    "火车票",
+    "单人间",
+    "网购",
+    "绘本"
+  ],
+  "baseline_gold_recall": {
+    "1": 18,
+    "5": 21,
+    "10": 21,
+    "20": 21
+  },
+  "overlay_gold_recall": {
+    "1": 20,
+    "5": 25,
+    "10": 25,
+    "20": 25
+  },
+  "scope_limitations": [
+    "Four phrase surfaces explicitly selected from the four baseline misses; evaluation is in-sample and therefore not independent generalization",
+    "Gold segmentation recall is not Scene500 Top5 relevance or semantic correctness",
+    "No independent negative-query leakage test or blind expert review",
+    "Do not merge phrase additions into frozen Core20K membership or Scene500 engine by default"
+  ],
+  "recommendation": "HOLD_FOR_INDEPENDENT_A_B_AND_NEGATIVE_QUERY_EVALUATION"
+}
