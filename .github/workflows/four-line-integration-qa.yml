@@ -14,6 +14,8 @@ on:
       - 'rebuild-preview/learning-runtime.js'
       - 'rebuild-preview/ku-durable-store.js'
       - 'rebuild-preview/home-dashboard.js'
+      - 'home-dashboard.css'
+      - 'learning.css'
       - 'rebuild-preview/scene500-recommendation-bridge.mjs'
   workflow_dispatch:
 permissions:
@@ -43,6 +45,9 @@ jobs:
         run: |
           node --check rebuild-preview/scene500-recommendation-bridge.mjs
           node -e "const fs=require('fs');const b=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8'),h=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');if(!b.includes('runtimeDataVersion:instance?.mode')||!h.includes('diagnostic=bridge.status?.()')||!h.includes('lexiconVerifiedLoaded,elapsedMs:'))throw Error('NO_RUNTIME_VERSION_BRIDGE');console.log('PASS runtime diagnostic wiring')"
+      - name: Check compact home query and settings heading alignment
+        run: |
+          node -e "const fs=require('fs'),assert=require('assert');const h=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8'),c=fs.readFileSync('home-dashboard.css','utf8'),l=fs.readFileSync('learning.css','utf8');assert(h.includes('rows=\"2\" placeholder='));assert(c.includes('min-height:74px;max-height:160px'));assert(l.includes('.panel-screen .panel-top h2{margin:0 0 0 4px;line-height:1.25;align-self:center}'));console.log('PASS compact query and settings title alignment')"
       - name: Execute home engine status display assertions
         run: node tools/integration/test-home-engine-status.mjs
       - name: Check home status copy is not stale or overclaiming
