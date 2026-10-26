@@ -190,3 +190,13 @@
 .learning-screen .pai-scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;color:#a3aeba;font-size:18px;font-weight:500;white-space:nowrap}
 .learning-screen .pai-scratch-hint small{display:block;margin-top:7px;font-size:13px;font-weight:400}
 .learning-screen .pai-scratch-hint[hidden]{display:none}
+
+/* Explicit drawing mode overlays every element above the rating controls. */
+.learning-screen{position:relative}
+.learning-screen .pai-scratch-area:not(.is-drawing){touch-action:pan-x pan-y}
+.learning-screen .pai-scratch-area:not(.is-drawing) .pai-scratch-canvas{touch-action:pan-x pan-y}
+.learning-screen .pai-scratch-area.is-drawing{position:absolute!important;z-index:15;margin:0!important;max-height:none!important;min-height:0!important;background:var(--surface,#fff);touch-action:none}
+.learning-screen .pai-scratch-area.is-drawing .pai-scratch-canvas{width:100%;height:100%;touch-action:none}
+.learning-screen .pai-scratch-area.is-drawing .pai-scratch-hint{display:none}
+.learning-screen .recall-correction{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.learning-screen .recall-correction button{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
