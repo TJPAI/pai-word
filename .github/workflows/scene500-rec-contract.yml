@@ -45,6 +45,14 @@ jobs:
             "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json" \
             "$RUNNER_TEMP/scene500/v094-lexical-associations.json" \
             | tee "$RUNNER_TEMP/scene500/holdout-report.json"
+      - name: Measure 20 fresh generalization queries without a pass threshold
+        run: |
+          set -o pipefail
+          node scene500-recommendation/qa/evaluate-generalization-probe.mjs \
+            "$RUNNER_TEMP/scene500/catalog-v0.2.json" \
+            "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json" \
+            "$RUNNER_TEMP/scene500/v094-lexical-associations.json" \
+            | tee "$RUNNER_TEMP/scene500/generalization-probe.json"
       - name: Upload Hybrid query report
         if: always()
         uses: actions/upload-artifact@v4
@@ -53,4 +61,5 @@ jobs:
           path: |
             ${{ runner.temp }}/scene500/hybrid-report.json
             ${{ runner.temp }}/scene500/holdout-report.json
+            ${{ runner.temp }}/scene500/generalization-probe.json
           if-no-files-found: ignore
