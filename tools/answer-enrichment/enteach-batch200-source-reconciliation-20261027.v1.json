@@ -1,0 +1,63 @@
+{
+  "schema_version": "pai-word-enteach-batch200-source-reconciliation-v1",
+  "owner": "CG-ENTEACH",
+  "source_queue": {
+    "path": "tools/answer-enrichment/enteach-batch373-frozen-review-queue.v1.json",
+    "git_blob_sha": "8ffb14ac9f0c8a7e99389bd35074505791cf8ad2"
+  },
+  "summary": {
+    "parts": 12,
+    "ku_count": 200,
+    "distinct_ku_ids": 200,
+    "matched_source_ku_records": 200,
+    "field_mismatches": 0,
+    "source_blob_mismatches": 0,
+    "release_approved": false,
+    "independent_semantic_certified": false
+  },
+  "part_results": [
+    {
+      "parts": "01-03",
+      "count": 85,
+      "passed": 85
+    },
+    {
+      "parts": "04-07",
+      "count": 52,
+      "passed": 52
+    },
+    {
+      "parts": "08-12",
+      "count": 63,
+      "passed": 63
+    }
+  ],
+  "compatibility": {
+    "source_container": [
+      "source",
+      "source_files"
+    ],
+    "source_hash": [
+      "blob_sha",
+      "git_blob_sha"
+    ],
+    "source_gloss_en": [
+      "new_gloss_en",
+      "proposed_gloss_en"
+    ],
+    "source_gloss_zh": [
+      "new_gloss_zh",
+      "proposed_gloss_zh"
+    ],
+    "ready_disposition": [
+      "disposition",
+      "status",
+      "decision"
+    ]
+  },
+  "note": "Connector GitHub readback comparison of frozen candidate teaching records to ENLEX editorial source records. Structural and editorial-source identity evidence only; not independent semantics, question grading or production release certification.",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
