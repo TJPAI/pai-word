@@ -47,8 +47,6 @@ def run(runtime, output_dir, allow_unpinned=False):
             if len(ku) < 5:
                 raise ValueError(f"Malformed KU for {lemma}: {ku!r}")
             ku_id, kind, zh, en, playable = ku[:5]
-            if ku_id in all_ku_ids[-0:]:  # no-op; uniqueness checked below
-                pass
             all_ku_ids.append(ku_id)
             reasons = []
             if not isinstance(en, str) or not en.strip():
