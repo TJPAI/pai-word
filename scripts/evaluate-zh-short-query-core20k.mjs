@@ -42,18 +42,24 @@ for(const f of gold.fixtures){
  const missingMultiCharTokens=missingGoldTokens.filter(t=>Array.from(t.normalize('NFC')).length>1);
  const goldIsLossless=f.expected_tokens.join('')===result.normalizedQuery;
  assert(goldIsLossless,'GOLD_ANNOTATION_NOT_LOSSLESS '+f.query);
+ const kSweep=[1,5,10,20].map(k=>{
+  const candidateSet=k===20?result.candidates:segmentCandidates(f.query,dict,{maxCandidates:k}).candidates;
+  return {k,gold_found:candidateSet.some(c=>JSON.stringify(c.tokens)===JSON.stringify(f.expected_tokens)),
+    count:candidateSet.length};
+ });
  const diagnosis=goldFound?'GOLD_IN_TOP20':
   missingMultiCharTokens.length?'GOLD_MULTICHAR_TOKENS_ABSENT_FROM_RUNTIME':
   'GOLD_VALID_BUT_PRUNED_OR_RANKED_OUT';
  checks.push({query:f.query,gold_found:goldFound,diagnosis,
   missing_gold_tokens:missingGoldTokens,missing_multichar_tokens:missingMultiCharTokens,
-  fallback_compatible_single_chars:fallbackCompatible,candidates:result.candidates.length,elapsed_ms:ms,
+  fallback_compatible_single_chars:fallbackCompatible,k_sweep:kSweep,candidates:result.candidates.length,elapsed_ms:ms,
   gold_tokens_all_in_runtime:missingGoldTokens.length===0,top_candidate:result.candidates[0].tokens});
 }
 const observed=checks.filter(x=>x.gold_found).length;
+const recall_by_candidate_cap=[1,5,10,20].map(k=>({k,gold_paths_found:checks.filter(x=>x.k_sweep.find(p=>p.k===k).gold_found).length}));
 console.log(JSON.stringify({status:'MEASURED_NOT_CERTIFIED',source_runtime_sha256:sha,term_count:ids.size,
   fixture_count:checks.length,gold_paths_found:observed,gold_paths_missing:checks.length-observed,
   elapsed_ms_total:+checks.reduce((n,x)=>n+x.elapsed_ms,0).toFixed(3),
-  checks,semantic_quality_verified:false,scene500_tested:false,production_ready:false},null,2));
+  recall_by_candidate_cap,checks,semantic_quality_verified:false,scene500_tested:false,production_ready:false},null,2));
 // A missed gold path is a reported algorithmic regression, not disguised as a passing score.
 // The experiment is non-production, so preserve a report rather than mutating Runtime.
