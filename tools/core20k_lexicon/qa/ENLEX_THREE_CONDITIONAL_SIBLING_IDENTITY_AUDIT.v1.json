@@ -1,0 +1,62 @@
+{
+  "schema": "pai-enlex-three-conditional-runtime-sibling-identity-audit-v1",
+  "date": "2026-10-26",
+  "owner": "CG-ENLEX",
+  "source": {
+    "artifact": "core20k_production_identity_registry.json",
+    "generated_utc": "2026-10-24T10:37:17.919878Z",
+    "original_frozen_runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "method": "Executed Python locally on historical official frozen-gzip-derived registry; records KU identities and headword POS, not sibling gloss meaning"
+  },
+  "results": [
+    {
+      "lemma": "found",
+      "rank": 2345,
+      "pos_raw": "v.",
+      "headword_id": "w_5396",
+      "siblings": [
+        "w_5396_found_ku_s01",
+        "w_5396_found_ku_s02"
+      ],
+      "also_independent_headword": {
+        "lemma": "find",
+        "rank": 123,
+        "headword_id": "w_0082",
+        "ku_ids": [
+          "w_0082_find_ku01",
+          "w_0082_find_ku02",
+          "w_0082_find_ku03",
+          "w_0082_find_ku04"
+        ]
+      },
+      "implication": "Both found and find are separate frozen headwords and found has two sense KUs; cannot assume s02 is past-of-find or other meaning without raw gloss inspection.",
+      "action": "Check s02 original text before deciding whether found s01 needs only homograph annotation or sense identity change."
+    },
+    {
+      "lemma": "media",
+      "rank": 1978,
+      "pos_raw": "n.",
+      "headword_id": "w_5359",
+      "siblings": [
+        "w_5359_media_ku_s01",
+        "w_5359_media_ku_s02"
+      ],
+      "implication": "Another media Sense exists in frozen registry; do not assert it is art/science/storage medium unless original gloss verified.",
+      "action": "Read s02 original gloss then delimit mass-media s01 without erasing a distinct existing sense."
+    },
+    {
+      "lemma": "checkpoint",
+      "rank": 2222,
+      "pos_raw": "n.",
+      "headword_id": "w_7612",
+      "siblings": [
+        "w_7612_checkpoint_ku_s01"
+      ],
+      "implication": "Only one existing checkpoint KU. Physical checkpoint narrowing needs exact Chinese scope and possible other domain usage preservation.",
+      "action": "Review original usage contexts and keep amended entity-specific Chinese gloss in staging pending same-version Muse after user resumes."
+    }
+  ],
+  "production_ready": false,
+  "activation_allowed": false,
+  "limitations": "No raw sibling KU gloss was available in the local identity registry. Do not infer contents, do not mint IDs, do not claim Muse review."
+}
