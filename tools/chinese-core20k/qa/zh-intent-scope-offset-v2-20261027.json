@@ -1,0 +1,33 @@
+{
+  "schema": "pai-word-zh-intent-scope-offset-contract-v2",
+  "status": "ANNOTATION_QA_PASS_SCOPE_UNVERIFIED",
+  "date": "2026-10-27",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "runtime_terms": 20000,
+  "annotations_checked": 16,
+  "mutation_tests": 3,
+  "span_unit": "UNICODE_CODE_POINTS",
+  "identity_key": [
+    "query",
+    "target_span.start",
+    "target_span.end"
+  ],
+  "validation": [
+    "exact operator substring at declared offset",
+    "exact target substring at declared offset",
+    "span integer bounds",
+    "target/object equality",
+    "uniqueness by query and target offset",
+    "non-REQUEST must abstain"
+  ],
+  "remaining_risks": [
+    "offset validity does NOT guarantee operator governs target",
+    "nearest-operator linking is a provisional heuristic, not syntactic resolution",
+    "repeated target/operator spans require manual adjudication"
+  ],
+  "local_full_assets": [
+    "/mnt/data/zh-intent-contract-v2/fixtures.json",
+    "/mnt/data/zh-intent-contract-v2/validate.mjs"
+  ],
+  "production_ready": false
+}
