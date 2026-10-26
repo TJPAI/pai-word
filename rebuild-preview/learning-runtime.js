@@ -510,7 +510,7 @@
   save();window.PAI_AUTOBROWSE?.restart();window.render?.();
  };
  function settings(){const c=config();return '<div class="panel-block timing-settings"><h3>点击节奏 · 实测设置</h3><p class="muted">题目计时，答案页统一交互。</p>'+Object.keys(defaults).map(k=>'<label class="setting-row"><span>'+labels[k]+'</span><input type="number" inputmode="'+(k==='repeatCount'?'numeric':'decimal')+'" aria-label="'+labels[k]+'" min="'+(k==='repeatGap'?'0':k==='repeatCount'?'1':'0.1')+'" max="'+(k==='repeatCount'?'10':'60')+'" step="'+(k==='repeatCount'?'1':'0.1')+'" value="'+c[k]+'" onchange="setTapTiming(\''+k+'\',this.value)"></label>').join('')+'</div>'}
- function hint(){return state.revealed?'点空白回题目，左右滑切词，上下滑换批，点底部按钮训练记忆':'点空白看答案，左右滑切词，上下滑换批，点底部按钮训练记忆'}
+ function hint(){return state.revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除'}
  window.PAI_PREFERRED_CARD_FACE=()=>preferredPageState;
  window.PAI_TAP_FLOW={ready,answer,browseReady,choose,resetPage,syncPage,pageState:()=>pageState,commitEarly,takeSwipeDirection,takeHoldAfterRating,selectedGradeFor:k=>k===visibleKey?visualGrade:gradeFor(k),ratingLocked:k=>ratedVisibleKey===k,clearPendingGrade:k=>{pendingGrades.delete(k);try{persistPending()}catch(e){window.PAI_LAST_SAVE_ERROR=String(e)}if(k===visibleKey)visualGrade=state.records?.[k]?.lastGrade||'again'},resumeFailedCommit,cancel,tap,beginExample,interruptRepeatForExample,exampleFinished,config,classify,settings,hint,correct,snapshot:()=>({phase,responseMs,grade,entryMode,repeated})};
  document.addEventListener('click',e=>{if(state.view!=='learning'||!e.target.closest('.learning-screen')||e.target.closest('button,a,input,select,textarea,summary,details,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;if(window.getSelection?.()?.toString()||Date.now()<(window.__paiTapSuppressUntil||0))return;tap()},true);
@@ -1219,7 +1219,7 @@
   const repeat=s.seen[u.k]>0;
   const autoSwitch=`<label class="auto-word-toggle" title="自动切词：点击开启或关闭"><input type="checkbox" ${state.autoBrowseEnabled?'checked':''} onchange="setAutoBrowse(this.checked)" aria-label="自动切词" aria-description="勾选后按照设置速度自动切换词卡"><span class="auto-word-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4L3 9"/><path d="M3 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4L21 15"/><path d="M16 15h5v5"/></svg></span></label>`;
   const label=u.s.kuType==='sense'?'回忆词义':(state.hideWord&&!state.revealed?'听音回忆知识点':u.s.kuTitle);
-  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<div class="recall-controls-row"><p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p>${autoSwitch}</div></div><div class="study-body">${state.revealed?answerHtml(u):'<div class="pai-scratch-area" aria-label="手写记词草稿区，轻点显示答案，手写绘画，长按清空"><canvas class="pai-scratch-canvas"></canvas><div class="pai-scratch-hint">长按手写或擦除</div></div>'}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
+  return `<div class="screen study-screen learning-screen ${state.revealed?'revealed':''} ${browsedUnit?'previous-answer':''}">${top(s.title,progress)}<div class="word-hero${hidden}"><div class="word-line"><div class="word">${esc(u.w.w)}</div></div><div class="ipa-line"><span class="ipa">${esc(u.w.ipaUS)}</span><button class="speak-btn" data-word-audio data-speak="${esc(u.w.w)}" aria-label="播放单词">🔊</button></div>${/^(the|a|an|and|to|of)$/.test(u.w.w)?'<small class="muted">功能词读音会随重读与连读语境变化。</small>':''}<div class="recall-controls-row"><p class="recall-cue">${repeat?'本轮再回忆 · ':''}${esc(label)}</p>${autoSwitch}</div></div><div class="study-body">${(state.revealed?answerHtml(u):'')+'<div class="pai-scratch-area" aria-label="长按进入手绘，轻点恢复原页面"><canvas class="pai-scratch-canvas"></canvas></div>'}</div>${browsedUnit?`<div class="recall-correction read-only" role="group" aria-label="历史词卡只读"><button onclick="chooseHistoricalRating('again')" ${gradeAttrs('again')}>不知道</button><button onclick="chooseHistoricalRating('hard')" ${gradeAttrs('hard')}>模糊</button><button onclick="chooseHistoricalRating('good')" ${gradeAttrs('good')}>知道</button></div>`:`<div class="recall-correction" role="group" aria-label="回忆结果"><button type="button" onclick="PAI_TAP_FLOW.choose('again')" ${gradeAttrs('again')}>不知道</button><button type="button" onclick="PAI_TAP_FLOW.choose('hard')" ${gradeAttrs('hard')}>模糊</button><button type="button" onclick="PAI_TAP_FLOW.choose('good')" ${gradeAttrs('good')}>知道</button></div>`}<p class="recall-note" aria-live="polite">${esc(PAI_TAP_FLOW.hint())}</p><div class="session-footnote"></div></div>`;
  }
  let query='';window.openLexicon=()=>{active=false;state.view='lexicon';render()};
  const results=()=>{const q=query.trim().toLowerCase();return core.words.filter(w=>!q||w.w.toLowerCase().includes(q)||Object.values(w.s).some(s=>s.m.includes(q))).sort((a,b)=>(a.w.toLowerCase()===q?-1:0)-(b.w.toLowerCase()===q?-1:0)||a.rank-b.rank).slice(0,60)};
@@ -1246,7 +1246,7 @@
  const reset=()=>{cancelHold();pointer=null;activeMode=false;readyToInk=false;activeSurface=null;activeCanvas=null;ctx=null};
  window.PAI_SCRATCH_DRAWING=()=>activeMode;
  function initScratch(){
-  const surface=document.querySelector('.learning-screen:not(.revealed) .pai-scratch-area');
+  const surface=document.querySelector('.learning-screen .pai-scratch-area');
   if(!surface){reset();return}
   if(surface===activeSurface)return;
   reset();activeSurface=surface;activeCanvas=surface.querySelector('canvas');
@@ -1302,6 +1302,7 @@
   });
   const finish=e=>{
    if(pointer!==e.pointerId)return;
+   if(activeMode&&!moved&&hold!==null){cancelHold();suppress();reset();window.render?.();return;}
    cancelHold();
    if(moved&&activeMode)suppress();
    if(lastInk&&ctx){ctx.beginPath();ctx.moveTo(lastInk.midX??startX,lastInk.midY??startY);ctx.lineTo(lastInk.x,lastInk.y);ctx.stroke()}lastInk=null;pointer=null;if(activeMode)readyToInk=true;
@@ -1315,17 +1316,17 @@
  window.PAI_SCRATCH_FINISH_RATING=()=>{
   if(!ratingWasDrawing)return;
   ratingWasDrawing=false;
-  if(state.view!=='learning'||state.revealed)return;
+  if(state.view!=='learning')return;
   // Commit and navigation have finished; rebuild the blank drawing surface
   // without displaying the next question's hero or affecting KU/SRS data.
   requestAnimationFrame(()=>{initScratch();window.PAI_SCRATCH_REENTER?.()});
  };
  const previousRender=window.render;
  if(typeof previousRender==='function')window.render=function(...args){
-  pendingAutoRestore=(pendingAutoRestore||activeMode)&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning'&&!state.revealed;
+  pendingAutoRestore=(pendingAutoRestore||activeMode)&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning';
   reset();
   const result=previousRender.apply(this,args);
-  if(state.view==='learning')requestAnimationFrame(()=>{initScratch();if(pendingAutoRestore&&activeSurface&&!activeMode&&state.view==='learning'&&!state.revealed){pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.();}});
+  if(state.view==='learning')requestAnimationFrame(()=>{initScratch();if(pendingAutoRestore&&activeSurface&&!activeMode&&state.view==='learning'){pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.();}});
   return result;
  };
  if(state.view==='learning')requestAnimationFrame(initScratch);
