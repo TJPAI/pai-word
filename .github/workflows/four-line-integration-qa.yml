@@ -47,6 +47,8 @@ jobs:
         run: |
           node --check rebuild-preview/scene500-recommendation-bridge.mjs
           node -e "const fs=require('fs');const b=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8'),h=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');if(!b.includes('runtimeDataVersion:instance?.mode')||!h.includes('diagnostic=bridge.status?.()')||!h.includes('lexiconVerifiedLoaded,elapsedMs:'))throw Error('NO_RUNTIME_VERSION_BRIDGE');console.log('PASS runtime diagnostic wiring')"
+      - name: Execute durable KU rating commit behavior tests
+        run: node tools/integration/test-rated-durable-commit-behavior.mjs
       - name: Execute auto-browse audio and rating race cases
         run: node tools/integration/test-auto-browse-behavior.mjs
       - name: Execute post-rating scratch restore race tests
