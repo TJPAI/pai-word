@@ -1311,6 +1311,28 @@
   canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;lastInk=null;suppress()}});
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
  }
+ // Ordinary face: transparent scratch surface must not swallow controls, taps or swipes.
+ // Long-press starts on non-control content of either question or answer page.
+ let ordinaryPress=null,ordinaryTimer=null;
+ const clearOrdinary=()=>{if(ordinaryTimer!==null)clearTimeout(ordinaryTimer);ordinaryTimer=null;ordinaryPress=null};
+ document.addEventListener('pointerdown',e=>{
+  if(activeMode||state.view!=='learning'||!e.isPrimary||e.pointerType==='mouse'&&e.button!==0)return;
+  const screen=e.target.closest?.('.learning-screen'),rating=screen?.querySelector('.recall-correction');
+  if(!screen||!rating||e.target.closest('button,a,input,select,textarea,summary,details,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
+  if(e.clientY>=rating.getBoundingClientRect().top)return;
+  clearOrdinary();ordinaryPress={id:e.pointerId,x:e.clientX,y:e.clientY};
+  ordinaryTimer=setTimeout(()=>{
+   ordinaryTimer=null;
+   if(!ordinaryPress||ordinaryPress.id!==e.pointerId||state.view!=='learning')return;
+   ordinaryPress=null;
+   initScratch();window.PAI_SCRATCH_REENTER?.();suppress();
+  },600);
+ },true);
+ document.addEventListener('pointermove',e=>{
+  if(ordinaryPress?.id===e.pointerId&&Math.hypot(e.clientX-ordinaryPress.x,e.clientY-ordinaryPress.y)>8)clearOrdinary();
+ },true);
+ document.addEventListener('pointerup',e=>{if(ordinaryPress?.id===e.pointerId)clearOrdinary()},true);
+ document.addEventListener('pointercancel',e=>{if(ordinaryPress?.id===e.pointerId)clearOrdinary()},true);
  let pendingAutoRestore=false,ratingWasDrawing=false;
  window.PAI_SCRATCH_BEGIN_RATING=()=>{if(activeMode)ratingWasDrawing=true};
  window.PAI_SCRATCH_FINISH_RATING=()=>{
