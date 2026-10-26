@@ -147,14 +147,17 @@
     const oldResults=document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending');
     if(oldResults)oldResults.outerHTML='<p class="scene-search-pending" role="status">正在匹配场景…</p>';
     else document.querySelector('.scene-search-controls')?.insertAdjacentHTML('afterend','<p class="scene-search-pending" role="status">正在匹配场景…</p>');
-    let ids=[],mode='legacy_fallback',cacheHit=false,engineSucceeded=false,emptyReason=null,unfilteredCandidateCount=null;
+    let ids=[],mode='legacy_fallback',cacheHit=false,engineSucceeded=false,emptyReason=null,unfilteredCandidateCount=null,runtimeDataVersion=null,lexiconVerifiedLoaded=false;
     const started=performance.now();
     if(new URLSearchParams(location.search).get('scene500engine')!=='0'){
       try{
         const bridge=await getBridge();
         if(!hybridListenerInstalled){bridge.onHybridReady(refreshActiveHybrid);hybridListenerInstalled=true;}
         const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:10});
-        ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;emptyReason=result.emptyReason||null;unfilteredCandidateCount=result.unfilteredCandidateCount??null;engineSucceeded=true;
+        ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;emptyReason=result.emptyReason||null;unfilteredCandidateCount=result.unfilteredCandidateCount??null;
+        const diagnostic=bridge.status?.();
+        if(mode==='hybrid'&&diagnostic?.mode==='hybrid'&&diagnostic.lexiconVerifiedLoaded===true){runtimeDataVersion=diagnostic.runtimeDataVersion;lexiconVerifiedLoaded=true;}
+        engineSucceeded=true;
       }catch(e){window.PAI_SCENE500_LAST_ERROR=String(e);bridgePromise=null}
     }
     if(ticket!==querySerial||state.view!=='scenes')return;
@@ -166,7 +169,7 @@
     // saved recommendations from an earlier snapshot during restoration.
     ids=[...new Set(ids)].filter(id=>Number(inventory(id,difficulty).reviewedCount)>0);
     state.sceneSearchUi={query:q,difficulty,resultIds:ids,page:restore&&previous.query===q?Math.min(previous.page||0,Math.max(0,Math.ceil(ids.length/5)-1)):0};
-    window.PAI_SCENE500_SEARCH_REPORT={query:q,difficulty,mode,cacheHit,count:ids.length,emptyReason,unfilteredCandidateCount,elapsedMs:Math.round(performance.now()-started),at:Date.now()};
+    window.PAI_SCENE500_SEARCH_REPORT={query:q,difficulty,mode,cacheHit,count:ids.length,emptyReason,unfilteredCandidateCount,runtimeDataVersion,lexiconVerifiedLoaded,elapsedMs:Math.round(performance.now()-started),at:Date.now()};
     save();render();
   }
   window.restoreScene500Recommendations=function(){
