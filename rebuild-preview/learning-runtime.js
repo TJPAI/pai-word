@@ -1237,10 +1237,10 @@
 ;
 // Ephemeral handwriting mode: long press to enter, hold again to erase.
 (function(){
- let activeSurface=null,activeCanvas=null,activeMode=false,pointer=null,hold=null,moved=false,startX=0,startY=0,ctx=null;
+ let activeSurface=null,activeCanvas=null,activeMode=false,pointer=null,hold=null,readyToInk=false,moved=false,startX=0,startY=0,ctx=null;
  const suppress=()=>{window.__paiTapSuppressUntil=Date.now()+850};
  const cancelHold=()=>{if(hold!==null){clearTimeout(hold);hold=null}};
- const reset=()=>{cancelHold();pointer=null;activeMode=false;activeSurface=null;activeCanvas=null;ctx=null};
+ const reset=()=>{cancelHold();pointer=null;activeMode=false;readyToInk=false;activeSurface=null;activeCanvas=null;ctx=null};
  window.PAI_SCRATCH_DRAWING=()=>activeMode;
  function initScratch(){
   const surface=document.querySelector('.learning-screen:not(.revealed) .pai-scratch-area');
@@ -1255,7 +1255,7 @@
   const clear=()=>{if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height)};
   const enter=()=>{
    if(activeMode)return;
-   activeMode=true;surface.classList.add('is-drawing');
+   activeMode=true;readyToInk=false;surface.classList.add('is-drawing');
    const screen=surface.closest('.learning-screen'),rating=screen?.querySelector('.recall-correction');
    if(screen&&rating){
     const a=screen.getBoundingClientRect(),z=rating.getBoundingClientRect();
@@ -1275,14 +1275,14 @@
    if(pointer!==e.pointerId)return;
    const p=point(e);
    if(!moved&&Math.hypot(p.x-startX,p.y-startY)>8){moved=true;cancelHold()}
-   if(!activeMode||hold!==null)return;
+   if(!activeMode||hold!==null||!readyToInk)return;
    if(moved&&ctx){if(!canvas.dataset.inking){ctx.beginPath();ctx.moveTo(startX,startY);canvas.dataset.inking='1'}ctx.lineTo(p.x,p.y);ctx.stroke();suppress()}
   });
   const finish=e=>{
    if(pointer!==e.pointerId)return;
    cancelHold();
    if(moved&&activeMode)suppress();
-   pointer=null;delete canvas.dataset.inking;
+   pointer=null;if(activeMode)readyToInk=true;delete canvas.dataset.inking;
   };
   canvas.addEventListener('pointerup',finish);
   canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;delete canvas.dataset.inking;suppress()}});
