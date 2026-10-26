@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import vm from 'node:vm';
+const src=fs.readFileSync('rebuild-preview/home-dashboard.js','utf8');
+const bridge=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8');
+assert(bridge.includes("runtimeDataVersion:instance?.mode==='hybrid'?instance.engine?.runtimeDataVersion||null:null"));
+assert(src.includes("const diagnostic=bridge.status?.();"));
+assert(src.includes("window.PAI_SCENE500_BRIDGE_STATUS=diagnostic||null;"));
+assert(src.includes("window.PAI_SCENE500_BRIDGE_STATUS=bridge.status?.()||null;"));
+assert(src.includes("lexiconVerifiedLoaded,elapsedMs:"));
+const begin=src.indexOf('  function updateEngineVersion(){');
+const end=src.indexOf('\n  let displayedSourceSha=',begin);
+assert(begin>0&&end>begin,'find real home status renderer');
+const renderSource=src.slice(begin,end)+'\nupdateEngineVersion();';
+function render(report,status){
+ const node={textContent:''};
+ const window={PAI_SCENE500_SEARCH_REPORT:report,PAI_SCENE500_BRIDGE_STATUS:status};
+ vm.runInNewContext(renderSource,{window,document:{getElementById:id=>id==='pai-engine-version'?node:null}});
+ return node.textContent;
+}
+const baseline=render({mode:'hybrid'},{mode:'hybrid',lexiconAsset:'zh-core20k-v0101-scene500-runtime.json'});
+assert(baseline.includes('正式关联待核验'));
+assert(!baseline.includes('（已加载）'),'resource name cannot prove successful runtime load');
+const verified=render({mode:'hybrid',lexiconVerifiedLoaded:true,runtimeDataVersion:'0.10.1-evidence-compat'},null);
+assert(verified.includes('Core20K V0.10.1（已加载）'));
+const fromBridge=render({mode:'rule_fallback'},{mode:'hybrid',lexiconVerifiedLoaded:true,runtimeDataVersion:'0.10.1-evidence-compat'});
+assert(fromBridge.includes('Core20K V0.10.1（已加载）'));
+const fallback=render({mode:'rule_fallback'},null);
+assert(fallback.includes('规则回退'));
+console.log('PASS home engine labels use runtime evidence and avoid false deployment-as-load claims');
