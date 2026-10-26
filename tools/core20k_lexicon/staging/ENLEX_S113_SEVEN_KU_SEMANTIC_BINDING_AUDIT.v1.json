@@ -1,0 +1,109 @@
+{
+  "schema": "pai-core20k-enlex-s113-seven-ku-semantic-binding-audit-v1",
+  "date": "2026-10-26",
+  "owner_role": "CG-ENLEX",
+  "work_branch": "core20k-teaching-qa-b162-20261024",
+  "runtime": {
+    "branch": "core20k-lexicon-production-v1",
+    "path": "data/core20k-runtime.json.gz",
+    "git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "raw_tuple_gloss_verified": false,
+    "reason": "Frozen gzip asset was fetched via GitHub; full decompression in available execution context did not complete, so no false Runtime row-level PASS."
+  },
+  "sources": [
+    {
+      "path": "tools/answer-enrichment/s113-targeted-revision-and-provenance.v1.json",
+      "branch": "answer-enrichment-main-dev-20261026",
+      "blob_sha": "401611a302ec0fa59f8f95c4fcddc61d5df24a60"
+    },
+    {
+      "path": "tools/answer-enrichment/s113-next4-hotel-booking-teaching-draft.v1.json",
+      "branch": "answer-enrichment-main-dev-20261026",
+      "blob_sha": "42460a54d20523f0f65b65328aa638d7d189fc4e"
+    },
+    {
+      "path": "tools/core20k_lexicon/staging/s113_reservation_muse_review.json",
+      "branch": "core20k-teaching-qa-b162-20261024",
+      "blob_sha": "f8ed252cda10687c50bf1d9dc6a1e1157ded8056"
+    }
+  ],
+  "scope": "ENLEX semantic-to-identity alignment only; not a duplicate independent dual-AI teaching certification; historical V40 ranking is not canonical scene membership.",
+  "records": [
+    {
+      "headword": "guest",
+      "ku_id": "w_1452_guest_ku_s01",
+      "assessment": "CONTEXTUALLY_SOUND_PENDING_RUNTIME_BINDING",
+      "sense_boundary": "hotel guest (person staying in hotel) vs invited guest in general",
+      "recommendation": "Keep hospitality context in teaching; do not narrow base lexicon sense without raw tuple evidence."
+    },
+    {
+      "headword": "reservation",
+      "ku_id": "w_3084_reservation_ku_s01",
+      "assessment": "CONFIRMED_DRAFT_FIX_CONTENT_ONLY_RUNTIME_AUDIT_PENDING",
+      "sense_boundary": "booking arrangement vs doubt/qualification ('have reservations about')",
+      "recommendation": "Do not merge these in a single Sense gloss; the revised S113 teaching record is coherent with booking sense and MU-ENTEACH passed it. Verify frozen Runtime semantics and preserve KU identifier before base gloss correction or additive new sense."
+    },
+    {
+      "headword": "cancellation",
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "assessment": "CONTEXTUALLY_SOUND_PENDING_RUNTIME_BINDING",
+      "sense_boundary": "cancellation of hotel booking vs broader act of cancellation; noun distinct from cancel verb",
+      "recommendation": "A contextual teaching gloss 'the act of cancelling a booking or reservation' is valid; no demonstrated need for a new base Sense ID."
+    },
+    {
+      "headword": "hotel",
+      "ku_id": "w_0771_hotel_ku01",
+      "assessment": "CONTEXTUALLY_SOUND_PENDING_RUNTIME_BINDING",
+      "sense_boundary": "hotel establishment vs room reserved within hotel",
+      "recommendation": "'book a hotel room' is precise; keep hotel headword distinct from booking/reservation KU."
+    },
+    {
+      "headword": "availability",
+      "ku_id": "w_3287_availability_ku_s01",
+      "assessment": "CONTEXTUALLY_SOUND_PENDING_RUNTIME_BINDING",
+      "sense_boundary": "general state of being available vs hotel-room vacancy context",
+      "recommendation": "Preserve general sense if broad in Runtime; annotate room-specific example rather than create a hotel-only Sense by default."
+    },
+    {
+      "headword": "cancel",
+      "ku_id": "w_2445_cancel_ku_s01",
+      "assessment": "MINOR_GLOSS_STYLE_REVISE_RECOMMENDED",
+      "sense_boundary": "stop a scheduled booking/event from happening vs technical/financial cancel",
+      "recommendation": "Teaching gloss 'to arrange for a booking or reservation not to go ahead' is intelligible but unnecessarily indirect. Suggest 'to stop a booking or reservation from taking effect or going ahead' for hotel context. Keep original KU pending Runtime binding.",
+      "proposed_gloss_en": "to stop a booking or reservation from going ahead"
+    },
+    {
+      "headword": "confirmation",
+      "ku_id": "w_3678_confirmation_ku_s01",
+      "assessment": "SENSE_NARROWING_RISK_PENDING_RUNTIME_BINDING",
+      "sense_boundary": "act of confirming vs a message/document stating that a booking is confirmed",
+      "recommendation": "Original English gloss names only the confirming message while Chinese gloss includes action and message; do not treat as one narrow base Sense without verifying Runtime. For S113 contextual card specify message sense in both languages or use encompassing gloss if existing KU has one broad confirmed sense.",
+      "proposed_context_gloss_zh": "（预订的）确认通知；确认信息",
+      "proposed_context_gloss_en": "a message stating that a booking has been confirmed"
+    }
+  ],
+  "priorities": [
+    {
+      "priority": 1,
+      "issue": "Verify reservation original Runtime gloss and fix generic placeholder / merged booking-doubt sense with stable identity."
+    },
+    {
+      "priority": 2,
+      "issue": "Check confirmation English-Chinese Sense alignment and KU's frozen scope."
+    },
+    {
+      "priority": 3,
+      "issue": "Verify cancellation, cancel, availability, guest, hotel align with frozen Runtime and provide precise corrections only if mismatch."
+    }
+  ],
+  "scene_dependency": {
+    "scene_id": "S113",
+    "taxonomy_namespace": "scene500-20x25-v1",
+    "catalog_meaning": "预订酒店",
+    "conflict": "data/scene-taxonomy-v2.json uses S113=公园游览",
+    "canonical_membership": "NOT_ESTABLISHED",
+    "impact": "Do not enable S113 membership; this does not prohibit lexicon row correction."
+  },
+  "status": "SEMANTIC_TRIAGE_COMPLETE_RUNTIME_ROW_VERIFICATION_PENDING",
+  "production_ready": false
+}
