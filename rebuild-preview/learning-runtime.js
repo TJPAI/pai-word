@@ -261,6 +261,7 @@
     // Test-only content on the EXISTING answer page, scoped to one verified Core20K KU.
     // This is editorial staging, NOT certified lexicon data; never write to u.s or SRS.
     const previewHotel=window.PAI_CORE_QA?.release==='Core20K-dev'
+      &&!approvedCard // Never mix unverified demo content with a released KU.
       &&u.s.ku_id==='w_0771_hotel_ku01'&&u.w.w==='hotel'
       &&/酒店|旅馆|宾馆/.test(String(u.s.m||''));
     const testCollocation=previewHotel&&state.showCollocations&&!u.s.c
