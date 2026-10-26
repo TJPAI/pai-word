@@ -426,6 +426,7 @@
  function choose(score){
   if(!['again','hard','good'].includes(score)||state.view!=='learning'||document.hidden||phase==='committing'||!visibleKey)return;
   if(phase!=='answer'){window.PAI_AUTOBROWSE?.stop();window.PAI_CANCEL_PENDING_BROWSE?.();if(!pageRevealed())responseMs=Math.max(0,Date.now()-began)}
+  window.PAI_SCRATCH_BEGIN_RATING?.();
   startRatedSequence(score);
  }
  function browseReady(k,advance,revealed=true,preserveAudio=false){pageState=revealed?'ANSWER':'QUESTION';syncPage();ready(k,preserveAudio)}
@@ -1145,7 +1146,7 @@
   }
   window.PAI_SAVE_DEFERRED=true;
   try{await commitRatedDraft(draft,attemptId)}catch(e){window.PAI_SAVE_DEFERRED=false;window.PAI_LAST_SAVE_ERROR=String(e);console.error('历史评分保存失败',e);historicalCommitInProgress=false;takePendingRatedBatch();PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
-  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.PAI_CHANGE_BATCH(ratedBatch);return}if(PAI_TAP_FLOW.takeHoldAfterRating()){PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection()||1;PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(direction);window.PAI_AUTOBROWSE?.restart()
+  historicalCommitInProgress=false;PAI_TAP_FLOW.clearPendingGrade(k);PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.PAI_CHANGE_BATCH(ratedBatch);return}if(PAI_TAP_FLOW.takeHoldAfterRating()){PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection()||1;PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER');await window.browseAnswer(direction);window.PAI_SCRATCH_FINISH_RATING?.();window.PAI_AUTOBROWSE?.restart()
  };
  window.PAI_RELOAD_KU_AFTER_CONFLICT=async()=>{
   if(!window.PAI_KU_STORAGE_READY)return false;
@@ -1180,7 +1181,7 @@
   }catch(e){window.PAI_SAVE_DEFERRED=false;console.error('评分保存失败，学习状态保持不变',e);window.PAI_LAST_SAVE_ERROR=String(e);takePendingRatedBatch();PAI_TAP_FLOW.resumeFailedCommit();render();if(/KU write (?:conflict|duplicate)/.test(String(e)))window.PAI_RELOAD_KU_AFTER_CONFLICT?.();return}
   // Do not clear the committed attempt before the next question is durably prepared.
   // On refresh the committed marker prevents replaying this rating.
-  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();const ratedFace=PAI_TAP_FLOW.pageState()==='ANSWER';browsedUnit=u;state.revealed=ratedFace;PAI_TAP_FLOW.browseReady(k,null,ratedFace);const moved=await window.PAI_CHANGE_BATCH(ratedBatch);if(!moved)await showCurrent();return}if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);
+  PAI_TAP_FLOW.clearPendingGrade(k);previousUnit=u;PAI_TAP_FLOW.syncPage();const ratedBatch=takePendingRatedBatch();if(ratedBatch){PAI_TAP_FLOW.takeSwipeDirection();const ratedFace=PAI_TAP_FLOW.pageState()==='ANSWER';browsedUnit=u;state.revealed=ratedFace;PAI_TAP_FLOW.browseReady(k,null,ratedFace);const moved=await window.PAI_CHANGE_BATCH(ratedBatch);if(!moved)await showCurrent();return}if(PAI_TAP_FLOW.takeHoldAfterRating()){browsedUnit=u;browseIndex=cycleKeys().indexOf(k);PAI_TAP_FLOW.browseReady(k,null,PAI_TAP_FLOW.pageState()==='ANSWER',true);render();window.PAI_AUTOBROWSE?.restart();return}const direction=PAI_TAP_FLOW.takeSwipeDirection();await showCurrent();if(direction===-1)await window.browseAnswer(-1);window.PAI_SCRATCH_FINISH_RATING?.();
  };
  function top(title,progress=''){
   const batch=String(progress).match(/^第(\d+\/\d+)批 · 本批已学习 (\d+\/\d+)$/);
@@ -1308,7 +1309,16 @@
   canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;lastInk=null;suppress()}});
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
  }
- let pendingAutoRestore=false;
+ let pendingAutoRestore=false,ratingWasDrawing=false;
+ window.PAI_SCRATCH_BEGIN_RATING=()=>{if(activeMode)ratingWasDrawing=true};
+ window.PAI_SCRATCH_FINISH_RATING=()=>{
+  if(!ratingWasDrawing)return;
+  ratingWasDrawing=false;
+  if(state.view!=='learning'||state.revealed)return;
+  // Commit and navigation have finished; rebuild the blank drawing surface
+  // without displaying the next question's hero or affecting KU/SRS data.
+  requestAnimationFrame(()=>{initScratch();window.PAI_SCRATCH_REENTER?.()});
+ };
  const previousRender=window.render;
  if(typeof previousRender==='function')window.render=function(...args){
   pendingAutoRestore=(pendingAutoRestore||activeMode)&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning'&&!state.revealed;
