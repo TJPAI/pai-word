@@ -5,6 +5,8 @@ on:
     paths:
       - 'tools/core20k_lexicon/qa/audit_runtime_glosses.py'
       - '.github/workflows/enlex-gloss-census.yml'
+      - 'tools/core20k_lexicon/qa/validate_enlex_26_gloss_overlay.py'
+      - 'tools/core20k_lexicon/qa/ENLEX_26_KU_GLOSS_CANDIDATE_OVERLAY.v1.json'
   workflow_dispatch:
 
 permissions:
@@ -20,6 +22,8 @@ jobs:
           python-version: '3.11'
       - name: Run frozen 20K census and strict SHA/identity checks
         run: python tools/core20k_lexicon/qa/audit_runtime_glosses.py --runtime data/core20k-runtime.json.gz --out tools/core20k_lexicon/qa/gloss-census-out
+      - name: Validate 26 exact-KU candidate overlay against frozen source
+        run: python tools/core20k_lexicon/qa/validate_enlex_26_gloss_overlay.py
       - name: Publish read-only audit result
         uses: actions/upload-artifact@v4
         with:
