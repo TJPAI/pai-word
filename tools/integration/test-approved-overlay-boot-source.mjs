@@ -10,4 +10,9 @@ for(const bad of ['https://evil.example/pack.json','//evil.example/pack.json','j
 }
 assert.equal((await bootApprovedOverlay()).enabled,false);
 assert.equal(window.PAI_APPROVED_TEACHING_OVERLAY.enabled,false);
+import fs from 'node:fs';
+const boot=fs.readFileSync('scripts/core20k-approved-overlay-boot.mjs','utf8');
+for(const reason of ['release_gate','unsigned_distribution','distribution_hash_mismatch']){
+ assert(boot.includes("return epoch===bootEpoch?fail('"+reason+"')"),'stale async failure must not clear newer overlay: '+reason);
+}
 console.log('PASS approved overlay boot refuses cross-origin/unsafe URLs and stays default-off');
