@@ -6,7 +6,7 @@ import assert from 'node:assert/strict';
 const d=JSON.parse(readFileSync(resolve(process.argv[2] ?? 'tools/chinese-core20k/qa/zh-short-query-segmentation-fixtures-20261026.json'),'utf8'));
 let matched=0;
 for(const f of d.fixtures){
- const lexicon=new Set([...f.expected_tokens, f.query, '两个','一种','十个','一次','三本']);
+ const lexicon=new Set([...f.expected_tokens, '两个','一种','十个','一次','三本']);
  const r=segmentCandidates(f.query,lexicon,{maxCandidates:20});
  assert(r.candidates.length>0 && r.candidates.length<=20);
  for(const c of r.candidates) assert.equal(c.tokens.join(''),f.query);
