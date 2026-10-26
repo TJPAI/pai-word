@@ -1,0 +1,134 @@
+{
+  "schema": "pai-cg-qa-enteach-muse-pause-targeted-review-v1",
+  "date": "2026-10-26",
+  "mode": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "sources": {
+    "revision23": "88d045213eb4d9635231f8c7b515b932dd12f97d",
+    "new15": "19a2070a5c8f6b02769e74556808afdb7e9499f8"
+  },
+  "review": {
+    "prior_three_corrected": [
+      {
+        "ku_id": "w_5575_scanner_ku_s01",
+        "lemma": "scanner",
+        "verdict": "PASS_TARGETED_FIX",
+        "note": "Noun collocation document scanner now matches scanner KU."
+      },
+      {
+        "ku_id": "w_5332_visa_ku_s01",
+        "lemma": "visa",
+        "verdict": "PASS_TARGETED_FIX",
+        "note": "First-person need no longer falsely universalizes visa requirement."
+      },
+      {
+        "ku_id": "w_5339_logo_ku_s01",
+        "lemma": "logo",
+        "verdict": "PASS_TARGETED_FIX",
+        "note": "Chinese translation now natural and appropriately noncommittal about printing."
+      }
+    ],
+    "full_teaching_new15": [
+      {
+        "ku_id": "w_5999_compress_ku_s01",
+        "headword": "compress",
+        "verdict": "PASS",
+        "reason": "Data compression and physical compression examples agree with core decrease-size meaning."
+      },
+      {
+        "ku_id": "w_3715_fry_ku_s01",
+        "headword": "fry",
+        "verdict": "PASS",
+        "reason": "Fry an egg and pan-fried vegetables correctly exemplify hot-fat cooking."
+      },
+      {
+        "ku_id": "w_6877_politely_ku_s01",
+        "headword": "politely",
+        "verdict": "PASS",
+        "reason": "Polite decline example/translation naturally matches the manner adverb."
+      },
+      {
+        "ku_id": "w_6985_personalize_ku_s01",
+        "headword": "personalize",
+        "verdict": "PASS",
+        "reason": "App settings example, adjective/verb note, and customize distinction all match."
+      },
+      {
+        "ku_id": "w_7447_additive_ku_s01",
+        "headword": "additive",
+        "verdict": "PASS",
+        "reason": "Food additive is countable in this context; label sentence accurate."
+      },
+      {
+        "ku_id": "w_6056_ramp_ku_s01",
+        "headword": "ramp",
+        "verdict": "PASS",
+        "reason": "Wheelchair/access/loading ramp collocations plus building ramp translation are accurate."
+      },
+      {
+        "ku_id": "w_5142_rugby_ku_s01",
+        "headword": "rugby",
+        "verdict": "PASS",
+        "reason": "Sport term and British/American comparison are correct."
+      },
+      {
+        "ku_id": "w_3046_curtain_ku_s01",
+        "headword": "curtain",
+        "verdict": "PASS",
+        "reason": "Draw/close curtains and the plurals note are correct."
+      },
+      {
+        "ku_id": "w_6328_appendix_ku_s01",
+        "headword": "appendix",
+        "verdict": "PASS",
+        "reason": "Report appendix vs anatomical appendix disambiguation is pedagogically useful."
+      },
+      {
+        "ku_id": "w_4067_prolong_ku_s01",
+        "headword": "prolong",
+        "verdict": "PASS",
+        "reason": "Time extension vs postponement comparison is accurate."
+      },
+      {
+        "ku_id": "w_5491_postal_ku_s01",
+        "headword": "postal",
+        "verdict": "PASS",
+        "reason": "Postal code/address/service collocations accurate and email contrast clear."
+      },
+      {
+        "ku_id": "w_6052_trumpet_ku_s01",
+        "headword": "trumpet",
+        "verdict": "PASS",
+        "reason": "Play the trumpet idiom and Chinese musical instrument translation accurate."
+      },
+      {
+        "ku_id": "w_7799_unsafe_ku_s01",
+        "headword": "unsafe",
+        "verdict": "REVISE_GRAMMAR_NOTE",
+        "reason": "The English sentence and Chinese translation are correct, but grammar_note contains unrelated ungrammatical Chinese ‘暴风雨后，这座桥不宜安全通行。’ where a grammatical usage note is expected; replace with ‘unsafe可用于be unsafe to do或unsafe conditions等结构。’."
+      },
+      {
+        "ku_id": "w_7283_mundane_ku_s01",
+        "headword": "mundane",
+        "verdict": "PASS",
+        "reason": "Mundane tasks implies ordinary/tedious; routine alone need not imply boredom."
+      },
+      {
+        "ku_id": "w_3161_registration_ku_s01",
+        "headword": "registration",
+        "verdict": "PASS",
+        "reason": "Online registration close time, deadline and reservation distinction are sound."
+      }
+    ]
+  },
+  "summary": {
+    "revised_older_ku_pass": 3,
+    "new_ku_pass": 14,
+    "new_ku_revise": 1,
+    "dual_ai_new_pass": 0
+  },
+  "guardrails": {
+    "muse_resume_requires_user_notification": true,
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
