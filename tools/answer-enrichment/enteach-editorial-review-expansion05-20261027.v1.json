@@ -1,0 +1,55 @@
+{
+  "schema_version": "pai-word-enteach-editorial-review-expansion05-v1",
+  "owner": "CG-ENTEACH",
+  "status": "INTERNAL_EDITORIAL_REVIEW_QA_PENDING",
+  "scope": {
+    "reviewed_part": "tools/answer-enrichment/enteach-batch200-part03-25.v1.json",
+    "source_blob": "6c607d92be8b3c06bd091a5791391954432a960c",
+    "new_reviewed_ku": 25,
+    "previous_reviewed_ku": 115,
+    "cumulative_distinct_reviewed_ku": 140,
+    "total_batch_ku": 200
+  },
+  "findings": [
+    {
+      "ku_id": "w_3279_ethics_ku_s01",
+      "headword": "ethics",
+      "severity": "LOW",
+      "field": "example_en",
+      "original": "The committee reviewed the research ethics of the study.",
+      "issue": "『the research ethics of the study』不如『the study's ethical implications』或『whether the study met research ethics standards』自然，且后者更符合实际伦理审查的对象。",
+      "proposed_en": "The committee reviewed whether the study met research ethics standards.",
+      "proposed_zh": "委员会审查了这项研究是否符合科研伦理规范。",
+      "action": "REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_7173_confide_ku_s01",
+      "headword": "confide",
+      "severity": "LOW",
+      "field": "collocation",
+      "original": "confide in a friend · confide a secret · confide that ...",
+      "issue": "confide a secret并非绝对错误，但没有呈现信息的接收方，学习者更应掌握confide a secret to someone；『confide that ...』省略号不完整。",
+      "proposed": "confide in a friend · confide a secret to someone · confide that something happened",
+      "action": "COLLOCATION_REWRITE_RECOMMENDED"
+    },
+    {
+      "ku_id": "w_7700_pertinent_ku_s01",
+      "headword": "pertinent",
+      "severity": "LOW",
+      "field": "example_zh",
+      "original": "她的问题与讨论主题直接相关。",
+      "issue": "原文Her question was directly pertinent to the topic没有明确discussion，中文添加『讨论』虽不严重，但可直接保持语义对应。",
+      "proposed": "她的问题与这一主题直接相关。",
+      "action": "TRANSLATION_PRECISION_OPTIONAL"
+    }
+  ],
+  "review_character": "Author self-review, not independent CG-QA verdict",
+  "limitations": [
+    "Non-flagged records are not independently certified",
+    "No testing of learner grading or browser E2E"
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
