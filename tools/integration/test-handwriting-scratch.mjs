@@ -21,4 +21,9 @@ assert(scratch.includes('screen.appendChild(surface)'),'active drawing overlay m
 assert(css.includes('.learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing'),'overlay must cover header and hero as screen child');
 assert(html.includes('learning.css?v=v22-handwriting-overlay-20261026-v3'),'Safari loads updated CSS');
 assert(!/localStorage|indexedDB|fetch\(/.test(scratch),'scratch data never saved or transmitted');
+assert(js.includes("const keepDrawing=source==='auto'&&window.PAI_SCRATCH_DRAWING?.()===true"),'only auto transitions retain drawing');
+assert(js.includes("if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true"),'capture mode before auto navigation');
+assert(scratch.includes('let pendingAutoRestore=false'),'two-render auto navigation preserves restore intent');
+assert(scratch.includes('window.PAI_SCRATCH_REENTER?.()'),'new card restores blank drawing overlay');
+assert(scratch.includes('pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.()'),'drawing restoration is consumed once');
 console.log('PASS explicit handwriting mode, navigation, rating text protection and clearing');
