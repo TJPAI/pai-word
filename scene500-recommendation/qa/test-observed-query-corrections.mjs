@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {applyObservedQueryCorrections} from '../observed-query-corrections.mjs';
-const catalog={scenes:{S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
+const catalog={scenes:{S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
 const row=(sceneId,score)=>({sceneId,name:catalog.scenes[sceneId].name,score,reason:['baseline']});
 const search=(query,results,options={})=>applyObservedQueryCorrections({query,total:results.length,results},query,{catalog,limit:10,...options});
 assert.equal(search('How to order coffee',[]).results[0]?.sceneId,'S039');
@@ -19,8 +19,13 @@ assert.equal(search('我不坐地铁了，改乘公交车',[row('S079',15.6),row
 assert.equal(search('如何学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
 assert.equal(search("I'd like to order a coffee.",[]).results[0]?.sceneId,'S039');
 assert.equal(search("I’d like to order coffee.",[]).results[0]?.sceneId,'S039');
-assert.equal(search("I'd like to order a sandwich.",[]).results.length,0);
+assert.equal(search("I'd like to order a sandwich.",[]).results[0]?.sceneId,'S034');
 assert.equal(search('如何学习英语发音',[row('S279',4),row('S280',3),row('S135',2)]).results.some(r=>['S279','S280'].includes(r.sceneId)),false);
 assert.equal(search('我想学习英语发音',[row('S279',4),row('S280',3),row('S135',2)]).results.some(r=>['S279','S280'].includes(r.sceneId)),false);
 assert.equal(search('如何学习机器学习',[row('S279',5)]).results[0]?.sceneId,'S279');
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 18 assertions');
+assert.equal(search('How to order a sandwich?',[]).results[0]?.sceneId,'S034');
+assert.equal(search('Please order a pizza',[]).results[0]?.sceneId,'S034');
+assert.equal(search('I want to order a salad',[]).results[0]?.sceneId,'S034');
+assert.equal(search('How to cancel a sandwich?',[]).results.length,0);
+assert.equal(search('How to order a sandwich?',[],{eligibleSceneIds:['S039']}).results.length,0);
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 23 assertions');
