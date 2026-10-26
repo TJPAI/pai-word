@@ -1239,7 +1239,7 @@
 ;
 // Ephemeral handwriting mode: long press to enter, hold again to erase.
 (function(){
- let activeSurface=null,activeCanvas=null,activeMode=false,pointer=null,hold=null,readyToInk=false,moved=false,startX=0,startY=0,ctx=null;
+ let activeSurface=null,activeCanvas=null,activeMode=false,pointer=null,hold=null,readyToInk=false,moved=false,lastInk=null,startX=0,startY=0,ctx=null;
  const suppress=()=>{window.__paiTapSuppressUntil=Date.now()+850};
  const cancelHold=()=>{if(hold!==null){clearTimeout(hold);hold=null}};
  const reset=()=>{cancelHold();pointer=null;activeMode=false;readyToInk=false;activeSurface=null;activeCanvas=null;ctx=null};
@@ -1254,7 +1254,7 @@
   const size=()=>{const rect=canvas.getBoundingClientRect(),dpr=Math.min(devicePixelRatio||1,3);canvas.width=Math.max(1,Math.ceil(rect.width*dpr));canvas.height=Math.max(1,Math.ceil(rect.height*dpr));ctx=canvas.getContext('2d');if(ctx){ctx.scale(dpr,dpr);ctx.strokeStyle='#243347';ctx.lineWidth=3;ctx.lineCap='round';ctx.lineJoin='round'}};
   size();
   const point=e=>{const r=canvas.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top}};
-  const clear=()=>{if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height)};
+  const clear=()=>{lastInk=null;if(ctx)ctx.clearRect(0,0,canvas.width,canvas.height)};
   window.PAI_SCRATCH_REENTER=()=>{if(!activeMode&&activeSurface){enter();readyToInk=true}};
   const enter=()=>{
    if(activeMode)return;
@@ -1274,7 +1274,7 @@
   };
   canvas.addEventListener('pointerdown',e=>{
    if(pointer!==null||!e.isPrimary||(e.pointerType==='mouse'&&e.button!==0))return;
-   pointer=e.pointerId;moved=false;const p=point(e);startX=p.x;startY=p.y;
+   pointer=e.pointerId;moved=false;lastInk=null;const p=point(e);startX=p.x;startY=p.y;
    try{canvas.setPointerCapture(e.pointerId)}catch{}
    hold=setTimeout(()=>{hold=null;if(pointer!==e.pointerId||moved)return;if(activeMode)clear();else enter();suppress()},600);
   });
@@ -1283,16 +1283,27 @@
    const p=point(e);
    if(!moved&&Math.hypot(p.x-startX,p.y-startY)>8){moved=true;cancelHold()}
    if(!activeMode||hold!==null||!readyToInk)return;
-   if(moved&&ctx){if(!canvas.dataset.inking){ctx.beginPath();ctx.moveTo(startX,startY);canvas.dataset.inking='1'}ctx.lineTo(p.x,p.y);ctx.stroke();suppress()}
+   if(moved&&ctx){
+    const samples=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[];
+    const events=samples.length?samples:[e];
+    for(const sample of events){
+     const v=point(sample);
+     if(!lastInk){lastInk={x:startX,y:startY};ctx.beginPath();ctx.moveTo(startX,startY)}
+     const mid={x:(lastInk.x+v.x)/2,y:(lastInk.y+v.y)/2};
+     ctx.quadraticCurveTo(lastInk.x,lastInk.y,mid.x,mid.y);
+     lastInk=v;
+    }
+    ctx.stroke();suppress();
+   }
   });
   const finish=e=>{
    if(pointer!==e.pointerId)return;
    cancelHold();
    if(moved&&activeMode)suppress();
-   pointer=null;if(activeMode)readyToInk=true;delete canvas.dataset.inking;
+   if(lastInk&&ctx){ctx.lineTo(lastInk.x,lastInk.y);ctx.stroke()}lastInk=null;pointer=null;if(activeMode)readyToInk=true;
   };
   canvas.addEventListener('pointerup',finish);
-  canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;delete canvas.dataset.inking;suppress()}});
+  canvas.addEventListener('pointercancel',e=>{if(pointer===e.pointerId){cancelHold();pointer=null;lastInk=null;suppress()}});
   canvas.addEventListener('contextmenu',e=>e.preventDefault());
  }
  let pendingAutoRestore=false;
