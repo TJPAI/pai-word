@@ -67,5 +67,7 @@ jobs:
         run: node tools/integration/test-s113-staging-overlay.mjs
       - name: Check isolated V2.2 durable storage namespace
         run: node tools/integration/test-storage-namespace.mjs
+      - name: Verify nonblocking Scene500 cold-search warmup
+        run: node tools/integration/test-scene500-cold-warmup.mjs
       - name: Check S500 search bridge and reject unsafe mapping
         run: node tools/integration/test-four-line-scene-bridge.mjs
