@@ -1288,7 +1288,12 @@
     const samples=typeof e.getCoalescedEvents==='function'?e.getCoalescedEvents():[];
     const events=samples.length?samples:[e];
     for(const sample of events){
-     const v=point(sample);
+     const raw=point(sample);
+     const anchor=lastInk||{x:startX,y:startY};
+     const distance=Math.hypot(raw.x-anchor.x,raw.y-anchor.y);
+     if(distance<0.35)continue;
+     const alpha=distance>14?0.92:distance>6?0.82:0.68;
+     const v={x:anchor.x+(raw.x-anchor.x)*alpha,y:anchor.y+(raw.y-anchor.y)*alpha};
      if(!lastInk)lastInk={x:startX,y:startY};
      const mid={x:(lastInk.x+v.x)/2,y:(lastInk.y+v.y)/2};
      // Commit only the new segment; never repaint the entire stroke on each move.
