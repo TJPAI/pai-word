@@ -1,0 +1,86 @@
+{
+  "schema": "pai-core20k-enlex-frozen-runtime-gloss-correction-v1",
+  "owner_role": "CG-ENLEX",
+  "date": "2026-10-26",
+  "mode": "ID_PRESERVING_PROPOSED_GLOSS_OVERLAY_NOT_ACTIVATED",
+  "source": {
+    "branch": "core20k-lexicon-production-v1",
+    "runtime_path": "data/core20k-runtime.json.gz",
+    "runtime_sha256": "e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b",
+    "runtime_git_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+    "raw_verification_path": "tools/core20k_lexicon/staging/s113_runtime_row_verification.json",
+    "raw_verification_blob_sha": "2316b2d09920812491cda931abb1ff404cb018e4",
+    "raw_verification_author_role": "MU-ENTEACH"
+  },
+  "records": [
+    {
+      "lemma": "reservation",
+      "rank": 4035,
+      "headword_id": "w_3084",
+      "ku_id": "w_3084_reservation_ku_s01",
+      "ku_type": "sense",
+      "pos": "n.",
+      "before": {
+        "gloss_zh": "预订；保留意见",
+        "gloss_en": "core modern learner use of “reservation”"
+      },
+      "after": {
+        "gloss_zh": "预订；预约",
+        "gloss_en": "an arrangement made in advance to reserve a room, table, seat, or service"
+      },
+      "semantic_scope": "booking_arrangement_only",
+      "excluded_sense": {
+        "gloss_zh": "保留意见；顾虑",
+        "gloss_en": "a doubt or concern about a plan or decision",
+        "action": "KEEP_DISTINCT_UNREPRESENTED_PENDING_ADDITIVE_IDENTITY",
+        "new_ku_id": null
+      },
+      "note": "Existing KU remains resolvable; lexical sense narrowed to hotel/seat/table booking. User SRS semantic drift remains a risk if existing review histories encoded doubt sense."
+    },
+    {
+      "lemma": "cancellation",
+      "rank": 5149,
+      "headword_id": "w_6567",
+      "ku_id": "w_6567_cancellation_ku_s01",
+      "ku_type": "sense",
+      "pos": "n.",
+      "before": {
+        "gloss_zh": "取消；注销",
+        "gloss_en": "core modern learner use of “cancellation”"
+      },
+      "after": {
+        "gloss_zh": "取消；取消的行为",
+        "gloss_en": "the act of cancelling a planned event, booking, or service"
+      },
+      "semantic_scope": "general_cancellation_including_booking",
+      "excluded_sense": {
+        "gloss_zh": "（账户或登记的）注销",
+        "action": "DO_NOT_INCLUDE_IN_THIS_GLOSS_UNLESS_RUNTIME_REFERENCES_REQUIRE",
+        "new_ku_id": null
+      },
+      "note": "No additive KU needed merely from this raw row; administrative-specific sense can be evaluated from corpus or teaching references separately."
+    }
+  ],
+  "identity_policy": {
+    "preserve_headword_ranks": true,
+    "preserve_headword_ids": true,
+    "preserve_ku_ids": true,
+    "no_implicit_new_sense_ids": true,
+    "changes_are_only_gloss_fields": true,
+    "needs_manual_compatibility_check_before_activation": true
+  },
+  "activation": {
+    "allowed": false,
+    "production_ready": false,
+    "reason": "Staging remediation proposal; production base lexicon and main-app references have not been revalidated against revised semantic scope."
+  },
+  "qa": {
+    "raw_rows_evidence": "3/3 guest/reservation/cancellation from MU-ENTEACH verified gzip",
+    "unique_ku_ids": 2,
+    "verified_patch_source_row_count": 2,
+    "unrelated_runtime_mutation": 0,
+    "unknown_uses_or_srs_histories": "NOT_CHECKED",
+    "dual_ai_record_specific_verdict": "PENDING_ON_PROPOSED_BASE_LEXICON_GLOSSES; do not inherit content-line teaching verdict"
+  },
+  "next": "MU-ENLEX or CG-ENLEX check affected KU references, ask QA line for only two changed base glosses, then provide controlled overlay to CG-MAIN."
+}
