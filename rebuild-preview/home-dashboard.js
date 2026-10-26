@@ -258,7 +258,8 @@
     const mode=report?.mode;
     const label=mode==='hybrid'?'Hybrid 模式报告（正式关联待核验）':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
     const asset=report?.lexiconAsset||window.PAI_SCENE500_BRIDGE_STATUS?.lexiconAsset||'';
-    const version=report?.runtimeDataVersion||report?.dataVersion||'';
+    const bridge=window.PAI_SCENE500_BRIDGE_STATUS;
+    const version=report?.runtimeDataVersion||bridge?.runtimeDataVersion||'';
     const lexicon=version==='0.10.1-evidence-compat'?'Core20K V0.10.1（已加载）':version?'Core20K '+version+'（已加载）':asset.includes('v0101')?'Core20K V0.10.1（配置，加载未验证）':'Core20K（运行版本未确认）';
     node.textContent='引擎：Scene500 '+label+' · 中文词库：'+lexicon;
   }
