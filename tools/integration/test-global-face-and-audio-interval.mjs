@@ -29,4 +29,6 @@ for(const [tier,spokenMs,silentMs] of [[0.9,200,900],[1.5,600,1500],[3,2000,3000
 }
 assert(auto.includes('scheduleAutoBrowse(true);'),'speech completion chooses speech-ended interval');
 assert(auto.includes('autoInterval(speechEnded)'),'scheduler must use selected interval mode');
+assert(auto.includes('if(window.PAI_AUDIO?.isActive?.()){scheduleAutoBrowse();return;}'),'late/manual speech must block navigation and restart from speech end');
+assert(auto.indexOf('if(window.PAI_AUDIO?.isActive?.()){scheduleAutoBrowse();return;}')<auto.indexOf('window.PAI_NAVIGATE_LEARNING(1,\'auto\')'),'audio guard must precede auto navigation');
 console.log('PASS global card-face preference and speech-ended interval invariants');
