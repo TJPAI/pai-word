@@ -38,4 +38,8 @@ for(const [q,target,blocked] of [
  assert.ok(!out.results.some(r=>r.sceneId===blocked),'NEGATED_SCENE_LEAK '+q);
 }
 assert.equal(search('地铁和公交哪个快',[row('S079',15),row('S078',14)]).results.length,2);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 30 assertions');
+assert.equal(search('英语学习，不是机器学习',[row('S279',9),row('S280',8),row('S135',2)]).results.some(x=>['S279','S280'].includes(x.sceneId)),false);
+assert.equal(search('学习英语口语而非深度学习',[row('S280',9),row('S135',2)]).results.some(x=>x.sceneId==='S280'),false);
+assert.equal(search('机器学习不是深度学习',[row('S279',9),row('S280',8)]).results[0]?.sceneId,'S279');
+assert.equal(search('英语学习和机器学习',[row('S279',9)]).results[0]?.sceneId,'S279');
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 34 assertions');
