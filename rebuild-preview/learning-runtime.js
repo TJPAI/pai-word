@@ -1006,16 +1006,16 @@
  };
  // Auto-browse is presentation-only: never score or commit a KU.
  let autoBrowseTimer=null,autoBrowseGeneration=0,autoAudioUnsubscribe=null;
- const autoInterval=()=>Math.round(([0.9,1.5,3,6].includes(Number(state.autoBrowseInterval))?Number(state.autoBrowseInterval):1.5)*1000);
+ const autoInterval=(speechEnded=false)=>{const tier=[0.9,1.5,3,6].includes(Number(state.autoBrowseInterval))?Number(state.autoBrowseInterval):1.5;const afterSpeech={0.9:0.2,1.5:0.6,3:2,6:5};return Math.round((speechEnded?afterSpeech[tier]:tier)*1000)};
  function stopAutoBrowse(){autoBrowseGeneration++;if(autoBrowseTimer!==null)clearTimeout(autoBrowseTimer);autoBrowseTimer=null;if(autoAudioUnsubscribe){autoAudioUnsubscribe();autoAudioUnsubscribe=null}}
- function scheduleAutoBrowse(){
+ function scheduleAutoBrowse(speechEnded=false){
   const generation=autoBrowseGeneration;
   if(!state.autoBrowseEnabled||!active||state.view!=='learning'||document.hidden)return;
   // Wait for speech completion before starting the configured interval.
   if(window.PAI_AUDIO?.isActive?.()){
    autoAudioUnsubscribe=window.PAI_AUDIO.whenIdle(()=>{
     autoAudioUnsubscribe=null;
-    if(generation===autoBrowseGeneration)scheduleAutoBrowse();
+    if(generation===autoBrowseGeneration)scheduleAutoBrowse(true);
    });return;
   }
   if(autoBrowseTimer!==null)return; // Only one pending auto navigation per generation.
@@ -1028,7 +1028,7 @@
     try{await window.PAI_NAVIGATE_LEARNING(1,'auto')}catch(e){console.warn('Auto browse skipped',e)}
    }
    if(generation===autoBrowseGeneration)scheduleAutoBrowse();
-  },autoInterval());
+  },autoInterval(speechEnded));
  }
  let autoWakeLock=null,autoWakeRequest=0;
  const wakeAllowed=()=>!!(state.autoBrowseEnabled&&active&&state.view==='learning'&&!document.hidden);
