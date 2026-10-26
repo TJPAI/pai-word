@@ -117,6 +117,11 @@
   }
   let querySerial=0,bridgePromise=null,hybridListenerInstalled=false;
   function refreshActiveHybrid(){
+    // Promotion also updates the home diagnostic if no search is active.
+    if(bridgePromise)void bridgePromise.then(bridge=>{
+      window.PAI_SCENE500_BRIDGE_STATUS=bridge.status?.()||null;
+      updateEngineVersion();
+    }).catch(()=>{});
     const active=ui(),q=(active.query||'').trim();
     const typed=document.getElementById('scene-query')?.value?.trim();
     if(state.view!=='scenes'||!q||typed!==q)return;
@@ -156,6 +161,7 @@
         const result=await bridge.recommend(q,{difficulty,inventory,eligibleSceneIds:indexedScenes().list.map(x=>x.id),limit:10});
         ids=result.ids;mode=result.mode;cacheHit=!!result.cacheHit;emptyReason=result.emptyReason||null;unfilteredCandidateCount=result.unfilteredCandidateCount??null;
         const diagnostic=bridge.status?.();
+        window.PAI_SCENE500_BRIDGE_STATUS=diagnostic||null;
         if(mode==='hybrid'&&diagnostic?.mode==='hybrid'&&diagnostic.lexiconVerifiedLoaded===true){runtimeDataVersion=diagnostic.runtimeDataVersion;lexiconVerifiedLoaded=true;}
         engineSucceeded=true;
       }catch(e){window.PAI_SCENE500_LAST_ERROR=String(e);bridgePromise=null}
