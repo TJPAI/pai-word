@@ -37,8 +37,14 @@
       "data_version": "0.10.1-evidence-compat",
       "integration_ready": true,
       "production_ready": false,
-      "github_runtime_path_verified": false,
-      "status": "RETRIEVABLE_DRIVE_NOT_INTEGRATED_AT_VERIFIED_REPO_PATH"
+      "github_runtime_path_verified": true,
+      "status": "COMPRESSED_SOURCE_INTEGRATED_MATERIALIZATION_AND_HYBRID_E2E_PENDING",
+      "compressed_asset": "data/zh-core20k-v0101-scene500-runtime.json.gz.b64",
+      "compressed_blob": "c8440c2cbce72f87544b41f44de62cb59b01aaa4",
+      "compressed_gzip_sha256": "46a4ca25d890b7699cdab54fd12fd4dfef1b56b43bfbe3e6e3838503a3d32d28",
+      "materializer": "scripts/materialize-zh-core20k-v0101.mjs",
+      "materialized_path": "scene500-recommendation/zh-core20k-v0101-scene500-runtime.json",
+      "materialization_required_before_tests_and_deploy": true
     },
     "teaching": {
       "branch": "answer-enrichment-main-dev-20261026",
@@ -67,8 +73,8 @@
     },
     {
       "owner": "CG-ZH",
-      "request": "Deliver actual V0.10.1 JSON to a reproducible GitHub asset path or release URL with SHA256; provide matching associations version + location in collaboration with CG-REC.",
-      "status": "BLOCKED"
+      "request": "Compressed original V0.10.1 and verified materializer received; coordinate version-matched associations with CG-REC and Hybrid Top5 QA.",
+      "status": "ASSET_DELIVERED_ASSOCIATIONS_PENDING"
     },
     {
       "owner": "CG-ENLEX",
