@@ -1,0 +1,77 @@
+{
+  "schema_version": "cg-qa-controlled-revision4-independent-v1",
+  "source_commit": "86cd4428dbdeca559e04eaf27115d0fd063934c0",
+  "source_path": "tools/answer-enrichment/enteach-batch200-controlled-revision-candidate-20261027.v1.json",
+  "source_scope": "4 author revisions only; 22 prior accepted unchanged; pillow original retained",
+  "records": [
+    {
+      "ku_id": "w_5224_supreme_ku_s01",
+      "headword": "supreme",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part12-13.v1.json",
+      "verdict": "REVISE",
+      "reason": "新句将supreme主要用于机构名词组the supreme court，削弱形容词‘最高权威’的目标义教学；虚构王国仍未必要。建议保留形容词作表语/定语如‘The council held supreme authority over maritime disputes.’，中译‘该委员会对海事争端拥有最高裁决权。’",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "The constitution gives the court supreme authority in this area.",
+          "after": "In the fictional kingdom, the supreme court had final authority over certain legal disputes."
+        },
+        {
+          "field": "example_zh",
+          "before": "宪法赋予该法院在这一领域的最高权威。",
+          "after": "在这个虚构王国中，最高法院对某些法律争议拥有最终裁决权。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5037_withhold_ku_s01",
+      "headword": "withhold",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part06-05.v1.json",
+      "verdict": "PASS_FIELD_DELTA",
+      "reason": "原英文withheld the report until the investigation ended含有意暂不提供；新中文‘在调查结束前暂不对外提供这份报告’避免口语‘扣着’，在语境下忠实且自然；若严格对齐过去时可用‘该机构直到调查结束才对外提供这份报告’。",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "该机构在调查结束前暂未公布报告。",
+          "after": "该机构在调查结束前暂不对外提供这份报告。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_5239_unlimited_ku_s01",
+      "headword": "unlimited",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+      "verdict": "PASS_FIELD_DELTA",
+      "reason": "增加‘用户’并保留不限次数访问课程资料库，明确服务使用者且未额外暗示完全无条件授权；与英语unlimited access的学习例句吻合。",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "该订阅服务允许不限次数地访问课程资料库。",
+          "after": "该订阅服务允许用户不限次数地访问课程资料库。"
+        }
+      ]
+    },
+    {
+      "ku_id": "w_6875_sequel_ku_s01",
+      "headword": "sequel",
+      "source_file": "tools/answer-enrichment/enteach-batch200-part02-16.v1.json",
+      "verdict": "REVISE",
+      "reason": "原文The studio announced a sequel只表明宣布续集，并不一定承诺‘将推出’的具体时点或行为。建议‘制片公司宣布那部热门电影将有续集’或‘制片公司宣布了那部热门电影的续集消息’。",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "制片公司宣布将拍摄那部热门电影的续集。",
+          "after": "制片公司宣布将推出那部热门电影的续集。"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "reviewed": 4,
+    "pass_field_delta": 2,
+    "revise": 2
+  },
+  "status": "CHATGPT_ONLY_PROVISIONAL",
+  "production_ready": false,
+  "activation_allowed": false
+}
