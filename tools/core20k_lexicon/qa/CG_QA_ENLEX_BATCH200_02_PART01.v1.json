@@ -1,0 +1,471 @@
+{
+  "schema_version": "cg_qa_enlex_batch200_02_part01_v1",
+  "target_batch_size": 200,
+  "reviewed_new": 50,
+  "cumulative_this_batch": 50,
+  "source_ranges": [
+    "remaining READY 2801-2850",
+    "2851-2900",
+    "partial 2901-2950"
+  ],
+  "source_hold_excluded_not_reviewed": 54,
+  "summary": {
+    "PASS": 46,
+    "CONDITIONAL": 4
+  },
+  "records": [
+    {
+      "queue_index": 2849,
+      "ku_id": "w_3080_specially_ku_s01",
+      "lemma": "specially",
+      "rank": 5991,
+      "source_commit": "e81b4261d152e8d7968ebc2201ce85236635ea6a",
+      "verdict": "PASS",
+      "linguistic_reason": "为特定目标专门安排，区别especially表示程度突出。"
+    },
+    {
+      "queue_index": 2850,
+      "ku_id": "w_7420_foe_ku_s01",
+      "lemma": "foe",
+      "rank": 5992,
+      "source_commit": "e81b4261d152e8d7968ebc2201ce85236635ea6a",
+      "verdict": "PASS",
+      "linguistic_reason": "敌人或竞争对手，上位义正确，未误限军事敌人。"
+    },
+    {
+      "queue_index": 2853,
+      "ku_id": "w_9166_usable_ku_s01",
+      "lemma": "usable",
+      "rank": 5995,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "能达成预期用途的可用状态，区别仅存在却不可操作。"
+    },
+    {
+      "queue_index": 2854,
+      "ku_id": "w_7806_sandal_ku_s01",
+      "lemma": "sandal",
+      "rank": 5996,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "以带子固定且露出较多脚面的轻便鞋，凉鞋特征明确。"
+    },
+    {
+      "queue_index": 2855,
+      "ku_id": "w_7613_submerge_ku_s01",
+      "lemma": "submerge",
+      "rank": 5997,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "进入或置于液面以下且完全没入，及物不及物均可。"
+    },
+    {
+      "queue_index": 2856,
+      "ku_id": "w_6513_dementia_ku_s01",
+      "lemma": "dementia",
+      "rank": 5998,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "认知能力持续减退以致影响日常生活的综合征，区别单次遗忘。"
+    },
+    {
+      "queue_index": 2858,
+      "ku_id": "w_10630_inflow_ku_s01",
+      "lemma": "inflow",
+      "rank": 6000,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "资金、液体或人群进入系统的流入量/流入行为，抽象度适当。"
+    },
+    {
+      "queue_index": 2859,
+      "ku_id": "w_5706_eventual_ku_s01",
+      "lemma": "eventual",
+      "rank": 6001,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "一段进程结束时最终出现，避免误解为possible可能的。"
+    },
+    {
+      "queue_index": 2860,
+      "ku_id": "w_6929_forensic_ku_s01",
+      "lemma": "forensic",
+      "rank": 6002,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "forensic不只科学证据调查，还包括法庭辩论等‘用于法庭’较广语义；需确定该KU仅法庭科学义。"
+    },
+    {
+      "queue_index": 2863,
+      "ku_id": "w_10223_cubicle_ku_s01",
+      "lemma": "cubicle",
+      "rank": 6005,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "办公室隔间是一个常用义，但厕所、更衣隔间也叫cubicle，应检查原KU范围。"
+    },
+    {
+      "queue_index": 2866,
+      "ku_id": "w_7709_spear_ku_s01",
+      "lemma": "spear",
+      "rank": 6009,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "长柄尖头的刺击武器，基本物体义无误。"
+    },
+    {
+      "queue_index": 2867,
+      "ku_id": "w_4308_linear_ku_s01",
+      "lemma": "linear",
+      "rank": 6010,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "直线形状或与直线有关，与数学线性延伸义有关联。"
+    },
+    {
+      "queue_index": 2869,
+      "ku_id": "w_10657_medic_ku_s01",
+      "lemma": "medic",
+      "rank": 6012,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "接受医疗训练尤其急救的人员，未限定必须医生。"
+    },
+    {
+      "queue_index": 2870,
+      "ku_id": "w_6855_strategist_ku_s01",
+      "lemma": "strategist",
+      "rank": 6013,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "擅长规划长远行动目标的策略人员，覆盖军事及商业。"
+    },
+    {
+      "queue_index": 2872,
+      "ku_id": "w_11260_directional_ku_s01",
+      "lemma": "directional",
+      "rank": 6015,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "表明或涉及方向的形容词，含定向性质。"
+    },
+    {
+      "queue_index": 2873,
+      "ku_id": "w_4465_formulate_ku_s01",
+      "lemma": "formulate",
+      "rank": 6017,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "精心形成或清楚表述计划想法，含制定与组织表达两种使用。"
+    },
+    {
+      "queue_index": 2874,
+      "ku_id": "w_6763_motel_ku_s01",
+      "lemma": "motel",
+      "rank": 6018,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "面向驾车旅客的公路旅馆，典型设施功能正确。"
+    },
+    {
+      "queue_index": 2876,
+      "ku_id": "w_4784_purchaser_ku_s01",
+      "lemma": "purchaser",
+      "rank": 6021,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "购买产品的个人或机构，未与使用者混同。"
+    },
+    {
+      "queue_index": 2877,
+      "ku_id": "w_5919_promotional_ku_s01",
+      "lemma": "promotional",
+      "rank": 6022,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "旨在增加关注或销售的推广行为，销售只是一个目标。"
+    },
+    {
+      "queue_index": 2878,
+      "ku_id": "w_9058_tyranny_ku_s01",
+      "lemma": "tyranny",
+      "rank": 6023,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "压迫或残酷地行使权力，包含制度及个人专横。"
+    },
+    {
+      "queue_index": 2879,
+      "ku_id": "w_6060_recur_ku_s01",
+      "lemma": "recur",
+      "rank": 6024,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "同一事件重复出现，often correctly marks frequent recurrence optional。"
+    },
+    {
+      "queue_index": 2880,
+      "ku_id": "w_7256_witty_ku_s01",
+      "lemma": "witty",
+      "rank": 6025,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "表达中体现机敏和幽默，不等于单纯聪明。"
+    },
+    {
+      "queue_index": 2881,
+      "ku_id": "w_11270_toughness_ku_s01",
+      "lemma": "toughness",
+      "rank": 6026,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "抗损伤或承受压力困难的能力，物理韧性与心理坚韧均包含。"
+    },
+    {
+      "queue_index": 2882,
+      "ku_id": "w_10489_thermometer_ku_s01",
+      "lemma": "thermometer",
+      "rank": 6027,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "用于测量温度的器具，明确不是温控器。"
+    },
+    {
+      "queue_index": 2883,
+      "ku_id": "w_6717_bookstore_ku_s01",
+      "lemma": "bookstore",
+      "rank": 6029,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "专营图书的零售商店，区别图书馆借阅。"
+    },
+    {
+      "queue_index": 2884,
+      "ku_id": "w_5331_rainfall_ku_s01",
+      "lemma": "rainfall",
+      "rank": 6030,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "某地在一段期间降下的雨量，降水量不包含雪。"
+    },
+    {
+      "queue_index": 2886,
+      "ku_id": "w_6922_endowment_ku_s01",
+      "lemma": "endowment",
+      "rank": 6032,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "长期支持机构的捐赠资金义正确，但endowment也可泛指天赋能力，若原KU非基金专用应拆Sense。"
+    },
+    {
+      "queue_index": 2888,
+      "ku_id": "w_8932_defiant_ku_s01",
+      "lemma": "defiant",
+      "rank": 6034,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "公开对抗要求或权威的态度，符合拒不服从色彩。"
+    },
+    {
+      "queue_index": 2889,
+      "ku_id": "w_5161_millennium_ku_s01",
+      "lemma": "millennium",
+      "rank": 6035,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "千年的时间段，单数基数义准确。"
+    },
+    {
+      "queue_index": 2890,
+      "ku_id": "w_9306_climatic_ku_s01",
+      "lemma": "climatic",
+      "rank": 6036,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "涉及气候而非天气一时变化，避免climactic混淆。"
+    },
+    {
+      "queue_index": 2891,
+      "ku_id": "w_4393_conspiracy_ku_s01",
+      "lemma": "conspiracy",
+      "rank": 6037,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "多人秘密计划伤害或违法事情，与公开协作区分。"
+    },
+    {
+      "queue_index": 2892,
+      "ku_id": "w_8462_vortex_ku_s01",
+      "lemma": "vortex",
+      "rank": 6038,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "气体或液体绕中心快速旋转的涡旋，常见物理义准确。"
+    },
+    {
+      "queue_index": 2893,
+      "ku_id": "w_11667_alias_ku_s01",
+      "lemma": "alias",
+      "rank": 6039,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "在本名或原标识以外使用的名称，包含化名。"
+    },
+    {
+      "queue_index": 2895,
+      "ku_id": "w_5205_slogan_ku_s01",
+      "lemma": "slogan",
+      "rank": 6041,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "易记而短小、表达理念或用于宣传的语句。"
+    },
+    {
+      "queue_index": 2896,
+      "ku_id": "w_5805_enlighten_ku_s01",
+      "lemma": "enlighten",
+      "rank": 6042,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "帮助他人获得事实理解或认识，含启迪意味。"
+    },
+    {
+      "queue_index": 2898,
+      "ku_id": "w_5236_spatial_ku_s01",
+      "lemma": "spatial",
+      "rank": 6044,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "空间、位置与物体布置相关的形容词，适合空间关系。"
+    },
+    {
+      "queue_index": 2900,
+      "ku_id": "w_9983_surreal_ku_s01",
+      "lemma": "surreal",
+      "rank": 6046,
+      "source_commit": "4f49f27ccf500fc8a8b72f65d6177c08bfa8b834",
+      "verdict": "PASS",
+      "linguistic_reason": "像梦境般超出正常现实感知，不等同真实超自然。"
+    },
+    {
+      "queue_index": 2901,
+      "ku_id": "w_8244_devoid_ku_s01",
+      "lemma": "devoid",
+      "rank": 6047,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "完全没有某种性质或事物，典型be devoid of。"
+    },
+    {
+      "queue_index": 2902,
+      "ku_id": "w_9236_truce_ku_s01",
+      "lemma": "truce",
+      "rank": 6048,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "冲突双方临时停止交战的协议，区别永久和平。"
+    },
+    {
+      "queue_index": 2903,
+      "ku_id": "w_3530_insect_ku_s01",
+      "lemma": "insect",
+      "rank": 6049,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "六条腿且身体分头胸腹的节肢动物昆虫基本特征，中文一致。"
+    },
+    {
+      "queue_index": 2904,
+      "ku_id": "w_4621_champagne_ku_s01",
+      "lemma": "champagne",
+      "rank": 6050,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "‘associated with Champagne region’不够限定受保护产区命名的香槟酒；应依KU是否泛指起泡葡萄酒及地域商标限定。"
+    },
+    {
+      "queue_index": 2905,
+      "ku_id": "w_4526_incur_ku_s01",
+      "lemma": "incur",
+      "rank": 6051,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "承担费用、损失或不良后果，语义偏向负面。"
+    },
+    {
+      "queue_index": 2907,
+      "ku_id": "w_8344_chronological_ku_s01",
+      "lemma": "chronological",
+      "rank": 6053,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "按事件发生的时间先后排序，区别因果顺序。"
+    },
+    {
+      "queue_index": 2912,
+      "ku_id": "w_5893_dismay_ku_s01",
+      "lemma": "dismay",
+      "rank": 6058,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "意外事件引起的焦虑或失望，含惊愕但译义略浓仍可接受。"
+    },
+    {
+      "queue_index": 2914,
+      "ku_id": "w_3116_outdoor_ku_s01",
+      "lemma": "outdoor",
+      "rank": 6060,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "室外发生的活动，限定场所明确。"
+    },
+    {
+      "queue_index": 2915,
+      "ku_id": "w_4776_murderer_ku_s01",
+      "lemma": "murderer",
+      "rank": 6061,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "故意非法杀害另一人的行为者，区别意外或合法致死。"
+    },
+    {
+      "queue_index": 2916,
+      "ku_id": "w_7017_normative_ku_s01",
+      "lemma": "normative",
+      "rank": 6062,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "描述事物应该如何的规范标准，而非统计常态。"
+    },
+    {
+      "queue_index": 2918,
+      "ku_id": "w_4921_belly_ku_s01",
+      "lemma": "belly",
+      "rank": 6064,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "胸部以下身体前侧的腹部，日常口语义准确。"
+    },
+    {
+      "queue_index": 2919,
+      "ku_id": "w_5086_revival_ku_s01",
+      "lemma": "revival",
+      "rank": 6065,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "活动、力量或受欢迎程度回升，复兴义通用。"
+    },
+    {
+      "queue_index": 2922,
+      "ku_id": "w_11328_simulator_ku_s01",
+      "lemma": "simulator",
+      "rank": 6068,
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "模仿真实过程以训练或测试的软件/设备，非现实系统本身。"
+    }
+  ],
+  "certification": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "production_ready": false,
+  "activation_allowed": false
+}
