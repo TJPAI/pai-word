@@ -1,0 +1,55 @@
+{
+  "schema": "core20k-sense-source-registry-v1",
+  "baseline": "V2.0.6",
+  "sources": [
+    {
+      "id": "oewn2025",
+      "region": "international",
+      "access": "wn.download('oewn:2025')",
+      "status": "COLLECTED_FULL20K"
+    },
+    {
+      "id": "kaikki_en",
+      "region": "international",
+      "url": "https://kaikki.org/dictionary/English/index.html",
+      "access": "downloadable JSONL; large; use streaming filtered extraction",
+      "status": "REGISTERED_NOT_YET_COLLECTED"
+    },
+    {
+      "id": "wordnik",
+      "region": "international",
+      "url": "https://developer.wordnik.com/",
+      "access": "API key required",
+      "status": "BLOCKED_ON_API_KEY"
+    },
+    {
+      "id": "dictionaryapi",
+      "region": "international",
+      "url": "https://api.dictionaryapi.dev/api/v2/entries/en/",
+      "access": "unauthenticated API, bounded requests",
+      "status": "PILOT_IMPLEMENTED"
+    },
+    {
+      "id": "ecdict",
+      "region": "China",
+      "url": "https://raw.githubusercontent.com/skywind3000/ECDICT/master/ecdict.csv",
+      "access": "public CSV streaming exact lemma join",
+      "status": "FULL_JOIN_IMPLEMENTED"
+    },
+    {
+      "id": "zhwiktionary",
+      "region": "China-language",
+      "url": "https://kaikki.org/zhwiktionary/rawdata.html",
+      "access": "JSONL compressed; filter language English",
+      "status": "REGISTERED_NOT_YET_COLLECTED"
+    }
+  ],
+  "selection_principles": {
+    "priority": "accuracy > coverage > learning-value > modernity > POS/label quality > reliable bilingual gloss > frequency evidence",
+    "do_not_assume": "source_count implies verified meaning",
+    "merge": "do not merge distinct POS, regional senses, technical senses or idiomatic usage without evidence",
+    "scoring": "independent credible corroboration; attested usage; high instructional relevance; conflicting senses go to review",
+    "identity": "freeze 20K lemma/rank; Sense and KU may change with explicit crosswalk",
+    "release": "no certification without semantic evidence"
+  }
+}
