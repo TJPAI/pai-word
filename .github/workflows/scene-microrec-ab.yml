@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Conservative candidate smoke QA
+        run: node experiments/scene-microrec/conservative.test.mjs
       - name: Candidate size gate (2 MB)
         run: node experiments/scene-microrec/check-size.mjs
       - name: Regression and synthetic Scene1500 scale
