@@ -61,7 +61,7 @@ def main():
         for rel,data in contents.items():
             target=a.output/rel
             target.parent.mkdir(parents=True,exist_ok=True)
-            target.write_bytes(data)
+            if not target.exists():target.write_bytes(data)
         (a.output/"import-manifest.json").write_text(
             json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
         print(json.dumps({"status":"PASS","shards":200,"headwords":20000,"batches":40}))
