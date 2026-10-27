@@ -40,6 +40,7 @@ def main():
     except Exception as e:fail("RUNTIME_PARSE_FAIL "+str(e))
     report["root_type"]=type(root).__name__
     report["root_keys"]=list(root)[:60] if isinstance(root,dict) else []
+    report["headwords_shape"]={"type":type(root.get("headwords")).__name__,"length":len(root.get("headwords",[])),"sample":str((list(root["headwords"].items())[:1] if isinstance(root.get("headwords"),dict) else root.get("headwords",[])[:1]))[:1800]} if isinstance(root,dict) else {}
     candidates=scan(root)
     report["arrays_of_20000"]=[p for p,_ in candidates]
     if len(candidates)!=1:fail("AMBIGUOUS_HEADWORD_ARRAY_COUNT "+str(len(candidates)))
