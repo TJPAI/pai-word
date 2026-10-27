@@ -11,6 +11,7 @@ on:
       - 'tools/core20k_sense_v1/build_first500_review_actions.py'
       - 'tools/core20k_sense_v1/build_first500_provisional_decisions.py'
       - 'tools/core20k_sense_v1/find_semantic_neighbors_500.py'
+      - 'tools/core20k_sense_v1/inspect_first500_merge_pairs.py'
       - '.github/workflows/core20k-sense-multisource.yml'
 jobs:
   join:
@@ -44,6 +45,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/build_first500_provisional_decisions.py
       - name: Detect same-POS semantic merge candidates
         run: python3 tools/core20k_sense_v1/find_semantic_neighbors_500.py
+      - name: Inspect exact candidate merge pairs
+        run: python3 tools/core20k_sense_v1/inspect_first500_merge_pairs.py
       - uses: actions/upload-artifact@v4
         with:
           name: sense-v1-multisource-coverage-20k
@@ -62,3 +65,4 @@ jobs:
             tools/core20k_sense_v1/reports/source_join/first500_provisional_decisions_summary.json
             tools/core20k_sense_v1/reports/source_join/first500_semantic_neighbor_suggestions.jsonl
             tools/core20k_sense_v1/reports/source_join/first500_semantic_neighbor_summary.json
+            tools/core20k_sense_v1/reports/source_join/first500_merge_review_8_pairs.json
