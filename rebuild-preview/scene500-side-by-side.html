@@ -12,7 +12,7 @@ ol{list-style:none;padding:0;margin:0}li{border-top:1px solid #ecf0f4;padding:11
 <h1>Scene500 · 旧版 / 新版同时对比</h1>
 <p>输入一条中文或英文需求，左右使用完全相同的基础召回结果。右侧仅增加最新的定向查询修正；此页面属于隔离算法评估，不影响正式推荐和学习记录。</p>
 <form id="queryForm"><input id="query" autocomplete="off" maxlength="200" placeholder="例如：I need to book a hotel room" value="I need to book a hotel room"><button id="run" type="submit">同时比较</button></form>
-<div id="status" role="status">正在准备推荐引擎…</div>
+<div id="status" role="status">正在准备推荐引擎…</div><div id="provenance" class="note">源码版本核验中…</div>
 <section class="columns"><article class="panel"><h2>原算法</h2><p class="subtitle">基线 · 不应用新修正</p><ol id="left"></ol></article><article class="panel"><h2>实验新算法</h2><p class="subtitle">相同召回 + 定向查询修正</p><ol id="right"></ol></article></section>
 <p class="note">对比显示的是 Scene500 算法候选，尚未按当前用户已掌握词汇与可学习 KU 过滤，因此不等同于实际学习页可进入的场景。实验结果不代表开放域语义质量已获认证。不会写入 SRS 或浏览器学习数据。</p>
 </main><script type="module">
@@ -22,6 +22,7 @@ const root=new URL('../scene500-recommendation/',import.meta.url);
 const form=document.getElementById('queryForm'),input=document.getElementById('query'),status=document.getElementById('status'),run=document.getElementById('run');
 const left=document.getElementById('left'),right=document.getElementById('right');
 let engine=null,catalog=null,sequence=0;
+fetch(new URL('../preview-source-sha.txt',import.meta.url),{cache:'no-store'}).then(r=>r.ok?r.text():Promise.reject(Error('SHA unavailable'))).then(t=>{document.getElementById('provenance').textContent='当前部署源码 SHA：'+t.trim()+' ｜算法：基线 vs observed-query-corrections（实验）｜状态：未获开放域语义认证';}).catch(()=>{document.getElementById('provenance').textContent='无法核验当前部署 SHA；请以 GitHub Actions 构建记录为准';});
 function draw(node,rows,other){node.replaceChildren();if(!rows.length){const li=document.createElement('li');li.textContent='没有候选场景';node.append(li);return;}
 rows.forEach((r,i)=>{const li=document.createElement('li'),rank=document.createElement('span'),label=document.createElement('span'),id=document.createElement('span');
 rank.className='rank';rank.textContent=String(i+1);label.className='scene';label.textContent=r.name||catalog.scenes[r.sceneId]?.name||r.sceneId;
