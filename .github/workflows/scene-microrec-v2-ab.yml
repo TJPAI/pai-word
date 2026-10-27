@@ -1,0 +1,48 @@
+name: Scene MicroRec centroid student v2 A/B
+on:
+  push:
+    branches:
+      - experiment/scene1500-microrec-ab-20261027
+    paths:
+      - 'experiments/scene-microrec/train-student-v2.py'
+      - '.github/workflows/scene-microrec-v2-ab.yml'
+  workflow_dispatch:
+jobs:
+  ab:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install NumPy
+        run: python -m pip install 'numpy>=1.26,<3'
+      - uses: actions/download-artifact@v4
+        with:
+          name: scene-microrec-real-student-and-teacher
+          run-id: 40477803071
+          github-token: ${{ github.token }}
+          path: /tmp/real-distill
+      - name: Verify real E5 data SHA-256
+        run: |
+          echo '48542e04a23a8a6671f1332958a507b93b3d7ee021018a559aab7bf345fd6e69  /tmp/real-distill/scene-teacher-real.json' | sha256sum -c -
+      - name: Train actual centroid-aligned v2 INT8 student
+        run: python experiments/scene-microrec/train-student-v2.py --input /tmp/real-distill/scene-teacher-real.json --output /tmp/scene-student-v2.json
+      - name: Validate real v2 student browser inference
+        run: node experiments/scene-microrec/validate-real-student.mjs /tmp/scene-student-v2.json
+      - name: A/B against Conservative with identical queries
+        run: node experiments/scene-microrec/evaluate-real-student.mjs /tmp/scene-student-v2.json
+      - name: Record hashes
+        run: sha256sum /tmp/scene-student-v2.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scene-microrec-v2-centroid-student-ab
+          path: |
+            /tmp/scene-student-v2.json
+            experiments/scene-microrec/real-student-ab-report.json
