@@ -67,6 +67,8 @@ jobs:
           node experiments/scene-microrec/evaluate-real-student-vs-conservative.mjs \
             /tmp/real-distill-artifacts/scene-student-real.json \
             /tmp/real-distill-ab/real-student-vs-conservative.json
+      - name: Export independent blind-review input
+        run: node experiments/scene-microrec/build-semantic-blind-input.mjs --write
       - name: Generate 500-scene bilingual editorial queue
         run: node experiments/scene-microrec/build-bilingual-queue.mjs --write
       - name: Verify all 500 bilingual candidates have accountable review state
@@ -89,6 +91,7 @@ jobs:
             experiments/scene-microrec/teacher-encoding-jobs.json
             experiments/scene-microrec/bilingual-coverage-audit.json
             experiments/scene-microrec/bilingual-editorial-queue.json
+            experiments/scene-microrec/semantic-blind-input-500.json
             /tmp/real-distill-ab/real-student-vs-conservative.json
 
 # Bilingual audit gate must appear in the executed job steps.
