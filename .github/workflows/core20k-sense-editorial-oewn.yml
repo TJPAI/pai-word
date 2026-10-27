@@ -1,0 +1,26 @@
+name: Core20K Sense editorial OEWN evidence
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/review_editorial_oewn.py'
+      - '.github/workflows/core20k-sense-editorial-oewn.yml'
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'wn>=0.13,<2'
+      - run: python -c "import wn; wn.download('oewn:2025')"
+      - run: python tools/core20k_sense_v1/review_editorial_oewn.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense-editorial-20-oewn-evidence
+          path: tools/core20k_sense_v1/reports/editorial_20_oewn2025_*.json
