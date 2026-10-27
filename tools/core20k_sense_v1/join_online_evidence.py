@@ -6,7 +6,8 @@ byrank={w[0]:w for w in rows}; assert len(byrank)==20000 and set(byrank)==set(ra
 sourcepaths={
  "oewn2025":p/"oewn"/"oewn2025_full20k_sense_candidates.jsonl",
  "ecdict":p/"ecdict"/"ecdict_core20k.jsonl",
- "zhwiktionary":p/"zh"/"zhwiktionary_core20k.jsonl"
+ "zhwiktionary":p/"zh"/"zhwiktionary_core20k.jsonl",
+ "kaikki_en":p/"kaikki"/"kaikki_en_core20k.jsonl"
 }
 signals={r:set() for r in byrank};counts=collections.Counter();sourceitems={}
 for name,path in sourcepaths.items():
@@ -17,6 +18,7 @@ for name,path in sourcepaths.items():
   assert byrank[rank][1].casefold()==row["lemma"].casefold(),(name,rank)
   total+=1;distinct.add(rank)
   if name=="oewn2025":evidence=bool(row.get("oewn_candidates"))
+  elif name=="kaikki_en":evidence=bool(row.get("senses"))
   elif name=="ecdict":evidence=bool(str(row.get("definition_en") or "").strip() or str(row.get("translation_zh") or "").strip())
   else:evidence=bool(row.get("senses"))
   if evidence:signals[rank].add(name);meaningful+=1
