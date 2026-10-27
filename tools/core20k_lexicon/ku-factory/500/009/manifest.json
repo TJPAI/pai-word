@@ -1,0 +1,17 @@
+{
+  "task_id": "009",
+  "batch_size": 500,
+  "group_no": 9,
+  "rank_start": 4001,
+  "rank_end": 4500,
+  "role": "CG-KU-009",
+  "branch": "ku-factory-009-b500",
+  "output_dir": "tools/core20k_lexicon/ku-factory/500/009/",
+  "baseline_ref": "core20k-lexicon-production-v1",
+  "authoritative_membership": "PAI_Word_Core20000_LongTermBaseline_Frozen_V2.0.6.csv",
+  "authoritative_membership_sha256_expected": "e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca",
+  "runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "status": "BLOCKED_SOURCE_DATA_UNVERIFIED",
+  "production_ready": false,
+  "notes": "Frozen CSV is external to repository; gzipped runtime is not decoded through current GitHub connector. No canonical rank-to-headword and complete Sense mapping independently verified; no candidate KU invented."
+}
