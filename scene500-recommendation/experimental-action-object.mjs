@@ -15,6 +15,9 @@ export const ACTION_OBJECT_CANDIDATE_VERSION='scene500-action-object-prototype-v
 export function actionObjectCandidates(query,{catalog,eligibleSceneIds=null}={}){
  const q=String(query??'').normalize('NFKC').toLowerCase();
  if(!q||q.length>500||!catalog?.scenes)return [];
+ // A learning/practice wrapper quotes a language example, not the user's real-world action.
+ // Abstain rather than combine the outer learner's intent with an inner quoted dish/action.
+ if(/\b(?:practice|learn|study|translate)\s+(?:my\s+)?english\b[^:：]{0,100}[:：]/i.test(q))return [];
  const allowed=eligibleSceneIds==null?null:new Set(eligibleSceneIds);
  return patterns.filter(p=>(p.id==='food_order'?(p.action.test(q)||directFoodWant.test(q)):p.action.test(q))&&p.object.test(q)&&(!p.exclude||!p.exclude.test(q))&&catalog.scenes[p.sceneId]&&(!allowed||allowed.has(p.sceneId))).map(p=>({sceneId:p.sceneId,reason:['experimental_action_object'],patternId:p.id,score:10}));
 }
