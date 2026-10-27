@@ -1,0 +1,29 @@
+{
+  "schema": "zh-core20k-pos-batch05-handoff-v1",
+  "date": "2026-10-27",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_indices": "511..710 (zero based)",
+  "rows": 200,
+  "editorial_proposals": 136,
+  "hold": 64,
+  "proposals_distribution": {
+    "NOUN": 65,
+    "VERB": 43,
+    "ADV": 12,
+    "ADJ": 11,
+    "PROPN": 3,
+    "PRON": 2
+  },
+  "full_asset": "zh-pos-batch05-triage-200.json",
+  "full_asset_sha256": "f8d7ff3c022fbd0f82e1c2f6b401b31ad340a04a4cd71e66396f2df5524cc8a5",
+  "full_asset_bytes": 86398,
+  "qa": {
+    "term_id_and_term_match": "200/200",
+    "unique_id": "200/200",
+    "nonempty_justification": "200/200",
+    "source_runtime_sha_verified": true
+  },
+  "status": "AI_EDITORIAL_STAGING_NOT_CERTIFIED",
+  "production_ready": false,
+  "warning": "Examples are illustrative editorial evidence, not corpus attestations or a second independent linguistic review. Full 200-row artifact is provided as a chat file; this GitHub file is the handoff manifest only."
+}
