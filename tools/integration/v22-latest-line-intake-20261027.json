@@ -1,0 +1,65 @@
+{
+  "schema": "pai-v22-line-intake-v1",
+  "date": "2026-10-27",
+  "handoff": "V22-LATEST-ASSETS-INTEGRATION-20261027",
+  "integration_branch": "cg-main-fourline-integration-20261026",
+  "lines": [
+    {
+      "role": "CG-ZH",
+      "branch": "chinese-core20k-dev",
+      "sha": "da9b211aaf9914534b7e878ec510b9f344a9bdb3",
+      "status": "FROZEN_RUNTIME_AVAILABLE",
+      "approved_scope": "existing v0.10.1 lexicon bridge only",
+      "excluded": "174 uncertified POS candidates",
+      "source_issue_comment": 6433120481
+    },
+    {
+      "role": "CG-REC",
+      "branch": "scene500-recommendation-dev",
+      "sha": "07f2cd009f16d79478e36440a2e3b4657d12cb72",
+      "status": "ISOLATED_STAGING",
+      "approved_scope": "QA and isolated bridge integration only",
+      "excluded": "open-domain production activation; unverified v0.10.1 associations",
+      "source_issue_comment": 6433131691
+    },
+    {
+      "role": "CG-ENLEX",
+      "branch": "core20k-lexicon-production-v1",
+      "sha": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+      "status": "FROZEN_RUNTIME_BASELINE",
+      "approved_scope": "existing Core20K runtime identities",
+      "excluded": "unreviewed editorial candidates",
+      "source_issue_comment": null
+    },
+    {
+      "role": "CG-ENTEACH",
+      "branch": "answer-enrichment-main-dev-20261026",
+      "sha": "86cd4428dbdeca559e04eaf27115d0fd063934c0",
+      "status": "ISOLATED_STAGING",
+      "approved_scope": "26 field-difference editorial proposals and QA reference only",
+      "excluded": "formal KU learning activation",
+      "source_issue_comment": 6433319812
+    },
+    {
+      "role": "CG-QA",
+      "branch": "cg-qa-enlex-review-20261026",
+      "sha": "4015f25b2ce3443bd4d3f63bb83e1c9033907982",
+      "status": "ISOLATED_STAGING",
+      "approved_scope": "review findings; cloze prototype 6 PASS 2 CONDITIONAL",
+      "excluded": "typed answer activation",
+      "source_issue_comment": 6433118938
+    }
+  ],
+  "integration_policy": {
+    "preserve_stable_preview": true,
+    "do_not_change_srs": true,
+    "do_not_renumber_ids": true,
+    "default_teaching_overlay_off": true,
+    "do_not_autopromote_staging": true
+  },
+  "known_blockers": [
+    "REC holdout Top1 8/15, Top5 9/15; semantic generalization not approved",
+    "ENTEACH 8 question prototype has open cloze ambiguity and alternative sense-recognition versions under review",
+    "B93 formal release authority and source rights remain unavailable"
+  ]
+}
