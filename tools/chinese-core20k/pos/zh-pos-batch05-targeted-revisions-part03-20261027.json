@@ -1,0 +1,228 @@
+{
+  "schema": "zh-core20k-pos-batch05-targeted-revisions-part03-v1",
+  "source_batch05_blob": "e3dbc2c43bcf57796ed73936303ef369e621b28f",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "count": 15,
+  "activation_allowed": false,
+  "items": [
+    {
+      "term": "以前",
+      "term_id": "zh_aa98317793b49d8dbe4c",
+      "runtime_index": 628,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“从前、以前”可作时间范围名词，“以前我住这里”则以时间成分充当句首状语。",
+      "limit_zh": "出现在状语位置不足以单独证明ADV，应与方位时间词体系对齐。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "中央",
+      "term_id": "zh_b864a6a4edbf613031cb",
+      "runtime_index": 627,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“党中央作出决定”中的中央可指组织层级；“广场中央”中为方位中心名词。“中央地区”属前置名词修饰。",
+      "limit_zh": "不能仅据“中央地区”确立ADJ，组织专名需语境区别。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "当地",
+      "term_id": "zh_6b4a1488651133bad72a",
+      "runtime_index": 650,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“在当地工作”中的当地为处所名词性成分；“当地居民”是名词性定语。",
+      "limit_zh": "定语功能不自动等于形容词，需明确方位词类体系。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "公开",
+      "term_id": "zh_7a73baf0ce9abe54e3b5",
+      "runtime_index": 646,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ",
+        "ADV"
+      ],
+      "evidence_zh": "“公开结果”可作及物动词，“资料已经公开”为状态性谓词，“公开讨论”可作方式修饰。",
+      "limit_zh": "最后一种状语用法不应未经证明就独立认定ADV。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "证明",
+      "term_id": "zh_90b793146f05907636ee",
+      "runtime_index": 643,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“数据证明假设成立”为谓词；“提供证明”是名词宾语。",
+      "limit_zh": "名词义与动词义应拆Sense核验。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "讨论",
+      "term_id": "zh_3cef912ce8819fff2ed2",
+      "runtime_index": 639,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“讨论方案”及物动词；“展开讨论”中为活动名词。",
+      "limit_zh": "此前只有动词候选，兼类依据需逐项审定。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "综合",
+      "term_id": "zh_4a0d4edef9c7bfdd16e4",
+      "runtime_index": 637,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“综合各方意见”为整合动词；“综合能力”“综合评价”中形容性或定语性修饰。",
+      "limit_zh": "前置修饰也可能为构词成分，ADJ证据还需检查“很综合”的自然度。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "旅游",
+      "term_id": "zh_c8bf3f878e389b57c6ec",
+      "runtime_index": 673,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“暑假去旅游”为活动动词；“发展旅游”中为产业或活动名词。",
+      "limit_zh": "部分语境含省略中心词，不能据所有前置修饰标NOUN。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "自然",
+      "term_id": "zh_4f12408398369b19b261",
+      "runtime_index": 654,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN",
+        "ADV"
+      ],
+      "evidence_zh": "“自然景观”偏性质属性，“保护自然”中自然指自然界，“问题自然解决了”含顺理成章的副词义。",
+      "limit_zh": "定语不能独证ADJ，但三义不同须区分语义。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "同样",
+      "term_id": "zh_63a004af12bff8787408",
+      "runtime_index": 680,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“同样的问题”为相同性质定语，“我同样赞成”为副词状语。",
+      "limit_zh": "不同句法分布支持兼类，不宜仅标ADJ。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "共同",
+      "term_id": "zh_690b887d4ffbda8f0325",
+      "runtime_index": 685,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“共同目标”为定语，“共同承担责任”作状语，区分性质与共同参与方式。",
+      "limit_zh": "要确认是否属区别词而非典型可程度修饰形容词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "一位",
+      "term_id": "zh_652d931fa8b2df75261f",
+      "runtime_index": 645,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“一位教师”可切为数词“一”与人称量词“位”，整串并非自动词汇化的单词。",
+      "limit_zh": "仅保留构式HOLD，不给单一词性；需固定分词粒度标准。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false
+    },
+    {
+      "term": "不到",
+      "term_id": "zh_d86bd23098d1d8d92c85",
+      "runtime_index": 647,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“不到十人”可分析为数量上界结构，“到不了”含动词到的可能补语，不应混为一义项。",
+      "limit_zh": "应建立多构式拆分与边界判断，暂不做单POS赋值。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false
+    },
+    {
+      "term": "最高",
+      "term_id": "zh_8672864e9041713891eb",
+      "runtime_index": 618,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“最高建筑”是程度副词“最”与形容词“高”组合；最高级结构需独立判断是否词汇化。",
+      "limit_zh": "在此阶段不直接标ADJ完成项，保持HOLD。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false
+    },
+    {
+      "term": "今年",
+      "term_id": "zh_3a7ddf6c862aa15c9589",
+      "runtime_index": 666,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [],
+      "evidence_zh": "“今年计划完成”“到今年为止”均表示特定年度时间名词，可在句首作时间状语。",
+      "limit_zh": "时间状语用法不直接等于词汇副词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    }
+  ]
+}
