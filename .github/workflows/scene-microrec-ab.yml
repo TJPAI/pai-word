@@ -45,6 +45,8 @@ jobs:
         run: node experiments/scene-microrec/evaluate-prototype.mjs
       - name: Build provenance-pinned teacher encoding jobs (no teacher weights)
         run: node experiments/scene-microrec/build-teacher-jobs.mjs --write
+      - name: Validate optional teacher encoder syntax
+        run: python -m py_compile experiments/scene-microrec/encode-teacher.py
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
