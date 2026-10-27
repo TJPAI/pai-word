@@ -1,0 +1,41 @@
+name: KU factory verified source export
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: "Words per shard (200, 500, 1000)"
+        required: true
+        default: "500"
+        type: choice
+        options: ["200", "500", "1000"]
+  push:
+    branches: ["ku-factory-003-b500"]
+    paths: [".github/workflows/ku-factory-source-export.yml"]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify and split source
+        shell: bash
+        run: |
+          set -euo pipefail
+          B="${{ inputs.batch_size || '500' }}"
+          for i in $(seq 1 $((20000 / B))); do
+            START=$(( (i - 1) * B + 1 ))
+            END=$(( i * B ))
+            ID=$(printf '%03d' "$i")
+            python3 tools/core20k_lexicon/ku-factory/source_preflight.py \
+              --runtime data/core20k-runtime.json.gz \
+              --start "$START" --end "$END" \
+              --out "build/ku-factory-source/$B/$ID/source.json"
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ku-factory-sources-and-diagnostics
+          path: build/ku-factory-source/
+          retention-days: 7
