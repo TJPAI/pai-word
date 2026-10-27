@@ -58,6 +58,8 @@ jobs:
         run: node tools/integration/test-approved-overlay-boot-source.mjs
       - name: Execute KU anchored release to runtime dual gate
         run: node tools/integration/test-ku-anchored-release-to-runtime.mjs
+      - name: Verify side-by-side Scene500 comparison page
+        run: node tools/integration/test-scene500-side-by-side.mjs
       - name: Test Scene500 preview bridge opt-in contract
         run: node tools/integration/test-v22-observed-bridge-contract.mjs
       - name: Test Scene500 corrections opt-in adapter
