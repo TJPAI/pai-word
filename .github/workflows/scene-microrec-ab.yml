@@ -25,7 +25,11 @@ jobs:
         run: node experiments/scene-microrec/evaluate.mjs --write
       - name: Three-suite robustness comparison
         run: node experiments/scene-microrec/evaluate-extended.mjs
+      - name: Historical V0.10.1 hybrid snapshot comparison
+        run: node experiments/scene-microrec/compare-historical-v0101.mjs --write
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
-          path: experiments/scene-microrec/results.json
+          path: |
+            experiments/scene-microrec/results.json
+            experiments/scene-microrec/historical-hybrid-comparison.json
