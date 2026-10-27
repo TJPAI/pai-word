@@ -33,7 +33,7 @@ function compare(){if(!engine)return;const ticket=++sequence;const q=input.value
 const original=engine.search(q,{limit:500});const changed=applyObservedQueryCorrections(original,q,{catalog,limit:10});
 if(ticket!==sequence)return;const a=original.results.slice(0,10),c=changed.results;
 draw(left,a,c);draw(right,c,a);const firstA=a[0]?.sceneId||'无',firstB=c[0]?.sceneId||'无';
-status.textContent='模式：'+engine.mode+' ｜原 Top1：'+firstA+' ｜新 Top1：'+firstB+' ｜命中规则：'+(changed.correctionRule||'无')+(firstA===firstB?' ｜Top1 未变化':' ｜Top1 已变化');
+status.textContent='比较基座：'+engine.mode+(engine.mode!=='hybrid'?'（中文词库或关联资产未完成加载，当前为规则回退；不能代表完整 Hybrid 效果）':'（Hybrid）')+' ｜原 Top1：'+firstA+' ｜新 Top1：'+firstB+' ｜命中规则：'+(changed.correctionRule||'无')+(firstA===firstB?' ｜Top1 未变化':' ｜Top1 已变化');
 }
 form.addEventListener('submit',e=>{e.preventDefault();compare()});
 input.addEventListener('input',()=>{if(engine)compare()});
