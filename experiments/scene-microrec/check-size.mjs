@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {gzipSync} from 'node:zlib';
+const paths=['./microrec.mjs','./intent-aware.mjs','../../scene500-recommendation/catalog-v0.2.json'];
+const files=paths.map(p=>({path:p,bytes:fs.readFileSync(new URL(p,import.meta.url))}));
+const raw=files.reduce((n,f)=>n+f.bytes.length,0);
+const gzip=files.reduce((n,f)=>n+gzipSync(f.bytes).length,0);
+const max=2_000_000;
+const report={status:raw<=max?'PASS':'FAIL',raw_bytes:raw,gzip_bytes:gzip,limit_bytes:max,items:files.map(f=>({path:f.path,bytes:f.bytes.length,gzip_bytes:gzipSync(f.bytes).length})),scope:'candidate modules and Scene500 catalog ONLY; excludes Core20K and baseline engine; JS runtime memory excluded'};
+console.log(JSON.stringify(report));
+if(raw>max)process.exitCode=1;
