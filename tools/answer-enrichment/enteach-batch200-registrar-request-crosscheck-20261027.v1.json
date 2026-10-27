@@ -1,0 +1,25 @@
+{
+  "schema_version": "enteach-24ku-registrar-request-crosscheck-v1",
+  "status": "REQUEST_SOURCE_MATCH_PASS_AUTHORIZATION_ABSENT",
+  "inputs": {
+    "request_blob": "87ca9b1d05f597bc7752f95bd14b8b69f465e143",
+    "staging_blob": "d4d8d6f498b1795ab3e18a4f2c40bbc087b130ea"
+  },
+  "checks": {
+    "records": 24,
+    "match_ku_id_headword_rank_kind_glosses_and_source_file": 24,
+    "mismatch": 0,
+    "duplicate_request_ku_ids": 0,
+    "registrar_approved": 0,
+    "approved_bindings": 0
+  },
+  "conclusion": "Registrar requests match staged content exactly but contain zero verified identity approvals. An authorized registrar must attach source evidence before any state change.",
+  "pending_independent_review": [
+    "supreme",
+    "sequel"
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
