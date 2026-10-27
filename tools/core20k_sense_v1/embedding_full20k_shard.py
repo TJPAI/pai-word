@@ -13,6 +13,15 @@ for line in (p/"full20k_sense_preclusters.jsonl").open(encoding="utf8"):
 assert len(rows)==20000//shards
 model=SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 stats=collections.Counter()
+# Encode the whole shard in large batches once, then slice by word/POS.
+all_glosses=[]
+word_offsets={}
+for r in rows:
+ start=len(all_glosses)
+ all_glosses.extend(str(g["gloss_en"]) for g in r["gloss_clusters"])
+ word_offsets[r["rank"]]=(start,len(all_glosses))
+all_vectors=model.encode(all_glosses,batch_size=128,convert_to_numpy=True,normalize_embeddings=True,show_progress_bar=False)
+assert len(all_vectors)==len(all_glosses)
 dst=p/f"embedding_shard_{shard:02d}.jsonl"
 with dst.open("w",encoding="utf8") as out:
  for r in rows:
@@ -23,7 +32,8 @@ with dst.open("w",encoding="utf8") as out:
    if len(idx)<2:continue
    # Preserve a bound for extreme polysemy and log truncation.
    if len(idx)>240:stats["truncated_pos_groups"]+=1;idx=idx[:240]
-   v=model.encode([glosses[i]["gloss_en"] for i in idx],batch_size=64,convert_to_numpy=True,normalize_embeddings=True,show_progress_bar=False)
+   offset=word_offsets[r["rank"]][0]
+   v=all_vectors[[offset+i for i in idx]]
    sims=v@v.T
    for i in range(len(idx)):
     for j in range(i+1,len(idx)):
