@@ -1,0 +1,15 @@
+{
+  "task_id": "004",
+  "batch_size": 500,
+  "role": "CG-KU-004",
+  "rank_start": 1501,
+  "rank_end": 2000,
+  "branch": "ku-factory-004-b500",
+  "source_ref": "core20k-lexicon-production-v1",
+  "source_runtime_path": "data/core20k-runtime.json.gz",
+  "source_runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "status": "BLOCKED_INPUT_NOT_PARSED",
+  "certification_status": "NOT_CERTIFIED",
+  "candidate_file": "ku_candidates.jsonl",
+  "notes": "Frozen V2.0.6 CSV absent at checked repository path; GitHub connector provides gzip runtime only as base64 and the 500 records/senses have not been decoded or audited. No candidates fabricated."
+}
