@@ -67,6 +67,8 @@ jobs:
           node experiments/scene-microrec/evaluate-real-student-vs-conservative.mjs \
             /tmp/real-distill-artifacts/scene-student-real.json \
             /tmp/real-distill-ab/real-student-vs-conservative.json
+      - name: Validate independently attributed blind-review verdicts
+        run: node experiments/scene-microrec/validate-independent-review.mjs --write
       - name: Validate source-preserving revision proposals
         run: node experiments/scene-microrec/test-semantic-revisions.mjs --write
       - name: Export independent blind-review input
@@ -95,6 +97,7 @@ jobs:
             experiments/scene-microrec/bilingual-editorial-queue.json
             experiments/scene-microrec/semantic-blind-input-500.json
             experiments/scene-microrec/semantic-revision-diff.json
+            experiments/scene-microrec/independent-review-readiness.json
             /tmp/real-distill-ab/real-student-vs-conservative.json
 
 # Bilingual audit gate must appear in the executed job steps.
