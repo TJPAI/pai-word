@@ -10,6 +10,7 @@ on:
       - 'tools/core20k_sense_v1/triage_first500_meanings.py'
       - 'tools/core20k_sense_v1/build_first500_review_actions.py'
       - 'tools/core20k_sense_v1/build_first500_provisional_decisions.py'
+      - 'tools/core20k_sense_v1/find_semantic_neighbors_500.py'
       - '.github/workflows/core20k-sense-multisource.yml'
 jobs:
   join:
@@ -41,6 +42,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/build_first500_review_actions.py
       - name: Build provenance-aware provisional Sense decisions
         run: python3 tools/core20k_sense_v1/build_first500_provisional_decisions.py
+      - name: Detect same-POS semantic merge candidates
+        run: python3 tools/core20k_sense_v1/find_semantic_neighbors_500.py
       - uses: actions/upload-artifact@v4
         with:
           name: sense-v1-multisource-coverage-20k
@@ -57,3 +60,5 @@ jobs:
             tools/core20k_sense_v1/reports/source_join/first500_review_actions_summary.json
             tools/core20k_sense_v1/reports/source_join/first500_provisional_decisions.jsonl
             tools/core20k_sense_v1/reports/source_join/first500_provisional_decisions_summary.json
+            tools/core20k_sense_v1/reports/source_join/first500_semantic_neighbor_suggestions.jsonl
+            tools/core20k_sense_v1/reports/source_join/first500_semantic_neighbor_summary.json
