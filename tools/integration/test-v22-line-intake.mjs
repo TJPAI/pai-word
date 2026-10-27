@@ -9,6 +9,10 @@ for(const item of x.lines){
  assert(item.branch&&item.status&&item.approved_scope&&item.excluded);
 }
 for(const role of ['CG-REC','CG-ENTEACH','CG-QA'])assert.equal(x.lines.find(y=>y.role===role).status,'ISOLATED_STAGING');
+const rec=x.lines.find(y=>y.role==='CG-REC');
+assert.equal(rec.qa.status,'ENGINEERING_PASS_SEMANTIC_UNCERTIFIED');
+assert.equal(rec.qa.negative_leak,'0/4');
+assert.equal(rec.qa.regression_assertions,43);
 assert.equal(x.integration_policy.default_teaching_overlay_off,true);
 assert.equal(x.integration_policy.do_not_autopromote_staging,true);
 assert.equal(x.integration_policy.preserve_stable_preview,true);
