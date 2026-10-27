@@ -1,0 +1,35 @@
+name: Core20K Sense embedding aggregation
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Core20K Sense 20K semantic embedding shards"]
+    types: [completed]
+    branches: [core20k-sense-v1-audit-20261027]
+jobs:
+  aggregate:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: core20k-sense-v1-audit-20261027
+      - name: Download successful ten-way embedding run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          run_id="${{ github.event.workflow_run.id }}"
+          if [ -z "$run_id" ]; then run_id="40556317776"; fi
+          for n in $(seq 0 9); do
+            gh run download "$run_id" -n "sense20k-embedding-shard-$n" -D "tools/core20k_sense_v1/reports/semantic_shards/shard$n"
+          done
+      - name: Validate exactly once frozen rank coverage
+        run: python tools/core20k_sense_v1/aggregate_embedding_shards.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense20k-embedding-consolidated
+          path: |
+            tools/core20k_sense_v1/reports/semantic_shards/all20k_semantic_neighbor_pairs.jsonl
+            tools/core20k_sense_v1/reports/semantic_shards/all20k_semantic_neighbor_summary.json
