@@ -1,7 +1,28 @@
-// Experimental bilingual seed data. Every pair is a proposed translation, not certified QA.
-// No source corpus was altered and no labels from existing test queries were used.
+// Proposed bilingual training candidate pool; none are certified or trainable yet.
 export const bilingualSeeds=[
- ['S001','起床与晨间准备','Getting up and getting ready in the morning'],
- ['S002','洗漱与个人清洁','Washing up and personal hygiene'],
- ['S003','穿衣与搭配','Getting dressed and choosing an outfit']
-].map(([scene_id,source_zh,candidate_en])=>({scene_id,source_zh,candidate_en,provenance:'chatgpt_editorial_candidate_20261027',review_status:'UNREVIEWED',use_for_training:false}));
+ ['S001',"Getting up and getting ready in the morning"],
+ ['S002',"Washing up and personal hygiene"],
+ ['S003',"Getting dressed and choosing an outfit"],
+ ['S004',"Tidying up a room"],
+ ['S005',"Doing household chores"],
+ ['S006',"Doing laundry and drying clothes"],
+ ['S007',"Preparing to cook"],
+ ['S008',"Having meals at home"],
+ ['S009',"Washing dishes and cleaning the kitchen"],
+ ['S010',"Relaxing at home"],
+ ['S011',"Watching TV and streaming shows"],
+ ['S012',"Talking with family members"],
+ ['S013',"Taking care of children"],
+ ['S014',"Caring for elderly family members"],
+ ['S015',"Taking care of pets"],
+ ['S016',"Having a family gathering"],
+ ['S017',"Furniture and household items"],
+ ['S018',"Using household water electricity and gas"],
+ ['S019',"Using appliances and dealing with breakdowns"],
+ ['S020',"Doing household repairs"],
+ ['S021',"Moving house and organizing belongings"],
+ ['S022',"Talking with neighbors"],
+ ['S023',"Receiving deliveries and packages"],
+ ['S024',"Sorting waste and recycling"],
+ ['S025',"Getting ready for bed and going to sleep"]
+].map(([scene_id,candidate_en])=>({scene_id,candidate_en,provenance:'chatgpt_editorial_candidate_20261027',review_status:'UNREVIEWED',use_for_training:false}));
