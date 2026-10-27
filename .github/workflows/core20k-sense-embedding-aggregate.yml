@@ -1,13 +1,18 @@
 name: Core20K Sense embedding aggregation
 on:
   workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - '.github/workflows/core20k-sense-embedding-aggregate.yml'
+      - 'tools/core20k_sense_v1/aggregate_embedding_shards.py'
   workflow_run:
     workflows: ["Core20K Sense 20K semantic embedding shards"]
     types: [completed]
     branches: [core20k-sense-v1-audit-20261027]
 jobs:
   aggregate:
-    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,7 +26,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           run_id="${{ github.event.workflow_run.id }}"
-          if [ -z "$run_id" ]; then run_id="40556317776"; fi
+          if [ -z "$run_id" ]; then run_id="40556665992"; fi
           for n in $(seq 0 9); do
             gh run download "$run_id" -n "sense20k-embedding-shard-$n" -D "tools/core20k_sense_v1/reports/semantic_shards/shard$n"
           done
