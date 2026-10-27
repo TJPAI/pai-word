@@ -18,8 +18,8 @@ function switchedTransport(q){
 }
 // Require both a hotel context and a clear booking/check-in action;
 // never route generic "check in" to a hotel (airport check-in is a different scene).
-const englishHotelBooking=/^(?:(?:i\\s+(?:need|want|would\\s+like)\\s+to|i'd\\s+like\\s+to)\\s+)?(?:book|reserve)\\s+(?:(?:a|the)\\s+)?(?:hotel\\s+room|room\\s+at\\s+(?:a|the)\\s+hotel|hotel)(?:\\s+please)?[?.]?$/i;
-const englishHotelCheckin=/^(?:(?:where\\s+can\\s+i|how\\s+do\\s+i)\\s+check\\s+in\\s+(?:at|to)\\s+(?:the|a)\\s+hotel|(?:i\\s+want\\s+to|i\\s+need\\s+to)\\s+check\\s+in\\s+at\\s+(?:the|a)\\s+hotel)[?.]?$/i;
+const englishHotelBooking=/^(?:(?:i\s+(?:need|want|would\s+like)\s+to|i'd\s+like\s+to)\s+)?(?:book|reserve)\s+(?:(?:a|the)\s+)?(?:hotel\s+room|room\s+at\s+(?:a|the)\s+hotel|hotel)(?:\s+please)?[?.]?$/i;
+const englishHotelCheckin=/^(?:(?:where\s+can\s+i|how\s+do\s+i)\s+check\s+in\s+(?:at|to)\s+(?:the|a)\s+hotel|(?:i\s+want\s+to|i\s+need\s+to)\s+check\s+in\s+at\s+(?:the|a)\s+hotel)[?.]?$/i;
 const rules=[
  {id:'english_hotel_booking_intent',match:q=>englishHotelBooking.test(q),promote:'S113',exclude:[]},
  {id:'english_hotel_checkin_intent',match:q=>englishHotelCheckin.test(q),promote:'S114',exclude:['S104']},
