@@ -1,0 +1,40 @@
+{
+  "schema_version": "enteach-24ku-main-release-gate-compat-audit-v1",
+  "status": "STAGING_DISPLAY_CONTENT_ONLY_FAIL_CLOSED",
+  "source_staging_blob": "d4d8d6f498b1795ab3e18a4f2c40bbc087b130ea",
+  "main_release_gate": {
+    "path": "scripts/approved-teaching-release-gate.mjs",
+    "ref": "cg-main-fourline-integration-20261026",
+    "blob": "30a5e960fa8aef55218fe436b17b57212efa6ede"
+  },
+  "scope": 24,
+  "counts": {
+    "unique_ku_id": 24,
+    "nonempty_english_gloss": 24,
+    "nonempty_chinese_gloss": 24,
+    "nonempty_examples": 24,
+    "stable_ku_mapping": 24,
+    "record_activation_false": 24,
+    "official_sense_bound": 0,
+    "registered_ku_anchored_bindings": 0,
+    "render_kind_defined": 0,
+    "question_defined": 0,
+    "response_defined": 0
+  },
+  "release_gate_fail_reasons": [
+    "release.status is not PRODUCTION_READY",
+    "release.production_ready is false",
+    "release.activation.allowed is absent",
+    "source_rights_cleared is false",
+    "official_membership_verified is false",
+    "24/24 records lack approved official Sense / registered KU anchored binding",
+    "24/24 records activation_allowed=false"
+  ],
+  "question_scoring": "No render_kind/question/response; content enrichment only",
+  "verdict": "DO_NOT_FEED_TO_PRODUCTION_OVERLAY_OR_AUTOGRADER",
+  "independent_qa_scope": "Only field changes in 24 snapshots reviewed; complete KU semantics not certified",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
