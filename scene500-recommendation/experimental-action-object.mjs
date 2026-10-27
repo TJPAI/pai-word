@@ -1,7 +1,9 @@
 // Experimental, dependency-free action/object intent candidate. NEVER activates without caller opt-in.
 // Catalog scene_id authority stays with catalog-v0.2; mappings are provisional editorial semantics.
+// "want" can describe an unrelated learning goal; only accept a direct local food request.
+const directFoodWant=/\b(?:i\s+want|i'd\s+like|i\s+would\s+like)\s+(?:(?:a|an|some)\s+)?(?:noodles?|salad|sandwich|burger|pizza|soup|meal|dish)\b/i;
 const patterns=[
- {id:'food_order',sceneId:'S034',action:/\b(?:order|have|get|want)\b/i,object:/\b(?:noodles?|salad|sandwich|burger|pizza|soup|meal|dish)\b/i,exclude:/\b(?:cancel|refund|return)\b/i},
+ {id:'food_order',sceneId:'S034',action:/\b(?:order|have|get)\b/i,object:/\b(?:noodles?|salad|sandwich|burger|pizza|soup|meal|dish)\b/i,exclude:/\b(?:cancel|refund|return)\b/i},
  {id:'allergy',sceneId:'S037',action:/\b(?:allergic|allergy|avoid)\b/i,object:/\b(?:peanuts?|shellfish|seafood|food|nuts?)\b/i},
  {id:'restaurant_bill',sceneId:'S041',action:/\b(?:bill|check|tip)\b/i,object:/\b(?:waiter|restaurant|dinner|lunch|wrong|payment)\b/i},
  {id:'hotel_room_booking',sceneId:'S113',action:/\b(?:book|reserve|reservation)\b/i,object:/\b(?:hotel|room|accommodation)\b/i,exclude:/\b(?:cancel|refund)\b/i},
@@ -14,11 +16,12 @@ export function actionObjectCandidates(query,{catalog,eligibleSceneIds=null}={})
  const q=String(query??'').normalize('NFKC').toLowerCase();
  if(!q||q.length>500||!catalog?.scenes)return [];
  const allowed=eligibleSceneIds==null?null:new Set(eligibleSceneIds);
- return patterns.filter(p=>p.action.test(q)&&p.object.test(q)&&(!p.exclude||!p.exclude.test(q))&&catalog.scenes[p.sceneId]&&(!allowed||allowed.has(p.sceneId))).map(p=>({sceneId:p.sceneId,reason:['experimental_action_object'],patternId:p.id,score:10}));
+ return patterns.filter(p=>(p.id==='food_order'?(p.action.test(q)||directFoodWant.test(q)):p.action.test(q))&&p.object.test(q)&&(!p.exclude||!p.exclude.test(q))&&catalog.scenes[p.sceneId]&&(!allowed||allowed.has(p.sceneId))).map(p=>({sceneId:p.sceneId,reason:['experimental_action_object'],patternId:p.id,score:10}));
 }
 export function compareActionObjectCandidates(snapshot,query,{catalog,eligibleSceneIds=null,limit=10}={}){
  const n=Math.max(0,Math.min(10,Number.isFinite(+limit)?Math.floor(+limit):10));
- const baseline=(snapshot?.results||[]).slice(0,n);
+ const allowed=eligibleSceneIds==null?null:new Set(eligibleSceneIds);
+ const baseline=(snapshot?.results||[]).filter(r=>catalog?.scenes?.[r.sceneId]&&(!allowed||allowed.has(r.sceneId))).slice(0,n);
  const candidates=actionObjectCandidates(query,{catalog,eligibleSceneIds});
  const rows=new Map(baseline.map(r=>[r.sceneId,{...r}]));
  for(const c of candidates){const prev=rows.get(c.sceneId);if(prev){prev.score=Math.max(+prev.score||0,c.score);prev.reason=[...new Set([...(prev.reason||[]),...c.reason])]}else rows.set(c.sceneId,{...c,name:catalog.scenes[c.sceneId].name,quality:catalog.scenes[c.sceneId].quality,matchedTerms:[]});}
