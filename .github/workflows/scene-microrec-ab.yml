@@ -19,6 +19,8 @@ jobs:
           node-version: '22'
       - name: Compare algorithms with editorial holdout and latency
         run: node experiments/scene-microrec/evaluate.mjs --write
+      - name: Three-suite robustness comparison
+        run: node experiments/scene-microrec/evaluate-extended.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
