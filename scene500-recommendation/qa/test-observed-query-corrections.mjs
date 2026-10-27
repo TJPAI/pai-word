@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {applyObservedQueryCorrections} from '../observed-query-corrections.mjs';
-const catalog={scenes:{S275:{name:'软件故障与技术支持'},S104:{name:'机场值机'},S113:{name:'预订酒店'},S114:{name:'酒店入住'},S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
+const catalog={scenes:{S004:{name:'日程安排'},S275:{name:'软件故障与技术支持'},S104:{name:'机场值机'},S113:{name:'预订酒店'},S114:{name:'酒店入住'},S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
 const row=(sceneId,score)=>({sceneId,name:catalog.scenes[sceneId].name,score,reason:['baseline']});
 const search=(query,results,options={})=>applyObservedQueryCorrections({query,total:results.length,results},query,{catalog,limit:10,...options});
 assert.equal(search('How to order coffee',[]).results[0]?.sceneId,'S039');
