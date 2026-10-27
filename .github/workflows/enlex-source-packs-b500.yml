@@ -36,7 +36,7 @@ jobs:
               d=json.loads(b)
               assert len(d['headwords'])==500
               rr=[w['runtime_rank'] for w in d['words']]
-              assert rr==list(range(p['rank_start'],p['rank_end']+1))
+              assert rr==list(range(p['runtime_rank_start'],p['runtime_rank_end']+1))
               allr+=rr
           assert allr==list(range(1,20001))
           print('PASS 40 packs / 20000 ranks')
