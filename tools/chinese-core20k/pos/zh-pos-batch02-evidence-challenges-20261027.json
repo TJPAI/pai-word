@@ -1,0 +1,170 @@
+{
+  "schema": "zh-core20k-pos-editorial-evidence-challenge-v1",
+  "date": "2026-10-27",
+  "source_file": "tools/chinese-core20k/pos/zh-core20k-pos-editorial-batch02-20261026.json",
+  "source_blob_sha": "99eac4f9d1c9e1611d4ca535bbeeb33053d68f82",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "scope": "11 targeted POS evidence challenges across 10 distinct headwords; do not treat as automatic corrections",
+  "status": "EDITORIAL_CHALLENGE_UNCERTIFIED",
+  "production_ready": false,
+  "runtime_modified": false,
+  "items": [
+    {
+      "term": "道",
+      "term_id": "zh_00a9d5bd97c269b44f95",
+      "runtime_index": 316,
+      "current_primary": "CLF",
+      "current_other": [
+        "NOUN",
+        "VERB"
+      ],
+      "challenged_pos": "NOUN",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "道路中的“道”只是复合词内语素，不能单凭“道路”证明独立名词用法；需用“道”单独成词的可替换句法框架审定。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "应",
+      "term_id": "zh_6244c4c963a8b55a89cf",
+      "runtime_index": 337,
+      "current_primary": "AUX",
+      "current_other": [
+        "VERB"
+      ],
+      "challenged_pos": "VERB",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“回应”中的“应”属复合词内部语素，不足以为“应”独立动词POS提供证据；情态“应当”与古汉语应答义应分语体论证。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "便",
+      "term_id": "zh_b33cf8e29901d129a101",
+      "runtime_index": 347,
+      "current_primary": "ADV",
+      "current_other": [
+        "VERB"
+      ],
+      "challenged_pos": "VERB",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“方便”中的“便”不能单独证明动词词性；需独立成词用例，否则撤销该兼类证据。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "runtime_index": 356,
+      "current_primary": "CLF",
+      "current_other": [
+        "NOUN",
+        "ADJ"
+      ],
+      "challenged_pos": "NOUN",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“姓名”中的“名”是复合词语素，需举独立名词用法如“名不副实”并说明书面语限定；不能仅从“姓名”推导。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "runtime_index": 356,
+      "current_primary": "CLF",
+      "current_other": [
+        "NOUN",
+        "ADJ"
+      ],
+      "challenged_pos": "ADJ",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“名作”的“名”是构词修饰语素，不等于独立形容词；优先标识构词用法，不能直接兼列ADJ。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "单位",
+      "term_id": "zh_80b19d68b1494dac82aa",
+      "runtime_index": 318,
+      "current_primary": "NOUN",
+      "current_other": [
+        "CLF"
+      ],
+      "challenged_pos": "CLF",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“十个单位”的“单位”为计量名词/单位名词，个才是量词；此例不能证明“单位”本身为CLF。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "runtime_index": 274,
+      "current_primary": "NUM",
+      "current_other": [
+        "DET"
+      ],
+      "challenged_pos": "NUM",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“两个”整体是数量短语（数词+量词），不能与单个NUM词项直接等同；应标短语构式而非单词词性已认证。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "runtime_index": 288,
+      "current_primary": "NUM",
+      "current_other": [
+        "DET"
+      ],
+      "challenged_pos": "NUM",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“一种”同为数词+量词组合，需短语层分类而非把组合整体作单一NUM词性证据。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "一次",
+      "term_id": "zh_d736c7e459521de9cfa4",
+      "runtime_index": 334,
+      "current_primary": "NUM",
+      "current_other": [
+        "ADV"
+      ],
+      "challenged_pos": "NUM",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“一次会议”体现数量结构；是否将其视词头、量词短语或副词状语必须先有分词粒度标准。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "runtime_index": 289,
+      "current_primary": "CLF",
+      "current_other": [
+        "NOUN"
+      ],
+      "challenged_pos": "CLF",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“五十元”的元是货币计量单位名词，是否归CLF依词性体系；不能无条件当典型量词。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "runtime_index": 324,
+      "current_primary": "NOUN",
+      "current_other": [
+        "ADV"
+      ],
+      "challenged_pos": "ADV",
+      "issue": "INDEPENDENT_WORD_VS_BOUND_MORPHEME_OR_CONSTRUCTION",
+      "reason_zh": "“在国内”中的国内是方位/处所成分，不能据此证明副词类别；“国内市场”同属名词性修饰。",
+      "decision": "HOLD_FOR_TARGETED_HUMAN_OR_SECOND_AI_REVIEW",
+      "production_ready": false
+    }
+  ]
+}
