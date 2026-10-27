@@ -1,0 +1,66 @@
+{
+  "schema_version": "enteach-prior173-targeted-editorial-revision-v1",
+  "scope": "first 23 and next 15 teaching records",
+  "status": "AUTHOR_ONLY_INDEPENDENT_QA_PENDING",
+  "source_inventory_blob": "8d8f0f6b3f6d13a7394b0967a10b8e50397ebcb1",
+  "reviewed_for_issues": 38,
+  "proposed_ku": 3,
+  "proposed_field_changes": 4,
+  "proposals": [
+    {
+      "ku_id": "w_7799_unsafe_ku_s01",
+      "headword": "unsafe",
+      "source_file": "tools/answer-enrichment/enteach-next15-batch101-teaching-draft.v2.json",
+      "source_blob": "ebdaea8b7a19e7626d799c7dae19bf38b12595a7",
+      "field_deltas": [
+        {
+          "field": "example_zh",
+          "before": "暴风雨后，这座桥不宜安全通行。",
+          "after": "暴风雨过后，走这座桥很危险。"
+        }
+      ],
+      "reason": "原中文‘不宜安全通行’语义与搭配生硬，直接对应unsafe to cross中的危险判断，保留暴风雨后情境。",
+      "status": "AUTHOR_PROPOSED_CG_QA_PENDING"
+    },
+    {
+      "ku_id": "w_3004_compute_ku_s01",
+      "headword": "compute",
+      "source_file": "tools/answer-enrichment/enteach-batch23-composed-staging.v2.json",
+      "source_blob": "d9a4672d634a272776479b09e8bbf415d6814cf2",
+      "field_deltas": [
+        {
+          "field": "grammar_note",
+          "before": "compute通常为及物动词，后接计算的数值或结果。",
+          "after": "compute常作及物动词，如compute the average；也可不及物使用，表示进行计算。"
+        }
+      ],
+      "reason": "原规则写法仅示及物句法，补充真实不及物用法，避免学习者误当绝对配价限制。",
+      "status": "AUTHOR_PROPOSED_CG_QA_PENDING"
+    },
+    {
+      "ku_id": "w_5575_scanner_ku_s01",
+      "headword": "scanner",
+      "source_file": "tools/answer-enrichment/enteach-batch23-composed-staging.v2.json",
+      "source_blob": "d9a4672d634a272776479b09e8bbf415d6814cf2",
+      "field_deltas": [
+        {
+          "field": "example_en",
+          "before": "Please scan the form with the office scanner.",
+          "after": "Please use the office scanner to make a digital copy of this form."
+        },
+        {
+          "field": "example_zh",
+          "before": "请用办公室的扫描仪扫描这张表格。",
+          "after": "请用办公室的扫描仪将这张表格制作成电子副本。"
+        }
+      ],
+      "reason": "原例句scan/scanner重复但不算错误；新版更突出scanner的设备身份和生成数字副本的教学语境，需QA判断修改是否值得接受。",
+      "status": "AUTHOR_PROPOSED_CG_QA_PENDING"
+    }
+  ],
+  "unchanged_frozen_sources": true,
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
