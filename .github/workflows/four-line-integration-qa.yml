@@ -55,6 +55,8 @@ jobs:
         run: node tools/integration/test-approved-overlay-boot-source.mjs
       - name: Execute KU anchored release to runtime dual gate
         run: node tools/integration/test-ku-anchored-release-to-runtime.mjs
+      - name: Test isolated Scene500 query corrections candidate
+        run: node scene500-recommendation/qa/test-observed-query-corrections.mjs
       - name: Validate latest six-line integration intake
         run: node tools/integration/test-v22-line-intake.mjs
       - name: Evaluate Batch93 real release readiness
