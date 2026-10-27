@@ -20,7 +20,8 @@ def tokens(s):
 def features(s,buckets):
  out=collections.Counter()
  for t in tokens(s):
-  h=int.from_bytes(hashlib.blake2s(t.encode(),digest_size=4).digest(),'little')
+  h=2166136261
+  for byte in t.encode('utf-8'): h=((h ^ byte)*16777619)&0xffffffff
   out[h%buckets]+=1 if h&256 else -1
  mag=math.sqrt(sum(v*v for v in out.values())) or 1
  return [(i,v/mag) for i,v in out.items() if v]
@@ -71,7 +72,7 @@ def main():
  P=np.asarray(prototype,dtype=np.float32)
  pscale=float(max(np.max(np.abs(P)),1e-8)/127)
  pq=np.rint(P/pscale).clip(-127,127).astype(np.int8)
- package={'schema':'scene-microrec-int8-student-v1','teacher':data['teacher'],'source_catalog_sha256':data['source_catalog_sha256'],'hash':'blake2s-32','seed':42,'buckets':a.buckets,'dimension':a.dim,'weight_scale':scale,'prototype_scale':pscale,'scene_ids':ids,'weights_b64':__import__('base64').b64encode(q.tobytes()).decode(),'prototypes_b64':__import__('base64').b64encode(pq.tobytes()).decode(),'diagnostics':{'train_examples':len(train),'validation_examples':len(valid),'train_cosine':avg_error(train),'validation_cosine':avg_error(valid),'quality_certified':False}}
+ package={'schema':'scene-microrec-int8-student-v1','teacher':data['teacher'],'source_catalog_sha256':data['source_catalog_sha256'],'hash':'fnv1a-utf8-32','seed':42,'buckets':a.buckets,'dimension':a.dim,'weight_scale':scale,'prototype_scale':pscale,'scene_ids':ids,'weights_b64':__import__('base64').b64encode(q.tobytes()).decode(),'prototypes_b64':__import__('base64').b64encode(pq.tobytes()).decode(),'diagnostics':{'train_examples':len(train),'validation_examples':len(valid),'train_cosine':avg_error(train),'validation_cosine':avg_error(valid),'quality_certified':False}}
  payload=json.dumps(package,separators=(',',':')).encode()
  pathlib.Path(a.output).write_bytes(payload)
  print(json.dumps({'status':'INT8_STUDENT_TRAINED_NO_QUALITY_CERTIFICATION','model_bytes':len(payload),'limit_bytes':2000000,'validation_cosine':package['diagnostics']['validation_cosine'],'real_teacher':data['teacher']['model_id']}))
