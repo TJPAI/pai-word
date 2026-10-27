@@ -1,0 +1,24 @@
+{
+  "schema_version": "enteach-24ku-batch93-certification-nontransitivity-audit-v1",
+  "owner": "CG-ENTEACH",
+  "status": "NO_CERTIFICATION_TRANSFER",
+  "source_24ku_staging_blob": "d4d8d6f498b1795ab3e18a4f2c40bbc087b130ea",
+  "main_batch93_handoff_blob": "ff4a3743b1d17639d15951f7bea992bfbad16642",
+  "counts": {
+    "new_staging_ku": 24,
+    "batch93_semantic_certified_ku": 6,
+    "exact_ku_id_overlap": 0
+  },
+  "overlap": [],
+  "findings": [
+    "Batch93's six KU_ANCHORED_SENSE binding registrations only apply to their six exact KU IDs.",
+    "24 teaching snapshots are field-change reviewed, not 24 fully certified KUs.",
+    "ENLEX independent gloss QA of a different 200-KU source batch is a separate ledger; cannot certify these teaching records by numeric coincidence.",
+    "No rights or signed release manifest for 24 KU demonstrated."
+  ],
+  "integration_action": "Keep 24 KU isolated. Ask authorized identity registrar for exact official KU/Sense binding evidence, independent teaching semantic QA and rights/release signoff; do not copy Batch93 certification flags.",
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
