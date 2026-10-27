@@ -1,0 +1,32 @@
+name: Core20K OEWN Kaikki merged handoff
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/merge_cross_source_shards.py'
+      - '.github/workflows/core20k-sense-cross-source-merge.yml'
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download 10 validated source alignment archives
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(seq 0 9); do
+            gh run download 40558570002 -n "sense20k-cross-source-$n" -D "tools/core20k_sense_v1/reports/cross_source_merged/shard$n"
+          done
+      - name: Merge all ranked alignment records with QA
+        run: python3 tools/core20k_sense_v1/merge_cross_source_shards.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-oewn2025-kaikki-merged-20k
+          path: |
+            tools/core20k_sense_v1/reports/cross_source_merged/core20k_oewn2025_kaikki_alignment_merged.jsonl
+            tools/core20k_sense_v1/reports/cross_source_merged/core20k_oewn2025_kaikki_alignment_summary.json
+          retention-days: 30
