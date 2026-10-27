@@ -41,4 +41,21 @@ audit={"schema":"enlex-provisional-identity-crosswalk-qa-v1","status":"PASS_STRU
   "source_sha256":hashlib.sha256(out.read_bytes()).hexdigest(),
   "production_ready":False}
 (base/"identity_crosswalk_qa.json").write_text(json.dumps(audit,ensure_ascii=False,indent=2)+"\n")
+dashboard_path=base/"production_dashboard.json"
+if dashboard_path.exists():
+    dashboard=json.loads(dashboard_path.read_text())
+    assert len(dashboard["groups"])==40
+    for i,g in enumerate(dashboard["groups"]):
+        subset=records[i*500:(i+1)*500]
+        assert [w["runtime_rank"] for w in subset]==list(range(i*500+1,(i+1)*500+1))
+        g["existing_runtime_kus"]=sum(len(w["existing_ku_ids"]) for w in subset)
+        g["sense_typed_runtime_kus"]=sum(len(w["sense_typed_ku_ids"]) for w in subset)
+        g["headwords_missing_sense_typed_ku"]=sum(not w["sense_typed_ku_ids"] for w in subset)
+        g["provisional_headword_hints"]=sum(w["headword_id_hint"] is not None for w in subset)
+        g["verified_formal_senses"]=0
+        g["qa_status"]="SOURCE_AND_IDENTITY_STRUCTURE_PASS_FORMAL_SENSE_BLOCKED"
+        g["blocked"]=True
+    dashboard["identity_crosswalk_sha256"]=audit["source_sha256"]
+    dashboard["dashboard_statistics_source"]="identity_crosswalk_provisional.jsonl"
+    (dashboard_path).write_text(json.dumps(dashboard,ensure_ascii=False,indent=2)+"\n")
 print(json.dumps(audit,ensure_ascii=False))
