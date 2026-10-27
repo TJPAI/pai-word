@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Candidate size gate (2 MB)
+        run: node experiments/scene-microrec/check-size.mjs
       - name: Regression and synthetic Scene1500 scale
         run: node experiments/scene-microrec/regression.test.mjs
       - name: Compare algorithms with editorial holdout and latency
