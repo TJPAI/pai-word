@@ -23,6 +23,7 @@ jobs:
           gh run download 40538038296 -n sense-v1-oewn2025-full20k -D tools/core20k_sense_v1/reports/source_join/oewn
           gh run download 40546946174 -n core20k-online-source-collection -D tools/core20k_sense_v1/reports/source_join/ecdict
           gh run download 40547394067 -n core20k-zhwiktionary-matched -D tools/core20k_sense_v1/reports/source_join/zh
+          gh run download 40547512665 -n core20k-kaikki-en-matched -D tools/core20k_sense_v1/reports/source_join/kaikki
           find tools/core20k_sense_v1/reports/source_join -maxdepth 3 -type f | head -30
       - name: Join 20K rank evidence and verify
         run: python3 tools/core20k_sense_v1/join_online_evidence.py
