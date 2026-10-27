@@ -1,0 +1,21 @@
+{
+  "task_id": "007",
+  "batch_size": 500,
+  "rank_start": 3001,
+  "rank_end": 3500,
+  "branch": "ku-factory-007-b500",
+  "source_branch": "core20k-lexicon-production-v1",
+  "source_runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "status": "BLOCKED_SOURCE_UNVERIFIED",
+  "production_ready": false,
+  "structure_qa": {
+    "status": "BLOCKED",
+    "passed": false,
+    "reason": "Rank, headword_id, sense_id, KU references not available as validated records."
+  },
+  "semantic_review": {
+    "status": "NOT_STARTED",
+    "independently_certified": false
+  },
+  "no_production_activation": true
+}
