@@ -15,21 +15,23 @@ def main():
  print("ROOT_LENGTHS",json.dumps({k:len(v) for k,v in data.items() if isinstance(v,(list,dict))},ensure_ascii=False) if isinstance(data,dict) else len(data))
  out=pathlib.Path(a.out);out.mkdir(parents=True,exist_ok=True)
  (out/"runtime_shape.json").write_text(json.dumps({"root_type":type(data).__name__,"keys":list(data) if isinstance(data,dict) else [],"list_sample_shapes":{k:(list(v[0]) if isinstance(v,list) and v and isinstance(v[0],dict) else None) for k,v in data.items() if isinstance(v,list)} if isinstance(data,dict) else {}},ensure_ascii=False,indent=2),encoding="utf-8")
- # Only proceed when explicit, unambiguous headword records exist.
+ # Inspect nested dictionary layouts as well as top-level lists; do not guess unknown identities.
  candidates=[]
  if isinstance(data,dict):
   for key,value in data.items():
    if isinstance(value,list) and len(value)>=19000 and all(isinstance(z,dict) for z in value[:10]):
     candidates.append((key,value))
  if len(candidates)!=1:
-  print("NEEDS_SCHEMA_MAPPING: expected one recognizable 20k-word array; none or multiple found",file=sys.stderr)
+  shape={"root_type":type(data).__name__,"root_keys":list(data.keys()) if isinstance(data,dict) else [],"candidate_arrays":[{"key":k,"length":len(v),"sample_keys":list(v[0].keys()) if v and isinstance(v[0],dict) else []} for k,v in candidates]}
+  (out/"schema_diagnostic.json").write_text(json.dumps(shape,ensure_ascii=False,indent=2),encoding="utf-8")
+  print("NEEDS_SCHEMA_MAPPING: expected exactly one 20k word array; inspect schema_diagnostic.json",file=sys.stderr)
   return 3
  key,source=candidates[0]
  inventory=[]
  for n,row in enumerate(source):
   hid=row.get("headword_id") or row.get("word_id") or row.get("id")
   lemma=row.get("lemma") or row.get("headword") or row.get("word")
-  rank=row.get("rank") or row.get("frequency_rank")
+  rank=row.get("rank") if row.get("rank") is not None else row.get("frequency_rank")
   if not isinstance(hid,(str,int)) or not isinstance(lemma,str) or not lemma.strip() or rank is None:
    print("NEEDS_SCHEMA_MAPPING: invalid identity at source index "+str(n),file=sys.stderr)
    return 3
