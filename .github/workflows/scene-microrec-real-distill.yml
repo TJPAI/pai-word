@@ -1,5 +1,10 @@
-name: Scene MicroRec real teacher distillation (manual)
+name: Scene MicroRec real teacher distillation (isolated)
 on:
+  push:
+    branches:
+      - experiment/scene1500-microrec-ab-20261027
+    paths:
+      - 'experiments/scene-microrec/REAL_DISTILL_TRIGGER.txt'
   workflow_dispatch:
     inputs:
       model_id:
@@ -26,7 +31,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-          cache: pip
       - name: Install real teacher and student dependencies
         run: python -m pip install 'sentence-transformers>=3,<6' 'numpy>=1.26,<3'
       - name: Build source-pinned teacher jobs
@@ -38,9 +42,9 @@ jobs:
         run: |
           python experiments/scene-microrec/encode-teacher.py \
             --jobs experiments/scene-microrec/teacher-encoding-jobs.json \
-            --model '${{ inputs.model_id }}' \
-            --revision '${{ inputs.model_revision }}' \
-            --license '${{ inputs.teacher_license }}' \
+            --model '${{ inputs.model_id || 'intfloat/multilingual-e5-small' }}' \
+            --revision '${{ inputs.model_revision || 'fd1525a9fd15316a2d503bf26ab031a61d056e98' }}' \
+            --license '${{ inputs.teacher_license || 'mit' }}' \
             --output /tmp/scene-teacher-real.json
       - name: Verify actual teacher output
         run: node experiments/scene-microrec/validate-embeddings.mjs experiments/scene-microrec/teacher-encoding-jobs.json /tmp/scene-teacher-real.json
