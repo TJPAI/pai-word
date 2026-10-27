@@ -11,6 +11,8 @@ const ROOT=new URL('../scene500-recommendation/',import.meta.url);
 // Opt-in V1.2 draft reranker: only reorders eligible Hybrid candidates.
 // It never creates playable scenes, changes scene IDs or touches KU/SRS.
 const semanticEnabled=typeof location!=='undefined'&&new URLSearchParams(location.search).get('scene500semantic')==='1';
+const observedEnabled=typeof location!=='undefined'&&new URLSearchParams(location.search).get('scene500observed')==='1';
+let observedModule=null;
 let semanticPromise=null,semanticOverlay=null,semanticReason='disabled';
 async function loadSemantic(){
  if(!semanticEnabled)return null;
@@ -41,13 +43,15 @@ function semanticRank(query,results){
 
 
 async function initialize(){
- const [rules,loader,response]=await Promise.all([
+ const [rules,loader,response,observed]=await Promise.all([
   import(new URL('engine.mjs',ROOT).href),
   import(new URL('chinese-lexicon-loader.mjs',ROOT).href),
-  fetch(new URL('catalog-v0.2.json?v=handoff-4f01be8-20261024',ROOT),{cache:'force-cache'})
+  fetch(new URL('catalog-v0.2.json?v=handoff-4f01be8-20261024',ROOT),{cache:'force-cache'}),
+  observedEnabled?import(new URL('observed-query-corrections.mjs',ROOT).href):Promise.resolve(null)
  ]);
  if(!response.ok)throw Error('SCENE500_CATALOG_HTTP_'+response.status);
  const catalog=await response.json();
+ observedModule=observed;
  const rule=rules.createScene500Recommender({catalog});
  instance={catalog,engine:rule,mode:'rule_fallback'};
  if(semanticEnabled)void loadSemantic();
@@ -83,11 +87,12 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
  const eligible=Object.keys(instance.catalog.scenes).filter(id=>
   (!allowed||allowed.has(id))&&typeof inventory==='function'&&Number(inventory(id,difficulty)?.reviewedCount)>0
  );
- const key=instance.mode+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
+ const key=(observedEnabled?'observed|':'baseline|')+instance.mode+'|'+String(query)+'|'+difficulty+'|'+eligible.join(',');
  const cached=queryCache.get(key);
  if(cached)return {...cached,cacheHit:true,elapsedMs:0};
  const started=performance.now();
- const snapshot=instance.engine.search(query,{eligibleSceneIds:eligible,limit:Math.min(500,limit)});
+ const raw=instance.engine.search(query,{eligibleSceneIds:eligible,limit:Math.min(500,limit)});
+ const snapshot=observedModule?.applyObservedQueryCorrections(raw,query,{catalog:instance.catalog,eligibleSceneIds:eligible,limit:Math.min(500,limit)})??raw;
  const allCandidates=snapshot.results.length?null:instance.engine.search(query,{limit:500});
  const baseIds=[...new Set(snapshot.results.map(x=>x.sceneId))];
  const rankedIds=semanticEnabled&&instance.mode==='hybrid'?semanticRank(query,baseIds):baseIds;
@@ -103,7 +108,7 @@ export async function recommend(query,{difficulty='all',inventory,eligibleSceneI
 // Explicit preview diagnostics: the caller can inspect the active engine without
 // confusing an experimental upstream branch with deployed runtime assets.
 export const status=()=>({initialized:!!instance,error:lastError,
- mode:instance?.mode||'unloaded',semanticEnabled,semanticReason,semanticReady:!!semanticOverlay,hybridLoading:!!hybridReady&&!hybridSettled,
+ mode:instance?.mode||'unloaded',observedEnabled,observedReady:!!observedModule,semanticEnabled,semanticReason,semanticReady:!!semanticOverlay,hybridLoading:!!hybridReady&&!hybridSettled,
  catalogSchema:instance?.catalog?.schema||null,
  runtimeDataVersion:instance?.mode==='hybrid'?instance.engine?.runtimeDataVersion||null:null,
  lexiconVerifiedLoaded:instance?.mode==='hybrid'&&!!instance.engine?.runtimeDataVersion,
