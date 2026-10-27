@@ -4,18 +4,23 @@
   "rank_start": 3001,
   "rank_end": 3500,
   "branch": "ku-factory-007-b500",
-  "source_branch": "core20k-lexicon-production-v1",
-  "source_runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
-  "status": "BLOCKED_SOURCE_UNVERIFIED",
-  "production_ready": false,
-  "structure_qa": {
-    "status": "BLOCKED",
-    "passed": false,
-    "reason": "Rank, headword_id, sense_id, KU references not available as validated records."
-  },
-  "semantic_review": {
-    "status": "NOT_STARTED",
-    "independently_certified": false
-  },
-  "no_production_activation": true
+  "status": "PARTIAL_CANDIDATES_GITHUB_VERIFIED_SOURCE_PENDING",
+  "target_headwords": 500,
+  "observed_headwords": 30,
+  "authoritatively_verified_headwords": 0,
+  "processed_headwords": 30,
+  "existing_candidate_records": 50,
+  "new_supplement_candidate_records": 30,
+  "github_saved_ku": 80,
+  "structural_qa_pass": 80,
+  "unique_candidate_ids": true,
+  "semantic_certified_ku": 0,
+  "publication_status": "AI_DRAFT_UNVERIFIED",
+  "blocking_issue": "Source branch has only frozen rank batches 001 and 002; ranks 3001–3500 not independently verifiable there.",
+  "files": [
+    "ku_candidates_3001_3020_v206.jsonl",
+    "ku_candidates_3021_3030_v206.jsonl",
+    "ku_supplements_3001_3020_v21.jsonl",
+    "ku_supplements_3021_3030_v21.jsonl"
+  ]
 }
