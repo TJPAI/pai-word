@@ -67,6 +67,8 @@ jobs:
           node experiments/scene-microrec/evaluate-real-student-vs-conservative.mjs \
             /tmp/real-distill-artifacts/scene-student-real.json \
             /tmp/real-distill-ab/real-student-vs-conservative.json
+      - name: Generate 500-scene bilingual editorial queue
+        run: node experiments/scene-microrec/build-bilingual-queue.mjs --write
       - name: Verify bilingual candidate pool isolation
         run: node experiments/scene-microrec/test-bilingual-seeds.mjs
       - name: Audit real bilingual supervision coverage
@@ -82,6 +84,7 @@ jobs:
             experiments/scene-microrec/multi-metric-report.json
             experiments/scene-microrec/teacher-encoding-jobs.json
             experiments/scene-microrec/bilingual-coverage-audit.json
+            experiments/scene-microrec/bilingual-editorial-queue.json
             /tmp/real-distill-ab/real-student-vs-conservative.json
 
 # Bilingual audit gate must appear in the executed job steps.
