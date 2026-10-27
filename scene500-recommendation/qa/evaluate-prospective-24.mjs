@@ -24,6 +24,19 @@ const rows=data.cases.map(c=>{
   top5Hit:c.expected?.length?ids.slice(0,5).some(id=>c.expected.includes(id)):null,
   excludedLeak:c.excluded?.length?ids.slice(0,5).some(id=>c.excluded.includes(id)):null};
 });
+const audit=read('scene500-recommendation/qa/prospective-24-label-audit-v1.json');
+const disputed=new Set(audit.findings.filter(x=>x.disposition.startsWith('HOLD_')).map(x=>x.query));
+const byGroup={};
+for(const r of rows){
+ const b=byGroup[r.group]??={queries:0,labeled:0,top1Hit:0,top5Hit:0,negativeChecks:0,negativeLeaks:0,empty:0,disputedLabels:0};
+ b.queries++;
+ if(r.top1!==null){b.labeled++;b.top1Hit+=Number(r.top1);b.top5Hit+=Number(r.top5Hit);}
+ if(r.excludedLeak!==null){b.negativeChecks++;b.negativeLeaks+=Number(r.excludedLeak);}
+ b.empty+=Number(r.empty);b.disputedLabels+=Number(disputed.has(r.query));
+}
+const clean=rows.filter(r=>!disputed.has(r.query));
+const cleanLabeled=clean.filter(r=>r.top1!==null);
+const qualifiedSubset={labeled:cleanLabeled.length,top1Hit:cleanLabeled.filter(r=>r.top1).length,top5Hit:cleanLabeled.filter(r=>r.top5Hit).length,excludedDisputed:disputed.size,note:'Editorial non-disputed subset; NOT certified gold or blind accuracy'};
 const marked=rows.filter(r=>r.top1!==null),neg=rows.filter(r=>r.excludedLeak!==null);
 const counts={queries:rows.length,labeled:marked.length,top1Hit:marked.filter(r=>r.top1).length,top5Hit:marked.filter(r=>r.top5Hit).length,negativeChecks:neg.length,negativeLeaks:neg.filter(r=>r.excludedLeak).length,empty:rows.filter(r=>r.empty).length,editorialAbstentions:rows.filter(r=>r.empty&&r.abstentionExpected).length,unresolvedEmpty:rows.filter(r=>r.empty&&!r.abstentionExpected).length};
-console.log(JSON.stringify({sourceCommit:process.env.GITHUB_SHA||null,measurementNote:'New editorial suite; non-blind, non-gating, do not use for fit-to-test correction',status:'PROSPECTIVE_EDITORIAL_NOT_BLIND_NOT_CERTIFIED',mode:engine.mode,counts,rows},null,2));
+console.log(JSON.stringify({sourceCommit:process.env.GITHUB_SHA||null,measurementNote:'New editorial suite; non-blind, non-gating, do not use for fit-to-test correction',status:'PROSPECTIVE_EDITORIAL_NOT_BLIND_NOT_CERTIFIED',mode:engine.mode,counts,byGroup,qualifiedSubset,rows},null,2));
