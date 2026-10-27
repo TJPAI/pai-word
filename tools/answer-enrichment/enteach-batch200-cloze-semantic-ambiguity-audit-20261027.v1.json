@@ -1,0 +1,84 @@
+{
+  "schema_version": "pai-word-enteach-cloze-semantic-ambiguity-audit-v1",
+  "owner": "CG-ENTEACH",
+  "status": "SELF_EDITORIAL_AUDIT_HOLD_UNIQUE_ANSWER",
+  "sources": [
+    {
+      "path": "tools/answer-enrichment/enteach-batch200-scored-cloze-prototype-20261027.v1.json",
+      "blob": "38d8358c11ec925650583d07d36cc7c48d145f0b"
+    },
+    {
+      "path": "rebuild-preview/learning-runtime.js",
+      "branch": "cg-main-fourline-integration-20261026",
+      "blob": "0770f17274f9d2e7cb3f2744278a53d66367f0c8"
+    },
+    {
+      "path": "scripts/approved-teaching-release-gate.mjs",
+      "branch": "cg-main-fourline-integration-20261026",
+      "blob": "30a5e960fa8aef55218fe436b17b57212efa6ede"
+    }
+  ],
+  "findings": [
+    {
+      "headword": "tram",
+      "alternate": "bus",
+      "rationale": "Across the city instead of driving does not force rail vehicle; 'took the bus' grammatically and semantically valid."
+    },
+    {
+      "headword": "slippery",
+      "alternate": "wet",
+      "rationale": "Tiles after cleaning might be wet, and 'Watch your step' remains coherent."
+    },
+    {
+      "headword": "diffusion",
+      "alternate": "osmosis",
+      "rationale": "Not an equivalent process, but prompt without explicit scientific definition may invite another physical process; context narrower than some cases yet lacks explicit KU target cue.",
+      "confidence": "LOW"
+    },
+    {
+      "headword": "shopper",
+      "alternate": "customers",
+      "rationale": "Many online customers compare fees before ordering, even though target plural shoppers is valid."
+    },
+    {
+      "headword": "waterfall",
+      "alternate": "cave",
+      "rationale": "A hiking trail can lead to a cave hidden in the forest."
+    },
+    {
+      "headword": "consensus",
+      "alternate": "decision",
+      "rationale": "Committee reached a decision after discussion is natural."
+    },
+    {
+      "headword": "authenticity",
+      "alternate": "value",
+      "rationale": "Museum experts could verify the painting's value, though more naturally appraise it; provenance is another possible object."
+    },
+    {
+      "headword": "solar",
+      "alternate": "photovoltaic",
+      "rationale": "Photovoltaic panels is a natural technical replacement."
+    }
+  ],
+  "audit_counts": {
+    "items": 8,
+    "illustrative_non_target_responses": 8,
+    "strict_grader_rejects_non_target": 8,
+    "semantic_uniqueness_independently_approved": 0
+  },
+  "integration_observations": [
+    "Main learning-runtime exposes rating/grade and approved overlay display; no proof that standalone response object in prototype is consumed by a scored typed-answer parser.",
+    "Release gate checks approval metadata, sense binding and activation, not cloze answer uniqueness."
+  ],
+  "recommendations": [
+    "Never interpret exact-match comparator PASS as semantic uniqueness.",
+    "Distinguish target-form production tasks from open-context understanding; add explicit target clues or provide selected-choice alternatives.",
+    "After CG-QA review, build distractor-resistant items and test with human/independent AI blind alternatives.",
+    "Keep existing prototype in isolated non-activated staging."
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
