@@ -8,6 +8,7 @@ on:
       - '.github/workflows/four-line-integration-qa.yml'
       - 'scripts/four-line-*.mjs'
       - 'tools/integration/**'
+      - 'rebuild-preview/scene500-recommendation-bridge.mjs'
       - 'scene500-recommendation/chinese-lexicon-loader.mjs'
       - 'scene500-recommendation/qa/test-observed-optin-loader.mjs'
       - 'scripts/approved-teaching-release-gate.mjs'
@@ -57,6 +58,8 @@ jobs:
         run: node tools/integration/test-approved-overlay-boot-source.mjs
       - name: Execute KU anchored release to runtime dual gate
         run: node tools/integration/test-ku-anchored-release-to-runtime.mjs
+      - name: Test Scene500 preview bridge opt-in contract
+        run: node tools/integration/test-v22-observed-bridge-contract.mjs
       - name: Test Scene500 corrections opt-in adapter
         run: node scene500-recommendation/qa/test-observed-optin-loader.mjs
       - name: Test isolated Scene500 query corrections candidate
