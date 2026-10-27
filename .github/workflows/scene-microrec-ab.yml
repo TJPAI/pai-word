@@ -69,6 +69,8 @@ jobs:
             /tmp/real-distill-ab/real-student-vs-conservative.json
       - name: Generate 500-scene bilingual editorial queue
         run: node experiments/scene-microrec/build-bilingual-queue.mjs --write
+      - name: Check first-pass semantic review traceability
+        run: node experiments/scene-microrec/test-semantic-review-pilot.mjs
       - name: Verify bilingual candidate pool isolation
         run: node experiments/scene-microrec/test-bilingual-seeds.mjs
       - name: Audit real bilingual supervision coverage
