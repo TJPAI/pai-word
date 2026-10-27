@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/core20k_sense_v1/join_online_evidence.py'
       - 'tools/core20k_sense_v1/prioritize_semantic_queue.py'
+      - 'tools/core20k_sense_v1/build_first500_review_evidence.py'
       - '.github/workflows/core20k-sense-multisource.yml'
 jobs:
   join:
@@ -29,6 +30,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/join_online_evidence.py
       - name: Prioritize missing and low-support Sense evidence
         run: python3 tools/core20k_sense_v1/prioritize_semantic_queue.py
+      - name: Produce evidence-level first 500 review records
+        run: python3 tools/core20k_sense_v1/build_first500_review_evidence.py
       - uses: actions/upload-artifact@v4
         with:
           name: sense-v1-multisource-coverage-20k
@@ -37,3 +40,5 @@ jobs:
             tools/core20k_sense_v1/reports/source_join/joined_coverage_summary.json
             tools/core20k_sense_v1/reports/source_join/prioritized_semantic_queue_20k.jsonl
             tools/core20k_sense_v1/reports/source_join/priority_summary.json
+            tools/core20k_sense_v1/reports/source_join/first500_semantic_evidence.jsonl
+            tools/core20k_sense_v1/reports/source_join/first500_semantic_evidence_summary.json
