@@ -16,7 +16,13 @@ function switchedTransport(q){
  if(n){const source=transitMode(n[1]),target=transitMode(n[2]);if(source&&target&&source!==target)return {id:'transport_negation_directional',promote:target,exclude:[source]};}
  return null;
 }
+// Require both a hotel context and a clear booking/check-in action;
+// never route generic "check in" to a hotel (airport check-in is a different scene).
+const englishHotelBooking=/^(?:(?:i\\s+(?:need|want|would\\s+like)\\s+to|i'd\\s+like\\s+to)\\s+)?(?:book|reserve)\\s+(?:(?:a|the)\\s+)?(?:hotel\\s+room|room\\s+at\\s+(?:a|the)\\s+hotel|hotel)(?:\\s+please)?[?.]?$/i;
+const englishHotelCheckin=/^(?:(?:where\\s+can\\s+i|how\\s+do\\s+i)\\s+check\\s+in\\s+(?:at|to)\\s+(?:the|a)\\s+hotel|(?:i\\s+want\\s+to|i\\s+need\\s+to)\\s+check\\s+in\\s+at\\s+(?:the|a)\\s+hotel)[?.]?$/i;
 const rules=[
+ {id:'english_hotel_booking_intent',match:q=>englishHotelBooking.test(q),promote:'S113',exclude:[]},
+ {id:'english_hotel_checkin_intent',match:q=>englishHotelCheckin.test(q),promote:'S114',exclude:['S104']},
  {id:'english_study_not_machine_learning',match:q=>/^(?:我想)?(?:学|学习|练习)?英语(?:学习|课程|口语|发音)?[，,\s]*(?:而)?(?:不是|并非|而非)(?:机器学习|深度学习)[。.]?$/.test(q),promote:null,exclude:['S279','S280']},
  {id:'food_order_english_compositional',match:q=>foodOrder.test(q),promote:'S034',exclude:[]},
  {id:'coffee_order_english',match:q=>/^(?:how\s+(?:to|do\s+i|can\s+i)\s+order\s+(?:a\s+)?coffee\??|(?:(?:i\s+(?:want|would\s+like)\s+to|i'd\s+like\s+to)|please|could\s+i)\s+order\s+(?:a\s+)?coffee(?:\s+please)?[?.]?|order\s+(?:a\s+)?coffee[?.]?)$/i.test(q),promote:'S039',exclude:[]},
