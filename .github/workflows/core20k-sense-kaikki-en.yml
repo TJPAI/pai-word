@@ -1,0 +1,25 @@
+name: Core20K Sense Kaikki English collection
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/collect_kaikki_en.py'
+      - '.github/workflows/core20k-sense-kaikki-en.yml'
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stream English Wiktionary entries
+        run: python3 tools/core20k_sense_v1/collect_kaikki_en.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-kaikki-en-matched
+          path: |
+            tools/core20k_sense_v1/reports/online_sources/kaikki_en_core20k.jsonl
+            tools/core20k_sense_v1/reports/online_sources/kaikki_en_summary.json
+          retention-days: 30
