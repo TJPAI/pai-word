@@ -1,0 +1,35 @@
+name: Scene MicroRec real student A/B (isolated)
+on:
+  push:
+    branches:
+      - experiment/scene1500-microrec-ab-20261027
+    paths:
+      - 'experiments/scene-microrec/evaluate-real-student.mjs'
+      - '.github/workflows/scene-microrec-real-ab.yml'
+  workflow_dispatch:
+jobs:
+  ab:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/download-artifact@v4
+        with:
+          name: scene-microrec-real-student-and-teacher
+          run-id: 40477803071
+          github-token: ${{ github.token }}
+          path: /tmp/real-distill
+      - name: Verify saved student artifact checksum
+        run: |
+          echo '7f9ef3c889624f068562e6c5420a79686a7595fb96b1c7f0541409d2b922ae4c  /tmp/real-distill/scene-student-real.json' | sha256sum -c -
+      - name: Real student vs Conservative A/B
+        run: node experiments/scene-microrec/evaluate-real-student.mjs /tmp/real-distill/scene-student-real.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scene-microrec-real-ab-report
+          path: experiments/scene-microrec/real-student-ab-report.json
