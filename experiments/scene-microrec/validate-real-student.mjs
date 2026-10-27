@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createTrainedStudent} from './student-package.mjs';
+if(!process.argv[2])throw Error('USAGE: node validate-real-student.mjs /path/student.json');
+globalThis.atob ??= s=>Buffer.from(s,'base64').toString('binary');
+const file=process.argv[2],pkg=JSON.parse(fs.readFileSync(file,'utf8'));
+assert.notEqual(pkg.teacher?.model_id,'SYNTHETIC_TEST_ONLY','SYNTHETIC_TEACHER_NOT_PERMITTED');
+assert.equal(pkg.diagnostics?.quality_certified,false,'NO_UNEARNED_CERTIFICATION');
+const student=createTrainedStudent(pkg);
+assert.equal(student.sceneCount,500,'EXPECT_FULL_500_SCENES');
+const bytes=fs.statSync(file).size;
+assert.ok(bytes<=2_000_000,'STUDENT_PACKAGE_OVER_2MB');
+const probe=student.search('如何预订酒店',{limit:5});
+assert.ok(Array.isArray(probe));
+assert.deepEqual(probe,student.search('如何预订酒店',{limit:5}));
+console.log(JSON.stringify({status:'REAL_TEACHER_STUDENT_RUNTIME_STRUCTURAL_PASS',sceneCount:student.sceneCount,modelFileBytes:bytes,probeTop5:probe.map(x=>x.sceneId),qualityCertified:false}));
