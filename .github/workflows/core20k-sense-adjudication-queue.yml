@@ -1,0 +1,30 @@
+name: Core20K Sense semantic adjudication queue
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/build_semantic_adjudication_queue.py'
+      - '.github/workflows/core20k-sense-adjudication-queue.yml'
+jobs:
+  adjudicate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download verified sources and 20K embedding matches
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p tools/core20k_sense_v1/reports/source_join tools/core20k_sense_v1/reports/semantic_shards
+          gh run download 40555021908 -n sense-v1-multisource-coverage-20k -D tools/core20k_sense_v1/reports/source_join
+          gh run download 40557820491 -n sense20k-embedding-consolidated -D tools/core20k_sense_v1/reports/semantic_shards
+      - run: python3 tools/core20k_sense_v1/build_semantic_adjudication_queue.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense20k-semantic-adjudication-queue
+          path: |
+            tools/core20k_sense_v1/reports/semantic_shards/semantic_adjudication_queue.jsonl
+            tools/core20k_sense_v1/reports/semantic_shards/semantic_adjudication_summary.json
