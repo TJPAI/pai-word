@@ -1,0 +1,20 @@
+name: Core20K Sense editorial decision ledger
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/build_editorial_decision_ledger.py'
+      - '.github/workflows/core20k-sense-editorial-ledger.yml'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_sense_v1/build_editorial_decision_ledger.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-sense-editorial-ledger-20
+          path: tools/core20k_sense_v1/reports/editorial_decision_ledger_20*
