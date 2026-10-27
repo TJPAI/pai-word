@@ -59,4 +59,8 @@ assert.equal(search('Can you help me with a software issue?',[]).results[0]?.sce
 assert.equal(search('How to fix an app crash?',[]).results[0]?.sceneId,'S275');
 assert.equal(search('I need help with software development',[]).results.length,0);
 assert.equal(search('Can you help me with a hotel problem?',[]).results.length,0);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 51 assertions');
+assert.equal(search('我想预约酒店房间',[row('S004',20),row('S113',5)]).results[0]?.sceneId,'S113');
+assert.equal(search('我想预订一间宾馆客房',[]).results[0]?.sceneId,'S113');
+assert.equal(search('预约医院检查',[row('S004',20)]).results[0]?.sceneId,'S004');
+assert.equal(search('酒店办理入住',[row('S114',20)]).results[0]?.sceneId,'S114');
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 55 assertions');
