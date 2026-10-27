@@ -1,0 +1,1089 @@
+{
+  "schema": "cg-rec-eval-context-paraphrases-v0.1",
+  "status": "NONINDEPENDENT_DERIVED_ROBUSTNESS_PROBES_NOT_BLIND",
+  "source_blob": "d2174399b28b5bbca568545ee9c985137e01c256",
+  "source_set": "gold-provisional-30.v0.1.json",
+  "description": "90 contextualized variants from 30 base cases, not 90 independent semantic intents; evaluates wrapper sensitivity only. Gold labels inherited, may be ambiguous.",
+  "cases": [
+    {
+      "id": "P001",
+      "query": "我想学习这个生活情境的英语表达：在咖啡馆要一杯拿铁",
+      "group": "zh_food",
+      "relevance": {
+        "S029": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E001",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P002",
+      "query": "请推荐适合这件事的英语学习场景：在咖啡馆要一杯拿铁",
+      "group": "zh_food",
+      "relevance": {
+        "S029": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E001",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P003",
+      "query": "这种情况下怎么用英语交流？在咖啡馆要一杯拿铁",
+      "group": "zh_food",
+      "relevance": {
+        "S029": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E001",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P004",
+      "query": "我想学习这个生活情境的英语表达：我想在快餐店点薯条",
+      "group": "zh_food",
+      "relevance": {
+        "S030": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E002",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P005",
+      "query": "请推荐适合这件事的英语学习场景：我想在快餐店点薯条",
+      "group": "zh_food",
+      "relevance": {
+        "S030": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E002",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P006",
+      "query": "这种情况下怎么用英语交流？我想在快餐店点薯条",
+      "group": "zh_food",
+      "relevance": {
+        "S030": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E002",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P007",
+      "query": "我想学习这个生活情境的英语表达：请帮我在餐厅点一份汤",
+      "group": "zh_food",
+      "relevance": {
+        "S034": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E003",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P008",
+      "query": "请推荐适合这件事的英语学习场景：请帮我在餐厅点一份汤",
+      "group": "zh_food",
+      "relevance": {
+        "S034": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E003",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P009",
+      "query": "这种情况下怎么用英语交流？请帮我在餐厅点一份汤",
+      "group": "zh_food",
+      "relevance": {
+        "S034": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E003",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P010",
+      "query": "我想学习这个生活情境的英语表达：我吃花生会过敏",
+      "group": "zh_food",
+      "relevance": {
+        "S037": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E004",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P011",
+      "query": "请推荐适合这件事的英语学习场景：我吃花生会过敏",
+      "group": "zh_food",
+      "relevance": {
+        "S037": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E004",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P012",
+      "query": "这种情况下怎么用英语交流？我吃花生会过敏",
+      "group": "zh_food",
+      "relevance": {
+        "S037": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E004",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P013",
+      "query": "我想学习这个生活情境的英语表达：我是素食主义者，不吃肉",
+      "group": "zh_food",
+      "relevance": {
+        "S038": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E005",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P014",
+      "query": "请推荐适合这件事的英语学习场景：我是素食主义者，不吃肉",
+      "group": "zh_food",
+      "relevance": {
+        "S038": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E005",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P015",
+      "query": "这种情况下怎么用英语交流？我是素食主义者，不吃肉",
+      "group": "zh_food",
+      "relevance": {
+        "S038": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E005",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P016",
+      "query": "我想学习这个生活情境的英语表达：我们吃完饭要买单",
+      "group": "zh_food",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E006",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P017",
+      "query": "请推荐适合这件事的英语学习场景：我们吃完饭要买单",
+      "group": "zh_food",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E006",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P018",
+      "query": "这种情况下怎么用英语交流？我们吃完饭要买单",
+      "group": "zh_food",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E006",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P019",
+      "query": "我想学习这个生活情境的英语表达：点的菜要改成两份",
+      "group": "zh_food",
+      "relevance": {
+        "S035": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E007",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P020",
+      "query": "请推荐适合这件事的英语学习场景：点的菜要改成两份",
+      "group": "zh_food",
+      "relevance": {
+        "S035": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E007",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P021",
+      "query": "这种情况下怎么用英语交流？点的菜要改成两份",
+      "group": "zh_food",
+      "relevance": {
+        "S035": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E007",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P022",
+      "query": "我想学习这个生活情境的英语表达：我想查一下外卖到哪里了",
+      "group": "zh_food",
+      "relevance": {
+        "S043": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E008",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P023",
+      "query": "请推荐适合这件事的英语学习场景：我想查一下外卖到哪里了",
+      "group": "zh_food",
+      "relevance": {
+        "S043": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E008",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P024",
+      "query": "这种情况下怎么用英语交流？我想查一下外卖到哪里了",
+      "group": "zh_food",
+      "relevance": {
+        "S043": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E008",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P025",
+      "query": "我想学习这个生活情境的英语表达：这牛奶过期了吗",
+      "group": "zh_food",
+      "relevance": {
+        "S050": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E009",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P026",
+      "query": "请推荐适合这件事的英语学习场景：这牛奶过期了吗",
+      "group": "zh_food",
+      "relevance": {
+        "S050": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E009",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P027",
+      "query": "这种情况下怎么用英语交流？这牛奶过期了吗",
+      "group": "zh_food",
+      "relevance": {
+        "S050": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E009",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P028",
+      "query": "我想学习这个生活情境的英语表达：先不要做饭，我只想把食材切好",
+      "group": "zh_negation",
+      "relevance": {
+        "S007": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E010",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P029",
+      "query": "请推荐适合这件事的英语学习场景：先不要做饭，我只想把食材切好",
+      "group": "zh_negation",
+      "relevance": {
+        "S007": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E010",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P030",
+      "query": "这种情况下怎么用英语交流？先不要做饭，我只想把食材切好",
+      "group": "zh_negation",
+      "relevance": {
+        "S007": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E010",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P031",
+      "query": "我想学习这个生活情境的英语表达：我要洗碗，不是刷牙",
+      "group": "zh_negation",
+      "relevance": {
+        "S009": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E011",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P032",
+      "query": "请推荐适合这件事的英语学习场景：我要洗碗，不是刷牙",
+      "group": "zh_negation",
+      "relevance": {
+        "S009": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E011",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P033",
+      "query": "这种情况下怎么用英语交流？我要洗碗，不是刷牙",
+      "group": "zh_negation",
+      "relevance": {
+        "S009": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E011",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P034",
+      "query": "我想学习这个生活情境的英语表达：不想买衣服，只想试穿",
+      "group": "zh_negation",
+      "relevance": {
+        "S061": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E012",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P035",
+      "query": "请推荐适合这件事的英语学习场景：不想买衣服，只想试穿",
+      "group": "zh_negation",
+      "relevance": {
+        "S061": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E012",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P036",
+      "query": "这种情况下怎么用英语交流？不想买衣服，只想试穿",
+      "group": "zh_negation",
+      "relevance": {
+        "S061": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E012",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P037",
+      "query": "我想学习这个生活情境的英语表达：洗完衣服要晾晒",
+      "group": "zh_home",
+      "relevance": {
+        "S006": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E013",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P038",
+      "query": "请推荐适合这件事的英语学习场景：洗完衣服要晾晒",
+      "group": "zh_home",
+      "relevance": {
+        "S006": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E013",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P039",
+      "query": "这种情况下怎么用英语交流？洗完衣服要晾晒",
+      "group": "zh_home",
+      "relevance": {
+        "S006": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E013",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P040",
+      "query": "我想学习这个生活情境的英语表达：我想给猫咪喂食",
+      "group": "zh_home",
+      "relevance": {
+        "S015": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E014",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P041",
+      "query": "请推荐适合这件事的英语学习场景：我想给猫咪喂食",
+      "group": "zh_home",
+      "relevance": {
+        "S015": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E014",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P042",
+      "query": "这种情况下怎么用英语交流？我想给猫咪喂食",
+      "group": "zh_home",
+      "relevance": {
+        "S015": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E014",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P043",
+      "query": "我想学习这个生活情境的英语表达：刚搬入新公寓怎么打包",
+      "group": "zh_home",
+      "relevance": {
+        "S021": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E015",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P044",
+      "query": "请推荐适合这件事的英语学习场景：刚搬入新公寓怎么打包",
+      "group": "zh_home",
+      "relevance": {
+        "S021": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E015",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P045",
+      "query": "这种情况下怎么用英语交流？刚搬入新公寓怎么打包",
+      "group": "zh_home",
+      "relevance": {
+        "S021": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E015",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P046",
+      "query": "我想学习这个生活情境的英语表达：哪里可以买防晒霜",
+      "group": "zh_shopping",
+      "relevance": {
+        "S056": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E016",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P047",
+      "query": "请推荐适合这件事的英语学习场景：哪里可以买防晒霜",
+      "group": "zh_shopping",
+      "relevance": {
+        "S056": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E016",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P048",
+      "query": "这种情况下怎么用英语交流？哪里可以买防晒霜",
+      "group": "zh_shopping",
+      "relevance": {
+        "S056": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E016",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P049",
+      "query": "我想学习这个生活情境的英语表达：我要去买一本小说",
+      "group": "zh_shopping",
+      "relevance": {
+        "S059": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E017",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P050",
+      "query": "请推荐适合这件事的英语学习场景：我要去买一本小说",
+      "group": "zh_shopping",
+      "relevance": {
+        "S059": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E017",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P051",
+      "query": "这种情况下怎么用英语交流？我要去买一本小说",
+      "group": "zh_shopping",
+      "relevance": {
+        "S059": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E017",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P052",
+      "query": "我想学习这个生活情境的英语表达：只想比较价格，不打算付款",
+      "group": "zh_negation",
+      "relevance": {
+        "S062": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E018",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P053",
+      "query": "请推荐适合这件事的英语学习场景：只想比较价格，不打算付款",
+      "group": "zh_negation",
+      "relevance": {
+        "S062": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E018",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P054",
+      "query": "这种情况下怎么用英语交流？只想比较价格，不打算付款",
+      "group": "zh_negation",
+      "relevance": {
+        "S062": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E018",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P055",
+      "query": "Which English learning scenario fits this situation: What is in this dish?",
+      "group": "en_food",
+      "relevance": {
+        "S036": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E019",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P056",
+      "query": "I want to practice English for this situation: What is in this dish?",
+      "group": "en_food",
+      "relevance": {
+        "S036": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E019",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P057",
+      "query": "Suggest a useful vocabulary scene: What is in this dish?",
+      "group": "en_food",
+      "relevance": {
+        "S036": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E019",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P058",
+      "query": "Which English learning scenario fits this situation: How much should I tip after dinner?",
+      "group": "en_food",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E020",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P059",
+      "query": "I want to practice English for this situation: How much should I tip after dinner?",
+      "group": "en_food",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E020",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P060",
+      "query": "Suggest a useful vocabulary scene: How much should I tip after dinner?",
+      "group": "en_food",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E020",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P061",
+      "query": "Which English learning scenario fits this situation: Please don't add peanuts; I'm allergic",
+      "group": "en_negation",
+      "relevance": {
+        "S037": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E021",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P062",
+      "query": "I want to practice English for this situation: Please don't add peanuts; I'm allergic",
+      "group": "en_negation",
+      "relevance": {
+        "S037": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E021",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P063",
+      "query": "Suggest a useful vocabulary scene: Please don't add peanuts; I'm allergic",
+      "group": "en_negation",
+      "relevance": {
+        "S037": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E021",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P064",
+      "query": "Which English learning scenario fits this situation: I am not ordering food; I need to pay the bill",
+      "group": "en_negation",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E022",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P065",
+      "query": "I want to practice English for this situation: I am not ordering food; I need to pay the bill",
+      "group": "en_negation",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E022",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P066",
+      "query": "Suggest a useful vocabulary scene: I am not ordering food; I need to pay the bill",
+      "group": "en_negation",
+      "relevance": {
+        "S041": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E022",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P067",
+      "query": "Which English learning scenario fits this situation: I want to buy a pair of shoes",
+      "group": "en_shopping",
+      "relevance": {
+        "S055": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E023",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P068",
+      "query": "I want to practice English for this situation: I want to buy a pair of shoes",
+      "group": "en_shopping",
+      "relevance": {
+        "S055": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E023",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P069",
+      "query": "Suggest a useful vocabulary scene: I want to buy a pair of shoes",
+      "group": "en_shopping",
+      "relevance": {
+        "S055": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E023",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P070",
+      "query": "Which English learning scenario fits this situation: My package has arrived at the locker",
+      "group": "en_home",
+      "relevance": {
+        "S023": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E024",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P071",
+      "query": "I want to practice English for this situation: My package has arrived at the locker",
+      "group": "en_home",
+      "relevance": {
+        "S023": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E024",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P072",
+      "query": "Suggest a useful vocabulary scene: My package has arrived at the locker",
+      "group": "en_home",
+      "relevance": {
+        "S023": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E024",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P073",
+      "query": "我想学习这个生活情境的英语表达：我要刷牙，不是洗碗",
+      "group": "zh_negation",
+      "relevance": {
+        "S002": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E025",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P074",
+      "query": "请推荐适合这件事的英语学习场景：我要刷牙，不是洗碗",
+      "group": "zh_negation",
+      "relevance": {
+        "S002": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E025",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P075",
+      "query": "这种情况下怎么用英语交流？我要刷牙，不是洗碗",
+      "group": "zh_negation",
+      "relevance": {
+        "S002": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E025",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P076",
+      "query": "我想学习这个生活情境的英语表达：想做蛋糕，买点烘焙材料",
+      "group": "zh_food",
+      "relevance": {
+        "S040": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E026",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P077",
+      "query": "请推荐适合这件事的英语学习场景：想做蛋糕，买点烘焙材料",
+      "group": "zh_food",
+      "relevance": {
+        "S040": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E026",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P078",
+      "query": "这种情况下怎么用英语交流？想做蛋糕，买点烘焙材料",
+      "group": "zh_food",
+      "relevance": {
+        "S040": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E026",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P079",
+      "query": "Which English learning scenario fits this situation: I need to buy an over-the-counter cold medicine",
+      "group": "en_shopping",
+      "relevance": {
+        "S060": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E027",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P080",
+      "query": "I want to practice English for this situation: I need to buy an over-the-counter cold medicine",
+      "group": "en_shopping",
+      "relevance": {
+        "S060": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E027",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P081",
+      "query": "Suggest a useful vocabulary scene: I need to buy an over-the-counter cold medicine",
+      "group": "en_shopping",
+      "relevance": {
+        "S060": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E027",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P082",
+      "query": "Which English learning scenario fits this situation: How can I sort plastics for recycling?",
+      "group": "en_home",
+      "relevance": {
+        "S024": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E028",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P083",
+      "query": "I want to practice English for this situation: How can I sort plastics for recycling?",
+      "group": "en_home",
+      "relevance": {
+        "S024": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E028",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P084",
+      "query": "Suggest a useful vocabulary scene: How can I sort plastics for recycling?",
+      "group": "en_home",
+      "relevance": {
+        "S024": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E028",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P085",
+      "query": "Which English learning scenario fits this situation: The refrigerator is not cooling",
+      "group": "en_home",
+      "relevance": {
+        "S019": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E029",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P086",
+      "query": "I want to practice English for this situation: The refrigerator is not cooling",
+      "group": "en_home",
+      "relevance": {
+        "S019": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E029",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P087",
+      "query": "Suggest a useful vocabulary scene: The refrigerator is not cooling",
+      "group": "en_home",
+      "relevance": {
+        "S019": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E029",
+      "transformation": "vocabulary_framing"
+    },
+    {
+      "id": "P088",
+      "query": "我想学习这个生活情境的英语表达：我想整理卧室，但不是搬家",
+      "group": "zh_negation",
+      "relevance": {
+        "S004": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E030",
+      "transformation": "learning_context"
+    },
+    {
+      "id": "P089",
+      "query": "请推荐适合这件事的英语学习场景：我想整理卧室，但不是搬家",
+      "group": "zh_negation",
+      "relevance": {
+        "S004": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E030",
+      "transformation": "scene_request"
+    },
+    {
+      "id": "P090",
+      "query": "这种情况下怎么用英语交流？我想整理卧室，但不是搬家",
+      "group": "zh_negation",
+      "relevance": {
+        "S004": 3
+      },
+      "annotation_status": "PROVISIONAL_DERIVED",
+      "judgement": "Intent-preserving contextual wrapper; may shift user intent; not independently human adjudicated",
+      "source_case": "E030",
+      "transformation": "vocabulary_framing"
+    }
+  ]
+}
