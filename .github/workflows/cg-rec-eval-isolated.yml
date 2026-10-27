@@ -34,6 +34,7 @@ jobs:
           cp evaluation/tools/cg-rec-eval/evaluate.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/gold-provisional-30.v0.1.json candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/context-wrappers-90.v0.1.json candidate/tools/cg-rec-eval/
+          cp evaluation/tools/cg-rec-eval/novel-intents-50.v0.1.json candidate/tools/cg-rec-eval/
           git -C candidate rev-parse HEAD
           git -C evaluation rev-parse HEAD
       - name: Extract SHA-pinned official data assets
@@ -70,6 +71,18 @@ jobs:
             ../assets/v094-lexical-associations.json \
             tools/cg-rec-eval/context-wrappers-90.v0.1.json \
             | tee ../cg-rec-eval-context90.json
+      - name: Run independent 50 novel-intent A/B cases
+        working-directory: candidate
+        env:
+          ENABLE_ACTION_OBJECT: '1'
+        run: |
+          set -o pipefail
+          node tools/cg-rec-eval/evaluate.mjs \
+            ../assets/catalog-v0.2.json \
+            ../assets/zh-core20k-v0101-scene500-runtime.json \
+            ../assets/v094-lexical-associations.json \
+            tools/cg-rec-eval/novel-intents-50.v0.1.json \
+            | tee ../cg-rec-eval-novel50.json
       - name: Upload all case-level evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -78,4 +91,5 @@ jobs:
           path: |
             cg-rec-eval-ab-30.json
             cg-rec-eval-context90.json
+            cg-rec-eval-novel50.json
           if-no-files-found: warn
