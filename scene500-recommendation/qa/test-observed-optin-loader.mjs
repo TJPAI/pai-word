@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {loadScene500WithChineseLexicon} from '../chinese-lexicon-loader.mjs';
-const catalog={scenes:{S113:{name:'预订酒店',aliases:[]},S114:{name:'酒店入住',aliases:[]},S104:{name:'机场值机',aliases:[]},S034:{name:'点餐',aliases:[]},S039:{name:'饮料与酒水',aliases:[]}}};
+const catalog={schema:'scene500-v0.2',scene_count:500,scenes:Object.fromEntries(Array.from({length:500},(_,i)=>['S'+String(i+1).padStart(3,'0'),{name:'测试场景'+(i+1),aliases:[]}]))};
+Object.assign(catalog.scenes,{S113:{name:'预订酒店',aliases:[]},S114:{name:'酒店入住',aliases:[]},S104:{name:'机场值机',aliases:[]},S034:{name:'点餐',aliases:[]},S039:{name:'饮料与酒水',aliases:[]}});
 const normal=await loadScene500WithChineseLexicon({catalog});
 const optin=await loadScene500WithChineseLexicon({catalog,enableObservedCorrections:true});
 assert.equal(normal.mode,'rule_fallback');
