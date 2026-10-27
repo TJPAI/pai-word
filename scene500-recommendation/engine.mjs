@@ -1,6 +1,15 @@
 // Independent Scene500 recommendation engine. Browser ESM; no DOM, globals, SRS or home code.
 export const ENGINE_VERSION='1.0.0-alpha.1';
 const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[\s，。！？、；：,.!?;:]+/g,'');
+// ASCII words need lexical boundaries: "AI" must not match trAIn / wAIt / fAIls.
+// Chinese and mixed-language phrases keep the historical compact matching semantics.
+const evidenceMatch=(original,compact,phrase)=>{
+ if(/^[a-z]+$/.test(phrase)){
+  const raw=String(original??'').normalize('NFKC').toLowerCase();
+  return new RegExp('(^|[^a-z])'+phrase+'(?=$|[^a-z])').test(raw);
+ }
+ return compact.includes(phrase);
+};
 const unique=a=>[...new Set(a.filter(Boolean))];
 // Small, generic Chinese function-word strip for order-independent phrase matching.
 const weakWords=/^(?:我|你|他|她|它|们|的|了|过|在|和|与|把|给|向|想|要|请|问|如何|怎么|怎样|可以|一下|一个|一些|需要|进行|有关|相关|问题|情况)$/;
@@ -8,22 +17,22 @@ const segments=x=>String(x??'').normalize('NFKC').toLowerCase().match(/[\u4e00-\
 function unorderedEvidence(q,p){
  const parts=segments(p).filter(x=>!weakWords.test(x)&&x.length>=2);
  if(parts.length<2||parts.length>4)return false;
- return parts.every(x=>q.includes(x));
+ return parts.every(x=>evidenceMatch(q,q,x));
 }
 function score(query,s){
  const q=normalize(query); if(!q)return 0;
  let points=0,anchored=false;
  for(const p of unique([s.name,...(s.aliases||[])]).map(normalize).filter(x=>x.length>=2))
-  if(q.includes(p)){points+=p===normalize(s.name)?20:12;anchored=true;}
+  if(evidenceMatch(query,q,p)){points+=p===normalize(s.name)?20:12;anchored=true;}
  // Multi-part aliases can match despite reversed phrase order, at lower weight.
- for(const p of unique(s.aliases||[]))if(!q.includes(normalize(p))&&unorderedEvidence(q,p)){
+ for(const p of unique(s.aliases||[]))if(!evidenceMatch(query,q,normalize(p))&&unorderedEvidence(q,p)){
   points+=6;anchored=true;
  }
  let actions=0,objects=0;
  for(const p of unique(s.actions||[]).map(normalize).filter(x=>x.length>=2))
-  if(q.includes(p)){points+=7;actions++;anchored=true;}
+  if(evidenceMatch(query,q,p)){points+=7;actions++;anchored=true;}
  for(const p of unique(s.objects||[]).map(normalize).filter(x=>x.length>=2))
-  if(q.includes(p)){points+=4;objects++;anchored=true;}
+  if(evidenceMatch(query,q,p)){points+=4;objects++;anchored=true;}
  if(actions&&objects)points+=10;
  const desc=normalize(s.description_enriched||'');
  const grams=unique([...q].slice(0,-1).map((c,i)=>c+q[i+1]));
@@ -31,7 +40,7 @@ function score(query,s){
  points+=Math.min(anchored?5:2,grams.filter(g=>desc.includes(g)).length*.5);
  if((s.example_queries||[]).some(x=>normalize(x)===q)){points+=16;anchored=true;}
  const negatives=unique(s.negative_terms||[]).map(normalize).filter(x=>x.length>=2);
- points-=Math.min(18,negatives.filter(x=>q.includes(x)).length*9);
+ points-=Math.min(18,negatives.filter(x=>evidenceMatch(query,q,x)).length*9);
  return Math.round(Math.max(0,points)*100)/100;
 }
 function integer(value,fallback,max){
