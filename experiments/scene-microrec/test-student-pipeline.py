@@ -16,4 +16,5 @@ with tempfile.TemporaryDirectory() as td:
  assert out['diagnostics']['quality_certified'] is False
  assert len(out['scene_ids'])==50
  assert len((d/'student.json').read_bytes())<2000000
- print('PASS_SYNTHETIC_PIPELINE_ONLY',run.stdout.strip())
+ node=subprocess.run(['node',str(root/'test-student-runtime.mjs'),str(d/'student.json')],capture_output=True,text=True,check=True)
+ print('PASS_SYNTHETIC_PIPELINE_ONLY',run.stdout.strip(),node.stdout.strip())
