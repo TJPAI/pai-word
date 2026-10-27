@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const src=fs.readFileSync('rebuild-preview/scene500-recommendation-bridge.mjs','utf8');
+assert(src.includes("get('scene500observed')==='1'"),'only explicit preview URL flag opts in');
+assert(src.includes("observedEnabled?import(new URL('observed-query-corrections.mjs',ROOT).href):Promise.resolve(null)"),'module is not imported when disabled');
+assert(src.includes('observedModule?.applyObservedQueryCorrections(raw,query,'),'correction applies at search result boundary');
+assert(src.includes('eligibleSceneIds:eligible,limit:Math.min(500,limit)'),'playable and limit contract passed');
+assert(src.includes("observedEnabled?'observed|':'baseline|'"),'query cache isolated by flag');
+assert(src.includes('observedReady:!!observedModule'),'diagnostics report readiness');
+console.log('PASS experimental Scene500 query correction opt-in bridge contract');
