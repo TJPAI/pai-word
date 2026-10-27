@@ -31,6 +31,9 @@ for i,w in enumerate(rows):
 result={"source":str(src),"source_sha256":digest,"root_type":type(root).__name__,"root_keys":list(root)[:35] if isinstance(root,dict) else [],"row_count":len(rows),"rank_present_count":len(ranked),"words_with_list_senses":words_with_senses,"list_sense_records":senses,"words_without_list_senses":len(rows)-words_with_senses,"word_keys":keys.most_common(),"sense_keys":sense_keys.most_common(),"sense_count_distribution":sense_sizes.most_common(25),"samples":examples,"note":"Automatic structure inventory only: zero claims of semantic certification."}
 dst.parent.mkdir(parents=True,exist_ok=True)
 dst.write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
-print(json.dumps({k:result[k] for k in ("row_count","words_with_list_senses","list_sense_records","words_without_list_senses")},ensure_ascii=False))
+print(json.dumps({"summary":{k:result[k] for k in ("row_count","words_with_list_senses","list_sense_records","words_without_list_senses")},"root_keys":result["root_keys"],"word_keys":result["word_keys"][:35],"samples":result["samples"]},ensure_ascii=False))
+if senses == 0:
+ print("BLOCKED: Sense schema is not detected; zero cannot be interpreted as zero Sense content.",file=sys.stderr)
+ sys.exit(2)
 if len(rows)!=20000:
  print("BLOCKED: runtime may not expose 20K entries with detected schema. Inspect samples.",file=sys.stderr)
