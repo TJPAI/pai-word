@@ -1,0 +1,72 @@
+{
+  "schema_version": "pai-word-enteach-v4-handoff-audit-v1",
+  "owner": "CG-ENTEACH",
+  "state": "STRUCTURE_PASS_RENDERER_AND_SCORER_NOT_IMPLEMENTATION_VERIFIED",
+  "sources": [
+    {
+      "path": "tools/answer-enrichment/enteach-batch200-sense-recognition-prototype-20261027.v4.json",
+      "branch": "answer-enrichment-main-dev-20261026",
+      "blob": "52d1977368e8819aea0fb8f2a2cbe7722f9e6f7c"
+    },
+    {
+      "path": "rebuild-preview/learning-runtime.js",
+      "branch": "cg-main-fourline-integration-20261026",
+      "blob": "0770f17274f9d2e7cb3f2744278a53d66367f0c8"
+    }
+  ],
+  "verified": {
+    "source_items": 8,
+    "stable_ku_ids": 8,
+    "choices_per_item": 4,
+    "correct_choice_location_counts": {
+      "A": 2,
+      "B": 2,
+      "C": 2,
+      "D": 2
+    },
+    "display_only_approved_overlay_code_present": true,
+    "matching_render_kind_token_in_examined_runtime": false,
+    "matching_single_choice_token_in_examined_runtime": false,
+    "matching_correct_choice_id_token_in_examined_runtime": false
+  },
+  "acceptance_matrix": [
+    {
+      "gate": "source_identity_and_choices",
+      "status": "STRUCTURAL_PASS"
+    },
+    {
+      "gate": "semantic_uniqueness_and_distractor_quality",
+      "status": "INDEPENDENT_QA_PENDING"
+    },
+    {
+      "gate": "official_sense_membership",
+      "status": "HOLD"
+    },
+    {
+      "gate": "question_renderer_for_sense_recognition",
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "gate": "single_choice_answer_handler",
+      "status": "NOT_VERIFIED"
+    },
+    {
+      "gate": "rating_SRS_separation",
+      "status": "REQUIRES_INTEGRATION_PROOF"
+    },
+    {
+      "gate": "rights_and_release_authorization",
+      "status": "HOLD"
+    }
+  ],
+  "recommendations": [
+    "Do not turn on V4 through approved display-only overlay because it is not a scored question pipeline.",
+    "CG-MAIN should document any pre-existing actual question renderer before claiming integration; otherwise build a test-only adapter isolated from SRS.",
+    "CG-QA should separately blind-review each item's distractors and stem, especially near-neighbor semantics.",
+    "No production activation until official sense identity, rights, and content approvals are established."
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
