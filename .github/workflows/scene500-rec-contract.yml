@@ -25,6 +25,8 @@ jobs:
         run: node scene500-recommendation/qa/test-s113-taxonomy-boundary.mjs
       - name: Test narrow semantic correction and non-target invariants
         run: node scene500-recommendation/qa/test-observed-query-corrections.mjs
+      - name: Verify frozen prospective label audit structure
+        run: node scene500-recommendation/qa/test-prospective-label-audit.mjs
       - name: Extract exact V0101 Runtime and three SHA-pinned assets from committed ZIP
         run: |
           mkdir -p "$RUNNER_TEMP/scene500"
