@@ -14,3 +14,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/core20k_sense_v1/editorial/test_v21_first6_edits.py
+      - run: python3 tools/core20k_sense_v1/editorial/test_v21_second_batch.py
