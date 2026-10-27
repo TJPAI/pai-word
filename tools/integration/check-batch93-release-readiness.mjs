@@ -9,9 +9,11 @@ const tests={
  ku_binding_registered:h.sense_binding_registered===true&&h.binding_kind==='KU_ANCHORED_SENSE',
  runtime_and_pack_pinned:m.runtime_sha256===h.evidence.runtime_sha256&&m.pack_sha256===h.evidence.source_pack_sha256,
  production_manifest:m.status==='PRODUCTION_READY'&&m.activation_allowed===true,
- registrar_signed:m.authority?.registrar_signed===true&&m.reviewed_crosswalk?.length===p.records.length,
+ registrar_signed:m.authority?.registrar_signed===true&&typeof m.authority?.registrar_id==='string'&&m.authority.registrar_id.trim().length>0,
+ crosswalk_membership:Array.isArray(m.reviewed_crosswalk)&&m.reviewed_crosswalk.length===p.records.length&&new Set(m.reviewed_crosswalk.map(row=>row.ku_id)).size===p.records.length&&p.records.every(record=>m.reviewed_crosswalk.some(row=>row.ku_id===record.ku_id&&row.registrar_approved===true&&typeof row.sense_binding==='string'&&row.sense_binding.trim().length>0)),
+
  license_approved:m.authority?.license_approved===true,
- release_signed:m.authority?.release_signed===true,
+ release_signed:m.authority?.release_signed===true&&typeof m.authority?.release_id==='string'&&m.authority.release_id.trim().length>0,
  record_flags_ready:p.records.every(x=>x.content_certified===true&&x.production_ready===true),
 };
 assert.equal(new Set(m.ku_ids).size,m.ku_ids.length,'duplicate manifest KU');
