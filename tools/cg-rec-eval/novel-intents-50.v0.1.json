@@ -1,0 +1,508 @@
+{
+  "schema": "cg-rec-eval-independent-intents-v0.1",
+  "status": "EVALUATOR_PROVISIONAL_NOT_BLIND_ADJUDICATED",
+  "note": "50 novel queries across 23 Scene500 IDs. Independently phrased after viewing scene descriptions only; no algorithm outputs used. Catalog-informed and therefore not truly blind; all other relevant scene IDs unjudged.",
+  "sourceCatalogBlob": "0b1e9023eb21e99311b58e82bbe1518c04a63d76",
+  "cases": [
+    {
+      "id": "N001",
+      "query": "我买的耳机坏了，想寄回商家退款",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S070": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N002",
+      "query": "Can I return this defective item to the shop?",
+      "group": "en_new_domain",
+      "relevance": {
+        "S070": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N003",
+      "query": "请司机在下一个路口靠边停车",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S080": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N004",
+      "query": "Could you take me to the train station by taxi?",
+      "group": "en_new_domain",
+      "relevance": {
+        "S080": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N005",
+      "query": "过斑马线之前要看红绿灯",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S090": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N006",
+      "query": "Wait for the pedestrian light before crossing",
+      "group": "en_new_domain",
+      "relevance": {
+        "S090": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N007",
+      "query": "高速公路上汽车抛锚，需要拖车",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S100": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N008",
+      "query": "Our vehicle broke down and we need roadside assistance",
+      "group": "en_new_domain",
+      "relevance": {
+        "S100": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N009",
+      "query": "过海关时我要申报携带的现金",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S110": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N010",
+      "query": "I need to declare these goods at customs",
+      "group": "en_new_domain",
+      "relevance": {
+        "S110": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N011",
+      "query": "游客中心有免费的城市地图吗",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S120": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N012",
+      "query": "Ask the tourist information center for a walking map",
+      "group": "en_new_domain",
+      "relevance": {
+        "S120": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N013",
+      "query": "我的博士论文答辩通过了，准备申请学位",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S150": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N014",
+      "query": "When will I receive my degree certificate after graduation?",
+      "group": "en_new_domain",
+      "relevance": {
+        "S150": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N015",
+      "query": "实验涉及人类受试者，须先经过伦理审查",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S175": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N016",
+      "query": "Is it academic misconduct to fabricate research data?",
+      "group": "en_new_domain",
+      "relevance": {
+        "S175": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N017",
+      "query": "离职前把项目文档交接给同事",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S200": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N018",
+      "query": "I must hand over client accounts before leaving my job",
+      "group": "en_new_domain",
+      "relevance": {
+        "S200": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N019",
+      "query": "我想从会计转行做软件测试",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S225": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N020",
+      "query": "Changing careers from teaching to engineering",
+      "group": "en_new_domain",
+      "relevance": {
+        "S225": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N021",
+      "query": "企业未来五年的竞争定位需要重新规划",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S250": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N022",
+      "query": "We are setting long-term priorities for corporate strategy",
+      "group": "en_new_domain",
+      "relevance": {
+        "S250": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N023",
+      "query": "手机上的软件频繁闪退，怎么排查",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S275": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N024",
+      "query": "The application fails to launch after the update",
+      "group": "en_new_domain",
+      "relevance": {
+        "S275": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N025",
+      "query": "用深度神经网络识别卫星图像",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S280": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N026",
+      "query": "Train a deep neural network for image segmentation",
+      "group": "en_new_domain",
+      "relevance": {
+        "S280": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N027",
+      "query": "团队正在开发一款新手机应用",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S296": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N028",
+      "query": "We are writing code for a new web application",
+      "group": "en_new_domain",
+      "relevance": {
+        "S296": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N029",
+      "query": "我准备和同事讨论科研项目的技术路线",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S300": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N030",
+      "query": "Let's review the engineering approach in our R&D meeting",
+      "group": "en_new_domain",
+      "relevance": {
+        "S300": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N031",
+      "query": "医院账单为何被医保拒付",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S325": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N032",
+      "query": "My health insurance did not cover the hospital bill",
+      "group": "en_new_domain",
+      "relevance": {
+        "S325": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N033",
+      "query": "周末去现场看篮球联赛",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S350": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N034",
+      "query": "We bought tickets to watch the football match",
+      "group": "en_new_domain",
+      "relevance": {
+        "S350": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N035",
+      "query": "我加入了一个邮票收藏者社群",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S375": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N036",
+      "query": "Our stamp collectors club holds monthly meetings",
+      "group": "en_new_domain",
+      "relevance": {
+        "S375": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N037",
+      "query": "临走时我要和朋友道别并互留联系方式",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S400": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N038",
+      "query": "Let's exchange contacts so we can stay in touch",
+      "group": "en_new_domain",
+      "relevance": {
+        "S400": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N039",
+      "query": "公交站长期没有无障碍设施，我要投诉",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S425": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N040",
+      "query": "I want to file a complaint about poor municipal service",
+      "group": "en_new_domain",
+      "relevance": {
+        "S425": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N041",
+      "query": "我非常确信这个结论成立",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S450": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N042",
+      "query": "I am absolutely certain about the answer",
+      "group": "en_new_domain",
+      "relevance": {
+        "S450": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N043",
+      "query": "社区开展减少塑料污染的环境保护行动",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S475": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N044",
+      "query": "How can our town protect wetlands from pollution?",
+      "group": "en_new_domain",
+      "relevance": {
+        "S475": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N045",
+      "query": "我们通过头脑风暴设计一个全新的产品概念",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S500": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N046",
+      "query": "Let's brainstorm unconventional ideas for this project",
+      "group": "en_new_domain",
+      "relevance": {
+        "S500": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N047",
+      "query": "我要投诉市政热线长期无人接听",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S425": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N048",
+      "query": "我们讨论怎样减少海洋垃圾",
+      "group": "zh_new_domain",
+      "relevance": {
+        "S475": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N049",
+      "query": "I want to quit my current job and transfer responsibilities",
+      "group": "en_new_domain",
+      "relevance": {
+        "S200": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    },
+    {
+      "id": "N050",
+      "query": "The car engine stopped on the road and I need towing",
+      "group": "en_new_domain",
+      "relevance": {
+        "S100": 3
+      },
+      "annotation_status": "PROVISIONAL",
+      "judgement": "Primary intended scene; alternative relevant scenes not adjudicated"
+    }
+  ]
+}
