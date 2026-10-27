@@ -23,6 +23,8 @@ jobs:
           node-version: '22'
       - name: Verify 20x25 taxonomy pin and S113 membership
         run: node scene500-recommendation/qa/test-s113-taxonomy-boundary.mjs
+      - name: Test ASCII catalog evidence word boundaries
+        run: node scene500-recommendation/qa/test-ascii-evidence-boundary.mjs
       - name: Test narrow semantic correction and non-target invariants
         run: node scene500-recommendation/qa/test-observed-query-corrections.mjs
       - name: Test opt-in experimental action-object module
