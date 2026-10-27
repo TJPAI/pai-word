@@ -1,6 +1,5 @@
 // Scene MicroRec isolated experiment: three dependency-free baselines.
 // No change to production Scene500 engine, catalog or learning state.
-import { performance } from 'node:perf_hooks';
 const norm=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
 const words=s=>(norm(s).match(/[\p{Script=Han}]+|[a-z0-9]+/gu)||[]);
 const terms=s=>{const t=[];for(const w of words(s)){if(/[\p{Script=Han}]/u.test(w)){for(let i=0;i<w.length;i++){if(i+1<w.length)t.push('c2:'+w.slice(i,i+2));if(i+2<w.length)t.push('c3:'+w.slice(i,i+3));}if(w.length<=4)t.push('w:'+w);}else{t.push('w:'+w);if(w.length>=5)for(let i=0;i+3<=w.length;i++)t.push('e3:'+w.slice(i,i+3));}}return t;};
