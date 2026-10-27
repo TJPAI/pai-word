@@ -31,6 +31,8 @@ jobs:
         run: node experiments/scene-microrec/compare-historical-v0101.mjs --write
       - name: Error taxonomy and negative controls
         run: node experiments/scene-microrec/error-audit.mjs --write
+      - name: Exploratory bilingual stress probes
+        run: node experiments/scene-microrec/exploratory-probes.mjs --write
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
@@ -38,3 +40,4 @@ jobs:
             experiments/scene-microrec/results.json
             experiments/scene-microrec/historical-hybrid-comparison.json
             experiments/scene-microrec/error-audit.json
+            experiments/scene-microrec/exploratory-probes.json
