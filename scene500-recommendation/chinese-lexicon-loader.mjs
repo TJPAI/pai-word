@@ -3,7 +3,15 @@ import {createScene500Recommender} from './engine.mjs';
 import {createScene500ContractAdapter} from './contract-adapter.mjs';
 import {createChineseV094Index} from './zh-v094-runtime-bridge.mjs';
 import {mergeSubjectCandidates} from './subject-intent.mjs';
+import {applyObservedQueryCorrections} from './observed-query-corrections.mjs';
 import {withExperimentalSceneExtension} from './experimental-association-adapter.mjs';
+const withObservedCorrections=(base,catalog,enabled)=>!enabled?base:Object.freeze({...base,
+ search(query,options={}){
+  const requested=Number.isFinite(Number(options.limit))?Math.max(0,Math.min(500,Math.floor(Number(options.limit)))):20;
+  const snapshot=base.search(query,{...options,limit:500});
+  return applyObservedQueryCorrections(snapshot,query,{catalog,eligibleSceneIds:options.eligibleSceneIds??null,limit:requested});
+ }
+});
 const format=(base,catalog)=>Object.freeze({
  version:'scene500-rule-fallback-v0.1',
  mode:'rule_fallback',
@@ -14,8 +22,8 @@ const format=(base,catalog)=>Object.freeze({
  },
  getPage:(snapshot,pageIndex=0,pageSize=5)=>base.getPage(snapshot,pageIndex,pageSize)
 });
-export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal,onDiagnostic,experimentalExtension=null,enableExperimentalExtension=false}={}){
- const fallback=format(createScene500Recommender({catalog}),catalog);
+export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associationUrl,fetchImpl=globalThis.fetch,timeoutMs=4000,signal,onDiagnostic,experimentalExtension=null,enableExperimentalExtension=false,enableObservedCorrections=false}={}){
+ const fallback=withObservedCorrections(format(createScene500Recommender({catalog}),catalog),catalog,enableObservedCorrections===true);
  if(!lexiconUrl||!associationUrl)return fallback;
  const controller=new AbortController();
  const externalAbort=()=>controller.abort();
@@ -79,7 +87,7 @@ export async function loadScene500WithChineseLexicon({catalog,lexiconUrl,associa
     }
    }
   }
-  return Object.freeze({...active,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false});
+  return withObservedCorrections(Object.freeze({...active,mode:'hybrid',runtimeDataVersion:releaseVersion||engine.lexiconVersion,productionReady:false}),catalog,enableObservedCorrections===true);
   })();
   return await Promise.race([work,abortPromise]);
  }catch(err){
