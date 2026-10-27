@@ -1,0 +1,22 @@
+name: Core20K Sense editorial QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/editorial_pilot_*'
+      - 'tools/core20k_sense_v1/qa_editorial_20.py'
+      - '.github/workflows/core20k-sense-editorial-qa.yml'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate 20 headword editorial draft set
+        run: python3 tools/core20k_sense_v1/qa_editorial_20.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-sense-editorial-20-qa
+          path: tools/core20k_sense_v1/reports/editorial_pilot_20_qa.json
