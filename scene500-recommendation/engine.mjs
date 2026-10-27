@@ -64,7 +64,7 @@ export function createScene500Recommender({catalog, minimumScore=3}={}){
    const q=normalize(query);if(!q)return Object.freeze({query:String(query??''),total:0,results:[]});
    const allowed=eligibleSceneIds==null?null:new Set(eligibleSceneIds);
    const rows=ordered.filter(([id])=>!allowed||allowed.has(id)).map(([id,s])=>({
-    sceneId:id,score:score(q,s),quality:s.quality,
+    sceneId:id,score:score(query,s),quality:s.quality,
     name:s.name
    })).filter(r=>r.score>=minimumScore)
     .sort((a,b)=>b.score-a.score||a.sceneId.localeCompare(b.sceneId))
