@@ -1,0 +1,121 @@
+{
+  "schema": "zh-core20k-pos-targeted-qa-cases-v1",
+  "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_blob": "99eac4f9d1c9e1611d4ca535bbeeb33053d68f82",
+  "status": "EDITORIAL_QA_NOT_CERTIFICATION",
+  "production_ready": false,
+  "cases": [
+    {
+      "term": "道",
+      "term_id": "zh_00a9d5bd97c269b44f95",
+      "runtime_index": 316,
+      "pos_primary": "CLF",
+      "pos_other": [
+        "NOUN",
+        "VERB"
+      ],
+      "question": "能否提供“道”独立名词用例，而非仅依据“道路”内部语素？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "应",
+      "term_id": "zh_6244c4c963a8b55a89cf",
+      "runtime_index": 337,
+      "pos_primary": "AUX",
+      "pos_other": [
+        "VERB"
+      ],
+      "question": "动词证据能否避开“回应”复合词，提供独立词用例及语体？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "便",
+      "term_id": "zh_b33cf8e29901d129a101",
+      "runtime_index": 347,
+      "pos_primary": "ADV",
+      "pos_other": [
+        "VERB"
+      ],
+      "question": "“方便”不能证明单独动词“便”，请提供独立谓语分布。",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "runtime_index": 356,
+      "pos_primary": "CLF",
+      "pos_other": [
+        "NOUN",
+        "ADJ"
+      ],
+      "question": "独立名词及独立形容词证据分别是什么？“名作/姓名”不能代替。",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "单位",
+      "term_id": "zh_80b19d68b1494dac82aa",
+      "runtime_index": 318,
+      "pos_primary": "NOUN",
+      "pos_other": [
+        "CLF"
+      ],
+      "question": "“十个单位”中的“个”才是量词，单位为何标CLF？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "runtime_index": 274,
+      "pos_primary": "NUM",
+      "pos_other": [
+        "DET"
+      ],
+      "question": "整体数量结构NUM+CLF有无词汇化证据？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "runtime_index": 288,
+      "pos_primary": "NUM",
+      "pos_other": [
+        "DET"
+      ],
+      "question": "一种的构式级与词元级标签如何区分？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "一次",
+      "term_id": "zh_d736c7e459521de9cfa4",
+      "runtime_index": 334,
+      "pos_primary": "NUM",
+      "pos_other": [
+        "ADV"
+      ],
+      "question": "一次会议和试一次是否属于同一短语结构？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "runtime_index": 289,
+      "pos_primary": "CLF",
+      "pos_other": [
+        "NOUN"
+      ],
+      "question": "货币单位名词与CLF的标签约定是什么？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "runtime_index": 324,
+      "pos_primary": "NOUN",
+      "pos_other": [
+        "ADV"
+      ],
+      "question": "在国内和国内市场能否证明独立ADV用法？",
+      "gate": "REQUIRE_STANDALONE_DISTRIBUTIONAL_EVIDENCE_OR_HOLD"
+    }
+  ]
+}
