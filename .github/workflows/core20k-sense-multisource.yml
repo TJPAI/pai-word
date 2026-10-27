@@ -5,6 +5,7 @@ on:
     branches: [core20k-sense-v1-audit-20261027]
     paths:
       - 'tools/core20k_sense_v1/join_online_evidence.py'
+      - 'tools/core20k_sense_v1/prioritize_semantic_queue.py'
       - '.github/workflows/core20k-sense-multisource.yml'
 jobs:
   join:
@@ -25,9 +26,13 @@ jobs:
           find tools/core20k_sense_v1/reports/source_join -maxdepth 3 -type f | head -30
       - name: Join 20K rank evidence and verify
         run: python3 tools/core20k_sense_v1/join_online_evidence.py
+      - name: Prioritize missing and low-support Sense evidence
+        run: python3 tools/core20k_sense_v1/prioritize_semantic_queue.py
       - uses: actions/upload-artifact@v4
         with:
           name: sense-v1-multisource-coverage-20k
           path: |
             tools/core20k_sense_v1/reports/source_join/joined_coverage_20000.jsonl
             tools/core20k_sense_v1/reports/source_join/joined_coverage_summary.json
+            tools/core20k_sense_v1/reports/source_join/prioritized_semantic_queue_20k.jsonl
+            tools/core20k_sense_v1/reports/source_join/priority_summary.json
