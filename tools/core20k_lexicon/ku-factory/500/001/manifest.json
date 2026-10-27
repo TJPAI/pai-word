@@ -1,0 +1,18 @@
+{
+  "task_id": "001",
+  "batch_size": 500,
+  "rank_start": 1,
+  "rank_end": 500,
+  "role": "CG-KU-001",
+  "branch": "ku-factory-001-b500",
+  "source_branch": "core20k-lexicon-production-v1",
+  "source_runtime": "data/core20k-runtime.json.gz",
+  "source_runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "status": "BLOCKED_SOURCE_EXTRACTION",
+  "production_ready": false,
+  "processed_headwords": 0,
+  "existing_senses_count": null,
+  "reused_ku_count": 0,
+  "new_or_repaired_ku_count": 0,
+  "explanation": "GitHub connector can retrieve the runtime only as base64 gzip; no decoded canonical rank/headword/sense dataset was available to this run. Empty candidates intentionally prevent fabricated sense/identity mappings."
+}
