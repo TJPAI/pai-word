@@ -1,0 +1,25 @@
+name: Scene MicroRec isolated comparison
+on:
+  push:
+    branches:
+      - experiment/scene1500-microrec-ab-20261027
+    paths:
+      - 'experiments/scene-microrec/**'
+      - '.github/workflows/scene-microrec-ab.yml'
+  workflow_dispatch:
+jobs:
+  compare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare algorithms with editorial holdout and latency
+        run: node experiments/scene-microrec/evaluate.mjs --write
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scene-microrec-ab-results
+          path: experiments/scene-microrec/results.json
