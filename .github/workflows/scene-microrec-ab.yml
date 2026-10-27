@@ -47,6 +47,12 @@ jobs:
         run: node experiments/scene-microrec/build-teacher-jobs.mjs --write
       - name: Validate optional teacher encoder syntax
         run: python -m py_compile experiments/scene-microrec/encode-teacher.py
+      - name: Student trainer Python syntax
+        run: python -m py_compile experiments/scene-microrec/train-student.py experiments/scene-microrec/test-student-pipeline.py
+      - name: Install numpy for synthetic training pipeline QA
+        run: python -m pip install numpy
+      - name: Synthetic student pipeline QA (not real teacher inference)
+        run: python experiments/scene-microrec/test-student-pipeline.py
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
