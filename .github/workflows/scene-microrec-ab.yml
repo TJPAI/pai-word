@@ -37,6 +37,8 @@ jobs:
         run: node experiments/scene-microrec/evaluate-sparse.mjs
       - name: Seven-engine multi-metric assessment
         run: node experiments/scene-microrec/multi-metric.mjs --write
+      - name: Quantized learned ranker pilot
+        run: node experiments/scene-microrec/evaluate-tiny.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
