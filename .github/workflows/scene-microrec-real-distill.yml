@@ -1,0 +1,59 @@
+name: Scene MicroRec real teacher distillation (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      model_id:
+        description: 'Hugging Face multilingual E5 model identifier'
+        required: true
+        default: 'intfloat/multilingual-e5-small'
+      model_revision:
+        description: 'Immutable Hugging Face commit SHA (not main)'
+        required: true
+      teacher_license:
+        description: 'Reviewed teacher license identifier'
+        required: true
+        default: 'mit'
+jobs:
+  distill:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: experiment/scene1500-microrec-ab-20261027
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+      - name: Install real teacher and student dependencies
+        run: python -m pip install 'sentence-transformers>=3,<6' 'numpy>=1.26,<3'
+      - name: Build source-pinned teacher jobs
+        run: node experiments/scene-microrec/build-teacher-jobs.mjs --write
+      - name: Run actual teacher encoding
+        env:
+          HF_HUB_DISABLE_TELEMETRY: '1'
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python experiments/scene-microrec/encode-teacher.py \
+            --jobs experiments/scene-microrec/teacher-encoding-jobs.json \
+            --model '${{ inputs.model_id }}' \
+            --revision '${{ inputs.model_revision }}' \
+            --license '${{ inputs.teacher_license }}' \
+            --output /tmp/scene-teacher-real.json
+      - name: Verify actual teacher output
+        run: node experiments/scene-microrec/validate-embeddings.mjs experiments/scene-microrec/teacher-encoding-jobs.json /tmp/scene-teacher-real.json
+      - name: Train and quantize shared student
+        run: python experiments/scene-microrec/train-student.py --input /tmp/scene-teacher-real.json --output /tmp/scene-student-real.json
+      - name: Smoke-test full student package in JS
+        run: node experiments/scene-microrec/validate-real-student.mjs /tmp/scene-student-real.json
+      - name: Report sizes and cryptographic hashes
+        run: sha256sum /tmp/scene-teacher-real.json /tmp/scene-student-real.json && wc -c /tmp/scene-teacher-real.json /tmp/scene-student-real.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scene-microrec-real-student-and-teacher
+          path: |
+            /tmp/scene-student-real.json
+            /tmp/scene-teacher-real.json
+          retention-days: 7
