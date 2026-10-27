@@ -16,3 +16,21 @@ for r in rows:
  assert not r["production_ready"] and not r["release_eligible"]
  assert r["review_status"]=="EDITORIAL_DRAFT_NEEDS_INDEPENDENT_QA"
 print("FIRST6_SEMANTIC_QA_PASS",json.dumps({"headwords":len(rows),"preserved_legacy_ids":len(rows),"editorial_revisions":len(rows),"production_ready":0}))
+
+supplemental=[json.loads(x) for x in (root/"v21_first6_supplemental_ku.jsonl").open(encoding="utf8")]
+assert len(supplemental)==6
+assert {q["rank"] for q in supplemental}=={x["rank"] for x in rows}
+assert len({q["ku_id"] for q in supplemental})==6
+for q in supplemental:
+ source=auth[q["rank"]]
+ assert q["sense_id"]==source["sense_id"]
+ assert q["headword_id"]==source["headword_id"]
+ assert q["ku_id"].startswith("staging:v21:")
+ assert q["ku_type"] in ("grammar","collocation","usage")
+ assert q["render_kind"]=="cloze" and q["question"].count("___")==1
+ assert q["correct_answer"] in q["acceptable_answers"]
+ assert q["question"].strip() and q["explanation_zh"].strip()
+ assert q["source_attribution"] and q["evidence_status"]=="EDITORIAL_DRAFT"
+ assert q["qa_status"]=="PENDING_INDEPENDENT_LINGUISTIC_QA"
+ assert q["release_eligible"] is False and q["production_ready"] is False
+print("FIRST6_SUPPLEMENTAL_KU_QA_PASS",json.dumps({"new_draft_ku":len(supplemental),"sense_binding_checked":len(supplemental),"released":0}))
