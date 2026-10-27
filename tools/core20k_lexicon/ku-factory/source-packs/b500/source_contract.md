@@ -17,3 +17,8 @@ Before rank-scoped production certification, obtain the frozen CSV, verify its S
 
 ## QA gates
 Source packs: 40 files, 500 records each, contiguous Runtime ordinals, unique casefold lemmas, unique existing KU IDs, digest-manifest match. Distinguish source-readiness from independent editorial certification.
+
+## Existing frozen CSV provenance audit (not independently re-run here)
+Production branch `core20k-lexicon-production-v1` contains `tools/core20k_lexicon/staging/b167_frozen_csv_byte_verified_20261024.json`, reporting CSV SHA-256 `e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca`, 52,613,957 bytes, 20,000 rows, continuous ranks, and **0 rank–lemma discrepancies versus Runtime**. This is historical positive evidence from a previous audit, not a fresh crosswalk of CSV bytes in this branch. Preserve this distinction in every downstream QA report.
+
+The runtime compact tuples contain `ku_id` but not a standalone canonical `sense_id`; additional Sense registry provenance is required for per-Sense coverage claims. Never substitute repair-queue index for rank.
