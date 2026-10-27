@@ -35,7 +35,7 @@ jobs:
               assert hashlib.sha256(b).hexdigest()==p['sha256']
               d=json.loads(b)
               assert len(d['headwords'])==500
-              rr=[w['runtime_rank'] for w in d['words']]
+              rr=[w['runtime_rank'] for w in d['headwords']]
               assert rr==list(range(p['runtime_rank_start'],p['runtime_rank_end']+1))
               allr+=rr
           assert allr==list(range(1,20001))
