@@ -2,10 +2,11 @@
 import {createScene500Recommender} from '../../scene500-recommendation/engine.mjs';
 import {createMicroRec} from './microrec.mjs';
 import {createIntentAware} from './intent-aware.mjs';
-let catalog,base,micro,intent;
+import {createConservativeMicro} from './conservative.mjs';
+let catalog,base,micro,intent,conservative;
 const status=document.querySelector('#status'),results=document.querySelector('#results');
-try{const response=await fetch('../../scene500-recommendation/catalog-v0.2.json');if(!response.ok)throw Error('catalog HTTP '+response.status);catalog=await response.json();base=createScene500Recommender({catalog});micro=createMicroRec(catalog);intent=createIntentAware(catalog);status.textContent='已载入 '+Object.keys(catalog.scenes).length+' 场景。单次耗时仅为本机提示性结果；严格性能请看 CI。';}catch(e){status.textContent='加载失败：'+e.message+'。请通过 HTTP(S) 服务访问此页面，不要使用 file://';}
-const configs=[['现有基础规则',q=>base.search(q,{limit:5}).results],['A: Lexical',q=>micro.search(q,{method:'lexical'})],['B: Hashed',q=>micro.search(q,{method:'hashed-semantic'})],['C: Hybrid',q=>micro.search(q,{method:'hybrid'})],['D: Intent-aware',q=>intent.search(q)]];
+try{const response=await fetch('../../scene500-recommendation/catalog-v0.2.json');if(!response.ok)throw Error('catalog HTTP '+response.status);catalog=await response.json();base=createScene500Recommender({catalog});micro=createMicroRec(catalog);intent=createIntentAware(catalog);conservative=createConservativeMicro(catalog);status.textContent='已载入 '+Object.keys(catalog.scenes).length+' 场景。单次耗时仅为本机提示性结果；严格性能请看 CI。';}catch(e){status.textContent='加载失败：'+e.message+'。请通过 HTTP(S) 服务访问此页面，不要使用 file://';}
+const configs=[['现有基础规则',q=>base.search(q,{limit:5}).results],['A: Lexical',q=>micro.search(q,{method:'lexical'})],['B: Hashed',q=>micro.search(q,{method:'hashed-semantic'})],['C: Hybrid',q=>micro.search(q,{method:'hybrid'})],['D: Intent-aware',q=>intent.search(q)],['E: Conservative',q=>conservative.search(q)]];
 function esc(s){return String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');}
 function run(){if(!base)return;const q=document.querySelector('#query').value.trim();results.textContent='';for(const [name,fn] of configs){const t=performance.now(),rows=fn(q),ms=performance.now()-t,section=document.createElement('section');section.innerHTML='<strong>'+esc(name)+'</strong><p><small>'+ms.toFixed(2)+' ms · '+rows.length+' 结果</small></p><ol>'+rows.map(x=>'<li><b>'+esc(x.sceneId)+'</b> '+esc(x.name)+' <small>score '+esc(x.score)+'</small></li>').join('')+'</ol>';results.append(section);}}
 document.querySelector('#go').addEventListener('click',run);document.querySelector('#query').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')run()});if(base)run();
