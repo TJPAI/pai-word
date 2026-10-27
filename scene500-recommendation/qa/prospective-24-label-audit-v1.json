@@ -1,0 +1,63 @@
+{
+  "schema": "scene500-prospective-label-audit-v1",
+  "source": "scene500-recommendation/qa/prospective-24-v1.json",
+  "sourceCommit": "a5e40a4488a23e7a32f3e3ad4ba85761fb22d84c",
+  "status": "EDITORIAL_LABEL_AUDIT_NOT_INDEPENDENT_CERTIFICATION",
+  "method": "Catalog-grounded semantic specificity audit; baseline labels unchanged; exclude disputed rows from strict certified accuracy claims",
+  "findings": [
+    {
+      "query": "地铁停运了我想打车",
+      "original": [
+        "S081"
+      ],
+      "disposition": "HOLD_UNDERSPECIFIED",
+      "candidateAlternatives": [
+        "S080",
+        "S081"
+      ],
+      "rationale": "打车未指明巡游出租车或通过手机平台叫网约车；目录分别将S080定义为乘出租车、S081定义为网约车，单选S081缺乏证据。",
+      "action": "复核前不用于单标签Top1结论，若评为多标签须明确等价条件。"
+    },
+    {
+      "query": "How do I update a phone application?",
+      "original": [
+        "S275"
+      ],
+      "disposition": "HOLD_POTENTIAL_SCOPE_MISMATCH",
+      "candidateAlternatives": [
+        "S275"
+      ],
+      "rationale": "S275明确定义为软件出错与技术支持；纯粹询问更新应用未明确故障，直接标成软件故障可能偏宽。",
+      "action": "请场景目录负责人确认是否包含一般软件操作咨询。"
+    },
+    {
+      "query": "I need a bus ticket",
+      "original": [
+        "S078"
+      ],
+      "disposition": "PASS_EDITORIAL",
+      "rationale": "公交票属于乘公交车出行，未发现比S078更直接的已审核场景。"
+    },
+    {
+      "query": "My phone app keeps crashing",
+      "original": [
+        "S275"
+      ],
+      "disposition": "PASS_EDITORIAL",
+      "rationale": "手机应用反复崩溃明确属于软件故障，与S275描述一致。"
+    },
+    {
+      "query": "I'm building a mobile app",
+      "original": [
+        "S296"
+      ],
+      "disposition": "PASS_EDITORIAL",
+      "rationale": "开发手机应用直接属于软件开发S296。"
+    }
+  ],
+  "limitations": [
+    "仅针对高风险词义边界核查，不构成24/24全面独立盲审",
+    "不修改被测算法、原24-query原始标签及其既有首次运行结果",
+    "其它查询仍是编辑期标签，未取得CG-QA独立复核"
+  ]
+}
