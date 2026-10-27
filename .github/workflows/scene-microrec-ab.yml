@@ -17,6 +17,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Regression and synthetic Scene1500 scale
+        run: node experiments/scene-microrec/regression.test.mjs
       - name: Compare algorithms with editorial holdout and latency
         run: node experiments/scene-microrec/evaluate.mjs --write
       - name: Three-suite robustness comparison
