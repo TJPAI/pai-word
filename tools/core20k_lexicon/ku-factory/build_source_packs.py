@@ -1,109 +1,80 @@
 #!/usr/bin/env python3
-"""Fail-closed Core20K runtime inventory and 40 rank-based KU source packs."""
-import argparse, gzip, hashlib, json, pathlib, sys, collections
-P=pathlib.Path
-EXPECTED_SHA="e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b"
-def sha(b): return hashlib.sha256(b).hexdigest()
-def get(d,keys):
-    if not isinstance(d,dict):return None
-    for k in keys:
-        if k in d and d[k] is not None:return d[k]
-    return None
-def scan(root):
-    candidates=[]
-    def visit(x,path,depth):
-        if depth>4:return
-        if isinstance(x,list):
-            if len(x)==20000 and all(isinstance(y,dict) for y in x[:30]):candidates.append((path,x))
-        elif isinstance(x,dict):
-            for k,v in x.items():
-                if isinstance(v,(list,dict)):visit(v,path+"."+str(k),depth+1)
-    visit(root,"$",0)
-    return candidates
+"""Materialize compact frozen Runtime into rank-scoped, explicitly unverified Sense/KU source packs."""
+import argparse, collections, gzip, hashlib, json, pathlib, re, sys
+def digest(x): return hashlib.sha256(x).hexdigest()
+def dump(path,obj):
+    b=(json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(',',':'))+'\n').encode('utf8')
+    path.write_bytes(b)
+    return digest(b)
 def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument("--runtime",default="data/core20k-runtime.json.gz")
-    ap.add_argument("--out",default="tools/core20k_lexicon/ku-factory/source-packs/b500")
-    ap.add_argument("--allow-runtime-sha-change",action="store_true")
-    a=ap.parse_args()
-    base=P(a.out);base.mkdir(parents=True,exist_ok=True)
-    raw=P(a.runtime).read_bytes();digest=sha(raw)
-    report={"runtime_path":a.runtime,"runtime_size":len(raw),"runtime_sha256":digest,
-            "expected_runtime_sha256":EXPECTED_SHA,"sha_match":digest==EXPECTED_SHA}
+    p=argparse.ArgumentParser()
+    p.add_argument('--runtime',default='data/core20k-runtime.json.gz')
+    p.add_argument('--out',default='tools/core20k_lexicon/ku-factory/source-packs/b500')
+    a=p.parse_args()
+    out=pathlib.Path(a.out);out.mkdir(parents=True,exist_ok=True)
+    blob=pathlib.Path(a.runtime).read_bytes();h=digest(blob)
+    expect='e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b'
+    qa={'runtime_sha256':h,'runtime_bytes':len(blob),'expected_runtime_sha256':expect}
     def fail(msg):
-        report["status"]="BLOCKED";report["error"]=msg
-        (base/"source_qa_report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf8")
-        print(json.dumps(report,ensure_ascii=False,default=str)[:12000],file=sys.stderr)
-        sys.exit(msg)
-    if digest!=EXPECTED_SHA and not a.allow_runtime_sha_change:fail("RUNTIME_SHA256_MISMATCH")
-    try:root=json.loads(gzip.decompress(raw))
-    except Exception as e:fail("RUNTIME_PARSE_FAIL "+str(e))
-    report["root_type"]=type(root).__name__
-    report["root_keys"]=list(root)[:60] if isinstance(root,dict) else []
-    report["headwords_shape"]={"type":type(root.get("headwords")).__name__,"length":len(root.get("headwords",[])),"sample":str((list(root["headwords"].items())[:1] if isinstance(root.get("headwords"),dict) else root.get("headwords",[])[:1]))[:1800]} if isinstance(root,dict) else {}
-    report["headwords_compact_probe"]={"first5":root["headwords"][:5],"last2":root["headwords"][-2:],"length_distribution":dict(collections.Counter(len(x) if isinstance(x,list) else -1 for x in root["headwords"]))} if isinstance(root,dict) and isinstance(root.get("headwords"),list) else {}
-    candidates=scan(root)
-    report["arrays_of_20000"]=[p for p,_ in candidates]
-    if len(candidates)!=1:fail("AMBIGUOUS_HEADWORD_ARRAY_COUNT "+str(len(candidates)))
-    path,words=candidates[0]
-    rankkeys=("core20k_rank_final","rank","frequency_rank")
-    idkeys=("headword_id","word_id")
-    lemma_keys=("lemma","headword","word")
-    keyed=[];missing=collections.Counter()
-    for pos,w in enumerate(words):
-        r=get(w,rankkeys);hid=get(w,idkeys);lemma=get(w,lemma_keys)
-        if isinstance(r,bool) or not isinstance(r,int):missing["rank"]+=1
-        if not isinstance(hid,(str,int)) or not str(hid):missing["headword_id"]+=1
-        if not isinstance(lemma,str) or not lemma.strip():missing["lemma"]+=1
-        keyed.append((r,hid,lemma,w))
-    report["missing_or_invalid_fields"]=dict(missing)
-    if missing:fail("MISSING_REQUIRED_WORD_FIELDS")
-    ranks=[r for r,_,_,_ in keyed];ids=[str(h) for _,h,_,_ in keyed]
-    report.update(headword_count=len(words),unique_ranks=len(set(ranks)),unique_headword_ids=len(set(ids)),runtime_array=path)
-    if sorted(ranks)!=list(range(1,20001)) or len(set(ids))!=20000:fail("RANK_OR_HEADWORD_ID_COVERAGE_FAIL")
-    keyed.sort(key=lambda x:x[0])
-    explicit_sense_keys=("senses","sense_records")
-    explicit_ku_keys=("kus","knowledge_units","ku_records")
-    counts=collections.Counter()
-    records=[]
-    for r,h,lemma,w in keyed:
-        s=get(w,explicit_sense_keys); ku=get(w,explicit_ku_keys)
-        senses=[];kus=[]
-        if isinstance(s,list):
-            for x in s:
-                if isinstance(x,dict):
-                    sid=get(x,("sense_id",))
-                    status="existing_identified_sense" if sid is not None and str(sid) else "unidentified_sense_candidate"
-                    senses.append({"status":status,"source_record":x})
-                    counts[status]+=1
-        if isinstance(ku,list):
-            for x in ku:
-                if isinstance(x,dict):
-                    kid=get(x,("ku_id",))
-                    status="existing_identified_ku" if kid is not None and str(kid) else "unidentified_ku_candidate"
-                    kus.append({"status":status,"source_record":x})
-                    counts[status]+=1
-        if not senses:counts["headwords_missing_explicit_sense"]+=1
-        records.append({"rank":r,"headword_id":h,"lemma":lemma,"pos":get(w,("pos","part_of_speech")),
-                        "sense_status":"existing_identified" if any(x["status"]=="existing_identified_sense" for x in senses) else "unverified_or_missing",
-                        "senses":senses,"kus":kus,"source_record":w})
-    report["sense_ku_inventory"]=dict(counts)
-    manifest={"schema":"enlex-ku-source-packs-v1","source_runtime_sha256":digest,
-              "runtime_array":path,"batch_size":500,"total_headwords":20000,"packs":[]}
+        qa.update(status='BLOCKED',error=msg)
+        dump(out/'source_qa_report.json',qa)
+        raise SystemExit(msg)
+    if h!=expect:fail('SHA_MISMATCH')
+    root=json.loads(gzip.decompress(blob))
+    if not isinstance(root,dict) or not isinstance(root.get('headwords'),list):fail('HEADWORDS_NOT_LIST')
+    words=root['headwords'];qa['headword_count']=len(words)
+    if len(words)!=20000:fail('COUNT_NOT_20000')
+    if any(not isinstance(w,list) or len(w)!=5 for w in words):fail('UNEXPECTED_COMPACT_ROW_SCHEMA')
+    ranks=[w[0] for w in words];lemmas=[w[1] for w in words]
+    if ranks!=list(range(1,20001)):fail('RUNTIME_RANK_NOT_CONTIGUOUS')
+    if any(not isinstance(x,str) or not x for x in lemmas):fail('INVALID_LEMMA')
+    if len(set(x.casefold() for x in lemmas))!=20000:fail('DUPLICATE_LEMMA')
+    counts=collections.Counter();mapped=[];seen_ku=set()
+    for rank,lemma,pos,ipa,compact_kus in words:
+        if not isinstance(compact_kus,list):fail('KU_COLLECTION_NOT_LIST_AT_'+str(rank))
+        kus=[];prefixes=set()
+        for k in compact_kus:
+            if not isinstance(k,list) or len(k)!=5:fail('INVALID_KU_SHAPE_AT_'+str(rank))
+            kid,kind,zh,en,active=k
+            if not isinstance(kid,str) or not kid:fail('INVALID_KU_ID_AT_'+str(rank))
+            if kid in seen_ku:fail('DUPLICATE_KU_ID_'+kid)
+            seen_ku.add(kid)
+            prefix=re.sub(r'_ku[0-9]+$','',kid)
+            if prefix!=kid:prefixes.add(prefix)
+            kus.append({'ku_id':kid,'ku_type':kind,'gloss_zh':zh,'gloss_en':en,
+                         'runtime_active_flag':active,'evidence_status':'runtime_record_unverified',
+                         'source_tuple':k})
+            counts['runtime_kus']+=1
+            if kind=='sense':counts['sense_typed_ku']+=1
+        hid=next(iter(prefixes)) if len(prefixes)==1 else None
+        if hid:counts['derived_headword_prefix']+=1
+        else:counts['headwords_without_derivable_id']+=1
+        if not any(k['ku_type']=='sense' for k in kus):counts['headwords_without_sense_typed_ku']+=1
+        mapped.append({'runtime_rank':rank,'rank_status':'runtime_order_not_independently_matched_to_frozen_csv',
+                       'lemma':lemma,'pos':pos,'us_ipa':ipa,
+                       'headword_id':None,'headword_id_hint':hid,
+                       'headword_id_status':'derived_unverified_hint' if hid else 'missing',
+                       'senses':[],'sense_status':'formal_sense_id_missing_in_runtime',
+                       'kus':kus,'source_runtime_tuple':[rank,lemma,pos,ipa,compact_kus]})
+    manifest={'schema':'enlex-ku-source-manifest-v1','runtime_sha256':h,
+              'runtime_rank_authority':'NOT_VERIFIED_AGAINST_FROZEN_CSV',
+              'formal_sense_ids_present':False,'headword_ids_present':False,
+              'number_of_packs':40,'headwords':20000,'packs':[]}
     for i in range(40):
-        subset=records[i*500:(i+1)*500];n=i+1
-        data={"schema":"enlex-ku-source-pack-v1","task_id":f"{n:03d}","runtime_sha256":digest,
-              "rank_start":i*500+1,"rank_end":(i+1)*500,"headword_count":500,
-              "sense_identity_policy":"Only explicit source sense_id is existing; all others are unverified",
-              "words":subset}
-        b=(json.dumps(data,ensure_ascii=False,sort_keys=True,separators=(",",":"))+"\n").encode()
-        name=f"source_{n:03d}.json";(base/name).write_bytes(b)
-        manifest["packs"].append({"task_id":f"{n:03d}","path":name,
-                                   "rank_start":i*500+1,"rank_end":(i+1)*500,
-                                   "headwords":500,"sha256":sha(b)})
-    (base/"source_manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
-    report["status"]="PASS_SOURCE_HEADWORDS_ONLY" if counts["headwords_missing_explicit_sense"] else "PASS_SOURCE_WITH_EXPLICIT_SENSES"
-    report["packs_written"]=40
-    (base/"source_qa_report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
-    print(json.dumps(report,ensure_ascii=False,indent=2))
-if __name__=="__main__":main()
+        chunk=mapped[i*500:(i+1)*500];ident=f'{i+1:03d}'
+        payload={'schema':'enlex-ku-source-pack-v1','task_id':ident,'runtime_sha256':h,
+                 'rank_range_runtime_only':[i*500+1,(i+1)*500],
+                 'authoritative_rank_verified':False,'formal_sense_ids_available':False,
+                 'headwords':chunk}
+        name='source_'+ident+'.json'
+        checksum=dump(out/name,payload)
+        manifest['packs'].append({'task_id':ident,'path':name,'sha256':checksum,
+                                  'runtime_rank_start':i*500+1,'runtime_rank_end':(i+1)*500,
+                                  'headword_count':500,'formal_sense_status':'MISSING'})
+    dump(out/'source_manifest.json',manifest)
+    qa.update(status='PASS_RUNTIME_ORDINAL_PACKS_SENSE_ID_BLOCKED',packs=40,
+              rank_coverage='1-20000 in runtime order, frozen CSV match unverified',
+              formal_sense_ids=0,confirmed_headword_ids=0,**dict(counts))
+    dump(out/'source_qa_report.json',qa)
+    print(json.dumps(qa,ensure_ascii=False))
+if __name__=='__main__': main()
