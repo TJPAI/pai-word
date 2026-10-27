@@ -20,7 +20,10 @@ function switchedTransport(q){
 // never route generic "check in" to a hotel (airport check-in is a different scene).
 const englishHotelBooking=/^(?:(?:i\s+(?:need|want|would\s+like)\s+to|i'd\s+like\s+to)\s+)?(?:book|reserve)\s+(?:(?:a|the)\s+)?(?:hotel\s+room|room\s+at\s+(?:a|the)\s+hotel|hotel)(?:\s+please)?[?.]?$/i;
 const englishHotelCheckin=/^(?:(?:where\s+can\s+i|how\s+do\s+i)\s+check\s+in\s+(?:at|to)\s+(?:the|a)\s+hotel|(?:i\s+want\s+to|i\s+need\s+to)\s+check\s+in\s+at\s+(?:the|a)\s+hotel)[?.]?$/i;
+// Direct food requests without "order": guarded action + known dish object.
+const foodRequest=/^(?:(?:i'd|i would)\s+like|(?:i\s+(?:want|would\s+like)))\s+(?:(?:a|an|some)\s+)?(?:burger|sandwich|pizza|salad|soup|meal)(?:\s+please)?[?.]?$|^(?:(?:may|can|could)\s+i\s+have)\s+(?:(?:a|an|some)\s+)?(?:(?:bowl|cup|plate)\s+of\s+)?(?:soup|salad|pizza|sandwich|burger)(?:\s+please)?[?.]?$/i;
 const rules=[
+ {id:'english_food_direct_request',match:q=>foodRequest.test(q),promote:'S034',exclude:[]},
  {id:'english_hotel_booking_intent',match:q=>englishHotelBooking.test(q),promote:'S113',exclude:[]},
  {id:'english_hotel_checkin_intent',match:q=>englishHotelCheckin.test(q),promote:'S114',exclude:['S104']},
  {id:'english_study_not_machine_learning',match:q=>/^(?:我想)?(?:学|学习|练习)?英语(?:学习|课程|口语|发音)?[，,\s]*(?:而)?(?:不是|并非|而非)(?:机器学习|深度学习)[。.]?$/.test(q),promote:null,exclude:['S279','S280']},
