@@ -15,6 +15,10 @@ for r in rows:
  lo=len(texts);texts.extend(g["gloss_en"] for g in r["gloss_clusters"]);offsets[r["rank"]]=lo
 vectors=model.encode(texts,batch_size=128,normalize_embeddings=True,convert_to_numpy=True,show_progress_bar=False)
 stats=collections.Counter()
+def canonical_pos(x):
+ x=str(x).lower().strip()
+ return {"n":"noun","noun":"noun","v":"verb","verb":"verb","a":"adj","s":"adj","adj":"adj","adjective":"adj","r":"adv","adv":"adv","adverb":"adv"}.get(x,x)
+
 with (p/f"cross_source_shard_{shard:02d}.jsonl").open("w",encoding="utf8") as out:
  for r in rows:
   g=r["gloss_clusters"];lo=offsets[r["rank"]];choices=[]
@@ -23,7 +27,7 @@ with (p/f"cross_source_shard_{shard:02d}.jsonl").open("w",encoding="utf8") as ou
   for i in oe:
    possible=[]
    for j in wk:
-    if i==j or str(g[i]["pos"]).lower()!=str(g[j]["pos"]).lower():continue
+    if i==j or canonical_pos(g[i]["pos"])!=canonical_pos(g[j]["pos"]):continue
     score=float(vectors[lo+i]@vectors[lo+j])
     if score>=.67:possible.append((score,j))
    possible.sort(reverse=True)
@@ -32,8 +36,10 @@ with (p/f"cross_source_shard_{shard:02d}.jsonl").open("w",encoding="utf8") as ou
       "oewn_gloss":g[i]["gloss_en"],"kaikki_gloss":g[j]["gloss_en"],
       "pos":g[i]["pos"],"review_action":"EVALUATE_EQUIVALENCE_OR_RELATED_MEANING","auto_merge":False})
   stats["headwords"]+=1;stats["oewn_senses"]+=len(oe);stats["kaikki_senses"]+=len(wk)
-  stats["cross_source_pairs"]+=len(choices);stats["words_with_pairs"]+=bool(choices)
+  stats["cross_source_pairs"]+=len(choices)
+  stats["pos_compatible_pairs"]+=sum(canonical_pos(g[i]["pos"])==canonical_pos(g[j]["pos"]) for i in oe for j in wk);stats["words_with_pairs"]+=bool(choices)
   out.write(json.dumps({"rank":r["rank"],"lemma":r["lemma"],"pairs":choices,"certified":False},ensure_ascii=False)+"\n")
+assert stats["pos_compatible_pairs"]>0, "No POS-compatible source pairs; check source schemas"
 report={"shard":shard,"stats":dict(stats),"minimum_cosine":0.67,"auto_merged":0,"certified":0}
 (p/f"cross_source_shard_{shard:02d}_summary.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
 print("CROSS_SOURCE_ALIGNMENT_SHARD",json.dumps(report))
