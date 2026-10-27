@@ -25,4 +25,9 @@ assert.deepEqual(get('I want to practice English for this situation: What is in 
 assert.deepEqual(get('I want a burger'),['S034']);
 assert.equal(compareActionObjectCandidates({results:[{sceneId:'S113',score:99,reason:['baseline']}]},'I want to order noodles',{catalog,eligibleSceneIds:['S034']}).results.some(r=>r.sceneId==='S113'),false);
 assert.equal(compareActionObjectCandidates({results:[{sceneId:'S113',score:99,reason:['baseline']}]},'I want to order noodles',{catalog,eligibleSceneIds:['S034']}).results[0]?.sceneId,'S034');
-console.log('PASS_SCENE500_ACTION_OBJECT_EXPERIMENT: 18 positive/negative and isolation assertions');
+assert.deepEqual(get('I want to practice English for this situation: Can I have a burger?'),[]);
+assert.deepEqual(get('Please translate English: I want to order noodles'),[]);
+assert.deepEqual(get('I study English for this situation: I need to book a hotel'),[]);
+assert.deepEqual(get('Can I have a burger?'),['S034']);
+assert.deepEqual(get('I need to book a hotel room'),['S113']);
+console.log('PASS_SCENE500_ACTION_OBJECT_EXPERIMENT: 23 positive/negative and isolation assertions');
