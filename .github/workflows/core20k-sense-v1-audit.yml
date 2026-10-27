@@ -24,9 +24,11 @@ jobs:
           PY
       - name: Read and inventory real compressed runtime
         run: python3 tools/core20k_sense_v1/inventory_runtime.py
+      - name: Extract full 20K Sense-KU review queue
+        run: python3 tools/core20k_sense_v1/extract_sense_ku_batch.py
       - name: Preserve inventory report
         uses: actions/upload-artifact@v4
         with:
           name: core20k-sense-v1-runtime-inventory
-          path: tools/core20k_sense_v1/reports/runtime_inventory.json
+          path: tools/core20k_sense_v1/reports/*.json*
           retention-days: 30
