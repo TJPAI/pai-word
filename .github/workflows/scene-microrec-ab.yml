@@ -39,6 +39,8 @@ jobs:
         run: node experiments/scene-microrec/multi-metric.mjs --write
       - name: Quantized learned ranker pilot
         run: node experiments/scene-microrec/evaluate-tiny.mjs
+      - name: Quantization reproducibility and Scene1500 size
+        run: node experiments/scene-microrec/quantization-scale-gate.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
