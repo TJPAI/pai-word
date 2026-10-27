@@ -29,7 +29,7 @@ for(const c of set.cases){
  algorithms.observed_corrections={results:corrected.results,elapsedMs:performance.now()-time,mode:engine.mode,correctionRule:corrected.correctionRule||null};
  if(actionModule){
   time=performance.now();
-  const a=actionModule.compareActionObjectCandidates(original,c.query,{catalog,limit:10});
+  const a=actionModule.compareActionObjectCandidates({...original,results:original.results.slice(0,10)},c.query,{catalog,limit:10});
   algorithms.action_object={results:a.results,elapsedMs:performance.now()-time,mode:engine.mode,candidates:a.candidates.map(x=>x.sceneId)};
  }
  const scores={};
