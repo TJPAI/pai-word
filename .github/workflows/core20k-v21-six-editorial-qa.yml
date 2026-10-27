@@ -15,3 +15,10 @@ jobs:
       - uses: actions/checkout@v4
       - run: python3 tools/core20k_sense_v1/editorial/test_v21_first6_edits.py
       - run: python3 tools/core20k_sense_v1/editorial/test_v21_second_batch.py
+      - run: python3 tools/core20k_sense_v1/editorial/build_safe_ku_review_pack.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-v21-safe-ku-review-pack
+          path: |
+            tools/core20k_sense_v1/editorial/v21_enteach_valid_review_pack.jsonl
+            tools/core20k_sense_v1/editorial/v21_enteach_valid_review_summary.json
