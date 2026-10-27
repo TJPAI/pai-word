@@ -1,0 +1,77 @@
+{
+  "source_commit": "4a9f035fa93fb7c9c08be3048f82810d998b455c",
+  "source_path": "tools/answer-enrichment/enteach-batch200-scored-cloze-prototype-20261027.v1.json",
+  "reviewed": 8,
+  "pass": 6,
+  "conditional": 2,
+  "records": [
+    {
+      "ku_id": "w_6197_tram_ku_s01",
+      "headword": "tram",
+      "verdict": "CONDITIONAL",
+      "reason": "仅凭‘across the city instead of driving’不能排除bus/train等；目标词填空可以作提示型词形练习，不能当无提示唯一语义答案。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_7161_slippery_ku_s01",
+      "headword": "slippery",
+      "verdict": "PASS",
+      "reason": "湿滑地砖语境支持slippery；形容词原级与复数主语一致。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_6926_diffusion_ku_s01",
+      "headword": "diffusion",
+      "verdict": "PASS",
+      "reason": "从高浓度向低浓度的粒子扩散定义准确，句首大小写归一化合理。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_5310_shopper_ku_s01",
+      "headword": "shopper",
+      "verdict": "PASS",
+      "reason": "many online shoppers要求复数，接受shoppers而非单数正确。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_6729_waterfall_ku_s01",
+      "headword": "waterfall",
+      "verdict": "CONDITIONAL",
+      "reason": "‘a ____ hidden in the forest’存在cabin/lake等多种自然答案；需中文提示或词库目标提示，不能宣称语义唯一。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_3054_consensus_ku_s01",
+      "headword": "consensus",
+      "verdict": "PASS",
+      "reason": "reach a consensus是标准搭配，冠词和名词搭配明确。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_6925_authenticity_ku_s01",
+      "headword": "authenticity",
+      "verdict": "PASS",
+      "reason": "博物馆核验画作真伪符合authenticity抽象名词。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    },
+    {
+      "ku_id": "w_3591_solar_ku_s01",
+      "headword": "solar",
+      "verdict": "PASS",
+      "reason": "solar panels是标准搭配，太阳能发电语境充分。",
+      "response_shape": "typed_text",
+      "render_kind": "cloze"
+    }
+  ],
+  "contract_observation": "Response object parsing by main runtime not verified; no production grading certification",
+  "status": "CHATGPT_ONLY_PROVISIONAL",
+  "production_ready": false,
+  "activation_allowed": false
+}
