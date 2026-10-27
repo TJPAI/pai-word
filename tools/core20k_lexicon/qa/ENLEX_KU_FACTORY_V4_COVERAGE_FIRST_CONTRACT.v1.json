@@ -1,0 +1,84 @@
+{
+  "schema": "pai-enlex-ku-factory-v4-coverage-first-v1",
+  "scope": {
+    "target_headwords": 20000,
+    "source": "authoritative Core20K headword identities and existing KU inventory",
+    "frozen_identity_fields": [
+      "headword_id",
+      "rank",
+      "lemma",
+      "sense_id",
+      "ku_id"
+    ],
+    "preserve_existing_kus": true
+  },
+  "operating_principle": "coverage before polish; no invented or templated meanings; don't confuse existing KU, generated KU, placeholder with certified KU",
+  "tiers": [
+    {
+      "stage": "INVENTORY",
+      "rule": "For each of 20000 headwords enumerate existing KU IDs and senses; this is coverage of inventory, not new KU generation"
+    },
+    {
+      "stage": "MINIMUM_CANDIDATE",
+      "rule": "For each word identify at least one valid core sense if actually known and grounded; preserve all distinct existing senses; include extra high value senses only when justified"
+    },
+    {
+      "stage": "ENRICHMENT",
+      "rule": "Add Grammar, Collocation, Contrast, Pronunciation, Usage/Risk only when meaningful; absent fields are allowed"
+    },
+    {
+      "stage": "REVIEW",
+      "rule": "Muse independently reviews generated content with frozen original contexts, followed by targeted correction; production stays blocked until certification"
+    }
+  ],
+  "mandatory_candidate_fields": [
+    "headword_id",
+    "lemma",
+    "ku_type",
+    "gloss_en",
+    "gloss_zh",
+    "candidate_id",
+    "source_provenance",
+    "confidence_status",
+    "activation_allowed"
+  ],
+  "optional_fields": [
+    "pos",
+    "examples",
+    "grammar",
+    "register",
+    "collocations",
+    "contrast",
+    "ipa",
+    "evidence_refs"
+  ],
+  "candidate_statuses": [
+    "CHATGPT_ONLY_PROVISIONAL",
+    "NEEDS_EVIDENCE",
+    "MUSE_REVIEWED",
+    "DUAL_AI_CERTIFIED"
+  ],
+  "gates": {
+    "candidate_activation_default": false,
+    "minimum_non_empty_gloss_for_semantic_ku": true,
+    "unknown_semantics": "HOLD; never create fake generic gloss",
+    "new_ids": "temporary candidate IDs; never overwrite original KU IDs",
+    "review": "separate review after broad candidate generation"
+  },
+  "production": {
+    "scheduling_batch_headwords": 2000,
+    "write_checkpoint_headwords": 250,
+    "qa_group_headwords": 500,
+    "planned_batches": 10,
+    "freeze_input_first": true
+  },
+  "metrics": [
+    "inventory_headword_coverage",
+    "new_candidate_headword_coverage",
+    "new_candidate_ku_count",
+    "known_missing_headwords",
+    "semantic_reviewed_headwords",
+    "certified_headwords"
+  ],
+  "status": "POLICY_AND_PIPELINE_SPEC_ONLY_NOT_20000_GENERATED"
+}
