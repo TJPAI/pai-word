@@ -43,6 +43,8 @@ jobs:
         run: node experiments/scene-microrec/quantization-scale-gate.mjs
       - name: Shared prototype model scale and quality
         run: node experiments/scene-microrec/evaluate-prototype.mjs
+      - name: Build provenance-pinned teacher encoding jobs (no teacher weights)
+        run: node experiments/scene-microrec/build-teacher-jobs.mjs --write
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
@@ -52,3 +54,4 @@ jobs:
             experiments/scene-microrec/error-audit.json
             experiments/scene-microrec/exploratory-probes.json
             experiments/scene-microrec/multi-metric-report.json
+            experiments/scene-microrec/teacher-encoding-jobs.json
