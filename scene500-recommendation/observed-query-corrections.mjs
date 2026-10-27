@@ -24,7 +24,11 @@ const englishHotelCheckin=/^(?:(?:where\s+can\s+i|how\s+do\s+i)\s+check\s+in\s+(
 const foodRequest=/^(?:(?:i'd|i would)\s+like|(?:i\s+(?:want|would\s+like)))\s+(?:(?:a|an|some)\s+)?(?:burger|sandwich|pizza|salad|soup|meal)(?:\s+please)?[?.]?$|^(?:(?:may|can|could)\s+i\s+have)\s+(?:(?:a|an|some)\s+)?(?:(?:bowl|cup|plate)\s+of\s+)?(?:soup|salad|pizza|sandwich|burger)(?:\s+please)?[?.]?$/i;
 // Require software context plus an explicit problem/support request; exclude development inquiries.
 const softwareSupport=/^(?:(?:can|could)\s+you\s+help\s+me\s+with|(?:i\s+(?:need|want)\s+(?:help\s+with|support\s+for))|(?:how\s+to\s+fix))\s+(?:(?:a|an|the|my)\s+)?(?:software|app|application|program)\s+(?:issue|problem|error|bug|crash)(?:\s+please)?[?.]?$/i;
+// Distinguish hotel room reservation from generic appointment bookings.
+const hotelReservationZh=/^(?:我|我们)?(?:想|要|需要|打算|准备)?(?:预约|预订|订|订购)(?:(?:一间|一个|下周|明天)\s*)?(?:酒店|宾馆)(?:的)?(?:房间|客房|房|住宿)?[。.!！]?$/;
+const hotelReservationRoomZh=/^(?:我|我们)?(?:想|要|需要|打算|准备)?(?:预约|预订|订)(?:(?:一间|一个)\s*)?(?:酒店|宾馆)(?:的)?(?:房间|客房|房)[。.!！]?$/;
 const rules=[
+ {id:'zh_hotel_room_reservation',match:q=>hotelReservationRoomZh.test(q)||hotelReservationZh.test(q),promote:'S113',exclude:[]},
  {id:'english_software_support',match:q=>softwareSupport.test(q),promote:'S275',exclude:[]},
  {id:'english_food_direct_request',match:q=>foodRequest.test(q),promote:'S034',exclude:[]},
  {id:'english_hotel_booking_intent',match:q=>englishHotelBooking.test(q),promote:'S113',exclude:[]},
