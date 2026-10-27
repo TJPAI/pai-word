@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {createTrainedStudent} from './student-package.mjs';
+if(!process.argv[2])throw Error('model JSON required');
+globalThis.atob ??= s=>Buffer.from(s,'base64').toString('binary');
+const data=JSON.parse(fs.readFileSync(process.argv[2],'utf8'));
+const student=createTrainedStudent(data);
+assert.equal(student.sceneCount,50);
+const output=student.search('test object 2 variation 1',{limit:5});
+assert.ok(output.length>0);
+assert.deepEqual(output,student.search('test object 2 variation 1',{limit:5}));
+assert.deepEqual(student.search(''),[]);
+assert.deepEqual(student.search('test',{eligibleSceneIds:[]}),[]);
+console.log('PASS_STUDENT_BROWSER_ESM_ROUNDTRIP',JSON.stringify({sceneCount:student.sceneCount,weightsAndPrototypesBytes:student.bytes,top5:output.map(x=>x.sceneId)}));
