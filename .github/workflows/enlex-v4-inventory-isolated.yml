@@ -1,0 +1,30 @@
+name: ENLEX V4 isolated 20k source inventory
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - enlex-gloss-audit-20261026
+    paths:
+      - .github/workflows/enlex-v4-inventory-isolated.yml
+      - tools/core20k_lexicon/qa/enlex_v4_runtime_inventory.py
+permissions:
+  contents: read
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Inspect authoritative English Core20K runtime
+        run: |
+          python3 tools/core20k_lexicon/qa/enlex_v4_runtime_inventory.py \
+            --runtime data/core20k-runtime.json.gz \
+            --expected-sha256 e91e2ab357d6f09f8747c4396a2d88bde67150a9112d7bfe63730117a6ddfb1b \
+            --out build/enlex-v4-source-inventory
+      - name: Archive inspection results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v4-source-inventory
+          path: build/enlex-v4-source-inventory/
+          if-no-files-found: warn
