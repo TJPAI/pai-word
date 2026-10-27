@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {loadScene500WithChineseLexicon} from '../chinese-lexicon-loader.mjs';
+const catalog={scenes:{S113:{name:'预订酒店',aliases:[]},S114:{name:'酒店入住',aliases:[]},S104:{name:'机场值机',aliases:[]},S034:{name:'点餐',aliases:[]},S039:{name:'饮料与酒水',aliases:[]}}};
+const normal=await loadScene500WithChineseLexicon({catalog});
+const optin=await loadScene500WithChineseLexicon({catalog,enableObservedCorrections:true});
+assert.equal(normal.mode,'rule_fallback');
+assert.equal(optin.mode,'rule_fallback');
+const query='I need to book a hotel room';
+const before=normal.search(query,{limit:10});
+const after=optin.search(query,{limit:10});
+assert.equal(after.results[0]?.sceneId,'S113');
+assert.notEqual(before.results[0]?.sceneId,'S113','default off should preserve original search');
+assert.equal(optin.search('Where can I check in at the hotel?',{limit:10}).results[0]?.sceneId,'S114');
+assert(!optin.search('Where can I check in at the hotel?',{limit:10}).results.some(x=>x.sceneId==='S104'));
+assert(optin.search(query,{limit:1}).results.length<=1);
+assert.equal(optin.search(query,{limit:10,eligibleSceneIds:['S104']}).results.some(x=>x.sceneId==='S113'),false);
+console.log('PASS default-off Scene500 correction flag and opt-in eligibility');
