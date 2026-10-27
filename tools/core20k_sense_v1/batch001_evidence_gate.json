@@ -1,0 +1,26 @@
+{
+  "schema": "core20k-sense-v1-audit-gate",
+  "date": "2026-10-27",
+  "baseline": "Core20K_LongTerm_V2.0.6",
+  "frozen": {
+    "headwords": 20000,
+    "membership_sha256": "e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca",
+    "ranks_immutable": true
+  },
+  "audit_scope": "initial existing risk queue triage only",
+  "source": "tools/core20k_lexicon/runtime/v1/batch87_semantic_20_editorial_flags.jsonl",
+  "queued_headwords": 20,
+  "risk_triaged": 20,
+  "cross_source_verified_this_batch": 0,
+  "independently_certified_this_batch": 0,
+  "production_promoted_this_batch": 0,
+  "source_inventory": {
+    "batch28_oewn_candidate_headwords": 3078,
+    "batch28_oewn_candidate_senses": 8395,
+    "batch88_structurally_suitable_candidates": 5438,
+    "batch92_existing_ai_l2_certificates": 6
+  },
+  "release_eligible": false,
+  "reason": "source crosscheck and independent semantic verification for full Sense coverage incomplete; old/new ID mapping and dependent migration unverified",
+  "quality_note": "Prior batches overlap; source counts must not be summed."
+}
