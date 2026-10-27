@@ -28,6 +28,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/extract_sense_ku_batch.py
       - name: Partition 20K into 40 review batches
         run: python3 tools/core20k_sense_v1/partition_batch.py
+      - name: Build provisional Sense candidate ledger
+        run: python3 tools/core20k_sense_v1/build_candidates.py
       - name: Preserve inventory report
         uses: actions/upload-artifact@v4
         with:
