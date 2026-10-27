@@ -1,0 +1,480 @@
+{
+  "schema_version": "cg_qa_enlex_batch200_02_part02_v1",
+  "batch_target": 200,
+  "new_reviewed": 50,
+  "cumulative_reviewed": 100,
+  "remaining": 100,
+  "source_refs": [
+    {
+      "sha": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "batch": "2901_2950"
+    },
+    {
+      "sha": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "batch": "2951_3000"
+    },
+    {
+      "sha": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "batch": "3001_3050"
+    }
+  ],
+  "count": {
+    "PASS": 47,
+    "CONDITIONAL": 3
+  },
+  "records": [
+    {
+      "ku_id": "w_6186_reversal_ku_s01",
+      "queue_index": 2924,
+      "rank": 6070,
+      "lemma": "reversal",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "方向、次序或结果转为相反，名词义包含运动及局势逆转。"
+    },
+    {
+      "ku_id": "w_11309_throughput_ku_s01",
+      "queue_index": 2925,
+      "rank": 6071,
+      "lemma": "throughput",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "单位时间内系统处理的工作量或数据量，技术指标定义准确。"
+    },
+    {
+      "ku_id": "w_4509_alteration_ku_s01",
+      "queue_index": 2926,
+      "rank": 6072,
+      "lemma": "alteration",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "对既存事物作出的改变，未暗示改变一定改善。"
+    },
+    {
+      "ku_id": "w_4264_fluctuation_ku_s01",
+      "queue_index": 2927,
+      "rank": 6073,
+      "lemma": "fluctuation",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "数值或状态非规则地上下起伏，不等同持续增长。"
+    },
+    {
+      "ku_id": "w_4641_exclusion_ku_s01",
+      "queue_index": 2928,
+      "rank": 6074,
+      "lemma": "exclusion",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "将人事物排除在外或阻止参与，名词的两类用法覆盖。"
+    },
+    {
+      "ku_id": "w_5148_resentment_ku_s01",
+      "queue_index": 2930,
+      "rank": 6076,
+      "lemma": "resentment",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "因认为遭受不公平对待而持续的不满愤怒，区别短暂annoyance。"
+    },
+    {
+      "ku_id": "w_8291_homogeneous_ku_s01",
+      "queue_index": 2932,
+      "rank": 6078,
+      "lemma": "homogeneous",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "整体成分或性质相同，支持材料均匀与群体同质语境。"
+    },
+    {
+      "ku_id": "w_9164_garner_ku_s01",
+      "queue_index": 2935,
+      "rank": 6081,
+      "lemma": "garner",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "通过努力获得支持赞誉或信息，动词的逐步赢得含义成立。"
+    },
+    {
+      "ku_id": "w_6550_renovate_ku_s01",
+      "queue_index": 2936,
+      "rank": 6082,
+      "lemma": "renovate",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "renovate可用于房屋、房间及设施，‘old building’只是典型对象；如基础KU并非专指旧建筑需放宽。"
+    },
+    {
+      "ku_id": "w_12540_psychosis_ku_s01",
+      "queue_index": 2937,
+      "rank": 6083,
+      "lemma": "psychosis",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "严重现实检验能力受损、可伴妄想幻觉的精神病性状态，often非必有症状。"
+    },
+    {
+      "ku_id": "w_6551_anecdote_ku_s01",
+      "queue_index": 2943,
+      "rank": 6089,
+      "lemma": "anecdote",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "简短有趣或幽默的经历叙述，与系统性长篇史述有别。"
+    },
+    {
+      "ku_id": "w_12920_rebuttal_ku_s01",
+      "queue_index": 2944,
+      "rank": 6090,
+      "lemma": "rebuttal",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "对论点或指责给出旨在驳倒的回应，强调理由而非单纯否认。"
+    },
+    {
+      "ku_id": "w_6411_geographic_ku_s01",
+      "queue_index": 2946,
+      "rank": 6092,
+      "lemma": "geographic",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "和地表区域及地理相关，空间区域性质正确。"
+    },
+    {
+      "ku_id": "w_4133_fortunate_ku_s01",
+      "queue_index": 2947,
+      "rank": 6093,
+      "lemma": "fortunate",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "有好运或得到有利结果，兼具人和事件的适用性。"
+    },
+    {
+      "ku_id": "w_7398_nasal_ku_s01",
+      "queue_index": 2948,
+      "rank": 6095,
+      "lemma": "nasal",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "与鼻或鼻腔有关，不误限鼻音一义。"
+    },
+    {
+      "ku_id": "w_8960_elapse_ku_s01",
+      "queue_index": 2949,
+      "rank": 6096,
+      "lemma": "elapse",
+      "source_commit": "ce901d485b63899479b4c08f567a92c5575f5ceb",
+      "verdict": "PASS",
+      "linguistic_reason": "时间经过，常与时间量作主语；不误作人度过时间。"
+    },
+    {
+      "ku_id": "w_7731_footpath_ku_s01",
+      "queue_index": 2954,
+      "rank": 6101,
+      "lemma": "footpath",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "专供步行者通行的较窄小路，与机动车道区别明显。"
+    },
+    {
+      "ku_id": "w_4941_arc_ku_s01",
+      "queue_index": 2955,
+      "rank": 6102,
+      "lemma": "arc",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "圆周的一部分或一般弯曲线段，数学与形状义均涵盖。"
+    },
+    {
+      "ku_id": "w_9153_aggregation_ku_s01",
+      "queue_index": 2956,
+      "rank": 6104,
+      "lemma": "aggregation",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "将分散记录或事项聚合为一组或总量，信息处理义准确。"
+    },
+    {
+      "ku_id": "w_10523_payout_ku_s01",
+      "queue_index": 2959,
+      "rank": 6107,
+      "lemma": "payout",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "实际支付的一笔金额，赔付与奖励是常见实例而非必要条件。"
+    },
+    {
+      "ku_id": "w_4793_accustom_ku_s01",
+      "queue_index": 2963,
+      "rank": 6111,
+      "lemma": "accustom",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "使某人逐渐习惯某事，符合accustom someone to用法。"
+    },
+    {
+      "ku_id": "w_7920_crackdown_ku_s01",
+      "queue_index": 2964,
+      "rank": 6112,
+      "lemma": "crackdown",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "权力部门强力抑制违法或不受欢迎行为的行动，体现官方执行。"
+    },
+    {
+      "ku_id": "w_4122_psychologist_ku_s01",
+      "queue_index": 2967,
+      "rank": 6115,
+      "lemma": "psychologist",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "专业心理学家可从事研究、教学或应用，但professional who studies容易排除临床心理师；建议研究或实践心理学的专业人员。"
+    },
+    {
+      "ku_id": "w_4050_cheque_ku_s01",
+      "queue_index": 2968,
+      "rank": 6116,
+      "lemma": "cheque",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "账户持有人指示银行付款的书面票据，英式拼写说明恰当。"
+    },
+    {
+      "ku_id": "w_6071_bookshop_ku_s01",
+      "queue_index": 2971,
+      "rank": 6119,
+      "lemma": "bookshop",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "销售书籍的商店，普通英式用语无误。"
+    },
+    {
+      "ku_id": "w_11878_timeline_ku_s01",
+      "queue_index": 2972,
+      "rank": 6120,
+      "lemma": "timeline",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "按时间显示事件过去或未来安排的图文序列，定义充分。"
+    },
+    {
+      "ku_id": "w_4436_philosopher_ku_s01",
+      "queue_index": 2973,
+      "rank": 6121,
+      "lemma": "philosopher",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "研究实在、知识与价值等根本问题的哲学工作者，范围适当。"
+    },
+    {
+      "ku_id": "w_3553_accelerate_ku_s01",
+      "queue_index": 2974,
+      "rank": 6122,
+      "lemma": "accelerate",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "使速度更快或事件进程加快，及物与不及物含义可覆盖。"
+    },
+    {
+      "ku_id": "w_9780_kinase_ku_s01",
+      "queue_index": 2976,
+      "rank": 6124,
+      "lemma": "kinase",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "催化磷酸基转移的酶，符合激酶核心生化机制。"
+    },
+    {
+      "ku_id": "w_7596_motto_ku_s01",
+      "queue_index": 2978,
+      "rank": 6126,
+      "lemma": "motto",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "表达持久原则的简短句子，区别一次性广告语。"
+    },
+    {
+      "ku_id": "w_6386_waitress_ku_s01",
+      "queue_index": 2979,
+      "rank": 6127,
+      "lemma": "waitress",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "在餐桌为顾客提供餐饮服务的女性服务员，与waiter词形区分。"
+    },
+    {
+      "ku_id": "w_8081_cognition_ku_s01",
+      "queue_index": 2980,
+      "rank": 6128,
+      "lemma": "cognition",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "获取和理解知识的知觉思维记忆等过程，认知义准确。"
+    },
+    {
+      "ku_id": "w_4743_preservation_ku_s01",
+      "queue_index": 2983,
+      "rank": 6131,
+      "lemma": "preservation",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "防止损失或保持原状，适用于文物和环境保护。"
+    },
+    {
+      "ku_id": "w_6432_convene_ku_s01",
+      "queue_index": 2985,
+      "rank": 6134,
+      "lemma": "convene",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "为正式会议召集人员，涵盖组织方及会议召开。"
+    },
+    {
+      "ku_id": "w_7124_hugely_ku_s01",
+      "queue_index": 2988,
+      "rank": 6137,
+      "lemma": "hugely",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "程度极大，副词义比普通very语势更强。"
+    },
+    {
+      "ku_id": "w_9916_transnational_ku_s01",
+      "queue_index": 2989,
+      "rank": 6138,
+      "lemma": "transnational",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "跨越国家边界运行或涉及多个国家，不只是国外发生。"
+    },
+    {
+      "ku_id": "w_10990_earnestly_ku_s01",
+      "queue_index": 2995,
+      "rank": 6144,
+      "lemma": "earnestly",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "认真、真诚而有决心地行动，强调态度非速度。"
+    },
+    {
+      "ku_id": "w_7777_surname_ku_s01",
+      "queue_index": 2997,
+      "rank": 6146,
+      "lemma": "surname",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "不是所有文化的姓氏都由家庭成员共享；作为基础释义‘family name’可用，但shared by members of a family可能过度约束。"
+    },
+    {
+      "ku_id": "w_8094_leukemia_ku_s01",
+      "queue_index": 2998,
+      "rank": 6147,
+      "lemma": "leukemia",
+      "source_commit": "3ad1fb4c3230f71258d4c6723197dcca13116e93",
+      "verdict": "PASS",
+      "linguistic_reason": "造血组织的恶性疾病导致异常血细胞产生，基础医疗概念准确。"
+    },
+    {
+      "ku_id": "w_11549_stochastic_ku_s01",
+      "queue_index": 3003,
+      "rank": 6153,
+      "lemma": "stochastic",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "部分受随机性支配，非完全不可预测，数学统计用语恰当。"
+    },
+    {
+      "ku_id": "w_9105_creed_ku_s01",
+      "queue_index": 3006,
+      "rank": 6156,
+      "lemma": "creed",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "一组根本信念或信条，适用宗教及一般行为原则。"
+    },
+    {
+      "ku_id": "w_3146_thereby_ku_s01",
+      "queue_index": 3009,
+      "rank": 6159,
+      "lemma": "thereby",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "通过前述手段或由此导致后果，连接方式和结果正确。"
+    },
+    {
+      "ku_id": "w_5421_daylight_ku_s01",
+      "queue_index": 3010,
+      "rank": 6160,
+      "lemma": "daylight",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "白天自然光区别人工灯光；不等同日照时长。"
+    },
+    {
+      "ku_id": "w_7433_workout_ku_s01",
+      "queue_index": 3011,
+      "rank": 6161,
+      "lemma": "workout",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "一次运动训练活动，名词用法明确。"
+    },
+    {
+      "ku_id": "w_6641_madam_ku_s01",
+      "queue_index": 3012,
+      "rank": 6162,
+      "lemma": "madam",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "对女性的正式称谓，具体语用礼貌需按语境学习。"
+    },
+    {
+      "ku_id": "w_10480_magnate_ku_s01",
+      "queue_index": 3013,
+      "rank": 6163,
+      "lemma": "magnate",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "在商贸行业权势强大的领袖人物，强调影响力。"
+    },
+    {
+      "ku_id": "w_11684_epidemiology_ku_s01",
+      "queue_index": 3016,
+      "rank": 6166,
+      "lemma": "epidemiology",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "研究人群疾病分布与规律的学科；因果危险因素虽未明写仍属常用定义。"
+    },
+    {
+      "ku_id": "w_3418_undoubtedly_ku_s01",
+      "queue_index": 3017,
+      "rank": 6167,
+      "lemma": "undoubtedly",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "表达没有疑问或高度确定性的副词，语义准确。"
+    },
+    {
+      "ku_id": "w_9575_colossal_ku_s01",
+      "queue_index": 3019,
+      "rank": 6169,
+      "lemma": "colossal",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "极其巨大的性质，程度强于large。"
+    },
+    {
+      "ku_id": "w_7238_watcher_ku_s01",
+      "queue_index": 3021,
+      "rank": 6171,
+      "lemma": "watcher",
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "专注观看或观察者，适合birdwatcher和现场观察者等构词。"
+    }
+  ],
+  "certification": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "activation_allowed": false,
+  "production_ready": false
+}
