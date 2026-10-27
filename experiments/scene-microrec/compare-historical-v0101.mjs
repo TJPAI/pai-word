@@ -25,7 +25,7 @@ for(const row of snap.queries){
  reports.push({query:row.query,expected:expected.length?expected:null,excluded:blocked.length?blocked:null,results:Object.fromEntries(Object.entries(systems).map(([name,ids])=>[name,{top5:ids.slice(0,5),top1_hit:expected.length?expected.includes(ids[0]):null,top5_hit:expected.length?ids.slice(0,5).some(id=>expected.includes(id)):null,excluded_leak:blocked.length?ids.slice(0,5).some(id=>blocked.includes(id)):null}]))});
 }
 const labeled=reports.filter(x=>x.expected);
-const sum=names=>Object.fromEntries(names.map(name=>[name,{labeled:labeled.length,top1:labeled.filter(x=>x.results[name].top1_hit).length,top5:labeled.filter(x=>x.results[name].top5_hit).length}]));
+const sum=names=>Object.fromEntries(names.map(name=>[name,{labeled:labeled.length,top1:labeled.length?labeled.filter(x=>x.results[name].top1_hit).length:null,top5:labeled.length?labeled.filter(x=>x.results[name].top5_hit).length:null}]));
 const output={status:'HISTORICAL_SNAPSHOT_SIDE_BY_SIDE_NOT_LIVE',snapshotStatus:snap.status,inputSHA:snap.sha256,source_queries:snap.queries.length,labeled_matches:labeled.length,summary:sum(['pinned-v0101-hybrid','lexical','hybrid','intent']),rows:reports,warning:'Historical real-asset snapshot only; snapshot itself explicitly says structural-only, and input assets are not reproduced here. Not blind and not comparable CPU timings.'};
 console.log(JSON.stringify(output,null,2));
 if(process.argv.includes('--write'))fs.writeFileSync(new URL('./historical-hybrid-comparison.json',import.meta.url),JSON.stringify(output,null,2)+'\n');
