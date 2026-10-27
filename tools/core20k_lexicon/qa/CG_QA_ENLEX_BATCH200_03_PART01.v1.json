@@ -1,0 +1,475 @@
+{
+  "schema_version": "cg-qa-enlex-batch200-03-part01-v1",
+  "target_batch": 200,
+  "actual_reviewed": 50,
+  "remaining": 150,
+  "source_commits": [
+    [
+      "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "3201_3250"
+    ],
+    [
+      "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "3301_3350"
+    ]
+  ],
+  "summary": {
+    "pass": 45,
+    "flagged": 5
+  },
+  "records": [
+    {
+      "ku_id": "w_6348_honorable_ku_s01",
+      "lemma": "honorable",
+      "rank": 6361,
+      "queue_index": 3202,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "指品行高尚因而值得尊敬，不等于拥有正式荣誉头衔。"
+    },
+    {
+      "ku_id": "w_9702_divisive_ku_s01",
+      "lemma": "divisive",
+      "rank": 6362,
+      "queue_index": 3203,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "强调造成群体分裂或争执的倾向，不仅是意见不同。"
+    },
+    {
+      "ku_id": "w_5450_nationalism_ku_s01",
+      "lemma": "nationalism",
+      "rank": 6363,
+      "queue_index": 3204,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "CONDITIONAL_NUANCE",
+      "linguistic_reason": "定义‘重视本国利益’可以作最低限度引介，但不足以区别爱国主义与多样民族主义思想；应补充以民族为中心的政治认同或自主主张，不能暗示单一评价。"
+    },
+    {
+      "ku_id": "w_8370_eminent_ku_s01",
+      "lemma": "eminent",
+      "rank": 6364,
+      "queue_index": 3205,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "因专业成就而广受尊敬和知名，适合杰出学者等。"
+    },
+    {
+      "ku_id": "w_4672_weep_ku_s01",
+      "lemma": "weep",
+      "rank": 6367,
+      "queue_index": 3208,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "哭泣通常伴随眼泪，usually说明并非必要条件。"
+    },
+    {
+      "ku_id": "w_12089_comfy_ku_s01",
+      "lemma": "comfy",
+      "rank": 6368,
+      "queue_index": 3209,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "舒服的非正式变体，口语语体应保留。"
+    },
+    {
+      "ku_id": "w_5645_reunion_ku_s01",
+      "lemma": "reunion",
+      "rank": 6369,
+      "queue_index": 3210,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "分离一段时间后重新相聚，与首次聚会不同。"
+    },
+    {
+      "ku_id": "w_9357_fatality_ku_s01",
+      "lemma": "fatality",
+      "rank": 6373,
+      "queue_index": 3214,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "fatality在事故语境可指死亡事件或死亡者，‘死亡人数中的一例’绕口；需区分死亡结果与遇难人数。"
+    },
+    {
+      "ku_id": "w_4121_sofa_ku_s01",
+      "lemma": "sofa",
+      "rank": 6375,
+      "queue_index": 3216,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "有软垫、可坐两人或以上的长椅式家具，沙发核心特征。"
+    },
+    {
+      "ku_id": "w_7524_perpetual_ku_s01",
+      "lemma": "perpetual",
+      "rank": 6376,
+      "queue_index": 3217,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "似乎无尽头地持续，避免与permanent法律永久状态完全混同。"
+    },
+    {
+      "ku_id": "w_9917_prenatal_ku_s01",
+      "lemma": "prenatal",
+      "rank": 6377,
+      "queue_index": 3218,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "胎儿出生前期间相关，产前护理及检查均适用。"
+    },
+    {
+      "ku_id": "w_12812_typeset_ku_s01",
+      "lemma": "typeset",
+      "rank": 6380,
+      "queue_index": 3221,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "为出版编排文字和图像，现代数字排版也包含。"
+    },
+    {
+      "ku_id": "w_7478_perpetuate_ku_s01",
+      "lemma": "perpetuate",
+      "rank": 6382,
+      "queue_index": 3223,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "不良事项持续存在常见，但perpetuate也能维持传统或记忆等中性/正面事物，不应只限harmful。"
+    },
+    {
+      "ku_id": "w_4491_disrupt_ku_s01",
+      "lemma": "disrupt",
+      "rank": 6383,
+      "queue_index": 3224,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "使正常活动受到明显干扰或中断，强于轻微影响。"
+    },
+    {
+      "ku_id": "w_8890_chlorine_ku_s01",
+      "lemma": "chlorine",
+      "rank": 6385,
+      "queue_index": 3226,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "原子序数17的化学元素，与氯元素准确对应。"
+    },
+    {
+      "ku_id": "w_7711_computational_ku_s01",
+      "lemma": "computational",
+      "rank": 6386,
+      "queue_index": 3227,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "运算或基于计算方法，适用于计算科学和模型。"
+    },
+    {
+      "ku_id": "w_5261_disperse_ku_s01",
+      "lemma": "disperse",
+      "rank": 6387,
+      "queue_index": 3228,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "群体或物体向不同方位散开，涵盖及物和不及物。"
+    },
+    {
+      "ku_id": "w_7576_consequent_ku_s01",
+      "lemma": "consequent",
+      "rank": 6388,
+      "queue_index": 3229,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "作为先前事件的直接后果出现，与consecutive连续的区别准确。"
+    },
+    {
+      "ku_id": "w_3244_strictly_ku_s01",
+      "lemma": "strictly",
+      "rank": 6390,
+      "queue_index": 3231,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "严格遵守规范或限度，且可出现strictly speaking语用义另论。"
+    },
+    {
+      "ku_id": "w_7413_shotgun_ku_s01",
+      "lemma": "shotgun",
+      "rank": 6391,
+      "queue_index": 3232,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "CONDITIONAL_TECHNICAL",
+      "linguistic_reason": "常见霰弹枪可发射多颗弹丸，但也能射独头弹；定义写成设计为一次发射多颗不宜作为所有shotgun的必要条件。"
+    },
+    {
+      "ku_id": "w_7775_spindle_ku_s01",
+      "lemma": "spindle",
+      "rank": 6393,
+      "queue_index": 3234,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "材料围绕旋转或卷绕的轴杆，适合纺锤轴及机械主轴。"
+    },
+    {
+      "ku_id": "w_6804_snail_ku_s01",
+      "lemma": "snail",
+      "rank": 6394,
+      "queue_index": 3235,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "软体动物蜗牛通常有螺旋壳，often避免将无壳近缘俗称一概排除。"
+    },
+    {
+      "ku_id": "w_8961_timid_ku_s01",
+      "lemma": "timid",
+      "rank": 6395,
+      "queue_index": 3236,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "容易害怕且缺乏自信，胆小/羞怯共同核心义。"
+    },
+    {
+      "ku_id": "w_3723_soup_ku_s01",
+      "lemma": "soup",
+      "rank": 6397,
+      "queue_index": 3238,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "水或高汤烹煮而成的流质食物，基础含义清楚。"
+    },
+    {
+      "ku_id": "w_6421_immensely_ku_s01",
+      "lemma": "immensely",
+      "rank": 6398,
+      "queue_index": 3239,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "表示很高程度的副词，可用于感谢或赞赏。"
+    },
+    {
+      "ku_id": "w_5586_hay_ku_s01",
+      "lemma": "hay",
+      "rank": 6399,
+      "queue_index": 3240,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "晾干的牧草用作饲料，区别未收割的grass。"
+    },
+    {
+      "ku_id": "w_6967_unfinished_ku_s01",
+      "lemma": "unfinished",
+      "rank": 6400,
+      "queue_index": 3241,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "尚未完成的状态，不等于质量低。"
+    },
+    {
+      "ku_id": "w_6614_drastically_ku_s01",
+      "lemma": "drastically",
+      "rank": 6401,
+      "queue_index": 3242,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "显著或剧烈的变化程度，不能简化为极端观点。"
+    },
+    {
+      "ku_id": "w_3282_performer_ku_s01",
+      "lemma": "performer",
+      "rank": 6402,
+      "queue_index": 3243,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "表演戏剧音乐等给受众娱乐的人，未误限演员。"
+    },
+    {
+      "ku_id": "w_11133_bookcase_ku_s01",
+      "lemma": "bookcase",
+      "rank": 6405,
+      "queue_index": 3246,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "有书架层板存书的家具，属于书柜类。"
+    },
+    {
+      "ku_id": "w_12383_multilingual_ku_s01",
+      "lemma": "multilingual",
+      "rank": 6408,
+      "queue_index": 3249,
+      "source_commit": "a680cead28ad324ec41c51c824a7f9ae8697f107",
+      "verdict": "PASS",
+      "linguistic_reason": "涉及或掌握几种语言，覆盖个人与系统多语言功能。"
+    },
+    {
+      "ku_id": "w_11195_forecaster_ku_s01",
+      "lemma": "forecaster",
+      "rank": 6461,
+      "queue_index": 3301,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "预测未来情况的人，适用于天气与经济预报。"
+    },
+    {
+      "ku_id": "w_12864_migratory_ku_s01",
+      "lemma": "migratory",
+      "rank": 6464,
+      "queue_index": 3303,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "定期地区间移动，适合候鸟迁徙及迁徙动物。"
+    },
+    {
+      "ku_id": "w_12706_maximal_ku_s01",
+      "lemma": "maximal",
+      "rank": 6465,
+      "queue_index": 3304,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "给定限制下可达到的最大值，符合数学及一般含义。"
+    },
+    {
+      "ku_id": "w_4408_financially_ku_s01",
+      "lemma": "financially",
+      "rank": 6467,
+      "queue_index": 3306,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "从资金和财务角度，适用于financially viable等。"
+    },
+    {
+      "ku_id": "w_12006_isle_ku_s01",
+      "lemma": "isle",
+      "rank": 6468,
+      "queue_index": 3307,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "偏文学或地名中的小岛，标记语体有价值。"
+    },
+    {
+      "ku_id": "w_4395_horizontal_ku_s01",
+      "lemma": "horizontal",
+      "rank": 6470,
+      "queue_index": 3309,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "与地平线方向平行，横向和水平义一致。"
+    },
+    {
+      "ku_id": "w_11775_larval_ku_s01",
+      "lemma": "larval",
+      "rank": 6472,
+      "queue_index": 3311,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "与幼虫/幼体期相关，形容词词形规范。"
+    },
+    {
+      "ku_id": "w_11454_cordon_ku_s01",
+      "lemma": "cordon",
+      "rank": 6473,
+      "queue_index": 3312,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "警卫或警方为限制进入设置的警戒线，典型名词义准确。"
+    },
+    {
+      "ku_id": "w_10343_skillfully_ku_s01",
+      "lemma": "skillfully",
+      "rank": 6475,
+      "queue_index": 3313,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "以熟练技巧完成任务，与仅花很大力气不同。"
+    },
+    {
+      "ku_id": "w_10134_pep_ku_s01",
+      "lemma": "pep",
+      "rank": 6477,
+      "queue_index": 3315,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "生气勃勃的精力和干劲，口语名词义清晰。"
+    },
+    {
+      "ku_id": "w_12040_meteorological_ku_s01",
+      "lemma": "meteorological",
+      "rank": 6478,
+      "queue_index": 3316,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "与天气观测和气象科学有关，不混气候学长期规律。"
+    },
+    {
+      "ku_id": "w_4898_nickname_ku_s01",
+      "lemma": "nickname",
+      "rank": 6480,
+      "queue_index": 3318,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "正式姓名之外使用的非正式称呼，不必由本人授予。"
+    },
+    {
+      "ku_id": "w_4657_embody_ku_s01",
+      "lemma": "embody",
+      "rank": 6481,
+      "queue_index": 3319,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "以具体形态表现抽象理念或品质，动词义准确。"
+    },
+    {
+      "ku_id": "w_7452_motorist_ku_s01",
+      "lemma": "motorist",
+      "rank": 6483,
+      "queue_index": 3321,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "机动车驾驶者，不限职业司机。"
+    },
+    {
+      "ku_id": "w_8776_affidavit_ku_s01",
+      "lemma": "affidavit",
+      "rank": 6484,
+      "queue_index": 3322,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "经宣誓或确认的书面事实陈述，符合宣誓书法律意义。"
+    },
+    {
+      "ku_id": "w_6708_grieve_ku_s01",
+      "lemma": "grieve",
+      "rank": 6486,
+      "queue_index": 3324,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "因失落或亲友亡故产生深切悲痛，通常是不及物。"
+    },
+    {
+      "ku_id": "w_10587_outflow_ku_s01",
+      "lemma": "outflow",
+      "rank": 6489,
+      "queue_index": 3327,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "液体、金钱或人员从地点流出，反义inflow明晰。"
+    },
+    {
+      "ku_id": "w_3768_partially_ku_s01",
+      "lemma": "partially",
+      "rank": 6490,
+      "queue_index": 3328,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "PASS",
+      "linguistic_reason": "只在一定范围或程度上，而非全部。"
+    },
+    {
+      "ku_id": "w_4574_rob_ku_s01",
+      "lemma": "rob",
+      "rank": 6491,
+      "queue_index": 3329,
+      "source_commit": "640369567bcd2133518c8f16a0f7fb21cff239bc",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "rob someone of something通常涉及暴力或威胁，但也可指剥夺而非实际财产盗窃，如rob someone of sleep；需限定犯罪义。"
+    }
+  ],
+  "review_state": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "production_ready": false,
+  "activation_allowed": false
+}
