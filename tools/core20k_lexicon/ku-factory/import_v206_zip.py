@@ -57,7 +57,10 @@ def main():
         for rel,data in contents.items():
             target=a.output/rel
             if target.exists() and target.read_bytes()!=data:
-                raise SystemExit(f"EXISTING_FILE_CONFLICT_{rel}")
+                old_rows=[json.loads(line) for line in target.read_text(encoding="utf8").splitlines()]
+                new_rows=[json.loads(line) for line in data.decode("utf8").splitlines()]
+                if old_rows!=new_rows:
+                    raise SystemExit(f"EXISTING_FILE_CONFLICT_{rel}")
         for rel,data in contents.items():
             target=a.output/rel
             target.parent.mkdir(parents=True,exist_ok=True)
