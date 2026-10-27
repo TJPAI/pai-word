@@ -33,7 +33,8 @@ def main():
     def fail(msg):
         report["status"]="BLOCKED";report["error"]=msg
         (base/"source_qa_report.json").write_text(json.dumps(report,indent=2,ensure_ascii=False)+"\n",encoding="utf8")
-        print(json.dumps(report,ensure_ascii=False,default=str)[:12000],file=sys.stderr)\n        sys.exit(msg)
+        print(json.dumps(report,ensure_ascii=False,default=str)[:12000],file=sys.stderr)
+        sys.exit(msg)
     if digest!=EXPECTED_SHA and not a.allow_runtime_sha_change:fail("RUNTIME_SHA256_MISMATCH")
     try:root=json.loads(gzip.decompress(raw))
     except Exception as e:fail("RUNTIME_PARSE_FAIL "+str(e))
