@@ -5,7 +5,7 @@ items=[json.loads(x) for x in (p/"joined_coverage_20000.jsonl").read_text(encodi
 assert len(items)==20000
 def priority(x):
  n=len(x["external_sources"]);rt=x["has_runtime_sense_ku"]
- return (0 if n==0 and not rt else 1 if n==0 else 2 if n==1 and not rt else 3 if n==1 else 4 if n==2 and not rt else 5 if n==2 else 6, x["rank"])
+ return ((2*n + (1 if rt else 0)), x["rank"])
 items.sort(key=priority)
 out=p/"prioritized_semantic_queue_20k.jsonl";counts=collections.Counter()
 with out.open("w",encoding="utf8") as f:
