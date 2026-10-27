@@ -1,0 +1,226 @@
+{
+  "schema": "zh-core20k-pos-batch05-targeted-revision-v1",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_batch05_blob": "e3dbc2c43bcf57796ed73936303ef369e621b28f",
+  "revision_count": 15,
+  "approval": "CHATGPT_EDITORIAL_ONLY",
+  "production_ready": false,
+  "items": [
+    {
+      "term": "只要",
+      "term_id": "zh_91ad7c3e91d0a43c8ad3",
+      "runtime_index": 519,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "SCONJ",
+      "proposed_other": [],
+      "evidence_zh": "“只要按时提交，就可以参加”中引入充分条件分句，并与“就”呼应；不是修饰单一动词的程度副词。",
+      "limit_zh": "“我只要一本书”中“只”限制“要”，应视为另一种结构，不能把两种结构强合成单一词义。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "努力",
+      "term_id": "zh_abe26aa668de1e20fb27",
+      "runtime_index": 518,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "VERB",
+        "ADV"
+      ],
+      "evidence_zh": "“他很努力”“努力的学生”显示性质形容词分布；“为目标而努力”显示可作谓语的动词用法。",
+      "limit_zh": "“努力学习”只是状语功能，不能独立证明VERB；状语性是否另标ADV依POS体系。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "我国",
+      "term_id": "zh_2f293016a5ff3ab11d05",
+      "runtime_index": 532,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "PRON",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“我国已经提出申请”“我国的法律”以第一人称集体所属国家作指称，具代词性；同时可能按专指名词性短语分析。",
+      "limit_zh": "不得仅因出现“的”就确定NOUN；必须声明代词与指称名词的标注体系。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "如此",
+      "term_id": "zh_9267811dc0b2849b4451",
+      "runtime_index": 521,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [
+        "PRON"
+      ],
+      "evidence_zh": "“如此认真”修饰程度/方式；“事情竟然如此”中可作指示性谓语或代词性成分，依体系分析。",
+      "limit_zh": "仅凭一个副词搭配不足以排除其他指示用法。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "来自",
+      "term_id": "zh_9b6a4a82e39df1059c79",
+      "runtime_index": 525,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [],
+      "evidence_zh": "“他来自上海”“信息来自两个渠道”可作谓语，后接来源地点或来源实体。",
+      "limit_zh": "不能从来源语义误推成纯介词；“来自上海的学生”在定语中保持谓词性分析可能。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "经过",
+      "term_id": "zh_91d7950ecf64e256fa85",
+      "runtime_index": 526,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADP"
+      ],
+      "evidence_zh": "“列车经过车站”中的“经过”为路径动词；“经过认真讨论，我们决定延期”作为事件引介介词性用法。",
+      "limit_zh": "动词与介词须分具体构式，不宜只给单一VERB。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "比赛",
+      "term_id": "zh_7595b4b87e468f45cab6",
+      "runtime_index": 535,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "VERB"
+      ],
+      "evidence_zh": "“一场比赛”可用数量短语修饰，属于名词；“他们明天比赛”独立作谓词，属于动词。",
+      "limit_zh": "原模板只证明NOUN，漏掉高频动词义。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "结束",
+      "term_id": "zh_c7b24e7997e96eaa17a7",
+      "runtime_index": 513,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“结束会议”可带宾语；“会议已经结束”独立谓语；“在结束之前”可有事件名词化分析。",
+      "limit_zh": "名词化是否作为独立词性需标注体系判别，不能直接由名词化短语得出。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "书",
+      "term_id": "zh_1be968f1252409695347",
+      "runtime_index": 515,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [],
+      "evidence_zh": "“一本书”“读这本书”显示量词搭配及独立名词中心语分布。",
+      "limit_zh": "不把“书写”的书作为独立VERB证据。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "亦",
+      "term_id": "zh_2c11629102a454f06967",
+      "runtime_index": 516,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [],
+      "evidence_zh": "“他亦同意”“亦可如此”出现在谓词前表示“也”，属书面语副词。",
+      "limit_zh": "需记录正式/书面语语域，不能仅用模板“句间连接”作证。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "媒体",
+      "term_id": "zh_fa33e100097598596015",
+      "runtime_index": 522,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [],
+      "evidence_zh": "“多家媒体报道”“一家媒体”显示机构集合名词属性及家量词搭配。",
+      "limit_zh": "名词担任句子主语不意味着它是动词。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "表现",
+      "term_id": "zh_a959cfbf97c5455ee486",
+      "runtime_index": 536,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“他表现得很镇定”可作谓词并带补语；“他的表现很好”由定语修饰，属于名词。",
+      "limit_zh": "原批次HOLD是合理的未判状态，本建议依旧需第二人复核。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "选举",
+      "term_id": "zh_ad93032815e002668134",
+      "runtime_index": 528,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“选举代表”有及物宾语；“一次选举”表示事件名词。",
+      "limit_zh": "原批次HOLD，本候选不具有正式认证资格。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "开发",
+      "term_id": "zh_9ec428625fee9e42ef47",
+      "runtime_index": 545,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“开发软件”中及物动词；“软件开发需要投入”中活动名词中心语。",
+      "limit_zh": "原候选只证明动词，忽略名词用法。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    },
+    {
+      "term": "才能",
+      "term_id": "zh_9bc2ebe0cb79071199c7",
+      "runtime_index": 523,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“发挥才能”中才能指能力，可作抽象名词；“只有努力，才能成功”则含关联成分“才+能”，不应把整个字符串视同一个名词。",
+      "limit_zh": "必须按词义及切分层次分开，词形重合不证明单一词头。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false
+    }
+  ]
+}
