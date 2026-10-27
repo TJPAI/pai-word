@@ -51,4 +51,5 @@ export const semanticReviewPilot=[
  ["S051","PASS_CANDIDATE","Convenience store shopping describes the store type, not groceries specifically."],
  ["S052","PASS_CANDIDATE","Supermarket shopping describes the retail setting and can include nonfood products."],
  ["S053","PASS_CANDIDATE","Mall shopping is distinguished from single-category retail."],
+ ["S055","PASS_CANDIDATE","Shopping for shoes and hats matches the product categories 鞋帽 and differs from general clothing shopping." ]
 ].map(([scene_id,verdict,rationale,suggested_en=null])=>({scene_id,verdict,rationale,suggested_en,reviewer:'ChatGPT_first_pass',independent_review:false,training_approved:false}));
