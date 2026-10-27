@@ -1,0 +1,30 @@
+name: Core20K Sense V1 OEWN pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/oewn_pilot.py'
+      - '.github/workflows/core20k-sense-v1-oewn.yml'
+jobs:
+  cross_reference:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install open lexical data tools
+        run: python -m pip install 'wn>=0.13,<1'
+      - name: Download Open English WordNet 2024
+        run: python -c "import wn; wn.download('oewn:2024')"
+      - name: Run rank 1-500 external candidate alignment
+        run: python tools/core20k_sense_v1/oewn_pilot.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense-v1-oewn-top500
+          path: tools/core20k_sense_v1/reports/oewn_top500_*.json*
+          retention-days: 30
