@@ -1,0 +1,41 @@
+name: Core20K Sense OEWN Kaikki alignment
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/align_oewn_kaikki_shard.py'
+      - '.github/workflows/core20k-sense-cross-source.yml'
+jobs:
+  align:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: read
+      actions: read
+    env:
+      SHARD: ${{ matrix.shard }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'sentence-transformers>=3,<6' 'numpy<3'
+      - name: Download full 20K source glosses
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p tools/core20k_sense_v1/reports/source_join
+          gh run download 40555021908 -n sense-v1-multisource-coverage-20k -D tools/core20k_sense_v1/reports/source_join
+      - name: Align OEWN to Kaikki senses
+        run: python tools/core20k_sense_v1/align_oewn_kaikki_shard.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense20k-cross-source-${{ matrix.shard }}
+          path: |
+            tools/core20k_sense_v1/reports/source_join/cross_source_shard_*.jsonl
+            tools/core20k_sense_v1/reports/source_join/cross_source_shard_*_summary.json
