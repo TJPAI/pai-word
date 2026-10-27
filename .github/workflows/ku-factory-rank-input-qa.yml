@@ -1,0 +1,32 @@
+name: KU frozen rank shard QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [ku-factory-source-v206]
+    paths:
+      - 'tools/core20k_lexicon/ku-factory/input/v206/**'
+      - 'tools/core20k_lexicon/ku-factory/validate_rank_shards.py'
+      - '.github/workflows/ku-factory-rank-input-qa.yml'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Validate every present 500-word batch
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,sys
+          root=Path("tools/core20k_lexicon/ku-factory/input/v206")
+          batches=sorted(int(p.name) for p in root.iterdir() if p.is_dir() and p.name.isdigit())
+          if not batches: sys.exit("No committed rank batches")
+          print("Present batches:",batches)
+          subprocess.run([sys.executable,"tools/core20k_lexicon/ku-factory/validate_rank_shards.py",
+                          "--batches",*[str(b) for b in batches]],check=True)
+          PY
