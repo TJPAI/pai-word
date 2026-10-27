@@ -15,6 +15,7 @@ def items(obj):
 with src.open("rb") as f: digest=hashlib.sha256(f.read()).hexdigest()
 with gzip.open(src,"rt",encoding="utf-8") as f:root=json.load(f)
 rows=items(root)
+print("RUNTIME_SHAPE", json.dumps({"headwords_type":type(root.get("headwords")).__name__ if isinstance(root,dict) else None,"first_items":[{"type":type(v).__name__,"preview":str(v)[:350]} for v in rows[:3]]},ensure_ascii=False))
 keys=collections.Counter(); sense_keys=collections.Counter(); sense_sizes=collections.Counter()
 examples=[]; ranked=[]; senses=0; words_with_senses=0
 for i,w in enumerate(rows):
