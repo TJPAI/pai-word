@@ -1,0 +1,14 @@
+{
+  "task_id": "002",
+  "batch_size": 500,
+  "rank_start": 501,
+  "rank_end": 1000,
+  "branch": "ku-factory-002-b500",
+  "source_ref": "core20k-lexicon-production-v1",
+  "source_commit": "c7aae5a662b2e32843dae8c2473cb7ceab3e0053",
+  "source_runtime_path": "data/core20k-runtime.json.gz",
+  "source_runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "status": "BLOCKED_BEFORE_PRODUCTION",
+  "production_ready": false,
+  "reason": "Compressed authority file retrievable as base64 but not yet decoded into a verified rank/sense/KU inventory; do not fabricate identity or coverage."
+}
