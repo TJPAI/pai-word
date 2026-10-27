@@ -1,0 +1,19 @@
+{
+  "task_id": "007",
+  "batch_size": 500,
+  "rank_start": 3001,
+  "rank_end": 3500,
+  "branch": "ku-factory-007-b500",
+  "source_branch": "core20k-lexicon-production-v1",
+  "source_runtime_blob_sha": "56cd4ba51ecc99ce56e4d73c69bae305b68aab5c",
+  "status": "BLOCKED_SOURCE_UNVERIFIED",
+  "production_ready": false,
+  "expected_headwords": 500,
+  "verified_headwords": 0,
+  "existing_senses": null,
+  "reused_kus": null,
+  "new_or_repaired_kus": 0,
+  "missing_senses": null,
+  "coverage_status": "NOT_MEASURABLE",
+  "reason": "Frozen CSV is not present at documented root path; compressed runtime fetched but no independently verified rank/Sense extraction performed."
+}
