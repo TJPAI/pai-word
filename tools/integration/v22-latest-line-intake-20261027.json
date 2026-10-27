@@ -16,11 +16,20 @@
     {
       "role": "CG-REC",
       "branch": "scene500-recommendation-dev",
-      "sha": "07f2cd009f16d79478e36440a2e3b4657d12cb72",
+      "sha": "11014fc748a731e40db632503536835ed6c9467a",
       "status": "ISOLATED_STAGING",
-      "approved_scope": "QA and isolated bridge integration only",
+      "approved_scope": "isolated QA integration of hotel booking vs hotel check-in intent fixes; no production promotion",
       "excluded": "open-domain production activation; unverified v0.10.1 associations",
-      "source_issue_comment": 6433131691
+      "source_issue_comment": 6433380826,
+      "qa": {
+        "github_actions_run": 40447056367,
+        "regression_assertions": 43,
+        "probe_top1": "10/15",
+        "probe_top5": "11/15",
+        "negative_leak": "0/4",
+        "empty_recall": "5/20",
+        "status": "ENGINEERING_PASS_SEMANTIC_UNCERTIFIED"
+      }
     },
     {
       "role": "CG-ENLEX",
@@ -58,7 +67,7 @@
     "do_not_autopromote_staging": true
   },
   "known_blockers": [
-    "REC holdout Top1 8/15, Top5 9/15; semantic generalization not approved",
+    "REC improved probe Top1 10/15, Top5 11/15, empty 5/20, but open-domain semantic generalization is still uncertified",
     "ENTEACH 8 question prototype has open cloze ambiguity and alternative sense-recognition versions under review",
     "B93 formal release authority and source rights remain unavailable"
   ]
