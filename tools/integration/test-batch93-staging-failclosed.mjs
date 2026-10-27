@@ -18,6 +18,8 @@ assert.equal(parsed.production_activation_ready,false);
 assert(parsed.remaining_gates.includes('production_manifest'));
 assert(parsed.remaining_gates.includes('license_approved'));
 assert(parsed.remaining_gates.includes('release_signed'));
+assert(parsed.remaining_gates.includes('crosswalk_membership'));
+assert(parsed.remaining_gates.includes('registrar_signed'));
 assert(parsed.remaining_gates.includes('record_flags_ready'));
 assert.equal(manifest.status,'STAGING_ONLY');
 assert.equal(manifest.activation_allowed,false);
