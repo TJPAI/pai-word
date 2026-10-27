@@ -1,4 +1,4 @@
-// Supervised sparse bilingual retrieval prototype. Training happens offline.
+// Corpus-fitted sparse multilingual-character retrieval prototype. Training happens offline.
 // This is not a pretrained embedding model and training examples from catalog are NOT blind evidence.
 import {terms} from './microrec.mjs';
 const tokenize=s=>[...new Set(terms(s))];
@@ -14,7 +14,7 @@ export function trainSparse(catalog,{dimension=4096}={}){
  const sceneIds=scenes.map(([id])=>id);
  const N=scenes.length,weights=new Map();
  for(const [id,row] of rows){let norm=0;const v=new Map();for(const [t,count] of row){const z=(1+Math.log(count))*Math.log(1+N/(idf.get(t)||1));v.set(t,z);norm+=z*z;}norm=Math.sqrt(norm)||1;for(const [t,w] of v)v.set(t,w/norm);weights.set(id,v);}
- return Object.freeze({modelKind:'supervised-sparse-prototype',scenes:N,featureDimension:dimension,
+ return Object.freeze({modelKind:'catalog-fitted-sparse-prototype',scenes:N,featureDimension:dimension,
   search(query,{limit=5,eligibleSceneIds=null}={}){
    const toks=tokenize(query);if(!toks.length)return[];
    const allowed=eligibleSceneIds?new Set(eligibleSceneIds):null;
