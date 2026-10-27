@@ -49,7 +49,12 @@
     {
       "query": "I want to practice speaking English",
       "group": "english_learning",
-      "openEnded": true
+      "openEnded": true,
+      "abstentionReview": {
+        "disposition": "ALLOW_EMPTY_NO_VERIFIED_SCENE",
+        "rationale": "No verified English speaking practice scene mapping in current Scene500 catalog; do not substitute machine-learning technical scenes",
+        "editorialOnly": true
+      }
     },
     {
       "query": "练习英语口语怎么开始",
@@ -142,7 +147,12 @@
         "S279",
         "S280"
       ],
-      "group": "chinese_negation"
+      "group": "chinese_negation",
+      "abstentionReview": {
+        "disposition": "ALLOW_EMPTY_NO_VERIFIED_SCENE",
+        "rationale": "No verified English speaking practice scene mapping in current Scene500 catalog; do not substitute machine-learning technical scenes",
+        "editorialOnly": true
+      }
     },
     {
       "query": "如何申请旅游签证",
