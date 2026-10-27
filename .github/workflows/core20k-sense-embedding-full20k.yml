@@ -1,0 +1,44 @@
+name: Core20K Sense 20K semantic embedding shards
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/embedding_full20k_shard.py'
+      - '.github/workflows/core20k-sense-embedding-full20k.yml'
+jobs:
+  embed:
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0,1,2,3,4,5,6,7,8,9]
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions:
+      contents: read
+      actions: read
+    env:
+      SHARD: ${{ matrix.shard }}
+      SHARDS: 10
+      HF_HUB_DISABLE_TELEMETRY: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'sentence-transformers>=3,<6' 'numpy<3'
+      - name: Download validated four-source full20k preclusters
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p tools/core20k_sense_v1/reports/source_join
+          gh run download 40555021908 -n sense-v1-multisource-coverage-20k -D tools/core20k_sense_v1/reports/source_join
+      - name: Embed frozen-rank shard
+        run: python tools/core20k_sense_v1/embedding_full20k_shard.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense20k-embedding-shard-${{ matrix.shard }}
+          path: |
+            tools/core20k_sense_v1/reports/source_join/embedding_shard_*.jsonl
+            tools/core20k_sense_v1/reports/source_join/embedding_shard_*_summary.json
+          retention-days: 30
