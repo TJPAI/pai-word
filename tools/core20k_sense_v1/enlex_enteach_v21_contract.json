@@ -1,0 +1,92 @@
+{
+  "schema": "PAI-Core20K-Content-V2.1-handoff-rc1",
+  "membership_baseline": "Core20K_LongTerm_V2.0.6",
+  "membership_sha256": "e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca",
+  "entities": {
+    "word": {
+      "required": [
+        "headword_id",
+        "rank",
+        "lemma"
+      ],
+      "immutable": [
+        "headword_id",
+        "rank",
+        "lemma"
+      ]
+    },
+    "sense": {
+      "required": [
+        "draft_sense_key",
+        "headword_id",
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "source_attribution",
+        "review_status",
+        "release_eligible"
+      ],
+      "canonical_id_required_when_published": true,
+      "source_states": [
+        "source_verified",
+        "dictionary_corpus_verified",
+        "editorial",
+        "generated_draft_pending_review"
+      ],
+      "status": [
+        "STAGING",
+        "SEMANTIC_REVIEWED",
+        "INDEPENDENT_QA_PASSED",
+        "PRODUCTION_READY"
+      ]
+    },
+    "ku": {
+      "required": [
+        "ku_id",
+        "headword_id",
+        "sense_id",
+        "ku_type",
+        "render_kind",
+        "question",
+        "response",
+        "source_attribution",
+        "review_status",
+        "release_eligible"
+      ],
+      "types": [
+        "sense",
+        "collocation",
+        "grammar",
+        "phrase",
+        "usage",
+        "production"
+      ],
+      "identity_policy": "preserve legacy IDs when meaning and learning objective are unchanged; explicit migration otherwise",
+      "answer_policy": "valid answer variants and morphological variants required when appropriate"
+    }
+  },
+  "release_gate": {
+    "sense_requirements": [
+      "confirmed lemma/POS",
+      "accurate bilingual gloss",
+      "source traceability",
+      "nonduplicate teaching meaning",
+      "independent semantic review",
+      "old-new identity crosswalk"
+    ],
+    "ku_requirements": [
+      "registered valid sense_id",
+      "question and answer correctness",
+      "usage/grammar attestation for non-sense KU",
+      "separate teaching QA",
+      "release_eligible true"
+    ],
+    "do_not_promote_from": [
+      "embedding cosine",
+      "word-level dictionary coverage",
+      "candidate gloss count",
+      "unverified inherited KU"
+    ],
+    "frozen_change_allowed": false
+  }
+}
