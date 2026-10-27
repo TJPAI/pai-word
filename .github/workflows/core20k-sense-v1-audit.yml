@@ -1,0 +1,32 @@
+name: Core20K Sense V1 inventory (isolated)
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/**'
+      - '.github/workflows/core20k-sense-v1-audit.yml'
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify immutable V2.0.6 contract
+        run: |
+          python3 - <<'PY'
+          import json
+          d=json.load(open("data/core20k-final-v206/freeze-contract.json"))
+          assert d["rows"]==20000
+          assert d["membershipSha256"]=="e3f846948363820187707580c0a0189176b121dc08e2b96a1fe9a7126c1399ca"
+          print("PASS frozen membership contract:",d["baselineId"])
+          PY
+      - name: Read and inventory real compressed runtime
+        run: python3 tools/core20k_sense_v1/inventory_runtime.py
+      - name: Preserve inventory report
+        uses: actions/upload-artifact@v4
+        with:
+          name: core20k-sense-v1-runtime-inventory
+          path: tools/core20k_sense_v1/reports/runtime_inventory.json
+          retention-days: 30
