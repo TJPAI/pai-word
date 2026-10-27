@@ -1,0 +1,196 @@
+{
+  "schema_version": "pai-word-enteach-scored-cloze-prototype-v1",
+  "status": "ISOLATED_EXPERIMENTAL_QA_PENDING",
+  "owner": "CG-ENTEACH",
+  "scope": {
+    "items": 8,
+    "from_parts": [
+      "enteach-batch200-part07-07.v1.json",
+      "enteach-batch200-part08-10.v1.json"
+    ],
+    "question_kind": "cloze",
+    "source_ku_stable": true
+  },
+  "grading_policy": {
+    "normalization": [
+      "trim Unicode whitespace",
+      "casefold using locale-insensitive lower case"
+    ],
+    "exact_whole_answer": true,
+    "substring_allowed": false,
+    "semantic_synonyms_allowed": false,
+    "accepted_inflections": "item-specific only",
+    "requires_independent_test": true
+  },
+  "records": [
+    {
+      "id": "enteach-cloze-prototype-01",
+      "ku_id": "w_6197_tram_ku_s01",
+      "headword": "tram",
+      "render_kind": "cloze",
+      "question": "We took the ____ across the city instead of driving.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "tram",
+        "acceptable_answers": [
+          "tram"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "车辆名词；不能由同义词bus替代原词目标",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-02",
+      "ku_id": "w_7161_slippery_ku_s01",
+      "headword": "slippery",
+      "render_kind": "cloze",
+      "question": "Watch your step: the tiles are ____ after cleaning.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "slippery",
+        "acceptable_answers": [
+          "slippery"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "形容词原级；slipperier为比较级，不符合句法",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-03",
+      "ku_id": "w_6926_diffusion_ku_s01",
+      "headword": "diffusion",
+      "render_kind": "cloze",
+      "question": "____ moves particles from a region of higher concentration toward one of lower concentration.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "diffusion",
+        "acceptable_answers": [
+          "diffusion"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "科学名词，句首大小写归一化",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-04",
+      "ku_id": "w_5310_shopper_ku_s01",
+      "headword": "shopper",
+      "render_kind": "cloze",
+      "question": "Many online ____ compare delivery fees before placing an order.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "shoppers",
+        "acceptable_answers": [
+          "shoppers"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "复数语法形态，不接受单数shopper",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-05",
+      "ku_id": "w_6729_waterfall_ku_s01",
+      "headword": "waterfall",
+      "render_kind": "cloze",
+      "question": "The hiking trail leads to a ____ hidden in the forest.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "waterfall",
+        "acceptable_answers": [
+          "waterfall"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "可数名词单数，a约束词形",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-06",
+      "ku_id": "w_3054_consensus_ku_s01",
+      "headword": "consensus",
+      "render_kind": "cloze",
+      "question": "The committee reached a ____ after several rounds of discussion.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "consensus",
+        "acceptable_answers": [
+          "consensus"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "名词固定搭配reach a consensus",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-07",
+      "ku_id": "w_6925_authenticity_ku_s01",
+      "headword": "authenticity",
+      "render_kind": "cloze",
+      "question": "The museum asked experts to verify the painting's ____.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "authenticity",
+        "acceptable_answers": [
+          "authenticity"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "抽象名词，源义为真品性",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "id": "enteach-cloze-prototype-08",
+      "ku_id": "w_3591_solar_ku_s01",
+      "headword": "solar",
+      "render_kind": "cloze",
+      "question": "The school installed ____ panels to generate electricity.",
+      "response": {
+        "kind": "typed_text",
+        "correct_answer": "solar",
+        "acceptable_answers": [
+          "solar"
+        ],
+        "case_insensitive": true,
+        "trim_whitespace": true
+      },
+      "grading_note": "限定太阳能板搭配，形容词",
+      "qa_status": "CG_ENTEACH_PROTOTYPE_ONLY",
+      "production_ready": false,
+      "activation_allowed": false
+    }
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "limitations": [
+    "These are eight illustrative self-authored scored question candidates, not an independently certified teaching package",
+    "Answers intentionally require the target headword or its specified form and reject semantically plausible alternatives",
+    "No original 200 KU asset, release manifest or SRS is modified"
+  ]
+}
