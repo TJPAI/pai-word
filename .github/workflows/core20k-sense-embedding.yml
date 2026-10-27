@@ -1,0 +1,35 @@
+name: Core20K Sense embedding semantic pilot
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/embedding_semantic_review_500.py'
+      - '.github/workflows/core20k-sense-embedding.yml'
+jobs:
+  embed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install 'sentence-transformers>=3,<6' 'numpy<3'
+      - name: Download validated four-source evidence artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p tools/core20k_sense_v1/reports/source_join
+          gh run download 40551513325 -n sense-v1-multisource-coverage-20k -D tools/core20k_sense_v1/reports/source_join
+      - name: Compute real embedding matches
+        run: python tools/core20k_sense_v1/embedding_semantic_review_500.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense-v1-embedding-review-500
+          path: |
+            tools/core20k_sense_v1/reports/source_join/first500_embedding_semantic_pairs.jsonl
+            tools/core20k_sense_v1/reports/source_join/first500_embedding_semantic_summary.json
