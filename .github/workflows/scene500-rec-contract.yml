@@ -65,6 +65,14 @@ jobs:
             "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json" \
             "$RUNNER_TEMP/scene500/v094-lexical-associations.json" \
             | tee "$RUNNER_TEMP/scene500/prospective-24-report.json"
+      - name: Compare prospective 24-query baseline vs opt-in action-object
+        run: |
+          set -o pipefail
+          node scene500-recommendation/qa/compare-action-object-24.mjs \
+            "$RUNNER_TEMP/scene500/catalog-v0.2.json" \
+            "$RUNNER_TEMP/scene500/zh-core20k-v0101-scene500-runtime.json" \
+            "$RUNNER_TEMP/scene500/v094-lexical-associations.json" \
+            | tee "$RUNNER_TEMP/scene500/action-object-ab-24.json"
       - name: Upload Hybrid query report
         if: always()
         uses: actions/upload-artifact@v4
@@ -75,4 +83,5 @@ jobs:
             ${{ runner.temp }}/scene500/holdout-report.json
             ${{ runner.temp }}/scene500/generalization-probe.json
             ${{ runner.temp }}/scene500/prospective-24-report.json
+            ${{ runner.temp }}/scene500/action-object-ab-24.json
           if-no-files-found: ignore
