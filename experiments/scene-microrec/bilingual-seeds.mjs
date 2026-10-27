@@ -264,7 +264,7 @@ export const bilingualSeeds=[
  ['S262',"Sending and receiving email"],
  ['S263',"Using instant messaging"],
  ['S264',"Making a video call"],
- ['S265',"Posting on social media",
+ ['S265',"Posting on social media"],
  ['S266',"Commenting and interacting online"],
  ['S267',"Uploading and downloading files"],
  ['S268',"Using cloud storage"],
