@@ -1,0 +1,481 @@
+{
+  "schema_version": "cg-qa-enlex-batch200-02-part03-v1",
+  "target": 200,
+  "prior_reviewed": 100,
+  "new_reviewed": 50,
+  "cumulative_reviewed": 150,
+  "remaining": 50,
+  "source_commits": [
+    {
+      "sha": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "b": "3001_3050"
+    },
+    {
+      "sha": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "b": "3051_3100"
+    },
+    {
+      "sha": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "b": "3101_3150"
+    }
+  ],
+  "summary": {
+    "PASS": 44,
+    "FLAGGED": 6
+  },
+  "records": [
+    {
+      "ku_id": "w_6133_despise_ku_s01",
+      "queue_index": 3022,
+      "lemma": "despise",
+      "rank": 6172,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "指怀有轻蔑地看待某人某物，而非简单不喜欢。"
+    },
+    {
+      "ku_id": "w_10964_coldly_ku_s01",
+      "queue_index": 3023,
+      "lemma": "coldly",
+      "rank": 6173,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "仅给情绪冷淡义，coldly也可指温度寒冷地；需限定Sense而非覆盖全部用法。"
+    },
+    {
+      "ku_id": "w_5186_heater_ku_s01",
+      "queue_index": 3027,
+      "lemma": "heater",
+      "rank": 6177,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "提供热量的器具，适用于室内取暖设备或工业加热器。"
+    },
+    {
+      "ku_id": "w_8683_holistic_ku_s01",
+      "queue_index": 3029,
+      "lemma": "holistic",
+      "rank": 6180,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "从相互作用的各部分出发整体考虑，区别只看局部。"
+    },
+    {
+      "ku_id": "w_10313_rationally_ku_s01",
+      "queue_index": 3030,
+      "lemma": "rationally",
+      "rank": 6181,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "使用推理而非仅凭直觉作判断，理性副词义符合。"
+    },
+    {
+      "ku_id": "w_12781_irradiation_ku_s01",
+      "queue_index": 3031,
+      "lemma": "irradiation",
+      "rank": 6182,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "使物体暴露于辐射之下的过程，技术名词定义正确。"
+    },
+    {
+      "ku_id": "w_4961_scenery_ku_s01",
+      "queue_index": 3033,
+      "lemma": "scenery",
+      "rank": 6184,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "仅自然景观过窄，scenery也可包括城市视觉风景及剧场布景；须核对目标Sense。"
+    },
+    {
+      "ku_id": "w_7434_logically_ku_s01",
+      "queue_index": 3034,
+      "lemma": "logically",
+      "rank": 6185,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "按照有效推理关系进行，符合逻辑地而非按时间排序。"
+    },
+    {
+      "ku_id": "w_4964_chunk_ku_s01",
+      "queue_index": 3037,
+      "lemma": "chunk",
+      "rank": 6188,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "相对较大的完整一块，大小与部分性均体现。"
+    },
+    {
+      "ku_id": "w_11924_slalom_ku_s01",
+      "queue_index": 3040,
+      "lemma": "slalom",
+      "rank": 6192,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "通过交错旗门转弯的比赛，能用于滑雪等回转项目。"
+    },
+    {
+      "ku_id": "w_9159_bookseller_ku_s01",
+      "queue_index": 3041,
+      "lemma": "bookseller",
+      "rank": 6193,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "书籍销售者可为个人或公司，不限实体门店。"
+    },
+    {
+      "ku_id": "w_9549_readable_ku_s01",
+      "queue_index": 3044,
+      "lemma": "readable",
+      "rank": 6196,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "内容容易阅读，既可能由于排版也可能由于文风。"
+    },
+    {
+      "ku_id": "w_7397_perimeter_ku_s01",
+      "queue_index": 3046,
+      "lemma": "perimeter",
+      "rank": 6198,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "仅解释边界总长度为‘周长’，但perimeter同时可指实际边界线、周边区域；须核对KU语义。"
+    },
+    {
+      "ku_id": "w_9324_parse_ku_s01",
+      "queue_index": 3047,
+      "lemma": "parse",
+      "rank": 6199,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "分析形式化或自然语言结构的动作，计算语言学基础义合理。"
+    },
+    {
+      "ku_id": "w_3331_punish_ku_s01",
+      "queue_index": 3048,
+      "lemma": "punish",
+      "rank": 6200,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "因不当行为施加处罚，不等于仅进行训斥。"
+    },
+    {
+      "ku_id": "w_10821_baseman_ku_s01",
+      "queue_index": 3050,
+      "lemma": "baseman",
+      "rank": 6202,
+      "source_commit": "baecd921e3ad8a11a09e7efa3a6f8160a11da64f",
+      "verdict": "PASS",
+      "linguistic_reason": "棒球运动中防守垒位的球员，名词与中文垒手一致。"
+    },
+    {
+      "ku_id": "w_7694_unresolved_ku_s01",
+      "queue_index": 3054,
+      "lemma": "unresolved",
+      "rank": 6206,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "尚未得到解决或裁定的事项，区别无法解决。"
+    },
+    {
+      "ku_id": "w_7733_alphabet_ku_s01",
+      "queue_index": 3058,
+      "lemma": "alphabet",
+      "rank": 6210,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "一种语言使用的字母系统全套成员，基础义恰当。"
+    },
+    {
+      "ku_id": "w_3737_accumulate_ku_s01",
+      "queue_index": 3059,
+      "lemma": "accumulate",
+      "rank": 6211,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "数量随时间累积，可为主动收集或自然积聚。"
+    },
+    {
+      "ku_id": "w_4984_pony_ku_s01",
+      "queue_index": 3060,
+      "lemma": "pony",
+      "rank": 6212,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "REVISE",
+      "linguistic_reason": "young type of horse错误地将小马驹当作pony的定义；pony是小型马品种/体型，不取决于年龄。"
+    },
+    {
+      "ku_id": "w_7029_pointless_ku_s01",
+      "queue_index": 3062,
+      "lemma": "pointless",
+      "rank": 6214,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "缺乏有意义目标或用途，语义强于无效率。"
+    },
+    {
+      "ku_id": "w_3885_snack_ku_s01",
+      "queue_index": 3063,
+      "lemma": "snack",
+      "rank": 6215,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "正餐之外吃的少量食物，零食义准确。"
+    },
+    {
+      "ku_id": "w_7723_departmental_ku_s01",
+      "queue_index": 3064,
+      "lemma": "departmental",
+      "rank": 6216,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "属于组织内部的行政部门的形容词义清楚。"
+    },
+    {
+      "ku_id": "w_5826_enthusiast_ku_s01",
+      "queue_index": 3066,
+      "lemma": "enthusiast",
+      "rank": 6218,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "热衷某项活动的人，未夸大为职业专家。"
+    },
+    {
+      "ku_id": "w_6831_notation_ku_s01",
+      "queue_index": 3068,
+      "lemma": "notation",
+      "rank": 6220,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "以一套符号表达信息或概念的体系，常用于数学及音乐。"
+    },
+    {
+      "ku_id": "w_8038_prehistoric_ku_s01",
+      "queue_index": 3073,
+      "lemma": "prehistoric",
+      "rank": 6225,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "早于书面历史记录的时期，不误限恐龙时代。"
+    },
+    {
+      "ku_id": "w_8035_manure_ku_s01",
+      "queue_index": 3074,
+      "lemma": "manure",
+      "rank": 6226,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "用于施肥的动物排泄物，区别一般化肥。"
+    },
+    {
+      "ku_id": "w_5222_intensify_ku_s01",
+      "queue_index": 3075,
+      "lemma": "intensify",
+      "rank": 6227,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "强度上升或使强度增大，兼顾及物与不及物。"
+    },
+    {
+      "ku_id": "w_7874_pulpit_ku_s01",
+      "queue_index": 3076,
+      "lemma": "pulpit",
+      "rank": 6228,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "教堂内供讲道的抬高讲坛，具体建筑义准确。"
+    },
+    {
+      "ku_id": "w_3656_entrepreneur_ku_s01",
+      "queue_index": 3077,
+      "lemma": "entrepreneur",
+      "rank": 6229,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "创建并经营企业且承担商业风险，与一般员工区分。"
+    },
+    {
+      "ku_id": "w_8576_satin_ku_s01",
+      "queue_index": 3082,
+      "lemma": "satin",
+      "rank": 6234,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "光滑有光泽的缎纹织物，不强制是丝制。"
+    },
+    {
+      "ku_id": "w_6388_bald_ku_s01",
+      "queue_index": 3083,
+      "lemma": "bald",
+      "rank": 6235,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "头顶无发或发量极少的形容词，基础义正确。"
+    },
+    {
+      "ku_id": "w_10217_cello_ku_s01",
+      "queue_index": 3084,
+      "lemma": "cello",
+      "rank": 6236,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "竖直持放、用弓演奏的大型弦乐器，识别大提琴。"
+    },
+    {
+      "ku_id": "w_4255_distract_ku_s01",
+      "queue_index": 3086,
+      "lemma": "distract",
+      "rank": 6238,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "使注意力偏离手头任务，常见及物动词义准确。"
+    },
+    {
+      "ku_id": "w_5607_bloke_ku_s01",
+      "queue_index": 3087,
+      "lemma": "bloke",
+      "rank": 6239,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "英国非正式用语指男人或家伙，语体和地域均标注。"
+    },
+    {
+      "ku_id": "w_4427_wool_ku_s01",
+      "queue_index": 3088,
+      "lemma": "wool",
+      "rank": 6240,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "绵羊羊毛的软纤维基础义成立，其他动物毛制品可另设义项。"
+    },
+    {
+      "ku_id": "w_9261_selectively_ku_s01",
+      "queue_index": 3089,
+      "lemma": "selectively",
+      "rank": 6241,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "只挑选某些对象而非一视同仁，选择性副词对应。"
+    },
+    {
+      "ku_id": "w_6469_villain_ku_s01",
+      "queue_index": 3091,
+      "lemma": "villain",
+      "rank": 6243,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "仅故事里的邪恶角色过窄，villain也可指现实恶人；需验证此KU是否只为叙事义。"
+    },
+    {
+      "ku_id": "w_6522_bowel_ku_s01",
+      "queue_index": 3093,
+      "lemma": "bowel",
+      "rank": 6247,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "肠或肠道，通常指大肠部分但并非总专指下段。"
+    },
+    {
+      "ku_id": "w_6275_cherish_ku_s01",
+      "queue_index": 3094,
+      "lemma": "cherish",
+      "rank": 6248,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "珍爱人或重视珍贵事物，具持续情感价值。"
+    },
+    {
+      "ku_id": "w_8404_postage_ku_s01",
+      "queue_index": 3095,
+      "lemma": "postage",
+      "rank": 6249,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "邮寄信件或包裹支付的费用，邮资释义准确。"
+    },
+    {
+      "ku_id": "w_4998_corps_ku_s01",
+      "queue_index": 3098,
+      "lemma": "corps",
+      "rank": 6252,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "军事编制或专业服务团体，两个常用范畴兼顾。"
+    },
+    {
+      "ku_id": "w_6003_skepticism_ku_s01",
+      "queue_index": 3100,
+      "lemma": "skepticism",
+      "rank": 6254,
+      "source_commit": "16d370f0275f95d677b100397cbff782cd17a4db",
+      "verdict": "PASS",
+      "linguistic_reason": "对主张真实性存疑，不必视为完全否定。"
+    },
+    {
+      "ku_id": "w_9382_revamp_ku_s01",
+      "queue_index": 3101,
+      "lemma": "revamp",
+      "rank": 6255,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "对既有事物进行明显改造或改良，与简单微调区别。"
+    },
+    {
+      "ku_id": "w_9449_exploratory_ku_s01",
+      "queue_index": 3104,
+      "lemma": "exploratory",
+      "rank": 6258,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "以调查可能性为目的而未形成最终结论，探索性语义正确。"
+    },
+    {
+      "ku_id": "w_11829_encryption_ku_s01",
+      "queue_index": 3105,
+      "lemma": "encryption",
+      "rank": 6259,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "通过编码保护信息免于未授权读取，信息安全用途明确。"
+    },
+    {
+      "ku_id": "w_11583_humankind_ku_s01",
+      "queue_index": 3111,
+      "lemma": "humankind",
+      "rank": 6265,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "把所有人作为整体的人类总称，不限男性。"
+    },
+    {
+      "ku_id": "w_6098_someday_ku_s01",
+      "queue_index": 3112,
+      "lemma": "someday",
+      "rank": 6266,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "未来不确定的某一天，时间副词意义正确。"
+    },
+    {
+      "ku_id": "w_3369_bean_ku_s01",
+      "queue_index": 3114,
+      "lemma": "bean",
+      "rank": 6268,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "豆子未必严格限定豆科植物可食种子；coffee bean、cocoa bean属于扩展用法，需核对Sense限定。"
+    },
+    {
+      "ku_id": "w_12165_unsolved_ku_s01",
+      "queue_index": 3115,
+      "lemma": "unsolved",
+      "rank": 6270,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "问题或谜团尚未解决/解释，与unresolved交叉但用法区分可在教学说明。"
+    }
+  ],
+  "certification": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "production_ready": false,
+  "activation_allowed": false
+}
