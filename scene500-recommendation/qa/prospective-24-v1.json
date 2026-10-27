@@ -1,0 +1,177 @@
+{
+  "schema": "scene500-prospective-probe-v1",
+  "status": "NEW_EDITORIAL_UNSEEN_AT_AUTHORING_NONBLIND_NOT_CERTIFIED",
+  "created_for": "prospective read-only measurement; do not tune on this set before evaluation",
+  "cases": [
+    {
+      "query": "我想给酒店前台打电话问入住时间",
+      "group": "hotel",
+      "expected": [
+        "S114"
+      ]
+    },
+    {
+      "query": "我打算提前订一家宾馆",
+      "group": "hotel",
+      "expected": [
+        "S113"
+      ]
+    },
+    {
+      "query": "Where do I collect my hotel room key?",
+      "group": "hotel",
+      "expected": [
+        "S114"
+      ]
+    },
+    {
+      "query": "I need to cancel my hotel booking",
+      "group": "hotel",
+      "openEnded": true
+    },
+    {
+      "query": "I want to order noodles for lunch",
+      "group": "food",
+      "expected": [
+        "S034"
+      ]
+    },
+    {
+      "query": "Could I get a veggie salad?",
+      "group": "food",
+      "expected": [
+        "S034",
+        "S038"
+      ]
+    },
+    {
+      "query": "The waiter gave me the wrong bill",
+      "group": "food",
+      "expected": [
+        "S041"
+      ]
+    },
+    {
+      "query": "I'm allergic to peanuts",
+      "group": "food",
+      "expected": [
+        "S037"
+      ]
+    },
+    {
+      "query": "今天不坐地铁，改乘公交",
+      "group": "transport",
+      "expected": [
+        "S078"
+      ],
+      "excluded": [
+        "S079"
+      ]
+    },
+    {
+      "query": "地铁停运了我想打车",
+      "group": "transport",
+      "expected": [
+        "S081"
+      ],
+      "excluded": [
+        "S079"
+      ]
+    },
+    {
+      "query": "I need a bus ticket",
+      "group": "transport",
+      "expected": [
+        "S078"
+      ]
+    },
+    {
+      "query": "Where is the subway station?",
+      "group": "transport",
+      "expected": [
+        "S079"
+      ]
+    },
+    {
+      "query": "My phone app keeps crashing",
+      "group": "technology",
+      "expected": [
+        "S275"
+      ]
+    },
+    {
+      "query": "How do I update a phone application?",
+      "group": "technology",
+      "expected": [
+        "S275"
+      ]
+    },
+    {
+      "query": "I'm building a mobile app",
+      "group": "technology",
+      "expected": [
+        "S296"
+      ]
+    },
+    {
+      "query": "My laptop battery won't charge",
+      "group": "technology",
+      "openEnded": true
+    },
+    {
+      "query": "学习英语听力的方法",
+      "group": "study",
+      "openEnded": true,
+      "excluded": [
+        "S279",
+        "S280"
+      ]
+    },
+    {
+      "query": "I want to improve my English accent",
+      "group": "study",
+      "openEnded": true,
+      "excluded": [
+        "S279",
+        "S280"
+      ]
+    },
+    {
+      "query": "机器学习课程怎么报名",
+      "group": "study",
+      "expected": [
+        "S279"
+      ]
+    },
+    {
+      "query": "如何使用深度学习训练图像模型",
+      "group": "study",
+      "expected": [
+        "S280"
+      ]
+    },
+    {
+      "query": "我要预约医生看病",
+      "group": "other",
+      "openEnded": true,
+      "excluded": [
+        "S113"
+      ]
+    },
+    {
+      "query": "How to apply for a tourist visa?",
+      "group": "other",
+      "openEnded": true
+    },
+    {
+      "query": "帮我找回网购订单",
+      "group": "other",
+      "openEnded": true
+    },
+    {
+      "query": "Where can I report a stolen wallet?",
+      "group": "other",
+      "openEnded": true
+    }
+  ]
+}
