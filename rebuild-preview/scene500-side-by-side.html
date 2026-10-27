@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PAI Word · Scene500 双算法对比</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#1d2939;background:#f4f7fb}*{box-sizing:border-box}
+main{max-width:1160px;margin:auto;padding:22px 16px}h1{font-size:24px;margin:5px 0 10px}p{line-height:1.5;color:#526071}
+form{display:flex;gap:8px;margin:22px 0 12px}input{flex:1;min-width:0;padding:13px;border:1px solid #b9c5d5;border-radius:10px;font-size:16px}button{padding:10px 22px;background:#1764bb;color:white;border:0;border-radius:10px;font-size:16px;cursor:pointer}button:disabled{opacity:.45}
+#status{font-size:13px;color:#526071;min-height:20px;margin-bottom:15px}.columns{display:grid;grid-template-columns:1fr 1fr;gap:16px}.panel{min-width:0;background:white;padding:17px;border:1px solid #dce4ec;border-radius:14px}.panel h2{font-size:18px;margin:0 0 5px}.subtitle{font-size:13px;color:#617187;margin:0 0 15px}
+ol{list-style:none;padding:0;margin:0}li{border-top:1px solid #ecf0f4;padding:11px 2px;display:flex;gap:9px;align-items:center}.rank{width:22px;color:#64748b;font-variant-numeric:tabular-nums}.scene{flex:1}.id{font-size:12px;color:#64748b}.tag{font-size:11px;background:#eaf3ff;color:#155a9b;padding:3px 5px;border-radius:5px}.note{font-size:12px;color:#68778a;margin-top:18px}
+@media(max-width:620px){main{padding:13px}h1{font-size:20px}.columns{gap:8px}.panel{padding:10px}.panel h2{font-size:15px}li{gap:5px;font-size:13px}.rank{width:14px}.subtitle{font-size:11px}form{flex-wrap:wrap}button{width:100%}}
+</style></head><body><main>
+<h1>Scene500 · 旧版 / 新版同时对比</h1>
+<p>输入一条中文或英文需求，左右使用完全相同的基础召回结果。右侧仅增加最新的定向查询修正；此页面属于隔离算法评估，不影响正式推荐和学习记录。</p>
+<form id="queryForm"><input id="query" autocomplete="off" maxlength="200" placeholder="例如：I need to book a hotel room" value="I need to book a hotel room"><button id="run" type="submit">同时比较</button></form>
+<div id="status" role="status">正在准备推荐引擎…</div>
+<section class="columns"><article class="panel"><h2>原算法</h2><p class="subtitle">基线 · 不应用新修正</p><ol id="left"></ol></article><article class="panel"><h2>实验新算法</h2><p class="subtitle">相同召回 + 定向查询修正</p><ol id="right"></ol></article></section>
+<p class="note">对比显示的是 Scene500 算法候选，尚未按当前用户已掌握词汇与可学习 KU 过滤，因此不等同于实际学习页可进入的场景。实验结果不代表开放域语义质量已获认证。不会写入 SRS 或浏览器学习数据。</p>
+</main><script type="module">
+import {loadScene500WithChineseLexicon} from '../scene500-recommendation/chinese-lexicon-loader.mjs';
+import {applyObservedQueryCorrections} from '../scene500-recommendation/observed-query-corrections.mjs';
+const root=new URL('../scene500-recommendation/',import.meta.url);
+const form=document.getElementById('queryForm'),input=document.getElementById('query'),status=document.getElementById('status'),run=document.getElementById('run');
+const left=document.getElementById('left'),right=document.getElementById('right');
+let engine=null,catalog=null,sequence=0;
+function draw(node,rows,other){node.replaceChildren();if(!rows.length){const li=document.createElement('li');li.textContent='没有候选场景';node.append(li);return;}
+rows.forEach((r,i)=>{const li=document.createElement('li'),rank=document.createElement('span'),label=document.createElement('span'),id=document.createElement('span');
+rank.className='rank';rank.textContent=String(i+1);label.className='scene';label.textContent=r.name||catalog.scenes[r.sceneId]?.name||r.sceneId;
+id.className='id';id.textContent=r.sceneId;li.append(rank,label,id);
+if(!other.some(x=>x.sceneId===r.sceneId)){const t=document.createElement('span');t.className='tag';t.textContent='独有';li.append(t)}node.append(li)});
+}
+function compare(){if(!engine)return;const ticket=++sequence;const q=input.value.trim();if(!q){left.replaceChildren();right.replaceChildren();status.textContent='请输入查询';return;}
+const original=engine.search(q,{limit:500});const changed=applyObservedQueryCorrections(original,q,{catalog,limit:10});
+if(ticket!==sequence)return;const a=original.results.slice(0,10),c=changed.results;
+draw(left,a,c);draw(right,c,a);const firstA=a[0]?.sceneId||'无',firstB=c[0]?.sceneId||'无';
+status.textContent='模式：'+engine.mode+' ｜原 Top1：'+firstA+' ｜新 Top1：'+firstB+' ｜命中规则：'+(changed.correctionRule||'无')+(firstA===firstB?' ｜Top1 未变化':' ｜Top1 已变化');
+}
+form.addEventListener('submit',e=>{e.preventDefault();compare()});
+input.addEventListener('input',()=>{if(engine)compare()});
+try{run.disabled=true;const r=await fetch(new URL('catalog-v0.2.json',root),{cache:'force-cache'});if(!r.ok)throw Error('目录HTTP '+r.status);catalog=await r.json();
+engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:new URL('zh-core20k-v0101-scene500-runtime.json',root).href,associationUrl:new URL('v094-lexical-associations.json',root).href,timeoutMs:4500});
+run.disabled=false;compare();}catch(e){status.textContent='初始化失败：'+String(e.message||e);run.disabled=true}
+</script></body></html>
