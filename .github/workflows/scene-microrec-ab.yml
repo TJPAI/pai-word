@@ -11,6 +11,7 @@ jobs:
   compare:
     runs-on: ubuntu-latest
     permissions:
+      actions: read
       contents: read
     steps:
       - uses: actions/checkout@v4
@@ -53,6 +54,19 @@ jobs:
         run: python -m pip install numpy
       - name: Synthetic student pipeline QA (not real teacher inference)
         run: python experiments/scene-microrec/test-student-pipeline.py
+      - name: Download successful real E5 distillation artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: scene-microrec-real-student-and-teacher
+          path: /tmp/real-distill-artifacts
+          github-token: ${{ github.token }}
+          run-id: 40477803071
+      - name: Real E5 INT8 student versus Conservative A/B
+        run: |
+          mkdir -p /tmp/real-distill-ab
+          node experiments/scene-microrec/evaluate-real-student-vs-conservative.mjs \
+            /tmp/real-distill-artifacts/scene-student-real.json \
+            /tmp/real-distill-ab/real-student-vs-conservative.json
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
@@ -63,3 +77,4 @@ jobs:
             experiments/scene-microrec/exploratory-probes.json
             experiments/scene-microrec/multi-metric-report.json
             experiments/scene-microrec/teacher-encoding-jobs.json
+            /tmp/real-distill-ab/real-student-vs-conservative.json
