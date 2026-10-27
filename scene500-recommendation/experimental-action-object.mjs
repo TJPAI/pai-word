@@ -11,6 +11,15 @@ const patterns=[
  {id:'software_fault',sceneId:'S275',action:/\b(?:crash(?:ing|es|ed)?|error|bug|failed?|broken)\b/i,object:/\b(?:app|software|program|application|phone)\b/i},
  {id:'software_development',sceneId:'S296',action:/\b(?:build(?:ing)?|develop(?:ing|ment)?|cod(?:e|ing))\b/i,object:/\b(?:app|software|application|program)\b/i}
 ];
+// Provisional contextual exclusions, applied only to the experimental comparison.
+// A broken/unavailable transport option is not the requested new transport;
+// learning spoken/listening English does not imply machine-learning content.
+function contextExclusions(q){
+ const out=new Set();
+ if(/(?:地铁|轨道交通)(?:停运|停了|故障|关闭|中断)/.test(q)&&/(?:打车|叫车|出租车|网约车|换乘|改乘|公交)/.test(q))out.add('S079');
+ if(/(?:学习|练习|提高|训练).{0,8}英语(?:听力|口语|发音|课程|学习)?|英语(?:听力|口语|发音|学习)/.test(q)&&!/(?:机器学习|深度学习|人工智能|machine learning|deep learning)/.test(q)){out.add('S279');out.add('S280');}
+ return out;
+}
 export const ACTION_OBJECT_CANDIDATE_VERSION='scene500-action-object-prototype-v0.1';
 export function actionObjectCandidates(query,{catalog,eligibleSceneIds=null}={}){
  const q=String(query??'').normalize('NFKC').toLowerCase();
@@ -24,8 +33,9 @@ export function actionObjectCandidates(query,{catalog,eligibleSceneIds=null}={})
 export function compareActionObjectCandidates(snapshot,query,{catalog,eligibleSceneIds=null,limit=10}={}){
  const n=Math.max(0,Math.min(10,Number.isFinite(+limit)?Math.floor(+limit):10));
  const allowed=eligibleSceneIds==null?null:new Set(eligibleSceneIds);
- const baseline=(snapshot?.results||[]).filter(r=>catalog?.scenes?.[r.sceneId]&&(!allowed||allowed.has(r.sceneId))).slice(0,n);
- const candidates=actionObjectCandidates(query,{catalog,eligibleSceneIds});
+ const excluded=contextExclusions(String(query??'').normalize('NFKC').toLowerCase());
+ const baseline=(snapshot?.results||[]).filter(r=>catalog?.scenes?.[r.sceneId]&&!excluded.has(r.sceneId)&&(!allowed||allowed.has(r.sceneId))).slice(0,n);
+ const candidates=actionObjectCandidates(query,{catalog,eligibleSceneIds}).filter(r=>!excluded.has(r.sceneId));
  const rows=new Map(baseline.map(r=>[r.sceneId,{...r}]));
  for(const c of candidates){const prev=rows.get(c.sceneId);if(prev){prev.score=Math.max(+prev.score||0,c.score);prev.reason=[...new Set([...(prev.reason||[]),...c.reason])]}else rows.set(c.sceneId,{...c,name:catalog.scenes[c.sceneId].name,quality:catalog.scenes[c.sceneId].quality,matchedTerms:[]});}
  const result=[...rows.values()].sort((a,b)=>(+b.score||0)-(+a.score||0)||a.sceneId.localeCompare(b.sceneId)).slice(0,n).map((r,i)=>({...r,rank:i+1}));
