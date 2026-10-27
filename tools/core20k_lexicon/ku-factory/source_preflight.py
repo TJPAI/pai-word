@@ -35,5 +35,11 @@ for x in words:
  if a.start<=rank<=a.end:entries.append({"rank":rank,"lemma":lemma,"headword_id":hid,"source_record":x})
 ranks=[x["rank"] for x in entries]
 if len(entries)!=a.end-a.start+1 or sorted(ranks)!=list(range(a.start,a.end+1)):sys.exit("RANK_CONTIGUITY_FAIL")
-out.write_text(json.dumps({"schema":"enlex-source-export-v1","source_runtime_sha256":digest,"runtime_array":name,"rank_range":[a.start,a.end],"count":len(entries),"words":sorted(entries,key=lambda x:x["rank"])},ensure_ascii=False)+"\n",encoding="utf8")
+sense_fields=("senses","sense_records","meanings","definitions")
+sense_count=sum(len(v) for e in entries for k,v in e["source_record"].items() if k in sense_fields and isinstance(v,list))
+payload={"schema":"enlex-source-export-v2","source_runtime_sha256":digest,"runtime_array":name,"rank_range":[a.start,a.end],"count":len(entries),"sense_count_detected":sense_count,"sense_source_ready":sense_count>0,"words":sorted(entries,key=lambda x:x["rank"])}
+out.write_text(json.dumps(payload,ensure_ascii=False)+"\\n",encoding="utf8")
+if sense_count==0:
+ print("HEADWORDS_EXPORTED_BUT_SENSE_SOURCE_NOT_VERIFIED",file=sys.stderr)
+ sys.exit(4)
 print("EXPORTED",len(entries),out)
