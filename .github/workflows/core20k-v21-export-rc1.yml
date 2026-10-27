@@ -1,0 +1,22 @@
+name: Core20K V2.1 downloadable lexicon and teaching RC1
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/export_v21_rc1.py'
+      - '.github/workflows/core20k-v21-export-rc1.yml'
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build complete lexicon and protected teaching staging
+        run: python3 tools/core20k_sense_v1/export_v21_rc1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: PAI-Word-Core20K-V2.1-Lexicon-Teaching-RC1
+          path: tools/core20k_sense_v1/release/v2.1-rc1/
+          retention-days: 90
