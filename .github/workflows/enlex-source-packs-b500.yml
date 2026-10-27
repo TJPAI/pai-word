@@ -5,6 +5,7 @@ on:
       - enlex-source-packs-b500-20261027
     paths:
       - tools/core20k_lexicon/ku-factory/build_source_packs.py
+      - tools/core20k_lexicon/ku-factory/build_identity_crosswalk.py
       - .github/workflows/enlex-source-packs-b500.yml
   workflow_dispatch:
 permissions:
@@ -41,6 +42,8 @@ jobs:
           assert allr==list(range(1,20001))
           print('PASS 40 packs / 20000 ranks')
           PY
+      - name: Build provisional identity crosswalk
+        run: python tools/core20k_lexicon/ku-factory/build_identity_crosswalk.py
       - name: Commit generated source files
         run: |
           git config user.name 'github-actions[bot]'
