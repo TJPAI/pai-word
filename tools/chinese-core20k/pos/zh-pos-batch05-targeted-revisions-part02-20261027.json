@@ -1,0 +1,235 @@
+{
+  "schema": "zh-core20k-pos-batch05-targeted-revision-v2",
+  "source_batch05_blob": "e3dbc2c43bcf57796ed73936303ef369e621b28f",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "selection_count": 15,
+  "source_rows": 200,
+  "activation_allowed": false,
+  "items": [
+    {
+      "term": "可是",
+      "term_id": "zh_38ca4a9c76b133030749",
+      "runtime_index": 602,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "CCONJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“我想去，可是下雨了”中连接转折分句；“可是好得很”有强调副词用法。",
+      "limit_zh": "原ADV只适用于部分强调语境，转折连接不能被忽略。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "行政",
+      "term_id": "zh_e79890c96ee6f0c5d401",
+      "runtime_index": 570,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“行政与司法相分离”可作抽象领域名词；“行政机关”“行政管理”是名词性定语，也可在特定词性体系标区别词。",
+      "limit_zh": "“行政机关”定语位置本身不能证明独立形容词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "官方",
+      "term_id": "zh_e73e38c1f65d0326beda",
+      "runtime_index": 576,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“官方发布声明”中官方为组织/权威来源名词；“官方消息”是名词性定语。",
+      "limit_zh": "不能只凭修饰“消息”就判为ADJ。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "建议",
+      "term_id": "zh_abee4974732afaf51aef",
+      "runtime_index": 588,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“建议你先休息”是动词谓语；“提出一项建议”是可计量抽象名词。",
+      "limit_zh": "原VERB漏掉极常见的名词用法。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "改革",
+      "term_id": "zh_1a36529523b06901400a",
+      "runtime_index": 603,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“改革制度”作动词且带宾语；“推动改革”“一项改革”为事件名词。",
+      "limit_zh": "原NOUN漏掉及物动词用法。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "增长",
+      "term_id": "zh_e1cf00d81f03c3671d80",
+      "runtime_index": 575,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“经济持续增长”作谓语；“实现稳定增长”中可作过程名词。",
+      "limit_zh": "既可谓语又可指变化过程，不应只用一种标签。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "建筑",
+      "term_id": "zh_5b46860a8e8bde1df098",
+      "runtime_index": 566,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "VERB"
+      ],
+      "evidence_zh": "“一座建筑”是可数实体名词；“建筑房屋”在正式书面语中可作建造动词。",
+      "limit_zh": "须区分动词语义和名词实体义，正式语域应记录。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "发布",
+      "term_id": "zh_b61f333b91b21f79ba7b",
+      "runtime_index": 563,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“发布消息”是及物动词；“产品的发布”名词化事件用法需依标注体系另核。",
+      "limit_zh": "名词化分析需语料支持，不可直接将所有的字结构定为名词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "显示",
+      "term_id": "zh_4e1449e7d5e505938ac1",
+      "runtime_index": 581,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“屏幕显示数据”是动词；“显示效果”中“显示”可构成技术领域名词性修饰，需辨别复合词边界。",
+      "limit_zh": "后一证据只提示兼类风险，不能直接认证NOUN。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "标准",
+      "term_id": "zh_6bea77acefb364ac3d40",
+      "runtime_index": 597,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“达到标准”“一个标准”是名词；“标准答案”“动作很标准”有形容性或性质谓词用法。",
+      "limit_zh": "不是所有前置修饰都等于ADJ，“很标准”提供更有力句法证据。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "联系",
+      "term_id": "zh_bfc967329e10188c44f7",
+      "runtime_index": 607,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“联系老师”作动词；“保持联系”中联系是抽象名词宾语。",
+      "limit_zh": "原HOLD可转为候选，但仍需独立复审。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "记录",
+      "term_id": "zh_9fad24e2c377ee89a4ea",
+      "runtime_index": 611,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“记录实验数据”为动词；“查看记录”中记录为可数名词。",
+      "limit_zh": "原HOLD须按义项分POS。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "变化",
+      "term_id": "zh_e329c44530ee62f6793e",
+      "runtime_index": 574,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“形势正在变化”为谓词；“发生重大变化”为变化事件名词。",
+      "limit_zh": "原HOLD须区分动词和事件名词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "确定",
+      "term_id": "zh_fac2a67ad87807c4112a",
+      "runtime_index": 623,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“确定方案”为及物动词；“结果还不确定”中为形容词性谓词。",
+      "limit_zh": "不能把不确定构式直接看成单纯动词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "不仅",
+      "term_id": "zh_8b86150100bb2a35bad0",
+      "runtime_index": 612,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [
+        "CCONJ"
+      ],
+      "evidence_zh": "“他不仅会写，还会画”中与“还/而且”构成递进关联，既有副词位置也有构式连接功能。",
+      "limit_zh": "需写出关联结构，不能凭谓语前位置自动宣称纯副词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    }
+  ]
+}
