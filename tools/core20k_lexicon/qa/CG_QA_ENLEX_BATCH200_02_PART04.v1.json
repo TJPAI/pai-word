@@ -1,0 +1,476 @@
+{
+  "schema_version": "cg_qa_enlex_batch200_02_part04_v1",
+  "target": 200,
+  "prior_reviewed": 150,
+  "new_reviewed": 50,
+  "cumulative": 200,
+  "source_commits": [
+    {
+      "sha": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "range": "3101_3150"
+    },
+    {
+      "sha": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "range": "3151_3200"
+    }
+  ],
+  "summary": {
+    "PASS": 46,
+    "FLAGGED": 4
+  },
+  "records": [
+    {
+      "ku_id": "w_9489_majestic_ku_s01",
+      "lemma": "majestic",
+      "rank": 6274,
+      "queue_index": 3119,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "雄伟程度或美感令人印象深刻，不限具体场景"
+    },
+    {
+      "ku_id": "w_12813_homestead_ku_s01",
+      "lemma": "homestead",
+      "rank": 6275,
+      "queue_index": 3120,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "住宅连同周围土地义成立但不要求农场；美国宅地法律义需核对Sense"
+    },
+    {
+      "ku_id": "w_9828_fluffy_ku_s01",
+      "lemma": "fluffy",
+      "rank": 6277,
+      "queue_index": 3122,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "轻柔蓬松的触感和结构对应"
+    },
+    {
+      "ku_id": "w_6147_pea_ku_s01",
+      "lemma": "pea",
+      "rank": 6278,
+      "queue_index": 3123,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "豆荚中的圆形食用种子符合豌豆义"
+    },
+    {
+      "ku_id": "w_4174_commentator_ku_s01",
+      "lemma": "commentator",
+      "rank": 6279,
+      "queue_index": 3124,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "解说或评述公共事件的人，不限体育"
+    },
+    {
+      "ku_id": "w_5708_relocate_ku_s01",
+      "lemma": "relocate",
+      "rank": 6280,
+      "queue_index": 3125,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "迁居或迁移工作地点，涵盖人和机构"
+    },
+    {
+      "ku_id": "w_6043_stakeholder_ku_s01",
+      "lemma": "stakeholder",
+      "rank": 6281,
+      "queue_index": 3126,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "受事务影响或能施加影响的利益主体"
+    },
+    {
+      "ku_id": "w_11403_resale_ku_s01",
+      "lemma": "resale",
+      "rank": 6286,
+      "queue_index": 3130,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "购入后再售出，区别第一次销售"
+    },
+    {
+      "ku_id": "w_11770_deli_ku_s01",
+      "lemma": "deli",
+      "rank": 6287,
+      "queue_index": 3131,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "销售预制熟食和奶酪等食品的商店"
+    },
+    {
+      "ku_id": "w_3324_mild_ku_s01",
+      "lemma": "mild",
+      "rank": 6288,
+      "queue_index": 3132,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "性情温和或程度轻微的共同上位义"
+    },
+    {
+      "ku_id": "w_4935_successive_ku_s01",
+      "lemma": "successive",
+      "rank": 6289,
+      "queue_index": 3133,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "相继发生的一系列事件而非success成功"
+    },
+    {
+      "ku_id": "w_10167_uproar_ku_s01",
+      "lemma": "uproar",
+      "rank": 6292,
+      "queue_index": 3136,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "喧闹的群体激动或愤怒反应"
+    },
+    {
+      "ku_id": "w_3769_opt_ku_s01",
+      "lemma": "opt",
+      "rank": 6293,
+      "queue_index": 3137,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "在备选方案中选取，通常跟for/to"
+    },
+    {
+      "ku_id": "w_9700_connectivity_ku_s01",
+      "lemma": "connectivity",
+      "rank": 6295,
+      "queue_index": 3139,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "IT连通性正确，但交通生态等连接能力亦使用，需限定Sense"
+    },
+    {
+      "ku_id": "w_3416_preliminary_ku_s01",
+      "lemma": "preliminary",
+      "rank": 6297,
+      "queue_index": 3141,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "发生于正式阶段前的初步行动"
+    },
+    {
+      "ku_id": "w_8339_allot_ku_s01",
+      "lemma": "allot",
+      "rank": 6299,
+      "queue_index": 3142,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "按份额分配资源给具体接受者"
+    },
+    {
+      "ku_id": "w_6745_sidewalk_ku_s01",
+      "lemma": "sidewalk",
+      "rank": 6300,
+      "queue_index": 3143,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "沿道路设置的人行步道，美式用法准确"
+    },
+    {
+      "ku_id": "w_10298_emergent_ku_s01",
+      "lemma": "emergent",
+      "rank": 6304,
+      "queue_index": 3147,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "刚出现或逐渐显现，非紧急"
+    },
+    {
+      "ku_id": "w_4992_replicate_ku_s01",
+      "lemma": "replicate",
+      "rank": 6305,
+      "queue_index": 3148,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "复制实物或重现结果，技术义成立"
+    },
+    {
+      "ku_id": "w_6701_battlefield_ku_s01",
+      "lemma": "battlefield",
+      "rank": 6306,
+      "queue_index": 3149,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "发生武装战斗的地域"
+    },
+    {
+      "ku_id": "w_4415_contradiction_ku_s01",
+      "lemma": "contradiction",
+      "rank": 6307,
+      "queue_index": 3150,
+      "source_commit": "ff6d2114b387ab1c17bf5de376c4e80dc51304e3",
+      "verdict": "PASS",
+      "linguistic_reason": "说法或事实之间的不相容"
+    },
+    {
+      "ku_id": "w_8606_posit_ku_s01",
+      "lemma": "posit",
+      "rank": 6308,
+      "queue_index": 3151,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "以论证假设形式提出意见，正式动词"
+    },
+    {
+      "ku_id": "w_7092_glacier_ku_s01",
+      "lemma": "glacier",
+      "rank": 6314,
+      "queue_index": 3156,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "陆地上的大型缓慢移动冰体"
+    },
+    {
+      "ku_id": "w_10745_rightful_ku_s01",
+      "lemma": "rightful",
+      "rank": 6316,
+      "queue_index": 3157,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "依法或在道义上应当享有权利"
+    },
+    {
+      "ku_id": "w_4570_prosperity_ku_s01",
+      "lemma": "prosperity",
+      "rank": 6318,
+      "queue_index": 3159,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "社会事业或经济繁荣兴盛"
+    },
+    {
+      "ku_id": "w_5347_adore_ku_s01",
+      "lemma": "adore",
+      "rank": 6319,
+      "queue_index": 3160,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "深切喜爱或钦佩对象"
+    },
+    {
+      "ku_id": "w_11496_impromptu_ku_s01",
+      "lemma": "impromptu",
+      "rank": 6322,
+      "queue_index": 3163,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "未经事先准备的现场表现"
+    },
+    {
+      "ku_id": "w_9732_forearm_ku_s01",
+      "lemma": "forearm",
+      "rank": 6324,
+      "queue_index": 3165,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "手肘和手腕之间的部分"
+    },
+    {
+      "ku_id": "w_7646_candidacy_ku_s01",
+      "lemma": "candidacy",
+      "rank": 6326,
+      "queue_index": 3167,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "作为候选人的身份或资格"
+    },
+    {
+      "ku_id": "w_8145_regimen_ku_s01",
+      "lemma": "regimen",
+      "rank": 6328,
+      "queue_index": 3169,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "有计划的健康治疗或训练方案"
+    },
+    {
+      "ku_id": "w_6950_sewage_ku_s01",
+      "lemma": "sewage",
+      "rank": 6329,
+      "queue_index": 3170,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "下水道输送的污水或废弃物"
+    },
+    {
+      "ku_id": "w_5164_trivial_ku_s01",
+      "lemma": "trivial",
+      "rank": 6331,
+      "queue_index": 3172,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "重要性很低而非单纯体积小"
+    },
+    {
+      "ku_id": "w_5712_comparatively_ku_s01",
+      "lemma": "comparatively",
+      "rank": 6332,
+      "queue_index": 3173,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "CONDITIONAL_DEFINITION",
+      "linguistic_reason": "与另一对象比较时的相对程度，原英文定义过于简略，应补充relatively"
+    },
+    {
+      "ku_id": "w_9158_lotion_ku_s01",
+      "lemma": "lotion",
+      "rank": 6333,
+      "queue_index": 3174,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "用于皮肤护理的液态或乳状制剂"
+    },
+    {
+      "ku_id": "w_4423_kidnap_ku_s01",
+      "lemma": "kidnap",
+      "rank": 6334,
+      "queue_index": 3175,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "违法掳走人员，不必要求勒索目的"
+    },
+    {
+      "ku_id": "w_10640_arduous_ku_s01",
+      "lemma": "arduous",
+      "rank": 6335,
+      "queue_index": 3176,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "需长期艰苦努力的任务或旅程"
+    },
+    {
+      "ku_id": "w_5225_theology_ku_s01",
+      "lemma": "theology",
+      "rank": 6336,
+      "queue_index": 3177,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "CONDITIONAL_SCOPE",
+      "linguistic_reason": "不仅学术研究，也可指宗教教义的系统阐释；需限定Sense"
+    },
+    {
+      "ku_id": "w_10559_epilepsy_ku_s01",
+      "lemma": "epilepsy",
+      "rank": 6338,
+      "queue_index": 3179,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "反复癫痫发作的神经系统疾病"
+    },
+    {
+      "ku_id": "w_6391_indifference_ku_s01",
+      "lemma": "indifference",
+      "rank": 6339,
+      "queue_index": 3180,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "缺少兴趣或关心的态度"
+    },
+    {
+      "ku_id": "w_7866_exporter_ku_s01",
+      "lemma": "exporter",
+      "rank": 6340,
+      "queue_index": 3181,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "向国外销售货物的人或机构"
+    },
+    {
+      "ku_id": "w_7445_boulder_ku_s01",
+      "lemma": "boulder",
+      "rank": 6341,
+      "queue_index": 3182,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "体积明显较大的独立岩石"
+    },
+    {
+      "ku_id": "w_5033_constructive_ku_s01",
+      "lemma": "constructive",
+      "rank": 6342,
+      "queue_index": 3183,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "有助于改善情况的建议或行为"
+    },
+    {
+      "ku_id": "w_9882_sanity_ku_s01",
+      "lemma": "sanity",
+      "rank": 6343,
+      "queue_index": 3184,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "理智或心智健全的日常概念，不等同诊断"
+    },
+    {
+      "ku_id": "w_12676_genial_ku_s01",
+      "lemma": "genial",
+      "rank": 6345,
+      "queue_index": 3186,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "性格友好开朗而和蔼"
+    },
+    {
+      "ku_id": "w_7610_orchard_ku_s01",
+      "lemma": "orchard",
+      "rank": 6346,
+      "queue_index": 3187,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "栽种果树的园地"
+    },
+    {
+      "ku_id": "w_9570_interdisciplinary_ku_s01",
+      "lemma": "interdisciplinary",
+      "rank": 6348,
+      "queue_index": 3189,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "同时涉及两个以上学科"
+    },
+    {
+      "ku_id": "w_11240_fictitious_ku_s01",
+      "lemma": "fictitious",
+      "rank": 6351,
+      "queue_index": 3192,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "虚构而非真实存在的人名或故事要素"
+    },
+    {
+      "ku_id": "w_6408_inhale_ku_s01",
+      "lemma": "inhale",
+      "rank": 6352,
+      "queue_index": 3193,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "将气体或烟雾吸入肺部"
+    },
+    {
+      "ku_id": "w_7209_farmhouse_ku_s01",
+      "lemma": "farmhouse",
+      "rank": 6354,
+      "queue_index": 3195,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "位于农场并作住所的房屋"
+    },
+    {
+      "ku_id": "w_4506_standardize_ku_s01",
+      "lemma": "standardize",
+      "rank": 6355,
+      "queue_index": 3196,
+      "source_commit": "87cf7ea86637255b1319bd0274f10cbc516edc50",
+      "verdict": "PASS",
+      "linguistic_reason": "使事物符合统一标准"
+    }
+  ],
+  "certification": "CHATGPT_ONLY_PROVISIONAL_MUSE_PAUSED_BY_USER",
+  "production_ready": false,
+  "activation_allowed": false
+}
