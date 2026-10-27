@@ -67,6 +67,8 @@ jobs:
           node experiments/scene-microrec/evaluate-real-student-vs-conservative.mjs \
             /tmp/real-distill-artifacts/scene-student-real.json \
             /tmp/real-distill-ab/real-student-vs-conservative.json
+      - name: Verify bilingual candidate pool isolation
+        run: node experiments/scene-microrec/test-bilingual-seeds.mjs
       - name: Audit real bilingual supervision coverage
         run: node experiments/scene-microrec/audit-bilingual-coverage.mjs --write
       - uses: actions/upload-artifact@v4
