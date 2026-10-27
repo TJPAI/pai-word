@@ -35,6 +35,8 @@ jobs:
         run: node experiments/scene-microrec/exploratory-probes.mjs --write
       - name: Catalog-fitted sparse retrieval comparison
         run: node experiments/scene-microrec/evaluate-sparse.mjs
+      - name: Seven-engine multi-metric assessment
+        run: node experiments/scene-microrec/multi-metric.mjs --write
       - uses: actions/upload-artifact@v4
         with:
           name: scene-microrec-ab-results
@@ -43,3 +45,4 @@ jobs:
             experiments/scene-microrec/historical-hybrid-comparison.json
             experiments/scene-microrec/error-audit.json
             experiments/scene-microrec/exploratory-probes.json
+            experiments/scene-microrec/multi-metric-report.json
