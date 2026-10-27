@@ -19,11 +19,11 @@ const engine=await loadScene500WithChineseLexicon({catalog,lexiconUrl:'lexicon',
 if(engine.mode!=='hybrid')throw Error('GENERALIZATION_NOT_HYBRID');
 const rows=data.cases.map(c=>{
  const ids=engine.search(c.query,{limit:10}).results.map(r=>r.sceneId);
- return {query:c.query,group:c.group,top5:ids.slice(0,5),empty:ids.length===0,
+ return {query:c.query,group:c.group,top5:ids.slice(0,5),empty:ids.length===0,abstentionExpected:c.abstentionReview?.disposition==='ALLOW_EMPTY_NO_VERIFIED_SCENE',
   top1:c.expected?.length?c.expected.includes(ids[0]):null,
   top5Hit:c.expected?.length?ids.slice(0,5).some(id=>c.expected.includes(id)):null,
   excludedLeak:c.excluded?.length?ids.slice(0,5).some(id=>c.excluded.includes(id)):null};
 });
 const marked=rows.filter(r=>r.top1!==null),neg=rows.filter(r=>r.excludedLeak!==null);
-const counts={queries:rows.length,labeled:marked.length,top1Hit:marked.filter(r=>r.top1).length,top5Hit:marked.filter(r=>r.top5Hit).length,negativeChecks:neg.length,negativeLeaks:neg.filter(r=>r.excludedLeak).length,empty:rows.filter(r=>r.empty).length};
+const counts={queries:rows.length,labeled:marked.length,top1Hit:marked.filter(r=>r.top1).length,top5Hit:marked.filter(r=>r.top5Hit).length,negativeChecks:neg.length,negativeLeaks:neg.filter(r=>r.excludedLeak).length,empty:rows.filter(r=>r.empty).length,editorialAbstentions:rows.filter(r=>r.empty&&r.abstentionExpected).length,unresolvedEmpty:rows.filter(r=>r.empty&&!r.abstentionExpected).length};
 console.log(JSON.stringify({status:'EXPLORATORY_PROBE_NOT_CERTIFIED',mode:engine.mode,counts,rows},null,2));
