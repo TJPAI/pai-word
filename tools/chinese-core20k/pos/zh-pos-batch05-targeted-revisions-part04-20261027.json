@@ -1,0 +1,231 @@
+{
+  "schema": "zh-core20k-pos-batch05-targeted-revisions-part04-v1",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_batch05_blob": "e3dbc2c43bcf57796ed73936303ef369e621b28f",
+  "items": [
+    {
+      "term": "例如",
+      "term_id": "zh_f2945c3926f2b5870430",
+      "runtime_index": 687,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADP",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“例如苹果和梨”引入举例对象；“例如，我们可以先检查”作为篇章举例标记。",
+      "limit_zh": "其独立词性依所用标签体系，可标举例连接成分；原单纯ADV证据不足。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "然而",
+      "term_id": "zh_516ad278013873e85f86",
+      "runtime_index": 702,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "CCONJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“方案可行，然而成本偏高”连接两个转折命题；句首亦有话语连接副词属性。",
+      "limit_zh": "应区别句际连接功能与句内状语。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "另外",
+      "term_id": "zh_3d90e73b89041c62fec1",
+      "runtime_index": 709,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [
+        "DET"
+      ],
+      "evidence_zh": "“另外再检查一次”为副词，“另外一个方案”为限定成分。",
+      "limit_zh": "“另外”与“另一个”切分需统一，不简单视所有位置为ADV。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "精神",
+      "term_id": "zh_c4710024e9546610f1bd",
+      "runtime_index": 690,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“保持精神”“振奋精神”中是抽象名词；“他今天很精神”可受程度副词修饰，表现形容词性质。",
+      "limit_zh": "词义需区分精神状态与心理活动。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "健康",
+      "term_id": "zh_aa18b6dcd893d426bab7",
+      "runtime_index": 693,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“身体很健康”是形容词性谓语，“维护健康”是抽象名词宾语。",
+      "limit_zh": "单一ADJ标签遗漏名词义。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "开放",
+      "term_id": "zh_c14c915da5fbec642a87",
+      "runtime_index": 695,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“开放校园”可作动词，“态度很开放”表现形容词性。",
+      "limit_zh": "被动或结果状态不能一律算形容词，须按语境区分。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "保证",
+      "term_id": "zh_fe1970e6a50a0440db12",
+      "runtime_index": 694,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“保证质量”为动词，“提供保证”是名词宾语。",
+      "limit_zh": "分义项保留动名兼类，不把所有名物化看作独立词义。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "重点",
+      "term_id": "zh_bf3b83e701d4103d6ab7",
+      "runtime_index": 703,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“这是讨论的重点”为名词，“重点检查设备”有焦点副词性状语用法。",
+      "limit_zh": "句法状语功能是否另设ADV需标注体系确认。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "实际",
+      "term_id": "zh_e0ae9a3c77ae781d428c",
+      "runtime_index": 688,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“实际情况”定语，“与实际脱节”中为名词性成分。",
+      "limit_zh": "形容词候选不应仅依定语位置判断；“很实际”是更强性质证据。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "持续",
+      "term_id": "zh_1882ae19b6a20526ebd7",
+      "runtime_index": 700,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“降雨持续三天”为动词，“持续的降雨”为形容性定语。",
+      "limit_zh": "定语不能直接证明独立ADJ，需对持续状态进行句法审查。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "大量",
+      "term_id": "zh_f5c239df755a813e79c3",
+      "runtime_index": 707,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "DET",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“大量资料”表示量化限定，“生产总量很大”不能作为“大量”独立名词证据。",
+      "limit_zh": "NOUN仅为待核替代候选，优先量化限定性质。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "原",
+      "term_id": "zh_109c3c1f43ae654d9b5b",
+      "runtime_index": 681,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“原地址”“原计划”有原先的属性，“恢复原状”中‘原’处于复合词，不足以证明独立名词。",
+      "limit_zh": "是否标区别词须对照词性体系。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "里面",
+      "term_id": "zh_0111930eba211e33bf1d",
+      "runtime_index": 710,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADP"
+      ],
+      "evidence_zh": "“箱子里面”是处所/方位成分，“在里面”可作处所宾语。",
+      "limit_zh": "后置词分类与名词分类依体系，不应强制当ADV。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    },
+    {
+      "term": "一天",
+      "term_id": "zh_5448481f38a4f90889db",
+      "runtime_index": 706,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“一天时间”“工作了一天”含数量词‘一’与时间量词/名词‘天’的组合，可作时量补语。",
+      "limit_zh": "整串是否词汇化未证实，继续HOLD，不赋单一POS。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false
+    },
+    {
+      "term": "场",
+      "term_id": "zh_62e299326e5f769418e3",
+      "runtime_index": 705,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "CLF",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“一场比赛”中为事件量词，“操场”的场是复合词内部语素，不证明独立名词。",
+      "limit_zh": "独立名词用例应另查，不以构词语素作词性证据。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false
+    }
+  ],
+  "production_ready": false
+}
