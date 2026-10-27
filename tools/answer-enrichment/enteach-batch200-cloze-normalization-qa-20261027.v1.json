@@ -1,0 +1,36 @@
+{
+  "schema_version": "pai-word-enteach-cloze-normalization-qa-v1",
+  "owner": "CG-ENTEACH",
+  "status": "SIMULATED_GRADING_CASES_PASS_INDEPENDENT_QA_PENDING",
+  "source": {
+    "path": "tools/answer-enrichment/enteach-batch200-scored-cloze-prototype-20261027.v1.json",
+    "git_blob": "38d8358c11ec925650583d07d36cc7c48d145f0b"
+  },
+  "method": "For each of 8 source records, use inline comparator lowerCase(trim(input)) against acceptable_answers; test exact, upper-case+padded, empty, wrong inflection, extraneous trailing token.",
+  "counts": {
+    "items": 8,
+    "positive_expected": 16,
+    "positive_passed": 16,
+    "negative_expected": 24,
+    "negative_rejected": 24,
+    "total_checks": 40,
+    "duplicate_acceptable_answer_lists": 0
+  },
+  "specific_checks": [
+    {
+      "headword": "shopper",
+      "allowed": "shoppers",
+      "rejected": "shopper",
+      "reason": "Sentence has plural subject Many online ____."
+    }
+  ],
+  "limitations": [
+    "Checks exercise a local comparator over GitHub JSON, not actual main-app scorer.",
+    "No independent QA of linguistic answer uniqueness or alternate semantically viable completions.",
+    "No integration, browser or production release tests performed."
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
