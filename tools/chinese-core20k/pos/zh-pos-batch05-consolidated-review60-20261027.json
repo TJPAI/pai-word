@@ -1,0 +1,961 @@
+{
+  "schema": "zh-core20k-pos-batch05-consolidated-review-v1",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_batch_blob": "e3dbc2c43bcf57796ed73936303ef369e621b28f",
+  "revision_source_blobs": [
+    "5e831992a0c90583f553745e63e5d4acdaf64546",
+    "b72cabd945879b621360f40bba5bba0e2eeb85d8",
+    "23a2583341e6f987d323f93c9863f88078ce436b",
+    "09ef499aab9156ccd75a4bf23f98dd6323f4b9aa"
+  ],
+  "reviewed": 60,
+  "unique_terms": 60,
+  "source_anchored": true,
+  "production_ready": false,
+  "certification": "CHATGPT_EDITORIAL_ONLY",
+  "entries": [
+    {
+      "term": "结束",
+      "term_id": "zh_c7b24e7997e96eaa17a7",
+      "runtime_index": 513,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“结束会议”可带宾语；“会议已经结束”独立谓语；“在结束之前”可有事件名词化分析。",
+      "limit_zh": "名词化是否作为独立词性需标注体系判别，不能直接由名词化短语得出。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "书",
+      "term_id": "zh_1be968f1252409695347",
+      "runtime_index": 515,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [],
+      "evidence_zh": "“一本书”“读这本书”显示量词搭配及独立名词中心语分布。",
+      "limit_zh": "不把“书写”的书作为独立VERB证据。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "亦",
+      "term_id": "zh_2c11629102a454f06967",
+      "runtime_index": 516,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [],
+      "evidence_zh": "“他亦同意”“亦可如此”出现在谓词前表示“也”，属书面语副词。",
+      "limit_zh": "需记录正式/书面语语域，不能仅用模板“句间连接”作证。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "努力",
+      "term_id": "zh_abe26aa668de1e20fb27",
+      "runtime_index": 518,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "VERB",
+        "ADV"
+      ],
+      "evidence_zh": "“他很努力”“努力的学生”显示性质形容词分布；“为目标而努力”显示可作谓语的动词用法。",
+      "limit_zh": "“努力学习”只是状语功能，不能独立证明VERB；状语性是否另标ADV依POS体系。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "只要",
+      "term_id": "zh_91ad7c3e91d0a43c8ad3",
+      "runtime_index": 519,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "SCONJ",
+      "proposed_other": [],
+      "evidence_zh": "“只要按时提交，就可以参加”中引入充分条件分句，并与“就”呼应；不是修饰单一动词的程度副词。",
+      "limit_zh": "“我只要一本书”中“只”限制“要”，应视为另一种结构，不能把两种结构强合成单一词义。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "如此",
+      "term_id": "zh_9267811dc0b2849b4451",
+      "runtime_index": 521,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [
+        "PRON"
+      ],
+      "evidence_zh": "“如此认真”修饰程度/方式；“事情竟然如此”中可作指示性谓语或代词性成分，依体系分析。",
+      "limit_zh": "仅凭一个副词搭配不足以排除其他指示用法。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "媒体",
+      "term_id": "zh_fa33e100097598596015",
+      "runtime_index": 522,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [],
+      "evidence_zh": "“多家媒体报道”“一家媒体”显示机构集合名词属性及家量词搭配。",
+      "limit_zh": "名词担任句子主语不意味着它是动词。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "才能",
+      "term_id": "zh_9bc2ebe0cb79071199c7",
+      "runtime_index": 523,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“发挥才能”中才能指能力，可作抽象名词；“只有努力，才能成功”则含关联成分“才+能”，不应把整个字符串视同一个名词。",
+      "limit_zh": "必须按词义及切分层次分开，词形重合不证明单一词头。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "来自",
+      "term_id": "zh_9b6a4a82e39df1059c79",
+      "runtime_index": 525,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [],
+      "evidence_zh": "“他来自上海”“信息来自两个渠道”可作谓语，后接来源地点或来源实体。",
+      "limit_zh": "不能从来源语义误推成纯介词；“来自上海的学生”在定语中保持谓词性分析可能。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "经过",
+      "term_id": "zh_91d7950ecf64e256fa85",
+      "runtime_index": 526,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADP"
+      ],
+      "evidence_zh": "“列车经过车站”中的“经过”为路径动词；“经过认真讨论，我们决定延期”作为事件引介介词性用法。",
+      "limit_zh": "动词与介词须分具体构式，不宜只给单一VERB。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "选举",
+      "term_id": "zh_ad93032815e002668134",
+      "runtime_index": 528,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“选举代表”有及物宾语；“一次选举”表示事件名词。",
+      "limit_zh": "原批次HOLD，本候选不具有正式认证资格。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "我国",
+      "term_id": "zh_2f293016a5ff3ab11d05",
+      "runtime_index": 532,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "PRON",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“我国已经提出申请”“我国的法律”以第一人称集体所属国家作指称，具代词性；同时可能按专指名词性短语分析。",
+      "limit_zh": "不得仅因出现“的”就确定NOUN；必须声明代词与指称名词的标注体系。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "比赛",
+      "term_id": "zh_7595b4b87e468f45cab6",
+      "runtime_index": 535,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "VERB"
+      ],
+      "evidence_zh": "“一场比赛”可用数量短语修饰，属于名词；“他们明天比赛”独立作谓词，属于动词。",
+      "limit_zh": "原模板只证明NOUN，漏掉高频动词义。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "表现",
+      "term_id": "zh_a959cfbf97c5455ee486",
+      "runtime_index": 536,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“他表现得很镇定”可作谓词并带补语；“他的表现很好”由定语修饰，属于名词。",
+      "limit_zh": "原批次HOLD是合理的未判状态，本建议依旧需第二人复核。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "开发",
+      "term_id": "zh_9ec428625fee9e42ef47",
+      "runtime_index": 545,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“开发软件”中及物动词；“软件开发需要投入”中活动名词中心语。",
+      "limit_zh": "原候选只证明动词，忽略名词用法。",
+      "review_status": "CG_ZH_REVISED_CANDIDATE_PENDING_INDEPENDENT_QA",
+      "production_ready": false,
+      "review_part": 1
+    },
+    {
+      "term": "发布",
+      "term_id": "zh_b61f333b91b21f79ba7b",
+      "runtime_index": 563,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“发布消息”是及物动词；“产品的发布”名词化事件用法需依标注体系另核。",
+      "limit_zh": "名词化分析需语料支持，不可直接将所有的字结构定为名词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "建筑",
+      "term_id": "zh_5b46860a8e8bde1df098",
+      "runtime_index": 566,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "VERB"
+      ],
+      "evidence_zh": "“一座建筑”是可数实体名词；“建筑房屋”在正式书面语中可作建造动词。",
+      "limit_zh": "须区分动词语义和名词实体义，正式语域应记录。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "行政",
+      "term_id": "zh_e79890c96ee6f0c5d401",
+      "runtime_index": 570,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“行政与司法相分离”可作抽象领域名词；“行政机关”“行政管理”是名词性定语，也可在特定词性体系标区别词。",
+      "limit_zh": "“行政机关”定语位置本身不能证明独立形容词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "变化",
+      "term_id": "zh_e329c44530ee62f6793e",
+      "runtime_index": 574,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“形势正在变化”为谓词；“发生重大变化”为变化事件名词。",
+      "limit_zh": "原HOLD须区分动词和事件名词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "增长",
+      "term_id": "zh_e1cf00d81f03c3671d80",
+      "runtime_index": 575,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“经济持续增长”作谓语；“实现稳定增长”中可作过程名词。",
+      "limit_zh": "既可谓语又可指变化过程，不应只用一种标签。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "官方",
+      "term_id": "zh_e73e38c1f65d0326beda",
+      "runtime_index": 576,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“官方发布声明”中官方为组织/权威来源名词；“官方消息”是名词性定语。",
+      "limit_zh": "不能只凭修饰“消息”就判为ADJ。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "显示",
+      "term_id": "zh_4e1449e7d5e505938ac1",
+      "runtime_index": 581,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“屏幕显示数据”是动词；“显示效果”中“显示”可构成技术领域名词性修饰，需辨别复合词边界。",
+      "limit_zh": "后一证据只提示兼类风险，不能直接认证NOUN。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "建议",
+      "term_id": "zh_abee4974732afaf51aef",
+      "runtime_index": 588,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“建议你先休息”是动词谓语；“提出一项建议”是可计量抽象名词。",
+      "limit_zh": "原VERB漏掉极常见的名词用法。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "标准",
+      "term_id": "zh_6bea77acefb364ac3d40",
+      "runtime_index": 597,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“达到标准”“一个标准”是名词；“标准答案”“动作很标准”有形容性或性质谓词用法。",
+      "limit_zh": "不是所有前置修饰都等于ADJ，“很标准”提供更有力句法证据。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "可是",
+      "term_id": "zh_38ca4a9c76b133030749",
+      "runtime_index": 602,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "CCONJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“我想去，可是下雨了”中连接转折分句；“可是好得很”有强调副词用法。",
+      "limit_zh": "原ADV只适用于部分强调语境，转折连接不能被忽略。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "改革",
+      "term_id": "zh_1a36529523b06901400a",
+      "runtime_index": 603,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“改革制度”作动词且带宾语；“推动改革”“一项改革”为事件名词。",
+      "limit_zh": "原NOUN漏掉及物动词用法。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "联系",
+      "term_id": "zh_bfc967329e10188c44f7",
+      "runtime_index": 607,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“联系老师”作动词；“保持联系”中联系是抽象名词宾语。",
+      "limit_zh": "原HOLD可转为候选，但仍需独立复审。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "记录",
+      "term_id": "zh_9fad24e2c377ee89a4ea",
+      "runtime_index": 611,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“记录实验数据”为动词；“查看记录”中记录为可数名词。",
+      "limit_zh": "原HOLD须按义项分POS。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "不仅",
+      "term_id": "zh_8b86150100bb2a35bad0",
+      "runtime_index": 612,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [
+        "CCONJ"
+      ],
+      "evidence_zh": "“他不仅会写，还会画”中与“还/而且”构成递进关联，既有副词位置也有构式连接功能。",
+      "limit_zh": "需写出关联结构，不能凭谓语前位置自动宣称纯副词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "最高",
+      "term_id": "zh_8672864e9041713891eb",
+      "runtime_index": 618,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“最高建筑”是程度副词“最”与形容词“高”组合；最高级结构需独立判断是否词汇化。",
+      "limit_zh": "在此阶段不直接标ADJ完成项，保持HOLD。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "确定",
+      "term_id": "zh_fac2a67ad87807c4112a",
+      "runtime_index": 623,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“确定方案”为及物动词；“结果还不确定”中为形容词性谓词。",
+      "limit_zh": "不能把不确定构式直接看成单纯动词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 2
+    },
+    {
+      "term": "中央",
+      "term_id": "zh_b864a6a4edbf613031cb",
+      "runtime_index": 627,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“党中央作出决定”中的中央可指组织层级；“广场中央”中为方位中心名词。“中央地区”属前置名词修饰。",
+      "limit_zh": "不能仅据“中央地区”确立ADJ，组织专名需语境区别。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "以前",
+      "term_id": "zh_aa98317793b49d8dbe4c",
+      "runtime_index": 628,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“从前、以前”可作时间范围名词，“以前我住这里”则以时间成分充当句首状语。",
+      "limit_zh": "出现在状语位置不足以单独证明ADV，应与方位时间词体系对齐。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "综合",
+      "term_id": "zh_4a0d4edef9c7bfdd16e4",
+      "runtime_index": 637,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“综合各方意见”为整合动词；“综合能力”“综合评价”中形容性或定语性修饰。",
+      "limit_zh": "前置修饰也可能为构词成分，ADJ证据还需检查“很综合”的自然度。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "讨论",
+      "term_id": "zh_3cef912ce8819fff2ed2",
+      "runtime_index": 639,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“讨论方案”及物动词；“展开讨论”中为活动名词。",
+      "limit_zh": "此前只有动词候选，兼类依据需逐项审定。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "证明",
+      "term_id": "zh_90b793146f05907636ee",
+      "runtime_index": 643,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“数据证明假设成立”为谓词；“提供证明”是名词宾语。",
+      "limit_zh": "名词义与动词义应拆Sense核验。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "一位",
+      "term_id": "zh_652d931fa8b2df75261f",
+      "runtime_index": 645,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“一位教师”可切为数词“一”与人称量词“位”，整串并非自动词汇化的单词。",
+      "limit_zh": "仅保留构式HOLD，不给单一词性；需固定分词粒度标准。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "公开",
+      "term_id": "zh_7a73baf0ce9abe54e3b5",
+      "runtime_index": 646,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ",
+        "ADV"
+      ],
+      "evidence_zh": "“公开结果”可作及物动词，“资料已经公开”为状态性谓词，“公开讨论”可作方式修饰。",
+      "limit_zh": "最后一种状语用法不应未经证明就独立认定ADV。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "不到",
+      "term_id": "zh_d86bd23098d1d8d92c85",
+      "runtime_index": 647,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“不到十人”可分析为数量上界结构，“到不了”含动词到的可能补语，不应混为一义项。",
+      "limit_zh": "应建立多构式拆分与边界判断，暂不做单POS赋值。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "当地",
+      "term_id": "zh_6b4a1488651133bad72a",
+      "runtime_index": 650,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“在当地工作”中的当地为处所名词性成分；“当地居民”是名词性定语。",
+      "limit_zh": "定语功能不自动等于形容词，需明确方位词类体系。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "自然",
+      "term_id": "zh_4f12408398369b19b261",
+      "runtime_index": 654,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN",
+        "ADV"
+      ],
+      "evidence_zh": "“自然景观”偏性质属性，“保护自然”中自然指自然界，“问题自然解决了”含顺理成章的副词义。",
+      "limit_zh": "定语不能独证ADJ，但三义不同须区分语义。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "今年",
+      "term_id": "zh_3a7ddf6c862aa15c9589",
+      "runtime_index": 666,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [],
+      "evidence_zh": "“今年计划完成”“到今年为止”均表示特定年度时间名词，可在句首作时间状语。",
+      "limit_zh": "时间状语用法不直接等于词汇副词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "旅游",
+      "term_id": "zh_c8bf3f878e389b57c6ec",
+      "runtime_index": 673,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“暑假去旅游”为活动动词；“发展旅游”中为产业或活动名词。",
+      "limit_zh": "部分语境含省略中心词，不能据所有前置修饰标NOUN。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "同样",
+      "term_id": "zh_63a004af12bff8787408",
+      "runtime_index": 680,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“同样的问题”为相同性质定语，“我同样赞成”为副词状语。",
+      "limit_zh": "不同句法分布支持兼类，不宜仅标ADJ。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "原",
+      "term_id": "zh_109c3c1f43ae654d9b5b",
+      "runtime_index": 681,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“原地址”“原计划”有原先的属性，“恢复原状”中‘原’处于复合词，不足以证明独立名词。",
+      "limit_zh": "是否标区别词须对照词性体系。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "共同",
+      "term_id": "zh_690b887d4ffbda8f0325",
+      "runtime_index": 685,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“共同目标”为定语，“共同承担责任”作状语，区分性质与共同参与方式。",
+      "limit_zh": "要确认是否属区别词而非典型可程度修饰形容词。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 3
+    },
+    {
+      "term": "例如",
+      "term_id": "zh_f2945c3926f2b5870430",
+      "runtime_index": 687,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADP",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“例如苹果和梨”引入举例对象；“例如，我们可以先检查”作为篇章举例标记。",
+      "limit_zh": "其独立词性依所用标签体系，可标举例连接成分；原单纯ADV证据不足。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "实际",
+      "term_id": "zh_e0ae9a3c77ae781d428c",
+      "runtime_index": 688,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“实际情况”定语，“与实际脱节”中为名词性成分。",
+      "limit_zh": "形容词候选不应仅依定语位置判断；“很实际”是更强性质证据。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "精神",
+      "term_id": "zh_c4710024e9546610f1bd",
+      "runtime_index": 690,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“保持精神”“振奋精神”中是抽象名词；“他今天很精神”可受程度副词修饰，表现形容词性质。",
+      "limit_zh": "词义需区分精神状态与心理活动。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "健康",
+      "term_id": "zh_aa18b6dcd893d426bab7",
+      "runtime_index": 693,
+      "prior_primary": "ADJ",
+      "prior_other": [],
+      "proposed_primary": "ADJ",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“身体很健康”是形容词性谓语，“维护健康”是抽象名词宾语。",
+      "limit_zh": "单一ADJ标签遗漏名词义。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "保证",
+      "term_id": "zh_fe1970e6a50a0440db12",
+      "runtime_index": 694,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“保证质量”为动词，“提供保证”是名词宾语。",
+      "limit_zh": "分义项保留动名兼类，不把所有名物化看作独立词义。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "开放",
+      "term_id": "zh_c14c915da5fbec642a87",
+      "runtime_index": 695,
+      "prior_primary": "VERB",
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“开放校园”可作动词，“态度很开放”表现形容词性。",
+      "limit_zh": "被动或结果状态不能一律算形容词，须按语境区分。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "持续",
+      "term_id": "zh_1882ae19b6a20526ebd7",
+      "runtime_index": 700,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "VERB",
+      "proposed_other": [
+        "ADJ"
+      ],
+      "evidence_zh": "“降雨持续三天”为动词，“持续的降雨”为形容性定语。",
+      "limit_zh": "定语不能直接证明独立ADJ，需对持续状态进行句法审查。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "然而",
+      "term_id": "zh_516ad278013873e85f86",
+      "runtime_index": 702,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "CCONJ",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“方案可行，然而成本偏高”连接两个转折命题；句首亦有话语连接副词属性。",
+      "limit_zh": "应区别句际连接功能与句内状语。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "重点",
+      "term_id": "zh_bf3b83e701d4103d6ab7",
+      "runtime_index": 703,
+      "prior_primary": "NOUN",
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADV"
+      ],
+      "evidence_zh": "“这是讨论的重点”为名词，“重点检查设备”有焦点副词性状语用法。",
+      "limit_zh": "句法状语功能是否另设ADV需标注体系确认。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "场",
+      "term_id": "zh_62e299326e5f769418e3",
+      "runtime_index": 705,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "CLF",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“一场比赛”中为事件量词，“操场”的场是复合词内部语素，不证明独立名词。",
+      "limit_zh": "独立名词用例应另查，不以构词语素作词性证据。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "一天",
+      "term_id": "zh_5448481f38a4f90889db",
+      "runtime_index": 706,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": null,
+      "proposed_other": [],
+      "evidence_zh": "“一天时间”“工作了一天”含数量词‘一’与时间量词/名词‘天’的组合，可作时量补语。",
+      "limit_zh": "整串是否词汇化未证实，继续HOLD，不赋单一POS。",
+      "status": "HOLD_LEXICALITY_OR_CONSTRUCTION",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "大量",
+      "term_id": "zh_f5c239df755a813e79c3",
+      "runtime_index": 707,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "DET",
+      "proposed_other": [
+        "NOUN"
+      ],
+      "evidence_zh": "“大量资料”表示量化限定，“生产总量很大”不能作为“大量”独立名词证据。",
+      "limit_zh": "NOUN仅为待核替代候选，优先量化限定性质。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "另外",
+      "term_id": "zh_3d90e73b89041c62fec1",
+      "runtime_index": 709,
+      "prior_primary": "ADV",
+      "prior_other": [],
+      "proposed_primary": "ADV",
+      "proposed_other": [
+        "DET"
+      ],
+      "evidence_zh": "“另外再检查一次”为副词，“另外一个方案”为限定成分。",
+      "limit_zh": "“另外”与“另一个”切分需统一，不简单视所有位置为ADV。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    },
+    {
+      "term": "里面",
+      "term_id": "zh_0111930eba211e33bf1d",
+      "runtime_index": 710,
+      "prior_primary": null,
+      "prior_other": [],
+      "proposed_primary": "NOUN",
+      "proposed_other": [
+        "ADP"
+      ],
+      "evidence_zh": "“箱子里面”是处所/方位成分，“在里面”可作处所宾语。",
+      "limit_zh": "后置词分类与名词分类依体系，不应强制当ADV。",
+      "status": "CHATGPT_EDITORIAL_UNCERTIFIED",
+      "production_ready": false,
+      "review_part": 4
+    }
+  ]
+}
