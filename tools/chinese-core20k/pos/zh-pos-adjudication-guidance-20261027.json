@@ -1,0 +1,117 @@
+{
+  "schema": "zh-core20k-pos-adjudication-rules-v1",
+  "version": "2026-10-27",
+  "role": "CG-ZH",
+  "source_runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+  "source_challenge_blob": "c1f69e75ae45cd60c872800905d29f323a551a19",
+  "reviewed_challenges": 11,
+  "reviewed_terms": 10,
+  "production_ready": false,
+  "activation_allowed": false,
+  "status": "EDITORIAL_QA_GUIDANCE_MUSE_REVIEW_PENDING",
+  "principles": [
+    {
+      "id": "P1",
+      "rule": "POS must be supported by independent syntactic distribution of the headword as a word; a morpheme inside another word is not standalone evidence."
+    },
+    {
+      "id": "P2",
+      "rule": "NUM+CLF sequences are annotated as constructions unless a documented lexicalized analysis and segmentation standard justify whole-string POS."
+    },
+    {
+      "id": "P3",
+      "rule": "Measure-unit nouns and classifiers are separated by a declared consistent tagset; mere numeral adjacency does not establish CLF."
+    },
+    {
+      "id": "P4",
+      "rule": "Adverbial syntactic position of a location noun does not by itself create lexical ADV POS."
+    },
+    {
+      "id": "P5",
+      "rule": "Attested sense, register, independent minimal pairs and evidence provenance are required before changing any uncertain POS label."
+    }
+  ],
+  "review_actions": [
+    {
+      "term": "道",
+      "term_id": "zh_00a9d5bd97c269b44f95",
+      "challenged_pos": "NOUN",
+      "action": "REPLACE_BOUND_MORPHEME_EXAMPLE_WITH_STANDALONE_DISTRIBUTION",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "应",
+      "term_id": "zh_6244c4c963a8b55a89cf",
+      "challenged_pos": "VERB",
+      "action": "REPLACE_BOUND_MORPHEME_EXAMPLE_WITH_STANDALONE_DISTRIBUTION",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "便",
+      "term_id": "zh_b33cf8e29901d129a101",
+      "challenged_pos": "VERB",
+      "action": "REPLACE_BOUND_MORPHEME_EXAMPLE_WITH_STANDALONE_DISTRIBUTION",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "challenged_pos": "NOUN",
+      "action": "REPLACE_BOUND_MORPHEME_EXAMPLE_WITH_STANDALONE_DISTRIBUTION",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "名",
+      "term_id": "zh_51a5d681a99c0e3bf2c6",
+      "challenged_pos": "ADJ",
+      "action": "REPLACE_BOUND_MORPHEME_EXAMPLE_WITH_STANDALONE_DISTRIBUTION",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "单位",
+      "term_id": "zh_80b19d68b1494dac82aa",
+      "challenged_pos": "CLF",
+      "action": "REVIEW_MEASURE_UNIT_VS_CLASSIFIER",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "两个",
+      "term_id": "zh_eab040a4964afffaf8dd",
+      "challenged_pos": "NUM",
+      "action": "REVIEW_CONSTRUCTION_VS_LEXEME_GRANULARITY",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "一种",
+      "term_id": "zh_9523358742c72e1deb24",
+      "challenged_pos": "NUM",
+      "action": "REVIEW_CONSTRUCTION_VS_LEXEME_GRANULARITY",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "一次",
+      "term_id": "zh_d736c7e459521de9cfa4",
+      "challenged_pos": "NUM",
+      "action": "REVIEW_CONSTRUCTION_VS_LEXEME_GRANULARITY",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "元",
+      "term_id": "zh_7f77f23af7b0dcc87b5e",
+      "challenged_pos": "CLF",
+      "action": "REVIEW_MEASURE_UNIT_VS_CLASSIFIER",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    },
+    {
+      "term": "国内",
+      "term_id": "zh_cec69ce03690360c7666",
+      "challenged_pos": "ADV",
+      "action": "REVIEW_LOCATIVE_NOUN_NOT_ADV",
+      "status": "HOLD_SPECIFIC_POS_UNTIL_SECOND_REVIEW"
+    }
+  ],
+  "safe_integration": {
+    "runtime": "Use existing pinned Chinese V0.10.1 Runtime unchanged; candidate POS not activated",
+    "pos_proposals": "ISOLATED_STAGING"
+  }
+}
