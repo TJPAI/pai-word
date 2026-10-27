@@ -1,0 +1,29 @@
+name: Core20K Sense V1 OEWN 2025 full 20K
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/oewn2025_full20k.py'
+      - '.github/workflows/core20k-sense-v1-oewn2025.yml'
+jobs:
+  source_2025:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'wn>=0.13,<2'
+      - run: python -c "import wn; wn.download('oewn:2025')"
+      - run: python tools/core20k_sense_v1/oewn2025_full20k.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sense-v1-oewn2025-full20k
+          path: |
+            tools/core20k_sense_v1/reports/oewn2025_full20k_sense_candidates.jsonl
+            tools/core20k_sense_v1/reports/oewn2025_full20k_summary.json
+          retention-days: 30
