@@ -51,4 +51,8 @@ assert.equal(search('Where can I check in at the hotel?',[row('S104',12)]).resul
 assert.equal(search('Where can I check in at the hotel?',[row('S104',12)]).results.some(r=>r.sceneId==='S104'),false);
 assert.equal(search('Where can I check in at the airport?',[row('S104',12)]).results[0]?.sceneId,'S104');
 assert.equal(search('I need to book a flight',[]).results.length,0);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 43 assertions');
+assert.equal(search("I'd like a burger",[]).results[0]?.sceneId,'S034');
+assert.equal(search("May I have a bowl of soup?",[]).results[0]?.sceneId,'S034');
+assert.equal(search("I'd like a refund",[]).results.length,0);
+assert.equal(search("May I have a hotel room?",[]).results.length,0);
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 47 assertions');
