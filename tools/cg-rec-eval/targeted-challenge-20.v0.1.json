@@ -1,0 +1,239 @@
+{
+  "schema": "cg-rec-eval-targeted-challenge-v0.1",
+  "status": "DEVELOPMENT_VISIBLE_TARGETED_CHALLENGE_NOT_BLIND",
+  "description": "20 targeted challenge queries from known independent failures, CG-REC handoffs, and positive controls. Intended diagnostic regression, never report as independent generalization.",
+  "cases": [
+    {
+      "id": "T001",
+      "query": "地铁停运了我想打车",
+      "group": "negation",
+      "relevance": {
+        "S081": 3
+      },
+      "excluded": [
+        "S079"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T002",
+      "query": "今天不坐地铁，改乘公交",
+      "group": "negation",
+      "relevance": {
+        "S078": 3
+      },
+      "excluded": [
+        "S079"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T003",
+      "query": "学习英语听力的方法",
+      "group": "disambiguation",
+      "relevance": {},
+      "excluded": [
+        "S279"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T004",
+      "query": "学习英语口语，不是机器学习",
+      "group": "disambiguation",
+      "relevance": {},
+      "excluded": [
+        "S279"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T005",
+      "query": "地铁如何换乘",
+      "group": "control",
+      "relevance": {
+        "S079": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T006",
+      "query": "学习机器学习",
+      "group": "control",
+      "relevance": {
+        "S279": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T007",
+      "query": "我想使用AI助手规划旅程",
+      "group": "ai_positive",
+      "relevance": {
+        "S277": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T008",
+      "query": "I use AI to write a report",
+      "group": "ai_positive",
+      "relevance": {
+        "S277": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T009",
+      "query": "Could you take me to the train station by taxi?",
+      "group": "substring",
+      "relevance": {
+        "S080": 3
+      },
+      "excluded": [
+        "S277"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T010",
+      "query": "Wait for the pedestrian light before crossing",
+      "group": "substring",
+      "relevance": {
+        "S090": 3
+      },
+      "excluded": [
+        "S277"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T011",
+      "query": "The application fails to launch after the update",
+      "group": "substring",
+      "relevance": {
+        "S275": 3
+      },
+      "excluded": [
+        "S277"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T012",
+      "query": "The train is delayed again",
+      "group": "substring",
+      "relevance": {},
+      "excluded": [
+        "S277"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T013",
+      "query": "We waited for a taxi",
+      "group": "substring",
+      "relevance": {
+        "S080": 3
+      },
+      "excluded": [
+        "S277"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T014",
+      "query": "I want to check in at the hotel",
+      "group": "hotel",
+      "relevance": {
+        "S114": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T015",
+      "query": "I need to cancel my hotel booking",
+      "group": "negation",
+      "relevance": {},
+      "excluded": [
+        "S113"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T016",
+      "query": "Please don't add peanuts; I'm allergic",
+      "group": "food",
+      "relevance": {
+        "S037": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T017",
+      "query": "I want to practice English for this situation: What is in this dish?",
+      "group": "wrapper",
+      "relevance": {
+        "S036": 3
+      },
+      "excluded": [
+        "S034"
+      ],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T018",
+      "query": "What is in this dish?",
+      "group": "food",
+      "relevance": {
+        "S036": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T019",
+      "query": "Can I have a burger?",
+      "group": "food",
+      "relevance": {
+        "S034": 3
+      },
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    },
+    {
+      "id": "T020",
+      "query": "I want to practice English: Can I have a burger?",
+      "group": "wrapper",
+      "relevance": {},
+      "excluded": [],
+      "annotation_status": "TARGETED_PROVISIONAL",
+      "judgement": "Negative-only or primary-scene provisional label; abstentions cannot be scored as success without adjudication"
+    }
+  ]
+}
