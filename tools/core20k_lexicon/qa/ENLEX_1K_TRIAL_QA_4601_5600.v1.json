@@ -1,0 +1,46 @@
+{
+  "schema": "enlex-one-thousand-chatgpt-trial-v1",
+  "trial_range": [
+    4601,
+    5600
+  ],
+  "source_blob": "fc99f13e86671845d9e2b07a40a37bfb0d149e57",
+  "source_records": 1000,
+  "distinct_lemmas": 999,
+  "duplicate_lemmas": [
+    {
+      "lemma": "drape",
+      "positions": [
+        4864,
+        4865
+      ]
+    }
+  ],
+  "generated_candidate_count": 1000,
+  "coverage_identity_errors": 0,
+  "unique_candidate_ids": 1000,
+  "chunks": 10,
+  "chunk_size": 100,
+  "content_level": "One provisional English core Sense per existing flagged KU source row; original headword-level Chinese gloss copied for contextual reference only; NOT sense-aligned",
+  "status": "AI_DRAFT_UNVERIFIED",
+  "activation_allowed": false,
+  "cautions": [
+    "Not 1000 distinct Core20K headwords: duplicate lemma drape requires source Sense review",
+    "Not every original Sense/KU per headword was processed: only one flagged source record per queue position",
+    "Other existing KUs may exist and are not counted in this trial",
+    "No independent meaning accuracy, bilingual alignment, completeness, or teaching value certification",
+    "No model API calls or additional API charges"
+  ],
+  "files": [
+    "ENLEX_KU_1K_TRIAL_4601_4700.v1.json",
+    "ENLEX_KU_1K_TRIAL_4701_4800.v1.json",
+    "ENLEX_KU_1K_TRIAL_4801_4900.v1.json",
+    "ENLEX_KU_1K_TRIAL_4901_5000.v1.json",
+    "ENLEX_KU_1K_TRIAL_5001_5100.v1.json",
+    "ENLEX_KU_1K_TRIAL_5101_5200.v1.json",
+    "ENLEX_KU_1K_TRIAL_5201_5300.v1.json",
+    "ENLEX_KU_1K_TRIAL_5301_5400.v1.json",
+    "ENLEX_KU_1K_TRIAL_5401_5500.v1.json",
+    "ENLEX_KU_1K_TRIAL_5501_5600.v1.json"
+  ]
+}
