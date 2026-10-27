@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/core20k_sense_v1/oewn2025_full20k.py'
       - 'tools/core20k_sense_v1/merge_oewn2025_runtime.py'
+      - 'tools/core20k_sense_v1/editorial_source_review.py'
       - '.github/workflows/core20k-sense-v1-oewn2025.yml'
 jobs:
   source_2025:
@@ -23,6 +24,8 @@ jobs:
       - run: python tools/core20k_sense_v1/oewn2025_full20k.py
       - name: Merge OEWN2025 with existing Sense-KU evidence
         run: python tools/core20k_sense_v1/merge_oewn2025_runtime.py
+      - name: Source triage 20 editorial high-risk headwords
+        run: python tools/core20k_sense_v1/editorial_source_review.py
       - uses: actions/upload-artifact@v4
         with:
           name: sense-v1-oewn2025-full20k
@@ -31,4 +34,6 @@ jobs:
             tools/core20k_sense_v1/reports/oewn2025_full20k_summary.json
             tools/core20k_sense_v1/reports/sense_v1_oewn2025_review.jsonl
             tools/core20k_sense_v1/reports/sense_v1_oewn2025_review_summary.json
+            tools/core20k_sense_v1/reports/editorial_20_oewn2025_evidence.jsonl
+            tools/core20k_sense_v1/reports/editorial_20_oewn2025_summary.json
           retention-days: 30
