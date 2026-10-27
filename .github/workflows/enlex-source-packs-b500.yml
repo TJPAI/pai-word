@@ -1,0 +1,52 @@
+name: ENLEX Core20K source pack materialization
+on:
+  push:
+    branches:
+      - enlex-source-packs-b500-20261027
+    paths:
+      - tools/core20k_lexicon/ku-factory/build_source_packs.py
+      - .github/workflows/enlex-source-packs-b500.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  materialize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build verified sources (no external model or service)
+        run: python tools/core20k_lexicon/ku-factory/build_source_packs.py
+      - name: Verify manifests and all 40 pack files
+        run: |
+          python - <<'PY'
+          import json, pathlib, hashlib
+          base=pathlib.Path('tools/core20k_lexicon/ku-factory/source-packs/b500')
+          m=json.loads((base/'source_manifest.json').read_text())
+          assert len(m['packs']) == 40
+          allr=[]
+          for p in m['packs']:
+              b=(base/p['path']).read_bytes()
+              assert hashlib.sha256(b).hexdigest()==p['sha256']
+              d=json.loads(b)
+              assert len(d['words'])==500
+              rr=[w['rank'] for w in d['words']]
+              assert rr==list(range(p['rank_start'],p['rank_end']+1))
+              allr+=rr
+          assert allr==list(range(1,20001))
+          print('PASS 40 packs / 20000 ranks')
+          PY
+      - name: Commit generated source files
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/core20k_lexicon/ku-factory/source-packs/b500/
+          if ! git diff --cached --quiet; then
+            git commit -m 'enlex: materialize verified Core20K b500 source packs'
+            git push
+          fi
