@@ -19,6 +19,14 @@ print("RUNTIME_SHAPE", json.dumps({"headwords_type":type(root.get("headwords")).
 keys=collections.Counter(); sense_keys=collections.Counter(); sense_sizes=collections.Counter()
 examples=[]; ranked=[]; senses=0; words_with_senses=0
 for i,w in enumerate(rows):
+    if isinstance(w,list) and len(w)>=5 and isinstance(w[4],list):
+        ranked.append(w[0]); keys.update(["packed_rank","packed_lemma","packed_pos","packed_ipa","packed_ku"])
+        sk="packed_ku_type_sense"
+        sv=[{"ku_id":v[0],"kind":v[1],"gloss_zh":v[2],"gloss_en":v[3]} for v in w[4] if isinstance(v,list) and len(v)>=4 and str(v[1]).lower()=="sense"]
+        senses+=len(sv); words_with_senses+=bool(sv); sense_sizes[len(sv)]+=1
+        for entry in sv:sense_keys.update(entry.keys())
+        if i<3:examples.append({"rank":w[0],"headword":w[1],"pos":w[2],"sense_count":len(sv),"sense_example":sv[:2]})
+        continue
     if not isinstance(w,dict):continue
     keys.update(w.keys())
     sk=next((k for k in ("senses","sense","meanings","definitions") if isinstance(w.get(k),list)),None)
