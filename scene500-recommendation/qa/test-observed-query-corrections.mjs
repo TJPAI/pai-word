@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {applyObservedQueryCorrections} from '../observed-query-corrections.mjs';
-const catalog={scenes:{S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
+const catalog={scenes:{S104:{name:'机场值机'},S113:{name:'预订酒店'},S114:{name:'酒店入住'},S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
 const row=(sceneId,score)=>({sceneId,name:catalog.scenes[sceneId].name,score,reason:['baseline']});
 const search=(query,results,options={})=>applyObservedQueryCorrections({query,total:results.length,results},query,{catalog,limit:10,...options});
 assert.equal(search('How to order coffee',[]).results[0]?.sceneId,'S039');
@@ -45,4 +45,10 @@ assert.equal(search('英语学习和机器学习',[row('S279',9)]).results[0]?.s
 assert.equal(search('Can I order a sandwich please?',[]).results[0]?.sceneId,'S034');
 assert.equal(search('May I order a soup?',[]).results[0]?.sceneId,'S034');
 assert.equal(search('Can I cancel a sandwich?',[]).results.length,0);
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 37 assertions');
+assert.equal(search('I need to book a hotel room',[]).results[0]?.sceneId,'S113');
+assert.equal(search('Reserve a hotel room',[]).results[0]?.sceneId,'S113');
+assert.equal(search('Where can I check in at the hotel?',[row('S104',12)]).results[0]?.sceneId,'S114');
+assert.equal(search('Where can I check in at the hotel?',[row('S104',12)]).results.some(r=>r.sceneId==='S104'),false);
+assert.equal(search('Where can I check in at the airport?',[row('S104',12)]).results[0]?.sceneId,'S104');
+assert.equal(search('I need to book a flight',[]).results.length,0);
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 43 assertions');
