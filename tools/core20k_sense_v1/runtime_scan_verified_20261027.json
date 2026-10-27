@@ -1,0 +1,19 @@
+{
+  "schema": "core20k-sense-v1-runtime-inventory-summary",
+  "source_run": "https://github.com/TJPAI/pai-word/actions/runs/40530868950",
+  "commit": "3b0ab04086acdf25aadce8d5d27bb94ec3970edb",
+  "headwords": 20000,
+  "marked_sense_ku_records": 16137,
+  "headwords_with_marked_sense_ku": 12976,
+  "headwords_without_marked_sense_ku": 7024,
+  "distinction": "These are runtime KU rows with kind == sense, not normalized canonical Sense entities or certification counts.",
+  "semantic_certified_from_this_run": 0,
+  "known_limit": "7,024 includes grammar-only and other categories; cannot infer missing meanings without canonical Sense registry.",
+  "next_actions": [
+    "Review packed KU type distribution and completeness against frozen role ledger",
+    "Generate evidence-linked headword/Sense review queue",
+    "Resolve semantic over/under-splitting and cross-POS risks",
+    "Track old-to-new identities before modifying teaching runtime"
+  ],
+  "production_release_allowed": false
+}
