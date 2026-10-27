@@ -8,6 +8,8 @@ on:
       - '.github/workflows/four-line-integration-qa.yml'
       - 'scripts/four-line-*.mjs'
       - 'tools/integration/**'
+      - 'scene500-recommendation/chinese-lexicon-loader.mjs'
+      - 'scene500-recommendation/qa/test-observed-optin-loader.mjs'
       - 'scripts/approved-teaching-release-gate.mjs'
       - 'scripts/materialize-zh-core20k-v0101.mjs'
       - 'data/zh-core20k-v0101-scene500-runtime.json.gz.b64'
