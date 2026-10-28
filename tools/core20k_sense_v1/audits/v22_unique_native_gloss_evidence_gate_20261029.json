@@ -1,0 +1,27 @@
+{
+  "stage": "V22_PRE_MUSE_BILINGUAL_SOURCE_QUALITY_GATE",
+  "baseline_sense_count": 27156,
+  "native_bilingual_ku_count": 16137,
+  "unique_rank_one_sense_one_native_ku": 8820,
+  "real_english_gloss_candidate_pairs": 749,
+  "placeholder_english_source_quarantined": 8071,
+  "within_real_pairs_english_lexical_overlap_positive": 445,
+  "within_real_pairs_lexical_overlap_zero": 304,
+  "automatic_zh_gloss_promotions": 0,
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "source_sha256": {
+    "review_749": "9c1cbb36b42c9bf1ae5cdfedffada1c0facc2def5d291edab03f127e2e596a62",
+    "quarantine_8071": "3f26f612b9ed64d751c5d51fa51b6bd3c671014131acfdfcbe1daf0baa14842c",
+    "filtered_27156": "0f42119dd4c806bb6ec2f1faa0d9dc2ec20aa63ee05dc9e46e42bd370d96bc37"
+  },
+  "critical_counterexample": {
+    "lemma": "pyramid",
+    "oewn": "enlarge holdings on exchange using paper profits",
+    "native_zh": "金字塔；棱锥",
+    "outcome": "quarantine, no sense-level zh assignment"
+  },
+  "local_archive": "core20k_v22_bilingual_quality_gate.zip",
+  "remaining_integration": "V5-V8 311 Github Sense/KU delta still not merged into local V22 baseline",
+  "quality_gate": "NO_RUNTIME_RELEASE"
+}
