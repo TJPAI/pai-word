@@ -5,6 +5,7 @@ on:
     branches: [core20k-sense-v1-audit-20261027]
     paths:
       - 'tools/core20k_sense_v1/export_top1000_content.py'
+      - 'tools/core20k_sense_v1/audit_top1000_senses.py'
       - '.github/workflows/core20k-v21-top1000-export.yml'
 jobs:
   export:
@@ -15,6 +16,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Export top1000 actual bilingual sense and reusable teaching KUs
         run: python3 tools/core20k_sense_v1/export_top1000_content.py
+      - name: Audit bilingual Sense/KU candidates
+        run: python3 tools/core20k_sense_v1/audit_top1000_senses.py
       - uses: actions/upload-artifact@v4
         with:
           name: Core20K-V2.1-TOP1000-Sense-KU-Staging
