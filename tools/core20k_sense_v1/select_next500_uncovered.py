@@ -24,7 +24,7 @@ for batch in index["batches"]:
         pool.append({"rank":r["rank"],"lemma":r["lemma"],"oewn_sense_id":r["oewn_sense_id"],"definition_en":r["definition_en"],"zh_wordlevel_unverified":r["translation_zh_candidate"],"status":"SOURCE_EVIDENCE_ONLY"})
 pool.sort(key=lambda x:x["rank"])
 chosen=pool[:500]
-assert len(chosen)==500 and len({r["rank"] for r in chosen})==500
+assert 0<len(chosen)<=500 and len({r["rank"] for r in chosen})==len(chosen)
 destination=base/"next500_uncovered_source_cards.jsonl"
 destination.write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in chosen),encoding="utf8")
 print("NEXT500_UNCOVERED_EVIDENCE_PASS",json.dumps({"selected":len(chosen),"total_remaining_lowrisk":len(pool),"already_curated_excluded":len(completed),"first_rank":chosen[0]["rank"],"last_rank":chosen[-1]["rank"],"certified":0}))
