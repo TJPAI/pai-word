@@ -15,13 +15,15 @@ for r in records:
     flags=[]
     if re.search(r"\b(?:a|an) ___\b",prompt,re.I): flags.append("ARTICLE_AND_UNIQUE_ANSWER")
     if "-" in prompt and re.search(r"-___|___-",prompt):flags.append("HYPHENATED_COMPOUND_ANSWER")
+    if re.search(r"\b(?:a|an) ___\b",prompt,re.I) and r["correct_answer"][0].lower() in "aeiou" and re.search(r"\ba ___\b",prompt,re.I): flags.append("ARTICLE_MISMATCH_LIKELY")
+    if re.search(r"\ban ___\b",prompt,re.I) and r["correct_answer"][0].lower() not in "aeiou" and lemma not in {"hour","honor","honour","heir","honest"}:flags.append("ARTICLE_MISMATCH_LIKELY")
     if re.search(r"\b(?:a|an|the) ___ (?:of|for|in)\b",prompt,re.I):flags.append("LOW_CONTEXT_ANSWER_AMBIGUITY")
     if lemma in {"mrs","wept","haired","lipped","desist","funnily","religiosity","journeyman","untitled","infertile","swarthy","mecca","sensuality","incomparable","offshoot","chuff","acrobatic"}:flags.append("SENSE_AND_REGISTER_TARGETED_REVIEW")
     if lemma in special:flags.append(special[lemma])
     if not re.search(r"[.!?]$",prompt):flags.append("PUNCTUATION")
     if len(prompt)<24:flags.append("LOW_CONTEXT_LENGTH")
     for f in flags:counts[f]+=1
-    review.append({"rank":r["rank"],"lemma":lemma,"draft_ku_id":r["draft_ku_id"],"review_priority":"HIGH" if flags else "STANDARD","risk_flags":flags,"independent_semantic_certified":False,"release_eligible":False,"production_ready":False})
+    review.append({"rank":r["rank"],"lemma":lemma,"draft_ku_id":r["draft_ku_id"],"review_priority":"HIGH" if flags else "STANDARD","risk_flags":flags,"source_definition":definition,"prompt":prompt,"gloss_zh":r["gloss_zh_editorial"],"independent_semantic_certified":False,"release_eligible":False,"production_ready":False})
 assert len(review)==len(records)==len({x["rank"] for x in review})
 out=root/"editorial_semantic_triage_v1.jsonl"
 out.write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in review),encoding="utf8")
