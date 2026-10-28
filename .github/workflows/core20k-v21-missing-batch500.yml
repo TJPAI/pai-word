@@ -98,6 +98,7 @@ jobs:
       - name: Refresh uncovered pool after authoring all batches
         run: python3 tools/core20k_sense_v1/select_next500_uncovered.py
       - run: python3 tools/core20k_sense_v1/qa_curated_crossbatch.py
+      - run: python3 tools/core20k_sense_v1/qa_editorial_semantic_triage.py
       - run: python3 tools/core20k_sense_v1/build_source_bound_next200.py
       - uses: actions/upload-artifact@v4
         with:
@@ -138,5 +139,7 @@ jobs:
             tools/core20k_sense_v1/release/v21-missing-batch500-all/bilingual_sense_ku_curated_batch25.jsonl
             tools/core20k_sense_v1/release/v21-missing-batch500-all/bilingual_sense_ku_curated_batch26.jsonl
             tools/core20k_sense_v1/release/v21-missing-batch500-all/bilingual_sense_ku_curated_batch27.jsonl
+            tools/core20k_sense_v1/release/v21-missing-batch500-all/editorial_semantic_triage_v1.jsonl
+            tools/core20k_sense_v1/release/v21-missing-batch500-all/editorial_semantic_triage_summary_v1.json
             tools/core20k_sense_v1/release/v21-missing-batch500-all/curated_crossbatch_qa.json
             tools/core20k_sense_v1/release/v21-missing-batch500-all/curated_assessment_promotion_gate.jsonl
