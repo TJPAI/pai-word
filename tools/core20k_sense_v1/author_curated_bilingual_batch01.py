@@ -23,6 +23,7 @@ for lemma,(zh,prompt,cue) in entries.items():
         skipped[lemma]="NOT_EXACTLY_ONE_LOW_RISK_SOURCE";continue
     r=candidates[0];rank=r["rank"]
     assert words[rank-1][1].casefold()==lemma and prompt.count("___")==1
+    display_answer=lemma.title() if lemma in {"friday","wednesday","saturday","thursday"} else lemma
     out.append({"draft_sense_id":f"staging:v21:bilingual:{rank}:{r['oewn_sense_id']}",
       "headword_id":f"core20k:rank:{rank}","rank":rank,"lemma":lemma,
       "oewn_sense_id":r["oewn_sense_id"],"definition_en_source":r["definition_en"],
@@ -30,8 +31,8 @@ for lemma,(zh,prompt,cue) in entries.items():
       "draft_ku_id":f"staging:v21:missing:{rank}:editorial02",
       "ku_type":"sense","render_kind":"guided_cloze",
       "question_instruction_zh":f"根据“{cue}”补全英文句子。",
-      "prompt":prompt,"context_en":prompt.replace("___",lemma),
-      "correct_answer":lemma,"acceptable_answers":[lemma],
+      "prompt":prompt,"context_en":prompt.replace("___",display_answer),
+      "correct_answer":display_answer,"acceptable_answers":[display_answer],
       "source_attribution":"OEWN2025 exact Sense + ECDICT word-level evidence + original AI editorial context",
       "review_status":"AI_BILINGUAL_EDITORIAL_NEEDS_INDEPENDENT_SEMANTIC_AND_ASSESSMENT_QA",
       "independent_semantic_certified":False,"release_eligible":False,"production_ready":False})
