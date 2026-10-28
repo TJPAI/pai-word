@@ -1,0 +1,18 @@
+name: Core20K V2.1 Full20k Gap Triage
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths: ['tools/core20k_sense_v1/triage_full20k_gaps.py', '.github/workflows/core20k-v21-full20k-gap-triage.yml']
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_sense_v1/triage_full20k_gaps.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-v21-full20k-gap-triage
+          path: tools/core20k_sense_v1/release/v2.1-full20k-gap-triage/
