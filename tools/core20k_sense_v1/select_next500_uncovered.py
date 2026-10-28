@@ -7,8 +7,10 @@ base=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch500-all")
 other=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch-all")
 index=json.loads((base/"index.json").read_text())
 completed=set()
-for name in ("bilingual_sense_ku_curated_batch01.jsonl","bilingual_sense_ku_curated_batch02.jsonl","bilingual_sense_ku_curated_batch03.jsonl","bilingual_sense_ku_curated_batch04.jsonl","bilingual_sense_ku_curated_batch05.jsonl","bilingual_sense_ku_curated_batch06.jsonl","bilingual_sense_ku_curated_batch07.jsonl","bilingual_sense_ku_curated_batch08.jsonl","bilingual_sense_ku_curated_batch09.jsonl","bilingual_sense_ku_curated_batch10.jsonl"):
-    for line in (base/name).open(encoding="utf8"):
+editorial_files=sorted(base.glob("bilingual_sense_ku_curated_batch[0-9][0-9].jsonl"))
+assert len(editorial_files)>=10, "Missing previously approved curated batch"
+for file in editorial_files:
+    for line in file.open(encoding="utf8"):
         completed.add(json.loads(line)["rank"])
 for line in (other/"newly_resolved_sense_ku_editorial.jsonl").open(encoding="utf8"):
     completed.add(json.loads(line)["rank"])
