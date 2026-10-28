@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """Cross-batch sense/KU QA; machine checks do not imply independent semantic certification."""
 import pathlib,json,gzip,re,collections
-root=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch-all")
+root=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch500-all")
+missing=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch-all")
 with gzip.open("data/core20k-runtime.json.gz","rt",encoding="utf8") as f: words=json.load(f)["headwords"]
 files=["bilingual_sense_ku_curated_batch01.jsonl","bilingual_sense_ku_curated_batch02.jsonl","newly_resolved_sense_ku_editorial.jsonl"]
 items=[]
 for filename in files:
-    p=root/filename
+    p=(missing if filename=='newly_resolved_sense_ku_editorial.jsonl' else root)/filename
     items += [json.loads(line) for line in p.open(encoding="utf8")]
 ids=set();lemmas=set();risks=[];counts=collections.Counter()
 for r in items:
