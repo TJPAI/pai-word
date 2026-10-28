@@ -72,6 +72,7 @@ jobs:
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch16.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch17.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch18.py
+      - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch19.py
       - name: Refresh uncovered pool after authoring all batches
         run: python3 tools/core20k_sense_v1/select_next500_uncovered.py
       - run: python3 tools/core20k_sense_v1/qa_curated_crossbatch.py
