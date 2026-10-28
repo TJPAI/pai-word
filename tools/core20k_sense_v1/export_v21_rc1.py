@@ -52,3 +52,7 @@ manifest={"release_id":"Core20K-V2.1-Content-RC1","status":"STAGING_REVIEW_ONLY"
  "files":["core20k-v206-frozen-runtime.json.gz","v21-sense-editorial-staging.jsonl","v21-ku-teaching-staging.jsonl","v21-quarantined-ku.jsonl"]}
 (dest/"manifest.json").write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
 print("CORE20K_V21_EXPORT_PASS",json.dumps(manifest,ensure_ascii=False))
+
+# Keep the preview integration contract in the same exported artifact.
+import subprocess,sys
+subprocess.run([sys.executable,'tools/core20k_sense_v1/build_v21_integration_manifest.py'],check=True)
