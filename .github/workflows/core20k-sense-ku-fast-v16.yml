@@ -13,6 +13,8 @@ jobs:
     timeout-minutes: 6
     steps:
       - uses: actions/checkout@v4
+      - name: Compile-check Sense and KU production scripts
+        run: python3 -m py_compile tools/core20k_sense_v1/stage_curated_ku_v15.py tools/core20k_sense_v1/decision_batch_v16.py tools/core20k_sense_v1/qa_semcor_cloze_v13.py tools/core20k_sense_v1/repair_screen_cloze_v14.py
       - uses: actions/download-artifact@v4
         with:
           name: core20k-fast-selection-efficiency
