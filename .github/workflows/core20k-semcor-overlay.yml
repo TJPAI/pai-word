@@ -8,6 +8,7 @@ on:
       - tools/core20k_sense_v1/build_teaching_sense_v1_provisional.py
       - tools/core20k_sense_v1/build_provisional_ku_gate.py
       - tools/core20k_sense_v1/audit_placeholder4176.py
+      - tools/core20k_sense_v1/ku_authoring_safety_gate_v11.py
       - .github/workflows/core20k-semcor-overlay.yml
 jobs:
   semcor-overlay:
@@ -35,6 +36,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/build_provisional_ku_gate.py
       - name: Audit arbitrary coverage placeholders
         run: python3 tools/core20k_sense_v1/audit_placeholder4176.py
+      - name: Correct KU queue to block unsupported Sense choices
+        run: python3 tools/core20k_sense_v1/ku_authoring_safety_gate_v11.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-semcor-evidence-v9
@@ -47,4 +50,7 @@ jobs:
             **/teaching_sense_v1_ku_drafting_manifest.json
             **/placeholder4176_audit_manifest.json
             **/placeholder4176_semantic_review_queue.jsonl
+            **/ku_authoring_safety_v11_manifest.json
+            **/ku_draft_allowed_v11.jsonl
+            **/ku_draft_blocked_v11.jsonl
           retention-days: 30
