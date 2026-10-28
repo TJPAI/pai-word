@@ -1,0 +1,23 @@
+{
+  "baseline": "V4 24306-row local candidate baseline",
+  "source_sha256": "a7b8a0167b52690632f4ca456066708b286cb8dfe596f860253ec8041ce5d6d3",
+  "candidates": 24306,
+  "headwords_covered": 19680,
+  "missing": 320,
+  "missing_chinese_gloss": 24067,
+  "missing_example": 24110,
+  "missing_pos": 150,
+  "missing_oewn_synset": 150,
+  "coverage_only_not_semantically_validated": 13798,
+  "no_semcor_attestation": 8653,
+  "identity_mismatches": 0,
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "full_frozen_release": "BLOCKED",
+  "qa_artifacts": [
+    "core20k_v4_full_baseline_audited.jsonl",
+    "core20k_v4_per_headword_qa.jsonl",
+    "core20k_v4_independent_audit_manifest.json"
+  ],
+  "notes": "Full row-level audited files generated locally; this GitHub document is the verification manifest, not a full data upload. V5-V8 311 row-level patches separately present in GitHub; all-in-one V8 is pending GitHub Actions export and local reconciliation."
+}
