@@ -1,0 +1,20 @@
+name: Core20K V2.1 Grammar7 editorial QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - 'tools/core20k_sense_v1/editorial/validate_v21_grammar7.py'
+      - '.github/workflows/core20k-v21-grammar7-qa.yml'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_sense_v1/editorial/validate_v21_grammar7.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-v21-grammar7-revised-review
+          path: tools/core20k_sense_v1/editorial/v21_grammar7_qa_review_ready.jsonl
