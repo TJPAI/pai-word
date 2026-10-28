@@ -13,12 +13,12 @@ counts=collections.Counter();rows=[]
 for b in range(1,41):
  for line in (root/f"sense_selection_v3_decisions_batch{b:03d}.jsonl").open(encoding="utf8"):
   d=json.loads(line);sid=d["external_sense_id"]
-  if not sid.startswith("oewn-"):continue
+  if d["recommended_action"]!="DEFER_REVIEW" or not sid.startswith("oewn-"):continue
   try:
    sense=lex.sense(sid)
    syn=sense.synset()
    examples=list(syn.examples()) if hasattr(syn,"examples") else []
-  except (KeyError,ValueError,wn.Error,AttributeError) as e:
+  except (KeyError,ValueError,AttributeError) as e:
    counts["unresolvable_source_id"]+=1;continue
   if examples:
    counts["example_attested_senses"]+=1
