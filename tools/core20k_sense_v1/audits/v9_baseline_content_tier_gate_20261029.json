@@ -1,0 +1,26 @@
+{
+  "input_baseline": "V4 local teaching_sense_v4_integrated_candidate.jsonl",
+  "baseline_sha256": "a7b8a0167b52690632f4ca456066708b286cb8dfe596f860253ec8041ce5d6d3",
+  "baseline_rows": 24306,
+  "baseline_headwords": 19680,
+  "baseline_unique_teaching_ids": 24306,
+  "tier_counts": {
+    "EVIDENCE_STRONG_NEEDS_SEMANTIC_QA": 10269,
+    "LEXICAL_CANDIDATE_NEEDS_EVIDENCE": 13887,
+    "REPAIR_FIELDS_BEFORE_REVIEW": 150
+  },
+  "risk_counts_overlap": {
+    "ZH_MISSING": 24067,
+    "EXAMPLE_MISSING": 24110,
+    "POS_MISSING": 150,
+    "BACKFILL_UNVERIFIED": 13798,
+    "LESS_THAN_2_SEMCOR_ATTESTATIONS": 12191
+  },
+  "new_consolidated_delta_rows": 311,
+  "github_delta_path": "tools/core20k_sense_v1/editorial/core20k_v5_v8_consolidated_311_20261029.jsonl",
+  "anticipated_v8_rows": 24617,
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "gate": "BLOCK_FULL_TEACHING_SENSE_FREEZE",
+  "warning": "Evidence-backed tier is still not validated for commonness, contextual semantics, Chinese gloss, or examples. Only V4 baseline scanned at full row-level. 311 GitHub deltas separately QA'd."
+}
