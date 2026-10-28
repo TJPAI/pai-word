@@ -1,0 +1,26 @@
+{
+  "stage": "V10_STRUCTURAL_PATCH_NOT_SEMANTIC_FREEZE",
+  "v4_base_senses": 24306,
+  "v4_unique_headwords": 19680,
+  "v4_pos_missing_before": 150,
+  "v4_pos_proposed_repairs": 43,
+  "v4_pos_missing_after": 107,
+  "top1000_sense_count": 3605,
+  "top1000_pos_missing_after": 0,
+  "top1000_senses_with_zh_gloss": 81,
+  "v4_senses_missing_zh": 24067,
+  "github_increment_v5_v8": 311,
+  "github_consolidated_file": "tools/core20k_sense_v1/editorial/core20k_v5_v8_consolidated_311_20261029.jsonl",
+  "anticipated_merged_candidate_count": 24617,
+  "github_pos_patch": "tools/core20k_sense_v1/editorial/runtime_pos_patch_top1000_20261029.jsonl",
+  "local_patched_v4_file": "core20k_v4_top1000_pos_repaired_candidate.jsonl",
+  "local_patched_v4_sha256": "bb345bca5f8d6c866d13b355fbc18e69c175eb2a22bb6795859ddef55a24b8b5",
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "formal_freeze": "BLOCKED",
+  "warnings": [
+    "43 POS annotations are sense-specific proposals and still require lexical QA.",
+    "GitHub consolidated delta is real, but a single V4+delta 24617-row file has not been materialized and independently verified in this environment.",
+    "Candidate headword coverage must not be interpreted as released coverage."
+  ]
+}
