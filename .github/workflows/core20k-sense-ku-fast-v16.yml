@@ -1,0 +1,47 @@
+name: Core20K Incremental Sense KU Fast V16
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - tools/core20k_sense_v1/decision_batch_v16.py
+      - tools/core20k_sense_v1/stage_curated_ku_v15.py
+      - .github/workflows/core20k-sense-ku-fast-v16.yml
+jobs:
+  fast-content:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: core20k-fast-selection-efficiency
+          run-id: 40687574253
+          github-token: ${{ github.token }}
+          path: .
+      - uses: actions/download-artifact@v4
+        with:
+          name: core20k-oewn2025-full-source-candidates
+          run-id: 40684148197
+          github-token: ${{ github.token }}
+          path: .
+      - name: Reuse cached evidence to create V9 mask
+        run: |
+          python3 tools/core20k_sense_v1/semcor_overlay_v9.py
+          python3 tools/core20k_sense_v1/build_teaching_sense_v1_provisional.py
+      - name: Materialize V16 evidence-based Sense decisions
+        run: python3 tools/core20k_sense_v1/decision_batch_v16.py
+      - name: Materialize source-matched V15 original bilingual KU staging
+        run: python3 tools/core20k_sense_v1/stage_curated_ku_v15.py
+      - name: Preserve manifests and content even if a step fails
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core20k-fast-content-v16
+          path: |
+            **/sense_decisions_v16_initial.jsonl
+            **/sense_decisions_v16_manifest.json
+            **/curated_ku_v15_staging.jsonl
+            **/curated_ku_v15_review.jsonl
+            **/curated_ku_v15_manifest.json
+          retention-days: 30
