@@ -14,7 +14,23 @@ CURATED=[
  ("launch","begin", "The company will launch its new service in June.","该公司将在六月推出新服务。","推出；启动","launch"),
  ("issue","problem", "We should fix this issue before releasing the app.","我们应在发布应用前解决这个问题。","问题；待解决的事项","issue"),
  ("scale","size", "The scale of the project surprised the team.","项目的规模令团队惊讶。","规模；大小","scale"),
- ("network","connect", "A reliable network connects all the sensors.","可靠的网络连接所有传感器。","网络；互联系统","network"),
+ ("network","connect", "A reliable network connects all the sensors.","可靠的网络连接所有传感器。","网络；互联系统","network"),,
+ ["charge", "price", "The hotel did not charge us for breakfast.", "酒店没有收取我们的早餐费用。", "收费；索取费用", "charge"],
+ ["draft", "militar", "He was drafted into the army during the war.", "战争期间他被征召入伍。", "征召入伍", "drafted"],
+ ["issue", "publish", "The bank will issue new cards next month.", "银行将在下个月发行新卡。", "发行；签发", "issue"],
+ ["scale", "weigh", "The kitchen scale showed two kilograms.", "厨房秤显示两千克。", "秤；衡器", "scale"],
+ ["launch", "ship", "The agency plans to launch a satellite next year.", "该机构计划明年发射一颗卫星。", "发射", "launch"],
+ ["network", "social", "She built a network of colleagues across Europe.", "她在欧洲各地建立了同事人脉网络。", "人脉网络；关系网", "network"],
+ ["model", "fashion", "The model walked onto the runway.", "模特走上了T台。", "模特", "model"],
+ ["issue", "topic", "The meeting focused on the issue of housing costs.", "会议重点讨论了住房成本问题。", "议题；争论的问题", "issue"],
+ ["charge", "responsib", "The nurse was in charge of the night shift.", "护士负责夜班。", "负责；掌管", "charge"],
+ ["draft", "air", "A cold draft came through the open window.", "一股冷风从敞开的窗户吹进来。", "穿堂风；气流", "draft"],
+ ["model", "example", "Her work became a model for other research teams.", "她的工作成为其他研究团队的范例。", "范例；榜样", "model"],
+ ["scale", "climb", "The rescue team managed to scale the steep wall.", "救援队设法攀上陡峭的墙。", "攀登；翻越", "scale"],
+ ["network", "broadcast", "The network aired the interview on Sunday.", "电视网在周日播出了采访。", "广播电视网", "network"],
+ ["issue", "matter", "There is no issue with the revised schedule.", "修改后的时间表没有问题。", "问题；障碍", "issue"],
+ ["launch", "introduc", "The school launched a new reading program.", "学校推出了一项新的阅读计划。", "推出；开展", "launched"],
+ ["charge", "attack", "The soldiers were ordered to charge at dawn.", "士兵们奉命在黎明时冲锋。", "冲锋；进攻", "charge"]
 ]
 roots=list(pathlib.Path(".").rglob("batch001.jsonl"))
 # Batch names are inherited from immutable upstream full-source artifacts.
