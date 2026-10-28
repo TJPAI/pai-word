@@ -14,7 +14,7 @@ CURATED=[
  ("launch","begin", "The company will launch its new service in June.","该公司将在六月推出新服务。","推出；启动","launch"),
  ("issue","problem", "We should fix this issue before releasing the app.","我们应在发布应用前解决这个问题。","问题；待解决的事项","issue"),
  ("scale","size", "The scale of the project surprised the team.","项目的规模令团队惊讶。","规模；大小","scale"),
- ("network","connect", "A reliable network connects all the sensors.","可靠的网络连接所有传感器。","网络；互联系统","network"),,
+ ("network","connect", "A reliable network connects all the sensors.","可靠的网络连接所有传感器。","网络；互联系统","network"),
  ["charge", "price", "The hotel did not charge us for breakfast.", "酒店没有收取我们的早餐费用。", "收费；索取费用", "charge"],
  ["draft", "militar", "He was drafted into the army during the war.", "战争期间他被征召入伍。", "征召入伍", "drafted"],
  ["issue", "publish", "The bank will issue new cards next month.", "银行将在下个月发行新卡。", "发行；签发", "issue"],
