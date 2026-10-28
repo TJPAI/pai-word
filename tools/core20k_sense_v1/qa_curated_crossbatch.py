@@ -21,7 +21,7 @@ for r in items:
     assert prompt.count("___")==1
     expected=lemma.title() if lemma in {"friday","wednesday","saturday","thursday","october","january","june","february","november","december","september","april","monday"} else lemma
     assert r["context_en"]==prompt.replace("___",expected)
-    expected=lemma.title() if lemma in {"friday","wednesday","saturday","thursday"} else lemma
+    expected=lemma.title() if lemma in {"friday","wednesday","saturday","thursday","october","january","june","february","november","december","september","april","monday"} else lemma
     assert r["correct_answer"]==expected and r["acceptable_answers"]==[expected]
     assert r["production_ready"] is False and r["release_eligible"] is False
     assert r["independent_semantic_certified"] is False
