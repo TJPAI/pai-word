@@ -33,3 +33,5 @@ for r,ss,zh in picks[:100]:
 assert len(out)>0
 (root/"next100_lexical_sense_ku_candidates.jsonl").write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in out),encoding="utf8")
 print("NEXT100_REAL_SOURCE_CANDIDATES",json.dumps({"found_eligible":len(picks),"exported":len(out),"new_certified_senses":0,"new_certified_kus":0}))
+
+print('NEXT13_DETAILS',json.dumps([{'rank':x['rank'],'lemma':x['lemma'],'gloss_en':x['gloss_en'],'zh':x['zh_wordlevel_candidate']} for x in out],ensure_ascii=False))
