@@ -21,6 +21,7 @@ jobs:
         with:
           path: |
             tools/core20k_sense_v1/release/v21-missing-batch-all/
+            tools/core20k_sense_v1/release/core20k-full20k-staging/
             tools/core20k_sense_v1/release/v21-missing-batch001-500/
             tools/core20k_sense_v1/release/v21-missing-batch500-all/
             tools/core20k_sense_v1/release/v21-missing-batch001-content/
@@ -102,6 +103,8 @@ jobs:
       - name: Triage reviewer evidence for all editorial Sense/KU records
         run: python3 tools/core20k_sense_v1/qa_editorial_semantic_triage.py
       - run: python3 tools/core20k_sense_v1/build_source_bound_next200.py
+      - name: Generate complete frozen Core20K roster and source-linked provisional Sense/KU
+        run: python3 tools/core20k_sense_v1/build_full20k_staging_roster.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-v21-missing-review-batch001-500
