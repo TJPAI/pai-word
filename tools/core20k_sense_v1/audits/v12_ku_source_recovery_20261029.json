@@ -1,0 +1,32 @@
+{
+  "stage": "V12_OEWN_KU_SOURCE_RECOVERY_FOR_MUSE",
+  "v4_candidate_senses": 24306,
+  "ku_candidates": 14060,
+  "ku_linked_to_v4": 11210,
+  "formerly_unmatched_ku": 2850,
+  "formerly_unmatched_now_exact_OEWN_source_matched": 2850,
+  "rank_lemma_sense_key_mismatches": 0,
+  "priority_first_1000_rank": 802,
+  "other_rank": 2048,
+  "prior_selection_decisions": {
+    "KEEP_REVIEW": 2702,
+    "SOURCE_REVIEW": 105,
+    "DEFER_REVIEW": 43
+  },
+  "review_pool_if_including_recovery_proposals": 27156,
+  "proposals_not_added_to_selected_teaching_senses": 2850,
+  "unmatched_source_after_recovery": 0,
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "source_archive": "GitHub Actions artifact 12813992646 oewn2025_full20k_sense_candidates.jsonl + sense_selection_v3_decisions_batch001-040",
+  "local_delivery": "core20k_v12_sense_ku_source_recovery_pack.zip",
+  "candidate_sha256": "ee5601d1e2e17956a5ed28fd9604e08bf2e07e9922eea032d68e38a18fb3384b",
+  "full_ku_sha256": "51e7a17ef60f6a39577241802de472746dad5fc052f801244fdf29fe21144f7e",
+  "notes": [
+    "Recovered lexical source identity; not a claim of correctness of SemCor contextual interpretation.",
+    "Source selection remains review; no automatic promotion.",
+    "Original KU text quality flags preserved and all candidates quarantined from production.",
+    "Previous unmatched KU had null teaching_sense_id; this audit reconstructs stable rank-qualified IDs."
+  ],
+  "release": "BLOCKED_UNTIL_MUSE_REVIEW"
+}
