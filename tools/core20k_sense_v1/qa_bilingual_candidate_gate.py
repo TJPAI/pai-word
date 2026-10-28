@@ -11,13 +11,13 @@ counts=collections.Counter();out=[]
 for r in items:
  lemma=r["lemma"];zh=r["zh_wordlevel_candidate"];en=r["gloss_en"]
  reason=[]
- if pospat.match(zh.strip()):reason.append("EC_DICT_POS_PREFIX_NOT_STRIPPED")
+ clean_zh=pospat.sub("",zh.strip()).strip()\n if pospat.match(zh.strip()):counts["normalized_ecdict_pos_prefix"]+=1\n if not clean_zh:reason.append("EC_DICT_EMPTY_AFTER_POS_REMOVAL")
  if lemma=="an":reason.append("AN_NURSING_DEGREE_VS_ARTICLE_MISMATCH")
  if lemma=="eta":reason.append("ETA_GREEK_LETTER_VS_ARRIVAL_ACRONYM")
  if "\n" in zh or "\\n" in zh:reason.append("MULTILINE_ZH_NOT_SINGLE_MEANING")
  if len(en.strip())<12:reason.append("DEFINITION_TOO_SHORT")
  state="BLOCK_FOR_EDITORIAL" if reason else "UNVERIFIED_PENDING_SEMANTIC_EDITOR"
- out.append({"rank":r["rank"],"lemma":lemma,"source_en":en,"source_zh_wordlevel":zh,
+ out.append({"rank":r["rank"],"lemma":lemma,"source_en":en,"source_zh_wordlevel":zh,"normalized_zh_for_editorial":clean_zh,
   "flags":reason,"gate_status":state,"production_ready":False,"release_eligible":False})
  counts[state]+=1
  for v in reason:counts["flag:"+v]+=1
