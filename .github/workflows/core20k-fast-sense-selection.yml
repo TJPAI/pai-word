@@ -6,6 +6,7 @@ on:
     paths:
       - tools/core20k_sense_v1/measure_selection_efficiency.py
       - tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
+      - tools/core20k_sense_v1/source_examples_selection_v6.py
       - .github/workflows/core20k-fast-sense-selection.yml
 jobs:
   fast-selection:
@@ -23,10 +24,16 @@ jobs:
           run-id: 40684148197
           github-token: ${{ github.token }}
           path: .
+      - name: Install source lexicon lookup dependency
+        run: python -m pip install "wn>=0.13,<2"
+      - name: Install OEWN 2025 source examples
+        run: python -c "import wn; wn.download(\'oewn:2025\')"
       - name: Measure fast incremental selection efficiency and actual decision delta
         run: python3 tools/core20k_sense_v1/measure_selection_efficiency.py
       - name: Apply exact duplicated definition card display suppression V5
         run: python3 tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
+      - name: Obtain actual OEWN usage examples for deferred Senses
+        run: python3 tools/core20k_sense_v1/source_examples_selection_v6.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-fast-selection-efficiency
@@ -34,4 +41,6 @@ jobs:
             **/selection_efficiency_round1.json
             **/sense_selection_v5_efficiency.json
             **/sense_selection_v5_exact_card_dedup.jsonl
+            **/sense_selection_v6_manifest.json
+            **/sense_selection_v6_attested_examples.jsonl
           retention-days: 30
