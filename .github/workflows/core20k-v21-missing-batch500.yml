@@ -15,14 +15,40 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - run: python -m pip install 'wn>=0.13,<2'
-      - run: python -c "import wn; wn.download('oewn:2025')"
-      - run: python3 tools/core20k_sense_v1/produce_all_missing_evidence.py
-      - run: python3 tools/core20k_sense_v1/build_missing_500_batch.py
-      - run: python3 tools/core20k_sense_v1/partition_all_missing_500.py
-      - run: python3 tools/core20k_sense_v1/author_batch001_english_learning.py
-      - run: python3 tools/core20k_sense_v1/author_all_missing_english_cards.py
-      - run: python3 tools/core20k_sense_v1/build_bilingual_editing_batches.py
+      - name: Restore deterministic lexical evidence and drafts
+        id: evidence-cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            tools/core20k_sense_v1/release/v21-missing-batch-all/
+            tools/core20k_sense_v1/release/v21-missing-batch001-500/
+            tools/core20k_sense_v1/release/v21-missing-batch500-all/
+            tools/core20k_sense_v1/release/v21-missing-batch001-content/
+          key: core20k-evidence-v2-${{ hashFiles('data/core20k-runtime.json.gz', 'tools/core20k_sense_v1/produce_all_missing_evidence.py', 'tools/core20k_sense_v1/build_missing_500_batch.py', 'tools/core20k_sense_v1/partition_all_missing_500.py', 'tools/core20k_sense_v1/author_batch001_english_learning.py', 'tools/core20k_sense_v1/author_all_missing_english_cards.py', 'tools/core20k_sense_v1/build_bilingual_editing_batches.py') }}
+      - name: Install WordNet dependency only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python -m pip install 'wn>=0.13,<2'
+      - name: Download OEWN only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python -c "import wn; wn.download('oewn:2025')"
+      - name: Extract evidence only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python3 tools/core20k_sense_v1/produce_all_missing_evidence.py
+      - name: Build source review only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python3 tools/core20k_sense_v1/build_missing_500_batch.py
+      - name: Partition into 15 batches only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python3 tools/core20k_sense_v1/partition_all_missing_500.py
+      - name: Build batch 001 English learning only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python3 tools/core20k_sense_v1/author_batch001_english_learning.py
+      - name: Build all English learning drafts only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python3 tools/core20k_sense_v1/author_all_missing_english_cards.py
+      - name: Build bilingual triage only on cache miss
+        if: steps.evidence-cache.outputs.cache-hit != 'true'
+        run: python3 tools/core20k_sense_v1/build_bilingual_editing_batches.py
       - run: python3 tools/core20k_sense_v1/expose_editorial_source100.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch01.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch02.py
