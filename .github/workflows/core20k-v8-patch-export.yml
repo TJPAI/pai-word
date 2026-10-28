@@ -1,0 +1,43 @@
+name: Core20K V8 Patch Export
+on:
+  push:
+    branches:
+      - core20k-v13-recovery-20261028
+    paths:
+      - .github/workflows/core20k-v8-patch-export.yml
+  workflow_dispatch:
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Validate patch JSONL records and make ZIP
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,zipfile,collections
+          base=pathlib.Path('tools/core20k_sense_v1/editorial')
+          files=[base/f'missing_headwords_batch_v{i}_20261029.jsonl' for i in (5,6,7,8)]
+          data=[]
+          for p in files:
+              assert p.is_file(),str(p)
+              rows=[json.loads(s) for s in p.read_text().splitlines() if s]
+              data.extend(rows)
+          assert len(data)==311,(len(data),'expected 311')
+          ranks=[r['rank'] for r in data]
+          assert len(set(ranks))==311,'duplicate ranks'
+          ids=[r['teaching_sense_id'] for r in data]
+          assert len(set(ids))==311,'duplicate IDs'
+          for r in data:
+              assert r['release_eligible'] is False and r['semantic_certified'] is False and r['production_ready'] is False
+          with zipfile.ZipFile('core20k-v8-github-increments.zip','w',compression=zipfile.ZIP_DEFLATED) as z:
+              for p in files:z.write(p,arcname=p.name)
+          print('Validated and exported',len(data),'records')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-v8-github-increments
+          path: core20k-v8-github-increments.zip
+          retention-days: 30
