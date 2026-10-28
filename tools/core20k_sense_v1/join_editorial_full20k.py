@@ -5,6 +5,11 @@ root=pathlib.Path("tools/core20k_sense_v1")
 source=root/"release/v21-missing-batch500-all"
 extra=root/"release/v21-missing-batch-all/newly_resolved_sense_ku_editorial.jsonl"
 out=root/"reports/oewn-full20k-staging"
+# Actions artifacts can be unpacked without the original common folder prefix.
+candidates=sorted(pathlib.Path(".").rglob("bilingual_sense_ku_curated_batch27.jsonl"))
+if candidates: source=candidates[0].parent
+extras=sorted(pathlib.Path(".").rglob("newly_resolved_sense_ku_editorial.jsonl"))
+if extras: extra=extras[0]
 editorial={}
 for path in sorted(source.glob("bilingual_sense_ku_curated_batch[0-9][0-9].jsonl"))+([extra] if extra.exists() else []):
     for line in path.open(encoding="utf8"):
@@ -33,7 +38,7 @@ for batch in range(1,41):
         metrics["linked" if linked else "unlinked"]+=1
     p.write_text("".join(json.dumps(w,ensure_ascii=False)+"\n" for w in rows),encoding="utf8")
 assert found==set(editorial)
-assert len(found)>=1482, "Missing too many archived editorial drafts"
+assert len(found)>=1482, f"Missing archived drafts: {len(found)}, source={source}, extra={extra.exists()}"
 (out/"editorial_oewn_unlinked_review.jsonl").write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in unmatched),encoding="utf8")
 report={"editorial_staging_cloze_attached":len(found),"missing_historical_extra_file":not extra.exists(),"sense_id_exact_matched":metrics["linked"],"sense_id_unmatched_review":metrics["unlinked"],"production_ready":0,"independently_certified":0}
 (out/"editorial_merge_manifest.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
