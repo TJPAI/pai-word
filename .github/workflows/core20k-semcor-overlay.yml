@@ -1,0 +1,29 @@
+name: Core20K Fast Corpus Evidence Overlay
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - tools/core20k_sense_v1/semcor_overlay_v9.py
+      - .github/workflows/core20k-semcor-overlay.yml
+jobs:
+  semcor-overlay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: core20k-fast-selection-efficiency
+          run-id: 40687574253
+          github-token: ${{ github.token }}
+          path: .
+      - name: Overlay SemCor evidence onto candidate selection
+        run: python3 tools/core20k_sense_v1/semcor_overlay_v9.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-semcor-evidence-v9
+          path: |
+            **/sense_selection_v9_manifest.json
+            **/sense_selection_v9_corpus_evidence_overlay.jsonl
+          retention-days: 30
