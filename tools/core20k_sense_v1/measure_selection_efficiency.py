@@ -4,8 +4,10 @@ Measure actual changes separately from record scans; do not fabricate semantic c
 """
 import json,pathlib,time,collections
 t=time.perf_counter()
-base=pathlib.Path("tools/core20k_sense_v1/reports/oewn-full20k-staging")
-assert (base/"sense_selection_v4_review_manifest.json").is_file(), "Required frozen selection artifact missing"
+candidates=list(pathlib.Path(".").rglob("sense_selection_v4_review_manifest.json"))
+assert len(candidates)==1, f"Expected unique downloaded manifest; found {len(candidates)}: {candidates[:6]}"
+base=candidates[0].parent
+print("FROZEN_ARTIFACT_ROOT",base)
 counts=collections.Counter();seen=set();expected=0
 for batch in range(1,41):
  p=base/f"sense_selection_v3_decisions_batch{batch:03d}.jsonl"
