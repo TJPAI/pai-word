@@ -9,6 +9,7 @@ on:
       - 'tools/core20k_sense_v1/export_top1000_missing19.py'
       - 'tools/core20k_sense_v1/build_top1000_unified_teaching.py'
       - 'tools/core20k_sense_v1/export_top1000_l2_contextual.py'
+      - 'tools/core20k_sense_v1/export_top1000_contextual_34.py'
       - '.github/workflows/core20k-v21-top1000-export.yml'
 jobs:
   export:
@@ -27,6 +28,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/build_top1000_unified_teaching.py
       - name: Export source-checked L2 contextual six KU sample
         run: python3 tools/core20k_sense_v1/export_top1000_l2_contextual.py
+      - name: Import 34 contextual grammar and collocation exercises with blocker QA
+        run: python3 tools/core20k_sense_v1/export_top1000_contextual_34.py
       - uses: actions/upload-artifact@v4
         with:
           name: Core20K-V2.1-TOP1000-Sense-KU-Staging
