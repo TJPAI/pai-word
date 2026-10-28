@@ -7,6 +7,7 @@ on:
       - tools/core20k_sense_v1/oewn2025_full20k.py
       - tools/core20k_sense_v1/join_editorial_full20k.py
       - tools/core20k_sense_v1/pack_full20k_oewn_sense_ku.py
+      - tools/core20k_sense_v1/inventory_oewn_gap_fallback.py
       - .github/workflows/core20k-full-oewn-sources.yml
 jobs:
   full-oewn-sources:
@@ -32,6 +33,8 @@ jobs:
           path: .
       - name: Attach historical original-context KU drafts to full OEWN packs
         run: python3 tools/core20k_sense_v1/join_editorial_full20k.py
+      - name: Classify OEWN no-match headwords using frozen runtime source evidence
+        run: python3 tools/core20k_sense_v1/inventory_oewn_gap_fallback.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-oewn2025-full-source-candidates
