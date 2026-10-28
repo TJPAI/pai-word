@@ -33,6 +33,26 @@ jobs:
         run: python3 tools/core20k_sense_v1/decision_batch_v16.py
       - name: Materialize source-matched V15 original bilingual KU staging
         run: python3 tools/core20k_sense_v1/stage_curated_ku_v15.py
+      - name: Publish quantified production result
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          root=pathlib.Path(".")
+          names=["sense_decisions_v16_manifest.json","curated_ku_v15_manifest.json"]
+          with open(__import__("os").environ["GITHUB_STEP_SUMMARY"],"a") as report:
+              report.write("## Core20K verified production manifests\\n\\n")
+              for name in names:
+                  paths=list(root.rglob(name))
+                  if len(paths)!=1:
+                      report.write(f"- {name}: NOT PRODUCED (matches={len(paths)})\\n")
+                      continue
+                  data=json.loads(paths[0].read_text())
+                  report.write(f"### {name}\\n\\n")
+                  for key,value in data.items():
+                      report.write(f"- {key}: {value}\\n")
+                  report.write("\\n")
+          PY
       - name: Preserve manifests and content even if a step fails
         if: always()
         uses: actions/upload-artifact@v4
