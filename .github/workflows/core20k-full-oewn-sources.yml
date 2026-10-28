@@ -14,6 +14,7 @@ on:
       - tools/core20k_sense_v1/build_all_source_sense_teaching.py
       - tools/core20k_sense_v1/build_full_bilingual_alignment_queue.py
       - tools/core20k_sense_v1/select_full20k_senses_v1.py
+      - tools/core20k_sense_v1/triage_sense_selection_v2.py
       - .github/workflows/core20k-full-oewn-sources.yml
 jobs:
   full-oewn-sources:
@@ -53,6 +54,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/build_full_bilingual_alignment_queue.py
       - name: First-pass source-preserving Sense selection V1
         run: python3 tools/core20k_sense_v1/select_full20k_senses_v1.py
+      - name: Classify all Sense candidates into non-destructive V2 review lanes
+        run: python3 tools/core20k_sense_v1/triage_sense_selection_v2.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-oewn2025-full-source-candidates
