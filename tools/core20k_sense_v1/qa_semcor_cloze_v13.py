@@ -12,7 +12,7 @@ for ln in fs[0].open():
  if q.count("____")!=1:errs.append("CLOZE_PLACEHOLDER_COUNT")
  if not 1<len(ans)<45:errs.append("INVALID_RESPONSE_LENGTH")
  if len(q)<20 or len(q)>260:errs.append("CONTEXT_LENGTH_OUT_OF_RANGE")
- if not re.search(r"[.!?]",q):errs.append("NO_SENTENCE_TERMINATOR_REVIEW")
+ if not q.rstrip().endswith((".", "!", "?")):errs.append("NO_SENTENCE_TERMINATOR_REVIEW")
  if ans.casefold()!=r["lemma"].casefold():errs.append("ANSWER_VARIANT_REVIEW")
  if errs:
   r["qa_status"]="QUARANTINE";r["qa_issue_codes"]=errs;bad.append(r)
