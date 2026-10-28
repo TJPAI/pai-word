@@ -12,6 +12,7 @@ on:
       - tools/core20k_sense_v1/semcor_context_cloze_v12.py
       - tools/core20k_sense_v1/qa_semcor_cloze_v13.py
       - tools/core20k_sense_v1/repair_screen_cloze_v14.py
+      - tools/core20k_sense_v1/stage_curated_ku_v15.py
       - .github/workflows/core20k-semcor-overlay.yml
 jobs:
   semcor-overlay:
@@ -51,6 +52,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/qa_semcor_cloze_v13.py
       - name: Repair structure and screen cloze answer risks V14
         run: python3 tools/core20k_sense_v1/repair_screen_cloze_v14.py
+      - name: Stage source-grounded original bilingual KU pilot V15
+        run: python3 tools/core20k_sense_v1/stage_curated_ku_v15.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -76,4 +79,7 @@ jobs:
             **/cloze_v14_structural_candidates.jsonl
             **/cloze_v14_ambiguity_review.jsonl
             **/cloze_v14_unresolved.jsonl
+            **/curated_ku_v15_staging.jsonl
+            **/curated_ku_v15_review.jsonl
+            **/curated_ku_v15_manifest.json
           retention-days: 30
