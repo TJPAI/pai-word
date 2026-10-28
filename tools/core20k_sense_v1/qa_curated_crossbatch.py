@@ -4,11 +4,12 @@ import pathlib,json,gzip,re,collections
 root=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch500-all")
 missing=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch-all")
 with gzip.open("data/core20k-runtime.json.gz","rt",encoding="utf8") as f: words=json.load(f)["headwords"]
-files=["bilingual_sense_ku_curated_batch01.jsonl","bilingual_sense_ku_curated_batch02.jsonl","bilingual_sense_ku_curated_batch03.jsonl","bilingual_sense_ku_curated_batch04.jsonl","bilingual_sense_ku_curated_batch05.jsonl","bilingual_sense_ku_curated_batch06.jsonl","bilingual_sense_ku_curated_batch07.jsonl","bilingual_sense_ku_curated_batch08.jsonl","bilingual_sense_ku_curated_batch09.jsonl","bilingual_sense_ku_curated_batch10.jsonl","newly_resolved_sense_ku_editorial.jsonl"]
+files=sorted(root.glob("bilingual_sense_ku_curated_batch[0-9][0-9].jsonl"))
+assert len(files)>=10, "Expected previously authored editorial batches"
+files.append(missing/"newly_resolved_sense_ku_editorial.jsonl")
 items=[]
-for filename in files:
-    p=(missing if filename=='newly_resolved_sense_ku_editorial.jsonl' else root)/filename
-    items += [json.loads(line) for line in p.open(encoding="utf8")]
+for file in files:
+    items += [json.loads(line) for line in file.open(encoding="utf8")]
 ids=set();lemmas=set();risks=[];counts=collections.Counter();gated=[]
 for r in items:
     lemma=r["lemma"];rank=r["rank"];prompt=r["prompt"]
