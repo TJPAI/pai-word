@@ -18,13 +18,15 @@ for r in items:
     assert (rank,lemma) not in lemmas;lemmas.add((rank,lemma))
     assert r["oewn_sense_id"] and r["definition_en_source"]
     assert r["gloss_zh_editorial"] and r["question_instruction_zh"]
-    assert prompt.count("___")==1 and r["context_en"]==prompt.replace("___",lemma)
-    assert r["correct_answer"]==lemma and r["acceptable_answers"]==[lemma]
+    assert prompt.count("___")==1
+    expected=lemma.title() if lemma in {"friday","wednesday","saturday","thursday"} else lemma
+    assert r["context_en"]==prompt.replace("___",expected)
+    expected=lemma.title() if lemma in {"friday","wednesday","saturday","thursday"} else lemma
+    assert r["correct_answer"]==expected and r["acceptable_answers"]==[expected]
     assert r["production_ready"] is False and r["release_eligible"] is False
     assert r["independent_semantic_certified"] is False
     counts["structural_qa_pass"]+=1
-    if lemma in ("friday","wednesday","saturday","thursday") and lemma.lower() in r["context_en"]:
-        risks.append({"lemma":lemma,"risk":"ENGLISH_WEEKDAY_REQUIRES_CAPITALIZATION_AT_RENDER","suggested_answer":lemma.title()})
+
     if re.search(r"\b(?:a|an) ___\b",prompt,re.I):
         risks.append({"lemma":lemma,"risk":"ARTICLE_SENSITIVITY_REVIEW"})
     if lemma in ("environ","artiste","needful"):
