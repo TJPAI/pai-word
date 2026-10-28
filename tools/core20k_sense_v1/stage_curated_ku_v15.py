@@ -51,7 +51,7 @@ for lemma,cue,example,zh_example,zh_gloss,answer in CURATED:
   "ku_type":"cloze","render_kind":"cloze","question":question,"response":answer,
   "original_example_en":example,"example_zh":zh_example,"gloss_zh_draft":zh_gloss,
   "definition_en_source":s["definition_en_source"],
-  "authorship":"EDITORIALLY_AUTHORED_ORIGINAL_SENTENCE","selection":"REVIEW",
+  "authorship":"AI_AUTHORED_DRAFT_UNREVIEWED","selection":"REVIEW",
   "qa_status":"STRUCTURAL_PASS_SEMANTIC_REVIEW_REQUIRED","production_ready":False,
   "semantic_certified":False})
 out=base/"curated_ku_v15_staging.jsonl"
