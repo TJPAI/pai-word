@@ -11,7 +11,9 @@ counts=collections.Counter();out=[]
 for r in items:
  lemma=r["lemma"];zh=r["zh_wordlevel_candidate"];en=r["gloss_en"]
  reason=[]
- clean_zh=pospat.sub("",zh.strip()).strip()\n if pospat.match(zh.strip()):counts["normalized_ecdict_pos_prefix"]+=1\n if not clean_zh:reason.append("EC_DICT_EMPTY_AFTER_POS_REMOVAL")
+ clean_zh=pospat.sub("",zh.strip()).strip()
+ if pospat.match(zh.strip()):counts["normalized_ecdict_pos_prefix"]+=1
+ if not clean_zh:reason.append("EC_DICT_EMPTY_AFTER_POS_REMOVAL")
  if lemma=="an":reason.append("AN_NURSING_DEGREE_VS_ARTICLE_MISMATCH")
  if lemma=="eta":reason.append("ETA_GREEK_LETTER_VS_ARRIVAL_ACRONYM")
  if "\n" in zh or "\\n" in zh:reason.append("MULTILINE_ZH_NOT_SINGLE_MEANING")
