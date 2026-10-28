@@ -5,6 +5,7 @@ on:
     branches: [core20k-sense-v1-audit-20261027]
     paths:
       - tools/core20k_sense_v1/semcor_overlay_v9.py
+      - tools/core20k_sense_v1/build_teaching_sense_v1_provisional.py
       - .github/workflows/core20k-semcor-overlay.yml
 jobs:
   semcor-overlay:
@@ -26,10 +27,14 @@ jobs:
           path: .
       - name: Overlay SemCor evidence onto candidate selection
         run: python3 tools/core20k_sense_v1/semcor_overlay_v9.py
+      - name: Materialize provisional teaching Sense inclusion mask
+        run: python3 tools/core20k_sense_v1/build_teaching_sense_v1_provisional.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-semcor-evidence-v9
           path: |
             **/sense_selection_v9_manifest.json
             **/sense_selection_v9_corpus_evidence_overlay.jsonl
+            **/teaching_sense_v1_provisional_selection.jsonl
+            **/teaching_sense_v1_provisional_manifest.json
           retention-days: 30
