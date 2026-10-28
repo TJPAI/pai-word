@@ -2,9 +2,17 @@
 """V14 repair only harmless cloze formatting, isolate answer and context ambiguity.
 No paraphrase of source sentences, semantic certification or promotion.
 """
-import pathlib,json,re,time,collections
-t=time.monotonic();sources=list(pathlib.Path(".").rglob("semcor_cloze_v13_structural_pass.jsonl"))
-assert len(sources)==1, f"Expected one V13 output, found {len(sources)}"
+import pathlib,json,re,time,collections,subprocess,sys
+t=time.monotonic()
+sources=list(pathlib.Path(".").rglob("semcor_cloze_v13_structural_pass.jsonl"))
+# V13 QA is cheap (<1s); recover missing QA artifacts using existing V12 candidates,
+# never re-download SemCor or regenerate its 14k candidate contexts.
+if len(sources)!=1 or not sources[0].is_file():
+ v12=list(pathlib.Path(".").rglob("semcor_context_cloze_staging_v12.jsonl"))
+ assert len(v12)==1, f"Cannot recover V13: expected one V12 file, found {len(v12)}"
+ subprocess.run([sys.executable,"tools/core20k_sense_v1/qa_semcor_cloze_v13.py"],check=True)
+ sources=list(pathlib.Path(".").rglob("semcor_cloze_v13_structural_pass.jsonl"))
+assert len(sources)==1, f"Expected one V13 output after recovery, found {len(sources)}"
 base=sources[0].parent
 # Read the discovered path directly, and fail with a useful diagnosis if outputs moved.
 pass_path=sources[0]
