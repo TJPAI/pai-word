@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [core20k-sense-v1-audit-20261027]
-    paths: ['tools/core20k_sense_v1/build_missing_500_batch.py', 'tools/core20k_sense_v1/partition_all_missing_500.py', 'tools/core20k_sense_v1/author_batch001_english_learning.py', 'tools/core20k_sense_v1/author_all_missing_english_cards.py', 'tools/core20k_sense_v1/build_bilingual_editing_batches.py', 'tools/core20k_sense_v1/author_additional_context_ku.py', 'tools/core20k_sense_v1/author_additional_context_round2.py', 'tools/core20k_sense_v1/author_newly_resolved_sense_ku.py', 'tools/core20k_sense_v1/expose_editorial_source100.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch01.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch02.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch03.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch04.py', 'tools/core20k_sense_v1/select_next500_uncovered.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch05.py', 'tools/core20k_sense_v1/qa_curated_crossbatch.py', 'tools/core20k_sense_v1/expose_editorial_source100.py', '.github/workflows/core20k-v21-missing-batch500.yml']
+    paths: ['tools/core20k_sense_v1/build_missing_500_batch.py', 'tools/core20k_sense_v1/partition_all_missing_500.py', 'tools/core20k_sense_v1/author_batch001_english_learning.py', 'tools/core20k_sense_v1/author_all_missing_english_cards.py', 'tools/core20k_sense_v1/build_bilingual_editing_batches.py', 'tools/core20k_sense_v1/author_additional_context_ku.py', 'tools/core20k_sense_v1/author_additional_context_round2.py', 'tools/core20k_sense_v1/author_newly_resolved_sense_ku.py', 'tools/core20k_sense_v1/expose_editorial_source100.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch01.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch02.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch03.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch04.py', 'tools/core20k_sense_v1/select_next500_uncovered.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch05.py', 'tools/core20k_sense_v1/author_curated_bilingual_batch06.py', 'tools/core20k_sense_v1/qa_curated_crossbatch.py', 'tools/core20k_sense_v1/expose_editorial_source100.py', '.github/workflows/core20k-v21-missing-batch500.yml']
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -58,6 +58,7 @@ jobs:
       - run: python3 tools/core20k_sense_v1/author_additional_context_round2.py
       - run: python3 tools/core20k_sense_v1/author_newly_resolved_sense_ku.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch05.py
+      - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch06.py
       - run: python3 tools/core20k_sense_v1/qa_curated_crossbatch.py
       - run: python3 tools/core20k_sense_v1/select_next500_uncovered.py
       - uses: actions/upload-artifact@v4
@@ -76,4 +77,5 @@ jobs:
             tools/core20k_sense_v1/release/v21-missing-batch-all/bilingual_sense_ku_curated_batch04.jsonl
             tools/core20k_sense_v1/release/v21-missing-batch500-all/next500_uncovered_source_cards.jsonl
             tools/core20k_sense_v1/release/v21-missing-batch500-all/bilingual_sense_ku_curated_batch05.jsonl
+            tools/core20k_sense_v1/release/v21-missing-batch500-all/bilingual_sense_ku_curated_batch06.jsonl
             tools/core20k_sense_v1/release/v21-missing-batch-all/curated_crossbatch_qa.json
