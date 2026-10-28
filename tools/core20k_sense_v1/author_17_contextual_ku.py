@@ -6,7 +6,9 @@ import gzip,json,pathlib,collections
 root=pathlib.Path("tools/core20k_sense_v1/release/v2.1-missing-first1000-sourced")
 source=[json.loads(l) for l in (root/"bilingual_editorial_pilot.jsonl").open(encoding="utf8")]
 examples={"january":"Our classes begin in ___ after the winter break.","february":"The conference takes place in ___, the second month of the year.","april":"The project starts in ___, between March and May.","june":"The summer course begins in ___, after May.","september":"The autumn semester starts in ___.","october":"Halloween is celebrated in ___.","november":"The meeting is in ___, the month before December.","december":"The year ends in ___.","monday":"The office reopens on ___ after Sunday.","sunday":"Many families rest on ___, the day after Saturday.","digitization":"The ___ of paper records made searching them easier.","questioner":"The ___ asked a follow-up question during the interview.","discussant":"The ___ contributed to the panel discussion.","roomful":"A ___ of students listened to the lecture.","humanize":"The new policy aims to ___ the treatment of patients.","experienced":"We hired an ___ engineer with ten years of practice.","informer":"The police received information from an anonymous ___."}
+cues={"january":"填入表示一月的英文月份名称。","february":"填入表示二月的英文月份名称。","april":"填入表示四月的英文月份名称。","june":"填入表示六月的英文月份名称。","september":"填入表示九月的英文月份名称。","october":"填入表示十月的英文月份名称。","november":"填入表示十一月的英文月份名称。","december":"填入表示十二月的英文月份名称。","monday":"填入表示星期一的英文词。","sunday":"填入表示星期日的英文词。","digitization":"填入表示将纸质信息数字化这一过程的英文名词。","questioner":"填入表示提出问题的人的英文名词。","discussant":"填入表示参与正式讨论者的英文名词。","roomful":"填入表示一屋子人的英文数量名词。","humanize":"填入表示使待遇更加人性化的英文动词。","experienced":"填入表示有实际经验的英文形容词。","informer":"填入表示向警方提供秘密消息之人的英文名词。"}
 assert len(source)==len(examples)==17
+assert set(examples)==set(cues)
 with gzip.open("data/core20k-runtime.json.gz","rt",encoding="utf8") as f:words=json.load(f)["headwords"]
 byrank={r[0]:r for r in words}
 out=[]
@@ -18,7 +20,7 @@ for r in source:
  answer=lemma
  x={"draft_ku_id":f"staging:v21:missing:{rank}:context01","headword_id":r["headword_id"],"rank":rank,
  "lemma":lemma,"external_sense_id":r["oewn_sense_id"],"canonical_sense_id":None,
- "ku_type":"sense","render_kind":"guided_cloze","prompt":prompt,
+ "ku_type":"sense","render_kind":"guided_cloze","prompt":prompt,"question_instruction_zh":cues[lemma],"answer_mode":"CUE_CONSTRAINED_CLOZE",
  "correct_answer":answer,"acceptable_answers":[answer],
  "context_en":prompt.replace("___",answer),
  "gloss_zh":r["gloss_zh_editorial"],"gloss_en":r["gloss_en"],
