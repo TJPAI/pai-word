@@ -6,10 +6,10 @@ rows=[json.loads(x) for x in (p/"v21_collocation27_revised.jsonl").open()]
 assert len(source)==len(rows)==27
 old={x["ku_id"]:x for x in source}
 risk={
- "w_0008_have_ku03":"hold a meeting also acceptable",
- "w_0048_make_ku03":"reach a decision also acceptable",
- "w_0194_run_ku07":"build a company also acceptable",
- "w_0517_regard_ku04":"consider ... as also possible in some contexts",
+ "w_0008_have_ku03":"have/hold a meeting: inspect objective and distractors",
+ "w_0048_make_ku03":"verify collocation and plausible alternatives",
+ "w_0194_run_ku07":"run/manage a company: domain meaning review",
+ "w_0517_regard_ku04":"describe/classify/label as significant may be legitimate",
 }
 stats=collections.Counter()
 with (p/"v21_collocation27_validated_review.jsonl").open("w",encoding="utf8") as out:
