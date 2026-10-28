@@ -36,7 +36,12 @@ for lemma,cue,example,zh_example,zh_gloss,answer in CURATED:
   review.append({"lemma":lemma,"cue":cue,"candidate_matches":len(hits),"reason":"SOURCE_SENSE_MATCH_NOT_UNIQUE"})
   continue
  w,s=hits[0]
- assert example.count(answer)==1, (lemma,answer)
+ if not w.get("rank") or not s.get("external_sense_id"):
+  review.append({"lemma":lemma,"cue":cue,"reason":"MISSING_STABLE_SOURCE_ID"})
+  continue
+ if example.count(answer)!=1:
+  review.append({"lemma":lemma,"cue":cue,"reason":"ANSWER_NOT_UNIQUE_IN_EXAMPLE"})
+  continue
  question=example.replace(answer,"____",1)
  assert question.count("____")==1 and len(question)>=20
  sid=s["external_sense_id"];rank=w["rank"]
@@ -54,7 +59,7 @@ out.write_text("".join(json.dumps(v,ensure_ascii=False)+"\n" for v in drafts),en
 (base/"curated_ku_v15_review.jsonl").write_text("".join(json.dumps(v,ensure_ascii=False)+"\n" for v in review),encoding="utf8")
 report={"curated_attempted":len(CURATED),"actual_source_sense_matched":len(drafts),
  "original_context_ku_drafts":len(drafts),"unresolved":len(review),
- "structural_pass":len(drafts),"semantically_certified":0,"production_ready":0,
+ "structural_pass":len(drafts),"semantic_review_required":len(drafts),"semantically_certified":0,"production_ready":0,
  "elapsed_seconds":round(time.monotonic()-start,3)}
 (base/"curated_ku_v15_manifest.json").write_text(json.dumps(report,indent=2)+"\n")
 print("CURATED_KU_V15",json.dumps(report))
