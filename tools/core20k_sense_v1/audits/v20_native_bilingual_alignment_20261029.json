@@ -1,0 +1,24 @@
+{
+  "stage": "V20_BILINGUAL_ALIGNMENT_REVIEW_CANDIDATES",
+  "source_oewn_senses": 27156,
+  "native_bilingual_ku": 16137,
+  "sense_level_alignment_proposals_scored": 20079,
+  "provisional_review_tier": {
+    "HIGH_LEXICAL_REVIEW": 185,
+    "MID_LEXICAL_REVIEW": 825
+  },
+  "placeholder_contaminated_matches_quarantined": 10254,
+  "placeholder_exact_string_false_matches": 96,
+  "new_certified_glosses": 0,
+  "new_certified_senses": 0,
+  "new_production_ready_ku": 0,
+  "method": "lightweight token Dice lexical overlap, bidirectional uniqueness margins, exact-source-key lookup; all scores are heuristic",
+  "warnings": [
+    "Source gloss similarity is not equivalent to correct semantic sense alignment.",
+    "10,254 rows contained placeholder English definitions and were excluded from reviewed high/mid set; some may otherwise have been low-scoring.",
+    "All 1,010 suggestions remain unapproved pending Muse review and no existing glossary field was overwritten."
+  ],
+  "local_deliverable": "core20k_v20_bilingual_alignment_review_bundle.zip",
+  "sha256_ranked_alignment": "f4569633e01c74af4a6fa1e5ee9a76734c53bd56d58f4d8f50f173bfeea19d12",
+  "formal_freeze": "BLOCKED"
+}
