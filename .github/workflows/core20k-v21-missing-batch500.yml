@@ -1,0 +1,25 @@
+name: Core20K V2.1 Missing Batch 500
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths: ['tools/core20k_sense_v1/build_missing_500_batch.py', '.github/workflows/core20k-v21-missing-batch500.yml']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python -m pip install 'wn>=0.13,<2'
+      - run: python -c "import wn; wn.download('oewn:2025')"
+      - run: python3 tools/core20k_sense_v1/produce_all_missing_evidence.py
+      - run: python3 tools/core20k_sense_v1/build_missing_500_batch.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-v21-missing-review-batch001-500
+          path: tools/core20k_sense_v1/release/v21-missing-batch001-500/
