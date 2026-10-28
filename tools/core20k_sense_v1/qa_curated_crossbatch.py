@@ -9,7 +9,7 @@ items=[]
 for filename in files:
     p=(missing if filename=='newly_resolved_sense_ku_editorial.jsonl' else root)/filename
     items += [json.loads(line) for line in p.open(encoding="utf8")]
-ids=set();lemmas=set();risks=[];counts=collections.Counter()
+ids=set();lemmas=set();risks=[];counts=collections.Counter();gated=[]
 for r in items:
     lemma=r["lemma"];rank=r["rank"];prompt=r["prompt"]
     assert words[rank-1][1].casefold()==lemma
@@ -27,11 +27,22 @@ for r in items:
     assert r["independent_semantic_certified"] is False
     counts["structural_qa_pass"]+=1
 
+    flags=[]
     if re.search(r"\b(?:a|an) ___\b",prompt,re.I):
-        risks.append({"lemma":lemma,"risk":"ARTICLE_SENSITIVITY_REVIEW"})
+        flags.append("ARTICLE_SENSITIVITY_REVIEW")
     if lemma in ("environ","artiste","needful"):
-        risks.append({"lemma":lemma,"risk":"REGISTER_OR_WORD_SENSE_USAGE_REQUIRES_REVIEW"})
-summary={"checked":len(items),"distinct_wordheads":len(lemmas),"structural_qa_pass":counts["structural_qa_pass"],"assessment_risks":risks,"independent_semantic_certified":0,"production_ready":0}
+        flags.append("REGISTER_OR_WORD_SENSE_USAGE_REQUIRES_REVIEW")
+    if flags:
+        risks.append({"lemma":lemma,"risk":flags})
+        counts["held"]+=1
+    else:
+        counts["next_review"]+=1
+    gated.append({"rank":rank,"lemma":lemma,"draft_ku_id":r["draft_ku_id"],
+       "promotion_gate":"HOLD_ASSESSMENT_REVIEW" if flags else "STRUCTURE_ONLY_SAFE_FOR_NEXT_REVIEW",
+       "reasons":flags})
+summary={"checked":len(items),"distinct_wordheads":len(lemmas),"structural_qa_pass":counts["structural_qa_pass"],"assessment_risks":risks,"held_for_review":counts["held"],"structure_only_safe_for_next_review":counts["next_review"],"independent_semantic_certified":0,"production_ready":0}
 assert len(items)>=80
+assert counts["held"]+counts["next_review"]==len(items)
+(root/"curated_assessment_promotion_gate.jsonl").write_text("".join(json.dumps(r,ensure_ascii=False)+"\n" for r in gated),encoding="utf8")
 (root/"curated_crossbatch_qa.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
 print("CURATED_CROSSBATCH_QA_PASS",json.dumps(summary,ensure_ascii=False))
