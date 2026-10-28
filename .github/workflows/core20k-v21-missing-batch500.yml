@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [core20k-sense-v1-audit-20261027]
-    paths: ['tools/core20k_sense_v1/build_missing_500_batch.py', 'tools/core20k_sense_v1/partition_all_missing_500.py', '.github/workflows/core20k-v21-missing-batch500.yml']
+    paths: ['tools/core20k_sense_v1/build_missing_500_batch.py', 'tools/core20k_sense_v1/partition_all_missing_500.py', 'tools/core20k_sense_v1/author_batch001_english_learning.py', '.github/workflows/core20k-v21-missing-batch500.yml']
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,9 +20,11 @@ jobs:
       - run: python3 tools/core20k_sense_v1/produce_all_missing_evidence.py
       - run: python3 tools/core20k_sense_v1/build_missing_500_batch.py
       - run: python3 tools/core20k_sense_v1/partition_all_missing_500.py
+      - run: python3 tools/core20k_sense_v1/author_batch001_english_learning.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-v21-missing-review-batch001-500
           path: |
             tools/core20k_sense_v1/release/v21-missing-batch001-500/
             tools/core20k_sense_v1/release/v21-missing-batch500-all/
+            tools/core20k_sense_v1/release/v21-missing-batch001-content/
