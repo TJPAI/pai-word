@@ -7,6 +7,7 @@ on:
       - tools/core20k_sense_v1/measure_selection_efficiency.py
       - tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
       - tools/core20k_sense_v1/source_examples_selection_v6.py
+      - tools/core20k_sense_v1/select_attested_keep_v7.py
       - .github/workflows/core20k-fast-sense-selection.yml
 jobs:
   fast-selection:
@@ -34,6 +35,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
       - name: Obtain actual OEWN usage examples for deferred Senses
         run: python3 tools/core20k_sense_v1/source_examples_selection_v6.py
+      - name: Generate attested-use Keep proposals V7
+        run: python3 tools/core20k_sense_v1/select_attested_keep_v7.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-fast-selection-efficiency
@@ -43,4 +46,6 @@ jobs:
             **/sense_selection_v5_exact_card_dedup.jsonl
             **/sense_selection_v6_manifest.json
             **/sense_selection_v6_attested_examples.jsonl
+            **/sense_selection_v7_manifest.json
+            **/sense_selection_v7_keep_attested.jsonl
           retention-days: 30
