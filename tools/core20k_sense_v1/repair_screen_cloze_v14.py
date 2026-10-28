@@ -3,7 +3,9 @@
 No paraphrase of source sentences, semantic certification or promotion.
 """
 import pathlib,json,re,time,collections
-t=time.monotonic();base=pathlib.Path("tools/core20k_sense_v1/reports/oewn-full20k-staging")
+t=time.monotonic();sources=list(pathlib.Path(".").rglob("semcor_cloze_v13_structural_pass.jsonl"))
+assert len(sources)==1, f"Expected one V13 output, found {len(sources)}"
+base=sources[0].parent
 passrows=[json.loads(x) for x in (base/"semcor_cloze_v13_structural_pass.jsonl").open()]
 quarantine=[json.loads(x) for x in (base/"semcor_cloze_v13_quarantine.jsonl").open()]
 assert len(passrows)==13982 and len(quarantine)==78
