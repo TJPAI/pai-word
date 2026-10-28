@@ -14,5 +14,5 @@ for b in idx["batches"]:
         if r["lemma"].casefold() in {"judgmental","evaluative"}:continue
         rows.append({"rank":r["rank"],"lemma":r["lemma"],"oewn_sense_id":r["oewn_sense_id"],"definition_en":r["definition_en"],"zh_wordlevel":r["translation_zh_candidate"]})
 rows.sort(key=lambda x:x["rank"])
-for r in rows[220:360]:print("SEMANTIC_EDIT_NEXT_SOURCE",json.dumps(r,ensure_ascii=False))
-print("SEMANTIC_EDIT_DISCOVERY_PASS",json.dumps({"low_risk_candidates":len(rows),"shown":max(0,min(140,len(rows)-220))}))
+for r in rows[360:500]:print("SEMANTIC_EDIT_NEXT_SOURCE",json.dumps(r,ensure_ascii=False))
+print("SEMANTIC_EDIT_DISCOVERY_PASS",json.dumps({"low_risk_candidates":len(rows),"shown":max(0,min(140,len(rows)-360))}))
