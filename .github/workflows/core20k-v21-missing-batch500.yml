@@ -69,6 +69,8 @@ jobs:
       - run: python3 tools/core20k_sense_v1/select_next500_uncovered.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch14.py
       - run: python3 tools/core20k_sense_v1/author_curated_bilingual_batch15.py
+      - name: Refresh uncovered pool after authoring all batches
+        run: python3 tools/core20k_sense_v1/select_next500_uncovered.py
       - run: python3 tools/core20k_sense_v1/qa_curated_crossbatch.py
       - run: python3 tools/core20k_sense_v1/build_source_bound_next200.py
       - uses: actions/upload-artifact@v4
