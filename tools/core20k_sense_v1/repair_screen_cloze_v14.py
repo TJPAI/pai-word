@@ -22,7 +22,12 @@ assert pass_path.is_file() and quarantine_path.is_file(), (
  f"quarantine={quarantine_path} exists={quarantine_path.exists()}")
 passrows=[json.loads(x) for x in pass_path.open(encoding="utf8")]
 quarantine=[json.loads(x) for x in quarantine_path.open(encoding="utf8")]
-assert len(passrows)==13982 and len(quarantine)==78
+manifest_path=base/"semcor_cloze_v13_qa_manifest.json"
+assert manifest_path.is_file(), f"V13 QA manifest missing: {manifest_path}"
+manifest=json.loads(manifest_path.read_text(encoding="utf8"))
+assert len(passrows)==manifest["structural_pass"], "V13 structural candidate count mismatch"
+assert len(quarantine)==manifest["quarantine"], "V13 quarantine count mismatch"
+assert len(passrows)+len(quarantine)==manifest["input"], "V13 QA input conservation failure"
 repaired=[];unfixed=[];counts=collections.Counter()
 for row in quarantine:
  issues=set(row["qa_issue_codes"])
@@ -44,7 +49,7 @@ for row in passrows+repaired:
  else:safe.append(row)
 for name,data in (("cloze_v14_structural_candidates.jsonl",safe),("cloze_v14_ambiguity_review.jsonl",ambiguous),("cloze_v14_unresolved.jsonl",unfixed)):
  (base/name).write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in data))
-report={"v13_pass":len(passrows),"v13_quarantined":78,"punctuation_only_repaired":len(repaired),
+report={"v13_pass":len(passrows),"v13_quarantined":len(quarantine),"punctuation_only_repaired":len(repaired),
 "unresolved_from_quarantine":len(unfixed),"v14_screened_candidates":len(safe),
 "v14_ambiguity_review":len(ambiguous),"semantic_certified":0,"production_ready":0,
 "elapsed_seconds":round(time.monotonic()-t,3)}
