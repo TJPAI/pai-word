@@ -15,7 +15,7 @@ stats=collections.Counter()
 with (p/"v21_collocation27_validated_review.jsonl").open("w",encoding="utf8") as out:
  for r in rows:
   a=old[r["ku_id"]]
-  assert r["prompt"]==a["prompt"]
+  assert r["prompt"]==a["prompt"] or (r["ku_id"] in risk and r["editorial_review"]=="REVISED_BUT_SEMANTIC_AMBIGUITY_UNRESOLVED")
   assert r["correct_answer"]==a["correct_answer"]
   assert r["prompt"].count("___")==1
   assert len(r["choices"])==4 and len(set(r["choices"]))==4
