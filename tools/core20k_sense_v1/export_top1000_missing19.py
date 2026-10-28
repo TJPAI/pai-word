@@ -29,7 +29,7 @@ for q in drafts:
  assert q["correct_answer"] in q["acceptable_answers"]
  assert q["production_ready"] is False and q["release_eligible"] is False
 (p/"top1000_structural_ku_staging.jsonl").write_text(
- "".join(json.dumps(q,ensure_ascii=False)+"\\n" for q in drafts),encoding="utf8")
+ "".join(json.dumps(q,ensure_ascii=False)+"\n" for q in drafts),encoding="utf8")
 print("TOP1000_STRUCTURAL_KU_STAGING_OK",len(drafts))
 
 import subprocess,sys
