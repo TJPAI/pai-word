@@ -11,6 +11,7 @@ on:
       - tools/core20k_sense_v1/ku_authoring_safety_gate_v11.py
       - tools/core20k_sense_v1/semcor_context_cloze_v12.py
       - tools/core20k_sense_v1/qa_semcor_cloze_v13.py
+      - tools/core20k_sense_v1/repair_screen_cloze_v14.py
       - .github/workflows/core20k-semcor-overlay.yml
 jobs:
   semcor-overlay:
@@ -48,6 +49,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/semcor_context_cloze_v12.py
       - name: Structural QA and quarantine of sourced cloze drafts
         run: python3 tools/core20k_sense_v1/qa_semcor_cloze_v13.py
+      - name: Repair structure and screen cloze answer risks V14
+        run: python3 tools/core20k_sense_v1/repair_screen_cloze_v14.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-semcor-evidence-v9
@@ -68,4 +71,8 @@ jobs:
             **/semcor_cloze_v13_qa_manifest.json
             **/semcor_cloze_v13_structural_pass.jsonl
             **/semcor_cloze_v13_quarantine.jsonl
+            **/cloze_v14_manifest.json
+            **/cloze_v14_structural_candidates.jsonl
+            **/cloze_v14_ambiguity_review.jsonl
+            **/cloze_v14_unresolved.jsonl
           retention-days: 30
