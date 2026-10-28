@@ -52,6 +52,7 @@ jobs:
       - name: Repair structure and screen cloze answer risks V14
         run: python3 tools/core20k_sense_v1/repair_screen_cloze_v14.py
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: core20k-semcor-evidence-v9
           path: |
