@@ -1,0 +1,39 @@
+{
+  "release": "V18_INTERIM_NOT_CERTIFIED",
+  "local_sense_count": 27156,
+  "local_ku_count": 27186,
+  "unique_headwords": 19680,
+  "unique_sense_ids": 27156,
+  "unique_ku_ids": 27186,
+  "missing_ku_links": 0,
+  "rank_lemma_sense_mismatches": 0,
+  "senses_with_one_ku": 27126,
+  "senses_with_multiple_ku": 30,
+  "cloze": 14222,
+  "definition_recall_draft": 12964,
+  "missing_chinese_gloss_senses": 26917,
+  "senses_with_editorial_examples": 196,
+  "muse_priority_queues": {
+    "P0_BLOCKERS": 853,
+    "P1_POLYSEMY": 10468,
+    "P2_CONTEXT_VALIDATION": 4693,
+    "P3_DEFINITION_REWRITE": 11172
+  },
+  "github_v5_v8_increment": {
+    "senses": 311,
+    "ku": 311,
+    "merged_into_this_local_baseline": false
+  },
+  "local_artifacts": [
+    "core20k_v18_verified_baseline.zip",
+    "core20k_v18_muse_priority_queues.zip"
+  ],
+  "hashes": {
+    "sense_jsonl": "93977123edf95a87879929bed835943d00cbbfb8a909fb0cdc83941ad6ed545c",
+    "ku_jsonl": "f519d411eb9f625b10486ecfe5a180eb51db658e5e21371c5cf7364682e4f1f1"
+  },
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "gate": "DO_NOT_MERGE_RUNTIME",
+  "caveat": "Muse queues represent structured review routing, not independent semantic judgments. The 311 GitHub increment remains separately validated rather than included in the baseline."
+}
