@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [core20k-sense-v1-audit-20261027]
-    paths: ['tools/core20k_sense_v1/discover_missing1000_oewn.py', 'tools/core20k_sense_v1/triage_missing1000_bilingual.py', 'tools/core20k_sense_v1/create_priority258_review_cards.py', 'tools/core20k_sense_v1/author_bilingual_editorial_pilot.py', 'tools/core20k_sense_v1/author_17_contextual_ku.py', 'tools/core20k_sense_v1/qa_17_contextual_ku.py', '.github/workflows/core20k-v21-missing1000-oewn.yml']
+    paths: ['tools/core20k_sense_v1/discover_missing1000_oewn.py', 'tools/core20k_sense_v1/triage_missing1000_bilingual.py', 'tools/core20k_sense_v1/create_priority258_review_cards.py', 'tools/core20k_sense_v1/author_bilingual_editorial_pilot.py', 'tools/core20k_sense_v1/author_17_contextual_ku.py', 'tools/core20k_sense_v1/qa_17_contextual_ku.py', 'tools/core20k_sense_v1/author_17_second_context_ku.py', '.github/workflows/core20k-v21-missing1000-oewn.yml']
 jobs:
   discover:
     runs-on: ubuntu-latest
@@ -23,6 +23,7 @@ jobs:
       - run: python3 tools/core20k_sense_v1/author_bilingual_editorial_pilot.py
       - run: python3 tools/core20k_sense_v1/author_17_contextual_ku.py
       - run: python3 tools/core20k_sense_v1/qa_17_contextual_ku.py
+      - run: python3 tools/core20k_sense_v1/author_17_second_context_ku.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-v21-missing1000-oewn-sense-evidence
