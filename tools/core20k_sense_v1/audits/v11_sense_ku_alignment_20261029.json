@@ -1,0 +1,24 @@
+{
+  "source_sense_baseline": "V4 24306 Sense candidate file with top1000 POS repair",
+  "sense_count": 24306,
+  "semcor_ku_candidates": 14060,
+  "unique_ku_ids": 14060,
+  "joined_to_teaching_sense": 11210,
+  "unmatched_ku": 2850,
+  "unmatched_ku_distinct_headwords": 2111,
+  "queue_for_semantic_and_pedagogic_review": 10879,
+  "quarantine_repair": 3181,
+  "overlapping_risk_counts": {
+    "ANSWER_LEAK": 188,
+    "NO_FINAL_PUNCTUATION": 128,
+    "CONTEXT_LENGTH": 76,
+    "RAW_SERIALIZED_TOKENS": 10
+  },
+  "senses_with_gloss_zh": 239,
+  "certified_senses": 0,
+  "certified_ku": 0,
+  "production_ready": 0,
+  "artifact": "core20k_sense_ku_muse_pre_review_pack.zip (conversation download; not GitHub production data)",
+  "safety_gate": "DO_NOT_RELEASE_UNCERTIFIED",
+  "next": "Investigate 2850 missing Sense links; don't automatically resurrect pruned senses; add reliable bilingual glosses and independent semantic QA."
+}
