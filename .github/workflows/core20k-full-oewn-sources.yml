@@ -11,6 +11,7 @@ on:
       - tools/core20k_sense_v1/merge_runtime_fallback_20k.py
       - tools/core20k_sense_v1/triage_remaining487_sources.py
       - tools/core20k_sense_v1/merge_all_native_runtime_ku.py
+      - tools/core20k_sense_v1/build_all_source_sense_teaching.py
       - .github/workflows/core20k-full-oewn-sources.yml
 jobs:
   full-oewn-sources:
@@ -44,6 +45,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/triage_remaining487_sources.py
       - name: Preserve native runtime Sense/KU records across full Core20K staging
         run: python3 tools/core20k_sense_v1/merge_all_native_runtime_ku.py
+      - name: Materialize 60204 Sense-specific English recognition lesson drafts
+        run: python3 tools/core20k_sense_v1/build_all_source_sense_teaching.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-oewn2025-full-source-candidates
