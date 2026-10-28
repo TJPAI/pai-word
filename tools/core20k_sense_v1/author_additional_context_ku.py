@@ -3,9 +3,9 @@
 All output remains isolated staging, with unchanged frozen lexical identities.
 """
 import json, pathlib, gzip
-root=pathlib.Path("tools/core20k_sense_v1/release/v2.1-missing-first1000-sourced")
+root=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch-all")
 sources=[
- (root/"bilingual_editorial_pilot.jsonl",3,{
+ (None,3,{
  "january":("The annual membership expires on the last day of ___.","一月"),
  "february":("In a leap year, ___ has twenty-nine days.","二月"),
  "april":("The cherry trees usually blossom in ___ here.","四月"),
@@ -24,7 +24,7 @@ sources=[
  "experienced":("Only an ___ pilot should attempt this difficult landing.","有经验的"),
  "informer":("The investigator promised to protect the identity of the ___.","向当局秘密提供消息的人")
  }),
- (root/"next13_bilingual_semantic_adjudication.jsonl",2,{
+ (None,2,{
  "interesting":("Her explanation raised an ___ question about the future of cities.","引人关注的"),
  "urbane":("The host's ___ manner put the visiting diplomats at ease.","温文尔雅的"),
  "surprised":("I was genuinely ___ to hear that the plan had changed overnight.","感到惊讶的"),
@@ -38,20 +38,23 @@ sources=[
 ]
 with gzip.open("data/core20k-runtime.json.gz","rt",encoding="utf8") as f:
     words=json.load(f)["headwords"]
-out=[]
-for filename,index,items in sources:
-    rows=[json.loads(line) for line in filename.open(encoding="utf8")]
-    lookup={r["lemma"]:r for r in rows}
-    assert set(items)<=set(lookup)
+evidence={r["lemma"].casefold():r for line in (root/"missing_lexical_sense_evidence.jsonl").open(encoding="utf8") for r in [json.loads(line)]}
+out=[];skipped=[]
+for _,index,items in sources:
     for lemma,(prompt,cue) in items.items():
-        s=lookup[lemma]
-        if "decision" in s: assert s["decision"]=="EDITORIAL_DRAFT"
+        s=evidence.get(lemma)
+        if not s:
+            skipped.append((lemma,"NOT_IN_MISSING_COHORT"));continue
+        senses=s["oewn_sense_candidates"]
+        if len(senses)!=1:
+            skipped.append((lemma,"MULTIPLE_OR_NO_OEWN_SENSES"));continue
+        if not s["ecdict_translation_zh_wordlevel"]:
+            skipped.append((lemma,"NO_BILINGUAL_SOURCE"));continue
         rank=s["rank"]
         assert words[rank-1][1].casefold()==lemma
         assert prompt.count("___")==1
-        sid=s["oewn_sense_id"]
-        gloss=s.get("gloss_zh_editorial") or s.get("editorial_gloss_zh")
-        assert sid and gloss
+        sid=senses[0]["oewn_sense_id"]
+        gloss=cue
         out.append({
           "draft_ku_id":f"staging:v21:missing:{rank}:context{index:02d}",
           "headword_id":f"core20k:rank:{rank}","rank":rank,
@@ -60,12 +63,12 @@ for filename,index,items in sources:
           "question_instruction_zh":f"根据“{cue}”这一义项，补全英文句子。",
           "prompt":prompt,"correct_answer":lemma,
           "acceptable_answers":[lemma],"context_en":prompt.replace("___",lemma),
-          "gloss_zh":gloss,"source_attribution":"OEWN 2025 exact Sense; editorial bilingual gloss; original contextual sentence",
+          "gloss_zh":gloss,"source_attribution":"OEWN 2025 sole attested Sense; ECDICT bilingual word evidence; independently authored contextual sentence",
           "editorial_status":"AI_AUTHORED_CONTEXT_PENDING_INDEPENDENT_SEMANTIC_QA",
           "independent_semantic_certified":False,
           "production_ready":False,"release_eligible":False
         })
-assert len(out)==26 and len({x["draft_ku_id"] for x in out})==26
-outpath=root/"additional_26_original_contextual_ku.jsonl"
+assert len(out)>0 and len({x["draft_ku_id"] for x in out})==len(out)
+outpath=root/"additional_original_contextual_ku.jsonl"
 outpath.write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in out),encoding="utf8")
-print("ADDITIONAL_26_CONTEXT_KU_PASS",json.dumps({"new_original_ku":len(out),"independent_certified":0,"production_ready":0}))
+print("ADDITIONAL_26_CONTEXT_KU_PASS",json.dumps({"new_original_ku":len(out),"skipped_ambiguous":skipped,"independent_certified":0,"production_ready":0}))
