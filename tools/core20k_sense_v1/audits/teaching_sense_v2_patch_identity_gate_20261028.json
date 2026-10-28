@@ -1,0 +1,19 @@
+{
+  "base_senses": 24067,
+  "new_editorial_proposals": 43,
+  "merged_candidate_senses": 24110,
+  "covered_headwords": 19522,
+  "missing_headwords": 478,
+  "source_sense_id_collision_groups": 63,
+  "affected_rows": 130,
+  "identity_strategy": "teaching_sense_id = headword_id + '::' + source_sense_id; retain source_sense_id unchanged",
+  "teaching_sense_id_collisions": 0,
+  "top1000_no_sense": 0,
+  "top1000_only_uncertified_backfill": 94,
+  "top1000_single_sense_review": 162,
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "release_eligible": false,
+  "artifact": "teaching_sense_v2_integrated_identity_safe.jsonl",
+  "warning": "Provisional integration. Do not promote or replace frozen runtime until semantic and bilingual QA."
+}
