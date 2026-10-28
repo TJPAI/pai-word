@@ -1,0 +1,31 @@
+name: Core20K Fast Incremental Sense Selection
+on:
+  workflow_dispatch:
+  push:
+    branches: [core20k-sense-v1-audit-20261027]
+    paths:
+      - tools/core20k_sense_v1/measure_selection_efficiency.py
+      - .github/workflows/core20k-fast-sense-selection.yml
+jobs:
+  fast-selection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Reuse frozen full20k source and selection artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: core20k-oewn2025-full-source-candidates
+          run-id: 40684148197
+          github-token: ${{ github.token }}
+          path: .
+      - name: Measure fast incremental selection efficiency and actual decision delta
+        run: python3 tools/core20k_sense_v1/measure_selection_efficiency.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: core20k-fast-selection-efficiency
+          path: tools/core20k_sense_v1/reports/oewn-full20k-staging/selection_efficiency_round1.json
+          retention-days: 30
