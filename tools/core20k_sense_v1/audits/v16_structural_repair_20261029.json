@@ -1,0 +1,22 @@
+{
+  "input_ku": 27156,
+  "structural_quarantine": 948,
+  "structural_blocker_counts_overlap": {
+    "ANSWER_VISIBLE_IN_PROMPT": 188,
+    "NO_FINAL_PUNCTUATION": 128,
+    "CONTEXT_LENGTH_OUT_OF_RANGE": 106,
+    "SERIALIZED_TOKEN_RESIDUE": 10,
+    "DEFINITION_REVEALS_ANSWER": 521
+  },
+  "safe_auto_fixes": 0,
+  "semantic_repairs": 0,
+  "confirmed_source_quality_problem": "Some sentences appear truncated or leak answer; do not blind-fix punctuation or remove words.",
+  "original_ku_sha256": "7fd5e9e1394bf9e1e36eb38d59027d595dcb34f413b6752ba8beccd1a0bda794",
+  "quarantine_review_sha256": "d12dce97fdd53f300de6c515e53bb4bdf7c2a5ab922e779db6cc77d6b2ccdf9d",
+  "release_eligible": 0,
+  "production_ready": 0,
+  "v5_v8_increment_separately_git_committed": 311,
+  "merged_v4_v12_v5_v8": false,
+  "scope": "Conservative review triage, not full semantic or KU reauthoring",
+  "note": "This gate corrects earlier premature promises of automated repair: 0 safe deterministic replacements on these 948 records."
+}
