@@ -1,0 +1,27 @@
+{
+  "source": "core20k_v14_real_context_qa_bundle.zip",
+  "sense_count": 27156,
+  "ku_count": 27156,
+  "route_counts": {
+    "SEMANTIC_REVIEW": 13765,
+    "CONTEXT_KU_REWRITE": 12443,
+    "STRUCTURAL_QUARANTINE": 948
+  },
+  "risk_counts_overlap": {
+    "CHINESE_GLOSS_MISSING": 26917,
+    "UNSELECTED_SOURCE_SENSE": 2850,
+    "ANSWER_VISIBLE_IN_CLOZE": 188,
+    "DEFINITION_REVEALS_ANSWER": 521,
+    "NO_FINAL_PUNCTUATION": 128,
+    "CONTEXT_LENGTH_OUT_OF_RANGE": 106,
+    "SERIALIZED_TOKEN_RESIDUE": 10,
+    "POS_MISSING": 107
+  },
+  "zero_unmatched_sense": true,
+  "release_gate": "BLOCKED",
+  "independently_certified": 0,
+  "production_ready": 0,
+  "full_output_sha256": "10a6e805c050c17e9d0d748dea0e459f8b5e61742db429c8c1bd2b4916ddb2e0",
+  "local_bundle": "core20k_v15_muse_review_stage.zip",
+  "clarification": "V15 is QA routing and annotation, not 27156 pedagogically repaired questions. Local data and source script included; no main branch changes."
+}
