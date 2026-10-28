@@ -6,8 +6,14 @@ import pathlib,json,re,time,collections
 t=time.monotonic();sources=list(pathlib.Path(".").rglob("semcor_cloze_v13_structural_pass.jsonl"))
 assert len(sources)==1, f"Expected one V13 output, found {len(sources)}"
 base=sources[0].parent
-passrows=[json.loads(x) for x in (base/"semcor_cloze_v13_structural_pass.jsonl").open()]
-quarantine=[json.loads(x) for x in (base/"semcor_cloze_v13_quarantine.jsonl").open()]
+# Read the discovered path directly, and fail with a useful diagnosis if outputs moved.
+pass_path=sources[0]
+quarantine_path=base/"semcor_cloze_v13_quarantine.jsonl"
+assert pass_path.is_file() and quarantine_path.is_file(), (
+ f"V13 outputs missing: pass={pass_path} exists={pass_path.exists()}; "
+ f"quarantine={quarantine_path} exists={quarantine_path.exists()}")
+passrows=[json.loads(x) for x in pass_path.open(encoding="utf8")]
+quarantine=[json.loads(x) for x in quarantine_path.open(encoding="utf8")]
 assert len(passrows)==13982 and len(quarantine)==78
 repaired=[];unfixed=[];counts=collections.Counter()
 for row in quarantine:
