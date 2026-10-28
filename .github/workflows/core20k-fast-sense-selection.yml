@@ -5,6 +5,7 @@ on:
     branches: [core20k-sense-v1-audit-20261027]
     paths:
       - tools/core20k_sense_v1/measure_selection_efficiency.py
+      - tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
       - .github/workflows/core20k-fast-sense-selection.yml
 jobs:
   fast-selection:
@@ -24,8 +25,13 @@ jobs:
           path: .
       - name: Measure fast incremental selection efficiency and actual decision delta
         run: python3 tools/core20k_sense_v1/measure_selection_efficiency.py
+      - name: Apply exact duplicated definition card display suppression V5
+        run: python3 tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-fast-selection-efficiency
-          path: tools/core20k_sense_v1/reports/oewn-full20k-staging/selection_efficiency_round1.json
+          path: |
+            **/selection_efficiency_round1.json
+            **/sense_selection_v5_efficiency.json
+            **/sense_selection_v5_exact_card_dedup.jsonl
           retention-days: 30
