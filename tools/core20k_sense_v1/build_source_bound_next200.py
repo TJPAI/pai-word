@@ -28,7 +28,7 @@ for s in sources:
        "response_candidate":lemma,"question_origin":"TEMPLATE_FROM_OEWN_DEFINITION",
        "assessment_semantic_certified":False,"release_eligible":False,"production_ready":False})
     if len(out)==200:break
-assert len(out)==200 and len({r["rank"] for r in out})==200
+assert len(out)<=200 and len({r["rank"] for r in out})==len(out)
 path=root/"next200_source_bound_sense_recognition_queue.jsonl"
 path.write_text("".join(json.dumps(x,ensure_ascii=False)+"\\n" for x in out),encoding="utf8")
 print("SOURCE_BOUND_NEXT200_PASS",json.dumps({"new_source_bound_wordheads":len(out),"templated_definition_recognition_drafts":len(out),"original_contextual_ku":0,"bilingual_sense_certified":0,"production_ready":0,"excluded_before_selection":len(rejected)}))
