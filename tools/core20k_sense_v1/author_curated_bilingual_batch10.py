@@ -5,7 +5,7 @@ No automatic word-level Chinese-to-polysemy assignment; not independently certif
 import json,pathlib,gzip
 root=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch500-all")
 batchroot=pathlib.Path("tools/core20k_sense_v1/release/v21-missing-batch500-all")
-entries=json.loads(r'''{"eyed":["有眼睛的；有眼状斑纹的","The butterfly has an ___ pattern on its wings.","有眼状斑纹的"],"trouser":["裤子的","The tailor repaired a torn ___ leg.","裤腿的"],"gainful":["有收益的；有报酬的","She finally found ___ employment.","有收入的"],"saying":["谚语；常说的话","My grandmother often repeated an old ___.","谚语"],"visiting":["探访活动","Hospital ___ is limited during the evening.","探访活动"],"liking":["喜好","He developed a ___ for spicy food.","喜好"],"noisily":["吵闹地","The children entered the classroom ___.","吵闹地"],"ode":["颂诗","The poet composed an ___ to freedom.","颂诗"]}''')
+entries=json.loads(r'''{"eyed":["有眼睛的；有眼状斑纹的","The butterfly has an ___ pattern on its wings.","有眼状斑纹的"],"trouser":["裤子的","The tailor repaired a torn ___ leg.","裤腿的"],"saying":["谚语；常说的话","My grandmother often repeated an old ___.","谚语"],"visiting":["探访活动","Hospital ___ is limited during the evening.","探访活动"],"liking":["喜好","He developed a ___ for spicy food.","喜好"],"noisily":["吵闹地","The children entered the classroom ___.","吵闹地"],"ode":["颂诗","The poet composed an ___ to freedom.","颂诗"]}''')
 index=json.loads((batchroot/"index.json").read_text())
 by_lemma={}
 for b in index["batches"]:
