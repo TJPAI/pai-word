@@ -9,6 +9,7 @@ on:
       - tools/core20k_sense_v1/pack_full20k_oewn_sense_ku.py
       - tools/core20k_sense_v1/inventory_oewn_gap_fallback.py
       - tools/core20k_sense_v1/merge_runtime_fallback_20k.py
+      - tools/core20k_sense_v1/triage_remaining487_sources.py
       - .github/workflows/core20k-full-oewn-sources.yml
 jobs:
   full-oewn-sources:
@@ -38,6 +39,8 @@ jobs:
         run: python3 tools/core20k_sense_v1/inventory_oewn_gap_fallback.py
       - name: Merge native Core20K source Sense and KU candidates for OEWN gaps
         run: python3 tools/core20k_sense_v1/merge_runtime_fallback_20k.py
+      - name: Triage 487 remaining source gaps with alternative OEWN spelling forms
+        run: python3 tools/core20k_sense_v1/triage_remaining487_sources.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-oewn2025-full-source-candidates
