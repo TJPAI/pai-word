@@ -10,6 +10,7 @@ on:
       - tools/core20k_sense_v1/audit_placeholder4176.py
       - tools/core20k_sense_v1/ku_authoring_safety_gate_v11.py
       - tools/core20k_sense_v1/semcor_context_cloze_v12.py
+      - tools/core20k_sense_v1/qa_semcor_cloze_v13.py
       - .github/workflows/core20k-semcor-overlay.yml
 jobs:
   semcor-overlay:
@@ -45,6 +46,8 @@ jobs:
           python -c "import nltk; nltk.download('semcor', quiet=True); nltk.download('wordnet', quiet=True)"
       - name: Generate sourced contextual cloze draft candidates
         run: python3 tools/core20k_sense_v1/semcor_context_cloze_v12.py
+      - name: Structural QA and quarantine of sourced cloze drafts
+        run: python3 tools/core20k_sense_v1/qa_semcor_cloze_v13.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-semcor-evidence-v9
@@ -62,4 +65,7 @@ jobs:
             **/ku_draft_blocked_v11.jsonl
             **/semcor_context_cloze_staging_v12.jsonl
             **/semcor_cloze_v12_manifest.json
+            **/semcor_cloze_v13_qa_manifest.json
+            **/semcor_cloze_v13_structural_pass.jsonl
+            **/semcor_cloze_v13_quarantine.jsonl
           retention-days: 30
