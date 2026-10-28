@@ -27,7 +27,7 @@ jobs:
       - name: Install source lexicon lookup dependency
         run: python -m pip install "wn>=0.13,<2"
       - name: Install OEWN 2025 source examples
-        run: python -c "import wn; wn.download(\'oewn:2025\')"
+        run: python -c "import wn; wn.download('oewn:2025')"
       - name: Measure fast incremental selection efficiency and actual decision delta
         run: python3 tools/core20k_sense_v1/measure_selection_efficiency.py
       - name: Apply exact duplicated definition card display suppression V5
