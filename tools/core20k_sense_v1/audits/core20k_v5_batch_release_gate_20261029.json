@@ -1,0 +1,28 @@
+{
+  "prior_candidates": 24306,
+  "new_github_row_level_editorial_drafts": 154,
+  "v5_provisional_total": 24460,
+  "headwords_with_any_candidate": 19834,
+  "headwords_still_without_candidate": 166,
+  "coverage_percent": 99.17,
+  "remaining_triage": {
+    "NON_ENGLISH_OR_BORROWING_REVIEW": 10,
+    "INFLECTED_FORM_OR_DERIVATION_REVIEW": 45,
+    "LEXICAL_SOURCE_OR_DOMAIN_REVIEW": 87,
+    "ABBREVIATION_OR_CLIPPED_FORM_REVIEW": 9,
+    "PROPER_NAME_OR_DEMONYM_REVIEW": 9,
+    "ARCHAIC_FORM_REVIEW": 6
+  },
+  "source_data": "tools/core20k_sense_v1/editorial/missing_headwords_batch_v5_20261029.jsonl",
+  "release_gate": {
+    "identity_and_mandatory_fields": "PASS for 154 staged candidates",
+    "semantic_certified": 0,
+    "production_ready": 0,
+    "formal_freeze": "BLOCKED"
+  },
+  "notes": [
+    "All 154 are original editorial drafts; independent lexical evidence and semantic certification pending.",
+    "The 166 remaining headwords have triage hypotheses only; no automatic lemma replacement or deletion.",
+    "Full 24306-row V4 baseline is a conversation artifact and not persisted as a single production GitHub dataset."
+  ]
+}
