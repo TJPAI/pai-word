@@ -105,6 +105,8 @@ jobs:
       - run: python3 tools/core20k_sense_v1/build_source_bound_next200.py
       - name: Generate complete frozen Core20K roster and source-linked provisional Sense/KU
         run: python3 tools/core20k_sense_v1/build_full20k_staging_roster.py
+      - name: Expand full roster to all OEWN 2025 exact-lemma source senses
+        run: python3 tools/core20k_sense_v1/enrich_full20k_with_oewn.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-v21-missing-review-batch001-500
