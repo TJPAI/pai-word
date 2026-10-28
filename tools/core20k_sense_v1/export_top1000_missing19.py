@@ -31,3 +31,6 @@ for q in drafts:
 (p/"top1000_structural_ku_staging.jsonl").write_text(
  "".join(json.dumps(q,ensure_ascii=False)+"\\n" for q in drafts),encoding="utf8")
 print("TOP1000_STRUCTURAL_KU_STAGING_OK",len(drafts))
+
+import subprocess,sys
+subprocess.run([sys.executable,'tools/core20k_sense_v1/editorial/test_structural_19_target.py'],check=True)
