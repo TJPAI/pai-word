@@ -1,0 +1,62 @@
+{
+  "release": "V8_RECONCILIATION_MANIFEST_NOT_CERTIFIED",
+  "v4_base_senses": 24306,
+  "increment_batches": {
+    "missing_headwords_batch_v5_20261029.jsonl": 154,
+    "missing_headwords_batch_v6_20261029.jsonl": 92,
+    "missing_headwords_batch_v7_20261029.jsonl": 45,
+    "missing_headwords_batch_v8_20261029.jsonl": 20
+  },
+  "increment_ids_unique": true,
+  "increment_release_flags_valid": true,
+  "integrated_candidate_senses": 24617,
+  "integrated_candidate_headwords": 19991,
+  "integrated_candidate_coverage_percent": 99.955,
+  "unresolved_9_headwords": [
+    {
+      "rank": 7287,
+      "lemma": "pointe"
+    },
+    {
+      "rank": 11104,
+      "lemma": "acte"
+    },
+    {
+      "rank": 12959,
+      "lemma": "officier"
+    },
+    {
+      "rank": 13676,
+      "lemma": "courte"
+    },
+    {
+      "rank": 14473,
+      "lemma": "functionate"
+    },
+    {
+      "rank": 15810,
+      "lemma": "accidently"
+    },
+    {
+      "rank": 16482,
+      "lemma": "everytime"
+    },
+    {
+      "rank": 16842,
+      "lemma": "selle"
+    },
+    {
+      "rank": 17207,
+      "lemma": "louis"
+    }
+  ],
+  "quarantined_v8_rows": 20,
+  "semantic_certification_new": 0,
+  "production_ready_new": 0,
+  "release_decision": "BLOCK_FORMAL_FREEZE",
+  "caveats": [
+    "V8 20 editorial drafts quarantined pending lexical evidence; they cannot count as certified senses.",
+    "24,617 is the expected reproducible merged row count, verified against GitHub increment rows and locally held V4 baseline; a single full merged GitHub dataset has not yet been deposited.",
+    "The local ZIP provides baseline + offline-capable merge script and GitHub patch URLs, not a prebuilt 24,617-line merged file."
+  ]
+}
