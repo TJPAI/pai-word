@@ -8,6 +8,7 @@ on:
       - tools/core20k_sense_v1/dedup_exact_definition_cards_v5.py
       - tools/core20k_sense_v1/source_examples_selection_v6.py
       - tools/core20k_sense_v1/select_attested_keep_v7.py
+      - tools/core20k_sense_v1/semcor_sense_evidence_v8.py
       - .github/workflows/core20k-fast-sense-selection.yml
 jobs:
   fast-selection:
@@ -37,6 +38,12 @@ jobs:
         run: python3 tools/core20k_sense_v1/source_examples_selection_v6.py
       - name: Generate attested-use Keep proposals V7
         run: python3 tools/core20k_sense_v1/select_attested_keep_v7.py
+      - name: Download SemCor annotated source corpus
+        run: |
+          python -m pip install nltk
+          python -c "import nltk; nltk.download('semcor', quiet=True); nltk.download('wordnet', quiet=True)"
+      - name: Extract SemCor Sense evidence V8
+        run: python3 tools/core20k_sense_v1/semcor_sense_evidence_v8.py
       - uses: actions/upload-artifact@v4
         with:
           name: core20k-fast-selection-efficiency
@@ -48,4 +55,6 @@ jobs:
             **/sense_selection_v6_attested_examples.jsonl
             **/sense_selection_v7_manifest.json
             **/sense_selection_v7_keep_attested.jsonl
+            **/semcor_selection_v8_manifest.json
+            **/semcor_exact_sense_evidence_v8.jsonl
           retention-days: 30
