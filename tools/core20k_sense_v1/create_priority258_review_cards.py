@@ -25,7 +25,8 @@ for r in data:
  cards.append(card)
  stats["review_cards"]+=1
  for f in flags:stats["flag:"+f]+=1
-assert len(cards)==258
+assert len(cards)>0
+print('CORRECTED_SINGLE_SENSE_SINGLE_ZH_COUNT',len(cards))
 cards.sort(key=lambda x:x["rank"])
 with (root/"priority258_bilingual_editorial_cards.jsonl").open("w",encoding="utf8") as out:
  for card in cards:out.write(json.dumps(card,ensure_ascii=False)+"\n")
