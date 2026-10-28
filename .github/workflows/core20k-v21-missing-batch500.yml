@@ -98,7 +98,8 @@ jobs:
       - name: Refresh uncovered pool after authoring all batches
         run: python3 tools/core20k_sense_v1/select_next500_uncovered.py
       - run: python3 tools/core20k_sense_v1/qa_curated_crossbatch.py
-      - run: python3 tools/core20k_sense_v1/qa_editorial_semantic_triage.py
+      - name: Triage reviewer evidence for all editorial Sense/KU records
+        run: python3 tools/core20k_sense_v1/qa_editorial_semantic_triage.py
       - run: python3 tools/core20k_sense_v1/build_source_bound_next200.py
       - uses: actions/upload-artifact@v4
         with:
