@@ -5,6 +5,8 @@ on:
     branches: [core20k-sense-v1-audit-20261027]
     paths:
       - tools/core20k_sense_v1/oewn2025_full20k.py
+      - tools/core20k_sense_v1/join_editorial_full20k.py
+      - tools/core20k_sense_v1/pack_full20k_oewn_sense_ku.py
       - .github/workflows/core20k-full-oewn-sources.yml
 jobs:
   full-oewn-sources:
