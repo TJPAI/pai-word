@@ -15,8 +15,8 @@ loaded=round(time.monotonic()-start,2)
 out=[]
 for i,r in enumerate(rows):
     prompt=("你是英语学习词典编纂员。请准确理解下列英语单词在指定定义中的单一义项，"
-            "只输出简洁、自然、准确的中文释义（不超过25个汉字），不要解释、不要编号。\\n"
-            f"词头：{r['lemma']}\\n词性：{r['pos']}\\n英文定义：{r['definition_en']}")
+            "只输出简洁、自然、准确的中文释义（不超过25个汉字），不要解释、不要编号。\n"
+            f"词头：{r['lemma']}\n词性：{r['pos']}\n英文定义：{r['definition_en']}")
     msgs=[{"role":"user","content":prompt}]
     input_ids=tokenizer.apply_chat_template(msgs,tokenize=True,add_generation_prompt=True,return_tensors="pt")
     with torch.no_grad():
@@ -25,8 +25,9 @@ for i,r in enumerate(rows):
     out.append({**r,"gloss_zh_qwen_candidate":gloss,"quality_status":"MACHINE_UNVERIFIED","semantic_certified":False,"production_ready":False})
     print("RESULT",i+1,r["lemma"],gloss,flush=True)
 outdir=pathlib.Path("v66_results");outdir.mkdir(exist_ok=True)
-blob="".join(json.dumps(x,ensure_ascii=False)+"\\n" for x in out)
+blob="".join(json.dumps(x,ensure_ascii=False)+"\n" for x in out)
 (outdir/"candidate_8.jsonl").write_text(blob,encoding="utf8")
+assert len([json.loads(t) for t in (outdir/"candidate_8.jsonl").read_text(encoding="utf8").splitlines()])==8
 report={"model":model_id,"sample":len(out),"load_sec":loaded,"total_sec":round(time.monotonic()-start,2),"machine_drafts":len(out),"certified":0}
 (outdir/"report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2))
 print("SUMMARY",json.dumps(report,ensure_ascii=False))
