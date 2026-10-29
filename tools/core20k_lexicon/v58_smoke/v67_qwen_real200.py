@@ -5,7 +5,7 @@ import torch
 from transformers import AutoTokenizer,AutoModelForCausalLM
 src=pathlib.Path("tools/core20k_lexicon/v58_smoke/real200.jsonl")
 rows=[json.loads(x) for x in src.read_text(encoding="utf8").splitlines()[:200]]
-assert len(rows)==200 and len({r["teaching_sense_id"] for r in rows})==8
+assert len(rows)==200 and len({r["teaching_sense_id"] for r in rows})==200
 model_id="Qwen/Qwen2.5-0.5B-Instruct"
 torch.set_num_threads(2)
 start=time.monotonic()
