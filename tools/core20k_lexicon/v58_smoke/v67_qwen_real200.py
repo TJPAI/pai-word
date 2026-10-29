@@ -27,7 +27,7 @@ for i,r in enumerate(rows):
 outdir=pathlib.Path("v67_results");outdir.mkdir(exist_ok=True)
 blob="".join(json.dumps(x,ensure_ascii=False)+"\n" for x in out)
 (outdir/"candidate_200.jsonl").write_text(blob,encoding="utf8")
-assert len([json.loads(t) for t in (outdir/"candidate_8.jsonl").read_text(encoding="utf8").splitlines()])==200
+assert len([json.loads(t) for t in (outdir/"candidate_200.jsonl").read_text(encoding="utf8").splitlines()])==200
 report={"model":model_id,"sample":len(out),"load_sec":loaded,"total_sec":round(time.monotonic()-start,2),"machine_drafts":len(out),"certified":0}
 (outdir/"report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2))
 print("SUMMARY",json.dumps(report,ensure_ascii=False))
