@@ -1,0 +1,38 @@
+{
+  "stage": "V23_BILINGUAL_SENSE_EDITORIAL_JUDGMENTS",
+  "baseline_senses": 27156,
+  "review_source_candidates": 749,
+  "editorially_reviewed_first_batch": 145,
+  "editorial_candidate_match": 130,
+  "needs_rewrite_or_disambiguation": 9,
+  "rejected_semantic_mismatch": 6,
+  "sense_overlay_written": 145,
+  "original_zh_field_overwritten": 0,
+  "unreviewed_in_v22_749": 604,
+  "semantic_certified": 0,
+  "production_ready": 0,
+  "real_source_examples_of_mismatch": [
+    {
+      "lemma": "at",
+      "issue": "OEWN chemical element astatine vs native gloss preposition for rate"
+    },
+    {
+      "lemma": "location",
+      "issue": "OEWN act of placement vs native location/position"
+    },
+    {
+      "lemma": "annual",
+      "issue": "OEWN botany yearly life cycle vs native yearly event"
+    },
+    {
+      "lemma": "despite",
+      "issue": "OEWN noun contempt vs concessive preposition"
+    }
+  ],
+  "local_artifact": "core20k_v23_semantic_editorial_production.zip",
+  "sha256_review": "32a72889b6f7d38d3440cf9f7c25763c4afa77315d05e43b91f2568c8fe318bc",
+  "sha256_overlay": "f7a4fdabfd3ffc015d11fcaf8b88956c43793ebd164a055fe18dbc2a85ec59d6",
+  "github_311_increment_merged": false,
+  "release_gate": "BLOCKED",
+  "note": "These are ChatGPT editorial screening judgments (not independent Muse certification). 311 V5-V8 increments are not yet merged into current local Sense baseline."
+}
