@@ -1,0 +1,48 @@
+{
+  "stage": "V32_EDITORIAL_CONTENT_PRODUCTION",
+  "source": "V31 final local candidate (SHA 0548bdf4b263841444a0e730cb2d23a54c8eb30a83b118b53acf6d8443c71d11)",
+  "sense_count": 27471,
+  "ku_count": 27501,
+  "covered_headwords": 19995,
+  "new_chinese_sense_specific_editorial_drafts": 408,
+  "rank_range": [
+    186,
+    250
+  ],
+  "batches": [
+    {
+      "ranks": "186-205",
+      "n": 130
+    },
+    {
+      "ranks": "206-225",
+      "n": 163
+    },
+    {
+      "ranks": "226-250",
+      "n": 115
+    }
+  ],
+  "senses_with_any_zh_gloss_or_editorial_draft": 1873,
+  "senses_without_zh": 25598,
+  "existing_field_overwrites": 0,
+  "duplicate_sense_ids": 0,
+  "duplicate_ku_ids": 0,
+  "orphan_ku": 0,
+  "rank_lemma_conflicts": 0,
+  "manual_spotcheck_count": 17,
+  "spotcheck_obvious_mismatches_found": 0,
+  "semantic_certified_added": 0,
+  "production_ready_added": 0,
+  "source_sha256": {
+    "sense": "0548bdf4b263841444a0e730cb2d23a54c8eb30a83b118b53acf6d8443c71d11",
+    "ku": "e46e566f9c541c98a9d72e202145fb0de0acd7c93afca45699eefd16fbe6d2f3"
+  },
+  "output_sha256": {
+    "sense": "3b7bc8864e0441eb8bb265eaa4ba8dcb1129d7b6055023f7f589b701205aefbf",
+    "delta": "cf4e2409bc320339bef9a641dc3468181d32ec92f0b2eadfcb56c29f5b9e3ffc"
+  },
+  "local_bundle": "core20k_v32_production/core20k_v32_full_candidate_408_zh.zip",
+  "release_gate": "STAGING_ONLY_INDEPENDENT_MUSE_SEMANTIC_QA_REQUIRED",
+  "caveat": "All 408 glosses are manually authored editorial draft fields, not certified translations. Full 27471/27501 data remains in downloadable ZIP and is not itself committed to GitHub."
+}
