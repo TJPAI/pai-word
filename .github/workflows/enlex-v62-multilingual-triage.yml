@@ -1,0 +1,40 @@
+name: CG-ENLEX V62 multilingual semantic triage
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v62-multilingual-triage.yml"
+      - "tools/core20k_lexicon/v58_smoke/v62_crosslingual_triage.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install multilingual semantic model dependencies
+        run: python -m pip install "sentence-transformers==3.0.1" "transformers==4.44.2" "numpy<2"
+      - name: Retrieve actual V59 200-candidate artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p v59_import
+          gh run download 40850738550 -n enlex-v59-real200-machine-unverified -D v59_import
+          test -s v59_import/candidates.jsonl
+      - name: Score cross-lingual similarity of all 200 real candidates
+        run: python tools/core20k_lexicon/v58_smoke/v62_crosslingual_triage.py
+      - name: Upload semantic triage (not certification)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v62-multilingual-triage-200
+          path: v62_results/
+          if-no-files-found: warn
+          retention-days: 14
