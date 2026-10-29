@@ -1,0 +1,32 @@
+name: CG-ENLEX V67 Qwen real200 A-B
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v67-qwen-real200.yml"
+      - "tools/core20k_lexicon/v58_smoke/v67_qwen_real200.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Qwen dependencies
+        run: python -m pip install torch "transformers==4.44.2" accelerate
+      - name: Generate 200 authentic dictionary style Sense candidates
+        run: python tools/core20k_lexicon/v58_smoke/v67_qwen_real200.py
+      - name: Upload isolated model candidates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v67-qwen-real200-unverified
+          path: v67_results/
+          if-no-files-found: warn
+          retention-days: 14
