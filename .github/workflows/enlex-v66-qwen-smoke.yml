@@ -1,0 +1,31 @@
+name: CG-ENLEX V66 Qwen dictionary smoke
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v66-qwen-smoke.yml"
+      - "tools/core20k_lexicon/v58_smoke/v66_qwen_smoke.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cpu-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install inference dependencies
+        run: python -m pip install "torch" "transformers==4.44.2" "accelerate"
+      - name: Test Qwen instruction-based dictionary glosses on 8 real Sense
+        run: python tools/core20k_lexicon/v58_smoke/v66_qwen_smoke.py
+      - name: Preserve machine candidates and timing
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v66-qwen-smoke
+          path: v66_results/
+          if-no-files-found: warn
