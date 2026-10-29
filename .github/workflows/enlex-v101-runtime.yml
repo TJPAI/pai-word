@@ -2,7 +2,7 @@ name: ENLEX V101 frozen runtime inspect
 on:
   push:
     branches: [experiment/enlex-v3-production-rebuild-20261030]
-    paths: ['.github/workflows/enlex-v101-runtime.yml']
+    paths: ['.github/workflows/enlex-v101-runtime.yml', 'tools/core20k_lexicon/production_v3/v101_runtime_inspect.py']
   workflow_dispatch:
 jobs:
   inspect:
