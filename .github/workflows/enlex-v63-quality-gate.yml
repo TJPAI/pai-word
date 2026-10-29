@@ -1,0 +1,34 @@
+name: CG-ENLEX V63 quarantine quality gate
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v63-quality-gate.yml"
+      - "tools/core20k_lexicon/v58_smoke/v63_quality_gate.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch authentic V62 multilingual-score artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p v62_import
+          gh run download 40853089764 -n enlex-v62-multilingual-triage-200 -D v62_import
+          test -s v62_import/semantic_triage_200.jsonl
+      - name: Gate 200 records without automatic semantic certification
+        run: python tools/core20k_lexicon/v58_smoke/v63_quality_gate.py
+      - name: Upload triage reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v63-qa-quarantine-200
+          path: v63_results/
+          if-no-files-found: warn
