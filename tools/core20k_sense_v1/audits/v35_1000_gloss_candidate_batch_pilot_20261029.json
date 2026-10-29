@@ -1,0 +1,23 @@
+{
+  "version": "V35",
+  "batch_size": 1000,
+  "new_cross_synset_evidence_gloss_proposals": 739,
+  "prior_native_gloss_proposals_requalified": 261,
+  "quarantined_conflicting_synset_glosses": 109,
+  "eligible_prior_native_review_pool": 419,
+  "full_senses": 27471,
+  "full_ku": 27501,
+  "orphan_ku": 0,
+  "overwritten_glosses": 0,
+  "certified": 0,
+  "production_ready": 0,
+  "run_elapsed_seconds": 0.807,
+  "archive": "core20k_v35_pilot/core20k_v35_1000_pilot.zip",
+  "qa": "All proposals reference same frozen Sense ID and definition; 739 tier A have exact matching OEWN synset POS definition and one consistent source Chinese gloss; tier B reuses existing native bilingual lexical alignment with positive lexical content overlap. Independent semantic QA required.",
+  "warnings": [
+    "1000 proposals is not 1000 independently authored or certified new translations",
+    "Only 739 are newly derived candidate glosses; 261 are screened old gloss candidates",
+    "109 conflicting synonymous translations quarantined; none auto promoted to production"
+  ],
+  "data_sha256": "d6881a211508ec4032479b70cb78edf27bc51fdc8fddae0cbb379a815542746b"
+}
