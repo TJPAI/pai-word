@@ -1,0 +1,34 @@
+name: CG-ENLEX V64 known-error regression
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v64-known-errors.yml"
+      - "tools/core20k_lexicon/v58_smoke/v64_known_errors_regression.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Get V63 quarantined QA output
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p v63_import
+          gh run download 40853555062 -n enlex-v63-qa-quarantine-200 -D v63_import
+          test -s v63_import/risk_triage_200.jsonl
+      - name: Evaluate nine known machine translation errors
+        run: python tools/core20k_lexicon/v58_smoke/v64_known_errors_regression.py
+      - name: Upload regression report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v64-known9-error-regression
+          path: v64_results/
+          if-no-files-found: warn
