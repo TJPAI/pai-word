@@ -23,7 +23,8 @@ for lemma,definition in [("delay","stop or halt"),("forest","the trees and other
     assert len(matches)==1 and matches[0]["triage_status"]=="REVIEW_REQUIRED"
 pathlib.Path("v63_results").mkdir(exist_ok=True)
 q=pathlib.Path("v63_results/risk_triage_200.jsonl")
-q.write_text("".join(json.dumps(x,ensure_ascii=False)+"\\n" for x in out),encoding="utf8")
+q.write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in out),encoding="utf8")
 report={"count":len(out),"risk_flagged":sum(bool(x["risk_flags"]) for x in out),"low_score":sum(x["crosslingual_cosine"]<0.7 for x in out),"high_score_ge_0_9":sum(x["crosslingual_cosine"]>=0.9 for x in out),"auto_semantic_certified":0,"policy":"ALL machine translations remain review_required regardless of cosine"}
+assert len([json.loads(line) for line in q.read_text(encoding="utf8").splitlines()])==200
 pathlib.Path("v63_results/report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf8")
 print(json.dumps(report,ensure_ascii=False))
