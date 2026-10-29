@@ -1,0 +1,34 @@
+name: CG-ENLEX V65 paired artifact invariants
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v65-paired-artifacts.yml"
+      - "tools/core20k_lexicon/v58_smoke/v65_quality_contract.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  paired-integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch V59 and V63 actual artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p v59 v63
+          gh run download 40850738550 -n enlex-v59-real200-machine-unverified -D v59
+          gh run download 40853555062 -n enlex-v63-qa-quarantine-200 -D v63
+      - name: Verify 200 stable IDs, source definitions, machine strings, quarantine
+        run: python tools/core20k_lexicon/v58_smoke/v65_quality_contract.py
+      - name: Upload verified report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v65-paired-integrity
+          path: v65_results/
+          if-no-files-found: warn
