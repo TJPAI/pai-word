@@ -1,0 +1,33 @@
+name: CG-ENLEX V58 MT smoke
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - "tools/core20k_lexicon/v58_smoke/**"
+      - ".github/workflows/enlex-v58-mt-smoke.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  translate-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install translation inference libraries
+        run: |
+          python -m pip install "torch" "transformers==4.44.2" "sentencepiece" "sacremoses"
+      - name: Run actual translation smoke
+        run: python tools/core20k_lexicon/v58_smoke/translate.py
+      - name: Save candidates and diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v58-smoke-machine-unverified
+          path: v58_results/
+          if-no-files-found: warn
+          retention-days: 14
