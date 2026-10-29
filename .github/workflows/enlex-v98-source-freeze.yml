@@ -1,0 +1,24 @@
+name: ENLEX V98 Source Freeze
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - '.github/workflows/enlex-v98-source-freeze.yml'
+      - 'tools/core20k_lexicon/production_v3/source_freeze_v98.py'
+  workflow_dispatch:
+jobs:
+  freeze:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Freeze public dictionary inputs and SHA256
+        run: python3 tools/core20k_lexicon/production_v3/source_freeze_v98.py
+      - name: Upload manifests and raw evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v98-source-evidence
+          path: tools/core20k_lexicon/production_v3/v98_output/
+          if-no-files-found: warn
+          retention-days: 30
