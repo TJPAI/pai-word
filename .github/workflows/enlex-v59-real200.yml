@@ -1,0 +1,50 @@
+name: CG-ENLEX V59 real 200 MT
+on:
+  push:
+    branches:
+      - experiment/enlex-v58-mt-smoke-20261029
+    paths:
+      - ".github/workflows/enlex-v59-real200.yml"
+      - "tools/core20k_lexicon/v58_smoke/real200.jsonl"
+      - "tools/core20k_lexicon/v58_smoke/translate_real200.py"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  translate-real200:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install MT dependencies
+        run: python -m pip install torch "transformers==4.44.2" sentencepiece sacremoses
+      - name: Translate 200 authentic Sense definitions
+        run: python tools/core20k_lexicon/v58_smoke/translate_real200.py
+      - name: Validate output count IDs and source binding
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("tools/core20k_lexicon/v58_smoke/real200.jsonl")
+          q=pathlib.Path("v59_results/candidates.jsonl")
+          src={x["teaching_sense_id"]:x for x in map(json.loads,p.read_text().splitlines())}
+          out=list(map(json.loads,q.read_text().splitlines()))
+          assert len(out)==200 and len(src)==200
+          assert len({r["teaching_sense_id"] for r in out})==200
+          for x in out:
+              s=src[x["teaching_sense_id"]]
+              assert x["definition_en"]==s["definition_en"]
+              assert x["gloss_zh_machine_candidate"].strip()
+              assert not x["production_ready"]
+          print("PASS 200 distinct IDs, definitions, nonempty machine candidates, quarantine")
+          PY
+      - name: Upload unverified MT candidates
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v59-real200-machine-unverified
+          path: v59_results/
+          if-no-files-found: warn
+          retention-days: 14
