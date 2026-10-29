@@ -1,0 +1,20 @@
+name: ENLEX V101 frozen runtime inspect
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-v101-runtime.yml']
+  workflow_dispatch:
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: core20k-lexicon-production-v1
+      - uses: actions/checkout@v4\n        with:\n          path: production-tools\n      - name: Load frozen runtime and test membership schema
+        run: python3 production-tools/tools/core20k_lexicon/production_v3/v101_runtime_inspect.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: enlex-v101-runtime-schema
+          path: tools/core20k_lexicon/production_v3/v101_output/
