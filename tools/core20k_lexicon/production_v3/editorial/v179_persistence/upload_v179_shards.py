@@ -26,7 +26,7 @@ def main(source):
         assert len(names)==9
         for name in names:
             raw=z.read(name)
-            expected=m.get("shards",{}).get(name,{})
+            expected=m.get(name,{})
             assert len(raw)==expected["bytes"]
             assert hashlib.sha256(raw).hexdigest()==expected["sha256"],name
             dest=root+name
