@@ -1,0 +1,14 @@
+{
+  "snapshot_version": "V143_CORRECTED",
+  "supersedes": "V140",
+  "import_target": "tools/core20k_lexicon/production_v3/editorial/incoming/v143_corrected_snapshot.zip",
+  "counts": {"editorial_drafts":688,"undecided":988,"joint":1676,"independent_certified":0,"production_ready":0},
+  "files_sha256": {
+    "full_688_drafts.jsonl": "031f582d62f1ae459f5a9fff1c9f14dc2823d46e1d73190d95918cbb0fec6930",
+    "remaining_988_source.jsonl": "5eb3a33f32371281de9506538c9b39370524e6df958c1c18f2524d65c327c2b6",
+    "current_1676_joint_state.jsonl": "a2b2936a6b410a6642ce73b89c7c7048267e12003c35c47a0439f4f0ee5d92bf",
+    "priority_135.csv": "5917bde3767f377c5150d741353c686ca722326e2f124e82d30edcb9ab372ad1"
+  },
+  "quality_gate": "validate_v143_snapshot.py",
+  "note": "File hashes pin the actual V143 corrected archive contents, not proof of independent semantic correctness. The full ZIP was NOT committed by this manifest."
+}
