@@ -1,0 +1,29 @@
+name: ENLEX V109 Official ILI Bridge
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-v109-ili-bridge.yml']
+  workflow_dispatch:
+permissions:
+  actions: read
+  contents: read
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: enlex-v98-source-evidence
+          run-id: 40981414991
+          github-token: ${{ github.token }}
+          path: source-evidence
+      - name: Reconcile WN3.0 to ILI to OEWN2025
+        run: python3 tools/core20k_lexicon/production_v3/v109_ili_bridge.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: enlex-v109-ili-bridge
+          path: tools/core20k_lexicon/production_v3/v109_output/
+          retention-days: 30
