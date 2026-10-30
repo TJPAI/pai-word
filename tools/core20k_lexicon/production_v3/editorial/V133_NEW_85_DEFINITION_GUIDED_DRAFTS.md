@@ -1,0 +1,7 @@
+# V133 — 85 actual new definition-guided Chinese Sense drafts
+
+Actual V127 source evidence used; excluded all existing Sense keys from V128 (130), V129 (95), V130 (75), V131 (60), V132 (55): **415 unique**, verified by programmatic reading. New batch **85 unique** and **zero overlap**; cumulative V128–V133 **500**, outstanding from original 1,676 undecided sources **1,176**.
+
+Examples: survey (look over carefully) → 仔细查看；审视; development (biological growth) → （生物个体的）生长发育; cast (object formed by mold) → 模制品；铸件; net (revenues less outlays) → 净利润；收支相抵后的盈余; engage (ask to represent, legal counsel) → 聘请（律师作为代理人）; commission (equipment functioning and ready) → （设备）运行正常、可投入使用的状态.
+
+All 85 have unique Sense Key, English definition, POS, rank, ILI, WN30, OMW source lexemes, original Chinese draft and `semantically_certified=false`, `production_ready=false`. Full evidence in local `core20k_v133_85_new_definition_guided_sense_drafts.zip`, including JSONL, CSV, SHA256 and counts; **full batch not yet committed to GitHub**. Independent reviewer-certified Sense/KU: **0**; Runtime unchanged. Throughput recovered to 85 from V132 55; no independently measured correctness yet. Do not confuse this new draft production with semantic certification.
