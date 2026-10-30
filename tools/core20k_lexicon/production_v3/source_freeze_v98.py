@@ -6,9 +6,9 @@ out.mkdir(parents=True,exist_ok=True)
 sources=[
  ('oewn2025','https://en-word.net/static/english-wordnet-2025-json.zip'),
  ('ecdict','https://raw.githubusercontent.com/skywind3000/ECDICT/ab22ad36302cafc6349a050e2b60894855208055/ecdict.csv'),
- ('omw_cmn','https://raw.githubusercontent.com/globalwordnet/omw/e3b5ac103f86b743a1c0e3079675aaf0ef2cbf88/wns/cmn/wn-data-cmn.tab'),
- ('kaikki_en','https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl'),
- ('kaikki_zh','https://kaikki.org/dictionary/Chinese/kaikki.org-dictionary-Chinese.jsonl'),
+ ('omw_cmn','https://raw.githubusercontent.com/nltk/wordnet/ce91915ae38a341ae845be4d825ef6003cddf395/wn/data/omw/cmn/wn-data-cmn.tab'),
+ ('kaikki_en','https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz'),
+ ('kaikki_zh','https://kaikki.org/zhwiktionary/rawdata/zh-extract.jsonl.gz'),
 ]
 rows=[]
 for name,url in sources:
@@ -16,6 +16,7 @@ for name,url in sources:
  try:
   # bounded size avoids runner exhaustion; provenance still records downloaded bytes
   p=out/(name+'.download')
+  if name=='kaikki_en': raise RuntimeError('English full source exceeds bounded capture: requires frozen filtered/chunked extractor')
   req=urllib.request.Request(url,headers={'User-Agent':'PAI-Core20K-Source-Freeze/1.0'})
   with urllib.request.urlopen(req,timeout=90) as resp,p.open('wb') as f:
    size=0;sha=hashlib.sha256()
