@@ -5,7 +5,7 @@
   "expected_unique_sense_keys": 1676,
   "certified": 0,
   "production_ready": 0,
-  "remote_shards_verified": false,
+  "remote_shards_verified": true,
   "shards": {
     "shards/senses_001.jsonl": {
       "bytes": 155310,
@@ -43,5 +43,7 @@
       "bytes": 77427,
       "sha256": "7ac19ab67426a66b914671653a18f9309d638ecb22bb71f3e8c1eb194a8ebed8"
     }
-  }
+  },
+  "remote_verification_commit": "e5d55336b45c4d0c314c1ad1eca544cbb2c81634",
+  "remote_verification_note": "All 9 shards independently downloaded and SHA256 matched in Muse V179_PERSISTENCE_QA_REPORT.md; no semantic certification."
 }
