@@ -8,7 +8,7 @@ sources=[
  ('ecdict','https://raw.githubusercontent.com/skywind3000/ECDICT/ab22ad36302cafc6349a050e2b60894855208055/ecdict.csv'),
  ('omw_cmn','https://raw.githubusercontent.com/nltk/wordnet/ce91915ae38a341ae845be4d825ef6003cddf395/wn/data/omw/cmn/wn-data-cmn.tab'),
  ('kaikki_en','https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz'),
- ('kaikki_zh','https://kaikki.org/zhwiktionary/rawdata/zh-extract.jsonl.gz'),
+ ('kaikki_zh','https://kaikki.org/zhwiktionary/raw-wiktextract-data.jsonl.gz'),
 ]
 rows=[]
 for name,url in sources:
