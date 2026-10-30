@@ -1,0 +1,7 @@
+# V138 applied editorial patches and merged dataset
+
+Inputs: V128–V136 nine ZIP archives of **real** new-sense drafts (130+95+75+60+55+85+38+75+75 = 688), V137 review CSV of twelve proposed corrections. The patch was applied by exact `sense_key` match, additionally asserting equality of the original English definition and original Chinese gloss before any modification.
+
+Outputs: 688 rows / 688 distinct Sense Keys, 12 records modified, 676 left unchanged. Each changed row preserves `prior_gloss_zh_draft`, revised `gloss_zh_draft`, `v138_revision_flag`, `v138_revision_reason`; English definitions and original sense identity untouched. All 688 have `semantically_certified=false`, `production_ready=false` (including the V128 alias). ZIP delivered to user: `core20k_v138_merged688_12_revisions_applied.zip` with full JSONL, CSV patch and manifest. Exact merged JSONL SHA256: `fda14a8eb1ba468229382fa341b19267bcc8b0417bef7cd6a75b731b290ede0d`. The full merged dataset has NOT been written into GitHub; the ZIP remains the actual data artifact.
+
+Numbers: 688 prior new draft senses, 12 actual revisions, 0 new draft senses in V138, 988 remaining from previous 1,676 undecided candidate pool. Independent semantic certifications 0, production-ready Sense/KU 0, formal Runtime unchanged. The source's possible typo `cool: loose heat` remains unchanged pending authoritative source comparison. Do not count automatic source lexical overlap as semantic acceptance.
