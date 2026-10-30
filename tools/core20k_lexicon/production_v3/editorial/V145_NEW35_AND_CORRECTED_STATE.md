@@ -1,0 +1,7 @@
+# V145 real content generation and corrected full state
+
+Starting from V143 corrected 1,676-record snapshot (688 editorial drafts + 988 pending). Manually authored 35 new English-definition-guided Chinese gloss proposals, with original OEWN sense key, lemma, POS, rank, ILI, English definition, OMW-cmn Chinese source lexemes retained. Cross-batch overlap 0.
+
+Result 723 distinct editorial drafts, 953 undecided. All 723 drafts have nonempty Chinese gloss and exactly match corresponding entries of V145 1,676-record joint state; 953 pending have no selected gloss. Nothing semantically certified or production ready (0). New draft output SHA256 `edba47f8a8447bd034975625544b4aa21c931a9990d789e4b69984cf47a33b28`, full 723 JSONL SHA256 `1d3063acb4a1a3fa69bb067fcdcae2d7f459d7abb349d5d024501e44abbe0b24`, remaining 953 SHA256 `ee3faef364c07937835d616a565513d98e61179dd260a08826f04d078974b3d2`, full joint SHA256 `a9cb5307d7252e0beedd686dc784bfa08db471ab94fda71fb47817d1f721dcf8`.
+
+All data files supplied to user as `core20k_v145_723_drafts_953_pending.zip`; this GitHub report is not full source-data persistence. Existing import workflow still awaits actual ZIP upload. Do not use obsolete V140 union snapshot which omitted all 688 glosses. No formal Runtime modification. Neither source overlap nor this assistant's judgments constitute independent semantic QA.
