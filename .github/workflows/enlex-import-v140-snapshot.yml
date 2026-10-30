@@ -1,10 +1,10 @@
-name: ENLEX V140 snapshot import
+name: ENLEX V143 corrected snapshot import
 on:
   push:
     branches:
       - experiment/enlex-v3-production-rebuild-20261030
     paths:
-      - tools/core20k_lexicon/production_v3/editorial/incoming/v140_snapshot.zip
+      - tools/core20k_lexicon/production_v3/editorial/incoming/v143_corrected_snapshot.zip
   workflow_dispatch:
 permissions:
   contents: write
@@ -19,19 +19,19 @@ jobs:
       - name: Validate and materialize the archive
         shell: bash
         run: |
-          python tools/core20k_lexicon/production_v3/editorial/import_v140_snapshot.py \
-            tools/core20k_lexicon/production_v3/editorial/incoming/v140_snapshot.zip \
-            --output-dir tools/core20k_lexicon/production_v3/editorial/snapshots/v140
+          python tools/core20k_lexicon/production_v3/editorial/import_v143_snapshot.py \
+            tools/core20k_lexicon/production_v3/editorial/incoming/v143_corrected_snapshot.zip \
+            --output-dir tools/core20k_lexicon/production_v3/editorial/snapshots/v143
       - name: Commit validated records only
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add tools/core20k_lexicon/production_v3/editorial/snapshots/v140/
+          git add tools/core20k_lexicon/production_v3/editorial/snapshots/v143/
           if git diff --cached --quiet; then
             echo "No content changes"
           else
-            git commit -m "CG-ENLEX persist validated 1676-row V140 snapshot"
+            git commit -m "CG-ENLEX persist validated corrected 1676-row V143 snapshot"
             git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
           fi
