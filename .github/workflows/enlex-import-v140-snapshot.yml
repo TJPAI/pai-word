@@ -1,0 +1,37 @@
+name: ENLEX V140 snapshot import
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - tools/core20k_lexicon/production_v3/editorial/incoming/v140_snapshot.zip
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import-verified-snapshot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: experiment/enlex-v3-production-rebuild-20261030
+          persist-credentials: true
+      - name: Validate and materialize the archive
+        shell: bash
+        run: |
+          python tools/core20k_lexicon/production_v3/editorial/import_v140_snapshot.py \
+            tools/core20k_lexicon/production_v3/editorial/incoming/v140_snapshot.zip \
+            --output-dir tools/core20k_lexicon/production_v3/editorial/snapshots/v140
+      - name: Commit validated records only
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/editorial/snapshots/v140/
+          if git diff --cached --quiet; then
+            echo "No content changes"
+          else
+            git commit -m "CG-ENLEX persist validated 1676-row V140 snapshot"
+            git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
+          fi
