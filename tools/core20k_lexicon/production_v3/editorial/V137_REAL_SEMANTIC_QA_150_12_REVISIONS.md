@@ -1,0 +1,7 @@
+# V137 — 150 Sense evidence QA, 12 proposed corrections
+
+Inputs: real V135 and V136 JSONL delivered artifacts, 75 rows each. Checked 150 distinct source Sense Keys with OEWN English definitions and existing Chinese glosses; proposed 12 editorial changes and 138 retained pending independent review. Full per-row evidence and revised CSV are delivered separately as core20k_v137_150_evidence_QA_12_revisions.zip. Manifest SHA256 of complete 150-row JSONL: 73f65e56b19da028be66ecbc0d3b3ea0cd08d6e463f0180cff665c2877f4d9e9.
+
+Specific proposed changes: V135 skin -> 皮肤；动物体表覆盖层 (not 毛皮), accident -> 偶然事件；意外发生的事情, dress -> 服装；某种风格或场合的着装, marriage -> 结婚仪式；婚礼, designer -> 设计师；设计制造方案的人. V136 infection -> 一次传染事件；传染病传播事件, guarantee -> 书面保证；产品或服务的质量／履行保证书, motion -> 动作；姿态或位置的改变（未发生整体位移）, be -> 花费（时间）；度过（某段时间）, cool -> 散热；失去热量；冷却 (English source 'loose heat' needs checking; original evidence unchanged), mortgage -> 抵押；以不动产作贷款担保的产权转让安排 (jurisdiction sensitive), storm -> 暴风；风速达蒲福风级11级的强风暴.
+
+Not an independent blind review, and 138 unchanged rows are NOT certified as semantically correct. New Sense gloss count: 0 this pass; reviewed existing 150, proposed 12 revisions. Cumulative new Sense editorial drafts remains 688, original remaining unselected pool 988. Semantically certified 0, production ready 0, Runtime unchanged.
