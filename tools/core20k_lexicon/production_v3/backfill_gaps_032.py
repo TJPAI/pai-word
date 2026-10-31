@@ -42,7 +42,7 @@ out.mkdir(parents=True,exist_ok=True)
 for i in range(0,len(output),50):
  chunk=output[i:i+50]
  if not chunk:break
- file=out/f"ku_recognition_032_{i//50+1:02d}.jsonl"
+ file=out/f"ku_recognition_032_{i//50+2:02d}.jsonl"
  if file.exists():
   existing=[json.loads(line) for line in file.read_text(encoding="utf8").splitlines() if line.strip()]
   if [x["ku_id"] for x in existing]!=[x["ku_id"] for x in chunk]:raise RuntimeError("Existing file mismatch: "+str(file))
