@@ -1,0 +1,23 @@
+name: ENLEX 2K Batch Factory
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - '.github/workflows/enlex-batch-factory.yml'
+      - 'tools/core20k_lexicon/production_v3/coverage/enlex_batch_factory.py'
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare identity-safe 2000-Sense batches
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_batch_factory.py --batch-size 2000
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-2k-batch-factory
+          path: tools/core20k_lexicon/production_v3/coverage/batch_factory_output/
+          retention-days: 60
