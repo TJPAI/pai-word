@@ -1,0 +1,22 @@
+name: CG-ENLEX deterministic Sense KU audit
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-coverage-audit.yml
+      - tools/core20k_lexicon/production_v3/audit_coverage_fast.py
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit source Sense and all KU drafts
+        run: python3 tools/core20k_lexicon/production_v3/audit_coverage_fast.py enlex_coverage_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-coverage-report
+          path: enlex_coverage_report.json
