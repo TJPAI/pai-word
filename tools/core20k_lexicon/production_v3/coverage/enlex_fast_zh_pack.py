@@ -20,7 +20,7 @@ assert len(edits)==764
 source={r["teaching_sense_id"]:r for r in src}
 assert set(edits)<=set(source),("orphan edit",len(set(edits)-set(source)))
 def clean(s):
- return s.strip() if isinstance(s,str) and s.strip() and len(s.strip())<=35 and not re.search(r"[+*/=<>|{}@\\\[\\]]",s) else None
+ return s.strip() if isinstance(s,str) and s.strip() and len(s.strip())<=35 and not any(t in s for t in ("+","*","/","=","<",">","|","{","}","@","[","]")) else None
 out=[]
 stats=collections.Counter()
 for r in src:
