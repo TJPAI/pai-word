@@ -1,0 +1,20 @@
+name: ENLEX Multi201 Single-Pass QA Fastlane
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-multi201-fastlane.yml']
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Classify full 201-source batch in one pass
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_multi201_fastlane.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-multi201-fastlane
+          path: tools/core20k_lexicon/production_v3/coverage/multi201_fastlane_output/
+          retention-days: 60
