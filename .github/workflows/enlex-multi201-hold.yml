@@ -1,0 +1,37 @@
+name: ENLEX 201 multilexeme source HOLD persistence
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-multi201-hold.yml']
+jobs:
+  persist:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve audited 400-card source
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cards
+          gh run download 41168168670 -n enlex-400-priority-editorial-cards -D /tmp/cards
+      - name: Reconstruct 201 original source-only HOLD records
+        run: |
+          python3 tools/core20k_lexicon/production_v3/coverage/enlex_multilexeme_hold_baseline.py \
+             /tmp/cards/priority400_editorial_cards.jsonl \
+             tools/core20k_lexicon/production_v3/coverage/omw_multi201_source_hold
+      - name: Commit isolated source-only records
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/coverage/omw_multi201_source_hold/
+          git diff --cached --quiet || git commit -m "Store 201 multilexeme source HOLD records without semantic certification"
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-multi201-source-hold
+          path: tools/core20k_lexicon/production_v3/coverage/omw_multi201_source_hold/
+          retention-days: 60
