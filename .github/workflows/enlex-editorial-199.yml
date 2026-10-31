@@ -1,0 +1,36 @@
+name: ENLEX 199 Sense Editorial First Pass
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - '.github/workflows/enlex-editorial-199.yml'
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Produce source-backed editorial decisions
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_editorial_ai400.py
+      - name: Verify strict JSONL and identity
+        run: |
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path('tools/core20k_lexicon/production_v3/coverage/editorial_ai400_output')
+          a=[json.loads(s) for s in (p/'editorial_firstpass_199.jsonl').read_text().splitlines()]
+          b=[json.loads(s) for s in (p/'unresolved_201.jsonl').read_text().splitlines()]
+          assert len(a)==199 and len(b)==201
+          assert len(set(x['teaching_sense_id'] for x in a+b))==400
+          assert all(not x['independent_certified'] and not x['production_ready'] for x in a)
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-199-editorial-firstpass
+          path: tools/core20k_lexicon/production_v3/coverage/editorial_ai400_output/
+          retention-days: 60
