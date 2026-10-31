@@ -8,10 +8,10 @@ def main():
  assert len(rows)==2000
  assert len(set(x["teaching_sense_id"] for x in rows))==2000
  HAN=re.compile("[\\u3400-\\u9fff]")
- BAD=re.compile(r"[+*/=<>|{}\\[\\]@A-Za-z0-9]")
+ BAD=re.compile(r"[+*/=<>|{}@A-Za-z0-9]")
  def assess(r):
   zh=r["chinese_lexicalizations"]
-  valid=[x for x in zh if HAN.search(x) and not BAD.search(x) and len(x)<=12]
+  valid=[x for x in zh if HAN.search(x) and not BAD.search(x) and not any(c in x for c in "[]\\") and len(x)<=12]
   clean=sorted(set(valid),key=lambda x:(len(x),x))
   flags=[]
   if len(zh)>1:flags.append("MULTIPLE_SOURCE_LEXEMES")
