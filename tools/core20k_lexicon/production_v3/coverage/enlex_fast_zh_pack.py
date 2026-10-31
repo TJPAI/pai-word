@@ -34,16 +34,17 @@ for r in src:
   else:
    chosen=proposed;status="EDITORIAL_DRAFT"
  else:
-  chosen=zh[0] if len(zh)==1 else None
-  status="SINGLE_SOURCE_DRAFT" if chosen else "AMBIGUOUS"
+  chosen=zh[0] if zh else None
+  status=("SINGLE_SOURCE_DRAFT" if len(zh)==1 else
+          "MULTI_SOURCE_PROVISIONAL" if len(zh)>1 else "NO_VALID_SOURCE_GLOSS")
  stats[status]+=1
  out.append({"teaching_sense_id":sid,"rank":r["rank"],"lemma":r["lemma"],"synset_id":r["synset_id"],"definition_en":r["definition_en"],
- "gloss_zh":chosen,"gloss_zh_status":status,"alternate_zh":zh,"editorial_source":ed[1] if ed else None,"source":"OMW-cmn/OEWN exact synset", "production_ready":bool(chosen)})
+ "gloss_zh":chosen,"gloss_zh_status":status,"alternate_zh":zh,"editorial_source":ed[1] if ed else None,"source":"OMW-cmn/OEWN exact synset", "production_ready":False,"display_draft_usable":bool(chosen),"needs_semantic_review":status=="MULTI_SOURCE_PROVISIONAL"})
 dst=R/"fast_zh_pack_v1";dst.mkdir(parents=True,exist_ok=True)
 # stream 1000 per shard to keep GitHub readable
 sha={}
 for i in range(0,len(out),1000):
  p=dst/f"zh_sense_{i//1000+1:03d}.jsonl";p.write_text("".join(json.dumps(x,ensure_ascii=False)+chr(10) for x in out[i:i+1000]),encoding="utf8");sha[p.name]=hashlib.sha256(p.read_bytes()).hexdigest()
-m={"total_source_senses":len(out),"edited_input":len(edits),"counts":dict(stats),"gloss_available":sum(x["gloss_zh"] is not None for x in out),"unique_ids":len({r["teaching_sense_id"] for r in out}),"shard_sha256":sha,"provenance":"OMW lexical evidence; personal-use draft, not independently validated"}
+m={"total_source_senses":len(out),"edited_input":len(edits),"counts":dict(stats),"gloss_available":sum(x["gloss_zh"] is not None for x in out),"provisional_multi":stats["MULTI_SOURCE_PROVISIONAL"],"unique_ids":len({r["teaching_sense_id"] for r in out}),"shard_sha256":sha,"provenance":"OMW lexical evidence; automatic multilexeme first-option selection is provisional and not semantic disambiguation"}
 (dst/"manifest.json").write_text(json.dumps(m,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
 print(json.dumps(m,ensure_ascii=False))
