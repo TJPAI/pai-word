@@ -1,0 +1,39 @@
+name: ENLEX 188 Editorial Batch Complete QA
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - '.github/workflows/enlex-multi188-batch-qa.yml'
+      - 'tools/core20k_lexicon/production_v3/coverage/omw_multi188_editorial_008_hold.jsonl'
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify exact source identities and editorial status gate
+        run: |
+          python3 - <<'PY'
+          import pathlib,json,hashlib,collections
+          root=pathlib.Path('tools/core20k_lexicon/production_v3/coverage')
+          src=[json.loads(s) for s in (root/'omw_multi201_source_hold/source_hold_201.jsonl').read_text().splitlines()]
+          high=[json.loads(s) for s in (root/'omw_multi_13_high_ambiguity_editorial_001.jsonl').read_text().splitlines()]
+          data=(root/'omw_multi188_editorial_008_hold.jsonl').read_bytes()
+          a=[json.loads(s) for s in data.splitlines()]
+          wanted=set(x['teaching_sense_id'] for x in src)-set(x['teaching_sense_id'] for x in high)
+          got=set(x['teaching_sense_id'] for x in a)
+          assert len(a)==188 and len(got)==188 and wanted==got
+          original={x['teaching_sense_id']:x for x in src}
+          cnt=collections.Counter()
+          for x in a:
+              s=original[x['teaching_sense_id']]
+              assert x['rank']==s['rank'] and x['synset_id']==s['synset_id'] and x['definition_en']==s['definition_en']
+              assert x['original_chinese_lexicalizations']==s['original_chinese_lexicalizations']
+              assert x['independent_certified'] is False and x['production_ready'] is False
+              assert x['review_gate']=='HOLD_INDEPENDENT_SEMANTIC_QA'
+              if x['editorial_disposition']=='KEEP_CANDIDATE':
+                  assert x['gloss_zh_revised_candidate'] in s['original_chinese_lexicalizations']
+              cnt[x['editorial_disposition']]+=1
+          assert cnt=={'KEEP_CANDIDATE':142,'REVISE_CANDIDATE':46}
+          print('BATCH QA PASS:',dict(cnt),'sha256:',hashlib.sha256(data).hexdigest(),'approved: 0')
+          PY
