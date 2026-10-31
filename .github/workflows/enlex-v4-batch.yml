@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/enlex-v4-batch.yml'
       - 'tools/core20k_lexicon/production_v3/v4_gap_queue.py'
+      - 'tools/core20k_lexicon/production_v3/v4_ai_gloss_batch_*.jsonl'
       - 'tools/core20k_lexicon/production_v3/v4_batch_factory.py'
 jobs:
   produce:
