@@ -1,0 +1,28 @@
+name: ENLEX V4 1000-headword real batch
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - '.github/workflows/enlex-v4-batch.yml'
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate one 1000-headword real-data Sense batch
+        run: python3 tools/core20k_lexicon/production_v3/v4_batch_factory.py --start-rank 1 --headwords 1000
+      - name: Persist verified complete batch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/v4_output/
+          git diff --cached --quiet || git commit -m "V4 produce Core20K ranks 1-1000 Sense draft batch"
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v4-core20k-first1000
+          path: tools/core20k_lexicon/production_v3/v4_output/
+          retention-days: 30
