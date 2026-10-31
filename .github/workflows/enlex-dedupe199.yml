@@ -1,0 +1,27 @@
+name: ENLEX Deduplicate 199 Editorial Decisions
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-dedupe199.yml']
+jobs:
+  dedupe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch first-pass output
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/firstpass
+          gh run download 41168390341 -n enlex-199-editorial-firstpass -D /tmp/firstpass
+      - name: Deduplicate existing editorial Sense IDs
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_dedupe199.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-unique-new-editorial-decisions
+          path: tools/core20k_lexicon/production_v3/coverage/omw_editorial_007_output/
+          retention-days: 60
