@@ -5,6 +5,7 @@ on:
       - experiment/enlex-v3-production-rebuild-20261030
     paths:
       - .github/workflows/cg-enlex-ku032-backfill.yml
+      - tools/core20k_lexicon/production_v3/backfill_gaps_032.py
   workflow_dispatch:
 permissions:
   contents: write
