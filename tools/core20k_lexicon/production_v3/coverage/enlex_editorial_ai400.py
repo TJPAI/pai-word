@@ -23,7 +23,7 @@ for i,r in enumerate(data):
  'independent_certified':False,'production_ready':False})
 assert len(out)==199 and len(deferred)==201 and len({r['teaching_sense_id'] for r in out})==199
 for name,rows in [('editorial_firstpass_199.jsonl',out),('unresolved_201.jsonl',deferred)]:
- (OUT/name).write_text(''.join(json.dumps(x,ensure_ascii=False)+'\\n' for x in rows),encoding='utf8')
+ (OUT/name).write_text(''.join(json.dumps(x,ensure_ascii=False)+chr(10) for x in rows),encoding='utf8')
 m={'reviewed_firstpass':199,'deferred':201,'disposition_counts':dict(collections.Counter(x['editorial_disposition'] for x in out)),
  'certified':0,'production_ready':0,'sha256':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in OUT.glob('*.jsonl')}}
 (OUT/'manifest.json').write_text(json.dumps(m,ensure_ascii=False,indent=2),encoding='utf8')
