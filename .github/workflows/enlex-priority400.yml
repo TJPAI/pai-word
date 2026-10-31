@@ -3,7 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches: [experiment/enlex-v3-production-rebuild-20261030]
-    paths: ['.github/workflows/enlex-priority400.yml']
+    paths:
+      - '.github/workflows/enlex-priority400.yml'
+      - 'tools/core20k_lexicon/production_v3/coverage/enlex_priority400.py'
 jobs:
   prepare:
     runs-on: ubuntu-latest
