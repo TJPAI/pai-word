@@ -1,0 +1,40 @@
+name: ENLEX 400 priority editorial cards from 2K batch
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-priority400.yml']
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch existing audited batch factory artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail --location --silent --show-error -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/13030500093/zip" -o /tmp/enlex-2k.zip
+          mkdir -p /tmp/enlex-2k
+          unzip -q /tmp/enlex-2k.zip -d /tmp/enlex-2k
+          python3 - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('/tmp/enlex-2k')
+          m=json.loads((root/'manifest.json').read_text())
+          assert m['total']==7302 and m['already_triaged']==364
+          for b in m['batches']:
+              assert hashlib.sha256((root/b['path']).read_bytes()).hexdigest()==b['sha256']
+          PY
+      - name: Prepare traceable 400-card editorial input
+        run: |
+          python3 tools/core20k_lexicon/production_v3/coverage/enlex_priority400.py \
+            --input /tmp/enlex-2k/batch_001.jsonl \
+            --out tools/core20k_lexicon/production_v3/coverage/priority400-output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-400-priority-editorial-cards
+          path: tools/core20k_lexicon/production_v3/coverage/priority400-output/
+          retention-days: 60
