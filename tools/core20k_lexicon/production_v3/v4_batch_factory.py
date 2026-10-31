@@ -34,7 +34,7 @@ def main():
    for z in existing:
     if isinstance(z,str) and z.strip():gloss=z.strip();status="LEGACY_SOURCE_CANDIDATE";break
     if isinstance(z,dict):
-     q=next((z.get(k) for k in ("gloss_zh","zh","text","gloss") if isinstance(z.get(k),str) and z.get(k).strip()),None)
+     q=next((z.get(k) for k in ("value","gloss_zh","zh","text","gloss") if isinstance(z.get(k),str) and z.get(k).strip()),None)
      if q:gloss=q;status="LEGACY_SOURCE_CANDIDATE";break
   # Legacy candidates can be complex schemas; preserve raw source data unchanged.
   if not gloss:status="MISSING_CHINESE_GLOSS"
