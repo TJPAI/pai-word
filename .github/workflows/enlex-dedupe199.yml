@@ -8,7 +8,7 @@ jobs:
   dedupe:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       actions: read
     steps:
       - uses: actions/checkout@v4
@@ -20,6 +20,14 @@ jobs:
           gh run download 41168390341 -n enlex-199-editorial-firstpass -D /tmp/firstpass
       - name: Deduplicate existing editorial Sense IDs
         run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_dedupe199.py
+      - name: Commit deduplicated review batch into experimental branch
+        run: |
+          cp tools/core20k_lexicon/production_v3/coverage/omw_editorial_007_output/new_unique_decisions.jsonl tools/core20k_lexicon/production_v3/coverage/omw_single_lexeme_editorial_007.jsonl
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/coverage/omw_single_lexeme_editorial_007.jsonl
+          git commit -m "Persist 199 unique AI editorial first-pass decisions"
+          git push
       - uses: actions/upload-artifact@v4
         with:
           name: enlex-unique-new-editorial-decisions
