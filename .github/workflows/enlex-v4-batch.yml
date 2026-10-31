@@ -5,6 +5,7 @@ on:
     branches: [experiment/enlex-v3-production-rebuild-20261030]
     paths:
       - '.github/workflows/enlex-v4-batch.yml'
+      - 'tools/core20k_lexicon/production_v3/v4_batch_factory.py'
 jobs:
   produce:
     runs-on: ubuntu-latest
