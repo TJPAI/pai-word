@@ -1,0 +1,136 @@
+{
+  "sources": {
+    "v95_outer_zip": {
+      "path": "/home/hatch/workspace/user/files/core20k_v95_checkpoint_audit.zip",
+      "bytes": 2304205,
+      "sha256": "0d35f4de4c73ff5d48a83eac69ffbc703ba3267f84648190c663d8be6aa412eb"
+    },
+    "v93_inner_zip": {
+      "path": "/home/hatch/workspace/pai-word-27k-recovery/extracted_v95/core20k_v93_p1_99_full_register.zip",
+      "bytes": 2301776,
+      "sha256": "a298ad5ae92ce7827796f5d51027fdb8371174d6f26d192420c5922c9562eab7"
+    },
+    "register_jsonl": {
+      "path": "/home/hatch/workspace/pai-word-27k-recovery/extracted_v93/all_27471_v3rc_working_register.jsonl",
+      "bytes": 25847110,
+      "sha256": "22b0d24e0e2e9f8d32c24d23a5a29ea93939cb6bd6969a9678d76f472e5eb2e4"
+    },
+    "deltas_jsonl": {
+      "path": "/home/hatch/workspace/pai-word-27k-recovery/extracted_v93/v81_v93_all_editorial_deltas.jsonl",
+      "bytes": 388934,
+      "sha256": "ed9eeca130fe0ae8195c546dda3280c95b00f3e070e68594945a99436ce36924"
+    },
+    "v93_new99_jsonl": {
+      "path": "/home/hatch/workspace/pai-word-27k-recovery/extracted_v93/v93_new99.jsonl",
+      "bytes": 35795,
+      "sha256": "6b3e9d4ee4295c5e7f4e82c0a81cf736c09ecc6cd5bd0725ef6abb916dfecd23"
+    },
+    "p1_remaining_jsonl": {
+      "path": "/home/hatch/workspace/pai-word-27k-recovery/extracted_v93/p1_remaining_from_v92_top500.jsonl",
+      "bytes": 354554,
+      "sha256": "63a6b77d4a5b58f029d4797aa121f31eb46578d482e6c3b1c8b97cb20a6ba840"
+    }
+  },
+  "register": {
+    "rows": 27471,
+    "unique_teaching_sense_id": 27471,
+    "unique_rank": 19995,
+    "unique_lemma": 19995,
+    "unique_rank_lemma": 19995,
+    "unique_source_sense_id": 26894,
+    "unique_synset_id": 22146,
+    "rows_without_synset": 704,
+    "missing_ranks_1_20000": [
+      11104,
+      12959,
+      13676,
+      16482,
+      16842
+    ],
+    "pos_distribution": {
+      "s": 3176,
+      "r": 1519,
+      "v": 5742,
+      "a": 2273,
+      "n": 14375,
+      "adv": 27,
+      "i": 9,
+      "modal": 9,
+      "det": 17,
+      "pron": 21,
+      "c": 6,
+      "prep": 38,
+      "conj": 11,
+      "expl": 1,
+      "p": 7,
+      "d": 3,
+      "adj": 111,
+      "null": 107,
+      "interj": 12,
+      "combining": 1,
+      "abbr": 5,
+      "prefix": 1
+    },
+    "pos_null": 107,
+    "semantic_certified_true": 0,
+    "production_ready_true": 0,
+    "release_eligible_true": 0,
+    "sense_selection_values": {
+      "PENDING_EDUCATIONAL_REVIEW": 27471
+    },
+    "rows_with_zh_candidates": 8025,
+    "total_zh_candidate_entries": 9766,
+    "rows_with_v3rc_editorial_delta": 1020,
+    "rows_with_v3rc_editorial_candidate": 335,
+    "duplicate_definition_en_norm_per_rank_lemma": null,
+    "duplicate_rank_lemma_definition_groups": 0
+  },
+  "deltas": {
+    "delta_rows": 1020,
+    "delta_unique_ids": 1020,
+    "delta_id_set_equals_register_embedded": true,
+    "delta_ids_not_in_register": 0,
+    "new99_rows": 99,
+    "new99_unique_ids": 99,
+    "new99_subset_of_delta": true,
+    "new99_subset_of_register": true,
+    "p1_rows": 401,
+    "p1_unique_ids": 401,
+    "p1_subset_of_register": true,
+    "p1_intersection_delta": 0,
+    "p1_lemmas": 359
+  },
+  "v179_overlap": {
+    "v179_rows": 1676,
+    "v179_unique_sense_key": 1676,
+    "v179_unique_rank_lemma": 1676,
+    "overlap_rank_lemma_definition": 924,
+    "overlap_lemma_definition": 924,
+    "overlap_rank_lemma_only": 1670,
+    "v179_not_in_register_by_rld": 752,
+    "v179_semantic_certified_true": 0,
+    "v179_production_ready_true": 0
+  },
+  "oewn": {
+    "oewn_file_sha256": "9ca6d1dcb75f822fdd66617f7d9da48142ace38dd544d6ad5e2feca1674ad3fe",
+    "oewn_synsets_with_definition": 107519,
+    "definition_match": 26766,
+    "definition_diff": 1,
+    "no_synset_or_synset_not_in_oewn": 704,
+    "diff_examples": [
+      {
+        "teaching_sense_id": "core20k:rank:1954::oewn-rural__3.00.00..",
+        "lemma": "rural",
+        "register_definition": "of or relating to the countryside as opposed to the city",
+        "oewn_definition": "living in or characteristic of farming or country life"
+      }
+    ],
+    "method": "OEWN 2025 WN-LMF XML, first Definition child per synset, normalized (lowercase, NFKC, punctuation-insensitive)",
+    "definition_match_first_definition": 26767,
+    "definition_diff_first_definition": 0,
+    "definition_match_last_definition": 26766,
+    "definition_diff_last_definition": 1,
+    "sole_diff_last_definition": "rural (register: of or relating to the countryside as opposed to the city; OEWN: living in or characteristic of farming or country life)",
+    "note": "Synset oewn-81484980-r carries 3 Definition variants in the XML; register uses the first/ILI variant (quickly and without warning) for short/suddenly/abruptly. The 2026-10-30 audit reported 4 diffs using a different OEWN gloss source; with the XML first-Definition method the count is 0 diffs + 1 rural diff under last-Definition."
+  }
+}

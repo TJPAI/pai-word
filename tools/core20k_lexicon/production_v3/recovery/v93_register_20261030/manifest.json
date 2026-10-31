@@ -1,0 +1,182 @@
+{
+  "recovery_id": "PAI-WORD-27K-RECOVERY-20261031",
+  "date": "2026-10-31",
+  "timezone": "Asia/Shanghai",
+  "status": "UNCERTIFIED_RECOVERY",
+  "semantic_certified": 0,
+  "production_ready": false,
+  "runtime_modified": false,
+  "sources": [
+    {
+      "name": "core20k_v95_checkpoint_audit.zip (user upload 2026-10-30 05:34 CST)",
+      "sha256": "0d35f4de4c73ff5d48a83eac69ffbc703ba3267f84648190c663d8be6aa412eb",
+      "bytes": 2304979
+    },
+    {
+      "name": "core20k_v93_p1_99_full_register.zip (inner archive)",
+      "sha256": "a298ad5ae92ce7827796f5d51027fdb8371174d6f26d192420c5922c9562eab7",
+      "bytes": 2301776
+    },
+    {
+      "name": "all_27471_v3rc_working_register.jsonl (V93 register)",
+      "sha256": "22b0d24e0e2e9f8d32c24d23a5a29ea93939cb6bd6969a9678d76f472e5eb2e4",
+      "bytes": 25847110
+    },
+    {
+      "name": "v81_v93_all_editorial_deltas.jsonl (V81-V93 editorial ledger, 1020 rows)",
+      "sha256": "ed9eeca130fe0ae8195c546dda3280c95b00f3e070e68594945a99436ce36924",
+      "bytes": 388934
+    },
+    {
+      "name": "v93_new99.jsonl",
+      "sha256": "6b3e9d4ee4295c5e7f4e82c0a81cf736c09ecc6cd5bd0725ef6abb916dfecd23",
+      "bytes": 35795
+    },
+    {
+      "name": "p1_remaining_from_v92_top500.jsonl",
+      "sha256": "63a6b77d4a5b58f029d4797aa121f31eb46578d482e6c3b1c8b97cb20a6ba840",
+      "bytes": 354554
+    },
+    {
+      "name": "GitHub tools/core20k_sense_v1/editorial/core20k_v5_v8_contextual_ku_20261029.jsonl (217 KU, V5-V8 increment)",
+      "sha256": "89f68f75bf1bc989da3eef1faa4ec4898fb405cb5d12265294ddb54b2419e874",
+      "records": 217
+    },
+    {
+      "name": "GitHub tools/core20k_sense_v1/editorial/core20k_v5_v8_definition_fallback_94_20261029.jsonl (94 KU)",
+      "sha256": "4c390cb46bdca30aa2b2444d9d47c62cd3648e805296983f3bb3c6ec5cd548a2",
+      "records": 94
+    },
+    {
+      "name": "GitHub tools/core20k_sense_v1/editorial/v27_four_attested_gap_ku_20261029.jsonl (4 KU)",
+      "sha256": "880f3498ece3fac4e662852377a8569a099670d83caa1dca9fb84edf26ac6920",
+      "records": 4
+    }
+  ],
+  "recovered_counts": {
+    "sense_records": 27471,
+    "sense_unique_teaching_sense_id": 27471,
+    "sense_unique_rank_lemma": 19995,
+    "editorial_delta_records": 1020,
+    "v93_new99_records": 99,
+    "p1_remaining_records": 401,
+    "ku_records_recovered_verbatim": 315,
+    "ku_records_not_recovered": 27186,
+    "ku_target_total": 27501,
+    "batch88_pool_records_recovered_verbatim": 0,
+    "batch88_pool_target": 5438
+  },
+  "validation": {
+    "register_rows": 27471,
+    "register_unique_ids": 27471,
+    "missing_ranks": [
+      11104,
+      12959,
+      13676,
+      16482,
+      16842
+    ],
+    "missing_rank_lemmas": [
+      "acte",
+      "officier",
+      "courte",
+      "everytime",
+      "selle"
+    ],
+    "delta_id_set_equals_register_embedded": true,
+    "new99_subset_of_delta_and_register": true,
+    "p1_subset_of_register": true,
+    "p1_intersection_delta": 0,
+    "ku_increment_linked_to_register": "315/315",
+    "ku_increment_orphans": 0,
+    "ku_increment_unique_ku_id": 315,
+    "oewn_first_definition_match": "26767/26767 (synset-bearing rows; 704 rows have no synset)",
+    "oewn_sole_last_definition_diff": "rural (1 row)",
+    "v179_overlap_rank_lemma_definition": "924/1676 (V179 is a later editorial batch, not a subset of V93)",
+    "semantic_certified_true": 0,
+    "production_ready_true": 0
+  },
+  "not_recovered": {
+    "ku_baseline_27186": "Full 27,501 KU file (frozen hash e46e566f9c541c98a9d72e202145fb0de0acd7c93afca45699eefd16fbe6d2f3, V28-V34) exists only as fingerprints in audit JSONs; its local ZIPs (core20k_v18_verified_baseline.zip, core20k_v27/v28/v29/v30/v31/v32/v33/v34 *_candidate.zip) were never uploaded to GitHub, are not in the local workspace, and were not found in Drive/GitHub Actions searches so far. Only its 315-row V5-V8+V27 increment is recovered verbatim here.",
+    "batch88_pool_5438": "eligible_structure_pool.jsonl inside core20k_batch86_200_content_sense_review.zip: only the audit JSON (batch88_actual_source_audit.json, queue SHA c60418994bbc024e20fbb1477c5e374dc688b73ed943e65df3368ecfbe23ea16) and the triage script (batch88-bulk-sense-triage.mjs) are in GitHub; the 5,438-row pool file itself was not found in GitHub history, local workspace, or Drive searches so far. The pool is a Core13K-legacy KU workset, not a subset of the 27,471 register."
+  },
+  "shards": [
+    {
+      "file": "shards/senses_001.jsonl",
+      "records": 5000,
+      "bytes": 4678122,
+      "sha256": "a32ee71e17356e5cfdfed5b39ed53c52cb5ca513f4aeb594af24977a03a7024b"
+    },
+    {
+      "file": "shards/senses_002.jsonl",
+      "records": 5000,
+      "bytes": 4741121,
+      "sha256": "440f41ee14e3d97e878d08d154d7f9352c4898e404d04e2184ce664238490495"
+    },
+    {
+      "file": "shards/senses_003.jsonl",
+      "records": 5000,
+      "bytes": 4676737,
+      "sha256": "e68982d5a13d8f856e322e7ef8340d8cdc70bf5ada6ddb3bd698a3bceb0f9183"
+    },
+    {
+      "file": "shards/senses_004.jsonl",
+      "records": 5000,
+      "bytes": 4707222,
+      "sha256": "dd0a7251ff83679108e8cf939a8b1ce301f411955786a96348cbc529721ad2e3"
+    },
+    {
+      "file": "shards/senses_005.jsonl",
+      "records": 5000,
+      "bytes": 4746976,
+      "sha256": "6a05c15f5dcab4f9b6d73e1e47d262cf42368e5ef396551d08441fd3ef082311"
+    },
+    {
+      "file": "shards/senses_006.jsonl",
+      "records": 2471,
+      "bytes": 2296932,
+      "sha256": "70cd94de32b6ed5a87df28f8c1a998411d9810003387dc6f12ec144aabdd8957"
+    },
+    {
+      "file": "shards/deltas_001.jsonl",
+      "records": 1020,
+      "bytes": 388934,
+      "sha256": "ed9eeca130fe0ae8195c546dda3280c95b00f3e070e68594945a99436ce36924"
+    },
+    {
+      "file": "shards/new99_001.jsonl",
+      "records": 99,
+      "bytes": 35795,
+      "sha256": "6b3e9d4ee4295c5e7f4e82c0a81cf736c09ecc6cd5bd0725ef6abb916dfecd23"
+    },
+    {
+      "file": "shards/p1_remaining_001.jsonl",
+      "records": 401,
+      "bytes": 354554,
+      "sha256": "63a6b77d4a5b58f029d4797aa121f31eb46578d482e6c3b1c8b97cb20a6ba840"
+    },
+    {
+      "file": "shards/ku_increment_001.jsonl",
+      "records": 315,
+      "bytes": 217278,
+      "sha256": "8e7a17c589e063aabe95cb32e24e1ecc8debb673e5c80f37b3d3a5af513cc48c"
+    },
+    {
+      "file": "shards/ku_increment_sense_link.json",
+      "records": 315,
+      "bytes": 77712,
+      "sha256": "2913ba4e334886d3f9592a1e0d16fcd656469c0841c26b70496c2b3ef872d2f0"
+    }
+  ],
+  "search_confirmation": {
+    "github_head_at_verification": "8ef71463dd93ba84f7ca646bff3c72ff0c5af8e2 (2026-10-31 11:28 CST; e5d55336 V179 commit is an ancestor)",
+    "github_branches_listed": 77,
+    "github_history_blobs_over_1mb": 9,
+    "github_actions_artifacts_listed": "712 total; all 8 pages covered by combined unauthenticated listing (this side 612 + independent line newest 200)",
+    "github_code_search": "401 unauthenticated, not used",
+    "drive_account": "erwu.liu@gmail.com (connected); 255 core20k files, ~29.6 MB; no v95/v34/batch88/27471/27501 file",
+    "drive_v179_zip": "source_v179_shards.zip, 216956 B, MD5 cc141664c66af209904eb2213c1454f6, id 1xl0m3mikwD4wr7kd0lLil3J2wabbrkrY",
+    "v221_manifest_statement": "The complete V29 27471 Sense / 27501 KU archive was not located (commit 1f55fd73)",
+    "github_already_holds_v179_plus_batch90": "1676 V179 rows + 163-row recovered file (157 in V179 + 6 Batch90 rows, 2 new headwords) at HEAD 8ef71463"
+  }
+}
