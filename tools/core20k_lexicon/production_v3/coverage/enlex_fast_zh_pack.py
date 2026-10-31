@@ -20,7 +20,11 @@ assert len(edits)==764
 source={r["teaching_sense_id"]:r for r in src}
 assert set(edits)<=set(source),("orphan edit",len(set(edits)-set(source)))
 def clean(s):
- return s.strip() if isinstance(s,str) and s.strip() and len(s.strip())<=35 and not any(t in s for t in ("+","*","/","=","<",">","|","{","}","@","[","]")) else None
+ if not isinstance(s,str): return None
+ s=s.strip()
+ # OMW Chinese lexical suffix markup: '+的' is an inflection label, not display text.
+ s=s.replace("+的","的").replace("+地","地").replace("+者","者")
+ return s if s and len(s)<=35 and not any(t in s for t in ("+","*","/","=","<",">","|","{","}","@","[","]")) else None
 out=[]
 stats=collections.Counter()
 for r in src:
