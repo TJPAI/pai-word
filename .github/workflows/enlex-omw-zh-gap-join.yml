@@ -39,7 +39,7 @@ jobs:
           lines=(src/'omw_zh_evidence_candidates.jsonl').read_text(encoding='utf-8').splitlines()
           assert len(lines)==7302
           for idx in range(0,len(lines),500):
-              (dst/f'candidates_{idx//500+1:03}.jsonl').write_text('\\n'.join(lines[idx:idx+500])+'\\n',encoding='utf-8')
+              (dst/f'candidates_{idx//500+1:03}.jsonl').write_text(chr(10).join(lines[idx:idx+500])+chr(10),encoding='utf-8')
           (dst/'manifest.json').write_bytes((src/'manifest.json').read_bytes())
           print('persisted rows',len(lines),'shards',(len(lines)+499)//500)
           PY
