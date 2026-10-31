@@ -27,25 +27,48 @@ for path in sense_files:
             senses.setdefault(sid, item)
 by_sense = collections.defaultdict(list)
 by_ku = collections.defaultdict(list)
+by_objective = collections.defaultdict(list)
+
+def canonical_type(value):
+    k = str(value or "unknown").strip().lower()
+    aliases = {
+        "sense_recognition": "recognition",
+        "recognition": "recognition",
+        "context_cloze": "context",
+        "context_disambiguation": "context",
+        "collocation": "collocation",
+        "grammar": "grammar",
+        "usage": "usage",
+        "production": "production",
+    }
+    return aliases.get(k, k)
+
 kind_counts = collections.Counter()
 for path in ku_files:
     for item in records(path):
         sid = item.get("teaching_sense_id")
         kid = item.get("ku_id")
         if sid and kid:
-            kind = item.get("ku_type") or item.get("render_kind") or "unknown"
+            kind = canonical_type(item.get("ku_type") or item.get("render_kind"))
             by_sense[sid].append((kind, str(path.relative_to(ROOT)), kid))
             by_ku[kid].append(str(path.relative_to(ROOT)))
+            objective = item.get("teaching_objective")
+            if kind == "recognition":
+                objective = "recognize_sense_meaning"
+            elif not objective:
+                objective = "unspecified:" + str(kid)
+            by_objective[(sid, kind, str(objective))].append((kid, str(path.relative_to(ROOT))))
             kind_counts[kind] += 1
 duplicates = {k: v for k, v in by_ku.items() if len(v) > 1}
+objective_duplicates = {k: v for k, v in by_objective.items() if len(v) > 1}
 missing = []
 priority = []
 for sid, item in senses.items():
     types = {x[0] for x in by_sense.get(sid, [])}
     rank = item.get("rank")
-    if not types or not ({"sense_recognition", "recognition"} & types):
+    if not types or not ({"recognition"} & types):
         missing.append({"sense_id": sid, "rank": rank, "lemma": item.get("lemma"), "pos": item.get("pos"), "current_types": sorted(types)})
-    if isinstance(rank, int) and rank <= 5000 and types and not ({"context_disambiguation", "collocation", "grammar", "usage", "production"} & types):
+    if isinstance(rank, int) and rank <= 5000 and types and not ({"context", "collocation", "grammar", "usage", "production"} & types):
         priority.append({"sense_id": sid, "rank": rank, "lemma": item.get("lemma"), "current_types": sorted(types), "gap": "review_extra_teaching_ku"})
 missing.sort(key=lambda x: (x["rank"] if isinstance(x["rank"], int) else 999999, x["sense_id"]))
 priority.sort(key=lambda x: (x["rank"], x["sense_id"]))
@@ -58,6 +81,13 @@ report = {
     "ku_unique_ids": len(by_ku),
     "ku_unique_senses": len(by_sense),
     "duplicate_ku_ids": len(duplicates),
+    "duplicate_teaching_objectives": len(objective_duplicates),
+    "duplicate_recognition_examples": [
+        {"sense_id": key[0], "ku_type": key[1], "teaching_objective": key[2],
+         "occurrences": entries}
+        for key, entries in list(objective_duplicates.items())[:100]
+        if key[1] == "recognition"
+    ],
     "duplicate_ku_examples": [{"ku_id": k, "files": v} for k, v in list(duplicates.items())[:100]],
     "kind_counts": dict(kind_counts),
     "v4_missing_recognition_count": len(missing),
