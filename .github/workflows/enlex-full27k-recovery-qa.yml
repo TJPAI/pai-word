@@ -1,0 +1,25 @@
+name: ENLEX Full 27K Recovery Deterministic QA
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - 'tools/core20k_lexicon/production_v3/coverage/enlex_full27k_triage.py'
+      - '.github/workflows/enlex-full27k-recovery-qa.yml'
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify 27K recovered register and generate deterministic QA
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_full27k_triage.py
+      - name: Archive true data and manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-full27k-deterministic-qa
+          path: tools/core20k_lexicon/production_v3/coverage/full27k-ci-output/
+          retention-days: 60
