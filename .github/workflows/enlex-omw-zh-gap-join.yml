@@ -1,0 +1,36 @@
+name: ENLEX OMW Chinese source-evidence gap join
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - '.github/workflows/enlex-omw-zh-gap-join.yml'
+jobs:
+  join:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Retrieve verified historical V109 artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          curl --fail --location --silent --show-error --retry 3 \
+            -H "Authorization: Bearer $GH_TOKEN" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/artifacts/12945699845/zip" \
+            -o /tmp/enlex-v109-ili-bridge.zip
+          unzip -t /tmp/enlex-v109-ili-bridge.zip >/dev/null
+      - name: Build exact-OEWN-synset Chinese candidate evidence
+        run: |
+          python3 tools/core20k_lexicon/production_v3/coverage/enlex_omw_gap_join.py \
+            --omw-zip /tmp/enlex-v109-ili-bridge.zip \
+            --out tools/core20k_lexicon/production_v3/coverage/omw-zh-gap-output
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-omw-zh-gap-evidence
+          path: tools/core20k_lexicon/production_v3/coverage/omw-zh-gap-output/
+          retention-days: 60
