@@ -1,0 +1,27 @@
+name: ENLEX Fast Chinese Sense Pack 7302
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: ['.github/workflows/enlex-fast-zh-pack.yml']
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build bulk Sense Chinese draft data
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_fast_zh_pack.py
+      - name: Commit data pack
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/coverage/fast_zh_pack_v1/
+          git diff --cached --quiet || git commit -m "Add bulk 7302 Sense OMW Chinese draft pack"
+          git push
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-fast-zh-pack-7302
+          path: tools/core20k_lexicon/production_v3/coverage/fast_zh_pack_v1/
+          retention-days: 30
