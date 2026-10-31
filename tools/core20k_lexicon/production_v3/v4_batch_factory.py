@@ -23,6 +23,14 @@ def main():
   for line in path.open(encoding="utf8"):
    x=json.loads(line); sid=x["teaching_sense_id"]
    assert sid not in overlays;overlays[sid]=x
+ ai={}
+ for source in sorted(BASE.glob("v4_ai_gloss_batch_*.jsonl")):
+  for line in source.open(encoding="utf8"):
+   if not line.strip():continue
+   z=json.loads(line);ident=z["teaching_sense_id"]
+   assert ident not in ai,("duplicate AI Sense gloss",ident)
+   assert z.get("gloss_zh") and z.get("definition_en")
+   ai[ident]=z
  results=[];counts=collections.Counter();ranks=set()
  for r in sorted(selected,key=lambda x:(int(x["rank"]),x["teaching_sense_id"])):
   sid=r["teaching_sense_id"];ranks.add(int(r["rank"]))
@@ -37,6 +45,10 @@ def main():
      q=next((z.get(k) for k in ("value","gloss_zh","zh","text","gloss") if isinstance(z.get(k),str) and z.get(k).strip()),None)
      if q:gloss=q;status="LEGACY_SOURCE_CANDIDATE";break
   # Legacy candidates can be complex schemas; preserve raw source data unchanged.
+  if sid in ai:
+   z=ai[sid]
+   assert z["definition_en"]==r["definition_en"] and z["lemma"]==r["lemma"] and z["rank"]==r["rank"],("identity mismatch",sid)
+   gloss=z["gloss_zh"];status="AI_DEFINITION_DRAFT"
   if not gloss:status="MISSING_CHINESE_GLOSS"
   counts[status]+=1
   results.append({"teaching_sense_id":sid,"rank":r["rank"],"lemma":r["lemma"],"synset_id":r.get("synset_id"),
@@ -58,7 +70,7 @@ def main():
         "sense_count":len(results),"gloss_count":sum(bool(x["gloss_zh"]) for x in results),
         "missing_zh":sum(not x["gloss_zh"] for x in results),"status_counts":dict(counts),
         "sha256":hashlib.sha256(path.read_bytes()).hexdigest(),"elapsed_sec":round(time.monotonic()-t,3),
-        "model_generated_new_glosses":0,"semantic_edits_this_run":0}
+        "model_generated_new_glosses":0,"semantic_edits_this_run":counts["AI_DEFINITION_DRAFT"]}
  (out/"manifest.json").write_text(json.dumps(stats,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
  print(json.dumps(stats,ensure_ascii=False))
 if __name__=="__main__":main()
