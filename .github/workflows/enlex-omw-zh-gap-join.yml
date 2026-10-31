@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
-      contents: read
+      contents: write
       actions: read
     steps:
       - uses: actions/checkout@v4
@@ -29,6 +29,25 @@ jobs:
           python3 tools/core20k_lexicon/production_v3/coverage/enlex_omw_gap_join.py \
             --omw-zip /tmp/enlex-v109-ili-bridge.zip \
             --out tools/core20k_lexicon/production_v3/coverage/omw-zh-gap-output
+      - name: Persist source-evidence candidates in GitHub JSONL shards
+        run: |
+          python3 - <<'PY'
+          import pathlib,json
+          src=pathlib.Path('tools/core20k_lexicon/production_v3/coverage/omw-zh-gap-output')
+          dst=pathlib.Path('tools/core20k_lexicon/production_v3/coverage/omw_zh_gap_persistence')
+          dst.mkdir(parents=True,exist_ok=True)
+          lines=(src/'omw_zh_evidence_candidates.jsonl').read_text(encoding='utf-8').splitlines()
+          assert len(lines)==7302
+          for idx in range(0,len(lines),500):
+              (dst/f'candidates_{idx//500+1:03}.jsonl').write_text('\\n'.join(lines[idx:idx+500])+'\\n',encoding='utf-8')
+          (dst/'manifest.json').write_bytes((src/'manifest.json').read_bytes())
+          print('persisted rows',len(lines),'shards',(len(lines)+499)//500)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/coverage/omw_zh_gap_persistence/
+          git diff --cached --quiet || git commit -m "Persist 7302 exact OMW Chinese source evidence candidates (uncertified)"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
       - uses: actions/upload-artifact@v4
         with:
           name: enlex-omw-zh-gap-evidence
