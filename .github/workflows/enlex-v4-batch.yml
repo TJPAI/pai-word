@@ -12,6 +12,17 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
+      - name: Inspect recovered Sense schema
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,collections
+          p=pathlib.Path('tools/core20k_lexicon/production_v3/recovery/v93_register_20261030/shards/senses_001.jsonl')
+          rows=[json.loads(s) for s in p.open().readlines()[:3]]
+          for i,r in enumerate(rows):
+              print('V93 sample',i, 'keys',list(r.keys()))
+              print('V93 sample',i,'types',{k:type(v).__name__ for k,v in r.items()})
+              print('V93 sample',i,'repr',repr(r)[:2600])
+          PY
       - name: Generate one 1000-headword real-data Sense batch
         run: python3 tools/core20k_lexicon/production_v3/v4_batch_factory.py --start-rank 1 --headwords 1000
       - name: Persist verified complete batch
