@@ -3,7 +3,9 @@ on:
   workflow_dispatch:
   push:
     branches: [experiment/enlex-v3-production-rebuild-20261030]
-    paths: ['.github/workflows/enlex-fast-zh-pack.yml']
+    paths:
+      - '.github/workflows/enlex-fast-zh-pack.yml'
+      - 'tools/core20k_lexicon/production_v3/coverage/enlex_fast_zh_pack.py'
 jobs:
   build:
     runs-on: ubuntu-latest
