@@ -13,19 +13,30 @@ jobs:
       contents: write
     steps:
       - uses: actions/checkout@v4
-      - name: Build next two 1000-headword batches
+      - name: Build complete Core20K V4 base in 20 batches
         run: |
-          python3 tools/core20k_lexicon/production_v3/v4_batch_factory.py --start-rank 3001 --headwords 1000
-          python3 tools/core20k_lexicon/production_v3/v4_batch_factory.py --start-rank 4001 --headwords 1000
+          for start in $(seq 1 1000 19001); do
+            python3 tools/core20k_lexicon/production_v3/v4_batch_factory.py --start-rank "$start" --headwords 1000
+          done
+          python3 - <<'PY'
+          import pathlib,json,collections
+          root=pathlib.Path('tools/core20k_lexicon/production_v3/v4_output')
+          files=sorted(root.glob('rank_*/manifest.json'))
+          assert len(files)==20,len(files)
+          a=[json.loads(p.read_text()) for p in files]
+          assert sum(x['unique_headwords'] for x in a)==19995
+          assert sum(x['sense_count'] for x in a)==27471
+          print('CORE20K_V4_TOTAL',{'headwords':sum(x['unique_headwords'] for x in a),'senses':sum(x['sense_count'] for x in a),'with_zh':sum(x['gloss_count'] for x in a),'missing_zh':sum(x['missing_zh'] for x in a)})
+          PY
       - name: Persist verified complete batch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add tools/core20k_lexicon/production_v3/v4_output/
-          git diff --cached --quiet || git commit -m "V4 produce Core20K ranks 3001-5000 Sense draft batches"
+          git diff --cached --quiet || git commit -m "V4 produce full Core20K 20K-headword Sense candidate baseline"
           git push
       - uses: actions/upload-artifact@v4
         with:
-          name: enlex-v4-core20k-rank3001-5000
+          name: enlex-v4-full-core20k
           path: tools/core20k_lexicon/production_v3/v4_output/
           retention-days: 30
