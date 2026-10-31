@@ -41,9 +41,12 @@ out=BASE/"ku_drafts"/"v2"
 out.mkdir(parents=True,exist_ok=True)
 for i in range(0,len(output),50):
  chunk=output[i:i+50]
- if len(chunk)<50:break
+ if not chunk:break
  file=out/f"ku_recognition_032_{i//50+1:02d}.jsonl"
- if file.exists():raise RuntimeError("Refusing to overwrite "+str(file))
+ if file.exists():
+  existing=[json.loads(line) for line in file.read_text(encoding="utf8").splitlines() if line.strip()]
+  if [x["ku_id"] for x in existing]!=[x["ku_id"] for x in chunk]:raise RuntimeError("Existing file mismatch: "+str(file))
+  print("VERIFIED_EXISTING",file.name,len(existing));continue
  file.write_text("".join(json.dumps(r,ensure_ascii=False,separators=(",",":"))+"\n" for r in chunk),encoding="utf8")
  print("GENERATED",file.name,len(chunk))
 print(json.dumps(dict(source=len(source),existing=len(existing),uncovered_source=len({r["teaching_sense_id"] for r in source}-{r.get("teaching_sense_id") for r in existing}),eligible_uncovered=len(uncovered),generated=len(output),unique_ku=len({r["ku_id"] for r in output}),unique_sense=len({r["teaching_sense_id"] for r in output}))))
