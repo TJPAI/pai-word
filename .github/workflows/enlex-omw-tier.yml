@@ -1,0 +1,21 @@
+name: ENLEX OMW Chinese Lexeme QA Tiers
+on:
+  workflow_dispatch:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - '.github/workflows/enlex-omw-tier.yml'
+jobs:
+  classify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Classify 7302 OMW Chinese lexical evidence candidates
+        run: python3 tools/core20k_lexicon/production_v3/coverage/enlex_omw_tier.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-omw-7302-tiered-evidence
+          path: tools/core20k_lexicon/production_v3/coverage/omw_tier_output/
+          retention-days: 60
