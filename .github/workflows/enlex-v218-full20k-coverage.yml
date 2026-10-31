@@ -1,0 +1,28 @@
+name: ENLEX V218 Full20K Sense Coverage Audit
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - 'tools/core20k_lexicon/production_v3/coverage/v218_audit.py'
+      - '.github/workflows/enlex-v218-full20k-coverage.yml'
+  workflow_dispatch:
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Audit frozen runtime and 1676 priority Sense records
+        run: python tools/core20k_lexicon/production_v3/coverage/v218_audit.py
+      - name: Upload actual coverage and 40 batch plans
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: enlex-v218-full20k-coverage
+          path: tools/core20k_lexicon/production_v3/coverage/v218_output/
+          if-no-files-found: warn
