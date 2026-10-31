@@ -17,6 +17,15 @@ for p in paths:
   assert ident not in edits,("editorial duplicate",ident,str(p))
   edits[ident]=(r,p.name)
 assert len(edits)==764
+# Apply genuine Sense-specific refinements after source and generic editorial drafts.
+refinements={}
+for p in sorted(R.glob("semantic_refinement_batch_*.jsonl")):
+ for line in p.read_text(encoding="utf-8").splitlines():
+  if not line.strip():continue
+  record=json.loads(line)
+  sid=record["teaching_sense_id"]
+  assert sid not in refinements,("duplicate semantic refinement",sid)
+  refinements[sid]=(record,p.name)
 source={r["teaching_sense_id"]:r for r in src}
 assert set(edits)<=set(source),("orphan edit",len(set(edits)-set(source)))
 def clean(s):
@@ -30,7 +39,13 @@ stats=collections.Counter()
 for r in src:
  sid=r["teaching_sense_id"];zh=sorted(set(x for z in r["chinese_lexicalizations"] if (x:=clean(z))),key=lambda x:(len(x),x))
  ed=edits.get(sid)
- if ed:
+ if sid in refinements:
+  item,p=refinements[sid]
+  assert r["lemma"]==item["lemma"] and r["definition_en"]==item["definition_en"]
+  chosen=item["gloss_zh"]
+  assert isinstance(chosen,str) and chosen.strip()
+  status="SEMANTIC_REFINEMENT_DRAFT"
+ elif ed:
   item,p=ed
   proposed=item.get("gloss_zh_revised_candidate")
   if not proposed: 
@@ -43,12 +58,12 @@ for r in src:
           "MULTI_SOURCE_PROVISIONAL" if len(zh)>1 else "NO_VALID_SOURCE_GLOSS")
  stats[status]+=1
  out.append({"teaching_sense_id":sid,"rank":r["rank"],"lemma":r["lemma"],"synset_id":r["synset_id"],"definition_en":r["definition_en"],
- "gloss_zh":chosen,"gloss_zh_status":status,"alternate_zh":zh,"editorial_source":ed[1] if ed else None,"source":"OMW-cmn/OEWN exact synset", "production_ready":False,"display_draft_usable":bool(chosen),"needs_semantic_review":status=="MULTI_SOURCE_PROVISIONAL"})
+ "gloss_zh":chosen,"gloss_zh_status":status,"alternate_zh":zh,"editorial_source":refinements[sid][1] if sid in refinements else ed[1] if ed else None,"source":"OMW-cmn/OEWN exact synset", "production_ready":False,"display_draft_usable":bool(chosen),"needs_semantic_review":status=="MULTI_SOURCE_PROVISIONAL"})
 dst=R/"fast_zh_pack_v1";dst.mkdir(parents=True,exist_ok=True)
 # stream 1000 per shard to keep GitHub readable
 sha={}
 for i in range(0,len(out),1000):
  p=dst/f"zh_sense_{i//1000+1:03d}.jsonl";p.write_text("".join(json.dumps(x,ensure_ascii=False)+chr(10) for x in out[i:i+1000]),encoding="utf8");sha[p.name]=hashlib.sha256(p.read_bytes()).hexdigest()
-m={"total_source_senses":len(out),"edited_input":len(edits),"counts":dict(stats),"gloss_available":sum(x["gloss_zh"] is not None for x in out),"provisional_multi":stats["MULTI_SOURCE_PROVISIONAL"],"unique_ids":len({r["teaching_sense_id"] for r in out}),"shard_sha256":sha,"provenance":"OMW lexical evidence; automatic multilexeme first-option selection is provisional and not semantic disambiguation"}
+m={"total_source_senses":len(out),"edited_input":len(edits),"counts":dict(stats),"gloss_available":sum(x["gloss_zh"] is not None for x in out),"provisional_multi":stats["MULTI_SOURCE_PROVISIONAL"],"refinements":len(refinements),"unique_ids":len({r["teaching_sense_id"] for r in out}),"shard_sha256":sha,"provenance":"OMW lexical evidence; automatic multilexeme first-option selection is provisional and not semantic disambiguation"}
 (dst/"manifest.json").write_text(json.dumps(m,ensure_ascii=False,indent=2)+chr(10),encoding="utf8")
 print(json.dumps(m,ensure_ascii=False))
