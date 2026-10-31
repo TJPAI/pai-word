@@ -6,6 +6,7 @@ on:
     paths:
       - '.github/workflows/enlex-fast-zh-pack.yml'
       - 'tools/core20k_lexicon/production_v3/coverage/enlex_fast_zh_pack.py'
+      - 'tools/core20k_lexicon/production_v3/coverage/semantic_refinement_batch_*.jsonl'
 jobs:
   build:
     runs-on: ubuntu-latest
