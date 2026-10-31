@@ -14,6 +14,12 @@ jobs:
       actions: read
     steps:
       - uses: actions/checkout@v4
+      - name: Download source cards with GitHub CLI
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/cards
+          gh run download 41168168670 -n enlex-400-priority-editorial-cards -D /tmp/cards
       - name: Produce source-backed editorial decisions
         env:
           GH_TOKEN: ${{ github.token }}
