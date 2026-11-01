@@ -1518,3 +1518,43 @@ jobs:
           assert m["contextual_candidates_checked"]==130 and m["remaining_unrewritten"]==5
           print("V11 AUDIT",m)
           PY
+
+  active_recall_unified_review_pack:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_unified_active_recall_review_pack.py
+      - name: Commit unified review-only pack and independently verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_unified_review_pack_v1
+          mkdir -p /tmp/enlex-unified-pack
+          cp "$D"/*.json* /tmp/enlex-unified-pack/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-unified-pack/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX unified 27471 KU review-only pack"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_unified_review_pack_v1")
+          p=d/"review_pack.jsonl";m=json.loads((d/"summary.json").read_text())
+          ids=set();sids=set();n=0
+          for line in p.open(encoding="utf8"):
+            x=json.loads(line);n+=1;ids.add(x["ku_id"]);sids.add(x["teaching_sense_id"])
+            assert not x["release_eligible"] and not x["production_ready"]
+          assert n==len(ids)==len(sids)==m["total"]==27471
+          assert m["sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
+          print("REMOTE UNIFIED REVIEW PACK VERIFIED",m)
+          PY
