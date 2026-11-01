@@ -225,3 +225,38 @@ jobs:
           assert len(rows)==64 and len({x["ku_id"] for x in rows})==64
           print(json.dumps(json.loads((d/"replacement_candidates_high_priority_summary.json").read_text())))
           PY
+
+  refine_recognition_proposals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/refine_recognition_distractor_proposals.py
+      - name: Commit isolated candidate refinement and 53-item dossier
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit
+          mkdir -p /tmp/refinement
+          cp "$D/replacement_candidates_refined_64.jsonl" "$D/remaining_53_review_dossier.jsonl" "$D/replacement_refinement_summary.json" /tmp/refinement/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            cp /tmp/refinement/* "$D/"
+            git add "$D/replacement_candidates_refined_64.jsonl" "$D/remaining_53_review_dossier.jsonl" "$D/replacement_refinement_summary.json"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX refined competitor proposals and 53-item review dossier"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit")
+          x=[json.loads(a) for a in (d/"replacement_candidates_refined_64.jsonl").read_text().splitlines()]
+          y=[json.loads(a) for a in (d/"remaining_53_review_dossier.jsonl").read_text().splitlines()]
+          assert len(x)==64 and len(y)==53 and len({a["ku_id"] for a in x+y})==117
+          print("REMOTE VERIFIED",json.loads((d/"replacement_refinement_summary.json").read_text()))
+          PY
