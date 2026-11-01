@@ -1,0 +1,44 @@
+name: CG-ENLEX Muse PatchA Candidate Isolated
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - tools/core20k_lexicon/production_v3/apply_mu_patchA_candidate.py
+      - .github/workflows/cg-enlex-mu-patchA.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  patchA_candidate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/apply_mu_patchA_candidate.py
+      - name: Commit isolated report
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_patchA_v1
+          mkdir -p /tmp/enlex-mu-pa
+          cp "$D"/*.json* /tmp/enlex-mu-pa/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"; cp /tmp/enlex-mu-pa/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX safe Muse patchA candidate overlay"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 6 ]; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_patchA_v1")
+          m=json.loads((d/"summary.json").read_text())
+          assert m["candidate_applied"]+m["blocked"]==m["input_patches"]
+          assert m["candidate_only"] and not m["runtime_modified"]
+          print("PATCHA CANDIDATE VERIFIED",m)
+          PY
