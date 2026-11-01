@@ -1,0 +1,23 @@
+name: CG-ENLEX overlay semantic risk QA
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-semantic-risk.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/audit_overlay_semantic_risks.py
+      - name: Publish semantic risk report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/lexical_overlay_semantic_risk_report.json
+          git diff --cached --quiet || git commit -m "CG-ENLEX: publish lexical overlay semantic risk flags"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
