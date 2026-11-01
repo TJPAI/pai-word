@@ -1,0 +1,33 @@
+name: CG-ENLEX Batch105 grounded KU collection
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-batch105.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cg-enlex-batch105-once
+  cancel-in-progress: false
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Configure Git attribution
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Produce and submit actual uncovered KU in 50-item groups
+        run: python3 tools/core20k_lexicon/production_v3/produce_batch105.py
+      - name: Recheck V93 and KU coverage
+        run: python3 tools/core20k_lexicon/production_v3/audit_coverage_fast.py enlex_coverage_report.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-batch105-final-audit
+          path: enlex_coverage_report.json
