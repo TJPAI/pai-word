@@ -54,7 +54,7 @@ for grp in range(1,11):
  for entry in read(OUT/f"qa_recognition_025_{grp:02d}.jsonl"):
   if entry["same_definition_competing_options"]:
    conflicts.append({"ku_id":entry["ku_id"],"teaching_sense_id":entry["teaching_sense_id"],"lemma":entry["lemma"],"definition_en":entry["definition_en"],"correct_answer":entry["answer"],"conflicting_options":entry["same_definition_competing_options"],"source":entry["source"],"source_line":entry["source_line"],"suggestion":"Review competing answer and revise distractors in a later source-edit pass"})
-(OUT/"semantic_conflict_review_025.jsonl").write_text("".join(json.dumps(x,ensure_ascii=False)+"\\n" for x in conflicts).replace("\\\\n","\\n"),encoding="utf8")
+(OUT/"semantic_conflict_review_025.jsonl").write_text("".join(json.dumps(x,ensure_ascii=False)+chr(10) for x in conflicts),encoding="utf8")
 summary={"phase":"high_frequency_recognition_screening_batch025","rows":500,"groups":10,"unique_ku_ids":len({x["ku_id"] for x in chosen}),"flags":dict(issues),"semantic_review_certified":False,"release_eligible":False}
 (OUT/"summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n",encoding="utf8")
 print(json.dumps(summary,ensure_ascii=False),flush=True)
