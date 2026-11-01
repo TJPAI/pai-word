@@ -1,0 +1,79 @@
+{
+  "version": "CG_ENLEX_V2_SEMANTIC_GATE_20261102",
+  "scope": "isolated_candidate_only",
+  "source": [
+    "question_rebuild_small.jsonl",
+    "question_rebuild_remaining10.jsonl"
+  ],
+  "reviewed": 12,
+  "editorial_accept_only": [
+    {
+      "rank": 8298,
+      "lemma": "pajamas",
+      "reason": "US spelling and plural-noun cues constrain intended answer; still requires baseline and single-answer validation"
+    },
+    {
+      "rank": 8849,
+      "lemma": "ice-cream",
+      "reason": "Hyphenated spelling cue anchors frozen dessert form; still requires baseline and single-answer validation"
+    }
+  ],
+  "hold": [
+    {
+      "rank": 2591,
+      "lemma": "heck",
+      "reason": "generic fixed phrase has competing expletive answers"
+    },
+    {
+      "rank": 5349,
+      "lemma": "mega",
+      "reason": "scale sentence admits many adjectives"
+    },
+    {
+      "rank": 5362,
+      "lemma": "pre",
+      "reason": "prefix question needs explicit target spelling and sense verification"
+    },
+    {
+      "rank": 6283,
+      "lemma": "onboard",
+      "reason": "employee description could elicit integrated/hired; POS and usage unresolved"
+    },
+    {
+      "rank": 7943,
+      "lemma": "videogame",
+      "reason": "single-word spelling competes with video game; frozen headword verification needed"
+    },
+    {
+      "rank": 8475,
+      "lemma": "outdate",
+      "reason": "obsolete/outmode alternatives; question not single-answer"
+    },
+    {
+      "rank": 10766,
+      "lemma": "impassion",
+      "reason": "inspire/excite alternatives"
+    },
+    {
+      "rank": 11302,
+      "lemma": "goodnight",
+      "reason": "farewell also written good night"
+    },
+    {
+      "rank": 12847,
+      "lemma": "dis",
+      "reason": "diss spelling and insult synonyms"
+    },
+    {
+      "rank": 12905,
+      "lemma": "multi",
+      "reason": "multiple productive prefixes (poly-, multi-) possible"
+    }
+  ],
+  "identity_changes": 0,
+  "runtime_modified": false,
+  "merged_to_full_pack": 0,
+  "single_answer_certified": 0,
+  "release_eligible": false,
+  "notes": "Editorial review only. No replacement of existing shard values. Hold records must be resolved against frozen source and full question context before merge."
+}
