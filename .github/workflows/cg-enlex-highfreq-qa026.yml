@@ -467,3 +467,37 @@ jobs:
           assert len(x)==15 and len({z["ku_id"] for z in x})==15
           print("REMOTE VERIFIED",json.loads((d/"lexical_15_source_review_summary.json").read_text()))
           PY
+
+  integrated_patch_v1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_isolated_recognition_patch_v1.py
+      - name: Persist and verify source-backed isolated proposals
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit/isolated_patch_v1
+          cp -a "$D" /tmp/enlex-integrated-patch-v1
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-integrated-patch-v1/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX isolated integrated recognition 117 candidate patch"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit/isolated_patch_v1")
+          a=[json.loads(x) for x in (d/"recognition_patch_candidates_117.jsonl").read_text().splitlines()]
+          assert len(a)==117 and len({x["ku_id"] for x in a})==117
+          print("REMOTE VERIFIED",json.loads((d/"summary.json").read_text()))
+          PY
