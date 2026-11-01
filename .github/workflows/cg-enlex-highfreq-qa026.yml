@@ -604,3 +604,38 @@ jobs:
           assert sum(x["updated_in_v3"] for x in a)==29
           print("REMOTE VERIFIED",json.loads((d/"summary.json").read_text()))
           PY
+
+  active_recall_10x50:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/produce_active_recall_10x50.py
+      - name: Save 500 new active-recall KU and remote verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/ku_drafts/v3_active_recall
+          cp -a "$D" /tmp/enlex-active-recall
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-active-recall/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX 500 active-recall draft KU in 10x50"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/ku_drafts/v3_active_recall")
+          rows=[json.loads(x) for p in d.glob("active_recall_*.jsonl") for x in p.read_text().splitlines()]
+          assert len(rows)==len({x["ku_id"] for x in rows})==500
+          assert len(list(d.glob("active_recall_*.jsonl")))==10
+          print("REMOTE VERIFIED 500 NEW DISTINCT DRAFT ACTIVE_RECALL KU")
+          PY
