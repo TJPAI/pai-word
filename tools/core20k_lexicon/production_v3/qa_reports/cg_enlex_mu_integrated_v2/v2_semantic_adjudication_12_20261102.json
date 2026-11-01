@@ -1,0 +1,124 @@
+{
+  "version": "V2_SEMANTIC_ADJUDICATION_20261102_C",
+  "source": "baseline_reconciled_215_20261102.jsonl",
+  "source_v2": "full_pack/qa_full_v2.json",
+  "scope": "isolated_qa_only",
+  "reviewed": 12,
+  "actual_content_revisions": 0,
+  "already_in_full_candidate_pack": true,
+  "new_merges": 0,
+  "hold_count": 3,
+  "provisional_accept_count": 9,
+  "rows": [
+    {
+      "rank": 7297,
+      "lemma": "stamina",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7297::oewn-stamen__1.20.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:7297::oewn-stamen__1.20.00..",
+      "decision": "HOLD_ID_SENSE_MISMATCH",
+      "reason": "Frozen sense ID is stamen (flower organ), not stamina; changing English sense inside same ID violates identity.",
+      "semantic_certified": false
+    },
+    {
+      "rank": 12061,
+      "lemma": "squatter",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12061::oewn-squat__5.00.00.short.03:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:12061::oewn-squat__5.00.00.short.03",
+      "decision": "HOLD_ID_SENSE_MISMATCH",
+      "reason": "Frozen sense ID is squat adjective, not squatter noun; remapping within ID prohibited.",
+      "semantic_certified": false
+    },
+    {
+      "rank": 16169,
+      "lemma": "deeper",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16169::oewn-deeply__4.02.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:16169::oewn-deeply__4.02.00..",
+      "decision": "HOLD_ID_SENSE_MISMATCH",
+      "reason": "Frozen sense ID is deeply adverb, not deeper comparative adjective; remapping within ID prohibited.",
+      "semantic_certified": false
+    },
+    {
+      "rank": 18111,
+      "lemma": "skinned",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18111::oewn-skin__2.38.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:18111::oewn-skin__2.38.00..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 14551,
+      "lemma": "easier",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14551::oewn-easy__3.00.01..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:14551::oewn-easy__3.00.01..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 17060,
+      "lemma": "stronger",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17060::oewn-strong__3.00.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:17060::oewn-strong__3.00.00..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 14923,
+      "lemma": "scanning",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14923::oewn-scan__2.39.01..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:14923::oewn-scan__2.39.01..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 11704,
+      "lemma": "travelled",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11704::oewn-travel__2.38.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:11704::oewn-travel__2.38.00..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 13304,
+      "lemma": "signalled",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13304::oewn-signal__2.32.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:13304::oewn-signal__2.32.00..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 13601,
+      "lemma": "beaten",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13601::oewn-beat__2.33.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:13601::oewn-beat__2.33.00..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 13645,
+      "lemma": "transferred",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13645::oewn-transfer__2.41.00..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:13645::oewn-transfer__2.41.00..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    },
+    {
+      "rank": 13724,
+      "lemma": "dropped",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13724::oewn-drop__2.38.01..:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:13724::oewn-drop__2.38.01..",
+      "decision": "PROVISIONAL_MORPHOLOGY_ACCEPT",
+      "reason": "Morphological surface form plausible; no new full-pack merge; source sense, spelling and single-answer check still required",
+      "semantic_certified": false
+    }
+  ],
+  "runtime_modified": false,
+  "production_ready": false
+}
