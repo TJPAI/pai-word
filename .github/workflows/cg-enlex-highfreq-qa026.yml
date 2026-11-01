@@ -434,3 +434,36 @@ jobs:
           assert all(x["original_source_verified"] for x in rows)
           print("REMOTE VERIFIED",json.loads((d/"semantic_gate_117_summary.json").read_text()))
           PY
+
+  lexical_15_source_review:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/curate_lexical_15_source_verified.py
+      - name: Persist isolated lexical review outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit
+          cp "$D/lexical_15_source_review.jsonl" "$D/lexical_15_source_review_summary.json" /tmp/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            cp /tmp/lexical_15_source_review* "$D/"
+            git add "$D/lexical_15_source_review.jsonl" "$D/lexical_15_source_review_summary.json"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX source verified lexical 15 review proposals"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit")
+          x=[json.loads(s) for s in (d/"lexical_15_source_review.jsonl").read_text().splitlines()]
+          assert len(x)==15 and len({z["ku_id"] for z in x})==15
+          print("REMOTE VERIFIED",json.loads((d/"lexical_15_source_review_summary.json").read_text()))
+          PY
