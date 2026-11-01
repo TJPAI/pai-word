@@ -57,6 +57,7 @@ def main():
     report["batch092_first_500_uncovered_candidates"]=eligible[:500]
     report["batch093_first_500_uncovered_candidates"]=eligible[:500]
     report["batch094_first_500_uncovered_candidates"]=eligible[:500]
+    report["batch095_first_500_uncovered_candidates"]=eligible[:500]
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if len(sys.argv)>1: pathlib.Path(sys.argv[1]).write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__":main()
