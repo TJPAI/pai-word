@@ -2,7 +2,7 @@ name: CG-ENLEX high-frequency KU QA 008
 on:
   push:
     branches: [experiment/enlex-v3-production-rebuild-20261030]
-    paths: [.github/workflows/cg-enlex-highfreq-qa008.yml]
+    paths: [.github/workflows/cg-enlex-highfreq-qa008.yml, tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch008.py]
   workflow_dispatch:
 permissions:
   contents: write
