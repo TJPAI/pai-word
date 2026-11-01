@@ -117,3 +117,40 @@ jobs:
               assert summary["rows"]==len(records) and summary["unique_ku_ids"]==len(records)
               print(f"REMOTE VERIFIED Batch{name}: 10 groups, {len(records)} rows, {len(records)} unique KU")
           PY
+
+  full_recognition_inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Aggregate all 55 QA batches without modifying sources
+        run: python3 tools/core20k_lexicon/production_v3/audit_recognition_qa_full_summary.py
+      - name: Commit isolated full QA inventory
+        shell: bash
+        run: |
+          set -euo pipefail
+          DIR=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit
+          cp -a "$DIR" /tmp/full_recognition_audit
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$DIR"
+            cp -a /tmp/full_recognition_audit/. "$DIR/"
+            git add "$DIR"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX consolidated 55-batch Recognition QA inventory"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" -eq 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib
+          f=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit/summary.json")
+          assert f.exists()
+          x=json.loads(f.read_text())
+          assert x["batches"]==55
+          print("REMOTE FULL QA INVENTORY",json.dumps(x))
+          PY
