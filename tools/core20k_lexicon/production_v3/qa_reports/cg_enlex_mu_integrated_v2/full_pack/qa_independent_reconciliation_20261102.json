@@ -1,0 +1,32 @@
+{
+  "audit": "CG-ENLEX independent V1/V2 reconciliation",
+  "baseline_blob": "0cac806010bcc3d65c1ac1b38041257472c76653",
+  "baseline_rows": 27471,
+  "baseline_unique_ku_ids": 27471,
+  "full_v2_rows": 27471,
+  "full_v2_unique_ku_ids": 27471,
+  "full_v2_unique_sense_ids": 27471,
+  "missing_or_new_ku_ids": 0,
+  "identity_conflicts": 0,
+  "delta_records": 215,
+  "delta_field_entries": 587,
+  "delta_fields_already_equal_baseline": 221,
+  "delta_fields_different_baseline": 366,
+  "delta_different_fields_matching_output": 216,
+  "delta_different_fields_not_in_output": 150,
+  "delta_fields_applied_with_wrong_value": 0,
+  "baseline_records_changed": 87,
+  "full_output_field_changes_by_name": {
+    "question": 87,
+    "v2_patch_provenance": 87,
+    "v2_needs_semantic_review": 87,
+    "gloss_zh": 75,
+    "gloss_en": 75,
+    "question_requires_rebuild": 75,
+    "pos": 66
+  },
+  "finding": "The 150 delta fields not present in the full V2 output include recognition_prompt and recognition_answer, which are not columns of the active recall review pack. They must be kept in the delta layer or merged into a separately verified recognition schema; never count as applied active-recall changes.",
+  "status": "STRUCTURAL_QA_PASS_SEMANTIC_QA_PENDING",
+  "production_ready": false,
+  "runtime_modified": false
+}
