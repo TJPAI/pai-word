@@ -569,3 +569,38 @@ jobs:
           assert len(a)==29 and len({x["ku_id"] for x in a})==29
           print("REMOTE VERIFIED",json.loads((d/"summary.json").read_text()))
           PY
+
+  latest_patch_merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/merge_recognition_latest_patch.py
+      - name: Save and validate latest patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit/isolated_patch_latest
+          cp -a "$D" /tmp/latest-patch
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/latest-patch/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX latest merged Recognition review manifest 117"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit/isolated_patch_latest")
+          a=[json.loads(s) for s in (d/"latest_117.jsonl").read_text().splitlines()]
+          assert len(a)==len({x["ku_id"] for x in a})==117
+          assert sum(x["updated_in_v3"] for x in a)==29
+          print("REMOTE VERIFIED",json.loads((d/"summary.json").read_text()))
+          PY
