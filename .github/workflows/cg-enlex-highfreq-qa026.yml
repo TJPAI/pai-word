@@ -154,3 +154,39 @@ jobs:
           assert x["batches"]==55
           print("REMOTE FULL QA INVENTORY",json.dumps(x))
           PY
+
+  semantic_competition_triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/review_competing_answer_semantics.py
+      - name: Commit isolated editorial review files and verify remote
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit
+          mkdir -p /tmp/semantic-triage
+          cp "$D"/semantic_triage*.json* /tmp/semantic-triage/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            cp /tmp/semantic-triage/* "$D/"
+            git add "$D"/semantic_triage*.json*
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX preliminary 117 conflict editorial triage"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit")
+          s=json.loads((p/"semantic_triage_summary.json").read_text())
+          assert s["triaged_records"]==117
+          a=[json.loads(x) for x in (p/"semantic_triage_117.jsonl").read_text().splitlines()]
+          assert len(a)==117 and len({x["ku_id"] for x in a})==117
+          print("REMOTE VERIFIED",s)
+          PY
