@@ -1,0 +1,48 @@
+name: CG-ENLEX KU QA 010
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: [.github/workflows/cg-enlex-highfreq-qa010.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cg-enlex-qa-010
+  cancel-in-progress: false
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch010.py
+      - name: Submit only missing groups with remote synchronization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp -r tools/core20k_lexicon/production_v3/teaching_qa/batch010 /tmp/batch010-generated
+          rm -rf tools/core20k_lexicon/production_v3/teaching_qa/batch010
+          for n in $(seq -w 1 10); do
+            file="tools/core20k_lexicon/production_v3/teaching_qa/batch010/qa_recognition_010_${n}.jsonl"
+            for attempt in 1 2 3 4 5 6 7 8; do
+              git fetch origin experiment/enlex-v3-production-rebuild-20261030
+              git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+              if [ -f "$file" ]; then break; fi
+              mkdir -p "$(dirname "$file")"
+              cp "/tmp/batch010-generated/qa_recognition_010_${n}.jsonl" "$file"
+              git add "$file"
+              git commit -m "CG-ENLEX Batch010 group ${n} (50)"
+              if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+              if [ "$attempt" -eq 8 ]; then exit 1; fi
+            done
+          done
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            file="tools/core20k_lexicon/production_v3/teaching_qa/batch010/summary.json"
+            if [ -f "$file" ]; then break; fi
+            cp /tmp/batch010-generated/summary.json "$file"
+            git add "$file"
+            git commit -m "CG-ENLEX Batch010 summary"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" -eq 8 ]; then exit 1; fi
+          done
