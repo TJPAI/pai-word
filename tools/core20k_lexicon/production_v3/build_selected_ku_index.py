@@ -24,7 +24,7 @@ for kid,items in sorted(groups.items()):
  if len(identity)!=1: raise ValueError(f"IDENTITY CONFLICT {kid}")
  coreen={r.get("gloss_en") or r.get("definition_en") for _,_,r in items}
  corezh={r.get("gloss_zh") for _,_,r in items}
- poseq={str(r.get("pos") or "").lower().replace("adj","a").replace("adjective","a").replace("noun","n").replace("verb","v").replace("adverb","r") for _,_,r in items}
+ poseq={{"adj":"a","adjective":"a","s":"a","noun":"n","verb":"v","adverb":"r","adv":"r"}.get(str(r.get("pos") or "").lower(),str(r.get("pos") or "").lower()) for _,_,r in items}
  review_gloss=len(coreen)>1 or len(corezh)>1
  # Prefer completed source fields, then stable alphabetic file/line order
  path,n,row=sorted(items,key=lambda t:(tuple(-int(x) for x in score(t[2])),t[0],t[1]))[0]
