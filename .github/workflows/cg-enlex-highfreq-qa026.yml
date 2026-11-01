@@ -1,0 +1,65 @@
+name: CG-ENLEX recognition QA Batch026 and Batch027
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - .github/workflows/cg-enlex-highfreq-qa026.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cg-enlex-recognition-qa026-027
+  cancel-in-progress: false
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Generate 1000 QA records in two 10x50 batches
+        run: |
+          python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch026.py
+          python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch027.py
+      - name: Submit missing generated QA files as one commit and verify remote
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=tools/core20k_lexicon/production_v3/teaching_qa
+          cp -a "$ROOT/batch026" /tmp/enlex-batch026
+          cp -a "$ROOT/batch027" /tmp/enlex-batch027
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            for b in 026 027; do
+              mkdir -p "$ROOT/batch$b"
+              for f in /tmp/enlex-batch$b/*; do
+                target="$ROOT/batch$b/$(basename "$f")"
+                if [ ! -e "$target" ]; then cp "$f" "$target"; fi
+              done
+            done
+            git add "$ROOT/batch026" "$ROOT/batch027"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX Batch026-027 recognition screening 1000 KU"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" -eq 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib
+          root=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa")
+          for batch in (24,25):
+              name=f"{batch:03d}"; d=root/f"batch{name}"
+              files=sorted(d.glob(f"qa_recognition_{name}_*.jsonl"))
+              assert len(files)==10,(name,len(files))
+              records=[json.loads(s) for p in files for s in p.read_text().splitlines() if s.strip()]
+              assert all(len(p.read_text().splitlines())==50 for p in files)
+              assert len(records)==500 and len({r["ku_id"] for r in records})==500
+              summary=json.loads((d/"summary.json").read_text())
+              assert summary["rows"]==500 and summary["unique_ku_ids"]==500
+              print(f"REMOTE VERIFIED Batch{name}: 10 groups, 500 rows, 500 unique KU")
+          PY
