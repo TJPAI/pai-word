@@ -752,3 +752,5 @@ jobs:
           assert len({x["teaching_sense_id"] for x in rows})==3500
           print("REMOTE VERIFIED 3500 DISTINCT ACTIVE_RECALL KU")
           PY
+
+# rerun active_recall_031_070 after fixed 2000 uniqueness check
