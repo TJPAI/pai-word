@@ -1,0 +1,95 @@
+{
+  "version": "CG_ENLEX_V2_CLOSURE_20261102",
+  "source_head": "2384c2195c6d917391f83f016c41fe420a39db9a",
+  "scope": "isolated_v2_candidate_only",
+  "full_pack": {
+    "shards": 6,
+    "rows": 27471,
+    "unique_ku_ids": 27471,
+    "unique_sense_ids": 27471,
+    "duplicate_ku_ids": 0,
+    "required_question_answer_gloss_missing": 0,
+    "semantic_review_flags": 83,
+    "structural_qa": "PASS",
+    "semantic_qa": "INCOMPLETE_WITH_ISOLATED_RISKS"
+  },
+  "historical_merges": {
+    "questions_initial": 15,
+    "gloss_alignment_initial": 15,
+    "hold_questions_subsequently_merged": 4
+  },
+  "unresolved_holds": [
+    {
+      "lemma": "wrought",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6190::oewn-work__2.41.02..:zh_to_en:01",
+      "reason": "Frozen work sense does not unambiguously encode wrought-iron craftsmanship; original cloze is a fixed collocation rather than a reliable inflection test.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "fatted",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18723::oewn-fat__2.34.00..:zh_to_en:01",
+      "reason": "Very rare inflection and awkward cattle collocation; source-attested context and answer uniqueness unverified.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "clove",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11829::oewn-cleave__2.35.00..:zh_to_en:01",
+      "reason": "Archaic clove is ambiguous with cleft; spelling/lexicographic verification required.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "summed",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16114::oewn-sum__2.42.00..:zh_to_en:01",
+      "reason": "Frozen be-a-summary-of sense differs from active 'summed up' and question uses phrasal form.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "popped",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15926::oewn-pop__2.38.00..:zh_to_en:01",
+      "reason": "Cork popping out is an ejection/event sense, not specifically bulging outward.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "bedded",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14583::oewn-bed__2.40.00..:zh_to_en:01",
+      "reason": "The dormitory was bedded is unnatural usage and not an unambiguous test of furnish with a bed.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "webbed",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17127::oewn-web__2.36.00..:zh_to_en:01",
+      "reason": "Spiders webbed branches is uncommon phrasing; ambiguity and attestation check.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "mobbed",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19178::oewn-mob__2.38.00..:zh_to_en:01",
+      "reason": "Crowd mobbed together is unnatural and normally mob requires a target.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "stamina",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7297::oewn-stamen__1.20.00..:zh_to_en:01",
+      "reason": "Frozen sense ID is stamen (flower organ), not stamina; changing English sense inside same ID violates identity.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "squatter",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12061::oewn-squat__5.00.00.short.03:zh_to_en:01",
+      "reason": "Frozen sense ID is squat adjective, not squatter noun; remapping within ID prohibited.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    },
+    {
+      "lemma": "deeper",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16169::oewn-deeply__4.02.00..:zh_to_en:01",
+      "reason": "Frozen sense ID is deeply adverb, not deeper comparative adjective; remapping within ID prohibited.",
+      "disposition": "QUARANTINE_NO_AUTO_MERGE"
+    }
+  ],
+  "unresolved_hold_count": 11,
+  "release_eligible": false,
+  "runtime_modified": false,
+  "pr_created": false,
+  "final_state": "V2_STRUCTURAL_CANDIDATE_FROZEN_WITH_KNOWN_SEMANTIC_EXCEPTIONS",
+  "notes": "Closure of this V2 editorial pass, not semantic certification. The 83 review flags may overlap the 11 known holds; do not sum them. Existing QA reports and prior versions retained."
+}
