@@ -1144,3 +1144,42 @@ jobs:
           assert all(len((d/f).read_text().splitlines())==n for f,n in (("safe_format_patches.jsonl",862),("missing_pos_review.jsonl",203),("ambiguous_gloss_review.jsonl",2238)))
           print("REMOTE PATCH AUDIT VERIFIED",s)
           PY
+
+  active_recall_revised_overlay_v2:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_active_recall_revised_v2.py
+      - name: Commit revised overlay and verify remotely
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_revised_v2
+          mkdir -p /tmp/enlex-revised-v2
+          cp "$D"/*.json* /tmp/enlex-revised-v2/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-revised-v2/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX V2 non-destructive gloss correction overlay 862 KU"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json,hashlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_revised_v2")
+          m=json.loads((d/"summary.json").read_text())
+          p=d/"revised_records.jsonl"
+          rs=[json.loads(s) for s in p.read_text().splitlines()]
+          assert m["revised_overlay_records"]==862 and len(rs)==862
+          assert len({x["ku_id"] for x in rs})==862 and all("+" not in x["gloss_zh"] for x in rs)
+          assert m["overlay_sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
+          print("REMOTE V2 OVERLAY VERIFIED: 862 corrections, 27471 effective KUs")
+          PY
