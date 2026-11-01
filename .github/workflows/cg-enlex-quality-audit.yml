@@ -7,7 +7,7 @@ on:
       - .github/workflows/cg-enlex-quality-audit.yml
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
 jobs:
   audit:
     runs-on: ubuntu-latest
@@ -15,6 +15,14 @@ jobs:
       - uses: actions/checkout@v4
       - name: Audit full V93 coverage and KU quality
         run: python3 tools/core20k_lexicon/production_v3/audit_quality_v1.py
+      - name: Publish compact audit summary to branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp enlex_quality_v1_report.json tools/core20k_lexicon/production_v3/quality_v1_report.json
+          git add tools/core20k_lexicon/production_v3/quality_v1_report.json
+          git diff --cached --quiet || git commit -m "CG-ENLEX: publish full V93 KU quality audit results"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
       - uses: actions/upload-artifact@v4
         with:
           name: enlex-quality-v1
