@@ -1,0 +1,23 @@
+name: CG-ENLEX overlay to KU alignment QA
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-overlay-alignment.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/audit_lexical_overlay_alignment.py
+      - name: Publish read-only alignment report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/lexical_overlay_alignment_report.json
+          git diff --cached --quiet || git commit -m "CG-ENLEX: publish V93 to selected KU alignment audit"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
