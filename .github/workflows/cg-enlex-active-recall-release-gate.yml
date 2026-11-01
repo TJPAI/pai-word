@@ -1,0 +1,48 @@
+name: CG-ENLEX Active Recall Release Gate (Isolated)
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - tools/core20k_lexicon/production_v3/qa_active_recall_release_gate.py
+      - .github/workflows/cg-enlex-active-recall-release-gate.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  active_recall_release_gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit unified teaching pack
+        run: python3 tools/core20k_lexicon/production_v3/qa_active_recall_release_gate.py
+      - name: Preserve report in repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_release_gate_v1
+          cp "$D/summary.json" /tmp/cg-enlex-release-summary.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/cg-enlex-release-summary.json "$D/summary.json"
+            git add "$D/summary.json"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX isolated release gate audit for 27471 KU"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 5 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_release_gate_v1/summary.json")
+          m=json.loads(p.read_text())
+          assert m["total"]==m["unique_ku"]==m["unique_sense"]==27471
+          assert m["formal_release_eligible"]==0
+          assert sum(m["status_counts"][k] for k in ("hold_for_review","structurally_clean_unverified"))==27471
+          print("REMOTE GATE VERIFIED",m["status_counts"])
+          PY
