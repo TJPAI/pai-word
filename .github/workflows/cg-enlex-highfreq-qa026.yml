@@ -63,7 +63,7 @@ jobs:
               assert summary["rows"]==500 and summary["unique_ku_ids"]==500
               print(f"REMOTE VERIFIED Batch{name}: 10 groups, 500 rows, 500 unique KU")
           PY
-  recover_batch046_047:
+  recover_batch048_049:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
@@ -72,30 +72,30 @@ jobs:
           persist-credentials: true
       - name: Generate 1000 QA records in two 10x50 batches
         run: |
-          python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch046.py
-          python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch047.py
+          python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch048.py
+          python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch049.py
       - name: Submit missing generated QA files as one commit and verify remote
         shell: bash
         run: |
           set -euo pipefail
           ROOT=tools/core20k_lexicon/production_v3/teaching_qa
-          cp -a "$ROOT/batch046" /tmp/enlex-batch046
-          cp -a "$ROOT/batch047" /tmp/enlex-batch047
+          cp -a "$ROOT/batch048" /tmp/enlex-batch048
+          cp -a "$ROOT/batch049" /tmp/enlex-batch049
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for attempt in 1 2 3 4 5 6 7 8; do
             git fetch origin experiment/enlex-v3-production-rebuild-20261030
             git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
-            for b in 046 047; do
+            for b in 048 049; do
               mkdir -p "$ROOT/batch$b"
               for f in /tmp/enlex-batch$b/*; do
                 target="$ROOT/batch$b/$(basename "$f")"
                 if [ ! -e "$target" ]; then cp "$f" "$target"; fi
               done
             done
-            git add "$ROOT/batch046" "$ROOT/batch047"
+            git add "$ROOT/batch048" "$ROOT/batch049"
             if git diff --cached --quiet; then break; fi
-            git commit -m "CG-ENLEX Batch046-047 recognition screening 1000 KU"
+            git commit -m "CG-ENLEX Batch048-049 recognition screening 1000 KU"
             if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
             if [ "$attempt" -eq 8 ]; then exit 1; fi
           done
@@ -104,7 +104,7 @@ jobs:
           python3 - <<'PY'
           import json,pathlib
           root=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa")
-          for batch in (46,47):
+          for batch in (48,49):
               name=f"{batch:03d}"; d=root/f"batch{name}"
               files=sorted(d.glob(f"qa_recognition_{name}_*.jsonl"))
               assert len(files)==10,(name,len(files))
