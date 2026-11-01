@@ -27,6 +27,6 @@ for part in range(40):
  text="".join(json.dumps(v,ensure_ascii=False)+"\n" for v in out)
  (O/name).write_text(text,encoding="utf8")
  manifest.append({"file":name,"rows":50,"sha256":hashlib.sha256(text.encode()).hexdigest()})
-assert len({x["teaching_sense_id"] for x in picked})==500
+assert len({x["teaching_sense_id"] for x in picked})==2000
 (O/"manifest_031_070.json").write_text(json.dumps({"new_distinct_ku_ids":2000,"group_count":40,"records_per_group":50,"question_type":"zh_to_en_active_recall","manifest":manifest,"source_modified":False,"runtime_modified":False},ensure_ascii=False,indent=2)+"\n")
 print("ACTIVE_RECALL_CREATED NEXT 2000 in 4x10x50")
