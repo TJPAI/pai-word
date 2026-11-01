@@ -366,3 +366,37 @@ jobs:
           assert all(len(x["proposed_options"])==4 and x["answer"] in x["proposed_options"] for x in a)
           print("REMOTE VERIFIED",json.loads((d/"curated_editorial_rewrites_36_summary.json").read_text()))
           PY
+
+  curated_remaining_53:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/curate_recognition_remaining_53.py
+      - name: Persist and verify remaining 53 editorial candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit
+          cp "$D/curated_remaining_53.jsonl" "$D/curated_remaining_53_summary.json" /tmp/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            cp /tmp/curated_remaining_53* "$D/"
+            git add "$D/curated_remaining_53.jsonl" "$D/curated_remaining_53_summary.json"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX 38 contextual and 15 lexical review proposals"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa/full_recognition_audit")
+          rows=[json.loads(s) for s in (d/"curated_remaining_53.jsonl").read_text().splitlines()]
+          assert len(rows)==53 and len({x["ku_id"] for x in rows})==53
+          assert sum(bool(x["proposed_definition"]) for x in rows)==38
+          print("REMOTE VERIFIED",json.loads((d/"curated_remaining_53_summary.json").read_text()))
+          PY
