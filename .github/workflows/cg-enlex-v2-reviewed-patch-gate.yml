@@ -52,7 +52,7 @@ jobs:
           if len(shards)!=6: raise SystemExit("Expected six shards")
           hits=collections.Counter(); changed=0; totals=0
           for shard in shards:
-              out=[]
+              out=[]; shard_changed=0
               for line in shard.read_text(encoding="utf-8").splitlines():
                   if not line.strip(): continue
                   obj=json.loads(line); totals+=1
@@ -62,9 +62,9 @@ jobs:
                       if obj.get("teaching_sense_id")!=p["teaching_sense_id"]: raise SystemExit("Frozen sense ID mismatch")
                       for field,old in p["expected"].items():
                           if obj.get(field)!=old: raise SystemExit("Preimage mismatch: "+p["ku_id"]+" "+field)
-                      obj.update(p["changes"]); changed+=1
+                      obj.update(p["changes"]); changed+=1; shard_changed+=1
                   out.append(json.dumps(obj,ensure_ascii=False,separators=(",",":")))
-              if os.environ["APPLY"]=="true" and changed:
+              if os.environ["APPLY"]=="true" and shard_changed:
                   shard.write_text("\n".join(out)+"\n",encoding="utf-8")
           if totals!=27471 or len(hits)!=len(rows) or any(n!=1 for n in hits.values()): raise SystemExit("Record count / target coverage mismatch")
           pathlib.Path("v2_patch_gate_report.json").write_text(json.dumps({"result":"PASS","candidate_rows":totals,"patched":changed,"dry_run":os.environ["APPLY"]!="true","release_eligible":False},indent=2)+"\n")
