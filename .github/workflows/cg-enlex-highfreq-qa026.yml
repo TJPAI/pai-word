@@ -84,8 +84,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for attempt in 1 2 3 4 5 6 7 8; do
-            git fetch origin experiment/enlex-v3-production-rebuild-20281030
-            git reset --hard origin/experiment/enlex-v3-production-rebuild-20281030
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
             for b in 028 029; do
               mkdir -p "$ROOT/batch$b"
               for f in /tmp/enlex-batch$b/*; do
@@ -96,15 +96,15 @@ jobs:
             git add "$ROOT/batch028" "$ROOT/batch029"
             if git diff --cached --quiet; then break; fi
             git commit -m "CG-ENLEX Batch028-029 recognition screening 1000 KU"
-            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20281030; then break; fi
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
             if [ "$attempt" -eq 8 ]; then exit 1; fi
           done
-          git fetch origin experiment/enlex-v3-production-rebuild-20281030
-          git reset --hard origin/experiment/enlex-v3-production-rebuild-20281030
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
           python3 - <<'PY'
           import json,pathlib
           root=pathlib.Path("tools/core20k_lexicon/production_v3/teaching_qa")
-          for batch in (24,25):
+          for batch in (28,29):
               name=f"{batch:03d}"; d=root/f"batch{name}"
               files=sorted(d.glob(f"qa_recognition_{name}_*.jsonl"))
               assert len(files)==10,(name,len(files))
