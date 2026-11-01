@@ -639,3 +639,39 @@ jobs:
           assert len(list(d.glob("active_recall_*.jsonl")))==10
           print("REMOTE VERIFIED 500 NEW DISTINCT DRAFT ACTIVE_RECALL KU")
           PY
+
+  active_recall_011_020:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/produce_active_recall_011_020.py
+      - name: Commit ten new shards and remotely verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/ku_drafts/v3_active_recall
+          mkdir -p /tmp/enlex-next500
+          cp "$D"/active_recall_0{11,12,13,14,15,16,17,18,19,20}.jsonl "$D/manifest_011_020.json" /tmp/enlex-next500/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-next500/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX next 500 active recall draft KU groups 011-020"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/ku_drafts/v3_active_recall")
+          allrows=[json.loads(x) for p in sorted(d.glob("active_recall_*.jsonl")) for x in p.read_text().splitlines()]
+          assert len(allrows)==1000 and len({x["ku_id"] for x in allrows})==1000
+          assert len({x["teaching_sense_id"] for x in allrows})==1000
+          print("REMOTE VERIFIED 1000 DISTINCT ACTIVE_RECALL DRAFT KU")
+          PY
