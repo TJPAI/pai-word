@@ -1,0 +1,56 @@
+{
+  "version": "CG_ENLEX_HOLD_3_FULL_PACK_MERGE_20261102",
+  "source_head": "d24348022b14c4adc0bb7e604bd398acf5a3b879",
+  "modified_records": 3,
+  "identity_changes": 0,
+  "runtime_modified": false,
+  "release_eligible": false,
+  "changes": [
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_06.jsonl",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8a8e953fe1064332b7b592399670b1eae2967bde",
+      "modified": 3
+    }
+  ],
+  "proof": [
+    {
+      "lemma": "smelt",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16491::oewn-smell__2.39.01..:zh_to_en:01",
+      "old": {
+        "question": "The fisherman caught a ___.",
+        "response": "smelt"
+      },
+      "new": {
+        "question": "Complete using the British English past-tense form of smell (five letters): Yesterday she ___ smoke.",
+        "response": "smelt"
+      }
+    },
+    {
+      "lemma": "hung",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17105::oewn-hang__2.35.03..:zh_to_en:01",
+      "old": {
+        "question": "The painting was ___ on the wall.",
+        "response": "hung"
+      },
+      "new": {
+        "question": "Use the past tense of hang meaning remain suspended: The curtains ___ loosely from the rod.",
+        "response": "hung"
+      }
+    },
+    {
+      "lemma": "wetted",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18706::oewn-wet__2.30.00..:zh_to_en:01",
+      "old": {
+        "question": "She ___ the sponge before cleaning.",
+        "response": "wetted"
+      },
+      "new": {
+        "question": "Use the regular past-tense form of wet ending in -ted: She ___ the sponge before cleaning.",
+        "response": "wetted"
+      }
+    }
+  ],
+  "notes": "3 approved form-constrained question repairs applied to isolated V2 full-pack; remaining 12 HOLD excluded."
+}
