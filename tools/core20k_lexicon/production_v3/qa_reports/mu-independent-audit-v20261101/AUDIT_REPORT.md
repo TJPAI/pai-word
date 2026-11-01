@@ -243,7 +243,7 @@
 | zh_en_sim.jsonl | E5 中英相似度全量筛查（见 §2） |
 | evidence_logs/screen*.txt | 全量机器筛查原始输出 |
 
-GitHub 提交信息（待填写）：分支、提交 SHA、远端回读验证结果。
+GitHub 提交信息：分支 `experiment/enlex-v3-production-rebuild-20261030`（基线 4e8357f82）；提交 1：`027594950604a12e4d90ab5b8484ae17ba56838d`（新目录根部 16 个文件）；提交 2：`46efc2d4eb86449907b75d8c2679ec8925fb6adf`（evidence_logs/ 8 个文件）。远端回读：独立浅克隆验证 HEAD 为 46efc2d4，目录 24 个文件齐全（见下）。未改任何生产文件，未创建 PR。
 
 ## 9. 给 CG-ENLEX 的可复制交接（一句话版，供用户转发）
 
