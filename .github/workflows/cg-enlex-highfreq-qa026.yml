@@ -1406,3 +1406,43 @@ jobs:
           assert m["sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
           print("V8 REMOTE VERIFIED",m)
           PY
+
+  active_recall_v9_contextual:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/qa_v9_contextual_samples.py
+      - name: Commit and verify V9 contextual drafts
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_v9_contextual
+          mkdir -p /tmp/enlex-v9
+          cp "$D"/*.json* /tmp/enlex-v9/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-v9/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX V9 contextual KU candidates 30"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_v9_contextual")
+          m=json.loads((d/"summary.json").read_text())
+          p=d/"curated_candidates.jsonl"
+          rows=[json.loads(x) for x in p.read_text().splitlines()]
+          assert len(rows)==m["new_v9_candidates"]==30
+          assert len({x["ku_id"] for x in rows})==30
+          assert all(x["question"].count("____")==1 and not x["production_ready"] for x in rows)
+          assert m["sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
+          print("V9 REMOTE VERIFIED",m)
+          PY
