@@ -1,0 +1,41 @@
+name: CG ENLEX Final14 Lexical QA
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - tools/core20k_lexicon/production_v3/qa_mu_definition_final14.py
+      - .github/workflows/cg-enlex-mu-final14.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/qa_mu_definition_final14.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_definition_candidates_v3
+          mkdir -p /tmp/final14
+          cp "$D"/review_queue.jsonl "$D"/summary.json /tmp/final14/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"; cp /tmp/final14/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG ENLEX verified final 14 lexical triage queue"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 6 ]; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_definition_candidates_v3/summary.json")
+          x=json.loads(p.read_text())
+          assert x["reviewed"]==x["requires_lexical_decision"]==14
+          print("VERIFIED",x)
+          PY
