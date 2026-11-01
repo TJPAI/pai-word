@@ -1106,3 +1106,41 @@ jobs:
           PY
 
 # rerun full editorial QA with precise note matching
+
+  active_recall_safe_format_patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_active_recall_format_patch.py
+      - name: Commit proposed patch and review indexes
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_patch_v1
+          mkdir -p /tmp/enlex-patch
+          cp "$D"/*.json* /tmp/enlex-patch/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-patch/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX audit-format patch and lexical review worklists"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_patch_v1")
+          s=json.loads((d/"patch_summary.json").read_text())
+          assert s["plus_sign_patch_count"]==862
+          assert s["missing_pos_review_count"]==203
+          assert s["ambiguous_gloss_pos_groups"]==2238
+          assert all(len((d/f).read_text().splitlines())==n for f,n in (("safe_format_patches.jsonl",862),("missing_pos_review.jsonl",203),("ambiguous_gloss_review.jsonl",2238)))
+          print("REMOTE PATCH AUDIT VERIFIED",s)
+          PY
