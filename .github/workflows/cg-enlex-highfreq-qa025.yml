@@ -1,0 +1,35 @@
+name: CG-ENLEX Batch025 standalone recovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cg-enlex-recognition-qa024-025
+  cancel-in-progress: false
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch025.py
+      - name: Commit missing Batch025 QA files
+        shell: bash
+        run: |
+          set -euo pipefail
+          ROOT=tools/core20k_lexicon/production_v3/teaching_qa/batch025
+          cp -a "$ROOT" /tmp/batch025-generated
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$ROOT"
+            for f in /tmp/batch025-generated/*; do
+              test -e "$ROOT/$(basename "$f")" || cp "$f" "$ROOT/"
+            done
+            git add "$ROOT"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX Batch025 missing QA results"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" -eq 8 ]; then exit 1; fi
+          done
