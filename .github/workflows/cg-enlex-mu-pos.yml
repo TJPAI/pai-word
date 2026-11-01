@@ -1,0 +1,43 @@
+name: CG ENLEX Muse POS Queue
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - tools/core20k_lexicon/production_v3/prepare_mu_pos_placeholder.py
+      - .github/workflows/cg-enlex-mu-pos.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  run_pos_queue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/prepare_mu_pos_placeholder.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_pos_placeholder_v1
+          mkdir -p /tmp/mu-pos
+          cp "$D"/*.json* /tmp/mu-pos/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/mu-pos/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG ENLEX Muse POS and placeholder queues"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 6 ]; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import json,pathlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_pos_placeholder_v1")
+          s=json.loads((d/"summary.json").read_text())
+          assert s["pos_proposals"]==107 and s["placeholder_definitions"]==96
+          assert s["high_confidence"]+s["manual_review"]==107
+          print("REMOTE VERIFIED",s)
+          PY
