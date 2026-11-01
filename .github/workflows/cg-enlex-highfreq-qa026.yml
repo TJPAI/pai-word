@@ -949,3 +949,5 @@ jobs:
           assert len({x["teaching_sense_id"] for x in rows})==17500
           print("REMOTE VERIFIED 17500 DISTINCT ACTIVE_RECALL KU")
           PY
+
+# re-run batch 271-350 after nullable POS source fix
