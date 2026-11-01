@@ -22,7 +22,7 @@ for part in range(80):
  out=[]
  for x in group:
   sid=x["teaching_sense_id"]
-  out.append({"ku_id":"staging:cg-enlex-active-recall-v1:"+sid+":zh_to_en:01","teaching_sense_id":sid,"rank":x["rank"],"lemma":x["lemma"],"pos":x["pos"],"ku_type":"zh_to_en_active_recall","render_kind":"text_input","question":"请根据中文释义写出对应的英语词（词性："+str(x["pos"])+"）："+x["gloss_zh"],"response":x["lemma"],"answer_variants":[x["lemma"]],"gloss_zh":x["gloss_zh"],"gloss_en":x["gloss_en"],"source_ku_id":x["ku_id"],"draft":True,"production_ready":False,"release_eligible":False})
+  out.append({"ku_id":"staging:cg-enlex-active-recall-v1:"+sid+":zh_to_en:01","teaching_sense_id":sid,"rank":x["rank"],"lemma":x["lemma"],"pos":x.get("pos"),"ku_type":"zh_to_en_active_recall","render_kind":"text_input","question":"请根据中文释义写出对应的英语词（词性："+str(x.get("pos") or "待核查")+"）："+x["gloss_zh"],"response":x["lemma"],"answer_variants":[x["lemma"]],"gloss_zh":x["gloss_zh"],"gloss_en":x["gloss_en"],"pos_review_needed":not bool(x.get("pos")),"source_ku_id":x["ku_id"],"draft":True,"production_ready":False,"release_eligible":False})
  name=f"active_recall_{part+271:03d}.jsonl"
  text="".join(json.dumps(v,ensure_ascii=False)+"\n" for v in out)
  (O/name).write_text(text,encoding="utf8")
