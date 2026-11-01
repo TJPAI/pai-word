@@ -1,0 +1,21 @@
+name: CG-ENLEX V93 full quality audit
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-quality-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit full V93 coverage and KU quality
+        run: python3 tools/core20k_lexicon/production_v3/audit_quality_v1.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: enlex-quality-v1
+          path: enlex_quality_v1_report.json
