@@ -1,0 +1,910 @@
+{
+  "version": "CG_ENLEX_REBUILD_FLAGGED_ONLY_CHINESE_SENSE_PROMPT_V1",
+  "source_head": "74ca0a8c31ed816bb394a2212d08028950348ef8",
+  "reviewed": 128,
+  "modified": 127,
+  "held": 1,
+  "semantic_review_83_untouched": true,
+  "identity_frozen": true,
+  "runtime_modified": false,
+  "release_eligible": false,
+  "quality_limit": "Question wording mechanically aligned to frozen Chinese gloss; final answer uniqueness and all semantic issues not fully certified.",
+  "rows": [
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:589::runtime-native:589:w_4094_amid_ku_s01:zh_to_en:01",
+      "lemma": "amid",
+      "shard": 1,
+      "old_question": "请根据中文释义写出对应的英语词（词性：prep）：在……之中；在……期间",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：4）。\n中文义项：在……之中；在……期间\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1444::oewn-server__1.18.00..:zh_to_en:01",
+      "lemma": "server",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：服务器\n英文语义线索：a person whose occupation is to serve at table (as in a restaurant)\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：6）。\n中文义项：侍者；服务员\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1462::oewn-van__1.14.01..:zh_to_en:01",
+      "lemma": "van",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：厢式货车",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：v，字母数：3）。\n中文义项：先锋；前卫派\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1805::runtime-native:1805:w_0766_anyone_ku01:zh_to_en:01",
+      "lemma": "anyone",
+      "shard": 2,
+      "old_question": "请结合中文义项及句子语境填写英语单词（首字母：a，字母数：6）。\n中文义项：任何人；有人\nDoes ____ have a question about the schedule?",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：6）。\n中文义项：任何人；有人\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1904::runtime-native:1904:w_0659_everyone_ku01:zh_to_en:01",
+      "lemma": "everyone",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：每个人；大家\n英文语义线索：every person\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：e，字母数：8）。\n中文义项：每个人；大家\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2034::oewn-curry__1.13.00..:zh_to_en:01",
+      "lemma": "curry",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：宁愿选择；优先选用",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：5）。\n中文义项：咖喱菜；咖喱\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2037::oewn-trap__1.06.04..:zh_to_en:01",
+      "lemma": "trap",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：雌性动物\n英文语义线索：drain consisting of a U-shaped section of drainpipe that holds liquid and so prevents a return flow of sewer gas\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：t，字母数：4）。\n中文义项：存水弯；防臭弯管\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2042::oewn-curve__1.04.02..:zh_to_en:01",
+      "lemma": "curve",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：雌性的；产生卵细胞的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：5）。\n中文义项：曲线球；弧线球\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2053::oewn-requirement__1.09.00..:zh_to_en:01",
+      "lemma": "requirement",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：在某种程度上",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：11）。\n中文义项：事先需要满足的条件\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2053::oewn-requirement__1.09.01..:zh_to_en:01",
+      "lemma": "requirement",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：同样地；也如此",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：11）。\n中文义项：必需的活动；必做事项\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2054::oewn-distribution__1.04.01..:zh_to_en:01",
+      "lemma": "distribution",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：声音刺耳粗糙的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：12）。\n中文义项：分销；分配；分布\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2065::runtime-native:2065:w_1394_whereas_ku_s01:zh_to_en:01",
+      "lemma": "whereas",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：然而；而；相比之下",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：7）。\n中文义项：然而；而；相比之下\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2079::runtime-native:2079:w_1453_anybody_ku_s01:zh_to_en:01",
+      "lemma": "anybody",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：任何人；有人\n英文语义线索：any person; anyone\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：7）。\n中文义项：任何人；有人\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2128::oewn-rescue__1.04.00..:zh_to_en:01",
+      "lemma": "rescue",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：延伸范围；面积或体积",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：6）。\n中文义项：救援；营救\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2129::oewn-conservative__1.18.00..:zh_to_en:01",
+      "lemma": "conservative",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：自由派人士（重视改革和公民自由）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：12）。\n中文义项：保守派人士；保守主义者\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2129::oewn-conservative__5.00.00.moderate.00:zh_to_en:01",
+      "lemma": "conservative",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：s）：经济自由放任主义支持者",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：12）。\n中文义项：适度的；温和的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2130::oewn-creation__1.04.01..:zh_to_en:01",
+      "lemma": "creation",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：思想开明的；宽容的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：8）。\n中文义项：创立；开创\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2130::oewn-creation__1.11.00..:zh_to_en:01",
+      "lemma": "creation",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：慷慨的；大方的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：8）。\n中文义项：开端；创世\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2131::oewn-impress__2.31.00..:zh_to_en:01",
+      "lemma": "impress",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：v）：在大洋彼岸",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：i，字母数：7）。\n中文义项：使产生深刻印象\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2132::oewn-protest__1.10.00..:zh_to_en:01",
+      "lemma": "protest",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：在国外",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：7）。\n中文义项：正式抗议声明\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2132::oewn-protest__2.32.00..:zh_to_en:01",
+      "lemma": "protest",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：v）：猜想；怀疑可能如此",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：7）。\n中文义项：抗议；表示异议\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2133::oewn-swallow__1.13.00..:zh_to_en:01",
+      "lemma": "swallow",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：怀疑有罪；认为可疑",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：7）。\n中文义项：一口（液体食物）；吞咽量\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2134::oewn-village__1.15.00..:zh_to_en:01",
+      "lemma": "village",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：可疑的；不对劲的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：v，字母数：7）。\n中文义项：村庄；村落\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2135::oewn-weapon__1.10.00..:zh_to_en:01",
+      "lemma": "weapon",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：归属于；归功于",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：6）。\n中文义项：（辩论的）武器；手段\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2145::oewn-captain__1.18.03..:zh_to_en:01",
+      "lemma": "captain",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：着手尝试；开始做",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：7）。\n中文义项：商船船长\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2145::oewn-captain__1.18.04..:zh_to_en:01",
+      "lemma": "captain",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：该说话时保持沉默",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：7）。\n中文义项：警察分局局长\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2145::oewn-captain__1.18.05..:zh_to_en:01",
+      "lemma": "captain",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：使噤声；使安静",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：7）。\n中文义项：上尉\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2145::oewn-captain__1.18.06..:zh_to_en:01",
+      "lemma": "captain",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：公正地；不偏袒地",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：7）。\n中文义项：队长；领队\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2290::runtime-native:2290:w_1639_ourselves_ku_s01:zh_to_en:01",
+      "lemma": "ourselves",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：我们自己；我们亲自",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：o，字母数：9）。\n中文义项：我们自己；我们亲自\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2383::oewn-silent__5.00.00.uncommunicative.00:zh_to_en:01",
+      "lemma": "silent",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：s）：妈妈\n英文语义线索：failing to speak or communicate etc. when expected to\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：6）。\n中文义项：沉默的；不作声的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2477::oewn-neglect__1.09.00..:zh_to_en:01",
+      "lemma": "neglect",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：烟斗\n英文语义线索：lack of attention and due care\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：n，字母数：7）。\n中文义项：疏忽；不注意\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2477::oewn-neglect__2.31.00..:zh_to_en:01",
+      "lemma": "neglect",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：v）：联邦的；美国联邦政府的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：n，字母数：7）。\n中文义项：忽略；遗漏（动词义）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2477::oewn-neglect__2.31.05..:zh_to_en:01",
+      "lemma": "neglect",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：v）：美国南北战争时期的北方联邦派的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：n，字母数：7）。\n中文义项：疏忽；未予照料（动词义）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2491::runtime-native:2491:w_2418_hey_ku_s01:zh_to_en:01",
+      "lemma": "hey",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：嘿；喂",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：h，字母数：3）。\n中文义项：嘿；喂\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2514::runtime-native:2514:w_0949_everybody_ku01:zh_to_en:01",
+      "lemma": "everybody",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：每个人；大家\n英文语义线索：every person\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：e，字母数：9）。\n中文义项：每个人；大家\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2515::oewn-blog__1.10.00..:zh_to_en:01",
+      "lemma": "blog",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：防守队；守方",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：4）。\n中文义项：博客；网络日志\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2571::oewn-distinct__5.00.00.different.00:zh_to_en:01",
+      "lemma": "distinct",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：s）：集结军队",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：8）。\n中文义项：不同的；有区别的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2575::oewn-demonstration__1.10.03..:zh_to_en:01",
+      "lemma": "demonstration",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：车顶\n英文语义线索：proof by a process of argument or a series of proposition proving an asserted conclusion\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：13）。\n中文义项：论证；证明\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2744::runtime-native:2744:w_2163_whenever_ku_s01:zh_to_en:01",
+      "lemma": "whenever",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：每当；无论何时",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：8）。\n中文义项：每当；无论何时\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2772::oewn-cope__1.06.00..:zh_to_en:01",
+      "lemma": "cope",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：应对；处理",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：4）。\n中文义项：压顶（砖）；盖顶砖\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2804::runtime-native:2804:w_7292_bailout_ku_s01:zh_to_en:01",
+      "lemma": "bailout",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：纾困救助；紧急财务援助",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：7）。\n中文义项：纾困救助；紧急财务援助\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2846::runtime-native:2846:w_5468_aye_ku_s01:zh_to_en:01",
+      "lemma": "aye",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：是；赞成（用于表决）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：3）。\n中文义项：是；赞成（用于表决）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2989::oewn-fiddle__1.06.00..:zh_to_en:01",
+      "lemma": "fiddle",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：电影预告片\n英文语义线索：bowed stringed instrument that is the highest member of the violin family; this instrument has four strings and a hollow body and an unfretted fingerboard and is played with a bow\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：f，字母数：6）。\n中文义项：小提琴；提琴\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3007::oewn-rave__1.11.00..:zh_to_en:01",
+      "lemma": "rave",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：立体声音响设备\n英文语义线索：a dance party that lasts all night and electronically synthesized music is played\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：4）。\n中文义项：狂欢舞会；锐舞派对\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3020::oewn-mum__5.00.00.uncommunicative.00:zh_to_en:01",
+      "lemma": "mum",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：s）：妈妈\n英文语义线索：failing to speak or communicate etc. when expected to\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：m，字母数：3）。\n中文义项：沉默的；不作声的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3051::oewn-surf__1.11.00..:zh_to_en:01",
+      "lemma": "surf",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：归纳概括；从个案推及一般",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：4）。\n中文义项：冲浪；海浪拍岸\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3062::oewn-capsule__1.06.02..:zh_to_en:01",
+      "lemma": "capsule",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：官方授权令；命令文件",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：7）。\n中文义项：胶囊；小容器\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3103::oewn-touchdown__1.04.00..:zh_to_en:01",
+      "lemma": "touchdown",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：用化学溶液冲洗",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：t，字母数：9）。\n中文义项：触地得分；达阵\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3160::runtime-native:3160:w_6136_keyword_ku_s01:zh_to_en:01",
+      "lemma": "keyword",
+      "shard": 2,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：关键词",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：k，字母数：7）。\n中文义项：关键词\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3610::runtime-native:3610:w_1426_onto_ku_s01:zh_to_en:01",
+      "lemma": "onto",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：到……上面；朝……上面",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：o，字母数：4）。\n中文义项：到……上面；朝……上面\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3628::runtime-native:3628:w_9765_dataset_ku_s01:zh_to_en:01",
+      "lemma": "dataset",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：数据集",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：7）。\n中文义项：数据集\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3718::runtime-native:3718:w_2621_whilst_ku_s01:zh_to_en:01",
+      "lemma": "whilst",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：而；在……期间",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：6）。\n中文义项：而；在……期间\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3781::runtime-native:3781:w_5992_oneself_ku_s01:zh_to_en:01",
+      "lemma": "oneself",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：自己；自身",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：o，字母数：7）。\n中文义项：自己；自身\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3919::runtime-native:3919:w_3552_whoever_ku_s01:zh_to_en:01",
+      "lemma": "whoever",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：无论谁；任何人",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：7）。\n中文义项：无论谁；任何人\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4047::runtime-native:4047:w_10747_reseller_ku_s01:zh_to_en:01",
+      "lemma": "reseller",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：转售商",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：8）。\n中文义项：转售商\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4277::runtime-native:4277:w_2541_versus_ku_s01:zh_to_en:01",
+      "lemma": "versus",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：对；与……相比",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：v，字母数：6）。\n中文义项：对；与……相比\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4558::runtime-native:4558:w_8300_stat_ku_s01:zh_to_en:01",
+      "lemma": "stat",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：统计数据（缩写）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：4）。\n中文义项：统计数据（缩写）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4667::runtime-native:4667:w_6615_peter_ku_s01:zh_to_en:01",
+      "lemma": "peter",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：彼得（人名）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：5）。\n中文义项：彼得（人名）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4879::runtime-native:4879:w_11331_genomic_ku_s01:zh_to_en:01",
+      "lemma": "genomic",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：基因组的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：g，字母数：7）。\n中文义项：基因组的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5015::runtime-native:5015:w_12402_transgenic_ku_s01:zh_to_en:01",
+      "lemma": "transgenic",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：转基因的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：t，字母数：10）。\n中文义项：转基因的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5067::runtime-native:5067:w_9606_coworker_ku_s01:zh_to_en:01",
+      "lemma": "coworker",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：同事；一起工作的人",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：8）。\n中文义项：同事；一起工作的人\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5135::runtime-native:5135:w_4567_albeit_ku_s01:zh_to_en:01",
+      "lemma": "albeit",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：虽然；尽管",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：6）。\n中文义项：虽然；尽管\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5234::runtime-native:5234:w_5155_councilor_ku_s01:zh_to_en:01",
+      "lemma": "councilor",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：议员；委员会成员",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：9）。\n中文义项：议员；委员会成员\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5268::runtime-native:5268:w_11412_unrated_ku_s01:zh_to_en:01",
+      "lemma": "unrated",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：未评级的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：u，字母数：7）。\n中文义项：未评级的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5275::runtime-native:5275:w_9117_grassroot_ku_s01:zh_to_en:01",
+      "lemma": "grassroot",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：草根的；基层的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：g，字母数：9）。\n中文义项：草根的；基层的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5592::runtime-native:5592:w_11174_circa_ku_s01:zh_to_en:01",
+      "lemma": "circa",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：约；大约（用于年代）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：5）。\n中文义项：约；大约（用于年代）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5683::runtime-native:5683:w_11271_offline_ku_s01:zh_to_en:01",
+      "lemma": "offline",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：离线的；未联网的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：o，字母数：7）。\n中文义项：离线的；未联网的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6107::runtime-native:6107:w_10523_payout_ku_s01:zh_to_en:01",
+      "lemma": "payout",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：支付款；赔付款",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：6）。\n中文义项：支付款；赔付款\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6155::runtime-native:6155:w_12306_belate_ku_s01:zh_to_en:01",
+      "lemma": "belate",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：迟延；使耽搁（罕见）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：6）。\n中文义项：迟延；使耽搁（罕见）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6202::runtime-native:6202:w_10821_baseman_ku_s01:zh_to_en:01",
+      "lemma": "baseman",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：（棒球）垒手",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：7）。\n中文义项：（棒球）垒手\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6603::runtime-native:6603:w_11197_sectoral_ku_s01:zh_to_en:01",
+      "lemma": "sectoral",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：部门的；行业的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：8）。\n中文义项：部门的；行业的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6615::runtime-native:6615:w_5488_carer_ku_s01:zh_to_en:01",
+      "lemma": "carer",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：None）：照护者",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：5）。\n中文义项：照护者\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6961::runtime-native:6961:w_12369_worldview_ku_s01:zh_to_en:01",
+      "lemma": "worldview",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：世界观",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：9）。\n中文义项：世界观\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7002::runtime-native:7002:w_5752_whichever_ku_s01:zh_to_en:01",
+      "lemma": "whichever",
+      "shard": 3,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：无论哪一个",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：9）。\n中文义项：无论哪一个\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7238::runtime-native:7238:w_5049_anytime_ku_s01:zh_to_en:01",
+      "lemma": "anytime",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：任何时候；随时",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：7）。\n中文义项：任何时候；随时\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7256::runtime-native:7256:w_9062_wherein_ku_s01:zh_to_en:01",
+      "lemma": "wherein",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：在其中；由此（正式用语）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：7）。\n中文义项：在其中；由此（正式用语）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7317::runtime-native:7317:w_12153_multidisciplinary_ku_s01:zh_to_en:01",
+      "lemma": "multidisciplinary",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：多学科的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：m，字母数：17）。\n中文义项：多学科的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7370::runtime-native:7370:w_12734_nucleic_ku_s01:zh_to_en:01",
+      "lemma": "nucleic",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：核酸的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：n，字母数：7）。\n中文义项：核酸的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7427::runtime-native:7427:w_11865_bio_ku_s01:zh_to_en:01",
+      "lemma": "bio",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：个人简介；传记简介",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：3）。\n中文义项：个人简介；传记简介\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7552::runtime-native:7552:w_11561_compensatory_ku_s01:zh_to_en:01",
+      "lemma": "compensatory",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：补偿性的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：12）。\n中文义项：补偿性的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7553::runtime-native:7553:w_4497_whereby_ku_s01:zh_to_en:01",
+      "lemma": "whereby",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：由此；凭借此方式",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：7）。\n中文义项：由此；凭借此方式\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7649::runtime-native:7649:w_7849_dunno_ku_s01:zh_to_en:01",
+      "lemma": "dunno",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：不知道（口语）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：5）。\n中文义项：不知道（口语）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7662::runtime-native:7662:w_7197_lest_ku_s01:zh_to_en:01",
+      "lemma": "lest",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：以免；唯恐",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：l，字母数：4）。\n中文义项：以免；唯恐\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7726::runtime-native:7726:w_8651_annualize_ku_s01:zh_to_en:01",
+      "lemma": "annualize",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：折算成年率",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：9）。\n中文义项：折算成年率\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7786::runtime-native:7786:w_12543_psychosocial_ku_s01:zh_to_en:01",
+      "lemma": "psychosocial",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：心理社会的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：12）。\n中文义项：心理社会的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7941::runtime-native:7941:w_12182_unquote_ku_s01:zh_to_en:01",
+      "lemma": "unquote",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：引号结束（口语）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：u，字母数：7）。\n中文义项：引号结束（口语）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7993::runtime-native:7993:w_2579_amongst_ku_s01:zh_to_en:01",
+      "lemma": "amongst",
+      "shard": 4,
+      "old_question": "请结合中文义项及句子语境填写英语单词（首字母：a，字母数：7）。\n中文义项：在……之中\nThe prize money was divided ____ the winners.",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：7）。\n中文义项：在……之中\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8062::runtime-native:8062:w_10840_cal_ku_s01:zh_to_en:01",
+      "lemma": "cal",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：卡路里（缩写）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：3）。\n中文义项：卡路里（缩写）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8553::runtime-native:8553:w_9163_ceasefire_ku_s01:zh_to_en:01",
+      "lemma": "ceasefire",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：停火；停战",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：9）。\n中文义项：停火；停战\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8754::runtime-native:8754:w_11408_transactional_ku_s01:zh_to_en:01",
+      "lemma": "transactional",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：事务性的；交易性的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：t，字母数：13）。\n中文义项：事务性的；交易性的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8858::runtime-native:8858:w_11088_subtype_ku_s01:zh_to_en:01",
+      "lemma": "subtype",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：子类型；亚型",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：7）。\n中文义项：子类型；亚型\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9318::runtime-native:9318:w_7949_amidst_ku_s01:zh_to_en:01",
+      "lemma": "amidst",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：在……之中\n英文语义线索：core modern learner use of “____”\n请根据中文释义与线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：a，字母数：6）。\n中文义项：在……之中\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9325::runtime-native:9325:w_12946_rapids_ku_s01:zh_to_en:01",
+      "lemma": "rapids",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：急流；湍急河段",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：6）。\n中文义项：急流；湍急河段\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9348::runtime-native:9348:w_9922_sweaty_ku_s01:zh_to_en:01",
+      "lemma": "sweaty",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：汗湿的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：6）。\n中文义项：汗湿的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9426::runtime-native:9426:w_11821_beleaguered_ku_s01:zh_to_en:01",
+      "lemma": "beleaguered",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：受困扰的；四面受敌的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：11）。\n中文义项：受困扰的；四面受敌的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9432::runtime-native:9432:w_10397_motherboard_ku_s01:zh_to_en:01",
+      "lemma": "motherboard",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：主板",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：m，字母数：11）。\n中文义项：主板\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9607::runtime-native:9607:w_12303_timescale_ku_s01:zh_to_en:01",
+      "lemma": "timescale",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：时间尺度",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：t，字母数：9）。\n中文义项：时间尺度\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9725::runtime-native:9725:w_12699_carb_ku_s01:zh_to_en:01",
+      "lemma": "carb",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：碳水化合物（口语缩写）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：c，字母数：4）。\n中文义项：碳水化合物（口语缩写）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9761::runtime-native:9761:w_10192_yep_ku_s01:zh_to_en:01",
+      "lemma": "yep",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：是的（口语）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：y，字母数：3）。\n中文义项：是的（口语）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9868::runtime-native:9868:w_5879_thy_ku_s01:zh_to_en:01",
+      "lemma": "thy",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：你的（古英语）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：t，字母数：3）。\n中文义项：你的（古英语）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9927::runtime-native:9927:w_10927_groundwater_ku_s01:zh_to_en:01",
+      "lemma": "groundwater",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：地下水",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：g，字母数：11）。\n中文义项：地下水\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10252::runtime-native:10252:w_12822_situational_ku_s01:zh_to_en:01",
+      "lemma": "situational",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：情境性的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：11）。\n中文义项：情境性的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10291::oewn-lid__1.08.00..:zh_to_en:01",
+      "lemma": "lid",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：n）：盖子\n英文语义线索：either of two folds of skin that can be moved to cover or open the eye\n请根据中文释义与英文语义线索作答。",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：l，字母数：3）。\n中文义项：眼睑；眼皮\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10516::runtime-native:10516:w_8091_policymaker_ku_s01:zh_to_en:01",
+      "lemma": "policymaker",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：政策制定者",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：11）。\n中文义项：政策制定者\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10518::runtime-native:10518:w_12041_definitively_ku_s01:zh_to_en:01",
+      "lemma": "definitively",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：最终确定地；明确地",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：12）。\n中文义项：最终确定地；明确地\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10577::runtime-native:10577:w_12670_sans_ku_s01:zh_to_en:01",
+      "lemma": "sans",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：没有；不带（法语借词）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：4）。\n中文义项：没有；不带（法语借词）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10598::runtime-native:10598:w_8258_unauthorize_ku_s01:zh_to_en:01",
+      "lemma": "unauthorize",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：取消授权（罕见形式）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：u，字母数：11）。\n中文义项：取消授权（罕见形式）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11090::runtime-native:11090:w_9988_ere_ku_s01:zh_to_en:01",
+      "lemma": "ere",
+      "shard": 4,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：在……之前（古语）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：e，字母数：3）。\n中文义项：在……之前（古语）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11317::runtime-native:11317:w_7618_entrepreneurship_ku_s01:zh_to_en:01",
+      "lemma": "entrepreneurship",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：创业精神；创业活动",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：e，字母数：16）。\n中文义项：创业精神；创业活动\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11321::runtime-native:11321:w_9885_storytelling_ku_s01:zh_to_en:01",
+      "lemma": "storytelling",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：讲故事；叙事艺术",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：12）。\n中文义项：讲故事；叙事艺术\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11440::runtime-native:11440:w_12460_statehood_ku_s01:zh_to_en:01",
+      "lemma": "statehood",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：国家地位；建州（立国）资格",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：9）。\n中文义项：国家地位；建州（立国）资格\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11475::runtime-native:11475:w_11642_whereupon_ku_s01:zh_to_en:01",
+      "lemma": "whereupon",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：于是；随即",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：w，字母数：9）。\n中文义项：于是；随即\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11506::runtime-native:11506:w_9939_summat_ku_s01:zh_to_en:01",
+      "lemma": "summat",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：某事；某物（英方言）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：6）。\n中文义项：某事；某物（英方言）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11647::runtime-native:11647:w_10761_outstretch_ku_s01:zh_to_en:01",
+      "lemma": "outstretch",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：伸出；展开",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：o，字母数：10）。\n中文义项：伸出；展开\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11731::runtime-native:11731:w_11220_protestor_ku_s01:zh_to_en:01",
+      "lemma": "protestor",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：抗议者",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：p，字母数：9）。\n中文义项：抗议者\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11764::runtime-native:11764:w_8338_superstore_ku_s01:zh_to_en:01",
+      "lemma": "superstore",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：大型综合商店",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：10）。\n中文义项：大型综合商店\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11797::runtime-native:11797:w_9808_monolog_ku_s01:zh_to_en:01",
+      "lemma": "monolog",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：独白",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：m，字母数：7）。\n中文义项：独白\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11991::runtime-native:11991:w_8807_mony_ku_s01:zh_to_en:01",
+      "lemma": "mony",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：许多（苏格兰方言）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：m，字母数：4）。\n中文义项：许多（苏格兰方言）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12087::runtime-native:12087:w_5591_gosh_ku_s01:zh_to_en:01",
+      "lemma": "gosh",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：天哪（感叹）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：g，字母数：4）。\n中文义项：天哪（感叹）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12100::runtime-native:12100:w_8141_unto_ku_s01:zh_to_en:01",
+      "lemma": "unto",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：向；直到（古用法）",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：u，字母数：4）。\n中文义项：向；直到（古用法）\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12288::runtime-native:12288:w_10585_opioid_ku_s01:zh_to_en:01",
+      "lemma": "opioid",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：阿片类药物的；阿片样物质",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：o，字母数：6）。\n中文义项：阿片类药物的；阿片样物质\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12419::runtime-native:12419:w_11604_mitochondrial_ku_s01:zh_to_en:01",
+      "lemma": "mitochondrial",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：线粒体的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：m，字母数：13）。\n中文义项：线粒体的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12624::runtime-native:12624:w_11578_distractor_ku_s01:zh_to_en:01",
+      "lemma": "distractor",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：干扰选项；分心因素",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：d，字母数：10）。\n中文义项：干扰选项；分心因素\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12850::runtime-native:12850:w_11255_subprime_ku_s01:zh_to_en:01",
+      "lemma": "subprime",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：次级的；次贷的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：s，字母数：8）。\n中文义项：次级的；次贷的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13125::runtime-native:13125:w_10849_reinvest_ku_s01:zh_to_en:01",
+      "lemma": "reinvest",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：再投资",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：r，字母数：8）。\n中文义项：再投资\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13365::runtime-native:13365:w_12669_inkjet_ku_s01:zh_to_en:01",
+      "lemma": "inkjet",
+      "shard": 5,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：喷墨的",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：i，字母数：6）。\n中文义项：喷墨的\n答案应与该义项对应。"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18058::runtime-native:18058:w_12597_botanically_ku_s01:zh_to_en:01",
+      "lemma": "botanically",
+      "shard": 6,
+      "old_question": "请根据中文释义写出对应的英语词（词性：待核查）：从植物学角度",
+      "new_question": "请根据以下中文义项填写对应英语单词（首字母：b，字母数：11）。\n中文义项：从植物学角度\n答案应与该义项对应。"
+    }
+  ],
+  "held_rows": [
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01:zh_to_en:01",
+      "lemma": "versa",
+      "reason": "unsupported form or leakage in Chinese gloss"
+    }
+  ]
+}
