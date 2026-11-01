@@ -1,0 +1,58 @@
+name: CG-ENLEX V2 isolated candidate QA
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - '.github/workflows/cg-enlex-v2-closure-qa.yml'
+      - 'tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_*.jsonl'
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify all six frozen V2 shards and isolate unresolved flags
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, pathlib, collections
+          root=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2")
+          shards=sorted((root/"full_pack").glob("shard_*.jsonl"))
+          assert len(shards)==6, f"expected six shards, got {len(shards)}"
+          ids=set(); sense_ids=set(); counts=collections.Counter(); flagged=[]; missing=[]
+          for shard in shards:
+              for lineno,line in enumerate(shard.open(encoding="utf-8"),1):
+                  if not line.strip(): continue
+                  d=json.loads(line)
+                  counts["rows"]+=1
+                  for key in ("ku_id","teaching_sense_id","lemma","question","response","gloss_en","gloss_zh"):
+                      if not d.get(key): missing.append({"file":str(shard),"line":lineno,"field":key})
+                  k=d.get("ku_id")
+                  if k in ids: counts["duplicate_ku_id"]+=1
+                  ids.add(k)
+                  s=d.get("teaching_sense_id")
+                  if s in sense_ids: counts["duplicate_sense_id"]+=1
+                  sense_ids.add(s)
+                  semantic=d.get("v2_needs_semantic_review") is True
+                  rebuild=d.get("question_requires_rebuild") is True
+                  counts["semantic_flag"]+=semantic
+                  counts["rebuild_flag"]+=rebuild
+                  if semantic or rebuild:
+                      flagged.append({"ku_id":k,"lemma":d.get("lemma"),"semantic_review":semantic,"question_rebuild":rebuild})
+          report={"scope":"isolated_v2_only","rows":counts["rows"],"shards":len(shards),"unique_ku_ids":len(ids),"unique_sense_ids":len(sense_ids),"missing_required":len(missing),"duplicate_ku_ids":counts["duplicate_ku_id"],"duplicate_sense_ids":counts["duplicate_sense_id"],"semantic_review":counts["semantic_flag"],"question_rebuild":counts["rebuild_flag"],"flagged":flagged,"missing":missing[:100],"release_eligible":False,"runtime_modified":False}
+          ok=(counts["rows"]==27471 and len(ids)==27471 and len(sense_ids)==27471 and not missing and not counts["duplicate_ku_id"] and not counts["duplicate_sense_id"])
+          report["structural_qa"]="PASS" if ok else "FAIL"
+          pathlib.Path("v2_qa_report.json").write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
+          print(json.dumps({k:v for k,v in report.items() if k not in ("flagged","missing")},indent=2))
+          if not ok: raise SystemExit("V2 structural QA failed")
+          PY
+      - name: Upload QA report for editorial review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cg-enlex-v2-qa
+          path: v2_qa_report.json
+          if-no-files-found: warn
