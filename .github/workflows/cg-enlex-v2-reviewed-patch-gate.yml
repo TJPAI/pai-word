@@ -1,0 +1,88 @@
+name: CG-ENLEX V2 reviewed patch gate
+on:
+  workflow_dispatch:
+    inputs:
+      patch_path:
+        description: 'Reviewed JSON patch under production_v3/qa_reports (do not use unreviewed proposals)'
+        required: true
+        type: string
+      apply:
+        description: 'Commit vetted patch to isolated V2 shards (false = dry run)'
+        required: true
+        default: false
+        type: boolean
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: experiment/enlex-v3-production-rebuild-20261030
+          persist-credentials: true
+      - name: Validate and optionally apply reviewed patch atomically
+        env:
+          PATCH: ${{ inputs.patch_path }}
+          APPLY: ${{ inputs.apply }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib, sys, collections
+          root=pathlib.Path("tools/core20k_lexicon/production_v3")
+          base=root/"qa_reports/cg_enlex_mu_integrated_v2/full_pack"
+          patch=(pathlib.Path(os.environ["PATCH"]))
+          if patch.is_absolute() or ".." in patch.parts or not str(patch).startswith(str(root/"qa_reports/")) or patch.suffix!=".json":
+              raise SystemExit("Patch path outside isolated QA area")
+          content=json.loads(patch.read_text(encoding="utf-8"))
+          if content.get("approved_for_merge") is not True or not content.get("reviewer") or not content.get("source_head"):
+              raise SystemExit("Explicit reviewed approval, reviewer, and source HEAD required")
+          rows=content.get("patches",[])
+          if not isinstance(rows,list) or not rows: raise SystemExit("No approved patches")
+          allowed={"question","response","gloss_en","gloss_zh"}
+          requested={}
+          for p in rows:
+              if not isinstance(p,dict) or not p.get("ku_id") or not p.get("teaching_sense_id") or not p.get("expected") or not p.get("changes"): raise SystemExit("Incomplete patch")
+              if p["ku_id"] in requested: raise SystemExit("Duplicate KU patch")
+              if not set(p["changes"]).issubset(allowed) or not set(p["expected"]).issubset(allowed): raise SystemExit("Unapproved field mutation")
+              if set(p["changes"])!=set(p["expected"]): raise SystemExit("Missing preimage field")
+              if any(not isinstance(v,str) or not v.strip() for v in p["changes"].values()): raise SystemExit("Empty replacement")
+              requested[p["ku_id"]]=p
+          shards=sorted(base.glob("shard_*.jsonl"))
+          if len(shards)!=6: raise SystemExit("Expected six shards")
+          hits=collections.Counter(); changed=0; totals=0
+          for shard in shards:
+              out=[]
+              for line in shard.read_text(encoding="utf-8").splitlines():
+                  if not line.strip(): continue
+                  obj=json.loads(line); totals+=1
+                  p=requested.get(obj.get("ku_id"))
+                  if p is not None:
+                      hits[p["ku_id"]]+=1
+                      if obj.get("teaching_sense_id")!=p["teaching_sense_id"]: raise SystemExit("Frozen sense ID mismatch")
+                      for field,old in p["expected"].items():
+                          if obj.get(field)!=old: raise SystemExit("Preimage mismatch: "+p["ku_id"]+" "+field)
+                      obj.update(p["changes"]); changed+=1
+                  out.append(json.dumps(obj,ensure_ascii=False,separators=(",",":")))
+              if os.environ["APPLY"]=="true" and changed:
+                  shard.write_text("\n".join(out)+"\n",encoding="utf-8")
+          if totals!=27471 or len(hits)!=len(rows) or any(n!=1 for n in hits.values()): raise SystemExit("Record count / target coverage mismatch")
+          pathlib.Path("v2_patch_gate_report.json").write_text(json.dumps({"result":"PASS","candidate_rows":totals,"patched":changed,"dry_run":os.environ["APPLY"]!="true","release_eligible":False},indent=2)+"\n")
+          print("Verified",changed,"reviewed patches across",totals,"isolated records")
+          PY
+      - name: Commit only vetted isolated V2 shards
+        if: ${{ inputs.apply }}
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_*.jsonl
+          git diff --cached --quiet && exit 0
+          git commit -m "CG-ENLEX: apply reviewed isolated V2 patch"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cg-enlex-v2-patch-gate
+          path: v2_patch_gate_report.json
+          if-no-files-found: warn
