@@ -15,15 +15,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch008.py
-      - name: Commit ten groups and summary
+      - name: Commit missing groups with safe rebased retries
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           for n in $(seq -w 1 10); do
-            git add "tools/core20k_lexicon/production_v3/teaching_qa/batch008/qa_recognition_008_${n}.jsonl"
-            git diff --cached --quiet || git commit -m "CG-ENLEX Batch008 group ${n} (50)"
-            git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
+            file="tools/core20k_lexicon/production_v3/teaching_qa/batch008/qa_recognition_008_${n}.jsonl"
+            for attempt in 1 2 3 4 5; do
+              git fetch origin experiment/enlex-v3-production-rebuild-20261030
+              git rebase origin/experiment/enlex-v3-production-rebuild-20261030
+              if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
+                break
+              fi
+              git add "$file"
+              git commit -m "CG-ENLEX Batch008 recovered group ${n} (50)"
+              if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+              if [ "$attempt" -eq 5 ]; then exit 1; fi
+            done
           done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git rebase origin/experiment/enlex-v3-production-rebuild-20261030
           git add tools/core20k_lexicon/production_v3/teaching_qa/batch008/summary.json
-          git diff --cached --quiet || git commit -m "CG-ENLEX Batch008 summary"
+          git diff --cached --quiet || git commit -m "CG-ENLEX: recover Batch008 summary"
           git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
