@@ -1331,3 +1331,39 @@ jobs:
           assert x["reviewed"]==135 and x["unique_ku_ids"]==135
           print("V6 QUEUE VERIFIED",x)
           PY
+
+  active_recall_v7_contextual_samples:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/qa_v7_contextual_samples.py
+      - name: Commit and verify editorial contextual candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_v7_contextual
+          mkdir -p /tmp/enlex-v7
+          cp "$D"/*.json* /tmp/enlex-v7/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-v7/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX V7 curated contextual candidates"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import json,pathlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_v7_contextual")
+          s=json.loads((d/"summary.json").read_text())
+          a=[json.loads(x) for x in (d/"curated_candidates.jsonl").read_text().splitlines()]
+          assert len(a)==s["contextual_candidates"]==16
+          assert len({x["ku_id"] for x in a})==16
+          assert all(x["question"].count("____")==1 and not x["production_ready"] for x in a)
+          print("V7 VERIFIED",s)
+          PY
