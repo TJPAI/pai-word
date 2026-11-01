@@ -5,6 +5,7 @@ on:
       - experiment/enlex-v3-production-rebuild-20261030
     paths:
       - .github/workflows/cg-enlex-semantic-risk.yml
+      - tools/core20k_lexicon/production_v3/audit_overlay_semantic_risks.py
   workflow_dispatch:
 permissions:
   contents: write
