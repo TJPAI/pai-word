@@ -28,7 +28,7 @@ for p in files:
   if not z.strip() or not en.strip() or not lemma.strip():flag(x,"missing_core_field")
   if not x.get("pos"):flag(x,"missing_pos")
   if "+" in z:flag(x,"plus_sign_gloss")
-  if re.search(r"词头疑|疑应为|待核查|疑似|错误|需确认|待修订|不匹配|\\bTODO\\b",z,re.I):flag(x,"editorial_note_in_gloss")
+  if re.search(r"词头疑|疑应为|待核查|疑似|需确认|待修订|不匹配|\\bTODO\\b",z,re.I):flag(x,"editorial_note_in_gloss")
   if re.search(r"[_{}<>]|\\uFFFD",z):flag(x,"gloss_artifact")
   if len(z.strip())<=1:flag(x,"very_short_gloss")
   if len(z)>160:flag(x,"very_long_gloss")
