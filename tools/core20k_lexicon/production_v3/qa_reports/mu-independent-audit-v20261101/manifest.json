@@ -1,0 +1,100 @@
+{
+  "audit": "PAI Word Core20K Muse independent semantic audit V2026.11.01",
+  "branch": "experiment/enlex-v3-production-rebuild-20261030",
+  "base_head": "4e8357f82da978f48b8c1538401aa3441e7611ba",
+  "review_pack": "tools/core20k_lexicon/production_v3/qa_reports/active_recall_unified_review_pack_v1/review_pack.jsonl",
+  "review_pack_sha256": "e9b9c158a5563ff6396be66d0993a5a0cd9ef6379c433cf2fd4d578862a68fac",
+  "review_pack_rows": 27471,
+  "gate_summary_reproduced_exactly": true,
+  "formal_release_eligible": 0,
+  "production_ready_certified": 100,
+  "production_ready_scope": "contextual-cloze form only (100 of 130 contextual items PASS)",
+  "needs_revision_confirmed_union": 372,
+  "findings": {
+    "patchA_confirmed_zh_errors": 38,
+    "patchB_source_disputes": 16,
+    "patchC_headword_fix": 77,
+    "patchC_headword_keep": 21,
+    "patchD_disabled_five": 5,
+    "patchE_junk_headwords": 5,
+    "patchF_placeholder_definitions": 96,
+    "pos107_fix": 105,
+    "pos107_remove": 2,
+    "contextual_pass": 100,
+    "contextual_needs_fix": 29,
+    "contextual_remove": 1,
+    "sample_n": 624,
+    "sample_correct": 511,
+    "sample_noncorrect": 113,
+    "dup_sense_groups": 111,
+    "dup_sense_rows": 227,
+    "e5_low_sim_queue": 1373,
+    "ambiguity_flagged": 5285,
+    "ambiguity_unflagged_in_collision_groups": 569
+  },
+  "methods": "full machine screening (27471 rows); stratified manual sample n=624 seed 20261101; contextual 130 full manual review; POS 107 full verification; E5 multilingual-e5-small local ONNX cosine zh vs en (weak signal, queue only); no paid APIs; no production files modified",
+  "files": {
+    "AUDIT_REPORT.md": {
+      "bytes": 28744,
+      "sha256": "44383cda27c932a4acd9961679acc89644dd379e859320e69deac6e82ea318bd"
+    },
+    "contextual130_audit.jsonl": {
+      "bytes": 52136,
+      "sha256": "88e12490ed3d7c357cc7a0f53ae1d6cf707591babaf0d3419273a1cf35bd171f"
+    },
+    "contextual130_summary.md": {
+      "bytes": 14127,
+      "sha256": "7c2904f00fef7b7efc3a07d964c8ea650f4b2decde7768630936e2bf714f6df3"
+    },
+    "dup_sense_groups.jsonl": {
+      "bytes": 65435,
+      "sha256": "01594599817276b8e2c8c6e379c74866c554d68c44c2722d6b2b0c8f18c4e875"
+    },
+    "e5_low_sim_review_queue.jsonl": {
+      "bytes": 447592,
+      "sha256": "cec90c827c3b051f27521518a75f42683c88cd57c48a029e585a94f4748171cc"
+    },
+    "patchA_confirmed_zh_errors.jsonl": {
+      "bytes": 21548,
+      "sha256": "668829b3b3d49b8eb7f2f15736bd2fc337dce3dc0578f9f929d8408dbcf2623d"
+    },
+    "patchB_source_disputes.jsonl": {
+      "bytes": 9959,
+      "sha256": "37b6d970bc04440abf6d5dc87667fc679a6a43acdae16be2ca4aadf2b559cd77"
+    },
+    "patchC_headword_mismatch98.jsonl": {
+      "bytes": 46790,
+      "sha256": "cbd6fda28cd5e501c44001aaec927f5dc95f9cb95b52cabf1e0aae27663783ad"
+    },
+    "patchD_disabled_five.jsonl": {
+      "bytes": 2331,
+      "sha256": "966e29ccae788f9be5bc6936bc79ef037c068be720f709954bb240810fa35ea7"
+    },
+    "patchE_junk_headwords.jsonl": {
+      "bytes": 629,
+      "sha256": "ddd817e97566c529d39f81cdbe9c22561c337b62dae6f7d045dfa4d767683c5b"
+    },
+    "patchF_placeholder_definitions96.jsonl": {
+      "bytes": 52680,
+      "sha256": "fd5a0fe059e5a706a53ccf82b57e69590d82f0ad9fb182213beab4b2cb408176"
+    },
+    "pos107_proposals.jsonl": {
+      "bytes": 34605,
+      "sha256": "761e5ab914c090518e400be9c5054dc748de1407a3eacb9cdd21c8fdede47e0b"
+    },
+    "sample_semantic_audit.jsonl": {
+      "bytes": 220469,
+      "sha256": "48891d4c829cdacfc0d502ee272a8054797f67d82c7133118fae14a468bf45c7"
+    },
+    "sample_semantic_summary.md": {
+      "bytes": 14142,
+      "sha256": "d34b428e81de07115902ae503aa9d2a4a3f4be3b75cd92b404546785722874e0"
+    },
+    "zh_en_sim.jsonl": {
+      "bytes": 7282964,
+      "sha256": "e0b28f603c129b400852944dcc488b8294de36899ac1079631b3b047e2a44209"
+    }
+  },
+  "runtime_modified": false,
+  "original_files_modified": false
+}
