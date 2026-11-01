@@ -2,7 +2,7 @@ name: CG-ENLEX KU QA 013
 on:
   push:
     branches: [experiment/enlex-v3-production-rebuild-20261030]
-    paths: [.github/workflows/cg-enlex-highfreq-qa013.yml]
+    paths: [.github/workflows/cg-enlex-highfreq-qa013.yml, tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch013.py]
   workflow_dispatch:
 permissions:
   contents: write
