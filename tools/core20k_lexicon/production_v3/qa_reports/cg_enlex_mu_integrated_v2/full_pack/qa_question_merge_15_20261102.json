@@ -1,0 +1,35 @@
+{
+  "version": "V2_FULL_PACK_15_QUESTION_MERGE_20261102",
+  "base_head": "cb632d5dfe9157e9dceb6b1a93c0eb6a11845eec",
+  "source_delta": "../v2_isolated_question_merge_15_20261102_y.jsonl",
+  "baseline_rows": 27471,
+  "output_rows": 27471,
+  "unique_ku_ids": 27471,
+  "matched_question_patches": 15,
+  "actual_question_changes": 15,
+  "updated_shards": [
+    {
+      "file": "shard_05.jsonl",
+      "changed": 6,
+      "new_blob": "14ebf42e57f5fef8f272129b7704c63d1fb56a46"
+    },
+    {
+      "file": "shard_06.jsonl",
+      "changed": 9,
+      "new_blob": "ee76311607a3feaf9f7e93d3a21af14810b29de5"
+    }
+  ],
+  "unchanged_shards": [
+    "shard_01.jsonl",
+    "shard_02.jsonl",
+    "shard_03.jsonl",
+    "shard_04.jsonl"
+  ],
+  "identity_changes": 0,
+  "unapproved_changes": 0,
+  "semantic_editorial_gate": "APPROVED_ISOLATED_QUESTION_OVERLAY",
+  "independent_external_certified": false,
+  "release_eligible": false,
+  "runtime_modified": false,
+  "notes": "Only question fields changed; previous qa_full_v2.json refers to original shard blobs and is retained as historical record."
+}
