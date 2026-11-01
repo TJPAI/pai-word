@@ -1183,3 +1183,42 @@ jobs:
           assert m["overlay_sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
           print("REMOTE V2 OVERLAY VERIFIED: 862 corrections, 27471 effective KUs")
           PY
+
+  active_recall_revised_overlay_v3:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_active_recall_revised_v3.py
+      - name: Commit V3 review overlay and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_revised_v3
+          mkdir -p /tmp/enlex-v3
+          cp "$D"/*.json* /tmp/enlex-v3/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-v3/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX V3 exact Sense POS and ambiguity QA overlay"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_revised_v3")
+          s=json.loads((d/"summary.json").read_text());p=d/"revised_records.jsonl"
+          rows=[json.loads(l) for l in p.read_text().splitlines()]
+          assert len(rows)==s["v3_changed_records"]
+          assert len({x["ku_id"] for x in rows})==len(rows)
+          assert s["pos_recovered_exact_sense_source"]+s["missing_pos_remaining"]==203
+          assert s["overlay_sha256"]==hashlib.sha256(p.read_bytes()).hexdigest()
+          print("REMOTE V3 VERIFIED",s)
+          PY
