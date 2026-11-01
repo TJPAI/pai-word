@@ -1261,3 +1261,40 @@ jobs:
           assert m["overlay_sha256"]==hashlib.sha256((d/"revised_records.jsonl").read_bytes()).hexdigest()
           print("REMOTE V4 VERIFIED",m)
           PY
+
+  active_recall_masked_clues_v5:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_active_recall_revised_v5.py
+      - name: Commit V5 overlay and remaining review list
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_revised_v5
+          mkdir -p /tmp/enlex-v5
+          cp "$D"/*.json* /tmp/enlex-v5/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-v5/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX V5 masked source-gloss cues and manual review"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import json,pathlib,hashlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_revised_v5")
+          x=json.loads((d/"summary.json").read_text())
+          assert x["v5_masked_definition_cues"]+x["remain_manual_review"]==322
+          assert len((d/"revised_records.jsonl").read_text().splitlines())==x["v5_masked_definition_cues"]
+          assert len((d/"manual_review.jsonl").read_text().splitlines())==x["remain_manual_review"]
+          print("REMOTE V5 VERIFIED",x)
+          PY
