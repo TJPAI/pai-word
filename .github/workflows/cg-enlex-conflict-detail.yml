@@ -1,0 +1,23 @@
+name: CG-ENLEX KU field conflict audit
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-conflict-detail.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/classify_ku_conflicts.py
+      - name: Commit detailed report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/core20k_lexicon/production_v3/ku_conflict_detail.json
+          git diff --cached --quiet || git commit -m "CG-ENLEX: publish field-level KU conflict details"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
