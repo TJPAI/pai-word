@@ -1,0 +1,29 @@
+name: CG-ENLEX high-frequency KU QA 008
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths: [.github/workflows/cg-enlex-highfreq-qa008.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cg-enlex-highfreq-qa-008
+  cancel-in-progress: false
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch008.py
+      - name: Commit ten groups and summary
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for n in $(seq -w 1 10); do
+            git add "tools/core20k_lexicon/production_v3/teaching_qa/batch008/qa_recognition_008_${n}.jsonl"
+            git diff --cached --quiet || git commit -m "CG-ENLEX Batch008 group ${n} (50)"
+            git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
+          done
+          git add tools/core20k_lexicon/production_v3/teaching_qa/batch008/summary.json
+          git diff --cached --quiet || git commit -m "CG-ENLEX Batch008 summary"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
