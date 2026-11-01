@@ -12,6 +12,9 @@ idx=read(B/"ku_selected_draft_index.jsonl")
 idx=[x for x in idx if ":recognition:" in x.get("ku_id","")]
 idx.sort(key=lambda x:(int(re.search(r"rank:(\d+)",x["teaching_sense_id"]).group(1)),x["teaching_sense_id"],x["ku_id"]))
 lookup={x["ku_id"]:x for x in idx}
+rank_lookup={}
+for item in idx:
+ rank_lookup.setdefault(int(item["teaching_sense_id"].split("rank:")[1].split("::")[0]),item)
 cache={}
 def source(ix):
  p=B/ix["selected_file"]
@@ -36,8 +39,8 @@ for case in cases:
  for offset in range(1,80):
   for at in (rank-offset,rank+offset):
    # rank here is a *word rank*, not position in index. Deliberately scan matching rank.
-   if len(candidates)>=6:break
-   possible=next((item for item in idx if item["teaching_sense_id"].startswith(f"core20k:rank:{at}::")),None)
+   if len(candidates)>=max(6,len(competing)+2):break
+   possible=rank_lookup.get(at)
    if not possible:continue
    other=source(possible)
    lemma=other.get("lemma")
@@ -51,7 +54,10 @@ for case in cases:
  proposed=None
  if candidates:
   replacement=candidates[0]["lemma"]
-  proposed=[replacement if opt in competing else opt for opt in options]
+  proposed=list(options)
+  for j,opt in enumerate(proposed):
+   if opt in competing:
+    proposed[j]=candidates[competing.index(opt)]["lemma"] if competing.index(opt)<len(candidates) else opt
   if len(set(x.casefold() for x in proposed))!=4:
    proposed=None
  status="CANDIDATE_NEEDS_EDITORIAL_APPROVAL" if proposed else "NO_SAFE_AUTOMATIC_CANDIDATE"
