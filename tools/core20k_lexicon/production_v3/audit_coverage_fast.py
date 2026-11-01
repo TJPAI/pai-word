@@ -33,6 +33,27 @@ def main():
       "invalid_structure_sample":invalid[:30],
       "duplicate_ku_id_sample":[k for k,n in ids.items() if n>1][:30],
     }
+    # Recovered V93 source is the authoritative full teaching_sense_id register.
+    # Produce an uncovered candidate list, not KU and not a semantic certification.
+    recovered=list(load("recovery/v93_register_20261030/shards/senses_*.jsonl"))
+    recovered_map={}
+    for _,_,x in recovered:
+      sid=x.get("teaching_sense_id")
+      if sid:
+        if sid in recovered_map: raise ValueError("duplicate recovered teaching_sense_id: "+sid)
+        recovered_map[sid]=x
+    missing_v93=[x for sid,x in recovered_map.items() if sid not in senses]
+    missing_v93.sort(key=lambda x:(int(x.get("rank",999999)),str(x.get("teaching_sense_id"))))
+    def candidate(x):
+      zh=x.get("zh_candidates") or []
+      zh_list=[v.strip() for z in zh if isinstance(z,dict) for v in [z.get("value","")] if isinstance(v,str) and v.strip()]
+      return {"teaching_sense_id":x.get("teaching_sense_id"),"rank":x.get("rank"),"lemma":x.get("lemma"),"pos":x.get("pos"),"definition_en":x.get("definition_en"),"synset_id":x.get("synset_id"),"chinese_lexicalizations":list(dict.fromkeys(zh_list)),"gloss_zh_status":"SOURCE_CANDIDATE_NOT_EDITORIALLY_SELECTED","source_pack":"v93_recovered_register"}
+    eligible=[candidate(x) for x in missing_v93 if x.get("teaching_sense_id") and x.get("lemma") and x.get("definition_en") and x.get("zh_candidates")]
+    report["recovered_v93_sense_rows"]=len(recovered)
+    report["recovered_v93_unique_sense_ids"]=len(recovered_map)
+    report["recovered_v93_uncovered_sense_count"]=len(missing_v93)
+    report["recovered_v93_uncovered_eligible_count"]=len(eligible)
+    report["batch091_first_500_uncovered_candidates"]=eligible[:500]
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if len(sys.argv)>1: pathlib.Path(sys.argv[1]).write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 if __name__=="__main__":main()
