@@ -1,0 +1,25 @@
+name: CG-ENLEX duplicate conflict audit
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - .github/workflows/cg-enlex-dedupe-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build read-only conflict manifest
+        run: python3 tools/core20k_lexicon/production_v3/build_dedupe_manifest.py
+      - name: Publish manifest
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp enlex_dedupe_manifest.json tools/core20k_lexicon/production_v3/dedupe_manifest.json
+          git add tools/core20k_lexicon/production_v3/dedupe_manifest.json
+          git diff --cached --quiet || git commit -m "CG-ENLEX: publish KU duplicate conflict manifest"
+          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
