@@ -713,3 +713,42 @@ jobs:
           assert len({x["teaching_sense_id"] for x in rows})==1500
           print("REMOTE VERIFIED 1500 DISTINCT ACTIVE_RECALL KU")
           PY
+
+  active_recall_031_070:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/produce_active_recall_031_070.py
+      - name: Commit next 2000 and verify cumulative 3500
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/ku_drafts/v3_active_recall
+          mkdir -p /tmp/enlex-next2000
+          for i in $(seq -w 31 70); do cp "$D/active_recall_0$i.jsonl" /tmp/enlex-next2000/; done
+          cp "$D/manifest_031_070.json" /tmp/enlex-next2000/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-next2000/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX 2000 active recall KU groups 031-070"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/ku_drafts/v3_active_recall")
+          files=sorted(d.glob("active_recall_*.jsonl"))
+          rows=[json.loads(s) for p in files for s in p.read_text().splitlines()]
+          assert len(files)==70 and len(rows)==3500
+          assert len({x["ku_id"] for x in rows})==3500
+          assert len({x["teaching_sense_id"] for x in rows})==3500
+          print("REMOTE VERIFIED 3500 DISTINCT ACTIVE_RECALL KU")
+          PY
