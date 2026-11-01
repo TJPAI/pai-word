@@ -1069,3 +1069,38 @@ jobs:
           assert all(x["response"] in x["answer_variants"] for x in rows)
           print("REMOTE VERIFIED FULL 27471 DISTINCT ACTIVE_RECALL KU")
           PY
+
+  active_recall_full_editorial_qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/qa_active_recall_full.py
+      - name: Commit isolated QA report with retry
+        shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/active_recall_full_v1
+          mkdir -p /tmp/enlex-full-qa
+          cp "$D"/qa_summary.json "$D"/flags.jsonl /tmp/enlex-full-qa/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6 7 8; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"
+            cp /tmp/enlex-full-qa/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG-ENLEX non-destructive full 27471 active recall QA audit"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 8 ]; then exit 1; fi
+          done
+          git fetch origin experiment/enlex-v3-production-rebuild-20261030
+          git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+          python3 - <<'PY'
+          import pathlib,json
+          p=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/active_recall_full_v1/qa_summary.json")
+          x=json.loads(p.read_text())
+          assert x["total_rows"]==27471 and x["unique_ku_ids"]==27471 and x["unique_sense_ids"]==27471
+          print("REMOTE QA VERIFIED",x["flag_counts"])
+          PY
