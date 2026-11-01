@@ -1,0 +1,41 @@
+name: CG ENLEX Semantic Fix V5
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - tools/core20k_lexicon/production_v3/build_mu_patchC_semantic_fix_v5.py
+      - .github/workflows/cg-enlex-semantic-fix-v5.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_mu_patchC_semantic_fix_v5.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_patchC_semantic_fix_v5
+          mkdir -p /tmp/semv5
+          cp "$D"/disabled_wrong_links.jsonl "$D"/summary.json /tmp/semv5/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"; cp /tmp/semv5/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG ENLEX disable four mismatched sense links in review overlay"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 5 ]; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import json,pathlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_patchC_semantic_fix_v5")
+          s=json.loads((d/"summary.json").read_text())
+          assert s["confirmed_wrong_links"]==4 and s["disabled_candidate_links"]==4
+          print("VERIFIED",s)
+          PY
