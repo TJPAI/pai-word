@@ -1,0 +1,123 @@
+hint rows: 5150
+{"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::oewn-will__1.10.00..:zh_to_en:01", "teaching_sense_id": "core20k:rank:5::oewn-will__1.10.00..", "rank": 5, "lemma": "will", "pos": "n", "ku_type": "zh_to_en_active_recall", "render_kind": "text_input", "question": "请根据中文释义写出对应的英语词（词性：n）：遗嘱\n英文语义线索：a legal document declaring a person's wishes regarding the disposal of their property when they die\n请根据中文释义与英文语义线索作答。", "response": "will", "answer_variants": ["will"], "gloss_zh": "遗嘱", "gloss_en": "a legal document declaring a person's wishes regarding the disposal of their property when they die", "source_ku_id": "staging:cg-enlex-ku-v2:core20k:rank:5::oewn-will__1.10.00..:recognition:01", "draft": true, "production_ready": false, "release_eligible": false, "ambiguity_review_needed": true, "semantic_hint_source": "existing_sense_gloss_en", "semantic_hint_uniqueness_verified": fals
+{"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6::oewn-after__4.02.01..:zh_to_en:01", "teaching_sense_id": "core20k:rank:6::oewn-after__4.02.01..", "rank": 6, "lemma": "after", "pos": "r", "ku_type": "zh_to_en_active_recall", "render_kind": "text_input", "question": "请根据中文释义写出对应的英语词（词性：r）：后来；在所指时间之后\n英文语义线索：happening at a time subsequent to a reference time\n请根据中文释义与英文语义线索作答。", "response": "after", "answer_variants": ["after"], "gloss_zh": "后来；在所指时间之后", "gloss_en": "happening at a time subsequent to a reference time", "source_ku_id": "staging:cg-enlex-ku-v2:core20k:rank:6::oewn-after__4.02.01..:recognition:01", "draft": true, "production_ready": false, "release_eligible": false, "ambiguity_review_needed": true, "semantic_hint_source": "existing_sense_gloss_en", "semantic_hint_uniqueness_verified": false, "review_pack_only": true, "single_answer_verified": false, "editorial_rev
+{"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::editorial-core20k-core-v3:7:01:zh_to_en:01", "teaching_sense_id": "core20k:rank:7::editorial-core20k-core-v3:7:01", "rank": 7, "lemma": "about", "pos": "prep", "ku_type": "zh_to_en_active_recall", "render_kind": "text_input", "question": "请根据中文释义写出对应的英语词（词性：prep）：关于；涉及\n英文语义线索：Concerning or relating to a subject.\n请根据中文释义与英文语义线索作答。", "response": "about", "answer_variants": ["about"], "gloss_zh": "关于；涉及", "gloss_en": "Concerning or relating to a subject.", "source_ku_id": "staging:cg-enlex-ku-v2:core20k:rank:7::editorial-core20k-core-v3:7:01:recognition:01", "draft": true, "production_ready": false, "release_eligible": false, "ambiguity_review_needed": true, "semantic_hint_source": "existing_sense_gloss_en", "semantic_hint_uniqueness_verified": false, "review_pack_only": true, "single_answer_verified": false, "editorial_review_n
+{"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.00..:zh_to_en:01", "teaching_sense_id": "core20k:rank:7::oewn-about__4.02.00..", "rank": 7, "lemma": "about", "pos": "r", "ku_type": "zh_to_en_active_recall", "render_kind": "text_input", "question": "请根据中文释义写出对应的英语词（词性：r）：大约；差不多\n英文语义线索：(of quantities) imprecise but fairly close to correct\n请根据中文释义与英文语义线索作答。", "response": "about", "answer_variants": ["about"], "gloss_zh": "大约；差不多", "gloss_en": "(of quantities) imprecise but fairly close to correct", "source_ku_id": "staging:cg-enlex-ku-v2:core20k:rank:7::oewn-about__4.02.00..:recognition:01", "draft": true, "production_ready": false, "release_eligible": false, "ambiguity_review_needed": true, "semantic_hint_source": "existing_sense_gloss_en", "semantic_hint_uniqueness_verified": false, "review_pack_only": true, "single_answer_verified": false, "editorial_revie
+{"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.01..:zh_to_en:01", "teaching_sense_id": "core20k:rank:7::oewn-about__4.02.01..", "rank": 7, "lemma": "about", "pos": "r", "ku_type": "zh_to_en_active_recall", "render_kind": "text_input", "question": "请根据中文释义写出对应的英语词（词性：r）：在附近；在周围\n英文语义线索：in the area or vicinity\n请根据中文释义与英文语义线索作答。", "response": "about", "answer_variants": ["about"], "gloss_zh": "在附近；在周围", "gloss_en": "in the area or vicinity", "source_ku_id": "staging:cg-enlex-ku-v2:core20k:rank:7::oewn-about__4.02.01..:recognition:01", "draft": true, "production_ready": false, "release_eligible": false, "ambiguity_review_needed": true, "semantic_hint_source": "existing_sense_gloss_en", "semantic_hint_uniqueness_verified": false, "review_pack_only": true, "single_answer_verified": false, "editorial_review_needed": true}
+
+hint by source: Counter({'existing_sense_gloss_en': 4963, 'existing_sense_gloss_en_masked': 187})
+hint rows ambiguity flag: Counter({'True': 5150})
+hint rows question contains gloss_en? 4963
+Q: 请根据中文释义写出对应的英语词（词性：n）：遗嘱
+英文语义线索：a legal document declaring a person's wishes regarding the disposal of their property when they die
+请根据中文释义与英文语义线索作答。
+---
+Q: 请根据中文释义写出对应的英语词（词性：r）：后来；在所指时间之后
+英文语义线索：happening at a time subsequent to a reference time
+请根据中文释义与英文语义线索作答。
+---
+Q: 请根据中文释义写出对应的英语词（词性：prep）：关于；涉及
+英文语义线索：Concerning or relating to a subject.
+请根据中文释义与英文语义线索作答。
+---
+missing pos 107: pos_review_needed True: 68 False: 0 absent: 39
+missing pos lemmas with pos_review_needed absent: ['anyone', 'everyone', 'whereas', 'anybody', 'ourselves', 'hey', 'everybody', 'heck', 'whenever', 'bailout', 'aye', 'keyword', 'onto', 'dataset', 'whilst', 'oneself', 'whoever', 'reseller', 'versus', 'stat', 'peter', 'genomic', 'transgenic', 'coworker', 'albeit', 'councilor', 'unrated', 'grassroot', 'mega', 'pre', 'circa', 'offline', 'payout', 'trans', 'belate', 'baseman', 'onboard', 'sectoral', 'carer']
+lemma ending ed/ing/es/s: 1930
+equalled True
+beleaguered True
+annualize True
+belate True
+outdate True
+unauthorize True
+reinvest True
+outstretch True
+impassion True
+lemma with hyphen: 4 space: 0 apostrophe: 0
+hyphen examples: [('in-law', '姻亲'), ('ice-cream', '冰淇淋'), ('x-ray', 'X射线'), ('vis-à-vis', '对应者；相当的人或物')]
+gloss_zh == lemma: [('en', 'en')]
+gloss_zh contains '疑': 82
+  SUSPECT-NOTE: 129 now 立即；毫不迟疑地 | without delay or hesitation; with no time intervening
+  SUSPECT-NOTE: 267 face 向某人提出指责或质疑 | present somebody with something, usually to accuse or criticize
+  SUSPECT-NOTE: 293 question 对真实性或存在性的疑问 | uncertainty about the truth or factuality or existence of something
+  SUSPECT-NOTE: 293 question 要求回答的疑问句 | a sentence of inquiry that asks for a reply
+  SUSPECT-NOTE: 293 question 质疑准确性或正当性 | challenge the accuracy, probity, or propriety of
+  SUSPECT-NOTE: 506 certain 确定无疑的；确凿的 | established beyond doubt or question; definitely known
+  SUSPECT-NOTE: 506 certain 确信的；毫不怀疑的 | having or feeling no doubt or uncertainty; confident and assured
+  SUSPECT-NOTE: 613 evidence 信念或判断的依据；据以相信或怀疑的信息 | your basis for belief or disbelief; knowledge on which to base belief
+  SUSPECT-NOTE: 818 doubt 对真实性或存在性的疑问 | uncertainty about the truth or factuality or existence of something
+  SUSPECT-NOTE: 818 doubt 怀疑；不确定的状态 | the state of being unsure of something
+  SUSPECT-NOTE: 947 wonder 怀疑；对……表示疑惑 | place in doubt or express doubtful speculation
+  SUSPECT-NOTE: 997 challenge 对……提出异议；质疑 | take exception to
+  SUSPECT-NOTE: 1010 secure 安心的；没有恐惧或疑虑的 | free from fear or doubt; easy in mind
+  SUSPECT-NOTE: 1162 clearly 毫无疑问地；显然地 | without doubt or question
+  SUSPECT-NOTE: 1812 suspect 嫌疑人 | someone who is under suspicion
+  SUSPECT-NOTE: 1812 suspect 怀疑……有罪 | hold in suspicion; believe to be guilty
+  SUSPECT-NOTE: 1812 suspect 可疑的；不对劲的 | not as expected
+  SUSPECT-NOTE: 1952 assure 确保；使某事确定无疑 | make certain of
+  SUSPECT-NOTE: 2132 protest 猜想；怀疑可能如此 | utter words of protest
+  SUSPECT-NOTE: 2133 swallow 怀疑有罪；认为可疑 | a small amount of liquid food
+  SUSPECT-NOTE: 2134 village 可疑的；不对劲的 | a settlement smaller than a town
+  SUSPECT-NOTE: 2228 contest 对……提出争议；质疑 | to make the subject of dispute, contention, or litigation
+  SUSPECT-NOTE: 2235 confront 向某人提出指责或质疑 | present somebody with something, usually to accuse or criticize
+  SUSPECT-NOTE: 2513 browser 为观点辩护；反驳质疑 | a viewer who looks around casually without seeking anything in particular
+  SUSPECT-NOTE: 3081 directly 立即；毫不迟疑地 | without delay or hesitation; with no time intervening
+  SUSPECT-NOTE: 3523 dubious 可疑的；不确定的 | fraught with uncertainty or doubt
+  SUSPECT-NOTE: 4022 doubtful 令人怀疑的；不确定的 | fraught with uncertainty or doubt
+  SUSPECT-NOTE: 4106 cynical 愤世嫉俗的；怀疑人性动机的 | believing the worst of human nature and motives; having a sneering disbelief in e.g. selflessness of others
+  SUSPECT-NOTE: 4120 defendant 嫌疑人 | a person or institution against whom an action is brought in a court of law; the person being sued or accused
+  SUSPECT-NOTE: 4716 uncertainty 怀疑；不确定的状态 | the state of being unsure of something
+  SUSPECT-NOTE: 5014 questionable 有疑问的；值得怀疑的 | subject to question
+  SUSPECT-NOTE: 5516 unequivocal 明确无疑的 | admitting of no doubt or misunderstanding; having only one meaning or interpretation and leading to only one conclusion
+  SUSPECT-NOTE: 5804 reassure 使放心；消除疑虑 | give reassurance to; give or restore confidence in; cause to feel sure or certain
+  SUSPECT-NOTE: 6167 undoubtedly 毫无疑问地 | without doubt; certainly
+  SUSPECT-NOTE: 6254 skepticism 怀疑主义；疑虑 | doubt about the truth of something
+  SUSPECT-NOTE: 7204 thriller 惊险悬疑作品 | a suspenseful adventure story or play or movie
+  SUSPECT-NOTE: 7368 misgive 引起担忧；使疑虑 | suggest fear or doubt
+  SUSPECT-NOTE: 8150 instantly 立即；毫不迟疑地 | without delay or hesitation; with no time intervening
+  SUSPECT-NOTE: 8562 cynic 怀疑他人动机的人 | someone who is critical of the motives of others
+  SUSPECT-NOTE: 8607 intuition 嫌疑 | an impression that something might be the case
+  SUSPECT-NOTE: 9316 suspicious 多疑而不信任的 | openly distrustful and unwilling to confide
+  SUSPECT-NOTE: 9316 suspicious 可疑的；异常的 | not as expected
+  SUSPECT-NOTE: 9331 suspicion 嫌疑 | an impression that something might be the case
+  SUSPECT-NOTE: 9637 interrogation 要求回答的疑问句 | a sentence of inquiry that asks for a reply
+  SUSPECT-NOTE: 9785 skeptic 怀疑论者 | someone who habitually doubts accepted beliefs
+  SUSPECT-NOTE: 10044 distrust 不信任；怀疑 | regard as untrustworthy; regard with suspicion; have no faith or confidence in
+  SUSPECT-NOTE: 10156 suspiciously 怀疑地 | with suspicion
+  SUSPECT-NOTE: 10434 hunch 嫌疑 | an impression that something might be the case
+  SUSPECT-NOTE: 10549 disbelief 不相信；怀疑 | doubt about the truth of something
+  SUSPECT-NOTE: 11411 hesitation 犹豫；迟疑 | indecision in speech or action
+  SUSPECT-NOTE: 11992 doubtless 无疑地；肯定地 | without doubt; certainly
+  SUSPECT-NOTE: 12499 skeptical 持怀疑态度的 | marked by or given to doubt
+  SUSPECT-NOTE: 12499 skeptical 怀疑宗教教义的 | denying or questioning the tenets of especially a religion
+  SUSPECT-NOTE: 12781 impeach 质疑诚信；弹劾 | challenge the honesty or veracity of
+  SUSPECT-NOTE: 12981 finality 终局性；确定无疑 | the quality of being final or definitely settled
+  SUSPECT-NOTE: 13165 doubtfully 怀疑地 | in a doubtful manner
+  SUSPECT-NOTE: 13603 prima 适合直接食用的苹果（定义疑点） | used primarily as eating apples
+  SUSPECT-NOTE: 13699 interrogative 要求回答的疑问句 | a sentence of inquiry that asks for a reply
+  SUSPECT-NOTE: 13743 firewall 最大推力状态（原定义疑似错误） | (colloquial) the application of maximum thrust
+  SUSPECT-NOTE: 13839 straightaway 立即；毫不迟疑地 | without delay or hesitation; with no time intervening
+  SUSPECT-NOTE: 13924 apocryphal 真实性可疑的 | being of questionable authenticity
+  SUSPECT-NOTE: 14536 askance 斜眼怀疑地 | (used especially of glances) directed to one side with or as if with doubt or suspicion or envy
+  SUSPECT-NOTE: 14635 trustful 不疑的 | inclined to believe or confide readily; full of trust
+  SUSPECT-NOTE: 15412 undoubted 无疑的；确定的 | Not questioned or disputed.
+  SUSPECT-NOTE: 15422 forthwith 立即；毫不迟疑地 | without delay or hesitation; with no time intervening
+  SUSPECT-NOTE: 15610 sully 玷污名誉；使受质疑 | place under suspicion or cast doubt upon
+  SUSPECT-NOTE: 15676 unmistakably 毫无疑问地；明确无误地 | without possibility of mistake
+  SUSPECT-NOTE: 15816 doubter 怀疑论者 | someone who habitually doubts accepted beliefs
+  SUSPECT-NOTE: 15970 determiner 有决定性作用的论据（此源义项疑错） | an argument that is conclusive
+  SUSPECT-NOTE: 16133 incredulity 不轻信；怀疑 | doubt about the truth of something
+  SUSPECT-NOTE: 16821 interrogatively 疑问地 | in a questioning format
+  SUSPECT-NOTE: 17273 incredulous 怀疑不信的 | not disposed or willing to believe; unbelieving
+  SUSPECT-NOTE: 17680 sop 标准操作程序（SOP；该词头拼写疑与缩写混淆） | a prescribed procedure to be followed routinely
+  SUSPECT-NOTE: 17747 assuredly 毫无疑问地 | without a doubt
+  SUSPECT-NOTE: 18111 skinned 笨拙地攀爬（原词形疑错） | climb awkwardly, as if by scrambling
+  SUSPECT-NOTE: 18298 unsuspected 无嫌疑的 | not suspected or believed likely
+  SUSPECT-NOTE: 18335 problematical 有疑问的；值得商榷的 | open to doubt or debate
+  SUSPECT-NOTE: 18704 cert 确定无疑之事（口语） | an absolute certainty
+  SUSPECT-NOTE: 19074 skeptically 怀疑地 | with scepticism; in a sceptical manner
+  SUSPECT-NOTE: 19109 quizzically 怀疑地 | in a quizzical and questioning manner
+  SUSPECT-NOTE: 19850 unquestionable 不容置疑的 | incapable of being questioned
+  SUSPECT-NOTE: 19982 opossum 澳洲树栖有袋动物（词头疑应为possum） | small furry Australian arboreal marsupials having long usually prehensile tails
+gloss_en starts lowercase: 26197
+gloss_en ends with period: 598
+gloss_en contains 'etc.': 176

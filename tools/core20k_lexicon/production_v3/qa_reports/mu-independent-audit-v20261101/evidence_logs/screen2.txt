@@ -1,0 +1,95 @@
+pos_review_needed values: Counter({'False': 13903, 'None': 13500, 'True': 68})
+pos_review_needed by pos: Counter({None: 68})
+semantic_hint_source: Counter({'existing_sense_gloss_en': 4963, 'existing_sense_gloss_en_masked': 187})
+semantic_hint_uniqueness_verified: Counter({'None': 22321, 'False': 5150})
+editorial_review_needed: Counter({'None': 22186, 'True': 5285})
+overlap ambiguity & pos_review: 2
+neither flag: 22120
+pos_review only (not ambiguity): 66
+plus in gloss_zh: 0
+plus in question: 0
+plus in gloss_en: 2
+--- gloss_zh contains '+': 0
+--- question contains lemma: 17
+  rank46 who pos='n' zh='世界卫生组织（WHO）' en='a United Nations agency to coordinate international health activities and to help governments improve health services' sid=core20k:rank:46::oewn-who__1.14.00..
+  rank59 it pos='n' zh='信息技术（IT）' en='the branch of engineering that deals with the use of computers and telecommunications to retrieve and store and transmit information' sid=core20k:rank:59::oewn-it__1.09.00..
+  rank2912 en pos='n' zh='en' en='half the width of an em' sid=core20k:rank:2912::oewn-en__1.23.00..
+  rank6545 wasp pos='n' zh='美国白人盎格鲁-撒克逊新教徒（WASP）' en='a white person of Anglo-Saxon ancestry who belongs to a Protestant denomination' sid=core20k:rank:6545::oewn-wasp__1.18.00..
+  rank9156 elf pos='n' zh='极低频（ELF）' en='below 3 kilohertz' sid=core20k:rank:9156::oewn-elf__1.07.00..
+  rank9678 boon pos='s' zh='亲密友好的（boon companion）' en='very close and convivial' sid=core20k:rank:9678::oewn-boon__5.00.00.close.02
+  rank10206 sic pos='r' zh='原文如此（sic）' en='intentionally so written (used after a printed word or phrase)' sid=core20k:rank:10206::oewn-sic__4.02.00..
+  rank13203 cod pos='r' zh='货到付款（COD）' en='collecting the charges upon delivery' sid=core20k:rank:13203::oewn-cod__4.02.00..
+  rank13599 cad pos='n' zh='计算机辅助设计（CAD）' en='software used in art and architecture and engineering and manufacturing to assist in precision drawing' sid=core20k:rank:13599::oewn-cad__1.10.00..
+  rank13667 bop pos='n' zh='美国联邦监狱局（BOP）' en='the law enforcement agency of the Justice Department that operates a nationwide system of prisons and detention facilities to incarcerate inmates sentenced to imprisonment for federal crimes' sid=core20k:rank:13667::oewn-bop__1.14.00..
+  rank13678 doe pos='n' zh='美国能源部（DOE）' en='the federal department responsible for maintaining a national energy policy of the United States; created in 1977' sid=core20k:rank:13678::oewn-doe__1.14.00..
+  rank16015 dint pos='n' zh='凭借；依靠（by dint of）' en='interchangeable with ‘means’ in the expression ‘by means of’' sid=core20k:rank:16015::oewn-dint__1.04.00..
+  rank16142 mrs pos='n' zh='夫人；太太（Mrs.）' en='a form of address for a married woman' sid=core20k:rank:16142::oewn-mrs__1.10.00..
+  rank16822 dr pos='abbr' zh='博士；医生（Dr.）' en='Abbreviation used as a title for a doctor or a person with a doctorate.' sid=core20k:rank:16822::editorial-gap-v6:16822:01
+  rank17680 sop pos='n' zh='标准操作程序（SOP；该词头拼写疑与缩写混淆）' en='a prescribed procedure to be followed routinely' sid=core20k:rank:17680::oewn-sop__1.04.00..
+  rank17897 lea pos='n' zh='纱线长度单位（lea）' en='a unit of length of thread or yarn' sid=core20k:rank:17897::oewn-lea__1.23.00..
+  rank18370 mellitus pos='adj' zh='糖尿病的（常用于diabetes mellitus）' en='Latin-derived term used in the medical name diabetes mellitus.' sid=core20k:rank:18370::editorial-gap-v6:18370:01
+--- gloss_zh='妈妈' group: 7
+  rank2088 mom pos='n' zh='妈妈' en='informal terms for a mother' sid=core20k:rank:2088::oewn-mom__1.18.00..
+  rank2383 silent pos='s' zh='妈妈' en='failing to speak or communicate etc. when expected to' sid=core20k:rank:2383::oewn-silent__5.00.00.uncommunicative.00
+  rank3020 mum pos='s' zh='妈妈' en='failing to speak or communicate etc. when expected to' sid=core20k:rank:3020::oewn-mum__5.00.00.uncommunicative.00
+  rank4078 ma pos='n' zh='妈妈' en='informal terms for a mother' sid=core20k:rank:4078::oewn-ma__1.18.00..
+  rank10028 mama pos='n' zh='妈妈' en='informal terms for a mother' sid=core20k:rank:10028::oewn-mama__1.18.00..
+  rank12857 mummy pos='n' zh='妈妈' en='informal terms for a mother' sid=core20k:rank:12857::oewn-mummy__1.18.00..
+  rank14483 mamma pos='n' zh='妈妈' en='informal terms for a mother' sid=core20k:rank:14483::oewn-mamma__1.18.00..
+--- lemma silent: 2
+  rank2383 silent pos='s' zh='安静的；无声的' en='marked by absence of sound' sid=core20k:rank:2383::oewn-silent__5.00.00.quiet.01
+  rank2383 silent pos='s' zh='妈妈' en='failing to speak or communicate etc. when expected to' sid=core20k:rank:2383::oewn-silent__5.00.00.uncommunicative.00
+--- lemma equalled: 1
+  rank16901 equalled pos='v' zh='是' en='be identical or equivalent to' sid=core20k:rank:16901::oewn-equal__2.42.00..
+--- gloss_en len<=10: 268
+  rank8 like pos='v' zh='喜欢；对……有好感' en='be fond of' sid=core20k:rank:8::oewn-like__2.37.04..
+  rank28 against pos='prep' zh='反对；对抗' en='opposing' sid=core20k:rank:28::runtime-native:28:w_0227_against_ku01
+  rank36 per pos='prep' zh='每；每一' en='for each' sid=core20k:rank:36::runtime-native:36:w_0378_per_ku01
+  rank39 among pos='prep' zh='在……之中；在……之间' en='in a group' sid=core20k:rank:39::runtime-native:39:w_0381_among_ku01
+  rank50 how pos='adv' zh='怎样；如何' en='manner' sid=core20k:rank:50::runtime-native:50:w_0094_how_ku01
+  rank52 no pos='n' zh='否定回答；不字' en='a negative' sid=core20k:rank:52::oewn-no__1.10.00..
+  rank67 that pos='adv' zh='那么；那样' en='degree' sid=core20k:rank:67::runtime-native:67:w_0015_that_ku04
+  rank69 upon pos='prep' zh='在……上；位于……之上' en='on' sid=core20k:rank:69::runtime-native:69:w_0586_upon_ku01
+  rank71 without pos='prep' zh='没有；不带' en='not having' sid=core20k:rank:71::runtime-native:71:w_0214_without_ku01
+  rank99 whether pos='conj' zh='是否；是不是' en='if or not' sid=core20k:rank:99::runtime-native:99:w_0276_whether_ku01
+  rank109 make pos='v' zh='从事；参与' en='engage in' sid=core20k:rank:109::oewn-make__2.41.00..
+  rank112 give pos='v' zh='奉献；献给' en='dedicate' sid=core20k:rank:112::oewn-give__2.31.02..
+  rank112 give pos='v' zh='授予；赋予' en='bestow' sid=core20k:rank:112::oewn-give__2.32.02..
+  rank113 see pos='v' zh='认为；视作' en='deem to be' sid=core20k:rank:113::oewn-see__2.31.00..
+  rank114 state pos='v' zh='提出；呈交' en='put before' sid=core20k:rank:114::oewn-state__2.32.01..
+  rank119 take pos='v' zh='拿；带' en='carry out' sid=core20k:rank:119::oewn-take__2.41.04..
+  rank131 good pos='n' zh='善；好处' en='benefit' sid=core20k:rank:131::oewn-good__1.07.00..
+  rank131 good pos='s' zh='全面的；彻底的' en='thorough' sid=core20k:rank:131::oewn-good__5.00.00.complete.00
+  rank143 hand pos='n' zh='能力；本领' en='ability' sid=core20k:rank:143::oewn-hand__1.09.00..
+  rank157 follow pos='v' zh='紧接着；位于其后' en='be next' sid=core20k:rank:157::oewn-follow__2.42.02..
+  rank160 again pos='r' zh='重新；再一次' en='anew' sid=core20k:rank:160::oewn-again__4.02.00..
+  rank183 thing pos='n' zh='行为；举动' en='an action' sid=core20k:rank:183::oewn-thing__1.04.00..
+  rank183 thing pos='n' zh='事情；情况' en='an event' sid=core20k:rank:183::oewn-thing__1.11.00..
+  rank184 back pos='r' zh='作为回应；回敬' en='in reply' sid=core20k:rank:184::oewn-back__4.02.06..
+  rank187 set pos='v' zh='设置位置；定位' en='locate' sid=core20k:rank:187::oewn-set__2.36.01..
+  rank189 point pos='n' zh='尖端；点' en='sharp end' sid=core20k:rank:189::oewn-point__1.06.00..
+  rank189 point pos='n' zh='V字形；尖角形' en='a V shape' sid=core20k:rank:189::oewn-point__1.25.00..
+  rank191 word pos='n' zh='诺言；命令' en='a promise' sid=core20k:rank:191::oewn-word__1.10.01..
+  rank208 small pos='s' zh='小写的（字母）' en='lowercase' sid=core20k:rank:208::oewn-small__5.00.00.lowercase.00
+  rank225 send pos='v' zh='转移；传递' en='transfer' sid=core20k:rank:225::oewn-send__2.32.02..
+pos=s: 3136 e.g. [('out', '已冷却；不再热的'), ('out', '不可能的；不值得考虑的'), ('all', '完全；全都'), ('some', '相当多的（具体数量不明）'), ('up', '正在上升的；愈发强劲的'), ('over', '结束了的；已完结的')]
+pos=a: 2045 e.g. [('out', '（棒球）出局的；不得继续击球或跑垒'), ('all', '所有的；全部的；每一个的'), ('some', '一些；若干；数量未明确的'), ('like', '类似的；相像的'), ('like', '数量或价值相当的'), ('like', '具有相同或相似特征的')]
+pos=r: 1431 e.g. [('out', '向外；到外面'), ('out', '不在家；外出'), ('some', '大约；差不多（表示数量）'), ('after', '后来；在所指时间之后'), ('about', '大约；差不多'), ('about', '在附近；在周围')]
+pos=i: 9 e.g. [('out', '从……里面出去'), ('after', '在……之后'), ('like', '像；如同'), ('before', '在……之前'), ('over', '在……上方'), ('over', '超过；多于')]
+pos=p: 7 e.g. [('you', '你；你们'), ('which', '哪一个；哪个'), ('this', '这；这个'), ('we', '我们'), ('they', '他们；她们；它们'), ('they', '他或她（单数中性指代）')]
+pos=c: 6 e.g. [('after', '在……之后'), ('before', '在……之前'), ('and', '和；以及'), ('and', '而且；并且'), ('if', '如果；假如'), ('if', '是否')]
+pos=d: 3 e.g. [('which', '哪一个；哪些'), ('this', '这个'), ('the', '这；那；特指的')]
+pos=expl: 1 e.g. [('there', '有；存在（引导存在句）')]
+pos=combining: 1 e.g. [('neuro', '神经的（构词成分）')]
+pos=prefix: 1 e.g. [('intra', '内；在……之内（构词前缀）')]
+lemmas with both a and s: 285
+lemmas with both r and adv: 4
+lemmas with both n and v: 836
+contextual_answer present: 16 values match response? 16
+recommended_learning_mode: Counter({'recognition_until_reviewed': 5})
+v11 exists: True
+  V11: {"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:172::oewn-issue__2.30.00..:zh_to_en:01", "lemma": "issue", "source_gloss_en": "come out of", "status": "not_unique_answer_ready", "recommended_mode": "recognition_only_until_context_verified", "reason": "insufficient_nonleaking_definition"}
+  V11: {"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1349::oewn-manner__1.09.01..:zh_to_en:01", "lemma": "manner", "source_gloss_en": "a kind", "status": "not_unique_answer_ready", "recommended_mode": "recognition_only_until_context_verified", "reason": "insufficient_nonleaking_definition"}
+  V11: {"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1510::oewn-establish__2.36.01..:zh_to_en:01", "lemma": "establish", "source_gloss_en": "bring about", "status": "not_unique_answer_ready", "recommended_mode": "recognition_only_until_context_verified", "reason": "insufficient_nonleaking_definition"}
+  V11: {"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1934::oewn-trust__2.40.00..:zh_to_en:01", "lemma": "trust", "source_gloss_en": "confer a trust upon", "status": "not_unique_answer_ready", "recommended_mode": "recognition_only_until_context_verified", "reason": "masked_definition_too_weak"}
+  V11: {"ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3117::oewn-overhaul__2.38.00..:zh_to_en:01", "lemma": "overhaul", "source_gloss_en": "travel past", "status": "not_unique_answer_ready", "recommended_mode": "recognition_only_until_context_verified", "reason": "insufficient_nonleaking_definition"}

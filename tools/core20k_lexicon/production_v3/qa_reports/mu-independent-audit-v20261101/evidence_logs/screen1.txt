@@ -1,0 +1,98 @@
+sha256 e9b9c158a5563ff6396be66d0993a5a0cd9ef6379c433cf2fd4d578862a68fac
+bytes 22981075
+rows 27471
+FIELD COUNTS:
+  ku_id: 27471
+  teaching_sense_id: 27471
+  rank: 27471
+  lemma: 27471
+  pos: 27471
+  ku_type: 27471
+  render_kind: 27471
+  question: 27471
+  response: 27471
+  answer_variants: 27471
+  gloss_zh: 27471
+  gloss_en: 27471
+  source_ku_id: 27471
+  draft: 27471
+  production_ready: 27471
+  release_eligible: 27471
+  review_pack_only: 27471
+  single_answer_verified: 27471
+  pos_review_needed: 13971
+  ambiguity_review_needed: 5285
+  editorial_review_needed: 5285
+  semantic_hint_source: 5150
+  semantic_hint_uniqueness_verified: 5150
+  question_format: 130
+  context_example_original: 130
+  contextual_answer: 16
+  recommended_learning_mode: 5
+  single_answer_quiz_enabled: 5
+pos values: [('n', 14375), ('v', 5742), ('s', 3136), ('a', 2045), ('r', 1431), ('adj', 379), ('adv', 115), (None, 107), ('prep', 38), ('pron', 21), ('det', 17), ('interj', 12), ('conj', 11), ('i', 9), ('modal', 9), ('p', 7), ('c', 6), ('abbr', 5), ('d', 3), ('expl', 1), ('combining', 1), ('prefix', 1)]
+ku_type: Counter({'zh_to_en_active_recall': 27471})
+render_kind: Counter({'text_input': 27471})
+question_format: Counter({None: 27341, 'contextual_cloze_draft': 130})
+single_answer_quiz_enabled: Counter({'None': 27466, 'False': 5})
+ambiguity_review_needed: Counter({'None': 22186, 'True': 5285})
+single_answer_verified: Counter({'False': 27471})
+draft/prod/ready: Counter({(True, False, False): 27471})
+unique ku: 27471 unique sense: 27471 unique lemma: 19995
+rank min/max: 1 20000 distinct ranks: 19995
+ranks missing in 1..20000: [11104, 12959, 13676, 16482, 16842] count missing: 5
+senses/lemma: max [('take', 30), ('give', 26), ('run', 25), ('make', 23), ('open', 23), ('play', 22), ('light', 22), ('place', 20), ('set', 20), ('get', 18), ('line', 18), ('have', 18), ('see', 17), ('good', 17), ('cover', 17)]
+lemmas with >=10 senses: 84 >=5: 522 ==1: 16644
+median senses/lemma: 1
+sense source prefix: [('editorial-gap-v5', 154), ('runtime-native', 150), ('editorial-gap-v4', 113), ('editorial-gap-v6', 92), ('editorial-core20k-gap-v2', 45), ('editorial-gap-v7', 45), ('editorial-provisional', 43), ('editorial-core20k-core-v3', 38), ('editorial-gap-v8', 20), ('editorial-source-v27', 4), ('oewn-transfer__2.41.00..', 3), ('oewn-ride__2.38.01..', 3), ('oewn-sink__2.38.01..', 3), ('oewn-scan__2.39.01..', 3), ('oewn-can__2.30.00..', 2), ('oewn-strong__3.00.00..', 2), ('oewn-signal__2.32.00..', 2), ('oewn-travel__2.38.00..', 2), ('oewn-plot__2.31.00..', 2), ('oewn-spot__2.39.00..', 2)]
+gloss_zh empty: 0
+gloss_en empty: 0
+gloss_en char len median: 44 min: 2
+gloss_zh char len median: 5
+gloss_en contains CJK: 0
+gloss_zh contains latin letters: 75
+question empty: 0
+answer_variants != [lemma]: 0
+response != lemma: 0
+distinct gloss_zh: 24036 gloss_zh mapping to >1 lemma: 2474 rows in such groups: 5850
+largest ambiguous gloss groups:
+  '一致' -> ['accordance', 'coincide', 'compliance', 'concord', 'concordance', 'concur', 'conform', 'correspond', 'rapport', 'sympathy', 'unanimity', 'unison'] (14 rows)
+  '妨碍' -> ['foreclose', 'forestall', 'hinder', 'hobble', 'impede', 'interfere', 'obstacle', 'obstruct', 'preclude', 'violate'] (10 rows)
+  '理解；领会' -> ['apprehend', 'apprehension', 'comprehend', 'get', 'grasp', 'realize', 'see', 'touch', 'understand'] (9 rows)
+  '想象；设想' -> ['envisage', 'envision', 'fancy', 'figure', 'imagine', 'see', 'visualize'] (8 rows)
+  '取消' -> ['abolish', 'abrogate', 'annulment', 'cancel', 'cancellation', 'repeal', 'rescind', 'revocation'] (8 rows)
+  '分离' -> ['breakaway', 'detachment', 'disengagement', 'disjunction', 'dissociation', 'secede', 'separation', 'splinter'] (8 rows)
+  '减少' -> ['abbreviate', 'abridge', 'cutback', 'decrease', 'deduction', 'reduction', 'shorten'] (7 rows)
+  '妈妈' -> ['ma', 'mama', 'mamma', 'mom', 'mum', 'mummy', 'silent'] (7 rows)
+  '谜题；困惑' -> ['amaze', 'baffle', 'bewilder', 'mystify', 'nonplus', 'perplex', 'puzzle'] (7 rows)
+  '不一致' -> ['contradiction', 'disagreement', 'discord', 'dissonance', 'incompatibility', 'inconsistency', 'strife'] (7 rows)
+  '瘤' -> ['bulge', 'extrusion', 'hump', 'jut', 'protrusion', 'tumor', 'tumour'] (7 rows)
+  '忍受不快的人或事' -> ['bear', 'brook', 'endure', 'stand', 'suffer', 'tolerate'] (6 rows)
+  '仔细考虑' -> ['consider', 'contemplate', 'meditate', 'mull', 'muse', 'ponder'] (6 rows)
+  '是' -> ['be', 'embody', 'equalled'] (6 rows)
+  '发光' -> ['gleam', 'glint', 'glisten', 'glitter', 'radiate', 'shine'] (6 rows)
+same lemma+gloss_zh with >1 sense: 111 rows: 227
+   ('after', '在……之后') ['core20k:rank:6::editorial-provisional:6:after:01', 'core20k:rank:6::editorial-provisional:6:after:02'] ['later than a specified time or event', 'following the time when something happens']
+   ('like', '像；如同') ['core20k:rank:8::editorial-core20k-core-v3:8:01', 'core20k:rank:8::editorial-provisional:8:like:01'] ['Similar to someone or something.', 'similar to or in the manner of']
+   ('before', '在……之前') ['core20k:rank:13::editorial-provisional:13:before:01', 'core20k:rank:13::editorial-provisional:13:before:02'] ['earlier than a specified time or event', 'earlier than the time when something happens']
+   ('over', '在……上方') ['core20k:rank:16::editorial-core20k-core-v3:16:01', 'core20k:rank:16::editorial-provisional:16:over:01'] ['Above something, sometimes without touching it.', 'above or across something']
+   ('under', '在……下面') ['core20k:rank:21::editorial-provisional:21:under:01', 'core20k:rank:21::oewn-under__5.00.00.low.01'] ['below or beneath something', 'located below or beneath something else']
+   ('since', '自从；从……以来') ['core20k:rank:24::editorial-core20k-core-v3:24:01', 'core20k:rank:24::runtime-native:24:w_0193_since_ku01'] ['From a specified time in the past until a later time.', 'from a past time']
+   ('during', '在……期间') ['core20k:rank:26::editorial-core20k-core-v3:26:01', 'core20k:rank:26::runtime-native:26:w_0184_during_ku01'] ['At some time within a particular period.', 'throughout a period']
+   ('per', '每；每一') ['core20k:rank:36::editorial-core20k-core-v3:36:01', 'core20k:rank:36::runtime-native:36:w_0378_per_ku01'] ['For each unit or person.', 'for each']
+   ('meet', '见面；会面') ['core20k:rank:122::oewn-meet__2.38.01..', 'core20k:rank:122::oewn-meet__2.42.02..'] ['come together', 'be adjacent or come together']
+   ('good', '品德高尚的') ['core20k:rank:131::oewn-good__3.00.02..', 'core20k:rank:131::oewn-good__5.00.00.righteous.00'] ['morally admirable', 'of moral excellence']
+same lemma+gloss_en >1 sense: 0 rows: 0
+missing_pos rows: 107
+missing_pos lemmas: ['albeit', 'amidst', 'amongst', 'annualize', 'anybody', 'anyone', 'anytime', 'aye', 'bailout', 'baseman', 'belate', 'beleaguered', 'bio', 'botanically', 'cal', 'carb', 'carer', 'ceasefire', 'centerist', 'circa', 'coli', 'compensatory', 'councilor', 'coworker', 'dataset', 'definitively', 'dis', 'distractor', 'dunno', 'entrepreneurship', 'ere', 'everybody', 'everyone', 'fro', 'genomic', 'goodnight', 'gosh', 'grassroot', 'groundwater', 'heck', 'hey', 'ice-cream', 'impassion', 'inkjet', 'keyword', 'lest', 'mega', 'mitochondrial', 'monolog', 'mony', 'motherboard', 'multi', 'multidisciplinary', 'nucleic', 'offline', 'onboard', 'oneself', 'onto', 'opioid', 'ourselves', 'outdate', 'outstretch', 'pajamas', 'payout', 'peter', 'petit', 'policymaker', 'pre', 'protestor', 'psychosocial', 'rapids', 'reinvest', 'reseller', 'sans', 'sectoral', 'situational', 'stat', 'statehood', 'storytelling', 'subprime', 'subtype', 'summat', 'superstore', 'sweaty', 'thy', 'timescale', 'trans', 'transactional', 'transgenic', 'unauthorize', 'unquote', 'unrated', 'unto', 'versa', 'versus', 'videogame', 'whenever', 'whereas', 'whereby', 'wherein', 'whereupon', 'whichever', 'whilst', 'whoever', 'worldview', 'yep', 'yuppy']
+missing_pos source: Counter({'runtime-native': 107})
+disabled: 5 [('issue', '从……流出；发出', 'v'), ('manner', '种类；类型', 'n'), ('establish', '促成；引发', 'v'), ('trust', '委托', 'v'), ('overhaul', '从旁边经过；越过', 'v')]
+contextual in pack: 130
+词头疑应为 1
+原定义疑似错误 1
+原定义与 1
+question contains lemma word (anywhere): 17
+gloss_en contains lemma: 2085
+gloss_en <=10 chars: 268
+gloss_en <=20 chars: 2954
+rows rank<=100: 240 rank<=1000: 4407 rank>10000: 10399
