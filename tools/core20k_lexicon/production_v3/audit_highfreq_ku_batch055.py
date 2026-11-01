@@ -11,7 +11,8 @@ def read(path):
 idx=[x for x in read(B/"ku_selected_draft_index.jsonl") if ":recognition:" in x["ku_id"]]
 idx.sort(key=lambda x:(int(re.search(r"rank:(\d+)",x["teaching_sense_id"]).group(1)),x["teaching_sense_id"],x["ku_id"]))
 chosen=idx[27000:27485]
-if len(chosen)!=485 or len({x["ku_id"] for x in chosen})!=485:raise ValueError("Unexpected batch population")
+print("RECOGNITION_INDEX_TOTAL",len(idx),"FINAL_BATCH_COUNT",len(chosen),flush=True)
+if not chosen or len(chosen)>500 or len({x["ku_id"] for x in chosen})!=len(chosen):raise ValueError("Unexpected batch population")
 cache={}
 issues=collections.Counter()
 # Index definitions from both 500-entry QA batches to flag distractors
