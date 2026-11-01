@@ -1,0 +1,42 @@
+name: CG ENLEX Muse Question Rebuild V1
+on:
+  push:
+    branches: [experiment/enlex-v3-production-rebuild-20261030]
+    paths:
+      - tools/core20k_lexicon/production_v3/build_mu_question_rebuild_v1.py
+      - .github/workflows/cg-enlex-mu-question-rebuild-v1.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/core20k_lexicon/production_v3/build_mu_question_rebuild_v1.py
+      - shell: bash
+        run: |
+          set -euo pipefail
+          D=tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_questions_v1
+          mkdir -p /tmp/qreb
+          cp "$D"/*.json* /tmp/qreb/
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          for attempt in 1 2 3 4 5 6; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            mkdir -p "$D"; cp /tmp/qreb/* "$D/"
+            git add "$D"
+            if git diff --cached --quiet; then break; fi
+            git commit -m "CG ENLEX recognition review questions for integrated Muse patches"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" = 6 ]; then exit 1; fi
+          done
+          python3 - <<'PY'
+          import json,pathlib
+          d=pathlib.Path("tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_questions_v1")
+          s=json.loads((d/"summary.json").read_text())
+          assert s["safe_recognition_questions"]+s["deferred_missing_essential"]==140
+          assert s["single_answer_enabled"]==0
+          print("VERIFIED",s)
+          PY
