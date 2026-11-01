@@ -15,26 +15,34 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/core20k_lexicon/production_v3/audit_highfreq_ku_batch008.py
-      - name: Commit missing groups with safe rebased retries
+      - name: Commit only missing groups from clean remote HEAD
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          cp -r tools/core20k_lexicon/production_v3/teaching_qa/batch008 /tmp/batch008-generated
+          rm -rf tools/core20k_lexicon/production_v3/teaching_qa/batch008
           for n in $(seq -w 1 10); do
             file="tools/core20k_lexicon/production_v3/teaching_qa/batch008/qa_recognition_008_${n}.jsonl"
             for attempt in 1 2 3 4 5; do
               git fetch origin experiment/enlex-v3-production-rebuild-20261030
-              git rebase origin/experiment/enlex-v3-production-rebuild-20261030
-              if git ls-files --error-unmatch "$file" >/dev/null 2>&1; then
-                break
-              fi
+              git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+              if [ -f "$file" ]; then break; fi
+              mkdir -p "$(dirname "$file")"
+              cp "/tmp/batch008-generated/qa_recognition_008_${n}.jsonl" "$file"
               git add "$file"
               git commit -m "CG-ENLEX Batch008 recovered group ${n} (50)"
               if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
               if [ "$attempt" -eq 5 ]; then exit 1; fi
             done
           done
-          git fetch origin experiment/enlex-v3-production-rebuild-20261030
-          git rebase origin/experiment/enlex-v3-production-rebuild-20261030
-          git add tools/core20k_lexicon/production_v3/teaching_qa/batch008/summary.json
-          git diff --cached --quiet || git commit -m "CG-ENLEX: recover Batch008 summary"
-          git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030
+          for attempt in 1 2 3 4 5; do
+            git fetch origin experiment/enlex-v3-production-rebuild-20261030
+            git reset --hard origin/experiment/enlex-v3-production-rebuild-20261030
+            file="tools/core20k_lexicon/production_v3/teaching_qa/batch008/summary.json"
+            if [ -f "$file" ]; then break; fi
+            cp /tmp/batch008-generated/summary.json "$file"
+            git add "$file"
+            git commit -m "CG-ENLEX: recovered Batch008 summary"
+            if git push origin HEAD:experiment/enlex-v3-production-rebuild-20261030; then break; fi
+            if [ "$attempt" -eq 5 ]; then exit 1; fi
+          done
