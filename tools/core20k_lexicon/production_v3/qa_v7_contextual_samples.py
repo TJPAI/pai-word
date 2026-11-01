@@ -94,7 +94,7 @@ for lemma,cloze,engloss in spec:
  assert len(eligible)==1,(lemma,engloss,len(eligible))
  sid=eligible[0]["ku_id"];assert sid not in used;used.add(sid)
  x=v3[sid];y=dict(x)
- y["question"]="请根据中文义项和句子语境填写英文词（首字母："+lemma[0]+"；字母数："+str(len(lemma))+"）。\\n中文义项："+x["gloss_zh"]+"\\n"+cloze
+ y["question"]="请根据中文义项和句子语境填写英文词（首字母："+lemma[0]+"；字母数："+str(len(lemma))+"）。\n中文义项："+x["gloss_zh"]+"\n"+cloze
  y["question_format"]="contextual_cloze_draft"
  y["context_example_original"]=True
  y["editorial_review_needed"]=True
@@ -105,7 +105,7 @@ for lemma,cloze,engloss in spec:
  out.append(y)
 O=R/"active_recall_v7_contextual";O.mkdir(parents=True,exist_ok=True)
 p=O/"curated_candidates.jsonl"
-p.write_text("".join(json.dumps(x,ensure_ascii=False)+"\\n" for x in out))
+p.write_text("".join(json.dumps(x,ensure_ascii=False)+"\n" for x in out))
 summary={"original_queue":135,"contextual_candidates":len(out),"remaining_without_context":135-len(out),"verified_unique_answers":0,"manual_semantic_review_required":True,"source_modified":False,"runtime_modified":False,"sha256":hashlib.sha256(p.read_bytes()).hexdigest()}
-(O/"summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\\n")
+(O/"summary.json").write_text(json.dumps(summary,ensure_ascii=False,indent=2)+"\n")
 print("V7",json.dumps(summary,ensure_ascii=False))
