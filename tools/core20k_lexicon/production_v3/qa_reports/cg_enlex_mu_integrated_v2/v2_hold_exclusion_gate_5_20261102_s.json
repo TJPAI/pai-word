@@ -1,0 +1,47 @@
+{
+  "version": "V2_HOLD_EXCLUSION_GATE_20261102_S",
+  "purpose": "prevent erroneous auto-merge into full candidate pack",
+  "source": "v2_hold_resolution_six_20261102_r.json",
+  "excluded_lemmas": [
+    "clove",
+    "popped",
+    "bedded",
+    "webbed",
+    "mobbed"
+  ],
+  "exclusions": [
+    {
+      "lemma": "clove",
+      "reason": "Archaic preterite competing with cleft; keep out until source-attested",
+      "status": "HOLD_EXCLUDE_FROM_MERGE"
+    },
+    {
+      "lemma": "popped",
+      "reason": "Target frozen sense is bulge, candidate tests bursting/ejection",
+      "status": "HOLD_EXCLUDE_FROM_MERGE"
+    },
+    {
+      "lemma": "bedded",
+      "reason": "Natural single-answer usage for furnish-with-bed not established",
+      "status": "HOLD_EXCLUDE_FROM_MERGE"
+    },
+    {
+      "lemma": "webbed",
+      "reason": "Transitive web-verb example unverified; inflection QA not sufficient",
+      "status": "HOLD_EXCLUDE_FROM_MERGE"
+    },
+    {
+      "lemma": "mobbed",
+      "reason": "Frozen cram sense does not safely support standard mobbed someone phrase",
+      "status": "HOLD_EXCLUDE_FROM_MERGE"
+    }
+  ],
+  "reviewed": 5,
+  "exclusions_count": 5,
+  "actual_field_revisions": 0,
+  "merged": 0,
+  "identity_changes": 0,
+  "independent_certification": false,
+  "full_pack_untouched": true,
+  "runtime_untouched": true
+}
