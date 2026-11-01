@@ -1104,3 +1104,5 @@ jobs:
           assert x["total_rows"]==27471 and x["unique_ku_ids"]==27471 and x["unique_sense_ids"]==27471
           print("REMOTE QA VERIFIED",x["flag_counts"])
           PY
+
+# rerun full editorial QA with precise note matching
