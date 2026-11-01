@@ -1,0 +1,797 @@
+{
+  "scope": "draft-only; heuristic flags are not verified lexical errors",
+  "total_shards": 550,
+  "total_rows": 27471,
+  "unique_ku_ids": 27471,
+  "unique_sense_ids": 27471,
+  "coverage_target": 27471,
+  "structural_checks": "passed",
+  "flag_counts": {
+    "ambiguous_gloss_pos_groups": 2238,
+    "editorial_note_in_gloss": 35,
+    "missing_pos": 203,
+    "plus_sign_gloss": 862,
+    "very_short_gloss": 366
+  },
+  "sample_examples": {
+    "very_short_gloss": [
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:96::editorial-provisional:96:she:01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:96::editorial-provisional:96:she:01",
+        "rank": 96,
+        "lemma": "she",
+        "pos": "p",
+        "gloss_zh": "她",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:641::oewn-cloud__1.17.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:641::oewn-cloud__1.17.00..",
+        "rank": 641,
+        "lemma": "cloud",
+        "pos": "n",
+        "gloss_zh": "云",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:776::oewn-degree__1.23.03..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:776::oewn-degree__1.23.03..",
+        "rank": 776,
+        "lemma": "degree",
+        "pos": "n",
+        "gloss_zh": "度",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:955::oewn-bed__1.06.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:955::oewn-bed__1.06.00..",
+        "rank": 955,
+        "lemma": "bed",
+        "pos": "n",
+        "gloss_zh": "床",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1030::oewn-ball__1.06.01..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1030::oewn-ball__1.06.01..",
+        "rank": 1030,
+        "lemma": "ball",
+        "pos": "n",
+        "gloss_zh": "球",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1151::oewn-horse__1.05.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1151::oewn-horse__1.05.00..",
+        "rank": 1151,
+        "lemma": "horse",
+        "pos": "n",
+        "gloss_zh": "马",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1365::oewn-burst__2.38.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1365::oewn-burst__2.38.00..",
+        "rank": 1365,
+        "lemma": "burst",
+        "pos": "v",
+        "gloss_zh": "冲",
+        "category": "very_short_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1370::oewn-row__1.14.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1370::oewn-row__1.14.00..",
+        "rank": 1370,
+        "lemma": "row",
+        "pos": "n",
+        "gloss_zh": "排",
+        "category": "very_short_gloss",
+        "detail": ""
+      }
+    ],
+    "editorial_note_in_gloss": [
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:656::oewn-error__1.04.02..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:656::oewn-error__1.04.02..",
+        "rank": 656,
+        "lemma": "error",
+        "pos": "n",
+        "gloss_zh": "错误行为；判断失当导致的过错",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:656::oewn-error__1.09.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:656::oewn-error__1.09.00..",
+        "rank": 656,
+        "lemma": "error",
+        "pos": "n",
+        "gloss_zh": "误解；因错误信息产生的错误认识",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:828::oewn-wrong__3.00.02..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:828::oewn-wrong__3.00.02..",
+        "rank": 828,
+        "lemma": "wrong",
+        "pos": "a",
+        "gloss_zh": "错误的；不对的",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1039::oewn-mistake__1.04.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1039::oewn-mistake__1.04.00..",
+        "rank": 1039,
+        "lemma": "mistake",
+        "pos": "n",
+        "gloss_zh": "错误；失误",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1047::oewn-reject__2.32.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1047::oewn-reject__2.32.00..",
+        "rank": 1047,
+        "lemma": "reject",
+        "pos": "v",
+        "gloss_zh": "认定不合适或错误而拒绝",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1648::oewn-false__3.00.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1648::oewn-false__3.00.00..",
+        "rank": 1648,
+        "lemma": "false",
+        "pos": "a",
+        "gloss_zh": "错误的；假的",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3010::oewn-fancy__1.09.02..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:3010::oewn-fancy__1.09.02..",
+        "rank": 3010,
+        "lemma": "fancy",
+        "pos": "n",
+        "gloss_zh": "流行的错误观念",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3708::oewn-misuse__2.34.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:3708::oewn-misuse__2.34.00..",
+        "rank": 3708,
+        "lemma": "misuse",
+        "pos": "v",
+        "gloss_zh": "误用；错误使用",
+        "category": "editorial_note_in_gloss",
+        "detail": ""
+      }
+    ],
+    "plus_sign_gloss": [
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1378::oewn-variable__3.00.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1378::oewn-variable__3.00.00..",
+        "rank": 1378,
+        "lemma": "variable",
+        "pos": "a",
+        "gloss_zh": "变化无常+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1410::oewn-emotional__3.00.02..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1410::oewn-emotional__3.00.02..",
+        "rank": 1410,
+        "lemma": "emotional",
+        "pos": "a",
+        "gloss_zh": "情感+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1420::oewn-minor__3.00.02..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1420::oewn-minor__3.00.02..",
+        "rank": 1420,
+        "lemma": "minor",
+        "pos": "a",
+        "gloss_zh": "次要+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1432::oewn-dangerous__3.00.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1432::oewn-dangerous__3.00.00..",
+        "rank": 1432,
+        "lemma": "dangerous",
+        "pos": "a",
+        "gloss_zh": "不安全+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1460::oewn-separate__3.00.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1460::oewn-separate__3.00.00..",
+        "rank": 1460,
+        "lemma": "separate",
+        "pos": "a",
+        "gloss_zh": "不相关+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1503::oewn-broad__3.00.04..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1503::oewn-broad__3.00.04..",
+        "rank": 1503,
+        "lemma": "broad",
+        "pos": "a",
+        "gloss_zh": "宽+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1513::oewn-reasonable__3.00.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1513::oewn-reasonable__3.00.00..",
+        "rank": 1513,
+        "lemma": "reasonable",
+        "pos": "a",
+        "gloss_zh": "判断正确+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1529::oewn-dependent__3.00.00..:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1529::oewn-dependent__3.00.00..",
+        "rank": 1529,
+        "lemma": "dependent",
+        "pos": "a",
+        "gloss_zh": "依赖+的",
+        "category": "plus_sign_gloss",
+        "detail": ""
+      }
+    ],
+    "missing_pos": [
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1805::runtime-native:1805:w_0766_anyone_ku01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1805::runtime-native:1805:w_0766_anyone_ku01",
+        "rank": 1805,
+        "lemma": "anyone",
+        "pos": null,
+        "gloss_zh": "任何人；有人",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1904::runtime-native:1904:w_0659_everyone_ku01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:1904::runtime-native:1904:w_0659_everyone_ku01",
+        "rank": 1904,
+        "lemma": "everyone",
+        "pos": null,
+        "gloss_zh": "每个人；大家",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2065::runtime-native:2065:w_1394_whereas_ku_s01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:2065::runtime-native:2065:w_1394_whereas_ku_s01",
+        "rank": 2065,
+        "lemma": "whereas",
+        "pos": null,
+        "gloss_zh": "然而；而；相比之下",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2079::runtime-native:2079:w_1453_anybody_ku_s01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:2079::runtime-native:2079:w_1453_anybody_ku_s01",
+        "rank": 2079,
+        "lemma": "anybody",
+        "pos": null,
+        "gloss_zh": "任何人；有人",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2290::runtime-native:2290:w_1639_ourselves_ku_s01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:2290::runtime-native:2290:w_1639_ourselves_ku_s01",
+        "rank": 2290,
+        "lemma": "ourselves",
+        "pos": null,
+        "gloss_zh": "我们自己；我们亲自",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2491::runtime-native:2491:w_2418_hey_ku_s01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:2491::runtime-native:2491:w_2418_hey_ku_s01",
+        "rank": 2491,
+        "lemma": "hey",
+        "pos": null,
+        "gloss_zh": "嘿；喂",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2514::runtime-native:2514:w_0949_everybody_ku01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:2514::runtime-native:2514:w_0949_everybody_ku01",
+        "rank": 2514,
+        "lemma": "everybody",
+        "pos": null,
+        "gloss_zh": "每个人；大家",
+        "category": "missing_pos",
+        "detail": ""
+      },
+      {
+        "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2591::runtime-native:2591:w_6986_heck_ku_s01:zh_to_en:01",
+        "teaching_sense_id": "core20k:rank:2591::runtime-native:2591:w_6986_heck_ku_s01",
+        "rank": 2591,
+        "lemma": "heck",
+        "pos": null,
+        "gloss_zh": "有吸引力的；引起兴趣的",
+        "category": "missing_pos",
+        "detail": ""
+      }
+    ],
+    "ambiguous_gloss_pos_groups": [
+      {
+        "gloss_zh_normalized": "妨碍",
+        "pos": "v",
+        "distinct_lemmas": 9,
+        "lemma_sample": [
+          "foreclose",
+          "forestall",
+          "hinder",
+          "hobble",
+          "impede",
+          "interfere",
+          "obstruct",
+          "preclude",
+          "violate"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "一致",
+        "pos": "n",
+        "distinct_lemmas": 8,
+        "lemma_sample": [
+          "accordance",
+          "compliance",
+          "concord",
+          "concordance",
+          "rapport",
+          "sympathy",
+          "unanimity",
+          "unison"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "理解领会",
+        "pos": "v",
+        "distinct_lemmas": 8,
+        "lemma_sample": [
+          "apprehend",
+          "comprehend",
+          "get",
+          "grasp",
+          "realize",
+          "see",
+          "touch",
+          "understand"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "不一致",
+        "pos": "n",
+        "distinct_lemmas": 7,
+        "lemma_sample": [
+          "contradiction",
+          "disagreement",
+          "discord",
+          "dissonance",
+          "incompatibility",
+          "inconsistency",
+          "strife"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "想象设想",
+        "pos": "v",
+        "distinct_lemmas": 7,
+        "lemma_sample": [
+          "envisage",
+          "envision",
+          "fancy",
+          "figure",
+          "imagine",
+          "see",
+          "visualize"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "瘤",
+        "pos": "n",
+        "distinct_lemmas": 7,
+        "lemma_sample": [
+          "bulge",
+          "extrusion",
+          "hump",
+          "jut",
+          "protrusion",
+          "tumor",
+          "tumour"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "谜题困惑",
+        "pos": "v",
+        "distinct_lemmas": 7,
+        "lemma_sample": [
+          "amaze",
+          "baffle",
+          "bewilder",
+          "mystify",
+          "nonplus",
+          "perplex",
+          "puzzle"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "不和",
+        "pos": "n",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "alienation",
+          "antagonism",
+          "clash",
+          "enmity",
+          "estrangement",
+          "friction"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "仔细考虑",
+        "pos": "v",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "consider",
+          "contemplate",
+          "meditate",
+          "mull",
+          "muse",
+          "ponder"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "凌驾",
+        "pos": "v",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "exceed",
+          "excel",
+          "outdo",
+          "outperform",
+          "outstrip",
+          "surpass"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "分离",
+        "pos": "n",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "breakaway",
+          "detachment",
+          "disengagement",
+          "disjunction",
+          "dissociation",
+          "separation"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "动乱",
+        "pos": "n",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "ferment",
+          "fermentation",
+          "tumult",
+          "unrest",
+          "upheaval",
+          "uproar"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "发光",
+        "pos": "v",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "gleam",
+          "glint",
+          "glisten",
+          "glitter",
+          "radiate",
+          "shine"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "忍受不快的人或事",
+        "pos": "v",
+        "distinct_lemmas": 6,
+        "lemma_sample": [
+          "bear",
+          "brook",
+          "endure",
+          "stand",
+          "suffer",
+          "tolerate"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "不准",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "disallow",
+          "forbid",
+          "prohibit",
+          "proscribe",
+          "veto"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "不幸",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "adversity",
+          "hardship",
+          "misery",
+          "misfortune",
+          "woe"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "专家",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "sensation",
+          "superstar",
+          "virtuoso",
+          "whiz",
+          "wizard"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "两个同类事物一对",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "couple",
+          "couplet",
+          "duet",
+          "duo",
+          "pair"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "严厉斥责",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "berate",
+          "chastise",
+          "chide",
+          "rebuke",
+          "scold"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "严重威胁安全的令人担忧的",
+        "pos": "s",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "dangerous",
+          "grave",
+          "grievous",
+          "serious",
+          "severe"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "亵渎",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "curse",
+          "desecrate",
+          "rape",
+          "ravish",
+          "swear"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "估计大致判断时间或数量",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "approximate",
+          "estimate",
+          "gauge",
+          "guess",
+          "judge"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "使烦恼",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "annoy",
+          "irritate",
+          "perturb",
+          "rile",
+          "vex"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "使理论化",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "conjecture",
+          "hypothesize",
+          "speculate",
+          "suppose",
+          "theorize"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "使结合",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "coalesce",
+          "conflate",
+          "fuse",
+          "merge",
+          "mix"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "关键的必不可少的",
+        "pos": "s",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "cardinal",
+          "central",
+          "fundamental",
+          "key",
+          "primal"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "取消",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "abolish",
+          "abrogate",
+          "cancel",
+          "repeal",
+          "rescind"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "大厅门厅",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "anteroom",
+          "foyer",
+          "hall",
+          "lobby",
+          "vestibule"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "大声喊叫呼喊",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "call",
+          "cry",
+          "crying",
+          "outcry",
+          "yell"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "妈妈",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "ma",
+          "mama",
+          "mamma",
+          "mom",
+          "mummy"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "恼怒",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "aggravation",
+          "annoyance",
+          "exasperation",
+          "irritation",
+          "vexation"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "揭示透露",
+        "pos": "v",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "disclose",
+          "discover",
+          "divulge",
+          "expose",
+          "reveal"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "教区牧师",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "curate",
+          "minister",
+          "parson",
+          "pastor",
+          "rector"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "旁观者",
+        "pos": "n",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "bystander",
+          "onlooker",
+          "spectator",
+          "viewer",
+          "watcher"
+        ]
+      },
+      {
+        "gloss_zh_normalized": "显然明显地",
+        "pos": "r",
+        "distinct_lemmas": 5,
+        "lemma_sample": [
+          "evidently",
+          "manifestly",
+          "obviously",
+          "patently",
+          "plainly"
+        ]
+      }
+    ]
+  },
+  "flagged_rows": 1466,
+  "ambiguous_gloss_pos_groups": 2238,
+  "runtime_modified": false,
+  "source_kus_modified": false
+}
