@@ -5,6 +5,7 @@ on:
       - experiment/enlex-v3-production-rebuild-20261030
     paths:
       - .github/workflows/cg-enlex-dedupe-audit.yml
+      - tools/core20k_lexicon/production_v3/build_dedupe_manifest.py
   workflow_dispatch:
 permissions:
   contents: write
