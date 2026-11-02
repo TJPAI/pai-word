@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {loadScene1341StagingCatalog,createScene1341StagingCatalog} from './scene1341-staging-catalog.mjs';
+const dir='tools/integration/scene1341-source';
+assert.throws(()=>createScene1341StagingCatalog({structuralBytes:Buffer.from('fake'),statusBytes:Buffer.from('fake')}),/SCENE1341_SOURCE_DRIFT/);
+const catalog=loadScene1341StagingCatalog(dir);
+assert.equal(catalog.scenes.length,1341);
+assert.equal(catalog.productionEligible,false);
+assert.equal(catalog.stagingOnly,true);
+assert.equal(catalog.getScene('S001'),null,'legacy IDs must not silently resolve to SC50');
+assert.equal(catalog.getScene('SC50-0001').sceneId,'SC50-0001');
+assert.equal(catalog.scenes.filter(x=>x.legacyReferences.length).length,410);
+assert.equal(catalog.scenes.reduce((n,x)=>n+x.legacyReferences.length,0),500);
+assert(catalog.scenes.every(x=>!x.playable&&!x.migrationApproved));
+console.log('PASS Scene1341 read-only staging; 1341 identities, 410 linked, 500 references, no playback or migration');
