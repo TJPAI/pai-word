@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {openLocalScene1341Query,createScene1341IsolatedQuery} from './scene1341-isolated-query.mjs';
+const engine=openLocalScene1341Query();
+assert.equal(engine.semanticCertified,false);
+assert.equal(engine.playable,false);
+assert.deepEqual(engine.search(' ').results,[]);
+assert.throws(()=>engine.search('test',{limit:21}),/SCENE1341_INVALID_LIMIT/);
+assert.throws(()=>createScene1341IsolatedQuery({stagingOnly:false,productionEligible:true,scenes:[]}),/SCENE1341_UNVERIFIED_CATALOG/);
+const x=engine.search('学习');
+assert.equal(x.mode,'TITLE_ONLY_NOT_SEMANTIC');
+assert(x.results.every(r=>r.sceneId.startsWith('SC50-')&&!r.playable&&!r.migrationApproved));
+const catalog=engine.search('S001');
+assert(catalog.results.every(r=>r.sceneId!=='S001'));
+console.log('PASS isolated Scene1341 title-only query; no semantic, KU, migration or production claims');
