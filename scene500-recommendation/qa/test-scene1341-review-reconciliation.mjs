@@ -1,5 +1,6 @@
 import fs from 'node:fs';import assert from 'node:assert/strict';
-const root='scene500-recommendation/qa/';
+import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=path.dirname(fileURLToPath(import.meta.url))+path.sep;
 const x=JSON.parse(fs.readFileSync(root+'scene1341-dual-review-reconciliation.v1.json','utf8'));
 const a=JSON.parse(fs.readFileSync(root+'scene1341-semantic-review-batch01.v1.json','utf8'));
 const b=JSON.parse(fs.readFileSync(root+'scene1341-semantic-review-batch02.v1.json','utf8'));
