@@ -1,0 +1,48 @@
+{
+  "schema": "cg-enlex-scene1341-source-discovery-v1",
+  "role": "CG-ENLEX",
+  "date": "2026-11-02",
+  "scope": "read-only external Scene50 source discovery and structure validation; not catalog approval",
+  "sources": [
+    {
+      "name": "PAI_Word_Scene50_V1.5_Structural_Catalog.csv",
+      "library_file_id": "libfile_f5b470eafc6481918a94a37989d5a64f",
+      "bytes": 212394,
+      "sha256": "5ae9ba95eeecfd012782c51396166a5f747a428917217e05221a769bb4e30d9c",
+      "rows": 1341,
+      "id_column": "id",
+      "name_column": "revised_name"
+    },
+    {
+      "name": "all_1341_scene_status.csv",
+      "library_file_id": "libfile_c5bc145f18548191b71f1e708214e696",
+      "bytes": 127996,
+      "sha256": "bbd7c8ff92bd4f3c5e51f3d563717d3a732673a40d015d89bd578704d594b36b",
+      "rows": 1341,
+      "id_column": "scene_id",
+      "name_column": "scene_name"
+    }
+  ],
+  "checks": {
+    "unique_scene_ids_each": 1341,
+    "id_sets_equal": true,
+    "revised_name_matches_status_name": 1341,
+    "original_name_differs_from_status_name": 84,
+    "candidate_counts_equal": 1341,
+    "structural_actions_equal": 1341,
+    "direct_ge50": 43,
+    "direct_lt50": 2,
+    "unseeded_high_sim": 1,
+    "no_evidence": 1295,
+    "all_certified_count_zero": true,
+    "all_gate_not_certified": true,
+    "scene500_nonempty_reference_rows": 410
+  },
+  "boundaries": [
+    "Independent SC50 IDs are not S001-S500 IDs.",
+    "Counts refer to direct candidates, not validated headword/Sense or playable KU coverage.",
+    "Source files exist in user ChatGPT Library; not imported into this Git branch.",
+    "External catalog remains candidate, not CG-REC-approved frozen release.",
+    "Do not modify frozen ENLEX V2, SRS, Scene500 or Runtime."
+  ]
+}
