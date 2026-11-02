@@ -1,0 +1,1686 @@
+{
+  "schema": "CG_QA_V2_ALL_RISK_TRIAGE_20261102_V1",
+  "freeze_version": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "source_blobs": [
+    "21f97312b4debab4b662f41939cac29a091d89b9",
+    "46fd8e8171dba9512c985eb7926a6d198cc0f564",
+    "8fdd14708abbd0f18803ebf87975bfa34645348a",
+    "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+    "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+    "7b6f1fb35edc0a52966a84861cb735476ca6fa59"
+  ],
+  "records_scanned": 27471,
+  "priority_counts": {
+    "P0": 117,
+    "P1": 15,
+    "P2": 27339,
+    "P3": 0
+  },
+  "reason_counts": {
+    "ANSWER_NOT_VERIFIED": 27471,
+    "MODAL_POS_SUSPECT": 15,
+    "SOURCE_LEMMA_MISMATCH": 98,
+    "EXPLICIT_FLAG": 84,
+    "POS_MISSING": 6
+  },
+  "method": "Automated deterministic heuristics on frozen six-blob snapshot. Not semantic certification. P0 identity/flag blockers; P1 likely edit risks; P2 answer uniqueness not verified; P3 none. Every level requires independent AI judgment before semantic PASS.",
+  "priority_p0_p1": [
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::editorial-provisional:5:will:01:zh_to_en:01",
+      "sense_id": "core20k:rank:5::editorial-provisional:5:will:01",
+      "headword": "will",
+      "rank": 5,
+      "shard": 1,
+      "line": 19,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::editorial-provisional:5:will:02:zh_to_en:01",
+      "sense_id": "core20k:rank:5::editorial-provisional:5:will:02",
+      "headword": "will",
+      "rank": 5,
+      "shard": 1,
+      "line": 20,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9::editorial-provisional:9:may:01:zh_to_en:01",
+      "sense_id": "core20k:rank:9::editorial-provisional:9:may:01",
+      "headword": "may",
+      "rank": 9,
+      "shard": 1,
+      "line": 43,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9::editorial-provisional:9:may:02:zh_to_en:01",
+      "sense_id": "core20k:rank:9::editorial-provisional:9:may:02",
+      "headword": "may",
+      "rank": 9,
+      "shard": 1,
+      "line": 44,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10::editorial-provisional:10:should:01:zh_to_en:01",
+      "sense_id": "core20k:rank:10::editorial-provisional:10:should:01",
+      "headword": "should",
+      "rank": 10,
+      "shard": 1,
+      "line": 46,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10::editorial-provisional:10:should:02:zh_to_en:01",
+      "sense_id": "core20k:rank:10::editorial-provisional:10:should:02",
+      "headword": "should",
+      "rank": 10,
+      "shard": 1,
+      "line": 47,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12::editorial-provisional:12:could:01:zh_to_en:01",
+      "sense_id": "core20k:rank:12::editorial-provisional:12:could:01",
+      "headword": "could",
+      "rank": 12,
+      "shard": 1,
+      "line": 53,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12::editorial-provisional:12:could:03:zh_to_en:01",
+      "sense_id": "core20k:rank:12::editorial-provisional:12:could:03",
+      "headword": "could",
+      "rank": 12,
+      "shard": 1,
+      "line": 55,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::editorial-provisional:14:can:01:zh_to_en:01",
+      "sense_id": "core20k:rank:14::editorial-provisional:14:can:01",
+      "headword": "can",
+      "rank": 14,
+      "shard": 1,
+      "line": 60,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::editorial-provisional:14:can:02:zh_to_en:01",
+      "sense_id": "core20k:rank:14::editorial-provisional:14:can:02",
+      "headword": "can",
+      "rank": 14,
+      "shard": 1,
+      "line": 61,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::editorial-provisional:14:can:03:zh_to_en:01",
+      "sense_id": "core20k:rank:14::editorial-provisional:14:can:03",
+      "headword": "can",
+      "rank": 14,
+      "shard": 1,
+      "line": 62,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:22::editorial-provisional:22:might:01:zh_to_en:01",
+      "sense_id": "core20k:rank:22::editorial-provisional:22:might:01",
+      "headword": "might",
+      "rank": 22,
+      "shard": 1,
+      "line": 93,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:22::editorial-provisional:22:might:02:zh_to_en:01",
+      "sense_id": "core20k:rank:22::editorial-provisional:22:might:02",
+      "headword": "might",
+      "rank": 22,
+      "shard": 1,
+      "line": 94,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:27::editorial-provisional:27:must:01:zh_to_en:01",
+      "sense_id": "core20k:rank:27::editorial-provisional:27:must:01",
+      "headword": "must",
+      "rank": 27,
+      "shard": 1,
+      "line": 106,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:27::editorial-provisional:27:must:02:zh_to_en:01",
+      "sense_id": "core20k:rank:27::editorial-provisional:27:must:02",
+      "headword": "must",
+      "rank": 27,
+      "shard": 1,
+      "line": 107,
+      "priority": "P1",
+      "reasons": [
+        "MODAL_POS_SUSPECT"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1978::oewn-medium__1.10.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:1978::oewn-medium__1.10.01..",
+      "headword": "media",
+      "rank": 1978,
+      "shard": 2,
+      "line": 2357,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2096::oewn-criterion__1.10.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:2096::oewn-criterion__1.10.00..",
+      "headword": "criteria",
+      "rank": 2096,
+      "shard": 2,
+      "line": 2597,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2591::runtime-native:2591:w_6986_heck_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:2591::runtime-native:2591:w_6986_heck_ku_s01",
+      "headword": "heck",
+      "rank": 2591,
+      "shard": 2,
+      "line": 3525,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3997::oewn-cafe__1.06.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:3997::oewn-cafe__1.06.00..",
+      "headword": "café",
+      "rank": 3997,
+      "shard": 3,
+      "line": 948,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4801::oewn-penny__1.23.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:4801::oewn-penny__1.23.00..",
+      "headword": "pence",
+      "rank": 4801,
+      "shard": 3,
+      "line": 1970,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5349::runtime-native:5349:w_11162_mega_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:5349::runtime-native:5349:w_11162_mega_ku_s01",
+      "headword": "mega",
+      "rank": 5349,
+      "shard": 3,
+      "line": 2633,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5362::runtime-native:5362:w_5951_pre_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:5362::runtime-native:5362:w_5951_pre_ku_s01",
+      "headword": "pre",
+      "rank": 5362,
+      "shard": 3,
+      "line": 2647,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5559::oewn-salesperson__1.18.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:5559::oewn-salesperson__1.18.00..",
+      "headword": "salespeople",
+      "rank": 5559,
+      "shard": 3,
+      "line": 2884,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6141::runtime-native:6141:w_9744_trans_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:6141::runtime-native:6141:w_9744_trans_ku_s01",
+      "headword": "trans",
+      "rank": 6141,
+      "shard": 3,
+      "line": 3567,
+      "priority": "P0",
+      "reasons": [
+        "POS_MISSING"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6190::oewn-work__2.41.02..:zh_to_en:01",
+      "sense_id": "core20k:rank:6190::oewn-work__2.41.02..",
+      "headword": "wrought",
+      "rank": 6190,
+      "shard": 3,
+      "line": 3629,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6283::runtime-native:6283:w_10817_onboard_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:6283::runtime-native:6283:w_10817_onboard_ku_s01",
+      "headword": "onboard",
+      "rank": 6283,
+      "shard": 3,
+      "line": 3738,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7297::oewn-stamen__1.20.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:7297::oewn-stamen__1.20.00..",
+      "headword": "stamina",
+      "rank": 7297,
+      "shard": 4,
+      "line": 318,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7943::runtime-native:7943:w_9795_videogame_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:7943::runtime-native:7943:w_9795_videogame_ku_s01",
+      "headword": "videogame",
+      "rank": 7943,
+      "shard": 4,
+      "line": 1030,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8216::oewn-in--law__1.18.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:8216::oewn-in--law__1.18.00..",
+      "headword": "in-law",
+      "rank": 8216,
+      "shard": 4,
+      "line": 1331,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8298::runtime-native:8298:w_8303_pajamas_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:8298::runtime-native:8298:w_8303_pajamas_ku_s01",
+      "headword": "pajamas",
+      "rank": 8298,
+      "shard": 4,
+      "line": 1427,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8475::runtime-native:8475:w_8069_outdate_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:8475::runtime-native:8475:w_8069_outdate_ku_s01",
+      "headword": "outdate",
+      "rank": 8475,
+      "shard": 4,
+      "line": 1618,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8486::runtime-native:8486:w_11216_centerist_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:8486::runtime-native:8486:w_11216_centerist_ku_s01",
+      "headword": "centerist",
+      "rank": 8486,
+      "shard": 4,
+      "line": 1630,
+      "priority": "P0",
+      "reasons": [
+        "POS_MISSING"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8849::runtime-native:8849:w_7472_ice_cream_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:8849::runtime-native:8849:w_7472_ice_cream_ku_s01",
+      "headword": "ice-cream",
+      "rank": 8849,
+      "shard": 4,
+      "line": 2032,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9022::oewn-dry__3.00.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:9022::oewn-dry__3.00.01..",
+      "headword": "dryer",
+      "rank": 9022,
+      "shard": 4,
+      "line": 2223,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9591::oewn-caput__1.25.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:9591::oewn-caput__1.25.00..",
+      "headword": "capita",
+      "rank": 9591,
+      "shard": 4,
+      "line": 2875,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9849::runtime-native:9849:w_8860_coli_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:9849::runtime-native:9849:w_8860_coli_ku_s01",
+      "headword": "coli",
+      "rank": 9849,
+      "shard": 4,
+      "line": 3167,
+      "priority": "P0",
+      "reasons": [
+        "POS_MISSING"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9880::oewn-x--ray__1.19.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:9880::oewn-x--ray__1.19.00..",
+      "headword": "x-ray",
+      "rank": 9880,
+      "shard": 4,
+      "line": 3200,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9899::runtime-native:9899:w_12636_yuppy_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:9899::runtime-native:9899:w_12636_yuppy_ku_s01",
+      "headword": "yuppy",
+      "rank": 9899,
+      "shard": 4,
+      "line": 3222,
+      "priority": "P0",
+      "reasons": [
+        "POS_MISSING"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10414::runtime-native:10414:w_8721_fro_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:10414::runtime-native:10414:w_8721_fro_ku_s01",
+      "headword": "fro",
+      "rank": 10414,
+      "shard": 4,
+      "line": 3803,
+      "priority": "P0",
+      "reasons": [
+        "POS_MISSING"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10766::runtime-native:10766:w_12297_impassion_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:10766::runtime-native:10766:w_12297_impassion_ku_s01",
+      "headword": "impassion",
+      "rank": 10766,
+      "shard": 4,
+      "line": 4187,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01",
+      "headword": "versa",
+      "rank": 11092,
+      "shard": 4,
+      "line": 4536,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11302::runtime-native:11302:w_10524_goodnight_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:11302::runtime-native:11302:w_10524_goodnight_ku_s01",
+      "headword": "goodnight",
+      "rank": 11302,
+      "shard": 5,
+      "line": 178,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11366::runtime-native:11366:w_10732_petit_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:11366::runtime-native:11366:w_10732_petit_ku_s01",
+      "headword": "petit",
+      "rank": 11366,
+      "shard": 5,
+      "line": 246,
+      "priority": "P0",
+      "reasons": [
+        "POS_MISSING"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11704::oewn-travel__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:11704::oewn-travel__2.38.00..",
+      "headword": "travelled",
+      "rank": 11704,
+      "shard": 5,
+      "line": 605,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11829::oewn-cleave__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:11829::oewn-cleave__2.35.00..",
+      "headword": "clove",
+      "rank": 11829,
+      "shard": 5,
+      "line": 737,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11925::oewn-vis--a--vis__1.09.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:11925::oewn-vis--a--vis__1.09.00..",
+      "headword": "vis-à-vis",
+      "rank": 11925,
+      "shard": 5,
+      "line": 841,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12061::oewn-squat__5.00.00.short.03:zh_to_en:01",
+      "sense_id": "core20k:rank:12061::oewn-squat__5.00.00.short.03",
+      "headword": "squatter",
+      "rank": 12061,
+      "shard": 5,
+      "line": 984,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12184::oewn-communique__1.10.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:12184::oewn-communique__1.10.00..",
+      "headword": "communiqué",
+      "rank": 12184,
+      "shard": 5,
+      "line": 1108,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12474::oewn-slay__2.41.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:12474::oewn-slay__2.41.00..",
+      "headword": "slew",
+      "rank": 12474,
+      "shard": 5,
+      "line": 1406,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12801::oewn-cry__1.10.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:12801::oewn-cry__1.10.00..",
+      "headword": "crying",
+      "rank": 12801,
+      "shard": 5,
+      "line": 1781,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12847::runtime-native:12847:w_12003_dis_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:12847::runtime-native:12847:w_12003_dis_ku_s01",
+      "headword": "dis",
+      "rank": 12847,
+      "shard": 5,
+      "line": 1839,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12905::runtime-native:12905:w_12372_multi_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:12905::runtime-native:12905:w_12372_multi_ku_s01",
+      "headword": "multi",
+      "rank": 12905,
+      "shard": 5,
+      "line": 1907,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13087::oewn-cliche__1.10.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:13087::oewn-cliche__1.10.00..",
+      "headword": "cliché",
+      "rank": 13087,
+      "shard": 5,
+      "line": 2096,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13304::oewn-signal__2.32.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:13304::oewn-signal__2.32.00..",
+      "headword": "signalled",
+      "rank": 13304,
+      "shard": 5,
+      "line": 2326,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13517::oewn-entree__1.13.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:13517::oewn-entree__1.13.00..",
+      "headword": "entrée",
+      "rank": 13517,
+      "shard": 5,
+      "line": 2542,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13601::oewn-beat__2.33.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:13601::oewn-beat__2.33.00..",
+      "headword": "beaten",
+      "rank": 13601,
+      "shard": 5,
+      "line": 2629,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13645::oewn-transfer__2.41.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:13645::oewn-transfer__2.41.00..",
+      "headword": "transferred",
+      "rank": 13645,
+      "shard": 5,
+      "line": 2674,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13724::oewn-drop__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:13724::oewn-drop__2.38.01..",
+      "headword": "dropped",
+      "rank": 13724,
+      "shard": 5,
+      "line": 2755,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13903::oewn-quit__2.42.04..:zh_to_en:01",
+      "sense_id": "core20k:rank:13903::oewn-quit__2.42.04..",
+      "headword": "quitted",
+      "rank": 13903,
+      "shard": 5,
+      "line": 2942,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14347::oewn-strip__2.40.03..:zh_to_en:01",
+      "sense_id": "core20k:rank:14347::oewn-strip__2.40.03..",
+      "headword": "stripped",
+      "rank": 14347,
+      "shard": 5,
+      "line": 3397,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14417::oewn-ship__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14417::oewn-ship__2.38.00..",
+      "headword": "shipped",
+      "rank": 14417,
+      "shard": 5,
+      "line": 3477,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14452::oewn-ring__2.39.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14452::oewn-ring__2.39.00..",
+      "headword": "rang",
+      "rank": 14452,
+      "shard": 5,
+      "line": 3515,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14551::oewn-easy__3.00.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:14551::oewn-easy__3.00.01..",
+      "headword": "easier",
+      "rank": 14551,
+      "shard": 5,
+      "line": 3619,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14583::oewn-bed__2.40.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14583::oewn-bed__2.40.00..",
+      "headword": "bedded",
+      "rank": 14583,
+      "shard": 5,
+      "line": 3651,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14592::oewn-chat__2.32.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14592::oewn-chat__2.32.00..",
+      "headword": "chatted",
+      "rank": 14592,
+      "shard": 5,
+      "line": 3660,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14719::oewn-tie__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14719::oewn-tie__2.35.00..",
+      "headword": "tying",
+      "rank": 14719,
+      "shard": 5,
+      "line": 3806,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14726::oewn-scan__2.39.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:14726::oewn-scan__2.39.01..",
+      "headword": "scanned",
+      "rank": 14726,
+      "shard": 5,
+      "line": 3813,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14744::oewn-ride__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:14744::oewn-ride__2.38.01..",
+      "headword": "rode",
+      "rank": 14744,
+      "shard": 5,
+      "line": 3831,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14753::oewn-spot__2.39.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14753::oewn-spot__2.39.00..",
+      "headword": "spotted",
+      "rank": 14753,
+      "shard": 5,
+      "line": 3840,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14794::oewn-map__2.36.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14794::oewn-map__2.36.00..",
+      "headword": "mapped",
+      "rank": 14794,
+      "shard": 5,
+      "line": 3887,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14831::oewn-strike__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14831::oewn-strike__2.35.00..",
+      "headword": "struck",
+      "rank": 14831,
+      "shard": 5,
+      "line": 3925,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14923::oewn-scan__2.39.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:14923::oewn-scan__2.39.01..",
+      "headword": "scanning",
+      "rank": 14923,
+      "shard": 5,
+      "line": 4024,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15023::oewn-crop__2.35.02..:zh_to_en:01",
+      "sense_id": "core20k:rank:15023::oewn-crop__2.35.02..",
+      "headword": "cropped",
+      "rank": 15023,
+      "shard": 5,
+      "line": 4129,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15337::oewn-plot__2.31.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:15337::oewn-plot__2.31.00..",
+      "headword": "plotted",
+      "rank": 15337,
+      "shard": 5,
+      "line": 4452,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15665::oewn-label__2.32.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:15665::oewn-label__2.32.00..",
+      "headword": "labelled",
+      "rank": 15665,
+      "shard": 6,
+      "line": 210,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15926::oewn-pop__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:15926::oewn-pop__2.38.00..",
+      "headword": "popped",
+      "rank": 15926,
+      "shard": 6,
+      "line": 475,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16047::oewn-spring__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:16047::oewn-spring__2.38.01..",
+      "headword": "sprang",
+      "rank": 16047,
+      "shard": 6,
+      "line": 596,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16071::oewn-trek__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:16071::oewn-trek__2.38.01..",
+      "headword": "trekking",
+      "rank": 16071,
+      "shard": 6,
+      "line": 620,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16072::oewn-pet__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16072::oewn-pet__2.35.00..",
+      "headword": "petted",
+      "rank": 16072,
+      "shard": 6,
+      "line": 621,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16089::oewn-map__2.36.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16089::oewn-map__2.36.00..",
+      "headword": "mapping",
+      "rank": 16089,
+      "shard": 6,
+      "line": 638,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16114::oewn-sum__2.42.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16114::oewn-sum__2.42.00..",
+      "headword": "summed",
+      "rank": 16114,
+      "shard": 6,
+      "line": 663,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16169::oewn-deeply__4.02.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16169::oewn-deeply__4.02.00..",
+      "headword": "deeper",
+      "rank": 16169,
+      "shard": 6,
+      "line": 718,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16203::oewn-swell__2.30.02..:zh_to_en:01",
+      "sense_id": "core20k:rank:16203::oewn-swell__2.30.02..",
+      "headword": "swollen",
+      "rank": 16203,
+      "shard": 6,
+      "line": 752,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16363::oewn-hug__2.35.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:16363::oewn-hug__2.35.01..",
+      "headword": "hugged",
+      "rank": 16363,
+      "shard": 6,
+      "line": 913,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16398::oewn-embed__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16398::oewn-embed__2.35.00..",
+      "headword": "embedding",
+      "rank": 16398,
+      "shard": 6,
+      "line": 948,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16423::oewn-sin__2.41.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16423::oewn-sin__2.41.00..",
+      "headword": "sinned",
+      "rank": 16423,
+      "shard": 6,
+      "line": 973,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16444::oewn-squat__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16444::oewn-squat__2.35.00..",
+      "headword": "squatted",
+      "rank": 16444,
+      "shard": 6,
+      "line": 994,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16450::oewn-chop__2.35.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:16450::oewn-chop__2.35.01..",
+      "headword": "chopped",
+      "rank": 16450,
+      "shard": 6,
+      "line": 1000,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16491::oewn-smell__2.39.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:16491::oewn-smell__2.39.01..",
+      "headword": "smelt",
+      "rank": 16491,
+      "shard": 6,
+      "line": 1040,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16757::oewn-rig__2.41.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16757::oewn-rig__2.41.00..",
+      "headword": "rigging",
+      "rank": 16757,
+      "shard": 6,
+      "line": 1309,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16901::oewn-equal__2.42.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16901::oewn-equal__2.42.00..",
+      "headword": "equalled",
+      "rank": 16901,
+      "shard": 6,
+      "line": 1453,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16906::oewn-attache__1.18.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16906::oewn-attache__1.18.00..",
+      "headword": "attaché",
+      "rank": 16906,
+      "shard": 6,
+      "line": 1459,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16907::oewn-stab__2.35.02..:zh_to_en:01",
+      "sense_id": "core20k:rank:16907::oewn-stab__2.35.02..",
+      "headword": "stabbing",
+      "rank": 16907,
+      "shard": 6,
+      "line": 1460,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16933::oewn-transfer__2.41.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16933::oewn-transfer__2.41.00..",
+      "headword": "transferring",
+      "rank": 16933,
+      "shard": 6,
+      "line": 1486,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16966::oewn-trip__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16966::oewn-trip__2.38.00..",
+      "headword": "tripped",
+      "rank": 16966,
+      "shard": 6,
+      "line": 1519,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17032::oewn-nod__2.32.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:17032::oewn-nod__2.32.01..",
+      "headword": "nodded",
+      "rank": 17032,
+      "shard": 6,
+      "line": 1585,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17060::oewn-strong__3.00.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17060::oewn-strong__3.00.00..",
+      "headword": "stronger",
+      "rank": 17060,
+      "shard": 6,
+      "line": 1613,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17091::oewn-jam__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17091::oewn-jam__2.38.00..",
+      "headword": "jammed",
+      "rank": 17091,
+      "shard": 6,
+      "line": 1644,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17103::oewn-can__2.30.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17103::oewn-can__2.30.00..",
+      "headword": "canned",
+      "rank": 17103,
+      "shard": 6,
+      "line": 1656,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17105::oewn-hang__2.35.03..:zh_to_en:01",
+      "sense_id": "core20k:rank:17105::oewn-hang__2.35.03..",
+      "headword": "hung",
+      "rank": 17105,
+      "shard": 6,
+      "line": 1658,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17127::oewn-web__2.36.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17127::oewn-web__2.36.00..",
+      "headword": "webbed",
+      "rank": 17127,
+      "shard": 6,
+      "line": 1680,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17161::oewn-clip__2.35.03..:zh_to_en:01",
+      "sense_id": "core20k:rank:17161::oewn-clip__2.35.03..",
+      "headword": "clipped",
+      "rank": 17161,
+      "shard": 6,
+      "line": 1714,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17178::oewn-overlie__2.35.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:17178::oewn-overlie__2.35.01..",
+      "headword": "overlying",
+      "rank": 17178,
+      "shard": 6,
+      "line": 1731,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17285::oewn-creche__1.06.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17285::oewn-creche__1.06.00..",
+      "headword": "crèche",
+      "rank": 17285,
+      "shard": 6,
+      "line": 1839,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17307::oewn-fan__2.35.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:17307::oewn-fan__2.35.01..",
+      "headword": "fanned",
+      "rank": 17307,
+      "shard": 6,
+      "line": 1861,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17538::oewn-shine__2.43.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:17538::oewn-shine__2.43.01..",
+      "headword": "shone",
+      "rank": 17538,
+      "shard": 6,
+      "line": 2094,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17587::oewn-flee__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17587::oewn-flee__2.38.00..",
+      "headword": "fled",
+      "rank": 17587,
+      "shard": 6,
+      "line": 2143,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17745::oewn-bursa__1.08.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17745::oewn-bursa__1.08.00..",
+      "headword": "bursae",
+      "rank": 17745,
+      "shard": 6,
+      "line": 2302,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17827::oewn-sweep__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:17827::oewn-sweep__2.38.01..",
+      "headword": "swept",
+      "rank": 17827,
+      "shard": 6,
+      "line": 2387,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18111::oewn-skin__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18111::oewn-skin__2.38.00..",
+      "headword": "skinned",
+      "rank": 18111,
+      "shard": 6,
+      "line": 2676,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18141::oewn-sink__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:18141::oewn-sink__2.38.01..",
+      "headword": "sank",
+      "rank": 18141,
+      "shard": 6,
+      "line": 2706,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18199::oewn-drag__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18199::oewn-drag__2.35.00..",
+      "headword": "dragged",
+      "rank": 18199,
+      "shard": 6,
+      "line": 2764,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18273::oewn-top__2.42.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18273::oewn-top__2.42.00..",
+      "headword": "topped",
+      "rank": 18273,
+      "shard": 6,
+      "line": 2840,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18279::oewn-bacillus__1.05.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18279::oewn-bacillus__1.05.00..",
+      "headword": "bacilli",
+      "rank": 18279,
+      "shard": 6,
+      "line": 2846,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18330::oewn-withdraw__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18330::oewn-withdraw__2.38.00..",
+      "headword": "withdrawn",
+      "rank": 18330,
+      "shard": 6,
+      "line": 2900,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18347::oewn-ride__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:18347::oewn-ride__2.38.01..",
+      "headword": "ridden",
+      "rank": 18347,
+      "shard": 6,
+      "line": 2917,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18393::oewn-gum__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18393::oewn-gum__2.35.00..",
+      "headword": "gummed",
+      "rank": 18393,
+      "shard": 6,
+      "line": 2965,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18406::oewn-phenomenon__1.03.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18406::oewn-phenomenon__1.03.00..",
+      "headword": "phenomena",
+      "rank": 18406,
+      "shard": 6,
+      "line": 2978,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18485::oewn-rub__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18485::oewn-rub__2.35.00..",
+      "headword": "rubbed",
+      "rank": 18485,
+      "shard": 6,
+      "line": 3057,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18706::oewn-wet__2.30.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18706::oewn-wet__2.30.00..",
+      "headword": "wetted",
+      "rank": 18706,
+      "shard": 6,
+      "line": 3278,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18722::oewn-bookshelf__1.06.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18722::oewn-bookshelf__1.06.00..",
+      "headword": "bookshelves",
+      "rank": 18722,
+      "shard": 6,
+      "line": 3294,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18723::oewn-fat__2.34.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18723::oewn-fat__2.34.00..",
+      "headword": "fatted",
+      "rank": 18723,
+      "shard": 6,
+      "line": 3295,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18727::oewn-fling__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18727::oewn-fling__2.35.00..",
+      "headword": "flung",
+      "rank": 18727,
+      "shard": 6,
+      "line": 3299,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18849::oewn-pin__2.35.03..:zh_to_en:01",
+      "sense_id": "core20k:rank:18849::oewn-pin__2.35.03..",
+      "headword": "pinned",
+      "rank": 18849,
+      "shard": 6,
+      "line": 3421,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19014::oewn-plug__2.35.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:19014::oewn-plug__2.35.01..",
+      "headword": "plugged",
+      "rank": 19014,
+      "shard": 6,
+      "line": 3588,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19022::oewn-resume__1.10.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:19022::oewn-resume__1.10.00..",
+      "headword": "résumé",
+      "rank": 19022,
+      "shard": 6,
+      "line": 3596,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19108::oewn-saute__5.00.00.cooked.00:zh_to_en:01",
+      "sense_id": "core20k:rank:19108::oewn-saute__5.00.00.cooked.00",
+      "headword": "sauté",
+      "rank": 19108,
+      "shard": 6,
+      "line": 3682,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19178::oewn-mob__2.38.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:19178::oewn-mob__2.38.00..",
+      "headword": "mobbed",
+      "rank": 19178,
+      "shard": 6,
+      "line": 3752,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19507::oewn-sink__2.38.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:19507::oewn-sink__2.38.01..",
+      "headword": "sunk",
+      "rank": 19507,
+      "shard": 6,
+      "line": 4082,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19529::oewn-weep__2.29.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:19529::oewn-weep__2.29.00..",
+      "headword": "wept",
+      "rank": 19529,
+      "shard": 6,
+      "line": 4104,
+      "priority": "P0",
+      "reasons": [
+        "EXPLICIT_FLAG",
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19553::oewn-antiserum__1.08.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:19553::oewn-antiserum__1.08.00..",
+      "headword": "antisera",
+      "rank": 19553,
+      "shard": 6,
+      "line": 4128,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19901::oewn-jalapeno__1.20.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:19901::oewn-jalapeno__1.20.00..",
+      "headword": "jalapeño",
+      "rank": 19901,
+      "shard": 6,
+      "line": 4480,
+      "priority": "P0",
+      "reasons": [
+        "SOURCE_LEMMA_MISMATCH"
+      ]
+    }
+  ],
+  "runtime_modified": false,
+  "semantic_pass_awarded": 0
+}
