@@ -1,0 +1,32 @@
+{
+  "schema": "pai-enlex-v2-staging-intake-v1",
+  "date": "2026-11-02",
+  "owner": "CG-MAIN",
+  "source": {
+    "branch": "experiment/enlex-v3-production-rebuild-20261030",
+    "commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+    "manifest": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/V2_INTEGRATION_FREEZE_20261102.json",
+    "version": "V2-INTEGRATION-FROZEN-2026-11-02",
+    "records": 27471,
+    "shards": 6
+  },
+  "state": "STAGING_CONTRACT_ONLY",
+  "release_eligible": false,
+  "runtime_modified": false,
+  "deployment_requested": false,
+  "ingestion_requirements": [
+    "Verify exact six shard Git blob SHAs against source manifest",
+    "Preserve existing lemma/rank/teaching_sense_id/ku_id without rewriting",
+    "Reject duplicate or missing identity keys and invalid answer fields",
+    "Exclude v2_needs_semantic_review and question_requires_rebuild and explicit HOLD KUs from playable runtime",
+    "Separate semantic candidate matches from approved playable KU inventory",
+    "Keep Scene500 and existing SRS namespaces unchanged",
+    "Do not publish or promote until distinct production authorization and QA"
+  ],
+  "scene1341": {
+    "state": "NOT_VERIFIED_FROZEN",
+    "catalog_source": null,
+    "scene_id_migration": "PENDING"
+  },
+  "next_action": "Build read-only frozen shard loader and independent staging-only validation before any Scene1341 data binding"
+}
