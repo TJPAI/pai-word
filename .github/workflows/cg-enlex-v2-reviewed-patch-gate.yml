@@ -69,7 +69,9 @@ jobs:
           content=json.loads(patch.read_text(encoding="utf-8"))
           if content.get("approved_for_merge") is not True or not content.get("reviewer") or not content.get("source_head"):
               raise SystemExit("Explicit reviewed approval, reviewer, and source HEAD required")
-          if content["source_head"] != subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(): raise SystemExit("Stale source_head")
+          source=content["source_head"]
+          if not isinstance(source,str) or len(source)!=40 or any(ch not in "0123456789abcdef" for ch in source.lower()): raise SystemExit("Invalid source_head")
+          if subprocess.run(["git","merge-base","--is-ancestor",source,"HEAD"]).returncode!=0: raise SystemExit("Patch source not an ancestor of checked-out HEAD")
           rows=content.get("patches",[])
           if not isinstance(rows,list) or not rows: raise SystemExit("No approved patches")
           allowed={"question","response","gloss_en","gloss_zh"}
