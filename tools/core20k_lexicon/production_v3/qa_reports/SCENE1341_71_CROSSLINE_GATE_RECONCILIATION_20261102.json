@@ -1,0 +1,55 @@
+{
+  "version": "CG_ENLEX_SCENE1341_71_CROSSLINE_GATE_RECONCILIATION_V1",
+  "source_scene1341_sha256": "5ae9ba95eeecfd012782c51396166a5f747a428917217e05221a769bb4e30d9c",
+  "cg_rec_source_blobs": [
+    "cdfb3d581bdb363e5fd6bc770cafc6846a7a716b",
+    "68ddd5d94af0b922303ab5e6b0314ac0e26a2cd7"
+  ],
+  "cg_rec_records": 71,
+  "cg_rec_editorial": {
+    "REVISE": 68,
+    "HOLD": 3
+  },
+  "mu_rec_separate_assessments": {
+    "semantic_scope": {
+      "ACCEPT": 59,
+      "REVISE": 12,
+      "HOLD": 0
+    },
+    "candidate_word_evidence": {
+      "ACCEPT": 6,
+      "REVISE": 4,
+      "HOLD": 61
+    }
+  },
+  "methodology": "Editorial REVISE does not contradict scope-level ACCEPT: first calls for preserving child search intents, second judges broader taxonomy compatibility. Evidence review asks whether 50 candidates have been shown, a separate threshold. None are certified Sense associations.",
+  "specific_attention": [
+    {
+      "scene_id": "SC50-0013",
+      "status": "PENDING_SCOPE_DECISION",
+      "reason": "CG-REC proposes separate child intents; MU-REC accepts combined children/elderly domain as taxonomy umbrella but HOLDS absent word evidence. Maintain umbrella and child intent preservation without automatic split."
+    },
+    {
+      "scene_id": "SC50-0128",
+      "status": "HOLD_LEGACY_SEMANTIC_COLLISION",
+      "reason": "S155 scientific hypothesis and S494 general conditional expression must not be silently merged; require separate mapping."
+    },
+    {
+      "scene_id": "SC50-0227",
+      "status": "HOLD_WORD_EVIDENCE",
+      "reason": "46 direct candidates below 50; ML and deep-learning subintent scope must be preserved."
+    },
+    {
+      "scene_id": "SC50-0249",
+      "status": "HOLD_WORD_EVIDENCE",
+      "reason": "48 direct candidates below 50; appointment vs hospital registration differentiated."
+    }
+  ],
+  "next_actions": [
+    "CG-REC/CG-QA finalize scope and ID contract independently; preserve original S namespace and user state.",
+    "ENLEX links must originate in frozen teaching_sense_id and reference approved SC50 ID; submit evidence per link, do not infer by 50-word aggregate counts.",
+    "Do not use 6 candidate-count ACCEPT scenes as certified or 71 high-risk records as semantic links."
+  ],
+  "release_eligible": false,
+  "runtime_modified": false
+}
