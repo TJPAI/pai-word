@@ -15,8 +15,8 @@ function csvRows(content){
    else if(quoted)quoted=false;
    else throw Error('INVALID_CSV_QUOTE');
   }else if(c===','&&!quoted){record.push(field);field='';}
-  else if((c==='\\n'||c==='\\r')&&!quoted){
-   if(c==='\\r'&&content[i+1]==='\\n')i++;
+  else if((c==='\n'||c==='\r')&&!quoted){
+   if(c==='\r'&&content[i+1]==='\n')i++;
    record.push(field);field='';
    if(record.some(x=>x!==''))result.push(record);
    record=[];
@@ -27,11 +27,11 @@ function csvRows(content){
  return result;
 }
 function candidateSource(file){
- if(!/\\.csv$/i.test(file))return JSON.parse(fs.readFileSync(file,'utf8'));
+ if(!/\.csv$/i.test(file))return JSON.parse(fs.readFileSync(file,'utf8'));
  const idArg=options.find(x=>x.startsWith('--id-column='));
  const nameArg=options.find(x=>x.startsWith('--name-column='));
  if(!idArg||!nameArg)throw Error('CSV_REQUIRES_EXPLICIT_ID_AND_NAME_COLUMNS');
- const records=csvRows(fs.readFileSync(file,'utf8').replace(/^\\uFEFF/,''));
+ const records=csvRows(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
  const header=records.shift()??[];
  const idIndex=header.indexOf(idArg.split('=').slice(1).join('='));
  const nameIndex=header.indexOf(nameArg.split('=').slice(1).join('='));
