@@ -35,7 +35,9 @@ const contrasts=[
 ];
 for(const [q,winner,loser] of contrasts){
  const r=ranker.rank(q,scenes,{limit:25,minScore:0});
- assert.ok(r.findIndex(x=>x.id===winner)<r.findIndex(x=>x.id===loser),q);
+ const winnerRank=r.findIndex(x=>x.id===winner);
+ const loserRank=r.findIndex(x=>x.id===loser);
+ assert.ok(winnerRank>=0&&(loserRank<0||winnerRank<loserRank),q);
 }
 const rows=ranker.rank('起床',scenes,{limit:20,minScore:0});
 assert.deepEqual(ranker.page(rows,0).map(x=>x.id),rows.slice(0,5).map(x=>x.id));
