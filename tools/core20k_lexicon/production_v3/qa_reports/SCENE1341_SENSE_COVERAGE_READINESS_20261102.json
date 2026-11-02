@@ -1,0 +1,65 @@
+{
+  "schema": "cg-enlex-scene1341-sense-coverage-readiness-v1",
+  "date": "2026-11-02",
+  "source": {
+    "import_commit": "8607bed9f0cd4333177157bfa630195c8b9c9c06",
+    "structural_catalog_blob": "56e3761d968e20cf6d8c89009e0f6744a2a387b8",
+    "status_blob": "276caf0c512f2a6c4c7f16000c2763abe7e7a26c",
+    "scene_namespace": "SC50",
+    "catalog_status": "NOT_CERTIFIED"
+  },
+  "counts": {
+    "scenes": 1341,
+    "unchanged": 1102,
+    "renamed_scope_clarified": 44,
+    "review_complex_pair": 115,
+    "split_incoherent_pair": 80,
+    "evidence_status": {
+      "FOCAL_PRELIMINARY_ONLY": 2,
+      "CANDIDATE_MATCH_ONLY": 43,
+      "NO_CANDIDATES": 1216,
+      "SPLIT_NEEDS_FRESH_LINKS": 80
+    },
+    "direct_candidate_assignments": 4285,
+    "certified_scenes": 0
+  },
+  "interpretation": [
+    "Current direct candidate counts are not unique English Core20K headwords and not Sense→Scene evidence.",
+    "Do not use current counts to infer 50 sense-aligned words for every scene.",
+    "Prioritize 80 split-incoherent scene records for semantic boundary review; 115 complex-pair records and 44 renamed-scope records require scope checks.",
+    "Scene crosswalk belongs to CG-REC. Maintain SC50 vs S legacy namespace, no automatic migration.",
+    "ENLEX frozen V2 candidate shard records remain separate and unmodified; only semantically reviewed Sense IDs may later become approved links."
+  ],
+  "next_linking_contract": {
+    "status": "CANDIDATE_ONLY_PENDING_CATALOG_APPROVAL",
+    "primary_key": [
+      "frozen_manifest_blob",
+      "teaching_sense_id",
+      "scene_id"
+    ],
+    "fields": [
+      "source_ku_id",
+      "ku_id",
+      "rank",
+      "lemma",
+      "sense_gloss",
+      "relation_evidence",
+      "relationship",
+      "confidence",
+      "quality_status"
+    ],
+    "uniqueness": [
+      "teaching_sense_id",
+      "scene_id",
+      "relationship"
+    ],
+    "flags": [
+      "v2_needs_semantic_review",
+      "question_requires_rebuild",
+      "explicit_hold",
+      "missing_pos"
+    ],
+    "release_eligible": false
+  },
+  "runtime_modified": false
+}
