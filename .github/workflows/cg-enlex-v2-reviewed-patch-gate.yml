@@ -1,5 +1,10 @@
 name: CG-ENLEX V2 reviewed patch gate
 on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - '.github/workflows/cg-enlex-v2-reviewed-patch-gate.yml'
   workflow_dispatch:
     inputs:
       patch_path:
@@ -12,7 +17,34 @@ on:
         default: false
         type: boolean
 jobs:
+  smoke:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Smoke test approved-patch gate without changing candidates
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import pathlib, json
+          root=pathlib.Path('tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack')
+          shards=sorted(root.glob('shard_*.jsonl'))
+          assert len(shards)==6
+          total=0
+          for shard in shards:
+              with shard.open(encoding='utf-8') as fp:
+                  for line in fp:
+                      if line.strip():
+                          row=json.loads(line)
+                          assert row.get('ku_id') and row.get('teaching_sense_id')
+                          total+=1
+          assert total==27471, total
+          print('DRY-RUN SMOKE PASS: six isolated shards, 27471 records, zero writes')
+          PY
   patch:
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     permissions:
       contents: write
