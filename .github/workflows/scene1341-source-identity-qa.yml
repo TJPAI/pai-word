@@ -5,8 +5,6 @@ on:
       - cg-main-fourline-integration-20261026
     paths:
       - 'tools/integration/scene1341-source/*.csv'
-      - 'tools/integration/validate-scene1341-raw-sources.py'
-      - '.github/workflows/scene1341-source-identity-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
