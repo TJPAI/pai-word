@@ -1,0 +1,58 @@
+{
+  "name": "PAI Word English Core20K V2 integration candidate freeze",
+  "version": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "snapshot_source_head": "99a37feffb504d07d114fd0b2fa6bad157ba0a33",
+  "scope": "isolated V2 candidate full_pack only; no runtime publication",
+  "headwords_and_rank": "20,000 frozen in separate canonical Core20K; do not rebuild or rerank",
+  "records": 27471,
+  "shards": [
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_01.jsonl",
+      "blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_02.jsonl",
+      "blob_sha": "46fd8e8171dba9512c985eb7926a6d198cc0f564"
+    },
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_03.jsonl",
+      "blob_sha": "8fdd14708abbd0f18803ebf87975bfa34645348a"
+    },
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_04.jsonl",
+      "blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921"
+    },
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_05.jsonl",
+      "blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2"
+    },
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_06.jsonl",
+      "blob_sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59"
+    }
+  ],
+  "evidence": {
+    "structural_qa": "full_pack/qa_v2_closure_20261102.json",
+    "flag_inventory": "post_closure_qa/flag_reconciliation_211_20261102.json",
+    "postclosure_rebuild": "post_closure_qa/rebuild_128_merge_20261102.json",
+    "open_hold": "v2_hold_adjudication_15_20261102_final.json"
+  },
+  "known_exceptions": {
+    "semantic_review_previously_reported": 83,
+    "unresolved_hold_previously_reported": 11,
+    "postclosure_rebuild_reviewed": 128,
+    "postclosure_rebuild_modified": 127,
+    "postclosure_rebuild_held": 1,
+    "note": "Counts are from historical audit and may overlap. Recompute current flagged counts from frozen shard blobs before making an eligible-row claim."
+  },
+  "integration_rules": [
+    "Treat this exact six-blob snapshot as immutable input; verify each Git blob SHA before import.",
+    "Preserve original term/rank, teaching_sense_id and ku_id; reject collisions and missing required fields.",
+    "Do not include records with v2_needs_semantic_review=true or question_requires_rebuild=true in study-quiz Runtime. Also exclude explicitly held KU IDs from audit records until resolved.",
+    "A clean record may be used for downstream staging integration tests only after automated field/answer validation; passing structural QA alone is not semantic certification.",
+    "Do not merge into production Runtime or publish without separate explicit release decision. All later editorial repairs must produce a new versioned manifest, not mutate this frozen reference."
+  ],
+  "status": "INTEGRATION_SNAPSHOT_FROZEN_NOT_RELEASE_ELIGIBLE",
+  "runtime_modified": false,
+  "pr_created": false
+}
