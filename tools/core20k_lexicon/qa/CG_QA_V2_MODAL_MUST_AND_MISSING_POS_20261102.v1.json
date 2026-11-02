@@ -1,0 +1,173 @@
+{
+  "schema_version": "CG_QA_V2_MODAL_MUST_AND_MISSING_POS_V1",
+  "freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "reviewed_count": 8,
+  "counts": {
+    "REVISE": 4,
+    "HOLD": 4
+  },
+  "items": [
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:27::editorial-provisional:27:must:01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:27::editorial-provisional:27:must:01",
+      "headword": "must",
+      "rank": 27,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "source_line": 106,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "Must is modal auxiliary expressing obligation, not ordinary lexical verb; gloss accurate, POS v and question cue misleading.",
+      "suggested_fix": "Mark modal auxiliary in teaching POS; preserve canonical source POS metadata separately.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:27::editorial-provisional:27:must:02:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:27::editorial-provisional:27:must:02",
+      "headword": "must",
+      "rank": 27,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "source_line": 107,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "Must expresses epistemic necessity/inference; bilingual gloss aligns, but tagging as lexical v misteaches syntax.",
+      "suggested_fix": "Teach modal auxiliary for logical inference; add 'She must be home' example.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6141::runtime-native:6141:w_9744_trans_ku_s01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:6141::runtime-native:6141:w_9744_trans_ku_s01",
+      "headword": "trans",
+      "rank": 6141,
+      "source_blob_sha": "8fdd14708abbd0f18803ebf87975bfa34645348a",
+      "source_line": 3567,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "HOLD",
+      "specific_reason": "Trans may be adjective as a shortening of transgender or bound prefix trans-, not one unified Sense; vague English placeholder and null POS prevent certification.",
+      "suggested_fix": "Split adjective and prefix senses, define precise use; preserve identity via versioned patch.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8486::runtime-native:8486:w_11216_centerist_ku_s01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:8486::runtime-native:8486:w_11216_centerist_ku_s01",
+      "headword": "centerist",
+      "rank": 8486,
+      "source_blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "source_line": 1630,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "HOLD",
+      "specific_reason": "Centerist is nonstandard against common centrist; English gloss is a placeholder and Chinese admits spelling uncertainty.",
+      "suggested_fix": "Verify corpus evidence and intended headword centrist, then repair spelling and POS without changing frozen rank silently.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9849::runtime-native:9849:w_8860_coli_ku_s01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:9849::runtime-native:9849:w_8860_coli_ku_s01",
+      "headword": "coli",
+      "rank": 9849,
+      "source_blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "source_line": 3167,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "HOLD",
+      "specific_reason": "Coli is normally encountered within E. coli or as Latin specific epithet; gloss 'core modern learner use' has no definition; standalone word and POS unclear.",
+      "suggested_fix": "Specify E. coli context or Latin taxonomic form; do not assign standalone general noun without evidence.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9899::runtime-native:9899:w_12636_yuppy_ku_s01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:9899::runtime-native:9899:w_12636_yuppy_ku_s01",
+      "headword": "yuppy",
+      "rank": 9899,
+      "source_blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "source_line": 3222,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "Yuppy is a variant of yuppie, noun for affluent young urban professional; current English gloss is a placeholder, no POS.",
+      "suggested_fix": "Add noun definition and variant label, with preferred spelling yuppie.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10414::runtime-native:10414:w_8721_fro_ku_s01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:10414::runtime-native:10414:w_8721_fro_ku_s01",
+      "headword": "fro",
+      "rank": 10414,
+      "source_blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "source_line": 3803,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "Fro is informal noun, short for Afro hairstyle, not simply 'African curly hair' as ethnic essentialism; English gloss placeholder.",
+      "suggested_fix": "Set noun informal and definition 'a rounded, full hairstyle with tightly curled hair'; indicate shortening of Afro.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11366::runtime-native:11366:w_10732_petit_ku_s01:zh_to_en:01",
+      "teaching_sense_id": "core20k:rank:11366::runtime-native:11366:w_10732_petit_ku_s01",
+      "headword": "petit",
+      "rank": 11366,
+      "source_blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "source_line": 246,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "sense_boundary",
+        "question"
+      ],
+      "verdict": "HOLD",
+      "specific_reason": "Petit alone is chiefly French adjective and occurs in English fixed compounds (petit jury, petit four); vague broad 'small; minor' as free English adjective is ungrounded.",
+      "suggested_fix": "Identify fixed expression and correct noun/adjectival role before learner activation.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    }
+  ],
+  "runtime_modified": false
+}
