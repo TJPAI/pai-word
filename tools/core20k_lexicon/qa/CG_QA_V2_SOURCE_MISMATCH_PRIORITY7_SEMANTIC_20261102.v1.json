@@ -1,0 +1,167 @@
+{
+  "version": "CG_QA_V2_SOURCE_MISMATCH_PRIORITY7_SEMANTIC_V1",
+  "freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "reviewed_count": 7,
+  "counts": {
+    "REVISE": 3,
+    "CONDITIONAL": 3,
+    "PASS": 1
+  },
+  "items": [
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13903::oewn-quit__2.42.04..:zh_to_en:01",
+      "sense_id": "core20k:rank:13903::oewn-quit__2.42.04..",
+      "headword": "quitted",
+      "rank": 13903,
+      "source_blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "source_line": 2942,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "The cue says six letters, but quitted has seven; form exists as rare past of quit, while quit is standard. Source ID points to quit, a legitimate inflectional relationship, not an identity error.",
+      "suggested_fix": "Change '(six letters)' to '(seven letters)'; retain HOLD/exclusion until source and target spelling policy reconciled.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14583::oewn-bed__2.40.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:14583::oewn-bed__2.40.00..",
+      "headword": "bedded",
+      "rank": 14583,
+      "source_blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "source_line": 3651,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "Past form bedded is valid but 'The children were bedded early' is marked and unnatural in general everyday English; put to bed is standard. Bare blank permits many alternatives.",
+      "suggested_fix": "Replace with idiomatic 'The horses were bedded down for the night' (require past participle of bed); or teach 'put to bed' for children.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16423::oewn-sin__2.41.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:16423::oewn-sin__2.41.00..",
+      "headword": "sinned",
+      "rank": 16423,
+      "source_blob_sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+      "source_line": 973,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Sinned is correct morphology; 'sinned against his principles' can be understood but sounds less natural than betrayed/violated principles, and the gap is nonunique.",
+      "suggested_fix": "Require past participle of sin, ideally 'He believed he had ___ against God'.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17127::oewn-web__2.36.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:17127::oewn-web__2.36.00..",
+      "headword": "webbed",
+      "rank": 17127,
+      "source_blob_sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+      "source_line": 1680,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Webbed is a valid past form; the English gloss alternates verb/passive and adjective, while Chinese '有网状结构的' is adjectival and not a past-verb gloss. 'Branches were webbed with silk' is uncommon.",
+      "suggested_fix": "Separate participial adjective from verbal sense; give natural context 'Spider silk webbed the branches' with base verb cue.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17178::oewn-overlie__2.35.01..:zh_to_en:01",
+      "sense_id": "core20k:rank:17178::oewn-overlie__2.35.01..",
+      "headword": "overlying",
+      "rank": 17178,
+      "source_blob_sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+      "source_line": 1731,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "PASS",
+      "specific_reason": "Overlying as present participle of overlie correctly denotes a rock layer above another geological layer; English and Chinese gloss align and source is correct. Prompt is grammatical, but need answer cue for uniqueness.",
+      "suggested_fix": "Optional: explicitly state '-ing form of overlie' to avoid covering.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18393::oewn-gum__2.35.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18393::oewn-gum__2.35.00..",
+      "headword": "gummed",
+      "rank": 18393,
+      "source_blob_sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+      "source_line": 2965,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Gummed shut is idiomatic for an envelope sealed with gum; inflection and basic meaning align, though gloss omits sealing and gap allows sealed/stuck.",
+      "suggested_fix": "Add 'past participle of gum' and specific Chinese gloss '用胶封口'.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18723::oewn-fat__2.34.00..:zh_to_en:01",
+      "sense_id": "core20k:rank:18723::oewn-fat__2.34.00..",
+      "headword": "fatted",
+      "rank": 18723,
+      "source_blob_sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+      "source_line": 3295,
+      "reviewed_fields": [
+        "pos",
+        "gloss_en",
+        "gloss_zh",
+        "question",
+        "response",
+        "source_sense_alignment"
+      ],
+      "verdict": "REVISE",
+      "specific_reason": "Fatted is a rare verb form, but ordinary English normally says fattened. 'The cattle were fatted for sale' is archaic/marked; unqualified cloze overteaches a low-value form.",
+      "suggested_fix": "Teach fattened in general content; if retaining fatted give historical/archaic label and explicit target form.",
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_REVIEWED",
+      "dual_ai_status": "PENDING_MUSE"
+    }
+  ],
+  "notes": "Independent semantic judgments on exact frozen row content. No Muse review or Runtime modification."
+}
