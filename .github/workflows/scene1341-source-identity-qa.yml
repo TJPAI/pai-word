@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/integration/scene1341-source/*.csv'
       - 'tools/integration/audit-scene1341-legacy-references.py'
+      - 'tools/integration/build-scene1341-crosswalk-candidates.py'
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,3 +22,7 @@ jobs:
         run: python tools/integration/validate-scene1341-raw-sources.py
       - name: Audit SC50 references without approving identity migrations
         run: python tools/integration/audit-scene1341-legacy-references.py
+      - name: Build and validate unapproved SC50 crosswalk candidates
+        run: |
+          python tools/integration/build-scene1341-crosswalk-candidates.py > /tmp/scene1341-crosswalk-candidates.json
+          python -c 'import json; x=json.load(open("/tmp/scene1341-crosswalk-candidates.json")); assert x["migration_approved"] is False and x["legacy_id_coverage"]==500 and len(x["entries"])==410; print("PASS SC50 crosswalk candidate gate",x["review_queue_count"])'
