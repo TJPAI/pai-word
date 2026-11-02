@@ -1,0 +1,228 @@
+{
+  "schema_version": "CG_QA_V2_ALL_BATCH_ROUTING_V1",
+  "freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "source_shas": [
+    "21f97312b4debab4b662f41939cac29a091d89b9",
+    "46fd8e8171dba9512c985eb7926a6d198cc0f564",
+    "8fdd14708abbd0f18803ebf87975bfa34645348a",
+    "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+    "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+    "7b6f1fb35edc0a52966a84861cb735476ca6fa59"
+  ],
+  "total": 27471,
+  "unique_senses": 27471,
+  "batch_size": 3000,
+  "batches": [
+    {
+      "batch": "001",
+      "global_first": 1,
+      "global_last": 3000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 1,
+          "sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+          "first_line": 1,
+          "last_line": 3000
+        }
+      ],
+      "flagged": 0,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "002",
+      "global_first": 3001,
+      "global_last": 6000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 1,
+          "sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+          "first_line": 3001,
+          "last_line": 4578
+        },
+        {
+          "shard": 2,
+          "sha": "46fd8e8171dba9512c985eb7926a6d198cc0f564",
+          "first_line": 1,
+          "last_line": 1422
+        }
+      ],
+      "flagged": 0,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "003",
+      "global_first": 6001,
+      "global_last": 9000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 2,
+          "sha": "46fd8e8171dba9512c985eb7926a6d198cc0f564",
+          "first_line": 1423,
+          "last_line": 4422
+        }
+      ],
+      "flagged": 1,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "004",
+      "global_first": 9001,
+      "global_last": 12000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 2,
+          "sha": "46fd8e8171dba9512c985eb7926a6d198cc0f564",
+          "first_line": 4423,
+          "last_line": 4579
+        },
+        {
+          "shard": 3,
+          "sha": "8fdd14708abbd0f18803ebf87975bfa34645348a",
+          "first_line": 1,
+          "last_line": 2843
+        }
+      ],
+      "flagged": 2,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "005",
+      "global_first": 12001,
+      "global_last": 15000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 3,
+          "sha": "8fdd14708abbd0f18803ebf87975bfa34645348a",
+          "first_line": 2844,
+          "last_line": 4578
+        },
+        {
+          "shard": 4,
+          "sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+          "first_line": 1,
+          "last_line": 1265
+        }
+      ],
+      "flagged": 4,
+      "missing": 1,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "006",
+      "global_first": 15001,
+      "global_last": 18000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 4,
+          "sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+          "first_line": 1266,
+          "last_line": 4265
+        }
+      ],
+      "flagged": 4,
+      "missing": 4,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "007",
+      "global_first": 18001,
+      "global_last": 21000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 4,
+          "sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+          "first_line": 4266,
+          "last_line": 4579
+        },
+        {
+          "shard": 5,
+          "sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+          "first_line": 1,
+          "last_line": 2686
+        }
+      ],
+      "flagged": 11,
+      "missing": 1,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "008",
+      "global_first": 21001,
+      "global_last": 24000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 5,
+          "sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+          "first_line": 2687,
+          "last_line": 4578
+        },
+        {
+          "shard": 6,
+          "sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+          "first_line": 1,
+          "last_line": 1108
+        }
+      ],
+      "flagged": 30,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "009",
+      "global_first": 24001,
+      "global_last": 27000,
+      "records": 3000,
+      "source_spans": [
+        {
+          "shard": 6,
+          "sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+          "first_line": 1109,
+          "last_line": 4108
+        }
+      ],
+      "flagged": 32,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    },
+    {
+      "batch": "010",
+      "global_first": 27001,
+      "global_last": 27471,
+      "records": 471,
+      "source_spans": [
+        {
+          "shard": 6,
+          "sha": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+          "first_line": 4109,
+          "last_line": 4579
+        }
+      ],
+      "flagged": 0,
+      "missing": 0,
+      "semantic_status": "UNFINISHED",
+      "muse_status": "NOT_STARTED"
+    }
+  ],
+  "notes": "Immutable batch-to-shard mapping; segmentation and automated field checks only. No automated semantic PASS."
+}
