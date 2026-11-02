@@ -1,0 +1,75 @@
+{
+  "version": "CG_QA_V2_HOLD3_SEMANTIC_REVIEW_V1",
+  "source_file": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/qa_hold_3_merge_20261102.json",
+  "source_freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "scope": "Three exact revised proof records; not full frozen-shard independent reread; not full-pack certification",
+  "reviewed_count": 3,
+  "chatgpt_pass": 3,
+  "dual_ai_pass": 0,
+  "items": [
+    {
+      "headword": "smelt",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16491::oewn-smell__2.39.01..:zh_to_en:01",
+      "question": "Complete using the British English past-tense form of smell (five letters): Yesterday she ___ smoke.",
+      "response": "smelt",
+      "verdict": "PASS",
+      "specific_reason": "smelt is a British English past tense of smell; five letters and explicitly British framing distinguish smelled. Sentence is grammatical; rare-form focus is explicit.",
+      "suggested_fix": "Optional learner note: smelled is also widely used; avoid presenting smelt as the sole past form globally.",
+      "source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+      "source_proof_blob_sha": "ed6fb432e5a35bfdd529ed28790823843f4ca266",
+      "reviewed_fields": [
+        "question",
+        "response",
+        "form",
+        "grammar",
+        "sense_alignment"
+      ],
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_INDEPENDENT_REVIEW_COMPLETE_MUSE_PENDING",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "headword": "hung",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17105::oewn-hang__2.35.03..:zh_to_en:01",
+      "question": "Use the past tense of hang meaning remain suspended: The curtains ___ loosely from the rod.",
+      "response": "hung",
+      "verdict": "PASS",
+      "specific_reason": "The meaning 'remain suspended' and past tense cue unambiguously select hung rather than execution-related hanged. Natural sentence.",
+      "suggested_fix": "None required.",
+      "source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+      "source_proof_blob_sha": "ed6fb432e5a35bfdd529ed28790823843f4ca266",
+      "reviewed_fields": [
+        "question",
+        "response",
+        "form",
+        "grammar",
+        "sense_alignment"
+      ],
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_INDEPENDENT_REVIEW_COMPLETE_MUSE_PENDING",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "headword": "wetted",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18706::oewn-wet__2.30.00..:zh_to_en:01",
+      "question": "Use the regular past-tense form of wet ending in -ted: She ___ the sponge before cleaning.",
+      "response": "wetted",
+      "verdict": "PASS",
+      "specific_reason": "Both wet and wetted can function as past tense; explicit regular-form and -ted constraints correctly narrow the accepted response to wetted. Sentence is natural.",
+      "suggested_fix": "Optional learner note: wet also occurs as past tense; use constraints only for morphology exercises.",
+      "source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+      "source_proof_blob_sha": "ed6fb432e5a35bfdd529ed28790823843f4ca266",
+      "reviewed_fields": [
+        "question",
+        "response",
+        "form",
+        "grammar",
+        "sense_alignment"
+      ],
+      "reviewer": "CG-QA",
+      "review_status": "CHATGPT_INDEPENDENT_REVIEW_COMPLETE_MUSE_PENDING",
+      "dual_ai_status": "PENDING_MUSE"
+    }
+  ],
+  "runtime_modified": false
+}
