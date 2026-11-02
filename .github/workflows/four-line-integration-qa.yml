@@ -66,6 +66,14 @@ jobs:
         run: node scene500-recommendation/qa/test-observed-optin-loader.mjs
       - name: Test isolated Scene500 query corrections candidate
         run: node scene500-recommendation/qa/test-observed-query-corrections.mjs
+      - name: Checkout exact frozen English V2 snapshot (isolated)
+        uses: actions/checkout@v4
+        with:
+          ref: 173bbf6b84aaea7164f02254db52b81168f3fc44
+          path: .enlex-v2-frozen
+          sparse-checkout: tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack
+      - name: Verify frozen English V2 six-shard Git blob identities and quarantine contract
+        run: node tools/integration/test-enlex-v2-frozen-intake.mjs .enlex-v2-frozen
       - name: Validate latest six-line integration intake
         run: node tools/integration/test-v22-line-intake.mjs
       - name: Evaluate Batch93 real release readiness
