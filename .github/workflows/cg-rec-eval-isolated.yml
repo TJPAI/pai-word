@@ -64,6 +64,7 @@ jobs:
           cp evaluation/tools/cg-rec-eval/gold-provisional-30.v0.1.json candidate-boundary/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/novel-intents-50.v0.1.json candidate-boundary/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/diagnose-english.mjs candidate-boundary/tools/cg-rec-eval/
+          cp evaluation/tools/cg-rec-eval/summarize-engine-ab.mjs candidate-boundary/tools/cg-rec-eval/
           git -C candidate-boundary rev-parse HEAD
           git -C candidate-new rev-parse HEAD
           git -C candidate rev-parse HEAD
@@ -181,6 +182,14 @@ jobs:
               "tools/cg-rec-eval/${SET}.v0.1.json" \
               > "../cg-rec-eval-boundary-engine-${SET}.json"
           done
+      - name: Print post-fix engine A/B aggregate and check regression
+        working-directory: candidate-boundary
+        run: |
+          set -o pipefail
+          node tools/cg-rec-eval/summarize-engine-ab.mjs \
+            ../cg-rec-eval-boundary-engine-gold-provisional-30.json \
+            ../cg-rec-eval-boundary-engine-novel-intents-50.json \
+            | tee ../cg-rec-eval-boundary-engine-80-summary.json
       - name: Retest 7 English error probes after boundary fix
         working-directory: candidate-boundary
         run: |
