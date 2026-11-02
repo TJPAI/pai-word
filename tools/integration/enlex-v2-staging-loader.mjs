@@ -25,7 +25,7 @@ export function inspectFrozenEnlexV2({root,manifestRelativePath,expectedCommit,i
   const raw=safeRead(shard.path);
   const gitBlob=crypto.createHash('sha1').update('blob '+raw.length+'\0').update(raw).digest('hex');
   if(gitBlob!==shard.blob_sha)throw Error('ENLEX_V2_SHARD_DRIFT');
-  for(const text of raw.toString('utf8').split(/\\r?\\n/)){
+  for(const text of raw.toString('utf8').split(/\r?\n/)){
    if(!text.trim())continue;
    const row=JSON.parse(text);
    result.records++;
