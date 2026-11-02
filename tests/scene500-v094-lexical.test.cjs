@@ -17,7 +17,7 @@ test('v094 lexical candidates: bounded evidence, canonical IDs and reproducibili
   assert.equal(out.stats.terms,20000);
   assert.equal(out.quality,'lexical_candidate_unverified');
   const key=words[1].id;
-  assert.ok(out.links.some(r=>r.term_id===key&&r.scene_id==='S104'&&r.evidence_type==='alias_substring'));
+  assert.ok(out.links.some(r=>r.term_id===key&&r.scene_id==='S104'&&r.evidence_type==='scene_title_substring'));
   assert.ok(out.links.some(r=>r.term_id===words[2].id&&r.scene_id==='S104'&&r.evidence_type==='action_substring'));
   assert.ok(out.links.every(r=>r.confidence===0&&r.rank<=50&&r.review_status==='lexical_candidate_unverified'));
  }finally{fs.rmSync(folder,{recursive:true,force:true})}
