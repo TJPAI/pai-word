@@ -21,6 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Verify Scene1341 source audit contract (synthetic test only)
+        run: node scene500-recommendation/qa/test-scene-expansion-audit.mjs
       - name: Verify 20x25 taxonomy pin and S113 membership
         run: node scene500-recommendation/qa/test-s113-taxonomy-boundary.mjs
       - name: Test ASCII catalog evidence word boundaries
