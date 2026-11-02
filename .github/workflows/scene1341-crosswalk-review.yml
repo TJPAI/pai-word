@@ -4,6 +4,8 @@ on:
     branches: [scene500-recommendation-dev]
     paths:
       - 'scene500-recommendation/qa/review-scene1341-crosswalk.mjs'
+      - 'scene500-recommendation/qa/scene1341-*.json'
+      - 'scene500-recommendation/qa/test-scene1341-review-reconciliation.mjs'
       - '.github/workflows/scene1341-crosswalk-review.yml'
   workflow_dispatch:
 permissions:
@@ -36,6 +38,8 @@ jobs:
       - name: Verify 19 plus 52 decisions exactly cover all high risk entries
         run: |
           node -e "const fs=require('fs');const r=require('./scene1341-review-evidence.json');const dir='./rec/scene500-recommendation/qa/';const a=JSON.parse(fs.readFileSync(dir+'scene1341-semantic-review-batch01.v1.json'));const b=JSON.parse(fs.readFileSync(dir+'scene1341-semantic-review-batch02.v1.json'));const rows=[...a.records,...b.records];const target=new Set(r.high_priority_entries.map(x=>x.scene_id));const got=new Set(rows.map(x=>x.scene_id));if(rows.length!==71||got.size!==71||[...got].some(x=>!target.has(x))||[...target].some(x=>!got.has(x))||rows.some(x=>!['REVISE','HOLD'].includes(x.decision)||x.quality!=='EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED')||a.migration_approved!==false||b.migration_approved!==false)process.exit(1);console.log('PASS 71/71 source-locked high-risk editorial proposals; release remains blocked')"
+      - name: Verify independently reported semantic and word-evidence gate reconciliation
+        run: node rec/scene500-recommendation/qa/test-scene1341-review-reconciliation.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: cg-rec-scene1341-71-review-evidence
