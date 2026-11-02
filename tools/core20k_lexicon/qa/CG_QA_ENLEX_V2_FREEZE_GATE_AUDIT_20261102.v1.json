@@ -1,0 +1,56 @@
+{
+  "schema_version": "CG_QA_ENLEX_V2_FREEZE_GATE_AUDIT_20261102_V1",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "frozen_manifest_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+    "manifest_path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/V2_INTEGRATION_FREEZE_20261102.json",
+    "blob_shas": [
+      "21f97312b4debab4b662f41939cac29a091d89b9",
+      "46fd8e8171dba9512c985eb7926a6d198cc0f564",
+      "8fdd14708abbd0f18803ebf87975bfa34645348a",
+      "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "7b6f1fb35edc0a52966a84861cb735476ca6fa59"
+    ]
+  },
+  "method": "Independent ChatGPT QA read and JSON-parse of all six fixed Git blobs, exact ku_id join with previous 211 flagged items, 127 rebuild merge rows, and final 15 hold adjudication. Flag counts are equality checks on exact Boolean true; hold IDs are separate exclusion keys.",
+  "results": {
+    "frozen_records": 27471,
+    "unique_ku_ids": 27471,
+    "sem_review_true": 83,
+    "question_requires_rebuild_true": 84,
+    "overlap_true": 83,
+    "flag_union": 84,
+    "prior_211_ids_present": 211,
+    "prior_211_now_flagged": 84,
+    "prior_211_now_clear": 127,
+    "rebuild_127_current_question_exact_matches": 127,
+    "hold_adjudications": 15,
+    "hold_excluded": 12,
+    "hold_excluded_in_frozen": 12,
+    "hold_excluded_and_flagged": 11,
+    "hold_excluded_but_unflagged": 1,
+    "production_ready_true": 0
+  },
+  "interpretation": [
+    "127 old flags now clear because edited questions match historical rebuild candidate exactly; this is NOT answer uniqueness or semantic certification.",
+    "A gate that only filters semantic/rebuild flags would miss one explicit HOLD: block separately by ku_id.",
+    "Do NOT subtract 84 from 27471 and report 27387 production eligible: remaining content is provisional and additional QA/rights/identity/answer checks remain.",
+    "Old CG-QA legacy 512 records are not auto-certified for frozen V2; reuse only after exact ku_id, teaching_sense_id, EN/ZH gloss and question identity match.",
+    "HOLD 15 adjudication has 3 isolated question approvals, 12 retained HOLD; the approved patches are not merged into the six frozen shards."
+  ],
+  "recommendation": {
+    "gate": "EXCLUDE_IF(v2_needs_semantic_review===true OR question_requires_rebuild===true OR ku_id IN retained_hold_12)",
+    "stage_only": true,
+    "production_ready": false,
+    "activation_allowed": false,
+    "next_steps": [
+      "independently review the 127 question rebuilds for uniqueness and sense alignment",
+      "audit the 84 remaining flagged records and 12 explicit HOLDs",
+      "provide a versioned map of historical QA records to frozen V2 with strict exact-content checks"
+    ]
+  },
+  "state": "INDEPENDENT_SNAPSHOT_STRUCTURE_AND_RISK_RECONCILIATION_ONLY",
+  "muse_status": "PAUSED_BY_USER",
+  "runtime_modified": false
+}
