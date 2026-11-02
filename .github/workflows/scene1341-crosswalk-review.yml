@@ -1,0 +1,36 @@
+name: CG-REC Scene1341 high-risk crosswalk review
+on:
+  push:
+    branches: [scene500-recommendation-dev]
+    paths:
+      - 'scene500-recommendation/qa/review-scene1341-crosswalk.mjs'
+      - '.github/workflows/scene1341-crosswalk-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review-evidence:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: rec
+      - uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 9f374c6f9ca7f2210356843030fe25ff5e72e166
+          path: sources
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Generate unapproved 71-item semantic review evidence
+        run: |
+          node rec/scene500-recommendation/qa/review-scene1341-crosswalk.mjs \
+            sources/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            sources/scene500-recommendation/catalog-v0.2.json > scene1341-review-evidence.json
+          node -e "const r=require('./scene1341-review-evidence.json'); if(r.high_priority!==71||r.linked!==410||r.srs_remap_allowed!==false)process.exit(1)"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cg-rec-scene1341-71-review-evidence
+          path: scene1341-review-evidence.json
