@@ -21,10 +21,25 @@ try{
  const report=JSON.parse(good.stdout);
  assert.equal(report.migration.length,500);
  assert.equal(report.candidate.count,1341);
+ const isolated={};
+ for(let i=1;i<=1341;i++)isolated['SC50-'+String(i).padStart(4,'0')]={name:'SCENE50_CANDIDATE_'+i};
+ fs.writeFileSync(file,JSON.stringify({scenes:isolated}));
+ const independent=spawnSync(process.execPath,[audit,base,file,'--independent-namespace'],{encoding:'utf8'});
+ assert.equal(independent.status,0,independent.stderr);
+ const ir=JSON.parse(independent.stdout);
+ assert.equal(ir.namespaceMode,'INDEPENDENT_REQUIRES_EXPLICIT_CROSSWALK');
+ assert.equal(ir.unmappedLegacyCount,500);
+ assert.equal(ir.migration.length,0);
+ isolated.S113={name:'COLLISION'};delete isolated['SC50-0001'];
+ fs.writeFileSync(file,JSON.stringify({scenes:isolated}));
+ const collision=spawnSync(process.execPath,[audit,base,file,'--independent-namespace'],{encoding:'utf8'});
+ assert.equal(collision.status,2);
+ assert.ok(JSON.parse(collision.stdout).errors.includes('NAMESPACE_COLLISION:S113'));
+ fs.writeFileSync(file,JSON.stringify({scenes}));
  const broken={...scenes};delete broken.S001;
  fs.writeFileSync(file,JSON.stringify({scenes:broken}));
  const bad=spawnSync(process.execPath,[audit,base,file],{encoding:'utf8'});
  assert.equal(bad.status,2);
  assert.ok(JSON.parse(bad.stdout).errors.includes('OLD_ID_MISSING:S001'));
 }finally{fs.rmSync(dir,{recursive:true,force:true})}
-console.log('PASS_SCENE1341_SOURCE_AUDIT: missing source, synthetic 1341 ID-preserve, deleted legacy ID rejected');
+console.log('PASS_SCENE1341_SOURCE_AUDIT: missing source, synthetic 1341 ID-preserve, deleted legacy ID rejected, independent namespace & collision checked');
