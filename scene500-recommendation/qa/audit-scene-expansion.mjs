@@ -2,9 +2,47 @@
 // Does not certify taxonomy or produce production migration IDs.
 import fs from 'node:fs';
 import crypto from 'node:crypto';
+
+// RFC4180-style CSV reader: preserve escaped quotes, commas and newlines.
+// Explicit column names avoid guessing the Scene50 source schema.
+function csvRows(content){
+ const result=[];let record=[],field='',quoted=false;
+ for(let i=0;i<content.length;i++){
+  const c=content[i];
+  if(c==='"'){
+   if(quoted&&content[i+1]==='"'){field+='"';i++;}
+   else if(!quoted&&field==='')quoted=true;
+   else if(quoted)quoted=false;
+   else throw Error('INVALID_CSV_QUOTE');
+  }else if(c===','&&!quoted){record.push(field);field='';}
+  else if((c==='\\n'||c==='\\r')&&!quoted){
+   if(c==='\\r'&&content[i+1]==='\\n')i++;
+   record.push(field);field='';
+   if(record.some(x=>x!==''))result.push(record);
+   record=[];
+  }else field+=c;
+ }
+ if(quoted)throw Error('UNTERMINATED_CSV_QUOTE');
+ if(field!==''||record.length){record.push(field);result.push(record);}
+ return result;
+}
+function candidateSource(file){
+ if(!/\\.csv$/i.test(file))return JSON.parse(fs.readFileSync(file,'utf8'));
+ const idArg=options.find(x=>x.startsWith('--id-column='));
+ const nameArg=options.find(x=>x.startsWith('--name-column='));
+ if(!idArg||!nameArg)throw Error('CSV_REQUIRES_EXPLICIT_ID_AND_NAME_COLUMNS');
+ const records=csvRows(fs.readFileSync(file,'utf8').replace(/^\\uFEFF/,''));
+ const header=records.shift()??[];
+ const idIndex=header.indexOf(idArg.split('=').slice(1).join('='));
+ const nameIndex=header.indexOf(nameArg.split('=').slice(1).join('='));
+ if(idIndex<0||nameIndex<0)throw Error('CSV_COLUMN_NOT_FOUND: '+header.join(','));
+ const scenes=records.map(x=>({id:(x[idIndex]??'').trim(),name:(x[nameIndex]??'').trim()}));
+ return {scenes};
+}
+
 const [baselineFile,candidateFile,...options]=process.argv.slice(2);
 const independentNamespace=options.includes('--independent-namespace');
-if(options.some(x=>x!=='--independent-namespace'))throw Error('UNKNOWN_OPTION');
+if(options.some(x=>x!=='--independent-namespace'&&!x.startsWith('--id-column=')&&!x.startsWith('--name-column=')))throw Error('UNKNOWN_OPTION');
 if(!baselineFile)throw Error('USAGE: baseline.json [candidate.json]');
 const sha=f=>crypto.createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 const base=JSON.parse(fs.readFileSync(baselineFile,'utf8'));
@@ -15,7 +53,7 @@ if(old.length!==500||new Set(old.map(x=>x.id)).size!==500)throw Error('INVALID_5
 const report={status:'SOURCE_AUDIT_ONLY_NOT_APPROVAL',baseline:{path:baselineFile,sha256:sha(baselineFile),count:old.length},candidate:null,errors:[],warnings:[],migration:[],namespaceMode:independentNamespace?'INDEPENDENT_REQUIRES_EXPLICIT_CROSSWALK':'LEGACY_ID_PRESERVATION'};
 if(!candidateFile){report.errors.push('SCENE1341_CANONICAL_SOURCE_NOT_PROVIDED');}
 else{
- const candidate=JSON.parse(fs.readFileSync(candidateFile,'utf8'));
+ const candidate=candidateSource(candidateFile);
  const rows=normalize(candidate);
  report.candidate={path:candidateFile,sha256:sha(candidateFile),count:rows.length};
  if(rows.length!==1341)report.errors.push('CANDIDATE_COUNT_NOT_1341');
