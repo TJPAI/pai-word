@@ -1,0 +1,30 @@
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+const base='scene500-recommendation/catalog-v0.2.json';
+const audit='scene500-recommendation/qa/audit-scene-expansion.mjs';
+const noSource=spawnSync(process.execPath,[audit,base],{encoding:'utf8'});
+assert.equal(noSource.status,2);
+const noSourceReport=JSON.parse(noSource.stdout);
+assert.ok(noSourceReport.errors.includes('SCENE1341_CANONICAL_SOURCE_NOT_PROVIDED'));
+const dir=fs.mkdtempSync(path.join(os.tmpdir(),'scene1341-audit-'));
+try{
+ const original=JSON.parse(fs.readFileSync(base,'utf8'));
+ const scenes={...original.scenes};
+ for(let i=501;i<=1341;i++)scenes['S'+String(i).padStart(4,'0')]={name:'SYNTHETIC_UNRELEASED_'+i};
+ const file=path.join(dir,'synthetic.json');
+ fs.writeFileSync(file,JSON.stringify({scenes}));
+ const good=spawnSync(process.execPath,[audit,base,file],{encoding:'utf8'});
+ assert.equal(good.status,0,good.stderr);
+ const report=JSON.parse(good.stdout);
+ assert.equal(report.migration.length,500);
+ assert.equal(report.candidate.count,1341);
+ const broken={...scenes};delete broken.S001;
+ fs.writeFileSync(file,JSON.stringify({scenes:broken}));
+ const bad=spawnSync(process.execPath,[audit,base,file],{encoding:'utf8'});
+ assert.equal(bad.status,2);
+ assert.ok(JSON.parse(bad.stdout).errors.includes('OLD_ID_MISSING:S001'));
+}finally{fs.rmSync(dir,{recursive:true,force:true})}
+console.log('PASS_SCENE1341_SOURCE_AUDIT: missing source, synthetic 1341 ID-preserve, deleted legacy ID rejected');
