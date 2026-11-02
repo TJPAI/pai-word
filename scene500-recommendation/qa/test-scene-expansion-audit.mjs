@@ -30,6 +30,13 @@ try{
  assert.equal(ir.namespaceMode,'INDEPENDENT_REQUIRES_EXPLICIT_CROSSWALK');
  assert.equal(ir.unmappedLegacyCount,500);
  assert.equal(ir.migration.length,0);
+ const csv=path.join(dir,'scene50.csv');
+ fs.writeFileSync(csv,'scene_id,scene_title,other\\n'+Object.entries(isolated).map(([id,x])=>id+',"'+x.name+'",note').join('\\n')+'\\n');
+ const csvAudit=spawnSync(process.execPath,[audit,base,csv,'--independent-namespace','--id-column=scene_id','--name-column=scene_title'],{encoding:'utf8'});
+ assert.equal(csvAudit.status,0,csvAudit.stderr);
+ assert.equal(JSON.parse(csvAudit.stdout).candidate.count,1341);
+ const missingColumns=spawnSync(process.execPath,[audit,base,csv,'--independent-namespace'],{encoding:'utf8'});
+ assert.notEqual(missingColumns.status,0);
  isolated.S113={name:'COLLISION'};delete isolated['SC50-0001'];
  fs.writeFileSync(file,JSON.stringify({scenes:isolated}));
  const collision=spawnSync(process.execPath,[audit,base,file,'--independent-namespace'],{encoding:'utf8'});
