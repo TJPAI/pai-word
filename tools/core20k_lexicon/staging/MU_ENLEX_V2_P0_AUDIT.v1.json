@@ -1,0 +1,1620 @@
+{
+ "header": {
+  "auditor": "Muse",
+  "role": "MU-ENLEX",
+  "audit": "V2 P0 independent semantic audit (83 items + 11 HOLD dispositions)",
+  "freeze_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "freeze_branch": "experiment/enlex-v3-production-rebuild-20261030",
+  "manifest_file": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/V2_INTEGRATION_FREEZE_20261102.json",
+  "manifest_sha256": "fd026ad59de1e40cf05c8939874df6052bdc51350b48848a17effdea829622d1",
+  "audit_date": "2026-11-02",
+  "production_ready": false,
+  "note": "Content audit only. No repo file, branch, or Runtime modified; no new Sense IDs created; no activation. CG reasons were treated as claims verified against the frozen rows, not as verdicts. No ChatGPT/CG-QA verdicts on these items were read.",
+  "recompute_counts": {
+   "frozen_shard_records": 27471,
+   "v2_needs_semantic_review_true": 83,
+   "question_requires_rebuild_true": 84,
+   "question_requires_rebuild_note": "84 = the 83 audited here plus one rebuild-only versa item (rank 11092), recorded as an observation, not in the 83",
+   "v2_rebuild_method_present_disjoint": 127,
+   "flagged_rows_total": 211,
+   "flagged_rows_check": "127 + 84 = 211",
+   "holds_within_83": 11,
+   "note": "Do NOT sum 83 + 11: all 11 HOLDs are inside the 83."
+  }
+ },
+ "counts_by_verdict": {
+  "PASS": 24,
+  "REVISE": 55,
+  "HOLD": 4
+ },
+ "reviews": [
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10766::runtime-native:10766:w_12297_impassion_ku_s01:zh_to_en:01",
+   "lemma": "impassion",
+   "rank": 10766,
+   "gloss_zh": "激起热情；使激情澎湃",
+   "gloss_en": "to fill someone with strong emotion or enthusiasm",
+   "pos": "v",
+   "question": "Which verb means to fill someone with strong feeling or enthusiasm?",
+   "response": "impassion",
+   "verdict": "REVISE",
+   "reason": "REVISE. The English definition alone also fits 'inspire' and 'excite', so the question does not uniquely select impassion; the Chinese gloss 使激情澎湃 is the distinguishing cue. gloss_zh and pos 'v' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Which verb means to fill someone with strong feeling or enthusiasm?",
+     "new": "Which verb means to fill someone with strong feeling or enthusiasm (Chinese: 使激情澎湃)?"
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11302::runtime-native:11302:w_10524_goodnight_ku_s01:zh_to_en:01",
+   "lemma": "goodnight",
+   "rank": 11302,
+   "gloss_zh": "晚安",
+   "gloss_en": "an expression used when saying goodbye at night or before sleep",
+   "pos": "interj",
+   "question": "Which single word is used as a farewell before sleep?",
+   "response": "goodnight",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the two constraints jointly pin the answer — 'single word' excludes 'good night', and 'farewell before sleep' excludes 'goodbye'. gloss_zh 晚安 matches gloss_en exactly and pos 'interj' matches the farewell-expression sense."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11704::oewn-travel__2.38.00..:zh_to_en:01",
+   "lemma": "travelled",
+   "rank": 11704,
+   "gloss_zh": "旅行了；行进过（travel 的英式过去式或过去分词）",
+   "gloss_en": "went from one place to another; British spelling of traveled",
+   "pos": "past tense / past participle of verb (British spelling)",
+   "question": "Complete using British spelling: Last summer, they ___ across Europe.",
+   "response": "travelled",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question explicitly instructs British spelling and the past-tense slot after 'Last summer, they' admits only the past form of travel. gloss_zh 旅行了；行进过 with the British-form note matches gloss_en, and pos names the past tense/participle."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11829::oewn-cleave__2.35.00..:zh_to_en:01",
+   "lemma": "clove",
+   "rank": 11829,
+   "gloss_zh": "一瓣蒜；丁香（香料）",
+   "gloss_en": "a segment of garlic or a dried aromatic flower bud used as spice",
+   "pos": "v",
+   "question": "Use one ___ of garlic.",
+   "response": "clove",
+   "verdict": "HOLD",
+   "reason": "CONFIRM_HOLD. The ku_id embeds the verb sense oewn-cleave__2.35.00, but gloss_en ('a segment of garlic or a dried aromatic flower bud used as spice') and the question ('Use one ___ of garlic.') teach the noun spice sense, while pos 'v' matches the ID and contradicts the taught sense. The row's identity is the verb 'cleave'; teaching the noun 'clove' under it needs a new noun sense identity, which this audit cannot create.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "missing": "A frozen noun sense identity for clove-the-spice (garlic segment / spice bud), distinct from the oewn-cleave verb sense; then re-issue the item under that identity with pos 'noun'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12061::oewn-squat__5.00.00.short.03:zh_to_en:01",
+   "lemma": "squatter",
+   "rank": 12061,
+   "gloss_zh": "擅自占用土地或房屋的人",
+   "gloss_en": "a person who occupies land or a building without the owner's permission",
+   "pos": "noun",
+   "question": "What noun means a person occupying a property without permission?",
+   "response": "squatter",
+   "verdict": "HOLD",
+   "reason": "CONFIRM_HOLD. The ku_id embeds oewn-squat__5.00.00.short.03 — the 'squat' adjective sense — but the row teaches the noun 'squatter' (gloss_en 'a person who occupies land or a building without the owner's permission', pos 'noun'). The sense identity does not encode 'squatter'; remapping the noun into the adjective ID is prohibited.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "missing": "A frozen noun sense identity for squatter; then re-issue the item under that identity."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12474::oewn-slay__2.41.00..:zh_to_en:01",
+   "lemma": "slew",
+   "rank": 12474,
+   "gloss_zh": "杀死；杀害（slay 的过去式）",
+   "gloss_en": "killed deliberately or violently; past tense of slay",
+   "pos": "v",
+   "question": "The knight ___ the dragon.\nUse the irregular past tense of slay.",
+   "response": "slew",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the base verb ('Use the irregular past tense of slay'), so no other verb can fill the blank. gloss_zh 杀死；杀害（slay 的过去式） matches gloss_en 'killed deliberately or violently; past tense of slay' and pos 'v' fits the past-tense form."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12847::runtime-native:12847:w_12003_dis_ku_s01:zh_to_en:01",
+   "lemma": "dis",
+   "rank": 12847,
+   "gloss_zh": "贬低；嘲讽（口语）",
+   "gloss_en": "to insult or speak disrespectfully about someone",
+   "pos": "v",
+   "question": "Which informal verb means to insult or speak disrespectfully about someone?",
+   "response": "dis",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the 'informal verb' constraint excludes 'insult'/'disparage', and 'diss' is a spelling variant of the same item rather than a competing sense. gloss_zh 贬低；嘲讽（口语） matches gloss_en 'to insult or speak disrespectfully about someone' and pos 'v' is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12905::runtime-native:12905:w_12372_multi_ku_s01:zh_to_en:01",
+   "lemma": "multi",
+   "rank": 12905,
+   "gloss_zh": "多；多个（前缀）",
+   "gloss_en": "a prefix meaning many or more than one",
+   "pos": "prefix",
+   "question": "Which prefix means many or more than one?",
+   "response": "multi",
+   "verdict": "REVISE",
+   "reason": "REVISE. The definition 'many or more than one' also fits the prefix 'poly-', so the question does not uniquely select multi. gloss_zh 多；多个（前缀） and pos 'prefix' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Which prefix means many or more than one?",
+     "new": "Which prefix means many or more than one, as in 'multimedia'?"
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13304::oewn-signal__2.32.00..:zh_to_en:01",
+   "lemma": "signalled",
+   "rank": 13304,
+   "gloss_zh": "发出了信号（signal 的英式过去式或过去分词）",
+   "gloss_en": "gave a signal; British spelling of signaled",
+   "pos": "past tense / past participle",
+   "question": "The guide ___ for everyone to stop.",
+   "response": "signalled",
+   "verdict": "REVISE",
+   "reason": "REVISE. Two defects: 'signaled' (American spelling) also fills the blank, and 'gestured' fits 'The guide ___ for everyone to stop.' gloss_zh and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The guide ___ for everyone to stop.",
+     "new": "The guide ___ for everyone to stop.\nUse the past tense of signal (British spelling)."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13601::oewn-beat__2.33.00..:zh_to_en:01",
+   "lemma": "beaten",
+   "rank": 13601,
+   "gloss_zh": "被打败的；被击打的（beat 的过去分词）",
+   "gloss_en": "struck repeatedly or defeated; past participle of beat",
+   "pos": "past participle / participial adjective",
+   "question": "Our team was ___ in the final.",
+   "response": "beaten",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Defeated' fills 'Our team was ___ in the final.' just as naturally as 'beaten'. gloss_zh 被打败的；被击打的 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Our team was ___ in the final.",
+     "new": "Our team was ___ in the final.\nUse the past participle of beat."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13645::oewn-transfer__2.41.00..:zh_to_en:01",
+   "lemma": "transferred",
+   "rank": 13645,
+   "gloss_zh": "转移了；调动了（transfer 的过去式或过去分词）",
+   "gloss_en": "moved something or someone to another place or position; past form of transfer",
+   "pos": "past tense / past participle",
+   "question": "The files were ___ to a new server.",
+   "response": "transferred",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Moved' fills 'The files were ___ to a new server.' just as naturally as 'transferred'. gloss_zh and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The files were ___ to a new server.",
+     "new": "The files were ___ to a new server.\nUse the past form of transfer."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13724::oewn-drop__2.38.01..:zh_to_en:01",
+   "lemma": "dropped",
+   "rank": 13724,
+   "gloss_zh": "落下了；使掉落了（drop 的过去式或过去分词）",
+   "gloss_en": "fell or caused something to fall; past form of drop",
+   "pos": "past tense / past participle",
+   "question": "She ___ her keys on the floor.",
+   "response": "dropped",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Left' fills 'She ___ her keys on the floor.' ('She left her keys on the floor.'). gloss_zh and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She ___ her keys on the floor.",
+     "new": "She ___ her keys on the floor.\nUse the past form of drop."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14347::oewn-strip__2.40.03..:zh_to_en:01",
+   "lemma": "stripped",
+   "rank": 14347,
+   "gloss_zh": "剥夺了（某人的财物或权利）（strip 的过去式或过去分词）",
+   "gloss_en": "deprived someone of possessions; past form of strip",
+   "pos": "past tense / past participle",
+   "question": "They ___ him of his possessions.\nUse the regular past tense of strip (deprive of possessions).",
+   "response": "stripped",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and the sense ('Use the regular past tense of strip (deprive of possessions)'), so the blank is uniquely recoverable. gloss_zh 剥夺了（某人的财物或权利） matches gloss_en 'deprived someone of possessions'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14417::oewn-ship__2.38.00..:zh_to_en:01",
+   "lemma": "shipped",
+   "rank": 14417,
+   "gloss_zh": "已发货；已运输（ship 的过去式或过去分词）",
+   "gloss_en": "sent goods by ship or another transport method; past form of ship",
+   "pos": "past tense / past participle",
+   "question": "The order was ___ yesterday.",
+   "response": "shipped",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Delivered' and 'sent' both fill 'The order was ___ yesterday.' gloss_zh 已发货；已运输 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The order was ___ yesterday.",
+     "new": "The order was ___ yesterday.\nUse the past form of ship."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14452::oewn-ring__2.39.00..:zh_to_en:01",
+   "lemma": "rang",
+   "rank": 14452,
+   "gloss_zh": "响了；铃响了（ring 的过去式）",
+   "gloss_en": "made a ringing sound; past tense of ring",
+   "pos": "past tense",
+   "question": "The telephone ___ twice.",
+   "response": "rang",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Buzzed' fits 'The telephone ___ twice.', and the sentence carries no 'ringing' constraint. gloss_zh 响了；铃响了 and pos 'past tense' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The telephone ___ twice.",
+     "new": "The telephone ___ twice.\nUse the past tense of ring."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14551::oewn-easy__3.00.01..:zh_to_en:01",
+   "lemma": "easier",
+   "rank": 14551,
+   "gloss_zh": "更容易的（easy 的比较级）",
+   "gloss_en": "less difficult than something else; comparative of easy",
+   "pos": "comparative adjective",
+   "question": "Complete: The second exercise is ___ than the first.",
+   "response": "easier",
+   "verdict": "REVISE",
+   "reason": "REVISE. The blank admits the opposite direction: 'The second exercise is harder than the first.' is equally grammatical, and the question gives no direction cue. gloss_zh 更容易的 and pos 'comparative adjective' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Complete: The second exercise is ___ than the first.",
+     "new": "Complete: The second exercise is ___ than the first.\nUse the comparative of easy."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14583::oewn-bed__2.40.00..:zh_to_en:01",
+   "lemma": "bedded",
+   "rank": 14583,
+   "gloss_zh": "安置在床上；使就寝（bed 的过去式或过去分词）",
+   "gloss_en": "was put to bed or placed in a bed; past form of bed",
+   "pos": "past tense / past participle",
+   "question": "The children were ___ early.",
+   "response": "bedded",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites 'The dormitory was bedded', which does not appear in the frozen question ('The children were ___ early.'); the actual defect is that 'asleep' also fills the blank ('The children were asleep early.'). No identity problem: the ku_id sense is the verb bed and gloss_en 'was put to bed or placed in a bed' matches it. Fix: name the verb bed.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The children were ___ early.",
+     "new": "The children were ___ early.\nUse the past form of bed (put to bed)."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE"
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14592::oewn-chat__2.32.00..:zh_to_en:01",
+   "lemma": "chatted",
+   "rank": 14592,
+   "gloss_zh": "闲聊过（chat 的过去式或过去分词）",
+   "gloss_en": "talked informally; past form of chat",
+   "pos": "past tense / past participle",
+   "question": "We ___ online last night.",
+   "response": "chatted",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Talked' fills 'We ___ online last night.' just as naturally as 'chatted'. gloss_zh 闲聊过 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "We ___ online last night.",
+     "new": "We ___ online last night.\nUse the past form of chat."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14719::oewn-tie__2.35.00..:zh_to_en:01",
+   "lemma": "tying",
+   "rank": 14719,
+   "gloss_zh": "正在系；打结（tie 的现在分词或动名词）",
+   "gloss_en": "fastening something with a knot; -ing form of tie",
+   "pos": "present participle / gerund",
+   "question": "She is ___ her shoes.",
+   "response": "tying",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Lacing' fits 'She is ___ her shoes.' gloss_zh 正在系；打结 and pos 'present participle / gerund' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She is ___ her shoes.",
+     "new": "She is ___ her shoes.\nUse the -ing form of tie."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14726::oewn-scan__2.39.01..:zh_to_en:01",
+   "lemma": "scanned",
+   "rank": 14726,
+   "gloss_zh": "仔细查看了；细察了（scan 的过去式或过去分词）",
+   "gloss_en": "examined closely or intently; past form of scan",
+   "pos": "past tense / past participle",
+   "question": "She ___ each page closely.\nUse the past tense of scan (examine closely).",
+   "response": "scanned",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the past tense of scan (examine closely)'). gloss_zh 仔细查看了；细察了 matches gloss_en 'examined closely or intently' and pos is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14744::oewn-ride__2.38.01..:zh_to_en:01",
+   "lemma": "rode",
+   "rank": 14744,
+   "gloss_zh": "骑过；乘坐过（ride 的过去式）",
+   "gloss_en": "travelled on or controlled a vehicle or animal; past tense of ride",
+   "pos": "past tense",
+   "question": "She ___ a horse yesterday.",
+   "response": "rode",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Mounted' fits 'She ___ a horse yesterday.' gloss_zh 骑过；乘坐过 and pos 'past tense' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She ___ a horse yesterday.",
+     "new": "She ___ a horse yesterday.\nUse the past tense of ride."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14753::oewn-spot__2.39.00..:zh_to_en:01",
+   "lemma": "spotted",
+   "rank": 14753,
+   "gloss_zh": "发现了；看见了（spot 的过去式或过去分词）",
+   "gloss_en": "caught sight of or noticed; past form of spot",
+   "pos": "past tense / past participle",
+   "question": "The guard ___ a suspicious vehicle.\nUse the past tense of spot (catch sight of).",
+   "response": "spotted",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the past tense of spot (catch sight of)'). gloss_zh 发现了；看见了 matches gloss_en 'caught sight of or noticed' and pos is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14794::oewn-map__2.36.00..:zh_to_en:01",
+   "lemma": "mapped",
+   "rank": 14794,
+   "gloss_zh": "绘制了地图；映射了（map 的过去式或过去分词）",
+   "gloss_en": "represented something on a map or chart; past form of map",
+   "pos": "past tense / past participle",
+   "question": "The surveyors ___ the route.",
+   "response": "mapped",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Charted' and 'surveyed' both fit 'The surveyors ___ the route.' gloss_zh 绘制了地图；映射了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The surveyors ___ the route.",
+     "new": "The surveyors ___ the route.\nUse the past form of map."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14831::oewn-strike__2.35.00..:zh_to_en:01",
+   "lemma": "struck",
+   "rank": 14831,
+   "gloss_zh": "击中了；受到打击（strike 的过去式或过去分词）",
+   "gloss_en": "hit something or was affected by a blow; past participle or past tense of strike",
+   "pos": "past tense / past participle",
+   "question": "Lightning ___ the tree.",
+   "response": "struck",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Hit' fills 'Lightning ___ the tree.' and is the more common phrasing. gloss_zh 击中了；受到打击 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Lightning ___ the tree.",
+     "new": "Lightning ___ the tree.\nUse the past tense of strike."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14923::oewn-scan__2.39.01..:zh_to_en:01",
+   "lemma": "scanning",
+   "rank": 14923,
+   "gloss_zh": "正在扫描；扫描（scan 的现在分词或动名词）",
+   "gloss_en": "examining something systematically, often with a scanner; -ing form of scan",
+   "pos": "present participle / gerund of verb",
+   "question": "Complete: The device is ___ the document.",
+   "response": "scanning",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Reading' fits 'The device is ___ the document.' gloss_zh 正在扫描；扫描 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Complete: The device is ___ the document.",
+     "new": "Complete: The device is ___ the document.\nUse the -ing form of scan."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15023::oewn-crop__2.35.02..:zh_to_en:01",
+   "lemma": "cropped",
+   "rank": 15023,
+   "gloss_zh": "剪短了；裁短了（crop 的过去式或过去分词）",
+   "gloss_en": "cut something short; past form of crop",
+   "pos": "past tense / past participle",
+   "question": "The groom ___ the horse's mane short.\nUse the regular past tense of crop (cut short).",
+   "response": "cropped",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the regular past tense of crop (cut short)'). gloss_zh 剪短了；裁短了 matches gloss_en 'cut something short'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15337::oewn-plot__2.31.00..:zh_to_en:01",
+   "lemma": "plotted",
+   "rank": 15337,
+   "gloss_zh": "密谋了；暗中策划了（plot 的过去式或过去分词）",
+   "gloss_en": "secretly planned an action, often unlawful; past form of plot",
+   "pos": "past tense / past participle",
+   "question": "They ___ to overthrow the ruler.\nUse the regular past tense of plot (secretly plan).",
+   "response": "plotted",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the regular past tense of plot (secretly plan)'). gloss_zh 密谋了；暗中策划了 matches gloss_en 'secretly planned an action, often unlawful'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15665::oewn-label__2.32.00..:zh_to_en:01",
+   "lemma": "labelled",
+   "rank": 15665,
+   "gloss_zh": "贴上了标签（label 的英式过去式或过去分词）",
+   "gloss_en": "attached a label or described by a label; British spelling of labeled",
+   "pos": "past tense / past participle",
+   "question": "Every box was ___ clearly.",
+   "response": "labelled",
+   "verdict": "REVISE",
+   "reason": "REVISE. Two defects: 'labeled' (American spelling) also fills the blank, and 'marked' fits 'Every box was ___ clearly.' gloss_zh and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Every box was ___ clearly.",
+     "new": "Every box was ___ clearly.\nUse the past form of label (British spelling)."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15926::oewn-pop__2.38.00..:zh_to_en:01",
+   "lemma": "popped",
+   "rank": 15926,
+   "gloss_zh": "砰地响了；突然弹出（pop 的过去式或过去分词）",
+   "gloss_en": "burst or made a short popping sound; past form of pop",
+   "pos": "past tense / past participle",
+   "question": "The balloon ___ unexpectedly.",
+   "response": "popped",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites a cork popping out, which does not appear in the frozen question ('The balloon ___ unexpectedly.'); the actual defect is that 'burst' — a word in the gloss itself ('burst or made a short popping sound') — also fills the blank ('The balloon burst unexpectedly.'). Fix: name the verb pop.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The balloon ___ unexpectedly.",
+     "new": "The balloon ___ unexpectedly.\nUse the past form of pop."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE"
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16047::oewn-spring__2.38.01..:zh_to_en:01",
+   "lemma": "sprang",
+   "rank": 16047,
+   "gloss_zh": "跳起；突然出现（spring 的过去式）",
+   "gloss_en": "jumped or moved suddenly; past tense of spring",
+   "pos": "past tense",
+   "question": "The cat ___ onto the table.",
+   "response": "sprang",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Jumped' and 'leapt' both fill 'The cat ___ onto the table.' gloss_zh 跳起；突然出现 and pos 'past tense' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The cat ___ onto the table.",
+     "new": "The cat ___ onto the table.\nUse the past tense of spring."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16071::oewn-trek__2.38.01..:zh_to_en:01",
+   "lemma": "trekking",
+   "rank": 16071,
+   "gloss_zh": "正在徒步跋涉（trek 的现在分词或动名词）",
+   "gloss_en": "walking a long or difficult route; -ing form of trek",
+   "pos": "present participle / gerund",
+   "question": "They are ___ across the mountains.",
+   "response": "trekking",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Hiking' and 'walking' both fill 'They are ___ across the mountains.' gloss_zh 正在徒步跋涉 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "They are ___ across the mountains.",
+     "new": "They are ___ across the mountains.\nUse the -ing form of trek."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16072::oewn-pet__2.35.00..:zh_to_en:01",
+   "lemma": "petted",
+   "rank": 16072,
+   "gloss_zh": "抚摸过（pet 的过去式或过去分词）",
+   "gloss_en": "stroked an animal gently; past form of pet",
+   "pos": "past tense / past participle",
+   "question": "She ___ the dog gently.",
+   "response": "petted",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Stroked' and 'patted' both fill 'She ___ the dog gently.' gloss_zh 抚摸过 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She ___ the dog gently.",
+     "new": "She ___ the dog gently.\nUse the past form of pet."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16089::oewn-map__2.36.00..:zh_to_en:01",
+   "lemma": "mapping",
+   "rank": 16089,
+   "gloss_zh": "正在绘制地图；映射（map 的现在分词或动名词）",
+   "gloss_en": "making a map or systematically associating elements; -ing form of map",
+   "pos": "present participle / gerund",
+   "question": "The team is ___ the coastline.",
+   "response": "mapping",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Charting' and 'surveying' both fill 'The team is ___ the coastline.' gloss_zh 正在绘制地图；映射 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The team is ___ the coastline.",
+     "new": "The team is ___ the coastline.\nUse the -ing form of map."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16114::oewn-sum__2.42.00..:zh_to_en:01",
+   "lemma": "summed",
+   "rank": 16114,
+   "gloss_zh": "求和了；汇总了（sum 的过去式或过去分词）",
+   "gloss_en": "added numbers together or summarized; past form of sum",
+   "pos": "past tense / past participle",
+   "question": "The expenses were ___ at the end.",
+   "response": "summed",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites a phrasal 'summed up', but the frozen question ('The expenses were ___ at the end.') contains no 'up'; the actual defect is that 'totaled', 'calculated' and 'summarized' all fill the blank. gloss_zh 求和了；汇总了 and pos are correct; only the question is ambiguous. Fix: name the verb sum.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The expenses were ___ at the end.",
+     "new": "The expenses were ___ at the end.\nUse the past form of sum."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE"
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16169::oewn-deeply__4.02.00..:zh_to_en:01",
+   "lemma": "deeper",
+   "rank": 16169,
+   "gloss_zh": "更深的；更深入的（deep 的比较级）",
+   "gloss_en": "extending further down, inward, or into a subject than something else",
+   "pos": "comparative adjective",
+   "question": "Complete: This lake is ___ than the one nearby.",
+   "response": "deeper",
+   "verdict": "HOLD",
+   "reason": "CONFIRM_HOLD. The ku_id embeds oewn-deeply__4.02.00 — the adverb 'deeply' — but the row teaches the comparative adjective 'deeper' (gloss_en 'extending further down, inward, or into a subject than something else', pos 'comparative adjective'). The sense identity does not encode 'deeper'; remapping the comparative into the adverb ID is prohibited. (The question alone would also admit 'bigger', but the identity defect is the blocking one.)",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "missing": "A frozen comparative-adjective sense identity for deeper; then re-issue the item under that identity."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16203::oewn-swell__2.30.02..:zh_to_en:01",
+   "lemma": "swollen",
+   "rank": 16203,
+   "gloss_zh": "肿胀的；膨胀的（swell 的过去分词）",
+   "gloss_en": "increased in size because of fluid or inflammation; past participle of swell",
+   "pos": "past participle / participial adjective",
+   "question": "Her ankle was ___ after the fall.",
+   "response": "swollen",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Sprained' and 'bruised' both fill 'Her ankle was ___ after the fall.', while the sentence carries no 'increased in size' constraint. gloss_zh 肿胀的；膨胀的 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Her ankle was ___ after the fall.",
+     "new": "Her ankle was ___ after the fall.\nUse the past participle of swell."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16363::oewn-hug__2.35.01..:zh_to_en:01",
+   "lemma": "hugged",
+   "rank": 16363,
+   "gloss_zh": "拥抱了（hug 的过去式或过去分词）",
+   "gloss_en": "held someone tightly in one's arms; past form of hug",
+   "pos": "past tense / past participle",
+   "question": "They ___ each other after the match.",
+   "response": "hugged",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Embraced' fills 'They ___ each other after the match.' gloss_zh 拥抱了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "They ___ each other after the match.",
+     "new": "They ___ each other after the match.\nUse the past form of hug."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16398::oewn-embed__2.35.00..:zh_to_en:01",
+   "lemma": "embedding",
+   "rank": 16398,
+   "gloss_zh": "正在嵌入（embed 的现在分词或动名词）",
+   "gloss_en": "placing something firmly within another thing; -ing form of embed",
+   "pos": "present participle / gerund",
+   "question": "The engineer is ___ the sensor in the wall.",
+   "response": "embedding",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Installing' and 'placing' both fill 'The engineer is ___ the sensor in the wall.' gloss_zh 正在嵌入 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The engineer is ___ the sensor in the wall.",
+     "new": "The engineer is ___ the sensor in the wall.\nUse the -ing form of embed."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16423::oewn-sin__2.41.00..:zh_to_en:01",
+   "lemma": "sinned",
+   "rank": 16423,
+   "gloss_zh": "犯了罪过（sin 的过去式或过去分词）",
+   "gloss_en": "committed a sin; past form of sin",
+   "pos": "past tense / past participle",
+   "question": "He believed he had ___ against his principles.",
+   "response": "sinned",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Acted' fills 'He believed he had ___ against his principles.' gloss_zh 犯了罪过 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "He believed he had ___ against his principles.",
+     "new": "He believed he had ___ against his principles.\nUse the past form of sin."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16444::oewn-squat__2.35.00..:zh_to_en:01",
+   "lemma": "squatted",
+   "rank": 16444,
+   "gloss_zh": "蹲下了（squat 的过去式或过去分词）",
+   "gloss_en": "crouched low with bent knees; past form of squat",
+   "pos": "past tense / past participle",
+   "question": "She ___ to look under the bed.",
+   "response": "squatted",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Crouched' fills 'She ___ to look under the bed.' gloss_zh 蹲下了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She ___ to look under the bed.",
+     "new": "She ___ to look under the bed.\nUse the past form of squat."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16450::oewn-chop__2.35.01..:zh_to_en:01",
+   "lemma": "chopped",
+   "rank": 16450,
+   "gloss_zh": "砍了；切碎了（chop 的过去式或过去分词）",
+   "gloss_en": "cut into pieces with sharp blows; past form of chop",
+   "pos": "past tense / past participle",
+   "question": "He ___ the onions finely.",
+   "response": "chopped",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Diced' and 'sliced' both fill 'He ___ the onions finely.' gloss_zh 砍了；切碎了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "He ___ the onions finely.",
+     "new": "He ___ the onions finely.\nUse the past form of chop."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16757::oewn-rig__2.41.00..:zh_to_en:01",
+   "lemma": "rigging",
+   "rank": 16757,
+   "gloss_zh": "（暗中）操纵结果；舞弊操纵（rig 的现在分词）",
+   "gloss_en": "arranging an outcome dishonestly; present participle of rig",
+   "pos": "present participle / gerund",
+   "question": "The officials were ___ the vote counts.\nUse the -ing form of the verb rig (dishonestly manipulate).",
+   "response": "rigging",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the -ing form of the verb rig (dishonestly manipulate)'). gloss_zh （暗中）操纵结果；舞弊操纵 matches gloss_en 'arranging an outcome dishonestly'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16901::oewn-equal__2.42.00..:zh_to_en:01",
+   "lemma": "equalled",
+   "rank": 16901,
+   "gloss_zh": "与……相等（equal 的英式过去式或过去分词）",
+   "gloss_en": "was equal to something in quantity or value; British past form of equal",
+   "pos": "past tense / past participle",
+   "question": "Her score ___ the record.",
+   "response": "equalled",
+   "verdict": "REVISE",
+   "reason": "REVISE. Two defects: 'equaled' (American spelling) also fills the blank, and 'matched' fits 'Her score ___ the record.' gloss_zh 与……相等 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Her score ___ the record.",
+     "new": "Her score ___ the record.\nUse the past form of equal (British spelling)."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16907::oewn-stab__2.35.02..:zh_to_en:01",
+   "lemma": "stabbing",
+   "rank": 16907,
+   "gloss_zh": "正在用刀刺（stab 的现在分词）",
+   "gloss_en": "using a knife to stab; present participle of stab",
+   "pos": "present participle / gerund",
+   "question": "The assailant was ___ the victim with a knife.\nUse the -ing form of stab.",
+   "response": "stabbing",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb ('Use the -ing form of stab') and the knife context admits no other verb. gloss_zh 正在用刀刺 matches gloss_en 'using a knife to stab'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16933::oewn-transfer__2.41.00..:zh_to_en:01",
+   "lemma": "transferring",
+   "rank": 16933,
+   "gloss_zh": "正在调动（人员的岗位或工作地点）（transfer 的现在分词）",
+   "gloss_en": "moving an employee to another position or workplace; -ing form of transfer",
+   "pos": "present participle / gerund",
+   "question": "The company is ___ her to another office.\nUse the -ing form of transfer (reassign an employee).",
+   "response": "transferring",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the -ing form of transfer (reassign an employee)'). gloss_zh 正在调动（人员的岗位或工作地点） matches gloss_en 'moving an employee to another position or workplace'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16966::oewn-trip__2.38.00..:zh_to_en:01",
+   "lemma": "tripped",
+   "rank": 16966,
+   "gloss_zh": "绊倒；失足（trip 的过去式或过去分词）",
+   "gloss_en": "stumbled or caused someone to fall; past form of trip",
+   "pos": "past tense / past participle",
+   "question": "He ___ over a cable.",
+   "response": "tripped",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Stumbled' fills 'He ___ over a cable.' gloss_zh 绊倒；失足 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "He ___ over a cable.",
+     "new": "He ___ over a cable.\nUse the past form of trip."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17032::oewn-nod__2.32.01..:zh_to_en:01",
+   "lemma": "nodded",
+   "rank": 17032,
+   "gloss_zh": "点头了（nod 的过去式或过去分词）",
+   "gloss_en": "moved the head up and down as a sign of agreement; past form of nod",
+   "pos": "past tense / past participle",
+   "question": "She ___ in agreement.",
+   "response": "nodded",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the fixed collocation 'nod in agreement' makes the blank uniquely recoverable. gloss_zh 点头了 matches gloss_en 'moved the head up and down as a sign of agreement' and pos is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17060::oewn-strong__3.00.00..:zh_to_en:01",
+   "lemma": "stronger",
+   "rank": 17060,
+   "gloss_zh": "更强壮的；更强烈的（strong 的比较级）",
+   "gloss_en": "having greater physical strength, intensity, or effectiveness than another",
+   "pos": "comparative adjective",
+   "question": "Complete: She is ___ now than she was last year.",
+   "response": "stronger",
+   "verdict": "REVISE",
+   "reason": "REVISE. The blank admits the opposite direction: 'She is weaker now than she was last year.' is equally grammatical, and the question gives no direction cue. gloss_zh 更强壮的；更强烈的 and pos 'comparative adjective' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Complete: She is ___ now than she was last year.",
+     "new": "Complete: She is ___ now than she was last year.\nUse the comparative of strong."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17091::oewn-jam__2.38.00..:zh_to_en:01",
+   "lemma": "jammed",
+   "rank": 17091,
+   "gloss_zh": "塞满了；挤紧了（jam 的过去式或过去分词）",
+   "gloss_en": "pressed or crammed tightly together; past form of jam",
+   "pos": "past tense / past participle",
+   "question": "The passengers were ___ into the carriage.\nUse the -ed form of jam (cram tightly).",
+   "response": "jammed",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the -ed form of jam (cram tightly)'). gloss_zh 塞满了；挤紧了 matches gloss_en 'pressed or crammed tightly together'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17103::oewn-can__2.30.00..:zh_to_en:01",
+   "lemma": "canned",
+   "rank": 17103,
+   "gloss_zh": "把食物装罐保存了",
+   "gloss_en": "put food into cans for preservation",
+   "pos": "v",
+   "question": "The fruit was ___ for winter.",
+   "response": "canned",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Preserved' and 'stored' both fill 'The fruit was ___ for winter.' gloss_zh 把食物装罐保存了 and pos 'v' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The fruit was ___ for winter.",
+     "new": "The fruit was ___ for winter.\nUse the past form of can."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17127::oewn-web__2.36.00..:zh_to_en:01",
+   "lemma": "webbed",
+   "rank": 17127,
+   "gloss_zh": "结成网；有网状结构的（web 的过去式或过去分词）",
+   "gloss_en": "was covered with or connected by a web; past form of web",
+   "pos": "past tense / past participle",
+   "question": "The branches were ___ with silk.",
+   "response": "webbed",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites 'Spiders webbed branches', which does not appear in the frozen question ('The branches were ___ with silk.'); the actual defect is that 'covered' — a word in the gloss itself ('was covered with or connected by a web') — fills the blank ('The branches were covered with silk.'). Fix: name the verb web.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The branches were ___ with silk.",
+     "new": "The branches were ___ with silk.\nUse the past form of web."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE"
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17161::oewn-clip__2.35.03..:zh_to_en:01",
+   "lemma": "clipped",
+   "rank": 17161,
+   "gloss_zh": "剪掉了；剪短了（clip 的过去式或过去分词）",
+   "gloss_en": "removed or shortened by snipping; past form of clip",
+   "pos": "past tense / past participle",
+   "question": "She ___ the dead tips from the plant.\nUse the past tense of clip (snip).",
+   "response": "clipped",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the past tense of clip (snip)'). gloss_zh 剪掉了；剪短了 matches gloss_en 'removed or shortened by snipping'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17178::oewn-overlie__2.35.01..:zh_to_en:01",
+   "lemma": "overlying",
+   "rank": 17178,
+   "gloss_zh": "覆盖在……上面（overlie 的现在分词）",
+   "gloss_en": "lying over or on top of something; -ing form of overlie",
+   "pos": "present participle / gerund",
+   "question": "The rock is ___ a layer of clay.",
+   "response": "overlying",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Covering' fits 'The rock is ___ a layer of clay.' gloss_zh 覆盖在……上面 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The rock is ___ a layer of clay.",
+     "new": "The rock is ___ a layer of clay.\nUse the -ing form of overlie."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17307::oewn-fan__2.35.01..:zh_to_en:01",
+   "lemma": "fanned",
+   "rank": 17307,
+   "gloss_zh": "（棒球）使击球手三振出局（fan 的过去式）",
+   "gloss_en": "struck out a batter; past tense of fan in baseball",
+   "pos": "past tense / past participle",
+   "question": "The pitcher ___ three batters.\nUse the regular past tense of fan in baseball.",
+   "response": "fanned",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and the baseball sense ('Use the regular past tense of fan in baseball'). gloss_zh （棒球）使击球手三振出局 matches gloss_en 'struck out a batter; past tense of fan in baseball'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17538::oewn-shine__2.43.01..:zh_to_en:01",
+   "lemma": "shone",
+   "rank": 17538,
+   "gloss_zh": "发光了；照耀了（shine 的过去式或过去分词）",
+   "gloss_en": "gave off light; past form of shine",
+   "pos": "past tense / past participle",
+   "question": "The moon ___ brightly.",
+   "response": "shone",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Glowed' fits 'The moon ___ brightly.', and 'shined' is an alternative past form. gloss_zh 发光了；照耀了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The moon ___ brightly.",
+     "new": "The moon ___ brightly.\nUse the past form of shine."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17587::oewn-flee__2.38.00..:zh_to_en:01",
+   "lemma": "fled",
+   "rank": 17587,
+   "gloss_zh": "逃离了（flee 的过去式或过去分词）",
+   "gloss_en": "ran away from danger; past form of flee",
+   "pos": "past tense / past participle",
+   "question": "They ___ the burning building.",
+   "response": "fled",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Escaped' and 'evacuated' both fill 'They ___ the burning building.' gloss_zh 逃离了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "They ___ the burning building.",
+     "new": "They ___ the burning building.\nUse the past form of flee."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17827::oewn-sweep__2.38.01..:zh_to_en:01",
+   "lemma": "swept",
+   "rank": 17827,
+   "gloss_zh": "掠过；扫过（sweep 的过去式或过去分词）",
+   "gloss_en": "moved rapidly across or over an area; past form of sweep",
+   "pos": "past tense / past participle",
+   "question": "A gust ___ across the field.\nUse the irregular past tense of sweep.",
+   "response": "swept",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb ('Use the irregular past tense of sweep'). gloss_zh 掠过；扫过 matches gloss_en 'moved rapidly across or over an area'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18111::oewn-skin__2.38.00..:zh_to_en:01",
+   "lemma": "skinned",
+   "rank": 18111,
+   "gloss_zh": "剥去了皮的；剥皮（skin 的过去式或过去分词）",
+   "gloss_en": "having had the skin removed; the past tense or past participle of skin",
+   "pos": "past participle / past tense of verb",
+   "question": "Complete: The chef ___ the fish before cooking it.",
+   "response": "skinned",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Cleaned' and 'gutted' both fill 'The chef ___ the fish before cooking it.' gloss_zh 剥去了皮的；剥皮 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Complete: The chef ___ the fish before cooking it.",
+     "new": "Complete: The chef ___ the fish before cooking it.\nUse the past form of skin."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18141::oewn-sink__2.38.01..:zh_to_en:01",
+   "lemma": "sank",
+   "rank": 18141,
+   "gloss_zh": "沉下去了（sink 的过去式）",
+   "gloss_en": "went down below a surface; past tense of sink",
+   "pos": "past tense",
+   "question": "The boat ___ quickly.",
+   "response": "sank",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Capsized' fills 'The boat ___ quickly.' gloss_zh 沉下去了 and pos 'past tense' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The boat ___ quickly.",
+     "new": "The boat ___ quickly.\nUse the past tense of sink."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18199::oewn-drag__2.35.00..:zh_to_en:01",
+   "lemma": "dragged",
+   "rank": 18199,
+   "gloss_zh": "拖拉了（drag 的过去式或过去分词）",
+   "gloss_en": "pulled something along the ground; past form of drag",
+   "pos": "past tense / past participle",
+   "question": "He ___ the chair across the floor.",
+   "response": "dragged",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Pulled' and 'pushed' both fill 'He ___ the chair across the floor.' gloss_zh 拖拉了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "He ___ the chair across the floor.",
+     "new": "He ___ the chair across the floor.\nUse the past form of drag."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18273::oewn-top__2.42.00..:zh_to_en:01",
+   "lemma": "topped",
+   "rank": 18273,
+   "gloss_zh": "超过了；胜过了（top 的过去式）",
+   "gloss_en": "surpassed or exceeded a standard; past form of top",
+   "pos": "past tense / past participle",
+   "question": "Sales ___ the previous record.\nUse the regular past tense of top (surpass).",
+   "response": "topped",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and sense ('Use the regular past tense of top (surpass)'). gloss_zh 超过了；胜过了 matches gloss_en 'surpassed or exceeded a standard'."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18330::oewn-withdraw__2.38.00..:zh_to_en:01",
+   "lemma": "withdrawn",
+   "rank": 18330,
+   "gloss_zh": "退回了；向后撤离了（withdraw 的过去分词）",
+   "gloss_en": "pulled back or moved away; past participle of withdraw",
+   "pos": "past participle",
+   "question": "The troops had ___ from the border.\nUse the past participle of withdraw.",
+   "response": "withdrawn",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the question names the verb and form ('Use the past participle of withdraw'). gloss_zh 退回了；向后撤离了 matches gloss_en 'pulled back or moved away' and pos 'past participle' is exact."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18347::oewn-ride__2.38.01..:zh_to_en:01",
+   "lemma": "ridden",
+   "rank": 18347,
+   "gloss_zh": "骑过；乘坐过（ride 的过去分词）",
+   "gloss_en": "travelled on a horse, bike or other vehicle; past participle of ride",
+   "pos": "past participle",
+   "question": "She had ___ the bicycle before.",
+   "response": "ridden",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Used' fits 'She had ___ the bicycle before.' gloss_zh 骑过；乘坐过 and pos 'past participle' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She had ___ the bicycle before.",
+     "new": "She had ___ the bicycle before.\nUse the past participle of ride."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18393::oewn-gum__2.35.00..:zh_to_en:01",
+   "lemma": "gummed",
+   "rank": 18393,
+   "gloss_zh": "用胶粘住了（gum 的过去式或过去分词）",
+   "gloss_en": "covered with gum or made sticky; past form of gum",
+   "pos": "past tense / past participle",
+   "question": "The envelope was ___ shut.",
+   "response": "gummed",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Sealed' and 'glued' both fill 'The envelope was ___ shut.' gloss_zh 用胶粘住了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The envelope was ___ shut.",
+     "new": "The envelope was ___ shut.\nUse the past form of gum."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18485::oewn-rub__2.35.00..:zh_to_en:01",
+   "lemma": "rubbed",
+   "rank": 18485,
+   "gloss_zh": "擦了；揉了（rub 的过去式或过去分词）",
+   "gloss_en": "moved a hand or object repeatedly against a surface; past form of rub",
+   "pos": "past tense / past participle",
+   "question": "She ___ her eyes.",
+   "response": "rubbed",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Closed' fills 'She ___ her eyes.' ('She closed her eyes.') gloss_zh 擦了；揉了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She ___ her eyes.",
+     "new": "She ___ her eyes.\nUse the past form of rub."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18722::oewn-bookshelf__1.06.00..:zh_to_en:01",
+   "lemma": "bookshelves",
+   "rank": 18722,
+   "gloss_zh": "书架（复数）",
+   "gloss_en": "plural of bookshelf",
+   "pos": "plural noun",
+   "question": "The library has several ___.",
+   "response": "bookshelves",
+   "verdict": "REVISE",
+   "reason": "REVISE. The blank after 'several' admits any plural noun: 'books' and 'shelves' both fill 'The library has several ___.' gloss_zh 书架（复数） and pos 'plural noun' are correct; only the question is unconstrained.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The library has several ___.",
+     "new": "The library has several ___.\nUse the plural of bookshelf."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18723::oewn-fat__2.34.00..:zh_to_en:01",
+   "lemma": "fatted",
+   "rank": 18723,
+   "gloss_zh": "养肥了；使肥胖了（较少见）",
+   "gloss_en": "made an animal fat; an uncommon past form of fat",
+   "pos": "v",
+   "question": "The cattle were ___ for sale.",
+   "response": "fatted",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). 'Fattened' fills 'The cattle were ___ for sale.' and is the common phrasing; the gloss itself discloses the rarity （较少见 / 'an uncommon past form'), which is a disclosure, not a defect. Naming the base verb 'fat' excludes 'fattened', which is the past of 'fatten', not 'fat'. NEEDS_EVIDENCE: dictionary attestation that 'fatted' is the accepted past of verb 'fat' (e.g. the 'fatted calf' collocation) must be confirmed before certification; if unattested, drop the item.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The cattle were ___ for sale.",
+     "new": "The cattle were ___ for sale.\nUse the past form of fat."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "needs_evidence": "Dictionary attestation that 'fatted' is the accepted past form of verb 'fat' (e.g. the 'fatted calf' collocation), to be confirmed before certification; if unattested, drop the item."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18727::oewn-fling__2.35.00..:zh_to_en:01",
+   "lemma": "flung",
+   "rank": 18727,
+   "gloss_zh": "猛扔了（fling 的过去式或过去分词）",
+   "gloss_en": "threw with force; past form of fling",
+   "pos": "past tense / past participle",
+   "question": "He ___ the door open.",
+   "response": "flung",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Threw' and 'pushed' both fill 'He ___ the door open.' gloss_zh 猛扔了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "He ___ the door open.",
+     "new": "He ___ the door open.\nUse the past form of fling."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18849::oewn-pin__2.35.03..:zh_to_en:01",
+   "lemma": "pinned",
+   "rank": 18849,
+   "gloss_zh": "别住了；固定了（pin 的过去式或过去分词）",
+   "gloss_en": "fastened with a pin or held in place; past form of pin",
+   "pos": "past tense / past participle",
+   "question": "The note was ___ to the board.",
+   "response": "pinned",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Attached' and 'taped' both fill 'The note was ___ to the board.' gloss_zh 别住了；固定了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The note was ___ to the board.",
+     "new": "The note was ___ to the board.\nUse the past form of pin."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19014::oewn-plug__2.35.01..:zh_to_en:01",
+   "lemma": "plugged",
+   "rank": 19014,
+   "gloss_zh": "堵住了；插上了（plug 的过去式或过去分词）",
+   "gloss_en": "blocked a hole or connected a device; past form of plug",
+   "pos": "past tense / past participle",
+   "question": "The hole was ___ with clay.",
+   "response": "plugged",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Filled' and 'sealed' both fill 'The hole was ___ with clay.' gloss_zh 堵住了；插上了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The hole was ___ with clay.",
+     "new": "The hole was ___ with clay.\nUse the past form of plug."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19178::oewn-mob__2.38.00..:zh_to_en:01",
+   "lemma": "mobbed",
+   "rank": 19178,
+   "gloss_zh": "团团围住了（mob 的过去式或过去分词）",
+   "gloss_en": "crowded around someone in a large group; past form of mob",
+   "pos": "past tense / past participle",
+   "question": "Fans ___ the singer.",
+   "response": "mobbed",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason says 'mob requires a target', but the frozen question ('Fans ___ the singer.') does contain a target, 'the singer'; the actual defect is that 'surrounded' and 'crowded' also fill the blank. gloss_zh 团团围住了 and pos are correct; only the question is ambiguous. Fix: name the verb mob.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "Fans ___ the singer.",
+     "new": "Fans ___ the singer.\nUse the past form of mob."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE"
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19507::oewn-sink__2.38.01..:zh_to_en:01",
+   "lemma": "sunk",
+   "rank": 19507,
+   "gloss_zh": "沉没的；沉下去的（sink 的过去分词）",
+   "gloss_en": "gone down beneath a surface; past participle of sink",
+   "pos": "past participle",
+   "question": "The ship had ___ by dawn.",
+   "response": "sunk",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Disappeared' fits 'The ship had ___ by dawn.' gloss_zh 沉没的；沉下去的 and pos 'past participle' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The ship had ___ by dawn.",
+     "new": "The ship had ___ by dawn.\nUse the past participle of sink."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19529::oewn-weep__2.29.00..:zh_to_en:01",
+   "lemma": "wept",
+   "rank": 19529,
+   "gloss_zh": "哭泣了（weep 的过去式或过去分词）",
+   "gloss_en": "cried, especially with tears; past form of weep",
+   "pos": "past tense / past participle",
+   "question": "She ___ quietly.",
+   "response": "wept",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Cried' and 'sobbed' both fill 'She ___ quietly.' gloss_zh 哭泣了 and pos are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "She ___ quietly.",
+     "new": "She ___ quietly.\nUse the past form of weep."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2591::runtime-native:2591:w_6986_heck_ku_s01:zh_to_en:01",
+   "lemma": "heck",
+   "rank": 2591,
+   "gloss_zh": "见鬼；天哪（轻度感叹）",
+   "gloss_en": "an informal exclamation used to express surprise, annoyance, or emphasis",
+   "pos": "interj",
+   "question": "What the ___?",
+   "response": "heck",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Hell' fills 'What the ___?' and is the more common phrase; the question carries no mildness cue although the gloss says 轻度感叹 (mild exclamation). gloss_zh 见鬼；天哪 and pos 'interj' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "What the ___?",
+     "new": "What the ___?\nUse the mild exclamation (Chinese: 见鬼；天哪）."
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5349::runtime-native:5349:w_11162_mega_ku_s01:zh_to_en:01",
+   "lemma": "mega",
+   "rank": 5349,
+   "gloss_zh": "巨大的；超大规模的",
+   "gloss_en": "very large or impressive in scale or degree",
+   "pos": "adj",
+   "question": "The event was ___ in scale.",
+   "response": "mega",
+   "verdict": "REVISE",
+   "reason": "REVISE. 'Huge' and 'massive' both fill 'The event was ___ in scale.' gloss_zh 巨大的；超大规模的 and pos 'adj' are correct; only the question is ambiguous.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The event was ___ in scale.",
+     "new": "Which informal adjective means very large or impressive in scale (Chinese: 巨大的；超大规模的)?"
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5362::runtime-native:5362:w_5951_pre_ku_s01:zh_to_en:01",
+   "lemma": "pre",
+   "rank": 5362,
+   "gloss_zh": "预先的（前缀）",
+   "gloss_en": "a prefix meaning before or earlier than",
+   "pos": "prefix",
+   "question": "What prefix means 'before', as in 'prewar'?",
+   "response": "pre",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the worked example 'prewar' inside the question anchors the prefix 'pre' and excludes 'ante-'/'fore-'. gloss_zh 预先的（前缀） matches gloss_en 'a prefix meaning before or earlier than' and pos 'prefix' is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6190::oewn-work__2.41.02..:zh_to_en:01",
+   "lemma": "wrought",
+   "rank": 6190,
+   "gloss_zh": "锻造的；加工成形的",
+   "gloss_en": "made or shaped by working a material; an archaic past participle of work",
+   "pos": "v",
+   "question": "The decorative gate is made of ___ iron.",
+   "response": "wrought",
+   "verdict": "REVISE",
+   "reason": "REVISE (DOWNGRADE from CG HOLD). CG's 'fixed collocation' point is confirmed, but the operative defect is that 'cast' also fills the blank — 'cast iron' is an equally standard phrase ('The decorative gate is made of cast iron.'). Naming the archaic past participle of work removes the ambiguity, and the ku_id embeds oewn-work, so the taught sense is the work-verb participle and no identity change is needed.",
+   "proposed_changes": [
+    {
+     "field": "question",
+     "old": "The decorative gate is made of ___ iron.",
+     "new": "The decorative gate is made of ___ iron.\nUse the archaic past participle of work."
+    }
+   ],
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE"
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6283::runtime-native:6283:w_10817_onboard_ku_s01:zh_to_en:01",
+   "lemma": "onboard",
+   "rank": 6283,
+   "gloss_zh": "入职融入组织的；在岗的",
+   "gloss_en": "relating to bringing a new employee or member into an organization",
+   "pos": "adj",
+   "question": "What word describes an employee who has been brought into a team or organization?",
+   "response": "onboard",
+   "verdict": "REVISE",
+   "reason": "REVISE. Three-way sense muddle in the frozen row itself: gloss_en describes the verb sense (bringing a new employee into an organization), pos says 'adj', and gloss_zh adds '在岗的' (on duty), which gloss_en does not support; the question asks for a word describing an employee, but 'onboard' does not describe an employee — the employee is 'onboarded'. Fix: align pos to the verb sense, drop the unsupported '在岗的' from gloss_zh, and rewrite the question to ask for the verb.",
+   "proposed_changes": [
+    {
+     "field": "pos",
+     "old": "adj",
+     "new": "v"
+    },
+    {
+     "field": "gloss_zh",
+     "old": "入职融入组织的；在岗的",
+     "new": "使（新员工）入职融入组织"
+    },
+    {
+     "field": "question",
+     "old": "What word describes an employee who has been brought into a team or organization?",
+     "new": "Which verb means to bring a new employee or member into an organization?"
+    }
+   ]
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7297::oewn-stamen__1.20.00..:zh_to_en:01",
+   "lemma": "stamina",
+   "rank": 7297,
+   "gloss_zh": "耐力；持久力",
+   "gloss_en": "the physical or mental ability to sustain prolonged effort",
+   "pos": "noun",
+   "question": "Which noun means the ability to keep up demanding activity for a long time?",
+   "response": "stamina",
+   "verdict": "HOLD",
+   "reason": "CONFIRM_HOLD. The ku_id embeds oewn-stamen__1.20.00 — 'stamen', the flower organ — but the row teaches 'stamina' (gloss_en 'the physical or mental ability to sustain prolonged effort', lemma 'stamina'). The frozen sense identity is a different word entirely; teaching stamina under the stamen ID is an identity error.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "missing": "A frozen sense identity for stamina; then re-issue the item under that identity."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7943::runtime-native:7943:w_9795_videogame_ku_s01:zh_to_en:01",
+   "lemma": "videogame",
+   "rank": 7943,
+   "gloss_zh": "电子游戏",
+   "gloss_en": "an electronic game played by interacting with images on a screen",
+   "pos": "n",
+   "question": "What single word denotes a game played using electronic images on a screen?",
+   "response": "videogame",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: 'single word' excludes the two-word spelling 'video game', and the definition excludes other game types. gloss_zh 电子游戏 matches gloss_en 'an electronic game played by interacting with images on a screen' and pos 'n' is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8298::runtime-native:8298:w_8303_pajamas_ku_s01:zh_to_en:01",
+   "lemma": "pajamas",
+   "rank": 8298,
+   "gloss_zh": "睡衣裤",
+   "gloss_en": "loose clothing worn for sleeping",
+   "pos": "n",
+   "question": "What US English plural noun denotes loose garments worn while sleeping?",
+   "response": "pajamas",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: 'US English' excludes the British spelling 'pyjamas', and 'plural noun' plus 'loose garments worn while sleeping' excludes 'nightgown'. gloss_zh 睡衣裤 matches gloss_en 'loose clothing worn for sleeping' and pos 'n' is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8475::runtime-native:8475:w_8069_outdate_ku_s01:zh_to_en:01",
+   "lemma": "outdate",
+   "rank": 8475,
+   "gloss_zh": "使过时；淘汰",
+   "gloss_en": "to make something obsolete or no longer current",
+   "pos": "v",
+   "question": "Which verb means to make something obsolete or no longer current?",
+   "response": "outdate",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: the definition 'to make something obsolete or no longer current' is the dictionary definition of 'outdate' specifically ('supersede' means replace, not make obsolete). gloss_zh 使过时；淘汰 matches gloss_en and pos 'v' is correct."
+  },
+  {
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8849::runtime-native:8849:w_7472_ice_cream_ku_s01:zh_to_en:01",
+   "lemma": "ice-cream",
+   "rank": 8849,
+   "gloss_zh": "冰淇淋",
+   "gloss_en": "a sweet frozen dessert made with milk or cream",
+   "pos": "n",
+   "question": "Give the hyphenated spelling of the frozen dairy dessert.",
+   "response": "ice-cream",
+   "verdict": "PASS",
+   "reason": "PASS. Decisive check: 'hyphenated spelling' uniquely selects 'ice-cream' over 'ice cream'. gloss_zh 冰淇淋 matches gloss_en 'a sweet frozen dessert made with milk or cream' and pos 'n' is correct."
+  }
+ ],
+ "hold_dispositions": [
+  {
+   "lemma": "wrought",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6190::oewn-work__2.41.02..:zh_to_en:01",
+   "rank": 6190,
+   "cg_reason": "Frozen work sense does not unambiguously encode wrought-iron craftsmanship; original cloze is a fixed collocation rather than a reliable inflection test.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). CG's 'fixed collocation' point is confirmed, but the operative defect is that 'cast' also fills the blank — 'cast iron' is an equally standard phrase ('The decorative gate is made of cast iron.'). Naming the archaic past participle of work removes the ambiguity, and the ku_id embeds oewn-work, so the taught sense is the work-verb participle and no identity change is needed.",
+   "missing": null
+  },
+  {
+   "lemma": "fatted",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18723::oewn-fat__2.34.00..:zh_to_en:01",
+   "rank": 18723,
+   "cg_reason": "Very rare inflection and awkward cattle collocation; source-attested context and answer uniqueness unverified.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). 'Fattened' fills 'The cattle were ___ for sale.' and is the common phrasing; the gloss itself discloses the rarity （较少见 / 'an uncommon past form'), which is a disclosure, not a defect. Naming the base verb 'fat' excludes 'fattened', which is the past of 'fatten', not 'fat'. NEEDS_EVIDENCE: dictionary attestation that 'fatted' is the accepted past of verb 'fat' (e.g. the 'fatted calf' collocation) must be confirmed before certification; if unattested, drop the item.",
+   "missing": null
+  },
+  {
+   "lemma": "clove",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11829::oewn-cleave__2.35.00..:zh_to_en:01",
+   "rank": 11829,
+   "cg_reason": "Archaic clove is ambiguous with cleft; spelling/lexicographic verification required.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "mu_verdict": "HOLD",
+   "mu_reason": "CONFIRM_HOLD. The ku_id embeds the verb sense oewn-cleave__2.35.00, but gloss_en ('a segment of garlic or a dried aromatic flower bud used as spice') and the question ('Use one ___ of garlic.') teach the noun spice sense, while pos 'v' matches the ID and contradicts the taught sense. The row's identity is the verb 'cleave'; teaching the noun 'clove' under it needs a new noun sense identity, which this audit cannot create.",
+   "missing": "A frozen noun sense identity for clove-the-spice (garlic segment / spice bud), distinct from the oewn-cleave verb sense; then re-issue the item under that identity with pos 'noun'."
+  },
+  {
+   "lemma": "summed",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16114::oewn-sum__2.42.00..:zh_to_en:01",
+   "rank": 16114,
+   "cg_reason": "Frozen be-a-summary-of sense differs from active 'summed up' and question uses phrasal form.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites a phrasal 'summed up', but the frozen question ('The expenses were ___ at the end.') contains no 'up'; the actual defect is that 'totaled', 'calculated' and 'summarized' all fill the blank. gloss_zh 求和了；汇总了 and pos are correct; only the question is ambiguous. Fix: name the verb sum.",
+   "missing": null
+  },
+  {
+   "lemma": "popped",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15926::oewn-pop__2.38.00..:zh_to_en:01",
+   "rank": 15926,
+   "cg_reason": "Cork popping out is an ejection/event sense, not specifically bulging outward.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites a cork popping out, which does not appear in the frozen question ('The balloon ___ unexpectedly.'); the actual defect is that 'burst' — a word in the gloss itself ('burst or made a short popping sound') — also fills the blank ('The balloon burst unexpectedly.'). Fix: name the verb pop.",
+   "missing": null
+  },
+  {
+   "lemma": "bedded",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14583::oewn-bed__2.40.00..:zh_to_en:01",
+   "rank": 14583,
+   "cg_reason": "The dormitory was bedded is unnatural usage and not an unambiguous test of furnish with a bed.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites 'The dormitory was bedded', which does not appear in the frozen question ('The children were ___ early.'); the actual defect is that 'asleep' also fills the blank ('The children were asleep early.'). No identity problem: the ku_id sense is the verb bed and gloss_en 'was put to bed or placed in a bed' matches it. Fix: name the verb bed.",
+   "missing": null
+  },
+  {
+   "lemma": "webbed",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17127::oewn-web__2.36.00..:zh_to_en:01",
+   "rank": 17127,
+   "cg_reason": "Spiders webbed branches is uncommon phrasing; ambiguity and attestation check.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason cites 'Spiders webbed branches', which does not appear in the frozen question ('The branches were ___ with silk.'); the actual defect is that 'covered' — a word in the gloss itself ('was covered with or connected by a web') — fills the blank ('The branches were covered with silk.'). Fix: name the verb web.",
+   "missing": null
+  },
+  {
+   "lemma": "mobbed",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19178::oewn-mob__2.38.00..:zh_to_en:01",
+   "rank": 19178,
+   "cg_reason": "Crowd mobbed together is unnatural and normally mob requires a target.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "DOWNGRADE_TO_REVISE",
+   "mu_verdict": "REVISE",
+   "mu_reason": "REVISE (DOWNGRADE from CG HOLD). CG's stated reason says 'mob requires a target', but the frozen question ('Fans ___ the singer.') does contain a target, 'the singer'; the actual defect is that 'surrounded' and 'crowded' also fill the blank. gloss_zh 团团围住了 and pos are correct; only the question is ambiguous. Fix: name the verb mob.",
+   "missing": null
+  },
+  {
+   "lemma": "stamina",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7297::oewn-stamen__1.20.00..:zh_to_en:01",
+   "rank": 7297,
+   "cg_reason": "Frozen sense ID is stamen (flower organ), not stamina; changing English sense inside same ID violates identity.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "mu_verdict": "HOLD",
+   "mu_reason": "CONFIRM_HOLD. The ku_id embeds oewn-stamen__1.20.00 — 'stamen', the flower organ — but the row teaches 'stamina' (gloss_en 'the physical or mental ability to sustain prolonged effort', lemma 'stamina'). The frozen sense identity is a different word entirely; teaching stamina under the stamen ID is an identity error.",
+   "missing": "A frozen sense identity for stamina; then re-issue the item under that identity."
+  },
+  {
+   "lemma": "squatter",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12061::oewn-squat__5.00.00.short.03:zh_to_en:01",
+   "rank": 12061,
+   "cg_reason": "Frozen sense ID is squat adjective, not squatter noun; remapping within ID prohibited.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "mu_verdict": "HOLD",
+   "mu_reason": "CONFIRM_HOLD. The ku_id embeds oewn-squat__5.00.00.short.03 — the 'squat' adjective sense — but the row teaches the noun 'squatter' (gloss_en 'a person who occupies land or a building without the owner's permission', pos 'noun'). The sense identity does not encode 'squatter'; remapping the noun into the adjective ID is prohibited.",
+   "missing": "A frozen noun sense identity for squatter; then re-issue the item under that identity."
+  },
+  {
+   "lemma": "deeper",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16169::oewn-deeply__4.02.00..:zh_to_en:01",
+   "rank": 16169,
+   "cg_reason": "Frozen sense ID is deeply adverb, not deeper comparative adjective; remapping within ID prohibited.",
+   "cg_disposition": "QUARANTINE_NO_AUTO_MERGE",
+   "mu_disposition": "CONFIRM_HOLD",
+   "mu_verdict": "HOLD",
+   "mu_reason": "CONFIRM_HOLD. The ku_id embeds oewn-deeply__4.02.00 — the adverb 'deeply' — but the row teaches the comparative adjective 'deeper' (gloss_en 'extending further down, inward, or into a subject than something else', pos 'comparative adjective'). The sense identity does not encode 'deeper'; remapping the comparative into the adverb ID is prohibited. (The question alone would also admit 'bigger', but the identity defect is the blocking one.)",
+   "missing": "A frozen comparative-adjective sense identity for deeper; then re-issue the item under that identity."
+  }
+ ],
+ "holds_summary": {
+  "total": 11,
+  "confirm_hold": 4,
+  "downgrade_to_revise": 7,
+  "upgrade": 0,
+  "confirm_hold_lemmas": [
+   "clove",
+   "squatter",
+   "deeper",
+   "stamina"
+  ],
+  "downgrade_to_revise_lemmas": [
+   "bedded",
+   "popped",
+   "summed",
+   "webbed",
+   "mobbed",
+   "fatted",
+   "wrought"
+  ],
+  "downgrade_basis": "Each downgrade quotes the frozen row (question text or ku_id) showing CG's stated reason does not match the frozen record; the actual defect is a fixable question ambiguity with no identity change required."
+ },
+ "needs_evidence": [
+  {
+   "lemma": "fatted",
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18723::oewn-fat__2.34.00..:zh_to_en:01",
+   "rank": 18723,
+   "verdict": "REVISE",
+   "what_would_settle_it": "Dictionary attestation that 'fatted' is the accepted past form of verb 'fat' (e.g. the 'fatted calf' collocation). If unattested, drop the item instead of certifying the revision."
+  }
+ ],
+ "observations": [
+  {
+   "lemma": "versa",
+   "rank": 11092,
+   "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01:zh_to_en:01",
+   "teaching_sense_id": "core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01",
+   "kind": "rebuild-only item, NOT in the 83 (semantic_flag false, rebuild_flag true, disposition ISOLATE_UNTIL_EDITED)",
+   "frozen_row": {
+    "gloss_en": "core modern learner use of “versa”",
+    "gloss_zh": "反过来（vice versa的一部分）",
+    "question": "请根据中文释义写出对应的英语词（词性：待核查）：反过来（vice versa的一部分）",
+    "response": "versa"
+   },
+   "observation": "'versa' is not a standalone English word — it occurs only inside the fixed phrase 'vice versa' — so it cannot be a standalone active-recall answer, and gloss_en is an unrepaired placeholder, not a sense definition. Recommend: drop the item, or rebuild it around the full phrase 'vice versa' under a new identity; do not certify 'versa' as a standalone recall answer."
+  }
+ ]
+}
