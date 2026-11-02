@@ -1,0 +1,97 @@
+{
+  "schema": "cg-enlex-scene1341-sense-links-pilot-v1",
+  "status": "CANDIDATE_ONLY_NOT_CERTIFIED",
+  "source_frozen_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "source_frozen_git_blob": "21f97312b4debab4b662f41939cac29a091d89b9",
+  "scene_catalog_sha256": "5ae9ba95eeecfd012782c51396166a5f747a428917217e05221a769bb4e30d9c",
+  "source_scene_catalog_git_blob": "56e3761d968e20cf6d8c89009e0f6744a2a387b8",
+  "association_count": 6,
+  "relations": [
+    {
+      "scene_id": "SC50-0064",
+      "rank": 560,
+      "lemma": "bus",
+      "teaching_sense_id": "core20k:rank:560::oewn-bus__1.06.00..",
+      "source_kind": "en_sense",
+      "evidence": "Bus as public transport; one mode inside scene; not synonymous with subway.",
+      "relation": "SCENE_RELEVANT",
+      "editorial_status": "ENLEX_CANDIDATE_UNVERIFIED",
+      "quality": "NOT_CERTIFIED",
+      "release_eligible": false
+    },
+    {
+      "scene_id": "SC50-0106",
+      "rank": 325,
+      "lemma": "student",
+      "teaching_sense_id": "core20k:rank:325::oewn-student__1.18.00..",
+      "source_kind": "en_sense",
+      "evidence": "Enrolled learner participating in a classroom.",
+      "relation": "SCENE_RELEVANT",
+      "editorial_status": "ENLEX_CANDIDATE_UNVERIFIED",
+      "quality": "NOT_CERTIFIED",
+      "release_eligible": false
+    },
+    {
+      "scene_id": "SC50-0106",
+      "rank": 629,
+      "lemma": "teacher",
+      "teaching_sense_id": "core20k:rank:629::oewn-teacher__1.18.00..",
+      "source_kind": "en_sense",
+      "evidence": "Teacher role in classroom interaction.",
+      "relation": "SCENE_RELEVANT",
+      "editorial_status": "ENLEX_CANDIDATE_UNVERIFIED",
+      "quality": "NOT_CERTIFIED",
+      "release_eligible": false
+    },
+    {
+      "scene_id": "SC50-0186",
+      "rank": 775,
+      "lemma": "contract",
+      "teaching_sense_id": "core20k:rank:775::oewn-contract__1.10.00..",
+      "source_kind": "en_sense",
+      "evidence": "Legally binding agreement, subject of business negotiation and signing.",
+      "relation": "SCENE_RELEVANT",
+      "editorial_status": "ENLEX_CANDIDATE_UNVERIFIED",
+      "quality": "NOT_CERTIFIED",
+      "release_eligible": false
+    },
+    {
+      "scene_id": "SC50-0186",
+      "rank": 775,
+      "lemma": "contract",
+      "teaching_sense_id": "core20k:rank:775::oewn-contract__2.32.00..",
+      "source_kind": "en_sense",
+      "evidence": "Verb to enter a contractual arrangement; distinct from contract as a document.",
+      "relation": "SCENE_RELEVANT",
+      "editorial_status": "ENLEX_CANDIDATE_UNVERIFIED",
+      "quality": "NOT_CERTIFIED",
+      "release_eligible": false
+    },
+    {
+      "scene_id": "SC50-0249",
+      "rank": 637,
+      "lemma": "doctor",
+      "teaching_sense_id": "core20k:rank:637::oewn-doctor__1.18.00..",
+      "source_kind": "en_sense",
+      "evidence": "Medical practitioner as participant in physician appointment and registration.",
+      "relation": "SCENE_RELEVANT",
+      "editorial_status": "ENLEX_CANDIDATE_UNVERIFIED",
+      "quality": "NOT_CERTIFIED",
+      "release_eligible": false
+    }
+  ],
+  "checks": {
+    "source_senses_found_in_frozen_shard_01": true,
+    "scene_ids_found_in_authentic_csv": true,
+    "semantic_certification": false,
+    "ku_playability_certification": false,
+    "legacy_srs_remap_allowed": false
+  },
+  "notes": [
+    "Sense-level distinctions are preserved: contract noun and verb are separate.",
+    "Scene0064 bus only covers bus subtype; do not infer subway coverage.",
+    "Scene0249 is below the 50-candidate scene threshold, so this link does not clear its HOLD.",
+    "This pilot is not a measured precision/recall evaluation, not an accepted 50-word list, and not Runtime data."
+  ],
+  "runtime_modified": false
+}
