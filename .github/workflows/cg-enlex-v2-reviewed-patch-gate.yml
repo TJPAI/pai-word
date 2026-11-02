@@ -60,7 +60,7 @@ jobs:
         shell: bash
         run: |
           python3 - <<'PY'
-          import json, os, pathlib, sys, collections
+          import json, os, pathlib, sys, collections, subprocess
           root=pathlib.Path("tools/core20k_lexicon/production_v3")
           base=root/"qa_reports/cg_enlex_mu_integrated_v2/full_pack"
           patch=(pathlib.Path(os.environ["PATCH"]))
@@ -69,6 +69,7 @@ jobs:
           content=json.loads(patch.read_text(encoding="utf-8"))
           if content.get("approved_for_merge") is not True or not content.get("reviewer") or not content.get("source_head"):
               raise SystemExit("Explicit reviewed approval, reviewer, and source HEAD required")
+          if content["source_head"] != subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip(): raise SystemExit("Stale source_head")
           rows=content.get("patches",[])
           if not isinstance(rows,list) or not rows: raise SystemExit("No approved patches")
           allowed={"question","response","gloss_en","gloss_zh"}
@@ -82,12 +83,14 @@ jobs:
               requested[p["ku_id"]]=p
           shards=sorted(base.glob("shard_*.jsonl"))
           if len(shards)!=6: raise SystemExit("Expected six shards")
-          hits=collections.Counter(); changed=0; totals=0
+          hits=collections.Counter(); changed=0; totals=0; staged={}; all_ids=set(); all_senses=set()
           for shard in shards:
               out=[]; shard_changed=0
               for line in shard.read_text(encoding="utf-8").splitlines():
                   if not line.strip(): continue
                   obj=json.loads(line); totals+=1
+                  if obj.get("ku_id") in all_ids or obj.get("teaching_sense_id") in all_senses: raise SystemExit("Duplicate frozen ID")
+                  all_ids.add(obj.get("ku_id")); all_senses.add(obj.get("teaching_sense_id"))
                   p=requested.get(obj.get("ku_id"))
                   if p is not None:
                       hits[p["ku_id"]]+=1
@@ -97,8 +100,10 @@ jobs:
                       obj.update(p["changes"]); changed+=1; shard_changed+=1
                   out.append(json.dumps(obj,ensure_ascii=False,separators=(",",":")))
               if os.environ["APPLY"]=="true" and shard_changed:
-                  shard.write_text("\n".join(out)+"\n",encoding="utf-8")
+                  staged[shard]="\n".join(out)+"\n"
           if totals!=27471 or len(hits)!=len(rows) or any(n!=1 for n in hits.values()): raise SystemExit("Record count / target coverage mismatch")
+          if os.environ["APPLY"]=="true":
+              for file,body in staged.items(): file.write_text(body,encoding="utf-8")
           pathlib.Path("v2_patch_gate_report.json").write_text(json.dumps({"result":"PASS","candidate_rows":totals,"patched":changed,"dry_run":os.environ["APPLY"]!="true","release_eligible":False},indent=2)+"\n")
           print("Verified",changed,"reviewed patches across",totals,"isolated records")
           PY
