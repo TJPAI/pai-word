@@ -1,0 +1,100 @@
+{
+  "schema": "cg-rec-scene1341-dual-review-reconciliation-v1",
+  "date": "2026-11-02",
+  "source": "MU-REC independent comments 6575570893 and 6575633141; editorial CG-REC batch01 and batch02",
+  "status": "RECONCILED_DIMENSIONS_NOT_RELEASE_ELIGIBLE",
+  "migration_approved": false,
+  "srs_remap_allowed": false,
+  "reviewed_high_risk": 71,
+  "semantic_scope": {
+    "mu_accept": 59,
+    "mu_revise": 12,
+    "mu_hold": 0,
+    "cg_rec_edit_revise": 68,
+    "cg_rec_edit_hold": 3,
+    "note": "CG-REC evaluates subintent-preservation; MU-REC independently evaluates umbrella name/scope. Disagreement does not certify a mapping."
+  },
+  "word_evidence": {
+    "candidate_accept": 6,
+    "candidate_revise": 4,
+    "hold": 61,
+    "certified_scenes": 0
+  },
+  "candidate_50_words_or_more": [
+    {
+      "scene_id": "SC50-0064",
+      "candidate_words": 65
+    },
+    {
+      "scene_id": "SC50-0106",
+      "candidate_words": 105
+    },
+    {
+      "scene_id": "SC50-0117",
+      "candidate_words": 111
+    },
+    {
+      "scene_id": "SC50-0146",
+      "candidate_words": 104
+    },
+    {
+      "scene_id": "SC50-0186",
+      "candidate_words": 113
+    },
+    {
+      "scene_id": "SC50-0252",
+      "candidate_words": 105
+    }
+  ],
+  "under_50": [
+    {
+      "scene_id": "SC50-0227",
+      "candidate_words": 46
+    },
+    {
+      "scene_id": "SC50-0249",
+      "candidate_words": 48
+    }
+  ],
+  "split_or_reassign_required": [
+    "SC50-0018",
+    "SC50-0128",
+    "SC50-0136",
+    "SC50-0168"
+  ],
+  "semantic_rename_required": [
+    "SC50-0017",
+    "SC50-0043",
+    "SC50-0044",
+    "SC50-0097",
+    "SC50-0115",
+    "SC50-0149"
+  ],
+  "special_notes": [
+    {
+      "scene_id": "SC50-0128",
+      "issue": "S155 research hypothesis and S494 conditional-sentence hypothetical are homonyms, not identical intents",
+      "action": "Exclude S494 from research crosswalk and retain it in a distinct expression scene; no automatic ID migration"
+    },
+    {
+      "scene_id": "SC50-0013",
+      "issue": "Child and elder care combine under parent, but no accepted word evidence",
+      "action": "Do not mandate split merely because subintent preservation is necessary; pending word evidence"
+    },
+    {
+      "scene_id": "SC50-0173",
+      "issue": "Accept/decline offer and onboarding are opposed or sequential intents",
+      "action": "Preserve separate child intents; word-evidence HOLD"
+    },
+    {
+      "scene_id": "SC50-0354",
+      "issue": "Request permission vs accept/decline request",
+      "action": "Separate speech-act families; word-evidence HOLD"
+    }
+  ],
+  "limitations": [
+    "These counts are attributed to independent MU-REC statements on Issue #1, not a fresh cryptographic verification of linked Google Drive reports.",
+    "Candidate word counts are not certified English Sense links or 50 ranked Core20K words.",
+    "No release, SRS remap, or user-record mutation authorized."
+  ]
+}
