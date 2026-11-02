@@ -1,0 +1,230 @@
+{
+  "schema": "cg-rec-scene1341-semantic-adjudication-batch01-v1",
+  "source_sha256": "5ae9ba95eeecfd012782c51396166a5f747a428917217e05221a769bb4e30d9c",
+  "scene500_catalog_git_blob": "0b1e9023eb21e99311b58e82bbe1518c04a63d76",
+  "scope": "editorial structural/scope judgments on named high-risk mappings; not independent blind QA",
+  "status": "CG_REC_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+  "migration_approved": false,
+  "srs_remap_allowed": false,
+  "records": [
+    {
+      "scene_id": "SC50-0008",
+      "legacy_ids": [
+        "S008",
+        "S026",
+        "S027",
+        "S028"
+      ],
+      "decision": "REVISE",
+      "reason": "早餐、午餐、晚餐均可归入家庭用餐主题，但具体餐次是独立可检索意图；保留子意图及旧ID一对多映射，不能合并用户学习历史。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0013",
+      "legacy_ids": [
+        "S013",
+        "S014"
+      ],
+      "decision": "REVISE",
+      "reason": "照顾孩子和照顾老人在人群、任务和词汇需求上差别明显；应保留儿童/老人子场景。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0017",
+      "legacy_ids": [
+        "S018",
+        "S019"
+      ],
+      "decision": "REVISE",
+      "reason": "水电燃气使用与家电故障维护具有不同操作和风险语境；建议父场景下分子意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0018",
+      "legacy_ids": [
+        "S020",
+        "S021"
+      ],
+      "decision": "REVISE",
+      "reason": "家庭维修与搬家是不同任务链；原结构动作已注明SPLIT_RECOMMENDED，建议明确分拆。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0038",
+      "legacy_ids": [
+        "S044",
+        "S045"
+      ],
+      "decision": "REVISE",
+      "reason": "超市食品采购和菜市场采购词汇高度重合，但购物渠道与交互不同，保留渠道标签。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0042",
+      "legacy_ids": [
+        "S049",
+        "S050"
+      ],
+      "decision": "REVISE",
+      "reason": "储存操作和食品安全判断是相邻却不同的学习任务；保留检索子意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0043",
+      "legacy_ids": [
+        "S051",
+        "S052"
+      ],
+      "decision": "REVISE",
+      "reason": "便利店和超市是不同交易语境，合并仅作为上层主题，避免意图失焦。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0044",
+      "legacy_ids": [
+        "S053",
+        "S054"
+      ],
+      "decision": "REVISE",
+      "reason": "商场购物范围较广，服装购物是子类，宜建父子关系而非完全等价。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0055",
+      "legacy_ids": [
+        "S065",
+        "S066",
+        "S067",
+        "S068"
+      ],
+      "decision": "REVISE",
+      "reason": "付款方式为上位概念，现金、银行卡、移动支付应保留可召回子意图；不得直接重映射历史ID。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0057",
+      "legacy_ids": [
+        "S070",
+        "S071"
+      ],
+      "decision": "REVISE",
+      "reason": "退货和换货都属于售后，但流程与对话语义不同，应可单独检索。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0064",
+      "legacy_ids": [
+        "S078",
+        "S079"
+      ],
+      "decision": "REVISE",
+      "reason": "公交和地铁虽然都是城市公共交通，但站点、路线、换乘表达有差别；保留方式维度。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0065",
+      "legacy_ids": [
+        "S080",
+        "S081"
+      ],
+      "decision": "REVISE",
+      "reason": "出租车/网约车有高重合词汇，但预约和支付交互不完全相同，保留子标签。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0066",
+      "legacy_ids": [
+        "S082",
+        "S083"
+      ],
+      "decision": "REVISE",
+      "reason": "自行车与共享单车既有骑行共性也有租借/解锁区别，适合父子层级。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0096",
+      "legacy_ids": [
+        "S113",
+        "S114"
+      ],
+      "decision": "REVISE",
+      "reason": "预订酒店与办理入住是不同阶段和用户动作，尤其S113/S114历史身份应保留独立子意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0097",
+      "legacy_ids": [
+        "S115",
+        "S116",
+        "S117"
+      ],
+      "decision": "REVISE",
+      "reason": "酒店设施、服务请求和投诉分别指实体、服务动作与问题升级，合并可作为主题但不应抹去意图区别。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0119",
+      "legacy_ids": [
+        "S144",
+        "S145"
+      ],
+      "decision": "REVISE",
+      "reason": "论文写作与文献引用有共同学术语境但不同技能，应区分教学单元。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0128",
+      "legacy_ids": [
+        "S155",
+        "S156",
+        "S494"
+      ],
+      "decision": "HOLD",
+      "reason": "存在S155和S494均为提出假设、另有设计实验S156；应先核实旧场景重复身份，再决定归并映射。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0134",
+      "legacy_ids": [
+        "S163",
+        "S164",
+        "S165",
+        "S166",
+        "S167"
+      ],
+      "decision": "REVISE",
+      "reason": "摘要、引言、方法、结果和讨论是论文不同部分，建议保留可检索章节级子场景。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0136",
+      "legacy_ids": [
+        "S170",
+        "S171"
+      ],
+      "decision": "REVISE",
+      "reason": "学术投稿与学术会议注册/参会属于不同任务链，且来源已标记建议拆分。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    }
+  ],
+  "count": 19
+}
