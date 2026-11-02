@@ -33,9 +33,9 @@ for(const shard of manifest.shards){
  seenPaths.add(shard.path);
  assert.match(shard.blob_sha,/^[0-9a-f]{40}$/);
  const bytes=fs.readFileSync(path.join(root,shard.path));
- const blob=crypto.createHash('sha1').update('blob '+bytes.length+'\\0').update(bytes).digest('hex');
+ const blob=crypto.createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
  assert.equal(blob,shard.blob_sha,'frozen shard SHA mismatch: '+shard.path);
- for(const line of bytes.toString('utf8').split(/\\r?\\n/)){
+ for(const line of bytes.toString('utf8').split(/\r?\n/)){
   if(!line.trim())continue;
   const item=JSON.parse(line);
   total++;
