@@ -27,7 +27,12 @@ const softwareSupport=/^(?:(?:can|could)\s+you\s+help\s+me\s+with|(?:i\s+(?:need
 // Distinguish hotel room reservation from generic appointment bookings.
 const hotelReservationZh=/^(?:我|我们)?(?:想|要|需要|打算|准备)?(?:预约|预订|订|订购)(?:(?:一间|一个|下周|明天)\s*)?(?:酒店|宾馆)(?:的)?(?:房间|客房|房|住宿)?[。.!！]?$/;
 const hotelReservationRoomZh=/^(?:我|我们)?(?:想|要|需要|打算|准备)?(?:预约|预订|订)(?:(?:一间|一个)\s*)?(?:酒店|宾馆)(?:的)?(?:房间|客房|房)[。.!！]?$/;
+// Provisional A/B regression guards: explicit excluded moving intent and departure-stage handover.
+const bedroomNotMoving=q=>/^(?:我想|我要|想|要)?(?:整理|收拾)(?:一下)?(?:卧室|房间)[，,\s]*(?:但|不过)?(?:不是|并非|不(?:是)?要|而非)(?:搬家|搬迁)[。.!！]?$/.test(q);
+const resignationHandover=q=>/^(?:我)?(?:离职|辞职)(?:前|之前)(?:把|将)?.{0,24}(?:交接|移交)(?:给同事|给接手人)?[。.!！]?$/.test(q);
 const rules=[
+ {id:'bedroom_not_moving_provisional',match:bedroomNotMoving,promote:'S004',exclude:['S021']},
+ {id:'resignation_handover_provisional',match:resignationHandover,promote:'S200',exclude:[]},
  {id:'zh_hotel_room_reservation',match:q=>hotelReservationRoomZh.test(q)||hotelReservationZh.test(q),promote:'S113',exclude:[]},
  {id:'english_software_support',match:q=>softwareSupport.test(q),promote:'S275',exclude:[]},
  {id:'english_food_direct_request',match:q=>foodRequest.test(q),promote:'S034',exclude:[]},
