@@ -1,0 +1,38 @@
+{
+  "schema": "pai-scene1341-source-lock-v1",
+  "date": "2026-11-02",
+  "owner": "CG-MAIN",
+  "state": "LIBRARY_SOURCE_BYTE_VERIFIED_GITHUB_IMPORT_PENDING",
+  "inputs": [
+    {
+      "filename": "PAI_Word_Scene50_V1.5_Structural_Catalog.csv",
+      "size_bytes": 212394,
+      "sha256": "5ae9ba95eeecfd012782c51396166a5f747a428917217e05221a769bb4e30d9c",
+      "rows": 1341,
+      "id_field": "id",
+      "scene_name_field": "revised_name"
+    },
+    {
+      "filename": "all_1341_scene_status.csv",
+      "size_bytes": 127996,
+      "sha256": "bbd7c8ff92bd4f3c5e51f3d563717d3a732673a40d015d89bd578704d594b36b",
+      "rows": 1341,
+      "id_field": "scene_id",
+      "scene_name_field": "scene_name"
+    }
+  ],
+  "namespace": "SC50",
+  "legacy_namespace": "S",
+  "crosswalk_state": "UNVERIFIED",
+  "activation_allowed": false,
+  "scene_catalog_certified": false,
+  "runtime_modified": false,
+  "requirements": [
+    "Both source files must match pinned SHA256 before ingestion",
+    "Both files must have precisely 1341 distinct, matching scene IDs and matching revised scene names",
+    "SC50 IDs must not be silently used as S001–S500 legacy identifiers",
+    "Any Scene500 references require an explicit reviewed crosswalk; unverified links are not one-to-one migration",
+    "Do not infer playable KU coverage from candidate_count or evidence_status",
+    "No catalog freeze, production publish, SRS remapping or preview promotion without explicit approval"
+  ]
+}
