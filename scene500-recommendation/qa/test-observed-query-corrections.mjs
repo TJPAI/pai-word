@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {applyObservedQueryCorrections} from '../observed-query-corrections.mjs';
-const catalog={scenes:{S004:{name:'日程安排'},S275:{name:'软件故障与技术支持'},S104:{name:'机场值机'},S113:{name:'预订酒店'},S114:{name:'酒店入住'},S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
+const catalog={scenes:{S004:{name:'整理房间'},S021:{name:'搬家与整理物品'},S181:{name:'工作交接'},S200:{name:'离职与交接'},S275:{name:'软件故障与技术支持'},S104:{name:'机场值机'},S113:{name:'预订酒店'},S114:{name:'酒店入住'},S034:{name:'点餐'},S039:{name:'饮料与酒水'},S078:{name:'乘公交车'},S079:{name:'乘地铁'},S135:{name:'图书馆学习'},S279:{name:'机器学习'},S280:{name:'深度学习'}}};
 const row=(sceneId,score)=>({sceneId,name:catalog.scenes[sceneId].name,score,reason:['baseline']});
 const search=(query,results,options={})=>applyObservedQueryCorrections({query,total:results.length,results},query,{catalog,limit:10,...options});
 assert.equal(search('How to order coffee',[]).results[0]?.sceneId,'S039');
@@ -63,4 +63,9 @@ assert.equal(search('我想预约酒店房间',[row('S004',20),row('S113',5)]).r
 assert.equal(search('我想预订一间宾馆客房',[]).results[0]?.sceneId,'S113');
 assert.equal(search('预约医院检查',[row('S004',20)]).results[0]?.sceneId,'S004');
 assert.equal(search('酒店办理入住',[row('S114',20)]).results[0]?.sceneId,'S114');
-console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 55 assertions');
+assert.equal(search('我想整理卧室，但不是搬家',[row('S021',22),row('S004',8)]).results[0]?.sceneId,'S004');
+assert.equal(search('我想整理卧室，但不是搬家',[row('S021',22),row('S004',8)]).results.some(x=>x.sceneId==='S021'),false);
+assert.equal(search('离职前把项目文档交接给同事',[row('S181',24),row('S200',6)]).results[0]?.sceneId,'S200');
+assert.equal(search('休假前把项目交接给同事',[row('S181',24),row('S200',6)]).results[0]?.sceneId,'S181');
+assert.equal(search('搬家整理物品',[row('S021',8)]).results[0]?.sceneId,'S021');
+console.log('PASS_SCENE500_OBSERVED_QUERY_CORRECTIONS: 60 assertions');
