@@ -74,6 +74,8 @@ jobs:
           sparse-checkout: tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack
       - name: Verify frozen English V2 six-shard Git blob identities and quarantine contract
         run: node tools/integration/test-enlex-v2-frozen-intake.mjs .enlex-v2-frozen
+      - name: Validate ENLEX V2 staging loader remains read-only
+        run: node tools/integration/test-enlex-v2-staging-loader.mjs .enlex-v2-frozen
       - name: Validate latest six-line integration intake
         run: node tools/integration/test-v22-line-intake.mjs
       - name: Evaluate Batch93 real release readiness
