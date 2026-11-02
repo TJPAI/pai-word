@@ -1,0 +1,77 @@
+{
+  "schema_version": "CG_QA_V2_RISK_ADDITIONAL5_V1",
+  "freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "reviewed_count": 5,
+  "counts": {
+    "CONDITIONAL": 4,
+    "HOLD": 1
+  },
+  "items": [
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10766::runtime-native:10766:w_12297_impassion_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:10766::runtime-native:10766:w_12297_impassion_ku_s01",
+      "headword": "impassion",
+      "rank": 10766,
+      "source_blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "line": 4187,
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Impassion is an attested transitive verb 'fill with passion', so the bilingual gloss and POS are sound. The clue also admits inspire, excite, enthuse; need targeting.",
+      "suggested_fix": "Give 'starts with imp-' or explicitly request the verb impassion; add usage e.g. impassioned speech.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:11092::runtime-native:11092:w_5665_versa_ku_s01",
+      "headword": "versa",
+      "rank": 11092,
+      "source_blob_sha": "bbfd58eb3dccaefdf017bb2ccfc64571cdf47921",
+      "line": 4536,
+      "verdict": "HOLD",
+      "specific_reason": "Versa is not a free-standing ordinary English word with the stated sense: it belongs to the fixed Latin phrase vice versa. POS REMOVE and placeholder English gloss confirm identity/content ineligible.",
+      "suggested_fix": "Mark as excluded free-standing teaching item; teach full phrase vice versa with stable mapping policy.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11302::runtime-native:11302:w_10524_goodnight_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:11302::runtime-native:11302:w_10524_goodnight_ku_s01",
+      "headword": "goodnight",
+      "rank": 11302,
+      "source_blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "line": 178,
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Goodnight as interjection is possible but conventional standalone farewell is typically written good night; the current 'single word' instruction rewards nondefault spelling.",
+      "suggested_fix": "Teach good night as default farewell; note goodnight as spelling variant rather than enforcing it.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12847::runtime-native:12847:w_12003_dis_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:12847::runtime-native:12847:w_12003_dis_ku_s01",
+      "headword": "dis",
+      "rank": 12847,
+      "source_blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "line": 1839,
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Dis is an informal variant of diss meaning insult; sense and Chinese translation align, but spelling variant is unmarked and generic clue fits diss as well.",
+      "suggested_fix": "Label variant spelling dis/diss; if answer fixed, supply spelling constraints.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    },
+    {
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12905::runtime-native:12905:w_12372_multi_ku_s01:zh_to_en:01",
+      "sense_id": "core20k:rank:12905::runtime-native:12905:w_12372_multi_ku_s01",
+      "headword": "multi",
+      "rank": 12905,
+      "source_blob_sha": "ffec9a6890e3b962a4bbb3837f33d95eeb49aac2",
+      "line": 1907,
+      "verdict": "CONDITIONAL",
+      "specific_reason": "Multi- is a bound prefix meaning many; English/Chinese meanings align. Poly- also means many, so original question cannot uniquely select multi.",
+      "suggested_fix": "Teach multi- hyphenation as prefix and specify example multicolored to disambiguate.",
+      "reviewer": "CG-QA",
+      "dual_ai_status": "PENDING_MUSE"
+    }
+  ],
+  "notes": "Some overlap prior KU QA; not counted as new unique full-pack coverage without ID reconciliation. No Muse review."
+}
