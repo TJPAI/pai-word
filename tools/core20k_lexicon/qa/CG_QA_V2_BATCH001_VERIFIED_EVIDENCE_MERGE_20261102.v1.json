@@ -1,0 +1,1653 @@
+{
+  "schema": "CG_QA_V2_BATCH001_VERIFIED_EVIDENCE_MERGE_V1",
+  "date": "2026-11-02",
+  "batch_range": [
+    1,
+    3000
+  ],
+  "batch_source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+  "audit_source_files": [
+    "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+    "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+    "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+    "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+    "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json"
+  ],
+  "verified_unique_reviewed": 203,
+  "verdict_counts": {
+    "PASS": 146,
+    "CONDITIONAL": 35,
+    "REVISE": 22
+  },
+  "rejected_evidence": [],
+  "duplicate_evidence": [],
+  "unreviewed_count": 2797,
+  "semantics_status": "PARTIAL_CHATGPT_REVIEW_ONLY",
+  "muse_status": "NOT_STARTED",
+  "verified_reviews": [
+    {
+      "line": 1,
+      "sense_id": "core20k:rank:1::editorial-core20k-core-v3:1:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::editorial-core20k-core-v3:1:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 2,
+      "sense_id": "core20k:rank:1::editorial-provisional:1:out:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::editorial-provisional:1:out:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 3,
+      "sense_id": "core20k:rank:1::editorial-provisional:1:out:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::editorial-provisional:1:out:02:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 4,
+      "sense_id": "core20k:rank:1::oewn-out__3.00.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::oewn-out__3.00.02..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 5,
+      "sense_id": "core20k:rank:1::oewn-out__4.02.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::oewn-out__4.02.02..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 6,
+      "sense_id": "core20k:rank:1::oewn-out__5.00.00.dead.02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::oewn-out__5.00.00.dead.02:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 7,
+      "sense_id": "core20k:rank:1::oewn-out__5.00.00.impossible.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:1::oewn-out__5.00.00.impossible.00:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 8,
+      "sense_id": "core20k:rank:2::editorial-core20k-core-v3:2:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2::editorial-core20k-core-v3:2:01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 9,
+      "sense_id": "core20k:rank:2::runtime-native:2:w_0036_would_ku04",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:2::runtime-native:2:w_0036_would_ku04:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 10,
+      "sense_id": "core20k:rank:3::editorial-core20k-core-v3:3:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3::editorial-core20k-core-v3:3:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 11,
+      "sense_id": "core20k:rank:3::editorial-core20k-core-v3:3:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3::editorial-core20k-core-v3:3:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 12,
+      "sense_id": "core20k:rank:3::oewn-all__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3::oewn-all__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 13,
+      "sense_id": "core20k:rank:3::oewn-all__5.00.00.complete.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:3::oewn-all__5.00.00.complete.00:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 14,
+      "sense_id": "core20k:rank:4::editorial-core20k-core-v3:4:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4::editorial-core20k-core-v3:4:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 15,
+      "sense_id": "core20k:rank:4::oewn-some__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4::oewn-some__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 16,
+      "sense_id": "core20k:rank:4::oewn-some__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4::oewn-some__4.02.00..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 17,
+      "sense_id": "core20k:rank:4::oewn-some__5.00.00.many.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:4::oewn-some__5.00.00.many.00:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 18,
+      "sense_id": "core20k:rank:5::editorial-core20k-core-v3:5:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::editorial-core20k-core-v3:5:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 19,
+      "sense_id": "core20k:rank:5::editorial-provisional:5:will:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::editorial-provisional:5:will:01:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 20,
+      "sense_id": "core20k:rank:5::editorial-provisional:5:will:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::editorial-provisional:5:will:02:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 21,
+      "sense_id": "core20k:rank:5::oewn-will__1.09.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::oewn-will__1.09.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 22,
+      "sense_id": "core20k:rank:5::oewn-will__1.10.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::oewn-will__1.10.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 23,
+      "sense_id": "core20k:rank:5::oewn-will__2.32.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:5::oewn-will__2.32.00..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 24,
+      "sense_id": "core20k:rank:6::editorial-provisional:6:after:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6::editorial-provisional:6:after:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 25,
+      "sense_id": "core20k:rank:6::editorial-provisional:6:after:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6::editorial-provisional:6:after:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_FULLPASS_BATCH001_FIRST25_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 26,
+      "sense_id": "core20k:rank:6::oewn-after__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:6::oewn-after__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 27,
+      "sense_id": "core20k:rank:7::editorial-core20k-core-v3:7:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::editorial-core20k-core-v3:7:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 28,
+      "sense_id": "core20k:rank:7::oewn-about__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 29,
+      "sense_id": "core20k:rank:7::oewn-about__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 30,
+      "sense_id": "core20k:rank:7::oewn-about__4.02.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.02..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 31,
+      "sense_id": "core20k:rank:7::oewn-about__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.03..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 32,
+      "sense_id": "core20k:rank:7::oewn-about__4.02.04..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.04..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 33,
+      "sense_id": "core20k:rank:7::oewn-about__4.02.06..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:7::oewn-about__4.02.06..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 34,
+      "sense_id": "core20k:rank:8::editorial-core20k-core-v3:8:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::editorial-core20k-core-v3:8:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 35,
+      "sense_id": "core20k:rank:8::editorial-provisional:8:like:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::editorial-provisional:8:like:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 36,
+      "sense_id": "core20k:rank:8::editorial-provisional:8:like:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::editorial-provisional:8:like:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 37,
+      "sense_id": "core20k:rank:8::oewn-like__2.31.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::oewn-like__2.31.00..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 38,
+      "sense_id": "core20k:rank:8::oewn-like__2.37.04..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::oewn-like__2.37.04..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 39,
+      "sense_id": "core20k:rank:8::oewn-like__2.37.05..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::oewn-like__2.37.05..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 40,
+      "sense_id": "core20k:rank:8::oewn-like__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::oewn-like__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 41,
+      "sense_id": "core20k:rank:8::oewn-like__3.00.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::oewn-like__3.00.02..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 42,
+      "sense_id": "core20k:rank:8::oewn-like__3.00.04..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:8::oewn-like__3.00.04..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 43,
+      "sense_id": "core20k:rank:9::editorial-provisional:9:may:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9::editorial-provisional:9:may:01:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 44,
+      "sense_id": "core20k:rank:9::editorial-provisional:9:may:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9::editorial-provisional:9:may:02:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 45,
+      "sense_id": "core20k:rank:9::oewn-may__1.28.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:9::oewn-may__1.28.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 46,
+      "sense_id": "core20k:rank:10::editorial-provisional:10:should:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10::editorial-provisional:10:should:01:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 47,
+      "sense_id": "core20k:rank:10::editorial-provisional:10:should:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10::editorial-provisional:10:should:02:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 48,
+      "sense_id": "core20k:rank:10::runtime-native:10:w_0090_should_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:10::runtime-native:10:w_0090_should_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 49,
+      "sense_id": "core20k:rank:11::editorial-core20k-core-v3:11:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11::editorial-core20k-core-v3:11:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 50,
+      "sense_id": "core20k:rank:11::oewn-up__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11::oewn-up__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 51,
+      "sense_id": "core20k:rank:11::oewn-up__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11::oewn-up__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 52,
+      "sense_id": "core20k:rank:11::oewn-up__5.00.00.rising.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:11::oewn-up__5.00.00.rising.00:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 53,
+      "sense_id": "core20k:rank:12::editorial-provisional:12:could:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12::editorial-provisional:12:could:01:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 54,
+      "sense_id": "core20k:rank:12::editorial-provisional:12:could:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12::editorial-provisional:12:could:02:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 55,
+      "sense_id": "core20k:rank:12::editorial-provisional:12:could:03",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12::editorial-provisional:12:could:03:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS026_055_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 56,
+      "sense_id": "core20k:rank:12::runtime-native:12:w_0066_could_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:12::runtime-native:12:w_0066_could_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 57,
+      "sense_id": "core20k:rank:13::editorial-provisional:13:before:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13::editorial-provisional:13:before:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 58,
+      "sense_id": "core20k:rank:13::editorial-provisional:13:before:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13::editorial-provisional:13:before:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 59,
+      "sense_id": "core20k:rank:13::oewn-before__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13::oewn-before__4.02.03..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 60,
+      "sense_id": "core20k:rank:14::editorial-provisional:14:can:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::editorial-provisional:14:can:01:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 61,
+      "sense_id": "core20k:rank:14::editorial-provisional:14:can:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::editorial-provisional:14:can:02:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 62,
+      "sense_id": "core20k:rank:14::editorial-provisional:14:can:03",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::editorial-provisional:14:can:03:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 63,
+      "sense_id": "core20k:rank:14::oewn-can__1.06.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::oewn-can__1.06.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 64,
+      "sense_id": "core20k:rank:14::oewn-can__2.30.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::oewn-can__2.30.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 65,
+      "sense_id": "core20k:rank:14::oewn-can__2.41.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:14::oewn-can__2.41.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 66,
+      "sense_id": "core20k:rank:15::editorial-core20k-core-v3:15:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15::editorial-core20k-core-v3:15:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 67,
+      "sense_id": "core20k:rank:15::editorial-core20k-core-v3:15:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15::editorial-core20k-core-v3:15:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 68,
+      "sense_id": "core20k:rank:15::oewn-any__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:15::oewn-any__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 69,
+      "sense_id": "core20k:rank:16::editorial-core20k-core-v3:16:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16::editorial-core20k-core-v3:16:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 70,
+      "sense_id": "core20k:rank:16::editorial-provisional:16:over:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16::editorial-provisional:16:over:01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 71,
+      "sense_id": "core20k:rank:16::editorial-provisional:16:over:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16::editorial-provisional:16:over:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 72,
+      "sense_id": "core20k:rank:16::oewn-over__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16::oewn-over__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 73,
+      "sense_id": "core20k:rank:16::oewn-over__4.02.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16::oewn-over__4.02.02..:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 74,
+      "sense_id": "core20k:rank:16::oewn-over__5.00.01.finished.01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:16::oewn-over__5.00.01.finished.01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 75,
+      "sense_id": "core20k:rank:17::oewn-through__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17::oewn-through__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 76,
+      "sense_id": "core20k:rank:17::oewn-through__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17::oewn-through__4.02.03..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 77,
+      "sense_id": "core20k:rank:17::oewn-through__4.02.04..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17::oewn-through__4.02.04..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 78,
+      "sense_id": "core20k:rank:17::oewn-through__5.00.00.finished.01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:17::oewn-through__5.00.00.finished.01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 79,
+      "sense_id": "core20k:rank:18::editorial-core20k-core-v3:18:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18::editorial-core20k-core-v3:18:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 80,
+      "sense_id": "core20k:rank:18::oewn-off__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18::oewn-off__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 81,
+      "sense_id": "core20k:rank:18::oewn-off__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18::oewn-off__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 82,
+      "sense_id": "core20k:rank:18::oewn-off__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18::oewn-off__4.02.03..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 83,
+      "sense_id": "core20k:rank:18::oewn-off__4.02.04..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18::oewn-off__4.02.04..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 84,
+      "sense_id": "core20k:rank:18::oewn-off__5.00.00.unsatisfactory.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:18::oewn-off__5.00.00.unsatisfactory.00:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 85,
+      "sense_id": "core20k:rank:19::editorial-provisional:19:between:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19::editorial-provisional:19:between:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 86,
+      "sense_id": "core20k:rank:19::oewn-between__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:19::oewn-between__4.02.03..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 87,
+      "sense_id": "core20k:rank:20::editorial-core20k-core-v3:20:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:20::editorial-core20k-core-v3:20:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 88,
+      "sense_id": "core20k:rank:20::oewn-every__5.00.00.all.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:20::oewn-every__5.00.00.all.00:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 89,
+      "sense_id": "core20k:rank:21::editorial-provisional:21:under:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:21::editorial-provisional:21:under:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 90,
+      "sense_id": "core20k:rank:21::editorial-provisional:21:under:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:21::editorial-provisional:21:under:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 91,
+      "sense_id": "core20k:rank:21::oewn-under__4.02.05..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:21::oewn-under__4.02.05..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 92,
+      "sense_id": "core20k:rank:21::oewn-under__5.00.00.low.01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:21::oewn-under__5.00.00.low.01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 93,
+      "sense_id": "core20k:rank:22::editorial-provisional:22:might:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:22::editorial-provisional:22:might:01:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 94,
+      "sense_id": "core20k:rank:22::editorial-provisional:22:might:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:22::editorial-provisional:22:might:02:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 95,
+      "sense_id": "core20k:rank:22::oewn-might__1.07.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:22::oewn-might__1.07.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 96,
+      "sense_id": "core20k:rank:23::editorial-core20k-core-v3:23:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:23::editorial-core20k-core-v3:23:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 97,
+      "sense_id": "core20k:rank:23::oewn-each__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:23::oewn-each__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 98,
+      "sense_id": "core20k:rank:24::editorial-core20k-core-v3:24:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:24::editorial-core20k-core-v3:24:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 99,
+      "sense_id": "core20k:rank:24::editorial-core20k-core-v3:24:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:24::editorial-core20k-core-v3:24:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 100,
+      "sense_id": "core20k:rank:24::runtime-native:24:w_0193_since_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:24::runtime-native:24:w_0193_since_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 101,
+      "sense_id": "core20k:rank:25::editorial-core20k-core-v3:25:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:25::editorial-core20k-core-v3:25:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 102,
+      "sense_id": "core20k:rank:25::editorial-core20k-core-v3:25:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:25::editorial-core20k-core-v3:25:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 103,
+      "sense_id": "core20k:rank:25::oewn-there__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:25::oewn-there__4.02.01..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 104,
+      "sense_id": "core20k:rank:26::editorial-core20k-core-v3:26:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:26::editorial-core20k-core-v3:26:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 105,
+      "sense_id": "core20k:rank:26::runtime-native:26:w_0184_during_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:26::runtime-native:26:w_0184_during_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS056_105_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 108,
+      "sense_id": "core20k:rank:27::oewn-must__5.00.00.essential.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:27::oewn-must__5.00.00.essential.00:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 109,
+      "sense_id": "core20k:rank:28::editorial-core20k-core-v3:28:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:28::editorial-core20k-core-v3:28:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 110,
+      "sense_id": "core20k:rank:28::editorial-core20k-core-v3:28:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:28::editorial-core20k-core-v3:28:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 111,
+      "sense_id": "core20k:rank:28::runtime-native:28:w_0227_against_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:28::runtime-native:28:w_0227_against_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 112,
+      "sense_id": "core20k:rank:29::editorial-core20k-core-v3:29:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:29::editorial-core20k-core-v3:29:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 113,
+      "sense_id": "core20k:rank:29::oewn-another__5.00.00.other.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:29::oewn-another__5.00.00.other.00:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 114,
+      "sense_id": "core20k:rank:30::editorial-core20k-core-v3:30:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::editorial-core20k-core-v3:30:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 115,
+      "sense_id": "core20k:rank:30::oewn-around__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::oewn-around__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 116,
+      "sense_id": "core20k:rank:30::oewn-around__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::oewn-around__4.02.03..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 117,
+      "sense_id": "core20k:rank:30::oewn-around__4.02.04..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::oewn-around__4.02.04..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 118,
+      "sense_id": "core20k:rank:30::oewn-around__4.02.05..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::oewn-around__4.02.05..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 119,
+      "sense_id": "core20k:rank:30::oewn-around__4.02.06..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::oewn-around__4.02.06..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 120,
+      "sense_id": "core20k:rank:30::oewn-around__4.02.07..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:30::oewn-around__4.02.07..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 121,
+      "sense_id": "core20k:rank:31::editorial-core20k-core-v3:31:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:31::editorial-core20k-core-v3:31:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 122,
+      "sense_id": "core20k:rank:31::editorial-core20k-core-v3:31:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:31::editorial-core20k-core-v3:31:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 123,
+      "sense_id": "core20k:rank:31::oewn-in__1.23.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:31::oewn-in__1.23.00..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 124,
+      "sense_id": "core20k:rank:31::oewn-in__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:31::oewn-in__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 125,
+      "sense_id": "core20k:rank:32::runtime-native:32:w_0412_toward_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:32::runtime-native:32:w_0412_toward_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 126,
+      "sense_id": "core20k:rank:33::editorial-core20k-core-v3:33:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:33::editorial-core20k-core-v3:33:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 127,
+      "sense_id": "core20k:rank:33::oewn-within__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:33::oewn-within__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 128,
+      "sense_id": "core20k:rank:34::runtime-native:34:w_0258_until_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:34::runtime-native:34:w_0258_until_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 129,
+      "sense_id": "core20k:rank:35::editorial-core20k-core-v3:35:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:35::editorial-core20k-core-v3:35:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 130,
+      "sense_id": "core20k:rank:35::editorial-core20k-core-v3:35:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:35::editorial-core20k-core-v3:35:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 131,
+      "sense_id": "core20k:rank:35::runtime-native:35:w_0087_where_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:35::runtime-native:35:w_0087_where_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 132,
+      "sense_id": "core20k:rank:36::editorial-core20k-core-v3:36:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:36::editorial-core20k-core-v3:36:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 133,
+      "sense_id": "core20k:rank:36::runtime-native:36:w_0378_per_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:36::runtime-native:36:w_0378_per_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 134,
+      "sense_id": "core20k:rank:37::editorial-core20k-core-v3:37:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:37::editorial-core20k-core-v3:37:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 135,
+      "sense_id": "core20k:rank:37::oewn-along__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:37::oewn-along__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 136,
+      "sense_id": "core20k:rank:37::oewn-along__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:37::oewn-along__4.02.01..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 137,
+      "sense_id": "core20k:rank:37::oewn-along__4.02.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:37::oewn-along__4.02.02..:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 138,
+      "sense_id": "core20k:rank:38::editorial-core20k-core-v3:38:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:38::editorial-core20k-core-v3:38:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 139,
+      "sense_id": "core20k:rank:38::oewn-near__2.38.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:38::oewn-near__2.38.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 140,
+      "sense_id": "core20k:rank:38::oewn-near__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:38::oewn-near__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 141,
+      "sense_id": "core20k:rank:38::oewn-near__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:38::oewn-near__4.02.01..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 142,
+      "sense_id": "core20k:rank:38::oewn-near__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:38::oewn-near__4.02.03..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 143,
+      "sense_id": "core20k:rank:39::editorial-core20k-core-v3:39:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:39::editorial-core20k-core-v3:39:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 144,
+      "sense_id": "core20k:rank:39::runtime-native:39:w_0381_among_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:39::runtime-native:39:w_0381_among_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 145,
+      "sense_id": "core20k:rank:40::editorial-provisional:40:you:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:40::editorial-provisional:40:you:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 146,
+      "sense_id": "core20k:rank:41::oewn-behind__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:41::oewn-behind__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 147,
+      "sense_id": "core20k:rank:41::oewn-behind__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:41::oewn-behind__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 148,
+      "sense_id": "core20k:rank:41::oewn-behind__5.00.00.down.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:41::oewn-behind__5.00.00.down.00:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 149,
+      "sense_id": "core20k:rank:42::editorial-core20k-core-v3:42:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:42::editorial-core20k-core-v3:42:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 150,
+      "sense_id": "core20k:rank:42::oewn-both__5.00.00.some.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:42::oewn-both__5.00.00.some.00:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 151,
+      "sense_id": "core20k:rank:43::editorial-core20k-core-v3:43:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:43::editorial-core20k-core-v3:43:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 152,
+      "sense_id": "core20k:rank:43::editorial-core20k-core-v3:43:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:43::editorial-core20k-core-v3:43:02:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 153,
+      "sense_id": "core20k:rank:43::oewn-till__1.27.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:43::oewn-till__1.27.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 154,
+      "sense_id": "core20k:rank:44::oewn-above__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:44::oewn-above__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 155,
+      "sense_id": "core20k:rank:45::editorial-core20k-core-v3:45:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:45::editorial-core20k-core-v3:45:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS108_155_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 156,
+      "sense_id": "core20k:rank:45::editorial-core20k-core-v3:45:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:45::editorial-core20k-core-v3:45:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 157,
+      "sense_id": "core20k:rank:45::oewn-either__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:45::oewn-either__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 158,
+      "sense_id": "core20k:rank:46::oewn-who__1.14.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:46::oewn-who__1.14.00..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 159,
+      "sense_id": "core20k:rank:47::oewn-across__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:47::oewn-across__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 160,
+      "sense_id": "core20k:rank:48::runtime-native:48:w_0005_to_ku05",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:48::runtime-native:48:w_0005_to_ku05:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 161,
+      "sense_id": "core20k:rank:49::runtime-native:49:w_0046_when_ku03",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:49::runtime-native:49:w_0046_when_ku03:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 162,
+      "sense_id": "core20k:rank:50::runtime-native:50:w_0094_how_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:50::runtime-native:50:w_0094_how_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 163,
+      "sense_id": "core20k:rank:51::runtime-native:51:w_0051_what_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:51::runtime-native:51:w_0051_what_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 164,
+      "sense_id": "core20k:rank:52::oewn-no__1.10.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:52::oewn-no__1.10.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 165,
+      "sense_id": "core20k:rank:52::oewn-no__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:52::oewn-no__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 166,
+      "sense_id": "core20k:rank:52::oewn-no__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:52::oewn-no__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 167,
+      "sense_id": "core20k:rank:52::oewn-no__4.02.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:52::oewn-no__4.02.02..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 168,
+      "sense_id": "core20k:rank:53::oewn-left__1.06.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:53::oewn-left__1.06.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 169,
+      "sense_id": "core20k:rank:53::oewn-left__1.08.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:53::oewn-left__1.08.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 170,
+      "sense_id": "core20k:rank:53::oewn-left__1.15.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:53::oewn-left__1.15.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 171,
+      "sense_id": "core20k:rank:53::oewn-left__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:53::oewn-left__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 172,
+      "sense_id": "core20k:rank:53::oewn-left__4.02.03..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:53::oewn-left__4.02.03..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 173,
+      "sense_id": "core20k:rank:53::oewn-left__5.00.00.unexhausted.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:53::oewn-left__5.00.00.unexhausted.00:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 174,
+      "sense_id": "core20k:rank:54::oewn-below__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:54::oewn-below__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 175,
+      "sense_id": "core20k:rank:54::oewn-below__4.02.06..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:54::oewn-below__4.02.06..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 176,
+      "sense_id": "core20k:rank:55::editorial-provisional:55:which:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:55::editorial-provisional:55:which:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 177,
+      "sense_id": "core20k:rank:55::editorial-provisional:55:which:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:55::editorial-provisional:55:which:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 178,
+      "sense_id": "core20k:rank:56::runtime-native:56:w_0062_because_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:56::runtime-native:56:w_0062_because_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 179,
+      "sense_id": "core20k:rank:57::runtime-native:57:w_0820_shall_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:57::runtime-native:57:w_0820_shall_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 180,
+      "sense_id": "core20k:rank:58::runtime-native:58:w_0012_for_ku05",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:58::runtime-native:58:w_0012_for_ku05:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 181,
+      "sense_id": "core20k:rank:59::oewn-it__1.09.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:59::oewn-it__1.09.00..:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 182,
+      "sense_id": "core20k:rank:60::runtime-native:60:w_0069_than_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:60::runtime-native:60:w_0069_than_ku01:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 183,
+      "sense_id": "core20k:rank:61::runtime-native:61:w_0026_from_ku03",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:61::runtime-native:61:w_0026_from_ku03:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 184,
+      "sense_id": "core20k:rank:62::oewn-why__1.16.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:62::oewn-why__1.16.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 185,
+      "sense_id": "core20k:rank:63::oewn-neither__5.00.00.incomplete.00",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:63::oewn-neither__5.00.00.incomplete.00:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 186,
+      "sense_id": "core20k:rank:64::runtime-native:64:w_0544_itself_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:64::runtime-native:64:w_0544_itself_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 187,
+      "sense_id": "core20k:rank:65::editorial-provisional:65:this:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:65::editorial-provisional:65:this:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 188,
+      "sense_id": "core20k:rank:65::editorial-provisional:65:this:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:65::editorial-provisional:65:this:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 189,
+      "sense_id": "core20k:rank:66::runtime-native:66:w_0826_yourself_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:66::runtime-native:66:w_0826_yourself_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 190,
+      "sense_id": "core20k:rank:67::runtime-native:67:w_0015_that_ku04",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:67::runtime-native:67:w_0015_that_ku04:zh_to_en:01",
+      "verdict": "CONDITIONAL",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 191,
+      "sense_id": "core20k:rank:68::runtime-native:68:w_0004_of_ku05",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:68::runtime-native:68:w_0004_of_ku05:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 192,
+      "sense_id": "core20k:rank:69::runtime-native:69:w_0586_upon_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:69::runtime-native:69:w_0586_upon_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 193,
+      "sense_id": "core20k:rank:70::oewn-on__3.00.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:70::oewn-on__3.00.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 194,
+      "sense_id": "core20k:rank:70::oewn-on__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:70::oewn-on__4.02.00..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 195,
+      "sense_id": "core20k:rank:70::oewn-on__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:70::oewn-on__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 196,
+      "sense_id": "core20k:rank:70::oewn-on__4.02.02..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:70::oewn-on__4.02.02..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 197,
+      "sense_id": "core20k:rank:71::runtime-native:71:w_0214_without_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:71::runtime-native:71:w_0214_without_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 198,
+      "sense_id": "core20k:rank:72::oewn-by__4.02.00..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:72::oewn-by__4.02.00..:zh_to_en:01",
+      "verdict": "REVISE",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 199,
+      "sense_id": "core20k:rank:73::editorial-provisional:73:we:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:73::editorial-provisional:73:we:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 200,
+      "sense_id": "core20k:rank:74::runtime-native:74:w_0680_myself_ku01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:74::runtime-native:74:w_0680_myself_ku01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 201,
+      "sense_id": "core20k:rank:75::oewn-but__4.02.01..",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:75::oewn-but__4.02.01..:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 202,
+      "sense_id": "core20k:rank:76::runtime-native:76:w_1013_herself_ku_s01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:76::runtime-native:76:w_1013_herself_ku_s01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 203,
+      "sense_id": "core20k:rank:77::editorial-provisional:77:they:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:77::editorial-provisional:77:they:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 204,
+      "sense_id": "core20k:rank:77::editorial-provisional:77:they:02",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:77::editorial-provisional:77:they:02:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    },
+    {
+      "line": 205,
+      "sense_id": "core20k:rank:78::editorial-provisional:78:the:01",
+      "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:78::editorial-provisional:78:the:01:zh_to_en:01",
+      "verdict": "PASS",
+      "source_file": "CG_QA_V2_SENSE_BATCH001_ROWS156_205_20261102.v1.json",
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9"
+    }
+  ]
+}
