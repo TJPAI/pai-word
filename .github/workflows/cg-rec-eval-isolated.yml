@@ -40,6 +40,7 @@ jobs:
           mkdir -p candidate/tools/cg-rec-eval
           cp evaluation/tools/cg-rec-eval/evaluate.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/engine-level-ab.mjs candidate/tools/cg-rec-eval/
+          cp evaluation/tools/cg-rec-eval/summarize-engine-ab.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/diagnose-english.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/gold-provisional-30.v0.1.json candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/context-wrappers-90.v0.1.json candidate/tools/cg-rec-eval/
@@ -147,6 +148,14 @@ jobs:
               "tools/cg-rec-eval/${SET}.v0.1.json" \
               > "../cg-rec-eval-engine-${SET}.json"
           done
+      - name: Publish genuine engine-level 80-intent summary and case-level regressions
+        working-directory: candidate
+        run: |
+          set -o pipefail
+          node tools/cg-rec-eval/summarize-engine-ab.mjs \
+            ../cg-rec-eval-engine-gold-provisional-30.json \
+            ../cg-rec-eval-engine-novel-intents-50.json \
+            | tee ../cg-rec-eval-engine-80-summary.json
       - name: Upload all case-level evidence
         if: always()
         uses: actions/upload-artifact@v4
