@@ -39,6 +39,7 @@ jobs:
         run: |
           mkdir -p candidate/tools/cg-rec-eval
           cp evaluation/tools/cg-rec-eval/evaluate.mjs candidate/tools/cg-rec-eval/
+          cp evaluation/tools/cg-rec-eval/engine-level-ab.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/diagnose-english.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/gold-provisional-30.v0.1.json candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/context-wrappers-90.v0.1.json candidate/tools/cg-rec-eval/
@@ -134,6 +135,18 @@ jobs:
               "tools/cg-rec-eval/${SET}.v0.1.json" \
               > "../cg-rec-eval-new-${SET}.json"
           done
+      - name: Genuine engine-level A/B Rule-only versus Hybrid
+        working-directory: candidate
+        run: |
+          set -o pipefail
+          for SET in gold-provisional-30 novel-intents-50; do
+            node tools/cg-rec-eval/engine-level-ab.mjs \
+              ../assets/catalog-v0.2.json \
+              ../assets/zh-core20k-v0101-scene500-runtime.json \
+              ../assets/v094-lexical-associations.json \
+              "tools/cg-rec-eval/${SET}.v0.1.json" \
+              > "../cg-rec-eval-engine-${SET}.json"
+          done
       - name: Upload all case-level evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -146,4 +159,5 @@ jobs:
             cg-rec-eval-english-diagnostics.json
             cg-rec-eval-new-*.json
             cg-rec-eval-old-targeted20.json
+            cg-rec-eval-engine-*.json
           if-no-files-found: warn
