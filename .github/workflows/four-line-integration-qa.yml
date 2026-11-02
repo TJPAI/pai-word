@@ -78,6 +78,8 @@ jobs:
         run: node tools/integration/test-enlex-v2-staging-loader.mjs .enlex-v2-frozen
       - name: Check Scene1341 source identities and non-release boundary
         run: node tools/integration/test-scene1341-source-lock.mjs
+      - name: Validate pinned CG-REC query intent staging handoff
+        run: node tools/integration/test-cg-rec-query-intent-staging-handoff.mjs
       - name: Validate latest six-line integration intake
         run: node tools/integration/test-v22-line-intake.mjs
       - name: Evaluate Batch93 real release readiness
