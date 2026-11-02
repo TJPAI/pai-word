@@ -7,6 +7,7 @@ on:
       - 'tools/integration/scene1341-source/*.csv'
       - 'tools/integration/audit-scene1341-legacy-references.py'
       - 'tools/integration/build-scene1341-crosswalk-candidates.py'
+      - '.github/workflows/scene1341-source-identity-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
