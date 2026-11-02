@@ -1,0 +1,41 @@
+{
+  "schema": "pai-cg-rec-query-intent-staging-handoff-v1",
+  "date": "2026-11-02",
+  "owner": "CG-MAIN",
+  "source": {
+    "repository": "TJPAI/pai-word",
+    "branch": "scene500-recommendation-dev",
+    "commit": "7276ec09af4287607000d755463f19eb88781593",
+    "paths": [
+      {
+        "path": "scene500-recommendation/query-intent-candidate.mjs",
+        "blob_sha": "72613222b268d1ff8ca2f4fcce9b12895c7e9eb5"
+      },
+      {
+        "path": "scene500-recommendation/mixed-intent-bus-qa-v0.2.json",
+        "blob_sha": "fdc88d5e8c9adb08d96d3ebdf40286965b9e9c80"
+      }
+    ]
+  },
+  "interface": {
+    "analyzer": "analyzeSceneQuery",
+    "negative_term_gate": "isLocallyNegatedTerm",
+    "output_behavior": "QUERY_INTENT_ONLY",
+    "supports_mixed_language_detection": true,
+    "certified_cross_language_retrieval": false,
+    "semantic_scene1341": false
+  },
+  "integration": {
+    "status": "PINNED_EXTERNAL_STAGING_NOT_COPIED_TO_PRODUCTION",
+    "import_into_runtime": false,
+    "preserve_legacy_ids": true,
+    "allow_srs_remap": false,
+    "release_eligible": false
+  },
+  "risks": [
+    "The query intent analyzer detects mixed language, not bilingual semantic equivalence",
+    "No verified English Sense-to-SC50 relation yet",
+    "Candidate REC branch and main integration must be separately CI-reviewed before import",
+    "Mixed-intent ticket/bus case allows more than one relevant Scene500 target"
+  ]
+}
