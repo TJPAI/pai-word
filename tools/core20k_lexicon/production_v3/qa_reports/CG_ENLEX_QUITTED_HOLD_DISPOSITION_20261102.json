@@ -1,0 +1,23 @@
+{
+  "version": "CG_ENLEX_QUITTED_HOLD_DISPOSITION_20261102",
+  "source_freeze_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "ku_id": "staging:cg-enlex-active-recall-v1:core20k:rank:13903::oewn-quit__2.42.04..:zh_to_en:01",
+  "teaching_sense_id": "core20k:rank:13903::oewn-quit__2.42.04..",
+  "lemma": "quitted",
+  "rank": 13903,
+  "decision": "HOLD_EXCLUDED_FROM_AUTO_MERGE",
+  "staging_eligible": false,
+  "reason": "The frozen full_pack qa_quitted_merge_20261102.json records a one-question isolated patch without identity changes, but does not supersede the explicit final HOLD adjudication. The 15-item adjudication explicitly marks this KU as HOLD_REVISED_DRAFT_NEEDS_VALIDATION, final_decision HOLD_EXCLUDED_FROM_AUTO_MERGE, safe_to_auto_merge=false. Keep fail-closed pending attestation, uniqueness review and QA approval.",
+  "disposition_scope": "Only this KU; do not mutate frozen V2 shards, identities or runtime.",
+  "evidence": [
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/qa_quitted_merge_20261102.json",
+      "blob": "bd4a47e41205c23c23f8113f54432bde0d0e28f1"
+    },
+    {
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/v2_hold_adjudication_15_20261102_final.json",
+      "blob": "f6498432534c267e84053d9cdccbf0569c2334e2"
+    }
+  ],
+  "release_eligible": false
+}
