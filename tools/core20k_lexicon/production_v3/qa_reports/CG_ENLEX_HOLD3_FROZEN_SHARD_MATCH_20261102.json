@@ -1,0 +1,38 @@
+{
+  "version": "CG_ENLEX_HOLD3_FROZEN_SHARD_MATCH_20261102",
+  "source_freeze_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "source_blob": "7b6f1fb35edc0a52966a84861cb735476ca6fa59",
+  "source_shard": "full_pack/shard_06.jsonl",
+  "qa_report_blob": "aa95a9b292e40a749d7c5c3ce35f13ca4969649f",
+  "matched": 3,
+  "total": 3,
+  "items": [
+    {
+      "lemma": "smelt",
+      "rank": 16491,
+      "question": "Complete using the British English past-tense form of smell (five letters): Yesterday she ___ smoke.",
+      "response": "smelt"
+    },
+    {
+      "lemma": "hung",
+      "rank": 17105,
+      "question": "Use the past tense of hang meaning remain suspended: The curtains ___ loosely from the rod.",
+      "response": "hung"
+    },
+    {
+      "lemma": "wetted",
+      "rank": 18706,
+      "question": "Use the regular past-tense form of wet ending in -ted: She ___ the sponge before cleaning.",
+      "response": "wetted"
+    }
+  ],
+  "checks": [
+    "Each exact frozen KU ID matches CG-QA review item",
+    "question and response exact match 3/3",
+    "both risk flags false 3/3",
+    "pos verb in frozen shard 3/3"
+  ],
+  "note": "Source data identity confirmation only; semantic QA from CG-QA ChatGPT-only, Muse pending, no activation permission",
+  "runtime_modified": false,
+  "release_eligible": false
+}
