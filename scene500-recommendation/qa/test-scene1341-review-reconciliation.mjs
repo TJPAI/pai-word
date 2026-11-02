@@ -1,0 +1,16 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+const root='scene500-recommendation/qa/';
+const x=JSON.parse(fs.readFileSync(root+'scene1341-dual-review-reconciliation.v1.json','utf8'));
+const a=JSON.parse(fs.readFileSync(root+'scene1341-semantic-review-batch01.v1.json','utf8'));
+const b=JSON.parse(fs.readFileSync(root+'scene1341-semantic-review-batch02.v1.json','utf8'));
+const ids=[...a.records,...b.records].map(v=>v.scene_id);
+assert.equal(ids.length,71);assert.equal(new Set(ids).size,71);
+assert.equal(x.reviewed_high_risk,ids.length);
+assert.equal(x.semantic_scope.mu_accept+x.semantic_scope.mu_revise+x.semantic_scope.mu_hold,71);
+assert.equal(x.word_evidence.candidate_accept+x.word_evidence.candidate_revise+x.word_evidence.hold,71);
+assert.equal(x.candidate_50_words_or_more.length,6);
+assert.ok(x.candidate_50_words_or_more.every(y=>ids.includes(y.scene_id)&&y.candidate_words>=50));
+assert.ok(x.under_50.every(y=>ids.includes(y.scene_id)&&y.candidate_words<50));
+assert.ok(x.split_or_reassign_required.every(y=>ids.includes(y)));
+assert.equal(x.migration_approved,false);assert.equal(x.srs_remap_allowed,false);
+console.log('PASS: reconciliation attribution, 71 dual-review gates, no release');
