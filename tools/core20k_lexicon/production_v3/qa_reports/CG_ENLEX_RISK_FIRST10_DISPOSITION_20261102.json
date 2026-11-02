@@ -1,0 +1,71 @@
+{
+  "version": "CG_ENLEX_RISK_FIRST10_DISPOSITION_20261102",
+  "freeze_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "qa_source_commit": "bb68c80143974f574b62edebd2e758dc5f3f8486",
+  "source_report_blob": "b81a66faa6fb12d584fba002bece4d13f7960ff6",
+  "scope": "targeted ENLEX disposition only, no frozen-data edit",
+  "items": [
+    {
+      "lemma": "stamina",
+      "rank": 7297,
+      "decision": "HOLD_IDENTITY_MISMATCH",
+      "note": "OEWN stamen ID cannot label stamina sense; require explicit new-version crosswalk"
+    },
+    {
+      "lemma": "wrought",
+      "rank": 6190,
+      "decision": "HOLD_IDENTITY_REVIEW",
+      "note": "OEWN work verb identity versus wrought-iron attributive use; do not treat as merely text patch"
+    },
+    {
+      "lemma": "onboard",
+      "rank": 6283,
+      "decision": "HOLD_FORM_SENSE_REVIEW",
+      "note": "onboard versus onboarded; require verified lemma/form target"
+    },
+    {
+      "lemma": "videogame",
+      "rank": 7943,
+      "decision": "HOLD_ORTHOGRAPHY_REVIEW",
+      "note": "frozen single-word lemma versus normal video game; must not silently change headword identity"
+    },
+    {
+      "lemma": "mega",
+      "rank": 5349,
+      "decision": "REVISE_QUESTION_CANDIDATE",
+      "note": "ambiguous and unnatural in scale; revised prompt needs QA"
+    },
+    {
+      "lemma": "heck",
+      "rank": 2591,
+      "decision": "REVISE_QUESTION_CANDIDATE",
+      "note": "explicit mild informal euphemism and h cue"
+    },
+    {
+      "lemma": "pre",
+      "rank": 5362,
+      "decision": "REVISE_BOUND_MORPHEME_EXERCISE",
+      "note": "teaches prefix not freestanding word; handle explicit no-hyphen response"
+    },
+    {
+      "lemma": "outdate",
+      "rank": 8475,
+      "decision": "REVISE_RARE_VERB_CUE",
+      "note": "specify verb, form, and contrast outdated"
+    },
+    {
+      "lemma": "ice-cream",
+      "rank": 8849,
+      "decision": "REVISE_VARIANT_LABEL",
+      "note": "hyphenation-specific spelling exercise, not default noun spelling"
+    },
+    {
+      "lemma": "pajamas",
+      "rank": 8298,
+      "decision": "PENDING_DUAL_AI",
+      "note": "CG-QA initial PASS but no automatic production activation"
+    }
+  ],
+  "release_eligible": false,
+  "freeze_unchanged": true
+}
