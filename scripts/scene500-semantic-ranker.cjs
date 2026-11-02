@@ -23,6 +23,18 @@
     const grams=uniq([...q].slice(0,-1).map((c,i)=>c+q[i+1])).filter(p=>/[^a-z0-9]/i.test(p));
     n+=Math.min(5,grams.filter(g=>desc.includes(g)).length*.5);
     if(examples.some(p=>p===q))n+=16;
+    // Editorial boundaries are generic contrast evidence, not query-specific rules.
+    // A shared Chinese phrase of four or more characters indicates an excluded intent.
+    const exclusion=norm(scene.boundaries?.exclude||'');
+    let longestExcluded=0;
+    if(exclusion){
+      for(let start=0;start<q.length;start++){
+        for(let end=start+4;end<=q.length;end++){
+          if(exclusion.includes(q.slice(start,end)))longestExcluded=Math.max(longestExcluded,end-start);
+        }
+      }
+    }
+    if(longestExcluded>=4)n-=Math.min(24,6*longestExcluded);
     const negative=uniq(scene.negative_terms||[]).map(norm).filter(x=>x.length>=2);
     const negativeHits=negative.filter(p=>q.includes(p)).length;
     // Penalize contrasting intents, but never discard a mixed-intent query outright.
