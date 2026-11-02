@@ -1,0 +1,863 @@
+{
+  "schema": "cg-rec-scene1341-semantic-adjudication-batch02-v1",
+  "source_sha256": "5ae9ba95eeecfd012782c51396166a5f747a428917217e05221a769bb4e30d9c",
+  "scope": "remaining 52 source-backed high-risk mappings",
+  "status": "CG_REC_EDITORIAL_PROPOSAL_NOT_CERTIFIED",
+  "migration_approved": false,
+  "srs_remap_allowed": false,
+  "count": 52,
+  "records": [
+    {
+      "scene_id": "SC50-0106",
+      "scene_name": "课堂学习与师生互动",
+      "legacy_ids": [
+        "S126",
+        "S127"
+      ],
+      "legacy_names": [
+        "课堂听课",
+        "课堂提问"
+      ],
+      "decision": "REVISE",
+      "reason": "听课的信息接收与提问的互动表达不同，应保留教学互动子意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0109",
+      "scene_name": "作业完成与提交",
+      "legacy_ids": [
+        "S130",
+        "S131"
+      ],
+      "legacy_names": [
+        "完成作业",
+        "交作业"
+      ],
+      "decision": "REVISE",
+      "reason": "完成作业与提交作业对应不同操作、时间点及表达。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0113",
+      "scene_name": "图书馆学习与借阅",
+      "legacy_ids": [
+        "S135",
+        "S136"
+      ],
+      "legacy_names": [
+        "图书馆学习",
+        "借书还书"
+      ],
+      "decision": "REVISE",
+      "reason": "馆内学习与借还书涉及不同目的和服务流程。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0115",
+      "scene_name": "线上学习与课程管理",
+      "legacy_ids": [
+        "S138",
+        "S139"
+      ],
+      "legacy_names": [
+        "线上课程",
+        "选课"
+      ],
+      "decision": "REVISE",
+      "reason": "线上学习与课程选择/管理应分为学习和注册管理子意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0117",
+      "scene_name": "考试准备与应考",
+      "legacy_ids": [
+        "S141",
+        "S142"
+      ],
+      "legacy_names": [
+        "考试准备",
+        "参加考试"
+      ],
+      "decision": "REVISE",
+      "reason": "备考过程与考试当天应考具有不同时间阶段。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0126",
+      "scene_name": "科研文献检索与阅读",
+      "legacy_ids": [
+        "S152",
+        "S153"
+      ],
+      "legacy_names": [
+        "文献检索",
+        "阅读论文"
+      ],
+      "decision": "REVISE",
+      "reason": "检索文献和阅读分析论文的动作与技能不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0129",
+      "scene_name": "科研数据采集与预处理",
+      "legacy_ids": [
+        "S157",
+        "S158"
+      ],
+      "legacy_names": [
+        "数据采集",
+        "数据清洗"
+      ],
+      "decision": "REVISE",
+      "reason": "数据采集和数据清洗对应不同研究处理阶段。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0135",
+      "scene_name": "同行评审与审稿回复",
+      "legacy_ids": [
+        "S168",
+        "S169"
+      ],
+      "legacy_names": [
+        "同行评审",
+        "回复审稿意见"
+      ],
+      "decision": "REVISE",
+      "reason": "提供评审与作者回复评审立场相反，须区分说话角色。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0137",
+      "scene_name": "学术报告与海报交流",
+      "legacy_ids": [
+        "S172",
+        "S173"
+      ],
+      "legacy_names": [
+        "会议报告",
+        "海报展示"
+      ],
+      "decision": "REVISE",
+      "reason": "口头会议报告与学术海报交流形式不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0146",
+      "scene_name": "工作会议组织与参与",
+      "legacy_ids": [
+        "S182",
+        "S183"
+      ],
+      "legacy_names": [
+        "开例会",
+        "参加项目会议"
+      ],
+      "decision": "REVISE",
+      "reason": "组织例会与参加项目会议有角色和任务差异。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0147",
+      "scene_name": "会议讨论与纪要整理",
+      "legacy_ids": [
+        "S184",
+        "S185"
+      ],
+      "legacy_names": [
+        "会议发言",
+        "会议纪要"
+      ],
+      "decision": "REVISE",
+      "reason": "会议发言与记录纪要分别是参与和整理任务。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0148",
+      "scene_name": "工作计划与时间管理",
+      "legacy_ids": [
+        "S186",
+        "S187"
+      ],
+      "legacy_names": [
+        "制定计划",
+        "设定截止日期"
+      ],
+      "decision": "REVISE",
+      "reason": "制定计划和设定截止日期可作为任务管理子步骤，不能丢失细分召回。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0149",
+      "scene_name": "跨部门资源协调",
+      "legacy_ids": [
+        "S188",
+        "S189"
+      ],
+      "legacy_names": [
+        "协调资源",
+        "跨部门协作"
+      ],
+      "decision": "REVISE",
+      "reason": "协调资源与跨部门协作范围有交叉但不等价。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0164",
+      "scene_name": "求职申请材料与网申",
+      "legacy_ids": [
+        "S204",
+        "S205"
+      ],
+      "legacy_names": [
+        "撰写求职信",
+        "填写网申"
+      ],
+      "decision": "REVISE",
+      "reason": "撰写求职信与填写在线申请是不同交付物。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0168",
+      "scene_name": "求职面试：行为与技术",
+      "legacy_ids": [
+        "S209",
+        "S210"
+      ],
+      "legacy_names": [
+        "行为面试",
+        "技术面试"
+      ],
+      "decision": "REVISE",
+      "reason": "行为面试与技术面试评价维度不同；来源已建议拆分。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0170",
+      "scene_name": "求职岗位与组织文化沟通",
+      "legacy_ids": [
+        "S212",
+        "S213"
+      ],
+      "legacy_names": [
+        "询问岗位职责",
+        "询问团队文化"
+      ],
+      "decision": "REVISE",
+      "reason": "询问岗位职责与团队文化的主题对象不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0171",
+      "scene_name": "薪酬福利沟通",
+      "legacy_ids": [
+        "S214",
+        "S215"
+      ],
+      "legacy_names": [
+        "讨论薪资",
+        "讨论福利"
+      ],
+      "decision": "REVISE",
+      "reason": "薪资和福利分别为不同谈判对象，可保留子意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0173",
+      "scene_name": "录用与入职手续",
+      "legacy_ids": [
+        "S217",
+        "S218",
+        "S219"
+      ],
+      "legacy_names": [
+        "接受Offer",
+        "拒绝Offer",
+        "入职手续"
+      ],
+      "decision": "HOLD",
+      "reason": "接受与拒绝录用是互斥意图，入职手续为后续阶段，须明确隔离。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0185",
+      "scene_name": "商务报价与价格谈判",
+      "legacy_ids": [
+        "S231",
+        "S232"
+      ],
+      "legacy_names": [
+        "报价",
+        "议价"
+      ],
+      "decision": "REVISE",
+      "reason": "报价与议价分别属于报价提出和协商动作。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0186",
+      "scene_name": "商业合同磋商与签署",
+      "legacy_ids": [
+        "S233",
+        "S234"
+      ],
+      "legacy_names": [
+        "合同讨论",
+        "签订合同"
+      ],
+      "decision": "REVISE",
+      "reason": "讨论合同与签署合同属于磋商和执行的不同阶段。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0188",
+      "scene_name": "供应商与订单管理",
+      "legacy_ids": [
+        "S236",
+        "S237"
+      ],
+      "legacy_names": [
+        "供应商管理",
+        "订单管理"
+      ],
+      "decision": "REVISE",
+      "reason": "供应商管理与订单管理的实体与工作流不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0194",
+      "scene_name": "品牌营销与广告",
+      "legacy_ids": [
+        "S243",
+        "S244"
+      ],
+      "legacy_names": [
+        "品牌推广",
+        "广告投放"
+      ],
+      "decision": "REVISE",
+      "reason": "品牌推广偏长期定位，广告投放偏执行渠道。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0201",
+      "scene_name": "手机与电脑操作",
+      "legacy_ids": [
+        "S251",
+        "S252"
+      ],
+      "legacy_names": [
+        "手机基础操作",
+        "电脑基础操作"
+      ],
+      "decision": "REVISE",
+      "reason": "手机与电脑操作对象不同，可保留设备特定查询入口。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0212",
+      "scene_name": "即时通讯与视频会议",
+      "legacy_ids": [
+        "S263",
+        "S264"
+      ],
+      "legacy_names": [
+        "即时通讯",
+        "视频通话"
+      ],
+      "decision": "REVISE",
+      "reason": "文字即时通讯和视频通话在媒介及操作上不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0227",
+      "scene_name": "机器学习与深度学习基础",
+      "legacy_ids": [
+        "S279",
+        "S280"
+      ],
+      "legacy_names": [
+        "机器学习",
+        "深度学习"
+      ],
+      "decision": "REVISE",
+      "reason": "机器学习和深度学习存在上下位关系，原S279/S280应保留两个专业层级，不可混淆英语学习。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0249",
+      "scene_name": "预约与医院挂号",
+      "legacy_ids": [
+        "S302",
+        "S303"
+      ],
+      "legacy_names": [
+        "预约医生",
+        "医院挂号"
+      ],
+      "decision": "REVISE",
+      "reason": "预约医生与医院挂号的制度/流程存在差别，需保留检索区别。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0250",
+      "scene_name": "全科与专科就诊",
+      "legacy_ids": [
+        "S304",
+        "S305"
+      ],
+      "legacy_names": [
+        "看全科医生",
+        "看专科医生"
+      ],
+      "decision": "REVISE",
+      "reason": "全科和专科就诊存在转诊和就医场景区别。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0252",
+      "scene_name": "体检与生命体征监测",
+      "legacy_ids": [
+        "S307",
+        "S308"
+      ],
+      "legacy_names": [
+        "体检",
+        "测量生命体征"
+      ],
+      "decision": "REVISE",
+      "reason": "全身检查与生命体征测量属于总项和具体指标动作。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0253",
+      "scene_name": "描述疼痛与病程",
+      "legacy_ids": [
+        "S309",
+        "S310"
+      ],
+      "legacy_names": [
+        "描述疼痛",
+        "描述症状持续时间"
+      ],
+      "decision": "REVISE",
+      "reason": "疼痛部位/程度与症状持续时间是独立问诊维度。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0254",
+      "scene_name": "既往病史／过敏史",
+      "legacy_ids": [
+        "S311",
+        "S312"
+      ],
+      "legacy_names": [
+        "既往病史",
+        "过敏史"
+      ],
+      "decision": "REVISE",
+      "reason": "既往病史与过敏史虽属病史采集，但涉及不同安全信息。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0257",
+      "scene_name": "医学检查／化验与检查结果",
+      "legacy_ids": [
+        "S315",
+        "S316"
+      ],
+      "legacy_names": [
+        "医学检查",
+        "化验与检查结果"
+      ],
+      "decision": "REVISE",
+      "reason": "进行检查与解读检查结果属于不同阶段。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0282",
+      "scene_name": "滑雪／滑冰",
+      "legacy_ids": [
+        "S341",
+        "S342"
+      ],
+      "legacy_names": [
+        "滑雪",
+        "滑冰"
+      ],
+      "decision": "REVISE",
+      "reason": "滑雪与滑冰具有不同装备、动作和环境。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0291",
+      "scene_name": "看电影／电影院购票",
+      "legacy_ids": [
+        "S351",
+        "S352"
+      ],
+      "legacy_names": [
+        "看电影",
+        "电影院购票"
+      ],
+      "decision": "REVISE",
+      "reason": "观看电影与购买电影票属于体验和交易动作。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0296",
+      "scene_name": "阅读小说／阅读非虚构作品",
+      "legacy_ids": [
+        "S357",
+        "S358"
+      ],
+      "legacy_names": [
+        "阅读小说",
+        "阅读非虚构作品"
+      ],
+      "decision": "REVISE",
+      "reason": "小说与非虚构阅读体裁及词汇需求存在差异。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0299",
+      "scene_name": "游戏／桌游",
+      "legacy_ids": [
+        "S361",
+        "S362"
+      ],
+      "legacy_names": [
+        "游戏",
+        "桌游"
+      ],
+      "decision": "REVISE",
+      "reason": "电子游戏/一般游戏与桌游的媒介和规则存在差异。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0302",
+      "scene_name": "博物馆／美术馆",
+      "legacy_ids": [
+        "S365",
+        "S366"
+      ],
+      "legacy_names": [
+        "博物馆",
+        "美术馆"
+      ],
+      "decision": "REVISE",
+      "reason": "博物馆与美术馆可归主题，但具体参观内容有差异。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0305",
+      "scene_name": "主题公园／动物园",
+      "legacy_ids": [
+        "S369",
+        "S370"
+      ],
+      "legacy_names": [
+        "主题公园",
+        "动物园"
+      ],
+      "decision": "REVISE",
+      "reason": "主题公园与动物园对象、活动和服务不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0311",
+      "scene_name": "见面寒暄与介绍",
+      "legacy_ids": [
+        "S376",
+        "S377",
+        "S378",
+        "S379"
+      ],
+      "legacy_names": [
+        "初次见面",
+        "介绍自己",
+        "介绍他人",
+        "寒暄"
+      ],
+      "decision": "REVISE",
+      "reason": "初见、介绍自己、介绍他人和寒暄是不同社交言语行为。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0312",
+      "scene_name": "邀请与回应",
+      "legacy_ids": [
+        "S380",
+        "S381",
+        "S382"
+      ],
+      "legacy_names": [
+        "邀请",
+        "接受邀请",
+        "婉拒邀请"
+      ],
+      "decision": "REVISE",
+      "reason": "邀请、接受邀请和婉拒邀请是不同甚至相反的回应意图。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0322",
+      "scene_name": "请求帮助／提供帮助",
+      "legacy_ids": [
+        "S392",
+        "S393"
+      ],
+      "legacy_names": [
+        "请求帮助",
+        "提供帮助"
+      ],
+      "decision": "REVISE",
+      "reason": "请求帮助和主动提供帮助角色方向相反。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0331",
+      "scene_name": "银行柜台／开银行账户",
+      "legacy_ids": [
+        "S402",
+        "S403"
+      ],
+      "legacy_names": [
+        "银行柜台",
+        "开银行账户"
+      ],
+      "decision": "REVISE",
+      "reason": "银行柜台是服务渠道，开户是具体任务，上下位关系需保留。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0340",
+      "scene_name": "租房合同／房屋租赁",
+      "legacy_ids": [
+        "S412",
+        "S413"
+      ],
+      "legacy_names": [
+        "租房合同",
+        "房屋租赁"
+      ],
+      "decision": "REVISE",
+      "reason": "租赁关系/找房与签署租房合同阶段不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0353",
+      "scene_name": "询问信息／提供信息",
+      "legacy_ids": [
+        "S426",
+        "S427"
+      ],
+      "legacy_names": [
+        "询问信息",
+        "提供信息"
+      ],
+      "decision": "REVISE",
+      "reason": "询问信息与提供信息方向相反，需保留对话角色。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0354",
+      "scene_name": "请求与给予许可／提出与回应请求",
+      "legacy_ids": [
+        "S428",
+        "S429",
+        "S430",
+        "S431",
+        "S432"
+      ],
+      "legacy_names": [
+        "请求许可",
+        "给予许可",
+        "提出请求",
+        "接受请求",
+        "拒绝请求"
+      ],
+      "decision": "HOLD",
+      "reason": "请求许可、授予许可、提出请求、接受或拒绝请求有显著言语行为差异。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0355",
+      "scene_name": "提出与回应建议",
+      "legacy_ids": [
+        "S433",
+        "S434",
+        "S435"
+      ],
+      "legacy_names": [
+        "提出建议",
+        "接受建议",
+        "反对建议"
+      ],
+      "decision": "REVISE",
+      "reason": "提出建议、接受建议和反对建议分别对应不同回应立场。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0356",
+      "scene_name": "表达观点／表达同意与不同意",
+      "legacy_ids": [
+        "S436",
+        "S437",
+        "S438"
+      ],
+      "legacy_names": [
+        "表达观点",
+        "同意",
+        "不同意"
+      ],
+      "decision": "REVISE",
+      "reason": "表达观点与同意/不同意属于主张和评价立场。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0366",
+      "scene_name": "表达推测与确定性",
+      "legacy_ids": [
+        "S448",
+        "S449",
+        "S450"
+      ],
+      "legacy_names": [
+        "推测",
+        "表达可能性",
+        "表达确定性"
+      ],
+      "decision": "REVISE",
+      "reason": "推测、可能性和确定性存在语气强度和认知承诺差异。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0382",
+      "scene_name": "能源／可再生能源",
+      "legacy_ids": [
+        "S466",
+        "S467"
+      ],
+      "legacy_names": [
+        "能源",
+        "可再生能源"
+      ],
+      "decision": "REVISE",
+      "reason": "能源是上位概念，可再生能源是下位主题。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0386",
+      "scene_name": "地理位置／国家与地区",
+      "legacy_ids": [
+        "S471",
+        "S472"
+      ],
+      "legacy_names": [
+        "地理位置",
+        "国家与地区"
+      ],
+      "decision": "REVISE",
+      "reason": "地理位置描述与国家地区知识主题不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0394",
+      "scene_name": "描述过程／描述变化",
+      "legacy_ids": [
+        "S480",
+        "S481"
+      ],
+      "legacy_names": [
+        "描述过程",
+        "描述变化"
+      ],
+      "decision": "REVISE",
+      "reason": "描述过程与描述变化的时间结构和语义对象不同。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0396",
+      "scene_name": "时间顺序／空间关系",
+      "legacy_ids": [
+        "S483",
+        "S484"
+      ],
+      "legacy_names": [
+        "时间顺序",
+        "空间关系"
+      ],
+      "decision": "REVISE",
+      "reason": "时间顺序与空间关系是两类不同组织表达。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    },
+    {
+      "scene_id": "SC50-0406",
+      "scene_name": "论证观点／反驳观点",
+      "legacy_ids": [
+        "S495",
+        "S496"
+      ],
+      "legacy_names": [
+        "论证观点",
+        "反驳观点"
+      ],
+      "decision": "REVISE",
+      "reason": "论证观点与反驳观点属不同论证方向。",
+      "subintent_preservation_required": true,
+      "quality": "EDITORIAL_PROPOSED_NOT_INDEPENDENTLY_CERTIFIED"
+    }
+  ]
+}
