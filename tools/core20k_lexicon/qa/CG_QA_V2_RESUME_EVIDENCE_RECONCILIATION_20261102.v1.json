@@ -1,0 +1,73 @@
+{
+  "schema_version": "CG_QA_V2_RESUME_EVIDENCE_RECONCILIATION_V1",
+  "date": "2026-11-02",
+  "reviewer": "CG-QA",
+  "source_repository": "TJPAI/pai-word",
+  "frozen_source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "qa_previous_audit_commit": "855b5353428ddde2237411dff13a4964b4a160fd",
+  "basis": [
+    "Issue #1 newest MU-QA crosscheck and correction",
+    "CG_QA_ENLEX_V2_FREEZE_GATE_AUDIT_20261102.v1.json independently read",
+    "full_pack/V2_INTEGRATION_FREEZE_20261102.json independently read",
+    "full_pack/qa_quitted_merge_20261102.json independently read"
+  ],
+  "verified_existing_counts": {
+    "frozen_records": 27471,
+    "legacy_flagged": 211,
+    "current_flag_union": 84,
+    "retained_hold": 12,
+    "retained_hold_outside_flags": 1,
+    "production_ready_true": 0
+  },
+  "new_reconciliation": {
+    "quitted": {
+      "lemma": "quitted",
+      "rank": 13903,
+      "question_patch_evidence": "full_pack/qa_quitted_merge_20261102.json",
+      "patch_changed": 1,
+      "status": "QUESTION_PATCH_RECORDED; RELEASE_EXCLUSION_CONFLICT_UNRESOLVED",
+      "instruction": "Hold this ku_id out of auto import until CG-ENLEX resolves membership; question uniqueness still independently pending"
+    },
+    "other_three_hold_patches": {
+      "source": "Issue #1 MU-QA independent crosscheck, qa_hold_3_merge_20261102.json",
+      "status": "REPORTED_MERGED_BY_MU_QA; OLD_CG_QA_REPORT_STALE_OR_CONFLICTING",
+      "instruction": "Check exact content and IDs on frozen blobs before altering prior audit conclusion"
+    },
+    "missing_pos": {
+      "items": [
+        "trans",
+        "centerist",
+        "coli",
+        "yuppy",
+        "fro",
+        "petit"
+      ],
+      "status": "MU_QA_REPORTED; INDEPENDENT_RECORD_LEVEL_REVIEW_PENDING",
+      "instruction": "Exclude from identity-sensitive deployment until POS resolved"
+    },
+    "five_missing_ranks": {
+      "ranks": [
+        11104,
+        12959,
+        13676,
+        16482,
+        16842
+      ],
+      "status": "MU_QA_REPORTED; NO_ASSUMPTION_OF_LEXICON_MISSING"
+    },
+    "muse_status": "RESUMED; MU-QA STRUCTURAL CROSSCHECK IS NOT DUAL_AI_SEMANTIC CERTIFICATION"
+  },
+  "conservative_gate": "Exclude 84 explicitly flagged plus 12 HOLD (1 outside flags), and quarantine 6 missing-POS records until independently reconciled; no semantic or release eligibility inference.",
+  "next_actions": [
+    "CG-ENLEX adjudicate quitted retained HOLD versus question patch, with exact ku_id and immutable content evidence",
+    "CG-ENTEACH inspect patched questions for true answer uniqueness and Sense alignment",
+    "MU-QA independently provide row-level language judgments on exact frozen records, not structural hash checks",
+    "CG-MAIN preserve Runtime hold"
+  ],
+  "claims_not_made": [
+    "No new full-shard reparse performed in this resumed session",
+    "No 200-row semantic batch completed",
+    "No dual-AI semantic PASS assigned",
+    "No Runtime modifications"
+  ]
+}
