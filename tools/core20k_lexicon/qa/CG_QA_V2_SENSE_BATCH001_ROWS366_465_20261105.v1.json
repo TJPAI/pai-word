@@ -1,0 +1,551 @@
+{
+  "schema": "CG_QA_V2_BATCH001_ROWS366_465_SEMANTIC_V1",
+  "freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "source_file": "shard_01.jsonl",
+  "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+  "review_scope": [
+    "lemma",
+    "pos",
+    "gloss_en",
+    "gloss_zh",
+    "sense_boundary"
+  ],
+  "evidence_key": "(source_blob_sha,row), 1-based row index in frozen file",
+  "note": "CG-QA独立语义审查；每个PASS均人工检查本行lemma/POS/英中释义；该账本不代表KU审查。对疑难词头身份仅标记HOLD。",
+  "range": [
+    366,
+    465
+  ],
+  "count": 100,
+  "counts": {
+    "HOLD": 1,
+    "PASS": 92,
+    "CONDITIONAL": 3,
+    "REVISE": 4
+  },
+  "items": [
+    {
+      "row": 366,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "HOLD",
+      "sense_id": "core20k:rank:116::oewn-first__1.28.00..",
+      "reason": "first作为名词对应英文定义'the time at which something is supposed to begin'，高度疑似混入start义项，须复核来源synset与词头身份",
+      "fix": "核对原始OEWN同义词集；若为start而非first的合法成员，纠正映射而非仅改中文"
+    },
+    {
+      "row": 367,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 368,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 369,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "CONDITIONAL",
+      "reason": "prominently forward对应空间领先位置，现译'突出地向前'易误导为运动方向",
+      "fix": "按例句改为'处于最前面；领先地'"
+    },
+    {
+      "row": 370,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 371,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 372,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 373,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 374,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "CONDITIONAL",
+      "sense_id": "core20k:rank:116::oewn-first__5.00.02.opening.00",
+      "reason": "形容词opening义，现中文'用于启动；起始作用的'不符合形容词表达",
+      "fix": "改为'开场的；起始的'，补搭配"
+    },
+    {
+      "row": 375,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 376,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 377,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 378,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 379,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 380,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 381,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 382,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 383,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 384,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 385,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 386,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 387,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 388,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 389,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 390,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 391,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 392,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 393,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 394,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 395,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 396,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 397,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 398,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 399,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 400,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 401,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 402,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 403,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "REVISE",
+      "sense_id": "core20k:rank:119::oewn-take__2.34.00..",
+      "reason": "英文'serve oneself to, or consume regularly'指取用/定期服用，中文'乘坐；服用；使用'混入乘交通工具的另一义项",
+      "fix": "删除'乘坐'，使用'取用；（定期）服用'"
+    },
+    {
+      "row": 404,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 405,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 406,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 407,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 408,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 409,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 410,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 411,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 412,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 413,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 414,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 415,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 416,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 417,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 418,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 419,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "REVISE",
+      "sense_id": "core20k:rank:119::oewn-take__2.41.04..",
+      "reason": "英文'carry out'表示执行/采取行动，中文'拿；带'完全错义",
+      "fix": "改为'执行；采取（行动、措施）'"
+    },
+    {
+      "row": 420,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 421,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 422,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 423,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 424,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 425,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 426,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 427,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 428,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 429,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 430,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 431,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 432,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 433,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 434,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 435,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 436,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 437,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 438,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "REVISE",
+      "sense_id": "core20k:rank:122::oewn-meet__2.42.02..",
+      "reason": "英文'be adjacent or come together'表示边界相接，中文'见面；会面'错用于人物会面义",
+      "fix": "改为'相接；毗邻；交汇'"
+    },
+    {
+      "row": 439,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 440,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 441,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 442,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 443,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 444,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 445,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 446,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 447,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 448,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 449,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 450,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 451,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "REVISE",
+      "sense_id": "core20k:rank:124::oewn-come__2.30.02..",
+      "reason": "英文'be found or available'强调供应/可获得，中文'来自；出现'未表达可获得性",
+      "fix": "改为'有售；可获得；以某种形式提供'，以语境选义"
+    },
+    {
+      "row": 452,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 453,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "CONDITIONAL",
+      "sense_id": "core20k:rank:124::oewn-come__2.30.13..",
+      "reason": "英文'happen as a result'强调'作为结果发生'，中文'到来；发生'遗漏因果语义",
+      "fix": "改为'因而发生；由此产生'"
+    },
+    {
+      "row": 454,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 455,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 456,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 457,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 458,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 459,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 460,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 461,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 462,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 463,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 464,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    },
+    {
+      "row": 465,
+      "source_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+      "verdict": "PASS"
+    }
+  ]
+}
