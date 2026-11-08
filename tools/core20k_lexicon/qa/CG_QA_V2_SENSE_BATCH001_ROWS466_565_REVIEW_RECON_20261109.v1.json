@@ -1,0 +1,486 @@
+{
+  "schema": "CG_QA_V2_SENSE_BATCH001_ROWS466_565_REVIEW_AND_RECON_V1",
+  "date": "2026-11-09",
+  "freeze": "V2-INTEGRATION-FROZEN-2026-11-02",
+  "source": {
+    "file": "shard_01.jsonl",
+    "git_blob_sha": "21f97312b4debab4b662f41939cac29a091d89b9",
+    "first_row": 466,
+    "last_row": 565,
+    "identity": "1-based physical row in exact frozen blob + teaching_sense_id for exceptions",
+    "mu_batch001_url": "https://drive.google.com/file/d/1bcCxiHUrBOt5BuyVXEg52AFbAdpVUTaC/view",
+    "mu_sha256": "12b7d31103fb24639755f4edc8dec6c7e8dafa0834304d481bc7008aed93e39e"
+  },
+  "reviewer": "CG-QA",
+  "review_scope": [
+    "lemma",
+    "pos",
+    "English gloss",
+    "Chinese gloss",
+    "sense boundary"
+  ],
+  "scope_excludes": "KU question quality",
+  "reviewed_count": 100,
+  "verdict_counts": {
+    "PASS": 95,
+    "CONDITIONAL": 3,
+    "REVISE": 2
+  },
+  "mu_comparison_counts": {
+    "DUAL_AI_PASS": 95,
+    "BOTH_REVISE": 1,
+    "BOTH_CONDITIONAL": 1,
+    "DISAGREEMENT": 3
+  },
+  "method": "CG-QA independently inspected exact English and Chinese glosses for every row 466-565; existing MU-QA row judgments used only after CG decisions. Compact PASS ledger encoded by exact frozen source row. No automatic schema check is counted as semantic review.",
+  "row_verdicts": [
+    {
+      "row": 466,
+      "verdict": "PASS"
+    },
+    {
+      "row": 467,
+      "verdict": "PASS"
+    },
+    {
+      "row": 468,
+      "verdict": "PASS"
+    },
+    {
+      "row": 469,
+      "verdict": "PASS"
+    },
+    {
+      "row": 470,
+      "verdict": "PASS"
+    },
+    {
+      "row": 471,
+      "verdict": "PASS"
+    },
+    {
+      "row": 472,
+      "verdict": "PASS"
+    },
+    {
+      "row": 473,
+      "verdict": "PASS"
+    },
+    {
+      "row": 474,
+      "verdict": "PASS"
+    },
+    {
+      "row": 475,
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "row": 476,
+      "verdict": "PASS"
+    },
+    {
+      "row": 477,
+      "verdict": "PASS"
+    },
+    {
+      "row": 478,
+      "verdict": "PASS"
+    },
+    {
+      "row": 479,
+      "verdict": "PASS"
+    },
+    {
+      "row": 480,
+      "verdict": "PASS"
+    },
+    {
+      "row": 481,
+      "verdict": "PASS"
+    },
+    {
+      "row": 482,
+      "verdict": "PASS"
+    },
+    {
+      "row": 483,
+      "verdict": "PASS"
+    },
+    {
+      "row": 484,
+      "verdict": "PASS"
+    },
+    {
+      "row": 485,
+      "verdict": "PASS"
+    },
+    {
+      "row": 486,
+      "verdict": "PASS"
+    },
+    {
+      "row": 487,
+      "verdict": "PASS"
+    },
+    {
+      "row": 488,
+      "verdict": "PASS"
+    },
+    {
+      "row": 489,
+      "verdict": "PASS"
+    },
+    {
+      "row": 490,
+      "verdict": "REVISE"
+    },
+    {
+      "row": 491,
+      "verdict": "PASS"
+    },
+    {
+      "row": 492,
+      "verdict": "PASS"
+    },
+    {
+      "row": 493,
+      "verdict": "PASS"
+    },
+    {
+      "row": 494,
+      "verdict": "PASS"
+    },
+    {
+      "row": 495,
+      "verdict": "PASS"
+    },
+    {
+      "row": 496,
+      "verdict": "PASS"
+    },
+    {
+      "row": 497,
+      "verdict": "PASS"
+    },
+    {
+      "row": 498,
+      "verdict": "PASS"
+    },
+    {
+      "row": 499,
+      "verdict": "PASS"
+    },
+    {
+      "row": 500,
+      "verdict": "PASS"
+    },
+    {
+      "row": 501,
+      "verdict": "PASS"
+    },
+    {
+      "row": 502,
+      "verdict": "PASS"
+    },
+    {
+      "row": 503,
+      "verdict": "PASS"
+    },
+    {
+      "row": 504,
+      "verdict": "PASS"
+    },
+    {
+      "row": 505,
+      "verdict": "PASS"
+    },
+    {
+      "row": 506,
+      "verdict": "PASS"
+    },
+    {
+      "row": 507,
+      "verdict": "PASS"
+    },
+    {
+      "row": 508,
+      "verdict": "PASS"
+    },
+    {
+      "row": 509,
+      "verdict": "PASS"
+    },
+    {
+      "row": 510,
+      "verdict": "PASS"
+    },
+    {
+      "row": 511,
+      "verdict": "PASS"
+    },
+    {
+      "row": 512,
+      "verdict": "PASS"
+    },
+    {
+      "row": 513,
+      "verdict": "PASS"
+    },
+    {
+      "row": 514,
+      "verdict": "PASS"
+    },
+    {
+      "row": 515,
+      "verdict": "PASS"
+    },
+    {
+      "row": 516,
+      "verdict": "PASS"
+    },
+    {
+      "row": 517,
+      "verdict": "PASS"
+    },
+    {
+      "row": 518,
+      "verdict": "PASS"
+    },
+    {
+      "row": 519,
+      "verdict": "PASS"
+    },
+    {
+      "row": 520,
+      "verdict": "PASS"
+    },
+    {
+      "row": 521,
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "row": 522,
+      "verdict": "PASS"
+    },
+    {
+      "row": 523,
+      "verdict": "PASS"
+    },
+    {
+      "row": 524,
+      "verdict": "PASS"
+    },
+    {
+      "row": 525,
+      "verdict": "PASS"
+    },
+    {
+      "row": 526,
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "row": 527,
+      "verdict": "PASS"
+    },
+    {
+      "row": 528,
+      "verdict": "PASS"
+    },
+    {
+      "row": 529,
+      "verdict": "PASS"
+    },
+    {
+      "row": 530,
+      "verdict": "PASS"
+    },
+    {
+      "row": 531,
+      "verdict": "PASS"
+    },
+    {
+      "row": 532,
+      "verdict": "PASS"
+    },
+    {
+      "row": 533,
+      "verdict": "PASS"
+    },
+    {
+      "row": 534,
+      "verdict": "PASS"
+    },
+    {
+      "row": 535,
+      "verdict": "PASS"
+    },
+    {
+      "row": 536,
+      "verdict": "PASS"
+    },
+    {
+      "row": 537,
+      "verdict": "PASS"
+    },
+    {
+      "row": 538,
+      "verdict": "PASS"
+    },
+    {
+      "row": 539,
+      "verdict": "PASS"
+    },
+    {
+      "row": 540,
+      "verdict": "PASS"
+    },
+    {
+      "row": 541,
+      "verdict": "PASS"
+    },
+    {
+      "row": 542,
+      "verdict": "PASS"
+    },
+    {
+      "row": 543,
+      "verdict": "PASS"
+    },
+    {
+      "row": 544,
+      "verdict": "PASS"
+    },
+    {
+      "row": 545,
+      "verdict": "PASS"
+    },
+    {
+      "row": 546,
+      "verdict": "REVISE"
+    },
+    {
+      "row": 547,
+      "verdict": "PASS"
+    },
+    {
+      "row": 548,
+      "verdict": "PASS"
+    },
+    {
+      "row": 549,
+      "verdict": "PASS"
+    },
+    {
+      "row": 550,
+      "verdict": "PASS"
+    },
+    {
+      "row": 551,
+      "verdict": "PASS"
+    },
+    {
+      "row": 552,
+      "verdict": "PASS"
+    },
+    {
+      "row": 553,
+      "verdict": "PASS"
+    },
+    {
+      "row": 554,
+      "verdict": "PASS"
+    },
+    {
+      "row": 555,
+      "verdict": "PASS"
+    },
+    {
+      "row": 556,
+      "verdict": "PASS"
+    },
+    {
+      "row": 557,
+      "verdict": "PASS"
+    },
+    {
+      "row": 558,
+      "verdict": "PASS"
+    },
+    {
+      "row": 559,
+      "verdict": "PASS"
+    },
+    {
+      "row": 560,
+      "verdict": "PASS"
+    },
+    {
+      "row": 561,
+      "verdict": "PASS"
+    },
+    {
+      "row": 562,
+      "verdict": "PASS"
+    },
+    {
+      "row": 563,
+      "verdict": "PASS"
+    },
+    {
+      "row": 564,
+      "verdict": "PASS"
+    },
+    {
+      "row": 565,
+      "verdict": "PASS"
+    }
+  ],
+  "exceptions": [
+    {
+      "row": 475,
+      "cg": "CONDITIONAL",
+      "mu": "CONDITIONAL",
+      "sense_id": "core20k:rank:126::oewn-other__5.00.00.past.00",
+      "reason": "recently past 通常限 the other day/week 等搭配；单列 'other=刚刚过去的' 需要搭配限定",
+      "suggested_fix": "增加 the other day/week 搭配，强调相对近期既往"
+    },
+    {
+      "row": 490,
+      "cg": "REVISE",
+      "mu": "PASS",
+      "sense_id": "core20k:rank:128::oewn-feel__2.35.00..",
+      "reason": "examine by touch 是主动触摸检查；中文'摸起来'属于feel在系动词用法中的另一义项",
+      "suggested_fix": "删除'摸起来'，改为'触摸检查；用手摸'"
+    },
+    {
+      "row": 521,
+      "cg": "CONDITIONAL",
+      "mu": "PASS",
+      "sense_id": "core20k:rank:131::oewn-good__1.07.00..",
+      "reason": "名词 benefit 译作'好处；益处'足够；'善'引入抽象道德义，与另一good n义项混合",
+      "suggested_fix": "此Sense中文限定为'好处；益处'"
+    },
+    {
+      "row": 526,
+      "cg": "CONDITIONAL",
+      "mu": "PASS",
+      "sense_id": "core20k:rank:131::oewn-good__4.02.00..",
+      "reason": "原文注明nonstandard dialectal variant for well；非标准用法不宜在普通日常Core20K学习中无例句呈现",
+      "suggested_fix": "标注非标准/方言，附例句；教学优先级降低"
+    },
+    {
+      "row": 546,
+      "cg": "REVISE",
+      "mu": "REVISE",
+      "sense_id": "core20k:rank:133::oewn-life__1.18.00..",
+      "reason": "a living person 是'活着的人/一条生命'，中文'生活方式'对应其他life义项，明确错译",
+      "suggested_fix": "改为'活着的人；一条生命'，与life mode of living义分离"
+    }
+  ],
+  "notes": [
+    "95 PASS concordance applies only to Sense fields and only this frozen source version.",
+    "BOTH_CONDITIONAL is not DUAL_AI_PASS; BOTH_REVISE requires correction.",
+    "MU source 475=CONDITIONAL, 546=REVISE, other rows=PASS.",
+    "No released runtime or original freeze modification."
+  ]
+}
