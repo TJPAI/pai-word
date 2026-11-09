@@ -8,8 +8,10 @@ const BASE=new URL('../tools/integration/scene1341-source/',import.meta.url);
 const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().trim().replace(/[，。！？、,.;:!?]/g,' ').replace(/\s+/g,' ');
 export function parseSceneCatalogCsv(text){
   const rows=[];let row=[],cell='',quoted=false;
-  for(const ch of String(text).replace(/^\uFEFF/,'')){
-    if(quoted){if(ch==='"'){quoted=false;}else cell+=ch;}
+  const content=String(text).replace(/^\uFEFF/,'');
+  for(let i=0;i<content.length;i++){
+    const ch=content[i];
+    if(quoted){if(ch==='"'&&content[i+1]==='"'){cell+='"';i++;}else if(ch==='"'){quoted=false;}else cell+=ch;}
     else if(ch==='"')quoted=true;
     else if(ch===','){row.push(cell);cell='';}
     else if(ch==='\n'){row.push(cell.replace(/\r$/,''));rows.push(row);row=[];cell='';}
