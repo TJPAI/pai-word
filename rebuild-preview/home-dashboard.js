@@ -344,7 +344,7 @@
   };
   function updateEngineVersion(){
     const node=document.getElementById('pai-engine-version');if(!node)return;
-    if(scene1341Mode){node.textContent='引擎：Scene1341目录检索（仅标题及分类） · 编辑表达V51–V61 · 未接入教学KU';return;}
+    if(typeof scene1341Mode!=='undefined'&&scene1341Mode){node.textContent='引擎：Scene1341目录检索（仅标题及分类） · 编辑表达V51–V61 · 未接入教学KU';return;}
     const report=window.PAI_SCENE500_SEARCH_REPORT;
     const mode=report?.mode;
     const label=mode==='hybrid'?'Hybrid 模式报告（正式关联待核验）':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
