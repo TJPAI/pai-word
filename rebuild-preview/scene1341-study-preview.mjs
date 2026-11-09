@@ -8,7 +8,8 @@ const BASE=new URL('../tools/integration/scene1341-teaching/',import.meta.url);
 const PACKS=Object.freeze([
   ['enteach-v51-first20-answer-only-v2.json','b6c39ebcebf4d6ce9848122cc60ecc899274c74f'],
   ['scene1341-v51-sc0001-answer-only-021-050.v2.json','f55b61c241d615f7c1f8285b332d1ea795e2b75b'],
-  ['scene1341-v51-sc0001-answer-only-051-100.v2.json','fa6bdba1c4f799871758b02c5391e61c8ef9cb8a']
+  ['scene1341-v51-sc0001-answer-only-051-100.v2.json','fa6bdba1c4f799871758b02c5391e61c8ef9cb8a'],
+  ['scene1341-v51-sc0001-answer-only-101-130.v2.json','6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22']
 ]);
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
  .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -38,7 +39,7 @@ export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,stri
       expression:r.expression,unit:adapter.toLegacyAnswerUnit(r.scene_ku_id)
     });
   }
-  if(items.length!==100||new Set(items.map(x=>x.id)).size!==100||
+  if(items.length!==130||new Set(items.map(x=>x.id)).size!==100||
      !items.every(x=>x.sceneId==='SC50-0001')||
      !items.sort((a,b)=>a.rank-b.rank).every((x,i)=>x.rank===i+1))
     throw Error('SCENE1341_PREVIEW_SOURCE_SCOPE_INVALID');
