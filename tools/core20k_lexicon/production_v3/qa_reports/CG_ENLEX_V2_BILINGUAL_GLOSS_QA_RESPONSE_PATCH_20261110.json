@@ -1,0 +1,38 @@
+{
+  "schema": "cg-enlex-v2-bilingual-gloss-qa-response-patch-v1",
+  "date": "2026-11-10",
+  "status": "CANDIDATE_QA_RESPONSE_NOT_MASTER_APPLIED",
+  "source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "preceding_candidate_blob": "fdb6012c1bed60417bba8b58aa474f26d0bde94d",
+  "independent_qa_blob": "93bacfec8ef0df87372d084dbc9d08baed79c3d6",
+  "summary": {
+    "reviewed": 9,
+    "qa_pass": 8,
+    "qa_revise": 1,
+    "qa_hold": 0,
+    "approved": 0
+  },
+  "items": [
+    {
+      "lemma": "percentage",
+      "rank": 1774,
+      "teaching_sense_id": "core20k:rank:1774::oewn-percentage__1.21.00..",
+      "old_frozen_zh": "百分比",
+      "superseded_candidate_zh": "资产；财产权益",
+      "revised_candidate_zh": "个人财产份额；财产中的权益份额",
+      "action": "GLOSS_TRANSLATION_FIX",
+      "qa_verdict": "REVISE_ADDRESSED_CANDIDATE_PENDING_QA",
+      "reason": "Frozen English sense concerns a personal share of assets/property, not a percentage number; retain the semantic component of share in translation.",
+      "source_scene_link_action": "HOLD_PENDING_SENSE",
+      "target_sense_id": null,
+      "master_record_id": null,
+      "approved": false,
+      "release_eligible": false
+    }
+  ],
+  "other_8_qapass": "Retain previous 8 candidate glosses as CG-QA linguistically PASS; no release approval or scene-mapping authorization.",
+  "master_record_ids": "Not inserted until read from authoritative CMR1 file; issue comments alone are not verified record-level source.",
+  "frozen_shards_unchanged": true,
+  "master_unchanged": true,
+  "runtime_unchanged": true
+}
