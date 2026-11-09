@@ -18,6 +18,8 @@ on:
       - 'rebuild-preview/scene1341-srs-v2.mjs'
       - 'tools/integration/test-scene1341-srs-v2.mjs'
       - 'rebuild-preview/scene1341-srs-indexeddb.mjs'
+      - 'rebuild-preview/scene1341-study-preview.mjs'
+      - 'tools/integration/test-scene1341-study-preview.mjs'
       - 'tools/integration/test-scene1341-srs-indexeddb.mjs'
       - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
       - 'tools/integration/test-scene1341-ranked-service-worker.mjs'
@@ -58,3 +60,5 @@ jobs:
           node tools/integration/test-scene1341-srs-v2.mjs
           node --check rebuild-preview/scene1341-srs-indexeddb.mjs
           node tools/integration/test-scene1341-srs-indexeddb.mjs
+          node --check rebuild-preview/scene1341-study-preview.mjs
+          node tools/integration/test-scene1341-study-preview.mjs
