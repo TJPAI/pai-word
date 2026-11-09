@@ -31,8 +31,8 @@
   ],
   "summary": {
     "reviewed": 20,
-    "pass": 20,
-    "conditional": 0,
+    "pass": 19,
+    "conditional": 1,
     "revise": 0,
     "hold": 0,
     "publishable_approved": 0
@@ -78,7 +78,10 @@
       "scene_id": "SC50-0002",
       "source_rank": 7,
       "scene_ku_id": "SC1341-KU-00241",
-      "verdict": "PASS"
+      "verdict": "CONDITIONAL",
+      "category": "CHINESE_EXAMPLE_AMBIGUITY",
+      "reason": "例句译文‘开水前先把浴帘拉好’中文断句歧义，可被读为‘开水’(boiled water)，英文before turning on the water指打开淋浴水龙头之前。",
+      "fix": "改为‘打开淋浴水龙头前，先把浴帘拉好。’"
     },
     {
       "scene_id": "SC50-0002",
@@ -163,5 +166,8 @@
     "This is an independent CG linguistic review of actual author records, not a formal dual-AI certification.",
     "Candidate alterations to original source sense_zh require CG-MASTER adjudication; original frozen source and KU packs not edited.",
     "Editorial additions remain source-authoring candidates until Master approved."
+  ],
+  "notes": [
+    "Correction supersedes first commit's pass20 due to global KU ID SC1341-KU-00241 vs scene-local rank7 mapping. The actual source record and verdict are unchanged."
   ]
 }
