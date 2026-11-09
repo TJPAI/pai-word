@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
-import {loadScene1341AuthorPreview,createScene1341ReadOnlySession,renderScene1341ReadOnlyCard} from '../../rebuild-preview/scene1341-study-preview.mjs';
+import {loadScene1341AuthorPreview,createScene1341ReadOnlySession,renderScene1341ReadOnlyCard,readScene1341PreviewCursor,setScene1341PreviewCursor} from '../../rebuild-preview/scene1341-study-preview.mjs';
 const base=new URL('./scene1341-teaching/',import.meta.url);
 const fetchFile=async url=>new Response(await fs.readFile(fileURLToPath(url)),{status:200});
 const cards=await loadScene1341AuthorPreview({fetchImpl:fetchFile,base});
@@ -36,6 +36,16 @@ for(const [scene,group] of [['SC50-0001',first],['SC50-0002',second]]){
  assert.throws(()=>renderScene1341ReadOnlyCard({...revealed,canRate:true},{answerHtml:renderer}),/WRITABLE_REJECTED/);
 }
 assert.equal(calls,2);
+assert.equal(readScene1341PreviewCursor('SC50-0001'),null);
+setScene1341PreviewCursor('SC50-0001',first[17].id);
+setScene1341PreviewCursor('SC50-0002',second[7].id);
+assert.equal(readScene1341PreviewCursor('SC50-0001'),first[17].id);
+assert.equal(readScene1341PreviewCursor('SC50-0002'),second[7].id);
+assert.throws(()=>setScene1341PreviewCursor('S001','KU-001'),/CURSOR_INVALID/);
+const moduleSource=await fs.readFile(new URL('../../rebuild-preview/scene1341-study-preview.mjs',import.meta.url),'utf8');
+assert(moduleSource.includes('const savedCursor=readScene1341PreviewCursor(sceneId)'), 'resume entry hook missing');
+assert(moduleSource.includes('if(restoreIndex>=0)session.jump(restoreIndex)'), 'cursor restore missing');
+assert(!moduleSource.includes('localStorage.'), 'no localStorage method calls in preview');
 const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
 assert(home.includes('openScene1341ReadOnlyPreview'));
 assert(home.includes('预览234条答案型词卡（只读审核）'));
