@@ -1,0 +1,51 @@
+{
+  "schema": "cg-enlex-first-three-freeze-sense-qa-response-v1",
+  "date": "2026-11-10",
+  "role": "CG-ENLEX",
+  "target_frozen_blob": "21f97312b4debab4b662f41939cac29a091d89b9",
+  "source_primary_qa_blob": "76fbcbf7666bfec0d3c3d5a1ec506ad6bd4b6991",
+  "source_adjudication_blob": "740f1221164d8abb6f5f49766efb9be4f286f4d5",
+  "source_adjudication_path": "tools/core20k_lexicon/qa/CG_QA_V2_BATCH001_FIRST3_PRIMARY_EVIDENCE_ADJUDICATION_20261110.v1.json",
+  "records": [
+    {
+      "frozen_row_1based": 366,
+      "teaching_sense_id": "core20k:rank:116::oewn-first__1.28.00..",
+      "lemma": "first",
+      "pos": "n",
+      "cg_enlex_proposed_status": "SOURCE_IDENTITY_HOLD_CLEARED_CANDIDATE",
+      "gloss_change": false,
+      "reason": "OEWN synset membership reported by MU-QA includes both first and start; valid membership removes the sole initial source identity concern. CG-MASTER must confirm definitive authority; KU question remains ambiguous and has not passed.",
+      "ku_verdict": "REVISE_UNCHANGED",
+      "requires_master_approval": true
+    },
+    {
+      "frozen_row_1based": 369,
+      "teaching_sense_id": "core20k:rank:116::oewn-first__4.02.01..",
+      "lemma": "first",
+      "pos": "r",
+      "cg_enlex_proposed_status": "GLOSS_ZH_REVISE_CANDIDATE",
+      "old_gloss_zh": "突出地向前",
+      "proposed_gloss_zh": "处于最前列；位居首位",
+      "gloss_change": true,
+      "reason": "The English 'prominently forward' refers to prominent front/leading position, while 突出地向前 falsely suggests physical forward movement. Translation needs attested example and contextual confirmation before release.",
+      "ku_verdict": "REVISE_UNCHANGED",
+      "requires_master_approval": true
+    },
+    {
+      "frozen_row_1based": 374,
+      "teaching_sense_id": "core20k:rank:116::oewn-first__5.00.02.opening.00",
+      "lemma": "first",
+      "pos": "s",
+      "cg_enlex_proposed_status": "GLOSS_ZH_REVISE_CANDIDATE",
+      "old_gloss_zh": "用于启动；起始作用的",
+      "proposed_gloss_zh": "开场的；起始的；首次的（依搭配选用）",
+      "gloss_change": true,
+      "reason": "Source adjective sense corresponds to inaugural/opening position. Existing Chinese wording reads as verb phrase rather than a natural adjectival gloss. Attach real collocation evidence and keep KU ambiguity unresolved.",
+      "ku_verdict": "REVISE_UNCHANGED",
+      "requires_master_approval": true
+    }
+  ],
+  "note": "Isolated CG-ENLEX draft. No frozen Sense/KU edits; 0 approved; independent MU-QA formal signoff and CG-MASTER required. Original row text unavailable from oversized frozen shard via connector; grounded in independent CG-QA audit and adjudication that cite the shard blob.",
+  "approved": false,
+  "release_eligible": false
+}
