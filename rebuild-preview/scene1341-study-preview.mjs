@@ -12,7 +12,8 @@ const PACKS=Object.freeze([
   ['scene1341-v51-sc0001-answer-only-101-130.v2.json','6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22'],
   ['scene1341-v51-sc0001-answer-only-131-180.v2.json','78a58e8cffb265f98550ff34289a961b0bee0e3c'],
   ['scene1341-v51-sc0001-answer-only-181-234.v2.json','b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e'],
-  ['scene1341-v51-sc0002-answer-only-001-020.v2.json','d153f196e30a1b31a157050fb5f91eaedc94ccce']
+  ['scene1341-v51-sc0002-answer-only-001-020.v2.json','d153f196e30a1b31a157050fb5f91eaedc94ccce'],
+  ['scene1341-v51-sc0002-answer-only-021-070.v2.json','f60431b82d2797c399cf391bf7af0752476f16cc']
 ]);
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
  .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -50,7 +51,7 @@ export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,stri
       expression:r.expression,unit:adapter.toLegacyAnswerUnit(r.scene_ku_id)
     });
   }
-  if(items.length!==254||new Set(items.map(x=>x.id)).size!==254)
+  if(items.length!==304||new Set(items.map(x=>x.id)).size!==304)
     throw Error('SCENE1341_PREVIEW_SOURCE_SCOPE_INVALID');
   items.sort((a,b)=>a.sceneId.localeCompare(b.sceneId)||a.rank-b.rank);
   const byScene=new Map();
@@ -59,7 +60,7 @@ export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,stri
     if(item.rank!==expected)throw Error('SCENE1341_PREVIEW_RANK_GAP');
     byScene.set(item.sceneId,expected);
   }
-  if(byScene.size!==2||byScene.get('SC50-0001')!==234||byScene.get('SC50-0002')!==20)
+  if(byScene.size!==2||byScene.get('SC50-0001')!==234||byScene.get('SC50-0002')!==70)
     throw Error('SCENE1341_PREVIEW_SCENE_COUNTS_INVALID');
   return Object.freeze(items);
 }
