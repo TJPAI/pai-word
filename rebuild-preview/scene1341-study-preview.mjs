@@ -25,6 +25,14 @@ async function blobSha(bytes){
   return [...digest].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 let loadPromise=null;
+// Per-tab read-only browsing position; never persisted to IndexedDB, localStorage or SRS.
+const previewCursor=new Map();
+export function readScene1341PreviewCursor(sceneId){return previewCursor.get(sceneId)||null;}
+export function setScene1341PreviewCursor(sceneId,kuId){
+  if(!/^SC50-\d{4}$/.test(sceneId||'')||!/^SC1341-KU-\d{5,}$/.test(kuId||''))throw Error('SCENE1341_PREVIEW_CURSOR_INVALID');
+  previewCursor.set(sceneId,kuId);
+}
+
 export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,strict=true}={}){
   const items=[];
   for(const [name,sha] of PACKS){
@@ -96,6 +104,9 @@ export async function openScene1341ReadOnlyPreview({panel,sceneId,answerHtml}){
     const sceneCards=cards.filter(x=>x.sceneId===sceneId);
     if(!sceneCards.length)throw Error('SCENE1341_PREVIEW_NO_SCENE_KU');
     const session=createScene1341ReadOnlySession(sceneCards);
+    const savedCursor=readScene1341PreviewCursor(sceneId);
+    const restoreIndex=sceneCards.findIndex(card=>card.id===savedCursor);
+    if(restoreIndex>=0)session.jump(restoreIndex);
     const wrapper=document.createElement('div');
     const bar=document.createElement('div');
     bar.style.cssText='display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 0;position:sticky;top:0;background:#fff;z-index:1';
@@ -111,6 +122,7 @@ export async function openScene1341ReadOnlyPreview({panel,sceneId,answerHtml}){
     bar.append(back,prev,reveal,next);
     function paint(){
       const view=session.view();
+      if(view.card)setScene1341PreviewCursor(sceneId,view.card.id);
       wrapper.innerHTML=renderScene1341ReadOnlyCard(view,{answerHtml});
       prev.disabled=view.index===0;next.disabled=view.index===view.total-1;
       reveal.disabled=view.revealed;reveal.textContent=view.revealed?'已显示答案':'显示答案';
