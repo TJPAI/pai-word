@@ -1,0 +1,52 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {createRankedStore,parseRankedCsv,batchForScene} from '../../rebuild-preview/scene1341-ranked-preview.mjs';
+
+assert.equal(batchForScene('SC50-0001'),51);
+assert.equal(batchForScene('SC50-0110'),61);
+assert.equal(batchForScene('SC50-0111'),null);
+assert.equal(batchForScene('S001'),null);
+assert.deepEqual(parseRankedCsv('a,b\n"x,y","z""q"\n'),[{'a':'x,y','b':'z"q'}]);
+assert.throws(()=>parseRankedCsv('a,b\n"x,y\n'),/UNCLOSED_QUOTE/);
+
+let calls=0;
+const fakeFetch=async(url)=>{
+  calls++;
+  const data=await fs.readFile(fileURLToPath(url));
+  return new Response(data,{status:200});
+};
+const base=new URL('../scene1341-ranked/',import.meta.url);
+const store=createRankedStore({fetchImpl:fakeFetch,base});
+const index=await store.initialize();
+assert.equal(index.scenes.length,110);
+assert.equal(index.records,19371);
+assert.equal(store.productionEligible,false);
+assert.equal(store.canWriteSrs,false);
+const one=await store.scene('SC50-0001');
+assert.equal(one.status,'EDITORIAL_DELIVERED_NOT_RUNTIME');
+assert.equal(one.rows.length,index.scenes[0].count);
+assert(one.rows.every(x=>x.expression?.trim()&&x.sense_zh?.trim()));
+assert(one.rows.every((x,i)=>i===0||Number(one.rows[i-1].rank)<Number(x.rank)));
+const last=await store.scene('SC50-0110');
+assert.equal(last.rows.length,index.scenes.at(-1).count);
+assert.equal(store.loadedBatches,2);
+const before=calls;
+await store.scene('SC50-0001');
+assert.equal(calls,before,'same batch must be memory-cached');
+const missing=await store.scene('SC50-0111');
+assert.equal(missing.status,'NOT_DELIVERED');
+assert.deepEqual(missing.rows,[]);
+assert.throws(()=>store.batch(62),/OUT_OF_RANGE/);
+const all=await store.warmAll();
+assert.equal(all.batches,11);
+assert.equal(all.records,19371);
+assert.equal(store.loadedBatches,11);
+assert.equal(calls,13,'11 source batches plus index and manifest each fetched once');
+
+const html=await fs.readFile(new URL('../../rebuild-preview/scene1341-ranked-preview.html',import.meta.url),'utf8');
+assert(html.includes('scene1341-ranked-ui.mjs'));
+assert(html.includes('不影响正式学习与SRS'));
+const ui=await fs.readFile(new URL('../../rebuild-preview/scene1341-ranked-ui.mjs',import.meta.url),'utf8');
+assert(ui.includes('createRankedStore'));
+console.log(JSON.stringify({status:'PASS',scenes:110,records:19371,loadedBatches:11,fetches:calls,productionEligible:false}));
