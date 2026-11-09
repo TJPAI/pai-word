@@ -1,0 +1,92 @@
+{
+  "schema": "cg-qa-v2-frozen-sense-bilingual-patch-independent-review-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "source": {
+    "candidate_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V2_BILINGUAL_GLOSS_FIX_CANDIDATES_20261110.json",
+    "candidate_blob_sha": "fdb6012c1bed60417bba8b58aa474f26d0bde94d",
+    "english_scope_evidence_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_MASTER_V17_FROZEN_SENSE_GAP_TRIAGE_20261110.json",
+    "english_scope_evidence_blob_sha": "0ee41a8da5eb87f2a60f1af36eb5988bf5ebbe8c",
+    "frozen_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44"
+  },
+  "scope": 9,
+  "summary": {
+    "pass": 8,
+    "revise": 1,
+    "hold": 0,
+    "release_approved": 0
+  },
+  "method": "For each existing teaching_sense_id, compared suggested Chinese gloss to the frozen English scope summarized in source lexical inventory audit. Independently evaluated lexical translation and meaning boundaries, not just identity/schema.",
+  "records": [
+    {
+      "lemma": "cat",
+      "teaching_sense_id": "core20k:rank:1615::oewn-cat__1.04.00..",
+      "verdict": "PASS",
+      "reason": "医学语境下 CAT scan；候选译文‘计算机断层扫描；CAT扫描’准确，不能用于宠物猫义。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "printer",
+      "teaching_sense_id": "core20k:rank:2994::oewn-printer__1.18.00..",
+      "verdict": "PASS",
+      "reason": "印刷职业人员，与打印机设备明确区分。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "founder",
+      "teaching_sense_id": "core20k:rank:2976::oewn-founder__1.26.00..",
+      "verdict": "PASS",
+      "reason": "马的蹄叶炎/蹄叶病义，与公司创始人义隔离。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "airline",
+      "teaching_sense_id": "core20k:rank:1995::oewn-airline__1.06.01..",
+      "verdict": "PASS",
+      "reason": "压缩空气输送软管/管路，不能映射航空公司。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "percentage",
+      "teaching_sense_id": "core20k:rank:1774::oewn-percentage__1.21.00..",
+      "verdict": "REVISE",
+      "reason": "冻结英文定位个人财产中的份额，而候选‘资产；财产权益’没有保留份额这一核心义素，过宽。",
+      "corrected_candidate_zh": "个人财产份额；财产中的权益份额",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "pepper",
+      "teaching_sense_id": "core20k:rank:9751::oewn-pepper__2.39.00..",
+      "verdict": "PASS",
+      "reason": "动词义为给食物撒胡椒粉/以胡椒调味；原名词胡椒粉译文是词性错误。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "diesel",
+      "teaching_sense_id": "core20k:rank:4581::oewn-diesel__1.06.00..",
+      "verdict": "PASS",
+      "reason": "冻结名词Sense指柴油发动机，而非燃料柴油。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "cake",
+      "teaching_sense_id": "core20k:rank:1919::oewn-cake__1.06.00..",
+      "verdict": "PASS",
+      "reason": "英文为肥皂、蜡等形成的块状物；候选保留块状义及例证。",
+      "target_scene_mapping": "NOT_APPROVED"
+    },
+    {
+      "lemma": "barely",
+      "teaching_sense_id": "core20k:rank:3176::oewn-barely__4.02.00..",
+      "verdict": "PASS",
+      "reason": "此冻结副词义强调时间上‘刚刚/不久前’，不是程度副词‘几乎不’。",
+      "target_scene_mapping": "NOT_APPROVED"
+    }
+  ],
+  "notes": [
+    "PASS means candidate gloss linguistically accurate relative to documented frozen English sense; not release approval or CG-MASTER patch application.",
+    "percentage candidate requires retaining property SHARE as core semantic component.",
+    "All target-scene mappings remain disallowed when target requires a distinct sense.",
+    "No frozen original source, Core20K KU, Master, production Runtime or SRS changed."
+  ]
+}
