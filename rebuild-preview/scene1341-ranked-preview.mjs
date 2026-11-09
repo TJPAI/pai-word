@@ -43,8 +43,9 @@ async function requestBytes(url,fetchImpl){
   if(old)return old.arrayBuffer();
   const res=await fetchImpl(url);
   if(!res.ok)throw Error('RANKED_FETCH_'+res.status);
+  const copy=cached?res.clone():null;
   const data=await res.arrayBuffer();
-  if(cached)await cached.put(url,res.clone()).catch(()=>{});
+  if(cached&&copy)await cached.put(url,copy).catch(()=>{});
   return data;
 }
 export function batchForScene(sceneId){
