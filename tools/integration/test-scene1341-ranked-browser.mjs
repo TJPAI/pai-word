@@ -44,9 +44,25 @@ assert.equal(all.records,19371);
 assert.equal(store.loadedBatches,11);
 assert.equal(calls,13,'11 source batches plus index and manifest each fetched once');
 
+// Simulate iPhone Cache Storage persistence and complete network outage after opt-in.
+const persisted=new Map();
+globalThis.caches={open:async()=>({
+  match:async url=>persisted.has(url)?new Response(persisted.get(url),{status:200}):undefined,
+  put:async(url,response)=>persisted.set(url,new Uint8Array(await response.arrayBuffer()))
+})};
+const cacheWarmStore=createRankedStore({fetchImpl:fakeFetch,base});
+await cacheWarmStore.warmAll();
+assert.equal(persisted.size,13,'cache must persist 11 CSVs plus index and manifest');
+const offlineStore=createRankedStore({fetchImpl:async()=>{throw Error('NETWORK_OFFLINE');},base});
+const offlineIndex=await offlineStore.initialize();
+assert.equal(offlineIndex.scenes.length,110);
+const offlineLast=await offlineStore.scene('SC50-0110');
+assert.equal(offlineLast.rows.length,last.rows.length);
+assert.equal(offlineLast.status,'EDITORIAL_DELIVERED_NOT_RUNTIME');
+
 const html=await fs.readFile(new URL('../../rebuild-preview/scene1341-ranked-preview.html',import.meta.url),'utf8');
 assert(html.includes('scene1341-ranked-ui.mjs'));
 assert(html.includes('不影响正式学习与SRS'));
 const ui=await fs.readFile(new URL('../../rebuild-preview/scene1341-ranked-ui.mjs',import.meta.url),'utf8');
 assert(ui.includes('createRankedStore'));
-console.log(JSON.stringify({status:'PASS',scenes:110,records:19371,loadedBatches:11,fetches:calls,productionEligible:false}));
+console.log(JSON.stringify({status:'PASS',scenes:110,records:19371,loadedBatches:11,fetches:calls,offlineCacheFiles:persisted.size,productionEligible:false}));
