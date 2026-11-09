@@ -6,8 +6,8 @@ import {loadScene1341AuthorPreview,createScene1341ReadOnlySession,
 const base=new URL('./scene1341-teaching/',import.meta.url);
 const fetchFile=async url=>new Response(await fs.readFile(fileURLToPath(url)),{status:200});
 const cards=await loadScene1341AuthorPreview({fetchImpl:fetchFile,base});
-assert.equal(cards.length,100);
-assert.equal(new Set(cards.map(x=>x.id)).size,100);
+assert.equal(cards.length,130);
+assert.equal(new Set(cards.map(x=>x.id)).size,130);
 assert(cards.every((x,i)=>x.sceneId==='SC50-0001'&&x.rank===i+1));
 const model=createScene1341ReadOnlySession(cards);
 const initial=model.view();
@@ -35,12 +35,12 @@ assert.equal(calls,1);
 assert.equal(model.next().index,1);
 assert.equal(model.view().revealed,false);
 assert.equal(model.previous().index,0);
-assert.equal(model.jump(99).index,99);
-assert.throws(()=>model.jump(100),/PREVIEW_INDEX/);
+assert.equal(model.jump(129).index,129);
+assert.throws(()=>model.jump(130),/PREVIEW_INDEX/);
 assert.throws(()=>renderScene1341ReadOnlyCard({...revealed,canRate:true},{answerHtml:renderer}),/WRITABLE_REJECTED/);
 const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
 assert(home.includes('openScene1341ReadOnlyPreview'));
-assert(home.includes('预览前100条答案型词卡（只读审核）'));
+assert(home.includes('预览前130条答案型词卡（只读审核）'));
 assert(!home.includes('scene1341-srs-v2.mjs'),'draft home must not connect to persistence');
-console.log(JSON.stringify({status:'PASS',cards:100,questionMode:'self_recall',answerRenderCalls:calls,
+console.log(JSON.stringify({status:'PASS',cards:130,questionMode:'self_recall',answerRenderCalls:calls,
  legacyStudyScreenClasses:true,gradingDisabled:true,SRSWrites:0}));
