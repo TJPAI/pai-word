@@ -1,0 +1,392 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-audit-v1",
+  "date": "2026-11-10",
+  "role": "CG-QA",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "head": "eaf66fc53d71b0cc3364c7d7a752c71a6302e8a1",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-181-234.v2.json",
+    "git_blob_sha": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+    "upstream_csv_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "scope": {
+    "scene": "SC50-0001",
+    "first_rank": 181,
+    "last_rank": 234
+  },
+  "reviewed_fields": [
+    "scene source expression and sense_zh",
+    "answer meaning_zh",
+    "English example",
+    "Chinese translation",
+    "collocations",
+    "usage/contrast notes",
+    "source sense scope"
+  ],
+  "excluded_fields": [
+    "question",
+    "choices",
+    "automatic scoring"
+  ],
+  "summary": {
+    "reviewed": 54,
+    "pass": 48,
+    "conditional": 3,
+    "revise": 3,
+    "hold": 0,
+    "publishable_approved": 0
+  },
+  "records": [
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 181,
+      "scene_ku_id": "SC1341-KU-00181",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 182,
+      "scene_ku_id": "SC1341-KU-00182",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 183,
+      "scene_ku_id": "SC1341-KU-00183",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 184,
+      "scene_ku_id": "SC1341-KU-00184",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 185,
+      "scene_ku_id": "SC1341-KU-00185",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 186,
+      "scene_ku_id": "SC1341-KU-00186",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 187,
+      "scene_ku_id": "SC1341-KU-00187",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 188,
+      "scene_ku_id": "SC1341-KU-00188",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 189,
+      "scene_ku_id": "SC1341-KU-00189",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 190,
+      "scene_ku_id": "SC1341-KU-00190",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 191,
+      "scene_ku_id": "SC1341-KU-00191",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 192,
+      "scene_ku_id": "SC1341-KU-00192",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 193,
+      "scene_ku_id": "SC1341-KU-00193",
+      "verdict": "CONDITIONAL",
+      "category": "TRANSLATION_SCOPE",
+      "reason": "brew coffee指冲泡/萃取咖啡，中文‘煮咖啡’可能被理解成必须沸煮；usage_note已正确说明不一定煮沸。",
+      "fix": "建议中文精确化‘冲泡咖啡／煮咖啡（泛指冲煮）’，原来源义需CG-MASTER批准。"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 194,
+      "scene_ku_id": "SC1341-KU-00194",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 195,
+      "scene_ku_id": "SC1341-KU-00195",
+      "verdict": "CONDITIONAL",
+      "category": "GLOSS_NARROW",
+      "reason": "put the kettle on常为煮水/烧水（常用于泡茶），并不必然以泡茶为目的；原释义‘烧水准备泡茶’略窄。",
+      "fix": "候选‘烧上水；把水壶烧上’，保留泡茶为典型语境；源义更改由CG-MASTER裁决。"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 196,
+      "scene_ku_id": "SC1341-KU-00196",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 197,
+      "scene_ku_id": "SC1341-KU-00197",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 198,
+      "scene_ku_id": "SC1341-KU-00198",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 199,
+      "scene_ku_id": "SC1341-KU-00199",
+      "verdict": "REVISE",
+      "category": "SENSE_COVERAGE",
+      "reason": "toast源中文含‘烤面包片；吐司’，但英文toast可作动词‘烤（面包）’与名词‘烤面包片’；本答案例句、搭配均只支持名词食物义。现有译文不明确是动词还是名词（烤面包片可作动宾短语），容易误教。",
+      "fix": "在冻结源义治理下明确本项教学词性与名词义‘烤面包片／吐司’，或者补充动词例句并分Sense；当前先HOLD跨词性扩展，不能混成一个未经说明的Sense。"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 200,
+      "scene_ku_id": "SC1341-KU-00200",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 201,
+      "scene_ku_id": "SC1341-KU-00201",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 202,
+      "scene_ku_id": "SC1341-KU-00202",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 203,
+      "scene_ku_id": "SC1341-KU-00203",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 204,
+      "scene_ku_id": "SC1341-KU-00204",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 205,
+      "scene_ku_id": "SC1341-KU-00205",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 206,
+      "scene_ku_id": "SC1341-KU-00206",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 207,
+      "scene_ku_id": "SC1341-KU-00207",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 208,
+      "scene_ku_id": "SC1341-KU-00208",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 209,
+      "scene_ku_id": "SC1341-KU-00209",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 210,
+      "scene_ku_id": "SC1341-KU-00210",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 211,
+      "scene_ku_id": "SC1341-KU-00211",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 212,
+      "scene_ku_id": "SC1341-KU-00212",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 213,
+      "scene_ku_id": "SC1341-KU-00213",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 214,
+      "scene_ku_id": "SC1341-KU-00214",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 215,
+      "scene_ku_id": "SC1341-KU-00215",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 216,
+      "scene_ku_id": "SC1341-KU-00216",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 217,
+      "scene_ku_id": "SC1341-KU-00217",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 218,
+      "scene_ku_id": "SC1341-KU-00218",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 219,
+      "scene_ku_id": "SC1341-KU-00219",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 220,
+      "scene_ku_id": "SC1341-KU-00220",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 221,
+      "scene_ku_id": "SC1341-KU-00221",
+      "verdict": "REVISE",
+      "category": "SOURCE_MEANING_OVER_SPECIFIED",
+      "reason": "take your medication仅指服用自己的药物，不蕴含‘按时’；例句中at the same time each morning才表达定时。源中文‘按时吃药’附加原英语没有的时间要求。",
+      "fix": "将目标源义候选改为‘服药；吃药’，按时另由‘take medication on time/as prescribed’表达，需CG-MASTER裁决。"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 222,
+      "scene_ku_id": "SC1341-KU-00222",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 223,
+      "scene_ku_id": "SC1341-KU-00223",
+      "verdict": "REVISE",
+      "category": "BILINGUAL_REFERENCE_MISMATCH",
+      "reason": "water bottle通常指水瓶/随身水壶；source sense_zh‘装满水杯’对应cup而非bottle，现有example_zh又改成水瓶，造成源义与例句中文不同。",
+      "fix": "建议源义‘把水瓶装满（水）；灌满随身水壶’，经CG-MASTER批准后同步答案；不得静默覆盖来源。"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 224,
+      "scene_ku_id": "SC1341-KU-00224",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 225,
+      "scene_ku_id": "SC1341-KU-00225",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 226,
+      "scene_ku_id": "SC1341-KU-00226",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 227,
+      "scene_ku_id": "SC1341-KU-00227",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 228,
+      "scene_ku_id": "SC1341-KU-00228",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 229,
+      "scene_ku_id": "SC1341-KU-00229",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 230,
+      "scene_ku_id": "SC1341-KU-00230",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 231,
+      "scene_ku_id": "SC1341-KU-00231",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 232,
+      "scene_ku_id": "SC1341-KU-00232",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 233,
+      "scene_ku_id": "SC1341-KU-00233",
+      "verdict": "PASS",
+      "category": "EDITORIAL_ADDITION",
+      "reason": "口语短语get out the door使用自然，例句与释义一致；原CSV标editorial_addition，因此仍须CG-MASTER单独决定正式收录。",
+      "fix": "保持editorial_addition来源状态，语言PASS不等于正式Master通过。"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "source_rank": 234,
+      "scene_ku_id": "SC1341-KU-00234",
+      "verdict": "CONDITIONAL",
+      "category": "IDIOMATIC_CONTEXT",
+      "reason": "turn on the alarm可表示启用既有闹钟/警报系统；例句‘I turned on the alarm for six thirty tomorrow morning’不如‘I switched my 6:30 alarm on for tomorrow’清晰，且不能与set an alarm混同。该源标editorial_addition。",
+      "fix": "例句建议‘I turned on my 6:30 alarm for tomorrow morning.’／‘我把明早六点半的闹钟打开了。’；使用说明明确启用既有闹钟。"
+    }
+  ],
+  "limitations": [
+    "This is an independent CG linguistic review of actual author records, not a formal dual-AI certification.",
+    "Candidate alterations to original source sense_zh require CG-MASTER adjudication; original frozen source and KU packs not edited.",
+    "Editorial additions remain source-authoring candidates until Master approved."
+  ]
+}
