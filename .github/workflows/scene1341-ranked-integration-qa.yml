@@ -10,6 +10,8 @@ on:
       - 'rebuild-preview/scene1341-ranked-**'
       - 'rebuild-preview/scene1341-ranked/**'
       - 'rebuild-preview/home-dashboard.js'
+      - 'rebuild-preview/scene1341-home-adapter.mjs'
+      - 'tools/integration/test-scene1341-home-replacement.mjs'
       - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
       - 'tools/integration/test-scene1341-ranked-service-worker.mjs'
       - 'tools/integration/test-scene1341-ranked-pages-route.mjs'
@@ -40,3 +42,6 @@ jobs:
           node tools/integration/test-scene1341-ranked-offline-shell.mjs
           node tools/integration/test-scene1341-ranked-service-worker.mjs
           node tools/integration/test-scene1341-ranked-pages-route.mjs
+          node --check rebuild-preview/home-dashboard.js
+          node --check rebuild-preview/scene1341-home-adapter.mjs
+          node tools/integration/test-scene1341-home-replacement.mjs
