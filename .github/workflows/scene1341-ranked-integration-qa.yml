@@ -8,6 +8,9 @@ on:
       - 'tools/integration/validate-scene1341-ranked.py'
       - 'tools/integration/test-scene1341-ranked-browser.mjs'
       - 'rebuild-preview/scene1341-ranked-**'
+      - 'rebuild-preview/scene1341-ranked/**'
+      - 'rebuild-preview/home-dashboard.js'
+      - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
       - '.github/workflows/scene1341-ranked-integration-qa.yml'
   workflow_dispatch:
 permissions:
@@ -31,3 +34,5 @@ jobs:
           node --check rebuild-preview/scene1341-ranked-preview.mjs
           node --check rebuild-preview/scene1341-ranked-ui.mjs
           node tools/integration/test-scene1341-ranked-browser.mjs
+          node --check rebuild-preview/scene1341-ranked/sw.js
+          node tools/integration/test-scene1341-ranked-offline-shell.mjs
