@@ -48,6 +48,35 @@ const approvedAgain=new Set([items[2].scene_ku_id]);
 const isolated=createScene1341StudySession({sceneId:'SC50-0001',queue:[items[2].scene_ku_id],releaseIndex:{get:id=>({eligible:approvedAgain.has(id)})}});
 isolated.reveal();await assert.rejects(()=>isolated.rate({grade:'good',now,attemptId:'attempt-0003',srs:draftSrs}),/NOT_APPROVED/);
 assert.equal(isolated.view().index,0,'failed SRS commit must not advance the session');
+// A slow durable commit must not permit a second tap or a swipe to race the cursor.
+let unblock;
+const pendingStore={namespace:SCENE1341_SRS_SCOPE,storeName:SCENE1341_DURABLE_STORE,
+ read:async()=>null,commit:async()=>new Promise(resolve=>{unblock=resolve})};
+const pendingSrs=createScene1341Srs({store:pendingStore,releaseApproved:true});
+const pendingSession=createScene1341StudySession({sceneId:'SC50-0001',
+ queue:[items[2].scene_ku_id],releaseIndex:{get:id=>({eligible:approvedAgain.has(id)})}});
+pendingSession.reveal();
+const inFlight=pendingSession.rate({grade:'good',now,attemptId:'race-00001',srs:pendingSrs});
+assert.equal(pendingSession.view().ratingPending,true);
+await assert.rejects(()=>pendingSession.rate({grade:'hard',now,attemptId:'race-00002',srs:pendingSrs}),/RATING_PENDING/);
+assert.throws(()=>pendingSession.next(),/RATING_PENDING/);
+assert.throws(()=>pendingSession.previous(),/RATING_PENDING/);
+assert.throws(()=>pendingSession.reveal(),/RATING_PENDING/);
+for(let i=0;i<10&&!unblock;i++)await Promise.resolve();
+assert.equal(typeof unblock,'function');
+unblock();
+await inFlight;
+assert.equal(pendingSession.view().complete,true);
+assert.equal(pendingSession.view().ratingPending,false);
+// Failure must clear the lock without moving the card, so retry remains possible.
+const failedSession=createScene1341StudySession({sceneId:'SC50-0001',
+ queue:[items[2].scene_ku_id],releaseIndex:{get:id=>({eligible:approvedAgain.has(id)})}});
+failedSession.reveal();
+const failedSrs={namespace:SCENE1341_SRS_SCOPE,rate:async()=>{throw Error('STORAGE_FAILED')}};
+await assert.rejects(()=>failedSession.rate({grade:'good',now,attemptId:'race-00003',srs:failedSrs}),/STORAGE_FAILED/);
+assert.equal(failedSession.view().ratingPending,false);
+assert.equal(failedSession.view().index,0);
+assert.equal(failedSession.view().revealed,true);
 console.log(JSON.stringify({status:'PASS',authorDrafts:304,actualProductionApproved:gate.approved,
  queueBlockedForRealDrafts:true,approvedFixtureQueue:3,bookmarkResume:true,
  revocationBlocked:true,failedCommitDidNotAdvance:true,realUserSrsWrites:0}));
