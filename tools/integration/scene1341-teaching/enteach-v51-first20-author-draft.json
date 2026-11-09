@@ -1,0 +1,1207 @@
+{
+  "schema_version": "pai-scene1341-new-ku-teaching-v1",
+  "status": "ISOLATED_AUTHOR_DRAFT",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "source_records": 2038
+  },
+  "scope": {
+    "scene_ids": [
+      "SC50-0001"
+    ],
+    "source_rank_start": 1,
+    "source_rank_end": 20,
+    "records": 20
+  },
+  "records": [
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00001",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00001",
+      "source_rank": 1,
+      "expression": "wake up",
+      "sense_zh": "醒来",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“醒来”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "get up"
+          },
+          {
+            "id": "B",
+            "text": "fall asleep"
+          },
+          {
+            "id": "C",
+            "text": "make the bed"
+          },
+          {
+            "id": "D",
+            "text": "wake up"
+          }
+        ],
+        "correct_choice_id": "D",
+        "correct_answer": "wake up",
+        "accepted_answers": [
+          "wake up"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "wake up",
+        "meaning_zh": "醒来",
+        "example_en": "I usually wake up at seven, but I stay in bed for another ten minutes.",
+        "example_zh": "我通常七点醒来，但还会在床上躺十分钟。",
+        "collocations": [
+          "wake up naturally",
+          "wake up at seven"
+        ],
+        "explanation_zh": "指从睡眠中醒来，不一定已经下床。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00002",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00002",
+      "source_rank": 2,
+      "expression": "get up",
+      "sense_zh": "起床",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“起床”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "get up"
+          },
+          {
+            "id": "B",
+            "text": "wake up"
+          },
+          {
+            "id": "C",
+            "text": "lie awake"
+          },
+          {
+            "id": "D",
+            "text": "sleep in"
+          }
+        ],
+        "correct_choice_id": "A",
+        "correct_answer": "get up",
+        "accepted_answers": [
+          "get up"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "get up",
+        "meaning_zh": "起床",
+        "example_en": "I get up as soon as my alarm rings.",
+        "example_zh": "闹钟一响我就起床。",
+        "collocations": [
+          "get up early",
+          "get up at six"
+        ],
+        "explanation_zh": "强调从床上起来，与仅仅醒来不同。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00003",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00003",
+      "source_rank": 3,
+      "expression": "get out of bed",
+      "sense_zh": "从床上起来",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“从床上起来”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "make the bed"
+          },
+          {
+            "id": "B",
+            "text": "get out of bed"
+          },
+          {
+            "id": "C",
+            "text": "get ready"
+          },
+          {
+            "id": "D",
+            "text": "go back to sleep"
+          }
+        ],
+        "correct_choice_id": "B",
+        "correct_answer": "get out of bed",
+        "accepted_answers": [
+          "get out of bed"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "get out of bed",
+        "meaning_zh": "从床上起来",
+        "example_en": "It's cold, and I don't want to get out of bed.",
+        "example_zh": "天气很冷，我不想从床上起来。",
+        "collocations": [
+          "get out of bed slowly",
+          "struggle to get out of bed"
+        ],
+        "explanation_zh": "明确表示离开床铺。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00004",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00004",
+      "source_rank": 4,
+      "expression": "sleep in",
+      "sense_zh": "睡懒觉",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“睡懒觉”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "wake up early"
+          },
+          {
+            "id": "B",
+            "text": "set an alarm"
+          },
+          {
+            "id": "C",
+            "text": "sleep in"
+          },
+          {
+            "id": "D",
+            "text": "oversleep"
+          }
+        ],
+        "correct_choice_id": "C",
+        "correct_answer": "sleep in",
+        "accepted_answers": [
+          "sleep in"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "sleep in",
+        "meaning_zh": "睡懒觉",
+        "example_en": "On Sundays, I like to sleep in until nine.",
+        "example_zh": "星期天我喜欢睡懒觉，睡到九点。",
+        "collocations": [
+          "sleep in on weekends",
+          "let someone sleep in"
+        ],
+        "explanation_zh": "比平时晚起，常用于周末或休息日。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00005",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00005",
+      "source_rank": 5,
+      "expression": "oversleep",
+      "sense_zh": "睡过头",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“睡过头”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "sleep in"
+          },
+          {
+            "id": "B",
+            "text": "go back to sleep"
+          },
+          {
+            "id": "C",
+            "text": "get enough sleep"
+          },
+          {
+            "id": "D",
+            "text": "oversleep"
+          }
+        ],
+        "correct_choice_id": "D",
+        "correct_answer": "oversleep",
+        "accepted_answers": [
+          "oversleep"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "oversleep",
+        "meaning_zh": "睡过头",
+        "example_en": "I overslept and missed the first bus.",
+        "example_zh": "我睡过头了，错过了第一班公交车。",
+        "collocations": [
+          "oversleep again",
+          "oversleep by an hour"
+        ],
+        "explanation_zh": "强调睡过了原定起床时间，通常造成迟到。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00006",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00006",
+      "source_rank": 6,
+      "expression": "snooze",
+      "sense_zh": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“按闹钟贪睡键，让闹钟稍后再响；小睡一会儿”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "snooze"
+          },
+          {
+            "id": "B",
+            "text": "oversleep"
+          },
+          {
+            "id": "C",
+            "text": "yawn"
+          },
+          {
+            "id": "D",
+            "text": "stretch"
+          }
+        ],
+        "correct_choice_id": "A",
+        "correct_answer": "snooze",
+        "accepted_answers": [
+          "snooze"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "snooze",
+        "meaning_zh": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+        "example_en": "I hit snooze once, then got up.",
+        "example_zh": "我按了一次闹钟的贪睡键，然后起床了。",
+        "collocations": [
+          "hit snooze",
+          "snooze the alarm"
+        ],
+        "explanation_zh": "此处是延后闹钟提醒，不是简单睡觉。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00007",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00007",
+      "source_rank": 7,
+      "expression": "wake up early",
+      "sense_zh": "早早醒来",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“早早醒来”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "fall asleep"
+          },
+          {
+            "id": "B",
+            "text": "wake up early"
+          },
+          {
+            "id": "C",
+            "text": "get up late"
+          },
+          {
+            "id": "D",
+            "text": "sleep in"
+          }
+        ],
+        "correct_choice_id": "B",
+        "correct_answer": "wake up early",
+        "accepted_answers": [
+          "wake up early"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "wake up early",
+        "meaning_zh": "早早醒来",
+        "example_en": "I wake up early when I have a morning flight.",
+        "example_zh": "赶早班飞机时，我会早早醒来。",
+        "collocations": [
+          "wake up early for work",
+          "wake up early tomorrow"
+        ],
+        "explanation_zh": "重点是醒来的时刻较早，不一定马上下床。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00008",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00008",
+      "source_rank": 8,
+      "expression": "wake up late",
+      "sense_zh": "醒得晚",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“醒得晚”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "get up early"
+          },
+          {
+            "id": "B",
+            "text": "lie awake"
+          },
+          {
+            "id": "C",
+            "text": "wake up late"
+          },
+          {
+            "id": "D",
+            "text": "oversleep"
+          }
+        ],
+        "correct_choice_id": "C",
+        "correct_answer": "wake up late",
+        "accepted_answers": [
+          "wake up late"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "wake up late",
+        "meaning_zh": "醒得晚",
+        "example_en": "I woke up late, but I still had enough time to eat breakfast.",
+        "example_zh": "我醒得晚，但还是有时间吃早饭。",
+        "collocations": [
+          "wake up late on Sunday",
+          "wake up late today"
+        ],
+        "explanation_zh": "只是醒得晚，不必然表示迟到。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00009",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00009",
+      "source_rank": 9,
+      "expression": "get up early",
+      "sense_zh": "早起床",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“早起床”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "wake up late"
+          },
+          {
+            "id": "B",
+            "text": "sleep in"
+          },
+          {
+            "id": "C",
+            "text": "go back to sleep"
+          },
+          {
+            "id": "D",
+            "text": "get up early"
+          }
+        ],
+        "correct_choice_id": "D",
+        "correct_answer": "get up early",
+        "accepted_answers": [
+          "get up early"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "get up early",
+        "meaning_zh": "早起床",
+        "example_en": "I get up early to catch the six-thirty train.",
+        "example_zh": "为了赶上六点半的火车，我早早起床。",
+        "collocations": [
+          "get up early for work",
+          "get up early every day"
+        ],
+        "explanation_zh": "与wake up early区别在于实际离床。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00010",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00010",
+      "source_rank": 10,
+      "expression": "get up late",
+      "sense_zh": "起床晚",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“起床晚”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "get up late"
+          },
+          {
+            "id": "B",
+            "text": "wake up early"
+          },
+          {
+            "id": "C",
+            "text": "go to bed early"
+          },
+          {
+            "id": "D",
+            "text": "set an alarm"
+          }
+        ],
+        "correct_choice_id": "A",
+        "correct_answer": "get up late",
+        "accepted_answers": [
+          "get up late"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "get up late",
+        "meaning_zh": "起床晚",
+        "example_en": "I got up late today and skipped my usual walk.",
+        "example_zh": "我今天起床晚了，没去平时的晨间散步。",
+        "collocations": [
+          "get up late on weekends",
+          "get up late this morning"
+        ],
+        "explanation_zh": "强调起床动作发生得晚。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00011",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00011",
+      "source_rank": 11,
+      "expression": "alarm",
+      "sense_zh": "闹铃",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“闹铃”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "morning routine"
+          },
+          {
+            "id": "B",
+            "text": "alarm"
+          },
+          {
+            "id": "C",
+            "text": "alarm clock"
+          },
+          {
+            "id": "D",
+            "text": "snooze button"
+          }
+        ],
+        "correct_choice_id": "B",
+        "correct_answer": "alarm",
+        "accepted_answers": [
+          "alarm"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "alarm",
+        "meaning_zh": "闹铃",
+        "example_en": "The alarm sounded before sunrise.",
+        "example_zh": "日出前闹铃就响了。",
+        "collocations": [
+          "turn off the alarm",
+          "hear the alarm"
+        ],
+        "explanation_zh": "alarm可指警报，也可指唤醒人的闹铃；本场景取后者。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00012",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00012",
+      "source_rank": 12,
+      "expression": "alarm clock",
+      "sense_zh": "闹钟",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“闹钟”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "alarm goes off"
+          },
+          {
+            "id": "B",
+            "text": "snooze"
+          },
+          {
+            "id": "C",
+            "text": "alarm clock"
+          },
+          {
+            "id": "D",
+            "text": "alarm"
+          }
+        ],
+        "correct_choice_id": "C",
+        "correct_answer": "alarm clock",
+        "accepted_answers": [
+          "alarm clock"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "alarm clock",
+        "meaning_zh": "闹钟",
+        "example_en": "I keep an alarm clock beside my bed.",
+        "example_zh": "我在床边放着一个闹钟。",
+        "collocations": [
+          "digital alarm clock",
+          "set the alarm clock"
+        ],
+        "explanation_zh": "alarm clock是计时提醒的设备，alarm可指响起的提示。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00013",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00013",
+      "source_rank": 13,
+      "expression": "set an alarm",
+      "sense_zh": "设闹钟",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“设闹钟”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "turn off the alarm"
+          },
+          {
+            "id": "B",
+            "text": "hit snooze"
+          },
+          {
+            "id": "C",
+            "text": "get up late"
+          },
+          {
+            "id": "D",
+            "text": "set an alarm"
+          }
+        ],
+        "correct_choice_id": "D",
+        "correct_answer": "set an alarm",
+        "accepted_answers": [
+          "set an alarm"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "set an alarm",
+        "meaning_zh": "设闹钟",
+        "example_en": "Don't forget to set an alarm for six.",
+        "example_zh": "别忘了把闹钟设在六点。",
+        "collocations": [
+          "set an alarm for seven",
+          "set two alarms"
+        ],
+        "explanation_zh": "set an alarm是设定提醒时间，不是闹钟开始响。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00014",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00014",
+      "source_rank": 14,
+      "expression": "alarm goes off",
+      "sense_zh": "闹钟响起",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“闹钟响起”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "alarm goes off"
+          },
+          {
+            "id": "B",
+            "text": "set an alarm"
+          },
+          {
+            "id": "C",
+            "text": "turn off the alarm"
+          },
+          {
+            "id": "D",
+            "text": "alarm clock"
+          }
+        ],
+        "correct_choice_id": "A",
+        "correct_answer": "alarm goes off",
+        "accepted_answers": [
+          "alarm goes off"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "alarm goes off",
+        "meaning_zh": "闹钟响起",
+        "example_en": "My alarm goes off at 6:30 every weekday.",
+        "example_zh": "每个工作日我的闹钟六点半响。",
+        "collocations": [
+          "the alarm goes off at six",
+          "hear the alarm go off"
+        ],
+        "explanation_zh": "go off用于闹钟时是响起，不是关闭。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00015",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00015",
+      "source_rank": 15,
+      "expression": "snooze button",
+      "sense_zh": "闹钟贪睡键",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“闹钟贪睡键”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "morning routine"
+          },
+          {
+            "id": "B",
+            "text": "snooze button"
+          },
+          {
+            "id": "C",
+            "text": "alarm clock"
+          },
+          {
+            "id": "D",
+            "text": "set an alarm"
+          }
+        ],
+        "correct_choice_id": "B",
+        "correct_answer": "snooze button",
+        "accepted_answers": [
+          "snooze button"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "snooze button",
+        "meaning_zh": "闹钟贪睡键",
+        "example_en": "The snooze button gives me nine more minutes in bed.",
+        "example_zh": "贪睡键让我能在床上多待九分钟。",
+        "collocations": [
+          "press the snooze button",
+          "hit the snooze button"
+        ],
+        "explanation_zh": "snooze button是按钮/功能，而snooze是行为。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00016",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00016",
+      "source_rank": 16,
+      "expression": "running late",
+      "sense_zh": "快迟到了",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“快迟到了”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "sleep in"
+          },
+          {
+            "id": "B",
+            "text": "get enough sleep"
+          },
+          {
+            "id": "C",
+            "text": "running late"
+          },
+          {
+            "id": "D",
+            "text": "wake up late"
+          }
+        ],
+        "correct_choice_id": "C",
+        "correct_answer": "running late",
+        "accepted_answers": [
+          "running late"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "running late",
+        "meaning_zh": "快迟到了",
+        "example_en": "I'm running late, so I'll grab breakfast on the way.",
+        "example_zh": "我快迟到了，所以会在路上买点早餐。",
+        "collocations": [
+          "be running late",
+          "sorry, I'm running late"
+        ],
+        "explanation_zh": "running late指进度落后、可能迟到，不等于正在跑步。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00017",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00017",
+      "source_rank": 17,
+      "expression": "morning routine",
+      "sense_zh": "晨间例行活动",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“晨间例行活动”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "alarm clock"
+          },
+          {
+            "id": "B",
+            "text": "running late"
+          },
+          {
+            "id": "C",
+            "text": "have breakfast"
+          },
+          {
+            "id": "D",
+            "text": "morning routine"
+          }
+        ],
+        "correct_choice_id": "D",
+        "correct_answer": "morning routine",
+        "accepted_answers": [
+          "morning routine"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "morning routine",
+        "meaning_zh": "晨间例行活动",
+        "example_en": "My morning routine starts with a glass of water.",
+        "example_zh": "我的晨间例行活动从喝一杯水开始。",
+        "collocations": [
+          "daily morning routine",
+          "stick to a morning routine"
+        ],
+        "explanation_zh": "routine指经常重复的固定流程。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00018",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00018",
+      "source_rank": 18,
+      "expression": "yawn",
+      "sense_zh": "打哈欠",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“打哈欠”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "yawn"
+          },
+          {
+            "id": "B",
+            "text": "stretch"
+          },
+          {
+            "id": "C",
+            "text": "snooze"
+          },
+          {
+            "id": "D",
+            "text": "wake up"
+          }
+        ],
+        "correct_choice_id": "A",
+        "correct_answer": "yawn",
+        "accepted_answers": [
+          "yawn"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "yawn",
+        "meaning_zh": "打哈欠",
+        "example_en": "She covered her mouth when she yawned.",
+        "example_zh": "她打哈欠时用手捂住了嘴。",
+        "collocations": [
+          "yawn loudly",
+          "keep yawning"
+        ],
+        "explanation_zh": "yawn是困倦或无聊时张嘴吸气的动作。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00019",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00019",
+      "source_rank": 19,
+      "expression": "stretch",
+      "sense_zh": "伸懒腰",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "在晨间情境中，哪一个英文表达最准确地对应“伸懒腰”？",
+        "choices": [
+          {
+            "id": "A",
+            "text": "get ready"
+          },
+          {
+            "id": "B",
+            "text": "stretch"
+          },
+          {
+            "id": "C",
+            "text": "yawn"
+          },
+          {
+            "id": "D",
+            "text": "make the bed"
+          }
+        ],
+        "correct_choice_id": "B",
+        "correct_answer": "stretch",
+        "accepted_answers": [
+          "stretch"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "stretch",
+        "meaning_zh": "伸懒腰",
+        "example_en": "I stretch for a few minutes after getting out of bed.",
+        "example_zh": "下床后我会伸展身体几分钟。",
+        "collocations": [
+          "stretch your arms",
+          "stretch after waking up"
+        ],
+        "explanation_zh": "stretch表示伸展肌肉，本场景可译伸懒腰。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    },
+    {
+      "schema_version": "scene1341-scene-ku-v1",
+      "scene_ku_id": "SC1341-KU-00020",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00020",
+      "source_rank": 20,
+      "expression": "make the bed",
+      "sense_zh": "整理床铺",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+      "question": {
+        "type": "single_choice",
+        "stem": "请选择最符合中文提示“整理床铺”的英语表达（注意与近义或相关动作的区别）。",
+        "choices": [
+          {
+            "id": "A",
+            "text": "wake up"
+          },
+          {
+            "id": "B",
+            "text": "set an alarm"
+          },
+          {
+            "id": "C",
+            "text": "make the bed"
+          },
+          {
+            "id": "D",
+            "text": "get out of bed"
+          }
+        ],
+        "correct_choice_id": "C",
+        "correct_answer": "make the bed",
+        "accepted_answers": [
+          "make the bed"
+        ],
+        "scoring": "exact_choice_id"
+      },
+      "answer": {
+        "expression": "make the bed",
+        "meaning_zh": "整理床铺",
+        "example_en": "Please make the bed before you leave the room.",
+        "example_zh": "离开房间前请把床铺整理好。",
+        "collocations": [
+          "make the bed every morning",
+          "neatly made bed"
+        ],
+        "explanation_zh": "make the bed指整理被褥/床单，不是制作一张床。"
+      },
+      "qa": {
+        "author": "CG-ENTEACH",
+        "status": "AUTHOR_DRAFT_QA_PENDING",
+        "structure_verified": true,
+        "independent_semantic_verified": false
+      },
+      "production_ready": false,
+      "activation_allowed": false
+    }
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false,
+    "core20k_ku_reused": false,
+    "srs_namespace": "scene1341-v1"
+  }
+}
