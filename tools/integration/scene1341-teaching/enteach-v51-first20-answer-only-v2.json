@@ -1,0 +1,665 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0001",
+    "ranks": "1-20",
+    "count": 20
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00001",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00001",
+      "source_rank": 1,
+      "expression": "wake up",
+      "sense_zh": "醒来",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "醒来",
+        "example_en": "I woke up before my alarm rang.",
+        "example_zh": "闹钟还没响，我就醒了。",
+        "collocations": [
+          "wake up early",
+          "wake up feeling rested"
+        ],
+        "usage_note": "wake up指从睡眠中醒来；醒来后不一定马上离开床。",
+        "contrast_note": "wake up侧重醒来，get up侧重起床离床。"
+      },
+      "display": {
+        "w": "wake up",
+        "m": "醒来",
+        "c": "wake up early · wake up feeling rested",
+        "e": "I woke up before my alarm rang.",
+        "x": "wake up指从睡眠中醒来；醒来后不一定马上离开床。 wake up侧重醒来，get up侧重起床离床。",
+        "example_zh": "闹钟还没响，我就醒了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00002",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00002",
+      "source_rank": 2,
+      "expression": "get up",
+      "sense_zh": "起床",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "起床",
+        "example_en": "I get up at seven on weekdays.",
+        "example_zh": "工作日我七点起床。",
+        "collocations": [
+          "get up early",
+          "get up late"
+        ],
+        "usage_note": "get up在此指起床，强调离开床开始一天的活动。",
+        "contrast_note": "与wake up（醒来）相比，get up强调实际起身。"
+      },
+      "display": {
+        "w": "get up",
+        "m": "起床",
+        "c": "get up early · get up late",
+        "e": "I get up at seven on weekdays.",
+        "x": "get up在此指起床，强调离开床开始一天的活动。 与wake up（醒来）相比，get up强调实际起身。",
+        "example_zh": "工作日我七点起床。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00003",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00003",
+      "source_rank": 3,
+      "expression": "get out of bed",
+      "sense_zh": "从床上起来",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "从床上起来",
+        "example_en": "It was so cold that I didn't want to get out of bed.",
+        "example_zh": "天太冷了，我不想从床上起来。",
+        "collocations": [
+          "get out of bed early",
+          "struggle to get out of bed"
+        ],
+        "usage_note": "get out of bed明确表示离开床铺；常与时间或意愿搭配。"
+      },
+      "display": {
+        "w": "get out of bed",
+        "m": "从床上起来",
+        "c": "get out of bed early · struggle to get out of bed",
+        "e": "It was so cold that I didn't want to get out of bed.",
+        "x": "get out of bed明确表示离开床铺；常与时间或意愿搭配。",
+        "example_zh": "天太冷了，我不想从床上起来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00004",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00004",
+      "source_rank": 4,
+      "expression": "sleep in",
+      "sense_zh": "睡懒觉",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "睡懒觉",
+        "example_en": "I like to sleep in on Saturday mornings.",
+        "example_zh": "星期六早上我喜欢睡懒觉。",
+        "collocations": [
+          "sleep in on weekends",
+          "let someone sleep in"
+        ],
+        "usage_note": "sleep in表示比平时睡得晚，通常是主动享受晚起。",
+        "contrast_note": "oversleep通常表示无意中睡过头，sleep in往往是有意晚起。"
+      },
+      "display": {
+        "w": "sleep in",
+        "m": "睡懒觉",
+        "c": "sleep in on weekends · let someone sleep in",
+        "e": "I like to sleep in on Saturday mornings.",
+        "x": "sleep in表示比平时睡得晚，通常是主动享受晚起。 oversleep通常表示无意中睡过头，sleep in往往是有意晚起。",
+        "example_zh": "星期六早上我喜欢睡懒觉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00005",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00005",
+      "source_rank": 5,
+      "expression": "oversleep",
+      "sense_zh": "睡过头",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "睡过头",
+        "example_en": "I overslept and missed the bus.",
+        "example_zh": "我睡过头了，没赶上公交车。",
+        "collocations": [
+          "oversleep by an hour",
+          "oversleep and be late"
+        ],
+        "usage_note": "oversleep表示睡过了原本打算起床的时间，常带来迟到等后果。",
+        "contrast_note": "不同于主动睡懒觉的sleep in。"
+      },
+      "display": {
+        "w": "oversleep",
+        "m": "睡过头",
+        "c": "oversleep by an hour · oversleep and be late",
+        "e": "I overslept and missed the bus.",
+        "x": "oversleep表示睡过了原本打算起床的时间，常带来迟到等后果。 不同于主动睡懒觉的sleep in。",
+        "example_zh": "我睡过头了，没赶上公交车。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00006",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00006",
+      "source_rank": 6,
+      "expression": "snooze",
+      "sense_zh": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+        "example_en": "I pressed snooze and went back to sleep for ten minutes.",
+        "example_zh": "我按了闹钟的贪睡键，又睡了十分钟。",
+        "collocations": [
+          "hit snooze",
+          "snooze the alarm"
+        ],
+        "usage_note": "在闹钟语境中，snooze表示暂时延后提醒；也可指小睡。",
+        "contrast_note": "snooze the alarm是延后提醒，turn off the alarm是关掉提醒。"
+      },
+      "display": {
+        "w": "snooze",
+        "m": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+        "c": "hit snooze · snooze the alarm",
+        "e": "I pressed snooze and went back to sleep for ten minutes.",
+        "x": "在闹钟语境中，snooze表示暂时延后提醒；也可指小睡。 snooze the alarm是延后提醒，turn off the alarm是关掉提醒。",
+        "example_zh": "我按了闹钟的贪睡键，又睡了十分钟。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00007",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00007",
+      "source_rank": 7,
+      "expression": "wake up early",
+      "sense_zh": "早早醒来",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "早早醒来",
+        "example_en": "I wake up early when I have a morning flight.",
+        "example_zh": "要赶早班飞机时，我会早早醒来。",
+        "collocations": [
+          "wake up early for work",
+          "wake up early tomorrow"
+        ],
+        "usage_note": "early修饰醒来的时间；是否马上起床由上下文决定。"
+      },
+      "display": {
+        "w": "wake up early",
+        "m": "早早醒来",
+        "c": "wake up early for work · wake up early tomorrow",
+        "e": "I wake up early when I have a morning flight.",
+        "x": "early修饰醒来的时间；是否马上起床由上下文决定。",
+        "example_zh": "要赶早班飞机时，我会早早醒来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00008",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00008",
+      "source_rank": 8,
+      "expression": "wake up late",
+      "sense_zh": "醒得晚",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "醒得晚",
+        "example_en": "I woke up late, but I still made it to work on time.",
+        "example_zh": "我醒得晚，但还是准时上班了。",
+        "collocations": [
+          "wake up late on Sunday",
+          "wake up late this morning"
+        ],
+        "usage_note": "wake up late只表示醒来时间晚，并不一定等于迟到。",
+        "contrast_note": "oversleep通常暗含超过预定起床时间；wake up late并不必然如此。"
+      },
+      "display": {
+        "w": "wake up late",
+        "m": "醒得晚",
+        "c": "wake up late on Sunday · wake up late this morning",
+        "e": "I woke up late, but I still made it to work on time.",
+        "x": "wake up late只表示醒来时间晚，并不一定等于迟到。 oversleep通常暗含超过预定起床时间；wake up late并不必然如此。",
+        "example_zh": "我醒得晚，但还是准时上班了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00009",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00009",
+      "source_rank": 9,
+      "expression": "get up early",
+      "sense_zh": "早起床",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "早起床",
+        "example_en": "I get up early to catch the first train.",
+        "example_zh": "为了赶上首班火车，我早早起床。",
+        "collocations": [
+          "get up early every day",
+          "get up early for school"
+        ],
+        "usage_note": "get up early强调很早就起身离床，而不仅是清醒。"
+      },
+      "display": {
+        "w": "get up early",
+        "m": "早起床",
+        "c": "get up early every day · get up early for school",
+        "e": "I get up early to catch the first train.",
+        "x": "get up early强调很早就起身离床，而不仅是清醒。",
+        "example_zh": "为了赶上首班火车，我早早起床。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00010",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00010",
+      "source_rank": 10,
+      "expression": "get up late",
+      "sense_zh": "起床晚",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "起床晚",
+        "example_en": "I got up late and skipped my usual morning walk.",
+        "example_zh": "我起床晚了，就没进行平时的晨间散步。",
+        "collocations": [
+          "get up late on weekends",
+          "get up late today"
+        ],
+        "usage_note": "get up late侧重离床时间较晚，是否睡过头取决于语境。"
+      },
+      "display": {
+        "w": "get up late",
+        "m": "起床晚",
+        "c": "get up late on weekends · get up late today",
+        "e": "I got up late and skipped my usual morning walk.",
+        "x": "get up late侧重离床时间较晚，是否睡过头取决于语境。",
+        "example_zh": "我起床晚了，就没进行平时的晨间散步。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00011",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00011",
+      "source_rank": 11,
+      "expression": "alarm",
+      "sense_zh": "闹铃",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "闹铃",
+        "example_en": "My alarm rang at six this morning.",
+        "example_zh": "今天早上六点，我的闹铃响了。",
+        "collocations": [
+          "set an alarm",
+          "turn off the alarm"
+        ],
+        "usage_note": "alarm在此指闹铃或提醒声；也可以表示警报。",
+        "contrast_note": "alarm是提醒或警报，alarm clock特指闹钟设备。"
+      },
+      "display": {
+        "w": "alarm",
+        "m": "闹铃",
+        "c": "set an alarm · turn off the alarm",
+        "e": "My alarm rang at six this morning.",
+        "x": "alarm在此指闹铃或提醒声；也可以表示警报。 alarm是提醒或警报，alarm clock特指闹钟设备。",
+        "example_zh": "今天早上六点，我的闹铃响了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00012",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00012",
+      "source_rank": 12,
+      "expression": "alarm clock",
+      "sense_zh": "闹钟",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "闹钟",
+        "example_en": "I keep an alarm clock beside my bed.",
+        "example_zh": "我把一个闹钟放在床边。",
+        "collocations": [
+          "digital alarm clock",
+          "bedside alarm clock"
+        ],
+        "usage_note": "alarm clock是用于定时提醒的设备；clock本身不一定具有闹铃功能。"
+      },
+      "display": {
+        "w": "alarm clock",
+        "m": "闹钟",
+        "c": "digital alarm clock · bedside alarm clock",
+        "e": "I keep an alarm clock beside my bed.",
+        "x": "alarm clock是用于定时提醒的设备；clock本身不一定具有闹铃功能。",
+        "example_zh": "我把一个闹钟放在床边。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00013",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00013",
+      "source_rank": 13,
+      "expression": "set an alarm",
+      "sense_zh": "设闹钟",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "设闹钟",
+        "example_en": "Don't forget to set an alarm for six tomorrow.",
+        "example_zh": "别忘了把明天的闹钟设在六点。",
+        "collocations": [
+          "set an alarm for seven",
+          "set two alarms"
+        ],
+        "usage_note": "set an alarm for + 时间，表示预设闹钟响起的时间。",
+        "contrast_note": "set an alarm是设置闹钟，alarm goes off是闹钟响起。"
+      },
+      "display": {
+        "w": "set an alarm",
+        "m": "设闹钟",
+        "c": "set an alarm for seven · set two alarms",
+        "e": "Don't forget to set an alarm for six tomorrow.",
+        "x": "set an alarm for + 时间，表示预设闹钟响起的时间。 set an alarm是设置闹钟，alarm goes off是闹钟响起。",
+        "example_zh": "别忘了把明天的闹钟设在六点。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00014",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00014",
+      "source_rank": 14,
+      "expression": "alarm goes off",
+      "sense_zh": "闹钟响起",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "闹钟响起",
+        "example_en": "My alarm goes off at half past six every morning.",
+        "example_zh": "每天早上六点半，我的闹钟都会响。",
+        "collocations": [
+          "the alarm goes off",
+          "hear an alarm go off"
+        ],
+        "usage_note": "go off与alarm搭配时指突然响起，并非关掉。",
+        "contrast_note": "turn off an alarm才是关闭闹钟。"
+      },
+      "display": {
+        "w": "alarm goes off",
+        "m": "闹钟响起",
+        "c": "the alarm goes off · hear an alarm go off",
+        "e": "My alarm goes off at half past six every morning.",
+        "x": "go off与alarm搭配时指突然响起，并非关掉。 turn off an alarm才是关闭闹钟。",
+        "example_zh": "每天早上六点半，我的闹钟都会响。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00015",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00015",
+      "source_rank": 15,
+      "expression": "snooze button",
+      "sense_zh": "闹钟贪睡键",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "闹钟贪睡键",
+        "example_en": "I pressed the snooze button twice before getting up.",
+        "example_zh": "起床前我按了两次贪睡键。",
+        "collocations": [
+          "press the snooze button",
+          "hit the snooze button"
+        ],
+        "usage_note": "snooze button指让闹钟稍后再次响起的按钮或功能。"
+      },
+      "display": {
+        "w": "snooze button",
+        "m": "闹钟贪睡键",
+        "c": "press the snooze button · hit the snooze button",
+        "e": "I pressed the snooze button twice before getting up.",
+        "x": "snooze button指让闹钟稍后再次响起的按钮或功能。",
+        "example_zh": "起床前我按了两次贪睡键。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00016",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00016",
+      "source_rank": 16,
+      "expression": "running late",
+      "sense_zh": "快迟到了",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "快迟到了",
+        "example_en": "I'm running late, so I'll have breakfast on the way.",
+        "example_zh": "我快迟到了，所以打算在路上吃早饭。",
+        "collocations": [
+          "be running late",
+          "sorry, I'm running late"
+        ],
+        "usage_note": "running late意为时间不够、进度落后，通常表示可能迟到。",
+        "contrast_note": "不是字面上的跑步动作。"
+      },
+      "display": {
+        "w": "running late",
+        "m": "快迟到了",
+        "c": "be running late · sorry, I'm running late",
+        "e": "I'm running late, so I'll have breakfast on the way.",
+        "x": "running late意为时间不够、进度落后，通常表示可能迟到。 不是字面上的跑步动作。",
+        "example_zh": "我快迟到了，所以打算在路上吃早饭。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00017",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00017",
+      "source_rank": 17,
+      "expression": "morning routine",
+      "sense_zh": "晨间例行活动",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "晨间例行活动",
+        "example_en": "My morning routine starts with a glass of water.",
+        "example_zh": "我的晨间例行活动从喝一杯水开始。",
+        "collocations": [
+          "daily morning routine",
+          "stick to a morning routine"
+        ],
+        "usage_note": "morning routine指早上经常重复的一组习惯或活动。"
+      },
+      "display": {
+        "w": "morning routine",
+        "m": "晨间例行活动",
+        "c": "daily morning routine · stick to a morning routine",
+        "e": "My morning routine starts with a glass of water.",
+        "x": "morning routine指早上经常重复的一组习惯或活动。",
+        "example_zh": "我的晨间例行活动从喝一杯水开始。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00018",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00018",
+      "source_rank": 18,
+      "expression": "yawn",
+      "sense_zh": "打哈欠",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "打哈欠",
+        "example_en": "I yawned because I was still sleepy.",
+        "example_zh": "我还很困，所以打了个哈欠。",
+        "collocations": [
+          "yawn loudly",
+          "keep yawning"
+        ],
+        "usage_note": "yawn是打哈欠；可作动词，也可作名词。",
+        "contrast_note": "yawn是打哈欠，stretch是伸展身体。"
+      },
+      "display": {
+        "w": "yawn",
+        "m": "打哈欠",
+        "c": "yawn loudly · keep yawning",
+        "e": "I yawned because I was still sleepy.",
+        "x": "yawn是打哈欠；可作动词，也可作名词。 yawn是打哈欠，stretch是伸展身体。",
+        "example_zh": "我还很困，所以打了个哈欠。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00019",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00019",
+      "source_rank": 19,
+      "expression": "stretch",
+      "sense_zh": "伸懒腰",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "伸懒腰",
+        "example_en": "I stretch for a minute after getting out of bed.",
+        "example_zh": "下床后，我会伸展身体一分钟。",
+        "collocations": [
+          "stretch your arms",
+          "stretch after waking up"
+        ],
+        "usage_note": "stretch在此指伸展身体或肌肉，也可以说stretch your legs。"
+      },
+      "display": {
+        "w": "stretch",
+        "m": "伸懒腰",
+        "c": "stretch your arms · stretch after waking up",
+        "e": "I stretch for a minute after getting out of bed.",
+        "x": "stretch在此指伸展身体或肌肉，也可以说stretch your legs。",
+        "example_zh": "下床后，我会伸展身体一分钟。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00020",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00020",
+      "source_rank": 20,
+      "expression": "make the bed",
+      "sense_zh": "整理床铺",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "整理床铺",
+        "example_en": "I make the bed after I get dressed.",
+        "example_zh": "穿好衣服后，我会整理床铺。",
+        "collocations": [
+          "make the bed every morning",
+          "a neatly made bed"
+        ],
+        "usage_note": "make the bed表示整理被褥和床单，不是制造床。"
+      },
+      "display": {
+        "w": "make the bed",
+        "m": "整理床铺",
+        "c": "make the bed every morning · a neatly made bed",
+        "e": "I make the bed after I get dressed.",
+        "x": "make the bed表示整理被褥和床单，不是制造床。",
+        "example_zh": "穿好衣服后，我会整理床铺。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ],
+  "qa": {
+    "authoring": "COMPLETE_FIRST20_DRAFT",
+    "independent_semantic": "PENDING",
+    "question_fields_allowed": false,
+    "playable_approved": 0
+  },
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
