@@ -44,3 +44,18 @@ Cache Storage holds visited batch assets and can be explicitly warmed for all 11
 ## Rollback
 
 Do not rewrite the original CSVs or overwrite the stable preview. To return the staging branch to its pre-import state, use the last verified pre-import commit `f444567dcf9b6b02038329b80273e3bf936dd9c6` as the comparison baseline and revert only the identified integration commits if necessary; do not force-push or erase unrelated concurrent changes. Production Runtime has not changed, so no SRS migration or rollback is required.
+
+
+## Follow-up: App entry and opt-in offline shell (2026-11-09)
+
+The V2.2 staging home page now contains an opt-in link under its existing Scene500 search to:
+`rebuild-preview/scene1341-ranked/index.html`. It opens an **independent** catalog viewer; it does not replace Scene500 recommendations, modify active study cards, change rating buttons or touch SRS.
+
+The nested page registers `rebuild-preview/scene1341-ranked/sw.js` with explicit `scope: "./"` from its own subdirectory. Its fetch handler only claims the isolated page shell, its two JS modules, manifest/index and V51–V61 CSVs; requests for the existing PAI Word home and learning pages are ignored. On installation it caches the shell and modules, permitting an offline page reload **after successful installation**. The voluntary "下载全部11批" control caches all data batches for offline reading. Safari can evict cached assets and an iPhone hardware test remains required.
+
+The `test-scene1341-ranked-service-worker.mjs` simulates service-worker installation, a live CSV fetch, offline reload of shell and a cached CSV, a missing offline CSV, and confirms that an unrelated PAI Word app request is never intercepted.
+
+**Recommended isolated deployed entry (after successful Pages build and SHA verification):**
+`/v22-integration/rebuild-preview/scene1341-ranked/index.html`.
+
+This is the recommended deployment path, **not proof the page is already live**.
