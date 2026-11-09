@@ -5,12 +5,12 @@ import {loadScene1341AuthorPreview,createScene1341ReadOnlySession,renderScene134
 const base=new URL('./scene1341-teaching/',import.meta.url);
 const fetchFile=async url=>new Response(await fs.readFile(fileURLToPath(url)),{status:200});
 const cards=await loadScene1341AuthorPreview({fetchImpl:fetchFile,base});
-assert.equal(cards.length,254);
-assert.equal(new Set(cards.map(x=>x.id)).size,254);
+assert.equal(cards.length,304);
+assert.equal(new Set(cards.map(x=>x.id)).size,304);
 const first=cards.filter(x=>x.sceneId==='SC50-0001');
 const second=cards.filter(x=>x.sceneId==='SC50-0002');
 assert.equal(first.length,234);
-assert.equal(second.length,20);
+assert.equal(second.length,70);
 for(const group of [first,second])assert(group.every((x,i)=>x.rank===i+1));
 let calls=0;
 const renderer=u=>{calls++;assert.equal(u.s.kuType,'scene1341');return '<div class="answer">EXAMPLE:'+u.s.e[0]+'</div>'};
@@ -49,7 +49,7 @@ assert(!moduleSource.includes('localStorage.'), 'no localStorage method calls in
 const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
 assert(home.includes('openScene1341ReadOnlyPreview'));
 assert(home.includes('预览234条答案型词卡（只读审核）'));
-assert(home.includes('预览20条答案型词卡（只读审核）'));
+assert(home.includes('预览70条答案型词卡（只读审核）'));
 assert(!home.includes('scene1341-srs-v2.mjs'),'draft home must not connect to persistence');
-console.log(JSON.stringify({status:'PASS',allDrafts:254,scenes:2,first:234,second:20,answerRenderCalls:calls,
+console.log(JSON.stringify({status:'PASS',allDrafts:304,scenes:2,first:234,second:70,answerRenderCalls:calls,
  questionMode:'self_recall',gradingDisabled:true,SRSWrites:0}));
