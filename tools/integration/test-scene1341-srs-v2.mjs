@@ -3,12 +3,16 @@ import fs from 'node:fs';
 import {createScene1341Srs,sceneKuKey,projectScene1341Grade,
  SCENE1341_SRS_SCOPE,SCENE1341_DURABLE_STORE} from '../../rebuild-preview/scene1341-srs-v2.mjs';
 import {createScene1341TeachingAdapter} from '../../rebuild-preview/scene1341-teaching-consumption.mjs';
+import {parseRankedCsv} from '../../rebuild-preview/scene1341-ranked-preview.mjs';
 
 const path='tools/integration/scene1341-teaching/';
 const files=['enteach-v51-first20-answer-only-v2.json',
  'scene1341-v51-sc0001-answer-only-021-050.v2.json',
  'scene1341-v51-sc0001-answer-only-051-100.v2.json'];
 const packs=files.map(f=>JSON.parse(fs.readFileSync(path+f,'utf8')));
+const originalRows=parseRankedCsv(fs.readFileSync('tools/integration/scene1341-ranked/v51-ranked.csv','utf8'));
+const sourceById=new Map(originalRows.map(r=>[r.sense_id,r]));
+assert.equal(originalRows.length,2038);
 let ids=new Set(),sceneIds=new Set();
 for(const pack of packs){
  const a=createScene1341TeachingAdapter(pack);
@@ -18,6 +22,15 @@ for(const pack of packs){
  assert.equal(a.srsNamespace,'scene1341-v2');
  for(const entry of pack.records){
   assert(!ids.has(entry.scene_ku_id));ids.add(entry.scene_ku_id);sceneIds.add(entry.scene_id);
+  const source=sourceById.get(entry.source_sense_id);
+  assert(source,'missing source '+entry.source_sense_id);
+  assert.equal(entry.scene_id,source.scene_id);
+  assert.equal(String(entry.source_rank),source.rank);
+  assert.equal(entry.expression,source.expression);
+  assert.equal(entry.sense_zh,source.sense_zh);
+  assert.equal(entry.source_tier,source.tier);
+  assert.equal(entry.source_version,'V51');
+  assert.equal(entry.scene_ku_id,'SC1341-KU-'+entry.source_sense_id.slice(9));
   assert.equal(a.question(entry.scene_ku_id).kind,'self_recall');
   assert(!Object.hasOwn(entry,'question'));
  }
