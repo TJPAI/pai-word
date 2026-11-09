@@ -75,7 +75,7 @@
     if(!s.query)return'';
     if(!rows.length){
       const reason=window.PAI_SCENE500_SEARCH_REPORT?.query===s.query?window.PAI_SCENE500_SEARCH_REPORT?.emptyReason:null;
-      const msg=reason==='filtered_no_playable_scene'
+      const msg=scene1341Mode?'未找到匹配的Scene1341场景，请尝试缩短关键词，或点击浏览场景目录。':reason==='filtered_no_playable_scene'
         ?'找到了语义相关场景，但当前难度下尚无可直接学习的已审核词汇。请切换难度，或浏览场景目录。'
         :'没有找到相关的可学习场景。可尝试补充具体动作，例如“阅读物理论文”或“分析经济数据”。';
       return '<div class="scene-search-empty" role="status">'+esc(msg)+'</div>';
@@ -108,7 +108,7 @@
   }
   function renderHome(){
     const b=budget(),session=resumableScene(),last=lastScene(),display=session||last,s=ui();
-    const sceneLoad=window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
+    const sceneLoad=!scene1341Mode&&window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
     // Do not invent a default study target from an asynchronously hydrated scene index.
     const continueId=display?.id||null,continueDifficulty=session?.difficulty||(last?searchApi()?.recentDifficulty?.(last.id)||'all':'all');
     const resume=!!session;
@@ -122,8 +122,8 @@
           <div class="scene-search-controls"><label>难度<select id="scene-difficulty" onchange="refreshScene500Difficulty(this.value)"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
           ${resultHtml()}
           <p class="scene1341-ranked-staging-entry" style="${scene1341Mode?'display:none;':''}" style="margin:12px 0 0;font-size:13px;line-height:1.5">
-            <a href="rebuild-preview/scene1341-ranked/index.html" style="display:inline-block;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;color:#26577c;background:#f8fafc">浏览 Scene1341 已交付英语表达（110场景）</a>
-            <small style="display:block;margin-top:6px;color:#64748b">独立编辑推荐库 · V51–V61 · 不影响当前 Scene500 推荐及复习记录</small>
+            <a href="rebuild-preview/index.html?scene1341=1" style="display:inline-block;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;color:#26577c;background:#f8fafc">切换到 Scene1341 场景（保持原界面）</a>
+            <small style="display:block;margin-top:6px;color:#64748b">原首页布局与场景结果卡片不变；现有学习记录保持隔离</small>
           </p>
         </section>
         ${recentHtml()}
