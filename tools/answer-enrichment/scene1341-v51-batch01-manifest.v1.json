@@ -1,0 +1,89 @@
+{
+  "schema_version": "pai-scene1341-enteach-v51-batch01-manifest-v1",
+  "producer": "CG-ENTEACH",
+  "source": {
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "source_version": "V51",
+    "source_records": 2038,
+    "scenes": [
+      "SC50-0001",
+      "SC50-0002",
+      "SC50-0003",
+      "SC50-0004",
+      "SC50-0005",
+      "SC50-0006",
+      "SC50-0007",
+      "SC50-0008",
+      "SC50-0009",
+      "SC50-0010"
+    ]
+  },
+  "assets": {
+    "coverage_ledger": "tools/answer-enrichment/scene1341-v51-2038-source-coverage-ledger.v2.csv",
+    "coverage_ledger_blob": "70995b9104421586c2a1993d731c15da713b6d3a",
+    "teaching_pack": "tools/answer-enrichment/scene1341-v51-sc0001-ku001-020-draft.v1.json",
+    "teaching_pack_blob": "8b9820086663005d527b54fb8c2ab2eb0c0c18d8",
+    "validator": "tools/answer-enrichment/test-scene1341-v51-ku-batch01.mjs",
+    "validator_blob": "d6e96ff27d7a6f1a8e9b199c4fc6ed59512f4701"
+  },
+  "identity_contract": {
+    "scene_ku_id": "SC1341-KU-{digits from source SC-SENSE-xxxxx}",
+    "srs_scope": "scene1341-v1",
+    "core20k_ku_reuse": false,
+    "immutable_source_fields": [
+      "scene_id",
+      "sense_id",
+      "rank",
+      "expression",
+      "sense_zh",
+      "tier",
+      "source_version"
+    ]
+  },
+  "counts": {
+    "source_covered": 2038,
+    "generated_author_draft": 20,
+    "independent_semantic_qa_pass": 0,
+    "revise": 0,
+    "explicit_semantic_hold": 0,
+    "not_generated": 2018,
+    "playable_approved": 0,
+    "question_types": {
+      "single_choice": 20
+    },
+    "correct_choice_distribution": {
+      "A": 5,
+      "B": 5,
+      "C": 5,
+      "D": 5
+    }
+  },
+  "qa": {
+    "source_blob_verified": true,
+    "unique_source_sense_ids": true,
+    "all_10_scene_rank_contiguous": true,
+    "source_to_ledger_2038_match": true,
+    "generated_20_source_field_match": true,
+    "question_answer_crosscheck_pass": true,
+    "checks_executed": "GitHub source readback and in-process JavaScript checks; committed Node validator not yet independently executed in Actions",
+    "independent_language_review": "PENDING_CG_QA_MU_QA",
+    "real_app_answer_scoring_e2e": "NOT_TESTED",
+    "browser": "NOT_TESTED"
+  },
+  "status": "AUTHOR_DRAFT_UNCERTIFIED",
+  "production_ready": false,
+  "activation_allowed": false,
+  "master_release_approved": false,
+  "risks": [
+    "The first 20 questions are a single-choice pilot; next production must vary exercise formats rather than mass-template the entire V51.",
+    "The source RANKED recommendations are editorial, not an approved CG-MASTER release.",
+    "The contract has not yet been checked against the exact App question-answer rendering and SRS serialization."
+  ],
+  "next_actions": [
+    "Independent quality review of first 20 authored records",
+    "CG-MAIN confirms consumption schema for original question/answer UI and separate SRS namespace",
+    "Expand production across 10 scenes, with varied question types and explicit HOLD/REVISE for risky expressions"
+  ]
+}
