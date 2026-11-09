@@ -261,6 +261,22 @@
         message.textContent='此场景已列入Scene1341目录，但编辑推荐表达尚未交付；不会调用旧Scene500词池。';return;
       }
       message.textContent='场景英语表达 · 按原始rank排序 · 不计入KU学习及SRS';
+      if(id==='SC50-0001'){
+        const preview=document.createElement('button');
+        preview.type='button';
+        preview.textContent='预览前100条答案型词卡（只读审核）';
+        preview.style.cssText='padding:11px 14px;border:1px solid #a8b9ca;border-radius:10px;background:#f7fafc;color:#243347;margin:8px 0';
+        preview.addEventListener('click',async()=>{
+          preview.disabled=true;
+          try{
+            const module=await import(new URL('rebuild-preview/scene1341-study-preview.mjs',document.baseURI).href);
+            await module.openScene1341ReadOnlyPreview({panel,sceneId:id,answerHtml:window.answerHtml});
+          }catch(error){
+            preview.disabled=false;message.textContent='词卡预览失败：'+String(error.message||error);
+          }
+        });
+        panel.appendChild(preview);
+      }
       let cursor=0;
       const more=document.createElement('button');more.textContent='继续显示';more.style.cssText='margin:16px 0;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff';
       const append=()=>{
