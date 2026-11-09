@@ -1,0 +1,104 @@
+{
+  "schema": "cg-qa-scene1341-six-master-gloss-source-confirmation-v1",
+  "reviewer": "CG-QA",
+  "date": "2026-11-10",
+  "source_branch": "answer-enrichment-main-dev-20261026",
+  "source_packs": [
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-131-180.v2.json",
+      "blob": "78a58e8cffb265f98550ff34289a961b0bee0e3c"
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-181-234.v2.json",
+      "blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e"
+    }
+  ],
+  "summary": {
+    "reviewed": 6,
+    "confirmed_scope_or_translation_problem": 5,
+    "nuance_reassessment": 1,
+    "master_changes": 0,
+    "formal_certification": 0
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00132",
+      "scene_id": "SC50-0001",
+      "source_rank": 132,
+      "expression": "sit still for a minute",
+      "original_cg_qa_verdict": "CONDITIONAL",
+      "current_source_review": "CONFIRM_GLOSS_SCOPE",
+      "recommended_zh": "静静坐一会儿；坐着不动片刻",
+      "rationale": "'缓一会儿'暗示恢复状态，英文只表示保持坐姿不动。",
+      "owner": "CG-MASTER for source gloss approval; CG-ENTEACH for author pack amendment",
+      "master_approved": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00152",
+      "scene_id": "SC50-0001",
+      "source_rank": 152,
+      "expression": "grumpy",
+      "original_cg_qa_verdict": "CONDITIONAL",
+      "current_source_review": "CONFIRM_GLOSS_SCOPE",
+      "recommended_zh": "脾气烦躁的；脾气不好的",
+      "rationale": "起床气只是可能语境，before breakfast不等于刚起床。",
+      "owner": "CG-MASTER for source gloss approval; CG-ENTEACH for author pack amendment",
+      "master_approved": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00161",
+      "scene_id": "SC50-0001",
+      "source_rank": 161,
+      "expression": "feel like going back to bed",
+      "original_cg_qa_verdict": "CONDITIONAL",
+      "current_source_review": "CONFIRM_GLOSS_SCOPE",
+      "recommended_zh": "想回床上去；想再躺一会儿",
+      "rationale": "going back to bed不必然继续睡；另一个collocation sleeping in也不是完全同义。",
+      "owner": "CG-MASTER for source gloss approval; CG-ENTEACH for author pack amendment",
+      "master_approved": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00163",
+      "scene_id": "SC50-0001",
+      "source_rank": 163,
+      "expression": "clear your head",
+      "original_cg_qa_verdict": "REVISE",
+      "current_source_review": "NUANCE_REASSESSMENT",
+      "recommended_zh": "理清思绪；让头脑清醒一下",
+      "rationale": "原‘让脑子清醒’在外出散步的语境中可成立，问题是教学义项不够明确；建议作者改进，历史REVISE不自动撤销。",
+      "owner": "CG-MASTER for source gloss approval; CG-ENTEACH for author pack amendment",
+      "master_approved": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00221",
+      "scene_id": "SC50-0001",
+      "source_rank": 221,
+      "expression": "take your medication",
+      "original_cg_qa_verdict": "REVISE",
+      "current_source_review": "CONFIRM_ADDED_MEANING",
+      "recommended_zh": "服药；吃药",
+      "rationale": "按时来自at the same time each morning而非take medication本身。",
+      "owner": "CG-MASTER for source gloss approval; CG-ENTEACH for author pack amendment",
+      "master_approved": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00223",
+      "scene_id": "SC50-0001",
+      "source_rank": 223,
+      "expression": "fill your water bottle",
+      "original_cg_qa_verdict": "REVISE",
+      "current_source_review": "CONFIRM_WRONG_OBJECT",
+      "recommended_zh": "把水瓶装满；给水瓶装水",
+      "rationale": "bottle是水瓶不是水杯，原source sense_zh与例句翻译相冲突。",
+      "owner": "CG-MASTER for source gloss approval; CG-ENTEACH for author pack amendment",
+      "master_approved": false,
+      "release_approved": false
+    }
+  ],
+  "note": "Source packs were re-read; verdicts in original QA ledger remain unchanged until author revision and independent retest. This report is not MU-QA certification."
+}
