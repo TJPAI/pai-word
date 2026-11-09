@@ -17,6 +17,8 @@ on:
       - 'rebuild-preview/scene1341-teaching-consumption.mjs'
       - 'rebuild-preview/scene1341-srs-v2.mjs'
       - 'tools/integration/test-scene1341-srs-v2.mjs'
+      - 'rebuild-preview/scene1341-srs-indexeddb.mjs'
+      - 'tools/integration/test-scene1341-srs-indexeddb.mjs'
       - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
       - 'tools/integration/test-scene1341-ranked-service-worker.mjs'
       - 'tools/integration/test-scene1341-ranked-pages-route.mjs'
@@ -54,3 +56,5 @@ jobs:
           node tools/integration/test-scene1341-teaching-consumption.mjs
           node --check rebuild-preview/scene1341-srs-v2.mjs
           node tools/integration/test-scene1341-srs-v2.mjs
+          node --check rebuild-preview/scene1341-srs-indexeddb.mjs
+          node tools/integration/test-scene1341-srs-indexeddb.mjs
