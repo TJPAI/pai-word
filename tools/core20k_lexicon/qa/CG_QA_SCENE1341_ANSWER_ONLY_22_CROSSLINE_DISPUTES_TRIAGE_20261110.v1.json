@@ -1,0 +1,428 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-22-disputes-triage-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "source_ledger": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_ANSWER_ONLY_304_REVIEW_LEDGER_20261110.v3.json",
+    "blob": "bdb6a2fb255a84be93fcc38cd948d9ea6ddb4244"
+  },
+  "source_author_pack_shower_gel": {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-001-020.v2.json",
+    "blob": "d153f196e30a1b31a157050fb5f91eaedc94ccce"
+  },
+  "summary": {
+    "disputes": 22,
+    "TARGETED_RECHECK_AFTER_AUTHOR_REVISION": 11,
+    "AUTHOR_FIX_NEEDED": 4,
+    "MASTER_REVIEW": 6,
+    "CG_PASS_MU_REVISE_NONBLOCKING": 1
+  },
+  "interpretation": "These are action-oriented adjudication proposals, not revised original CG-QA/MU-ENTEACH verdicts. They do not confer formal double-AI certification or release. The shower gel source was explicitly read back; other triage uses original issue summaries in the versioned ledger.",
+  "release_approved": 0,
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00040",
+      "scene_id": "SC50-0001",
+      "source_rank": 40,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "'feel short on sleep'并非最自然的固定搭配，通常说'be short on sleep'或'feel sleep-deprived/tired'；核心英语例句与释义正确。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK021_050_20261110.v1.json",
+      "source_qa_blob": "b791b5b34ce84fbbefa7a424f04cdd5a830e7b26",
+      "triage": {
+        "category": "COLLOCATION_NATURALNESS",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：'feel short on sleep'并非最自然的固定搭配，通常说'be short on sleep'或'feel sleep-deprived/tired'；核心英语例句与释义正确。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00050",
+      "scene_id": "SC50-0001",
+      "source_rank": 50,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "morning person强调早晨精神状态较佳、偏好早间活动；译成'习惯早起的人'容易与early riser混为一谈。例句也强调上午效率，而非单纯早起。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK021_050_20261110.v1.json",
+      "source_qa_blob": "b791b5b34ce84fbbefa7a424f04cdd5a830e7b26",
+      "triage": {
+        "category": "LEXICAL_DISTINCTION",
+        "recommendation": "morning person偏爱早间活动或早晨效率较高的人；early riser只是早起者，中文释义须排除混同。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "AUTHOR_FIX_NEEDED"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00058",
+      "scene_id": "SC50-0001",
+      "source_rank": 58,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "The example 'I missed the alarm because my phone was on silent' treats silent mode as reliably silencing alarms, which is not necessarily true on common phones; idiomaticity of 'miss the alarm' is also weaker than 'not hear my alarm' or 'sleep through my alarm'.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK051_100_20261110.v1.json",
+      "source_qa_blob": "18f72b6543ed23e9149b784cd1cb3853781fbdaf",
+      "triage": {
+        "category": "MEANING_SCOPE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：The example 'I missed the alarm because my phone was on silent' treats silent mode as reliably silencing alarms, which is not necessarily true on common phones; idiomaticity of 'miss the alarm' is also weaker than 'not hear my alarm' or 'sleep through my alarm'.",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00080",
+      "scene_id": "SC50-0001",
+      "source_rank": 80,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "early start means starting early in the day or earlier than usual; Chinese '提前开始一天' may incorrectly imply ahead-of-schedule instead of an early-morning start.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK051_100_20261110.v1.json",
+      "source_qa_blob": "18f72b6543ed23e9149b784cd1cb3853781fbdaf",
+      "triage": {
+        "category": "MEANING_SCOPE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：early start means starting early in the day or earlier than usual; Chinese '提前开始一天' may incorrectly imply ahead-of-schedule instead of an early-morning start.",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00086",
+      "scene_id": "SC50-0001",
+      "source_rank": 86,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "English doctor's appointment is correct; Chinese '我九点有个医生预约' is unnatural and may imply scheduling the physician rather than seeing a physician.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK051_100_20261110.v1.json",
+      "source_qa_blob": "18f72b6543ed23e9149b784cd1cb3853781fbdaf",
+      "triage": {
+        "category": "MEANING_SCOPE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：English doctor's appointment is correct; Chinese '我九点有个医生预约' is unnatural and may imply scheduling the physician rather than seeing a physician.",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00089",
+      "scene_id": "SC50-0001",
+      "source_rank": 89,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "'first thing in the morning' is normally an adverbial time expression meaning very early in the morning / as the first action; Chinese '一早首先做的事' misclassifies the phrase as a nominal item.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK051_100_20261110.v1.json",
+      "source_qa_blob": "18f72b6543ed23e9149b784cd1cb3853781fbdaf",
+      "triage": {
+        "category": "GRAMMATICAL_FUNCTION",
+        "recommendation": "first thing in the morning是时间状语短语，建议译‘一大早；早晨第一件事就…’，并用句子体现状语功能。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "AUTHOR_FIX_NEEDED"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00097",
+      "scene_id": "SC50-0001",
+      "source_rank": 97,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "The main example is natural, but 'stand up from bed' is not the most natural way to describe rising from a bed; the pairing can confuse stand up with get out of bed.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK051_100_20261110.v1.json",
+      "source_qa_blob": "18f72b6543ed23e9149b784cd1cb3853781fbdaf",
+      "triage": {
+        "category": "COLLOCATION_NATURALNESS",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：The main example is natural, but 'stand up from bed' is not the most natural way to describe rising from a bed; the pairing can confuse stand up with get out of bed.",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00103",
+      "scene_id": "SC50-0001",
+      "source_rank": 103,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "get back into bed means return to bed, not necessarily lie down; the source gloss 重新躺回床上 presumes lying position. The example 'for another ten minutes' does not force lying.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK101_130_20261110.v1.json",
+      "source_qa_blob": "0cfa000ca37b8a9267c49214fe813ee361d357dc",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MEANING_SCOPE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：get back into bed means return to bed, not necessarily lie down; the source gloss 重新躺回床上 presumes lying position. The example 'for another ten minutes' does not force lying.",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00117",
+      "scene_id": "SC50-0001",
+      "source_rank": 117,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "REVISE",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "bedside lamp is a legitimate expression but is not a collocation with the target expression bedside table; current other collocation on the bedside table is accurate.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK101_130_20261110.v1.json",
+      "source_qa_blob": "0cfa000ca37b8a9267c49214fe813ee361d357dc",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "COLLOCATION_NOT_TARGET",
+        "recommendation": "替换bedside lamp为与bedside table直接共现的搭配，例如a bedside table with a drawer；两线均指出真实搭配问题，应按Muse更严格REVISE处理。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "AUTHOR_FIX_NEEDED"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00121",
+      "scene_id": "SC50-0001",
+      "source_rank": 121,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "Draw the curtains is commonly used to mean close curtains, while open the curtains is unambiguous for opening; teaching note 'may mean open or close' without typical reading may confuse learners.",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK101_130_20261110.v1.json",
+      "source_qa_blob": "0cfa000ca37b8a9267c49214fe813ee361d357dc",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MEANING_SCOPE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：Draw the curtains is commonly used to mean close curtains, while open the curtains is unambiguous for opening; teaching note 'may mean open or close' without typical reading may confuse learners.",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00132",
+      "scene_id": "SC50-0001",
+      "source_rank": 132,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "'sit still'强调坐着不动，不必然等于'缓一会儿'（恢复精神/调整状态）。例句译为静静坐一会儿较准确，原中文source sense_zh有语义增补。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK131_180_20261110.v1.json",
+      "source_qa_blob": "d49a46eddc6784178b9811503f180f6f96be8391",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "recommendation": "sit still释义为坐着不动；‘缓一会儿’不能作为字面固定义。由CG-MASTER决定源中文gloss是否修正。",
+        "next_owner": "CG-MASTER",
+        "resolution_proposal": "MASTER_REVIEW"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00152",
+      "scene_id": "SC50-0001",
+      "source_rank": 152,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "'grumpy'通常表示脾气不佳/易烦躁；源义‘起床气大、脾气不好的’虽有通用义，但例句‘before breakfast’被译为‘起床气’，早餐前的烦躁不必然由刚起床导致。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK131_180_20261110.v1.json",
+      "source_qa_blob": "d49a46eddc6784178b9811503f180f6f96be8391",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "recommendation": "grumpy优先作‘脾气烦躁的；易怒的’；晨间起床气只是一种语境，不能由before breakfast推断。",
+        "next_owner": "CG-MASTER",
+        "resolution_proposal": "MASTER_REVIEW"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00161",
+      "scene_id": "SC50-0001",
+      "source_rank": 161,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "'feel like going back to bed'指想回床上，不必然要继续睡；源中文‘想回去继续睡’略窄，例句仅因冷而想回床上。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK131_180_20261110.v1.json",
+      "source_qa_blob": "d49a46eddc6784178b9811503f180f6f96be8391",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "recommendation": "feel like going back to bed不能必然等同‘继续睡’；需区分回床与接着睡。",
+        "next_owner": "CG-MASTER",
+        "resolution_proposal": "MASTER_REVIEW"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00163",
+      "scene_id": "SC50-0001",
+      "source_rank": 163,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "'clear your head'常指清理杂念、整理思绪；中文源义‘让脑子清醒’可能被理解为唤醒睡意（与wake yourself up混同），而usage_note已指明排除杂念。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK131_180_20261110.v1.json",
+      "source_qa_blob": "d49a46eddc6784178b9811503f180f6f96be8391",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "recommendation": "clear your head为‘理清思绪；清除杂念’，并非简单的消除困意。应澄清源义及例句。",
+        "next_owner": "CG-MASTER",
+        "resolution_proposal": "MASTER_REVIEW"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00193",
+      "scene_id": "SC50-0001",
+      "source_rank": 193,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "brew coffee指冲泡/萃取咖啡，中文‘煮咖啡’可能被理解成必须沸煮；usage_note已正确说明不一定煮沸。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0001_RANK181_234_20261110.v1.json",
+      "source_qa_blob": "bc8e254993321bb5fe3db2e5f4e5ad3407f0e103",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "TRANSLATION_AND_USAGE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：brew coffee指冲泡/萃取咖啡，中文‘煮咖啡’可能被理解成必须沸煮；usage_note已正确说明不一定煮沸。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00195",
+      "scene_id": "SC50-0001",
+      "source_rank": 195,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "put the kettle on常为煮水/烧水（常用于泡茶），并不必然以泡茶为目的；原释义‘烧水准备泡茶’略窄。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0001_RANK181_234_20261110.v1.json",
+      "source_qa_blob": "bc8e254993321bb5fe3db2e5f4e5ad3407f0e103",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MEANING_SCOPE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：put the kettle on常为煮水/烧水（常用于泡茶），并不必然以泡茶为目的；原释义‘烧水准备泡茶’略窄。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00199",
+      "scene_id": "SC50-0001",
+      "source_rank": 199,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "toast源中文含‘烤面包片；吐司’，但英文toast可作动词‘烤（面包）’与名词‘烤面包片’；本答案例句、搭配均只支持名词食物义。现有译文不明确是动词还是名词（烤面包片可作动宾短语），容易误教。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0001_RANK181_234_20261110.v1.json",
+      "source_qa_blob": "bc8e254993321bb5fe3db2e5f4e5ad3407f0e103",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "PART_OF_SPEECH",
+        "recommendation": "toast明确区分名词‘烤面包片/吐司’与动词‘烤面包’，不要以只体现名词的例句教两种词性。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "AUTHOR_FIX_NEEDED"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00221",
+      "scene_id": "SC50-0001",
+      "source_rank": 221,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "take your medication仅指服用自己的药物，不蕴含‘按时’；例句中at the same time each morning才表达定时。源中文‘按时吃药’附加原英语没有的时间要求。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0001_RANK181_234_20261110.v1.json",
+      "source_qa_blob": "bc8e254993321bb5fe3db2e5f4e5ad3407f0e103",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "recommendation": "take your medication=服药/吃药；‘按时’只能由额外时间状语表示，修正目标中文义。",
+        "next_owner": "CG-MASTER",
+        "resolution_proposal": "MASTER_REVIEW"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00223",
+      "scene_id": "SC50-0001",
+      "source_rank": 223,
+      "cg_qa_verdict": "REVISE",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "water bottle通常指水瓶/随身水壶；source sense_zh‘装满水杯’对应cup而非bottle，现有example_zh又改成水瓶，造成源义与例句中文不同。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0001_RANK181_234_20261110.v1.json",
+      "source_qa_blob": "bc8e254993321bb5fe3db2e5f4e5ad3407f0e103",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "MASTER_GLOSS_IDENTITY",
+        "recommendation": "water bottle为水瓶，不能等同水杯或‘装满水杯’这一动词短语；核验V51源rank原义及表达绑定。",
+        "next_owner": "CG-MASTER",
+        "resolution_proposal": "MASTER_REVIEW"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00234",
+      "scene_id": "SC50-0001",
+      "source_rank": 234,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "turn on the alarm可表示启用既有闹钟/警报系统；例句‘I turned on the alarm for six thirty tomorrow morning’不如‘I switched my 6:30 alarm on for tomorrow’清晰，且不能与set an alarm混同。该源标editorial_addition。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0001_RANK181_234_20261110.v1.json",
+      "source_qa_blob": "bc8e254993321bb5fe3db2e5f4e5ad3407f0e103",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "TRANSLATION_AND_USAGE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：turn on the alarm可表示启用既有闹钟/警报系统；例句‘I turned on the alarm for six thirty tomorrow morning’不如‘I switched my 6:30 alarm on for tomorrow’清晰，且不能与set an alarm混同。该源标editorial_addition。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00239",
+      "scene_id": "SC50-0002",
+      "source_rank": 5,
+      "cg_qa_verdict": "PASS",
+      "mu_enteach_verdict": "REVISE",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": null,
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0002_RANK001_020_20261110.v1.json",
+      "source_qa_blob": "093bcd2875b79478c32fae1f9f4e7ec50050b3db",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "TERMINOLOGY_VARIATION",
+        "recommendation": "保留CG-QA PASS：沐浴啫喱与沐浴露都指shower gel，译文自然；若要统一界面用词可编辑调整，但不构成实质语义错误。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "CG_PASS_MU_REVISE_NONBLOCKING"
+      }
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00241",
+      "scene_id": "SC50-0002",
+      "source_rank": 7,
+      "cg_qa_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "PASS",
+      "semantic_status": "TWO_REVIEW_DISPUTE",
+      "issue_summary": "例句译文‘开水前先把浴帘拉好’中文断句歧义，可被读为‘开水’(boiled water)，英文before turning on the water指打开淋浴水龙头之前。",
+      "source_qa_report": "CG_QA_SCENE1341_ANSWER_ONLY_V2_SC0002_RANK001_020_20261110.v1.json",
+      "source_qa_blob": "093bcd2875b79478c32fae1f9f4e7ec50050b3db",
+      "mu_review_source": "MU-ENTEACH:enteacth_v51_answer_only_101_234_sc0002first20_muse_review.md",
+      "mu_review_file_id": "1okrnQ3getxjtwEbpokIQPNEpktDpuZoB",
+      "triage": {
+        "category": "TRANSLATION_AND_USAGE",
+        "recommendation": "保留CG-QA所记录问题；要求作者针对该问题提交可对比的新例句或释义，并用新包Blob复验。问题：例句译文‘开水前先把浴帘拉好’中文断句歧义，可被读为‘开水’(boiled water)，英文before turning on the water指打开淋浴水龙头之前。",
+        "next_owner": "CG-ENTEACH",
+        "resolution_proposal": "TARGETED_RECHECK_AFTER_AUTHOR_REVISION"
+      }
+    }
+  ]
+}
