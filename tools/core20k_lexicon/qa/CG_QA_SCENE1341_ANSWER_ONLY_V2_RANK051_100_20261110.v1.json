@@ -1,0 +1,360 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-audit-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+    "git_blob_sha": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+    "original_csv_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "scope": {
+    "scene_id": "SC50-0001",
+    "first_rank": 51,
+    "last_rank": 100,
+    "count": 50
+  },
+  "reviewed_fields": [
+    "expression/sense_zh",
+    "answer.meaning_zh",
+    "answer.example_en",
+    "answer.example_zh",
+    "answer.collocations",
+    "answer.usage_note",
+    "scene and sense suitability"
+  ],
+  "excluded_fields": [
+    "question",
+    "choices",
+    "scoring"
+  ],
+  "counts": {
+    "PASS": 45,
+    "CONDITIONAL": 3,
+    "REVISE": 2
+  },
+  "records": [
+    {
+      "rank": 51,
+      "scene_ku_id": "SC1341-KU-00051",
+      "source_sense_id": "SC-SENSE-00051",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 52,
+      "scene_ku_id": "SC1341-KU-00052",
+      "source_sense_id": "SC-SENSE-00052",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 53,
+      "scene_ku_id": "SC1341-KU-00053",
+      "source_sense_id": "SC-SENSE-00053",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 54,
+      "scene_ku_id": "SC1341-KU-00054",
+      "source_sense_id": "SC-SENSE-00054",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 55,
+      "scene_ku_id": "SC1341-KU-00055",
+      "source_sense_id": "SC-SENSE-00055",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 56,
+      "scene_ku_id": "SC1341-KU-00056",
+      "source_sense_id": "SC-SENSE-00056",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 57,
+      "scene_ku_id": "SC1341-KU-00057",
+      "source_sense_id": "SC-SENSE-00057",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 58,
+      "scene_ku_id": "SC1341-KU-00058",
+      "source_sense_id": "SC-SENSE-00058",
+      "verdict": "CONDITIONAL",
+      "issue_type": "EXAMPLE_PRAGMATIC_ACCURACY",
+      "specific_reason": "The example 'I missed the alarm because my phone was on silent' treats silent mode as reliably silencing alarms, which is not necessarily true on common phones; idiomaticity of 'miss the alarm' is also weaker than 'not hear my alarm' or 'sleep through my alarm'.",
+      "suggested_fix": "Prefer 'I didn't hear my alarm because its volume was turned down.' / '我把闹钟音量调得太低，所以没听见。' 或换用 sleep through my alarm。"
+    },
+    {
+      "rank": 59,
+      "scene_ku_id": "SC1341-KU-00059",
+      "source_sense_id": "SC-SENSE-00059",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 60,
+      "scene_ku_id": "SC1341-KU-00060",
+      "source_sense_id": "SC-SENSE-00060",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 61,
+      "scene_ku_id": "SC1341-KU-00061",
+      "source_sense_id": "SC-SENSE-00061",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 62,
+      "scene_ku_id": "SC1341-KU-00062",
+      "source_sense_id": "SC-SENSE-00062",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 63,
+      "scene_ku_id": "SC1341-KU-00063",
+      "source_sense_id": "SC-SENSE-00063",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 64,
+      "scene_ku_id": "SC1341-KU-00064",
+      "source_sense_id": "SC-SENSE-00064",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 65,
+      "scene_ku_id": "SC1341-KU-00065",
+      "source_sense_id": "SC-SENSE-00065",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 66,
+      "scene_ku_id": "SC1341-KU-00066",
+      "source_sense_id": "SC-SENSE-00066",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 67,
+      "scene_ku_id": "SC1341-KU-00067",
+      "source_sense_id": "SC-SENSE-00067",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 68,
+      "scene_ku_id": "SC1341-KU-00068",
+      "source_sense_id": "SC-SENSE-00068",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 69,
+      "scene_ku_id": "SC1341-KU-00069",
+      "source_sense_id": "SC-SENSE-00069",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 70,
+      "scene_ku_id": "SC1341-KU-00070",
+      "source_sense_id": "SC-SENSE-00070",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 71,
+      "scene_ku_id": "SC1341-KU-00071",
+      "source_sense_id": "SC-SENSE-00071",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 72,
+      "scene_ku_id": "SC1341-KU-00072",
+      "source_sense_id": "SC-SENSE-00072",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 73,
+      "scene_ku_id": "SC1341-KU-00073",
+      "source_sense_id": "SC-SENSE-00073",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 74,
+      "scene_ku_id": "SC1341-KU-00074",
+      "source_sense_id": "SC-SENSE-00074",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 75,
+      "scene_ku_id": "SC1341-KU-00075",
+      "source_sense_id": "SC-SENSE-00075",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 76,
+      "scene_ku_id": "SC1341-KU-00076",
+      "source_sense_id": "SC-SENSE-00076",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 77,
+      "scene_ku_id": "SC1341-KU-00077",
+      "source_sense_id": "SC-SENSE-00077",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 78,
+      "scene_ku_id": "SC1341-KU-00078",
+      "source_sense_id": "SC-SENSE-00078",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 79,
+      "scene_ku_id": "SC1341-KU-00079",
+      "source_sense_id": "SC-SENSE-00079",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 80,
+      "scene_ku_id": "SC1341-KU-00080",
+      "source_sense_id": "SC-SENSE-00080",
+      "verdict": "REVISE",
+      "issue_type": "GLOSS_ZH_SCOPE",
+      "specific_reason": "early start means starting early in the day or earlier than usual; Chinese '提前开始一天' may incorrectly imply ahead-of-schedule instead of an early-morning start.",
+      "suggested_fix": "向CG-MASTER建议源义补丁'一大早开始；很早出发'；作者答案配套同步而不直接更改原源字段。"
+    },
+    {
+      "rank": 81,
+      "scene_ku_id": "SC1341-KU-00081",
+      "source_sense_id": "SC-SENSE-00081",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 82,
+      "scene_ku_id": "SC1341-KU-00082",
+      "source_sense_id": "SC-SENSE-00082",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 83,
+      "scene_ku_id": "SC1341-KU-00083",
+      "source_sense_id": "SC-SENSE-00083",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 84,
+      "scene_ku_id": "SC1341-KU-00084",
+      "source_sense_id": "SC-SENSE-00084",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 85,
+      "scene_ku_id": "SC1341-KU-00085",
+      "source_sense_id": "SC-SENSE-00085",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 86,
+      "scene_ku_id": "SC1341-KU-00086",
+      "source_sense_id": "SC-SENSE-00086",
+      "verdict": "CONDITIONAL",
+      "issue_type": "EXAMPLE_ZH_NATURALNESS",
+      "specific_reason": "English doctor's appointment is correct; Chinese '我九点有个医生预约' is unnatural and may imply scheduling the physician rather than seeing a physician.",
+      "suggested_fix": "例句中文改为'我预约了九点看医生。'或'我九点预约了看诊。'"
+    },
+    {
+      "rank": 87,
+      "scene_ku_id": "SC1341-KU-00087",
+      "source_sense_id": "SC-SENSE-00087",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 88,
+      "scene_ku_id": "SC1341-KU-00088",
+      "source_sense_id": "SC-SENSE-00088",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 89,
+      "scene_ku_id": "SC1341-KU-00089",
+      "source_sense_id": "SC-SENSE-00089",
+      "verdict": "REVISE",
+      "issue_type": "MEANING_USAGE_ALIGNMENT",
+      "specific_reason": "'first thing in the morning' is normally an adverbial time expression meaning very early in the morning / as the first action; Chinese '一早首先做的事' misclassifies the phrase as a nominal item.",
+      "suggested_fix": "提交源义候选'一大早；早晨第一件事就……'；答案及用法按时间状语修订。"
+    },
+    {
+      "rank": 90,
+      "scene_ku_id": "SC1341-KU-00090",
+      "source_sense_id": "SC-SENSE-00090",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 91,
+      "scene_ku_id": "SC1341-KU-00091",
+      "source_sense_id": "SC-SENSE-00091",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 92,
+      "scene_ku_id": "SC1341-KU-00092",
+      "source_sense_id": "SC-SENSE-00092",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 93,
+      "scene_ku_id": "SC1341-KU-00093",
+      "source_sense_id": "SC-SENSE-00093",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 94,
+      "scene_ku_id": "SC1341-KU-00094",
+      "source_sense_id": "SC-SENSE-00094",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 95,
+      "scene_ku_id": "SC1341-KU-00095",
+      "source_sense_id": "SC-SENSE-00095",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 96,
+      "scene_ku_id": "SC1341-KU-00096",
+      "source_sense_id": "SC-SENSE-00096",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 97,
+      "scene_ku_id": "SC1341-KU-00097",
+      "source_sense_id": "SC-SENSE-00097",
+      "verdict": "CONDITIONAL",
+      "issue_type": "COLLOCATION_NATURALNESS",
+      "specific_reason": "The main example is natural, but 'stand up from bed' is not the most natural way to describe rising from a bed; the pairing can confuse stand up with get out of bed.",
+      "suggested_fix": "改为'stand up from the edge of the bed'（坐在床沿后站起）或'stand up slowly'；保留既有例句。"
+    },
+    {
+      "rank": 98,
+      "scene_ku_id": "SC1341-KU-00098",
+      "source_sense_id": "SC-SENSE-00098",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 99,
+      "scene_ku_id": "SC1341-KU-00099",
+      "source_sense_id": "SC-SENSE-00099",
+      "verdict": "PASS"
+    },
+    {
+      "rank": 100,
+      "scene_ku_id": "SC1341-KU-00100",
+      "source_sense_id": "SC-SENSE-00100",
+      "verdict": "PASS"
+    }
+  ],
+  "notes": [
+    "These are independent CG-QA language judgments on authoring draft; no automatic schema check counted as semantic review.",
+    "REVISE source meaning proposals should go to CG-MASTER rather than modify raw V51.",
+    "Only CG-QA review, not dual-AI accreditation; no production activation.",
+    "Original Core20K frozen Sense/KU, Scene1341 Master and Runtime left unchanged."
+  ]
+}
