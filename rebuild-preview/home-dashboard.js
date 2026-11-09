@@ -4,7 +4,15 @@
   if(typeof baseRender!=='function')return;
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   const searchApi=()=>window.PAI_SCENE_SEARCH;
-  const displayName=id=>window.PAI_SCENE_NAMES?.[id]||SCENES[id]||indexedScenes().byId.get(id)?.name||'';
+  // Optional migration proof in the same original home component, not a second UI.
+  const scene1341Mode=new URLSearchParams(location.search).get('scene1341')==='1';
+  let scene1341Adapter=null,scene1341Promise=null;
+  const scene1341Cache=new Map();
+  const getScene1341=()=>scene1341Promise||(scene1341Promise=import(new URL('rebuild-preview/scene1341-home-adapter.mjs',document.baseURI).href)
+    .then(m=>{scene1341Adapter=m.createScene1341HomeCatalog();return scene1341Adapter.initialize().then(()=>scene1341Adapter);})
+    .then(api=>{for(const scene of api.initialize?[]:[]){};return api;})
+    .catch(error=>{scene1341Promise=null;throw error}));
+  const displayName=id=>scene1341Cache.get(id)?.name||window.PAI_SCENE_NAMES?.[id]||SCENES[id]||indexedScenes().byId.get(id)?.name||'';
   function dueCount(){
     const engineDue=window.PAI_LEARNING_QA?.due?.();
     if(Array.isArray(engineDue))return engineDue.length;
@@ -44,12 +52,16 @@
   function resultRows(){
     const snapshot=ui();
     if(!snapshot.query||!Array.isArray(snapshot.resultIds))return [];
+    if(scene1341Mode)return snapshot.resultIds.slice((Math.max(0,Number(snapshot.page)||0))*5,(Math.max(0,Number(snapshot.page)||0))*5+5)
+      .map(id=>scene1341Cache.get(id)).filter(Boolean).map(s=>({id:s.id,name:s.name,desc:s.category,
+        candidateCount:s.sourceCount,reviewedCount:0,recommendationStatus:s.recommendationStatus}));
     return snapshot.resultIds.slice((Math.max(0,Number(snapshot.page)||0))*5,(Math.max(0,Number(snapshot.page)||0))*5+5).map(id=>{
-      const name=window.PAI_SCENE_NAMES?.[id]||SCENES[id]||'';
+      const name=scene1341Cache.get(id)?.name||window.PAI_SCENE_NAMES?.[id]||SCENES[id]||'';
       return name?{id,name,desc:stableSceneDescription(id),...inventory(id,snapshot.difficulty)}:null;
     }).filter(Boolean);
   }
   function countHtml(r){
+    if(scene1341Mode)return Number(r.candidateCount)>0?`<span class="scene-result-count"><b>${r.candidateCount}</b><small>表达</small></span>`:`<span class="scene-result-count"><small>待交付</small></span>`;
     // Prefer actual locally available inventory. An optional background loader
     // must not mask existing counts or replace the scene labels with placeholders.
     const n=Number(r.reviewedCount);
@@ -69,9 +81,10 @@
         :'没有找到相关的可学习场景。可尝试补充具体动作，例如“阅读物理论文”或“分析经济数据”。';
       return '<div class="scene-search-empty" role="status">'+esc(msg)+'</div>';
     }
-    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="PAI_SCENE_SEARCH.open('${esc(r.id)}','${esc(s.difficulty)}')"><span class="scene-result-no">${String((Math.max(0,Number(s.page)||0))*5+i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="pai-count-slot" data-scene-id="${esc(r.id)}">${countHtml(r)}</span></button>`).join('')}${s.resultIds.length>5?`<div class="scene-pages"><button onclick="PAI_SCENE_PAGE(-1)" ${(s.page||0)===0?'disabled':''}>上一页</button><span>${(s.page||0)+1} / ${Math.ceil(s.resultIds.length/5)}</span><button onclick="PAI_SCENE_PAGE(1)" ${((s.page||0)+1)*5>=s.resultIds.length?'disabled':''}>下一页</button></div>`:''}<p class="scene-results-note">当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。</p></section>`;
+    return `<section class="scene-results"><div class="scene-results-head"><h3>为你推荐</h3><span>${esc(difficultyLabel(s.difficulty))}</span></div>${rows.map((r,i)=>`<button class="scene-result" onclick="${scene1341Mode?'PAI_SCENE1341_OPEN':'PAI_SCENE_SEARCH.open'}('${esc(r.id)}'${scene1341Mode?'':`,'${esc(s.difficulty)}'`})"><span class="scene-result-no">${String((Math.max(0,Number(s.page)||0))*5+i+1).padStart(2,'0')}</span><span class="scene-result-main"><b>${esc(r.name)}</b><small>${esc(r.desc||'')}</small></span><span class="pai-count-slot" data-scene-id="${esc(r.id)}">${countHtml(r)}</span></button>`).join('')}${s.resultIds.length>5?`<div class="scene-pages"><button onclick="PAI_SCENE_PAGE(-1)" ${(s.page||0)===0?'disabled':''}>上一页</button><span>${(s.page||0)+1} / ${Math.ceil(s.resultIds.length/5)}</span><button onclick="PAI_SCENE_PAGE(1)" ${((s.page||0)+1)*5>=s.resultIds.length?'disabled':''}>下一页</button></div>`:''}<p class="scene-results-note">${scene1341Mode?'Scene1341推荐表达与教学KU分层；未生成教学题目的场景暂不能进入SRS。':'当前“可学·通用义”仅表示已有唯一有效通用 Sense，不代表场景专属词义已审核。Top100 不等于每轮学习量。'}</p></section>`;
   }
   function recentHtml(){
+    if(scene1341Mode)return ''; // Do not reinterpret old S001 history as SC50 identity.
     // Recent history is already persisted. Never filter it through an index that
     // changes while Scene500/Top100 data loads in the background.
     const ids=Array.isArray(state.scene500Recent)?state.scene500Recent:[];
@@ -105,17 +118,17 @@
       <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p><small id="pai-home-source-sha" style="display:block;margin-top:3px;font-size:10px;opacity:.45;line-height:1.3;overflow-wrap:anywhere" aria-label="当前部署提交"></small><small style="display:block;margin-top:2px;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="当前引擎与中文词库版本"><span id="pai-engine-version">引擎：Scene500（尚未加载） · 中文词库：V0.9.4（配置）</span></small><small style="display:block;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="英文词库生产与教学版本">英文生产：Core20K V2.0.6冻结基线 · 英文教学：S113 七条内容已双AI审核（Staging未激活；新候选待审）</small></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
         <section class="continue-card"><div><span class="eyebrow">继续学习</span><h2>${esc(display?.name||'开始一个场景')}</h2><p>${esc(status)}</p></div><div class="continue-actions">${continueId?`<button class="continue-primary" onclick="continueScene500('${esc(continueId)}','${esc(continueDifficulty)}')">继续学习</button>`:''}${b.reinforcementRemaining?`<button class="continue-review" onclick="openReinforcement()">强化 ${b.reinforcementRemaining}</button>`:''}${b.due?`<button class="continue-review" onclick="openReview()">复习 ${b.due}</button>`:''}</div></section>
-        <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">Scene500</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
+        <section class="scene-search-card"><div class="scene-search-title"><span class="eyebrow">${scene1341Mode?'Scene1341':'Scene500'}</span><h2>你现在想学什么？</h2><p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p></div>
           <textarea id="scene-query" class="scene-query" oninput="PAI_SCENE_QUERY_CHANGED()" oncompositionstart="PAI_SCENE_QUERY_CHANGED()" rows="2" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(s.query||'')}</textarea>
           <div class="scene-search-controls"><label>难度<select id="scene-difficulty" onchange="refreshScene500Difficulty(this.value)"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
           ${resultHtml()}
-          <p class="scene1341-ranked-staging-entry" style="margin:12px 0 0;font-size:13px;line-height:1.5">
+          <p class="scene1341-ranked-staging-entry" style="${scene1341Mode?'display:none;':''}" style="margin:12px 0 0;font-size:13px;line-height:1.5">
             <a href="rebuild-preview/scene1341-ranked/index.html" style="display:inline-block;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;color:#26577c;background:#f8fafc">浏览 Scene1341 已交付英语表达（110场景）</a>
             <small style="display:block;margin-top:6px;color:#64748b">独立编辑推荐库 · V51–V61 · 不影响当前 Scene500 推荐及复习记录</small>
           </p>
         </section>
         ${recentHtml()}
-        <div class="browse-link"><button type="button" class="catalog-back" onclick="PAI_OPEN_CATALOG_LAZY()">浏览场景目录 →</button><span>Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。</span></div>
+        <div class="browse-link"><button type="button" class="catalog-back" onclick="${scene1341Mode?'PAI_SCENE1341_BROWSE()':'PAI_OPEN_CATALOG_LAZY()'}">浏览场景目录 →</button><span>${scene1341Mode?'Scene1341共1341场景；V51–V61已交付110场景表达，未交付场景保持明确状态。':'Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。'}</span></div>
       </main>
     </div></div>`;
   }
@@ -151,6 +164,19 @@
   };
   async function runSceneSearch(q,difficulty,{restore=false}={}){
     const ticket=++querySerial,previous=ui();
+    if(scene1341Mode){
+      try{
+        const api=await getScene1341();
+        const matches=await api.search(q,{limit:100});
+        if(ticket!==querySerial||state.view!=='scenes')return;
+        for(const scene of matches)scene1341Cache.set(scene.id,scene);
+        state.sceneSearchUi={query:q,difficulty,resultIds:matches.map(s=>s.id),page:0};
+        window.PAI_SCENE1341_SEARCH_REPORT={query:q,mode:'catalog_title_category_only',count:matches.length,fullSemantic:false};
+        save();render();
+      }catch(error){window.PAI_SCENE1341_LAST_ERROR=String(error);
+        if(ticket===querySerial){state.sceneSearchUi={query:q,difficulty,resultIds:[],page:0};save();render();}}
+      return;
+    }
     if(!q){state.sceneSearchUi={query:'',difficulty,resultIds:[],page:0};save();render();return}
     state.sceneSearchUi={query:q,difficulty,resultIds:[],page:0};
     const oldResults=document.querySelector('.scene-search-card .scene-results, .scene-search-card .scene-search-empty, .scene-search-card .scene-search-pending');
@@ -267,6 +293,7 @@
   };
   function updateEngineVersion(){
     const node=document.getElementById('pai-engine-version');if(!node)return;
+    if(scene1341Mode){node.textContent='引擎：Scene1341目录检索（仅标题及分类） · 编辑表达V51–V61 · 未接入教学KU';return;}
     const report=window.PAI_SCENE500_SEARCH_REPORT;
     const mode=report?.mode;
     const label=mode==='hybrid'?'Hybrid 模式报告（正式关联待核验）':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
@@ -293,6 +320,7 @@
   // Idle scheduling protects low-end Safari devices from blocking home rendering.
   let sceneWarmupQueued=false;
   function queueSceneWarmup(){
+    if(scene1341Mode)return;
     if(sceneWarmupQueued||new URLSearchParams(location.search).get('scene500engine')==='0')return;
     sceneWarmupQueued=true;
     const run=()=>{void getBridge().then(bridge=>{
