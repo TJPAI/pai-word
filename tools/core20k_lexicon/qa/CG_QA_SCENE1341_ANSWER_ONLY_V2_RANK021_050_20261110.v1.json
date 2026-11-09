@@ -1,0 +1,225 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-audit-v1",
+  "date": "2026-11-10",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-021-050.v2.json",
+    "git_blob_sha": "f55b61c241d615f7c1f8285b332d1ea795e2b75b",
+    "v51_source_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "reviewer": "CG-QA",
+  "scope": "SC50-0001 rank21-50",
+  "reviewed_fields": [
+    "source expression and meaning",
+    "answer meaning",
+    "example_en",
+    "example_zh",
+    "collocations",
+    "usage_note",
+    "scene fit"
+  ],
+  "excluded_fields": [
+    "question",
+    "choices",
+    "scoring"
+  ],
+  "counts": {
+    "PASS": 28,
+    "CONDITIONAL": 1,
+    "REVISE": 1
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00021",
+      "source_sense_id": "SC-SENSE-00021",
+      "rank": 21,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00022",
+      "source_sense_id": "SC-SENSE-00022",
+      "rank": 22,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00023",
+      "source_sense_id": "SC-SENSE-00023",
+      "rank": 23,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00024",
+      "source_sense_id": "SC-SENSE-00024",
+      "rank": 24,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00025",
+      "source_sense_id": "SC-SENSE-00025",
+      "rank": 25,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00026",
+      "source_sense_id": "SC-SENSE-00026",
+      "rank": 26,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00027",
+      "source_sense_id": "SC-SENSE-00027",
+      "rank": 27,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00028",
+      "source_sense_id": "SC-SENSE-00028",
+      "rank": 28,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00029",
+      "source_sense_id": "SC-SENSE-00029",
+      "rank": 29,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00030",
+      "source_sense_id": "SC-SENSE-00030",
+      "rank": 30,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00031",
+      "source_sense_id": "SC-SENSE-00031",
+      "rank": 31,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00032",
+      "source_sense_id": "SC-SENSE-00032",
+      "rank": 32,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00033",
+      "source_sense_id": "SC-SENSE-00033",
+      "rank": 33,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00034",
+      "source_sense_id": "SC-SENSE-00034",
+      "rank": 34,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00035",
+      "source_sense_id": "SC-SENSE-00035",
+      "rank": 35,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00036",
+      "source_sense_id": "SC-SENSE-00036",
+      "rank": 36,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00037",
+      "source_sense_id": "SC-SENSE-00037",
+      "rank": 37,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00038",
+      "source_sense_id": "SC-SENSE-00038",
+      "rank": 38,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00039",
+      "source_sense_id": "SC-SENSE-00039",
+      "rank": 39,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00040",
+      "source_sense_id": "SC-SENSE-00040",
+      "rank": 40,
+      "verdict": "CONDITIONAL",
+      "issue_type": "COLLOCATION_NATURALNESS",
+      "specific_reason": "'feel short on sleep'并非最自然的固定搭配，通常说'be short on sleep'或'feel sleep-deprived/tired'；核心英语例句与释义正确。",
+      "suggested_fix": "将第二搭配改为'be running short on sleep'或'have been short on sleep'。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00041",
+      "source_sense_id": "SC-SENSE-00041",
+      "rank": 41,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00042",
+      "source_sense_id": "SC-SENSE-00042",
+      "rank": 42,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00043",
+      "source_sense_id": "SC-SENSE-00043",
+      "rank": 43,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00044",
+      "source_sense_id": "SC-SENSE-00044",
+      "rank": 44,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00045",
+      "source_sense_id": "SC-SENSE-00045",
+      "rank": 45,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00046",
+      "source_sense_id": "SC-SENSE-00046",
+      "rank": 46,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00047",
+      "source_sense_id": "SC-SENSE-00047",
+      "rank": 47,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00048",
+      "source_sense_id": "SC-SENSE-00048",
+      "rank": 48,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00049",
+      "source_sense_id": "SC-SENSE-00049",
+      "rank": 49,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00050",
+      "source_sense_id": "SC-SENSE-00050",
+      "rank": 50,
+      "verdict": "REVISE",
+      "issue_type": "MEANING_SCOPE",
+      "specific_reason": "morning person强调早晨精神状态较佳、偏好早间活动；译成'习惯早起的人'容易与early riser混为一谈。例句也强调上午效率，而非单纯早起。",
+      "suggested_fix": "中文释义提出补丁候选'早晨型的人；早上精力较好的人'，answer.meaning_zh同步；明确区别early riser，勿直接修改来源sense_zh。"
+    }
+  ],
+  "notes": [
+    "All 30 author answers reviewed as language data, not just schema.",
+    "REVISE and CONDITIONAL require author patch or adjudication.",
+    "No modification of original files; no production activation."
+  ]
+}
