@@ -1,0 +1,62 @@
+{
+  "schema_version": "pai-scene1341-answer-only-v2-manifest",
+  "source": {
+    "version": "V51",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "output": {
+    "branch": "answer-enrichment-main-dev-20261026",
+    "pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-001-020.v2.json",
+    "pack_git_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+    "ledger_path": "tools/answer-enrichment/scene1341-v51-answer-only-2038-coverage.v2.csv",
+    "ledger_git_blob": "add09987fc67a1592dacc16429ffba6093c311b2"
+  },
+  "contract": {
+    "new_ku_namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "question_fields_produced": false,
+    "old_core20k_ku_reused": false,
+    "old_question_pilot_deprecated": true
+  },
+  "counts": {
+    "source": 2038,
+    "scene_count": 10,
+    "authored": 20,
+    "not_generated": 2018,
+    "independent_qa_pass": 0,
+    "publishable": 0
+  },
+  "source_scene_counts": {
+    "SC50-0001": 234,
+    "SC50-0002": 174,
+    "SC50-0003": 204,
+    "SC50-0004": 210,
+    "SC50-0005": 223,
+    "SC50-0006": 190,
+    "SC50-0007": 217,
+    "SC50-0008": 188,
+    "SC50-0009": 199,
+    "SC50-0010": 199
+  },
+  "checks": {
+    "source_ids_unique": true,
+    "ranks_contiguous": true,
+    "source_to_ledger_full_match": true,
+    "authored_source_fields_exact": true,
+    "answer_fields_nonempty": true,
+    "question_fields_absent": true,
+    "activation_disabled": true,
+    "errors": []
+  },
+  "semantic_review": {
+    "status": "AUTHOR_DRAFT_NOT_INDEPENDENTLY_REVIEWED",
+    "issues": "CG-QA and MU-QA to review bilingual naturalness, scope and collocations"
+  },
+  "release": {
+    "master_release_approved": false,
+    "production_ready": false,
+    "activation_allowed": false
+  }
+}
