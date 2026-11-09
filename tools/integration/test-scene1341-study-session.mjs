@@ -77,6 +77,18 @@ await assert.rejects(()=>failedSession.rate({grade:'good',now,attemptId:'race-00
 assert.equal(failedSession.view().ratingPending,false);
 assert.equal(failedSession.view().index,0);
 assert.equal(failedSession.view().revealed,true);
+// Missing release decisions and invalid grades must fail closed.
+const missingGate={get:()=>undefined};
+const emptyQueue=buildScene1341StudyQueue({sceneId:'SC50-0001',items,releaseIndex:missingGate,now});
+assert.equal(emptyQueue.available,0);
+assert.throws(()=>createScene1341StudySession({sceneId:'SC50-0001',
+ queue:[items[0].scene_ku_id],releaseIndex:missingGate}),/UNRELEASED_KU/);
+const invalidGradeSession=createScene1341StudySession({sceneId:'SC50-0001',
+ queue:[items[2].scene_ku_id],releaseIndex:{get:id=>({eligible:approvedAgain.has(id)})}});
+invalidGradeSession.reveal();
+await assert.rejects(()=>invalidGradeSession.rate({grade:'unknown',now,attemptId:'badgrade-01',
+ srs:pendingSrs}),/GRADE_INVALID/);
+assert.equal(invalidGradeSession.view().index,0);
 console.log(JSON.stringify({status:'PASS',authorDrafts:304,actualProductionApproved:gate.approved,
  queueBlockedForRealDrafts:true,approvedFixtureQueue:3,bookmarkResume:true,
  revocationBlocked:true,failedCommitDidNotAdvance:true,realUserSrsWrites:0}));
