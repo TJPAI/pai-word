@@ -64,8 +64,8 @@ await assert.rejects(()=>isolated.rate({kuId:'SC1341-KU-00001',
 assert.equal(committed,0);
 const first=await isolated.rate({kuId:'SC1341-KU-00001',grade:'good',
  now:1800000000000,attemptId:'attempt-0001',kuReleaseEligible:true});
-assert.equal(first.reps,1);assert.equal(first.intervalMs,259200000);
-assert.equal(first.due,1800000000000+259200000);
+assert.equal(first.reps,1);assert.equal(first.intervalMs,86400000);
+assert.equal(first.due,1800000000000+86400000);
 assert.equal(committed,1);
 const replay=await isolated.rate({kuId:'SC1341-KU-00001',grade:'good',
  now:1800001000000,attemptId:'attempt-0001',kuReleaseEligible:true});
@@ -75,7 +75,10 @@ const hard=await isolated.rate({kuId:'SC1341-KU-00001',grade:'hard',
 assert.equal(hard.reps,2);assert(hard.intervalMs>=86400000);
 const again=projectScene1341Grade({kuId:'SC1341-KU-00001',grade:'again',
  previous:hard,now:1800002000000,attemptId:'attempt-0003'});
-assert.equal(again.intervalMs,600000);
+assert.equal(again.intervalMs,5*86400000);
+const repeat=projectScene1341Grade({kuId:'SC1341-KU-00001',grade:'again',
+ previous:hard,now:1800002000000,attemptId:'attempt-repeat3',repeat:true});
+assert.equal(repeat.intervalMs,0);assert.equal(repeat.due,1800002000000);
 await assert.rejects(()=>isolated.rate({kuId:'CORE20K-KU-00001',
  grade:'good',now:1800002000000,attemptId:'attempt-0004',kuReleaseEligible:true}),/INVALID_KU/);
 assert.equal(memory.size,1);
