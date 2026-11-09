@@ -1,0 +1,351 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-review-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "scope": {
+    "scene_id": "SC50-0002",
+    "rank_start": 21,
+    "rank_end": 70
+  },
+  "source": {
+    "repository": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "head": "6339e459c42cf8f531ba203e706faef93ffa44f7",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+    "blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+    "v51_source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "reviewed_fields": [
+    "expression vs source Chinese meaning",
+    "answer meaning",
+    "English and Chinese examples",
+    "natural collocations",
+    "usage notes",
+    "regional contrast"
+  ],
+  "summary": {
+    "reviewed": 50,
+    "pass": 45,
+    "conditional": 4,
+    "revise": 1,
+    "hold": 0,
+    "publishable_approved": 0
+  },
+  "records": [
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 21,
+      "scene_ku_id": "SC1341-KU-00255",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 22,
+      "scene_ku_id": "SC1341-KU-00256",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 23,
+      "scene_ku_id": "SC1341-KU-00257",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 24,
+      "scene_ku_id": "SC1341-KU-00258",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 25,
+      "scene_ku_id": "SC1341-KU-00259",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 26,
+      "scene_ku_id": "SC1341-KU-00260",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 27,
+      "scene_ku_id": "SC1341-KU-00261",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 28,
+      "scene_ku_id": "SC1341-KU-00262",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 29,
+      "scene_ku_id": "SC1341-KU-00263",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 30,
+      "scene_ku_id": "SC1341-KU-00264",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 31,
+      "scene_ku_id": "SC1341-KU-00265",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 32,
+      "scene_ku_id": "SC1341-KU-00266",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 33,
+      "scene_ku_id": "SC1341-KU-00267",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 34,
+      "scene_ku_id": "SC1341-KU-00268",
+      "verdict": "REVISE",
+      "reason": "源义承诺wash up在美式表示洗漱、在英式表示洗碗，但答案例句与搭配只示范洗漱；usage_note单纯解释英式差异，不足以教会第二含义。",
+      "recommendation": "增加英式例句‘I'll wash up after dinner.’／‘晚饭后我来洗碗。’与‘do the washing-up’等对照；或经CG-MASTER审批拆为地区语境独立教学Sense。"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 35,
+      "scene_ku_id": "SC1341-KU-00269",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 36,
+      "scene_ku_id": "SC1341-KU-00270",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 37,
+      "scene_ku_id": "SC1341-KU-00271",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 38,
+      "scene_ku_id": "SC1341-KU-00272",
+      "verdict": "CONDITIONAL",
+      "reason": "The tap is dripping; could you tighten it? 让人误以为把整个水龙头拧紧就能止漏，英语不明确是关紧水龙头还是修理接口。",
+      "recommendation": "改为‘The tap is dripping. Could you turn it off properly?’或‘The tap keeps dripping. We should get it fixed.’，中文相应修改。"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 39,
+      "scene_ku_id": "SC1341-KU-00273",
+      "verdict": "CONDITIONAL",
+      "reason": "running water不一定限于自来水，亦可指河流水或流动水；当前目标‘流动的自来水’在洗手语境成立但作为一般释义略窄。",
+      "recommendation": "如此条限定卫生洗漱场景，明确‘水龙头流出的水；流动水’，由CG-MASTER批准源义微调；不可泛化为所有running water必然自来水。"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 40,
+      "scene_ku_id": "SC1341-KU-00274",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 41,
+      "scene_ku_id": "SC1341-KU-00275",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 42,
+      "scene_ku_id": "SC1341-KU-00276",
+      "verdict": "CONDITIONAL",
+      "reason": "‘Be careful—the hot water is very hot.’在英语中重复hot，语法正确但教学例句过于单调生硬，未体现热水在洗浴场景的自然表达。",
+      "recommendation": "换为‘The water is too hot. Turn down the temperature a little.’／‘水太烫了，把温度调低一点。’或‘Be careful—the hot water can burn you.’"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 43,
+      "scene_ku_id": "SC1341-KU-00277",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 44,
+      "scene_ku_id": "SC1341-KU-00278",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 45,
+      "scene_ku_id": "SC1341-KU-00279",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 46,
+      "scene_ku_id": "SC1341-KU-00280",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 47,
+      "scene_ku_id": "SC1341-KU-00281",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 48,
+      "scene_ku_id": "SC1341-KU-00282",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 49,
+      "scene_ku_id": "SC1341-KU-00283",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 50,
+      "scene_ku_id": "SC1341-KU-00284",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 51,
+      "scene_ku_id": "SC1341-KU-00285",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 52,
+      "scene_ku_id": "SC1341-KU-00286",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 53,
+      "scene_ku_id": "SC1341-KU-00287",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 54,
+      "scene_ku_id": "SC1341-KU-00288",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 55,
+      "scene_ku_id": "SC1341-KU-00289",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 56,
+      "scene_ku_id": "SC1341-KU-00290",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 57,
+      "scene_ku_id": "SC1341-KU-00291",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 58,
+      "scene_ku_id": "SC1341-KU-00292",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 59,
+      "scene_ku_id": "SC1341-KU-00293",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 60,
+      "scene_ku_id": "SC1341-KU-00294",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 61,
+      "scene_ku_id": "SC1341-KU-00295",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 62,
+      "scene_ku_id": "SC1341-KU-00296",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 63,
+      "scene_ku_id": "SC1341-KU-00297",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 64,
+      "scene_ku_id": "SC1341-KU-00298",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 65,
+      "scene_ku_id": "SC1341-KU-00299",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 66,
+      "scene_ku_id": "SC1341-KU-00300",
+      "verdict": "CONDITIONAL",
+      "reason": "shaver释义涵盖‘电动剃须刀；剃须刀’，但例句与搭配均只支持electric shaver；与razor的范围区分可再清楚些。",
+      "recommendation": "说明shaver通常指电动剃须刀，普通手动剃须刀优先用razor；如保留广义，增加相应自然例句。"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 67,
+      "scene_ku_id": "SC1341-KU-00301",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 68,
+      "scene_ku_id": "SC1341-KU-00302",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 69,
+      "scene_ku_id": "SC1341-KU-00303",
+      "verdict": "PASS"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rank": 70,
+      "scene_ku_id": "SC1341-KU-00304",
+      "verdict": "PASS"
+    }
+  ],
+  "notes": [
+    "Independent CG-QA review only; not official two-AI certification or release.",
+    "Question/choices/scoring intentionally absent in Answer-only V2; no testing requested.",
+    "Source gloss changes need CG-MASTER approval; no files modified outside CG-QA branch."
+  ]
+}
