@@ -39,7 +39,7 @@ export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,stri
       expression:r.expression,unit:adapter.toLegacyAnswerUnit(r.scene_ku_id)
     });
   }
-  if(items.length!==130||new Set(items.map(x=>x.id)).size!==100||
+  if(items.length!==130||new Set(items.map(x=>x.id)).size!==130||
      !items.every(x=>x.sceneId==='SC50-0001')||
      !items.sort((a,b)=>a.rank-b.rank).every((x,i)=>x.rank===i+1))
     throw Error('SCENE1341_PREVIEW_SOURCE_SCOPE_INVALID');
