@@ -12,7 +12,8 @@ const files=['enteach-v51-first20-answer-only-v2.json',
  'scene1341-v51-sc0001-answer-only-101-130.v2.json',
  'scene1341-v51-sc0001-answer-only-131-180.v2.json',
  'scene1341-v51-sc0001-answer-only-181-234.v2.json',
- 'scene1341-v51-sc0002-answer-only-001-020.v2.json'];
+ 'scene1341-v51-sc0002-answer-only-001-020.v2.json',
+ 'scene1341-v51-sc0002-answer-only-021-070.v2.json'];
 const packs=files.map(f=>JSON.parse(fs.readFileSync(path+f,'utf8')));
 const originalRows=parseRankedCsv(fs.readFileSync('tools/integration/scene1341-ranked/v51-ranked.csv','utf8'));
 const sourceById=new Map(originalRows.map(r=>[r.sense_id,r]));
@@ -39,7 +40,7 @@ for(const pack of packs){
   assert(!Object.hasOwn(entry,'question'));
  }
 }
-assert.equal(ids.size,254);
+assert.equal(ids.size,304);
 assert.deepEqual([...sceneIds],['SC50-0001','SC50-0002']);
 assert.throws(()=>sceneKuKey('KU-00001'),/INVALID_KU/);
 assert.equal(sceneKuKey('SC1341-KU-00001'),'scene1341-v2:SC1341-KU-00001');
@@ -79,6 +80,6 @@ await assert.rejects(()=>isolated.rate({kuId:'CORE20K-KU-00001',
  grade:'good',now:1800002000000,attemptId:'attempt-0004',kuReleaseEligible:true}),/INVALID_KU/);
 assert.equal(memory.size,1);
 assert.equal([...memory.keys()][0],'scene1341-v2:SC1341-KU-00001');
-console.log(JSON.stringify({status:'PASS',authorDrafts:254,sourceScene:'SC50-0001',
+console.log(JSON.stringify({status:'PASS',authorDrafts:304,sourceScene:'SC50-0001',
  actualProductionApproved:0,storedFixtureRecords:1,realAppWrites:0,
  hasQuestionPayload:false,isolatedSrsNamespace:SCENE1341_SRS_SCOPE}));
