@@ -264,7 +264,7 @@
       if(id==='SC50-0001'){
         const preview=document.createElement('button');
         preview.type='button';
-        preview.textContent='预览前100条答案型词卡（只读审核）';
+        preview.textContent='预览前130条答案型词卡（只读审核）';
         preview.style.cssText='padding:11px 14px;border:1px solid #a8b9ca;border-radius:10px;background:#f7fafc;color:#243347;margin:8px 0';
         preview.addEventListener('click',async()=>{
           preview.disabled=true;
