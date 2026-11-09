@@ -9,7 +9,10 @@ const PACKS=Object.freeze([
   ['enteach-v51-first20-answer-only-v2.json','b6c39ebcebf4d6ce9848122cc60ecc899274c74f'],
   ['scene1341-v51-sc0001-answer-only-021-050.v2.json','f55b61c241d615f7c1f8285b332d1ea795e2b75b'],
   ['scene1341-v51-sc0001-answer-only-051-100.v2.json','fa6bdba1c4f799871758b02c5391e61c8ef9cb8a'],
-  ['scene1341-v51-sc0001-answer-only-101-130.v2.json','6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22']
+  ['scene1341-v51-sc0001-answer-only-101-130.v2.json','6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22'],
+  ['scene1341-v51-sc0001-answer-only-131-180.v2.json','78a58e8cffb265f98550ff34289a961b0bee0e3c'],
+  ['scene1341-v51-sc0001-answer-only-181-234.v2.json','b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e'],
+  ['scene1341-v51-sc0002-answer-only-001-020.v2.json','d153f196e30a1b31a157050fb5f91eaedc94ccce']
 ]);
 const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;')
  .replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
@@ -39,10 +42,17 @@ export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,stri
       expression:r.expression,unit:adapter.toLegacyAnswerUnit(r.scene_ku_id)
     });
   }
-  if(items.length!==130||new Set(items.map(x=>x.id)).size!==130||
-     !items.every(x=>x.sceneId==='SC50-0001')||
-     !items.sort((a,b)=>a.rank-b.rank).every((x,i)=>x.rank===i+1))
+  if(items.length!==254||new Set(items.map(x=>x.id)).size!==254)
     throw Error('SCENE1341_PREVIEW_SOURCE_SCOPE_INVALID');
+  items.sort((a,b)=>a.sceneId.localeCompare(b.sceneId)||a.rank-b.rank);
+  const byScene=new Map();
+  for(const item of items){
+    const expected=(byScene.get(item.sceneId)||0)+1;
+    if(item.rank!==expected)throw Error('SCENE1341_PREVIEW_RANK_GAP');
+    byScene.set(item.sceneId,expected);
+  }
+  if(byScene.size!==2||byScene.get('SC50-0001')!==234||byScene.get('SC50-0002')!==20)
+    throw Error('SCENE1341_PREVIEW_SCENE_COUNTS_INVALID');
   return Object.freeze(items);
 }
 export function createScene1341ReadOnlySession(items){
@@ -66,7 +76,7 @@ export function renderScene1341ReadOnlyCard(view,{answerHtml}={}){
     throw Error('SCENE1341_PREVIEW_WRITABLE_REJECTED');
   const answer=view.revealed&&typeof answerHtml==='function'?answerHtml(card.unit):'';
   return `<div class="screen study-screen learning-screen ${view.revealed?'revealed':''}" data-scene1341-draft="true" data-srs-write="disabled">
-  <div class="study-top"><div class="study-scene">SC50-0001 · 答案型KU审核预览</div>
+  <div class="study-top"><div class="study-scene">${esc(card.sceneId)} · 答案型KU审核预览</div>
     <div class="study-progress">${view.index+1} / ${view.total}</div></div>
   <div class="word-hero"><div class="word-line"><div class="word">${esc(card.expression)}</div></div>
     <p class="recall-cue">自主回忆词义和用法（草稿预览）</p></div>
@@ -76,14 +86,16 @@ export function renderScene1341ReadOnlyCard(view,{answerHtml}={}){
   <p class="recall-note" role="status">作者草稿 · 只读预览 · 不计入学习记录</p></div>`;
 }
 export async function openScene1341ReadOnlyPreview({panel,sceneId,answerHtml}){
-  if(sceneId!=='SC50-0001')throw Error('SCENE1341_PREVIEW_NOT_AUTHORED');
+  if(!['SC50-0001','SC50-0002'].includes(sceneId))throw Error('SCENE1341_PREVIEW_NOT_AUTHORED');
   if(!panel||typeof panel.replaceChildren!=='function')throw Error('SCENE1341_PREVIEW_PANEL_REQUIRED');
-  const loading=document.createElement('p');loading.textContent='正在校验100条教学草稿…';
+  const loading=document.createElement('p');loading.textContent='正在校验教学草稿…';
   panel.replaceChildren(loading);
   try{
     const cards=await (loadPromise||(loadPromise=loadScene1341AuthorPreview().catch(e=>{loadPromise=null;throw e})));
     if(!panel.isConnected)return;
-    const session=createScene1341ReadOnlySession(cards);
+    const sceneCards=cards.filter(x=>x.sceneId===sceneId);
+    if(!sceneCards.length)throw Error('SCENE1341_PREVIEW_NO_SCENE_KU');
+    const session=createScene1341ReadOnlySession(sceneCards);
     const wrapper=document.createElement('div');
     const bar=document.createElement('div');
     bar.style.cssText='display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:10px 0;position:sticky;top:0;background:#fff;z-index:1';
