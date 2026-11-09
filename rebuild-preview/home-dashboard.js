@@ -110,7 +110,7 @@
           <div class="scene-search-controls"><label>难度<select id="scene-difficulty" onchange="refreshScene500Difficulty(this.value)"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
           ${resultHtml()}
           <p class="scene1341-ranked-staging-entry" style="margin:12px 0 0;font-size:13px;line-height:1.5">
-            <a href="rebuild-preview/scene1341-ranked-preview.html" style="display:inline-block;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;color:#26577c;background:#f8fafc">浏览 Scene1341 已交付英语表达（110场景）</a>
+            <a href="rebuild-preview/scene1341-ranked/index.html" style="display:inline-block;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;color:#26577c;background:#f8fafc">浏览 Scene1341 已交付英语表达（110场景）</a>
             <small style="display:block;margin-top:6px;color:#64748b">独立编辑推荐库 · V51–V61 · 不影响当前 Scene500 推荐及复习记录</small>
           </p>
         </section>
