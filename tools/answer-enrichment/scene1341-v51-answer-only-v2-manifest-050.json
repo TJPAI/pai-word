@@ -1,0 +1,57 @@
+{
+  "schema_version": "pai-scene1341-answer-only-v2-progress-manifest",
+  "source": {
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51"
+  },
+  "output": {
+    "branch": "answer-enrichment-main-dev-20261026",
+    "coverage_path": "tools/answer-enrichment/scene1341-v51-answer-only-2038-coverage.v3.csv",
+    "coverage_git_blob": "1c6b877e4fc7efca69b6286ef86cc22a5b41e921",
+    "packs": [
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-001-020.v2.json",
+        "git_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+        "count": 20
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-021-050.v2.json",
+        "git_blob": "f55b61c241d615f7c1f8285b332d1ea795e2b75b",
+        "count": 30
+      }
+    ]
+  },
+  "status": "AUTHOR_DRAFT_QA_PENDING_NO_RELEASE",
+  "counts": {
+    "source_recommendations": 2038,
+    "scene_count": 10,
+    "author_drafts": 50,
+    "not_generated": 1988,
+    "independent_qa_pass": 0,
+    "production_playable": 0,
+    "question_payloads": 0
+  },
+  "quality": {
+    "source_ledger_matches": 2038,
+    "authored_source_matches": 50,
+    "unique_new_ku_ids": 50,
+    "nonempty_answer_bilingual_example": 50,
+    "nonempty_collocations": 50,
+    "question_fields_absent": 50,
+    "activation_disabled": 50,
+    "structure_errors": 0,
+    "review_scope": "SOURCE_ID_AND_FIELD_CHECK_ONLY",
+    "independent_english_chinese_semantic_qa": "PENDING",
+    "github_actions_execution": "NOT_VERIFIED_FOR_UPDATED_V3"
+  },
+  "policy": {
+    "stable_namespace": "SC1341-KU-",
+    "separate_srs_namespace": "scene1341-v2",
+    "core20k_ku_reuse": false,
+    "master_modified": false,
+    "old_runtime_modified": false,
+    "old_srs_modified": false
+  },
+  "next": "Continue SC50-0001 ranks 51 onward. CG-QA/MU-ENTEACH independently review 50 records for accurate sense and natural teaching material."
+}
