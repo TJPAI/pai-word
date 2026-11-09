@@ -40,7 +40,7 @@ export function createScene1341StudySession({sceneId,queue=[],releaseIndex,bookm
   throw Error('SCENE1341_SESSION_INVALID_QUEUE');
  if(!releaseIndex||typeof releaseIndex.get!=='function')throw Error('SCENE1341_SESSION_RELEASE_INDEX_REQUIRED');
  for(const id of queue)if(releaseIndex.get(id).eligible!==true)throw Error('SCENE1341_SESSION_UNRELEASED_KU');
- let index=0,revealed=false;
+ let index=0,revealed=false,ratingPending=false;
  if(bookmark){
   if(bookmark.scope!==SCENE1341_BOOKMARK_SCOPE||bookmark.sceneId!==sceneId||
      !queue.includes(bookmark.kuId))throw Error('SCENE1341_BOOKMARK_INVALID');
@@ -48,7 +48,7 @@ export function createScene1341StudySession({sceneId,queue=[],releaseIndex,bookm
  }
  const view=()=>Object.freeze({
   scope:SCENE1341_SESSION_SCOPE,sceneId,index,total:queue.length,
-  kuId:queue[index]||null,revealed,complete:index>=queue.length
+  kuId:queue[index]||null,revealed,ratingPending,complete:index>=queue.length
  });
  const check=()=>{const id=queue[index];if(id&&releaseIndex.get(id).eligible!==true)
   throw Error('SCENE1341_SESSION_APPROVAL_REVOKED');return id||null};
@@ -57,17 +57,24 @@ export function createScene1341StudySession({sceneId,queue=[],releaseIndex,bookm
  };
  return Object.freeze({
   view,bookmark:bookmarkState,
-  reveal(){check();if(queue.length)revealed=true;return view()},
-  next(){check();index=Math.min(queue.length,index+1);revealed=false;return view()},
-  previous(){index=Math.max(0,index-1);check();revealed=false;return view()},
+  reveal(){if(ratingPending)throw Error('SCENE1341_SESSION_RATING_PENDING');check();if(queue.length)revealed=true;return view()},
+  next(){if(ratingPending)throw Error('SCENE1341_SESSION_RATING_PENDING');check();index=Math.min(queue.length,index+1);revealed=false;return view()},
+  previous(){if(ratingPending)throw Error('SCENE1341_SESSION_RATING_PENDING');index=Math.max(0,index-1);check();revealed=false;return view()},
   async rate({grade,now,attemptId,srs}={}){
+   if(ratingPending)throw Error('SCENE1341_SESSION_RATING_PENDING');
    const id=check();if(!id)throw Error('SCENE1341_SESSION_NO_CURRENT_KU');
    if(!revealed)throw Error('SCENE1341_SESSION_ANSWER_NOT_REVEALED');
    if(!srs||srs.namespace!==SCENE1341_SRS_SCOPE||typeof srs.rate!=='function')
     throw Error('SCENE1341_SESSION_SRS_INVALID');
-   const saved=await srs.rate({kuId:id,grade,now,attemptId,
-     kuReleaseEligible:releaseIndex.get(id).eligible===true});
-   index++;revealed=false;return Object.freeze({record:saved,view:view(),bookmark:bookmarkState()});
+   ratingPending=true;
+   try{
+    const saved=await srs.rate({kuId:id,grade,now,attemptId,
+      kuReleaseEligible:releaseIndex.get(id).eligible===true});
+    // Approval may be revoked while the asynchronous store is committing.
+    // Never move the study cursor onto a revoked or unverified next KU.
+    if(releaseIndex.get(id).eligible!==true)throw Error('SCENE1341_SESSION_APPROVAL_REVOKED_AFTER_COMMIT');
+    index++;revealed=false;return Object.freeze({record:saved,view:view(),bookmark:bookmarkState()});
+   }finally{ratingPending=false;}
   }
  });
 }
