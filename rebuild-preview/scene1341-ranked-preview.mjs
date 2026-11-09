@@ -48,6 +48,11 @@ async function requestBytes(url,fetchImpl){
   if(cached&&copy)await cached.put(url,copy).catch(()=>{});
   return data;
 }
+async function removeCachedBytes(url){
+  if(typeof caches==='undefined')return;
+  const cache=await caches.open(CACHE_NAME).catch(()=>null);
+  if(cache)await cache.delete(url).catch(()=>{});
+}
 export function batchForScene(sceneId){
   const match=/^SC50-(\d{4})$/.exec(String(sceneId));
   const id=match?Number(match[1]):0;
@@ -75,8 +80,16 @@ export function createRankedStore({fetchImpl=fetch,base=BASE}={}){
     const promise=(async()=>{
       const spec=manifest.files.find(f=>f.version===version);
       if(!spec)throw Error('RANKED_VERSION_NOT_PINNED');
-      const bytes=await requestBytes(url('v'+version+'-ranked.csv'),fetchImpl);
-      await verifyBlob(bytes,spec.git_blob_sha);
+      const batchUrl=url('v'+version+'-ranked.csv');
+      let bytes=await requestBytes(batchUrl,fetchImpl);
+      try{await verifyBlob(bytes,spec.git_blob_sha);}
+      catch(error){
+        // Safari CacheStorage may retain an earlier or interrupted asset; never expose it.
+        if(error.message!=='RANKED_SOURCE_BLOB_MISMATCH')throw error;
+        await removeCachedBytes(batchUrl);
+        bytes=await requestBytes(batchUrl,fetchImpl);
+        await verifyBlob(bytes,spec.git_blob_sha);
+      }
       const rows=parseRankedCsv(new TextDecoder().decode(bytes));
       if(rows.length!==spec.records)throw Error('RANKED_BATCH_COUNT_MISMATCH');
       const ranks=new Set();
