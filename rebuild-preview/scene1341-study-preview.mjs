@@ -4,6 +4,7 @@
  * and the already installed window.answerHtml legacy renderer.
  */
 import {createScene1341TeachingAdapter} from './scene1341-teaching-consumption.mjs';
+import {attachScene1341QaPreviewStatus} from './scene1341-qa-preview.mjs';
 const BASE=new URL('../tools/integration/scene1341-teaching/',import.meta.url);
 const PACKS=Object.freeze([
   ['enteach-v51-first20-answer-only-v2.json','b6c39ebcebf4d6ce9848122cc60ecc899274c74f'],
@@ -62,7 +63,14 @@ export async function loadScene1341AuthorPreview({fetchImpl=fetch,base=BASE,stri
   }
   if(byScene.size!==2||byScene.get('SC50-0001')!==234||byScene.get('SC50-0002')!==70)
     throw Error('SCENE1341_PREVIEW_SCENE_COUNTS_INVALID');
-  return Object.freeze(items);
+  // Review opinions help editors find known issues; they NEVER enable scoring.
+  const qaResponse=await fetchImpl(new URL('qa-304-status-staging.v1.json',base));
+  if(!qaResponse.ok)throw Error('SCENE1341_QA_STATUS_HTTP_'+qaResponse.status);
+  const qaBytes=new Uint8Array(await qaResponse.arrayBuffer());
+  if(strict&&(await blobSha(qaBytes))!=='a0f7e3e3f4467fb8b243ff8e6f9e9811a55f7ec2')
+    throw Error('SCENE1341_QA_STATUS_SHA_MISMATCH');
+  const qaLedger=JSON.parse(new TextDecoder().decode(qaBytes));
+  return attachScene1341QaPreviewStatus(items,qaLedger);
 }
 export function createScene1341ReadOnlySession(items){
   const cards=[...items];let index=0,revealed=false;
@@ -92,6 +100,8 @@ export function renderScene1341ReadOnlyCard(view,{answerHtml}={}){
   <div class="study-body">${answer||'<p class="tap-hint">点击“显示答案”查看教学内容</p>'}</div>
   <div class="recall-correction read-only" role="group" aria-label="未认证KU不可评分">
     <button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div>
+  ${card.qaPreview?.needsReview?`<p class="recall-note scene1341-qa-warning" role="status">CG-QA：${esc(card.qaPreview.cgVerdict)}（待修订/复核）${card.qaPreview.dispute?' · 审核分歧':''}。 ${esc(card.qaPreview.issue)}</p>`:
+      '<p class="recall-note">CG-QA：PASS（仅单线审核意见，未获发布批准）</p>'}
   <p class="recall-note" role="status">作者草稿 · 只读预览 · 不计入学习记录</p></div>`;
 }
 export async function openScene1341ReadOnlyPreview({panel,sceneId,answerHtml}){
