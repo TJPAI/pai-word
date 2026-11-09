@@ -10,7 +10,6 @@
   const scene1341Cache=new Map();
   const getScene1341=()=>scene1341Promise||(scene1341Promise=import(new URL('rebuild-preview/scene1341-home-adapter.mjs',document.baseURI).href)
     .then(m=>{scene1341Adapter=m.createScene1341HomeCatalog();return scene1341Adapter.initialize().then(()=>scene1341Adapter);})
-    .then(api=>{for(const scene of api.initialize?[]:[]){};return api;})
     .catch(error=>{scene1341Promise=null;throw error}));
   const displayName=id=>scene1341Cache.get(id)?.name||window.PAI_SCENE_NAMES?.[id]||SCENES[id]||indexedScenes().byId.get(id)?.name||'';
   function dueCount(){
@@ -225,6 +224,58 @@
     const s=ui(),q=(document.getElementById('scene-query')?.value||s.query||'').trim();
     void runSceneSearch(q,difficulty||'all');
   };
+  // Scene1341 uses the existing homepage cards and pagination. Editorial
+  // recommendations can be inspected but MUST NOT be converted to learning KUs.
+  window.PAI_SCENE1341_BROWSE=async function(){
+    if(!scene1341Mode)return;
+    try{
+      const api=await getScene1341(),data=await api.initialize();
+      for(const scene of data.scenes)scene1341Cache.set(scene.id,scene);
+      state.sceneSearchUi={query:'全部场景',difficulty:'all',resultIds:data.scenes.map(s=>s.id),page:0};
+      save();render();
+    }catch(e){window.PAI_SCENE1341_LAST_ERROR=String(e);}
+  };
+  window.PAI_SCENE1341_OPEN=async function(id){
+    if(!scene1341Mode||!/^SC50-\\d{4}$/.test(id))return;
+    let panel=document.getElementById('pai-scene1341-detail');
+    if(!panel){
+      panel=document.createElement('section');panel.id='pai-scene1341-detail';
+      panel.setAttribute('role','dialog');panel.setAttribute('aria-modal','true');
+      panel.setAttribute('aria-label','场景推荐表达');
+      panel.style.cssText='position:fixed;inset:0;background:#fff;z-index:9999;overflow-y:auto;padding:16px 16px calc(20px + env(safe-area-inset-bottom,0px));color:#1d2b3c';
+      document.body.appendChild(panel);
+    }
+    const heading=document.createElement('div');heading.style.cssText='display:flex;justify-content:space-between;align-items:center;gap:12px;position:sticky;top:0;background:#fff;padding:8px 0;border-bottom:1px solid #dce5ef';
+    const title=document.createElement('h2');title.textContent='场景推荐';title.style.fontSize='18px';
+    const close=document.createElement('button');close.textContent='返回场景搜索';close.style.cssText='border:1px solid #cbd5e1;background:#fff;border-radius:10px;padding:10px';
+    close.onclick=()=>panel.remove();heading.append(title,close);
+    const message=document.createElement('p');message.textContent='正在读取场景表达…';
+    message.style.cssText='font-size:13px;color:#64748b';
+    const list=document.createElement('div');list.style.maxWidth='720px';
+    panel.replaceChildren(heading,message,list);close.focus();
+    try{
+      const api=await getScene1341(),result=await api.expressions(id);
+      if(!panel.isConnected)return;
+      title.textContent=(result.scene?.name||id)+' · '+id;
+      if(result.status==='NOT_DELIVERED'){
+        message.textContent='此场景已列入Scene1341目录，但编辑推荐表达尚未交付；不会调用旧Scene500词池。';return;
+      }
+      message.textContent='场景英语表达 · 按原始rank排序 · 不计入KU学习及SRS';
+      let cursor=0;
+      const more=document.createElement('button');more.textContent='继续显示';more.style.cssText='margin:16px 0;padding:12px;border:1px solid #cbd5e1;border-radius:10px;background:#fff';
+      const append=()=>{
+        for(const item of result.rows.slice(cursor,cursor+40)){
+          const card=document.createElement('div');card.className='scene-result';card.style.cssText='display:block;padding:12px 0;border-bottom:1px solid #edf2f7';
+          const h=document.createElement('strong');h.textContent='#'+item.rank+'  '+item.expression;
+          const zh=document.createElement('p');zh.textContent=item.sense_zh;zh.style.margin='7px 0';
+          const meta=document.createElement('small');meta.textContent=item.tier+(item.dimension?' · '+item.dimension:'');
+          card.append(h,zh,meta);list.appendChild(card);
+        }
+        cursor+=40;more.hidden=cursor>=result.rows.length;
+      };
+      more.onclick=append;list.after(more);append();
+    }catch(e){message.textContent='加载失败：'+String(e.message||e);}
+  };
   window.continueScene500=function(scene,difficulty='all'){
     // An unfinished, saved KU queue takes priority over opening a new scene.
     // Do not require difficulty/scene metadata to match: older sessions lack it.
@@ -241,7 +292,7 @@
     let changed=false;
     for(const slot of root.querySelectorAll('.pai-count-slot[data-scene-id]')){
       const id=slot.getAttribute('data-scene-id');
-      const html=countHtml(inventory(id,ui().difficulty));
+      const html=countHtml(scene1341Mode?{candidateCount:scene1341Cache.get(id)?.sourceCount||0}:inventory(id,ui().difficulty));
       if(!html)continue; // Never replace a known snapshot value with empty data.
       const holder=document.createElement('span');holder.innerHTML=html;
       const next=holder.querySelector('.scene-result-count');
