@@ -1,0 +1,236 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-audit-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "scope": {
+    "scene_id": "SC50-0001",
+    "first_rank": 101,
+    "last_rank": 130,
+    "count": 30
+  },
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "head": "d0ccba4579e8c4118b776acfb3d19ae6f787fcce",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-101-130.v2.json",
+    "blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+    "upstream_v51_csv_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "fields_reviewed": [
+    "source expression and sense_zh",
+    "answer meaning_zh",
+    "English example",
+    "Chinese example translation",
+    "collocations",
+    "usage notes",
+    "scene applicability"
+  ],
+  "fields_excluded": [
+    "question",
+    "choices",
+    "automatic grading"
+  ],
+  "summary": {
+    "PASS": 27,
+    "CONDITIONAL": 3,
+    "total": 30,
+    "approved_for_release": 0
+  },
+  "verdicts": [
+    {
+      "scene_ku_id": "SC1341-KU-00101",
+      "source_sense_id": "SC-SENSE-00101",
+      "source_rank": 101,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00102",
+      "source_sense_id": "SC-SENSE-00102",
+      "source_rank": 102,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00103",
+      "source_sense_id": "SC-SENSE-00103",
+      "source_rank": 103,
+      "verdict": "CONDITIONAL",
+      "type": "SOURCE_GLOSS_NARROWING",
+      "reason": "get back into bed means return to bed, not necessarily lie down; the source gloss 重新躺回床上 presumes lying position. The example 'for another ten minutes' does not force lying.",
+      "recommendation": "Suggest source-meaning candidate 重新上床；回到床上, and explain may sit/lie; preserve original source pending CG-MASTER approval."
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00104",
+      "source_sense_id": "SC-SENSE-00104",
+      "source_rank": 104,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00105",
+      "source_sense_id": "SC-SENSE-00105",
+      "source_rank": 105,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00106",
+      "source_sense_id": "SC-SENSE-00106",
+      "source_rank": 106,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00107",
+      "source_sense_id": "SC-SENSE-00107",
+      "source_rank": 107,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00108",
+      "source_sense_id": "SC-SENSE-00108",
+      "source_rank": 108,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00109",
+      "source_sense_id": "SC-SENSE-00109",
+      "source_rank": 109,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00110",
+      "source_sense_id": "SC-SENSE-00110",
+      "source_rank": 110,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00111",
+      "source_sense_id": "SC-SENSE-00111",
+      "source_rank": 111,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00112",
+      "source_sense_id": "SC-SENSE-00112",
+      "source_rank": 112,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00113",
+      "source_sense_id": "SC-SENSE-00113",
+      "source_rank": 113,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00114",
+      "source_sense_id": "SC-SENSE-00114",
+      "source_rank": 114,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00115",
+      "source_sense_id": "SC-SENSE-00115",
+      "source_rank": 115,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00116",
+      "source_sense_id": "SC-SENSE-00116",
+      "source_rank": 116,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00117",
+      "source_sense_id": "SC-SENSE-00117",
+      "source_rank": 117,
+      "verdict": "CONDITIONAL",
+      "type": "COLLOCATION_NOT_TARGET",
+      "reason": "bedside lamp is a legitimate expression but is not a collocation with the target expression bedside table; current other collocation on the bedside table is accurate.",
+      "recommendation": "Replace bedside lamp with put something on the bedside table or keep a book on the bedside table."
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00118",
+      "source_sense_id": "SC-SENSE-00118",
+      "source_rank": 118,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00119",
+      "source_sense_id": "SC-SENSE-00119",
+      "source_rank": 119,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00120",
+      "source_sense_id": "SC-SENSE-00120",
+      "source_rank": 120,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00121",
+      "source_sense_id": "SC-SENSE-00121",
+      "source_rank": 121,
+      "verdict": "CONDITIONAL",
+      "type": "USAGE_NOTE_AMBIGUITY",
+      "reason": "Draw the curtains is commonly used to mean close curtains, while open the curtains is unambiguous for opening; teaching note 'may mean open or close' without typical reading may confuse learners.",
+      "recommendation": "State draw the curtains often means close them; in some usage context may indicate opening, so use open/close curtains for clarity."
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00122",
+      "source_sense_id": "SC-SENSE-00122",
+      "source_rank": 122,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00123",
+      "source_sense_id": "SC-SENSE-00123",
+      "source_rank": 123,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00124",
+      "source_sense_id": "SC-SENSE-00124",
+      "source_rank": 124,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00125",
+      "source_sense_id": "SC-SENSE-00125",
+      "source_rank": 125,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00126",
+      "source_sense_id": "SC-SENSE-00126",
+      "source_rank": 126,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00127",
+      "source_sense_id": "SC-SENSE-00127",
+      "source_rank": 127,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00128",
+      "source_sense_id": "SC-SENSE-00128",
+      "source_rank": 128,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00129",
+      "source_sense_id": "SC-SENSE-00129",
+      "source_rank": 129,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00130",
+      "source_sense_id": "SC-SENSE-00130",
+      "source_rank": 130,
+      "verdict": "PASS"
+    }
+  ],
+  "notes": [
+    "Independent language review based on actual author's answer-only v2 records, not a source rewrite.",
+    "CONDITIONAL concerns teaching naturalness/sense scope. Existing source meaning should only change under CG-MASTER approved patch.",
+    "No Core20K KU reuse; no production SRS write or activation.",
+    "Other 27 PASS rows had no material language/sense issue observed; this is CG-QA only, not dual-AI certification."
+  ]
+}
