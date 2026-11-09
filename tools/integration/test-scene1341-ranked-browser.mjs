@@ -7,7 +7,7 @@ assert.equal(batchForScene('SC50-0001'),51);
 assert.equal(batchForScene('SC50-0110'),61);
 assert.equal(batchForScene('SC50-0111'),null);
 assert.equal(batchForScene('S001'),null);
-assert.deepEqual(parseRankedCsv('a,b\n"x,y","z""q"\n'),[{'a':'x,y','b':'z"q'}]);
+assert.deepEqual(parseRankedCsv('scene_id,sense_zh\n"x,y","z""q"\n'),[{'scene_id':'x,y','sense_zh':'z"q'}]);
 assert.throws(()=>parseRankedCsv('a,b\n"x,y\n'),/UNCLOSED_QUOTE/);
 
 let calls=0;
