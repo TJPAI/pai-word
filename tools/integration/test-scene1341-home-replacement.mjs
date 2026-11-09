@@ -1,0 +1,43 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {createScene1341HomeCatalog,parseSceneCatalogCsv} from '../../rebuild-preview/scene1341-home-adapter.mjs';
+import {createRankedStore} from '../../rebuild-preview/scene1341-ranked-preview.mjs';
+
+const local=async(url)=>new Response(await fs.readFile(fileURLToPath(url)),{status:200});
+const ranked=createRankedStore({fetchImpl:local,base:new URL('./scene1341-ranked/',import.meta.url)});
+const adapter=createScene1341HomeCatalog({fetchImpl:local,ranked});
+const catalog=await adapter.initialize();
+assert.equal(catalog.scenes.length,1341);
+assert.equal(new Set(catalog.scenes.map(x=>x.id)).size,1341);
+assert.equal(catalog.scenes.filter(x=>x.recommendationStatus==='EDITORIAL_DELIVERED').length,110);
+assert.equal(catalog.scenes.filter(x=>x.recommendationStatus==='NOT_DELIVERED').length,1231);
+assert(catalog.scenes.every(x=>x.studyStatus==='KU_NOT_CONNECTED'));
+assert.equal(adapter.canCreateStudyQueue,false);
+assert.equal(adapter.canWriteSrs,false);
+assert.equal(adapter.releaseEligible,false);
+const results=await adapter.search('起床');
+assert(results.some(x=>x.id==='SC50-0001'));
+const first=await adapter.getScene('SC50-0001');
+assert.equal(first.sourceCount,234);
+const available=await adapter.expressions('SC50-0001');
+assert.equal(available.status,'EDITORIAL_DELIVERED_NOT_RUNTIME');
+assert.equal(available.rows.length,234);
+const notDelivered=await adapter.expressions('SC50-0111');
+assert.equal(notDelivered.status,'NOT_DELIVERED');
+assert.deepEqual(notDelivered.rows,[]);
+const oldId=await adapter.getScene('S001');
+assert.equal(oldId,null);
+const quoted=parseSceneCatalogCsv('id,revised_name,category,gate\nSC50-0001,"hello, ""world""",family,NOT_CERTIFIED\n');
+assert.equal(quoted[0].revised_name,'hello, "world"');
+
+const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
+assert(home.includes("get('scene1341')==='1'"));
+assert(home.includes('PAI_SCENE1341_OPEN'));
+assert(home.includes('PAI_SCENE1341_BROWSE'));
+assert(home.includes('scene1341-home-adapter.mjs'));
+assert(home.includes('href="rebuild-preview/index.html?scene1341=1"'));
+assert(home.includes("scene1341Mode?'PAI_SCENE1341_OPEN':'PAI_SCENE_SEARCH.open'"));
+assert(home.includes('Scene1341推荐表达与教学KU分层'));
+console.log(JSON.stringify({status:'PASS',catalog:1341,delivered:110,notDelivered:1231,firstSceneRows:234,
+  mode:'SAME_HOME_SCENE_CARDS',SRS:false,learningKU:false}));
