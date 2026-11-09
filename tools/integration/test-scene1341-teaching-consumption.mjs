@@ -52,7 +52,7 @@ assert.equal(createScene1341TeachingAdapter(unsafe).activationAllowed,false,'una
 const legacyRuntime=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
 for(const required of ['window.answerHtml=function(u)','u.s.m','u.s.c','u.s.e','u.s.x'])
  assert(legacyRuntime.includes(required),'answer renderer missing '+required);
-assert(legacyRuntime.includes("class=\"learning-screen"),'original learning shell missing');
+assert(legacyRuntime.includes('study-screen learning-screen'),'original learning shell missing');
 console.log(JSON.stringify({status:'PASS',sourceRows:2038,authorDraftKu:20,
  sceneIds:1,first20SourceIdentityVerified:true,legacyAnswerAdapter:true,
  nativeSingleChoiceQuestionUI:false,independentQaPass:0,playable:0,srsWrites:false}));
