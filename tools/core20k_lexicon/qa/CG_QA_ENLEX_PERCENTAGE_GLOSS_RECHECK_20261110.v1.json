@@ -1,0 +1,26 @@
+{
+  "schema": "cg-qa-enlex-v2-percentage-gloss-patch-recheck-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "source": {
+    "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V2_BILINGUAL_GLOSS_QA_RESPONSE_PATCH_20261110.json",
+    "blob": "373c96ecfc2c89d429ff273673516f4e28d38f8a",
+    "preceding_candidate_blob": "fdb6012c1bed60417bba8b58aa474f26d0bde94d",
+    "prior_cg_qa_blob": "93bacfec8ef0df87372d084dbc9d08baed79c3d6"
+  },
+  "record": {
+    "lemma": "percentage",
+    "rank": 1774,
+    "teaching_sense_id": "core20k:rank:1774::oewn-percentage__1.21.00..",
+    "original_frozen_zh": "百分比",
+    "superseded_candidate_zh": "资产；财产权益",
+    "revised_candidate_zh": "个人财产份额；财产中的权益份额",
+    "verdict": "CG_QA_LINGUISTIC_ACCEPT_CANDIDATE",
+    "reason": "修订译文保留个人财产权益/份额含义，比旧候选‘资产；财产权益’更准确传达该冻结义的权益范围；但其与headword percentage现代常用‘百分比’义不同，不可映射到数值百分比场景。",
+    "mapping_verdict": "HOLD_OR_REMOVE_WRONG_LINK_FOR_PERCENTAGE_NUMERIC_SCENE",
+    "release_approved": false
+  },
+  "scope_note": "This checks the revised translation candidate against supplied frozen-English interpretation only; the change is not applied to frozen shards and does not validate dictionary headword/Sense editorial identity against external upstream dictionary.",
+  "frozen_unchanged": true,
+  "master_unchanged": true
+}
