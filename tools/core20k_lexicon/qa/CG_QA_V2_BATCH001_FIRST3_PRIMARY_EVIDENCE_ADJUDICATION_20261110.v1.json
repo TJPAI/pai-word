@@ -1,0 +1,92 @@
+{
+  "schema": "cg-qa-batch001-first-three-dispute-primary-evidence-adjudication-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "scope": {
+    "frozen_file": "tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_01.jsonl",
+    "frozen_blob": "21f97312b4debab4b662f41939cac29a091d89b9",
+    "row_numbers": [
+      366,
+      369,
+      374
+    ],
+    "freeze": "V2-INTEGRATION-FROZEN-2026-11-02"
+  },
+  "sources": {
+    "original_cg_qa": {
+      "path": "tools/core20k_lexicon/qa/CG_QA_V2_SENSE_BATCH001_ROWS366_465_20261105.v1.json",
+      "blob": "76fbcbf7666bfec0d3c3d5a1ec506ad6bd4b6991"
+    },
+    "original_cg_qa_reconciliation": {
+      "path": "tools/core20k_lexicon/qa/CG_QA_V2_DUAL_AI_BATCH001_ROWS366_465_RECON_20261109.v1.json",
+      "blob": "5f7966efa5e96100b8a6cf08787a7e9aef8373e9"
+    },
+    "mu_qa_nonblind_reassessment": {
+      "drive_file_id": "1MoTRR1Mqc0yR1GcSSvu8qmsVyx4cm_Z_",
+      "sha256": "86b8eaf746644cc6ca1ec19c8874dd401b5839e59cf6247b6e9ccfa1be7c1820",
+      "issue_comment": "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6747765448",
+      "oewn_assertions": "OEWN 2025 synset membership and gloss, reported by MU-QA; source independently not retrieved by CG-QA in this pass"
+    }
+  },
+  "summary": {
+    "reexamined": 3,
+    "identity_hold_substantively_resolved": 1,
+    "translation_conditional_retained": 2,
+    "ku_revise_retained": 3,
+    "official_certifications": 0
+  },
+  "finding": "MU-QA asserted CG-QA did not explain the conditions for rows369/374, but the original dated CG-QA JSON explicitly contains reasons and suggested fixes. Later compact reconciliation omitted the detailed reasoning; adjudicate using original rather than the abbreviated ledger.",
+  "records": [
+    {
+      "row": 366,
+      "lemma": "first",
+      "original_cg_verdict": "HOLD",
+      "original_cg_reason": "first作为名词对应英文定义'the time at which something is supposed to begin'，高度疑似混入start义项，须复核来源synset与词头身份",
+      "original_cg_fix": "核对原始OEWN同义词集；若为start而非first的合法成员，纠正映射而非仅改中文",
+      "original_sense_id": "core20k:rank:116::oewn-first__1.28.00..",
+      "mu_recon_sense_verdict": "PASS",
+      "identity_resolution": "OEWN synset oewn-15290329-n includes first and start as members; no evidence of misassigned lemma.",
+      "decision": "SOURCE_IDENTITY_HOLD_RESOLVED_PASS_CANDIDATE",
+      "source_gloss_change_required": false,
+      "ku_status": "REVISE_QUESTION_AMBIGUOUS",
+      "ku_competitors": "start, beginning",
+      "reason": "CG-HOLD was solely about whether first is a valid synset member; MU-QA's synset member evidence resolves that particular question, but source corroboration is nonblind and cannot imply release.",
+      "next": "CG-MASTER confirm exact frozen sense mapping and admit Sense PASS candidate; keep KU REVISE and require new unambiguous prompt."
+    },
+    {
+      "row": 369,
+      "lemma": "first",
+      "original_cg_verdict": "CONDITIONAL",
+      "original_cg_reason": "prominently forward对应空间领先位置，现译'突出地向前'易误导为运动方向",
+      "original_cg_fix": "按例句改为'处于最前面；领先地'",
+      "original_sense_id": "core20k:rank:116::oewn-first__4.02.01..",
+      "mu_recon_sense_verdict": "PASS",
+      "identity_resolution": "OEWN oewn-00256094-r includes first and foremost.",
+      "decision": "RETAIN_CG_CONDITIONAL_TRANSLATION",
+      "source_gloss_change_required": true,
+      "recommended_zh": "位于最前面地；处于领先位置地（结合真实用例自然改写）",
+      "ku_status": "REVISE_QUESTION_AMBIGUOUS",
+      "ku_competitors": "forward",
+      "reason": "Original CG-QA audit specifically criticized ‘突出地向前’ as suggesting motion direction rather than prominent front position. MU-QA mistakenly said CG had not supplied any condition.",
+      "next": "CG-ENLEX and CG-MASTER fix Chinese gloss and verify collocation/context; CU and MU-QA recheck. KU is separate."
+    },
+    {
+      "row": 374,
+      "lemma": "first",
+      "original_cg_verdict": "CONDITIONAL",
+      "original_cg_reason": "形容词opening义，现中文'用于启动；起始作用的'不符合形容词表达",
+      "original_cg_fix": "改为'开场的；起始的'，补搭配",
+      "original_sense_id": "core20k:rank:116::oewn-first__5.00.02.opening.00",
+      "mu_recon_sense_verdict": "PASS",
+      "identity_resolution": "OEWN oewn-01012940-s has first, inaugural, initiative, initiatory, maiden; head opening.",
+      "decision": "RETAIN_CG_CONDITIONAL_TRANSLATION",
+      "source_gloss_change_required": true,
+      "recommended_zh": "开场的；首次的；起始的（具体搭配决定用词）",
+      "ku_status": "REVISE_QUESTION_AMBIGUOUS",
+      "ku_competitors": "initial, start",
+      "reason": "Original CG-QA specifically criticized ‘用于启动；起始作用的’ for adjectival teaching and requested ‘开场的；起始的’ with collocations. MU-QA claim that CG lacked specific conditions is contradicted by source.",
+      "next": "CG-ENLEX and CG-MASTER refine adjectival gloss and examples; KU remains revise."
+    }
+  ],
+  "policy": "This is evidence-based adjudication proposal on isolated QA branch only. No old verdict overwritten, no frozen lexicon edits, no KU PASS and no Runtime activation. Formal dual-AI certification still requires approved workflow."
+}
