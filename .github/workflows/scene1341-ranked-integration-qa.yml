@@ -1,0 +1,31 @@
+name: Scene1341 ranked V51–V61 integration QA
+on:
+  push:
+    branches:
+      - cg-main-fourline-integration-20261026
+    paths:
+      - 'tools/integration/scene1341-ranked/**'
+      - 'tools/integration/validate-scene1341-ranked.py'
+      - 'rebuild-preview/scene1341-ranked-**'
+      - '.github/workflows/scene1341-ranked-integration-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-and-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify 11 source Git blobs and 19371 ranked expressions
+        run: python tools/integration/validate-scene1341-ranked.py
+      - name: Validate Safari-safe isolated preview module
+        run: |
+          node --check rebuild-preview/scene1341-ranked-preview.mjs
+          node tools/integration/test-scene1341-ranked-browser.mjs
