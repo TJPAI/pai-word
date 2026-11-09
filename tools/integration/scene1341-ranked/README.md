@@ -10,8 +10,8 @@
 - `manifest.json`: Drive IDs, Git blob SHA-1 identities, sizes, counts, release flags
 - `index.json`: compact 110-scene / count index for browser first paint
 - `../validate-scene1341-ranked.py`: standard-library content gate, covering 11 blob identities, every rank, unique IDs, nonempty English and Chinese meanings, source tier preservation, 110 scene coverage and index consistency
-- `../../rebuild-preview/scene1341-ranked-preview.html`: **isolated** iPhone-friendly UI for scene search, tier filtering, ranked browsing and voluntary 11-batch Cache Storage warmup
-- `../../rebuild-preview/scene1341-ranked-preview.mjs`: on-demand per-ten-scene CSV fetch with original Git SHA-1 check (Git blob format)
+- `../../../rebuild-preview/scene1341-ranked-preview.html`: **isolated** iPhone-friendly UI for scene search, tier filtering, ranked browsing and voluntary 11-batch Cache Storage warmup
+- `../../../rebuild-preview/scene1341-ranked-preview.mjs`: on-demand per-ten-scene CSV fetch with original Git SHA-1 check (Git blob format)
 - `../test-scene1341-ranked-browser.mjs`: Node regression including simulated offline usage after caching
 
 ## Source differences
