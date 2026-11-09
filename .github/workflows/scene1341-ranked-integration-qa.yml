@@ -6,6 +6,7 @@ on:
     paths:
       - 'tools/integration/scene1341-ranked/**'
       - 'tools/integration/validate-scene1341-ranked.py'
+      - 'tools/integration/test-scene1341-ranked-browser.mjs'
       - 'rebuild-preview/scene1341-ranked-**'
       - '.github/workflows/scene1341-ranked-integration-qa.yml'
   workflow_dispatch:
@@ -28,4 +29,5 @@ jobs:
       - name: Validate Safari-safe isolated preview module
         run: |
           node --check rebuild-preview/scene1341-ranked-preview.mjs
+          node --check rebuild-preview/scene1341-ranked-ui.mjs
           node tools/integration/test-scene1341-ranked-browser.mjs
