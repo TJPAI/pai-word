@@ -1,0 +1,447 @@
+{
+  "schema": "cg-qa-v17-enlex-drop40-crossline-dispute-v1",
+  "date": "2026-11-10",
+  "source": {
+    "enlex_branch": "experiment/enlex-v3-production-rebuild-20261030",
+    "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V17_DROP40_SEMANTIC_REVIEW_CANDIDATES_20261110.json",
+    "enlex_blob": "5335ec2da98dd8d7b6e59aeb933e880515c2bea8",
+    "qa_branch": "cg-qa-enlex-review-20261026",
+    "qa_report_blobs": [
+      "55bbb7882694dc0f871ffd523207cca3915a01d9",
+      "6d6ec97b6be01768dc1d23780608b0a0794dda7a"
+    ]
+  },
+  "summary": {
+    "items_checked": 40,
+    "agree_remove": 30,
+    "agree_hold": 2,
+    "disagreements": 8,
+    "disagreement_record_ids": [
+      "CMR1-622611e3aa67dc5f84161530f0c31b7c",
+      "CMR1-3c3e834ef9613168f450aca55f642fbf",
+      "CMR1-e3e61d875c4ad7812a0bc3239821f877",
+      "CMR1-0161c3e4ef878e92a39123574fbf5dd4",
+      "CMR1-a267c3c552de3b80ff005434613e69c9",
+      "CMR1-f9adb6c129df27f8e7e0e00f7fe3df93",
+      "CMR1-51b669744169dff422207413427ffb5e",
+      "CMR1-65f8bfc1c9fb46a81374fe9b7578fdb7"
+    ],
+    "master_patch_approved": 0
+  },
+  "disagreements": [
+    {
+      "record_id": "CMR1-622611e3aa67dc5f84161530f0c31b7c",
+      "scene_id": "SC50-0420",
+      "expression": "embryo",
+      "source_teaching_sense_id": "core20k:rank:2784::oewn-embryo__1.20.00..",
+      "source_pos": "n",
+      "source_definition_en": "(botany) a minute rudimentary plant contained within a seed or an archegonium",
+      "target_gloss_zh": "胚胎",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结限定植物胚，目标中文未显示动物/植物范围，需确认。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "确认实际场景是否生殖医学/人体胚或植物胚，不能仅从中文‘胚胎’推定。"
+    },
+    {
+      "record_id": "CMR1-3c3e834ef9613168f450aca55f642fbf",
+      "scene_id": "SC50-0453",
+      "expression": "unease",
+      "source_teaching_sense_id": "core20k:rank:9905::oewn-unease__1.26.00..",
+      "source_pos": "n",
+      "source_definition_en": "physical discomfort (as mild sickness or depression)",
+      "target_gloss_zh": "不安",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结强调身体轻微不适，中文‘不安’通常是心理不适，需场景。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "查询使用例句是否为心理上的不安、担忧还是身体不适。"
+    },
+    {
+      "record_id": "CMR1-e3e61d875c4ad7812a0bc3239821f877",
+      "scene_id": "SC50-0469",
+      "expression": "girlfriend",
+      "source_teaching_sense_id": "core20k:rank:6028::oewn-girlfriend__1.18.01..",
+      "source_pos": "n",
+      "source_definition_en": "any female friend",
+      "target_gloss_zh": "女朋友",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结为女性朋友，中文‘女朋友’可能是恋爱伴侣也可能是女性朋友。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "查原场景是否恋爱伴侣；女性朋友这一冻结义未必错。"
+    },
+    {
+      "record_id": "CMR1-0161c3e4ef878e92a39123574fbf5dd4",
+      "scene_id": "SC50-0614",
+      "expression": "tragedy",
+      "source_teaching_sense_id": "core20k:rank:3391::oewn-tragedy__1.11.00..",
+      "source_pos": "n",
+      "source_definition_en": "an event resulting in great loss and misfortune",
+      "target_gloss_zh": "悲剧",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结为悲惨事件，‘悲剧’也可能指戏剧作品。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "确认是戏剧作品还是不幸事件；两者都可被译为‘悲剧’。"
+    },
+    {
+      "record_id": "CMR1-a267c3c552de3b80ff005434613e69c9",
+      "scene_id": "SC50-0685",
+      "expression": "defect",
+      "source_teaching_sense_id": "core20k:rank:3508::oewn-defect__1.26.01..",
+      "source_pos": "n",
+      "source_definition_en": "an imperfection in a bodily system",
+      "target_gloss_zh": "缺陷",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结为身体器官缺陷，不自动覆盖工业产品缺陷。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "核对是工程产品缺陷还是生理/器官缺陷。"
+    },
+    {
+      "record_id": "CMR1-f9adb6c129df27f8e7e0e00f7fe3df93",
+      "scene_id": "SC50-0702",
+      "expression": "ammonia",
+      "source_teaching_sense_id": "core20k:rank:5891::oewn-ammonia__1.27.01..",
+      "source_pos": "n",
+      "source_definition_en": "a water solution of ammonia",
+      "target_gloss_zh": "氨",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结义是氨水溶液，目标‘氨’可能是化学单质/气体，也可能指实验用氨水。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "核对氨气/化学物质与氨水溶液的具体教学语境。"
+    },
+    {
+      "record_id": "CMR1-51b669744169dff422207413427ffb5e",
+      "scene_id": "SC50-0741",
+      "expression": "embryo",
+      "source_teaching_sense_id": "core20k:rank:2784::oewn-embryo__1.20.00..",
+      "source_pos": "n",
+      "source_definition_en": "(botany) a minute rudimentary plant contained within a seed or an archegonium",
+      "target_gloss_zh": "胚胎",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结限定植物胚，目标中文未显示动物/植物范围，需确认。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "确认实际场景是否生殖医学/人体胚或植物胚，不能仅从中文‘胚胎’推定。"
+    },
+    {
+      "record_id": "CMR1-65f8bfc1c9fb46a81374fe9b7578fdb7",
+      "scene_id": "SC50-0757",
+      "expression": "embryo",
+      "source_teaching_sense_id": "core20k:rank:2784::oewn-embryo__1.20.00..",
+      "source_pos": "n",
+      "source_definition_en": "(botany) a minute rudimentary plant contained within a seed or an archegonium",
+      "target_gloss_zh": "胚胎",
+      "source_editorial_verdict": "DROP",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false,
+      "prior_cg_qa_reason": "冻结限定植物胚，目标中文未显示动物/植物范围，需确认。",
+      "final_action": "NO_AUTOMATIC_PATCH",
+      "evidence_needed": "确认实际场景是否生殖医学/人体胚或植物胚，不能仅从中文‘胚胎’推定。"
+    }
+  ],
+  "all_40_alignment": [
+    {
+      "record_id": "CMR1-d82a1207ba46cfee61d5e1647c6ee201",
+      "scene_id": "SC50-0011",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-38ddd6991e5299060e11e4afdaefaa97",
+      "scene_id": "SC50-0014",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-a84dfb1633d7eb183f28b9ad61c168bd",
+      "scene_id": "SC50-0034",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-f2bb120fd2a97266623721a0fc9a2620",
+      "scene_id": "SC50-0040",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-b6b781872d7156d2a8140d999fe78e92",
+      "scene_id": "SC50-0047",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-adb5f920dc79d0fc2e99db7e8401c81b",
+      "scene_id": "SC50-0069",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-b2cef48ff774a8dc43fa67e7397ce30d",
+      "scene_id": "SC50-0078",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-c189893a931c87d46d746da32ee1345e",
+      "scene_id": "SC50-0085",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-12dc563b0db1a55642cab5d8dcbba5f2",
+      "scene_id": "SC50-0086",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-c281b9b515dc8874ac769dd96c9241b1",
+      "scene_id": "SC50-0113",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-d018f24d036d4ea3bbce663d35186ae3",
+      "scene_id": "SC50-0130",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-50b7a4778c1109590b1b4f3ab84250be",
+      "scene_id": "SC50-0141",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-9122d08359afb2cbcbf14256e0c54f95",
+      "scene_id": "SC50-0180",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-59bc453cac44430e729d521c3487e506",
+      "scene_id": "SC50-0195",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-813725fa566cdd70d9f2e7c97ae3b4ec",
+      "scene_id": "SC50-0395",
+      "enlex_proposal": "HOLD_CONTEXTUAL_EXTENSION",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-84bf54e55326e976c7f079d62172084f",
+      "scene_id": "SC50-0397",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-4cc5235a68d2ad07b65f76b94ba9c340",
+      "scene_id": "SC50-0397",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-622611e3aa67dc5f84161530f0c31b7c",
+      "scene_id": "SC50-0420",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-3c3e834ef9613168f450aca55f642fbf",
+      "scene_id": "SC50-0453",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-e3e61d875c4ad7812a0bc3239821f877",
+      "scene_id": "SC50-0469",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-80588d8c9ee199b8adaff1941b1fb91a",
+      "scene_id": "SC50-0546",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-6df241ed3d40e9020a772f37f9c20e00",
+      "scene_id": "SC50-0552",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-2410e16ab61a1022d48af5509cb3de1c",
+      "scene_id": "SC50-0567",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-c30ac4e5963d1e6c42027cdd0cc44651",
+      "scene_id": "SC50-0586",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-b1a10a3566f51bc3d53854c933a03213",
+      "scene_id": "SC50-0588",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-40b047a673a590529a0814e00172210f",
+      "scene_id": "SC50-0590",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-0161c3e4ef878e92a39123574fbf5dd4",
+      "scene_id": "SC50-0614",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-12d258199f9ddd812ece9eb0149eba43",
+      "scene_id": "SC50-0627",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-204466e91de7ffd9bbe3d026d6274495",
+      "scene_id": "SC50-0631",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-f6bd8f0456e28c3d6ff3a4a08c4965e6",
+      "scene_id": "SC50-0638",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-a267c3c552de3b80ff005434613e69c9",
+      "scene_id": "SC50-0685",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-547953bb243b923403c16ff68ce723c3",
+      "scene_id": "SC50-0691",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-b4a16db630bdab61cd1246070f769048",
+      "scene_id": "SC50-0695",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-63bf8fd16f1f8cb18d5870c3d2be808b",
+      "scene_id": "SC50-0699",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-f9adb6c129df27f8e7e0e00f7fe3df93",
+      "scene_id": "SC50-0702",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-c4768441bcd9892b959060641384943c",
+      "scene_id": "SC50-0704",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-51b669744169dff422207413427ffb5e",
+      "scene_id": "SC50-0741",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-65f8bfc1c9fb46a81374fe9b7578fdb7",
+      "scene_id": "SC50-0757",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": false
+    },
+    {
+      "record_id": "CMR1-87517c8d5cbe5fa04245397227928185",
+      "scene_id": "SC50-0791",
+      "enlex_proposal": "HOLD_CONTEXTUAL_EXTENSION",
+      "prior_cg_qa_verdict": "HOLD_SCENE_CONTEXT_BEFORE_REMOVAL",
+      "agreement": true
+    },
+    {
+      "record_id": "CMR1-d193b69a7c277bb89e1d93d640e79af5",
+      "scene_id": "SC50-0802",
+      "enlex_proposal": "REMOVE_WRONG_LINK",
+      "prior_cg_qa_verdict": "CONFIRM_REMOVE_WRONG_LINK",
+      "agreement": true
+    }
+  ],
+  "resolution": "Disputed CMR1 mappings remain HOLD_PENDING_SCENE_EVIDENCE. CG-MASTER and MU-MASTER should inspect original scene context, authoritative queue, and source English definition before approving changes.",
+  "release_eligible": false,
+  "changed_frozen_source": false,
+  "changed_master": false
+}
