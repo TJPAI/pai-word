@@ -1,0 +1,644 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0002",
+    "ranks": "1-20",
+    "count": 20
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00235",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00235",
+      "source_rank": 1,
+      "expression": "wash",
+      "sense_zh": "洗；清洗（此处指清洗身体）",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "洗；清洗（此处指清洗身体）",
+        "example_en": "I wash my hands and face before breakfast.",
+        "example_zh": "早餐前我会洗手、洗脸。",
+        "collocations": [
+          "wash your hands",
+          "wash your face"
+        ],
+        "usage_note": "wash通常表示用水清洗；目标义为清洗身体部位。"
+      },
+      "display": {
+        "w": "wash",
+        "m": "洗；清洗（此处指清洗身体）",
+        "c": "wash your hands · wash your face",
+        "e": "I wash my hands and face before breakfast.",
+        "x": "wash通常表示用水清洗；目标义为清洗身体部位。",
+        "example_zh": "早餐前我会洗手、洗脸。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00236",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00236",
+      "source_rank": 2,
+      "expression": "rinse",
+      "sense_zh": "用水冲洗",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "用水冲洗",
+        "example_en": "Rinse the soap off your hands with clean water.",
+        "example_zh": "用清水把手上的肥皂冲掉。",
+        "collocations": [
+          "rinse with water",
+          "rinse off the soap"
+        ],
+        "usage_note": "rinse侧重用水冲去泡沫或残留物；wash更泛指清洗。"
+      },
+      "display": {
+        "w": "rinse",
+        "m": "用水冲洗",
+        "c": "rinse with water · rinse off the soap",
+        "e": "Rinse the soap off your hands with clean water.",
+        "x": "rinse侧重用水冲去泡沫或残留物；wash更泛指清洗。",
+        "example_zh": "用清水把手上的肥皂冲掉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00237",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00237",
+      "source_rank": 3,
+      "expression": "sink",
+      "sense_zh": "洗手池",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "洗手池",
+        "example_en": "There's a toothbrush beside the sink.",
+        "example_zh": "洗手池旁边放着一把牙刷。",
+        "collocations": [
+          "bathroom sink",
+          "wash your hands at the sink"
+        ],
+        "usage_note": "sink是洗手池或水槽；厨房也可以有sink。"
+      },
+      "display": {
+        "w": "sink",
+        "m": "洗手池",
+        "c": "bathroom sink · wash your hands at the sink",
+        "e": "There's a toothbrush beside the sink.",
+        "x": "sink是洗手池或水槽；厨房也可以有sink。",
+        "example_zh": "洗手池旁边放着一把牙刷。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00238",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00238",
+      "source_rank": 4,
+      "expression": "soap",
+      "sense_zh": "肥皂",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "肥皂",
+        "example_en": "This soap is gentle on my skin.",
+        "example_zh": "这种肥皂对我的皮肤很温和。",
+        "collocations": [
+          "bar of soap",
+          "wash with soap"
+        ],
+        "usage_note": "soap在物质意义上多不可数，一块肥皂常说a bar of soap。"
+      },
+      "display": {
+        "w": "soap",
+        "m": "肥皂",
+        "c": "bar of soap · wash with soap",
+        "e": "This soap is gentle on my skin.",
+        "x": "soap在物质意义上多不可数，一块肥皂常说a bar of soap。",
+        "example_zh": "这种肥皂对我的皮肤很温和。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00239",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00239",
+      "source_rank": 5,
+      "expression": "shower gel",
+      "sense_zh": "沐浴啫喱",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "沐浴啫喱",
+        "example_en": "I keep the shower gel on the shelf in the shower.",
+        "example_zh": "我把沐浴露放在淋浴间的架子上。",
+        "collocations": [
+          "use shower gel",
+          "a bottle of shower gel"
+        ],
+        "usage_note": "shower gel用于洗澡；body wash是相近的常用说法。"
+      },
+      "display": {
+        "w": "shower gel",
+        "m": "沐浴啫喱",
+        "c": "use shower gel · a bottle of shower gel",
+        "e": "I keep the shower gel on the shelf in the shower.",
+        "x": "shower gel用于洗澡；body wash是相近的常用说法。",
+        "example_zh": "我把沐浴露放在淋浴间的架子上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00240",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00240",
+      "source_rank": 6,
+      "expression": "towel",
+      "sense_zh": "毛巾",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "毛巾",
+        "example_en": "Could you hand me a clean towel?",
+        "example_zh": "你能递给我一条干净的毛巾吗？",
+        "collocations": [
+          "clean towel",
+          "dry yourself with a towel"
+        ],
+        "usage_note": "towel是可数名词；bath towel通常比hand towel大。"
+      },
+      "display": {
+        "w": "towel",
+        "m": "毛巾",
+        "c": "clean towel · dry yourself with a towel",
+        "e": "Could you hand me a clean towel?",
+        "x": "towel是可数名词；bath towel通常比hand towel大。",
+        "example_zh": "你能递给我一条干净的毛巾吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00241",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00241",
+      "source_rank": 7,
+      "expression": "shower curtain",
+      "sense_zh": "浴帘",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "浴帘",
+        "example_en": "Pull the shower curtain closed before turning on the water.",
+        "example_zh": "开水前先把浴帘拉好。",
+        "collocations": [
+          "close the shower curtain",
+          "pull back the shower curtain"
+        ],
+        "usage_note": "shower curtain是浴帘，用来挡住淋浴时溅出的水。"
+      },
+      "display": {
+        "w": "shower curtain",
+        "m": "浴帘",
+        "c": "close the shower curtain · pull back the shower curtain",
+        "e": "Pull the shower curtain closed before turning on the water.",
+        "x": "shower curtain是浴帘，用来挡住淋浴时溅出的水。",
+        "example_zh": "开水前先把浴帘拉好。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00242",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00242",
+      "source_rank": 8,
+      "expression": "toothbrush",
+      "sense_zh": "牙刷",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "牙刷",
+        "example_en": "I replace my toothbrush when the bristles start to fray.",
+        "example_zh": "牙刷毛开始散开时，我就换牙刷。",
+        "collocations": [
+          "soft toothbrush",
+          "replace your toothbrush"
+        ],
+        "usage_note": "toothbrush是牙刷；toothbrush bristles指刷毛。"
+      },
+      "display": {
+        "w": "toothbrush",
+        "m": "牙刷",
+        "c": "soft toothbrush · replace your toothbrush",
+        "e": "I replace my toothbrush when the bristles start to fray.",
+        "x": "toothbrush是牙刷；toothbrush bristles指刷毛。",
+        "example_zh": "牙刷毛开始散开时，我就换牙刷。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00243",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00243",
+      "source_rank": 9,
+      "expression": "toothpaste",
+      "sense_zh": "牙膏",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "牙膏",
+        "example_en": "I need to buy another tube of toothpaste.",
+        "example_zh": "我需要再买一支牙膏。",
+        "collocations": [
+          "tube of toothpaste",
+          "use fluoride toothpaste"
+        ],
+        "usage_note": "toothpaste通常不可数；一支牙膏说a tube of toothpaste。"
+      },
+      "display": {
+        "w": "toothpaste",
+        "m": "牙膏",
+        "c": "tube of toothpaste · use fluoride toothpaste",
+        "e": "I need to buy another tube of toothpaste.",
+        "x": "toothpaste通常不可数；一支牙膏说a tube of toothpaste。",
+        "example_zh": "我需要再买一支牙膏。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00244",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00244",
+      "source_rank": 10,
+      "expression": "floss",
+      "sense_zh": "牙线",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "牙线",
+        "example_en": "I keep dental floss in the bathroom cabinet.",
+        "example_zh": "我把牙线放在浴室柜里。",
+        "collocations": [
+          "dental floss",
+          "use floss"
+        ],
+        "usage_note": "floss作名词是牙线，也可作动词表示用牙线清洁牙齿。"
+      },
+      "display": {
+        "w": "floss",
+        "m": "牙线",
+        "c": "dental floss · use floss",
+        "e": "I keep dental floss in the bathroom cabinet.",
+        "x": "floss作名词是牙线，也可作动词表示用牙线清洁牙齿。",
+        "example_zh": "我把牙线放在浴室柜里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00245",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00245",
+      "source_rank": 11,
+      "expression": "floss pick",
+      "sense_zh": "牙线棒",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "牙线棒",
+        "example_en": "I use a floss pick when I'm traveling.",
+        "example_zh": "旅行时我会用牙线棒。",
+        "collocations": [
+          "use a floss pick",
+          "disposable floss picks"
+        ],
+        "usage_note": "floss pick是带手柄的牙线棒，与卷装牙线dental floss区别。"
+      },
+      "display": {
+        "w": "floss pick",
+        "m": "牙线棒",
+        "c": "use a floss pick · disposable floss picks",
+        "e": "I use a floss pick when I'm traveling.",
+        "x": "floss pick是带手柄的牙线棒，与卷装牙线dental floss区别。",
+        "example_zh": "旅行时我会用牙线棒。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00246",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00246",
+      "source_rank": 12,
+      "expression": "deodorant",
+      "sense_zh": "除臭剂；体香剂（不一定具有止汗作用）",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "除臭剂；体香剂（不一定具有止汗作用）",
+        "example_en": "I put on deodorant after my morning shower.",
+        "example_zh": "早晨淋浴后，我会涂体香剂。",
+        "collocations": [
+          "apply deodorant",
+          "roll-on deodorant"
+        ],
+        "usage_note": "deodorant主要减少体味；antiperspirant才是止汗剂，两者功能可重叠。"
+      },
+      "display": {
+        "w": "deodorant",
+        "m": "除臭剂；体香剂（不一定具有止汗作用）",
+        "c": "apply deodorant · roll-on deodorant",
+        "e": "I put on deodorant after my morning shower.",
+        "x": "deodorant主要减少体味；antiperspirant才是止汗剂，两者功能可重叠。",
+        "example_zh": "早晨淋浴后，我会涂体香剂。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00247",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00247",
+      "source_rank": 13,
+      "expression": "shampoo",
+      "sense_zh": "洗发水",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "洗发水",
+        "example_en": "I ran out of shampoo this morning.",
+        "example_zh": "今天早上我的洗发水用完了。",
+        "collocations": [
+          "use shampoo",
+          "a bottle of shampoo"
+        ],
+        "usage_note": "shampoo作产品名词通常不可数，也可作动词表示用洗发水洗头。"
+      },
+      "display": {
+        "w": "shampoo",
+        "m": "洗发水",
+        "c": "use shampoo · a bottle of shampoo",
+        "e": "I ran out of shampoo this morning.",
+        "x": "shampoo作产品名词通常不可数，也可作动词表示用洗发水洗头。",
+        "example_zh": "今天早上我的洗发水用完了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00248",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00248",
+      "source_rank": 14,
+      "expression": "conditioner",
+      "sense_zh": "护发素",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "护发素",
+        "example_en": "I put conditioner on the ends of my hair.",
+        "example_zh": "我把护发素抹在发梢上。",
+        "collocations": [
+          "apply conditioner",
+          "leave-in conditioner"
+        ],
+        "usage_note": "conditioner在此指护发素；leave-in conditioner指免冲洗护发产品。"
+      },
+      "display": {
+        "w": "conditioner",
+        "m": "护发素",
+        "c": "apply conditioner · leave-in conditioner",
+        "e": "I put conditioner on the ends of my hair.",
+        "x": "conditioner在此指护发素；leave-in conditioner指免冲洗护发产品。",
+        "example_zh": "我把护发素抹在发梢上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00249",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00249",
+      "source_rank": 15,
+      "expression": "brush your teeth",
+      "sense_zh": "刷牙",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "刷牙",
+        "example_en": "I brush my teeth after breakfast.",
+        "example_zh": "我吃完早饭后刷牙。",
+        "collocations": [
+          "brush your teeth",
+          "brush your teeth twice a day"
+        ],
+        "usage_note": "teeth是tooth的复数；通常说brush your teeth，不说wash your teeth。"
+      },
+      "display": {
+        "w": "brush your teeth",
+        "m": "刷牙",
+        "c": "brush your teeth · brush your teeth twice a day",
+        "e": "I brush my teeth after breakfast.",
+        "x": "teeth是tooth的复数；通常说brush your teeth，不说wash your teeth。",
+        "example_zh": "我吃完早饭后刷牙。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00250",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00250",
+      "source_rank": 16,
+      "expression": "rinse your mouth",
+      "sense_zh": "漱口",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "漱口",
+        "example_en": "I rinsed my mouth with water after brushing.",
+        "example_zh": "刷完牙后我用水漱了口。",
+        "collocations": [
+          "rinse your mouth",
+          "rinse your mouth with water"
+        ],
+        "usage_note": "rinse your mouth表示在口中含水后漱净，与rinse your face不同。"
+      },
+      "display": {
+        "w": "rinse your mouth",
+        "m": "漱口",
+        "c": "rinse your mouth · rinse your mouth with water",
+        "e": "I rinsed my mouth with water after brushing.",
+        "x": "rinse your mouth表示在口中含水后漱净，与rinse your face不同。",
+        "example_zh": "刷完牙后我用水漱了口。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00251",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00251",
+      "source_rank": 17,
+      "expression": "floss your teeth",
+      "sense_zh": "用牙线清洁牙缝",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "用牙线清洁牙缝",
+        "example_en": "I floss my teeth before going to bed.",
+        "example_zh": "睡前我用牙线清洁牙缝。",
+        "collocations": [
+          "floss your teeth",
+          "floss between your teeth"
+        ],
+        "usage_note": "floss作动词表示使用牙线，和brush your teeth动作不同。"
+      },
+      "display": {
+        "w": "floss your teeth",
+        "m": "用牙线清洁牙缝",
+        "c": "floss your teeth · floss between your teeth",
+        "e": "I floss my teeth before going to bed.",
+        "x": "floss作动词表示使用牙线，和brush your teeth动作不同。",
+        "example_zh": "睡前我用牙线清洁牙缝。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00252",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00252",
+      "source_rank": 18,
+      "expression": "wash your hands",
+      "sense_zh": "洗手",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "洗手",
+        "example_en": "Please wash your hands with soap before eating.",
+        "example_zh": "吃东西前请用肥皂洗手。",
+        "collocations": [
+          "wash your hands with soap",
+          "wash your hands thoroughly"
+        ],
+        "usage_note": "wash your hands表示用水洗手，常接with soap说明用品。"
+      },
+      "display": {
+        "w": "wash your hands",
+        "m": "洗手",
+        "c": "wash your hands with soap · wash your hands thoroughly",
+        "e": "Please wash your hands with soap before eating.",
+        "x": "wash your hands表示用水洗手，常接with soap说明用品。",
+        "example_zh": "吃东西前请用肥皂洗手。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00253",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00253",
+      "source_rank": 19,
+      "expression": "rinse off the soap",
+      "sense_zh": "冲掉肥皂",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "冲掉肥皂",
+        "example_en": "Make sure you rinse off the soap completely.",
+        "example_zh": "一定要把肥皂彻底冲干净。",
+        "collocations": [
+          "rinse off the soap",
+          "rinse the soap off"
+        ],
+        "usage_note": "rinse off可分开，代词置中：rinse it off。"
+      },
+      "display": {
+        "w": "rinse off the soap",
+        "m": "冲掉肥皂",
+        "c": "rinse off the soap · rinse the soap off",
+        "e": "Make sure you rinse off the soap completely.",
+        "x": "rinse off可分开，代词置中：rinse it off。",
+        "example_zh": "一定要把肥皂彻底冲干净。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00254",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00254",
+      "source_rank": 20,
+      "expression": "wash your face",
+      "sense_zh": "洗脸",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "洗脸",
+        "example_en": "I wash my face with lukewarm water in the morning.",
+        "example_zh": "我早上用温水洗脸。",
+        "collocations": [
+          "wash your face",
+          "wash your face with water"
+        ],
+        "usage_note": "wash your face是日常洗脸说法；lukewarm表示不烫的温水。"
+      },
+      "display": {
+        "w": "wash your face",
+        "m": "洗脸",
+        "c": "wash your face · wash your face with water",
+        "e": "I wash my face with lukewarm water in the morning.",
+        "x": "wash your face是日常洗脸说法；lukewarm表示不烫的温水。",
+        "example_zh": "我早上用温水洗脸。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
