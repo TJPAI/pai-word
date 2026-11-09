@@ -9,13 +9,14 @@ const packs=[
  'scene1341-v51-sc0001-answer-only-101-130.v2.json',
  'scene1341-v51-sc0001-answer-only-131-180.v2.json',
  'scene1341-v51-sc0001-answer-only-181-234.v2.json',
- 'scene1341-v51-sc0002-answer-only-001-020.v2.json'].map(p=>JSON.parse(fs.readFileSync(dir+p,'utf8')));
+ 'scene1341-v51-sc0002-answer-only-001-020.v2.json',
+ 'scene1341-v51-sc0002-answer-only-021-070.v2.json'].map(p=>JSON.parse(fs.readFileSync(dir+p,'utf8')));
 const items=packs.flatMap(x=>x.records),sourceBlob='eaa6d729bb04a9bedbafd8e1081a11fc791caa39';
-assert.equal(items.length,254);
+assert.equal(items.length,304);
 assert(items.every(r=>r.activation_allowed===false&&!Object.hasOwn(r,'question')));
 const decisions=createScene1341ReleaseIndex({items,sourceBlob,
  packBlobsByKu:{},manifest:null});
-assert.equal(decisions.count,254);assert.equal(decisions.approved,0);
+assert.equal(decisions.count,304);assert.equal(decisions.approved,0);
 for(const item of items){
  assert.equal(decisions.get(item.scene_ku_id).eligible,false);
  assert.equal(decisions.get(item.scene_ku_id).reason,'NO_APPROVED_MANIFEST');
