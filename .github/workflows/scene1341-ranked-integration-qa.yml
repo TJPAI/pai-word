@@ -12,6 +12,7 @@ on:
       - 'rebuild-preview/home-dashboard.js'
       - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
       - 'tools/integration/test-scene1341-ranked-service-worker.mjs'
+      - 'tools/integration/test-scene1341-ranked-pages-route.mjs'
       - '.github/workflows/scene1341-ranked-integration-qa.yml'
   workflow_dispatch:
 permissions:
@@ -38,3 +39,4 @@ jobs:
           node --check rebuild-preview/scene1341-ranked/sw.js
           node tools/integration/test-scene1341-ranked-offline-shell.mjs
           node tools/integration/test-scene1341-ranked-service-worker.mjs
+          node tools/integration/test-scene1341-ranked-pages-route.mjs
