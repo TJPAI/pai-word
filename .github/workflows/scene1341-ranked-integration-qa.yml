@@ -19,6 +19,8 @@ on:
       - 'tools/integration/test-scene1341-srs-v2.mjs'
       - 'rebuild-preview/scene1341-srs-indexeddb.mjs'
       - 'rebuild-preview/scene1341-release-gate.mjs'
+      - 'rebuild-preview/scene1341-study-session.mjs'
+      - 'tools/integration/test-scene1341-study-session.mjs'
       - 'tools/integration/test-scene1341-release-gate.mjs'
       - 'rebuild-preview/scene1341-study-preview.mjs'
       - 'tools/integration/test-scene1341-study-preview.mjs'
@@ -64,5 +66,7 @@ jobs:
           node tools/integration/test-scene1341-srs-indexeddb.mjs
           node --check rebuild-preview/scene1341-release-gate.mjs
           node tools/integration/test-scene1341-release-gate.mjs
+          node --check rebuild-preview/scene1341-study-session.mjs
+          node tools/integration/test-scene1341-study-session.mjs
           node --check rebuild-preview/scene1341-study-preview.mjs
           node tools/integration/test-scene1341-study-preview.mjs
