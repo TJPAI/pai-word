@@ -1,0 +1,105 @@
+{
+  "schema": "cg-qa-enlex-v2-frozen-sense-scope10-independent-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "source": {
+    "branch": "experiment/enlex-v3-production-rebuild-20261030",
+    "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V2_SCOPE_AMBIGUITY_10_CANDIDATES_20261110.json",
+    "blob_sha": "84449e53f44348f1cfa5f15d8870ebbb4e3403fa",
+    "frozen_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44"
+  },
+  "scope": "Independent linguistic scope review of ten existing frozen teaching_sense_id candidates against their described English definitions and target Scene1341 senses",
+  "summary": {
+    "reviewed": 10,
+    "hold_target_mapping": 10,
+    "approved_for_release": 0
+  },
+  "records": [
+    {
+      "lemma": "website",
+      "teaching_sense_id": "core20k:rank:432::oewn-website__1.10.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "当前冻结定义将website描述成托管网页的联网计算机/主机，而目标是可浏览的网站页面集合。主机与内容集合不是同一Sense；中文‘网站’若未说明主机，会产生过宽翻译风险。",
+      "recommendation": "不得直接绑定；核实原英文定义与站点义独立建立/版本化修订。",
+      "release_approved": false
+    },
+    {
+      "lemma": "menu",
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结为餐厅可选菜品的菜单；软件/电视中的操作选项列表属另一个习惯义项。词形相同不足以复用。",
+      "recommendation": "为UI菜单另建精确Sense候选，保留原餐饮Sense。",
+      "release_approved": false
+    },
+    {
+      "lemma": "television",
+      "teaching_sense_id": "core20k:rank:1877::oewn-television__1.06.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结定义强调电视图像传输系统；电视接收设备/具体节目语境并不必然由该系统义覆盖。",
+      "recommendation": "针对设备或节目分别匹配或增补Sense，不把系统义静默通用化。",
+      "release_approved": false
+    },
+    {
+      "lemma": "embryo",
+      "teaching_sense_id": "core20k:rank:2784::oewn-embryo__1.20.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "所给冻结英文定义限于植物胚；人体胚胎是不同生物学范围，现有中文‘胚胎’可能掩盖限定。",
+      "recommendation": "保留植物义并标注植物语境，人体义另行补充/映射。",
+      "release_approved": false
+    },
+    {
+      "lemma": "rebound",
+      "teaching_sense_id": "core20k:rank:4824::oewn-rebound__2.38.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "物理弹回到经济或趋势反弹存在合理隐喻关系，但当前冻结定义只承诺物理回弹；场景目标为经济指标不能仅凭比喻推定该教学Sense精确匹配。",
+      "recommendation": "候选新增经济走势‘回升/反弹’义项；如采用比喻扩展，需明确词义证据。",
+      "release_approved": false
+    },
+    {
+      "lemma": "girlfriend",
+      "teaching_sense_id": "core20k:rank:6028::oewn-girlfriend__1.18.01..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结女伴/女性朋友义不能自动指定恋爱伴侣；中文‘女朋友’本身有伴侣歧义，教学需区分亲密关系义。",
+      "recommendation": "源Sense中文细化为‘女性朋友’候选，恋爱伴侣义独立映射。",
+      "release_approved": false
+    },
+    {
+      "lemma": "overweight",
+      "teaching_sense_id": "core20k:rank:8329::oewn-overweight__5.00.00.fat.01",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结词义特指人身体肥胖/体重较大；行李超过免费重量限额是不同适用对象及语用框架。",
+      "recommendation": "行李超重场景需独立义项或符合行李用法的英语表达。",
+      "release_approved": false
+    },
+    {
+      "lemma": "quarantine",
+      "teaching_sense_id": "core20k:rank:8560::oewn-quarantine__1.26.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结义指传染病病人的隔离措施；入境旅客检疫和旅行隔离政策存在关联，但人群/法律政策范围较广，直接等同会误导。",
+      "recommendation": "依据具体旅行规则语境独立审核，如广义隔离需源证据确认。",
+      "release_approved": false
+    },
+    {
+      "lemma": "recycling",
+      "teaching_sense_id": "core20k:rank:16080::oewn-recycling__1.27.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结名词指待回收材料/再生材料，而场景目标是废物回收利用活动过程；材料与过程不是同一名词义项。",
+      "recommendation": "分别建立‘可回收材料’与‘回收处理过程’Sense；不自动转用。",
+      "release_approved": false
+    },
+    {
+      "lemma": "inhaler",
+      "teaching_sense_id": "core20k:rank:19941::oewn-inhaler__1.06.00..",
+      "verdict": "HOLD_TARGET_MAPPING",
+      "reason": "冻结定义限定鼻塞治疗用挥发性蒸气吸入装置；现代支气管给药的哮喘吸入器在设备机制和使用情境上不同。",
+      "recommendation": "区分鼻用吸入器与哮喘定量吸入器，需新Sense或经来源核实扩展。",
+      "release_approved": false
+    }
+  ],
+  "notes": [
+    "HOLD applies to target-scene mapping of the *specific frozen teaching_sense_id*, not deletion of the lemma from Master or rejection of the expression.",
+    "The frozen English scope is described by the submitted ENLEX evidence; source Sense definitions are not modified in this report.",
+    "No alternative frozen teaching_sense_id is invented. Broader lexical sense evidence or newly authored Scene1341 answer-only KU may be used via separate governance.",
+    "All judgments are CG-QA independent linguistic review; formal dual-AI certification and CG-MASTER acceptance not claimed."
+  ]
+}
