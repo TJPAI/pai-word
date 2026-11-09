@@ -1,0 +1,356 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-audit-v1",
+  "date": "2026-11-10",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "head": "31269a8697928268457ccb0fcf3dbf23cb4d90cb",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-131-180.v2.json",
+    "blob": "78a58e8cffb265f98550ff34289a961b0bee0e3c",
+    "v51_csv_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "scope": {
+    "scene_id": "SC50-0001",
+    "rank_start": 131,
+    "rank_end": 180
+  },
+  "reviewer": "CG-QA",
+  "reviewed_fields": [
+    "expression",
+    "source sense_zh",
+    "answer.meaning_zh",
+    "English example",
+    "Chinese translation",
+    "collocations",
+    "usage note",
+    "scene fit"
+  ],
+  "excluded_fields": [
+    "questions",
+    "multiple choice",
+    "automatic grading"
+  ],
+  "summary": {
+    "reviewed": 50,
+    "pass": 46,
+    "conditional": 3,
+    "revise": 1,
+    "hold": 0,
+    "publishable_approved": 0
+  },
+  "records": [
+    {
+      "source_rank": 131,
+      "scene_ku_id": "SC1341-KU-00131",
+      "source_sense_id": "SC-SENSE-00131",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 132,
+      "scene_ku_id": "SC1341-KU-00132",
+      "source_sense_id": "SC-SENSE-00132",
+      "verdict": "CONDITIONAL",
+      "reason": "'sit still'强调坐着不动，不必然等于'缓一会儿'（恢复精神/调整状态）。例句译为静静坐一会儿较准确，原中文source sense_zh有语义增补。",
+      "fix": "由CG-MASTER考虑源义候选‘坐着不动一会儿；静坐片刻’，答案中的用法说明保留不动义。"
+    },
+    {
+      "source_rank": 133,
+      "scene_ku_id": "SC1341-KU-00133",
+      "source_sense_id": "SC-SENSE-00133",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 134,
+      "scene_ku_id": "SC1341-KU-00134",
+      "source_sense_id": "SC-SENSE-00134",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 135,
+      "scene_ku_id": "SC1341-KU-00135",
+      "source_sense_id": "SC-SENSE-00135",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 136,
+      "scene_ku_id": "SC1341-KU-00136",
+      "source_sense_id": "SC-SENSE-00136",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 137,
+      "scene_ku_id": "SC1341-KU-00137",
+      "source_sense_id": "SC-SENSE-00137",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 138,
+      "scene_ku_id": "SC1341-KU-00138",
+      "source_sense_id": "SC-SENSE-00138",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 139,
+      "scene_ku_id": "SC1341-KU-00139",
+      "source_sense_id": "SC-SENSE-00139",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 140,
+      "scene_ku_id": "SC1341-KU-00140",
+      "source_sense_id": "SC-SENSE-00140",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 141,
+      "scene_ku_id": "SC1341-KU-00141",
+      "source_sense_id": "SC-SENSE-00141",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 142,
+      "scene_ku_id": "SC1341-KU-00142",
+      "source_sense_id": "SC-SENSE-00142",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 143,
+      "scene_ku_id": "SC1341-KU-00143",
+      "source_sense_id": "SC-SENSE-00143",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 144,
+      "scene_ku_id": "SC1341-KU-00144",
+      "source_sense_id": "SC-SENSE-00144",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 145,
+      "scene_ku_id": "SC1341-KU-00145",
+      "source_sense_id": "SC-SENSE-00145",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 146,
+      "scene_ku_id": "SC1341-KU-00146",
+      "source_sense_id": "SC-SENSE-00146",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 147,
+      "scene_ku_id": "SC1341-KU-00147",
+      "source_sense_id": "SC-SENSE-00147",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 148,
+      "scene_ku_id": "SC1341-KU-00148",
+      "source_sense_id": "SC-SENSE-00148",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 149,
+      "scene_ku_id": "SC1341-KU-00149",
+      "source_sense_id": "SC-SENSE-00149",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 150,
+      "scene_ku_id": "SC1341-KU-00150",
+      "source_sense_id": "SC-SENSE-00150",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 151,
+      "scene_ku_id": "SC1341-KU-00151",
+      "source_sense_id": "SC-SENSE-00151",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 152,
+      "scene_ku_id": "SC1341-KU-00152",
+      "source_sense_id": "SC-SENSE-00152",
+      "verdict": "CONDITIONAL",
+      "reason": "'grumpy'通常表示脾气不佳/易烦躁；源义‘起床气大、脾气不好的’虽有通用义，但例句‘before breakfast’被译为‘起床气’，早餐前的烦躁不必然由刚起床导致。",
+      "fix": "例句汉译改为‘吃早饭之前我总有点烦躁／脾气不好’，并将起床气作为特定语境而非必然含义。"
+    },
+    {
+      "source_rank": 153,
+      "scene_ku_id": "SC1341-KU-00153",
+      "source_sense_id": "SC-SENSE-00153",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 154,
+      "scene_ku_id": "SC1341-KU-00154",
+      "source_sense_id": "SC-SENSE-00154",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 155,
+      "scene_ku_id": "SC1341-KU-00155",
+      "source_sense_id": "SC-SENSE-00155",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 156,
+      "scene_ku_id": "SC1341-KU-00156",
+      "source_sense_id": "SC-SENSE-00156",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 157,
+      "scene_ku_id": "SC1341-KU-00157",
+      "source_sense_id": "SC-SENSE-00157",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 158,
+      "scene_ku_id": "SC1341-KU-00158",
+      "source_sense_id": "SC-SENSE-00158",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 159,
+      "scene_ku_id": "SC1341-KU-00159",
+      "source_sense_id": "SC-SENSE-00159",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 160,
+      "scene_ku_id": "SC1341-KU-00160",
+      "source_sense_id": "SC-SENSE-00160",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 161,
+      "scene_ku_id": "SC1341-KU-00161",
+      "source_sense_id": "SC-SENSE-00161",
+      "verdict": "CONDITIONAL",
+      "reason": "'feel like going back to bed'指想回床上，不必然要继续睡；源中文‘想回去继续睡’略窄，例句仅因冷而想回床上。",
+      "fix": "源义候选‘想回床上（继续躺着或睡）’，需CG-MASTER批准；若保留继续睡，例句需明确sleep。"
+    },
+    {
+      "source_rank": 162,
+      "scene_ku_id": "SC1341-KU-00162",
+      "source_sense_id": "SC-SENSE-00162",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 163,
+      "scene_ku_id": "SC1341-KU-00163",
+      "source_sense_id": "SC-SENSE-00163",
+      "verdict": "REVISE",
+      "reason": "'clear your head'常指清理杂念、整理思绪；中文源义‘让脑子清醒’可能被理解为唤醒睡意（与wake yourself up混同），而usage_note已指明排除杂念。",
+      "fix": "源中文建议‘清理思绪；让头脑清爽／理清思路’，例句汉译可为‘出去走了五分钟，让自己清清脑子’；向CG-MASTER申请源义修订。"
+    },
+    {
+      "source_rank": 164,
+      "scene_ku_id": "SC1341-KU-00164",
+      "source_sense_id": "SC-SENSE-00164",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 165,
+      "scene_ku_id": "SC1341-KU-00165",
+      "source_sense_id": "SC-SENSE-00165",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 166,
+      "scene_ku_id": "SC1341-KU-00166",
+      "source_sense_id": "SC-SENSE-00166",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 167,
+      "scene_ku_id": "SC1341-KU-00167",
+      "source_sense_id": "SC-SENSE-00167",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 168,
+      "scene_ku_id": "SC1341-KU-00168",
+      "source_sense_id": "SC-SENSE-00168",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 169,
+      "scene_ku_id": "SC1341-KU-00169",
+      "source_sense_id": "SC-SENSE-00169",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 170,
+      "scene_ku_id": "SC1341-KU-00170",
+      "source_sense_id": "SC-SENSE-00170",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 171,
+      "scene_ku_id": "SC1341-KU-00171",
+      "source_sense_id": "SC-SENSE-00171",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 172,
+      "scene_ku_id": "SC1341-KU-00172",
+      "source_sense_id": "SC-SENSE-00172",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 173,
+      "scene_ku_id": "SC1341-KU-00173",
+      "source_sense_id": "SC-SENSE-00173",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 174,
+      "scene_ku_id": "SC1341-KU-00174",
+      "source_sense_id": "SC-SENSE-00174",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 175,
+      "scene_ku_id": "SC1341-KU-00175",
+      "source_sense_id": "SC-SENSE-00175",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 176,
+      "scene_ku_id": "SC1341-KU-00176",
+      "source_sense_id": "SC-SENSE-00176",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 177,
+      "scene_ku_id": "SC1341-KU-00177",
+      "source_sense_id": "SC-SENSE-00177",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 178,
+      "scene_ku_id": "SC1341-KU-00178",
+      "source_sense_id": "SC-SENSE-00178",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 179,
+      "scene_ku_id": "SC1341-KU-00179",
+      "source_sense_id": "SC-SENSE-00179",
+      "verdict": "PASS"
+    },
+    {
+      "source_rank": 180,
+      "scene_ku_id": "SC1341-KU-00180",
+      "source_sense_id": "SC-SENSE-00180",
+      "verdict": "PASS"
+    }
+  ],
+  "notes": [
+    "PASS is CG-side independent language review only. Not dual-AI formal certification.",
+    "Some flagged source gloss modifications require CG-MASTER authorization; untouched frozen source and teaching package.",
+    "No SRS activation, Runtime or Master modification."
+  ]
+}
