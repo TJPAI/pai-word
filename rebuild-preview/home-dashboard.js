@@ -261,10 +261,10 @@
         message.textContent='此场景已列入Scene1341目录，但编辑推荐表达尚未交付；不会调用旧Scene500词池。';return;
       }
       message.textContent='场景英语表达 · 按原始rank排序 · 不计入KU学习及SRS';
-      if(id==='SC50-0001'){
+      if(id==='SC50-0001'||id==='SC50-0002'){
         const preview=document.createElement('button');
         preview.type='button';
-        preview.textContent='预览前130条答案型词卡（只读审核）';
+        preview.textContent=id==='SC50-0001'?'预览234条答案型词卡（只读审核）':'预览20条答案型词卡（只读审核）';
         preview.style.cssText='padding:11px 14px;border:1px solid #a8b9ca;border-radius:10px;background:#f7fafc;color:#243347;margin:8px 0';
         preview.addEventListener('click',async()=>{
           preview.disabled=true;
