@@ -16,7 +16,11 @@ export function evaluateScene1341Release({item,manifest,sourceBlob,packBlob}={})
      manifest.master_release_status!=='APPROVED')
     return denied('MASTER_NOT_APPROVED_OR_SOURCE_MISMATCH');
   if(manifest.production_approved!==true)return denied('RELEASE_NOT_APPROVED');
-  const entry=(Array.isArray(manifest.entries)?manifest.entries:[]).find(x=>x.scene_ku_id===item.scene_ku_id);
+  // An ambiguous or duplicated approval must never be resolved by array order.
+  if(!Array.isArray(manifest.entries))return denied('KU_NOT_APPROVED');
+  const matches=manifest.entries.filter(x=>x?.scene_ku_id===item.scene_ku_id);
+  if(matches.length>1)return denied('DUPLICATE_KU_APPROVAL');
+  const entry=matches[0];
   if(!entry)return denied('KU_NOT_APPROVED');
   if(entry.scene_id!==item.scene_id||entry.source_sense_id!==item.source_sense_id||
      Number(entry.source_rank)!==item.source_rank||entry.pack_git_blob!==packBlob)
