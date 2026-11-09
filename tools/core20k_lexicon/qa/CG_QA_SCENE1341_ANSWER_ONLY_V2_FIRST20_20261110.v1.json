@@ -1,0 +1,170 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-semantic-audit-v1",
+  "date": "2026-11-10",
+  "scope": "SC50-0001 source ranks 1-20, answer-only V2",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "answer-enrichment-main-dev-20261026",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-001-020.v2.json",
+    "git_blob_sha": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+    "v51_source_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+  },
+  "reviewer": "CG-QA",
+  "independent_review": "CG-side direct reading of original answer content; Muse's prior opinion not used as a verdict source",
+  "fields_reviewed": [
+    "expression",
+    "sense_zh",
+    "answer.meaning_zh",
+    "answer.example_en",
+    "answer.example_zh",
+    "answer.collocations",
+    "answer.usage_note",
+    "answer.contrast_note",
+    "source scene suitability"
+  ],
+  "not_scored": [
+    "question",
+    "choice",
+    "correct_choice_id",
+    "automatic grading"
+  ],
+  "summary": {
+    "reviewed": 20,
+    "pass": 19,
+    "revise": 1,
+    "hold": 0,
+    "language_pass_only": 19,
+    "production_activated": 0
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00001",
+      "source_sense_id": "SC-SENSE-00001",
+      "source_rank": 1,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00002",
+      "source_sense_id": "SC-SENSE-00002",
+      "source_rank": 2,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00003",
+      "source_sense_id": "SC-SENSE-00003",
+      "source_rank": 3,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00004",
+      "source_sense_id": "SC-SENSE-00004",
+      "source_rank": 4,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00005",
+      "source_sense_id": "SC-SENSE-00005",
+      "source_rank": 5,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00006",
+      "source_sense_id": "SC-SENSE-00006",
+      "source_rank": 6,
+      "verdict": "REVISE",
+      "issue_type": "SENSE_COVERAGE_INCOMPLETE",
+      "specific_reason": "源义项同时包括闹钟贪睡键操作与短暂小睡，现有例句和搭配仅针对闹钟操作；usage_note虽提小睡但缺自然教学例句，答案页无法充分覆盖该双义。",
+      "suggested_fix": "保留原源义项；新增一个小睡义例句，例如 I had a quick snooze after lunch.／午饭后我小睡了一会儿。并加 have a snooze / take a quick snooze；或经CG-MASTER批准将源义拆分。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00007",
+      "source_sense_id": "SC-SENSE-00007",
+      "source_rank": 7,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00008",
+      "source_sense_id": "SC-SENSE-00008",
+      "source_rank": 8,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00009",
+      "source_sense_id": "SC-SENSE-00009",
+      "source_rank": 9,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00010",
+      "source_sense_id": "SC-SENSE-00010",
+      "source_rank": 10,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00011",
+      "source_sense_id": "SC-SENSE-00011",
+      "source_rank": 11,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00012",
+      "source_sense_id": "SC-SENSE-00012",
+      "source_rank": 12,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00013",
+      "source_sense_id": "SC-SENSE-00013",
+      "source_rank": 13,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00014",
+      "source_sense_id": "SC-SENSE-00014",
+      "source_rank": 14,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00015",
+      "source_sense_id": "SC-SENSE-00015",
+      "source_rank": 15,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00016",
+      "source_sense_id": "SC-SENSE-00016",
+      "source_rank": 16,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00017",
+      "source_sense_id": "SC-SENSE-00017",
+      "source_rank": 17,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00018",
+      "source_sense_id": "SC-SENSE-00018",
+      "source_rank": 18,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00019",
+      "source_sense_id": "SC-SENSE-00019",
+      "source_rank": 19,
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00020",
+      "source_sense_id": "SC-SENSE-00020",
+      "source_rank": 20,
+      "verdict": "PASS"
+    }
+  ],
+  "notes": [
+    "PASS is content-level CG-QA language verdict, not production approval or dual-AI certification.",
+    "REVISE row 6 remains blocked until revision and re-review.",
+    "Historic multiple-choice pilot is excluded.",
+    "Does not modify author original, Master, Core20K, KU or SRS."
+  ]
+}
