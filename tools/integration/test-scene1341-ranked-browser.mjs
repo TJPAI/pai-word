@@ -16,7 +16,7 @@ const fakeFetch=async(url)=>{
   const data=await fs.readFile(fileURLToPath(url));
   return new Response(data,{status:200});
 };
-const base=new URL('../scene1341-ranked/',import.meta.url);
+const base=new URL('./scene1341-ranked/',import.meta.url);
 const store=createRankedStore({fetchImpl:fakeFetch,base});
 const index=await store.initialize();
 assert.equal(index.scenes.length,110);
