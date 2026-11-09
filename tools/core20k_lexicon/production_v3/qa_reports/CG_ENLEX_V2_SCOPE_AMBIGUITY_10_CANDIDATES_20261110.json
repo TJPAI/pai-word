@@ -1,0 +1,126 @@
+{
+  "schema": "cg-enlex-v2-frozen-sense-scope-adjudication-candidates-v1",
+  "source_commit": "173bbf6b84aaea7164f02254db52b81168f3fc44",
+  "source_audit_commit": "25f2b809c4ece8dc80325870554d739973b0ff29",
+  "status": "EDITORIAL_CANDIDATES_NOT_INDEPENDENTLY_CERTIFIED",
+  "count": 10,
+  "entries": [
+    {
+      "lemma": "website",
+      "rank": 432,
+      "teaching_sense_id": "core20k:rank:432::oewn-website__1.10.00..",
+      "decision": "HOLD_GLOSS_SCOPE",
+      "frozen_scope": "网站服务器/托管计算机",
+      "target_scope": "网站页面集合/站点",
+      "reason": "冻结英文定义将website限定为主机，中文‘网站’偏广；不通过网页内容义，建议版本化标注定义限制并核查来源。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "menu",
+      "rank": 1243,
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "decision": "HOLD_TARGET_SENSE_MISSING",
+      "frozen_scope": "餐厅可选菜品清单",
+      "target_scope": "软件/电视选项菜单",
+      "reason": "原义餐饮正确，非泛化UI菜单；勿直接把该Sense映射到App设置场景。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "television",
+      "rank": 1877,
+      "teaching_sense_id": "core20k:rank:1877::oewn-television__1.06.00..",
+      "decision": "HOLD_GLOSS_SCOPE",
+      "frozen_scope": "远距离图像传输系统",
+      "target_scope": "电视机/电视节目",
+      "reason": "英文定义系统义、中文宽泛；待区分系统/设备/节目义。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "embryo",
+      "rank": 2784,
+      "teaching_sense_id": "core20k:rank:2784::oewn-embryo__1.20.00..",
+      "decision": "HOLD_BOTANY_HUMAN",
+      "frozen_scope": "植物种子/藏卵器中的胚",
+      "target_scope": "人的胚胎",
+      "reason": "冻结限定botany；中文‘胚胎’未限定来源，人体义不能沿用。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "rebound",
+      "rank": 4824,
+      "teaching_sense_id": "core20k:rank:4824::oewn-rebound__2.38.00..",
+      "decision": "HOLD_METAPHORICAL_EXTENSION",
+      "frozen_scope": "物理碰撞后的弹回",
+      "target_scope": "经济/趋势反弹",
+      "reason": "物理义可引申经济比喻，但当前冻结gloss未直接覆盖经济变化；需同义源确认。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "girlfriend",
+      "rank": 6028,
+      "teaching_sense_id": "core20k:rank:6028::oewn-girlfriend__1.18.01..",
+      "decision": "HOLD_RELATIONSHIP",
+      "frozen_scope": "女性朋友（未必有恋爱关系）",
+      "target_scope": "恋爱女友",
+      "reason": "冻结英文any female friend，不保证伴侣义；中文‘女朋友’高度歧义，应限定‘女性朋友’。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "overweight",
+      "rank": 8329,
+      "teaching_sense_id": "core20k:rank:8329::oewn-overweight__5.00.00.fat.01",
+      "decision": "HOLD_HUMAN_VS_BAGGAGE",
+      "frozen_scope": "身材肥胖/体格较大的人",
+      "target_scope": "行李超重",
+      "reason": "冻结限定人体描写；不可代指行李重量超标。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "quarantine",
+      "rank": 8560,
+      "teaching_sense_id": "core20k:rank:8560::oewn-quarantine__1.26.00..",
+      "decision": "HOLD_POLICY_SCOPE",
+      "frozen_scope": "传染病病人强制隔离",
+      "target_scope": "旅行检疫/边境隔离措施",
+      "reason": "病人隔离义和旅行政策相关但不等同；须核对实际场景表达。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "recycling",
+      "rank": 16080,
+      "teaching_sense_id": "core20k:rank:16080::oewn-recycling__1.27.00..",
+      "decision": "HOLD_MATERIAL_PROCESS",
+      "frozen_scope": "回收后可再利用的材料",
+      "target_scope": "废物回收/资源回收过程",
+      "reason": "冻结英文gloss是材料名词，不是回收动作过程；中文‘回收利用’偏过程。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    },
+    {
+      "lemma": "inhaler",
+      "rank": 19941,
+      "teaching_sense_id": "core20k:rank:19941::oewn-inhaler__1.06.00..",
+      "decision": "HOLD_DEVICE_SUBTYPE",
+      "frozen_scope": "缓解鼻塞的化学蒸气吸入装置",
+      "target_scope": "哮喘/其他呼吸道给药吸入器",
+      "reason": "过窄的鼻塞用途，不自动覆盖现代支气管吸入器。",
+      "alternative_frozen_sense_id": null,
+      "approval": false
+    }
+  ],
+  "rules": [
+    "These are sense scope distinctions; some also imply Chinese gloss precision fixes, but not all are definite mistranslations.",
+    "Only the existing frozen six-shard teaching inventory was searched; no claim about all upstream dictionary senses.",
+    "Master record-level patch must be linked to actual CMR1 before any acceptance.",
+    "No changes to original English gloss, Chinese gloss, IDs, Master, KU, SRS, or Runtime."
+  ],
+  "release_eligible": false
+}
