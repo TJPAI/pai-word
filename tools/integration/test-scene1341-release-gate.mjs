@@ -40,6 +40,12 @@ assert.equal(evaluate({...first,activation_allowed:true}, {...manifest,entries:[
 assert.equal(evaluate({...first,activation_allowed:true}, {...manifest,entries:[{...manifest.entries[0],resolution_status:'OPEN'}]}).eligible,false);
 assert.equal(evaluate({...first,activation_allowed:true},manifest,sourceBlob,'0000000000000000000000000000000000000000').eligible,false);
 assert.equal(evaluate({...first,activation_allowed:true,question:{type:'quiz'}}).eligible,false);
+const duplicate={...manifest,entries:[manifest.entries[0],{...manifest.entries[0],mu_qa:'HOLD'}]};
+assert.equal(evaluate({...first,activation_allowed:true},duplicate).eligible,false);
+assert.equal(evaluate({...first,activation_allowed:true},duplicate).reason,'DUPLICATE_KU_APPROVAL');
+const missingEntries={...manifest,entries:null};
+assert.equal(evaluate({...first,activation_allowed:true},missingEntries).eligible,false);
+
 console.log(JSON.stringify({status:'PASS',actualAuthorDrafts:items.length,
  actualReleaseEligible:decisions.approved,masterApproval:'NOT_GRANTED',
  dualQaRequirement:true,questionPayloads:0,realSrsWrites:0}));
