@@ -46,6 +46,10 @@ for(const r of pack.records){
  assert.equal(legacy.s.e[0],r.answer.example_en);
  assert.equal(legacy.s.example_zh,r.answer.example_zh);
 }
+const answerUI=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+assert(answerUI.includes("u.s.kuType==='scene1341'&&state.showExamples"),'Scene1341 answer-only translation must be scoped');
+assert(answerUI.includes('scene1341ExampleZh'), 'Chinese translation must be rendered');
+assert(answerUI.includes('escapeHtml(u.s.example_zh)'),'translation must be HTML escaped');
 assert.equal(adapter.question('CORE20K-KU-00001'),null);
 assert.equal(adapter.answer('SC1341-KU-99999'),null);
 const withFakeQuestion={...pack,records:[{...pack.records[0],question:{type:'single_choice'}}]};
