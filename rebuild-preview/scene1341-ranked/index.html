@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8fafc"><title>PAI Word · Scene1341 推荐库隔离预览</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182638;background:#f8fafc}
+*{box-sizing:border-box}body{margin:0}header{padding:16px 16px 14px;background:white;border-bottom:1px solid #dce4ed}
+h1{font-size:20px;margin:0 0 8px}header p{font-size:12px;color:#58697c;margin:0;line-height:1.5}
+.notice{background:#f1f5f9;border:1px solid #d9e2ed;border-radius:10px;padding:9px 11px;margin:12px 0;font-size:12px;color:#45586f}
+main{max-width:1050px;margin:auto;padding:12px;display:grid;grid-template-columns:minmax(230px,34%) 1fr;gap:12px}
+section{background:white;border:1px solid #e0e7ee;border-radius:14px;padding:12px;min-width:0}
+h2{font-size:16px;margin:4px 0 12px}input,select,button{font:inherit;font-size:14px}input,select{border:1px solid #cbd5e1;padding:11px;border-radius:9px;width:100%;min-width:0;background:#fff}
+button{border:1px solid #ced8e5;border-radius:10px;padding:10px 12px;background:white;color:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid #215da1;outline-offset:2px}
+button:disabled{opacity:.55;cursor:wait}
+#scenes{overflow:auto;max-height:62dvh;margin-top:10px} .scene{display:block;text-align:left;width:100%;margin-bottom:4px}
+.scene.selected{background:#eef4ff;border-color:#7195cf}
+.scene small{display:block;color:#607084;font-size:11px;margin-top:3px}
+.toolbar{display:grid;grid-template-columns:minmax(0,1fr) 135px;gap:7px;margin:8px 0}
+#results{min-height:180px}article{border-bottom:1px solid #eef1f5;padding:12px 3px}
+article .top{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+article strong{font-size:17px}article .rank{color:#66758a;font-size:11px;font-variant-numeric:tabular-nums}
+article .translation{margin:6px 0 0;font-size:14px;color:#475569;white-space:pre-wrap}
+article .meta{font-size:11px;color:#748196;margin-top:4px}
+.status{font-size:12px;color:#53647a;min-height:18px;line-height:1.5;margin:9px 0}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+#more{display:none;width:100%;margin:14px 0}
+@media(max-width:700px){main{display:block;padding:8px}section{margin-bottom:8px}#scenes{max-height:195px}header{padding:13px}h1{font-size:18px}}
+</style></head><body>
+<header><h1>PAI Word · Scene1341 英语表达推荐</h1>
+<p>V51–V61 · 110场景 / 19,371条 · 独立预览 · 不影响正式学习与SRS</p>
+</header>
+<main>
+<section aria-label="场景选择"><h2>选择场景</h2>
+<input id="sceneSearch" type="search" placeholder="查找场景名称或SC50编号" aria-label="搜索场景">
+<p id="sceneStatus" class="status">读取110场景目录…</p>
+<div id="scenes"></div>
+<div class="notice">仅 SC50-0001～0110 已交付。其余场景不显示为已完成。</div>
+<div class="actions"><button id="offline" type="button">下载全部11批供离线访问</button></div>
+<p id="offlineStatus" class="status"></p>
+</section>
+<section aria-label="推荐结果"><h2 id="sceneTitle">选择场景查看推荐</h2>
+<div class="toolbar"><input id="expressionSearch" type="search" placeholder="筛选当前场景英文/中文表达" aria-label="筛选表达"><select id="tier" aria-label="分级"><option value="">全部分级</option></select></div>
+<p id="resultStatus" class="status"></p><div id="results"></div>
+<button id="more" type="button">继续显示</button>
+<div class="notice">此处是场景英语常用词义与表达推荐库，不是冻结Core20K的教学KU。保留源数据排序和分级；不提供评分、复习或SRS写入。</div>
+</section></main>
+<script type="module" src="../scene1341-ranked-ui.mjs"></script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("./sw.js",{scope:"./"}).catch(e=>console.warn("Scene1341 offline shell unavailable",e));}</script>
+</body></html>
