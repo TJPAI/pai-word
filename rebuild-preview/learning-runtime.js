@@ -246,6 +246,11 @@
     const reminder=u.s.x?`<div class="key-reminder"><span>提醒</span>${escapeHtml(u.s.x)}</div>`:'';
     const collocations=state.showCollocations&&u.s.c?`<div class="answer-section"><div class="answer-label">${u.w.allSenses?.length>1?'词条搭配（含不同义项）':'高频搭配'}</div><div class="collocations">${escapeHtml(u.s.c)}</div></div>`:'';
     const examples=state.showExamples&&Array.isArray(u.s.e)&&u.s.e.length?`<div class="answer-section examples-section"><div class="answer-label">${u.w.allSenses?.length>1?'词条例句（含不同义项）':'例句'}</div>${u.s.e.map((e,i)=>`<div class="example"><span class="example-num">${i+1}.</span><span>${escapeHtml(e)}</span><button type="button" class="example-play" data-example-audio data-speak="${escapeHtml(u.s.exampleAudio?.[i]||e)}" aria-label="播放例句 ${i+1}">🔊</button></div>`).join('')}</div>`:'';
+    // Answer-only Scene1341 KU may carry the verified bilingual example pair.
+    // Keep the existing answer panel, do not alter prompts or scoring.
+    const scene1341ExampleZh=u.s.kuType==='scene1341'&&state.showExamples&&
+      typeof u.s.example_zh==='string'&&u.s.example_zh.trim()
+      ?`<div class="answer-section scene1341-example-translation"><div class="answer-label">例句翻译</div><div class="example-translation">${escapeHtml(u.s.example_zh)}</div></div>`:'';
     // B217: approved overlays add display content only; never modify KU or SRS.
     const approvedOverlay=window.PAI_APPROVED_TEACHING_OVERLAY;
     const approvedCard=approvedOverlay?.enabled===true&&approvedOverlay.accepted instanceof Map?approvedOverlay.accepted.get(u.s.ku_id):null;
@@ -260,7 +265,7 @@
     const approvedContrast=state.showCompare&&certifiedText('contrast_note')?`<div class="answer-section" data-approved-contrast-ku="${escapeHtml(u.s.ku_id)}"><div class="answer-label">易混词提示</div><div class="definition">${escapeHtml(certifiedText('contrast_note'))}</div></div>`:'';
 
     const comparison=state.showCompare&&compare.items.length?`<div class="answer-section"><div class="answer-label">近义 / 易混词辨析</div>${compare.items.length?`<div class="contrast-examples">${compare.items.map(item=>`<div class="contrast-item"><div class="contrast-summary"><span class="contrast-word">${escapeHtml(item.word)}</span><span>：${escapeHtml(item.brief)}</span></div><div class="contrast-sentence">${escapeHtml(item.text)}${item.zh?`<div class="contrast-translation">${escapeHtml(item.zh)}</div>`:''}</div></div>`).join('')}</div>`:'<span class="muted">待补充</span>'}</div>`:'';
-    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div>${u.w.root?`<div class="root merged-root">${escapeHtml(u.w.root)}</div>`:''}${reminder}</div>${extra}${approvedGloss}${collocations}${approvedUsage}${examples}${approvedExamples}${approvedGrammar}${comparison}${approvedContrast}</div>`;
+    return `<div class="answer density-${enabledCount}" onclick="event.stopPropagation()"><div class="answer-section"><div class="answer-label">释义</div><div class="definition-line">${pos}<div class="definition">${escapeHtml(u.s.m)}</div></div>${u.w.root?`<div class="root merged-root">${escapeHtml(u.w.root)}</div>`:''}${reminder}</div>${extra}${approvedGloss}${collocations}${approvedUsage}${examples}${scene1341ExampleZh}${approvedExamples}${approvedGrammar}${comparison}${approvedContrast}</div>`;
   };
 
   // Settings actions
