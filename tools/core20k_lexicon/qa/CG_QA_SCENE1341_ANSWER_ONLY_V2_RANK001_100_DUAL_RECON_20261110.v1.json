@@ -1,0 +1,829 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-v2-dual-evidence-reconciliation-v1",
+  "date": "2026-11-10",
+  "scope": {
+    "scene_id": "SC50-0001",
+    "rank_start": 1,
+    "rank_end": 100,
+    "records": 100
+  },
+  "sources": {
+    "author_packs": [
+      {
+        "ranks": "1-20",
+        "blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f"
+      },
+      {
+        "ranks": "21-50",
+        "blob": "f55b61c241d615f7c1f8285b332d1ea795e2b75b"
+      },
+      {
+        "ranks": "51-100",
+        "blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a"
+      }
+    ],
+    "cg_qa": [
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_ANSWER_ONLY_V2_FIRST20_20261110.v1.json",
+        "blob": "8d412396a484a666128221abd600ce293faf6560"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK021_050_20261110.v1.json",
+        "blob": "b791b5b34ce84fbbefa7a424f04cdd5a830e7b26"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_ANSWER_ONLY_V2_RANK051_100_20261110.v1.json",
+        "blob": "18f72b6543ed23e9149b784cd1cb3853781fbdaf"
+      }
+    ],
+    "mu_enteach": [
+      {
+        "path": "tools/core20k_lexicon/staging/enteach_v51_answer_only_first20_muse_review.json",
+        "branch": "core20k-teaching-qa-b162-20261024",
+        "blob": "590bf0d87daf74465a0814b2749826db1ae5e8f6"
+      },
+      {
+        "path": "tools/core20k_lexicon/staging/enteach_v51_answer_only_21_100_muse_review.md",
+        "branch": "core20k-teaching-qa-b162-20261024",
+        "blob": "8c974c9c30ff53c095300c9ec8f5719f6aa4a1c0"
+      }
+    ]
+  },
+  "summary": {
+    "both_pass": 92,
+    "both_revise": 1,
+    "cg_mu_disagreements": 7,
+    "publishable_approved": 0
+  },
+  "method": "Reconciled existing independently authored CG-QA language verdicts against exact Muse teacher review of same author-pack blobs and immutable scene_ku_id; MU reported PASS for all ranks21–100 and all ranks1–20 except6 REVISE. No new authoring or judgment, no automatic pass override.",
+  "disagreements": [
+    {
+      "rank": 40,
+      "expression": "be short on sleep",
+      "cg": "CONDITIONAL",
+      "mu": "PASS",
+      "resolution": "MU calls 'feel short on sleep' acceptable style variant; CG calls it unnatural for core learning. Suggest author replacement but retain nonblocking-review dispute."
+    },
+    {
+      "rank": 50,
+      "expression": "morning person",
+      "cg": "REVISE",
+      "mu": "PASS",
+      "resolution": "CG sees source Chinese '习惯早起的人' as narrower/different than 'morning person'; send source-gloss patch proposal to CG-MASTER."
+    },
+    {
+      "rank": 58,
+      "expression": "miss the alarm",
+      "cg": "CONDITIONAL",
+      "mu": "PASS",
+      "resolution": "CG flags sound-off device premise; Muse accepted. Request revised example or explicit alarm-silenced configuration."
+    },
+    {
+      "rank": 80,
+      "expression": "early start",
+      "cg": "REVISE",
+      "mu": "PASS",
+      "resolution": "CG source-gloss issue: early start not necessarily an earlier-than-planned start. CG-MASTER patch approval pending."
+    },
+    {
+      "rank": 86,
+      "expression": "appointment",
+      "cg": "CONDITIONAL",
+      "mu": "PASS",
+      "resolution": "English source fine; Chinese doctor's appointment translation unnatural; author may improve."
+    },
+    {
+      "rank": 89,
+      "expression": "first thing in the morning",
+      "cg": "REVISE",
+      "mu": "PASS",
+      "resolution": "CG source-gloss nominal-vs-adverbial mismatch; proposed temporal adverb gloss via CG-MASTER."
+    },
+    {
+      "rank": 97,
+      "expression": "stand up",
+      "cg": "CONDITIONAL",
+      "mu": "PASS",
+      "resolution": "CG flags 'stand up from bed' collocation style; can be corrected without source glossary change."
+    }
+  ],
+  "both_revise": [
+    {
+      "rank": 6,
+      "expression": "snooze",
+      "reason": "Both independent reviews identify inadequate coverage of second source sense 'brief nap' when answer examples cover alarm snooze only."
+    }
+  ],
+  "verdicts": [
+    {
+      "scene_ku_id": "SC1341-KU-00001",
+      "rank": 1,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00002",
+      "rank": 2,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00003",
+      "rank": 3,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00004",
+      "rank": 4,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00005",
+      "rank": 5,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00006",
+      "rank": 6,
+      "cg_qa": "REVISE",
+      "mu_enteach": "REVISE",
+      "reconciliation": "BOTH_REVISE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00007",
+      "rank": 7,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00008",
+      "rank": 8,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00009",
+      "rank": 9,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00010",
+      "rank": 10,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00011",
+      "rank": 11,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00012",
+      "rank": 12,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00013",
+      "rank": 13,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00014",
+      "rank": 14,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00015",
+      "rank": 15,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00016",
+      "rank": 16,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00017",
+      "rank": 17,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00018",
+      "rank": 18,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00019",
+      "rank": 19,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00020",
+      "rank": 20,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00021",
+      "rank": 21,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00022",
+      "rank": 22,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00023",
+      "rank": 23,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00024",
+      "rank": 24,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00025",
+      "rank": 25,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00026",
+      "rank": 26,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00027",
+      "rank": 27,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00028",
+      "rank": 28,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00029",
+      "rank": 29,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00030",
+      "rank": 30,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00031",
+      "rank": 31,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00032",
+      "rank": 32,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00033",
+      "rank": 33,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00034",
+      "rank": 34,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00035",
+      "rank": 35,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00036",
+      "rank": 36,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00037",
+      "rank": 37,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00038",
+      "rank": 38,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00039",
+      "rank": 39,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00040",
+      "rank": 40,
+      "cg_qa": "CONDITIONAL",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_CONDITIONAL_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00041",
+      "rank": 41,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00042",
+      "rank": 42,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00043",
+      "rank": 43,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00044",
+      "rank": 44,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00045",
+      "rank": 45,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00046",
+      "rank": 46,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00047",
+      "rank": 47,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00048",
+      "rank": 48,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00049",
+      "rank": 49,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00050",
+      "rank": 50,
+      "cg_qa": "REVISE",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_REVISE_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00051",
+      "rank": 51,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00052",
+      "rank": 52,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00053",
+      "rank": 53,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00054",
+      "rank": 54,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00055",
+      "rank": 55,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00056",
+      "rank": 56,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00057",
+      "rank": 57,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00058",
+      "rank": 58,
+      "cg_qa": "CONDITIONAL",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_CONDITIONAL_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00059",
+      "rank": 59,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00060",
+      "rank": 60,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00061",
+      "rank": 61,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00062",
+      "rank": 62,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00063",
+      "rank": 63,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00064",
+      "rank": 64,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00065",
+      "rank": 65,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00066",
+      "rank": 66,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00067",
+      "rank": 67,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00068",
+      "rank": 68,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00069",
+      "rank": 69,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00070",
+      "rank": 70,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00071",
+      "rank": 71,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00072",
+      "rank": 72,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00073",
+      "rank": 73,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00074",
+      "rank": 74,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00075",
+      "rank": 75,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00076",
+      "rank": 76,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00077",
+      "rank": 77,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00078",
+      "rank": 78,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00079",
+      "rank": 79,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00080",
+      "rank": 80,
+      "cg_qa": "REVISE",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_REVISE_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00081",
+      "rank": 81,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00082",
+      "rank": 82,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00083",
+      "rank": 83,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00084",
+      "rank": 84,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00085",
+      "rank": 85,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00086",
+      "rank": 86,
+      "cg_qa": "CONDITIONAL",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_CONDITIONAL_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00087",
+      "rank": 87,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00088",
+      "rank": 88,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00089",
+      "rank": 89,
+      "cg_qa": "REVISE",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_REVISE_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00090",
+      "rank": 90,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00091",
+      "rank": 91,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00092",
+      "rank": 92,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00093",
+      "rank": 93,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00094",
+      "rank": 94,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00095",
+      "rank": 95,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00096",
+      "rank": 96,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00097",
+      "rank": 97,
+      "cg_qa": "CONDITIONAL",
+      "mu_enteach": "PASS",
+      "reconciliation": "CG_CONDITIONAL_MU_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00098",
+      "rank": 98,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00099",
+      "rank": 99,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00100",
+      "rank": 100,
+      "cg_qa": "PASS",
+      "mu_enteach": "PASS",
+      "reconciliation": "BOTH_PASS"
+    }
+  ],
+  "release": {
+    "production_ready": false,
+    "activation_allowed": false,
+    "master_patch_approved": false
+  },
+  "notes": [
+    "MU-ENTEACH independent teaching-line review is not automatically MU-QA formal certification.",
+    "Both-pass is aligned language-review evidence, not a published authorization.",
+    "Author branch still at rank100; future rank101+ is not yet available."
+  ]
+}
