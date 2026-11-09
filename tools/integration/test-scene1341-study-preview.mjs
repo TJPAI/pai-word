@@ -1,0 +1,46 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {fileURLToPath} from 'node:url';
+import {loadScene1341AuthorPreview,createScene1341ReadOnlySession,
+ renderScene1341ReadOnlyCard} from '../../rebuild-preview/scene1341-study-preview.mjs';
+const base=new URL('./scene1341-teaching/',import.meta.url);
+const fetchFile=async url=>new Response(await fs.readFile(fileURLToPath(url)),{status:200});
+const cards=await loadScene1341AuthorPreview({fetchImpl:fetchFile,base});
+assert.equal(cards.length,100);
+assert.equal(new Set(cards.map(x=>x.id)).size,100);
+assert(cards.every((x,i)=>x.sceneId==='SC50-0001'&&x.rank===i+1));
+const model=createScene1341ReadOnlySession(cards);
+const initial=model.view();
+assert.equal(initial.index,0);
+assert.equal(initial.revealed,false);
+assert.equal(initial.canRate,false);
+assert.equal(initial.canSaveProgress,false);
+let calls=0;
+const renderer=u=>{
+ calls++;
+ assert.equal(u.s.kuType,'scene1341');
+ return '<div class="answer">EXAMPLE:'+u.s.e[0]+'</div>';
+};
+const question=renderScene1341ReadOnlyCard(initial,{answerHtml:renderer});
+assert(question.includes('wake up'));
+assert(!question.includes('EXAMPLE:'));
+assert(question.includes('disabled>不知道'));
+assert.equal(calls,0);
+const revealed=model.reveal();
+const answer=renderScene1341ReadOnlyCard(revealed,{answerHtml:renderer});
+assert(answer.includes('EXAMPLE:'));
+assert(answer.includes('class="answer"'));
+assert(answer.includes('disabled>知道'));
+assert.equal(calls,1);
+assert.equal(model.next().index,1);
+assert.equal(model.view().revealed,false);
+assert.equal(model.previous().index,0);
+assert.equal(model.jump(99).index,99);
+assert.throws(()=>model.jump(100),/PREVIEW_INDEX/);
+assert.throws(()=>renderScene1341ReadOnlyCard({...revealed,canRate:true},{answerHtml:renderer}),/WRITABLE_REJECTED/);
+const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
+assert(home.includes('openScene1341ReadOnlyPreview'));
+assert(home.includes('预览前100条答案型词卡（只读审核）'));
+assert(!home.includes('scene1341-srs-v2.mjs'),'draft home must not connect to persistence');
+console.log(JSON.stringify({status:'PASS',cards:100,questionMode:'self_recall',answerRenderCalls:calls,
+ legacyStudyScreenClasses:true,gradingDisabled:true,SRSWrites:0}));
