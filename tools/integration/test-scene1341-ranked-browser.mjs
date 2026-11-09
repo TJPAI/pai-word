@@ -65,4 +65,23 @@ assert(html.includes('scene1341-ranked-ui.mjs'));
 assert(html.includes('不影响正式学习与SRS'));
 const ui=await fs.readFile(new URL('../../rebuild-preview/scene1341-ranked-ui.mjs',import.meta.url),'utf8');
 assert(ui.includes('createRankedStore'));
+// A stale Safari CacheStorage entry must never become a visible recommendation.
+const offlineCache=new Map();
+globalThis.caches={open:async()=>({
+  match:async url=>offlineCache.get(url)?.clone()||null,
+  put:async(url,response)=>{offlineCache.set(url,response.clone());},
+  delete:async url=>offlineCache.delete(url)
+})};
+const brokenUrl=new URL('v51-ranked.csv',base).href;
+offlineCache.set(brokenUrl,new Response('stale/broken data',{status:200}));
+let recoveredFetches=0;
+const recovered=createRankedStore({base,fetchImpl:async url=>{
+  recoveredFetches++;
+  return new Response(await fs.readFile(fileURLToPath(url)),{status:200});
+}});
+const repaired=await recovered.scene('SC50-0001');
+assert.equal(repaired.rows.length,one.rows.length);
+assert(recoveredFetches>=3,'stale data must be refetched and verified');
+assert.equal(offlineCache.has(brokenUrl),true,'valid new data should be cached');
+delete globalThis.caches;
 console.log(JSON.stringify({status:'PASS',scenes:110,records:19371,loadedBatches:11,fetches:calls,offlineCacheFiles:persisted.size,productionEligible:false}));
