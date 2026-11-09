@@ -37,7 +37,7 @@ assert.equal(calls,before,'same batch must be memory-cached');
 const missing=await store.scene('SC50-0111');
 assert.equal(missing.status,'NOT_DELIVERED');
 assert.deepEqual(missing.rows,[]);
-assert.throws(()=>store.batch(62),/OUT_OF_RANGE/);
+await assert.rejects(()=>store.batch(62),/OUT_OF_RANGE/);
 const all=await store.warmAll();
 assert.equal(all.batches,11);
 assert.equal(all.records,19371);
