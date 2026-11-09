@@ -17,6 +17,8 @@ on:
       - 'rebuild-preview/scene1341-teaching-consumption.mjs'
       - 'rebuild-preview/scene1341-srs-v2.mjs'
       - 'tools/integration/test-scene1341-srs-v2.mjs'
+      - 'tools/integration/test-scene1341-srs-legacy-parity.mjs'
+      - 'rebuild-preview/memory-schedulers.js'
       - 'rebuild-preview/scene1341-srs-indexeddb.mjs'
       - 'rebuild-preview/scene1341-release-gate.mjs'
       - 'rebuild-preview/scene1341-study-session.mjs'
@@ -64,6 +66,7 @@ jobs:
           node tools/integration/test-scene1341-teaching-consumption.mjs
           node --check rebuild-preview/scene1341-srs-v2.mjs
           node tools/integration/test-scene1341-srs-v2.mjs
+          node tools/integration/test-scene1341-srs-legacy-parity.mjs
           node --check rebuild-preview/scene1341-srs-indexeddb.mjs
           node tools/integration/test-scene1341-srs-indexeddb.mjs
           node --check rebuild-preview/scene1341-release-gate.mjs
