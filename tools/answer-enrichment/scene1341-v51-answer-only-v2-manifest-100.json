@@ -1,0 +1,63 @@
+{
+  "schema_version": "pai-scene1341-answer-only-v2-progress-manifest",
+  "status": "AUTHOR_DRAFT_QA_PENDING_NO_RELEASE",
+  "source": {
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "records": 2038
+  },
+  "assets": {
+    "coverage_path": "tools/answer-enrichment/scene1341-v51-answer-only-2038-coverage.v4.csv",
+    "coverage_git_blob": "ab836ec7f17a3a8923a70fbfd5d2645c4e243332",
+    "packs": [
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-001-020.v2.json",
+        "git_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+        "records": 20
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-021-050.v2.json",
+        "git_blob": "f55b61c241d615f7c1f8285b332d1ea795e2b75b",
+        "records": 30
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+        "git_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+        "records": 50
+      }
+    ]
+  },
+  "counts": {
+    "source": 2038,
+    "scenes": 10,
+    "authored_answer_only": 100,
+    "not_generated": 1938,
+    "independent_semantic_pass": 0,
+    "production_playable": 0,
+    "question_payloads": 0
+  },
+  "qa": {
+    "cross_check": "GITHUB_READBACK_SOURCE_TO_PACK_AND_LEDGER",
+    "errors": 0,
+    "source_ids_unique": true,
+    "source_scene_ranks_contiguous": true,
+    "pack_ku_ids_unique": true,
+    "source_fields_preserved": true,
+    "nonempty_bilingual_examples": true,
+    "nonempty_usage_and_collocations": true,
+    "question_fields_absent": true,
+    "activation_disabled": true,
+    "independent_semantic_review": "PENDING",
+    "updated_Github_Actions_run": "NOT_OBSERVED"
+  },
+  "policy": {
+    "new_scene_ku_namespace": "SC1341-KU-",
+    "separate_srs_scope": "scene1341-v2",
+    "old_Core20K_ku_reuse": false,
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "next": "Continue rank 101 onward within SC50-0001; independent semantic QA and main App isolated ingestion remain separate."
+}
