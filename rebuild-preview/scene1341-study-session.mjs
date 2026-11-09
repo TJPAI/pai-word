@@ -5,7 +5,6 @@
 import {sceneKuKey,SCENE1341_SRS_SCOPE} from './scene1341-srs-v2.mjs';
 const safeScene=id=>/^SC50-\d{4}$/.test(id||'');
 const validQueue=q=>Array.isArray(q)&&q.every(x=>typeof x==='string'&&/^SC1341-KU-\d{5,}$/.test(x));
-const asInt=(n,def=0)=>Number.isSafeInteger(n)&&n>=0?n:def;
 export const SCENE1341_SESSION_SCOPE='scene1341-learning-v2';
 export const SCENE1341_BOOKMARK_SCOPE='scene1341-bookmark-v2';
 export function buildScene1341StudyQueue({sceneId,items=[],releaseIndex,limit=10,records=new Map(),now=Date.now()}={}){
@@ -14,7 +13,7 @@ export function buildScene1341StudyQueue({sceneId,items=[],releaseIndex,limit=10
  if(!Number.isSafeInteger(limit)||limit<1||limit>100)throw Error('SCENE1341_STUDY_LIMIT_INVALID');
  if(!(records instanceof Map))throw Error('SCENE1341_STUDY_RECORDS_INVALID');
  if(!Number.isSafeInteger(now)||now<=0)throw Error('SCENE1341_STUDY_TIME_INVALID');
- const eligible=items.filter(x=>x?.scene_id===sceneId&&releaseIndex.get(x.scene_ku_id).eligible===true);
+ const eligible=items.filter(x=>x?.scene_id===sceneId&&releaseIndex.get(x.scene_ku_id)?.eligible===true);
  const ids=new Set();
  for(const item of eligible){
   sceneKuKey(item.scene_ku_id);
@@ -39,7 +38,7 @@ export function createScene1341StudySession({sceneId,queue=[],releaseIndex,bookm
  if(!safeScene(sceneId)||!validQueue(queue)||new Set(queue).size!==queue.length)
   throw Error('SCENE1341_SESSION_INVALID_QUEUE');
  if(!releaseIndex||typeof releaseIndex.get!=='function')throw Error('SCENE1341_SESSION_RELEASE_INDEX_REQUIRED');
- for(const id of queue)if(releaseIndex.get(id).eligible!==true)throw Error('SCENE1341_SESSION_UNRELEASED_KU');
+ for(const id of queue)if(releaseIndex.get(id)?.eligible!==true)throw Error('SCENE1341_SESSION_UNRELEASED_KU');
  let index=0,revealed=false,ratingPending=false;
  if(bookmark){
   if(bookmark.scope!==SCENE1341_BOOKMARK_SCOPE||bookmark.sceneId!==sceneId||
@@ -64,12 +63,13 @@ export function createScene1341StudySession({sceneId,queue=[],releaseIndex,bookm
    if(ratingPending)throw Error('SCENE1341_SESSION_RATING_PENDING');
    const id=check();if(!id)throw Error('SCENE1341_SESSION_NO_CURRENT_KU');
    if(!revealed)throw Error('SCENE1341_SESSION_ANSWER_NOT_REVEALED');
+   if(!['again','hard','good'].includes(grade))throw Error('SCENE1341_SESSION_GRADE_INVALID');
    if(!srs||srs.namespace!==SCENE1341_SRS_SCOPE||typeof srs.rate!=='function')
     throw Error('SCENE1341_SESSION_SRS_INVALID');
    ratingPending=true;
    try{
     const saved=await srs.rate({kuId:id,grade,now,attemptId,
-      kuReleaseEligible:releaseIndex.get(id).eligible===true});
+      kuReleaseEligible:releaseIndex.get(id)?.eligible===true});
     // Approval may be revoked while the asynchronous store is committing.
     // Never move the study cursor onto a revoked or unverified next KU.
     if(releaseIndex.get(id).eligible!==true)throw Error('SCENE1341_SESSION_APPROVAL_REVOKED_AFTER_COMMIT');
