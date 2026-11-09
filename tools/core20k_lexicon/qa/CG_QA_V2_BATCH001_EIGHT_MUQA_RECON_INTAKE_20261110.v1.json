@@ -1,0 +1,88 @@
+{
+  "schema": "cg-qa-batch001-eight-muqa-recon-intake-v1",
+  "date": "2026-11-10",
+  "scope": "Frozen Sense Batch001 rows366-565; not Scene1341 KU",
+  "evidence": {
+    "issue_comment": "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6747765448",
+    "jsonl_drive_id": "1MoTRR1Mqc0yR1GcSSvu8qmsVyx4cm_Z_",
+    "jsonl_sha256": "86b8eaf746644cc6ca1ec19c8874dd401b5839e59cf6247b6e9ccfa1be7c1820",
+    "summary_drive_id": "1ZlwVMWPWojPT-If5bNxyE8DcBpgLBG6i",
+    "summary_sha256": "c6174d996f7190f1bb7db9c121e660e6e95ab6348d8d732bc419c932e230e061",
+    "bytes_verified": true,
+    "oewn_independently_verified": false
+  },
+  "counts": {
+    "total": 8,
+    "agree": 3,
+    "substance_agree_label_differs": 2,
+    "disagree": 3,
+    "certified": 0
+  },
+  "policy": "Nonblind MU-QA review does not confer formal certification. No Master/frozen/Runtime edits.",
+  "records": [
+    {
+      "row": 366,
+      "lemma": "first",
+      "cg_original": "HOLD",
+      "mu_reassessment": "PASS",
+      "intake_status": "HOLD",
+      "note": "OEWN shared synset does not establish corruption; KU ambiguity separate."
+    },
+    {
+      "row": 369,
+      "lemma": "first",
+      "cg_original": "CONDITIONAL",
+      "mu_reassessment": "PASS",
+      "intake_status": "PENDING",
+      "note": "OEWN supports identity; original CG conditions unresolved."
+    },
+    {
+      "row": 374,
+      "lemma": "first",
+      "cg_original": "CONDITIONAL",
+      "mu_reassessment": "PASS",
+      "intake_status": "PENDING",
+      "note": "OEWN supports identity; original CG conditions unresolved."
+    },
+    {
+      "row": 403,
+      "lemma": "take",
+      "cg_original": "REVISE",
+      "mu_reassessment": "REVISE",
+      "intake_status": "AGREE",
+      "note": "Remove riding meaning and regenerate dependent KU."
+    },
+    {
+      "row": 453,
+      "lemma": "come",
+      "cg_original": "CONDITIONAL",
+      "mu_reassessment": "REVISE",
+      "intake_status": "SUBSTANCE_AGREE",
+      "note": "Remove arrival meaning; severity differs."
+    },
+    {
+      "row": 490,
+      "lemma": "feel",
+      "cg_original": "REVISE",
+      "mu_reassessment": "REVISE",
+      "intake_status": "AGREE",
+      "note": "Remove wrong tactile gloss."
+    },
+    {
+      "row": 521,
+      "lemma": "good",
+      "cg_original": "CONDITIONAL",
+      "mu_reassessment": "REVISE",
+      "intake_status": "SUBSTANCE_AGREE",
+      "note": "Remove moral goodness from benefit sense."
+    },
+    {
+      "row": 526,
+      "lemma": "good",
+      "cg_original": "CONDITIONAL",
+      "mu_reassessment": "CONDITIONAL",
+      "intake_status": "AGREE",
+      "note": "Require nonstandard register example."
+    }
+  ]
+}
