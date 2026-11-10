@@ -1,0 +1,198 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-independent-semantic-review-v1",
+  "date": "2026-11-10",
+  "role": "CG-QA",
+  "author_branch": "answer-enrichment-main-dev-20261026",
+  "author_head": "798710a39919bb5abc76edc28e15017da250c685",
+  "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+  "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+  "scope": {
+    "scene_id": "SC50-0008",
+    "rank_start": 181,
+    "rank_end": 188
+  },
+  "counts": {
+    "total": 8,
+    "PASS": 5,
+    "CONDITIONAL": 1,
+    "REVISE": 2
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01633",
+      "scene_id": "SC50-0008",
+      "source_rank": 181,
+      "source_sense_id": "SC-SENSE-01633",
+      "expression": "check the ingredients",
+      "meaning_zh": "核对配料",
+      "example_en": "Check the ingredients before serving the sauce to anyone with allergies.",
+      "example_zh": "给有过敏情况的人上酱汁前先核对配料。",
+      "collocations": [
+        "check the ingredients",
+        "check the ingredient list"
+      ],
+      "usage_note": "check the ingredients强调核实所用材料，过敏情况还需注意交叉接触。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "check the ingredients及ingredient list自然；过敏者上菜前查配料的语义与译文吻合。",
+      "action": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01634",
+      "scene_id": "SC50-0008",
+      "source_rank": 182,
+      "source_sense_id": "SC-SENSE-01634",
+      "expression": "clean a spill",
+      "meaning_zh": "清理洒出的食物饮料",
+      "example_en": "Clean a spill right away so nobody slips.",
+      "example_zh": "马上清理洒出来的饮料，免得有人滑倒。",
+      "collocations": [
+        "clean a spill",
+        "clean up a drink spill"
+      ],
+      "usage_note": "spill指意外洒漏的液体或食物。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "clean a spill与clean up a drink spill均自然；例句防滑场景准确。",
+      "action": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01635",
+      "scene_id": "SC50-0008",
+      "source_rank": 183,
+      "source_sense_id": "SC-SENSE-01635",
+      "expression": "replace a broken glass",
+      "meaning_zh": "换掉碎了的杯子",
+      "example_en": "Please replace a broken glass with a clean one.",
+      "example_zh": "请把破损的玻璃杯换成干净的。",
+      "collocations": [
+        "replace a broken glass",
+        "replace the glass with a new one"
+      ],
+      "usage_note": "broken glass指破损的玻璃杯；碎玻璃须安全清理。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "replace a broken glass指换掉破损玻璃杯；‘glass’在此为饮水杯，语境清楚。",
+      "action": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01636",
+      "scene_id": "SC50-0008",
+      "source_rank": 184,
+      "source_sense_id": "SC-SENSE-01636",
+      "expression": "set an extra place",
+      "meaning_zh": "多摆一套餐具",
+      "example_en": "We have another guest, so set an extra place.",
+      "example_zh": "又来了一位客人，多摆一套餐具吧。",
+      "collocations": [
+        "set an extra place",
+        "set a place for one more guest"
+      ],
+      "usage_note": "place在这里指一人份的餐具位置。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "set an extra place是餐桌布置中的自然表达；为新增客人多设一个餐位。",
+      "action": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_rank": 185,
+      "source_sense_id": "SC-SENSE-01637",
+      "expression": "warm up a late dinner",
+      "meaning_zh": "给晚归的人热晚餐",
+      "example_en": "I'll warm up a late dinner for you when you get home.",
+      "example_zh": "你回家晚了，我会给你把晚餐热一下。",
+      "collocations": [
+        "warm up a late dinner",
+        "warm up dinner for someone"
+      ],
+      "usage_note": "warm up指加热，需确保易腐剩菜储存安全。",
+      "cg_verdict": "CONDITIONAL",
+      "linguistic_reason": "warm up a late dinner语义不够明确；late dinner更自然指晚吃的晚餐，不必表示晚归的人。",
+      "action": "将中文改为‘把吃得晚的晚餐热一下’，或改英文为warm up dinner for someone who gets home late。",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01638",
+      "scene_id": "SC50-0008",
+      "source_rank": 186,
+      "source_sense_id": "SC-SENSE-01638",
+      "expression": "save someone a plate",
+      "meaning_zh": "给某人留一盘饭菜",
+      "example_en": "I saved you a plate of dinner in the fridge.",
+      "example_zh": "我在冰箱里给你留了一盘晚饭。",
+      "collocations": [
+        "save someone a plate",
+        "save a plate of food for someone"
+      ],
+      "usage_note": "save someone a plate是口语化的给某人留一份饭。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "save someone a plate是自然口语，指给人留出一份饭菜；例句和译文一致。",
+      "action": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01639",
+      "scene_id": "SC50-0008",
+      "source_rank": 187,
+      "source_sense_id": "SC-SENSE-01639",
+      "expression": "pass the dish around",
+      "meaning_zh": "把菜盘传给大家",
+      "example_en": "Pass the dish around so everyone gets a serving.",
+      "example_zh": "把菜盘传给大家，每个人都能盛一点。",
+      "collocations": [
+        "pass the dish around",
+        "pass the serving dish around"
+      ],
+      "usage_note": "pass around表示在多人间依次传递；来源为待独立审核候选。",
+      "cg_verdict": "REVISE",
+      "linguistic_reason": "英文表达和搭配自然，但面向学习者的usage_note包含‘来源为待独立审核候选’内部审查备注。",
+      "action": "删掉内部审核字样，只保留pass around表示依次传递的用法说明，并同步display.x。",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01640",
+      "scene_id": "SC50-0008",
+      "source_rank": 188,
+      "source_sense_id": "SC-SENSE-01640",
+      "expression": "silverware",
+      "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+      "example_en": "Could you put the silverware on the table?",
+      "example_zh": "你能把刀叉勺摆在餐桌上吗？",
+      "collocations": [
+        "set out the silverware",
+        "clean silverware"
+      ],
+      "usage_note": "silverware在美式常泛指刀叉勺，不一定由银制成；源项待审核。",
+      "cg_verdict": "REVISE",
+      "linguistic_reason": "silverware在美式通常泛指刀叉勺等餐具，例句正确；usage_note末尾‘源项待审核’是内部元数据，不应展示给学习者。",
+      "action": "删除内部审核字样并同步display.x；保留美式地域说明。",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_git_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "dual_ai_certified": false,
+      "release_approved": false
+    }
+  ]
+}
