@@ -1,0 +1,111 @@
+{
+  "schema": "cg-enlex-positive7-scene-catalogue-review-v1",
+  "catalogue_sheet": "https://docs.google.com/spreadsheets/d/1wwovngD2kKc1iLFJsNdfoPDkUAm02yKt0BaqriSqhYE/edit",
+  "catalogue_tab": "Master_1341",
+  "source_candidate_commit": "769db9b3a137f0f3da9e60ad543582c9a3ab1d63",
+  "notes": [
+    "Evidence is authoritative scene titles only, not complete example sentences or independent QA.",
+    "Preserve original V17 statuses; do not automatically approve any Sense mappings.",
+    "No frozen Sense, Master, KU, Runtime or SRS changes."
+  ],
+  "items": [
+    {
+      "cmr1": "CMR1-8d0bd9803013406f29966de7fa1c062d",
+      "scene_id": "SC50-0023",
+      "scene_name": "咖啡馆",
+      "expression": "menu",
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "original_v17_status": "PASS",
+      "frozen_gloss_en": "a list of dishes available at a restaurant",
+      "review": "SCENE_TITLE_SUPPORTS_FOOD_MENU",
+      "explanation": "The named scene is a food establishment or ordering; the frozen definition of restaurant menu matches this context.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    },
+    {
+      "cmr1": "CMR1-253759865a5ea30468b6516ad146b7dc",
+      "scene_id": "SC50-0024",
+      "scene_name": "快餐店",
+      "expression": "menu",
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "original_v17_status": "PASS",
+      "frozen_gloss_en": "a list of dishes available at a restaurant",
+      "review": "SCENE_TITLE_SUPPORTS_FOOD_MENU",
+      "explanation": "The named scene is a food establishment or ordering; the frozen definition of restaurant menu matches this context.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    },
+    {
+      "cmr1": "CMR1-a4bb9045784dc0c7037bfb4c8c3ac930",
+      "scene_id": "SC50-0025",
+      "scene_name": "中餐馆",
+      "expression": "menu",
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "original_v17_status": "PASS",
+      "frozen_gloss_en": "a list of dishes available at a restaurant",
+      "review": "SCENE_TITLE_SUPPORTS_FOOD_MENU",
+      "explanation": "The named scene is a food establishment or ordering; the frozen definition of restaurant menu matches this context.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    },
+    {
+      "cmr1": "CMR1-c3dddfe846f9eeeddb8ecc3e52c6dea6",
+      "scene_id": "SC50-0026",
+      "scene_name": "西餐馆",
+      "expression": "menu",
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "original_v17_status": "PASS",
+      "frozen_gloss_en": "a list of dishes available at a restaurant",
+      "review": "SCENE_TITLE_SUPPORTS_FOOD_MENU",
+      "explanation": "The named scene is a food establishment or ordering; the frozen definition of restaurant menu matches this context.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    },
+    {
+      "cmr1": "CMR1-a89011509a6bba56f2bab5859e458bb9",
+      "scene_id": "SC50-0028",
+      "scene_name": "点餐",
+      "expression": "menu",
+      "teaching_sense_id": "core20k:rank:1243::oewn-menu__1.10.00..",
+      "original_v17_status": "PASS",
+      "frozen_gloss_en": "a list of dishes available at a restaurant",
+      "review": "SCENE_TITLE_SUPPORTS_FOOD_MENU",
+      "explanation": "The named scene is a food establishment or ordering; the frozen definition of restaurant menu matches this context.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    },
+    {
+      "cmr1": "CMR1-5f334cbc6899fe8a50a0ac1f69fe6d88",
+      "scene_id": "SC50-0432",
+      "scene_name": "体质与健康指标",
+      "expression": "overweight",
+      "teaching_sense_id": "core20k:rank:8329::oewn-overweight__5.00.00.fat.01",
+      "original_v17_status": "PASS",
+      "frozen_gloss_en": "usually describes a large person who is fat but has a large frame to carry it",
+      "review": "SCENE_TITLE_SUPPORTS_HUMAN_WEIGHT_PENDING_EXAMPLE",
+      "explanation": "Physical constitution and health indicators suggest human weight, but an actual utterance and frozen body-frame nuance require checking.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    },
+    {
+      "cmr1": "CMR1-8aa959d253eac1b6bb0ba29712caeebc",
+      "scene_id": "SC50-0774",
+      "scene_name": "健康教育与风险沟通",
+      "expression": "website",
+      "teaching_sense_id": "core20k:rank:432::oewn-website__1.10.00..",
+      "original_v17_status": "PRELIMINARY_MATCH",
+      "frozen_gloss_en": "a computer connected to the internet that maintains a series of web pages on the World Wide Web; a computer connected to the internet that maintains a series of web pages on the World Wide Web",
+      "review": "WEBSITE_HOST_COMPUTER_VS_SITE_CONTENT_NEEDS_REVIEW",
+      "explanation": "Health education/risk communication usually refers to an online website; frozen sense defines a web-host computer, not site pages. Preliminary positive status must not be promoted.",
+      "qa_status": "PENDING",
+      "approved": false,
+      "release_eligible": false
+    }
+  ]
+}
