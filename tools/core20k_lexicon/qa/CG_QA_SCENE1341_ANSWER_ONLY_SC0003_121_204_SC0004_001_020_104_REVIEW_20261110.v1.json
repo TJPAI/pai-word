@@ -1,0 +1,786 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-104-independent-language-review-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "scope": "SC50-0003 ranks121-204 (84), SC50-0004 ranks1-20 (20), 104 new KU",
+  "author_branch": "answer-enrichment-main-dev-20261026",
+  "source_packs": [
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-121-170.v2.json",
+      "blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+      "blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+      "count": 34
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-001-020.v2.json",
+      "blob": "cf4f0ecf3fded5ff2a230f3a4a2cdab7d0471867",
+      "count": 20
+    }
+  ],
+  "method": "Independently read each original answer record for sense fidelity, example fluency, bilingual translation, collocations and usage-note accuracy. Confirm KU ID, source-sense ID, scene/rank, display parity, disabled activation. Did not independently cross-check raw V51 CSV for every record; no Muse independent review or production release assumed.",
+  "counts": {
+    "reviewed": 104,
+    "PASS": 93,
+    "CONDITIONAL": 9,
+    "REVISE": 2,
+    "structure_errors": 0,
+    "second_ai_verified": 0,
+    "release_approved": 0
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00529",
+      "scene_id": "SC50-0003",
+      "source_rank": 121,
+      "expression": "weather-appropriate",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00530",
+      "scene_id": "SC50-0003",
+      "source_rank": 122,
+      "expression": "wrinkled",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00531",
+      "scene_id": "SC50-0003",
+      "source_rank": 123,
+      "expression": "stained",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00532",
+      "scene_id": "SC50-0003",
+      "source_rank": 124,
+      "expression": "inside out",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00533",
+      "scene_id": "SC50-0003",
+      "source_rank": 125,
+      "expression": "backwards",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00534",
+      "scene_id": "SC50-0003",
+      "source_rank": 126,
+      "expression": "see-through",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00535",
+      "scene_id": "SC50-0003",
+      "source_rank": 127,
+      "expression": "itchy fabric",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00536",
+      "scene_id": "SC50-0003",
+      "source_rank": 128,
+      "expression": "breathable",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00537",
+      "scene_id": "SC50-0003",
+      "source_rank": 129,
+      "expression": "waterproof",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00538",
+      "scene_id": "SC50-0003",
+      "source_rank": 130,
+      "expression": "warm",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00539",
+      "scene_id": "SC50-0003",
+      "source_rank": 131,
+      "expression": "lightweight",
+      "verdict": "CONDITIONAL",
+      "reason": "lightweight=重量轻，不必然轻薄；中文源义‘轻薄的’增添厚度属性，且作者用法注承认仅强调重量轻。",
+      "suggested_fix": "CG-MASTER调整源释义为‘轻量的；重量轻的’；若特指衣服可描述轻便，但不等于薄。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00540",
+      "scene_id": "SC50-0003",
+      "source_rank": 132,
+      "expression": "neckline",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00541",
+      "scene_id": "SC50-0003",
+      "source_rank": 133,
+      "expression": "collar",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00542",
+      "scene_id": "SC50-0003",
+      "source_rank": 134,
+      "expression": "sleeve",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00543",
+      "scene_id": "SC50-0003",
+      "source_rank": 135,
+      "expression": "cuff",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00544",
+      "scene_id": "SC50-0003",
+      "source_rank": 136,
+      "expression": "hem",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00545",
+      "scene_id": "SC50-0003",
+      "source_rank": 137,
+      "expression": "waistband",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00546",
+      "scene_id": "SC50-0003",
+      "source_rank": 138,
+      "expression": "pocket",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00547",
+      "scene_id": "SC50-0003",
+      "source_rank": 139,
+      "expression": "button",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00548",
+      "scene_id": "SC50-0003",
+      "source_rank": 140,
+      "expression": "zipper",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00549",
+      "scene_id": "SC50-0003",
+      "source_rank": 141,
+      "expression": "drawstring",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00550",
+      "scene_id": "SC50-0003",
+      "source_rank": 142,
+      "expression": "seam",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00551",
+      "scene_id": "SC50-0003",
+      "source_rank": 143,
+      "expression": "fabric",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00552",
+      "scene_id": "SC50-0003",
+      "source_rank": 144,
+      "expression": "cotton",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00553",
+      "scene_id": "SC50-0003",
+      "source_rank": 145,
+      "expression": "linen",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00554",
+      "scene_id": "SC50-0003",
+      "source_rank": 146,
+      "expression": "wool",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00555",
+      "scene_id": "SC50-0003",
+      "source_rank": 147,
+      "expression": "denim",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00556",
+      "scene_id": "SC50-0003",
+      "source_rank": 148,
+      "expression": "leather",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00557",
+      "scene_id": "SC50-0003",
+      "source_rank": 149,
+      "expression": "polyester",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00558",
+      "scene_id": "SC50-0003",
+      "source_rank": 150,
+      "expression": "silk",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00559",
+      "scene_id": "SC50-0003",
+      "source_rank": 151,
+      "expression": "small",
+      "verdict": "CONDITIONAL",
+      "reason": "small表示S码时英语例句Do you have this sweater in small?虽可在零售口语中理解，in a small / in size small更清晰。",
+      "suggested_fix": "改Do you have this sweater in a small? 或 in size small?"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00560",
+      "scene_id": "SC50-0003",
+      "source_rank": 152,
+      "expression": "medium",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00561",
+      "scene_id": "SC50-0003",
+      "source_rank": 153,
+      "expression": "large",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00562",
+      "scene_id": "SC50-0003",
+      "source_rank": 154,
+      "expression": "extra-large",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00563",
+      "scene_id": "SC50-0003",
+      "source_rank": 155,
+      "expression": "shoe size",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00564",
+      "scene_id": "SC50-0003",
+      "source_rank": 156,
+      "expression": "waist size",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00565",
+      "scene_id": "SC50-0003",
+      "source_rank": 157,
+      "expression": "length",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00566",
+      "scene_id": "SC50-0003",
+      "source_rank": 158,
+      "expression": "sleeve length",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00567",
+      "scene_id": "SC50-0003",
+      "source_rank": 159,
+      "expression": "inseam",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00568",
+      "scene_id": "SC50-0003",
+      "source_rank": 160,
+      "expression": "pattern",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00569",
+      "scene_id": "SC50-0003",
+      "source_rank": 161,
+      "expression": "color combination",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00570",
+      "scene_id": "SC50-0003",
+      "source_rank": 162,
+      "expression": "style",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00571",
+      "scene_id": "SC50-0003",
+      "source_rank": 163,
+      "expression": "cut",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00572",
+      "scene_id": "SC50-0003",
+      "source_rank": 164,
+      "expression": "silhouette",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00573",
+      "scene_id": "SC50-0003",
+      "source_rank": 165,
+      "expression": "texture",
+      "verdict": "CONDITIONAL",
+      "reason": "The texture of this sweater feels a little rough将texture与feels叠加，略显赘余；译文自然但例句可优化。",
+      "suggested_fix": "改This sweater has a slightly rough texture.／这件毛衣的质地略显粗糙。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00574",
+      "scene_id": "SC50-0003",
+      "source_rank": 166,
+      "expression": "stain",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00575",
+      "scene_id": "SC50-0003",
+      "source_rank": 167,
+      "expression": "crease",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00576",
+      "scene_id": "SC50-0003",
+      "source_rank": 168,
+      "expression": "lint",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00577",
+      "scene_id": "SC50-0003",
+      "source_rank": 169,
+      "expression": "label",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00578",
+      "scene_id": "SC50-0003",
+      "source_rank": 170,
+      "expression": "care label",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00579",
+      "scene_id": "SC50-0003",
+      "source_rank": 171,
+      "expression": "mirror",
+      "verdict": "REVISE",
+      "reason": "mirror本身不表示‘穿衣镜’，原usage_note又说不必然是全身镜；例句只体现照镜子。词义不应以场景强行缩窄名词范围。",
+      "suggested_fix": "CG-MASTER改为‘镜子’，full-length mirror另列为全身镜；作者同步修改meaning/display。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00580",
+      "scene_id": "SC50-0003",
+      "source_rank": 172,
+      "expression": "full-length mirror",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00581",
+      "scene_id": "SC50-0003",
+      "source_rank": 173,
+      "expression": "laundry basket",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00582",
+      "scene_id": "SC50-0003",
+      "source_rank": 174,
+      "expression": "missing button",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00583",
+      "scene_id": "SC50-0003",
+      "source_rank": 175,
+      "expression": "broken zipper",
+      "verdict": "CONDITIONAL",
+      "reason": "broken zipper表达‘坏掉的拉链’名词短语，source gloss‘拉链坏了’是完整句的谓语表达，名词/句式身份未对齐。",
+      "suggested_fix": "可改‘坏掉的拉链’，例句译文保持‘拉链坏了’。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00584",
+      "scene_id": "SC50-0003",
+      "source_rank": 176,
+      "expression": "loose thread",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00585",
+      "scene_id": "SC50-0003",
+      "source_rank": 177,
+      "expression": "tear in the fabric",
+      "verdict": "CONDITIONAL",
+      "reason": "tear in the fabric是裂口/破口，未必是贯穿破洞；‘布料破洞’可能过强，例句译文其实是小破口。",
+      "suggested_fix": "建议源义‘布料上的裂口；破口’，区别hole。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00586",
+      "scene_id": "SC50-0003",
+      "source_rank": 178,
+      "expression": "stain on your clothes",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00587",
+      "scene_id": "SC50-0003",
+      "source_rank": 179,
+      "expression": "wrinkle in a shirt",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00588",
+      "scene_id": "SC50-0003",
+      "source_rank": 180,
+      "expression": "iron a shirt",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00589",
+      "scene_id": "SC50-0003",
+      "source_rank": 181,
+      "expression": "steam your clothes",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00590",
+      "scene_id": "SC50-0003",
+      "source_rank": 182,
+      "expression": "remove lint",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00591",
+      "scene_id": "SC50-0003",
+      "source_rank": 183,
+      "expression": "change a stained shirt",
+      "verdict": "REVISE",
+      "reason": "I had to change a stained shirt搭配略生硬，通常说change out of a stained shirt或change my shirt because it was stained；词组本身可理解。",
+      "suggested_fix": "改I had to change out of my stained shirt before the meeting.／开会前我不得不换下沾污的衬衫。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00592",
+      "scene_id": "SC50-0003",
+      "source_rank": 184,
+      "expression": "sew on a button",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00593",
+      "scene_id": "SC50-0003",
+      "source_rank": 185,
+      "expression": "fix a zipper",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00594",
+      "scene_id": "SC50-0003",
+      "source_rank": 186,
+      "expression": "mend a tear",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00595",
+      "scene_id": "SC50-0003",
+      "source_rank": 187,
+      "expression": "adjust the hem",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00596",
+      "scene_id": "SC50-0003",
+      "source_rank": 188,
+      "expression": "roll down your sleeves",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00597",
+      "scene_id": "SC50-0003",
+      "source_rank": 189,
+      "expression": "bring a spare outfit",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00598",
+      "scene_id": "SC50-0003",
+      "source_rank": 190,
+      "expression": "pack an extra layer",
+      "verdict": "CONDITIONAL",
+      "reason": "pack an extra layer并不必然是‘保暖衣物’，extra layer还可遮阳、防风、适应气温变化，中文源义稍窄。",
+      "suggested_fix": "CG-MASTER改为‘多带一层衣物’，例句可继续保留晚上冷的语境。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00599",
+      "scene_id": "SC50-0003",
+      "source_rank": 191,
+      "expression": "check the forecast",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00600",
+      "scene_id": "SC50-0003",
+      "source_rank": 192,
+      "expression": "follow the dress code",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00601",
+      "scene_id": "SC50-0003",
+      "source_rank": 193,
+      "expression": "wear comfortable shoes",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00602",
+      "scene_id": "SC50-0003",
+      "source_rank": 194,
+      "expression": "change into work clothes",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00603",
+      "scene_id": "SC50-0003",
+      "source_rank": 195,
+      "expression": "change into workout clothes",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00604",
+      "scene_id": "SC50-0003",
+      "source_rank": 196,
+      "expression": "hang clothes to dry",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00605",
+      "scene_id": "SC50-0003",
+      "source_rank": 197,
+      "expression": "find a matching pair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00606",
+      "scene_id": "SC50-0003",
+      "source_rank": 198,
+      "expression": "go without a tie",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00607",
+      "scene_id": "SC50-0003",
+      "source_rank": 199,
+      "expression": "borrow a jacket",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00608",
+      "scene_id": "SC50-0003",
+      "source_rank": 200,
+      "expression": "wear layers",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00609",
+      "scene_id": "SC50-0003",
+      "source_rank": 201,
+      "expression": "back to front",
+      "verdict": "CONDITIONAL",
+      "reason": "back to front在英式英语表示前后反穿，原文正确；但搭配wear something back to front与示例T-shirt is on back to front地域限制已说明，中文准确。",
+      "suggested_fix": "可保留当前内容；建议在搭配中明确英式地域属性，非实质错误。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00610",
+      "scene_id": "SC50-0003",
+      "source_rank": 202,
+      "expression": "get changed",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00611",
+      "scene_id": "SC50-0003",
+      "source_rank": 203,
+      "expression": "put your shoes on",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00612",
+      "scene_id": "SC50-0003",
+      "source_rank": 204,
+      "expression": "take your shoes off",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00613",
+      "scene_id": "SC50-0004",
+      "source_rank": 1,
+      "expression": "tidy up",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00614",
+      "scene_id": "SC50-0004",
+      "source_rank": 2,
+      "expression": "clean up",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00615",
+      "scene_id": "SC50-0004",
+      "source_rank": 3,
+      "expression": "declutter",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00616",
+      "scene_id": "SC50-0004",
+      "source_rank": 4,
+      "expression": "organize",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00617",
+      "scene_id": "SC50-0004",
+      "source_rank": 5,
+      "expression": "sort",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00618",
+      "scene_id": "SC50-0004",
+      "source_rank": 6,
+      "expression": "put away",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00619",
+      "scene_id": "SC50-0004",
+      "source_rank": 7,
+      "expression": "throw away",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00620",
+      "scene_id": "SC50-0004",
+      "source_rank": 8,
+      "expression": "hang up",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00621",
+      "scene_id": "SC50-0004",
+      "source_rank": 9,
+      "expression": "fold",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00622",
+      "scene_id": "SC50-0004",
+      "source_rank": 10,
+      "expression": "dust",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00623",
+      "scene_id": "SC50-0004",
+      "source_rank": 11,
+      "expression": "vacuum",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00624",
+      "scene_id": "SC50-0004",
+      "source_rank": 12,
+      "expression": "make the bed",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00625",
+      "scene_id": "SC50-0004",
+      "source_rank": 13,
+      "expression": "shelf",
+      "verdict": "CONDITIONAL",
+      "reason": "shelf的collocations包括bookshelf，后者是复合词而非shelf的自然独立搭配；教学目标应教单词在句中如何组合。",
+      "suggested_fix": "建议‘on a shelf’或‘put something on a shelf’替换bookshelf。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00626",
+      "scene_id": "SC50-0004",
+      "source_rank": 14,
+      "expression": "drawer",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00627",
+      "scene_id": "SC50-0004",
+      "source_rank": 15,
+      "expression": "closet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00628",
+      "scene_id": "SC50-0004",
+      "source_rank": 16,
+      "expression": "storage box",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00629",
+      "scene_id": "SC50-0004",
+      "source_rank": 17,
+      "expression": "vacuum cleaner",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00630",
+      "scene_id": "SC50-0004",
+      "source_rank": 18,
+      "expression": "mess",
+      "verdict": "CONDITIONAL",
+      "reason": "mess注记‘通常可数’适用a mess，但此词也常用于不可数名词化语境；注记可进一步限定此句为a mess。",
+      "suggested_fix": "可说明常见What a mess!/make a mess，不必泛断所有义项可数。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00631",
+      "scene_id": "SC50-0004",
+      "source_rank": 19,
+      "expression": "clutter",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00632",
+      "scene_id": "SC50-0004",
+      "source_rank": 20,
+      "expression": "hang up jackets",
+      "verdict": "PASS"
+    }
+  ]
+}
