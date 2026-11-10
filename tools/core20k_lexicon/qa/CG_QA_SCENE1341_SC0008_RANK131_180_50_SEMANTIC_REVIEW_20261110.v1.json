@@ -13,9 +13,9 @@
   },
   "counts": {
     "total": 50,
-    "PASS": 45,
-    "REVISE": 2,
-    "CONDITIONAL": 3
+    "PASS": 46,
+    "CONDITIONAL": 3,
+    "REVISE": 1
   },
   "review_policy": "Individual English semantic review, not author structural QA. CG-QA pass does not grant dual AI certification or activation.",
   "records": [
@@ -759,9 +759,9 @@
         "food has gone off"
       ],
       "usage_note": "gone off在英式英语可表示食品变质。",
-      "cg_verdict": "REVISE",
-      "linguistic_reason": "milk has gone off是英式自然说法，删去作者内部审核备注。",
-      "action": "学习者可见usage_note含‘来源为待独立审核候选’内部审核元数据，必须删除；英式gone off本身自然。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "The milk has gone off是地道英式表达，表示牛奶变质；例句、中文释义和搭配正确。",
+      "action": null,
       "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-131-180.v2.json",
       "source_pack_git_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
       "release_approved": false,
