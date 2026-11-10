@@ -1,0 +1,2603 @@
+{
+ "schema_version": "pai-enteach-v51-answer-only-sc0004-021-210-sc0005-001-210-muse-review-v1",
+ "reviewer": "MU-ENTEACH",
+ "review_type": "independent_teaching_review_answer_only",
+ "date": "2026-11-10",
+ "source": {
+  "pack_branch": "answer-enrichment-main-dev-20261026",
+  "pack_head": "70e0edd1335e254f27d352cc287e6b51ac7f638e",
+  "packs": [
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-021-070.v2.json",
+    "blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+    "scene_id": "SC50-0004",
+    "ranks": "21-70",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-071-120.v2.json",
+    "blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+    "scene_id": "SC50-0004",
+    "ranks": "71-120",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-121-170.v2.json",
+    "blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+    "scene_id": "SC50-0004",
+    "ranks": "121-170",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+    "blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+    "scene_id": "SC50-0004",
+    "ranks": "171-210",
+    "records": 40
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-001-010.v2.json",
+    "blob": "15b4f654660bd3bf4f9a7b3b60df17794e49cfa8",
+    "scene_id": "SC50-0005",
+    "ranks": "1-10",
+    "records": 10
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+    "blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+    "scene_id": "SC50-0005",
+    "ranks": "11-60",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-061-110.v2.json",
+    "blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+    "scene_id": "SC50-0005",
+    "ranks": "61-110",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-111-160.v2.json",
+    "blob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+    "scene_id": "SC50-0005",
+    "ranks": "111-160",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+    "blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+    "scene_id": "SC50-0005",
+    "ranks": "161-210",
+    "records": 50
+   }
+  ],
+  "source_branch": "cg-main-fourline-integration-20261026",
+  "source_path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+  "source_git_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+  "source_version": "V51"
+ },
+ "method": "9 independent chunk reviewers (one per pack: 50 / 50 / 50 / 40 / 10 / 50 / 50 / 50 / 50 records, verdicts made independently per chunk, blind to other lines' verdicts), merged by coordinator; coordinator re-verified coverage and identity binding with a scene-scoped (scene_id + rank) lookup and re-checked all 6 REVISE items against the packs",
+ "review_basis": "teaching-branch HEAD 70e0edd1 at the user's instruction to review all 400 records; review requested by CG-QA comment 6759768201 (MU-ENTEACH/MU-QA to cover the 400-record second-review gap, KU00633-01032)",
+ "checks": {
+  "identity_binding": "400/400",
+  "display_answer_consistency": "400/400",
+  "question_fields_absent": "400/400",
+  "meaning_zh_eq_sense_zh": "400/400",
+  "activation_allowed_false": "400/400",
+  "structure_validator": "NOT_APPLICABLE — the V51 validator (test-scene1341-v51-answer-only-v2.mjs) asserts the first-20 pack only; identity/structure for these ranks verified by the coordinator's independent scene-scoped script plus each chunk reviewer's checks",
+  "structure_validator_file": "tools/answer-enrichment/test-scene1341-v51-answer-only-v2.mjs"
+ },
+ "limits": {
+  "activation_allowed": false,
+  "production_ready": false,
+  "publishable": 0,
+  "dual_ai_certification": "NOT_CLAIMED",
+  "chatgpt_independent_semantic_verdict_on_answer_only_v2": "NOT_YET_SEEN_BY_REVIEWERS",
+  "cg_qa_mu_qa_semantic_review": "PENDING — reviewers were blind to CG-QA's reviews of all 400 records and to MU-QA's parallel review",
+  "semantic_basis": "source sense_zh + expression + scene context; no frozen English definition attached to SC-SENSE- IDs in the V51 CSV",
+  "editorial_addition_note": "SC50-0004 rank 24 (SC1341-KU-00636 put away clutter), SC50-0004 ranks 208-209 (SC1341-KU-00820 find a place for everything, 00821 sort through) and SC50-0005 rank 31 (SC1341-KU-00853 clean as you go) are editorial_addition rows (tier CORE / ADDITIONAL / ADDITIONAL / CORE) in the source CSV, still pending CG-MASTER / independent QA review; judged on the same criteria against the CSV rows as they stand, all four PASS on content",
+  "editorial_gap_candidate_note": "SC50-0004 ranks 206-207 (SC1341-KU-00818 put things back where they belong, 00819 clear the clutter) are editorial_gap_candidate rows (tier SUPPORTING, decision_note 'Original candidate retained for scene vocabulary inventory'), still pending CG-MASTER / independent QA review; judged on the same criteria against the CSV rows as they stand, both PASS on content",
+  "out_of_scope_note": "SC50-0005 ranks 221-223 (divide up the chores / keep up with housework / do the housework, KU 01043-01045) were listed in the task brief but no pack in this batch covers them — the nine packs end at rank 210 / SC1341-KU-01032 — so they were NOT reviewed here and belong to a later batch"
+ },
+ "task_refs": {
+  "production_request": "6744354493",
+  "restart_directive": "6745276777",
+  "review_requests": [
+   "6759768201"
+  ]
+ },
+ "summary": {
+  "reviewed": 400,
+  "pass": 394,
+  "revise": 6,
+  "hold": 0,
+  "per_pack": {
+   "sc0004_021_070": {
+    "reviewed": 50,
+    "pass": 50,
+    "revise": 0,
+    "hold": 0
+   },
+   "sc0004_071_120": {
+    "reviewed": 50,
+    "pass": 49,
+    "revise": 1,
+    "hold": 0
+   },
+   "sc0004_121_170": {
+    "reviewed": 50,
+    "pass": 50,
+    "revise": 0,
+    "hold": 0
+   },
+   "sc0004_171_210": {
+    "reviewed": 40,
+    "pass": 38,
+    "revise": 2,
+    "hold": 0
+   },
+   "sc0005_001_010": {
+    "reviewed": 10,
+    "pass": 10,
+    "revise": 0,
+    "hold": 0
+   },
+   "sc0005_011_060": {
+    "reviewed": 50,
+    "pass": 48,
+    "revise": 2,
+    "hold": 0
+   },
+   "sc0005_061_110": {
+    "reviewed": 50,
+    "pass": 50,
+    "revise": 0,
+    "hold": 0
+   },
+   "sc0005_111_160": {
+    "reviewed": 50,
+    "pass": 50,
+    "revise": 0,
+    "hold": 0
+   },
+   "sc0005_161_210": {
+    "reviewed": 50,
+    "pass": 49,
+    "revise": 1,
+    "hold": 0
+   }
+  }
+ },
+ "verdicts": [
+  {
+   "scene_ku_id": "SC1341-KU-00633",
+   "expression": "vacuum the carpet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00634",
+   "expression": "clean up broken glass",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00635",
+   "expression": "put away sharp tools",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00636",
+   "expression": "put away clutter",
+   "verdict": "PASS",
+   "note": "editorial_addition per source CSV (rank 24, decision_note: New scene gap candidate, requires independent validation); usage_note flags this pending status. Content itself (example, translation, collocations, note) is accurate as it stands."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00637",
+   "expression": "straighten up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00638",
+   "expression": "clear out",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00639",
+   "expression": "clear off",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00640",
+   "expression": "get rid of",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00641",
+   "expression": "keep",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00642",
+   "expression": "donate",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00643",
+   "expression": "recycle",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00644",
+   "expression": "store",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00645",
+   "expression": "arrange",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00646",
+   "expression": "rearrange",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00647",
+   "expression": "make space",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00648",
+   "expression": "free up space",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00649",
+   "expression": "stack",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00650",
+   "expression": "pile up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00651",
+   "expression": "spread out",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00652",
+   "expression": "wipe down",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00653",
+   "expression": "sweep",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00654",
+   "expression": "mop",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00655",
+   "expression": "change the sheets",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00656",
+   "expression": "fluff up the pillows",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00657",
+   "expression": "open the windows",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00658",
+   "expression": "air out the room",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00659",
+   "expression": "freshen the room",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00660",
+   "expression": "pick up clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00661",
+   "expression": "put things back",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00662",
+   "expression": "wipe up a spill",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00663",
+   "expression": "take out the trash",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00664",
+   "expression": "empty the bin",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00665",
+   "expression": "room",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00666",
+   "expression": "bedroom",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00667",
+   "expression": "living room",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00668",
+   "expression": "floor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00669",
+   "expression": "carpet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00670",
+   "expression": "rug",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00671",
+   "expression": "bookshelf",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00672",
+   "expression": "dresser",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00673",
+   "expression": "wardrobe",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00674",
+   "expression": "cabinet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00675",
+   "expression": "storage bin",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00676",
+   "expression": "basket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00677",
+   "expression": "hamper",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00678",
+   "expression": "organizer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00679",
+   "expression": "container",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00680",
+   "expression": "label",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00681",
+   "expression": "hook",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00682",
+   "expression": "hanger",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00683",
+   "expression": "rack",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00684",
+   "expression": "desk",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00685",
+   "expression": "chair",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00686",
+   "expression": "nightstand",
+   "verdict": "REVISE",
+   "issue": "Collocation \"bedside nightstand\" is redundant and not a standard English collocation: a nightstand already is a bedside table, so \"bedside nightstand\" is pleonastic (like \"ATM machine\").",
+   "proposed_fix": "Replace the collocation \"bedside nightstand\" with \"bedside table\" (display c becomes \"bedside table · nightstand drawer\")."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00687",
+   "expression": "coffee table",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00688",
+   "expression": "side table",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00689",
+   "expression": "cushion",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00690",
+   "expression": "pillow",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00691",
+   "expression": "blanket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00692",
+   "expression": "bedsheet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00693",
+   "expression": "duvet cover",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00694",
+   "expression": "curtain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00695",
+   "expression": "window sill",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00696",
+   "expression": "laundry basket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00697",
+   "expression": "trash can",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00698",
+   "expression": "bin liner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00699",
+   "expression": "broom",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00700",
+   "expression": "dustpan",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00701",
+   "expression": "mop",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00702",
+   "expression": "microfiber cloth",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00703",
+   "expression": "duster",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00704",
+   "expression": "cleaning spray",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00705",
+   "expression": "disinfectant",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00706",
+   "expression": "junk",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00707",
+   "expression": "stuff",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00708",
+   "expression": "belongings",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00709",
+   "expression": "personal items",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00710",
+   "expression": "valuables",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00711",
+   "expression": "keepsake",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00712",
+   "expression": "spare items",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00713",
+   "expression": "storage space",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00714",
+   "expression": "surface",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00715",
+   "expression": "corner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00716",
+   "expression": "under the bed",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00717",
+   "expression": "on the shelf",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00718",
+   "expression": "in the drawer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00719",
+   "expression": "at the back of the closet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00720",
+   "expression": "within reach",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00721",
+   "expression": "out of reach",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00722",
+   "expression": "on display",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00723",
+   "expression": "out of sight",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00724",
+   "expression": "in its place",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00725",
+   "expression": "tidy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00726",
+   "expression": "neat",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00727",
+   "expression": "organized",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00728",
+   "expression": "cluttered",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00729",
+   "expression": "messy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00730",
+   "expression": "dusty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00731",
+   "expression": "dirty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00732",
+   "expression": "spotless",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00733",
+   "expression": "cramped",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00734",
+   "expression": "spacious",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00735",
+   "expression": "crowded",
+   "verdict": "PASS",
+   "note": "crowded applied to shelves/boxes is acceptable here and the usage note flags the people sense."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00736",
+   "expression": "bare",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00737",
+   "expression": "empty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00738",
+   "expression": "full",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00739",
+   "expression": "overstuffed",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00740",
+   "expression": "musty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00741",
+   "expression": "stale air",
+   "verdict": "PASS",
+   "note": "Collocation 'let stale air out' is bare but acceptable as a phrase form; example is natural."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00742",
+   "expression": "fresh air",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00743",
+   "expression": "dust bunny",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00744",
+   "expression": "cobweb",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00745",
+   "expression": "stain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00746",
+   "expression": "scratch",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00747",
+   "expression": "spill",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00748",
+   "expression": "odor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00749",
+   "expression": "smell",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00750",
+   "expression": "sort by category",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00751",
+   "expression": "sort by size",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00752",
+   "expression": "sort by color",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00753",
+   "expression": "separate clean clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00754",
+   "expression": "put dirty clothes in the hamper",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00755",
+   "expression": "fold the laundry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00756",
+   "expression": "line up shoes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00757",
+   "expression": "put books on the shelf",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00758",
+   "expression": "stack books",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00759",
+   "expression": "file documents",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00760",
+   "expression": "shred old papers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00761",
+   "expression": "clear the desk",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00762",
+   "expression": "wipe the desk",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00763",
+   "expression": "clean under the bed",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00764",
+   "expression": "sweep the floor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00765",
+   "expression": "mop the floor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00766",
+   "expression": "dust the shelves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00767",
+   "expression": "wipe the mirror",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00768",
+   "expression": "clean the windows",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00769",
+   "expression": "wash the curtains",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00770",
+   "expression": "change the bedding",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00771",
+   "expression": "put fresh sheets on",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00772",
+   "expression": "take down decorations",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00773",
+   "expression": "rearrange furniture",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00774",
+   "expression": "move the table",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00775",
+   "expression": "push the sofa back",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00776",
+   "expression": "make room for a desk",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00777",
+   "expression": "open up the space",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00778",
+   "expression": "label the boxes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00779",
+   "expression": "put seasonal clothes away",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00780",
+   "expression": "pack things into bins",
+   "verdict": "PASS",
+   "note": "Usage note correctly disambiguates bin as storage bin, not trash can."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00781",
+   "expression": "dispose of broken items",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00782",
+   "expression": "set aside donations",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00783",
+   "expression": "keep essentials handy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00784",
+   "expression": "empty the wastebasket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00785",
+   "expression": "replace the trash bag",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00786",
+   "expression": "spray air freshener",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00787",
+   "expression": "spilled drink",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00788",
+   "expression": "broken glass",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00789",
+   "expression": "sharp object",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00790",
+   "expression": "slippery floor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00791",
+   "expression": "trip hazard",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00792",
+   "expression": "loose cable",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00793",
+   "expression": "extension cord",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00794",
+   "expression": "tangled cables",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00795",
+   "expression": "cable organizer",
+   "verdict": "REVISE",
+   "issue": "Terminology mismatch across fields: sense_zh/meaning_zh gloss is 理线夹, but example_zh says 我用了一个理线器把电线整理在一起, while the usage note says cable organizer is generic and not necessarily a clip.",
+   "proposed_fix": "Change example_zh to 我用了一个理线夹把电线整理在一起。 so the example uses the same term as the gloss; keep the usage note explaining the English term is broader."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00796",
+   "expression": "lost item",
+   "verdict": "REVISE",
+   "issue": "example_zh is awkward/self-contradictory: 我在沙发底下找到了那件找不到的东西 (found the thing that could not be found).",
+   "proposed_fix": "Change example_zh to 我在沙发底下找到了那件丢失的东西。"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00797",
+   "expression": "misplaced",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00798",
+   "expression": "overflowing bin",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00799",
+   "expression": "mold",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00800",
+   "expression": "mildew",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00801",
+   "expression": "damp",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00802",
+   "expression": "leak",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00803",
+   "expression": "fragile",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00804",
+   "expression": "breakable",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00805",
+   "expression": "handle with care",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00806",
+   "expression": "keep away from children",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00807",
+   "expression": "use a step stool",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00808",
+   "expression": "secure heavy furniture",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00809",
+   "expression": "wipe up immediately",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00810",
+   "expression": "find a missing item",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00811",
+   "expression": "set aside important papers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00812",
+   "expression": "keep cleaning products separate",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00813",
+   "expression": "remove tripping hazards",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00814",
+   "expression": "store fragile items safely",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00815",
+   "expression": "air out a damp room",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00816",
+   "expression": "deal with a bad smell",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00817",
+   "expression": "take a break from cleaning",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00818",
+   "expression": "put things back where they belong",
+   "verdict": "PASS",
+   "note": "Editorial row: source=editorial_gap_candidate in V51 CSV (decision_note: Original candidate retained for scene vocabulary inventory); content itself is correct and natural, pending CG-MASTER/independent QA validation."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00819",
+   "expression": "clear the clutter",
+   "verdict": "PASS",
+   "note": "Editorial row: source=editorial_gap_candidate in V51 CSV (decision_note: Original candidate retained for scene vocabulary inventory); content itself is correct and natural, pending CG-MASTER/independent QA validation."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00820",
+   "expression": "find a place for everything",
+   "verdict": "PASS",
+   "note": "Editorial row: source=editorial_addition, tier ADDITIONAL in V51 CSV (decision_note: New scene gap candidate, requires independent validation); content itself is correct and natural, pending CG-MASTER/independent QA validation."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00821",
+   "expression": "sort through",
+   "verdict": "PASS",
+   "note": "Editorial row: source=editorial_addition, tier ADDITIONAL in V51 CSV (decision_note: New scene gap candidate, requires independent validation); content itself is correct and natural, pending CG-MASTER/independent QA validation."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00822",
+   "expression": "pest",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00823",
+   "expression": "housework",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 1 exactly; example natural and on-sense; usage note on uncountable housework vs countable chore is accurate."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00824",
+   "expression": "chore",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 2 exactly; example and translation faithful; collocations real."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00825",
+   "expression": "chore chart",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 3 exactly; example illustrates the sense; usage note on chart as a table is accurate."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00826",
+   "expression": "clean up",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 4 exactly; example, translation and collocations all sound."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00827",
+   "expression": "scrub",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 5 exactly; example illustrates forceful scrubbing; scrub vs wipe contrast is accurate."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00828",
+   "expression": "sweep",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 6 exactly; sweep vs vacuum contrast is accurate; collocations real."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00829",
+   "expression": "mop",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 7 exactly (verb sense 拖地); example and translation faithful; verb/noun note accurate."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00830",
+   "expression": "vacuum",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 8 exactly; example natural and on-sense; collocations real."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00831",
+   "expression": "dust",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 9 exactly (verb sense 清除灰尘); verb/noun note accurate; example faithful."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00832",
+   "expression": "clean the litter box",
+   "verdict": "PASS",
+   "note": "Identity matches CSV rank 10 exactly; example natural; 'scoop the litter box' is a real collocation; litter-as-rubbish note is true."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00833",
+   "expression": "mop",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00834",
+   "expression": "vacuum cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00835",
+   "expression": "scrub brush",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00836",
+   "expression": "detergent",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00837",
+   "expression": "laundry detergent",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00838",
+   "expression": "trash bag",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00839",
+   "expression": "laundry basket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00840",
+   "expression": "cleaning supplies",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00841",
+   "expression": "chore rotation",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00842",
+   "expression": "sweep the kitchen floor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00843",
+   "expression": "vacuum the living room",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00844",
+   "expression": "clean the stovetop",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00845",
+   "expression": "clean the microwave",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00846",
+   "expression": "scrub the sink",
+   "verdict": "REVISE",
+   "issue": "example_zh “我用软刷把水槽刷干净。” renders 'the sink' as 水槽 (kitchen sink), while sense_zh / meaning_zh is 刷洗洗手池 (bathroom wash-basin); the example translation is inconsistent with the gloss given in the same record.",
+   "proposed_fix": "Change example_zh (and display.example_zh in sync) to “我用软刷把洗手池刷干净。” so the example matches sense_zh 刷洗洗手池."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00847",
+   "expression": "clean the toilet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00848",
+   "expression": "scrub the bathtub",
+   "verdict": "REVISE",
+   "issue": "example_en “I scrub the bathtub after soaking it with water.” is not natural: 'soak' takes the thing immersed as its object, but the bathtub is the container, not the thing soaked in water.",
+   "proposed_fix": "Replace the example pair with example_en “I scrub the bathtub after letting it soak.” and example_zh “让浴缸浸泡一会儿后，我会刷洗浴缸。” (sync display.e / display.example_zh)."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00849",
+   "expression": "clean the shower tiles",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00850",
+   "expression": "take out the garbage",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00851",
+   "expression": "clean the vents",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00852",
+   "expression": "clean the vacuum filter",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00853",
+   "expression": "clean as you go",
+   "verdict": "PASS",
+   "note": "Editorial row: V51 CSV source is editorial_addition (decision_note: 'New scene gap candidate, requires independent validation'); usage_note already flags it as pending independent review. Content judged PASS as it stands; activation still requires CG-MASTER / independent QA validation."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00854",
+   "expression": "household chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00855",
+   "expression": "cleaning",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00856",
+   "expression": "tidying",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00857",
+   "expression": "deep cleaning",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00858",
+   "expression": "spring cleaning",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00859",
+   "expression": "maintenance",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00860",
+   "expression": "household upkeep",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00861",
+   "expression": "do the chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00862",
+   "expression": "share the chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00863",
+   "expression": "split the chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00864",
+   "expression": "assign chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00865",
+   "expression": "cleaning schedule",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00866",
+   "expression": "daily chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00867",
+   "expression": "weekly chores",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00868",
+   "expression": "to-do list",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00869",
+   "expression": "tidy up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00870",
+   "expression": "wipe down",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00871",
+   "expression": "polish",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00872",
+   "expression": "sanitize",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00873",
+   "expression": "disinfect",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00874",
+   "expression": "rinse",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00875",
+   "expression": "soak",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00876",
+   "expression": "hang out laundry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00877",
+   "expression": "fold laundry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00878",
+   "expression": "iron",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00879",
+   "expression": "take out the trash",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00880",
+   "expression": "wash the dishes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00881",
+   "expression": "load the dishwasher",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00882",
+   "expression": "empty the dishwasher",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00883",
+   "expression": "make the bed",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00884",
+   "expression": "change the sheets",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00885",
+   "expression": "water the plants",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00886",
+   "expression": "feed the pets",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00887",
+   "expression": "run errands",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00888",
+   "expression": "broom",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00889",
+   "expression": "dustpan",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00890",
+   "expression": "bucket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00891",
+   "expression": "robot vacuum",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00892",
+   "expression": "microfiber cloth",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00893",
+   "expression": "sponge",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00894",
+   "expression": "duster",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00895",
+   "expression": "paper towel",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00896",
+   "expression": "cleaning rag",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00897",
+   "expression": "rubber gloves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00898",
+   "expression": "apron",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00899",
+   "expression": "all-purpose cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00900",
+   "expression": "glass cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00901",
+   "expression": "floor cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00902",
+   "expression": "dish soap",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00903",
+   "expression": "fabric softener",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00904",
+   "expression": "stain remover",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00905",
+   "expression": "bleach",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00906",
+   "expression": "disinfectant",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00907",
+   "expression": "baking soda",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00908",
+   "expression": "vinegar",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00909",
+   "expression": "garbage can",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00910",
+   "expression": "recycling bin",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00911",
+   "expression": "compost bin",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00912",
+   "expression": "dishwasher",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00913",
+   "expression": "washing machine",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00914",
+   "expression": "dryer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00915",
+   "expression": "clothesline",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00916",
+   "expression": "drying rack",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00917",
+   "expression": "iron",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00918",
+   "expression": "ironing board",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00919",
+   "expression": "lint roller",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00920",
+   "expression": "plunger",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00921",
+   "expression": "drain cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00922",
+   "expression": "cleaning caddy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00923",
+   "expression": "storage cupboard",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00924",
+   "expression": "dirty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00925",
+   "expression": "dusty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00926",
+   "expression": "greasy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00927",
+   "expression": "sticky",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00928",
+   "expression": "stained",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00929",
+   "expression": "smudged",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00930",
+   "expression": "grimy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00931",
+   "expression": "clogged",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00932",
+   "expression": "moldy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00933",
+   "expression": "damp",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00934",
+   "expression": "musty",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00935",
+   "expression": "wet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00936",
+   "expression": "dry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00937",
+   "expression": "spotless",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00938",
+   "expression": "shiny",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00939",
+   "expression": "squeaky clean",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00940",
+   "expression": "fresh-smelling",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00941",
+   "expression": "messy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00942",
+   "expression": "tidy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00943",
+   "expression": "organized",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00944",
+   "expression": "overdue",
+   "verdict": "PASS",
+   "note": "usage note correctly scopes overdue to task-due, not person-late."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00945",
+   "expression": "time-consuming",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00946",
+   "expression": "repetitive",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00947",
+   "expression": "boring",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00948",
+   "expression": "manageable",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00949",
+   "expression": "exhausting",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00950",
+   "expression": "fair share",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00951",
+   "expression": "workload",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00952",
+   "expression": "elbow grease",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00953",
+   "expression": "stubborn stain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00954",
+   "expression": "soap scum",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00955",
+   "expression": "limescale",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00956",
+   "expression": "grease buildup",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00957",
+   "expression": "pet hair",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00958",
+   "expression": "crumbs",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00959",
+   "expression": "lint",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00960",
+   "expression": "dust mites",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00961",
+   "expression": "spilled liquid",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00962",
+   "expression": "food scraps",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00963",
+   "expression": "household waste",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00964",
+   "expression": "recyclables",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00965",
+   "expression": "compost",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00966",
+   "expression": "mop the hallway",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00967",
+   "expression": "dust the furniture",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00968",
+   "expression": "wipe the countertops",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00969",
+   "expression": "degrease the oven",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00970",
+   "expression": "wipe the fridge shelves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00971",
+   "expression": "defrost the freezer",
+   "verdict": "PASS",
+   "note": "example uses passive 'needs to be defrosted' but still illustrates the expression's sense."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00972",
+   "expression": "polish the faucet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00973",
+   "expression": "wipe the bathroom mirror",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00974",
+   "expression": "wash the windows",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00975",
+   "expression": "dust the blinds",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00976",
+   "expression": "change the bedding",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00977",
+   "expression": "wash the sheets",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00978",
+   "expression": "strip the bed",
+   "verdict": "PASS",
+   "note": "usage note usefully blocks the dismantle-the-bed misreading."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00979",
+   "expression": "sort the laundry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00980",
+   "expression": "separate whites and colors",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00981",
+   "expression": "start a wash cycle",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00982",
+   "expression": "transfer laundry to the dryer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00983",
+   "expression": "hang clothes to dry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00984",
+   "expression": "fold clean clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00985",
+   "expression": "put away laundry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00986",
+   "expression": "iron shirts",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00987",
+   "expression": "replace the bin liner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00988",
+   "expression": "sort the recycling",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00989",
+   "expression": "put out the bins",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00990",
+   "expression": "bring the bins back in",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00991",
+   "expression": "wash the dishes by hand",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00992",
+   "expression": "rinse the dishes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00993",
+   "expression": "dry the dishes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00994",
+   "expression": "put dishes away",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00995",
+   "expression": "change the air filter",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00996",
+   "expression": "replace a light bulb",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00997",
+   "expression": "wash the doormat",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00998",
+   "expression": "shake out the rug",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00999",
+   "expression": "water the houseplants",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01000",
+   "expression": "wipe up a spill",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01001",
+   "expression": "spot-clean the carpet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01002",
+   "expression": "check for leaks",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01003",
+   "expression": "stubborn grease",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01004",
+   "expression": "blocked drain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01005",
+   "expression": "overflowing sink",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01006",
+   "expression": "broken vacuum",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01007",
+   "expression": "full dust bag",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01008",
+   "expression": "clogged filter",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01009",
+   "expression": "leaking washing machine",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01010",
+   "expression": "shrunk clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01011",
+   "expression": "color bleeding",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01012",
+   "expression": "delicate fabric",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01013",
+   "expression": "damaged surface",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01014",
+   "expression": "scratched floor",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01015",
+   "expression": "slippery tiles",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01016",
+   "expression": "cleaning fumes",
+   "verdict": "REVISE",
+   "issue": "usage_note Chinese is garbled: '出现不适应停止接触' omits the conditional/modal, so the clause does not read as grammatical Chinese (cf. the otherwise correct note 'cleaning fumes指挥发性气体或刺激性气味').",
+   "proposed_fix": "Change the usage_note tail from '出现不适应停止接触。' to '出现不适时应停止接触并通风。'"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01017",
+   "expression": "chemical residue",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01018",
+   "expression": "skin irritation",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01019",
+   "expression": "allergic reaction",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01020",
+   "expression": "protective gloves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01021",
+   "expression": "ventilation",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01022",
+   "expression": "pet-safe cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01023",
+   "expression": "check the care label",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01024",
+   "expression": "test on a small area",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01025",
+   "expression": "dilute the cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01026",
+   "expression": "follow the instructions",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01027",
+   "expression": "don't mix cleaning products",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01028",
+   "expression": "rinse off residue",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01029",
+   "expression": "unclog a drain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01030",
+   "expression": "empty the dust container",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01031",
+   "expression": "replace a mop head",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-01032",
+   "expression": "deal with a spill",
+   "verdict": "PASS"
+  }
+ ],
+ "approval_list": [
+  "SC1341-KU-00633",
+  "SC1341-KU-00634",
+  "SC1341-KU-00635",
+  "SC1341-KU-00636",
+  "SC1341-KU-00637",
+  "SC1341-KU-00638",
+  "SC1341-KU-00639",
+  "SC1341-KU-00640",
+  "SC1341-KU-00641",
+  "SC1341-KU-00642",
+  "SC1341-KU-00643",
+  "SC1341-KU-00644",
+  "SC1341-KU-00645",
+  "SC1341-KU-00646",
+  "SC1341-KU-00647",
+  "SC1341-KU-00648",
+  "SC1341-KU-00649",
+  "SC1341-KU-00650",
+  "SC1341-KU-00651",
+  "SC1341-KU-00652",
+  "SC1341-KU-00653",
+  "SC1341-KU-00654",
+  "SC1341-KU-00655",
+  "SC1341-KU-00656",
+  "SC1341-KU-00657",
+  "SC1341-KU-00658",
+  "SC1341-KU-00659",
+  "SC1341-KU-00660",
+  "SC1341-KU-00661",
+  "SC1341-KU-00662",
+  "SC1341-KU-00663",
+  "SC1341-KU-00664",
+  "SC1341-KU-00665",
+  "SC1341-KU-00666",
+  "SC1341-KU-00667",
+  "SC1341-KU-00668",
+  "SC1341-KU-00669",
+  "SC1341-KU-00670",
+  "SC1341-KU-00671",
+  "SC1341-KU-00672",
+  "SC1341-KU-00673",
+  "SC1341-KU-00674",
+  "SC1341-KU-00675",
+  "SC1341-KU-00676",
+  "SC1341-KU-00677",
+  "SC1341-KU-00678",
+  "SC1341-KU-00679",
+  "SC1341-KU-00680",
+  "SC1341-KU-00681",
+  "SC1341-KU-00682",
+  "SC1341-KU-00683",
+  "SC1341-KU-00684",
+  "SC1341-KU-00685",
+  "SC1341-KU-00687",
+  "SC1341-KU-00688",
+  "SC1341-KU-00689",
+  "SC1341-KU-00690",
+  "SC1341-KU-00691",
+  "SC1341-KU-00692",
+  "SC1341-KU-00693",
+  "SC1341-KU-00694",
+  "SC1341-KU-00695",
+  "SC1341-KU-00696",
+  "SC1341-KU-00697",
+  "SC1341-KU-00698",
+  "SC1341-KU-00699",
+  "SC1341-KU-00700",
+  "SC1341-KU-00701",
+  "SC1341-KU-00702",
+  "SC1341-KU-00703",
+  "SC1341-KU-00704",
+  "SC1341-KU-00705",
+  "SC1341-KU-00706",
+  "SC1341-KU-00707",
+  "SC1341-KU-00708",
+  "SC1341-KU-00709",
+  "SC1341-KU-00710",
+  "SC1341-KU-00711",
+  "SC1341-KU-00712",
+  "SC1341-KU-00713",
+  "SC1341-KU-00714",
+  "SC1341-KU-00715",
+  "SC1341-KU-00716",
+  "SC1341-KU-00717",
+  "SC1341-KU-00718",
+  "SC1341-KU-00719",
+  "SC1341-KU-00720",
+  "SC1341-KU-00721",
+  "SC1341-KU-00722",
+  "SC1341-KU-00723",
+  "SC1341-KU-00724",
+  "SC1341-KU-00725",
+  "SC1341-KU-00726",
+  "SC1341-KU-00727",
+  "SC1341-KU-00728",
+  "SC1341-KU-00729",
+  "SC1341-KU-00730",
+  "SC1341-KU-00731",
+  "SC1341-KU-00732",
+  "SC1341-KU-00733",
+  "SC1341-KU-00734",
+  "SC1341-KU-00735",
+  "SC1341-KU-00736",
+  "SC1341-KU-00737",
+  "SC1341-KU-00738",
+  "SC1341-KU-00739",
+  "SC1341-KU-00740",
+  "SC1341-KU-00741",
+  "SC1341-KU-00742",
+  "SC1341-KU-00743",
+  "SC1341-KU-00744",
+  "SC1341-KU-00745",
+  "SC1341-KU-00746",
+  "SC1341-KU-00747",
+  "SC1341-KU-00748",
+  "SC1341-KU-00749",
+  "SC1341-KU-00750",
+  "SC1341-KU-00751",
+  "SC1341-KU-00752",
+  "SC1341-KU-00753",
+  "SC1341-KU-00754",
+  "SC1341-KU-00755",
+  "SC1341-KU-00756",
+  "SC1341-KU-00757",
+  "SC1341-KU-00758",
+  "SC1341-KU-00759",
+  "SC1341-KU-00760",
+  "SC1341-KU-00761",
+  "SC1341-KU-00762",
+  "SC1341-KU-00763",
+  "SC1341-KU-00764",
+  "SC1341-KU-00765",
+  "SC1341-KU-00766",
+  "SC1341-KU-00767",
+  "SC1341-KU-00768",
+  "SC1341-KU-00769",
+  "SC1341-KU-00770",
+  "SC1341-KU-00771",
+  "SC1341-KU-00772",
+  "SC1341-KU-00773",
+  "SC1341-KU-00774",
+  "SC1341-KU-00775",
+  "SC1341-KU-00776",
+  "SC1341-KU-00777",
+  "SC1341-KU-00778",
+  "SC1341-KU-00779",
+  "SC1341-KU-00780",
+  "SC1341-KU-00781",
+  "SC1341-KU-00782",
+  "SC1341-KU-00783",
+  "SC1341-KU-00784",
+  "SC1341-KU-00785",
+  "SC1341-KU-00786",
+  "SC1341-KU-00787",
+  "SC1341-KU-00788",
+  "SC1341-KU-00789",
+  "SC1341-KU-00790",
+  "SC1341-KU-00791",
+  "SC1341-KU-00792",
+  "SC1341-KU-00793",
+  "SC1341-KU-00794",
+  "SC1341-KU-00797",
+  "SC1341-KU-00798",
+  "SC1341-KU-00799",
+  "SC1341-KU-00800",
+  "SC1341-KU-00801",
+  "SC1341-KU-00802",
+  "SC1341-KU-00803",
+  "SC1341-KU-00804",
+  "SC1341-KU-00805",
+  "SC1341-KU-00806",
+  "SC1341-KU-00807",
+  "SC1341-KU-00808",
+  "SC1341-KU-00809",
+  "SC1341-KU-00810",
+  "SC1341-KU-00811",
+  "SC1341-KU-00812",
+  "SC1341-KU-00813",
+  "SC1341-KU-00814",
+  "SC1341-KU-00815",
+  "SC1341-KU-00816",
+  "SC1341-KU-00817",
+  "SC1341-KU-00818",
+  "SC1341-KU-00819",
+  "SC1341-KU-00820",
+  "SC1341-KU-00821",
+  "SC1341-KU-00822",
+  "SC1341-KU-00823",
+  "SC1341-KU-00824",
+  "SC1341-KU-00825",
+  "SC1341-KU-00826",
+  "SC1341-KU-00827",
+  "SC1341-KU-00828",
+  "SC1341-KU-00829",
+  "SC1341-KU-00830",
+  "SC1341-KU-00831",
+  "SC1341-KU-00832",
+  "SC1341-KU-00833",
+  "SC1341-KU-00834",
+  "SC1341-KU-00835",
+  "SC1341-KU-00836",
+  "SC1341-KU-00837",
+  "SC1341-KU-00838",
+  "SC1341-KU-00839",
+  "SC1341-KU-00840",
+  "SC1341-KU-00841",
+  "SC1341-KU-00842",
+  "SC1341-KU-00843",
+  "SC1341-KU-00844",
+  "SC1341-KU-00845",
+  "SC1341-KU-00847",
+  "SC1341-KU-00849",
+  "SC1341-KU-00850",
+  "SC1341-KU-00851",
+  "SC1341-KU-00852",
+  "SC1341-KU-00853",
+  "SC1341-KU-00854",
+  "SC1341-KU-00855",
+  "SC1341-KU-00856",
+  "SC1341-KU-00857",
+  "SC1341-KU-00858",
+  "SC1341-KU-00859",
+  "SC1341-KU-00860",
+  "SC1341-KU-00861",
+  "SC1341-KU-00862",
+  "SC1341-KU-00863",
+  "SC1341-KU-00864",
+  "SC1341-KU-00865",
+  "SC1341-KU-00866",
+  "SC1341-KU-00867",
+  "SC1341-KU-00868",
+  "SC1341-KU-00869",
+  "SC1341-KU-00870",
+  "SC1341-KU-00871",
+  "SC1341-KU-00872",
+  "SC1341-KU-00873",
+  "SC1341-KU-00874",
+  "SC1341-KU-00875",
+  "SC1341-KU-00876",
+  "SC1341-KU-00877",
+  "SC1341-KU-00878",
+  "SC1341-KU-00879",
+  "SC1341-KU-00880",
+  "SC1341-KU-00881",
+  "SC1341-KU-00882",
+  "SC1341-KU-00883",
+  "SC1341-KU-00884",
+  "SC1341-KU-00885",
+  "SC1341-KU-00886",
+  "SC1341-KU-00887",
+  "SC1341-KU-00888",
+  "SC1341-KU-00889",
+  "SC1341-KU-00890",
+  "SC1341-KU-00891",
+  "SC1341-KU-00892",
+  "SC1341-KU-00893",
+  "SC1341-KU-00894",
+  "SC1341-KU-00895",
+  "SC1341-KU-00896",
+  "SC1341-KU-00897",
+  "SC1341-KU-00898",
+  "SC1341-KU-00899",
+  "SC1341-KU-00900",
+  "SC1341-KU-00901",
+  "SC1341-KU-00902",
+  "SC1341-KU-00903",
+  "SC1341-KU-00904",
+  "SC1341-KU-00905",
+  "SC1341-KU-00906",
+  "SC1341-KU-00907",
+  "SC1341-KU-00908",
+  "SC1341-KU-00909",
+  "SC1341-KU-00910",
+  "SC1341-KU-00911",
+  "SC1341-KU-00912",
+  "SC1341-KU-00913",
+  "SC1341-KU-00914",
+  "SC1341-KU-00915",
+  "SC1341-KU-00916",
+  "SC1341-KU-00917",
+  "SC1341-KU-00918",
+  "SC1341-KU-00919",
+  "SC1341-KU-00920",
+  "SC1341-KU-00921",
+  "SC1341-KU-00922",
+  "SC1341-KU-00923",
+  "SC1341-KU-00924",
+  "SC1341-KU-00925",
+  "SC1341-KU-00926",
+  "SC1341-KU-00927",
+  "SC1341-KU-00928",
+  "SC1341-KU-00929",
+  "SC1341-KU-00930",
+  "SC1341-KU-00931",
+  "SC1341-KU-00932",
+  "SC1341-KU-00933",
+  "SC1341-KU-00934",
+  "SC1341-KU-00935",
+  "SC1341-KU-00936",
+  "SC1341-KU-00937",
+  "SC1341-KU-00938",
+  "SC1341-KU-00939",
+  "SC1341-KU-00940",
+  "SC1341-KU-00941",
+  "SC1341-KU-00942",
+  "SC1341-KU-00943",
+  "SC1341-KU-00944",
+  "SC1341-KU-00945",
+  "SC1341-KU-00946",
+  "SC1341-KU-00947",
+  "SC1341-KU-00948",
+  "SC1341-KU-00949",
+  "SC1341-KU-00950",
+  "SC1341-KU-00951",
+  "SC1341-KU-00952",
+  "SC1341-KU-00953",
+  "SC1341-KU-00954",
+  "SC1341-KU-00955",
+  "SC1341-KU-00956",
+  "SC1341-KU-00957",
+  "SC1341-KU-00958",
+  "SC1341-KU-00959",
+  "SC1341-KU-00960",
+  "SC1341-KU-00961",
+  "SC1341-KU-00962",
+  "SC1341-KU-00963",
+  "SC1341-KU-00964",
+  "SC1341-KU-00965",
+  "SC1341-KU-00966",
+  "SC1341-KU-00967",
+  "SC1341-KU-00968",
+  "SC1341-KU-00969",
+  "SC1341-KU-00970",
+  "SC1341-KU-00971",
+  "SC1341-KU-00972",
+  "SC1341-KU-00973",
+  "SC1341-KU-00974",
+  "SC1341-KU-00975",
+  "SC1341-KU-00976",
+  "SC1341-KU-00977",
+  "SC1341-KU-00978",
+  "SC1341-KU-00979",
+  "SC1341-KU-00980",
+  "SC1341-KU-00981",
+  "SC1341-KU-00982",
+  "SC1341-KU-00983",
+  "SC1341-KU-00984",
+  "SC1341-KU-00985",
+  "SC1341-KU-00986",
+  "SC1341-KU-00987",
+  "SC1341-KU-00988",
+  "SC1341-KU-00989",
+  "SC1341-KU-00990",
+  "SC1341-KU-00991",
+  "SC1341-KU-00992",
+  "SC1341-KU-00993",
+  "SC1341-KU-00994",
+  "SC1341-KU-00995",
+  "SC1341-KU-00996",
+  "SC1341-KU-00997",
+  "SC1341-KU-00998",
+  "SC1341-KU-00999",
+  "SC1341-KU-01000",
+  "SC1341-KU-01001",
+  "SC1341-KU-01002",
+  "SC1341-KU-01003",
+  "SC1341-KU-01004",
+  "SC1341-KU-01005",
+  "SC1341-KU-01006",
+  "SC1341-KU-01007",
+  "SC1341-KU-01008",
+  "SC1341-KU-01009",
+  "SC1341-KU-01010",
+  "SC1341-KU-01011",
+  "SC1341-KU-01012",
+  "SC1341-KU-01013",
+  "SC1341-KU-01014",
+  "SC1341-KU-01015",
+  "SC1341-KU-01017",
+  "SC1341-KU-01018",
+  "SC1341-KU-01019",
+  "SC1341-KU-01020",
+  "SC1341-KU-01021",
+  "SC1341-KU-01022",
+  "SC1341-KU-01023",
+  "SC1341-KU-01024",
+  "SC1341-KU-01025",
+  "SC1341-KU-01026",
+  "SC1341-KU-01027",
+  "SC1341-KU-01028",
+  "SC1341-KU-01029",
+  "SC1341-KU-01030",
+  "SC1341-KU-01031",
+  "SC1341-KU-01032"
+ ]
+}
