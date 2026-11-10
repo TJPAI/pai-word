@@ -1,0 +1,606 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-80-ku-independent-language-review-v1",
+  "reviewer": "CG-QA",
+  "date": "2026-11-10",
+  "scope": "SC50-0002 ranks71-150, 80 answer-only author drafts",
+  "source_branch": "answer-enrichment-main-dev-20261026",
+  "author_packs": [
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-071-100.v2.json",
+      "blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+      "count": 30
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+      "blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "count": 50
+    }
+  ],
+  "review_method": "Read all eighty original answer records, judging English example naturalness, Chinese translation fidelity, sense scope, collocation authenticity, usage note accuracy; verify per-record identity and consistency. Source CSV independent row-by-row validation not claimed; author provides V51 source blob eaa6d729bb04a9bedbafd8e1081a11fc791caa39.",
+  "counts": {
+    "reviewed": 80,
+    "PASS": 73,
+    "CONDITIONAL": 5,
+    "REVISE": 2,
+    "structure_failures": 0,
+    "second_ai_review_verified": 0,
+    "release_approved": 0
+  },
+  "release_policy": "No original author's data edited; all author records remain activation_allowed=false; not formal two-AI certification. Original Master correction required for source gloss issues.",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00305",
+      "scene_id": "SC50-0002",
+      "source_rank": 71,
+      "expression": "sunscreen",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00306",
+      "scene_id": "SC50-0002",
+      "source_rank": 72,
+      "expression": "antiperspirant",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00307",
+      "scene_id": "SC50-0002",
+      "source_rank": 73,
+      "expression": "cotton swab",
+      "verdict": "CONDITIONAL",
+      "reason": "例句clean around the makeup bottle搭配对象模糊，化妆瓶外侧周围的清洁场景不够典型；词义棉签本身正确。",
+      "suggested_fix": "可用I used a cotton swab to clean around the cap of the makeup bottle.／我用棉签清洁化妆品瓶盖周围。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00308",
+      "scene_id": "SC50-0002",
+      "source_rank": 74,
+      "expression": "cotton pad",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00309",
+      "scene_id": "SC50-0002",
+      "source_rank": 75,
+      "expression": "comb",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00310",
+      "scene_id": "SC50-0002",
+      "source_rank": 76,
+      "expression": "hairbrush",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00311",
+      "scene_id": "SC50-0002",
+      "source_rank": 77,
+      "expression": "hair dryer",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00312",
+      "scene_id": "SC50-0002",
+      "source_rank": 78,
+      "expression": "body lotion",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00313",
+      "scene_id": "SC50-0002",
+      "source_rank": 79,
+      "expression": "nail clippers",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00314",
+      "scene_id": "SC50-0002",
+      "source_rank": 80,
+      "expression": "nail file",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00315",
+      "scene_id": "SC50-0002",
+      "source_rank": 81,
+      "expression": "spit out toothpaste",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00316",
+      "scene_id": "SC50-0002",
+      "source_rank": 82,
+      "expression": "brush your tongue",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00317",
+      "scene_id": "SC50-0002",
+      "source_rank": 83,
+      "expression": "clean between your teeth",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00318",
+      "scene_id": "SC50-0002",
+      "source_rank": 84,
+      "expression": "lather up",
+      "verdict": "REVISE",
+      "reason": "Rub your hands together to lather up the soap中lather up the soap及语义焦点生硬，常用说法是lather up with soap或work up a lather。",
+      "suggested_fix": "改为Rub your hands together with soap until they lather up.／双手抹上肥皂搓出泡沫。搭配保留lather up with soap。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00319",
+      "scene_id": "SC50-0002",
+      "source_rank": 85,
+      "expression": "dry your hands",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00320",
+      "scene_id": "SC50-0002",
+      "source_rank": 86,
+      "expression": "splash water on your face",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00321",
+      "scene_id": "SC50-0002",
+      "source_rank": 87,
+      "expression": "pat your face dry",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00322",
+      "scene_id": "SC50-0002",
+      "source_rank": 88,
+      "expression": "remove makeup",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00323",
+      "scene_id": "SC50-0002",
+      "source_rank": 89,
+      "expression": "apply cleanser",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00324",
+      "scene_id": "SC50-0002",
+      "source_rank": 90,
+      "expression": "take a shower",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00325",
+      "scene_id": "SC50-0002",
+      "source_rank": 91,
+      "expression": "have a bath",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00326",
+      "scene_id": "SC50-0002",
+      "source_rank": 92,
+      "expression": "turn on the shower",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00327",
+      "scene_id": "SC50-0002",
+      "source_rank": 93,
+      "expression": "adjust the water temperature",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00328",
+      "scene_id": "SC50-0002",
+      "source_rank": 94,
+      "expression": "step into the shower",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00329",
+      "scene_id": "SC50-0002",
+      "source_rank": 95,
+      "expression": "wash your hair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00330",
+      "scene_id": "SC50-0002",
+      "source_rank": 96,
+      "expression": "lather your hair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00331",
+      "scene_id": "SC50-0002",
+      "source_rank": 97,
+      "expression": "use conditioner",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00332",
+      "scene_id": "SC50-0002",
+      "source_rank": 98,
+      "expression": "towel-dry your hair",
+      "verdict": "CONDITIONAL",
+      "reason": "towel-dry只说明用毛巾擦去水分，不必然意味着恰好‘半干’；中文源义与答案释义过窄。",
+      "suggested_fix": "请求CG-MASTER调整源中文释义为‘用毛巾擦干（头发）／吸去头发多余水分’，作者同步修订meaning_zh。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00333",
+      "scene_id": "SC50-0002",
+      "source_rank": 99,
+      "expression": "blow-dry your hair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00334",
+      "scene_id": "SC50-0002",
+      "source_rank": 100,
+      "expression": "brush your hair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00335",
+      "scene_id": "SC50-0002",
+      "source_rank": 101,
+      "expression": "tie your hair back",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00336",
+      "scene_id": "SC50-0002",
+      "source_rank": 102,
+      "expression": "trim your beard",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00337",
+      "scene_id": "SC50-0002",
+      "source_rank": 103,
+      "expression": "apply moisturizer",
+      "verdict": "REVISE",
+      "reason": "usage_note声称moisturizer通常不可数不准确；moisturizer常作可数名词，如a moisturizer, a good moisturizer，也可用于不可数量词。",
+      "suggested_fix": "改为moisturizer可数或不可数，如a moisturizer / apply moisturizer / use a gentle moisturizer；不要断言通常不可数。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00338",
+      "scene_id": "SC50-0002",
+      "source_rank": 104,
+      "expression": "put on deodorant",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00339",
+      "scene_id": "SC50-0002",
+      "source_rank": 105,
+      "expression": "put on sunscreen",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00340",
+      "scene_id": "SC50-0002",
+      "source_rank": 106,
+      "expression": "clip your nails",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00341",
+      "scene_id": "SC50-0002",
+      "source_rank": 107,
+      "expression": "clean your ears",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00342",
+      "scene_id": "SC50-0002",
+      "source_rank": 108,
+      "expression": "take out your contact lenses",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00343",
+      "scene_id": "SC50-0002",
+      "source_rank": 109,
+      "expression": "put in your contact lenses",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00344",
+      "scene_id": "SC50-0002",
+      "source_rank": 110,
+      "expression": "wash your makeup brushes",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00345",
+      "scene_id": "SC50-0002",
+      "source_rank": 111,
+      "expression": "wipe down the sink",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00346",
+      "scene_id": "SC50-0002",
+      "source_rank": 112,
+      "expression": "hang up the towel",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00347",
+      "scene_id": "SC50-0002",
+      "source_rank": 113,
+      "expression": "replace the toothbrush head",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00348",
+      "scene_id": "SC50-0002",
+      "source_rank": 114,
+      "expression": "clean",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00349",
+      "scene_id": "SC50-0002",
+      "source_rank": 115,
+      "expression": "fresh",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00350",
+      "scene_id": "SC50-0002",
+      "source_rank": 116,
+      "expression": "hygienic",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00351",
+      "scene_id": "SC50-0002",
+      "source_rank": 117,
+      "expression": "dirty",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00352",
+      "scene_id": "SC50-0002",
+      "source_rank": 118,
+      "expression": "sticky",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00353",
+      "scene_id": "SC50-0002",
+      "source_rank": 119,
+      "expression": "greasy",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00354",
+      "scene_id": "SC50-0002",
+      "source_rank": 120,
+      "expression": "oily",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00355",
+      "scene_id": "SC50-0002",
+      "source_rank": 121,
+      "expression": "dry skin",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00356",
+      "scene_id": "SC50-0002",
+      "source_rank": 122,
+      "expression": "sensitive skin",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00357",
+      "scene_id": "SC50-0002",
+      "source_rank": 123,
+      "expression": "irritated skin",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00358",
+      "scene_id": "SC50-0002",
+      "source_rank": 124,
+      "expression": "rash",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00359",
+      "scene_id": "SC50-0002",
+      "source_rank": 125,
+      "expression": "itchy",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00360",
+      "scene_id": "SC50-0002",
+      "source_rank": 126,
+      "expression": "flaky skin",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00361",
+      "scene_id": "SC50-0002",
+      "source_rank": 127,
+      "expression": "chapped lips",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00362",
+      "scene_id": "SC50-0002",
+      "source_rank": 128,
+      "expression": "breakout",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00363",
+      "scene_id": "SC50-0002",
+      "source_rank": 129,
+      "expression": "acne",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00364",
+      "scene_id": "SC50-0002",
+      "source_rank": 130,
+      "expression": "blemish",
+      "verdict": "CONDITIONAL",
+      "reason": "例句翻译‘脸颊上冒出一个小瑕疵’不够自然；blemish在护肤语境通常指皮肤斑点/小痘痘等。",
+      "suggested_fix": "可改‘我脸颊上长了个小痘痘／出现了一处小斑点’，视英文对象与源释义统一。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00365",
+      "scene_id": "SC50-0002",
+      "source_rank": 131,
+      "expression": "bad breath",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00366",
+      "scene_id": "SC50-0002",
+      "source_rank": 132,
+      "expression": "sensitive teeth",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00367",
+      "scene_id": "SC50-0002",
+      "source_rank": 133,
+      "expression": "bleeding gums",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00368",
+      "scene_id": "SC50-0002",
+      "source_rank": 134,
+      "expression": "tangled hair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00369",
+      "scene_id": "SC50-0002",
+      "source_rank": 135,
+      "expression": "frizzy hair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00370",
+      "scene_id": "SC50-0002",
+      "source_rank": 136,
+      "expression": "dandruff",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00371",
+      "scene_id": "SC50-0002",
+      "source_rank": 137,
+      "expression": "sweaty",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00372",
+      "scene_id": "SC50-0002",
+      "source_rank": 138,
+      "expression": "body odor",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00373",
+      "scene_id": "SC50-0002",
+      "source_rank": 139,
+      "expression": "stubble",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00374",
+      "scene_id": "SC50-0002",
+      "source_rank": 140,
+      "expression": "close shave",
+      "verdict": "CONDITIONAL",
+      "reason": "close shave是名词短语，中文释义‘刮得很干净’表达结果而不是名词动作，需规范词性；例句本身正确。",
+      "suggested_fix": "建议中文义‘贴面剃须；刮得很干净的一次剃须’，并保留另一惯用义与本义区分。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00375",
+      "scene_id": "SC50-0002",
+      "source_rank": 141,
+      "expression": "dull blade",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00376",
+      "scene_id": "SC50-0002",
+      "source_rank": 142,
+      "expression": "slippery floor",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00377",
+      "scene_id": "SC50-0002",
+      "source_rank": 143,
+      "expression": "lukewarm",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00378",
+      "scene_id": "SC50-0002",
+      "source_rank": 144,
+      "expression": "scalding hot",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00379",
+      "scene_id": "SC50-0002",
+      "source_rank": 145,
+      "expression": "clogged drain",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00380",
+      "scene_id": "SC50-0002",
+      "source_rank": 146,
+      "expression": "leaky faucet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00381",
+      "scene_id": "SC50-0002",
+      "source_rank": 147,
+      "expression": "run out of toothpaste",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00382",
+      "scene_id": "SC50-0002",
+      "source_rank": 148,
+      "expression": "replace a toothbrush",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00383",
+      "scene_id": "SC50-0002",
+      "source_rank": 149,
+      "expression": "change the razor blade",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00384",
+      "scene_id": "SC50-0002",
+      "source_rank": 150,
+      "expression": "unclog the drain",
+      "verdict": "CONDITIONAL",
+      "reason": "drain指具体排水口、排水管；本句淋浴间的drain不等于泛指‘下水道’，中文源义偏宽且与汉译‘排水口’不一致。",
+      "suggested_fix": "建议源义‘疏通排水口／排水管’，作者同步对齐meaning_zh和display。"
+    }
+  ]
+}
