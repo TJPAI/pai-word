@@ -96,7 +96,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><div id="batch-position">第1/1批</div><div id="progress">本批已学 0/25</div></div></div>
  <div class="study-body" id="studybody">
-   <div class="word-hero" id="hero"><div class="word-line"><span class="word" id="expression">加载中</span><div class="ipa-line" id="ipa" aria-label="音标"></div><div class="cue-center" id="cue">回忆词义</div></div><div class="sound-tools"><button class="speak-btn" id="speak" aria-label="朗读英文表达">🔊</button><button id="auto-toggle" aria-label="自动浏览开关" title="自动浏览">↻</button></div><p class="tap-hint" id="tap-hint">轻点空白处显示答案</p></div>
+   <div class="word-hero" id="hero"><div class="word-line"><span class="word" id="expression">加载中</span><div class="ipa-line" id="ipa" aria-label="音标"></div><div class="cue-center" id="cue">回忆词义</div></div><div class="sound-tools"><button class="speak-btn" id="speak" aria-label="朗读英文表达">🔊</button><button id="auto-toggle" aria-label="自动浏览开关" title="自动浏览">↻</button><select id="auto-speed" aria-label="自动浏览间隔" title="自动浏览间隔" style="font-size:12px;max-width:68px;border:1px solid #d8dfe2;border-radius:8px;background:#fff"><option value="200">0.2秒</option><option value="600">0.6秒</option><option value="2000" selected>2秒</option><option value="5000">5秒</option></select></div><p class="tap-hint" id="tap-hint">轻点空白处显示答案</p></div>
    <div class="handwrite-board" id="handwrite" hidden><span class="handwrite-indicator">手写模式 · 长按退出</span><canvas id="draw-canvas"></canvas></div>
    <div class="answer" id="answer" hidden><div class="answer-section"><strong>释义</strong><div class="demo-meaning" id="meaning"></div></div>
     <div class="answer-section"><strong>英文例句</strong><div class="demo-en" id="example"></div><div class="demo-zh" id="translation"></div></div>
@@ -219,7 +219,9 @@ $('studybody').addEventListener('touchmove',e=>{if(start&&(Math.abs(e.touches[0]
 $('studybody').addEventListener('touchend',e=>{clearTimeout(holdTimer);holdTimer=null;if(handMode||!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1);else if(Math.abs(dy)>85&&Math.abs(dy)>Math.abs(dx)*1.2)moveBatch(dy<0?1:-1)},{passive:true});
 function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}const btn=$('auto-toggle');if(btn)btn.classList.remove('is-on')}
 function startAuto(){stopAuto();$('auto-toggle').classList.add('is-on');autoTimer=setInterval(()=>{if($('learning').hidden||handMode){stopAuto();return}if(!revealed)show();else if(index<subset().length-1)move(1);else stopAuto()},autoDelay)}
-$('auto-toggle').addEventListener('click',e=>{e.stopPropagation();if(autoTimer){stopAuto()}else{autoDelay=autoDelay===2000?600:2000;startAuto()}});
+$('auto-toggle').addEventListener('click',e=>{e.stopPropagation();if(autoTimer)stopAuto();else startAuto()});
+$('auto-speed').addEventListener('click',e=>e.stopPropagation());
+$('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoDelay=Number(e.target.value);if(autoTimer)startAuto()});
 function clearHand(){const canvas=$('draw-canvas'),ctx=canvas.getContext('2d');ctx?.clearRect(0,0,canvas.width,canvas.height)}
 function enterHand(){stopAuto();handMode=true;$('handwrite').hidden=false;const canvas=$('draw-canvas');const rect=canvas.getBoundingClientRect();canvas.width=Math.max(1,Math.floor(rect.width*devicePixelRatio));canvas.height=Math.max(1,Math.floor(rect.height*devicePixelRatio));canvas.getContext('2d').scale(devicePixelRatio,devicePixelRatio)}
 function exitHand(){handMode=false;$('handwrite').hidden=true;clearHand()}
