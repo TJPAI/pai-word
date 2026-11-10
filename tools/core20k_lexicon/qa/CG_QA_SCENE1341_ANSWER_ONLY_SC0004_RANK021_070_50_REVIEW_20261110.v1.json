@@ -1,0 +1,381 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-50-ku-independent-language-review-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "scope": "SC50-0004 ranks21-70, KU00633-00682",
+  "source_branch": "answer-enrichment-main-dev-20261026",
+  "author_pack": {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-021-070.v2.json",
+    "blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+    "records": 50
+  },
+  "method": "Read original 50 author record texts for bilingual meaning, expression/example authenticity, collocations and usage notes; validated KU ID/scene/rank and display parity. Did not independently rederive V51 source CSV mapping.",
+  "counts": {
+    "reviewed": 50,
+    "PASS": 47,
+    "CONDITIONAL": 2,
+    "REVISE": 1,
+    "structure_errors": 0,
+    "second_ai_verified": 0,
+    "release_approved": 0
+  },
+  "release_policy": "Original source and author packs unchanged; no question fields, activation false, not formal double AI certification",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00633",
+      "scene_id": "SC50-0004",
+      "source_rank": 21,
+      "expression": "vacuum the carpet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00634",
+      "scene_id": "SC50-0004",
+      "source_rank": 22,
+      "expression": "clean up broken glass",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "scene_id": "SC50-0004",
+      "source_rank": 23,
+      "expression": "put away sharp tools",
+      "verdict": "CONDITIONAL",
+      "reason": "原源义‘尖锐工具’偏向尖端锋利，而英文sharp tools既可指有锋利刃口的工具，也可指尖锐工具；英文例句未限定尖端。",
+      "suggested_fix": "中文建议‘锋利或尖锐的工具’，或将示例工具细化；source gloss需CG-MASTER确认。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00636",
+      "scene_id": "SC50-0004",
+      "source_rank": 24,
+      "expression": "put away clutter",
+      "verdict": "REVISE",
+      "reason": "put away the clutter / put away clutter在日常整理语境不如put away the things cluttering the desk自然；clutter作为散乱杂物整体通常说clear away clutter或get rid of clutter，put away更自然搭配individual items。",
+      "suggested_fix": "建议I put away the things cluttering my desk before starting work.，若保留目标表达改为put away scattered items并同步源词头审批。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00637",
+      "scene_id": "SC50-0004",
+      "source_rank": 25,
+      "expression": "straighten up",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00638",
+      "scene_id": "SC50-0004",
+      "source_rank": 26,
+      "expression": "clear out",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00639",
+      "scene_id": "SC50-0004",
+      "source_rank": 27,
+      "expression": "clear off",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00640",
+      "scene_id": "SC50-0004",
+      "source_rank": 28,
+      "expression": "get rid of",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00641",
+      "scene_id": "SC50-0004",
+      "source_rank": 29,
+      "expression": "keep",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00642",
+      "scene_id": "SC50-0004",
+      "source_rank": 30,
+      "expression": "donate",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00643",
+      "scene_id": "SC50-0004",
+      "source_rank": 31,
+      "expression": "recycle",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00644",
+      "scene_id": "SC50-0004",
+      "source_rank": 32,
+      "expression": "store",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00645",
+      "scene_id": "SC50-0004",
+      "source_rank": 33,
+      "expression": "arrange",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00646",
+      "scene_id": "SC50-0004",
+      "source_rank": 34,
+      "expression": "rearrange",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00647",
+      "scene_id": "SC50-0004",
+      "source_rank": 35,
+      "expression": "make space",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00648",
+      "scene_id": "SC50-0004",
+      "source_rank": 36,
+      "expression": "free up space",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00649",
+      "scene_id": "SC50-0004",
+      "source_rank": 37,
+      "expression": "stack",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00650",
+      "scene_id": "SC50-0004",
+      "source_rank": 38,
+      "expression": "pile up",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00651",
+      "scene_id": "SC50-0004",
+      "source_rank": 39,
+      "expression": "spread out",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00652",
+      "scene_id": "SC50-0004",
+      "source_rank": 40,
+      "expression": "wipe down",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00653",
+      "scene_id": "SC50-0004",
+      "source_rank": 41,
+      "expression": "sweep",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00654",
+      "scene_id": "SC50-0004",
+      "source_rank": 42,
+      "expression": "mop",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00655",
+      "scene_id": "SC50-0004",
+      "source_rank": 43,
+      "expression": "change the sheets",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00656",
+      "scene_id": "SC50-0004",
+      "source_rank": 44,
+      "expression": "fluff up the pillows",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00657",
+      "scene_id": "SC50-0004",
+      "source_rank": 45,
+      "expression": "open the windows",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00658",
+      "scene_id": "SC50-0004",
+      "source_rank": 46,
+      "expression": "air out the room",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00659",
+      "scene_id": "SC50-0004",
+      "source_rank": 47,
+      "expression": "freshen the room",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00660",
+      "scene_id": "SC50-0004",
+      "source_rank": 48,
+      "expression": "pick up clothes",
+      "verdict": "CONDITIONAL",
+      "reason": "English you left on the floor是‘留在地上’，中文‘你扔在地板上’增加了故意丢扔的动作。",
+      "suggested_fix": "修改中文为‘请把你放在地上的衣服捡起来。’。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00661",
+      "scene_id": "SC50-0004",
+      "source_rank": 49,
+      "expression": "put things back",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00662",
+      "scene_id": "SC50-0004",
+      "source_rank": 50,
+      "expression": "wipe up a spill",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00663",
+      "scene_id": "SC50-0004",
+      "source_rank": 51,
+      "expression": "take out the trash",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00664",
+      "scene_id": "SC50-0004",
+      "source_rank": 52,
+      "expression": "empty the bin",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00665",
+      "scene_id": "SC50-0004",
+      "source_rank": 53,
+      "expression": "room",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00666",
+      "scene_id": "SC50-0004",
+      "source_rank": 54,
+      "expression": "bedroom",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00667",
+      "scene_id": "SC50-0004",
+      "source_rank": 55,
+      "expression": "living room",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00668",
+      "scene_id": "SC50-0004",
+      "source_rank": 56,
+      "expression": "floor",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00669",
+      "scene_id": "SC50-0004",
+      "source_rank": 57,
+      "expression": "carpet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00670",
+      "scene_id": "SC50-0004",
+      "source_rank": 58,
+      "expression": "rug",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00671",
+      "scene_id": "SC50-0004",
+      "source_rank": 59,
+      "expression": "bookshelf",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00672",
+      "scene_id": "SC50-0004",
+      "source_rank": 60,
+      "expression": "dresser",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00673",
+      "scene_id": "SC50-0004",
+      "source_rank": 61,
+      "expression": "wardrobe",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00674",
+      "scene_id": "SC50-0004",
+      "source_rank": 62,
+      "expression": "cabinet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00675",
+      "scene_id": "SC50-0004",
+      "source_rank": 63,
+      "expression": "storage bin",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00676",
+      "scene_id": "SC50-0004",
+      "source_rank": 64,
+      "expression": "basket",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00677",
+      "scene_id": "SC50-0004",
+      "source_rank": 65,
+      "expression": "hamper",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00678",
+      "scene_id": "SC50-0004",
+      "source_rank": 66,
+      "expression": "organizer",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00679",
+      "scene_id": "SC50-0004",
+      "source_rank": 67,
+      "expression": "container",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00680",
+      "scene_id": "SC50-0004",
+      "source_rank": 68,
+      "expression": "label",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00681",
+      "scene_id": "SC50-0004",
+      "source_rank": 69,
+      "expression": "hook",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00682",
+      "scene_id": "SC50-0004",
+      "source_rank": 70,
+      "expression": "hanger",
+      "verdict": "PASS"
+    }
+  ]
+}
