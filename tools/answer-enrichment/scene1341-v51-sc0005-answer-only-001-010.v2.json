@@ -1,0 +1,334 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0005",
+    "ranks": "1-10",
+    "count": 10
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00823",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00823",
+      "source_rank": 1,
+      "expression": "housework",
+      "sense_zh": "家务",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家务",
+        "example_en": "Housework takes less time when everyone helps.",
+        "example_zh": "大家一起分担，家务就不会花那么多时间。",
+        "collocations": [
+          "do housework",
+          "share the housework"
+        ],
+        "usage_note": "housework泛指家务劳动，通常不可数；chore则是单项家务。"
+      },
+      "display": {
+        "w": "housework",
+        "m": "家务",
+        "c": "do housework · share the housework",
+        "e": "Housework takes less time when everyone helps.",
+        "x": "housework泛指家务劳动，通常不可数；chore则是单项家务。",
+        "example_zh": "大家一起分担，家务就不会花那么多时间。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00824",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00824",
+      "source_rank": 2,
+      "expression": "chore",
+      "sense_zh": "一项家务任务",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一项家务任务",
+        "example_en": "Taking out the trash is my least favorite chore.",
+        "example_zh": "倒垃圾是我最不喜欢的家务活。",
+        "collocations": [
+          "do chores",
+          "household chore"
+        ],
+        "usage_note": "chore指一项通常需要定期完成的任务，可数。"
+      },
+      "display": {
+        "w": "chore",
+        "m": "一项家务任务",
+        "c": "do chores · household chore",
+        "e": "Taking out the trash is my least favorite chore.",
+        "x": "chore指一项通常需要定期完成的任务，可数。",
+        "example_zh": "倒垃圾是我最不喜欢的家务活。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00825",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00825",
+      "source_rank": 3,
+      "expression": "chore chart",
+      "sense_zh": "家务分工表",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家务分工表",
+        "example_en": "We use a chore chart to divide tasks among the family.",
+        "example_zh": "我们用家务分工表给家庭成员分配任务。",
+        "collocations": [
+          "make a chore chart",
+          "follow a chore chart"
+        ],
+        "usage_note": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。"
+      },
+      "display": {
+        "w": "chore chart",
+        "m": "家务分工表",
+        "c": "make a chore chart · follow a chore chart",
+        "e": "We use a chore chart to divide tasks among the family.",
+        "x": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。",
+        "example_zh": "我们用家务分工表给家庭成员分配任务。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00826",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00826",
+      "source_rank": 4,
+      "expression": "clean up",
+      "sense_zh": "打扫；清理干净",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "打扫；清理干净",
+        "example_en": "We clean up the kitchen after dinner.",
+        "example_zh": "晚饭后我们把厨房打扫干净。",
+        "collocations": [
+          "clean up the kitchen",
+          "clean up after dinner"
+        ],
+        "usage_note": "clean up强调把脏乱环境恢复整洁。"
+      },
+      "display": {
+        "w": "clean up",
+        "m": "打扫；清理干净",
+        "c": "clean up the kitchen · clean up after dinner",
+        "e": "We clean up the kitchen after dinner.",
+        "x": "clean up强调把脏乱环境恢复整洁。",
+        "example_zh": "晚饭后我们把厨房打扫干净。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00827",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00827",
+      "source_rank": 5,
+      "expression": "scrub",
+      "sense_zh": "用力刷洗",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "用力刷洗",
+        "example_en": "I scrub the sink to remove stubborn stains.",
+        "example_zh": "我用力刷洗水槽，清除顽固污渍。",
+        "collocations": [
+          "scrub the sink",
+          "scrub a dirty surface"
+        ],
+        "usage_note": "scrub强调用力擦洗，通常比wipe更费力。"
+      },
+      "display": {
+        "w": "scrub",
+        "m": "用力刷洗",
+        "c": "scrub the sink · scrub a dirty surface",
+        "e": "I scrub the sink to remove stubborn stains.",
+        "x": "scrub强调用力擦洗，通常比wipe更费力。",
+        "example_zh": "我用力刷洗水槽，清除顽固污渍。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00828",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00828",
+      "source_rank": 6,
+      "expression": "sweep",
+      "sense_zh": "扫地",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "扫地",
+        "example_en": "I sweep the floor before I mop it.",
+        "example_zh": "我先扫地，然后拖地。",
+        "collocations": [
+          "sweep the floor",
+          "sweep up crumbs"
+        ],
+        "usage_note": "sweep是扫帚扫，区别于vacuum吸尘。"
+      },
+      "display": {
+        "w": "sweep",
+        "m": "扫地",
+        "c": "sweep the floor · sweep up crumbs",
+        "e": "I sweep the floor before I mop it.",
+        "x": "sweep是扫帚扫，区别于vacuum吸尘。",
+        "example_zh": "我先扫地，然后拖地。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00829",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00829",
+      "source_rank": 7,
+      "expression": "mop",
+      "sense_zh": "拖地",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "拖地",
+        "example_en": "I mop the kitchen floor every weekend.",
+        "example_zh": "我每周末拖一次厨房地板。",
+        "collocations": [
+          "mop the floor",
+          "mop the kitchen"
+        ],
+        "usage_note": "mop作动词为拖地，亦可作名词拖把。"
+      },
+      "display": {
+        "w": "mop",
+        "m": "拖地",
+        "c": "mop the floor · mop the kitchen",
+        "e": "I mop the kitchen floor every weekend.",
+        "x": "mop作动词为拖地，亦可作名词拖把。",
+        "example_zh": "我每周末拖一次厨房地板。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00830",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00830",
+      "source_rank": 8,
+      "expression": "vacuum",
+      "sense_zh": "吸尘",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "吸尘",
+        "example_en": "I vacuum the living room twice a week.",
+        "example_zh": "我每周给客厅吸尘两次。",
+        "collocations": [
+          "vacuum the living room",
+          "vacuum the carpet"
+        ],
+        "usage_note": "vacuum在这里是用吸尘器打扫。"
+      },
+      "display": {
+        "w": "vacuum",
+        "m": "吸尘",
+        "c": "vacuum the living room · vacuum the carpet",
+        "e": "I vacuum the living room twice a week.",
+        "x": "vacuum在这里是用吸尘器打扫。",
+        "example_zh": "我每周给客厅吸尘两次。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00831",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00831",
+      "source_rank": 9,
+      "expression": "dust",
+      "sense_zh": "清除灰尘",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "清除灰尘",
+        "example_en": "I dust the furniture before vacuuming.",
+        "example_zh": "吸尘前我先给家具除尘。",
+        "collocations": [
+          "dust the furniture",
+          "dust the shelves"
+        ],
+        "usage_note": "dust在此作动词清灰；名词dust是灰尘。"
+      },
+      "display": {
+        "w": "dust",
+        "m": "清除灰尘",
+        "c": "dust the furniture · dust the shelves",
+        "e": "I dust the furniture before vacuuming.",
+        "x": "dust在此作动词清灰；名词dust是灰尘。",
+        "example_zh": "吸尘前我先给家具除尘。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00832",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00832",
+      "source_rank": 10,
+      "expression": "clean the litter box",
+      "sense_zh": "清理猫砂盆",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "清理猫砂盆",
+        "example_en": "I clean the litter box every day.",
+        "example_zh": "我每天都清理猫砂盆。",
+        "collocations": [
+          "clean the litter box",
+          "scoop the litter box"
+        ],
+        "usage_note": "litter box是猫砂盆；litter在其他语境还可表示垃圾。"
+      },
+      "display": {
+        "w": "clean the litter box",
+        "m": "清理猫砂盆",
+        "c": "clean the litter box · scoop the litter box",
+        "e": "I clean the litter box every day.",
+        "x": "litter box是猫砂盆；litter在其他语境还可表示垃圾。",
+        "example_zh": "我每天都清理猫砂盆。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
