@@ -1,0 +1,183 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-independent-semantic-review-v1",
+  "date": "2026-11-10",
+  "role": "CG-QA",
+  "author_branch": "answer-enrichment-main-dev-20261026",
+  "author_head": "1fc4ce59d05dafa958d1232946165b291bb51c77",
+  "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+  "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+  "scope": {
+    "scene_id": "SC50-0009",
+    "ranks": "193-199",
+    "count": 7
+  },
+  "counts": {
+    "total": 7,
+    "PASS": 4,
+    "CONDITIONAL": 0,
+    "REVISE": 3
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01833",
+      "scene_id": "SC50-0009",
+      "source_rank": 193,
+      "source_sense_id": "SC-SENSE-01833",
+      "expression": "separate sharp waste",
+      "source_sense_zh": "把尖锐垃圾单独处理",
+      "meaning_zh": "把尖锐垃圾单独处理",
+      "example_en": "Separate sharp waste from ordinary rubbish to prevent injuries.",
+      "example_zh": "把尖锐垃圾与普通垃圾分开，防止受伤。",
+      "collocations": [
+        "separate sharp waste",
+        "dispose of sharp waste separately"
+      ],
+      "usage_note": "sharp waste包括碎玻璃等，处置方式应遵循当地规定。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "separate sharp waste语法自然，指将尖锐废弃物分开处理；防伤语境准确。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01834",
+      "scene_id": "SC50-0009",
+      "source_rank": 194,
+      "source_sense_id": "SC-SENSE-01834",
+      "expression": "dry the counter",
+      "source_sense_zh": "擦干台面",
+      "meaning_zh": "擦干台面",
+      "example_en": "Dry the counter after wiping it down.",
+      "example_zh": "擦拭完操作台后把它擦干。",
+      "collocations": [
+        "dry the counter",
+        "dry the counter with a cloth"
+      ],
+      "usage_note": "dry作动词表示擦去水分。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "dry the counter指把台面擦干，与先wipe down的动作衔接自然。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01835",
+      "scene_id": "SC50-0009",
+      "source_rank": 195,
+      "source_sense_id": "SC-SENSE-01835",
+      "expression": "prevent water damage",
+      "source_sense_zh": "防止水造成损坏",
+      "meaning_zh": "防止水造成损坏",
+      "example_en": "Use a towel under the leaking pipe to help prevent water damage.",
+      "example_zh": "在漏水管道下面放块毛巾，帮助防止水损坏物品。",
+      "collocations": [
+        "prevent water damage",
+        "water damage to cabinets"
+      ],
+      "usage_note": "prevent water damage指避免水侵蚀家具或设备，漏水仍需修复。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "prevent water damage常见搭配；毛巾只能暂时减轻漏水损害，例句的help prevent和备注均留有余地。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01836",
+      "scene_id": "SC50-0009",
+      "source_rank": 196,
+      "source_sense_id": "SC-SENSE-01836",
+      "expression": "ventilate the kitchen",
+      "source_sense_zh": "给厨房通风",
+      "meaning_zh": "给厨房通风",
+      "example_en": "Open a window to ventilate the kitchen after cooking.",
+      "example_zh": "做完饭打开窗户给厨房通风。",
+      "collocations": [
+        "ventilate the kitchen",
+        "ventilate the kitchen well"
+      ],
+      "usage_note": "ventilate指让空气流通。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "ventilate the kitchen与open a window自然，明确厨房通风目的。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01837",
+      "scene_id": "SC50-0009",
+      "source_rank": 197,
+      "source_sense_id": "SC-SENSE-01837",
+      "expression": "scrape food scraps into the bin",
+      "source_sense_zh": "把食物残渣刮进垃圾桶",
+      "meaning_zh": "把食物残渣刮进垃圾桶",
+      "example_en": "Scrape food scraps into the bin before washing the plates.",
+      "example_zh": "洗盘子前先把食物残渣刮进垃圾桶。",
+      "collocations": [
+        "scrape food scraps into the bin",
+        "scrape scraps off plates"
+      ],
+      "usage_note": "scrape表示用器具刮除；该表达是编辑候选，仍待独立审核。",
+      "cg_verdict": "REVISE",
+      "linguistic_reason": "表达自然、释义和例句正确，但学习者可见usage_note混入‘该表达是编辑候选，仍待独立审核’内部元数据。",
+      "revision_request": "从answer.usage_note和display.x删除内部审校语句。",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01838",
+      "scene_id": "SC50-0009",
+      "source_rank": 198,
+      "source_sense_id": "SC-SENSE-01838",
+      "expression": "let the dishes air-dry",
+      "source_sense_zh": "让餐具自然晾干",
+      "meaning_zh": "让餐具自然晾干",
+      "example_en": "Let the dishes air-dry on the rack before putting them away.",
+      "example_zh": "餐具收起来之前放在架子上自然晾干。",
+      "collocations": [
+        "let the dishes air-dry",
+        "let plates air-dry"
+      ],
+      "usage_note": "air-dry表示在空气中自然晾干；源表达待独立审核。",
+      "cg_verdict": "REVISE",
+      "linguistic_reason": "let the dishes air-dry为自然使役结构，例句正确；usage_note‘源表达待独立审核’不得展示学习者。",
+      "revision_request": "删除待审核内部备注并同步display.x。",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01839",
+      "scene_id": "SC50-0009",
+      "source_rank": 199,
+      "source_sense_id": "SC-SENSE-01839",
+      "expression": "let the dishes soak",
+      "source_sense_zh": "让餐具浸泡一会儿",
+      "meaning_zh": "让餐具浸泡一会儿",
+      "example_en": "Let the dishes soak in warm water for a while.",
+      "example_zh": "让餐具在温水里浸泡一会儿。",
+      "collocations": [
+        "let the dishes soak",
+        "let dirty dishes soak"
+      ],
+      "usage_note": "soak指浸泡，编辑增补表达仍需独立验证。",
+      "cg_verdict": "REVISE",
+      "linguistic_reason": "let the dishes soak自然，例句‘in warm water for a while’清楚；usage_note‘编辑增补表达仍需独立验证’属于内部审核元数据。",
+      "revision_request": "清除内部元数据并同步display.x。",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "dual_ai_certified": false,
+      "release_approved": false
+    }
+  ]
+}
