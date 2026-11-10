@@ -1,0 +1,954 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0008",
+    "ranks": "1-30",
+    "count": 30
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01453",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01453",
+      "source_rank": 1,
+      "expression": "breakfast",
+      "sense_zh": "早餐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "早餐",
+        "example_en": "We have breakfast together before school.",
+        "example_zh": "我们上学前一起吃早餐。",
+        "collocations": [
+          "have breakfast",
+          "make breakfast"
+        ],
+        "usage_note": "breakfast指早上吃的一餐。"
+      },
+      "display": {
+        "w": "breakfast",
+        "m": "早餐",
+        "c": "have breakfast · make breakfast",
+        "e": "We have breakfast together before school.",
+        "x": "breakfast指早上吃的一餐。",
+        "example_zh": "我们上学前一起吃早餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01454",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01454",
+      "source_rank": 2,
+      "expression": "lunch",
+      "sense_zh": "午餐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "午餐",
+        "example_en": "Let's have lunch after the meeting.",
+        "example_zh": "开完会一起吃午饭吧。",
+        "collocations": [
+          "have lunch",
+          "pack a lunch"
+        ],
+        "usage_note": "lunch是午餐。"
+      },
+      "display": {
+        "w": "lunch",
+        "m": "午餐",
+        "c": "have lunch · pack a lunch",
+        "e": "Let's have lunch after the meeting.",
+        "x": "lunch是午餐。",
+        "example_zh": "开完会一起吃午饭吧。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01455",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01455",
+      "source_rank": 3,
+      "expression": "dinner",
+      "sense_zh": "晚餐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "晚餐",
+        "example_en": "Dinner is ready, so please come to the table.",
+        "example_zh": "晚饭做好了，请过来吃。",
+        "collocations": [
+          "have dinner",
+          "make dinner"
+        ],
+        "usage_note": "dinner在此表示晚餐。"
+      },
+      "display": {
+        "w": "dinner",
+        "m": "晚餐",
+        "c": "have dinner · make dinner",
+        "e": "Dinner is ready, so please come to the table.",
+        "x": "dinner在此表示晚餐。",
+        "example_zh": "晚饭做好了，请过来吃。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01456",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01456",
+      "source_rank": 4,
+      "expression": "meal",
+      "sense_zh": "一餐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一餐",
+        "example_en": "We share one meal as a family every day.",
+        "example_zh": "我们每天全家一起吃一餐。",
+        "collocations": [
+          "share a meal",
+          "family meal"
+        ],
+        "usage_note": "meal指一次进餐。"
+      },
+      "display": {
+        "w": "meal",
+        "m": "一餐",
+        "c": "share a meal · family meal",
+        "e": "We share one meal as a family every day.",
+        "x": "meal指一次进餐。",
+        "example_zh": "我们每天全家一起吃一餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01457",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01457",
+      "source_rank": 5,
+      "expression": "leftovers",
+      "sense_zh": "剩菜剩饭",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "剩菜剩饭",
+        "example_en": "Put the leftovers away after dinner.",
+        "example_zh": "晚饭后把剩菜剩饭收好。",
+        "collocations": [
+          "store leftovers",
+          "eat leftovers"
+        ],
+        "usage_note": "leftovers通常用复数。"
+      },
+      "display": {
+        "w": "leftovers",
+        "m": "剩菜剩饭",
+        "c": "store leftovers · eat leftovers",
+        "e": "Put the leftovers away after dinner.",
+        "x": "leftovers通常用复数。",
+        "example_zh": "晚饭后把剩菜剩饭收好。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01458",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01458",
+      "source_rank": 6,
+      "expression": "plate",
+      "sense_zh": "盘子",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "盘子",
+        "example_en": "Put a clean plate at each seat.",
+        "example_zh": "每个座位放一个干净的盘子。",
+        "collocations": [
+          "dinner plate",
+          "clean plate"
+        ],
+        "usage_note": "plate是餐盘，也可作动词表示装盘。"
+      },
+      "display": {
+        "w": "plate",
+        "m": "盘子",
+        "c": "dinner plate · clean plate",
+        "e": "Put a clean plate at each seat.",
+        "x": "plate是餐盘，也可作动词表示装盘。",
+        "example_zh": "每个座位放一个干净的盘子。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01459",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01459",
+      "source_rank": 7,
+      "expression": "bowl",
+      "sense_zh": "碗",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "碗",
+        "example_en": "Serve the soup in a large bowl.",
+        "example_zh": "用大碗盛汤。",
+        "collocations": [
+          "soup bowl",
+          "large bowl"
+        ],
+        "usage_note": "bowl指碗状容器。"
+      },
+      "display": {
+        "w": "bowl",
+        "m": "碗",
+        "c": "soup bowl · large bowl",
+        "e": "Serve the soup in a large bowl.",
+        "x": "bowl指碗状容器。",
+        "example_zh": "用大碗盛汤。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01460",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01460",
+      "source_rank": 8,
+      "expression": "fork",
+      "sense_zh": "餐叉",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐叉",
+        "example_en": "Use a fork for the salad.",
+        "example_zh": "吃沙拉用叉子。",
+        "collocations": [
+          "dinner fork",
+          "use a fork"
+        ],
+        "usage_note": "fork在此指餐叉。"
+      },
+      "display": {
+        "w": "fork",
+        "m": "餐叉",
+        "c": "dinner fork · use a fork",
+        "e": "Use a fork for the salad.",
+        "x": "fork在此指餐叉。",
+        "example_zh": "吃沙拉用叉子。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01461",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01461",
+      "source_rank": 9,
+      "expression": "spoon",
+      "sense_zh": "勺子",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "勺子",
+        "example_en": "Would you like a spoon for your soup?",
+        "example_zh": "喝汤要不要勺子？",
+        "collocations": [
+          "soup spoon",
+          "use a spoon"
+        ],
+        "usage_note": "spoon在此是餐匙。"
+      },
+      "display": {
+        "w": "spoon",
+        "m": "勺子",
+        "c": "soup spoon · use a spoon",
+        "e": "Would you like a spoon for your soup?",
+        "x": "spoon在此是餐匙。",
+        "example_zh": "喝汤要不要勺子？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01462",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01462",
+      "source_rank": 10,
+      "expression": "chopsticks",
+      "sense_zh": "筷子",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "筷子",
+        "example_en": "We eat noodles with chopsticks.",
+        "example_zh": "我们用筷子吃面条。",
+        "collocations": [
+          "a pair of chopsticks",
+          "use chopsticks"
+        ],
+        "usage_note": "chopsticks常用复数。"
+      },
+      "display": {
+        "w": "chopsticks",
+        "m": "筷子",
+        "c": "a pair of chopsticks · use chopsticks",
+        "e": "We eat noodles with chopsticks.",
+        "x": "chopsticks常用复数。",
+        "example_zh": "我们用筷子吃面条。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01463",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01463",
+      "source_rank": 11,
+      "expression": "dinner guest",
+      "sense_zh": "到家用餐的客人",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "到家用餐的客人",
+        "example_en": "Our dinner guest will arrive at seven.",
+        "example_zh": "晚餐客人七点到。",
+        "collocations": [
+          "invite a dinner guest",
+          "welcome a dinner guest"
+        ],
+        "usage_note": "dinner guest指来吃晚餐的客人。"
+      },
+      "display": {
+        "w": "dinner guest",
+        "m": "到家用餐的客人",
+        "c": "invite a dinner guest · welcome a dinner guest",
+        "e": "Our dinner guest will arrive at seven.",
+        "x": "dinner guest指来吃晚餐的客人。",
+        "example_zh": "晚餐客人七点到。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01464",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01464",
+      "source_rank": 12,
+      "expression": "set the table",
+      "sense_zh": "摆餐具",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "摆餐具",
+        "example_en": "Could you set the table while I finish cooking?",
+        "example_zh": "我做完菜时，你能帮忙摆餐具吗？",
+        "collocations": [
+          "set the table",
+          "set the table for four"
+        ],
+        "usage_note": "set the table指摆放餐具。"
+      },
+      "display": {
+        "w": "set the table",
+        "m": "摆餐具",
+        "c": "set the table · set the table for four",
+        "e": "Could you set the table while I finish cooking?",
+        "x": "set the table指摆放餐具。",
+        "example_zh": "我做完菜时，你能帮忙摆餐具吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01465",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01465",
+      "source_rank": 13,
+      "expression": "serve dinner",
+      "sense_zh": "端上晚餐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "端上晚餐",
+        "example_en": "I'll serve dinner as soon as everyone sits down.",
+        "example_zh": "大家坐好我就端上晚餐。",
+        "collocations": [
+          "serve dinner",
+          "serve dinner at seven"
+        ],
+        "usage_note": "serve dinner指端上并供应晚餐。"
+      },
+      "display": {
+        "w": "serve dinner",
+        "m": "端上晚餐",
+        "c": "serve dinner · serve dinner at seven",
+        "e": "I'll serve dinner as soon as everyone sits down.",
+        "x": "serve dinner指端上并供应晚餐。",
+        "example_zh": "大家坐好我就端上晚餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01466",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01466",
+      "source_rank": 14,
+      "expression": "pass the salt",
+      "sense_zh": "递盐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "递盐",
+        "example_en": "Could you pass the salt, please?",
+        "example_zh": "请把盐递给我好吗？",
+        "collocations": [
+          "pass the salt",
+          "pass the salt and pepper"
+        ],
+        "usage_note": "pass the salt是餐桌礼貌表达。"
+      },
+      "display": {
+        "w": "pass the salt",
+        "m": "递盐",
+        "c": "pass the salt · pass the salt and pepper",
+        "e": "Could you pass the salt, please?",
+        "x": "pass the salt是餐桌礼貌表达。",
+        "example_zh": "请把盐递给我好吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01467",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01467",
+      "source_rank": 15,
+      "expression": "help yourself",
+      "sense_zh": "自己取用食物",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "自己取用食物",
+        "example_en": "Help yourself to some more vegetables.",
+        "example_zh": "想吃就自己再夹点蔬菜。",
+        "collocations": [
+          "help yourself",
+          "help yourself to food"
+        ],
+        "usage_note": "help yourself是请自行取用食物。"
+      },
+      "display": {
+        "w": "help yourself",
+        "m": "自己取用食物",
+        "c": "help yourself · help yourself to food",
+        "e": "Help yourself to some more vegetables.",
+        "x": "help yourself是请自行取用食物。",
+        "example_zh": "想吃就自己再夹点蔬菜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01468",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01468",
+      "source_rank": 16,
+      "expression": "serve yourself",
+      "sense_zh": "自行取餐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "自行取餐",
+        "example_en": "You can serve yourself from the dishes in the middle.",
+        "example_zh": "可以自己从桌子中央的菜里盛取。",
+        "collocations": [
+          "serve yourself",
+          "serve yourself some rice"
+        ],
+        "usage_note": "serve yourself强调自行盛菜。"
+      },
+      "display": {
+        "w": "serve yourself",
+        "m": "自行取餐",
+        "c": "serve yourself · serve yourself some rice",
+        "e": "You can serve yourself from the dishes in the middle.",
+        "x": "serve yourself强调自行盛菜。",
+        "example_zh": "可以自己从桌子中央的菜里盛取。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01469",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01469",
+      "source_rank": 17,
+      "expression": "delicious",
+      "sense_zh": "美味的",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "美味的",
+        "example_en": "This soup is delicious.",
+        "example_zh": "这汤真美味。",
+        "collocations": [
+          "delicious food",
+          "taste delicious"
+        ],
+        "usage_note": "delicious形容食物美味。"
+      },
+      "display": {
+        "w": "delicious",
+        "m": "美味的",
+        "c": "delicious food · taste delicious",
+        "e": "This soup is delicious.",
+        "x": "delicious形容食物美味。",
+        "example_zh": "这汤真美味。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01470",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01470",
+      "source_rank": 18,
+      "expression": "hungry",
+      "sense_zh": "饿的",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "饿的",
+        "example_en": "I'm hungry; when will dinner be ready?",
+        "example_zh": "我饿了，晚餐什么时候好？",
+        "collocations": [
+          "feel hungry",
+          "get hungry"
+        ],
+        "usage_note": "hungry表示饿了。"
+      },
+      "display": {
+        "w": "hungry",
+        "m": "饿的",
+        "c": "feel hungry · get hungry",
+        "e": "I'm hungry; when will dinner be ready?",
+        "x": "hungry表示饿了。",
+        "example_zh": "我饿了，晚餐什么时候好？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01471",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01471",
+      "source_rank": 19,
+      "expression": "full",
+      "sense_zh": "吃饱的",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "吃饱的",
+        "example_en": "I'm full, so I'll skip dessert.",
+        "example_zh": "我吃饱了，不吃甜点了。",
+        "collocations": [
+          "feel full",
+          "be completely full"
+        ],
+        "usage_note": "full在进餐语境指吃饱。"
+      },
+      "display": {
+        "w": "full",
+        "m": "吃饱的",
+        "c": "feel full · be completely full",
+        "e": "I'm full, so I'll skip dessert.",
+        "x": "full在进餐语境指吃饱。",
+        "example_zh": "我吃饱了，不吃甜点了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01472",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01472",
+      "source_rank": 20,
+      "expression": "help yourself to seconds",
+      "sense_zh": "自己再盛一份",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "自己再盛一份",
+        "example_en": "Help yourself to seconds if you're still hungry.",
+        "example_zh": "没吃饱就自己再添一份。",
+        "collocations": [
+          "help yourself to seconds",
+          "go back for seconds"
+        ],
+        "usage_note": "seconds表示再添的食物，属待审核增补候选。"
+      },
+      "display": {
+        "w": "help yourself to seconds",
+        "m": "自己再盛一份",
+        "c": "help yourself to seconds · go back for seconds",
+        "e": "Help yourself to seconds if you're still hungry.",
+        "x": "seconds表示再添的食物，属待审核增补候选。",
+        "example_zh": "没吃饱就自己再添一份。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01473",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01473",
+      "source_rank": 21,
+      "expression": "supper",
+      "sense_zh": "晚餐或晚间简餐",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "晚餐或晚间简餐",
+        "example_en": "We usually have a light supper on Sundays.",
+        "example_zh": "我们周日通常吃一顿简单晚餐。",
+        "collocations": [
+          "light supper",
+          "have supper"
+        ],
+        "usage_note": "supper在部分地区指晚餐或晚间简餐。"
+      },
+      "display": {
+        "w": "supper",
+        "m": "晚餐或晚间简餐",
+        "c": "light supper · have supper",
+        "e": "We usually have a light supper on Sundays.",
+        "x": "supper在部分地区指晚餐或晚间简餐。",
+        "example_zh": "我们周日通常吃一顿简单晚餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01474",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01474",
+      "source_rank": 22,
+      "expression": "family meal",
+      "sense_zh": "家庭用餐",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家庭用餐",
+        "example_en": "Sunday lunch is our favorite family meal.",
+        "example_zh": "周日午餐是我们最喜欢的家庭聚餐。",
+        "collocations": [
+          "family meal",
+          "share a family meal"
+        ],
+        "usage_note": "family meal强调家人共同进餐。"
+      },
+      "display": {
+        "w": "family meal",
+        "m": "家庭用餐",
+        "c": "family meal · share a family meal",
+        "e": "Sunday lunch is our favorite family meal.",
+        "x": "family meal强调家人共同进餐。",
+        "example_zh": "周日午餐是我们最喜欢的家庭聚餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01475",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01475",
+      "source_rank": 23,
+      "expression": "home-cooked meal",
+      "sense_zh": "家常菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家常菜",
+        "example_en": "What a lovely home-cooked meal!",
+        "example_zh": "这顿家常饭真棒！",
+        "collocations": [
+          "home-cooked meal",
+          "enjoy a home-cooked meal"
+        ],
+        "usage_note": "home-cooked强调在家里做的饭。"
+      },
+      "display": {
+        "w": "home-cooked meal",
+        "m": "家常菜",
+        "c": "home-cooked meal · enjoy a home-cooked meal",
+        "e": "What a lovely home-cooked meal!",
+        "x": "home-cooked强调在家里做的饭。",
+        "example_zh": "这顿家常饭真棒！"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01476",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01476",
+      "source_rank": 24,
+      "expression": "home cooking",
+      "sense_zh": "家常烹饪",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家常烹饪",
+        "example_en": "I prefer home cooking to takeout.",
+        "example_zh": "比起外卖，我更喜欢家常菜。",
+        "collocations": [
+          "home cooking",
+          "enjoy home cooking"
+        ],
+        "usage_note": "home cooking指家庭烹饪或家常饭。"
+      },
+      "display": {
+        "w": "home cooking",
+        "m": "家常烹饪",
+        "c": "home cooking · enjoy home cooking",
+        "e": "I prefer home cooking to takeout.",
+        "x": "home cooking指家庭烹饪或家常饭。",
+        "example_zh": "比起外卖，我更喜欢家常菜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01477",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01477",
+      "source_rank": 25,
+      "expression": "dining table",
+      "sense_zh": "餐桌",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐桌",
+        "example_en": "The dishes are on the dining table.",
+        "example_zh": "菜已经摆在餐桌上了。",
+        "collocations": [
+          "dining table",
+          "sit at the dining table"
+        ],
+        "usage_note": "dining table是用餐的桌子。"
+      },
+      "display": {
+        "w": "dining table",
+        "m": "餐桌",
+        "c": "dining table · sit at the dining table",
+        "e": "The dishes are on the dining table.",
+        "x": "dining table是用餐的桌子。",
+        "example_zh": "菜已经摆在餐桌上了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01478",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01478",
+      "source_rank": 26,
+      "expression": "dining room",
+      "sense_zh": "餐厅",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐厅",
+        "example_en": "We'll eat in the dining room.",
+        "example_zh": "我们在餐厅吃饭。",
+        "collocations": [
+          "dining room",
+          "family dining room"
+        ],
+        "usage_note": "dining room指家中的用餐房间。"
+      },
+      "display": {
+        "w": "dining room",
+        "m": "餐厅",
+        "c": "dining room · family dining room",
+        "e": "We'll eat in the dining room.",
+        "x": "dining room指家中的用餐房间。",
+        "example_zh": "我们在餐厅吃饭。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01479",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01479",
+      "source_rank": 27,
+      "expression": "place setting",
+      "sense_zh": "一人份的餐具摆放",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一人份的餐具摆放",
+        "example_en": "There are six place settings ready.",
+        "example_zh": "六人份餐具已经摆好了。",
+        "collocations": [
+          "place setting",
+          "set a place setting"
+        ],
+        "usage_note": "place setting指一人份餐具摆放。"
+      },
+      "display": {
+        "w": "place setting",
+        "m": "一人份的餐具摆放",
+        "c": "place setting · set a place setting",
+        "e": "There are six place settings ready.",
+        "x": "place setting指一人份餐具摆放。",
+        "example_zh": "六人份餐具已经摆好了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01480",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01480",
+      "source_rank": 28,
+      "expression": "table manners",
+      "sense_zh": "餐桌礼仪",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐桌礼仪",
+        "example_en": "Good table manners help everyone enjoy the meal.",
+        "example_zh": "良好餐桌礼仪让大家吃得更愉快。",
+        "collocations": [
+          "good table manners",
+          "teach table manners"
+        ],
+        "usage_note": "table manners是餐桌礼仪。"
+      },
+      "display": {
+        "w": "table manners",
+        "m": "餐桌礼仪",
+        "c": "good table manners · teach table manners",
+        "e": "Good table manners help everyone enjoy the meal.",
+        "x": "table manners是餐桌礼仪。",
+        "example_zh": "良好餐桌礼仪让大家吃得更愉快。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01481",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01481",
+      "source_rank": 29,
+      "expression": "portion",
+      "sense_zh": "一份食物",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一份食物",
+        "example_en": "I'd like a small portion of rice.",
+        "example_zh": "我想要一小份米饭。",
+        "collocations": [
+          "small portion",
+          "portion of rice"
+        ],
+        "usage_note": "portion是分量或一份食物。"
+      },
+      "display": {
+        "w": "portion",
+        "m": "一份食物",
+        "c": "small portion · portion of rice",
+        "e": "I'd like a small portion of rice.",
+        "x": "portion是分量或一份食物。",
+        "example_zh": "我想要一小份米饭。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01482",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01482",
+      "source_rank": 30,
+      "expression": "serving",
+      "sense_zh": "一份（食物）；上菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一份（食物）；上菜",
+        "example_en": "This recipe makes four servings.",
+        "example_zh": "这份食谱能做四人份。",
+        "collocations": [
+          "four servings",
+          "serving size"
+        ],
+        "usage_note": "serving指一份食物，也用于食谱标示。"
+      },
+      "display": {
+        "w": "serving",
+        "m": "一份（食物）；上菜",
+        "c": "four servings · serving size",
+        "e": "This recipe makes four servings.",
+        "x": "serving指一份食物，也用于食谱标示。",
+        "example_zh": "这份食谱能做四人份。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
