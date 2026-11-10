@@ -1,0 +1,437 @@
+{
+  "schema": "cg-qa-scene1341-44-ku-crossline-muenteach-reconciliation-v1",
+  "date": "2026-11-10",
+  "scope": "SC0002 ranks151-174 and SC0003 ranks1-20, KU00385-00428",
+  "cg_report": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_ANSWER_ONLY_SC0002_151_174_SC0003_001_120_144_REVIEW_20261110.v1.json",
+    "blob": "c5abe11aacb1168a34c5662d60803e61d9ce47ab"
+  },
+  "mu_enteach_report": {
+    "path": "tools/core20k_lexicon/staging/enteach_v51_answer_only_sc0002_071_174_sc0003_001_020_muse_review.json",
+    "blob": "57cc48ef2515770988794cb6e9c0b9c0f6fc7fcc",
+    "branch": "core20k-teaching-qa-b162-20261024",
+    "issue_comment": "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6758848384"
+  },
+  "counts": {
+    "reviewed": 44,
+    "agreed_pass": 38,
+    "agreed_revise": 1,
+    "disputed": 5,
+    "release_approved": 0
+  },
+  "policy": "MU-ENTEACH teaching-line review does not equal MU-QA formal certification. No old verdict overwritten; pending author changes must be reviewed on new source blob. No automatic release.",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00385",
+      "scene_id": "SC50-0002",
+      "source_rank": 151,
+      "expression": "clean up spilled water",
+      "verdict": "CONDITIONAL",
+      "reason": "clean up spilled water强调清理溅洒的水，中文“擦干”指定了一种方式，不一定由英文必然表达。",
+      "suggested_fix": "建议中文义‘清理洒出的水／把洒出的水擦干（若场景指定擦拭）’，Master确认源义。",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "DISAGREEMENT"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00386",
+      "scene_id": "SC50-0002",
+      "source_rank": 152,
+      "expression": "turn down the temperature",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00387",
+      "scene_id": "SC50-0002",
+      "source_rank": 153,
+      "expression": "deal with dry skin",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00388",
+      "scene_id": "SC50-0002",
+      "source_rank": 154,
+      "expression": "avoid skin irritation",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00389",
+      "scene_id": "SC50-0002",
+      "source_rank": 155,
+      "expression": "test a new product",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00390",
+      "scene_id": "SC50-0002",
+      "source_rank": 156,
+      "expression": "treat a small cut",
+      "verdict": "CONDITIONAL",
+      "reason": "treat a small cut是处理伤口，但英文例句只说清洁并覆盖伤口，没有显式使用treat或处理动词；作为教学目标表达不充分。",
+      "suggested_fix": "改为I treated a small cut on my finger by cleaning it and covering it with a bandage.／我清洁并贴上创可贴来处理手指上的小伤口。",
+      "mu_enteach_verdict": "REVISE",
+      "comparison": "DISAGREEMENT",
+      "mu_reason": "example_en 'I cleaned and covered a small cut on my finger.' paraphrases treating a cut but does not contain or model the target expression 'treat a small cut', so the example fails to exemplify the headword phrase.",
+      "mu_suggested_fix": "Change example_en to 'I treated a small cut on my finger by cleaning it and covering it.' and example_zh to '我清洁并包扎了手指上的小伤口。', updating display.e and display.example_zh to match."
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00391",
+      "scene_id": "SC50-0002",
+      "source_rank": 157,
+      "expression": "use a clean towel",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00392",
+      "scene_id": "SC50-0002",
+      "source_rank": 158,
+      "expression": "disinfect the surface",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00393",
+      "scene_id": "SC50-0002",
+      "source_rank": 159,
+      "expression": "wipe up the mess",
+      "verdict": "CONDITIONAL",
+      "reason": "wipe up the mess译作‘擦掉弄脏的地方’生硬，英语指擦净洒出污物或弄乱的东西，而非擦掉‘地方’。",
+      "suggested_fix": "建议‘把弄脏的地方擦干净／擦掉洒出的脏东西’，并改释义为‘擦净洒出的污物／液体’。",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "DISAGREEMENT"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00394",
+      "scene_id": "SC50-0002",
+      "source_rank": 160,
+      "expression": "keep toiletries separate",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00395",
+      "scene_id": "SC50-0002",
+      "source_rank": 161,
+      "expression": "share the bathroom",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00396",
+      "scene_id": "SC50-0002",
+      "source_rank": 162,
+      "expression": "wait your turn",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00397",
+      "scene_id": "SC50-0002",
+      "source_rank": 163,
+      "expression": "save water",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00398",
+      "scene_id": "SC50-0002",
+      "source_rank": 164,
+      "expression": "turn off the tap",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00399",
+      "scene_id": "SC50-0002",
+      "source_rank": 165,
+      "expression": "get ready quickly",
+      "verdict": "REVISE",
+      "reason": "get ready quickly的释义‘快速梳洗完’把准备工作局限于洗漱，英文包含洗漱、穿衣、打点出门等；原usage_note其实已承认其范围更广。",
+      "suggested_fix": "由Master将源义改为‘快速准备好；赶紧收拾好’，同步更新meaning_zh与display。",
+      "mu_enteach_verdict": "REVISE",
+      "comparison": "AGREED_REVISE",
+      "mu_reason": "example_en 'I need to get ready quickly because the bus leaves soon.' illustrates generic getting ready (dressing/packing) with no washing or grooming context, so it does not illustrate the glossed scene sense '快速梳洗完' in SC50-0002.",
+      "mu_suggested_fix": "Change example_en to 'I need to get ready quickly in the bathroom because the bus leaves soon.' and example_zh to '公交车快开了，我得在卫生间赶紧洗漱准备好。', updating display.e and display.example_zh to match."
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00400",
+      "scene_id": "SC50-0002",
+      "source_rank": 166,
+      "expression": "pack travel-size toiletries",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00401",
+      "scene_id": "SC50-0002",
+      "source_rank": 167,
+      "expression": "check the expiration date",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00402",
+      "scene_id": "SC50-0002",
+      "source_rank": 168,
+      "expression": "prevent slipping",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00403",
+      "scene_id": "SC50-0002",
+      "source_rank": 169,
+      "expression": "remove soap scum",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00404",
+      "scene_id": "SC50-0002",
+      "source_rank": 170,
+      "expression": "wash a reusable cloth",
+      "verdict": "CONDITIONAL",
+      "reason": "reusable cloth未必专指洗脸巾，可为擦拭布/清洁布；目标中文限定洗脸巾而搭配reusable cleaning cloth另指清洁布，源义范围不齐。",
+      "suggested_fix": "建议源义‘清洗可重复使用的布巾’，用法注中补可作洗脸巾或清洁布。",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "DISAGREEMENT"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00405",
+      "scene_id": "SC50-0002",
+      "source_rank": 171,
+      "expression": "dry the bathroom floor",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00406",
+      "scene_id": "SC50-0002",
+      "source_rank": 172,
+      "expression": "apply lip balm",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00407",
+      "scene_id": "SC50-0002",
+      "source_rank": 173,
+      "expression": "brush twice a day",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00408",
+      "scene_id": "SC50-0002",
+      "source_rank": 174,
+      "expression": "wash off makeup",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00409",
+      "scene_id": "SC50-0003",
+      "source_rank": 1,
+      "expression": "get dressed",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00410",
+      "scene_id": "SC50-0003",
+      "source_rank": 2,
+      "expression": "dress",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00411",
+      "scene_id": "SC50-0003",
+      "source_rank": 3,
+      "expression": "change clothes",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00412",
+      "scene_id": "SC50-0003",
+      "source_rank": 4,
+      "expression": "put on",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00413",
+      "scene_id": "SC50-0003",
+      "source_rank": 5,
+      "expression": "take off",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00414",
+      "scene_id": "SC50-0003",
+      "source_rank": 6,
+      "expression": "try on",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00415",
+      "scene_id": "SC50-0003",
+      "source_rank": 7,
+      "expression": "wear",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00416",
+      "scene_id": "SC50-0003",
+      "source_rank": 8,
+      "expression": "fit",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00417",
+      "scene_id": "SC50-0003",
+      "source_rank": 9,
+      "expression": "match",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00418",
+      "scene_id": "SC50-0003",
+      "source_rank": 10,
+      "expression": "dress up",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00419",
+      "scene_id": "SC50-0003",
+      "source_rank": 11,
+      "expression": "dress down",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00420",
+      "scene_id": "SC50-0003",
+      "source_rank": 12,
+      "expression": "zip up",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00421",
+      "scene_id": "SC50-0003",
+      "source_rank": 13,
+      "expression": "outfit",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00422",
+      "scene_id": "SC50-0003",
+      "source_rank": 14,
+      "expression": "shirt",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00423",
+      "scene_id": "SC50-0003",
+      "source_rank": 15,
+      "expression": "T-shirt",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00424",
+      "scene_id": "SC50-0003",
+      "source_rank": 16,
+      "expression": "sweater",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00425",
+      "scene_id": "SC50-0003",
+      "source_rank": 17,
+      "expression": "jacket",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00426",
+      "scene_id": "SC50-0003",
+      "source_rank": 18,
+      "expression": "dress",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00427",
+      "scene_id": "SC50-0003",
+      "source_rank": 19,
+      "expression": "jeans",
+      "verdict": "PASS",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "AGREED_PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00428",
+      "scene_id": "SC50-0003",
+      "source_rank": 20,
+      "expression": "pants",
+      "verdict": "CONDITIONAL",
+      "reason": "pants的美式长裤及英式内裤双义只举美式例句，英式用法仅由usage_note说明；若保留双义教学，补一个英国英语例句。",
+      "suggested_fix": "例如In British English, 'pants' can mean underwear.（注明英式），或Master将本KU限定美式裤子义。",
+      "mu_enteach_verdict": "PASS",
+      "comparison": "DISAGREEMENT"
+    }
+  ]
+}
