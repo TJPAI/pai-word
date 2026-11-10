@@ -1,0 +1,1481 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0007",
+    "ranks": "1-47",
+    "count": 47
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01236",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01236",
+      "source_rank": 1,
+      "expression": "prepare a meal",
+      "sense_zh": "准备一顿饭",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "准备一顿饭",
+        "example_en": "I'm going to prepare a meal for four tonight.",
+        "example_zh": "今晚我要准备一顿四人份的饭。",
+        "collocations": [
+          "prepare a meal",
+          "prepare a meal for guests"
+        ],
+        "usage_note": "prepare a meal强调备餐，可包括洗切食材及烹调。"
+      },
+      "display": {
+        "w": "prepare a meal",
+        "m": "准备一顿饭",
+        "c": "prepare a meal · prepare a meal for guests",
+        "e": "I'm going to prepare a meal for four tonight.",
+        "x": "prepare a meal强调备餐，可包括洗切食材及烹调。",
+        "example_zh": "今晚我要准备一顿四人份的饭。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01237",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01237",
+      "source_rank": 2,
+      "expression": "recipe",
+      "sense_zh": "食谱；烹饪方法及步骤",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "食谱；烹饪方法及步骤",
+        "example_en": "I followed the recipe step by step.",
+        "example_zh": "我一步步照着食谱做。",
+        "collocations": [
+          "follow a recipe",
+          "read a recipe"
+        ],
+        "usage_note": "recipe既包含食材，也包含烹饪方法及步骤。"
+      },
+      "display": {
+        "w": "recipe",
+        "m": "食谱；烹饪方法及步骤",
+        "c": "follow a recipe · read a recipe",
+        "e": "I followed the recipe step by step.",
+        "x": "recipe既包含食材，也包含烹饪方法及步骤。",
+        "example_zh": "我一步步照着食谱做。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01238",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01238",
+      "source_rank": 3,
+      "expression": "ingredient",
+      "sense_zh": "食材",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "食材",
+        "example_en": "We need one more ingredient for the soup.",
+        "example_zh": "做这道汤还缺一种食材。",
+        "collocations": [
+          "fresh ingredient",
+          "main ingredient"
+        ],
+        "usage_note": "ingredient是菜肴所用的食材或配料，可数。"
+      },
+      "display": {
+        "w": "ingredient",
+        "m": "食材",
+        "c": "fresh ingredient · main ingredient",
+        "e": "We need one more ingredient for the soup.",
+        "x": "ingredient是菜肴所用的食材或配料，可数。",
+        "example_zh": "做这道汤还缺一种食材。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01239",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01239",
+      "source_rank": 4,
+      "expression": "salt",
+      "sense_zh": "盐",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "盐",
+        "example_en": "Add a pinch of salt near the end of cooking.",
+        "example_zh": "快做好时加一小撮盐。",
+        "collocations": [
+          "a pinch of salt",
+          "add salt"
+        ],
+        "usage_note": "salt通常不可数；a pinch of表示一小撮。"
+      },
+      "display": {
+        "w": "salt",
+        "m": "盐",
+        "c": "a pinch of salt · add salt",
+        "e": "Add a pinch of salt near the end of cooking.",
+        "x": "salt通常不可数；a pinch of表示一小撮。",
+        "example_zh": "快做好时加一小撮盐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01240",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01240",
+      "source_rank": 5,
+      "expression": "oil",
+      "sense_zh": "食用油",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "食用油",
+        "example_en": "Heat a little oil in the pan before adding the onions.",
+        "example_zh": "放洋葱前先在锅里加热少量食用油。",
+        "collocations": [
+          "cooking oil",
+          "heat oil in a pan"
+        ],
+        "usage_note": "oil在此指食用油，不是汽油或润滑油。"
+      },
+      "display": {
+        "w": "oil",
+        "m": "食用油",
+        "c": "cooking oil · heat oil in a pan",
+        "e": "Heat a little oil in the pan before adding the onions.",
+        "x": "oil在此指食用油，不是汽油或润滑油。",
+        "example_zh": "放洋葱前先在锅里加热少量食用油。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01241",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01241",
+      "source_rank": 6,
+      "expression": "cutting board",
+      "sense_zh": "砧板",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "砧板",
+        "example_en": "Use a clean cutting board for the vegetables.",
+        "example_zh": "切蔬菜要用干净的砧板。",
+        "collocations": [
+          "cutting board",
+          "chop on a cutting board"
+        ],
+        "usage_note": "cutting board美式常用，英式也说chopping board。"
+      },
+      "display": {
+        "w": "cutting board",
+        "m": "砧板",
+        "c": "cutting board · chop on a cutting board",
+        "e": "Use a clean cutting board for the vegetables.",
+        "x": "cutting board美式常用，英式也说chopping board。",
+        "example_zh": "切蔬菜要用干净的砧板。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01242",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01242",
+      "source_rank": 7,
+      "expression": "pan",
+      "sense_zh": "平底锅",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "平底锅",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热平底锅。",
+        "collocations": [
+          "frying pan",
+          "heat a pan"
+        ],
+        "usage_note": "pan在此是平底锅，不是深锅pot。"
+      },
+      "display": {
+        "w": "pan",
+        "m": "平底锅",
+        "c": "frying pan · heat a pan",
+        "e": "Heat the pan over medium heat.",
+        "x": "pan在此是平底锅，不是深锅pot。",
+        "example_zh": "用中火加热平底锅。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01243",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01243",
+      "source_rank": 8,
+      "expression": "pot",
+      "sense_zh": "锅",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "锅",
+        "example_en": "Fill the pot with enough water for the pasta.",
+        "example_zh": "往锅里加足够煮意面的水。",
+        "collocations": [
+          "large pot",
+          "pot of boiling water"
+        ],
+        "usage_note": "pot通常是较深的锅，适合煮汤或煮面。"
+      },
+      "display": {
+        "w": "pot",
+        "m": "锅",
+        "c": "large pot · pot of boiling water",
+        "e": "Fill the pot with enough water for the pasta.",
+        "x": "pot通常是较深的锅，适合煮汤或煮面。",
+        "example_zh": "往锅里加足够煮意面的水。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01244",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01244",
+      "source_rank": 9,
+      "expression": "slice the tomatoes",
+      "sense_zh": "把番茄切片",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把番茄切片",
+        "example_en": "Slice the tomatoes thinly for the salad.",
+        "example_zh": "把番茄切成薄片做沙拉。",
+        "collocations": [
+          "slice the tomatoes",
+          "slice tomatoes thinly"
+        ],
+        "usage_note": "slice表示切成片，区别于dice切丁。"
+      },
+      "display": {
+        "w": "slice the tomatoes",
+        "m": "把番茄切片",
+        "c": "slice the tomatoes · slice tomatoes thinly",
+        "e": "Slice the tomatoes thinly for the salad.",
+        "x": "slice表示切成片，区别于dice切丁。",
+        "example_zh": "把番茄切成薄片做沙拉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01245",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01245",
+      "source_rank": 10,
+      "expression": "season the meat",
+      "sense_zh": "给肉调味",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "给肉调味",
+        "example_en": "Season the meat with salt and pepper.",
+        "example_zh": "用盐和胡椒给肉调味。",
+        "collocations": [
+          "season the meat",
+          "season meat with herbs"
+        ],
+        "usage_note": "season作动词表示加调味料，不是季节义。"
+      },
+      "display": {
+        "w": "season the meat",
+        "m": "给肉调味",
+        "c": "season the meat · season meat with herbs",
+        "e": "Season the meat with salt and pepper.",
+        "x": "season作动词表示加调味料，不是季节义。",
+        "example_zh": "用盐和胡椒给肉调味。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01246",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01246",
+      "source_rank": 11,
+      "expression": "preheat the oven",
+      "sense_zh": "预热烤箱",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "预热烤箱",
+        "example_en": "Preheat the oven to the temperature in the recipe.",
+        "example_zh": "按食谱要求的温度预热烤箱。",
+        "collocations": [
+          "preheat the oven",
+          "preheat the oven to 180 degrees"
+        ],
+        "usage_note": "preheat指放入食物前先使烤箱达到所需温度。"
+      },
+      "display": {
+        "w": "preheat the oven",
+        "m": "预热烤箱",
+        "c": "preheat the oven · preheat the oven to 180 degrees",
+        "e": "Preheat the oven to the temperature in the recipe.",
+        "x": "preheat指放入食物前先使烤箱达到所需温度。",
+        "example_zh": "按食谱要求的温度预热烤箱。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01247",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01247",
+      "source_rank": 12,
+      "expression": "simmer",
+      "sense_zh": "小火慢煮",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "小火慢煮",
+        "example_en": "Let the sauce simmer gently for ten minutes.",
+        "example_zh": "让酱汁小火慢煮十分钟。",
+        "collocations": [
+          "simmer gently",
+          "let the sauce simmer"
+        ],
+        "usage_note": "simmer是维持轻微冒泡，区别于猛烈沸腾boil。"
+      },
+      "display": {
+        "w": "simmer",
+        "m": "小火慢煮",
+        "c": "simmer gently · let the sauce simmer",
+        "e": "Let the sauce simmer gently for ten minutes.",
+        "x": "simmer是维持轻微冒泡，区别于猛烈沸腾boil。",
+        "example_zh": "让酱汁小火慢煮十分钟。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01248",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01248",
+      "source_rank": 13,
+      "expression": "roast chicken",
+      "sense_zh": "烤鸡",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "烤鸡",
+        "example_en": "We plan to roast chicken with potatoes on Sunday.",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。",
+        "collocations": [
+          "roast chicken",
+          "roast chicken in the oven"
+        ],
+        "usage_note": "roast chicken在此作动词词组，指烤鸡肉。"
+      },
+      "display": {
+        "w": "roast chicken",
+        "m": "烤鸡",
+        "c": "roast chicken · roast chicken in the oven",
+        "e": "We plan to roast chicken with potatoes on Sunday.",
+        "x": "roast chicken在此作动词词组，指烤鸡肉。",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01249",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01249",
+      "source_rank": 14,
+      "expression": "meal prep",
+      "sense_zh": "提前备餐；预先准备多餐食材或饭菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "提前备餐；预先准备多餐食材或饭菜",
+        "example_en": "I do meal prep on Sundays so weekday dinners are easier.",
+        "example_zh": "我周日提前备餐，工作日做晚饭就轻松些。",
+        "collocations": [
+          "do meal prep",
+          "weekly meal prep"
+        ],
+        "usage_note": "meal prep常指提前为多顿饭准备食材或做好饭菜。"
+      },
+      "display": {
+        "w": "meal prep",
+        "m": "提前备餐；预先准备多餐食材或饭菜",
+        "c": "do meal prep · weekly meal prep",
+        "e": "I do meal prep on Sundays so weekday dinners are easier.",
+        "x": "meal prep常指提前为多顿饭准备食材或做好饭菜。",
+        "example_zh": "我周日提前备餐，工作日做晚饭就轻松些。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01250",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01250",
+      "source_rank": 15,
+      "expression": "cooking",
+      "sense_zh": "烹饪",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "烹饪",
+        "example_en": "Cooking dinner helps me unwind after work.",
+        "example_zh": "下班后做晚饭让我放松。",
+        "collocations": [
+          "home cooking",
+          "cooking dinner"
+        ],
+        "usage_note": "cooking指烹饪活动，不等于仅准备食材。"
+      },
+      "display": {
+        "w": "cooking",
+        "m": "烹饪",
+        "c": "home cooking · cooking dinner",
+        "e": "Cooking dinner helps me unwind after work.",
+        "x": "cooking指烹饪活动，不等于仅准备食材。",
+        "example_zh": "下班后做晚饭让我放松。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01251",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01251",
+      "source_rank": 16,
+      "expression": "food preparation",
+      "sense_zh": "食材准备",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "食材准备",
+        "example_en": "Wash your hands before starting food preparation.",
+        "example_zh": "开始准备食材前先洗手。",
+        "collocations": [
+          "food preparation",
+          "safe food preparation"
+        ],
+        "usage_note": "food preparation强调备餐流程和食品卫生。"
+      },
+      "display": {
+        "w": "food preparation",
+        "m": "食材准备",
+        "c": "food preparation · safe food preparation",
+        "e": "Wash your hands before starting food preparation.",
+        "x": "food preparation强调备餐流程和食品卫生。",
+        "example_zh": "开始准备食材前先洗手。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01252",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01252",
+      "source_rank": 17,
+      "expression": "main ingredient",
+      "sense_zh": "主要食材",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "主要食材",
+        "example_en": "The main ingredient in this dish is chicken.",
+        "example_zh": "这道菜的主要食材是鸡肉。",
+        "collocations": [
+          "main ingredient",
+          "main ingredient in a dish"
+        ],
+        "usage_note": "main ingredient指菜品的核心食材，区别于少量调味料。"
+      },
+      "display": {
+        "w": "main ingredient",
+        "m": "主要食材",
+        "c": "main ingredient · main ingredient in a dish",
+        "e": "The main ingredient in this dish is chicken.",
+        "x": "main ingredient指菜品的核心食材，区别于少量调味料。",
+        "example_zh": "这道菜的主要食材是鸡肉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01253",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01253",
+      "source_rank": 18,
+      "expression": "fresh produce",
+      "sense_zh": "新鲜农产品",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "新鲜农产品",
+        "example_en": "I bought fresh produce for tonight's salad.",
+        "example_zh": "我买了新鲜果蔬，准备做今晚的沙拉。",
+        "collocations": [
+          "fresh produce",
+          "buy fresh produce"
+        ],
+        "usage_note": "produce在此作名词，指新鲜农产品，尤其蔬果。"
+      },
+      "display": {
+        "w": "fresh produce",
+        "m": "新鲜农产品",
+        "c": "fresh produce · buy fresh produce",
+        "e": "I bought fresh produce for tonight's salad.",
+        "x": "produce在此作名词，指新鲜农产品，尤其蔬果。",
+        "example_zh": "我买了新鲜果蔬，准备做今晚的沙拉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01254",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01254",
+      "source_rank": 19,
+      "expression": "vegetables",
+      "sense_zh": "蔬菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "蔬菜",
+        "example_en": "Wash the vegetables before chopping them.",
+        "example_zh": "切蔬菜前先把它们洗净。",
+        "collocations": [
+          "fresh vegetables",
+          "chop vegetables"
+        ],
+        "usage_note": "vegetables是蔬菜的复数，单数vegetable。"
+      },
+      "display": {
+        "w": "vegetables",
+        "m": "蔬菜",
+        "c": "fresh vegetables · chop vegetables",
+        "e": "Wash the vegetables before chopping them.",
+        "x": "vegetables是蔬菜的复数，单数vegetable。",
+        "example_zh": "切蔬菜前先把它们洗净。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01255",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01255",
+      "source_rank": 20,
+      "expression": "fruit",
+      "sense_zh": "水果",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "水果",
+        "example_en": "Add some fresh fruit to the breakfast bowl.",
+        "example_zh": "早餐碗里加些新鲜水果。",
+        "collocations": [
+          "fresh fruit",
+          "cut up fruit"
+        ],
+        "usage_note": "fruit作食品类统称时常不可数，强调不同种类可用fruits。"
+      },
+      "display": {
+        "w": "fruit",
+        "m": "水果",
+        "c": "fresh fruit · cut up fruit",
+        "e": "Add some fresh fruit to the breakfast bowl.",
+        "x": "fruit作食品类统称时常不可数，强调不同种类可用fruits。",
+        "example_zh": "早餐碗里加些新鲜水果。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01256",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01256",
+      "source_rank": 21,
+      "expression": "meat",
+      "sense_zh": "肉类",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "肉类",
+        "example_en": "Keep raw meat separate from ready-to-eat food.",
+        "example_zh": "生肉要与即食食品分开放。",
+        "collocations": [
+          "raw meat",
+          "cook meat thoroughly"
+        ],
+        "usage_note": "meat在此指肉类食品，通常不可数。"
+      },
+      "display": {
+        "w": "meat",
+        "m": "肉类",
+        "c": "raw meat · cook meat thoroughly",
+        "e": "Keep raw meat separate from ready-to-eat food.",
+        "x": "meat在此指肉类食品，通常不可数。",
+        "example_zh": "生肉要与即食食品分开放。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01257",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01257",
+      "source_rank": 22,
+      "expression": "poultry",
+      "sense_zh": "家禽肉",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家禽肉",
+        "example_en": "Store raw poultry separately in the refrigerator.",
+        "example_zh": "把生禽肉单独放在冰箱里。",
+        "collocations": [
+          "raw poultry",
+          "cook poultry thoroughly"
+        ],
+        "usage_note": "poultry指鸡、鸭、火鸡等家禽的肉，通常不可数。"
+      },
+      "display": {
+        "w": "poultry",
+        "m": "家禽肉",
+        "c": "raw poultry · cook poultry thoroughly",
+        "e": "Store raw poultry separately in the refrigerator.",
+        "x": "poultry指鸡、鸭、火鸡等家禽的肉，通常不可数。",
+        "example_zh": "把生禽肉单独放在冰箱里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01258",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01258",
+      "source_rank": 23,
+      "expression": "seafood",
+      "sense_zh": "海鲜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "海鲜",
+        "example_en": "We're having seafood for dinner tonight.",
+        "example_zh": "今晚我们吃海鲜。",
+        "collocations": [
+          "fresh seafood",
+          "seafood dinner"
+        ],
+        "usage_note": "seafood是海鲜的集合称谓，通常不可数。"
+      },
+      "display": {
+        "w": "seafood",
+        "m": "海鲜",
+        "c": "fresh seafood · seafood dinner",
+        "e": "We're having seafood for dinner tonight.",
+        "x": "seafood是海鲜的集合称谓，通常不可数。",
+        "example_zh": "今晚我们吃海鲜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01259",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01259",
+      "source_rank": 24,
+      "expression": "fish",
+      "sense_zh": "鱼",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "鱼",
+        "example_en": "The fish needs to be cooked before serving.",
+        "example_zh": "这条鱼上桌前需要煮熟。",
+        "collocations": [
+          "fresh fish",
+          "cook fish"
+        ],
+        "usage_note": "fish在食材义中通常可指鱼肉，也可以指鱼这一动物。"
+      },
+      "display": {
+        "w": "fish",
+        "m": "鱼",
+        "c": "fresh fish · cook fish",
+        "e": "The fish needs to be cooked before serving.",
+        "x": "fish在食材义中通常可指鱼肉，也可以指鱼这一动物。",
+        "example_zh": "这条鱼上桌前需要煮熟。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01260",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01260",
+      "source_rank": 25,
+      "expression": "eggs",
+      "sense_zh": "鸡蛋",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "鸡蛋",
+        "example_en": "Beat two eggs in a small bowl.",
+        "example_zh": "在小碗里打散两枚鸡蛋。",
+        "collocations": [
+          "beat eggs",
+          "fresh eggs"
+        ],
+        "usage_note": "eggs是鸡蛋复数，beating指搅打均匀。"
+      },
+      "display": {
+        "w": "eggs",
+        "m": "鸡蛋",
+        "c": "beat eggs · fresh eggs",
+        "e": "Beat two eggs in a small bowl.",
+        "x": "eggs是鸡蛋复数，beating指搅打均匀。",
+        "example_zh": "在小碗里打散两枚鸡蛋。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01261",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01261",
+      "source_rank": 26,
+      "expression": "dairy",
+      "sense_zh": "乳制品",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "乳制品",
+        "example_en": "This recipe doesn't contain any dairy.",
+        "example_zh": "这份食谱不含乳制品。",
+        "collocations": [
+          "dairy products",
+          "dairy-free recipe"
+        ],
+        "usage_note": "dairy在食物语境指奶及乳制品。"
+      },
+      "display": {
+        "w": "dairy",
+        "m": "乳制品",
+        "c": "dairy products · dairy-free recipe",
+        "e": "This recipe doesn't contain any dairy.",
+        "x": "dairy在食物语境指奶及乳制品。",
+        "example_zh": "这份食谱不含乳制品。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01262",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01262",
+      "source_rank": 27,
+      "expression": "rice",
+      "sense_zh": "米饭或米",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "米饭或米",
+        "example_en": "Rinse the rice if the recipe calls for it.",
+        "example_zh": "如果食谱要求，先把米淘洗一下。",
+        "collocations": [
+          "cook rice",
+          "uncooked rice"
+        ],
+        "usage_note": "rice可指生米或煮熟的米饭，通常不可数。"
+      },
+      "display": {
+        "w": "rice",
+        "m": "米饭或米",
+        "c": "cook rice · uncooked rice",
+        "e": "Rinse the rice if the recipe calls for it.",
+        "x": "rice可指生米或煮熟的米饭，通常不可数。",
+        "example_zh": "如果食谱要求，先把米淘洗一下。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01263",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01263",
+      "source_rank": 28,
+      "expression": "pasta",
+      "sense_zh": "意大利面",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "意大利面",
+        "example_en": "Cook the pasta until it's tender.",
+        "example_zh": "把意大利面煮到软熟。",
+        "collocations": [
+          "cook pasta",
+          "pasta sauce"
+        ],
+        "usage_note": "pasta是意大利面类食品，通常不可数。"
+      },
+      "display": {
+        "w": "pasta",
+        "m": "意大利面",
+        "c": "cook pasta · pasta sauce",
+        "e": "Cook the pasta until it's tender.",
+        "x": "pasta是意大利面类食品，通常不可数。",
+        "example_zh": "把意大利面煮到软熟。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01264",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01264",
+      "source_rank": 29,
+      "expression": "beans",
+      "sense_zh": "豆类",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "豆类",
+        "example_en": "Add cooked beans to the vegetable stew.",
+        "example_zh": "在蔬菜炖菜里加入煮熟的豆子。",
+        "collocations": [
+          "cooked beans",
+          "canned beans"
+        ],
+        "usage_note": "beans指各类豆，常用复数；与green beans等具体种类区分。"
+      },
+      "display": {
+        "w": "beans",
+        "m": "豆类",
+        "c": "cooked beans · canned beans",
+        "e": "Add cooked beans to the vegetable stew.",
+        "x": "beans指各类豆，常用复数；与green beans等具体种类区分。",
+        "example_zh": "在蔬菜炖菜里加入煮熟的豆子。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01265",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01265",
+      "source_rank": 30,
+      "expression": "lentils",
+      "sense_zh": "扁豆",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "扁豆",
+        "example_en": "Lentils cook well in a hearty soup.",
+        "example_zh": "扁豆很适合用来做浓汤。",
+        "collocations": [
+          "red lentils",
+          "cook lentils"
+        ],
+        "usage_note": "lentils是扁豆类食材，英语通常使用复数。"
+      },
+      "display": {
+        "w": "lentils",
+        "m": "扁豆",
+        "c": "red lentils · cook lentils",
+        "e": "Lentils cook well in a hearty soup.",
+        "x": "lentils是扁豆类食材，英语通常使用复数。",
+        "example_zh": "扁豆很适合用来做浓汤。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01266",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01266",
+      "source_rank": 31,
+      "expression": "herbs",
+      "sense_zh": "香草",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "香草",
+        "example_en": "Chop the fresh herbs just before serving.",
+        "example_zh": "上菜前再把新鲜香草切碎。",
+        "collocations": [
+          "fresh herbs",
+          "chopped herbs"
+        ],
+        "usage_note": "herbs在烹饪中指香草或香草叶，不等同于所有spices。"
+      },
+      "display": {
+        "w": "herbs",
+        "m": "香草",
+        "c": "fresh herbs · chopped herbs",
+        "e": "Chop the fresh herbs just before serving.",
+        "x": "herbs在烹饪中指香草或香草叶，不等同于所有spices。",
+        "example_zh": "上菜前再把新鲜香草切碎。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01267",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01267",
+      "source_rank": 32,
+      "expression": "spices",
+      "sense_zh": "香辛料",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "香辛料",
+        "example_en": "These spices give the stew a warm flavor.",
+        "example_zh": "这些香辛料让炖菜有浓郁香气。",
+        "collocations": [
+          "ground spices",
+          "add spices"
+        ],
+        "usage_note": "spices通常指干燥种子、树皮、根茎等香辛料。"
+      },
+      "display": {
+        "w": "spices",
+        "m": "香辛料",
+        "c": "ground spices · add spices",
+        "e": "These spices give the stew a warm flavor.",
+        "x": "spices通常指干燥种子、树皮、根茎等香辛料。",
+        "example_zh": "这些香辛料让炖菜有浓郁香气。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01268",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01268",
+      "source_rank": 33,
+      "expression": "seasoning",
+      "sense_zh": "调味料；调味",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "调味料；调味",
+        "example_en": "Taste the soup before adding more seasoning.",
+        "example_zh": "再加调味料前先尝尝汤。",
+        "collocations": [
+          "add seasoning",
+          "adjust the seasoning"
+        ],
+        "usage_note": "seasoning可指调味料，也可指调味的过程。"
+      },
+      "display": {
+        "w": "seasoning",
+        "m": "调味料；调味",
+        "c": "add seasoning · adjust the seasoning",
+        "e": "Taste the soup before adding more seasoning.",
+        "x": "seasoning可指调味料，也可指调味的过程。",
+        "example_zh": "再加调味料前先尝尝汤。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01269",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01269",
+      "source_rank": 34,
+      "expression": "pepper",
+      "sense_zh": "胡椒",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "胡椒",
+        "example_en": "Add freshly ground pepper to the sauce.",
+        "example_zh": "在酱汁里加些现磨胡椒。",
+        "collocations": [
+          "black pepper",
+          "ground pepper"
+        ],
+        "usage_note": "pepper在此是胡椒调味料，不是甜椒。"
+      },
+      "display": {
+        "w": "pepper",
+        "m": "胡椒",
+        "c": "black pepper · ground pepper",
+        "e": "Add freshly ground pepper to the sauce.",
+        "x": "pepper在此是胡椒调味料，不是甜椒。",
+        "example_zh": "在酱汁里加些现磨胡椒。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01270",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01270",
+      "source_rank": 35,
+      "expression": "olive oil",
+      "sense_zh": "橄榄油",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "橄榄油",
+        "example_en": "Drizzle a little olive oil over the salad.",
+        "example_zh": "在沙拉上淋一点橄榄油。",
+        "collocations": [
+          "extra-virgin olive oil",
+          "drizzle olive oil"
+        ],
+        "usage_note": "olive oil是橄榄油，drizzle指少量淋洒。"
+      },
+      "display": {
+        "w": "olive oil",
+        "m": "橄榄油",
+        "c": "extra-virgin olive oil · drizzle olive oil",
+        "e": "Drizzle a little olive oil over the salad.",
+        "x": "olive oil是橄榄油，drizzle指少量淋洒。",
+        "example_zh": "在沙拉上淋一点橄榄油。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01271",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01271",
+      "source_rank": 36,
+      "expression": "butter",
+      "sense_zh": "黄油",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "黄油",
+        "example_en": "Melt the butter gently in the pan.",
+        "example_zh": "在平底锅里小火融化黄油。",
+        "collocations": [
+          "unsalted butter",
+          "melt butter"
+        ],
+        "usage_note": "butter是黄油，作为食材通常不可数。"
+      },
+      "display": {
+        "w": "butter",
+        "m": "黄油",
+        "c": "unsalted butter · melt butter",
+        "e": "Melt the butter gently in the pan.",
+        "x": "butter是黄油，作为食材通常不可数。",
+        "example_zh": "在平底锅里小火融化黄油。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01272",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01272",
+      "source_rank": 37,
+      "expression": "flour",
+      "sense_zh": "面粉",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "面粉",
+        "example_en": "Add the flour slowly while stirring.",
+        "example_zh": "边搅拌边慢慢加入面粉。",
+        "collocations": [
+          "plain flour",
+          "add flour"
+        ],
+        "usage_note": "flour是面粉，通常不可数。"
+      },
+      "display": {
+        "w": "flour",
+        "m": "面粉",
+        "c": "plain flour · add flour",
+        "e": "Add the flour slowly while stirring.",
+        "x": "flour是面粉，通常不可数。",
+        "example_zh": "边搅拌边慢慢加入面粉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01273",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01273",
+      "source_rank": 38,
+      "expression": "sugar",
+      "sense_zh": "糖",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "糖",
+        "example_en": "The cake recipe calls for less sugar than I expected.",
+        "example_zh": "这份蛋糕食谱需要的糖比我想象的少。",
+        "collocations": [
+          "granulated sugar",
+          "add sugar"
+        ],
+        "usage_note": "sugar作食材名词通常不可数。"
+      },
+      "display": {
+        "w": "sugar",
+        "m": "糖",
+        "c": "granulated sugar · add sugar",
+        "e": "The cake recipe calls for less sugar than I expected.",
+        "x": "sugar作食材名词通常不可数。",
+        "example_zh": "这份蛋糕食谱需要的糖比我想象的少。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01274",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01274",
+      "source_rank": 39,
+      "expression": "vinegar",
+      "sense_zh": "醋",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "醋",
+        "example_en": "Mix a little vinegar into the dressing.",
+        "example_zh": "往沙拉调味汁里拌入少量醋。",
+        "collocations": [
+          "rice vinegar",
+          "add vinegar"
+        ],
+        "usage_note": "vinegar在此是食用醋，用于调味。"
+      },
+      "display": {
+        "w": "vinegar",
+        "m": "醋",
+        "c": "rice vinegar · add vinegar",
+        "e": "Mix a little vinegar into the dressing.",
+        "x": "vinegar在此是食用醋，用于调味。",
+        "example_zh": "往沙拉调味汁里拌入少量醋。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01275",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01275",
+      "source_rank": 40,
+      "expression": "soy sauce",
+      "sense_zh": "酱油",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "酱油",
+        "example_en": "Add a splash of soy sauce to the stir-fry.",
+        "example_zh": "往炒菜里加少许酱油。",
+        "collocations": [
+          "light soy sauce",
+          "a splash of soy sauce"
+        ],
+        "usage_note": "soy sauce是酱油；不同品种咸度与颜色不同。"
+      },
+      "display": {
+        "w": "soy sauce",
+        "m": "酱油",
+        "c": "light soy sauce · a splash of soy sauce",
+        "e": "Add a splash of soy sauce to the stir-fry.",
+        "x": "soy sauce是酱油；不同品种咸度与颜色不同。",
+        "example_zh": "往炒菜里加少许酱油。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01276",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01276",
+      "source_rank": 41,
+      "expression": "garlic",
+      "sense_zh": "大蒜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "大蒜",
+        "example_en": "Mince the garlic before heating the oil.",
+        "example_zh": "加热油前先把大蒜切碎。",
+        "collocations": [
+          "minced garlic",
+          "clove of garlic"
+        ],
+        "usage_note": "garlic通常不可数；一瓣大蒜是a clove of garlic。"
+      },
+      "display": {
+        "w": "garlic",
+        "m": "大蒜",
+        "c": "minced garlic · clove of garlic",
+        "e": "Mince the garlic before heating the oil.",
+        "x": "garlic通常不可数；一瓣大蒜是a clove of garlic。",
+        "example_zh": "加热油前先把大蒜切碎。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01277",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01277",
+      "source_rank": 42,
+      "expression": "onion",
+      "sense_zh": "洋葱",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "洋葱",
+        "example_en": "Dice the onion into small pieces.",
+        "example_zh": "把洋葱切成小丁。",
+        "collocations": [
+          "diced onion",
+          "chop an onion"
+        ],
+        "usage_note": "onion作为一颗洋葱是可数名词。"
+      },
+      "display": {
+        "w": "onion",
+        "m": "洋葱",
+        "c": "diced onion · chop an onion",
+        "e": "Dice the onion into small pieces.",
+        "x": "onion作为一颗洋葱是可数名词。",
+        "example_zh": "把洋葱切成小丁。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01278",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01278",
+      "source_rank": 43,
+      "expression": "ginger",
+      "sense_zh": "生姜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "生姜",
+        "example_en": "Grate a little fresh ginger into the sauce.",
+        "example_zh": "往酱汁里擦入一点新鲜姜末。",
+        "collocations": [
+          "fresh ginger",
+          "grated ginger"
+        ],
+        "usage_note": "ginger在这里指生姜调味食材。"
+      },
+      "display": {
+        "w": "ginger",
+        "m": "生姜",
+        "c": "fresh ginger · grated ginger",
+        "e": "Grate a little fresh ginger into the sauce.",
+        "x": "ginger在这里指生姜调味食材。",
+        "example_zh": "往酱汁里擦入一点新鲜姜末。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01279",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01279",
+      "source_rank": 44,
+      "expression": "stock",
+      "sense_zh": "用于烹饪的高汤；汤底",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "用于烹饪的高汤；汤底",
+        "example_en": "Use vegetable stock as the base for the soup.",
+        "example_zh": "用蔬菜高汤做这道汤的底。",
+        "collocations": [
+          "vegetable stock",
+          "chicken stock"
+        ],
+        "usage_note": "stock在此指烹饪高汤，不是库存或股票。"
+      },
+      "display": {
+        "w": "stock",
+        "m": "用于烹饪的高汤；汤底",
+        "c": "vegetable stock · chicken stock",
+        "e": "Use vegetable stock as the base for the soup.",
+        "x": "stock在此指烹饪高汤，不是库存或股票。",
+        "example_zh": "用蔬菜高汤做这道汤的底。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01280",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01280",
+      "source_rank": 45,
+      "expression": "broth",
+      "sense_zh": "肉汤或蔬菜汤",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "肉汤或蔬菜汤",
+        "example_en": "Pour the broth over the noodles just before serving.",
+        "example_zh": "上桌前把汤倒在面条上。",
+        "collocations": [
+          "chicken broth",
+          "vegetable broth"
+        ],
+        "usage_note": "broth指肉汤或蔬菜汤，与stock在日常烹饪中常有重叠。"
+      },
+      "display": {
+        "w": "broth",
+        "m": "肉汤或蔬菜汤",
+        "c": "chicken broth · vegetable broth",
+        "e": "Pour the broth over the noodles just before serving.",
+        "x": "broth指肉汤或蔬菜汤，与stock在日常烹饪中常有重叠。",
+        "example_zh": "上桌前把汤倒在面条上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01281",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01281",
+      "source_rank": 46,
+      "expression": "sauce",
+      "sense_zh": "酱汁",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "酱汁",
+        "example_en": "Let the sauce thicken for a few minutes.",
+        "example_zh": "让酱汁再煮几分钟变浓稠。",
+        "collocations": [
+          "tomato sauce",
+          "thicken a sauce"
+        ],
+        "usage_note": "sauce是酱汁或调味汁，通常可数或不可数视语境而定。"
+      },
+      "display": {
+        "w": "sauce",
+        "m": "酱汁",
+        "c": "tomato sauce · thicken a sauce",
+        "e": "Let the sauce thicken for a few minutes.",
+        "x": "sauce是酱汁或调味汁，通常可数或不可数视语境而定。",
+        "example_zh": "让酱汁再煮几分钟变浓稠。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01282",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01282",
+      "source_rank": 47,
+      "expression": "dressing",
+      "sense_zh": "沙拉调味汁",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "沙拉调味汁",
+        "example_en": "Whisk the dressing before pouring it over the salad.",
+        "example_zh": "把沙拉调味汁搅匀后再淋在沙拉上。",
+        "collocations": [
+          "salad dressing",
+          "whisk the dressing"
+        ],
+        "usage_note": "dressing在此指沙拉调味汁，不是穿衣或敷料义。"
+      },
+      "display": {
+        "w": "dressing",
+        "m": "沙拉调味汁",
+        "c": "salad dressing · whisk the dressing",
+        "e": "Whisk the dressing before pouring it over the salad.",
+        "x": "dressing在此指沙拉调味汁，不是穿衣或敷料义。",
+        "example_zh": "把沙拉调味汁搅匀后再淋在沙拉上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
