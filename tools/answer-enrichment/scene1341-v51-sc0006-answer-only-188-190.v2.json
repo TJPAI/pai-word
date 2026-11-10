@@ -1,0 +1,117 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0006",
+    "ranks": "188-190",
+    "count": 3
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01233",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01233",
+      "source_rank": 188,
+      "expression": "rewash a smelly load",
+      "sense_zh": "把有异味的一机衣物重新洗",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把有异味的一机衣物重新洗",
+        "example_en": "Rewash a smelly load rather than putting it straight in the dryer.",
+        "example_zh": "一机衣服有异味时重新洗，不要直接放进烘干机。",
+        "collocations": [
+          "rewash a smelly load",
+          "rewash musty laundry"
+        ],
+        "usage_note": "rewash表示重洗；异味衣物应先查找原因。"
+      },
+      "display": {
+        "w": "rewash a smelly load",
+        "m": "把有异味的一机衣物重新洗",
+        "c": "rewash a smelly load · rewash musty laundry",
+        "e": "Rewash a smelly load rather than putting it straight in the dryer.",
+        "x": "rewash表示重洗；异味衣物应先查找原因。",
+        "example_zh": "一机衣服有异味时重新洗，不要直接放进烘干机。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01234",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01234",
+      "source_rank": 189,
+      "expression": "color bleed",
+      "sense_zh": "衣物串色；掉色",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "衣物串色；掉色",
+        "example_en": "The red towel caused color bleed in the wash.",
+        "example_zh": "红毛巾洗涤时掉色，导致衣物串色。",
+        "collocations": [
+          "color bleed in the wash",
+          "prevent color bleed"
+        ],
+        "usage_note": "color bleed为衣物染料转移或掉色的表达；属待独立审核补缺候选。"
+      },
+      "display": {
+        "w": "color bleed",
+        "m": "衣物串色；掉色",
+        "c": "color bleed in the wash · prevent color bleed",
+        "e": "The red towel caused color bleed in the wash.",
+        "x": "color bleed为衣物染料转移或掉色的表达；属待独立审核补缺候选。",
+        "example_zh": "红毛巾洗涤时掉色，导致衣物串色。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01235",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01235",
+      "source_rank": 190,
+      "expression": "take the laundry out",
+      "sense_zh": "把衣物从洗衣机取出",
+      "source_tier": "ADDITIONAL",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把衣物从洗衣机取出",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take out表示从洗衣机中取出；此源项是待独立审核增补候选。"
+      },
+      "display": {
+        "w": "take the laundry out",
+        "m": "把衣物从洗衣机取出",
+        "c": "take the laundry out · take laundry out of the washer",
+        "e": "Take the laundry out as soon as the cycle finishes.",
+        "x": "take out表示从洗衣机中取出；此源项是待独立审核增补候选。",
+        "example_zh": "洗衣程序结束就把衣物取出来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
