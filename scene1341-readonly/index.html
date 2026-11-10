@@ -88,7 +88,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="home-shell"><div class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>Scene1341 · Scene500 同款交互预览</p></div><div class="home-actions"><span class="read-only-pill">未认证 · 只读数据</span></div></div>
   <div class="home-focus"><div class="continue-card"><div><span class="eyebrow">继续浏览</span><h2 id="continue-name">起床与晨间准备</h2><p id="continue-description">真实教学草稿 · 不保存学习记录</p></div><div class="continue-actions"><button id="continue" class="continue-primary" type="button">进入词卡</button></div></div>
   <div class="scene-search-card" style="padding:16px"><span class="eyebrow">场景检索 · 1,341 场景目录</span><h2 style="margin:8px 0">查找学习场景</h2><input class="demo-search" id="search" placeholder="搜索场景名称、分类或SC50编号" autocomplete="off" aria-label="查找场景">
-  <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">当前仅有2个场景、304条答案型词卡草稿可进入；其他场景保留目录展示，不制造虚假词卡。</p>
+  <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
   <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
   <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
   <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。</p></div>
@@ -112,12 +112,15 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 'use strict';
 const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
 const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/integration/';
-const FILES=['enteach-v51-first20-answer-only-v2.json','scene1341-v51-sc0001-answer-only-021-050.v2.json','scene1341-v51-sc0001-answer-only-051-100.v2.json','scene1341-v51-sc0001-answer-only-101-130.v2.json','scene1341-v51-sc0001-answer-only-131-180.v2.json','scene1341-v51-sc0001-answer-only-181-234.v2.json','scene1341-v51-sc0002-answer-only-001-020.v2.json','scene1341-v51-sc0002-answer-only-021-070.v2.json'];
+// Immutable author commit: candidate KU only; never use this URL as runtime release permission.
+const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c';
+const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA+'/';
+const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 const BATCH=25;let autoTimer=null,autoDelay=2000,handMode=false,holdTimer=null,pointerDown=false;
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
-const available=id=>id==='SC50-0001'?234:id==='SC50-0002'?70:0;
+const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
 const subset=()=>items.filter(x=>x.scene_id===sceneId);
 function parseCsv(src){
  const lines=[];let field='',row=[],quoted=false;
@@ -134,29 +137,38 @@ function parseCsv(src){
 async function getText(url){const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);return res.text()}
 async function load(){
  try{
-  const all=await Promise.all([getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
-   ...FILES.map(f=>getText(ROOT+'scene1341-teaching/'+f)),
-   getText(ROOT+'scene1341-teaching/qa-304-status-staging.v1.json')]);
-  const rows=parseCsv(all[0]);const cols=rows.shift(),find=k=>cols.indexOf(k);
+  const [catalogRaw,manifestRaw,qaRaw]=await Promise.all([
+   getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
+   getText(AUTHOR_ROOT+MANIFEST),
+   getText(ROOT+'scene1341-teaching/qa-304-status-staging.v1.json')
+  ]);
+  const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
   catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')])).map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
   if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)throw Error('场景目录数量或ID异常');
-  const ids=new Set();
-  items=all.slice(1,-1).flatMap(raw=>{
-   const pack=JSON.parse(raw);
-   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2')throw Error('KU草稿身份异常');
-   return pack.records.map(r=>{
-    if(ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||!r.answer?.example_en||!r.answer?.example_zh)throw Error('KU不能进入只读演示');ids.add(r.scene_ku_id);return r;
-   });
+  const manifest=JSON.parse(manifestRaw),packs=manifest.assets?.packs;
+  if(manifest.schema_version!=='pai-scene1341-answer-only-v2-progress-manifest'||manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE'||!Array.isArray(packs)||packs.length!==30||manifest.counts?.authored_answer_only!==1182||manifest.counts?.production_playable!==0||manifest.counts?.question_payloads!==0||packs.reduce((n,p)=>n+p.records,0)!==1182)throw Error('作者清单未通过隔离预览门禁');
+  if(new Set(packs.map(p=>p.path)).size!==packs.length||packs.some(p=>!/^tools\/answer-enrichment\/scene1341-v51-.*\.v2\.json$/.test(p.path)||!/^([0-9a-f]{40})$/.test(p.git_blob)||p.records<1))throw Error('作者清单文件身份异常');
+  const rawPacks=await Promise.all(packs.map(p=>getText(AUTHOR_ROOT+p.path)));
+  const ids=new Set(),ranks=new Set();items=[];
+  rawPacks.forEach((raw,i)=>{
+   const pack=JSON.parse(raw),p=packs[i];
+   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2'||pack.identity?.core20k_ku_reused!==false||!Array.isArray(pack.records)||pack.records.length!==p.records)throw Error('KU源Pack身份异常：'+p.path);
+   for(const r of pack.records){
+    const key=r.scene_id+':'+r.source_rank;
+    if(!/^SC1341-KU-\d{5}$/.test(r.scene_ku_id)||ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||Object.hasOwn(r,'choices')||Object.hasOwn(r,'scoring')||!r.expression||!r.answer?.meaning_zh||!r.answer?.example_en||!r.answer?.example_zh||!Array.isArray(r.answer.collocations)||!catalog.some(c=>c.id===r.scene_id)||ranks.has(key))throw Error('KU不能进入只读预览：'+r.scene_ku_id);
+    ids.add(r.scene_ku_id);ranks.add(key);items.push(r);
+   }
   });
-  const qa=JSON.parse(all.at(-1));
-  if(items.length!==304||ids.size!==304||qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('KU数量或QA发布门禁异常');
+  if(items.length!==1182||ids.size!==1182)throw Error('KU总数或唯一身份异常');
+  const perScene=new Map();for(const r of items){const a=perScene.get(r.scene_id)||[];a.push(r.source_rank);perScene.set(r.scene_id,a)}
+  for(const [scene,rs] of perScene){rs.sort((a,b)=>a-b);if(rs.some((n,i)=>n!==i+1))throw Error('场景rank不连续：'+scene)}
+  items.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
+  const qa=JSON.parse(qaRaw);
+  if(qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('QA 304历史审核门禁异常');
   flags=new Map(qa.flags.map(f=>[f.ku_id,f]));
-  for(const [id,n] of [['SC50-0001',234],['SC50-0002',70]]){
-   const part=items.filter(r=>r.scene_id===id).sort((a,b)=>a.source_rank-b.source_rank);
-   if(part.length!==n||part.some((r,i)=>r.source_rank!==i+1))throw Error('场景词卡rank不连续');
-  }
-  set('status','已载入1,341个场景目录｜2个场景有304条词卡（未认证）');set('continue-name',label(lastScene));renderCategories();renderHome();
- }catch(e){set('status','数据加载失败：'+e.message+'。请联网使用 Safari 打开，暂不展示未经验证的数据。');$('continue').disabled=true;set('scope','数据没有通过校验；不开放任何评分或学习记录。')}
+  set('status','已载入1,341个场景目录｜'+perScene.size+'个场景共'+items.length+'条作者草稿（未正式认证）');
+  set('continue-name',label(lastScene));renderCategories();renderHome();
+ }catch(e){items=[];set('status','数据加载失败：'+e.message+'。请联网使用 Safari 打开，暂不展示未经验证的数据。');$('continue').disabled=true;set('scope','数据没有通过校验；不开放任何评分或学习记录。')}
 }
 function renderCategories(){
  const cats=['全部',...new Set(catalog.map(x=>x.category))];$('categories').replaceChildren();
@@ -198,7 +210,7 @@ function renderCard(){
  $('prev').disabled=index===0;$('next').disabled=index===cards.length-1;
  $('reveal').disabled=revealed;$('reveal').textContent=revealed?'已显示答案':'显示答案';
  for(const b of document.querySelectorAll('[data-grade]'))b.disabled=!revealed;
- const f=flags.get(r.scene_ku_id);set('qa',f?'CG-QA '+f.cg_qa+' · '+(f.issue||'待复核'):'CG-QA PASS（单线审核，未发布）');
+ const f=flags.get(r.scene_ku_id);set('qa',f?'CG-QA '+f.cg_qa+' · '+(f.issue||'待复核'):'作者草稿 · 尚无本预览对应的逐条QA证据 · 未发布');
  set('demo-note','仅模拟评分 · 本次知道'+transientRatings.good+' / 模糊'+transientRatings.hard+' / 不知道'+transientRatings.again+' · 不写SRS');
  $('studybody').scrollTop=0;
 }
