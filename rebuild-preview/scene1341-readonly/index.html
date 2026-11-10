@@ -1,57 +1,248 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f9fc"><title>PAI Word · Scene1341 只读体验</title>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>PAI Word · Scene1341｜Scene500 同款交互预览</title>
+<link rel="stylesheet" href="./scene500-mobile.css"><link rel="stylesheet" href="./scene500-learning.css"><link rel="stylesheet" href="./scene500-home.css">
 <style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182c45;background:#f7f9fc}*{box-sizing:border-box}body{margin:0}main{max-width:620px;margin:auto;padding:18px 16px 40px}h1{font-size:22px;margin:4px 0 8px}.sub{font-size:13px;color:#64748b;line-height:1.6}.top{display:flex;align-items:center;justify-content:space-between;gap:10px} .chip{font-size:12px;border:1px solid #cbd9ed;background:#eff5ff;color:#315d93;padding:6px 9px;border-radius:99px;white-space:nowrap}select{width:100%;margin:16px 0 9px;padding:13px;border:1px solid #d4dfeb;border-radius:12px;background:#fff;font-size:16px} .status{font-size:12px;color:#526780;line-height:1.5;min-height:21px;margin:10px 0}.card{background:white;border:1px solid #e1e7ef;border-radius:20px;overflow:hidden;min-height:310px;box-shadow:0 12px 30px #2945680b}.meta{padding:15px 19px;border-bottom:1px solid #eaf0f6;display:flex;justify-content:space-between;font-size:12px;color:#6e8095}.hero{text-align:center;padding:42px 18px}.word{font-size:34px;font-weight:750;line-height:1.2;overflow-wrap:anywhere}.hint{font-size:13px;color:#8a98aa;margin-top:17px}.answer{display:none;padding:20px;border-top:1px solid #ecf0f5;line-height:1.65}.answer.visible{display:block}.meaning{font-size:24px;font-weight:700;color:#215083}.label{font-size:12px;font-weight:650;color:#8291a5;margin:16px 0 6px}.example{font-size:17px}.translation,.usage{color:#586d83;font-size:14px}.collocations{font-size:14px;color:#345574}.buttons,.grades{display:flex;gap:8px;margin-top:14px}.buttons button,.grades button{flex:1;padding:12px 5px;border-radius:11px;border:1px solid #cad7e7;background:white;font-size:15px;color:#234f7d;font-weight:650}.buttons button.primary{background:#2f6097;color:white;border-color:#2f6097}button:disabled{background:#f0f3f7;color:#a3acb8;border-color:#e4e9f0}.qa{font-size:12px;line-height:1.6;color:#61758b;margin:13px 2px}.qa.warn{color:#9b5b22}.notice{font-size:12px;line-height:1.6;background:#fff8eb;border:1px solid #f0e2c8;border-radius:11px;padding:12px;margin-top:18px;color:#755e38}@media(max-width:390px){.word{font-size:29px}.buttons button{font-size:13px}}
-</style></head><body><main><div class="top"><h1>PAI Word · Scene1341</h1><span class="chip">作者草稿｜只读</span></div><p class="sub">体验英文表达和答案型词卡：先自主回忆，后揭晓释义、双语例句、自然搭配及用法。未正式认证，不保存学习状态。</p>
-<select id="scene" aria-label="选择场景"><option value="SC50-0001">0001 起床与晨间准备（234条）</option><option value="SC50-0002">0002 场景（70条）</option></select>
-<div id="status" class="status" role="status">正在校验固定版本的真实KU草稿…</div>
-<section class="card" id="card"><div class="meta"><span id="scene-label">Scene1341</span><span id="position">—</span></div><div class="hero"><div class="word" id="word">加载中…</div><div class="hint">先想一想这个表达的含义和用法</div></div><div class="answer" id="answer"><div id="meaning" class="meaning"></div><div class="label">例句</div><div id="example" class="example"></div><div id="translation" class="translation"></div><div class="label">自然搭配</div><div id="collocations" class="collocations"></div><div class="label">用法说明</div><div id="usage" class="usage"></div></div></section>
-<div class="buttons"><button id="prev" disabled>上一条</button><button id="reveal" class="primary" disabled>显示答案</button><button id="next" disabled>下一条</button></div>
-<div class="grades"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div><p class="qa" id="qa"></p>
-<p class="notice">全部304条为未获得正式发布批准的 Answer-only V2 作者草稿。评分与SRS严格禁用；本页无本地持久化，不接触正式App用户记录。</p></main>
+/* Overrides are constrained to the isolated demo route, never the original app. */
+body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-shell{max-width:820px;margin:auto}
+.demo-categories{display:flex;gap:7px;overflow-x:auto;padding:8px 0 12px;scrollbar-width:none}.demo-categories button{white-space:nowrap;border:1px solid #e2e7ec;border-radius:18px;padding:8px 12px;background:#fff;font-size:13px}
+.demo-categories .selected{background:#172033;color:white;border-color:#172033}
+.demo-search{display:block;width:100%;padding:15px 16px;border-radius:14px;border:1px solid #e0e7ef;background:#fff;font-size:16px;margin:12px 0}
+.demo-scenes{display:flex;flex-direction:column;gap:8px}.demo-scene{display:flex;width:100%;align-items:center;justify-content:space-between;text-align:left;background:#fff;border:1px solid #e5e9f0;border-radius:14px;padding:15px 16px;min-height:65px}.demo-scene b{font-size:15px;font-weight:650}.demo-scene small{display:block;margin-top:5px;color:#7b8798;font-size:12px}.demo-scene .ready{font-size:12px;color:#286c55}.demo-scene .unready{font-size:11px;color:#a3acb8}.demo-scene:disabled{opacity:.6}
+.demo-tip{font-size:12px;line-height:1.6;color:#687588}.demo-status{font-size:13px;padding:11px 0;color:#677385}
+.demo-footer{color:#788594;font-size:12px;line-height:1.65;padding:22px 0}
+.demo-learning{height:100dvh;min-height:100dvh;max-width:560px;margin:auto;overflow:hidden;display:flex;flex-direction:column}
+.demo-learning .study-top{align-items:center}
+.demo-learning .study-top .study-scene{font-size:14px}
+.demo-learning .study-body{flex:1;overflow:auto;padding:0 22px 8px;min-height:0;touch-action:pan-y}
+.demo-learning .word-hero{min-height:31vh!important;display:flex;flex-direction:column;justify-content:center}
+.demo-learning.revealed .word-hero{min-height:18vh!important}
+.demo-learning .study-top{grid-template-columns:48px 1fr 85px}
+.demo-learning .study-progress{font-size:13px}
+.demo-learning .recall-correction{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));flex:0 0 auto;gap:9px;padding:10px 12px calc(12px + env(safe-area-inset-bottom,0px));border-top:1px solid #edf0f2;background:#fff}
+.demo-learning .recall-correction button{min-height:65px;width:100%;border-radius:15px;border:1px solid #d8dfe2;font-size:18px;font-weight:700}
+.demo-learning .recall-correction button:nth-child(1){background:#fcebe9;color:#a43e32}
+.demo-learning .recall-correction button:nth-child(2){background:#f8efcd;color:#7f651c}
+.demo-learning .recall-correction button:nth-child(3){background:#e8f3ec;color:#287448}
+.demo-learning .recall-correction button:disabled{opacity:.42}
+.demo-learning .demo-ops{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 15px;flex:0 0 auto}
+.demo-learning .demo-ops button{border:0;background:#f4f6f8;border-radius:10px;padding:9px 12px;font-size:13px}
+.demo-learning .demo-ops button:disabled{opacity:.35}
+.demo-learning .recall-note{min-height:0;font-size:12px;padding:4px 16px;margin:0;line-height:1.5;color:#758091;flex:0 0 auto}
+.demo-learning .demo-qa{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:11px;color:#9c5f29;margin:0;padding:5px 15px}
+.demo-learning .answer{animation:none;border-top:1px solid #ebeff3;padding:10px 0 22px}
+.demo-learning .answer-section{padding:13px 0}
+.demo-learning .demo-meaning{font-size:24px;font-weight:650;line-height:1.5}
+.demo-learning .demo-en{font-size:17px;line-height:1.65}
+.demo-learning .demo-zh,.demo-learning .demo-note{font-size:14px;color:#66717f;line-height:1.7}
+.demo-learning .demo-colloc{font-size:14px;line-height:1.7}
+.demo-learning .tap-hint{margin:18px 0;color:#a0a9b4}
+.demo-learning .study-body .word-hero{cursor:pointer}
+.demo-learning .read-only-pill{border:1px solid #dce5ec;border-radius:9px;padding:4px 6px;font-size:10px;color:#526980;white-space:nowrap}
+.demo-learning .study-top .back-btn{padding:0}
+.demo-learning .study-body .speak-btn{font-size:20px}
+.demo-learning .study-body .word{font-size:44px}
+[hidden]{display:none!important}
+
+/* Fidelity patch from user-supplied Scene500 iPhone screenshot: restricted to this preview. */
+#learning.demo-learning{max-width:none;height:100dvh;position:relative;background:#fff;overscroll-behavior:contain}
+#learning .study-top{height:104px;min-height:104px;display:grid;grid-template-columns:66px minmax(0,1fr) 110px;align-items:center;padding:10px 20px 4px;border-bottom:1px solid #ededed}
+#learning .back-btn{font-size:54px;line-height:1;align-self:center;text-align:left;border:0;background:none;font-weight:450}
+#learning .study-scene{font-size:25px!important;font-weight:760;text-align:center;line-height:1.18;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#learning .study-progress{font-size:15px!important;text-align:right;line-height:1.65;color:#525252;white-space:normal}
+#learning .study-body{flex:1;padding:0 20px 10px;min-height:0;overflow:auto;touch-action:pan-y;position:relative}
+#learning .word-hero,#learning.revealed .word-hero{min-height:245px!important;position:relative;padding:12px 0 15px;display:flex;align-items:center;justify-content:flex-start}
+#learning .word-line{display:flex;flex-direction:column;align-items:center;width:100%;gap:13px}
+#learning .word{font-size:clamp(36px,9vw,56px)!important;font-weight:780;line-height:1.15;letter-spacing:-.04em;max-width:calc(100% - 80px);text-align:center;overflow-wrap:anywhere}
+#learning .ipa-line{min-height:31px;color:#666;font-size:24px;text-align:center}
+#learning .ipa-line:empty::before{content:"";display:none}
+#learning .cue-center{font-size:16px;color:#909090;text-align:center;padding-top:10px}
+#learning .sound-tools{position:absolute;right:0;top:95px;display:flex;flex-direction:column;align-items:center;gap:18px;z-index:3}
+#learning .sound-tools button{width:48px;height:48px;display:grid;place-items:center;border:0;background:none;font-size:28px;border-radius:12px}
+#learning .sound-tools #auto-toggle{background:#3777e5;color:#fff;font-weight:800;box-shadow:0 3px 8px #1d4ac531}
+#learning .sound-tools #auto-toggle.is-on{background:#19498f}
+#learning .recall-cue,#learning .tap-hint{display:none}
+#learning .answer{border-top:1px solid #dedede;margin-top:8px;padding:0 0 20px}
+#learning .answer-section{padding:8px 0 10px;border-bottom:1px solid #e6e6e6}
+#learning .answer-section strong,#learning .answer-title{font-size:15px;color:#848484;font-weight:600}
+#learning .demo-meaning{font-size:22px;line-height:1.45;font-weight:500;color:#151515}
+#learning .demo-en{font-size:19px;line-height:1.55;color:#161616}
+#learning .demo-zh,#learning .demo-colloc,#learning .demo-note{font-size:16px;line-height:1.55}
+#learning .recall-correction{grid-template-columns:repeat(3,minmax(0,1fr));position:relative!important;bottom:auto!important;gap:12px;padding:12px 18px calc(17px + env(safe-area-inset-bottom,0px));border-top:1px solid #e2e2e2;flex:0 0 auto;min-height:110px}
+#learning .recall-correction button{min-height:82px;font-size:24px;font-weight:740;border-radius:24px}
+#learning .recall-correction button:nth-child(1){background:#faebea;color:#a13e31;border:2px solid #b54d3d}
+#learning .recall-correction button:nth-child(2){background:#fcf3db;color:#826921;border:1.5px solid #ebd99f}
+#learning .recall-correction button:nth-child(3){background:#e8f3eb;color:#2d7047;border:1.5px solid #badbc7}
+#learning .recall-correction button:disabled{opacity:1}
+#learning .recall-note{min-height:24px;font-size:13px;padding:3px 14px}
+#learning .demo-qa{font-size:11px;padding:2px 14px;min-height:15px}
+#learning .demo-ops{display:none}
+#learning .handwrite-board{position:absolute;inset:0;z-index:6;touch-action:none;background:rgba(255,255,255,.07)}
+#learning .handwrite-board[hidden]{display:none!important}
+#learning #draw-canvas{display:block;width:100%;height:100%;touch-action:none}
+#learning .handwrite-indicator{position:absolute;left:12px;top:10px;z-index:7;font-size:12px;color:#2d63aa;background:#e6f0ff;border-radius:9px;padding:7px}
+@media(max-width:380px){#learning .study-top{grid-template-columns:44px minmax(0,1fr) 100px;padding-left:12px;padding-right:12px}#learning .study-scene{font-size:21px!important}#learning .recall-correction{padding-left:10px;padding-right:10px;gap:8px}#learning .recall-correction button{font-size:20px}}
+</style></head>
+<body><div id="app">
+<section class="home-dashboard demo-home" id="home">
+  <div class="home-shell"><div class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>Scene1341 · Scene500 同款交互预览</p></div><div class="home-actions"><span class="read-only-pill">未认证 · 只读数据</span></div></div>
+  <div class="home-focus"><div class="continue-card"><div><span class="eyebrow">继续浏览</span><h2 id="continue-name">起床与晨间准备</h2><p id="continue-description">真实教学草稿 · 不保存学习记录</p></div><div class="continue-actions"><button id="continue" class="continue-primary" type="button">进入词卡</button></div></div>
+  <div class="scene-search-card" style="padding:16px"><span class="eyebrow">场景检索 · 1,341 场景目录</span><h2 style="margin:8px 0">查找学习场景</h2><input class="demo-search" id="search" placeholder="搜索场景名称、分类或SC50编号" autocomplete="off" aria-label="查找场景">
+  <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
+  <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
+  <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
+  <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。</p></div>
+</section>
+<section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
+ <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><div id="batch-position">第1/1批</div><div id="progress">本批已学 0/25</div></div></div>
+ <div class="study-body" id="studybody">
+   <div class="word-hero" id="hero"><div class="word-line"><span class="word" id="expression">加载中</span><div class="ipa-line" id="ipa" aria-label="音标"></div><div class="cue-center" id="cue">回忆词义</div></div><div class="sound-tools"><button class="speak-btn" id="speak" aria-label="朗读英文表达">🔊</button><button id="auto-toggle" aria-label="自动浏览开关" title="自动浏览">↻</button><select id="auto-speed" aria-label="自动浏览间隔" title="自动浏览间隔" style="font-size:12px;max-width:68px;border:1px solid #d8dfe2;border-radius:8px;background:#fff"><option value="200">0.2秒</option><option value="600">0.6秒</option><option value="2000" selected>2秒</option><option value="5000">5秒</option></select></div><p class="tap-hint" id="tap-hint">轻点空白处显示答案</p></div>
+   <div class="handwrite-board" id="handwrite" hidden><span class="handwrite-indicator">手写模式 · 长按退出</span><canvas id="draw-canvas"></canvas></div>
+   <div class="answer" id="answer" hidden><div class="answer-section"><strong>释义</strong><div class="demo-meaning" id="meaning"></div></div>
+    <div class="answer-section"><strong>英文例句</strong><div class="demo-en" id="example"></div><div class="demo-zh" id="translation"></div></div>
+    <div class="answer-section"><strong>自然搭配</strong><div class="demo-colloc" id="collocations"></div></div>
+    <div class="answer-section"><strong>用法提醒</strong><div class="demo-note" id="usage"></div></div></div>
+ </div>
+ <p class="demo-qa" id="qa" title="独立审核意见"></p>
+ <p class="recall-note" id="demo-note">点空白回题目，左右滑切词，上下滑换批，长按手写或擦除</p>
+ <div class="demo-ops"><button id="prev" type="button">上一张</button><button id="reveal" type="button">显示答案</button><button id="next" type="button">下一张</button></div>
+ <div class="recall-correction" role="group" aria-label="模拟评分，不保存SRS"><button type="button" data-grade="again" disabled>不知道</button><button type="button" data-grade="hard" disabled>模糊</button><button type="button" data-grade="good" disabled>知道</button></div>
+</section></div>
 <script>
 'use strict';
-const SHA='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
-const PREFIX='https://raw.githubusercontent.com/TJPAI/pai-word/'+SHA+'/tools/integration/scene1341-teaching/';
-const PACKS=['enteach-v51-first20-answer-only-v2.json','scene1341-v51-sc0001-answer-only-021-050.v2.json','scene1341-v51-sc0001-answer-only-051-100.v2.json','scene1341-v51-sc0001-answer-only-101-130.v2.json','scene1341-v51-sc0001-answer-only-131-180.v2.json','scene1341-v51-sc0002-answer-only-001-020.v2.json','scene1341-v51-sc0002-answer-only-021-070.v2.json'];
-// SC0001 first 20 + five subsequent groups + SC0002 two groups = eight source packs.
-PACKS.splice(5,0,'scene1341-v51-sc0001-answer-only-181-234.v2.json');
-const $=id=>document.getElementById(id),put=(id,value)=>{$(id).textContent=String(value??'')};
-let all=[],flags=new Map(),scene='SC50-0001',index=0,revealed=false;
-const scoped=()=>all.filter(x=>x.scene_id===scene);
-function paint(){
- const rows=scoped(),r=rows[index];if(!r)return;
- put('scene-label',r.scene_id+' · 只读审核');put('position',(index+1)+' / '+rows.length);put('word',r.expression);
- put('meaning',r.answer.meaning_zh);put('example',r.answer.example_en);put('translation',r.answer.example_zh);
- put('collocations',r.answer.collocations.join(' · '));put('usage',[r.answer.usage_note,r.answer.contrast_note].filter(Boolean).join(' '));
- $('answer').classList.toggle('visible',revealed);$('prev').disabled=index===0;$('next').disabled=index===rows.length-1;$('reveal').disabled=revealed;
- const issue=flags.get(r.scene_ku_id),qa=$('qa');qa.classList.toggle('warn',!!issue);
- qa.textContent=issue?'CG-QA '+issue.cg_qa+' · '+(issue.issue||'需复核'):'CG-QA PASS（仅单线审核意见，非正式发布认证）';
+const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
+const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/integration/';
+// Immutable author commit: candidate KU only; never use this URL as runtime release permission.
+const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c';
+const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA+'/';
+const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
+const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
+let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
+const BATCH=25;let autoTimer=null,autoDelay=2000,handMode=false,holdTimer=null,pointerDown=false;
+const label=id=>catalog.find(x=>x.id===id)?.name||id;
+const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
+const subset=()=>items.filter(x=>x.scene_id===sceneId);
+function parseCsv(src){
+ const lines=[];let field='',row=[],quoted=false;
+ src=src.replace(/^\uFEFF/,'');
+ for(let i=0;i<src.length;i++){const c=src[i];
+  if(c==='"'){if(quoted&&src[i+1]==='"'){field+='"';i++}else quoted=!quoted;}
+  else if(c===','&&!quoted){row.push(field);field='';}
+  else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&src[i+1]==='\n')i++;row.push(field);if(row.some(x=>x))lines.push(row);row=[];field='';}
+  else field+=c;
+ }
+ if(field||row.length){row.push(field);lines.push(row)}
+ return lines;
 }
-function go(delta){const rows=scoped();index=Math.max(0,Math.min(rows.length-1,index+delta));revealed=false;paint()}
-$('prev').addEventListener('click',()=>go(-1));$('next').addEventListener('click',()=>go(1));
-$('reveal').addEventListener('click',()=>{revealed=true;paint()});
-$('scene').addEventListener('change',e=>{scene=e.target.value;index=0;revealed=false;paint()});
-let start=null;$('card').addEventListener('touchstart',e=>{start=e.changedTouches[0]?.screenX??null},{passive:true});
-$('card').addEventListener('touchend',e=>{if(start===null)return;const delta=(e.changedTouches[0]?.screenX??start)-start;if(Math.abs(delta)>75)go(delta<0?1:-1);start=null},{passive:true});
+async function getText(url){const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);return res.text()}
 async function load(){
  try{
-  const payloads=await Promise.all([...PACKS,'qa-304-status-staging.v1.json'].map(async name=>{
-   const res=await fetch(PREFIX+name,{cache:'force-cache'});if(!res.ok)throw Error(name+' HTTP '+res.status);return res.json();
-  }));
-  const ids=new Set();all=payloads.slice(0,-1).flatMap(pack=>{
-   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2')throw Error('pack schema不一致');
-   return pack.records.map(r=>{if(ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||!r.answer?.example_zh)throw Error('数据审核门禁未通过');ids.add(r.scene_ku_id);return r});
+  const [catalogRaw,manifestRaw,qaRaw]=await Promise.all([
+   getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
+   getText(AUTHOR_ROOT+MANIFEST),
+   getText(ROOT+'scene1341-teaching/qa-304-status-staging.v1.json')
+  ]);
+  const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
+  catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')])).map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
+  if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)throw Error('场景目录数量或ID异常');
+  const manifest=JSON.parse(manifestRaw),packs=manifest.assets?.packs;
+  if(manifest.schema_version!=='pai-scene1341-answer-only-v2-progress-manifest'||manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE'||!Array.isArray(packs)||packs.length!==30||manifest.counts?.authored_answer_only!==1182||manifest.counts?.production_playable!==0||manifest.counts?.question_payloads!==0||packs.reduce((n,p)=>n+p.records,0)!==1182)throw Error('作者清单未通过隔离预览门禁');
+  if(new Set(packs.map(p=>p.path)).size!==packs.length||packs.some(p=>!/^tools\/answer-enrichment\/scene1341-v51-.*\.v2\.json$/.test(p.path)||!/^([0-9a-f]{40})$/.test(p.git_blob)||p.records<1))throw Error('作者清单文件身份异常');
+  const rawPacks=await Promise.all(packs.map(p=>getText(AUTHOR_ROOT+p.path)));
+  const ids=new Set(),ranks=new Set();items=[];
+  rawPacks.forEach((raw,i)=>{
+   const pack=JSON.parse(raw),p=packs[i];
+   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2'||pack.identity?.core20k_ku_reused!==false||!Array.isArray(pack.records)||pack.records.length!==p.records)throw Error('KU源Pack身份异常：'+p.path);
+   for(const r of pack.records){
+    const key=r.scene_id+':'+r.source_rank;
+    if(!/^SC1341-KU-\d{5}$/.test(r.scene_ku_id)||ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||Object.hasOwn(r,'choices')||Object.hasOwn(r,'scoring')||!r.expression||!r.answer?.meaning_zh||!r.answer?.example_en||!r.answer?.example_zh||!Array.isArray(r.answer.collocations)||!catalog.some(c=>c.id===r.scene_id)||ranks.has(key))throw Error('KU不能进入只读预览：'+r.scene_ku_id);
+    ids.add(r.scene_ku_id);ranks.add(key);items.push(r);
+   }
   });
-  const qa=payloads.at(-1);
-  if(all.length!==304||ids.size!==304||qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('计数或发布状态不一致');
-  all.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
-  for(const [id,total] of [['SC50-0001',234],['SC50-0002',70]]){
-   const rows=all.filter(x=>x.scene_id===id);if(rows.length!==total||rows.some((r,i)=>r.source_rank!==i+1))throw Error('场景rank存在缺口');
-  }
+  if(items.length!==1182||ids.size!==1182)throw Error('KU总数或唯一身份异常');
+  const perScene=new Map();for(const r of items){const a=perScene.get(r.scene_id)||[];a.push(r.source_rank);perScene.set(r.scene_id,a)}
+  for(const [scene,rs] of perScene){rs.sort((a,b)=>a-b);if(rs.some((n,i)=>n!==i+1))throw Error('场景rank不连续：'+scene)}
+  items.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
+  const qa=JSON.parse(qaRaw);
+  if(qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('QA 304历史审核门禁异常');
   flags=new Map(qa.flags.map(f=>[f.ku_id,f]));
-  put('status','已载入304条真实词卡 · 2个场景 · 草稿只读 · 不保存进度');paint();
- }catch(err){put('status','数据加载失败：'+err.message+'；请联网使用Safari访问。');put('word','无法载入词库');}
+  set('status','已载入1,341个场景目录｜'+perScene.size+'个场景共'+items.length+'条作者草稿（未正式认证）');
+  set('continue-name',label(lastScene));renderCategories();renderHome();
+ }catch(e){items=[];set('status','数据加载失败：'+e.message+'。请联网使用 Safari 打开，暂不展示未经验证的数据。');$('continue').disabled=true;set('scope','数据没有通过校验；不开放任何评分或学习记录。')}
 }
+function renderCategories(){
+ const cats=['全部',...new Set(catalog.map(x=>x.category))];$('categories').replaceChildren();
+ for(const c of cats){const b=document.createElement('button');b.textContent=c.replace(/（\d+）$/,'');b.classList.toggle('selected',c===category);b.addEventListener('click',()=>{category=c;visible=35;renderCategories();renderHome()});$('categories').append(b)}
+}
+function renderHome(){
+ if(!catalog.length)return;
+ const q=filter.trim().toLowerCase();
+ const result=catalog.filter(x=>(category==='全部'||x.category===category)&&(!q||(x.id+' '+x.name+' '+x.category).toLowerCase().includes(q)));
+ $('scenes').replaceChildren();
+ // Keep both authored scenes visible by default, followed by the full official catalog.
+ const sorted=!q&&category==='全部'?[...result.filter(x=>available(x.id)),...result.filter(x=>!available(x.id))]:result;
+ for(const sc of sorted.slice(0,visible)){
+  const btn=document.createElement('button');btn.className='demo-scene';btn.type='button';
+  const title=document.createElement('div'),b=document.createElement('b'),small=document.createElement('small'),right=document.createElement('span');
+  b.textContent=sc.name;small.textContent=sc.id+' · '+sc.category;title.append(b,small);
+  right.textContent=available(sc.id)?available(sc.id)+'条词卡 · 体验':'待教学内容认证';
+  right.className=available(sc.id)?'ready':'unready';btn.disabled=!available(sc.id);btn.append(title,right);
+  btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+ }
+ $('more').hidden=sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
+}
+function openStudy(id){
+ if(!available(id)||!items.length)return;
+ stopAuto();sceneId=id;lastScene=id;index=0;revealed=false;exitHand();
+ $('home').hidden=true;$('learning').hidden=false;
+ set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
+ renderCard();
+}
+function home(){ stopAuto();exitHand();$('learning').hidden=true;$('home').hidden=false;renderHome() }
+function renderCard(){
+ const cards=subset(),r=cards[index];if(!r)return;
+ $('learning').classList.toggle('revealed',revealed);
+ set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
+ set('expression',r.expression);set('ipa',r.ipa||r.ipa_us||'');set('meaning',r.answer.meaning_zh);
+ set('example',r.answer.example_en);set('translation',r.answer.example_zh);
+ set('collocations',r.answer.collocations.join(' · '));set('usage',[r.answer.usage_note,r.answer.contrast_note].filter(Boolean).join(' '));
+ $('answer').hidden=!revealed;$('tap-hint').hidden=revealed;
+ $('prev').disabled=index===0;$('next').disabled=index===cards.length-1;
+ $('reveal').disabled=revealed;$('reveal').textContent=revealed?'已显示答案':'显示答案';
+ for(const b of document.querySelectorAll('[data-grade]'))b.disabled=!revealed;
+ const f=flags.get(r.scene_ku_id);set('qa',f?'CG-QA '+f.cg_qa+' · '+(f.issue||'待复核'):'作者草稿 · 尚无本预览对应的逐条QA证据 · 未发布');
+ set('demo-note','仅模拟评分 · 本次知道'+transientRatings.good+' / 模糊'+transientRatings.hard+' / 不知道'+transientRatings.again+' · 不写SRS');
+ $('studybody').scrollTop=0;
+}
+function show(){revealed=!revealed;renderCard()}
+function move(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));revealed=false;clearHand();renderCard()}
+function moveBatch(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,Math.floor(index/BATCH)*BATCH+delta*BATCH));revealed=false;clearHand();renderCard()}
+function demoGrade(grade){if(!revealed||!['again','hard','good'].includes(grade))return;transientRatings[grade]++;if(index<subset().length-1)move(1);else{revealed=false;renderCard();set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}}
+$('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene));
+$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
+$('more').addEventListener('click',()=>{visible+=35;renderHome()});
+$('reveal').addEventListener('click',show);$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
+$('hero').addEventListener('click',e=>{if(!e.target.closest('button')){e.stopPropagation();show()}});
+$('studybody').addEventListener('click',e=>{if(!e.target.closest('button,a,details'))show()});
+for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
+$('speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const s=new SpeechSynthesisUtterance(subset()[index].expression);s.lang='en-US';window.speechSynthesis.speak(s)});
+let start=null;$('studybody').addEventListener('touchstart',e=>{if(handMode)return;if(e.touches.length===1){start={x:e.touches[0].clientX,y:e.touches[0].clientY};holdTimer=setTimeout(()=>{enterHand();start=null},700)}},{passive:true});
+$('studybody').addEventListener('touchmove',e=>{if(start&&(Math.abs(e.touches[0].clientX-start.x)>16||Math.abs(e.touches[0].clientY-start.y)>16)){clearTimeout(holdTimer);holdTimer=null}},{passive:true});
+$('studybody').addEventListener('touchend',e=>{clearTimeout(holdTimer);holdTimer=null;if(handMode||!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1);else if(Math.abs(dy)>85&&Math.abs(dy)>Math.abs(dx)*1.2)moveBatch(dy<0?1:-1)},{passive:true});
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}const btn=$('auto-toggle');if(btn)btn.classList.remove('is-on')}
+function startAuto(){stopAuto();$('auto-toggle').classList.add('is-on');autoTimer=setInterval(()=>{if($('learning').hidden||handMode){stopAuto();return}if(!revealed)show();else if(index<subset().length-1)move(1);else stopAuto()},autoDelay)}
+$('auto-toggle').addEventListener('click',e=>{e.stopPropagation();if(autoTimer)stopAuto();else startAuto()});
+$('auto-speed').addEventListener('click',e=>e.stopPropagation());
+$('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoDelay=Number(e.target.value);if(autoTimer)startAuto()});
+function clearHand(){const canvas=$('draw-canvas'),ctx=canvas.getContext('2d');ctx?.clearRect(0,0,canvas.width,canvas.height)}
+function enterHand(){stopAuto();handMode=true;$('handwrite').hidden=false;const canvas=$('draw-canvas');const rect=canvas.getBoundingClientRect();canvas.width=Math.max(1,Math.floor(rect.width*devicePixelRatio));canvas.height=Math.max(1,Math.floor(rect.height*devicePixelRatio));canvas.getContext('2d').scale(devicePixelRatio,devicePixelRatio)}
+function exitHand(){handMode=false;$('handwrite').hidden=true;clearHand()}
+const canvas=$('draw-canvas');
+canvas.addEventListener('pointerdown',e=>{if(!handMode)return;pointerDown=true;canvas.setPointerCapture(e.pointerId);const rect=canvas.getBoundingClientRect();const c=canvas.getContext('2d');c.strokeStyle='#174c83';c.lineWidth=3;c.lineCap='round';c.beginPath();c.moveTo(e.clientX-rect.left,e.clientY-rect.top)});
+canvas.addEventListener('pointermove',e=>{if(!pointerDown||!handMode)return;const rect=canvas.getBoundingClientRect();const c=canvas.getContext('2d');c.lineTo(e.clientX-rect.left,e.clientY-rect.top);c.stroke()});
+canvas.addEventListener('pointerup',()=>{pointerDown=false});canvas.addEventListener('pointercancel',()=>{pointerDown=false});
+let canvasHold=null;const hand=$('handwrite');hand.addEventListener('touchstart',e=>{if(e.touches.length===1)canvasHold=setTimeout(()=>{exitHand()},700)},{passive:true});hand.addEventListener('touchmove',()=>{clearTimeout(canvasHold)},{passive:true});hand.addEventListener('touchend',()=>{clearTimeout(canvasHold)},{passive:true});
+
+document.addEventListener('keydown',e=>{if($('learning').hidden)return;if(e.key==='ArrowLeft')move(-1);else if(e.key==='ArrowRight')move(1);else if(e.key===' '){e.preventDefault();show()}else if(e.key==='Escape')home()});
 load();
 </script></body></html>
