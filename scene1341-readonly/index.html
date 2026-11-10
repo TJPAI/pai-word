@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#f7f9fc"><title>PAI Word · Scene1341 只读体验</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#182c45;background:#f7f9fc}*{box-sizing:border-box}body{margin:0}main{max-width:620px;margin:auto;padding:18px 16px 40px}h1{font-size:22px;margin:4px 0 8px}.sub{font-size:13px;color:#64748b;line-height:1.6}.top{display:flex;align-items:center;justify-content:space-between;gap:10px} .chip{font-size:12px;border:1px solid #cbd9ed;background:#eff5ff;color:#315d93;padding:6px 9px;border-radius:99px;white-space:nowrap}select{width:100%;margin:16px 0 9px;padding:13px;border:1px solid #d4dfeb;border-radius:12px;background:#fff;font-size:16px} .status{font-size:12px;color:#526780;line-height:1.5;min-height:21px;margin:10px 0}.card{background:white;border:1px solid #e1e7ef;border-radius:20px;overflow:hidden;min-height:310px;box-shadow:0 12px 30px #2945680b}.meta{padding:15px 19px;border-bottom:1px solid #eaf0f6;display:flex;justify-content:space-between;font-size:12px;color:#6e8095}.hero{text-align:center;padding:42px 18px}.word{font-size:34px;font-weight:750;line-height:1.2;overflow-wrap:anywhere}.hint{font-size:13px;color:#8a98aa;margin-top:17px}.answer{display:none;padding:20px;border-top:1px solid #ecf0f5;line-height:1.65}.answer.visible{display:block}.meaning{font-size:24px;font-weight:700;color:#215083}.label{font-size:12px;font-weight:650;color:#8291a5;margin:16px 0 6px}.example{font-size:17px}.translation,.usage{color:#586d83;font-size:14px}.collocations{font-size:14px;color:#345574}.buttons,.grades{display:flex;gap:8px;margin-top:14px}.buttons button,.grades button{flex:1;padding:12px 5px;border-radius:11px;border:1px solid #cad7e7;background:white;font-size:15px;color:#234f7d;font-weight:650}.buttons button.primary{background:#2f6097;color:white;border-color:#2f6097}button:disabled{background:#f0f3f7;color:#a3acb8;border-color:#e4e9f0}.qa{font-size:12px;line-height:1.6;color:#61758b;margin:13px 2px}.qa.warn{color:#9b5b22}.notice{font-size:12px;line-height:1.6;background:#fff8eb;border:1px solid #f0e2c8;border-radius:11px;padding:12px;margin-top:18px;color:#755e38}@media(max-width:390px){.word{font-size:29px}.buttons button{font-size:13px}}
+</style></head><body><main><div class="top"><h1>PAI Word · Scene1341</h1><span class="chip">作者草稿｜只读</span></div><p class="sub">体验英文表达和答案型词卡：先自主回忆，后揭晓释义、双语例句、自然搭配及用法。未正式认证，不保存学习状态。</p>
+<select id="scene" aria-label="选择场景"><option value="SC50-0001">0001 起床与晨间准备（234条）</option><option value="SC50-0002">0002 场景（70条）</option></select>
+<div id="status" class="status" role="status">正在校验固定版本的真实KU草稿…</div>
+<section class="card" id="card"><div class="meta"><span id="scene-label">Scene1341</span><span id="position">—</span></div><div class="hero"><div class="word" id="word">加载中…</div><div class="hint">先想一想这个表达的含义和用法</div></div><div class="answer" id="answer"><div id="meaning" class="meaning"></div><div class="label">例句</div><div id="example" class="example"></div><div id="translation" class="translation"></div><div class="label">自然搭配</div><div id="collocations" class="collocations"></div><div class="label">用法说明</div><div id="usage" class="usage"></div></div></section>
+<div class="buttons"><button id="prev" disabled>上一条</button><button id="reveal" class="primary" disabled>显示答案</button><button id="next" disabled>下一条</button></div>
+<div class="grades"><button disabled>不知道</button><button disabled>模糊</button><button disabled>知道</button></div><p class="qa" id="qa"></p>
+<p class="notice">全部304条为未获得正式发布批准的 Answer-only V2 作者草稿。评分与SRS严格禁用；本页无本地持久化，不接触正式App用户记录。</p></main>
+<script>
+'use strict';
+const SHA='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
+const PREFIX='https://raw.githubusercontent.com/TJPAI/pai-word/'+SHA+'/tools/integration/scene1341-teaching/';
+const PACKS=['enteach-v51-first20-answer-only-v2.json','scene1341-v51-sc0001-answer-only-021-050.v2.json','scene1341-v51-sc0001-answer-only-051-100.v2.json','scene1341-v51-sc0001-answer-only-101-130.v2.json','scene1341-v51-sc0001-answer-only-131-180.v2.json','scene1341-v51-sc0002-answer-only-001-020.v2.json','scene1341-v51-sc0002-answer-only-021-070.v2.json'];
+// SC0001 first 20 + five subsequent groups + SC0002 two groups = eight source packs.
+PACKS.splice(5,0,'scene1341-v51-sc0001-answer-only-181-234.v2.json');
+const $=id=>document.getElementById(id),put=(id,value)=>{$(id).textContent=String(value??'')};
+let all=[],flags=new Map(),scene='SC50-0001',index=0,revealed=false;
+const scoped=()=>all.filter(x=>x.scene_id===scene);
+function paint(){
+ const rows=scoped(),r=rows[index];if(!r)return;
+ put('scene-label',r.scene_id+' · 只读审核');put('position',(index+1)+' / '+rows.length);put('word',r.expression);
+ put('meaning',r.answer.meaning_zh);put('example',r.answer.example_en);put('translation',r.answer.example_zh);
+ put('collocations',r.answer.collocations.join(' · '));put('usage',[r.answer.usage_note,r.answer.contrast_note].filter(Boolean).join(' '));
+ $('answer').classList.toggle('visible',revealed);$('prev').disabled=index===0;$('next').disabled=index===rows.length-1;$('reveal').disabled=revealed;
+ const issue=flags.get(r.scene_ku_id),qa=$('qa');qa.classList.toggle('warn',!!issue);
+ qa.textContent=issue?'CG-QA '+issue.cg_qa+' · '+(issue.issue||'需复核'):'CG-QA PASS（仅单线审核意见，非正式发布认证）';
+}
+function go(delta){const rows=scoped();index=Math.max(0,Math.min(rows.length-1,index+delta));revealed=false;paint()}
+$('prev').addEventListener('click',()=>go(-1));$('next').addEventListener('click',()=>go(1));
+$('reveal').addEventListener('click',()=>{revealed=true;paint()});
+$('scene').addEventListener('change',e=>{scene=e.target.value;index=0;revealed=false;paint()});
+let start=null;$('card').addEventListener('touchstart',e=>{start=e.changedTouches[0]?.screenX??null},{passive:true});
+$('card').addEventListener('touchend',e=>{if(start===null)return;const delta=(e.changedTouches[0]?.screenX??start)-start;if(Math.abs(delta)>75)go(delta<0?1:-1);start=null},{passive:true});
+async function load(){
+ try{
+  const payloads=await Promise.all([...PACKS,'qa-304-status-staging.v1.json'].map(async name=>{
+   const res=await fetch(PREFIX+name,{cache:'force-cache'});if(!res.ok)throw Error(name+' HTTP '+res.status);return res.json();
+  }));
+  const ids=new Set();all=payloads.slice(0,-1).flatMap(pack=>{
+   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2')throw Error('pack schema不一致');
+   return pack.records.map(r=>{if(ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||!r.answer?.example_zh)throw Error('数据审核门禁未通过');ids.add(r.scene_ku_id);return r});
+  });
+  const qa=payloads.at(-1);
+  if(all.length!==304||ids.size!==304||qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('计数或发布状态不一致');
+  all.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
+  for(const [id,total] of [['SC50-0001',234],['SC50-0002',70]]){
+   const rows=all.filter(x=>x.scene_id===id);if(rows.length!==total||rows.some((r,i)=>r.source_rank!==i+1))throw Error('场景rank存在缺口');
+  }
+  flags=new Map(qa.flags.map(f=>[f.ku_id,f]));
+  put('status','已载入304条真实词卡 · 2个场景 · 草稿只读 · 不保存进度');paint();
+ }catch(err){put('status','数据加载失败：'+err.message+'；请联网使用Safari访问。');put('word','无法载入词库');}
+}
+load();
+</script></body></html>
