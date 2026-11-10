@@ -1,0 +1,1369 @@
+{
+ "schema_version": "pai-enteach-v51-answer-only-sc0003-021-204-sc0004-001-020-muse-review-v1",
+ "reviewer": "MU-ENTEACH",
+ "review_type": "independent_teaching_review_answer_only",
+ "date": "2026-11-10",
+ "source": {
+  "pack_branch": "answer-enrichment-main-dev-20261026",
+  "pack_head": "c1457be9c078ae46e7cf72af60d15063340a032c",
+  "packs": [
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-021-070.v2.json",
+    "blob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+    "scene_id": "SC50-0003",
+    "ranks": "21-70",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-071-120.v2.json",
+    "blob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+    "scene_id": "SC50-0003",
+    "ranks": "71-120",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-121-170.v2.json",
+    "blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+    "scene_id": "SC50-0003",
+    "ranks": "121-170",
+    "records": 50
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+    "blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+    "scene_id": "SC50-0003",
+    "ranks": "171-204",
+    "records": 34
+   },
+   {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-001-020.v2.json",
+    "blob": "cf4f0ecf3fded5ff2a230f3a4a2cdab7d0471867",
+    "scene_id": "SC50-0004",
+    "ranks": "1-20",
+    "records": 20
+   }
+  ],
+  "source_branch": "cg-main-fourline-integration-20261026",
+  "source_path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+  "source_git_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+  "source_version": "V51"
+ },
+ "method": "5 independent chunk reviewers (one per pack: 50 / 50 / 50 / 34 / 20 records, verdicts made independently per chunk, blind to other lines' verdicts), merged by coordinator; coordinator re-verified coverage and identity binding with a scene-scoped (scene_id + rank) lookup and re-checked all 5 REVISE items against the packs",
+ "review_basis": "teaching-branch HEAD c1457be9 at the user's instruction to review all 204 records; review requested by CG-QA comments 6758884750 (independent review of the new 144, including SC50-0003 ranks 21-120) and 6758958559 (cover the 204 missing second reviews: SC50-0003 ranks 21-204 and SC50-0004 ranks 1-20), and by CG-ENTEACH comments 6758855563 (ranks 121-170) and 6758914187 (new 54: ranks 171-204 + SC50-0004 ranks 1-20)",
+ "checks": {
+  "identity_binding": "204/204",
+  "display_answer_consistency": "204/204",
+  "question_fields_absent": "204/204",
+  "meaning_zh_eq_sense_zh": "204/204",
+  "activation_allowed_false": "204/204",
+  "structure_validator": "NOT_APPLICABLE — the V51 validator (test-scene1341-v51-answer-only-v2.mjs) asserts the first-20 pack only; identity/structure for these ranks verified by the coordinator's independent scene-scoped script plus each chunk reviewer's checks",
+  "structure_validator_file": "tools/answer-enrichment/test-scene1341-v51-answer-only-v2.mjs"
+ },
+ "limits": {
+  "activation_allowed": false,
+  "production_ready": false,
+  "publishable": 0,
+  "dual_ai_certification": "NOT_CLAIMED",
+  "chatgpt_independent_semantic_verdict_on_answer_only_v2": "NOT_YET_SEEN_BY_REVIEWERS",
+  "cg_qa_mu_qa_semantic_review": "PENDING — reviewers were blind to CG-QA's reviews of all 204 records and to MU-QA's parallel review",
+  "semantic_basis": "source sense_zh + expression + scene context; no frozen English definition attached to SC-SENSE- IDs in the V51 CSV",
+  "editorial_addition_note": "SC50-0003 ranks 202-204 (SC1341-KU-00610..00612) are editorial_addition rows (tier ADDITIONAL) in the source CSV, still pending CG-MASTER / independent QA review; judged on the same criteria against the CSV rows as they stand, all three PASS on content"
+ },
+ "task_refs": {
+  "production_request": "6744354493",
+  "restart_directive": "6745276777",
+  "review_requests": [
+   "6758884750",
+   "6758958559",
+   "6758855563",
+   "6758914187"
+  ]
+ },
+ "summary": {
+  "reviewed": 204,
+  "pass": 199,
+  "revise": 5,
+  "hold": 0,
+  "per_pack": {
+   "sc0003_021_070": {
+    "reviewed": 50,
+    "pass": 48,
+    "revise": 2,
+    "hold": 0
+   },
+   "sc0003_071_120": {
+    "reviewed": 50,
+    "pass": 48,
+    "revise": 2,
+    "hold": 0
+   },
+   "sc0003_121_170": {
+    "reviewed": 50,
+    "pass": 50,
+    "revise": 0,
+    "hold": 0
+   },
+   "sc0003_171_204": {
+    "reviewed": 34,
+    "pass": 33,
+    "revise": 1,
+    "hold": 0
+   },
+   "sc0004_001_020": {
+    "reviewed": 20,
+    "pass": 20,
+    "revise": 0,
+    "hold": 0
+   }
+  }
+ },
+ "verdicts": [
+  {
+   "scene_ku_id": "SC1341-KU-00429",
+   "expression": "socks",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00430",
+   "expression": "dress code",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00431",
+   "expression": "size",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00432",
+   "expression": "dress for the weather",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00433",
+   "expression": "dress for the occasion",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00434",
+   "expression": "put on a uniform",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00435",
+   "expression": "take off a wet jacket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00436",
+   "expression": "undress",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00437",
+   "expression": "suit",
+   "verdict": "PASS",
+   "note": "动词义“合身/适合”，与名词义 00467 分开、互作区分注"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00438",
+   "expression": "go with",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00439",
+   "expression": "coordinate",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00440",
+   "expression": "layer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00441",
+   "expression": "pick an outfit",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00442",
+   "expression": "lay out clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00443",
+   "expression": "throw something on",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00444",
+   "expression": "slip into",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00445",
+   "expression": "button up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00446",
+   "expression": "tuck in",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00447",
+   "expression": "roll up sleeves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00448",
+   "expression": "tie a tie",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00449",
+   "expression": "fasten a belt",
+   "verdict": "REVISE",
+   "issue": "Second collocation 'fasten your seat belt' belongs to the car seat-belt sense, not the clothing-belt sense glossed here (系好皮带); it drifts off-sense.",
+   "proposed_fix": "Replace collocation 'fasten your seat belt' with 'fasten your belt tightly' (and update display.c accordingly)."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00450",
+   "expression": "lace up shoes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00451",
+   "expression": "tie shoelaces",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00452",
+   "expression": "pull on socks",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00453",
+   "expression": "pull off boots",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00454",
+   "expression": "hang up a coat",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00455",
+   "expression": "fold clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00456",
+   "expression": "change into",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00457",
+   "expression": "change out of",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00458",
+   "expression": "wardrobe",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00459",
+   "expression": "closet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00460",
+   "expression": "dresser",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00461",
+   "expression": "hanger",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00462",
+   "expression": "blouse",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00463",
+   "expression": "hoodie",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00464",
+   "expression": "cardigan",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00465",
+   "expression": "coat",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00466",
+   "expression": "blazer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00467",
+   "expression": "suit",
+   "verdict": "PASS",
+   "note": "名词义，与动词义 00437 分开、互作区分注"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00468",
+   "expression": "skirt",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00469",
+   "expression": "trousers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00470",
+   "expression": "shorts",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00471",
+   "expression": "leggings",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00472",
+   "expression": "underwear",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00473",
+   "expression": "bra",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00474",
+   "expression": "tights",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00475",
+   "expression": "pajamas",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00476",
+   "expression": "robe",
+   "verdict": "REVISE",
+   "issue": "First collocation 'bathrobe' is a separate compound word, not a collocation of 'robe'; listing it as a collocation of robe is misleading for a learner.",
+   "proposed_fix": "Replace collocation 'bathrobe' with 'a silk robe' (and update display.c accordingly)."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00477",
+   "expression": "scarf",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00478",
+   "expression": "gloves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00479",
+   "expression": "hat",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00480",
+   "expression": "cap",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00481",
+   "expression": "belt",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00482",
+   "expression": "tie",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00483",
+   "expression": "sneakers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00484",
+   "expression": "trainers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00485",
+   "expression": "boots",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00486",
+   "expression": "sandals",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00487",
+   "expression": "flats",
+   "verdict": "PASS",
+   "note": "flats 与 flat shoes 的区分可成立"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00488",
+   "expression": "heels",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00489",
+   "expression": "loafers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00490",
+   "expression": "accessories",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00491",
+   "expression": "earrings",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00492",
+   "expression": "necklace",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00493",
+   "expression": "watch",
+   "verdict": "REVISE",
+   "issue": "Second collocation 'wristwatch' is a bare synonym (a single compound noun), not an English collocation, so the collocations field mislabels it.",
+   "proposed_fix": "Replace collocation 'wristwatch' with 'check your watch' (collocations: ['wear a watch', 'check your watch']); update display.c accordingly."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00494",
+   "expression": "handbag",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00495",
+   "expression": "backpack",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00496",
+   "expression": "casual",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00497",
+   "expression": "formal",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00498",
+   "expression": "smart casual",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00499",
+   "expression": "business casual",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00500",
+   "expression": "comfortable",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00501",
+   "expression": "uncomfortable",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00502",
+   "expression": "loose",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00503",
+   "expression": "tight",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00504",
+   "expression": "snug",
+   "verdict": "PASS",
+   "note": "例句用副词 snugly 而非词头 snug，但真实体现该义"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00505",
+   "expression": "baggy",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00506",
+   "expression": "fitted",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00507",
+   "expression": "oversized",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00508",
+   "expression": "slim-fit",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00509",
+   "expression": "regular fit",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00510",
+   "expression": "true to size",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00511",
+   "expression": "too small",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00512",
+   "expression": "too big",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00513",
+   "expression": "short-sleeved",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00514",
+   "expression": "long-sleeved",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00515",
+   "expression": "sleeveless",
+   "verdict": "REVISE",
+   "issue": "usage_note 'sleeveless表示没有袖子，不一定意味着露肩款式相同' is muddled: '不一定意味着露肩款式相同' does not clearly state the distinction from off-the-shoulder styles.",
+   "proposed_fix": "Replace usage_note with 'sleeveless表示没有袖子，与露肩款（off-the-shoulder）不同：无袖指没有袖子，露肩指肩部裸露。' and update display.x to match."
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00516",
+   "expression": "high-waisted",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00517",
+   "expression": "low-rise",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00518",
+   "expression": "plain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00519",
+   "expression": "striped",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00520",
+   "expression": "checked",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00521",
+   "expression": "floral",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00522",
+   "expression": "patterned",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00523",
+   "expression": "solid color",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00524",
+   "expression": "neutral colors",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00525",
+   "expression": "bright colors",
+   "verdict": "PASS",
+   "note": "汉译加“穿”，在穿衣语境自然"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00526",
+   "expression": "muted colors",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00527",
+   "expression": "pastel",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00528",
+   "expression": "layered look",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00529",
+   "expression": "weather-appropriate",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00530",
+   "expression": "wrinkled",
+   "verdict": "PASS",
+   "note": "wrinkled/creased 对比注基本准确"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00531",
+   "expression": "stained",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00532",
+   "expression": "inside out",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00533",
+   "expression": "backwards",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00534",
+   "expression": "see-through",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00535",
+   "expression": "itchy fabric",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00536",
+   "expression": "breathable",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00537",
+   "expression": "waterproof",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00538",
+   "expression": "warm",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00539",
+   "expression": "lightweight",
+   "verdict": "PASS",
+   "note": "用法注正确限定 lightweight 只关乎重量"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00540",
+   "expression": "neckline",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00541",
+   "expression": "collar",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00542",
+   "expression": "sleeve",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00543",
+   "expression": "cuff",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00544",
+   "expression": "hem",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00545",
+   "expression": "waistband",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00546",
+   "expression": "pocket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00547",
+   "expression": "button",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00548",
+   "expression": "zipper",
+   "verdict": "PASS",
+   "note": "一搭配重复词头，但另一搭配与例句无问题"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00549",
+   "expression": "drawstring",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00550",
+   "expression": "seam",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00551",
+   "expression": "fabric",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00552",
+   "expression": "cotton",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00553",
+   "expression": "linen",
+   "verdict": "PASS",
+   "note": "linen 例句自然，床品义 caveat 属实"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00554",
+   "expression": "wool",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00555",
+   "expression": "denim",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00556",
+   "expression": "leather",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00557",
+   "expression": "polyester",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00558",
+   "expression": "silk",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00559",
+   "expression": "small",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00560",
+   "expression": "medium",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00561",
+   "expression": "large",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00562",
+   "expression": "extra-large",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00563",
+   "expression": "shoe size",
+   "verdict": "PASS",
+   "note": "一搭配重复词头，但例句与 UK/US/EU 注无问题"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00564",
+   "expression": "waist size",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00565",
+   "expression": "length",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00566",
+   "expression": "sleeve length",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00567",
+   "expression": "inseam",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00568",
+   "expression": "pattern",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00569",
+   "expression": "color combination",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00570",
+   "expression": "style",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00571",
+   "expression": "cut",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00572",
+   "expression": "silhouette",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00573",
+   "expression": "texture",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00574",
+   "expression": "stain",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00575",
+   "expression": "crease",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00576",
+   "expression": "lint",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00577",
+   "expression": "label",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00578",
+   "expression": "care label",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00579",
+   "expression": "mirror",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00580",
+   "expression": "full-length mirror",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00581",
+   "expression": "laundry basket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00582",
+   "expression": "missing button",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00583",
+   "expression": "broken zipper",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00584",
+   "expression": "loose thread",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00585",
+   "expression": "tear in the fabric",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00586",
+   "expression": "stain on your clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00587",
+   "expression": "wrinkle in a shirt",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00588",
+   "expression": "iron a shirt",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00589",
+   "expression": "steam your clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00590",
+   "expression": "remove lint",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00591",
+   "expression": "change a stained shirt",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00592",
+   "expression": "sew on a button",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00593",
+   "expression": "fix a zipper",
+   "verdict": "REVISE",
+   "issue": "example_en object is out of scene (backpack zipper, not a clothing zipper)",
+   "proposed_fix": "Change example_en to 'I need to fix the zipper on my jacket.' and example_zh to '我需要修好夹克上的拉链。'"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00594",
+   "expression": "mend a tear",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00595",
+   "expression": "adjust the hem",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00596",
+   "expression": "roll down your sleeves",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00597",
+   "expression": "bring a spare outfit",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00598",
+   "expression": "pack an extra layer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00599",
+   "expression": "check the forecast",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00600",
+   "expression": "follow the dress code",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00601",
+   "expression": "wear comfortable shoes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00602",
+   "expression": "change into work clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00603",
+   "expression": "change into workout clothes",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00604",
+   "expression": "hang clothes to dry",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00605",
+   "expression": "find a matching pair",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00606",
+   "expression": "go without a tie",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00607",
+   "expression": "borrow a jacket",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00608",
+   "expression": "wear layers",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00609",
+   "expression": "back to front",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00610",
+   "expression": "get changed",
+   "verdict": "PASS",
+   "note": "editorial_addition（rank 202），用法注已标明待验证"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00611",
+   "expression": "put your shoes on",
+   "verdict": "PASS",
+   "note": "editorial_addition（rank 203）"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00612",
+   "expression": "take your shoes off",
+   "verdict": "PASS",
+   "note": "editorial_addition（rank 204）"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00613",
+   "expression": "tidy up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00614",
+   "expression": "clean up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00615",
+   "expression": "declutter",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00616",
+   "expression": "organize",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00617",
+   "expression": "sort",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00618",
+   "expression": "put away",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00619",
+   "expression": "throw away",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00620",
+   "expression": "hang up",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00621",
+   "expression": "fold",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00622",
+   "expression": "dust",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00623",
+   "expression": "vacuum",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00624",
+   "expression": "make the bed",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00625",
+   "expression": "shelf",
+   "verdict": "PASS",
+   "note": "搭配中 bookshelf 是相关复合词而非双词搭配，但正确相关"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00626",
+   "expression": "drawer",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00627",
+   "expression": "closet",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00628",
+   "expression": "storage box",
+   "verdict": "PASS",
+   "note": "搭配偏弱（重复词头），但真实正确"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00629",
+   "expression": "vacuum cleaner",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00630",
+   "expression": "mess",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00631",
+   "expression": "clutter",
+   "verdict": "PASS"
+  },
+  {
+   "scene_ku_id": "SC1341-KU-00632",
+   "expression": "hang up jackets",
+   "verdict": "PASS",
+   "note": "与 rank 8 hang up 近重复，是源表冗余，非本条缺陷"
+  }
+ ],
+ "approval_list": [
+  "SC1341-KU-00429",
+  "SC1341-KU-00430",
+  "SC1341-KU-00431",
+  "SC1341-KU-00432",
+  "SC1341-KU-00433",
+  "SC1341-KU-00434",
+  "SC1341-KU-00435",
+  "SC1341-KU-00436",
+  "SC1341-KU-00437",
+  "SC1341-KU-00438",
+  "SC1341-KU-00439",
+  "SC1341-KU-00440",
+  "SC1341-KU-00441",
+  "SC1341-KU-00442",
+  "SC1341-KU-00443",
+  "SC1341-KU-00444",
+  "SC1341-KU-00445",
+  "SC1341-KU-00446",
+  "SC1341-KU-00447",
+  "SC1341-KU-00448",
+  "SC1341-KU-00450",
+  "SC1341-KU-00451",
+  "SC1341-KU-00452",
+  "SC1341-KU-00453",
+  "SC1341-KU-00454",
+  "SC1341-KU-00455",
+  "SC1341-KU-00456",
+  "SC1341-KU-00457",
+  "SC1341-KU-00458",
+  "SC1341-KU-00459",
+  "SC1341-KU-00460",
+  "SC1341-KU-00461",
+  "SC1341-KU-00462",
+  "SC1341-KU-00463",
+  "SC1341-KU-00464",
+  "SC1341-KU-00465",
+  "SC1341-KU-00466",
+  "SC1341-KU-00467",
+  "SC1341-KU-00468",
+  "SC1341-KU-00469",
+  "SC1341-KU-00470",
+  "SC1341-KU-00471",
+  "SC1341-KU-00472",
+  "SC1341-KU-00473",
+  "SC1341-KU-00474",
+  "SC1341-KU-00475",
+  "SC1341-KU-00477",
+  "SC1341-KU-00478",
+  "SC1341-KU-00479",
+  "SC1341-KU-00480",
+  "SC1341-KU-00481",
+  "SC1341-KU-00482",
+  "SC1341-KU-00483",
+  "SC1341-KU-00484",
+  "SC1341-KU-00485",
+  "SC1341-KU-00486",
+  "SC1341-KU-00487",
+  "SC1341-KU-00488",
+  "SC1341-KU-00489",
+  "SC1341-KU-00490",
+  "SC1341-KU-00491",
+  "SC1341-KU-00492",
+  "SC1341-KU-00494",
+  "SC1341-KU-00495",
+  "SC1341-KU-00496",
+  "SC1341-KU-00497",
+  "SC1341-KU-00498",
+  "SC1341-KU-00499",
+  "SC1341-KU-00500",
+  "SC1341-KU-00501",
+  "SC1341-KU-00502",
+  "SC1341-KU-00503",
+  "SC1341-KU-00504",
+  "SC1341-KU-00505",
+  "SC1341-KU-00506",
+  "SC1341-KU-00507",
+  "SC1341-KU-00508",
+  "SC1341-KU-00509",
+  "SC1341-KU-00510",
+  "SC1341-KU-00511",
+  "SC1341-KU-00512",
+  "SC1341-KU-00513",
+  "SC1341-KU-00514",
+  "SC1341-KU-00516",
+  "SC1341-KU-00517",
+  "SC1341-KU-00518",
+  "SC1341-KU-00519",
+  "SC1341-KU-00520",
+  "SC1341-KU-00521",
+  "SC1341-KU-00522",
+  "SC1341-KU-00523",
+  "SC1341-KU-00524",
+  "SC1341-KU-00525",
+  "SC1341-KU-00526",
+  "SC1341-KU-00527",
+  "SC1341-KU-00528",
+  "SC1341-KU-00529",
+  "SC1341-KU-00530",
+  "SC1341-KU-00531",
+  "SC1341-KU-00532",
+  "SC1341-KU-00533",
+  "SC1341-KU-00534",
+  "SC1341-KU-00535",
+  "SC1341-KU-00536",
+  "SC1341-KU-00537",
+  "SC1341-KU-00538",
+  "SC1341-KU-00539",
+  "SC1341-KU-00540",
+  "SC1341-KU-00541",
+  "SC1341-KU-00542",
+  "SC1341-KU-00543",
+  "SC1341-KU-00544",
+  "SC1341-KU-00545",
+  "SC1341-KU-00546",
+  "SC1341-KU-00547",
+  "SC1341-KU-00548",
+  "SC1341-KU-00549",
+  "SC1341-KU-00550",
+  "SC1341-KU-00551",
+  "SC1341-KU-00552",
+  "SC1341-KU-00553",
+  "SC1341-KU-00554",
+  "SC1341-KU-00555",
+  "SC1341-KU-00556",
+  "SC1341-KU-00557",
+  "SC1341-KU-00558",
+  "SC1341-KU-00559",
+  "SC1341-KU-00560",
+  "SC1341-KU-00561",
+  "SC1341-KU-00562",
+  "SC1341-KU-00563",
+  "SC1341-KU-00564",
+  "SC1341-KU-00565",
+  "SC1341-KU-00566",
+  "SC1341-KU-00567",
+  "SC1341-KU-00568",
+  "SC1341-KU-00569",
+  "SC1341-KU-00570",
+  "SC1341-KU-00571",
+  "SC1341-KU-00572",
+  "SC1341-KU-00573",
+  "SC1341-KU-00574",
+  "SC1341-KU-00575",
+  "SC1341-KU-00576",
+  "SC1341-KU-00577",
+  "SC1341-KU-00578",
+  "SC1341-KU-00579",
+  "SC1341-KU-00580",
+  "SC1341-KU-00581",
+  "SC1341-KU-00582",
+  "SC1341-KU-00583",
+  "SC1341-KU-00584",
+  "SC1341-KU-00585",
+  "SC1341-KU-00586",
+  "SC1341-KU-00587",
+  "SC1341-KU-00588",
+  "SC1341-KU-00589",
+  "SC1341-KU-00590",
+  "SC1341-KU-00591",
+  "SC1341-KU-00592",
+  "SC1341-KU-00594",
+  "SC1341-KU-00595",
+  "SC1341-KU-00596",
+  "SC1341-KU-00597",
+  "SC1341-KU-00598",
+  "SC1341-KU-00599",
+  "SC1341-KU-00600",
+  "SC1341-KU-00601",
+  "SC1341-KU-00602",
+  "SC1341-KU-00603",
+  "SC1341-KU-00604",
+  "SC1341-KU-00605",
+  "SC1341-KU-00606",
+  "SC1341-KU-00607",
+  "SC1341-KU-00608",
+  "SC1341-KU-00609",
+  "SC1341-KU-00610",
+  "SC1341-KU-00611",
+  "SC1341-KU-00612",
+  "SC1341-KU-00613",
+  "SC1341-KU-00614",
+  "SC1341-KU-00615",
+  "SC1341-KU-00616",
+  "SC1341-KU-00617",
+  "SC1341-KU-00618",
+  "SC1341-KU-00619",
+  "SC1341-KU-00620",
+  "SC1341-KU-00621",
+  "SC1341-KU-00622",
+  "SC1341-KU-00623",
+  "SC1341-KU-00624",
+  "SC1341-KU-00625",
+  "SC1341-KU-00626",
+  "SC1341-KU-00627",
+  "SC1341-KU-00628",
+  "SC1341-KU-00629",
+  "SC1341-KU-00630",
+  "SC1341-KU-00631",
+  "SC1341-KU-00632"
+ ]
+}
