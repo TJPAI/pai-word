@@ -1,0 +1,1574 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0008",
+    "ranks": "31-80",
+    "count": 50
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01483",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01483",
+      "source_rank": 31,
+      "expression": "helping",
+      "sense_zh": "一份（盛取的食物）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一份（盛取的食物）",
+        "example_en": "Would you like another helping of rice?",
+        "example_zh": "你要再盛一份米饭吗？",
+        "collocations": [
+          "another helping",
+          "a generous helping"
+        ],
+        "usage_note": "helping指一次盛取的一份食物。"
+      },
+      "display": {
+        "w": "helping",
+        "m": "一份（盛取的食物）",
+        "c": "another helping · a generous helping",
+        "e": "Would you like another helping of rice?",
+        "x": "helping指一次盛取的一份食物。",
+        "example_zh": "你要再盛一份米饭吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01484",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01484",
+      "source_rank": 32,
+      "expression": "side dish",
+      "sense_zh": "配菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "配菜",
+        "example_en": "We served roasted carrots as a side dish.",
+        "example_zh": "我们把烤胡萝卜作为配菜。",
+        "collocations": [
+          "vegetable side dish",
+          "serve as a side dish"
+        ],
+        "usage_note": "side dish是搭配主菜的配菜。"
+      },
+      "display": {
+        "w": "side dish",
+        "m": "配菜",
+        "c": "vegetable side dish · serve as a side dish",
+        "e": "We served roasted carrots as a side dish.",
+        "x": "side dish是搭配主菜的配菜。",
+        "example_zh": "我们把烤胡萝卜作为配菜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01485",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01485",
+      "source_rank": 33,
+      "expression": "main course",
+      "sense_zh": "主菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "主菜",
+        "example_en": "The main course is grilled fish with rice.",
+        "example_zh": "主菜是烤鱼配米饭。",
+        "collocations": [
+          "main course",
+          "serve the main course"
+        ],
+        "usage_note": "main course指一餐中的主要菜品。"
+      },
+      "display": {
+        "w": "main course",
+        "m": "主菜",
+        "c": "main course · serve the main course",
+        "e": "The main course is grilled fish with rice.",
+        "x": "main course指一餐中的主要菜品。",
+        "example_zh": "主菜是烤鱼配米饭。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01486",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01486",
+      "source_rank": 34,
+      "expression": "appetizer",
+      "sense_zh": "开胃菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "开胃菜",
+        "example_en": "We had soup as an appetizer.",
+        "example_zh": "我们先喝汤作为开胃菜。",
+        "collocations": [
+          "serve an appetizer",
+          "appetizer before dinner"
+        ],
+        "usage_note": "appetizer是餐前开胃菜，偏美式。"
+      },
+      "display": {
+        "w": "appetizer",
+        "m": "开胃菜",
+        "c": "serve an appetizer · appetizer before dinner",
+        "e": "We had soup as an appetizer.",
+        "x": "appetizer是餐前开胃菜，偏美式。",
+        "example_zh": "我们先喝汤作为开胃菜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01487",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01487",
+      "source_rank": 35,
+      "expression": "starter",
+      "sense_zh": "前菜（英式）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "前菜（英式）",
+        "example_en": "The starter is a small bowl of tomato soup.",
+        "example_zh": "前菜是一小碗番茄汤。",
+        "collocations": [
+          "have a starter",
+          "serve a starter"
+        ],
+        "usage_note": "starter是英式常见的前菜说法。"
+      },
+      "display": {
+        "w": "starter",
+        "m": "前菜（英式）",
+        "c": "have a starter · serve a starter",
+        "e": "The starter is a small bowl of tomato soup.",
+        "x": "starter是英式常见的前菜说法。",
+        "example_zh": "前菜是一小碗番茄汤。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01488",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01488",
+      "source_rank": 36,
+      "expression": "dessert",
+      "sense_zh": "甜点",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "甜点",
+        "example_en": "There's fruit salad for dessert.",
+        "example_zh": "甜点是水果沙拉。",
+        "collocations": [
+          "have dessert",
+          "dessert menu"
+        ],
+        "usage_note": "dessert是正餐后的甜品，注意不要误拼为desert。"
+      },
+      "display": {
+        "w": "dessert",
+        "m": "甜点",
+        "c": "have dessert · dessert menu",
+        "e": "There's fruit salad for dessert.",
+        "x": "dessert是正餐后的甜品，注意不要误拼为desert。",
+        "example_zh": "甜点是水果沙拉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01489",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01489",
+      "source_rank": 37,
+      "expression": "takeout",
+      "sense_zh": "外带餐食（美式）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "外带餐食（美式）",
+        "example_en": "We ordered takeout because nobody wanted to cook.",
+        "example_zh": "没人想做饭，所以我们点了外带餐食。",
+        "collocations": [
+          "order takeout",
+          "Chinese takeout"
+        ],
+        "usage_note": "takeout是美式常用名词，指外带或外送的现成餐食。"
+      },
+      "display": {
+        "w": "takeout",
+        "m": "外带餐食（美式）",
+        "c": "order takeout · Chinese takeout",
+        "e": "We ordered takeout because nobody wanted to cook.",
+        "x": "takeout是美式常用名词，指外带或外送的现成餐食。",
+        "example_zh": "没人想做饭，所以我们点了外带餐食。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01490",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01490",
+      "source_rank": 38,
+      "expression": "takeaway",
+      "sense_zh": "外带餐食（英式）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "外带餐食（英式）",
+        "example_en": "Let's get takeaway for dinner tonight.",
+        "example_zh": "今晚我们买外带餐食吃吧。",
+        "collocations": [
+          "order takeaway",
+          "Indian takeaway"
+        ],
+        "usage_note": "takeaway是英式常见说法，与美式takeout对应。"
+      },
+      "display": {
+        "w": "takeaway",
+        "m": "外带餐食（英式）",
+        "c": "order takeaway · Indian takeaway",
+        "e": "Let's get takeaway for dinner tonight.",
+        "x": "takeaway是英式常见说法，与美式takeout对应。",
+        "example_zh": "今晚我们买外带餐食吃吧。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01491",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01491",
+      "source_rank": 39,
+      "expression": "homemade",
+      "sense_zh": "家里自制的",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家里自制的",
+        "example_en": "My grandmother brought homemade dumplings.",
+        "example_zh": "奶奶带来了她亲手做的饺子。",
+        "collocations": [
+          "homemade bread",
+          "homemade dumplings"
+        ],
+        "usage_note": "homemade形容家中自制，不等于专业餐厅制作。"
+      },
+      "display": {
+        "w": "homemade",
+        "m": "家里自制的",
+        "c": "homemade bread · homemade dumplings",
+        "e": "My grandmother brought homemade dumplings.",
+        "x": "homemade形容家中自制，不等于专业餐厅制作。",
+        "example_zh": "奶奶带来了她亲手做的饺子。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01492",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01492",
+      "source_rank": 40,
+      "expression": "potluck",
+      "sense_zh": "每人带一道菜的聚餐",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "每人带一道菜的聚餐",
+        "example_en": "We're having a potluck, so everyone is bringing a dish.",
+        "example_zh": "我们要办一场各带一道菜的聚餐。",
+        "collocations": [
+          "potluck dinner",
+          "bring a dish to a potluck"
+        ],
+        "usage_note": "potluck指参与者各自带食物分享的聚餐。"
+      },
+      "display": {
+        "w": "potluck",
+        "m": "每人带一道菜的聚餐",
+        "c": "potluck dinner · bring a dish to a potluck",
+        "e": "We're having a potluck, so everyone is bringing a dish.",
+        "x": "potluck指参与者各自带食物分享的聚餐。",
+        "example_zh": "我们要办一场各带一道菜的聚餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01493",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01493",
+      "source_rank": 41,
+      "expression": "snack",
+      "sense_zh": "零食或小吃",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "零食或小吃",
+        "example_en": "Have a small snack if you're hungry before dinner.",
+        "example_zh": "如果晚餐前饿了，先吃点小零食。",
+        "collocations": [
+          "healthy snack",
+          "afternoon snack"
+        ],
+        "usage_note": "snack指正餐之间吃的少量食物。"
+      },
+      "display": {
+        "w": "snack",
+        "m": "零食或小吃",
+        "c": "healthy snack · afternoon snack",
+        "e": "Have a small snack if you're hungry before dinner.",
+        "x": "snack指正餐之间吃的少量食物。",
+        "example_zh": "如果晚餐前饿了，先吃点小零食。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01494",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01494",
+      "source_rank": 42,
+      "expression": "second helping",
+      "sense_zh": "再添的一份菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "再添的一份菜",
+        "example_en": "He went back for a second helping of pasta.",
+        "example_zh": "他又添了一份意大利面。",
+        "collocations": [
+          "second helping",
+          "have a second helping"
+        ],
+        "usage_note": "second helping特指第二次盛取的一份。"
+      },
+      "display": {
+        "w": "second helping",
+        "m": "再添的一份菜",
+        "c": "second helping · have a second helping",
+        "e": "He went back for a second helping of pasta.",
+        "x": "second helping特指第二次盛取的一份。",
+        "example_zh": "他又添了一份意大利面。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01495",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01495",
+      "source_rank": 43,
+      "expression": "seconds",
+      "sense_zh": "再添的一份食物",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "再添的一份食物",
+        "example_en": "The soup was so good that I went back for seconds.",
+        "example_zh": "汤太好喝了，我又盛了一碗。",
+        "collocations": [
+          "go back for seconds",
+          "have seconds"
+        ],
+        "usage_note": "seconds在用餐中表示再添的食物，通常用复数。"
+      },
+      "display": {
+        "w": "seconds",
+        "m": "再添的一份食物",
+        "c": "go back for seconds · have seconds",
+        "e": "The soup was so good that I went back for seconds.",
+        "x": "seconds在用餐中表示再添的食物，通常用复数。",
+        "example_zh": "汤太好喝了，我又盛了一碗。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01496",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01496",
+      "source_rank": 44,
+      "expression": "course",
+      "sense_zh": "一道菜；一轮菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一道菜；一轮菜",
+        "example_en": "The dessert was the final course.",
+        "example_zh": "甜点是最后一道菜。",
+        "collocations": [
+          "three-course meal",
+          "final course"
+        ],
+        "usage_note": "course指按顺序上的一道或一轮菜。"
+      },
+      "display": {
+        "w": "course",
+        "m": "一道菜；一轮菜",
+        "c": "three-course meal · final course",
+        "e": "The dessert was the final course.",
+        "x": "course指按顺序上的一道或一轮菜。",
+        "example_zh": "甜点是最后一道菜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01497",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01497",
+      "source_rank": 45,
+      "expression": "dish",
+      "sense_zh": "一道菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "一道菜",
+        "example_en": "This is my favorite dish at family dinners.",
+        "example_zh": "这是家庭聚餐时我最喜欢的一道菜。",
+        "collocations": [
+          "favorite dish",
+          "serve a dish"
+        ],
+        "usage_note": "dish在此指一道做好的菜，而不是盛菜的盘子。"
+      },
+      "display": {
+        "w": "dish",
+        "m": "一道菜",
+        "c": "favorite dish · serve a dish",
+        "e": "This is my favorite dish at family dinners.",
+        "x": "dish在此指一道做好的菜，而不是盛菜的盘子。",
+        "example_zh": "这是家庭聚餐时我最喜欢的一道菜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01498",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01498",
+      "source_rank": 46,
+      "expression": "cup",
+      "sense_zh": "杯子",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "杯子",
+        "example_en": "Could you bring me a cup of tea?",
+        "example_zh": "你能给我拿杯茶吗？",
+        "collocations": [
+          "cup of tea",
+          "coffee cup"
+        ],
+        "usage_note": "cup是杯子，也可作为一杯饮品的量词。"
+      },
+      "display": {
+        "w": "cup",
+        "m": "杯子",
+        "c": "cup of tea · coffee cup",
+        "e": "Could you bring me a cup of tea?",
+        "x": "cup是杯子，也可作为一杯饮品的量词。",
+        "example_zh": "你能给我拿杯茶吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01499",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01499",
+      "source_rank": 47,
+      "expression": "glass",
+      "sense_zh": "玻璃杯",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "玻璃杯",
+        "example_en": "I'll get you a clean glass for the water.",
+        "example_zh": "我给你拿个干净的玻璃杯喝水。",
+        "collocations": [
+          "water glass",
+          "drinking glass"
+        ],
+        "usage_note": "glass在此指玻璃材质的饮水杯。"
+      },
+      "display": {
+        "w": "glass",
+        "m": "玻璃杯",
+        "c": "water glass · drinking glass",
+        "e": "I'll get you a clean glass for the water.",
+        "x": "glass在此指玻璃材质的饮水杯。",
+        "example_zh": "我给你拿个干净的玻璃杯喝水。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01500",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01500",
+      "source_rank": 48,
+      "expression": "mug",
+      "sense_zh": "马克杯",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "马克杯",
+        "example_en": "I like drinking coffee from a large mug.",
+        "example_zh": "我喜欢用大马克杯喝咖啡。",
+        "collocations": [
+          "coffee mug",
+          "ceramic mug"
+        ],
+        "usage_note": "mug是通常带柄、容量较大的杯子。"
+      },
+      "display": {
+        "w": "mug",
+        "m": "马克杯",
+        "c": "coffee mug · ceramic mug",
+        "e": "I like drinking coffee from a large mug.",
+        "x": "mug是通常带柄、容量较大的杯子。",
+        "example_zh": "我喜欢用大马克杯喝咖啡。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01501",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01501",
+      "source_rank": 49,
+      "expression": "knife",
+      "sense_zh": "餐刀",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐刀",
+        "example_en": "Please put a knife next to each plate.",
+        "example_zh": "请在每个盘子旁放一把餐刀。",
+        "collocations": [
+          "table knife",
+          "butter knife"
+        ],
+        "usage_note": "knife在餐桌语境指餐刀，复数knives。"
+      },
+      "display": {
+        "w": "knife",
+        "m": "餐刀",
+        "c": "table knife · butter knife",
+        "e": "Please put a knife next to each plate.",
+        "x": "knife在餐桌语境指餐刀，复数knives。",
+        "example_zh": "请在每个盘子旁放一把餐刀。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01502",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01502",
+      "source_rank": 50,
+      "expression": "teaspoon",
+      "sense_zh": "茶匙",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "茶匙",
+        "example_en": "Add a teaspoon of honey to your tea.",
+        "example_zh": "往茶里加一茶匙蜂蜜。",
+        "collocations": [
+          "teaspoon of honey",
+          "small teaspoon"
+        ],
+        "usage_note": "teaspoon既可指小勺，也可指标准容量单位。"
+      },
+      "display": {
+        "w": "teaspoon",
+        "m": "茶匙",
+        "c": "teaspoon of honey · small teaspoon",
+        "e": "Add a teaspoon of honey to your tea.",
+        "x": "teaspoon既可指小勺，也可指标准容量单位。",
+        "example_zh": "往茶里加一茶匙蜂蜜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01503",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01503",
+      "source_rank": 51,
+      "expression": "tablespoon",
+      "sense_zh": "大汤匙",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "大汤匙",
+        "example_en": "The recipe calls for a tablespoon of olive oil.",
+        "example_zh": "食谱要求加入一大汤匙橄榄油。",
+        "collocations": [
+          "tablespoon of oil",
+          "measuring tablespoon"
+        ],
+        "usage_note": "tablespoon可指大匙或计量单位，做菜最好用量匙。"
+      },
+      "display": {
+        "w": "tablespoon",
+        "m": "大汤匙",
+        "c": "tablespoon of oil · measuring tablespoon",
+        "e": "The recipe calls for a tablespoon of olive oil.",
+        "x": "tablespoon可指大匙或计量单位，做菜最好用量匙。",
+        "example_zh": "食谱要求加入一大汤匙橄榄油。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01504",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01504",
+      "source_rank": 52,
+      "expression": "napkin",
+      "sense_zh": "餐巾",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐巾",
+        "example_en": "Put a napkin next to every plate.",
+        "example_zh": "在每个盘子旁放一张餐巾。",
+        "collocations": [
+          "paper napkin",
+          "cloth napkin"
+        ],
+        "usage_note": "napkin在餐桌语境指擦嘴用的餐巾。"
+      },
+      "display": {
+        "w": "napkin",
+        "m": "餐巾",
+        "c": "paper napkin · cloth napkin",
+        "e": "Put a napkin next to every plate.",
+        "x": "napkin在餐桌语境指擦嘴用的餐巾。",
+        "example_zh": "在每个盘子旁放一张餐巾。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01505",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01505",
+      "source_rank": 53,
+      "expression": "serving spoon",
+      "sense_zh": "公用分餐勺",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "公用分餐勺",
+        "example_en": "Please use the serving spoon for the rice.",
+        "example_zh": "请用公用分餐勺盛米饭。",
+        "collocations": [
+          "serving spoon",
+          "use a serving spoon"
+        ],
+        "usage_note": "serving spoon是公用盛菜勺，区别于个人餐匙。"
+      },
+      "display": {
+        "w": "serving spoon",
+        "m": "公用分餐勺",
+        "c": "serving spoon · use a serving spoon",
+        "e": "Please use the serving spoon for the rice.",
+        "x": "serving spoon是公用盛菜勺，区别于个人餐匙。",
+        "example_zh": "请用公用分餐勺盛米饭。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01506",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01506",
+      "source_rank": 54,
+      "expression": "ladle",
+      "sense_zh": "汤勺",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "汤勺",
+        "example_en": "Use the ladle to serve the soup.",
+        "example_zh": "用汤勺盛汤。",
+        "collocations": [
+          "soup ladle",
+          "serve with a ladle"
+        ],
+        "usage_note": "ladle是长柄汤勺，适合舀取液体。"
+      },
+      "display": {
+        "w": "ladle",
+        "m": "汤勺",
+        "c": "soup ladle · serve with a ladle",
+        "e": "Use the ladle to serve the soup.",
+        "x": "ladle是长柄汤勺，适合舀取液体。",
+        "example_zh": "用汤勺盛汤。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01507",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01507",
+      "source_rank": 55,
+      "expression": "serving platter",
+      "sense_zh": "上菜大盘",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "上菜大盘",
+        "example_en": "Put the roast chicken on a serving platter.",
+        "example_zh": "把烤鸡放在上菜的大盘里。",
+        "collocations": [
+          "large serving platter",
+          "serve on a platter"
+        ],
+        "usage_note": "serving platter是供多人取餐的大盘。"
+      },
+      "display": {
+        "w": "serving platter",
+        "m": "上菜大盘",
+        "c": "large serving platter · serve on a platter",
+        "e": "Put the roast chicken on a serving platter.",
+        "x": "serving platter是供多人取餐的大盘。",
+        "example_zh": "把烤鸡放在上菜的大盘里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01508",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01508",
+      "source_rank": 56,
+      "expression": "jug",
+      "sense_zh": "水壶（英式）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "水壶（英式）",
+        "example_en": "Could you bring a jug of water to the table?",
+        "example_zh": "你能拿一壶水到餐桌上吗？",
+        "collocations": [
+          "jug of water",
+          "water jug"
+        ],
+        "usage_note": "jug在英式英语常指有嘴有柄的盛水壶。"
+      },
+      "display": {
+        "w": "jug",
+        "m": "水壶（英式）",
+        "c": "jug of water · water jug",
+        "e": "Could you bring a jug of water to the table?",
+        "x": "jug在英式英语常指有嘴有柄的盛水壶。",
+        "example_zh": "你能拿一壶水到餐桌上吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01509",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01509",
+      "source_rank": 57,
+      "expression": "pitcher",
+      "sense_zh": "冷饮水壶（美式）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "冷饮水壶（美式）",
+        "example_en": "There's a pitcher of cold water in the fridge.",
+        "example_zh": "冰箱里有一壶凉水。",
+        "collocations": [
+          "pitcher of water",
+          "water pitcher"
+        ],
+        "usage_note": "pitcher在美式英语常指倒水用的壶。"
+      },
+      "display": {
+        "w": "pitcher",
+        "m": "冷饮水壶（美式）",
+        "c": "pitcher of water · water pitcher",
+        "e": "There's a pitcher of cold water in the fridge.",
+        "x": "pitcher在美式英语常指倒水用的壶。",
+        "example_zh": "冰箱里有一壶凉水。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01510",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01510",
+      "source_rank": 58,
+      "expression": "water bottle",
+      "sense_zh": "水瓶",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "水瓶",
+        "example_en": "Take your water bottle with you after lunch.",
+        "example_zh": "午餐后记得带走你的水瓶。",
+        "collocations": [
+          "refillable water bottle",
+          "fill a water bottle"
+        ],
+        "usage_note": "water bottle是便携水瓶，不是倒水用的pitcher。"
+      },
+      "display": {
+        "w": "water bottle",
+        "m": "水瓶",
+        "c": "refillable water bottle · fill a water bottle",
+        "e": "Take your water bottle with you after lunch.",
+        "x": "water bottle是便携水瓶，不是倒水用的pitcher。",
+        "example_zh": "午餐后记得带走你的水瓶。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01511",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01511",
+      "source_rank": 59,
+      "expression": "tablecloth",
+      "sense_zh": "桌布",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "桌布",
+        "example_en": "Spread the tablecloth before the guests arrive.",
+        "example_zh": "客人到来前先铺好桌布。",
+        "collocations": [
+          "clean tablecloth",
+          "spread a tablecloth"
+        ],
+        "usage_note": "tablecloth覆盖整张或大部分桌面。"
+      },
+      "display": {
+        "w": "tablecloth",
+        "m": "桌布",
+        "c": "clean tablecloth · spread a tablecloth",
+        "e": "Spread the tablecloth before the guests arrive.",
+        "x": "tablecloth覆盖整张或大部分桌面。",
+        "example_zh": "客人到来前先铺好桌布。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01512",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01512",
+      "source_rank": 60,
+      "expression": "placemat",
+      "sense_zh": "餐垫",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐垫",
+        "example_en": "Place a placemat under each plate.",
+        "example_zh": "每个餐盘下面放一个餐垫。",
+        "collocations": [
+          "woven placemat",
+          "put down a placemat"
+        ],
+        "usage_note": "placemat通常是一人份餐具下的小垫子。"
+      },
+      "display": {
+        "w": "placemat",
+        "m": "餐垫",
+        "c": "woven placemat · put down a placemat",
+        "e": "Place a placemat under each plate.",
+        "x": "placemat通常是一人份餐具下的小垫子。",
+        "example_zh": "每个餐盘下面放一个餐垫。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01513",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01513",
+      "source_rank": 61,
+      "expression": "coaster",
+      "sense_zh": "杯垫",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "杯垫",
+        "example_en": "Use a coaster so the cold glass doesn't mark the table.",
+        "example_zh": "用杯垫，免得冷杯子在桌上留下水印。",
+        "collocations": [
+          "drink coaster",
+          "put a glass on a coaster"
+        ],
+        "usage_note": "coaster是垫在杯子下面的小杯垫。"
+      },
+      "display": {
+        "w": "coaster",
+        "m": "杯垫",
+        "c": "drink coaster · put a glass on a coaster",
+        "e": "Use a coaster so the cold glass doesn't mark the table.",
+        "x": "coaster是垫在杯子下面的小杯垫。",
+        "example_zh": "用杯垫，免得冷杯子在桌上留下水印。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01514",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01514",
+      "source_rank": 62,
+      "expression": "salt shaker",
+      "sense_zh": "盐瓶",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "盐瓶",
+        "example_en": "The salt shaker is beside the pepper mill.",
+        "example_zh": "盐瓶放在胡椒研磨器旁边。",
+        "collocations": [
+          "salt shaker",
+          "pass the salt shaker"
+        ],
+        "usage_note": "salt shaker是装盐并可撒盐的小瓶。"
+      },
+      "display": {
+        "w": "salt shaker",
+        "m": "盐瓶",
+        "c": "salt shaker · pass the salt shaker",
+        "e": "The salt shaker is beside the pepper mill.",
+        "x": "salt shaker是装盐并可撒盐的小瓶。",
+        "example_zh": "盐瓶放在胡椒研磨器旁边。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01515",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01515",
+      "source_rank": 63,
+      "expression": "pepper mill",
+      "sense_zh": "胡椒研磨器",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "胡椒研磨器",
+        "example_en": "Would you pass me the pepper mill?",
+        "example_zh": "请把胡椒研磨器递给我好吗？",
+        "collocations": [
+          "pepper mill",
+          "grind pepper with a mill"
+        ],
+        "usage_note": "pepper mill用于现磨胡椒，不同于现成胡椒粉瓶。"
+      },
+      "display": {
+        "w": "pepper mill",
+        "m": "胡椒研磨器",
+        "c": "pepper mill · grind pepper with a mill",
+        "e": "Would you pass me the pepper mill?",
+        "x": "pepper mill用于现磨胡椒，不同于现成胡椒粉瓶。",
+        "example_zh": "请把胡椒研磨器递给我好吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01516",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01516",
+      "source_rank": 64,
+      "expression": "condiment",
+      "sense_zh": "佐餐调味品",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "佐餐调味品",
+        "example_en": "Ketchup and mustard are common condiments.",
+        "example_zh": "番茄酱和芥末酱是常见佐餐调味品。",
+        "collocations": [
+          "table condiments",
+          "add a condiment"
+        ],
+        "usage_note": "condiment指随餐添加的酱料或调味品。"
+      },
+      "display": {
+        "w": "condiment",
+        "m": "佐餐调味品",
+        "c": "table condiments · add a condiment",
+        "e": "Ketchup and mustard are common condiments.",
+        "x": "condiment指随餐添加的酱料或调味品。",
+        "example_zh": "番茄酱和芥末酱是常见佐餐调味品。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01517",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01517",
+      "source_rank": 65,
+      "expression": "ketchup",
+      "sense_zh": "番茄酱",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "番茄酱",
+        "example_en": "Would you like ketchup with your fries?",
+        "example_zh": "薯条要配番茄酱吗？",
+        "collocations": [
+          "tomato ketchup",
+          "ketchup with fries"
+        ],
+        "usage_note": "ketchup通常指番茄调味酱。"
+      },
+      "display": {
+        "w": "ketchup",
+        "m": "番茄酱",
+        "c": "tomato ketchup · ketchup with fries",
+        "e": "Would you like ketchup with your fries?",
+        "x": "ketchup通常指番茄调味酱。",
+        "example_zh": "薯条要配番茄酱吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01518",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01518",
+      "source_rank": 66,
+      "expression": "mustard",
+      "sense_zh": "芥末酱",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "芥末酱",
+        "example_en": "He put some mustard on his sandwich.",
+        "example_zh": "他往三明治里加了些芥末酱。",
+        "collocations": [
+          "Dijon mustard",
+          "mustard on a sandwich"
+        ],
+        "usage_note": "mustard指芥末酱或芥末调味品，口味可有差异。"
+      },
+      "display": {
+        "w": "mustard",
+        "m": "芥末酱",
+        "c": "Dijon mustard · mustard on a sandwich",
+        "e": "He put some mustard on his sandwich.",
+        "x": "mustard指芥末酱或芥末调味品，口味可有差异。",
+        "example_zh": "他往三明治里加了些芥末酱。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01519",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01519",
+      "source_rank": 67,
+      "expression": "gravy",
+      "sense_zh": "肉汁",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "肉汁",
+        "example_en": "Pour some gravy over the mashed potatoes.",
+        "example_zh": "往土豆泥上浇点肉汁。",
+        "collocations": [
+          "brown gravy",
+          "gravy on potatoes"
+        ],
+        "usage_note": "gravy一般指肉汁或以肉汁制成的浓汁。"
+      },
+      "display": {
+        "w": "gravy",
+        "m": "肉汁",
+        "c": "brown gravy · gravy on potatoes",
+        "e": "Pour some gravy over the mashed potatoes.",
+        "x": "gravy一般指肉汁或以肉汁制成的浓汁。",
+        "example_zh": "往土豆泥上浇点肉汁。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01520",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01520",
+      "source_rank": 68,
+      "expression": "dressing",
+      "sense_zh": "沙拉酱汁",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "沙拉酱汁",
+        "example_en": "This salad needs a little more dressing.",
+        "example_zh": "这份沙拉还需要一点调味汁。",
+        "collocations": [
+          "salad dressing",
+          "add dressing"
+        ],
+        "usage_note": "dressing在这里指沙拉调味汁。"
+      },
+      "display": {
+        "w": "dressing",
+        "m": "沙拉酱汁",
+        "c": "salad dressing · add dressing",
+        "e": "This salad needs a little more dressing.",
+        "x": "dressing在这里指沙拉调味汁。",
+        "example_zh": "这份沙拉还需要一点调味汁。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01521",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01521",
+      "source_rank": 69,
+      "expression": "bread basket",
+      "sense_zh": "面包篮",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "面包篮",
+        "example_en": "Put the warm rolls in the bread basket.",
+        "example_zh": "把温热的小面包放进面包篮。",
+        "collocations": [
+          "bread basket",
+          "pass the bread basket"
+        ],
+        "usage_note": "bread basket是餐桌上盛面包的篮子。"
+      },
+      "display": {
+        "w": "bread basket",
+        "m": "面包篮",
+        "c": "bread basket · pass the bread basket",
+        "e": "Put the warm rolls in the bread basket.",
+        "x": "bread basket是餐桌上盛面包的篮子。",
+        "example_zh": "把温热的小面包放进面包篮。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01522",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01522",
+      "source_rank": 70,
+      "expression": "high chair",
+      "sense_zh": "儿童餐椅",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "儿童餐椅",
+        "example_en": "The baby sits in a high chair at mealtimes.",
+        "example_zh": "宝宝吃饭时坐在儿童餐椅里。",
+        "collocations": [
+          "baby high chair",
+          "sit in a high chair"
+        ],
+        "usage_note": "high chair是婴幼儿用的高脚餐椅，须使用安全固定装置。"
+      },
+      "display": {
+        "w": "high chair",
+        "m": "儿童餐椅",
+        "c": "baby high chair · sit in a high chair",
+        "e": "The baby sits in a high chair at mealtimes.",
+        "x": "high chair是婴幼儿用的高脚餐椅，须使用安全固定装置。",
+        "example_zh": "宝宝吃饭时坐在儿童餐椅里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01523",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01523",
+      "source_rank": 71,
+      "expression": "bib",
+      "sense_zh": "围嘴",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "围嘴",
+        "example_en": "Put a bib on the toddler before lunch.",
+        "example_zh": "午饭前给幼儿戴好围嘴。",
+        "collocations": [
+          "baby bib",
+          "wear a bib"
+        ],
+        "usage_note": "bib指保护衣物免于沾食物的围嘴。"
+      },
+      "display": {
+        "w": "bib",
+        "m": "围嘴",
+        "c": "baby bib · wear a bib",
+        "e": "Put a bib on the toddler before lunch.",
+        "x": "bib指保护衣物免于沾食物的围嘴。",
+        "example_zh": "午饭前给幼儿戴好围嘴。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01524",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01524",
+      "source_rank": 72,
+      "expression": "booster seat",
+      "sense_zh": "儿童加高座椅",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "儿童加高座椅",
+        "example_en": "Our toddler uses a booster seat at the table.",
+        "example_zh": "我们的幼儿吃饭时用儿童加高座椅。",
+        "collocations": [
+          "child booster seat",
+          "use a booster seat"
+        ],
+        "usage_note": "booster seat此处是儿童餐椅加高座，不是汽车安全座椅。"
+      },
+      "display": {
+        "w": "booster seat",
+        "m": "儿童加高座椅",
+        "c": "child booster seat · use a booster seat",
+        "e": "Our toddler uses a booster seat at the table.",
+        "x": "booster seat此处是儿童餐椅加高座，不是汽车安全座椅。",
+        "example_zh": "我们的幼儿吃饭时用儿童加高座椅。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01525",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01525",
+      "source_rank": 73,
+      "expression": "dish rack",
+      "sense_zh": "餐具沥水架",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "餐具沥水架",
+        "example_en": "Leave the washed plates on the dish rack to dry.",
+        "example_zh": "洗好的盘子放在沥水架上晾干。",
+        "collocations": [
+          "dish rack",
+          "dry dishes on a rack"
+        ],
+        "usage_note": "dish rack是餐具沥水架。"
+      },
+      "display": {
+        "w": "dish rack",
+        "m": "餐具沥水架",
+        "c": "dish rack · dry dishes on a rack",
+        "e": "Leave the washed plates on the dish rack to dry.",
+        "x": "dish rack是餐具沥水架。",
+        "example_zh": "洗好的盘子放在沥水架上晾干。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01526",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01526",
+      "source_rank": 74,
+      "expression": "trivet",
+      "sense_zh": "隔热垫",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "隔热垫",
+        "example_en": "Put a trivet under the hot casserole dish.",
+        "example_zh": "热砂锅下面垫个隔热垫。",
+        "collocations": [
+          "heat-resistant trivet",
+          "put a pot on a trivet"
+        ],
+        "usage_note": "trivet是放在热锅或热盘下面保护桌面的隔热垫。"
+      },
+      "display": {
+        "w": "trivet",
+        "m": "隔热垫",
+        "c": "heat-resistant trivet · put a pot on a trivet",
+        "e": "Put a trivet under the hot casserole dish.",
+        "x": "trivet是放在热锅或热盘下面保护桌面的隔热垫。",
+        "example_zh": "热砂锅下面垫个隔热垫。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01527",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01527",
+      "source_rank": 75,
+      "expression": "host",
+      "sense_zh": "主人",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "主人",
+        "example_en": "Our host welcomed everyone at the door.",
+        "example_zh": "主人在门口欢迎大家。",
+        "collocations": [
+          "dinner host",
+          "host a family dinner"
+        ],
+        "usage_note": "host在此是招待客人的主人，也可以作动词。"
+      },
+      "display": {
+        "w": "host",
+        "m": "主人",
+        "c": "dinner host · host a family dinner",
+        "e": "Our host welcomed everyone at the door.",
+        "x": "host在此是招待客人的主人，也可以作动词。",
+        "example_zh": "主人在门口欢迎大家。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01528",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01528",
+      "source_rank": 76,
+      "expression": "family member",
+      "sense_zh": "家庭成员",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "家庭成员",
+        "example_en": "Every family member brought something to the meal.",
+        "example_zh": "每位家庭成员都带了点东西来聚餐。",
+        "collocations": [
+          "family member",
+          "close family member"
+        ],
+        "usage_note": "family member指家庭成员，不特指父母或孩子。"
+      },
+      "display": {
+        "w": "family member",
+        "m": "家庭成员",
+        "c": "family member · close family member",
+        "e": "Every family member brought something to the meal.",
+        "x": "family member指家庭成员，不特指父母或孩子。",
+        "example_zh": "每位家庭成员都带了点东西来聚餐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01529",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01529",
+      "source_rank": 77,
+      "expression": "lay the table",
+      "sense_zh": "摆餐具（英式）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "摆餐具（英式）",
+        "example_en": "Could you lay the table before everyone arrives?",
+        "example_zh": "大家到齐前能把餐具摆好吗？",
+        "collocations": [
+          "lay the table",
+          "lay the table for six"
+        ],
+        "usage_note": "lay the table是英式常用说法，美式常说set the table。"
+      },
+      "display": {
+        "w": "lay the table",
+        "m": "摆餐具（英式）",
+        "c": "lay the table · lay the table for six",
+        "e": "Could you lay the table before everyone arrives?",
+        "x": "lay the table是英式常用说法，美式常说set the table。",
+        "example_zh": "大家到齐前能把餐具摆好吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01530",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01530",
+      "source_rank": 78,
+      "expression": "clear the table",
+      "sense_zh": "收拾餐桌",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "收拾餐桌",
+        "example_en": "Let's clear the table after dessert.",
+        "example_zh": "吃完甜点我们再收拾餐桌吧。",
+        "collocations": [
+          "clear the table",
+          "clear away the dishes"
+        ],
+        "usage_note": "clear the table指从桌上撤下餐具及剩余食物。"
+      },
+      "display": {
+        "w": "clear the table",
+        "m": "收拾餐桌",
+        "c": "clear the table · clear away the dishes",
+        "e": "Let's clear the table after dessert.",
+        "x": "clear the table指从桌上撤下餐具及剩余食物。",
+        "example_zh": "吃完甜点我们再收拾餐桌吧。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01531",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01531",
+      "source_rank": 79,
+      "expression": "dish up",
+      "sense_zh": "把饭菜盛出来",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把饭菜盛出来",
+        "example_en": "I'll dish up the stew while you get the plates.",
+        "example_zh": "你拿盘子时我来把炖菜盛出来。",
+        "collocations": [
+          "dish up dinner",
+          "dish up the food"
+        ],
+        "usage_note": "dish up偏口语，表示把做好的菜盛出来。"
+      },
+      "display": {
+        "w": "dish up",
+        "m": "把饭菜盛出来",
+        "c": "dish up dinner · dish up the food",
+        "e": "I'll dish up the stew while you get the plates.",
+        "x": "dish up偏口语，表示把做好的菜盛出来。",
+        "example_zh": "你拿盘子时我来把炖菜盛出来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01532",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01532",
+      "source_rank": 80,
+      "expression": "pass the dishes around",
+      "sense_zh": "轮流传菜",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "轮流传菜",
+        "example_en": "Pass the dishes around so everyone can try a little.",
+        "example_zh": "把菜传一传，让每个人都能尝一些。",
+        "collocations": [
+          "pass the dishes around",
+          "pass the serving dishes"
+        ],
+        "usage_note": "pass around表示依次传给桌上众人。"
+      },
+      "display": {
+        "w": "pass the dishes around",
+        "m": "轮流传菜",
+        "c": "pass the dishes around · pass the serving dishes",
+        "e": "Pass the dishes around so everyone can try a little.",
+        "x": "pass around表示依次传给桌上众人。",
+        "example_zh": "把菜传一传，让每个人都能尝一些。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
