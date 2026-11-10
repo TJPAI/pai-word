@@ -1,0 +1,215 @@
+.home-intro{color:#666;margin:4px 0 24px}.today-plan{background:#f3f5f4;border-radius:18px;padding:20px;margin:12px 0 24px}.today-plan label{display:block;font-weight:650;margin-bottom:10px}.today-plan select{width:100%;padding:12px;background:#fff;border:1px solid #ddd;border-radius:10px;font-size:16px}.today-plan p{font-size:14px;color:#666}.today-plan .primary-btn,.today-plan .secondary-btn{width:100%;margin:6px 0}.group-title{font-size:18px;margin:24px 0 12px}.scene-count{display:flex;flex-direction:column;text-align:right}.scene-count small{font-size:11px;color:#888}.scene-name{font-size:16px}.learning-screen .study-body{overflow-y:auto}.three-ratings{grid-template-columns:repeat(3,1fr)!important;gap:8px!important}.hard{background:#f5eacc;color:#655027;border:0;border-radius:14px;font-size:17px;font-weight:600;min-height:52px}.reveal-btn{display:block;width:85%;margin:30px auto;padding:18px;border:1px solid #d4d9d6;border-radius:14px;background:#eef3f0;font-size:17px;font-weight:600}.recall-note,.session-footnote{text-align:center;color:#777;font-size:12px;line-height:1.6;padding:10px 16px}.session-footnote{padding-top:4px;padding-bottom:max(10px,env(safe-area-inset-bottom))}.recall-cue{font-size:14px;color:#777;margin-top:20px}.learning-screen .word-hero{min-height:30vh!important}.learning-screen.revealed .word-hero{min-height:18vh!important}.learning-screen .rating{position:static!important;flex-shrink:0}.example span:nth-child(2){white-space:pre-line}.learning-screen .study-progress{font-size:12px;white-space:nowrap}.boot-screen{max-width:600px;margin:auto;padding:32px 22px}.skeleton-line{height:70px;background:#f0f2f1;border-radius:12px;margin:16px 0;animation:pulse 1.5s infinite alternate}@keyframes pulse{to{opacity:.4}}.scene-grid{margin-bottom:12px}.speak-btn{display:grid!important}.sense-chip{white-space:normal}.learning-screen .study-top{flex-shrink:0}.learning-screen{height:100dvh;display:flex;flex-direction:column}.listen-only .speak-btn{visibility:visible!important}.scene-note{line-height:1.7}@media(min-width:700px){.screen{max-width:680px;margin:auto}.scene-grid{grid-template-columns:1fr 1fr}}
+.learning-screen .rating{transform:none!important;left:auto;width:100%;padding-bottom:10px}.learning-screen .study-body{padding-bottom:18px}.learning-screen .study-top{grid-template-columns:44px 1fr 110px}.learning-screen .done{min-height:0;flex:1}.learning-screen .word{font-size:44px}
+.timing-settings input{width:78px;padding:8px;border:1px solid #ddd;border-radius:8px}.timing-settings .setting-row{gap:16px}.learning-screen .recall-note{min-height:46px;flex-shrink:0;font-size:13px;color:#555}.learning-screen .study-body{cursor:pointer}.learning-screen button,.learning-screen details{cursor:pointer}
+
+/* Large fixed bottom recall correction controls */
+.learning-screen.revealed .recall-correction{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;position:sticky;bottom:0;z-index:15;width:100%;box-sizing:border-box;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:#fff;border-top:1px solid #e6e9e7;flex-shrink:0}
+.learning-screen .recall-correction button{width:100%;min-width:0;min-height:68px;border-radius:16px;border:1px solid #d4d9d6;background:#f4f6f5;color:#202725;font-size:19px;font-weight:700;touch-action:manipulation}
+.learning-screen .recall-correction button:first-child{background:#fcebe9;border-color:#f2cbc5;color:#9b352b}
+.learning-screen .recall-correction button:nth-child(2){background:#fff4d9;border-color:#f0dfa9;color:#806019}
+.learning-screen .recall-correction button:last-child{background:#e7f5ec;border-color:#b8ddc6;color:#236944}
+.learning-screen.revealed .session-footnote{display:none}
+@media(max-width:380px){.learning-screen .recall-correction{gap:7px!important;padding-left:10px!important;padding-right:10px!important}.learning-screen .recall-correction button{font-size:17px;min-height:64px}}
+
+.topic-search{margin:14px 0 22px;padding:18px;border:1px solid #e2e7e4;border-radius:18px;background:#f7faf8}.topic-search>label{display:block;font-size:17px;font-weight:700;margin-bottom:12px}.topic-search form{display:flex;gap:10px;align-items:stretch}.topic-search input{flex:1;min-width:0;min-height:52px;border:1px solid #cbd5cf;border-radius:12px;padding:12px;font-size:16px}.topic-search .primary-btn{min-height:52px;width:auto;margin:0;padding:10px 16px}.topic-feedback{font-size:13px;color:#9b352b}@media(max-width:440px){.topic-search form{flex-direction:column}.topic-search .primary-btn{width:100%}}
+
+/* Learning header: balanced back control, centered title, and two-line batch status. */
+.learning-screen .study-top{
+  grid-template-columns:minmax(100px,1fr) minmax(0,1.3fr) minmax(100px,1fr);
+  align-items:center;
+  column-gap:4px;
+  padding-left:max(12px,env(safe-area-inset-left));
+  padding-right:max(12px,env(safe-area-inset-right));
+  min-width:0;
+}
+.learning-screen .study-top .back-btn{
+  display:flex;align-items:center;justify-content:flex-start;
+  width:52px;min-width:44px;min-height:48px;
+  padding:0 0 3px 2px;font-size:46px;line-height:1;
+}
+.learning-screen .study-top .study-scene{
+  min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  padding:0;text-align:center;align-self:center;
+}
+.learning-screen .study-top .study-progress{
+  display:flex;flex-direction:column;align-items:flex-end;justify-content:center;
+  gap:2px;min-width:0;padding:0;text-align:right;
+  font-size:12px;line-height:1.35;white-space:normal;
+  font-variant-numeric:tabular-nums;
+}
+.learning-screen .study-top .study-batch-line{display:block;white-space:nowrap;max-width:100%}
+@media(max-width:380px){
+  .learning-screen .study-top{grid-template-columns:minmax(94px,1fr) minmax(0,1.25fr) minmax(94px,1fr)}
+  .learning-screen .study-top .study-progress{font-size:11px}
+}
+
+
+/* 2026-10-25: Consistent back-button geometry on settings and lesson views. */
+.panel-screen .panel-top{margin-left:-6px;align-items:center;min-height:54px}
+.panel-screen .panel-top .back-btn{
+  display:flex;align-items:center;justify-content:flex-start;
+  width:52px;min-width:44px;min-height:48px;
+  padding:0 0 3px 2px;font-size:46px;line-height:1;
+  flex:0 0 52px;
+}
+.panel-screen .panel-top h2{margin:0 0 0 4px;line-height:1.25;align-self:center}
+
+/* Fixed controls: never follow word or IPA length. */
+.learning-screen .word-hero{position:relative}
+.learning-screen .word-hero .word-line{width:100%;justify-content:center;padding:0 8px;box-sizing:border-box}
+.learning-screen .word-hero .word{min-width:0;text-align:center}
+.learning-screen .word-hero .recall-controls-row{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  width:100%;min-height:44px;flex:0 0 44px
+}
+.learning-screen .word-hero .recall-controls-row .recall-cue{
+  margin:0!important;min-width:0;max-width:calc(100% - 150px);
+  text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap
+}
+.learning-screen .word-hero .auto-word-toggle{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  display:grid;place-items:center;width:44px;height:44px;
+  cursor:pointer;z-index:2;-webkit-tap-highlight-color:transparent
+}
+.learning-screen .word-hero .auto-word-toggle input{
+  position:absolute;width:100%;height:100%;inset:0;margin:0;
+  opacity:0;cursor:pointer;z-index:1
+}
+.learning-screen .word-hero .auto-word-symbol{
+  display:grid;place-items:center;width:32px;height:29px;
+  border:0;border-radius:8px;background:transparent;color:#9099a7;
+  transform:translateX(-2px);
+  transition:background-color .15s ease,color .15s ease,box-shadow .15s ease
+}
+.learning-screen .word-hero .auto-word-symbol svg{width:25px;height:22px}
+.learning-screen .word-hero .auto-word-toggle input:checked + .auto-word-symbol{
+  background:#2475e6;color:#fff;box-shadow:0 1px 4px #2475e64a
+}
+.learning-screen .word-hero .auto-word-toggle input:focus-visible + .auto-word-symbol{
+  outline:3px solid #2b76e5;outline-offset:2px
+}
+.learning-screen .word-hero .ipa-line{position:relative;width:100%;padding:0 56px;box-sizing:border-box}
+.learning-screen .word-hero .ipa-line .ipa{display:block;text-align:center;overflow-wrap:anywhere}
+.learning-screen .word-hero .ipa-line .speak-btn{
+  position:absolute!important;right:12px;top:50%;transform:translateY(-50%);
+  margin:0!important;display:grid!important;place-items:center;
+  width:44px;min-width:44px;height:44px;min-height:44px
+}
+@media(max-width:380px){
+  .learning-screen .word-hero .word-line{padding:0 6px}
+  .learning-screen .word-hero .ipa-line{padding:0 52px 0 12px}
+  .learning-screen .word-hero .auto-word-toggle{right:8px}
+  .learning-screen .word-hero .ipa-line .speak-btn{right:8px}
+}
+
+
+/* Stable question/answer geometry: hide listening prompts visually, never remove
+   their layout boxes. Both faces share the same word, IPA and control anchors. */
+.learning-screen .word-hero{
+  justify-content:flex-start!important;
+  align-items:stretch!important;
+  transition:none!important;
+}
+.learning-screen .word-hero .word-line{
+  flex:0 0 45px;
+  height:45px;
+  min-height:45px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.learning-screen .word-hero .ipa-line{
+  flex:0 0 40px;
+  height:40px;
+  min-height:40px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.learning-screen .word-hero .recall-controls-row{
+  flex:0 0 41px;
+  height:41px;
+  min-height:41px;
+}
+.learning-screen .word-hero.listen-only .word,
+.learning-screen .word-hero.listen-only .ipa{
+  display:block!important;
+  visibility:hidden!important;
+}
+.learning-screen .word-hero .word,
+.learning-screen .word-hero .ipa{
+  transition:none!important;
+}
+.learning-screen .word-hero.listen-only .speak-btn,
+.learning-screen .word-hero.listen-only .auto-word-toggle{
+  visibility:visible!important;
+}
+@media(max-height:680px){
+  .learning-screen .word-hero .word-line{flex-basis:35px;height:35px;min-height:35px}
+  .learning-screen .word-hero .ipa-line{flex-basis:35px;height:35px;min-height:35px}
+  .learning-screen .word-hero .recall-controls-row{flex-basis:34px;height:34px;min-height:34px}
+}
+
+/* Answer-page single-text teaching examples have no number/audio grid cells.
+   Keep the three-column layout for existing numbered examples with play buttons. */
+.learning-screen .answer-section[data-test-teaching="example"] .example,
+.learning-screen .answer-section[data-approved-teaching-ku] .example{
+  display:grid;
+  grid-template-columns:16px minmax(0,1fr) 34px;
+  gap:6px;
+  align-items:start;
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+  overflow-wrap:break-word;
+  white-space:normal;
+}
+.learning-screen .answer-section[data-test-teaching="example"] .example-translation,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-translation{
+  display:block;
+  width:100%;
+  min-width:0;
+  overflow-wrap:break-word;
+}
+
+/* Bilingual examples: translation stays underneath English in the middle column. */
+.learning-screen .answer-section[data-test-teaching="example"] .example-text,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-text{min-width:0;overflow-wrap:break-word}
+.learning-screen .answer-section[data-test-teaching="example"] .example-en,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-en{white-space:normal}
+.learning-screen .answer-section[data-test-teaching="example"] .example-translation,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-translation{color:#666;font-size:.88em;line-height:1.5;margin-top:4px}
+.learning-screen .answer-section[data-test-teaching="example"] .example-play,
+.learning-screen .answer-section[data-approved-teaching-ku] .example-play{justify-self:center;align-self:start}
+
+
+/* Question-only, ephemeral finger-writing region. Never selectable/scrollable. */
+.learning-screen:not(.revealed) .study-body{position:relative;min-height:180px;flex:1 1 auto;display:flex;overflow:hidden}
+.learning-screen .pai-scratch-area{position:relative;display:block;flex:1 1 auto;width:100%;height:100%;min-height:180px;overflow:hidden;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.learning-screen .pai-scratch-canvas{display:block;width:100%;height:100%;touch-action:none;-webkit-user-select:none;user-select:none}
+.learning-screen .pai-scratch-hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;text-align:center;color:#a3aeba;font-size:18px;font-weight:500;white-space:nowrap}
+.learning-screen .pai-scratch-hint small{display:block;margin-top:7px;font-size:13px;font-weight:400}
+.learning-screen .pai-scratch-hint[hidden]{display:none}
+
+/* Explicit drawing mode overlays every element above the rating controls. */
+.learning-screen{position:relative}
+.learning-screen .pai-scratch-area:not(.is-drawing){touch-action:pan-x pan-y}
+.learning-screen .pai-scratch-area:not(.is-drawing) .pai-scratch-canvas{touch-action:pan-x pan-y}
+.learning-screen .pai-scratch-area.is-drawing{position:absolute!important;z-index:15;margin:0!important;max-height:none!important;min-height:0!important;background:var(--surface,#fff);touch-action:none}
+.learning-screen .pai-scratch-area.is-drawing .pai-scratch-canvas{width:100%;height:100%;touch-action:none}
+.learning-screen .pai-scratch-area.is-drawing .pai-scratch-hint{display:none}
+.learning-screen .recall-correction{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.learning-screen .recall-correction button{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+
+/* The active drawing surface is reparented to .learning-screen to avoid clipping. */
+.learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing{position:absolute!important;inset:0 0 auto 0!important;z-index:100!important;background:#fff!important;overflow:hidden!important}
+.learning-screen.pai-scratch-active>.pai-scratch-area.is-drawing .pai-scratch-canvas{display:block;width:100%;height:100%}
+
+/* No central hint or touch interception on either ordinary face; hold uses delegated events. */
+.learning-screen .pai-scratch-area:not(.is-drawing){pointer-events:none!important;height:0!important;min-height:0!important;flex:0 0 0!important;overflow:hidden!important}
+.learning-screen .pai-scratch-area:not(.is-drawing) .pai-scratch-canvas{pointer-events:none!important}
+.learning-screen.pai-scratch-active .recall-note{visibility:hidden}
+
+/* iOS Safari: ordinary-face long press must enter scratch, not select text. */
+.learning-screen .study-top,.learning-screen .word-hero,.learning-screen .study-body,.learning-screen .recall-note,.learning-screen .session-footnote,.learning-screen .pai-scratch-area{ -webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important }
+.learning-screen .recall-correction,.learning-screen .recall-correction *{-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
