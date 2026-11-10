@@ -1,0 +1,1574 @@
+{
+  "schema_version": "pai-scene1341-answer-only-ku-v2",
+  "release_status": "EDITORIAL_STAGING_ONLY",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "total_recommendations": 2038
+  },
+  "identity": {
+    "namespace": "SC1341-KU-",
+    "srs_namespace": "scene1341-v2",
+    "core20k_ku_reused": false
+  },
+  "scope": {
+    "scene_id": "SC50-0004",
+    "ranks": "21-70",
+    "count": 50
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00633",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00633",
+      "source_rank": 21,
+      "expression": "vacuum the carpet",
+      "sense_zh": "吸地毯",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "吸地毯",
+        "example_en": "I vacuum the carpet every Saturday morning.",
+        "example_zh": "我每周六早晨都会用吸尘器吸地毯。",
+        "collocations": [
+          "vacuum the carpet",
+          "vacuum a bedroom carpet"
+        ],
+        "usage_note": "vacuum在这里作动词，表示使用吸尘器，而非抽成真空。"
+      },
+      "display": {
+        "w": "vacuum the carpet",
+        "m": "吸地毯",
+        "c": "vacuum the carpet · vacuum a bedroom carpet",
+        "e": "I vacuum the carpet every Saturday morning.",
+        "x": "vacuum在这里作动词，表示使用吸尘器，而非抽成真空。",
+        "example_zh": "我每周六早晨都会用吸尘器吸地毯。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00634",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00634",
+      "source_rank": 22,
+      "expression": "clean up broken glass",
+      "sense_zh": "清理碎玻璃",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "清理碎玻璃",
+        "example_en": "We need to clean up the broken glass carefully.",
+        "example_zh": "我们得小心清理打碎的玻璃。",
+        "collocations": [
+          "clean up broken glass",
+          "safely clean up broken glass"
+        ],
+        "usage_note": "broken glass指碎玻璃，glass在此作材料名词，通常不可数。"
+      },
+      "display": {
+        "w": "clean up broken glass",
+        "m": "清理碎玻璃",
+        "c": "clean up broken glass · safely clean up broken glass",
+        "e": "We need to clean up the broken glass carefully.",
+        "x": "broken glass指碎玻璃，glass在此作材料名词，通常不可数。",
+        "example_zh": "我们得小心清理打碎的玻璃。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00635",
+      "source_rank": 23,
+      "expression": "put away sharp tools",
+      "sense_zh": "收好尖锐工具",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "收好尖锐工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "put away表示放回安全的收纳位置，不等于扔掉。"
+      },
+      "display": {
+        "w": "put away sharp tools",
+        "m": "收好尖锐工具",
+        "c": "put away sharp tools · store sharp tools safely",
+        "e": "Please put away sharp tools after using them.",
+        "x": "put away表示放回安全的收纳位置，不等于扔掉。",
+        "example_zh": "用完锋利工具后请妥善收好。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00636",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00636",
+      "source_rank": 24,
+      "expression": "put away clutter",
+      "sense_zh": "收起散乱杂物",
+      "source_tier": "CORE",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "收起散乱杂物",
+        "example_en": "I put away the clutter on my desk before starting work.",
+        "example_zh": "开工前我把桌上散乱的东西都收起来了。",
+        "collocations": [
+          "put away clutter",
+          "put away desk clutter"
+        ],
+        "usage_note": "clutter通常不可数；此项属于源Master增补候选，须独立验收。"
+      },
+      "display": {
+        "w": "put away clutter",
+        "m": "收起散乱杂物",
+        "c": "put away clutter · put away desk clutter",
+        "e": "I put away the clutter on my desk before starting work.",
+        "x": "clutter通常不可数；此项属于源Master增补候选，须独立验收。",
+        "example_zh": "开工前我把桌上散乱的东西都收起来了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00637",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00637",
+      "source_rank": 25,
+      "expression": "straighten up",
+      "sense_zh": "把东西摆整齐",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把东西摆整齐",
+        "example_en": "Let's straighten up the living room before our guests arrive.",
+        "example_zh": "客人来之前，我们把客厅收拾整齐吧。",
+        "collocations": [
+          "straighten up the room",
+          "straighten up the pillows"
+        ],
+        "usage_note": "straighten up侧重摆正、整理整齐，不一定进行深度清洁。"
+      },
+      "display": {
+        "w": "straighten up",
+        "m": "把东西摆整齐",
+        "c": "straighten up the room · straighten up the pillows",
+        "e": "Let's straighten up the living room before our guests arrive.",
+        "x": "straighten up侧重摆正、整理整齐，不一定进行深度清洁。",
+        "example_zh": "客人来之前，我们把客厅收拾整齐吧。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00638",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00638",
+      "source_rank": 26,
+      "expression": "clear out",
+      "sense_zh": "清空、清理掉（某处的物品）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "清空、清理掉（某处的物品）",
+        "example_en": "I cleared out the old clothes from my closet.",
+        "example_zh": "我把衣柜里的旧衣服清理出去了。",
+        "collocations": [
+          "clear out a closet",
+          "clear out old clothes"
+        ],
+        "usage_note": "clear out强调把某处的大量物品移走，常伴随丢弃或捐赠。"
+      },
+      "display": {
+        "w": "clear out",
+        "m": "清空、清理掉（某处的物品）",
+        "c": "clear out a closet · clear out old clothes",
+        "e": "I cleared out the old clothes from my closet.",
+        "x": "clear out强调把某处的大量物品移走，常伴随丢弃或捐赠。",
+        "example_zh": "我把衣柜里的旧衣服清理出去了。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00639",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00639",
+      "source_rank": 27,
+      "expression": "clear off",
+      "sense_zh": "把表面物品清走",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把表面物品清走",
+        "example_en": "Please clear off the table before dinner.",
+        "example_zh": "晚饭前请把桌面上的东西清走。",
+        "collocations": [
+          "clear off the table",
+          "clear off a desk"
+        ],
+        "usage_note": "clear off针对桌子等表面；clear out更多用于清空空间或容器。"
+      },
+      "display": {
+        "w": "clear off",
+        "m": "把表面物品清走",
+        "c": "clear off the table · clear off a desk",
+        "e": "Please clear off the table before dinner.",
+        "x": "clear off针对桌子等表面；clear out更多用于清空空间或容器。",
+        "example_zh": "晚饭前请把桌面上的东西清走。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00640",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00640",
+      "source_rank": 28,
+      "expression": "get rid of",
+      "sense_zh": "处理掉不需要的东西",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "处理掉不需要的东西",
+        "example_en": "I want to get rid of things I no longer use.",
+        "example_zh": "我想处理掉不再使用的东西。",
+        "collocations": [
+          "get rid of clutter",
+          "get rid of old furniture"
+        ],
+        "usage_note": "get rid of表示不再保留，可通过丢弃、捐赠等方式。"
+      },
+      "display": {
+        "w": "get rid of",
+        "m": "处理掉不需要的东西",
+        "c": "get rid of clutter · get rid of old furniture",
+        "e": "I want to get rid of things I no longer use.",
+        "x": "get rid of表示不再保留，可通过丢弃、捐赠等方式。",
+        "example_zh": "我想处理掉不再使用的东西。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00641",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00641",
+      "source_rank": 29,
+      "expression": "keep",
+      "sense_zh": "留下保存",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "留下保存",
+        "example_en": "I'll keep these photos because they mean a lot to me.",
+        "example_zh": "这些照片对我意义重大，我会留下来。",
+        "collocations": [
+          "keep old photos",
+          "keep things you need"
+        ],
+        "usage_note": "keep在整理物品时指选择保留，与donate或throw away相对。"
+      },
+      "display": {
+        "w": "keep",
+        "m": "留下保存",
+        "c": "keep old photos · keep things you need",
+        "e": "I'll keep these photos because they mean a lot to me.",
+        "x": "keep在整理物品时指选择保留，与donate或throw away相对。",
+        "example_zh": "这些照片对我意义重大，我会留下来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00642",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00642",
+      "source_rank": 30,
+      "expression": "donate",
+      "sense_zh": "捐出去",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "捐出去",
+        "example_en": "We donated our old blankets to a local shelter.",
+        "example_zh": "我们把旧毯子捐给了当地收容机构。",
+        "collocations": [
+          "donate old clothes",
+          "donate items to charity"
+        ],
+        "usage_note": "donate表示无偿捐赠，常接donate something to an organization。"
+      },
+      "display": {
+        "w": "donate",
+        "m": "捐出去",
+        "c": "donate old clothes · donate items to charity",
+        "e": "We donated our old blankets to a local shelter.",
+        "x": "donate表示无偿捐赠，常接donate something to an organization。",
+        "example_zh": "我们把旧毯子捐给了当地收容机构。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00643",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00643",
+      "source_rank": 31,
+      "expression": "recycle",
+      "sense_zh": "回收利用",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "回收利用",
+        "example_en": "I recycle paper and cardboard instead of throwing them away.",
+        "example_zh": "我会回收纸张和纸板，而不是直接扔掉。",
+        "collocations": [
+          "recycle paper",
+          "recycle cardboard"
+        ],
+        "usage_note": "recycle指让材料进入回收利用流程，不能等同于重复使用reuse。"
+      },
+      "display": {
+        "w": "recycle",
+        "m": "回收利用",
+        "c": "recycle paper · recycle cardboard",
+        "e": "I recycle paper and cardboard instead of throwing them away.",
+        "x": "recycle指让材料进入回收利用流程，不能等同于重复使用reuse。",
+        "example_zh": "我会回收纸张和纸板，而不是直接扔掉。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00644",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00644",
+      "source_rank": 32,
+      "expression": "store",
+      "sense_zh": "收纳存放",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "收纳存放",
+        "example_en": "I store spare bedding in a box under the bed.",
+        "example_zh": "我把备用寝具收纳在床底下的箱子里。",
+        "collocations": [
+          "store bedding",
+          "store things in a box"
+        ],
+        "usage_note": "store作动词表示存放，与名词商店store不同。"
+      },
+      "display": {
+        "w": "store",
+        "m": "收纳存放",
+        "c": "store bedding · store things in a box",
+        "e": "I store spare bedding in a box under the bed.",
+        "x": "store作动词表示存放，与名词商店store不同。",
+        "example_zh": "我把备用寝具收纳在床底下的箱子里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00645",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00645",
+      "source_rank": 33,
+      "expression": "arrange",
+      "sense_zh": "整齐摆放",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "整齐摆放",
+        "example_en": "I arrange the books neatly on the shelf.",
+        "example_zh": "我把书整齐地摆在书架上。",
+        "collocations": [
+          "arrange books",
+          "arrange items neatly"
+        ],
+        "usage_note": "arrange强调有序摆放，不一定丢弃任何东西。"
+      },
+      "display": {
+        "w": "arrange",
+        "m": "整齐摆放",
+        "c": "arrange books · arrange items neatly",
+        "e": "I arrange the books neatly on the shelf.",
+        "x": "arrange强调有序摆放，不一定丢弃任何东西。",
+        "example_zh": "我把书整齐地摆在书架上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00646",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00646",
+      "source_rank": 34,
+      "expression": "rearrange",
+      "sense_zh": "重新布置",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "重新布置",
+        "example_en": "We rearranged the furniture to make the room feel bigger.",
+        "example_zh": "我们重新摆了家具，让房间显得更宽敞。",
+        "collocations": [
+          "rearrange furniture",
+          "rearrange the room"
+        ],
+        "usage_note": "rearrange是在已有布局基础上重新布置。"
+      },
+      "display": {
+        "w": "rearrange",
+        "m": "重新布置",
+        "c": "rearrange furniture · rearrange the room",
+        "e": "We rearranged the furniture to make the room feel bigger.",
+        "x": "rearrange是在已有布局基础上重新布置。",
+        "example_zh": "我们重新摆了家具，让房间显得更宽敞。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00647",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00647",
+      "source_rank": 35,
+      "expression": "make space",
+      "sense_zh": "腾出空间",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "腾出空间",
+        "example_en": "I moved the chair to make space for a small desk.",
+        "example_zh": "我挪开椅子，给小书桌腾出地方。",
+        "collocations": [
+          "make space for something",
+          "make more space"
+        ],
+        "usage_note": "make space表示腾出可用位置，常接for说明用途。"
+      },
+      "display": {
+        "w": "make space",
+        "m": "腾出空间",
+        "c": "make space for something · make more space",
+        "e": "I moved the chair to make space for a small desk.",
+        "x": "make space表示腾出可用位置，常接for说明用途。",
+        "example_zh": "我挪开椅子，给小书桌腾出地方。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00648",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00648",
+      "source_rank": 36,
+      "expression": "free up space",
+      "sense_zh": "释放可用空间",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "释放可用空间",
+        "example_en": "These stackable boxes help free up space in the closet.",
+        "example_zh": "这些可叠放的箱子能腾出衣柜空间。",
+        "collocations": [
+          "free up space",
+          "free up storage space"
+        ],
+        "usage_note": "free up强调释放已被占用的空间或资源。"
+      },
+      "display": {
+        "w": "free up space",
+        "m": "释放可用空间",
+        "c": "free up space · free up storage space",
+        "e": "These stackable boxes help free up space in the closet.",
+        "x": "free up强调释放已被占用的空间或资源。",
+        "example_zh": "这些可叠放的箱子能腾出衣柜空间。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00649",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00649",
+      "source_rank": 37,
+      "expression": "stack",
+      "sense_zh": "摞起来",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "摞起来",
+        "example_en": "Stack the books neatly rather than leaving them on the floor.",
+        "example_zh": "把书整齐摞起来，别放在地上。",
+        "collocations": [
+          "stack books",
+          "stack boxes neatly"
+        ],
+        "usage_note": "stack强调一层层整齐堆放，和随意pile up不同。"
+      },
+      "display": {
+        "w": "stack",
+        "m": "摞起来",
+        "c": "stack books · stack boxes neatly",
+        "e": "Stack the books neatly rather than leaving them on the floor.",
+        "x": "stack强调一层层整齐堆放，和随意pile up不同。",
+        "example_zh": "把书整齐摞起来，别放在地上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00650",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00650",
+      "source_rank": 38,
+      "expression": "pile up",
+      "sense_zh": "堆起来；积聚",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "堆起来；积聚",
+        "example_en": "Dirty dishes tend to pile up when we're busy.",
+        "example_zh": "我们忙的时候，脏餐具容易越堆越多。",
+        "collocations": [
+          "pile up",
+          "pile up on the counter"
+        ],
+        "usage_note": "pile up可表示物品堆积，也常带越来越多的意味。"
+      },
+      "display": {
+        "w": "pile up",
+        "m": "堆起来；积聚",
+        "c": "pile up · pile up on the counter",
+        "e": "Dirty dishes tend to pile up when we're busy.",
+        "x": "pile up可表示物品堆积，也常带越来越多的意味。",
+        "example_zh": "我们忙的时候，脏餐具容易越堆越多。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00651",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00651",
+      "source_rank": 39,
+      "expression": "spread out",
+      "sense_zh": "摊开分散摆放",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "摊开分散摆放",
+        "example_en": "I spread out the clothes on the bed to sort them.",
+        "example_zh": "我把衣服摊在床上，方便分类。",
+        "collocations": [
+          "spread out clothes",
+          "spread things out on the floor"
+        ],
+        "usage_note": "spread out强调摊开或分散，便于查看或整理。"
+      },
+      "display": {
+        "w": "spread out",
+        "m": "摊开分散摆放",
+        "c": "spread out clothes · spread things out on the floor",
+        "e": "I spread out the clothes on the bed to sort them.",
+        "x": "spread out强调摊开或分散，便于查看或整理。",
+        "example_zh": "我把衣服摊在床上，方便分类。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00652",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00652",
+      "source_rank": 40,
+      "expression": "wipe down",
+      "sense_zh": "擦拭表面",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "擦拭表面",
+        "example_en": "I wipe down the desk after removing everything from it.",
+        "example_zh": "把桌面清空后，我会擦拭整张桌子。",
+        "collocations": [
+          "wipe down the desk",
+          "wipe down surfaces"
+        ],
+        "usage_note": "wipe down强调把表面整体擦一遍，常搭配桌面和台面。"
+      },
+      "display": {
+        "w": "wipe down",
+        "m": "擦拭表面",
+        "c": "wipe down the desk · wipe down surfaces",
+        "e": "I wipe down the desk after removing everything from it.",
+        "x": "wipe down强调把表面整体擦一遍，常搭配桌面和台面。",
+        "example_zh": "把桌面清空后，我会擦拭整张桌子。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00653",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00653",
+      "source_rank": 41,
+      "expression": "sweep",
+      "sense_zh": "扫地",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "扫地",
+        "example_en": "I sweep the kitchen floor after breakfast.",
+        "example_zh": "早饭后我会扫厨房地板。",
+        "collocations": [
+          "sweep the floor",
+          "sweep up crumbs"
+        ],
+        "usage_note": "sweep是用扫帚等清扫；vacuum是用吸尘器吸。"
+      },
+      "display": {
+        "w": "sweep",
+        "m": "扫地",
+        "c": "sweep the floor · sweep up crumbs",
+        "e": "I sweep the kitchen floor after breakfast.",
+        "x": "sweep是用扫帚等清扫；vacuum是用吸尘器吸。",
+        "example_zh": "早饭后我会扫厨房地板。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00654",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00654",
+      "source_rank": 42,
+      "expression": "mop",
+      "sense_zh": "拖地",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "拖地",
+        "example_en": "I mop the floor after sweeping it.",
+        "example_zh": "扫完地以后我会拖地。",
+        "collocations": [
+          "mop the floor",
+          "mop the kitchen floor"
+        ],
+        "usage_note": "mop作动词表示使用拖把清洁地面。"
+      },
+      "display": {
+        "w": "mop",
+        "m": "拖地",
+        "c": "mop the floor · mop the kitchen floor",
+        "e": "I mop the floor after sweeping it.",
+        "x": "mop作动词表示使用拖把清洁地面。",
+        "example_zh": "扫完地以后我会拖地。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00655",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00655",
+      "source_rank": 43,
+      "expression": "change the sheets",
+      "sense_zh": "换床单",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "换床单",
+        "example_en": "I change the sheets every weekend.",
+        "example_zh": "我每个周末都会换床单。",
+        "collocations": [
+          "change the sheets",
+          "change the bed sheets"
+        ],
+        "usage_note": "sheets在此指床单，常用复数；不是工作表的义项。"
+      },
+      "display": {
+        "w": "change the sheets",
+        "m": "换床单",
+        "c": "change the sheets · change the bed sheets",
+        "e": "I change the sheets every weekend.",
+        "x": "sheets在此指床单，常用复数；不是工作表的义项。",
+        "example_zh": "我每个周末都会换床单。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00656",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00656",
+      "source_rank": 44,
+      "expression": "fluff up the pillows",
+      "sense_zh": "拍松枕头",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "拍松枕头",
+        "example_en": "I fluff up the pillows before making the bed.",
+        "example_zh": "整理床铺之前，我会把枕头拍松。",
+        "collocations": [
+          "fluff up the pillows",
+          "fluff the cushions"
+        ],
+        "usage_note": "fluff up表示拍松使其蓬松，不是清洗枕头。"
+      },
+      "display": {
+        "w": "fluff up the pillows",
+        "m": "拍松枕头",
+        "c": "fluff up the pillows · fluff the cushions",
+        "e": "I fluff up the pillows before making the bed.",
+        "x": "fluff up表示拍松使其蓬松，不是清洗枕头。",
+        "example_zh": "整理床铺之前，我会把枕头拍松。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00657",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00657",
+      "source_rank": 45,
+      "expression": "open the windows",
+      "sense_zh": "开窗",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "开窗",
+        "example_en": "I open the windows to let some fresh air in.",
+        "example_zh": "我打开窗户，让新鲜空气进来。",
+        "collocations": [
+          "open the windows",
+          "open a window wide"
+        ],
+        "usage_note": "open the windows表示开窗；如果只有一扇窗也可说open a window。"
+      },
+      "display": {
+        "w": "open the windows",
+        "m": "开窗",
+        "c": "open the windows · open a window wide",
+        "e": "I open the windows to let some fresh air in.",
+        "x": "open the windows表示开窗；如果只有一扇窗也可说open a window。",
+        "example_zh": "我打开窗户，让新鲜空气进来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00658",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00658",
+      "source_rank": 46,
+      "expression": "air out the room",
+      "sense_zh": "给房间通风",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "给房间通风",
+        "example_en": "We air out the room after cleaning it.",
+        "example_zh": "打扫完以后我们给房间通通风。",
+        "collocations": [
+          "air out the room",
+          "air out a bedroom"
+        ],
+        "usage_note": "air out表示通风散味，通常需要让空气流通。"
+      },
+      "display": {
+        "w": "air out the room",
+        "m": "给房间通风",
+        "c": "air out the room · air out a bedroom",
+        "e": "We air out the room after cleaning it.",
+        "x": "air out表示通风散味，通常需要让空气流通。",
+        "example_zh": "打扫完以后我们给房间通通风。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00659",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00659",
+      "source_rank": 47,
+      "expression": "freshen the room",
+      "sense_zh": "使房间空气或气味更清新",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "使房间空气或气味更清新",
+        "example_en": "I open the window to freshen the room.",
+        "example_zh": "我打开窗户，让房间空气清新一些。",
+        "collocations": [
+          "freshen the room",
+          "freshen up a room"
+        ],
+        "usage_note": "freshen在此表示让空气或气味变清新，未必包含整理物品。"
+      },
+      "display": {
+        "w": "freshen the room",
+        "m": "使房间空气或气味更清新",
+        "c": "freshen the room · freshen up a room",
+        "e": "I open the window to freshen the room.",
+        "x": "freshen在此表示让空气或气味变清新，未必包含整理物品。",
+        "example_zh": "我打开窗户，让房间空气清新一些。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00660",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00660",
+      "source_rank": 48,
+      "expression": "pick up clothes",
+      "sense_zh": "捡起散落衣服",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "捡起散落衣服",
+        "example_en": "Please pick up the clothes you left on the floor.",
+        "example_zh": "请把你扔在地板上的衣服捡起来。",
+        "collocations": [
+          "pick up clothes",
+          "pick clothes up off the floor"
+        ],
+        "usage_note": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。"
+      },
+      "display": {
+        "w": "pick up clothes",
+        "m": "捡起散落衣服",
+        "c": "pick up clothes · pick clothes up off the floor",
+        "e": "Please pick up the clothes you left on the floor.",
+        "x": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。",
+        "example_zh": "请把你扔在地板上的衣服捡起来。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00661",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00661",
+      "source_rank": 49,
+      "expression": "put things back",
+      "sense_zh": "把东西放回原处",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把东西放回原处",
+        "example_en": "Put things back where you found them.",
+        "example_zh": "把东西放回原来的地方。",
+        "collocations": [
+          "put things back",
+          "put everything back in place"
+        ],
+        "usage_note": "put back表示归位；代词置中：put them back。"
+      },
+      "display": {
+        "w": "put things back",
+        "m": "把东西放回原处",
+        "c": "put things back · put everything back in place",
+        "e": "Put things back where you found them.",
+        "x": "put back表示归位；代词置中：put them back。",
+        "example_zh": "把东西放回原来的地方。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00662",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00662",
+      "source_rank": 50,
+      "expression": "wipe up a spill",
+      "sense_zh": "擦掉洒出来的液体",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "擦掉洒出来的液体",
+        "example_en": "I grabbed a cloth to wipe up the spill.",
+        "example_zh": "我拿了块抹布，把洒出的液体擦干。",
+        "collocations": [
+          "wipe up a spill",
+          "wipe up spilled water"
+        ],
+        "usage_note": "wipe up专指擦掉或吸干洒出的东西。"
+      },
+      "display": {
+        "w": "wipe up a spill",
+        "m": "擦掉洒出来的液体",
+        "c": "wipe up a spill · wipe up spilled water",
+        "e": "I grabbed a cloth to wipe up the spill.",
+        "x": "wipe up专指擦掉或吸干洒出的东西。",
+        "example_zh": "我拿了块抹布，把洒出的液体擦干。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00663",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00663",
+      "source_rank": 51,
+      "expression": "take out the trash",
+      "sense_zh": "把垃圾拿出去",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "把垃圾拿出去",
+        "example_en": "Could you take out the trash before bedtime?",
+        "example_zh": "睡前你能把垃圾拿出去吗？",
+        "collocations": [
+          "take out the trash",
+          "take the trash out"
+        ],
+        "usage_note": "take out the trash是美式常用表达；英式常说take out the rubbish。"
+      },
+      "display": {
+        "w": "take out the trash",
+        "m": "把垃圾拿出去",
+        "c": "take out the trash · take the trash out",
+        "e": "Could you take out the trash before bedtime?",
+        "x": "take out the trash是美式常用表达；英式常说take out the rubbish。",
+        "example_zh": "睡前你能把垃圾拿出去吗？"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00664",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00664",
+      "source_rank": 52,
+      "expression": "empty the bin",
+      "sense_zh": "倒空垃圾桶",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "倒空垃圾桶",
+        "example_en": "I empty the bin when it's full.",
+        "example_zh": "垃圾桶满了，我就把它倒空。",
+        "collocations": [
+          "empty the bin",
+          "empty the rubbish bin"
+        ],
+        "usage_note": "empty作动词是清空；bin在英式英语常指垃圾桶。"
+      },
+      "display": {
+        "w": "empty the bin",
+        "m": "倒空垃圾桶",
+        "c": "empty the bin · empty the rubbish bin",
+        "e": "I empty the bin when it's full.",
+        "x": "empty作动词是清空；bin在英式英语常指垃圾桶。",
+        "example_zh": "垃圾桶满了，我就把它倒空。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00665",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00665",
+      "source_rank": 53,
+      "expression": "room",
+      "sense_zh": "房间",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "房间",
+        "example_en": "This room gets plenty of natural light.",
+        "example_zh": "这个房间有充足的自然光。",
+        "collocations": [
+          "tidy a room",
+          "bright room"
+        ],
+        "usage_note": "room在这里指房间；另可作不可数名词表示空间或余地。"
+      },
+      "display": {
+        "w": "room",
+        "m": "房间",
+        "c": "tidy a room · bright room",
+        "e": "This room gets plenty of natural light.",
+        "x": "room在这里指房间；另可作不可数名词表示空间或余地。",
+        "example_zh": "这个房间有充足的自然光。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00666",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00666",
+      "source_rank": 54,
+      "expression": "bedroom",
+      "sense_zh": "卧室",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "卧室",
+        "example_en": "I tidy my bedroom before going to sleep.",
+        "example_zh": "睡觉前我会整理卧室。",
+        "collocations": [
+          "tidy the bedroom",
+          "bedroom furniture"
+        ],
+        "usage_note": "bedroom是卧室，与living room起居室相区别。"
+      },
+      "display": {
+        "w": "bedroom",
+        "m": "卧室",
+        "c": "tidy the bedroom · bedroom furniture",
+        "e": "I tidy my bedroom before going to sleep.",
+        "x": "bedroom是卧室，与living room起居室相区别。",
+        "example_zh": "睡觉前我会整理卧室。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00667",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00667",
+      "source_rank": 55,
+      "expression": "living room",
+      "sense_zh": "起居室",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "起居室",
+        "example_en": "We moved the sofa to clean the living room.",
+        "example_zh": "我们挪开沙发打扫客厅。",
+        "collocations": [
+          "clean the living room",
+          "living room sofa"
+        ],
+        "usage_note": "living room指日常休息和会客的起居室。"
+      },
+      "display": {
+        "w": "living room",
+        "m": "起居室",
+        "c": "clean the living room · living room sofa",
+        "e": "We moved the sofa to clean the living room.",
+        "x": "living room指日常休息和会客的起居室。",
+        "example_zh": "我们挪开沙发打扫客厅。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00668",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00668",
+      "source_rank": 56,
+      "expression": "floor",
+      "sense_zh": "地板",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "地板",
+        "example_en": "Please keep the floor clear of toys.",
+        "example_zh": "请别把玩具散放在地板上。",
+        "collocations": [
+          "clean the floor",
+          "keep the floor clear"
+        ],
+        "usage_note": "floor在此是地面，和建筑楼层的另一义项不同。"
+      },
+      "display": {
+        "w": "floor",
+        "m": "地板",
+        "c": "clean the floor · keep the floor clear",
+        "e": "Please keep the floor clear of toys.",
+        "x": "floor在此是地面，和建筑楼层的另一义项不同。",
+        "example_zh": "请别把玩具散放在地板上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00669",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00669",
+      "source_rank": 57,
+      "expression": "carpet",
+      "sense_zh": "地毯",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "地毯",
+        "example_en": "The carpet needs vacuuming.",
+        "example_zh": "这块地毯需要用吸尘器清洁。",
+        "collocations": [
+          "vacuum the carpet",
+          "wall-to-wall carpet"
+        ],
+        "usage_note": "carpet常指较大面积铺设的地毯；rug通常是可移动的小块地毯。"
+      },
+      "display": {
+        "w": "carpet",
+        "m": "地毯",
+        "c": "vacuum the carpet · wall-to-wall carpet",
+        "e": "The carpet needs vacuuming.",
+        "x": "carpet常指较大面积铺设的地毯；rug通常是可移动的小块地毯。",
+        "example_zh": "这块地毯需要用吸尘器清洁。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00670",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00670",
+      "source_rank": 58,
+      "expression": "rug",
+      "sense_zh": "小块地毯",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "小块地毯",
+        "example_en": "I shook the dust out of the rug outside.",
+        "example_zh": "我把小地毯拿到外面抖掉灰尘。",
+        "collocations": [
+          "small rug",
+          "shake out a rug"
+        ],
+        "usage_note": "rug常指可移动的地毯或垫毯，不必铺满整个房间。"
+      },
+      "display": {
+        "w": "rug",
+        "m": "小块地毯",
+        "c": "small rug · shake out a rug",
+        "e": "I shook the dust out of the rug outside.",
+        "x": "rug常指可移动的地毯或垫毯，不必铺满整个房间。",
+        "example_zh": "我把小地毯拿到外面抖掉灰尘。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00671",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00671",
+      "source_rank": 59,
+      "expression": "bookshelf",
+      "sense_zh": "书架",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "书架",
+        "example_en": "I arranged the novels on the bookshelf.",
+        "example_zh": "我把小说整齐摆上书架。",
+        "collocations": [
+          "wooden bookshelf",
+          "organize a bookshelf"
+        ],
+        "usage_note": "bookshelf通常指书架或书架上的搁板，bookshelves是复数。"
+      },
+      "display": {
+        "w": "bookshelf",
+        "m": "书架",
+        "c": "wooden bookshelf · organize a bookshelf",
+        "e": "I arranged the novels on the bookshelf.",
+        "x": "bookshelf通常指书架或书架上的搁板，bookshelves是复数。",
+        "example_zh": "我把小说整齐摆上书架。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00672",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00672",
+      "source_rank": 60,
+      "expression": "dresser",
+      "sense_zh": "抽屉柜（美式常用）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "抽屉柜（美式常用）",
+        "example_en": "I keep my folded shirts in the dresser.",
+        "example_zh": "我把叠好的衬衫放在抽屉柜里。",
+        "collocations": [
+          "dresser drawer",
+          "bedroom dresser"
+        ],
+        "usage_note": "dresser在美式英语常指卧室抽屉柜。"
+      },
+      "display": {
+        "w": "dresser",
+        "m": "抽屉柜（美式常用）",
+        "c": "dresser drawer · bedroom dresser",
+        "e": "I keep my folded shirts in the dresser.",
+        "x": "dresser在美式英语常指卧室抽屉柜。",
+        "example_zh": "我把叠好的衬衫放在抽屉柜里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00673",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00673",
+      "source_rank": 61,
+      "expression": "wardrobe",
+      "sense_zh": "衣柜（英式常用；美式也使用）",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "衣柜（英式常用；美式也使用）",
+        "example_en": "I hung my clean shirts in the wardrobe.",
+        "example_zh": "我把干净的衬衫挂进衣柜。",
+        "collocations": [
+          "hang clothes in a wardrobe",
+          "wardrobe door"
+        ],
+        "usage_note": "wardrobe在英式英语常指衣柜，也可指个人所有衣物的集合。"
+      },
+      "display": {
+        "w": "wardrobe",
+        "m": "衣柜（英式常用；美式也使用）",
+        "c": "hang clothes in a wardrobe · wardrobe door",
+        "e": "I hung my clean shirts in the wardrobe.",
+        "x": "wardrobe在英式英语常指衣柜，也可指个人所有衣物的集合。",
+        "example_zh": "我把干净的衬衫挂进衣柜。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00674",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00674",
+      "source_rank": 62,
+      "expression": "cabinet",
+      "sense_zh": "柜子",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "柜子",
+        "example_en": "I store cleaning supplies in the cabinet.",
+        "example_zh": "我把清洁用品放在柜子里。",
+        "collocations": [
+          "storage cabinet",
+          "bathroom cabinet"
+        ],
+        "usage_note": "cabinet通常指带门或抽屉的储物柜。"
+      },
+      "display": {
+        "w": "cabinet",
+        "m": "柜子",
+        "c": "storage cabinet · bathroom cabinet",
+        "e": "I store cleaning supplies in the cabinet.",
+        "x": "cabinet通常指带门或抽屉的储物柜。",
+        "example_zh": "我把清洁用品放在柜子里。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00675",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00675",
+      "source_rank": 63,
+      "expression": "storage bin",
+      "sense_zh": "收纳盒",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "收纳盒",
+        "example_en": "I labeled each storage bin so I could find things easily.",
+        "example_zh": "我给每个收纳盒贴了标签，方便找东西。",
+        "collocations": [
+          "plastic storage bin",
+          "labeled storage bin"
+        ],
+        "usage_note": "storage bin可指收纳盒或收纳箱，大小随场景而定。"
+      },
+      "display": {
+        "w": "storage bin",
+        "m": "收纳盒",
+        "c": "plastic storage bin · labeled storage bin",
+        "e": "I labeled each storage bin so I could find things easily.",
+        "x": "storage bin可指收纳盒或收纳箱，大小随场景而定。",
+        "example_zh": "我给每个收纳盒贴了标签，方便找东西。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00676",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00676",
+      "source_rank": 64,
+      "expression": "basket",
+      "sense_zh": "篮筐",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "篮筐",
+        "example_en": "Put the folded towels in this basket.",
+        "example_zh": "把叠好的毛巾放进这个篮筐。",
+        "collocations": [
+          "laundry basket",
+          "woven basket"
+        ],
+        "usage_note": "basket泛指篮筐，不一定专用于洗衣。"
+      },
+      "display": {
+        "w": "basket",
+        "m": "篮筐",
+        "c": "laundry basket · woven basket",
+        "e": "Put the folded towels in this basket.",
+        "x": "basket泛指篮筐，不一定专用于洗衣。",
+        "example_zh": "把叠好的毛巾放进这个篮筐。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00677",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00677",
+      "source_rank": 65,
+      "expression": "hamper",
+      "sense_zh": "脏衣篮",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "脏衣篮",
+        "example_en": "I put dirty clothes in the hamper.",
+        "example_zh": "我把脏衣服放进脏衣篮。",
+        "collocations": [
+          "laundry hamper",
+          "put clothes in the hamper"
+        ],
+        "usage_note": "hamper在北美家居语境常指脏衣篮，英式另有礼品篮义。"
+      },
+      "display": {
+        "w": "hamper",
+        "m": "脏衣篮",
+        "c": "laundry hamper · put clothes in the hamper",
+        "e": "I put dirty clothes in the hamper.",
+        "x": "hamper在北美家居语境常指脏衣篮，英式另有礼品篮义。",
+        "example_zh": "我把脏衣服放进脏衣篮。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00678",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00678",
+      "source_rank": 66,
+      "expression": "organizer",
+      "sense_zh": "收纳整理用品；分类收纳器",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "收纳整理用品；分类收纳器",
+        "example_en": "I bought a drawer organizer for my socks.",
+        "example_zh": "我买了个抽屉收纳格来放袜子。",
+        "collocations": [
+          "drawer organizer",
+          "desk organizer"
+        ],
+        "usage_note": "organizer是帮助分类收纳的用品，也可以指负责组织活动的人。"
+      },
+      "display": {
+        "w": "organizer",
+        "m": "收纳整理用品；分类收纳器",
+        "c": "drawer organizer · desk organizer",
+        "e": "I bought a drawer organizer for my socks.",
+        "x": "organizer是帮助分类收纳的用品，也可以指负责组织活动的人。",
+        "example_zh": "我买了个抽屉收纳格来放袜子。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00679",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00679",
+      "source_rank": 67,
+      "expression": "container",
+      "sense_zh": "容器",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "容器",
+        "example_en": "I use a clear container for small accessories.",
+        "example_zh": "我用透明容器收纳小配件。",
+        "collocations": [
+          "clear container",
+          "storage container"
+        ],
+        "usage_note": "container是泛指容器，可指盒子、罐子等。"
+      },
+      "display": {
+        "w": "container",
+        "m": "容器",
+        "c": "clear container · storage container",
+        "e": "I use a clear container for small accessories.",
+        "x": "container是泛指容器，可指盒子、罐子等。",
+        "example_zh": "我用透明容器收纳小配件。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00680",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00680",
+      "source_rank": 68,
+      "expression": "label",
+      "sense_zh": "标签",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "标签",
+        "example_en": "I put a label on every storage box.",
+        "example_zh": "我给每个收纳箱贴了标签。",
+        "collocations": [
+          "put a label on something",
+          "storage label"
+        ],
+        "usage_note": "label作名词是标签，也可作动词表示贴标签。"
+      },
+      "display": {
+        "w": "label",
+        "m": "标签",
+        "c": "put a label on something · storage label",
+        "e": "I put a label on every storage box.",
+        "x": "label作名词是标签，也可作动词表示贴标签。",
+        "example_zh": "我给每个收纳箱贴了标签。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00681",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00681",
+      "source_rank": 69,
+      "expression": "hook",
+      "sense_zh": "挂钩",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "挂钩",
+        "example_en": "I hung my bag on a hook behind the door.",
+        "example_zh": "我把包挂在门后的挂钩上。",
+        "collocations": [
+          "wall hook",
+          "hang something on a hook"
+        ],
+        "usage_note": "hook在此指实物挂钩，不是引人注意的开头等抽象义项。"
+      },
+      "display": {
+        "w": "hook",
+        "m": "挂钩",
+        "c": "wall hook · hang something on a hook",
+        "e": "I hung my bag on a hook behind the door.",
+        "x": "hook在此指实物挂钩，不是引人注意的开头等抽象义项。",
+        "example_zh": "我把包挂在门后的挂钩上。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00682",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00682",
+      "source_rank": 70,
+      "expression": "hanger",
+      "sense_zh": "衣架",
+      "source_tier": "SUPPORTING",
+      "source_version": "V51",
+      "answer": {
+        "meaning_zh": "衣架",
+        "example_en": "I need another hanger for this coat.",
+        "example_zh": "这件大衣还需要一个衣架。",
+        "collocations": [
+          "clothes hanger",
+          "hang a coat on a hanger"
+        ],
+        "usage_note": "hanger指衣架，hook是固定挂钩，两者不是同一种物品。"
+      },
+      "display": {
+        "w": "hanger",
+        "m": "衣架",
+        "c": "clothes hanger · hang a coat on a hanger",
+        "e": "I need another hanger for this coat.",
+        "x": "hanger指衣架，hook是固定挂钩，两者不是同一种物品。",
+        "example_zh": "这件大衣还需要一个衣架。"
+      },
+      "authoring_status": "AUTHOR_DRAFT_QA_PENDING",
+      "independent_language_qa": "NOT_REVIEWED",
+      "activation_allowed": false
+    }
+  ]
+}
