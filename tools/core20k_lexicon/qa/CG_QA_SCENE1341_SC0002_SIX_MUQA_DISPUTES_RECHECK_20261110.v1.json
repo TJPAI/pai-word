@@ -1,0 +1,87 @@
+{
+  "schema": "cg-qa-scene1341-sc0002-six-muqa-disputes-source-recheck-v1",
+  "date": "2026-11-10",
+  "scope": {
+    "scene_id": "SC50-0002",
+    "ranks": [
+      34,
+      35,
+      38,
+      39,
+      42,
+      66
+    ],
+    "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+    "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+    "ledger_blob": "402644872510ab0c8551de1eec19a858f16706fd"
+  },
+  "mu_qa_evidence": {
+    "source_id": "1WgvWoTRctolr-BzmG05NOnLQGtUxFbSL",
+    "source_sha256": "8e10055ba1940b225d071716f1cdacd92eeba66325bd476dd00cebbc2771796d",
+    "blinded": true
+  },
+  "summary": {
+    "rechecked": 6,
+    "author_fix_required": 3,
+    "conditional_author_polish": 2,
+    "source_gloss_scope_master": 1,
+    "release_approved": 0
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00268",
+      "source_rank": 34,
+      "expression": "wash up",
+      "disagreement": "CG REVISE / MU PASS",
+      "triage": "AUTHOR_FIX_REQUIRED",
+      "recommendation": "Two distinct regional senses are included in gloss; US-only example and collocations do not demonstrate British washing-up. Add British example (I'll wash up after dinner) or narrow gloss with Master approval.",
+      "final_double_ai_certification": "NOT_CERTIFIED"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00269",
+      "source_rank": 35,
+      "expression": "get clean",
+      "disagreement": "CG PASS / MU REVISE",
+      "triage": "AUTHOR_FIX_REQUIRED",
+      "recommendation": "The Chinese example adds '身上的泥土' absent from English. Fix to '在花园干活后，我想把自己洗干净。'; retain MU-QA REVISE until revised.",
+      "final_double_ai_certification": "NOT_CERTIFIED"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00272",
+      "source_rank": 38,
+      "expression": "tap",
+      "disagreement": "CG CONDITIONAL / MU PASS",
+      "triage": "CONDITIONAL_AUTHOR_POLISH",
+      "recommendation": "The tap is dripping; could you tighten it? is pragmatically ambiguous. Prefer 'The tap keeps dripping. We should get it fixed.' Not a sense-identity error.",
+      "final_double_ai_certification": "NOT_CERTIFIED"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00273",
+      "source_rank": 39,
+      "expression": "running water",
+      "disagreement": "CG CONDITIONAL / MU PASS",
+      "triage": "SOURCE_GLOSS_SCOPE_MASTER",
+      "recommendation": "Running water itself need not be tap water; '流动的自来水' works for washing hands but narrower than general English expression. Ask Master whether to scope label.",
+      "final_double_ai_certification": "NOT_CERTIFIED"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00276",
+      "source_rank": 42,
+      "expression": "hot water",
+      "disagreement": "CG CONDITIONAL / MU REVISE",
+      "triage": "AUTHOR_FIX_REQUIRED",
+      "recommendation": "Main English example is tautological ('hot water is very hot'), both flags non-PASS. Replace with 'Be careful—the hot water can burn you' or 'The water is too hot; turn the temperature down.'",
+      "final_double_ai_certification": "NOT_CERTIFIED"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00300",
+      "source_rank": 66,
+      "expression": "shaver",
+      "disagreement": "CG CONDITIONAL / MU PASS",
+      "triage": "CONDITIONAL_AUTHOR_POLISH",
+      "recommendation": "Existing usage note accurately distinguishes electric shaver and razor; remaining source gloss breadth can be clarified, but not conclusive material wrong sense.",
+      "final_double_ai_certification": "NOT_CERTIFIED"
+    }
+  ],
+  "policy": "Original CG and MU verdicts remain immutable in v4 ledger. Triage is recommendation pending author/master patch, independent retest and release governance."
+}
