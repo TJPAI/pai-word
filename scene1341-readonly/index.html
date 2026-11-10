@@ -210,7 +210,7 @@ $('back').addEventListener('click',home);$('continue').addEventListener('click',
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 $('reveal').addEventListener('click',show);$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
-$('hero').addEventListener('click',e=>{if(!e.target.closest('#speak'))show()});
+$('hero').addEventListener('click',e=>{if(!e.target.closest('button')){e.stopPropagation();show()}});
 $('studybody').addEventListener('click',e=>{if(!e.target.closest('button,a,details'))show()});
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
 $('speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const s=new SpeechSynthesisUtterance(subset()[index].expression);s.lang='en-US';window.speechSynthesis.speak(s)});
