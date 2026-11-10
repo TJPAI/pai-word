@@ -1,0 +1,160 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-independent-semantic-review-v1",
+  "date": "2026-11-10",
+  "role": "CG-QA",
+  "author_branch": "answer-enrichment-main-dev-20261026",
+  "author_head": "1fc4ce59d05dafa958d1232946165b291bb51c77",
+  "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+  "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+  "scope": {
+    "scene_id": "SC50-0010",
+    "ranks": "194-199",
+    "count": 6
+  },
+  "counts": {
+    "total": 6,
+    "PASS": 6,
+    "CONDITIONAL": 0,
+    "REVISE": 0
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-02033",
+      "scene_id": "SC50-0010",
+      "source_rank": 194,
+      "source_sense_id": "SC-SENSE-02033",
+      "expression": "get enough sleep",
+      "source_sense_zh": "睡够觉",
+      "meaning_zh": "睡够觉",
+      "example_en": "I try to get enough sleep each night.",
+      "example_zh": "我尽量每天晚上睡够觉。",
+      "collocations": [
+        "get enough sleep",
+        "get enough sleep at night"
+      ],
+      "usage_note": "get enough sleep指睡眠充足。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "get enough sleep和get enough sleep at night自然，充分睡眠释义正确。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02034",
+      "scene_id": "SC50-0010",
+      "source_rank": 195,
+      "source_sense_id": "SC-SENSE-02034",
+      "expression": "stick to a bedtime",
+      "source_sense_zh": "保持固定就寝时间",
+      "meaning_zh": "保持固定就寝时间",
+      "example_en": "Stick to a bedtime that works for you.",
+      "example_zh": "坚持适合自己的固定就寝时间。",
+      "collocations": [
+        "stick to a bedtime",
+        "stick to a regular bedtime"
+      ],
+      "usage_note": "stick to指坚持遵守安排。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "stick to a bedtime/regular bedtime自然，表示固定就寝计划。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02035",
+      "scene_id": "SC50-0010",
+      "source_rank": 196,
+      "source_sense_id": "SC-SENSE-02035",
+      "expression": "take a proper rest",
+      "source_sense_zh": "好好休息一会儿",
+      "meaning_zh": "好好休息一会儿",
+      "example_en": "Take a proper rest before you start again.",
+      "example_zh": "重新开始前好好休息一会儿。",
+      "collocations": [
+        "take a proper rest",
+        "have a proper rest"
+      ],
+      "usage_note": "proper强调充分而不是敷衍。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "take a proper rest及have a proper rest英式自然，例句准确。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02036",
+      "scene_id": "SC50-0010",
+      "source_rank": 197,
+      "source_sense_id": "SC-SENSE-02036",
+      "expression": "curl up on the couch",
+      "source_sense_zh": "蜷在沙发上休息",
+      "meaning_zh": "蜷在沙发上休息",
+      "example_en": "I curled up on the couch with a blanket.",
+      "example_zh": "我盖着毯子蜷在沙发上。",
+      "collocations": [
+        "curl up on the couch",
+        "curl up under a blanket"
+      ],
+      "usage_note": "curl up表示蜷缩身体。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "curl up on the couch和curl up under a blanket自然，沙发蜷坐语境吻合。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02037",
+      "scene_id": "SC50-0010",
+      "source_rank": 198,
+      "source_sense_id": "SC-SENSE-02037",
+      "expression": "switch off after work",
+      "source_sense_zh": "下班后放松、不再想工作",
+      "meaning_zh": "下班后放松、不再想工作",
+      "example_en": "I find it hard to switch off after work.",
+      "example_zh": "我发现下班后很难不再想工作。",
+      "collocations": [
+        "switch off after work",
+        "switch off mentally"
+      ],
+      "usage_note": "switch off在此是英式口语，比喻停止思考工作。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "switch off after work是自然的英式比喻，停止惦记工作，例句贴切。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "dual_ai_certified": false,
+      "release_approved": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02038",
+      "scene_id": "SC50-0010",
+      "source_rank": 199,
+      "source_sense_id": "SC-SENSE-02038",
+      "expression": "get comfortable",
+      "source_sense_zh": "让自己待得舒服些",
+      "meaning_zh": "让自己待得舒服些",
+      "example_en": "Make yourself at home and get comfortable.",
+      "example_zh": "别拘束，让自己舒服地待着。",
+      "collocations": [
+        "get comfortable",
+        "get comfortable on the sofa"
+      ],
+      "usage_note": "get comfortable表示调整到舒服状态。",
+      "cg_verdict": "PASS",
+      "linguistic_reason": "get comfortable与get comfortable on the sofa自然，宾客放松语境恰当。",
+      "revision_request": null,
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_pack_git_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "dual_ai_certified": false,
+      "release_approved": false
+    }
+  ]
+}
