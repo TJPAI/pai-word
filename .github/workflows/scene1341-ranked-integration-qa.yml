@@ -27,6 +27,8 @@ on:
       - 'rebuild-preview/scene1341-study-preview.mjs'
       - 'rebuild-preview/scene1341-qa-preview.mjs'
       - 'tools/integration/test-scene1341-qa-preview.mjs'
+      - 'rebuild-preview/scene1341-readonly/index.html'
+      - 'tools/integration/test-scene1341-readonly-mobile-demo.mjs'
       - 'tools/integration/test-scene1341-study-preview.mjs'
       - 'tools/integration/test-scene1341-srs-indexeddb.mjs'
       - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
@@ -77,3 +79,4 @@ jobs:
           node tools/integration/test-scene1341-study-preview.mjs
           node --check rebuild-preview/scene1341-qa-preview.mjs
           node tools/integration/test-scene1341-qa-preview.mjs
+          node tools/integration/test-scene1341-readonly-mobile-demo.mjs
