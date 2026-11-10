@@ -1,0 +1,126 @@
+{
+  "schema": "cg-qa-scene1341-muenteach-400-source-json-and-six-revises-v1",
+  "date": "2026-11-10",
+  "source_json": {
+    "path": "tools/core20k_lexicon/staging/enteach_v51_answer_only_sc0004_021_210_sc0005_001_210_muse_review.json",
+    "blob": "7800a7530b55e4b01b3073906a2d0936ddd17d0c",
+    "reviewer": "MU-ENTEACH"
+  },
+  "prior_ledger": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_ANSWER_ONLY_1132_UNIFIED_REVIEW_LEDGER_20261110.v8.json",
+    "blob": "320c39e3a012e4356bb3be07fb0039641d0565de"
+  },
+  "readback_checks": {
+    "rows": 400,
+    "unique": 400,
+    "identity_verdict_expression_differences": 0,
+    "mu_pass": 394,
+    "mu_revise": 6,
+    "mu_hold": 0
+  },
+  "summary": "6 MU REVISE adjudicated. Particularly MU suggested replacement for nightstand is synonym not collocation, and proposed bathtub soak remains unnatural. CG-QA and MU verdicts retained; no source revision verified.",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00686",
+      "expression": "nightstand",
+      "cg_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "REVISE",
+      "mu_original_issue": "Collocation \"bedside nightstand\" is redundant and not a standard English collocation: a nightstand already is a bedside table, so \"bedside nightstand\" is pleonastic (like \"ATM machine\").",
+      "mu_proposed_fix": "Replace the collocation \"bedside nightstand\" with \"bedside table\" (display c becomes \"bedside table · nightstand drawer\").",
+      "adjudication": {
+        "category": "COLLOCATION",
+        "verdict": "AUTHOR_POLISH_REQUIRED",
+        "reason": "bedside nightstand语义重复，不适合优先教学；MU提出的bedside table虽为自然表达，但只是nightstand的近义词，不是含目标词nightstand的搭配，不能直接替换到collocations字段。",
+        "fix": "搭配改keep a lamp on the nightstand / nightstand drawer；若要展示bedside table，请放入同义提示而非collocations。"
+      },
+      "prior_verdicts_unchanged": true,
+      "author_new_blob_verified": false,
+      "certified": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00795",
+      "expression": "cable organizer",
+      "cg_verdict": "REVISE",
+      "mu_enteach_verdict": "REVISE",
+      "mu_original_issue": "Terminology mismatch across fields: sense_zh/meaning_zh gloss is 理线夹, but example_zh says 我用了一个理线器把电线整理在一起, while the usage note says cable organizer is generic and not necessarily a clip.",
+      "mu_proposed_fix": "Change example_zh to 我用了一个理线夹把电线整理在一起。 so the example uses the same term as the gloss; keep the usage note explaining the English term is broader.",
+      "adjudication": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "verdict": "MASTER_DECISION_REQUIRED",
+        "reason": "cable organizer是泛指理线器/线缆整理用品，中文源gloss“理线夹”偏狭；若依MU建议把例句改为“理线夹”，只是表面一致，仍掩盖上位词本义，故不能仅按MU方案结案。",
+        "fix": "请Master批准源释义为“理线器；线缆整理用品”，作者保持自然中译“理线器”并同步display，之后双线重审。"
+      },
+      "prior_verdicts_unchanged": true,
+      "author_new_blob_verified": false,
+      "certified": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00796",
+      "expression": "lost item",
+      "cg_verdict": "PASS",
+      "mu_enteach_verdict": "REVISE",
+      "mu_original_issue": "example_zh is awkward/self-contradictory: 我在沙发底下找到了那件找不到的东西 (found the thing that could not be found).",
+      "mu_proposed_fix": "Change example_zh to 我在沙发底下找到了那件丢失的东西。",
+      "adjudication": {
+        "category": "TRANSLATION_NATURALNESS",
+        "verdict": "AUTHOR_FIX_REQUIRED",
+        "reason": "“找到了那件找不到的东西”语用重复别扭，母语汉译应说“找到了丢失的东西”；CG此前PASS漏判翻译自然度。",
+        "fix": "采用MU建议“我在沙发底下找到了那件丢失的东西。”，保持英文原例句不动。"
+      },
+      "prior_verdicts_unchanged": true,
+      "author_new_blob_verified": false,
+      "certified": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00846",
+      "expression": "scrub the sink",
+      "cg_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "REVISE",
+      "mu_original_issue": "example_zh “我用软刷把水槽刷干净。” renders 'the sink' as 水槽 (kitchen sink), while sense_zh / meaning_zh is 刷洗洗手池 (bathroom wash-basin); the example translation is inconsistent with the gloss given in the same record.",
+      "mu_proposed_fix": "Change example_zh (and display.example_zh in sync) to “我用软刷把洗手池刷干净。” so the example matches sense_zh 刷洗洗手池.",
+      "adjudication": {
+        "category": "MASTER_GLOSS_SCOPE",
+        "verdict": "MASTER_DECISION_REQUIRED",
+        "reason": "sink英语在厨房和浴室都可使用，原中文释义“洗手池”只覆盖浴室，例句“水槽”通常厨房义，不能靠把水槽强改成洗手池去掩盖源义范围不匹配。",
+        "fix": "Master将源义修成“水槽；洗手池”（或细分厨房与浴室Sense），作者依实际例句选择水槽/洗手池并保持一致。"
+      },
+      "prior_verdicts_unchanged": true,
+      "author_new_blob_verified": false,
+      "certified": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00848",
+      "expression": "scrub the bathtub",
+      "cg_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "REVISE",
+      "mu_original_issue": "example_en “I scrub the bathtub after soaking it with water.” is not natural: 'soak' takes the thing immersed as its object, but the bathtub is the container, not the thing soaked in water.",
+      "mu_proposed_fix": "Replace the example pair with example_en “I scrub the bathtub after letting it soak.” and example_zh “让浴缸浸泡一会儿后，我会刷洗浴缸。” (sync display.e / display.example_zh).",
+      "adjudication": {
+        "category": "EXAMPLE_NATURALNESS",
+        "verdict": "AUTHOR_FIX_REQUIRED",
+        "reason": "soak the bathtub with water及MU建议的let the bathtub soak都误把浴缸当被浸泡对象；二者都不适合作为高质量例句。",
+        "fix": "改I wet the bathtub before scrubbing it. / 我先把浴缸弄湿，再刷洗。或者I let the cleaner sit on the bathtub surface before scrubbing.；注意标签和清洁安全。"
+      },
+      "prior_verdicts_unchanged": true,
+      "author_new_blob_verified": false,
+      "certified": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01016",
+      "expression": "cleaning fumes",
+      "cg_verdict": "CONDITIONAL",
+      "mu_enteach_verdict": "REVISE",
+      "mu_original_issue": "usage_note Chinese is garbled: '出现不适应停止接触' omits the conditional/modal, so the clause does not read as grammatical Chinese (cf. the otherwise correct note 'cleaning fumes指挥发性气体或刺激性气味').",
+      "mu_proposed_fix": "Change the usage_note tail from '出现不适应停止接触。' to '出现不适时应停止接触并通风。'",
+      "adjudication": {
+        "category": "CHINESE_GRAMMAR_AND_GLOSS",
+        "verdict": "AUTHOR_FIX_AND_MASTER_GLOSS_REVIEW",
+        "reason": "MU指出的“出现不适应停止接触”缺字，造成中文语法错误；CG指出cleaning fumes并非只限挥发气体，也涉及刺激性蒸气。两点均成立。",
+        "fix": "用法注改“cleaning fumes指清洁产品释放的蒸气或刺激性气体；若出现不适，应停止使用并离开暴露区域，按产品说明通风。”，词义范围交Master核定。"
+      },
+      "prior_verdicts_unchanged": true,
+      "author_new_blob_verified": false,
+      "certified": false
+    }
+  ]
+}
