@@ -42,4 +42,20 @@ const qa=JSON.parse(fs.readFileSync(root+'qa-304-status-staging.v1.json','utf8')
 assert.equal(qa.release_eligible,false);
 assert.equal(qa.counts.release_approved,0);
 assert.equal(qa.flags.length,27);
+
+const nativeIndex=fs.readFileSync('rebuild-preview/index.html','utf8');
+const nativeCss=nativeIndex.match(/<style id="pai-preview-rating-bar">([\s\S]*?)<\/style>/)?.[1];
+assert(nativeCss && html.includes(nativeCss),'Scene500 native preview geometry CSS must remain identical');
+for(const cls of [
+ 'class="screen study-screen learning-screen demo-learning"',
+ 'class="study-top"','class="study-scene"','class="study-progress"',
+ 'class="study-body"','class="word-hero"','class="word-line"',
+ 'class="word"','class="speak-btn"','class="ipa"',
+ 'class="answer"','class="answer-section"','class="answer-label"',
+ 'class="definition-line"','class="definition"','class="collocations"',
+ 'class="example"','class="example-num"','class="example-play"',
+ 'class="recall-correction"'
+])assert(html.includes(cls),'Scene500 DOM contract missing: '+cls);
+assert(!html.includes('Fidelity patch'),'do not reintroduce isolated Scene1341 layout imitation');
+assert(html.includes('id="example-speak"'),'native answer example playback must exist');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
