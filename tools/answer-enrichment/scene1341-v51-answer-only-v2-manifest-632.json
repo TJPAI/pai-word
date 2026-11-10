@@ -1,0 +1,133 @@
+{
+  "schema_version": "pai-scene1341-answer-only-v2-progress-manifest",
+  "status": "AUTHOR_DRAFT_QA_PENDING_NO_RELEASE",
+  "source": {
+    "branch": "cg-main-fourline-integration-20261026",
+    "path": "tools/integration/scene1341-ranked/v51-ranked.csv",
+    "git_blob_sha": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "version": "V51",
+    "records": 2038
+  },
+  "assets": {
+    "coverage_path": "tools/answer-enrichment/scene1341-v51-answer-only-2038-coverage.v4.csv",
+    "coverage_git_blob": "965d7b109c86cc0e57e310ed56f6e06867b4adbb",
+    "packs": [
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-001-020.v2.json",
+        "git_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+        "records": 20
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-021-050.v2.json",
+        "git_blob": "f55b61c241d615f7c1f8285b332d1ea795e2b75b",
+        "records": 30
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+        "git_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-101-130.v2.json",
+        "git_blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+        "records": 30
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-131-180.v2.json",
+        "git_blob": "78a58e8cffb265f98550ff34289a961b0bee0e3c",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-181-234.v2.json",
+        "git_blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+        "records": 54
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-001-020.v2.json",
+        "git_blob": "d153f196e30a1b31a157050fb5f91eaedc94ccce",
+        "records": 20
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+        "git_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-071-100.v2.json",
+        "git_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+        "records": 30
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+        "git_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+        "git_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+        "records": 24
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-001-020.v2.json",
+        "git_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+        "records": 20
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-021-070.v2.json",
+        "git_blob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-071-120.v2.json",
+        "git_blob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-121-170.v2.json",
+        "git_blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+        "records": 50
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+        "git_blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+        "records": 34
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-001-020.v2.json",
+        "git_blob": "cf4f0ecf3fded5ff2a230f3a4a2cdab7d0471867",
+        "records": 20
+      }
+    ]
+  },
+  "counts": {
+    "source": 2038,
+    "scenes": 10,
+    "authored_answer_only": 632,
+    "not_generated": 1406,
+    "independent_semantic_pass": 0,
+    "production_playable": 0,
+    "question_payloads": 0
+  },
+  "qa": {
+    "cross_check": "GITHUB_READBACK_PENDING",
+    "errors": 0,
+    "source_ids_unique": true,
+    "source_scene_ranks_contiguous": true,
+    "pack_ku_ids_unique": true,
+    "source_fields_preserved": true,
+    "nonempty_bilingual_examples": true,
+    "nonempty_usage_and_collocations": true,
+    "question_fields_absent": true,
+    "activation_disabled": true,
+    "independent_semantic_review": "PENDING",
+    "updated_Github_Actions_run": "NOT_OBSERVED"
+  },
+  "policy": {
+    "new_scene_ku_namespace": "SC1341-KU-",
+    "separate_srs_scope": "scene1341-v2",
+    "old_Core20K_ku_reuse": false,
+    "production_ready": false,
+    "activation_allowed": false
+  },
+  "next": "SC50-0003 all 204 author drafts complete; SC50-0004 first20 staged; next SC50-0004 rank21."
+}
