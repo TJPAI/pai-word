@@ -1,0 +1,381 @@
+{
+  "schema": "cg-qa-scene1341-answer-only-sc0004-rank071-120-50-review-v1",
+  "date": "2026-11-10",
+  "reviewer": "CG-QA",
+  "source": {
+    "branch": "answer-enrichment-main-dev-20261026",
+    "path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-071-120.v2.json",
+    "blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+    "records": 50
+  },
+  "scope": "SC50-0004 ranks71–120, KU00683–00732",
+  "method": "Read and judge each English target, Chinese meaning, EN/Chinese example, collocations and usage note; verify KU identity, source sense ID, display parity, disabled activation and question-free structure. No independent CSV source mapping verification claimed.",
+  "counts": {
+    "reviewed": 50,
+    "PASS": 47,
+    "CONDITIONAL": 2,
+    "REVISE": 1,
+    "structure_errors": 0,
+    "second_ai_verified": 0,
+    "release_approved": 0
+  },
+  "release_policy": "Single-line CG-QA evidence only; no automatic dual-AI certification, activation or Master modification.",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00683",
+      "scene_id": "SC50-0004",
+      "source_rank": 71,
+      "expression": "rack",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00684",
+      "scene_id": "SC50-0004",
+      "source_rank": 72,
+      "expression": "desk",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00685",
+      "scene_id": "SC50-0004",
+      "source_rank": 73,
+      "expression": "chair",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00686",
+      "scene_id": "SC50-0004",
+      "source_rank": 74,
+      "expression": "nightstand",
+      "verdict": "CONDITIONAL",
+      "reason": "bedside nightstand重复同一床边位置概念，作为教学搭配缺少增益；nightstand drawer自然。",
+      "suggested_fix": "将搭配bedside nightstand替换为nightstand beside the bed或keep something on a nightstand。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00687",
+      "scene_id": "SC50-0004",
+      "source_rank": 75,
+      "expression": "coffee table",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00688",
+      "scene_id": "SC50-0004",
+      "source_rank": 76,
+      "expression": "side table",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00689",
+      "scene_id": "SC50-0004",
+      "source_rank": 77,
+      "expression": "cushion",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00690",
+      "scene_id": "SC50-0004",
+      "source_rank": 78,
+      "expression": "pillow",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00691",
+      "scene_id": "SC50-0004",
+      "source_rank": 79,
+      "expression": "blanket",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00692",
+      "scene_id": "SC50-0004",
+      "source_rank": 80,
+      "expression": "bedsheet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00693",
+      "scene_id": "SC50-0004",
+      "source_rank": 81,
+      "expression": "duvet cover",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00694",
+      "scene_id": "SC50-0004",
+      "source_rank": 82,
+      "expression": "curtain",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00695",
+      "scene_id": "SC50-0004",
+      "source_rank": 83,
+      "expression": "window sill",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00696",
+      "scene_id": "SC50-0004",
+      "source_rank": 84,
+      "expression": "laundry basket",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00697",
+      "scene_id": "SC50-0004",
+      "source_rank": 85,
+      "expression": "trash can",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00698",
+      "scene_id": "SC50-0004",
+      "source_rank": 86,
+      "expression": "bin liner",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00699",
+      "scene_id": "SC50-0004",
+      "source_rank": 87,
+      "expression": "broom",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00700",
+      "scene_id": "SC50-0004",
+      "source_rank": 88,
+      "expression": "dustpan",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00701",
+      "scene_id": "SC50-0004",
+      "source_rank": 89,
+      "expression": "mop",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00702",
+      "scene_id": "SC50-0004",
+      "source_rank": 90,
+      "expression": "microfiber cloth",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00703",
+      "scene_id": "SC50-0004",
+      "source_rank": 91,
+      "expression": "duster",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00704",
+      "scene_id": "SC50-0004",
+      "source_rank": 92,
+      "expression": "cleaning spray",
+      "verdict": "REVISE",
+      "reason": "I sprayed a little cleaning spray on the countertop中sprayed与spray近距离重复，虽然可以理解，但例句作为语言学习范本不自然。",
+      "suggested_fix": "改为I used a little cleaning spray on the countertop.／我在台面上用了少量清洁喷雾。或I sprayed some cleaner on the countertop."
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00705",
+      "scene_id": "SC50-0004",
+      "source_rank": 93,
+      "expression": "disinfectant",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00706",
+      "scene_id": "SC50-0004",
+      "source_rank": 94,
+      "expression": "junk",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00707",
+      "scene_id": "SC50-0004",
+      "source_rank": 95,
+      "expression": "stuff",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00708",
+      "scene_id": "SC50-0004",
+      "source_rank": 96,
+      "expression": "belongings",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00709",
+      "scene_id": "SC50-0004",
+      "source_rank": 97,
+      "expression": "personal items",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00710",
+      "scene_id": "SC50-0004",
+      "source_rank": 98,
+      "expression": "valuables",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00711",
+      "scene_id": "SC50-0004",
+      "source_rank": 99,
+      "expression": "keepsake",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00712",
+      "scene_id": "SC50-0004",
+      "source_rank": 100,
+      "expression": "spare items",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00713",
+      "scene_id": "SC50-0004",
+      "source_rank": 101,
+      "expression": "storage space",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00714",
+      "scene_id": "SC50-0004",
+      "source_rank": 102,
+      "expression": "surface",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00715",
+      "scene_id": "SC50-0004",
+      "source_rank": 103,
+      "expression": "corner",
+      "verdict": "CONDITIONAL",
+      "reason": "room corner不够常见/自然，英语惯用in the corner of the room或a corner of the room；例句本身正确。",
+      "suggested_fix": "将collocation room corner调整为in the corner of the room，保留例句。"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00716",
+      "scene_id": "SC50-0004",
+      "source_rank": 104,
+      "expression": "under the bed",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00717",
+      "scene_id": "SC50-0004",
+      "source_rank": 105,
+      "expression": "on the shelf",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00718",
+      "scene_id": "SC50-0004",
+      "source_rank": 106,
+      "expression": "in the drawer",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00719",
+      "scene_id": "SC50-0004",
+      "source_rank": 107,
+      "expression": "at the back of the closet",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00720",
+      "scene_id": "SC50-0004",
+      "source_rank": 108,
+      "expression": "within reach",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00721",
+      "scene_id": "SC50-0004",
+      "source_rank": 109,
+      "expression": "out of reach",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00722",
+      "scene_id": "SC50-0004",
+      "source_rank": 110,
+      "expression": "on display",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00723",
+      "scene_id": "SC50-0004",
+      "source_rank": 111,
+      "expression": "out of sight",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00724",
+      "scene_id": "SC50-0004",
+      "source_rank": 112,
+      "expression": "in its place",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00725",
+      "scene_id": "SC50-0004",
+      "source_rank": 113,
+      "expression": "tidy",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00726",
+      "scene_id": "SC50-0004",
+      "source_rank": 114,
+      "expression": "neat",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00727",
+      "scene_id": "SC50-0004",
+      "source_rank": 115,
+      "expression": "organized",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00728",
+      "scene_id": "SC50-0004",
+      "source_rank": 116,
+      "expression": "cluttered",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00729",
+      "scene_id": "SC50-0004",
+      "source_rank": 117,
+      "expression": "messy",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00730",
+      "scene_id": "SC50-0004",
+      "source_rank": 118,
+      "expression": "dusty",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00731",
+      "scene_id": "SC50-0004",
+      "source_rank": 119,
+      "expression": "dirty",
+      "verdict": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00732",
+      "scene_id": "SC50-0004",
+      "source_rank": 120,
+      "expression": "spotless",
+      "verdict": "PASS"
+    }
+  ]
+}
