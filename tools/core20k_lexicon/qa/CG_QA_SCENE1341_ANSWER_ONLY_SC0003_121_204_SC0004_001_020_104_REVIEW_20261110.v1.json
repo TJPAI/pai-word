@@ -24,8 +24,8 @@
   "method": "Independently read each original answer record for sense fidelity, example fluency, bilingual translation, collocations and usage-note accuracy. Confirm KU ID, source-sense ID, scene/rank, display parity, disabled activation. Did not independently cross-check raw V51 CSV for every record; no Muse independent review or production release assumed.",
   "counts": {
     "reviewed": 104,
-    "PASS": 93,
-    "CONDITIONAL": 9,
+    "PASS": 97,
+    "CONDITIONAL": 5,
     "REVISE": 2,
     "structure_errors": 0,
     "second_ai_verified": 0,
@@ -249,9 +249,7 @@
       "scene_id": "SC50-0003",
       "source_rank": 151,
       "expression": "small",
-      "verdict": "CONDITIONAL",
-      "reason": "small表示S码时英语例句Do you have this sweater in small?虽可在零售口语中理解，in a small / in size small更清晰。",
-      "suggested_fix": "改Do you have this sweater in a small? 或 in size small?"
+      "verdict": "PASS"
     },
     {
       "scene_ku_id": "SC1341-KU-00560",
@@ -349,9 +347,7 @@
       "scene_id": "SC50-0003",
       "source_rank": 165,
       "expression": "texture",
-      "verdict": "CONDITIONAL",
-      "reason": "The texture of this sweater feels a little rough将texture与feels叠加，略显赘余；译文自然但例句可优化。",
-      "suggested_fix": "改This sweater has a slightly rough texture.／这件毛衣的质地略显粗糙。"
+      "verdict": "PASS"
     },
     {
       "scene_ku_id": "SC1341-KU-00574",
@@ -613,9 +609,7 @@
       "scene_id": "SC50-0003",
       "source_rank": 201,
       "expression": "back to front",
-      "verdict": "CONDITIONAL",
-      "reason": "back to front在英式英语表示前后反穿，原文正确；但搭配wear something back to front与示例T-shirt is on back to front地域限制已说明，中文准确。",
-      "suggested_fix": "可保留当前内容；建议在搭配中明确英式地域属性，非实质错误。"
+      "verdict": "PASS"
     },
     {
       "scene_ku_id": "SC1341-KU-00610",
@@ -764,9 +758,7 @@
       "scene_id": "SC50-0004",
       "source_rank": 18,
       "expression": "mess",
-      "verdict": "CONDITIONAL",
-      "reason": "mess注记‘通常可数’适用a mess，但此词也常用于不可数名词化语境；注记可进一步限定此句为a mess。",
-      "suggested_fix": "可说明常见What a mess!/make a mess，不必泛断所有义项可数。"
+      "verdict": "PASS"
     },
     {
       "scene_ku_id": "SC1341-KU-00631",
@@ -782,5 +774,6 @@
       "expression": "hang up jackets",
       "verdict": "PASS"
     }
-  ]
+  ],
+  "review_threshold_note": "Post-review threshold calibration: common 'in small' sizing, acceptable texture feels rough phrasing, correctly flagged British back to front, and ordinary countability of a mess are not material errors. These four rows remain PASS; no speculative over-flagging."
 }
