@@ -1,0 +1,223 @@
+{
+  "schema": "cg-qa-mu-qa-original-evidence-reconciliation-v1",
+  "date": "2026-11-10",
+  "original_source": {
+    "drive_url": "https://drive.google.com/file/d/17kzDFpscwqLss7kDP4AROSQhLDX9zGtl/view",
+    "file_name": "mu_qa_248_verdicts.jsonl",
+    "sha256": "6a1ccf61139464a8356aac85d2953ce2069352a395f1d207d264b2d52640f226",
+    "bytes": 69948,
+    "summary_drive_url": "https://drive.google.com/file/d/1xC2qgB-4KohHhmC58cQdSHyK-B7r-bwe/view",
+    "summary_sha256": "28e918b802325ff83295592e372f41b3caa744bf9f83f555ec83124597f660c9"
+  },
+  "scope": "SC1341-KU-00385 through SC1341-KU-00632",
+  "verification": "Fetched original private Drive JSONL and summary, locally independently recomputed file SHA-256, parsed 248 unique rows, PASS236 CONDITIONAL9 REVISE3. Independently fetched 7 author packs, matched all 7 Git blobs; verified 248 IDs contiguous and matched CG ledger records. Preserve MU-QA separately from MU-ENTEACH.",
+  "summary": {
+    "mu_qa_covered": 248,
+    "mu_qa_pass": 236,
+    "mu_qa_conditional": 9,
+    "mu_qa_revise": 3,
+    "mu_qa_hold": 0,
+    "source_sha256_verified": true,
+    "source_author_packs_7_blob_matches": 7,
+    "comparison_label_disputes": 24,
+    "dual_certified": 0,
+    "release_approved": 0
+  },
+  "nonpass": [
+    {
+      "scene_ku_id": "SC1341-KU-00390",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00399",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00404",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00406",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00407",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00408",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00449",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00476",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00493",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00504",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00515",
+      "verdict": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00610",
+      "verdict": "CONDITIONAL"
+    }
+  ],
+  "different_label_records": [
+    {
+      "scene_ku_id": "SC1341-KU-00385",
+      "expression": "clean up spilled water",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00390",
+      "expression": "treat a small cut",
+      "cg": "CONDITIONAL",
+      "mu_qa": "REVISE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00393",
+      "expression": "wipe up the mess",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00406",
+      "expression": "apply lip balm",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00407",
+      "expression": "brush twice a day",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00408",
+      "expression": "wash off makeup",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00428",
+      "expression": "pants",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00430",
+      "expression": "dress code",
+      "cg": "REVISE",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00434",
+      "expression": "put on a uniform",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00449",
+      "expression": "fasten a belt",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00458",
+      "expression": "wardrobe",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00476",
+      "expression": "robe",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00493",
+      "expression": "watch",
+      "cg": "PASS",
+      "mu_qa": "REVISE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00515",
+      "expression": "sleeveless",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00523",
+      "expression": "solid color",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00527",
+      "expression": "pastel",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00539",
+      "expression": "lightweight",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00579",
+      "expression": "mirror",
+      "cg": "REVISE",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00583",
+      "expression": "broken zipper",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00585",
+      "expression": "tear in the fabric",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00591",
+      "expression": "change a stained shirt",
+      "cg": "REVISE",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00598",
+      "expression": "pack an extra layer",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00610",
+      "expression": "get changed",
+      "cg": "PASS",
+      "mu_qa": "CONDITIONAL"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00625",
+      "expression": "shelf",
+      "cg": "CONDITIONAL",
+      "mu_qa": "PASS"
+    }
+  ],
+  "note": "Historical CG verdicts and MU-ENTEACH judgments not overwritten. MU-QA reviewed same 248 KU separately; adding them is source coverage, not new KU or release certification."
+}
