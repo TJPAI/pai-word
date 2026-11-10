@@ -58,4 +58,13 @@ for(const cls of [
 ])assert(html.includes(cls),'Scene500 DOM contract missing: '+cls);
 assert(!html.includes('Fidelity patch'),'do not reintroduce isolated Scene1341 layout imitation');
 assert(html.includes('id="example-speak"'),'native answer example playback must exist');
+
+const learningFace=html.slice(html.indexOf('<section id="learning"'),html.indexOf('</section>',html.indexOf('<section id="learning"')));
+assert(/class="word-line"[^>]*><div class="word"/.test(learningFace),'word-only Scene500 first row');
+assert(/class="ipa-line"[^>]*>.*?class="ipa".*?class="speak-btn"/s.test(learningFace),'speaker must share native IPA row');
+assert(/class="recall-controls-row"[^>]*>.*?class="recall-cue".*?class="auto-word-toggle"/s.test(learningFace),'auto browse must share native recall row');
+assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift the study hero geometry');
+assert(html.includes('#learning .demo-qa{display:none!important}'),'staging QA notices must not add another row on question/answer faces');
+assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
+assert(script.includes("const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json'"),'read-only draft source unchanged');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
