@@ -1,0 +1,133 @@
+{
+  "schema_version": "pai-scene1341-answer-only-v2-batch-intake-v1",
+  "batch_id": "CG-ENTEACH-NEXT-2000-AFTER-V51",
+  "batch_target": 2000,
+  "release_status": "INTAKE_ONLY_NOT_KU",
+  "previous_authoring_baseline": {
+    "scope": "V51 10 scenes",
+    "authored": 2038,
+    "source_blob": "eaa6d729bb04a9bedbafd8e1081a11fc791caa39",
+    "manifest": "tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-2038.json"
+  },
+  "new_source_index": {
+    "provider": "Google Drive",
+    "sheet_title": "PAI_Word_Scene1341_Three_Lines_Master_20261108_V1",
+    "sheet_url": "https://docs.google.com/spreadsheets/d/1wwovngD2kKc1iLFJsNdfoPDkUAm02yKt0BaqriSqhYE/edit",
+    "tab": "Master_1341",
+    "range": "A12:L19",
+    "index_version": "R9",
+    "verification_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+    "authoritative_source_content_loaded": false,
+    "source_snapshot_sha": null
+  },
+  "planned_scope": [
+    {
+      "scene_id": "SC50-0011",
+      "indexed_candidate_count": 255,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 255
+      },
+      "planned_ku_count": 255,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0012",
+      "indexed_candidate_count": 253,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 253
+      },
+      "planned_ku_count": 253,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0013",
+      "indexed_candidate_count": 245,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 245
+      },
+      "planned_ku_count": 245,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0014",
+      "indexed_candidate_count": 243,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 243
+      },
+      "planned_ku_count": 243,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0015",
+      "indexed_candidate_count": 250,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 250
+      },
+      "planned_ku_count": 250,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0016",
+      "indexed_candidate_count": 298,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 298
+      },
+      "planned_ku_count": 298,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0017",
+      "indexed_candidate_count": 232,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 232
+      },
+      "planned_ku_count": 232,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    },
+    {
+      "scene_id": "SC50-0018",
+      "indexed_candidate_count": 234,
+      "planned_source_ranks": {
+        "start": 1,
+        "end": 224
+      },
+      "planned_ku_count": 224,
+      "source_status": "R9_INDEXED_SOURCE_PARTLY_VERIFIED",
+      "ku_status": "NOT_AUTHORED_SOURCE_GATE_PENDING"
+    }
+  ],
+  "counts": {
+    "planned": 2000,
+    "source_records_verified": 0,
+    "answer_ku_authored": 0,
+    "certified": 0,
+    "production_playable": 0
+  },
+  "policy": {
+    "batch_size": 2000,
+    "submission_frequency": "one consolidated batch delivery per 2000 authored KU instead of 50",
+    "question_payloads": false,
+    "retain_source_sense_ids": true,
+    "retain_v51_immutable": true,
+    "independent_language_qa_required": true,
+    "activation_allowed": false,
+    "do_not_synthesize_senses_from_index_counts": true,
+    "source_promotion_gate": "Read authoritative full candidate records for SC50-0011 to SC50-0018; validate source IDs, scene-rank, Sense meanings, deduplication and immutable snapshot before authoring."
+  },
+  "blocker": "R9 Master indexes candidate counts, but the underlying full Sense records are not verified in this session. Index rows alone cannot support authoring 2000 bilingual KU without inventing senses.",
+  "next_required": "Locate and validate complete R9 source files; replace preliminary scope with frozen source-derived first 2000 eligible records and produce answer-only content."
+}
