@@ -43,6 +43,45 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 .demo-learning .study-body .speak-btn{font-size:20px}
 .demo-learning .study-body .word{font-size:44px}
 [hidden]{display:none!important}
+
+/* Fidelity patch from user-supplied Scene500 iPhone screenshot: restricted to this preview. */
+#learning.demo-learning{max-width:none;height:100dvh;position:relative;background:#fff;overscroll-behavior:contain}
+#learning .study-top{height:104px;min-height:104px;display:grid;grid-template-columns:66px minmax(0,1fr) 110px;align-items:center;padding:10px 20px 4px;border-bottom:1px solid #ededed}
+#learning .back-btn{font-size:54px;line-height:1;align-self:center;text-align:left;border:0;background:none;font-weight:450}
+#learning .study-scene{font-size:25px!important;font-weight:760;text-align:center;line-height:1.18;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#learning .study-progress{font-size:15px!important;text-align:right;line-height:1.65;color:#525252;white-space:normal}
+#learning .study-body{flex:1;padding:0 20px 10px;min-height:0;overflow:auto;touch-action:pan-y;position:relative}
+#learning .word-hero,#learning.revealed .word-hero{min-height:245px!important;position:relative;padding:12px 0 15px;display:flex;align-items:center;justify-content:flex-start}
+#learning .word-line{display:flex;flex-direction:column;align-items:center;width:100%;gap:13px}
+#learning .word{font-size:clamp(36px,9vw,56px)!important;font-weight:780;line-height:1.15;letter-spacing:-.04em;max-width:calc(100% - 80px);text-align:center;overflow-wrap:anywhere}
+#learning .ipa-line{min-height:31px;color:#666;font-size:24px;text-align:center}
+#learning .ipa-line:empty::before{content:"";display:none}
+#learning .cue-center{font-size:16px;color:#909090;text-align:center;padding-top:10px}
+#learning .sound-tools{position:absolute;right:0;top:95px;display:flex;flex-direction:column;align-items:center;gap:18px;z-index:3}
+#learning .sound-tools button{width:48px;height:48px;display:grid;place-items:center;border:0;background:none;font-size:28px;border-radius:12px}
+#learning .sound-tools #auto-toggle{background:#3777e5;color:#fff;font-weight:800;box-shadow:0 3px 8px #1d4ac531}
+#learning .sound-tools #auto-toggle.is-on{background:#19498f}
+#learning .recall-cue,#learning .tap-hint{display:none}
+#learning .answer{border-top:1px solid #dedede;margin-top:8px;padding:0 0 20px}
+#learning .answer-section{padding:8px 0 10px;border-bottom:1px solid #e6e6e6}
+#learning .answer-section strong,#learning .answer-title{font-size:15px;color:#848484;font-weight:600}
+#learning .demo-meaning{font-size:22px;line-height:1.45;font-weight:500;color:#151515}
+#learning .demo-en{font-size:19px;line-height:1.55;color:#161616}
+#learning .demo-zh,#learning .demo-colloc,#learning .demo-note{font-size:16px;line-height:1.55}
+#learning .recall-correction{grid-template-columns:repeat(3,minmax(0,1fr));position:relative!important;bottom:auto!important;gap:12px;padding:12px 18px calc(17px + env(safe-area-inset-bottom,0px));border-top:1px solid #e2e2e2;flex:0 0 auto;min-height:110px}
+#learning .recall-correction button{min-height:82px;font-size:24px;font-weight:740;border-radius:24px}
+#learning .recall-correction button:nth-child(1){background:#faebea;color:#a13e31;border:2px solid #b54d3d}
+#learning .recall-correction button:nth-child(2){background:#fcf3db;color:#826921;border:1.5px solid #ebd99f}
+#learning .recall-correction button:nth-child(3){background:#e8f3eb;color:#2d7047;border:1.5px solid #badbc7}
+#learning .recall-correction button:disabled{opacity:1}
+#learning .recall-note{min-height:24px;font-size:13px;padding:3px 14px}
+#learning .demo-qa{font-size:11px;padding:2px 14px;min-height:15px}
+#learning .demo-ops{display:none}
+#learning .handwrite-board{position:absolute;inset:0;z-index:6;touch-action:none;background:rgba(255,255,255,.07)}
+#learning .handwrite-board[hidden]{display:none!important}
+#learning #draw-canvas{display:block;width:100%;height:100%;touch-action:none}
+#learning .handwrite-indicator{position:absolute;left:12px;top:10px;z-index:7;font-size:12px;color:#2d63aa;background:#e6f0ff;border-radius:9px;padding:7px}
+@media(max-width:380px){#learning .study-top{grid-template-columns:44px minmax(0,1fr) 100px;padding-left:12px;padding-right:12px}#learning .study-scene{font-size:21px!important}#learning .recall-correction{padding-left:10px;padding-right:10px;gap:8px}#learning .recall-correction button{font-size:20px}}
 </style></head>
 <body><div id="app">
 <section class="home-dashboard demo-home" id="home">
@@ -55,16 +94,17 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。</p></div>
 </section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
- <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress" id="progress">1 / 10</div></div>
+ <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><div id="batch-position">第1/1批</div><div id="progress">本批已学 0/25</div></div></div>
  <div class="study-body" id="studybody">
-   <div class="word-hero" id="hero"><div class="word-line"><span class="word" id="expression">加载中</span><button class="speak-btn" id="speak" aria-label="朗读英文表达">🔊</button></div><p class="recall-cue">先回忆释义，再点击卡片显示答案</p><p class="tap-hint" id="tap-hint">轻点空白处显示答案</p></div>
-   <div class="answer" id="answer" hidden><div class="answer-section"><div class="demo-meaning" id="meaning"></div></div>
-    <div class="answer-section"><div class="demo-en" id="example"></div><div class="demo-zh" id="translation"></div></div>
+   <div class="word-hero" id="hero"><div class="word-line"><span class="word" id="expression">加载中</span><div class="ipa-line" id="ipa" aria-label="音标"></div><div class="cue-center" id="cue">回忆词义</div></div><div class="sound-tools"><button class="speak-btn" id="speak" aria-label="朗读英文表达">🔊</button><button id="auto-toggle" aria-label="自动浏览开关" title="自动浏览">↻</button></div><p class="tap-hint" id="tap-hint">轻点空白处显示答案</p></div>
+   <div class="handwrite-board" id="handwrite" hidden><span class="handwrite-indicator">手写模式 · 长按退出</span><canvas id="draw-canvas"></canvas></div>
+   <div class="answer" id="answer" hidden><div class="answer-section"><strong>释义</strong><div class="demo-meaning" id="meaning"></div></div>
+    <div class="answer-section"><strong>英文例句</strong><div class="demo-en" id="example"></div><div class="demo-zh" id="translation"></div></div>
     <div class="answer-section"><strong>自然搭配</strong><div class="demo-colloc" id="collocations"></div></div>
     <div class="answer-section"><strong>用法提醒</strong><div class="demo-note" id="usage"></div></div></div>
  </div>
  <p class="demo-qa" id="qa" title="独立审核意见"></p>
- <p class="recall-note" id="demo-note">演示模式：点击词卡翻面 · 评分只模拟切词，不保存记录</p>
+ <p class="recall-note" id="demo-note">点空白回题目，左右滑切词，上下滑换批，长按手写或擦除</p>
  <div class="demo-ops"><button id="prev" type="button">上一张</button><button id="reveal" type="button">显示答案</button><button id="next" type="button">下一张</button></div>
  <div class="recall-correction" role="group" aria-label="模拟评分，不保存SRS"><button type="button" data-grade="again" disabled>不知道</button><button type="button" data-grade="hard" disabled>模糊</button><button type="button" data-grade="good" disabled>知道</button></div>
 </section></div>
@@ -75,6 +115,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 const FILES=['enteach-v51-first20-answer-only-v2.json','scene1341-v51-sc0001-answer-only-021-050.v2.json','scene1341-v51-sc0001-answer-only-051-100.v2.json','scene1341-v51-sc0001-answer-only-101-130.v2.json','scene1341-v51-sc0001-answer-only-131-180.v2.json','scene1341-v51-sc0001-answer-only-181-234.v2.json','scene1341-v51-sc0002-answer-only-001-020.v2.json','scene1341-v51-sc0002-answer-only-021-070.v2.json'];
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
+const BATCH=25;let autoTimer=null,autoDelay=2000,handMode=false,holdTimer=null,pointerDown=false;
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
 const available=id=>id==='SC50-0001'?234:id==='SC50-0002'?70:0;
 const subset=()=>items.filter(x=>x.scene_id===sceneId);
@@ -140,17 +181,17 @@ function renderHome(){
 }
 function openStudy(id){
  if(!available(id)||!items.length)return;
- sceneId=id;lastScene=id;index=0;revealed=false;
+ stopAuto();sceneId=id;lastScene=id;index=0;revealed=false;exitHand();
  $('home').hidden=true;$('learning').hidden=false;
  set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
  renderCard();
 }
-function home(){ $('learning').hidden=true;$('home').hidden=false;renderHome() }
+function home(){ stopAuto();exitHand();$('learning').hidden=true;$('home').hidden=false;renderHome() }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  $('learning').classList.toggle('revealed',revealed);
- set('scene-title',label(sceneId));set('progress',(index+1)+' / '+cards.length);
- set('expression',r.expression);set('meaning',r.answer.meaning_zh);
+ set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
+ set('expression',r.expression);set('ipa',r.ipa||r.ipa_us||'');set('meaning',r.answer.meaning_zh);
  set('example',r.answer.example_en);set('translation',r.answer.example_zh);
  set('collocations',r.answer.collocations.join(' · '));set('usage',[r.answer.usage_note,r.answer.contrast_note].filter(Boolean).join(' '));
  $('answer').hidden=!revealed;$('tap-hint').hidden=revealed;
@@ -161,19 +202,33 @@ function renderCard(){
  set('demo-note','仅模拟评分 · 本次知道'+transientRatings.good+' / 模糊'+transientRatings.hard+' / 不知道'+transientRatings.again+' · 不写SRS');
  $('studybody').scrollTop=0;
 }
-function show(){if(!revealed){revealed=true;renderCard()}}
-function move(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));revealed=false;renderCard()}
+function show(){revealed=!revealed;renderCard()}
+function move(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));revealed=false;clearHand();renderCard()}
+function moveBatch(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,Math.floor(index/BATCH)*BATCH+delta*BATCH));revealed=false;clearHand();renderCard()}
 function demoGrade(grade){if(!revealed||!['again','hard','good'].includes(grade))return;transientRatings[grade]++;if(index<subset().length-1)move(1);else{revealed=false;renderCard();set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene));
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 $('reveal').addEventListener('click',show);$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
-$('hero').addEventListener('click',e=>{if(!e.target.closest('#speak'))show()});
+$('hero').addEventListener('click',e=>{if(!e.target.closest('button')){e.stopPropagation();show()}});
 $('studybody').addEventListener('click',e=>{if(!e.target.closest('button,a,details'))show()});
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
 $('speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const s=new SpeechSynthesisUtterance(subset()[index].expression);s.lang='en-US';window.speechSynthesis.speak(s)});
-let start=null;$('studybody').addEventListener('touchstart',e=>{if(e.touches.length===1)start={x:e.touches[0].clientX,y:e.touches[0].clientY}},{passive:true});
-$('studybody').addEventListener('touchend',e=>{if(!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>75&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1);else if(dy< -90&&!revealed)show()},{passive:true});
+let start=null;$('studybody').addEventListener('touchstart',e=>{if(handMode)return;if(e.touches.length===1){start={x:e.touches[0].clientX,y:e.touches[0].clientY};holdTimer=setTimeout(()=>{enterHand();start=null},700)}},{passive:true});
+$('studybody').addEventListener('touchmove',e=>{if(start&&(Math.abs(e.touches[0].clientX-start.x)>16||Math.abs(e.touches[0].clientY-start.y)>16)){clearTimeout(holdTimer);holdTimer=null}},{passive:true});
+$('studybody').addEventListener('touchend',e=>{clearTimeout(holdTimer);holdTimer=null;if(handMode||!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1);else if(Math.abs(dy)>85&&Math.abs(dy)>Math.abs(dx)*1.2)moveBatch(dy<0?1:-1)},{passive:true});
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}const btn=$('auto-toggle');if(btn)btn.classList.remove('is-on')}
+function startAuto(){stopAuto();$('auto-toggle').classList.add('is-on');autoTimer=setInterval(()=>{if($('learning').hidden||handMode){stopAuto();return}if(!revealed)show();else if(index<subset().length-1)move(1);else stopAuto()},autoDelay)}
+$('auto-toggle').addEventListener('click',e=>{e.stopPropagation();if(autoTimer){stopAuto()}else{autoDelay=autoDelay===2000?600:2000;startAuto()}});
+function clearHand(){const canvas=$('draw-canvas'),ctx=canvas.getContext('2d');ctx?.clearRect(0,0,canvas.width,canvas.height)}
+function enterHand(){stopAuto();handMode=true;$('handwrite').hidden=false;const canvas=$('draw-canvas');const rect=canvas.getBoundingClientRect();canvas.width=Math.max(1,Math.floor(rect.width*devicePixelRatio));canvas.height=Math.max(1,Math.floor(rect.height*devicePixelRatio));canvas.getContext('2d').scale(devicePixelRatio,devicePixelRatio)}
+function exitHand(){handMode=false;$('handwrite').hidden=true;clearHand()}
+const canvas=$('draw-canvas');
+canvas.addEventListener('pointerdown',e=>{if(!handMode)return;pointerDown=true;canvas.setPointerCapture(e.pointerId);const rect=canvas.getBoundingClientRect();const c=canvas.getContext('2d');c.strokeStyle='#174c83';c.lineWidth=3;c.lineCap='round';c.beginPath();c.moveTo(e.clientX-rect.left,e.clientY-rect.top)});
+canvas.addEventListener('pointermove',e=>{if(!pointerDown||!handMode)return;const rect=canvas.getBoundingClientRect();const c=canvas.getContext('2d');c.lineTo(e.clientX-rect.left,e.clientY-rect.top);c.stroke()});
+canvas.addEventListener('pointerup',()=>{pointerDown=false});canvas.addEventListener('pointercancel',()=>{pointerDown=false});
+let canvasHold=null;const hand=$('handwrite');hand.addEventListener('touchstart',e=>{if(e.touches.length===1)canvasHold=setTimeout(()=>{exitHand()},700)},{passive:true});hand.addEventListener('touchmove',()=>{clearTimeout(canvasHold)},{passive:true});hand.addEventListener('touchend',()=>{clearTimeout(canvasHold)},{passive:true});
+
 document.addEventListener('keydown',e=>{if($('learning').hidden)return;if(e.key==='ArrowLeft')move(-1);else if(e.key==='ArrowRight')move(1);else if(e.key===' '){e.preventDefault();show()}else if(e.key==='Escape')home()});
 load();
 </script></body></html>
