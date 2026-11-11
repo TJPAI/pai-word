@@ -127,8 +127,8 @@ assert(!html.includes('#learning .word-hero .ipa-line{'),
 assert(script.includes("suppressTapUntil=Date.now()+700"),'swipe must suppress synthetic click');
 assert(script.includes("Math.abs(dx)>=65") && script.includes("Math.abs(dy)>=75") &&
  script.includes("Math.abs(dy)*1.3"),'native Scene500 swipe gesture thresholds');
-assert(script.includes("holdTimer=setTimeout(()=>{enterHand();start=null},600)"),
- 'long press must use native 600ms threshold');
+assert(!script.includes('function enterHand()') && !html.includes('class="handwrite-board"'),
+ 'old bespoke Scene1341 handwriting must be removed in favor of native Scene500 scratch');
 
 const phaseAssetPath='rebuild-preview/scene1341-readonly/scene500-readonly-phase.js';
 const phaseSource=fs.readFileSync(phaseAssetPath,'utf8');
@@ -220,4 +220,37 @@ auto.stop();assert.equal(automaticTimers.size,0);
 auto.start();allowed=false;fireOne();
 assert.equal(auto.isEnabled(),false,'background/hidden/handwriting must fail closed');
 assert.equal(automaticTimers.size,0);
+
+const nativeScratchPath='rebuild-preview/scene1341-readonly/scene500-native-scratch.js';
+const nativeScratch=fs.readFileSync(nativeScratchPath,'utf8');
+new vm.Script(nativeScratch,{filename:nativeScratchPath});
+const originalScratch=scene500Renderer.slice(scene500Renderer.indexOf('// Ephemeral handwriting mode:'));
+assert(originalScratch.startsWith('// Ephemeral handwriting mode:') && originalScratch.includes("ctx.quadraticCurveTo(lastInk.x,lastInk.y,mid.x,mid.y)"),
+ 'active Scene500 native handwriting source and smoothed stroke implementation required');
+assert(html.includes('<script src="./scene500-native-scratch.js"></script>'),
+ 'native handwriting controller must load on the isolated page');
+assert(html.includes('class="pai-scratch-area"') && html.includes('class="pai-scratch-canvas"'),
+ 'question and answer must use native Scene500 scratch DOM');
+assert(!html.includes('class="handwrite-board"') && !html.includes('id="draw-canvas"'),
+ 'reject legacy cropped Scene1341 handwriting surface');
+for(const fragment of [
+ "ctx.quadraticCurveTo(lastInk.x,lastInk.y,mid.x,mid.y)",
+ "getCoalescedEvents",
+ "activeSurface.classList.remove('is-drawing')",
+ "window.PAI_SCENE1341_SCRATCH_RESET=reset",
+ "screen.appendChild(surface)",
+ "screen.classList.add('pai-scratch-active')",
+ "ordinaryTimer=setTimeout(()=>{",
+ "},600)",
+ "Math.hypot(e.clientX-ordinaryPress.x,e.clientY-ordinaryPress.y)>8",
+ "document.addEventListener('selectstart'"
+])assert(nativeScratch.includes(fragment),'native Scene500 scratch contract missing: '+fragment);
+assert(!['localStorage','sessionStorage','indexedDB','.commit('].some(t=>nativeScratch.includes(t)),
+ 'scratch subsystem must not persist unapproved KU or SRS');
+assert(script.includes('const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true') &&
+ script.includes('window.render=renderCard;') &&
+ script.includes('window.getVisibleLearningUnit=()=>'),
+ 'source controller must consume only isolated Scene1341 read-only view adapter');
+assert(script.includes('resetScratch();phaseController.navigate('),
+ 'word and batch navigation must reset handwriting safely');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
