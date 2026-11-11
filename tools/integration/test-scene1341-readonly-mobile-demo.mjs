@@ -32,7 +32,7 @@ assert(script.includes('尚无本预览对应的逐条QA证据'));
 assert(html.includes('scene500-mobile.css'));
 assert(html.includes('scene500-learning.css'));
 assert(html.includes('scene500-home.css'));
-for(const speed of [200,600,2000,5000])assert(html.includes('value="'+speed+'"'));
+for(const speed of [900,1500,3000,6000])assert(html.includes('value="'+speed+'"'));
 for(const file of ['scene500-mobile.css','scene500-learning.css','scene500-home.css'])
  assert(fs.statSync('rebuild-preview/scene1341-readonly/'+file).size>0);
 
@@ -195,10 +195,10 @@ assert(script.includes('createReadOnlyAutoBrowse(') &&
  'Scene1341 must use Scene500-like speech-idle and correction-idle AUTO NEXT, not automatic answer flip');
 assert(!script.includes('if(!revealed)show();else if(index<subset().length-1)move(1)'),
  'old alternate reveal/move auto-browse loop must never return');
-let automaticID=0,busy=false,allowed=true;
+let automaticID=0,busy=false,speaking=false,allowed=true;
 const automaticTimers=new Map(),autoMoves=[],autoStates=[];
 const auto=api.createReadOnlyAutoBrowse({
- shouldRun:()=>allowed,isBusy:()=>busy,
+ shouldRun:()=>allowed,isBusy:()=>busy,isSpeaking:()=>speaking,
  navigate:()=>{autoMoves.push('next');return autoMoves.length<3},
  onState:on=>autoStates.push(on),
  schedule:(fn,ms)=>{const id=++automaticID;automaticTimers.set(id,{fn,ms});return id},
@@ -209,17 +209,19 @@ const fireOne=()=>{
  assert(first,'auto timer expected');
  automaticTimers.delete(first[0]);first[1].fn();return first[1].ms;
 };
-assert.equal(auto.setDelay(600),true);
+assert.equal(auto.getDelay(),1500,'Scene500 native default is 快: 1.5s normal wait');
+assert.equal(auto.setDelay(1500),true);
+assert.equal(auto.setDelay(600),false,'post-speech 0.6s is not itself a speed tier');
 assert.equal(auto.setDelay(1234),false);
 auto.start();assert.equal(auto.isEnabled(),true);
-assert.equal([...automaticTimers.values()][0].ms,600);
-busy=true;assert.equal(fireOne(),600);
+assert.equal([...automaticTimers.values()][0].ms,1500);
+busy=true;speaking=true;assert.equal(fireOne(),1500);
 assert.equal(autoMoves.length,0,'speech in progress must block auto navigation');
 assert.equal([...automaticTimers.values()][0].ms,120);
-busy=false;assert.equal(fireOne(),120);
-assert.equal([...automaticTimers.values()][0].ms,600,'wait full selected interval AFTER speech is idle');
+busy=false;speaking=false;assert.equal(fireOne(),120);
+assert.equal([...automaticTimers.values()][0].ms,600,'native 快 tier waits 0.6s AFTER spoken word');
 assert.equal(fireOne(),600);assert.equal(autoMoves.length,1);
-auto.setDelay(200);assert.equal([...automaticTimers.values()][0].ms,200);
+auto.setDelay(900);assert.equal([...automaticTimers.values()][0].ms,900);
 auto.stop();assert.equal(automaticTimers.size,0);
 auto.start();allowed=false;fireOne();
 assert.equal(auto.isEnabled(),false,'background/hidden/handwriting must fail closed');
@@ -385,4 +387,13 @@ assert(script.includes("window.getSelection?.()?.toString()") &&
  script.includes("e.code==='Space'") &&
  script.includes("/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)"),
  'Scene500 text selection / focused control / Space key guards');
+
+assert(scene500Renderer.includes('onclick="event.stopPropagation()"'),
+ 'native Scene500 answer panel suppresses blank-click face switch');
+assert(script.includes("e.target.closest('.answer,button,a,input,select"),
+ 'Scene1341 answer-content taps must not toggle question face');
+assert(script.includes("isSpeaking:()=>!!window.speechSynthesis?.speaking"),
+ 'Scene1341 must distinguish busy grading from actual TTS for auto timer');
+assert(phaseSource.includes('const postSpeech=Object.freeze({900:200,1500:600,3000:2000,6000:5000})'),
+ 'normal 0.9/1.5/3/6 sec must map to 0.2/0.6/2/5 sec after audio');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
