@@ -190,7 +190,7 @@ assert(scene500Renderer.includes('const autoInterval=(speechEnded=false)=>') &&
  scene500Renderer.includes('const afterSpeech={0.9:0.2,1.5:0.6,3:2,6:5}'),
  'native Scene500 auto-browse waits for post-speech interval');
 assert(script.includes('createReadOnlyAutoBrowse(') &&
- script.includes('isBusy:()=>phaseController.state().pending||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)') &&
+ script.includes('isBusy:()=>phaseController.state().pending||wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)') &&
  script.includes('navigate:()=>{if(subset().length<2)return false;move(1,true);return true}'),
  'Scene1341 must use Scene500-like speech-idle and correction-idle AUTO NEXT, not automatic answer flip');
 assert(!script.includes('if(!revealed)show();else if(index<subset().length-1)move(1)'),
@@ -257,7 +257,7 @@ assert(script.includes('const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()=
  script.includes('window.render=renderCard;') &&
  script.includes('window.getVisibleLearningUnit=()=>'),
  'source controller must consume only isolated Scene1341 read-only view adapter');
-assert(script.includes('resetScratch();phaseController.navigate('),
+assert(script.includes('resetScratch();stopWordAudio();phaseController.navigate('),
  'word and batch navigation must reset handwriting safely');
 
 /* Active Scene500 scratch integration expects FINISH after delayed advance,
@@ -274,7 +274,7 @@ const manualMove=script.slice(script.indexOf('function move('),script.indexOf('f
 assert(manualMove.includes('if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.()'),
  'manual swipe during pending grade must cancel and settle scratch once');
 const blankTap=script.slice(script.indexOf('function show(){'),script.indexOf('function move('));
-assert(blankTap.includes('if(pending)window.PAI_SCRATCH_FINISH_RATING?.()'),
+assert(blankTap.includes('if(pending){stopWordAudio();window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}'),
  'blank tap cancellation must clear pending drawing rating');
 let advancedDuringRating=0,scratchFinishes=0;
 const delayedTasks=new Map();let taskID=0;
@@ -393,7 +393,7 @@ assert(scene500Renderer.includes('onclick="event.stopPropagation()"'),
  'native Scene500 answer panel suppresses blank-click face switch');
 assert(script.includes("e.target.closest('.answer,button,a,input,select"),
  'Scene1341 answer-content taps must not toggle question face');
-assert(script.includes("isSpeaking:()=>!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)"),
+assert(script.includes("isSpeaking:()=>wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)"),
  'Scene1341 must distinguish busy grading from actual TTS for auto timer');
 assert(phaseSource.includes('const postSpeech=Object.freeze({900:200,1500:600,3000:2000,6000:5000})'),
  'normal 0.9/1.5/3/6 sec must map to 0.2/0.6/2/5 sec after audio');
@@ -582,7 +582,7 @@ const ratedCallback=vm.runInNewContext(ratedExpr,{
  window:{speechSynthesis:synthesizer},
  SpeechSynthesisUtterance:class{constructor(v){this.text=v}},
  readOnlyPrefs:{get:()=>true},
- buildReadOnlyUtterance:text=>({text,lang:'en-US',rate:1}),
+ buildReadOnlyUtterance:text=>({text,lang:'en-US',rate:1}),wordAudioActive:false,
  setTimeout:(fn,ms)=>{const id=++speechTaskID;speechTasks.set(id,{fn,ms});return id},
  clearTimeout:id=>speechTasks.delete(id)
 });
@@ -671,7 +671,7 @@ const speakingEnd=script.indexOf('\n navigate:',busyEnd);
 assert(busyStart>0&&busyEnd>busyStart&&speakingEnd>busyEnd,'locate auto busy callbacks');
 const queueContext={
  phaseController:{state:()=>({pending:false})},
- window:{speechSynthesis:{speaking:false,pending:true}}
+ window:{speechSynthesis:{speaking:false,pending:true}},wordAudioActive:false
 };
 const extractAutoCallback=src=>vm.runInNewContext(
  '('+src.slice(src.indexOf(':')+1).trim().replace(/,$/,'')+')',queueContext
@@ -739,7 +739,7 @@ const batchContext={
  BATCH:10,index:7,revealed:true,
  subset:()=>batchRows,
  phaseController:{state:()=>({selected:null}),navigate:key=>{batchNavigates++;batchFace.navigate(key)}},
- resetScratch:()=>{batchScratchResets++},
+ resetScratch:()=>{batchScratchResets++},stopWordAudio:()=>{},
  playWord:()=>{batchSpeeches++},
  readOnlyPrefs:{get:()=>true},
  autoBrowse:{restart:()=>{batchRestarts++}},
@@ -776,7 +776,7 @@ assert(phaseSource.includes('function suspend(){') &&
 assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
  script.includes("if(document.hidden){\n  autoBrowse.pause();") &&
  script.includes("phaseController.suspend();") &&
- script.includes("window.speechSynthesis?.cancel();"),
+ script.includes("stopWordAudio();"),
  'Safari page-background event must stop rating, auto and voice together');
 let lifecycleID=0;
 const lifecycleTimers=new Map(),lifecycleGrades=[],lifecycleMoves=[];
@@ -931,4 +931,62 @@ for(const size of [currentBatch,largeBatch,largestBatch]){
  const target=((batch+1)%batches)*size;
  assert(target>=0&&target<rowCount,'native dynamic batch target must remain in bounds');
 }
+
+/* Regression: rating preserves the user's automatic-browse selection, pauses
+   its timer only, and re-arms it after rated navigation. */
+const gradeAutoCode=script.slice(script.indexOf('function demoGrade('),script.indexOf("$('back').addEventListener",script.indexOf('function demoGrade('))).trim();
+assert(gradeAutoCode.includes('autoBrowse.pause()')&&!gradeAutoCode.includes('stopAuto()'),
+ 'grading may pause automatic navigation but must never disable it');
+assert(advanceHandler.includes('autoBrowse.resume()')&&manualMove.includes('autoBrowse.restart()'),
+ 'rated next and final card must restore automatic navigation');
+let gradePauseCount=0,gradeStopCount=0,gradeChosen=null;
+const liveGrade=vm.runInNewContext('('+gradeAutoCode+')',{
+ $:()=>({hidden:false}),
+ window:{PAI_SCRATCH_BEGIN_RATING:()=>{}},
+ autoBrowse:{pause:()=>{gradePauseCount++}},
+ stopAuto:()=>{gradeStopCount++},
+ phaseController:{choose:grade=>{gradeChosen=grade}}
+});
+liveGrade('good');
+assert.equal(gradeChosen,'good');
+assert.equal(gradePauseCount,1);
+assert.equal(gradeStopCount,0);
+
+/* Execute the REAL isolated word-audio handlers, including the Safari stale
+   callback race and changing to a next card with pronunciation disabled. */
+const wordAudioStart=script.indexOf('let wordAudioGeneration=0');
+const wordAudioEnd=script.indexOf("$('speak').addEventListener",wordAudioStart);
+assert(wordAudioStart>=0&&wordAudioEnd>wordAudioStart,'find shared speech lifecycle');
+const audioEvents=[],audioTimers=new Map();let audioTimerId=0;
+const audioSynth={
+ speaking:false,pending:false,
+ speak(u){audioEvents.push(['speak',u.text]);this.speaking=true;this.last=u},
+ cancel(){audioEvents.push(['cancel']);this.speaking=false;this.pending=false}
+};
+const activeAudio=vm.runInNewContext(script.slice(wordAudioStart,wordAudioEnd)+'\n({playWord,stopWordAudio,isActive:()=>wordAudioActive})',{
+ window:{speechSynthesis:audioSynth},document:{hidden:false},
+ SpeechSynthesisUtterance:class{},
+ buildReadOnlyUtterance:t=>({text:t,rate:.84}),
+ setTimeout:(fn,ms)=>{const id=++audioTimerId;audioTimers.set(id,{fn,ms});return id},
+ clearTimeout:id=>audioTimers.delete(id)
+});
+assert.equal(activeAudio.playWord('wake up'),true);
+const oldUtterance=audioSynth.last;
+assert.equal(activeAudio.isActive(),true);
+assert.equal(activeAudio.playWord('soon'),true);
+const newestUtterance=audioSynth.last;
+assert.deepEqual(audioEvents.map(e=>e[0]),['speak','cancel','speak']);
+oldUtterance.onend(); // Safari may deliver this after canceling the old word
+assert.equal(activeAudio.isActive(),true,'stale onend cannot mark NEW speech idle');
+newestUtterance.onend();
+assert.equal(activeAudio.isActive(),false);
+activeAudio.playWord('next');
+activeAudio.stopWordAudio();
+assert.equal(activeAudio.isActive(),false);
+assert.equal(audioTimers.size,0,'no lingering speech timeouts on silent new card');
+assert(script.includes('if(wordAudioActive||synthesis.speaking||synthesis.pending)'),
+ 'graded audio must wait for queued word utterances even before Safari sets speaking');
+assert(script.includes('stopWordAudio(); // Scene500 cancels previous word TTS on every card change'),
+ 'word navigation must stop old TTS regardless of next-card auto-pronounce setting');
+
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
