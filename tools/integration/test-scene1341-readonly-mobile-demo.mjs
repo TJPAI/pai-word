@@ -410,8 +410,11 @@ assert(script.includes('const keepDrawing=fromAuto&&scratchDrawing()') &&
  script.includes('if(!keepDrawing)resetScratch()') &&
  script.includes('if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false'),
  'auto next must preserve and subsequently restore native scratch overlay');
-assert(script.includes("if(document.hidden)autoBrowse.pause();else autoBrowse.resume()"),
- 'visibilitychange pauses and resumes auto without losing selected toggle');
+assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
+ script.includes("if(document.hidden){\n  autoBrowse.pause();") &&
+ script.includes('phaseController.suspend();') &&
+ script.includes('}else autoBrowse.resume();'),
+ 'visibilitychange must pause auto and pending graded answer without losing selected toggle');
 assert(phaseSource.includes('function pause(){clear()}') &&
  phaseSource.includes('function resume(){if(enabled){clear();next()}}'),
  'visibility pause-resume must preserve enabled flag but cancel timers');
