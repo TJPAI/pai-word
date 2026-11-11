@@ -82,9 +82,9 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="handwrite-board" id="handwrite" hidden><span class="handwrite-indicator">手写模式 · 长按退出</span><canvas id="draw-canvas"></canvas></div>
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
-   <div class="answer-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
+   <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" data-approved-teaching-ku><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
-   <div class="answer-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
+   <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
   </div>
  </div>
  <p class="demo-qa" id="qa" title="独立审核意见"></p>
@@ -190,7 +190,15 @@ function renderCard(){
  set('expression',r.expression);set('ipa',r.ipa||r.ipa_us||'');set('meaning',r.answer.meaning_zh);
  $('example-speak').dataset.speak=r.answer.example_en;
  set('example',r.answer.example_en);set('translation',r.answer.example_zh);
- set('collocations',r.answer.collocations.join(' · '));set('usage',[r.answer.usage_note,r.answer.contrast_note].filter(Boolean).join(' '));
+ // Answer-only contract: optional teaching sections must never render empty
+ // or leak editorial/QA/source metadata into the learner-facing answer.
+ const collocations=Array.isArray(r.answer.collocations)?r.answer.collocations.filter(v=>typeof v==='string'&&v.trim()):[];
+ const qaInternal=/待独立审核|尚未独立审核|待复核|待审核|源项为|增补候选|编辑候选|审核状态|QA状态|审核通过|发布门禁|作者草稿|待认证|未认证|release[_ -]?status|source[_ -]?rank/i;
+ const teachingNotes=[r.answer.usage_note,r.answer.contrast_note].filter(v=>typeof v==='string'&&v.trim()&&!qaInternal.test(v));
+ set('collocations',collocations.join(' · '));
+ set('usage',teachingNotes.join(' '));
+ $('collocations-section').hidden=collocations.length===0;
+ $('usage-section').hidden=teachingNotes.length===0;
  $('answer').hidden=!revealed;$('tap-hint').hidden=revealed;
  $('prev').disabled=index===0;$('next').disabled=index===cards.length-1;
  $('reveal').disabled=revealed;$('reveal').textContent=revealed?'已显示答案':'显示答案';
