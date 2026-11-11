@@ -396,4 +396,42 @@ assert(script.includes("isSpeaking:()=>!!window.speechSynthesis?.speaking"),
  'Scene1341 must distinguish busy grading from actual TTS for auto timer');
 assert(phaseSource.includes('const postSpeech=Object.freeze({900:200,1500:600,3000:2000,6000:5000})'),
  'normal 0.9/1.5/3/6 sec must map to 0.2/0.6/2/5 sec after audio');
+
+/* Native Scene500 auto-browse remains enabled across background and supports
+ * continuing to the next item while a scratch overlay is active. */
+assert(scene500Renderer.includes("const keepDrawing=source==='auto'&&window.PAI_SCRATCH_DRAWING?.()===true"),
+ 'native Scene500 only preserves drawing overlay for automatic navigation');
+assert(scene500Renderer.includes("if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true"),
+ 'active Scene500 uses scratch transition flag for auto next');
+assert(script.includes("shouldRun:()=>!$('learning').hidden&&!document.hidden,"),
+ 'auto browse must NOT stop merely because scratch drawing is active');
+assert(script.includes('const keepDrawing=fromAuto&&scratchDrawing()') &&
+ script.includes('if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true') &&
+ script.includes('if(!keepDrawing)resetScratch()') &&
+ script.includes('if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false'),
+ 'auto next must preserve and subsequently restore native scratch overlay');
+assert(script.includes("if(document.hidden)autoBrowse.pause();else autoBrowse.resume()"),
+ 'visibilitychange pauses and resumes auto without losing selected toggle');
+assert(phaseSource.includes('function pause(){clear()}') &&
+ phaseSource.includes('function resume(){if(enabled){clear();next()}}'),
+ 'visibility pause-resume must preserve enabled flag but cancel timers');
+let pauseID=0,canAuto=true;const pauseTimers=new Map();
+const backgroundAuto=api.createReadOnlyAutoBrowse({
+ shouldRun:()=>canAuto,isBusy:()=>false,isSpeaking:()=>false,
+ navigate:()=>true,onState:()=>{},
+ schedule:(fn,ms)=>{const id=++pauseID;pauseTimers.set(id,{fn,ms});return id},
+ unschedule:id=>pauseTimers.delete(id)
+});
+backgroundAuto.start();
+assert.equal(backgroundAuto.isEnabled(),true);
+assert.equal(pauseTimers.size,1);
+canAuto=false;backgroundAuto.pause();
+assert.equal(backgroundAuto.isEnabled(),true,'background must preserve auto mode selection');
+assert.equal(pauseTimers.size,0,'background must cancel pending timer');
+canAuto=true;backgroundAuto.resume();
+assert.equal(backgroundAuto.isEnabled(),true);
+assert.equal(pauseTimers.size,1,'foreground resumes auto browsing');
+backgroundAuto.stop();
+assert.equal(backgroundAuto.isEnabled(),false);
+assert.equal(pauseTimers.size,0);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
