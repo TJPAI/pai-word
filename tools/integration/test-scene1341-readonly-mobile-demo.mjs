@@ -434,4 +434,59 @@ assert.equal(pauseTimers.size,1,'foreground resumes auto browsing');
 backgroundAuto.stop();
 assert.equal(backgroundAuto.isEnabled(),false);
 assert.equal(pauseTimers.size,0);
+
+/* Active Scene500 rating speech: AGAIN 3, HARD 2, GOOD 1 repetitions,
+   1-second separation and completion only after speech AND display deadline. */
+assert(scene500Renderer.includes("const count={again:3,hard:2,good:1}[score]") &&
+ scene500Renderer.includes("repeatGap:1") &&
+ scene500Renderer.includes("Math.max(0,ratingDeadline-Date.now())"),
+ 'rating voice schedule must be grounded in native Scene500');
+assert(phaseSource.includes("count={again:3,hard:2,good:1}[grade]") &&
+ phaseSource.includes("if(spoken<count)repeatTimer=schedule(repeat,1000)") &&
+ phaseSource.includes("if(!live()||!elapsed||!audioDone)return"),
+ 'read-only controller must gate finish on audio+deadline and repeat counts');
+assert(script.includes('playRatedWord:(grade,iteration,done)=>') &&
+ script.includes("utterance.onend=finish;utterance.onerror=finish") &&
+ script.includes("setTimeout(finish,8000)"),
+ 'Safari-safe voice replay callback must be wired to isolated controller');
+let voiceID=0,voiceCancels=0;
+const voiceTasks=new Map(),voicePlays=[],voiceDone=[],voiceAdvances=[];
+const voice=api.createReadOnlyPhaseController({
+ onUpdate:()=>{},onGradeComplete:()=>{},
+ onAdvance:(grade,key)=>voiceAdvances.push([grade,key]),
+ playRatedWord:(grade,number,done)=>{
+  voicePlays.push([grade,number]);voiceDone.push(done);
+  return ()=>{voiceCancels++}
+ },
+ schedule:(fn,ms)=>{const id=++voiceID;voiceTasks.set(id,{fn,ms});return id},
+ unschedule:id=>voiceTasks.delete(id)
+});
+function fireVoice(ms){
+ const entry=[...voiceTasks].find(([,x])=>x.ms===ms);
+ assert(entry,'expected voice timer '+ms);
+ voiceTasks.delete(entry[0]);entry[1].fn()
+}
+voice.start('VOICE-AGAIN');voice.choose('again');
+assert.equal(voice.state().pending,true);
+assert.equal(voicePlays.length,1);
+voiceDone[0]();fireVoice(1000);
+assert.equal(voicePlays.length,2);
+voiceDone[1]();fireVoice(1000);
+assert.equal(voicePlays.length,3);
+voiceDone[2]();
+assert.equal(voiceAdvances.length,0,'all speech done, but 6s minimum display not yet elapsed');
+fireVoice(6000);assert.equal(voiceAdvances.length,1);
+assert.equal(voiceAdvances[0][0],'again');
+voice.navigate('VOICE-GOOD');voice.choose('good');
+assert.equal(voicePlays.length,4);
+fireVoice(2000);
+assert.equal(voiceAdvances.length,1,'2s passed but voice still playing, do not advance');
+voiceDone[3]();assert.equal(voiceAdvances.length,2);
+voice.navigate('VOICE-CANCEL');voice.choose('hard');
+assert.equal(voicePlays.length,5);
+voice.navigate('VOICE-NEXT');
+assert.equal(voiceCancels,1,'manual swipe must cancel in-flight rated voice once');
+voiceDone[4]();
+assert.equal(voiceAdvances.length,2,'stale speech callback cannot advance a later word');
+assert.equal(voiceTasks.size,0);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
