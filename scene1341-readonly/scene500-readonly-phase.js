@@ -78,7 +78,8 @@
   const clear=()=>{generation++;if(timer!==null){unschedule(timer);timer=null}};
   function stop(){clear();enabled=false;onState(false)}
   function next(speechEnded=false){
-   if(!enabled||!shouldRun()){stop();return}
+   if(!enabled)return;
+   if(!shouldRun()){pause();return}
    const epoch=generation;
    if(isBusy()){
     const spoken=speechEnded||isSpeaking();
@@ -88,7 +89,7 @@
    timer=schedule(()=>{
     timer=null;
     if(epoch!==generation||!enabled)return;
-    if(!shouldRun()){stop();return}
+    if(!shouldRun()){pause();return}
     if(isBusy()){next(isSpeaking());return}
     if(navigate()===false){stop();return}
     next();
