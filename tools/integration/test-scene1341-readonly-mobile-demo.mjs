@@ -736,7 +736,7 @@ const batchFace=api.createReadOnlyPhaseController({
 });
 batchFace.start('ONE-7');batchFace.tap();
 const batchContext={
- BATCH:10,index:7,
+ BATCH:10,index:7,revealed:true,
  subset:()=>batchRows,
  phaseController:{state:()=>({selected:null}),navigate:key=>{batchNavigates++;batchFace.navigate(key)}},
  resetScratch:()=>{batchScratchResets++},
