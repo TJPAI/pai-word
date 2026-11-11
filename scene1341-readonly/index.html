@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff"><meta name="apple-mobile-web-app-capable" content="yes">
+<title>PAI Word · Scene1341｜Scene500 同款交互预览</title>
+<link rel="stylesheet" href="./scene500-mobile.css"><link rel="stylesheet" href="./scene500-ux-fix.css"><link rel="stylesheet" href="./scene500-product-v2.css"><link rel="stylesheet" href="./scene500-learning.css"><link rel="stylesheet" href="./scene500-home.css">
+<style>
+/* Overrides are constrained to the isolated demo route, never the original app. */
+body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-shell{max-width:820px;margin:auto}
+.demo-categories{display:flex;gap:7px;overflow-x:auto;padding:8px 0 12px;scrollbar-width:none}.demo-categories button{white-space:nowrap;border:1px solid #e2e7ec;border-radius:18px;padding:8px 12px;background:#fff;font-size:13px}
+.demo-categories .selected{background:#172033;color:white;border-color:#172033}
+.demo-search{display:block;width:100%;padding:15px 16px;border-radius:14px;border:1px solid #e0e7ef;background:#fff;font-size:16px;margin:12px 0}
+.demo-scenes{display:flex;flex-direction:column;gap:8px}.demo-scene{display:flex;width:100%;align-items:center;justify-content:space-between;text-align:left;background:#fff;border:1px solid #e5e9f0;border-radius:14px;padding:15px 16px;min-height:65px}.demo-scene b{font-size:15px;font-weight:650}.demo-scene small{display:block;margin-top:5px;color:#7b8798;font-size:12px}.demo-scene .ready{font-size:12px;color:#286c55}.demo-scene .unready{font-size:11px;color:#a3acb8}.demo-scene:disabled{opacity:.6}
+.demo-tip{font-size:12px;line-height:1.6;color:#687588}.demo-status{font-size:13px;padding:11px 0;color:#677385}
+.demo-footer{color:#788594;font-size:12px;line-height:1.65;padding:22px 0}
+
+/* Scene1341 only: all learning-screen geometry is from the Scene500 stylesheet
+   and the exact original Scene500 inline preview layout block below. */
+.learning-screen .recall-correction{order:10;display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;flex:0 0 auto;width:100%;position:relative;bottom:auto;z-index:15;box-sizing:border-box;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:#fff;border-top:1px solid #e6e9e7}.learning-screen .recall-correction button{min-height:68px;min-width:0;width:100%;border-radius:16px;font-size:19px;font-weight:700}.learning-screen .study-body{min-height:0;flex:1;overflow-y:auto}.learning-screen .recall-note{order:8;flex:0 0 auto;min-height:24px;padding:5px 12px}.learning-screen:not(.revealed) .recall-correction{visibility:visible}.learning-screen .session-footnote{order:7} .learning-screen .recall-correction button:disabled{opacity:.42;cursor:default;filter:grayscale(.5)}.learning-screen .word-hero{flex:0 0 174px!important;height:174px!important;min-height:174px!important;max-height:174px!important;padding:6px 18px;box-sizing:border-box;overflow:hidden}.learning-screen.revealed .word-hero{flex:0 0 174px!important;height:174px!important;min-height:174px!important;max-height:174px!important}.learning-screen .ipa-line{display:flex;align-items:center;justify-content:center;gap:4px;min-height:44px}.learning-screen .ipa-line .ipa{margin:0}.learning-screen .ipa-line .speak-btn{position:static;display:grid;place-items:center;flex:0 0 44px;min-width:44px;min-height:44px}.learning-screen .study-body{min-height:0;flex:1;overflow-y:auto;padding:8px 18px 12px!important}.learning-screen .recall-note{order:8;flex:0 0 30px!important;min-height:30px!important;padding:5px 12px!important}.learning-screen .session-footnote{display:none!important}.learning-screen .recall-correction{order:10;margin-top:auto;flex-shrink:0}@media(max-height:680px){.learning-screen .word-hero,.learning-screen.revealed .word-hero{flex-basis:145px!important;height:145px!important;min-height:145px!important;max-height:145px!important}}/* Stable shared bottom rail on both learning screens. */
+.learning-screen{height:100dvh!important;min-height:0!important;overflow:hidden;display:flex;flex-direction:column}
+.learning-screen .word-hero,.learning-screen.revealed .word-hero{flex:0 0 126px!important;height:126px!important;min-height:126px!important;max-height:126px!important;padding:0 14px!important}
+.learning-screen .word{font-size:clamp(30px,10vw,44px)!important}
+.learning-screen .word-line{min-height:45px}
+.learning-screen .ipa-line{min-height:40px}
+.learning-screen .recall-cue{margin-top:3px!important;font-size:12px}
+.learning-screen .study-body{flex:1 1 auto!important;min-height:0!important;overflow-y:auto;padding:3px 16px 8px!important}
+.learning-screen .recall-note{order:8;flex:0 0 36px!important;height:36px!important;min-height:36px!important;max-height:36px!important;margin:0!important;padding:7px 12px!important;display:flex;justify-content:center;align-items:center;line-height:1.25!important;font-size:12px!important}
+.learning-screen .recall-correction{order:10;flex:0 0 auto!important;margin:0!important;border-top:1px solid #e6e9e7!important;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0px))!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px!important}
+.learning-screen .recall-correction button{height:62px!important;min-height:62px!important;max-height:62px!important;border-radius:14px!important;font-size:18px!important}
+.learning-screen .session-footnote{display:none!important}
+@media(max-height:680px){.learning-screen .word-hero,.learning-screen.revealed .word-hero{flex-basis:104px!important;height:104px!important;min-height:104px!important;max-height:104px!important}.learning-screen .word-line{min-height:35px}.learning-screen .ipa-line{min-height:35px}.learning-screen .recall-note{flex-basis:32px!important;height:32px!important;min-height:32px!important;max-height:32px!important}}
+.learning-screen .recall-correction button{transition:transform .12s ease,box-shadow .12s ease,filter .12s ease,border-color .12s ease}.learning-screen .recall-correction button:active{transform:scale(.96);filter:saturate(1.2)}.learning-screen .recall-correction button.is-selected{box-shadow:inset 0 0 0 2px currentColor;filter:saturate(1.18)}.learning-screen .recall-correction button:focus-visible{outline:2px solid #344b70;outline-offset:2px}@media(prefers-reduced-motion:reduce){.learning-screen .recall-correction button{transition:none}}.home-dashboard .home-action-slot{display:block;min-height:44px}.home-dashboard .continue-card{min-height:160px}.home-dashboard .scene-search-card{min-height:260px}.home-dashboard .home-topbar{min-height:76px}.home-dashboard .browse-link{min-height:40px}
+#learning.demo-learning{height:100dvh;min-height:0;overflow:hidden;display:flex;flex-direction:column;background:#fff}
+#learning .study-top{flex:0 0 auto;min-width:0}
+#learning .study-scene{min-width:0}
+#learning .study-body{position:relative}
+
+/* Native Scene500 hero grid and checkbox layout come entirely from the five original CSS files. */
+/* Native Scene500 answer density, label sizing, bilingual example layout,
+   rating rail and scratch geometry are inherited from the five original CSS
+   sheets. Do not override them inside this isolated author-draft page. */
+</style></head>
+<body><div id="app">
+<section class="home-dashboard demo-home" id="home">
+  <div class="home-shell"><div class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>Scene1341 · Scene500 同款交互预览</p></div><div class="home-actions"><span class="read-only-pill">未认证 · 只读数据</span></div></div>
+  <div class="home-focus"><div class="continue-card"><div><span class="eyebrow">继续浏览</span><h2 id="continue-name">起床与晨间准备</h2><p id="continue-description">真实教学草稿 · 不保存学习记录</p></div><div class="continue-actions"><button id="continue" class="continue-primary" type="button">进入词卡</button></div></div>
+  <div class="scene-search-card" style="padding:16px"><span class="eyebrow">场景检索 · 1,341 场景目录</span><h2 style="margin:8px 0">查找学习场景</h2><input class="demo-search" id="search" placeholder="搜索场景名称、分类或SC50编号" autocomplete="off" aria-label="查找场景">
+  <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
+  <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
+  <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
+  <details id="settings-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
+   <summary style="cursor:pointer;font-weight:650">设置 · 复用 Scene500 选项</summary>
+   <p class="demo-tip">与 Scene500 使用相同的选项值和默认值。仅本页内存有效，不修改正式 App 设置或 SRS。</p>
+   <div class="setting-row"><span>每轮词数</span><select data-setting="wordsPerRound" aria-label="每轮词数"><option value="10">10</option><option value="25">25</option><option value="50">50</option></select></div>
+   <div class="setting-row"><span>自动切词速度</span><select id="auto-speed" data-setting="autoBrowseInterval" aria-label="自动切词速度"><option value="0.9">更快</option><option value="1.5">快</option><option value="3">中</option><option value="6">慢</option></select></div>
+   <div class="setting-row"><span>朗读速度</span><select data-setting="speechSpeed" aria-label="朗读速度"><option value="80">80%</option><option value="100">100%</option><option value="120">120%</option><option value="150">150%</option></select></div>
+   <div class="setting-row"><span>发音口音</span><select data-setting="voiceAccent" aria-label="发音口音"><option value="us">美音</option><option value="gb">英音</option></select></div>
+   <div class="setting-row"><span>隐藏单词（听音模式）</span><button type="button" class="switch" data-toggle-setting="hideWord" aria-label="隐藏单词（听音模式）" aria-pressed="false"><i></i></button></div>
+   <div class="setting-row"><span>显示高频搭配</span><button type="button" class="switch" data-toggle-setting="showCollocations" aria-label="显示高频搭配" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>显示例句</span><button type="button" class="switch" data-toggle-setting="showExamples" aria-label="显示例句" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>显示近义 / 易混词辨析</span><button type="button" class="switch" data-toggle-setting="showCompare" aria-label="显示近义 / 易混词辨析" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
+  </details>
+  <p class="demo-footer">本预览复用 Scene500 设置和移动端学习页样式。设置及评分仅在本页内存生效：刷新后恢复默认，不写 SRS，不修改正式 App 或 KU。教学内容仍属于审核草稿。</p></div>
+</section>
+<section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
+ <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
+ <div class="word-hero" id="hero">
+   <div class="word-line"><div class="word" id="expression">加载中</div></div>
+   <div class="ipa-line"><span class="ipa" id="ipa" aria-label="音标"></span><button class="speak-btn" id="speak" data-word-audio aria-label="播放单词">🔊</button></div>
+   <div class="recall-controls-row"><p class="recall-cue" id="cue">回忆词义</p><label class="auto-word-toggle" title="自动切词：点击开启或关闭"><input id="auto-toggle" type="checkbox" aria-label="自动切词" aria-description="勾选后按照设置速度自动切换词卡"><span class="auto-word-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4L3 9"/><path d="M3 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4L21 15"/><path d="M16 15h5v5"/></svg></span></label></div>
+ </div>
+ <div class="study-body" id="studybody">
+  <div class="answer" id="answer" hidden>
+   <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
+   <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
+   <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
+   <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
+  </div>
+  <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
+ </div>
+ <div class="recall-correction" role="group" aria-label="回忆结果（预览评分不保存）"><button type="button" data-grade="again" disabled>不知道</button><button type="button" data-grade="hard" disabled>模糊</button><button type="button" data-grade="good" disabled>知道</button></div>
+ <p class="recall-note" id="demo-note" aria-live="polite">点空白看答案，左右滑切词，上下滑换批，长按手写或擦除</p>
+ <div class="session-footnote"></div>
+</section></div>
+<script src="./scene500-readonly-settings.js"></script>
+<script src="./scene500-readonly-phase.js"></script>
+<script>
+'use strict';
+const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
+const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/integration/';
+// Immutable author commit: candidate KU only; never use this URL as runtime release permission.
+const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c';
+const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA+'/';
+const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
+const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
+let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
+let BATCH=10,selectedGrade=null;
+const readOnlyPrefs=window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings({onChange:applyReadOnlySetting});
+const transientCursors=new Map(); // in-memory only; never persisted to SRS or browser storage
+const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true;
+const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
+const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
+ onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)window.render?.()},
+ onGradeComplete:grade=>{transientRatings[grade]++},
+ playRatedWord:(grade,iteration,done)=>{
+  if(!readOnlyPrefs.get('autoPronounce.swipe')){done();return null}
+  const text=subset()[index]?.expression;
+  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){done();return null}
+  const synthesis=window.speechSynthesis;
+  const utterance=buildReadOnlyUtterance(text);
+  let finished=false,started=false,waitTimer=null,watchdog=null;
+  const finish=()=>{
+   if(finished)return;
+   finished=true;clearTimeout(waitTimer);clearTimeout(watchdog);done();
+  };
+  const begin=()=>{
+   waitTimer=null;if(finished)return;
+   // Native Scene500 waits for an existing question/auto/blank-tap utterance
+   // to finish before starting graded speech: never cancel that utterance.
+   if(synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
+   started=true;
+   utterance.onend=finish;utterance.onerror=finish;
+   watchdog=setTimeout(finish,8000);
+   synthesis.speak(utterance);
+  };
+  begin();
+  return ()=>{
+   if(finished)return;
+   finished=true;clearTimeout(waitTimer);clearTimeout(watchdog);
+   utterance.onend=null;utterance.onerror=null;
+   if(started)synthesis.cancel();
+  };
+ },
+ onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。');autoBrowse.resume()}window.PAI_SCRATCH_FINISH_RATING?.()}
+});
+const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
+ shouldRun:()=>!$('learning').hidden&&!document.hidden,
+ isBusy:()=>phaseController.state().pending||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ isSpeaking:()=>!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
+ onState:enabled=>{$('auto-toggle').checked=enabled}
+});
+const label=id=>catalog.find(x=>x.id===id)?.name||id;
+const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
+const subset=()=>items.filter(x=>x.scene_id===sceneId);
+function syncReadOnlySettingsControls(prefs){
+ const panel=$('settings-panel');
+ if(!panel)return;
+ for(const select of panel.querySelectorAll('select[data-setting]')){
+  const key=select.dataset.setting,value=prefs[key];
+  select.value=String(value);
+ }
+ for(const button of panel.querySelectorAll('[data-toggle-setting]')){
+  const key=button.dataset.toggleSetting;
+  const value=key.startsWith('autoPronounce.')?prefs.autoPronounce[key.slice(14)]:prefs[key];
+  button.classList.toggle('on',value===true);
+  button.setAttribute('aria-pressed',String(value===true));
+ }
+}
+function applyReadOnlySetting(key,prefs){
+ BATCH=prefs.wordsPerRound;
+ syncReadOnlySettingsControls(prefs);
+ if(key==='autoBrowseInterval'||key==='reset')autoBrowse.setDelay(Math.round(prefs.autoBrowseInterval*1000));
+ if(!$('learning').hidden)window.render?.();
+}
+function buildReadOnlyUtterance(text,baseRate=.84){
+ const prefs=readOnlyPrefs.snapshot();
+ const utterance=new SpeechSynthesisUtterance(String(text));
+ utterance.lang=prefs.voiceAccent==='gb'?'en-GB':'en-US';
+ utterance.rate=baseRate*prefs.speechSpeed/100;
+ const voices=window.speechSynthesis?.getVoices?.()||[];
+ utterance.voice=voices.find(v=>String(v.lang).toLowerCase()===utterance.lang.toLowerCase())
+  ||voices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
+ return utterance;
+}
+function parseCsv(src){
+ const lines=[];let field='',row=[],quoted=false;
+ src=src.replace(/^\uFEFF/,'');
+ for(let i=0;i<src.length;i++){const c=src[i];
+  if(c==='"'){if(quoted&&src[i+1]==='"'){field+='"';i++}else quoted=!quoted;}
+  else if(c===','&&!quoted){row.push(field);field='';}
+  else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&src[i+1]==='\n')i++;row.push(field);if(row.some(x=>x))lines.push(row);row=[];field='';}
+  else field+=c;
+ }
+ if(field||row.length){row.push(field);lines.push(row)}
+ return lines;
+}
+async function getText(url){const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);return res.text()}
+async function load(){
+ try{
+  const [catalogRaw,manifestRaw,qaRaw]=await Promise.all([
+   getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
+   getText(AUTHOR_ROOT+MANIFEST),
+   getText(ROOT+'scene1341-teaching/qa-304-status-staging.v1.json')
+  ]);
+  const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
+  catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')])).map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
+  if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)throw Error('场景目录数量或ID异常');
+  const manifest=JSON.parse(manifestRaw),packs=manifest.assets?.packs;
+  if(manifest.schema_version!=='pai-scene1341-answer-only-v2-progress-manifest'||manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE'||!Array.isArray(packs)||packs.length!==30||manifest.counts?.authored_answer_only!==1182||manifest.counts?.production_playable!==0||manifest.counts?.question_payloads!==0||packs.reduce((n,p)=>n+p.records,0)!==1182)throw Error('作者清单未通过隔离预览门禁');
+  if(new Set(packs.map(p=>p.path)).size!==packs.length||packs.some(p=>!/^tools\/answer-enrichment\/scene1341-v51-.*\.v2\.json$/.test(p.path)||!/^([0-9a-f]{40})$/.test(p.git_blob)||p.records<1))throw Error('作者清单文件身份异常');
+  const rawPacks=await Promise.all(packs.map(p=>getText(AUTHOR_ROOT+p.path)));
+  const ids=new Set(),ranks=new Set();items=[];
+  rawPacks.forEach((raw,i)=>{
+   const pack=JSON.parse(raw),p=packs[i];
+   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2'||pack.identity?.core20k_ku_reused!==false||!Array.isArray(pack.records)||pack.records.length!==p.records)throw Error('KU源Pack身份异常：'+p.path);
+   for(const r of pack.records){
+    const key=r.scene_id+':'+r.source_rank;
+    if(!/^SC1341-KU-\d{5}$/.test(r.scene_ku_id)||ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||Object.hasOwn(r,'choices')||Object.hasOwn(r,'scoring')||!r.expression||!r.answer?.meaning_zh||!r.answer?.example_en||!r.answer?.example_zh||!Array.isArray(r.answer.collocations)||!catalog.some(c=>c.id===r.scene_id)||ranks.has(key))throw Error('KU不能进入只读预览：'+r.scene_ku_id);
+    ids.add(r.scene_ku_id);ranks.add(key);items.push(r);
+   }
+  });
+  if(items.length!==1182||ids.size!==1182)throw Error('KU总数或唯一身份异常');
+  const perScene=new Map();for(const r of items){const a=perScene.get(r.scene_id)||[];a.push(r.source_rank);perScene.set(r.scene_id,a)}
+  for(const [scene,rs] of perScene){rs.sort((a,b)=>a-b);if(rs.some((n,i)=>n!==i+1))throw Error('场景rank不连续：'+scene)}
+  items.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
+  const qa=JSON.parse(qaRaw);
+  if(qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('QA 304历史审核门禁异常');
+  flags=new Map(qa.flags.map(f=>[f.ku_id,f]));
+  set('status','已载入1,341个场景目录｜'+perScene.size+'个场景共'+items.length+'条作者草稿（未正式认证）');
+  set('continue-name',label(lastScene));renderCategories();renderHome();
+ }catch(e){items=[];set('status','数据加载失败：'+e.message+'。请联网使用 Safari 打开，暂不展示未经验证的数据。');$('continue').disabled=true;set('scope','数据没有通过校验；不开放任何评分或学习记录。')}
+}
+function renderCategories(){
+ const cats=['全部',...new Set(catalog.map(x=>x.category))];$('categories').replaceChildren();
+ for(const c of cats){const b=document.createElement('button');b.textContent=c.replace(/（\d+）$/,'');b.classList.toggle('selected',c===category);b.addEventListener('click',()=>{category=c;visible=35;renderCategories();renderHome()});$('categories').append(b)}
+}
+function renderHome(){
+ if(!catalog.length)return;
+ const q=filter.trim().toLowerCase();
+ const result=catalog.filter(x=>(category==='全部'||x.category===category)&&(!q||(x.id+' '+x.name+' '+x.category).toLowerCase().includes(q)));
+ $('scenes').replaceChildren();
+ // Keep both authored scenes visible by default, followed by the full official catalog.
+ const sorted=!q&&category==='全部'?[...result.filter(x=>available(x.id)),...result.filter(x=>!available(x.id))]:result;
+ for(const sc of sorted.slice(0,visible)){
+  const btn=document.createElement('button');btn.className='demo-scene';btn.type='button';
+  const title=document.createElement('div'),b=document.createElement('b'),small=document.createElement('small'),right=document.createElement('span');
+  b.textContent=sc.name;small.textContent=sc.id+' · '+sc.category;title.append(b,small);
+  right.textContent=available(sc.id)?available(sc.id)+'条词卡 · 体验':'待教学内容认证';
+  right.className=available(sc.id)?'ready':'unready';btn.disabled=!available(sc.id);btn.append(title,right);
+  btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+ }
+ $('more').hidden=sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
+}
+function openStudy(id,resume=false){
+ if(!available(id)||!items.length)return;
+ stopAuto();sceneId=id;lastScene=id;revealed=false;resetScratch();
+ const rows=subset(),saved=resume?transientCursors.get(id):null;
+ index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0;
+ $('home').hidden=true;$('learning').hidden=false;
+ set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
+ phaseController.start(rows[index].scene_ku_id);
+ if(saved?.face==='answer')phaseController.tap();
+ if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
+}
+function home(){
+ if(!$('learning').hidden)transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace});
+ stopAuto();stopWordAudio();resetScratch();$('learning').hidden=true;
+ window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome();
+}
+function renderCard(){
+ const cards=subset(),r=cards[index];if(!r)return;
+ const prefs=readOnlyPrefs.snapshot();
+ $('learning').classList.toggle('revealed',revealed);
+ $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
+ set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
+ set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
+ set('expression',r.expression);set('ipa',r.ipa||r.ipa_us||'');set('meaning',r.answer.meaning_zh);
+ $('example-speak').dataset.speak=r.answer.example_en;
+ set('example',r.answer.example_en);set('translation',r.answer.example_zh);
+ // Answer-only contract: optional teaching sections must never render empty
+ // or leak editorial/QA/source metadata into the learner-facing answer.
+ const collocations=prefs.showCollocations&&Array.isArray(r.answer.collocations)?r.answer.collocations.filter(v=>typeof v==='string'&&v.trim()):[];
+ const qaInternal=/待独立审核|尚未独立审核|待复核|待审核|源项为|增补候选|编辑候选|审核状态|QA状态|审核通过|发布门禁|作者草稿|待认证|未认证|release[_ -]?status|source[_ -]?rank/i;
+ const teachingNotes=[r.answer.usage_note,prefs.showCompare?r.answer.contrast_note:null].filter(v=>typeof v==='string'&&v.trim()&&!qaInternal.test(v));
+ set('collocations',collocations.join(' · '));
+ set('usage',teachingNotes.join(' '));
+ $('collocations-section').hidden=collocations.length===0;
+ $('examples-section').hidden=!prefs.showExamples;
+ $('usage-section').hidden=teachingNotes.length===0;
+ $('answer').hidden=!revealed;
+ for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
+ set('demo-note',revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除');
+ $('studybody').scrollTop=0;
+}
+let suppressTapUntil=0;
+function show(){
+ if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;
+ const pending=phaseController.state().selected!==null;
+ phaseController.tap();
+ if(pending){window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}
+ if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(subset()[index]?.expression);
+}
+function move(delta,fromAuto=false,fromRatedAdvance=false){
+ const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
+ const keepDrawing=fromAuto&&scratchDrawing();
+ index=(index+delta%rows.length+rows.length)%rows.length;
+ if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true;
+ try{
+  if(!keepDrawing)resetScratch();
+  stopWordAudio(); // Scene500 cancels previous word TTS on every card change, even if next auto-pronounce is off.
+  phaseController.navigate(rows[index].scene_ku_id);
+ }finally{if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false}
+ if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.();
+ if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
+ if(!fromAuto)autoBrowse.restart();
+}
+function moveBatch(delta){
+ const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
+ const batches=Math.ceil(rows.length/BATCH);
+ // Native Scene500 PAI_CHANGE_BATCH returns without navigating when only
+ // one batch exists: do not jump back to its first card on a vertical swipe.
+ if(batches<2)return;
+ const now=Math.floor(index/BATCH);
+ index=((now+delta%batches+batches)%batches)*BATCH;
+ resetScratch();stopWordAudio();phaseController.navigate(rows[index].scene_ku_id);
+ if(hadPending)window.PAI_SCRATCH_FINISH_RATING?.();
+ if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
+ autoBrowse.restart();
+}
+function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
+$('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
+$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
+$('more').addEventListener('click',()=>{visible+=35;renderHome()});
+// Match native Scene500 single delegated blank-click handler on the whole study screen.
+$('learning').addEventListener('click',e=>{
+ if(e.target.closest('.answer,button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
+ if(window.getSelection?.()?.toString()||Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0))return;
+ show();
+});
+for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
+let wordAudioGeneration=0,wordAudioWatchdog=null;
+function stopWordAudio(){
+ wordAudioGeneration++;
+ if(wordAudioWatchdog!==null){clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null}
+ if(window.speechSynthesis&&(window.speechSynthesis.speaking||window.speechSynthesis.pending))window.speechSynthesis.cancel();
+}
+function playWord(text){
+ if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'||document.hidden)return false;
+ stopWordAudio();
+ const utterance=buildReadOnlyUtterance(text),generation=wordAudioGeneration;
+ let finished=false;
+ const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null};
+ utterance.onend=finish;utterance.onerror=finish;
+ try{
+  window.speechSynthesis.speak(utterance);
+  // Mirror Scene500's Safari speech watchdog; a stale completion cannot affect a subsequent word.
+  const scaledRate=Math.max(.5,Math.min(2,Number(utterance.rate)||1));
+  const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));
+  wordAudioWatchdog=setTimeout(()=>{if(generation!==wordAudioGeneration||finished)return;if(window.speechSynthesis.speaking||window.speechSynthesis.pending)window.speechSynthesis.cancel();finish()},maxWait);
+ }catch(_){finish();return false}
+ return true;
+}
+$('speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].expression)});
+$('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=buildReadOnlyUtterance(subset()[index].answer.example_en,.9);window.speechSynthesis.speak(utterance)});
+let start=null;
+$('learning').addEventListener('touchstart',e=>{
+ if(scratchDrawing()||e.target.closest('button,input,select,label,a,details,.recall-correction')||e.touches.length!==1)return;
+ start={x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()};
+},{passive:true});
+$('learning').addEventListener('touchmove',e=>{
+ if(!start||!e.touches?.[0])return;
+ if(Math.abs(e.touches[0].clientX-start.x)>10||Math.abs(e.touches[0].clientY-start.y)>10)
+  suppressTapUntil=window.__paiTapSuppressUntil=Date.now()+700;
+},{passive:true});
+$('learning').addEventListener('touchend',e=>{
+ if(scratchDrawing()||!start||e.changedTouches.length!==1){start=null;return}
+ const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y,dt=Date.now()-start.time;start=null;
+ if(dt>700)return;
+ if(Math.abs(dx)>=65&&Math.abs(dx)>=Math.abs(dy)*1.3)move(dx<0?1:-1);
+ else if(Math.abs(dy)>=75&&Math.abs(dy)>=Math.abs(dx)*1.3)moveBatch(dy<0?1:-1);
+},{passive:true});
+function stopAuto(){autoBrowse.stop()}
+function startAuto(){autoBrowse.start()}
+$('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
+$('settings-panel').addEventListener('change',e=>{
+ const key=e.target.dataset?.setting;
+ if(key)readOnlyPrefs.set(key,e.target.value);
+});
+$('settings-panel').addEventListener('click',e=>{
+ const button=e.target.closest('[data-toggle-setting]');
+ if(!button)return;
+ const key=button.dataset.toggleSetting;
+ readOnlyPrefs.set(key,!readOnlyPrefs.get(key));
+});
+$('settings-reset').addEventListener('click',()=>readOnlyPrefs.reset());
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){
+  autoBrowse.pause();
+  stopWordAudio();
+  if(!$('learning').hidden){
+   const hadRatedAnswer=phaseController.state().selected!==null;
+   phaseController.suspend();
+   if(hadRatedAnswer)window.PAI_SCRATCH_FINISH_RATING?.();
+  }
+ }else autoBrowse.resume();
+});
+document.addEventListener('keydown',e=>{
+ if($('learning').hidden||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;
+ if(e.key==='ArrowLeft')move(-1);
+ else if(e.key==='ArrowRight')move(1);
+ else if(e.code==='Space'){e.preventDefault();show()}
+ else if(e.key==='Escape')home();
+});
+window.render=renderCard;
+window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
+syncReadOnlySettingsControls(readOnlyPrefs.snapshot());
+load();
+</script><script src="./scene500-native-scratch.js"></script></body></html>
