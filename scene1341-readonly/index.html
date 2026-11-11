@@ -53,7 +53,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
   <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
   <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
-  <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。<label style="display:inline-flex;gap:6px;align-items:center;margin-left:8px">自动浏览速度 <select id="auto-speed" aria-label="自动浏览间隔" style="padding:6px;border:1px solid #ddd;border-radius:8px"><option value="200">0.2秒</option><option value="600">0.6秒</option><option value="2000" selected>2秒</option><option value="5000">5秒</option></select></label></p></div>
+  <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。<label style="display:inline-flex;gap:6px;align-items:center;margin-left:8px">自动浏览速度 <select id="auto-speed" aria-label="自动浏览间隔" style="padding:6px;border:1px solid #ddd;border-radius:8px"><option value="900">更快</option><option value="1500" selected>快</option><option value="3000">中</option><option value="6000">慢</option></select></label></p></div>
 </section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><div id="batch-position">第1/1批</div><div id="progress">本批已学 0/25</div></div></div>
@@ -99,6 +99,7 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden&&!scratchDrawing(),
  isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking,
+ isSpeaking:()=>!!window.speechSynthesis?.speaking,
  navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
  onState:enabled=>{$('auto-toggle').checked=enabled}
 });
