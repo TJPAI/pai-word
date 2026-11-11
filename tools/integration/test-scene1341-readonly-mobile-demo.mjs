@@ -337,6 +337,41 @@ allowed=true;auto.resume();
 assert.equal([...automaticTimers.values()][0].ms,900,'foreground restores selected auto speed');
 auto.stop();assert.equal(auto.isEnabled(),false,'only explicit OFF should clear enabled flag');
 
+/* Native Scene500 screen Wake Lock lifecycle: optional, never blocks
+ * timer operation, releases on hidden/home, and reacquires on foreground. */
+assert(phaseSource.includes("navigator.wakeLock.request('screen')") &&
+ phaseSource.includes("lock.addEventListener?.('release'") &&
+ phaseSource.includes('function pause(){clear();releaseWake()}'),
+ 'read-only Scene1341 auto mode must honor native wake-lock lifecycle');
+let wakeRequests=0,wakeReleases=0;
+const wakeCtx={
+ navigator:{wakeLock:{request:async()=>{
+  wakeRequests++;
+  return {release:async()=>{wakeReleases++},addEventListener:()=>{}};
+ }}}
+};
+vm.runInNewContext(phaseSource,wakeCtx);
+let wakeId=0;const wakeTimers=new Map();
+const wakeAuto=wakeCtx.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
+ shouldRun:()=>true,isBusy:()=>false,navigate:()=>true,onState:()=>{},
+ schedule:(fn,ms)=>{const id=++wakeId;wakeTimers.set(id,{fn,ms});return id},
+ unschedule:id=>wakeTimers.delete(id)
+});
+wakeAuto.start();
+await Promise.resolve();await Promise.resolve();
+assert.equal(wakeRequests,1,'auto ON requests wake lock when supported');
+wakeAuto.pause();
+await Promise.resolve();await Promise.resolve();
+assert.equal(wakeReleases,1,'pausing on hidden/home releases screen wake lock');
+assert.equal(wakeAuto.isEnabled(),true,'pause must not turn off user-selected auto mode');
+wakeAuto.resume();
+await Promise.resolve();await Promise.resolve();
+assert.equal(wakeRequests,2,'foreground auto resume reacquires wake lock');
+wakeAuto.stop();
+await Promise.resolve();await Promise.resolve();
+assert.equal(wakeReleases,2,'explicit OFF releases wake lock');
+assert.equal(wakeAuto.isEnabled(),false);
+
 const nativeScratchPath='rebuild-preview/scene1341-readonly/scene500-native-scratch.js';
 const nativeScratch=fs.readFileSync(nativeScratchPath,'utf8');
 new vm.Script(nativeScratch,{filename:nativeScratchPath});
