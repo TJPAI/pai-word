@@ -89,6 +89,7 @@ const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-11
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 const BATCH=10;let selectedGrade=null;
+const transientCursors=new Map(); // in-memory only; never persisted to SRS or browser storage
 const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true;
 const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
 const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
@@ -187,15 +188,22 @@ function renderHome(){
  }
  $('more').hidden=sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
 }
-function openStudy(id){
+function openStudy(id,resume=false){
  if(!available(id)||!items.length)return;
- stopAuto();sceneId=id;lastScene=id;index=0;revealed=false;resetScratch();
+ stopAuto();sceneId=id;lastScene=id;revealed=false;resetScratch();
+ const rows=subset(),saved=resume?transientCursors.get(id):null;
+ index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0;
  $('home').hidden=true;$('learning').hidden=false;
  set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
- phaseController.start(subset()[0].scene_ku_id);
- playWord(subset()[0].expression);
+ phaseController.start(rows[index].scene_ku_id);
+ if(saved?.face==='answer')phaseController.tap();
+ playWord(rows[index].expression);
 }
-function home(){stopAuto();window.speechSynthesis?.cancel();resetScratch();$('learning').hidden=true;window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome()}
+function home(){
+ if(!$('learning').hidden)transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace});
+ stopAuto();window.speechSynthesis?.cancel();resetScratch();$('learning').hidden=true;
+ window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome();
+}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  $('learning').classList.toggle('revealed',revealed);
@@ -251,7 +259,7 @@ function moveBatch(delta){
  autoBrowse.restart();
 }
 function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();stopAuto();phaseController.choose(grade)}
-$('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene));
+$('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 $('reveal').addEventListener('click',show);$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
