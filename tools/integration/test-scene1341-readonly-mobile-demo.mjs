@@ -78,4 +78,7 @@ assert(script.includes('qaInternal.test(v)'),'internal QA/source notes must be q
 assert(html.includes('id="meaning"') && html.includes('id="example"') && html.includes('id="translation"'),
  'full answer must retain zh meaning and bilingual example');
 assert(script.includes("$('answer').hidden=!revealed"),'question face must not reveal teaching answer data');
+assert(!html.includes('data-approved-teaching-ku'), 'author drafts must not carry approved teaching DOM flags');
+assert(html.includes('data-test-teaching="example" data-publication-status="author-draft"'), 'bilingual examples must remain in Scene500 test teaching layout and explicitly marked draft');
+assert(html.includes('data-srs-write="disabled"'), 'unapproved drafts never write SRS');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
