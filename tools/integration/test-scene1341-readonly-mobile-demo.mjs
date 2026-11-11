@@ -916,7 +916,7 @@ assert.equal(ukVoice.lang,'en-GB');
 assert(Math.abs(ukVoice.rate-.84*1.2)<1e-10,'native word base rate .84 x speed');
 const ukExample=voiceFactory('Example',.9);
 assert(Math.abs(ukExample.rate-.9*1.2)<1e-10,'native example base rate .9 x speed');
-assert(script.includes('buildReadOnlyUtterance(subset()[index].answer.example_en,.9)'));
+assert(script.includes('playWord(subset()[index].answer.example_en,.9)')&&script.includes('const utterance=buildReadOnlyUtterance(text,baseRate)'),'example and word must share audio lifecycle with native example .9 base rate');
 assert.equal(ukVoice.voice.name,'UK');
 pref.set('speechSpeed',80);pref.set('voiceAccent','us');
 const usVoice=voiceFactory('soon');
@@ -947,9 +947,8 @@ const liveGrade=vm.runInNewContext('('+gradeAutoCode+')',{
  stopAuto:()=>{gradeStopCount++},
  phaseController:{choose:grade=>{gradeChosen=grade}}
 });
-liveGrade('good');
-assert.equal(gradeChosen,'good');
-assert.equal(gradePauseCount,1);
+for(const choice of ['good','hard','again']){liveGrade(choice);assert.equal(gradeChosen,choice)}
+assert.equal(gradePauseCount,3,'all three grading buttons pause rather than disable auto');
 assert.equal(gradeStopCount,0);
 
 /* Execute the REAL isolated word-audio handlers, including the Safari stale
@@ -966,7 +965,7 @@ const audioSynth={
 const activeAudio=vm.runInNewContext(script.slice(wordAudioStart,wordAudioEnd)+'\n({playWord,stopWordAudio,isActive:()=>wordAudioActive})',{
  window:{speechSynthesis:audioSynth},document:{hidden:false},
  SpeechSynthesisUtterance:class{},
- buildReadOnlyUtterance:t=>({text:t,rate:.84}),
+ buildReadOnlyUtterance:(t,rate=.84)=>({text:t,rate}),
  setTimeout:(fn,ms)=>{const id=++audioTimerId;audioTimers.set(id,{fn,ms});return id},
  clearTimeout:id=>audioTimers.delete(id)
 });
@@ -984,6 +983,10 @@ activeAudio.playWord('next');
 activeAudio.stopWordAudio();
 assert.equal(activeAudio.isActive(),false);
 assert.equal(audioTimers.size,0,'no lingering speech timeouts on silent new card');
+assert.equal(activeAudio.playWord('Example sentence',.9),true);
+assert.equal(audioSynth.last.rate,.9,'example speech must preserve native 0.9 base rate');
+activeAudio.stopWordAudio();
+assert.equal(audioTimers.size,0,'example speech cancellation must clear shared watchdog');
 assert(script.includes('if(wordAudioActive||synthesis.speaking||synthesis.pending)'),
  'graded audio must wait for queued word utterances even before Safari sets speaking');
 assert(script.includes('stopWordAudio(); // Scene500 cancels previous word TTS on every card change'),
