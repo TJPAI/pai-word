@@ -133,8 +133,7 @@ const phaseAssetPath='rebuild-preview/scene1341-readonly/scene500-readonly-phase
 const phaseSource=fs.readFileSync(phaseAssetPath,'utf8');
 assert(html.includes('<script src="./scene500-readonly-phase.js"></script>'),
  'preview must load real local read-only phase adapter before inline learning script');
-assert(!/localStorage|sessionStorage|indexedDB|navigator\\.serviceWorker|\\.commit\\s*\\(/.test(phaseSource),
- 'isolated controller must be free of durable learning state / storage APIs');
+assert(!['localStorage','sessionStorage','indexedDB','navigator.serviceWorker','.commit('].some(x=>phaseSource.includes(x)), 'isolated controller must be free of durable learning state / storage APIs');
 assert(script.includes('phaseController.start(') && script.includes('phaseController.navigate(')
  && script.includes('phaseController.tap()') && script.includes('phaseController.choose(grade)'),
  'both question and answer pages must share one read-only interaction state machine');
