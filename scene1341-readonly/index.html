@@ -119,8 +119,8 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden,
- isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking,
- isSpeaking:()=>!!window.speechSynthesis?.speaking,
+ isBusy:()=>phaseController.state().pending||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ isSpeaking:()=>!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
  navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
  onState:enabled=>{$('auto-toggle').checked=enabled}
 });
