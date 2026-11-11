@@ -51,7 +51,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
   <details id="settings-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
    <summary style="cursor:pointer;font-weight:650">设置 · 复用 Scene500 选项</summary>
-   <p class="demo-tip">与 Scene500 使用相同的选项值和默认值。自动切词开关和速度单独记住，其余设置仅本页内存有效，不修改正式 App 设置或 SRS。</p>
+   <p class="demo-tip">与 Scene500 使用相同的选项值和默认值。自动切词、全部学习页选项和浏览位置在独立预览空间保存，不修改正式 App 设置或 SRS。</p>
    <div class="setting-row"><span>每轮词数</span><select data-setting="wordsPerRound" aria-label="每轮词数"><option value="10">10</option><option value="25">25</option><option value="50">50</option></select></div>
    <div class="setting-row"><span>自动切词速度</span><select id="auto-speed" data-setting="autoBrowseInterval" aria-label="自动切词速度"><option value="0.9">更快</option><option value="1.5">快</option><option value="3">中</option><option value="6">慢</option></select></div>
    <div class="setting-row"><span>朗读速度</span><select data-setting="speechSpeed" aria-label="朗读速度"><option value="80">80%</option><option value="100">100%</option><option value="120">120%</option><option value="150">150%</option></select></div>
@@ -64,7 +64,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
   </details>
-  <p class="demo-footer">本预览复用 Scene500 设置和移动端学习页样式。自动切词开关和速度单独保存；其余设置及评分仅在本页内存生效。不写 SRS，不修改正式 App 或 KU。教学内容仍属于审核草稿。</p></div>
+  <p class="demo-footer">本预览复用 Scene500 设置和移动端学习页样式。页面选项与继续浏览位置在隔离空间保存；评分和 SRS 不保存，不修改正式 App 或 KU。教学内容仍属于审核草稿。</p></div>
 </section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
