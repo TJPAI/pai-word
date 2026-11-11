@@ -347,7 +347,7 @@ assert(phaseSource.includes("preferredFace") &&
  'Scene1341 navigate must inherit explicit preferred face, not force question');
 assert(script.includes('phaseController.navigate(rows[index].scene_ku_id)'),
  'horizontal and vertical user navigation must share persistent-face controller');
-assert(script.includes('move(next-index,true)') &&
+assert(script.includes('move(1,true)') &&
  script.includes("phaseController.navigate(subset()[index].scene_ku_id)"),
  'automatic and final rated navigation must also inherit preferred face');
 const faceUpdates=[],faceTimers=new Map();let faceTimerID=0;
@@ -403,33 +403,66 @@ assert(scene500Renderer.includes('const cycleKeys=()=>') &&
  scene500Renderer.includes('return all.slice(start,start+size);') &&
  scene500Renderer.includes('const next=(index+direction+keys.length)%keys.length;'),
  'Scene500 native auto-navigation must cycle within the current batch');
-const autoFnBegin=script.indexOf('function autoNextWithinBatch(){');
-const autoFnEnd=script.indexOf('\nfunction syncReadOnlySettingsControls(',autoFnBegin);
-assert(autoFnBegin>0&&autoFnEnd>autoFnBegin,'isolate actual Scene1341 batch-auto function');
-const autoFnCode=script.slice(autoFnBegin,autoFnEnd).trim();
-for(const [count,batch,current,expected] of [
- [26,10,0,1],[26,10,8,9],[26,10,9,0],
- [26,10,10,11],[26,10,19,10],
- [26,10,20,21],[26,10,25,20],
- [26,25,24,0],[26,25,25,25],
- [26,50,25,0],[10,10,9,0],[1,10,0,0]
+const batchCycleBegin=script.indexOf('function currentBatchNextIndex(');
+const batchCycleEnd=script.indexOf('\nfunction syncReadOnlySettingsControls(',batchCycleBegin);
+assert(batchCycleBegin>0&&batchCycleEnd>batchCycleBegin,'locate one shared batch-index algorithm');
+const batchCycleCode=script.slice(batchCycleBegin,batchCycleEnd);
+assert(batchCycleCode.includes('const keys=rows.slice(start,start+size)') &&
+ batchCycleCode.includes('const next=(position+direction%keys.length+keys.length)%keys.length'),
+ 'both manual and automatic index rules must reuse native Scene500 cycleKeys + browseAnswer strategy');
+assert(script.includes('navigate:()=>autoNextWithinBatch()') &&
+ script.includes('move(1,true)') &&
+ script.includes('const nextIndex=currentBatchNextIndex(rows,index,delta);if(nextIndex<0)return;') &&
+ script.includes('}else move(1,false,true);'),
+ 'auto, manual and rated advancement must ALL use the same current-batch index owner');
+for(const [count,batch,current,delta,expected] of [
+ [26,10,0,1,1],[26,10,8,1,9],[26,10,9,1,0],
+ [26,10,0,-1,9],[26,10,10,-1,19],
+ [26,10,10,1,11],[26,10,19,1,10],
+ [26,10,20,1,21],[26,10,25,1,20],[26,10,20,-1,25],
+ [26,25,24,1,0],[26,25,0,-1,24],[26,25,25,1,25],
+ [26,50,25,1,0],[10,10,9,1,0],[1,10,0,1,0]
 ]){
- const ctx={BATCH:batch,index:current,subset:()=>Array.from({length:count},(_,i)=>i)};
- let calls=0;
- ctx.move=(delta,fromAuto)=>{
-  calls++;assert.equal(fromAuto,true,'cycle must call auto navigation, not manual');
-  ctx.index=(ctx.index+delta%count+count)%count;
+ const rows=Array.from({length:count},(_,i)=>({scene_ku_id:'K'+i,expression:'word'+i}));
+ const ctx={BATCH:batch,index:current,subset:()=>rows,moves:0};
+ ctx.move=(d,auto)=>{
+  assert.equal(auto,true);ctx.moves++;
+  ctx.index=ctx.currentBatchNextIndex(rows,ctx.index,d);
  };
- const step=vm.runInNewContext('('+autoFnCode+')',ctx);
- assert.equal(step(),true,'valid batch must be auto-browsable, including singleton');
- assert.equal(calls,1,'exactly one automatic navigation per timer expiration');
- assert.equal(ctx.index,expected,`count=${count}, batch=${batch}, index=${current}`);
+ vm.runInNewContext(batchCycleCode+'\nthis.currentBatchNextIndex=currentBatchNextIndex;this.autoNextWithinBatch=autoNextWithinBatch;',ctx);
+ assert.equal(ctx.currentBatchNextIndex(rows,current,delta),expected,
+  `MANUAL count=${count} batch=${batch} current=${current} delta=${delta}`);
+ if(delta===1){
+  assert.equal(ctx.autoNextWithinBatch(),true);
+  assert.equal(ctx.index,expected,`AUTO count=${count} batch=${batch} current=${current}`);
+  assert.equal(ctx.moves,1);
+ }
 }
-const noRows={BATCH:10,index:0,subset:()=>[],move:()=>{throw Error('no navigation')}};
-assert.equal(vm.runInNewContext('('+autoFnCode+')',noRows)(),false,
- 'no available KUs must stop, rather than spin forever');
-
-assert(script.includes("index=(index+delta%rows.length+rows.length)%rows.length"),
+const empty={BATCH:10,index:0,subset:()=>[],move:()=>{throw Error('no navigation')}};
+vm.runInNewContext(batchCycleCode+'\nthis.autoNextWithinBatch=autoNextWithinBatch;',empty);
+assert.equal(empty.autoNextWithinBatch(),false,'empty current batch must stop auto');
+/* Call the actual horizontal/keyboard move function, not just batch math.
+   It must navigate to the correctly wrapped KU and preserve the preferred
+   ANSWER face through the native scene phase adapter. */
+const moveSourceBegin=script.indexOf('function move(delta,fromAuto=false,fromRatedAdvance=false){');
+const moveSourceEnd=script.indexOf('\nfunction moveBatch(',moveSourceBegin);
+assert(moveSourceBegin>0&&moveSourceEnd>moveSourceBegin);
+const moveSource=script.slice(moveSourceBegin,moveSourceEnd);
+for(const [start,dir,want] of [[9,1,0],[0,-1,9],[19,1,10],[25,1,20]]){
+ const rows=Array.from({length:26},(_,i)=>({scene_ku_id:'K'+i,expression:'word'+i}));
+ const controller=api.createReadOnlyPhaseController({onUpdate:()=>{},onGradeComplete:()=>{},onAdvance:()=>{}});
+ controller.start('K'+start);controller.tap();
+ const ctx={index:start,BATCH:10,subset:()=>rows,phaseController:controller,
+  scratchDrawing:()=>false,resetScratch:()=>{},stopWordAudio:()=>{},
+  readOnlyPrefs:{get:()=>false},autoBrowse:{restart:()=>{}},
+  window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
+ vm.runInNewContext(batchCycleCode+'\n'+moveSource+'\nthis.manualMove=move;',ctx);
+ ctx.manualMove(dir);
+ assert.equal(ctx.index,want,'manual navigation stays in current round');
+ assert.equal(controller.state().cardKey,'K'+want);
+ assert.equal(controller.state().revealed,true,'manual navigation retains ANSWER face');
+}
+assert(script.includes('const nextIndex=currentBatchNextIndex(rows,index,delta);if(nextIndex<0)return;'),
  'Scene1341 must perform circular word navigation');
 assert(script.includes("((now+delta%batches+batches)%batches)*BATCH"),
  'Scene1341 must perform circular batch navigation');
