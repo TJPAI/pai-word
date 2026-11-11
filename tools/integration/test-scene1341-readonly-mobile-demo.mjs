@@ -489,4 +489,21 @@ assert.equal(voiceCancels,1,'manual swipe must cancel in-flight rated voice once
 voiceDone[4]();
 assert.equal(voiceAdvances.length,2,'stale speech callback cannot advance a later word');
 assert.equal(voiceTasks.size,0);
+
+/* Native Scene500 continue/resume keeps last card position and preferred face.
+ * For draft-only Scene1341 the cursor is ephemeral, never written to SRS. */
+assert(script.includes('const transientCursors=new Map()'),
+ 'Scene1341 must maintain a no-storage scene cursor');
+assert(script.includes('function openStudy(id,resume=false)') &&
+ script.includes('resume?transientCursors.get(id):null') &&
+ script.includes('index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0'),
+ 'continue must restore last index safely with bounds check');
+assert(script.includes("if(saved?.face==='answer')phaseController.tap()"),
+ 'continue must restore chosen answer face');
+assert(script.includes("transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace})"),
+ 'leaving a scene must save in-memory cursor and explicit face choice');
+assert(script.includes("$('continue').addEventListener('click',()=>openStudy(lastScene,true))"),
+ 'continue action should restore saved cursor instead of entering from first item');
+assert(!/localStorage|sessionStorage|indexedDB/.test(script),
+ 'read-only preview cursor must not persist any user data');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
