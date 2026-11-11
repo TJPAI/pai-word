@@ -755,4 +755,55 @@ actualMoveBatch(1);assert.equal(batchContext.index,0,'native multi-batch navigat
 actualMoveBatch(-1);assert.equal(batchContext.index,20,'native previous-batch wraps to last batch');
 assert.equal(batchNavigates,4);
 assert.equal(batchScratchResets,4);
+
+/* Independent lifecycle pass: real Scene500 stops rated timeout on background;
+   the Scene1341 isolated phase must preserve current visible ANSWER without
+   late timers, audio repeats, grade commits or hidden navigation. */
+assert(scene500Renderer.includes("if(document.hidden){\n   hiddenAt=Date.now();hiddenPhase=phase;") &&
+ scene500Renderer.includes("if(phase==='answer'||phase==='repeating'||phase==='example')phase='answer-paused'"),
+ 'native Scene500 background visibility contract must remain source-backed');
+assert(phaseSource.includes('function suspend(){') &&
+ phaseSource.includes("phase=wasRevealed?'answer-paused':'question'") &&
+ phaseSource.includes('return Object.freeze({start,tap,choose,navigate,suspend,cancel,state})'),
+ 'read-only controller must expose suspend preserving revealed answer');
+assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
+ script.includes("if(document.hidden){\n  autoBrowse.pause();") &&
+ script.includes("phaseController.suspend();") &&
+ script.includes("window.speechSynthesis?.cancel();"),
+ 'Safari page-background event must stop rating, auto and voice together');
+let lifecycleID=0;
+const lifecycleTimers=new Map(),lifecycleGrades=[],lifecycleMoves=[];
+const lifecycle=api.createReadOnlyPhaseController({
+ onUpdate:()=>{},
+ onGradeComplete:(grade,key)=>lifecycleGrades.push([grade,key]),
+ onAdvance:(grade,key)=>lifecycleMoves.push([grade,key]),
+ schedule:(fn,ms)=>{const id=++lifecycleID;lifecycleTimers.set(id,{fn,ms});return id},
+ unschedule:id=>lifecycleTimers.delete(id)
+});
+lifecycle.start('BG-Q1');
+lifecycle.choose('hard');
+assert.equal(lifecycle.state().revealed,true);
+assert.equal(lifecycle.state().selected,'hard');
+const queuedBeforeBg=lifecycleTimers.values().next().value;
+assert.equal(queuedBeforeBg.ms,4000);
+lifecycle.suspend();
+assert.equal(lifecycleTimers.size,0,'hidden Safari tab cancels graded countdown');
+assert.equal(lifecycle.state().phase,'answer-paused','revealed answer must stay visible while backgrounded');
+assert.equal(lifecycle.state().selected,null,'no deferred grade may fire in hidden tab');
+queuedBeforeBg.fn(); // simulate an already dequeued callback despite unschedule
+assert.equal(lifecycleMoves.length,0,'stale timer must never navigate in background');
+assert.equal(lifecycleGrades.length,0,'background suspend must not settle SRS or transient grade');
+lifecycle.navigate('BG-Q2');
+assert.equal(lifecycle.state().revealed,false,'question preference survives temporary background answer');
+lifecycle.tap();lifecycle.navigate('BG-A1');lifecycle.choose('again');
+const prior=lifecycleTimers.values().next().value;
+lifecycle.suspend();
+assert.equal(lifecycle.state().revealed,true,'answer preference and answer visibility persist after background');
+assert.equal(lifecycle.state().preferredFace,'answer');
+prior.fn();assert.equal(lifecycleMoves.length,0);
+lifecycle.navigate('BG-A2');assert.equal(lifecycle.state().revealed,true,'foreground next card retains ANSWER preference');
+lifecycle.start('BG-QUESTION');
+lifecycle.suspend();
+assert.equal(lifecycle.state().revealed,false,'hiding a normal question should not reveal it');
+assert.equal(lifecycleTimers.size,0);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
