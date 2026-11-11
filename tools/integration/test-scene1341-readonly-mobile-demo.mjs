@@ -28,7 +28,7 @@ assert(html.includes('data-grade="again" disabled'));
 assert(html.includes('data-grade="hard" disabled'));
 assert(html.includes('data-grade="good" disabled'));
 assert(script.includes('transientRatings'));
-assert(script.includes('尚无本预览对应的逐条QA证据'));
+assert(!html.includes('class="demo-qa"'), 'internal QA metadata cannot add learning UI rows');
 assert(html.includes('scene500-mobile.css'));
 assert(html.includes('scene500-learning.css'));
 assert(html.includes('scene500-home.css'));
@@ -64,7 +64,7 @@ assert(/class="word-line"[^>]*><div class="word"/.test(learningFace),'word-only 
 assert(/class="ipa-line"[^>]*>.*?class="ipa".*?class="speak-btn"/s.test(learningFace),'speaker must share native IPA row');
 assert(/class="recall-controls-row"[^>]*>.*?class="recall-cue".*?class="auto-word-toggle"/s.test(learningFace),'auto browse must share native recall row');
 assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift the study hero geometry');
-assert(html.includes('#learning .demo-qa{display:none!important}'),'staging QA notices must not add another row on question/answer faces');
+assert(!learningFace.includes('class="demo-ops"') && !learningFace.includes('class="demo-qa"') && !learningFace.includes('class="tap-hint"'), 'no Scene1341-only learning controls or notices');
 assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
 assert(script.includes("const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json'"),'read-only draft source unchanged');
 
@@ -506,4 +506,28 @@ assert(script.includes("$('continue').addEventListener('click',()=>openStudy(las
  'continue action should restore saved cursor instead of entering from first item');
 assert(!/localStorage|sessionStorage|indexedDB/.test(script),
  'read-only preview cursor must not persist any user data');
+
+/* PASS 1 source-backed visual hierarchy: canonical native Scene500 footer. */
+const canonicalLearningFragment=scene500Renderer.slice(scene500Renderer.indexOf('const autoSwitch=\`'),scene500Renderer.indexOf(" let query='';",scene500Renderer.indexOf('const autoSwitch=\`')));
+const ratingIndex=learningFace.indexOf('class="recall-correction"');
+const hintIndex=learningFace.indexOf('class="recall-note"');
+const footIndex=learningFace.indexOf('class="session-footnote"');
+assert(canonicalLearningFragment.includes('class="recall-correction"') &&
+ canonicalLearningFragment.includes('class="recall-note"') &&
+ canonicalLearningFragment.includes('class="session-footnote"'),
+ 'Scene500 native reference must include all three footer elements');
+assert(ratingIndex>=0&&hintIndex>ratingIndex&&footIndex>hintIndex,
+ 'Scene1341 must show grading rail then recall hint then native session-footnote');
+assert(learningFace.includes('id="demo-note" aria-live="polite"'),
+ 'native hint accessible-live behavior must be preserved');
+assert(!learningFace.includes('id="prev"') && !learningFace.includes('id="next"') &&
+ !learningFace.includes('id="reveal"') &&
+ !learningFace.includes('id="qa"') &&
+ !learningFace.includes('id="tap-hint"'),
+ 'staging-only learning controls and QA must not be in learner page DOM');
+assert(!script.includes("set('qa'") &&
+ !script.includes("$('prev')") &&
+ !script.includes("$('reveal')") &&
+ !script.includes("$('next')"),
+ 'no orphan listener or metadata access after removing preview controls');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
