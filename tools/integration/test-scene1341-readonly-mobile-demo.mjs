@@ -127,7 +127,8 @@ assert(scene500Face.includes('<label class="auto-word-toggle"')&&scene500Face.in
  'Scene500 auto-browse reference must be the original checkbox implementation');
 assert(!html.includes('#learning .word-hero .ipa-line{'),
  'do not silently reintroduce isolated hero geometry overrides');
-assert(script.includes("suppressTapUntil=Date.now()+700"),'swipe must suppress synthetic click');
+assert(script.includes('suppressTapUntil=window.__paiTapSuppressUntil=Date.now()+700'),
+ 'swipe must suppress synthesized Safari tap through the native Scene500 shared click guard');
 assert(script.includes("Math.abs(dx)>=65") && script.includes("Math.abs(dy)>=75") &&
  script.includes("Math.abs(dy)*1.3"),'native Scene500 swipe gesture thresholds');
 assert(!script.includes('function enterHand()') && !html.includes('class="handwrite-board"'),
