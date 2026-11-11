@@ -603,4 +603,55 @@ assert.equal(gradedFinished,1,'duplicate voice completion must be ignored');
 cancelActive();
 assert.equal(speechCanceled,0,'completed callback must not cancel subsequent audio');
 assert.equal(speechTasks.size,0,'watchdog clears after completed voice');
+
+/* Independent re-audit A: absolute answer CSS parity, not just file hashes. */
+const nativeUx=fs.readFileSync('ux-fix.css','utf8');
+assert(nativeUx.includes('.answer-section{padding:6px 0}') &&
+ nativeUx.includes('.answer-label{margin-bottom:2px;font-size:10.5px'),
+ 'read the ACTIVE native Scene500 compact answer dimensions');
+for(const forbidden of [
+ '#learning .answer .answer-section{',
+ '#learning .answer .answer-label{',
+ '#learning .answer .definition-line{',
+ '#learning .answer .example-translation{',
+ '#learning .answer .example-text{'
+])assert(!html.includes(forbidden),'no isolated CSS may override native Scene500 answer styling: '+forbidden);
+assert(html.includes('scene500-ux-fix.css') && html.includes('scene500-learning.css'),
+ 'original Scene500 answer geometry and bilingual example layout must be imported');
+
+/* Independent re-audit B: worst-case alternating face, repeated grading,
+   navigation, and old-timer invalidation across a long set of moves. */
+const stormTimers=new Map(),stormCommits=[],stormAdvance=[];
+let stormID=0;
+const storm=api.createReadOnlyPhaseController({
+ onUpdate:()=>{},
+ onGradeComplete:(grade,key)=>stormCommits.push([grade,key]),
+ onAdvance:(grade,key)=>stormAdvance.push([grade,key]),
+ schedule:(fn,ms)=>{const id=++stormID;stormTimers.set(id,{fn,ms});return id},
+ unschedule:id=>stormTimers.delete(id)
+});
+storm.start('STORM-000');
+storm.tap();
+for(let k=1;k<=120;k++){
+ const current='STORM-'+String(k).padStart(3,'0');
+ storm.navigate(current);
+ assert.equal(storm.state().revealed,true,'ANSWER preference lost during rapid navigation #'+k);
+ if(k%7===0){
+  const grade=k%2?'hard':'good';
+  storm.choose(grade);
+  assert.equal(storm.state().revealed,true);
+  assert.equal(storm.state().preferredFace,'answer');
+  storm.navigate('NEXT-'+String(k));
+  assert.equal(stormTimers.size,0,'stale delayed grade timer after a horizontal/vertical/auto move');
+  assert.equal(storm.state().revealed,true,'rated navigation must preserve answer preference');
+ }
+}
+assert.equal(stormAdvance.length,0,'no stale scheduled grade may advance after rapid manual switching');
+assert.equal(stormCommits.length,17,'each interrupted grade must settle exactly once');
+storm.tap();assert.equal(storm.state().revealed,false);
+for(let k=0;k<40;k++){
+ storm.navigate('QUESTION-'+k);
+ assert.equal(storm.state().revealed,false,'QUESTION preference lost during rapid navigation #'+k);
+}
+storm.cancel();assert.equal(stormTimers.size,0);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
