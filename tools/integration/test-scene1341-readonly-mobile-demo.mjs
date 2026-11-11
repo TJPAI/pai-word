@@ -111,7 +111,7 @@ const heroIndex=learningFace.indexOf('<div class="word-hero" id="hero">');
 const studyBodyIndex=learningFace.indexOf('<div class="study-body" id="studybody">');
 assert(heroIndex>0&&studyBodyIndex>heroIndex,
  'Scene1341 learning face MUST use native fixed hero sibling BEFORE scrollable study-body');
-assert(/<div class="word-hero" id="hero">[\\s\\S]*?<\\/div>\\s*<div class="study-body" id="studybody">/.test(learningFace),
+assert(learningFace.includes('</div>\n <div class="study-body" id="studybody">'),
  'Scene1341 hero closing boundary must be outside study-body');
 assert(learningFace.includes('<label class="auto-word-toggle"') &&
  learningFace.includes('id="auto-toggle" type="checkbox"') &&
