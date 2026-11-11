@@ -452,7 +452,7 @@ for(const [start,dir,want] of [[9,1,0],[0,-1,9],[19,1,10],[25,1,20]]){
  const rows=Array.from({length:26},(_,i)=>({scene_ku_id:'K'+i,expression:'word'+i}));
  const controller=api.createReadOnlyPhaseController({onUpdate:()=>{},onGradeComplete:()=>{},onAdvance:()=>{}});
  controller.start('K'+start);controller.tap();
- const ctx={index:start,BATCH:10,subset:()=>rows,phaseController:controller,
+ const ctx={index:start,BATCH:10,revealed:true,subset:()=>rows,phaseController:controller,
   scratchDrawing:()=>false,resetScratch:()=>{},stopWordAudio:()=>{},
   readOnlyPrefs:{get:()=>false},autoBrowse:{restart:()=>{}},
   window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
