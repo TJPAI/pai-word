@@ -181,4 +181,43 @@ assert.equal(actualGrades.length,3,'navigation settles pending transient grade o
 assert.equal(actualAdvance.length,1,'no background timer can advance after swipe');
 assert.equal(phase.choose('invalid'),false);
 phase.cancel();assert.equal(phase.state().cardKey,null);
+
+assert(scene500Renderer.includes('const autoInterval=(speechEnded=false)=>') &&
+ scene500Renderer.includes('const afterSpeech={0.9:0.2,1.5:0.6,3:2,6:5}'),
+ 'native Scene500 auto-browse waits for post-speech interval');
+assert(script.includes('createReadOnlyAutoBrowse(') &&
+ script.includes('isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking') &&
+ script.includes('navigate:()=>{if(index>=subset().length-1)return false;move(1,true);return true}'),
+ 'Scene1341 must use Scene500-like speech-idle and correction-idle AUTO NEXT, not automatic answer flip');
+assert(!script.includes('if(!revealed)show();else if(index<subset().length-1)move(1)'),
+ 'old alternate reveal/move auto-browse loop must never return');
+let automaticID=0,busy=false,allowed=true;
+const automaticTimers=new Map(),autoMoves=[],autoStates=[];
+const auto=api.createReadOnlyAutoBrowse({
+ shouldRun:()=>allowed,isBusy:()=>busy,
+ navigate:()=>{autoMoves.push('next');return autoMoves.length<3},
+ onState:on=>autoStates.push(on),
+ schedule:(fn,ms)=>{const id=++automaticID;automaticTimers.set(id,{fn,ms});return id},
+ unschedule:id=>automaticTimers.delete(id)
+});
+const fireOne=()=>{
+ const first=automaticTimers.entries().next().value;
+ assert(first,'auto timer expected');
+ automaticTimers.delete(first[0]);first[1].fn();return first[1].ms;
+};
+assert.equal(auto.setDelay(600),true);
+assert.equal(auto.setDelay(1234),false);
+auto.start();assert.equal(auto.isEnabled(),true);
+assert.equal([...automaticTimers.values()][0].ms,600);
+busy=true;assert.equal(fireOne(),600);
+assert.equal(autoMoves.length,0,'speech in progress must block auto navigation');
+assert.equal([...automaticTimers.values()][0].ms,120);
+busy=false;assert.equal(fireOne(),120);
+assert.equal([...automaticTimers.values()][0].ms,600,'wait full selected interval AFTER speech is idle');
+assert.equal(fireOne(),600);assert.equal(autoMoves.length,1);
+auto.setDelay(200);assert.equal([...automaticTimers.values()][0].ms,200);
+auto.stop();assert.equal(automaticTimers.size,0);
+auto.start();allowed=false;fireOne();
+assert.equal(auto.isEnabled(),false,'background/hidden/handwriting must fail closed');
+assert.equal(automaticTimers.size,0);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
