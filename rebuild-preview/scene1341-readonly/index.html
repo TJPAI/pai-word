@@ -43,10 +43,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 #learning .answer .example-translation{display:block;color:#666;font-size:14px;margin-top:4px;line-height:1.5}
 #learning .answer .answer-section{padding-top:12px;padding-bottom:12px}
 #learning .answer .answer-label{font-size:12px;color:#777;font-weight:650;margin-bottom:7px}
-#learning .handwrite-board{position:absolute;inset:0;z-index:100;background:#fff;touch-action:none}
-#learning .handwrite-board[hidden],[hidden]{display:none!important}
-#learning #draw-canvas{width:100%;height:100%;display:block;touch-action:none}
-#learning .handwrite-indicator{position:absolute;top:10px;left:10px;background:#e5f0ff;padding:6px 8px;border-radius:8px;font-size:12px}
+/* Scene500 scratch geometry is owned by the native learning.css file. */
 </style></head>
 <body><div id="app">
 <section class="home-dashboard demo-home" id="home">
@@ -67,13 +64,13 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <p class="tap-hint" id="tap-hint" hidden>轻点空白处显示答案</p>
  </div>
  <div class="study-body" id="studybody">
-  <div class="handwrite-board" id="handwrite" hidden><span class="handwrite-indicator">手写模式 · 长按退出</span><canvas id="draw-canvas"></canvas></div>
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
    <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
   </div>
+  <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
  </div>
  <p class="demo-qa" id="qa" title="独立审核意见"></p>
  <p class="recall-note" id="demo-note">点空白看答案，左右滑切词，上下滑换批，长按手写或擦除</p>
@@ -91,14 +88,16 @@ const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA
 const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
-const BATCH=25;let handMode=false,holdTimer=null,pointerDown=false,selectedGrade=null;
+const BATCH=25;let selectedGrade=null;
+const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true;
+const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
 const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
- onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)renderCard()},
+ onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)window.render?.()},
  onGradeComplete:grade=>{transientRatings[grade]++},
  onAdvance:()=>{if(index<subset().length-1)move(1);else{phaseController.start(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}}
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
- shouldRun:()=>!$('learning').hidden&&!document.hidden&&!handMode,
+ shouldRun:()=>!$('learning').hidden&&!document.hidden&&!scratchDrawing(),
  isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking,
  navigate:()=>{if(index>=subset().length-1)return false;move(1,true);return true},
  onState:enabled=>{$('auto-toggle').checked=enabled}
@@ -177,12 +176,12 @@ function renderHome(){
 }
 function openStudy(id){
  if(!available(id)||!items.length)return;
- stopAuto();sceneId=id;lastScene=id;index=0;revealed=false;exitHand();
+ stopAuto();sceneId=id;lastScene=id;index=0;revealed=false;resetScratch();
  $('home').hidden=true;$('learning').hidden=false;
  set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
  phaseController.start(subset()[0].scene_ku_id);
 }
-function home(){ stopAuto();exitHand();$('learning').hidden=true;phaseController.cancel();$('home').hidden=false;renderHome() }
+function home(){stopAuto();resetScratch();$('learning').hidden=true;phaseController.cancel();$('home').hidden=false;renderHome()}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  $('learning').classList.toggle('revealed',revealed);
@@ -208,10 +207,10 @@ function renderCard(){
  $('studybody').scrollTop=0;
 }
 let suppressTapUntil=0;
-function show(){if(Date.now()<suppressTapUntil||handMode)return;phaseController.tap()}
-function move(delta,fromAuto=false){const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));clearHand();phaseController.navigate(rows[index].scene_ku_id);if(!fromAuto)autoBrowse.restart()}
-function moveBatch(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,Math.floor(index/BATCH)*BATCH+delta*BATCH));clearHand();phaseController.navigate(rows[index].scene_ku_id);autoBrowse.restart()}
-function demoGrade(grade){if(handMode||$('learning').hidden)return;stopAuto();phaseController.choose(grade)}
+function show(){if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;phaseController.tap()}
+function move(delta,fromAuto=false){const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));resetScratch();phaseController.navigate(rows[index].scene_ku_id);if(!fromAuto)autoBrowse.restart()}
+function moveBatch(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,Math.floor(index/BATCH)*BATCH+delta*BATCH));resetScratch();phaseController.navigate(rows[index].scene_ku_id);autoBrowse.restart()}
+function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();stopAuto();phaseController.choose(grade);window.PAI_SCRATCH_FINISH_RATING?.()}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene));
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
@@ -221,24 +220,31 @@ $('studybody').addEventListener('click',e=>{if(!e.target.closest('button,a,detai
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
 $('speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const s=new SpeechSynthesisUtterance(subset()[index].expression);s.lang='en-US';window.speechSynthesis.speak(s)});
 $('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(subset()[index].answer.example_en);utterance.lang='en-US';window.speechSynthesis.speak(utterance)});
-let start=null;$('learning').addEventListener('touchstart',e=>{if(handMode||e.target.closest('button,input,select,label,a,details,.recall-correction'))return;if(e.touches.length===1){start={x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()};holdTimer=setTimeout(()=>{enterHand();start=null},600)}},{passive:true});
-$('learning').addEventListener('touchmove',e=>{if(start&&(Math.abs(e.touches[0].clientX-start.x)>16||Math.abs(e.touches[0].clientY-start.y)>16)){clearTimeout(holdTimer);holdTimer=null}},{passive:true});
-$('learning').addEventListener('touchend',e=>{clearTimeout(holdTimer);holdTimer=null;if(handMode||!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y,startTime=start.time;start=null;if(Date.now()-startTime>700)return;if(Math.abs(dx)>=65&&Math.abs(dx)>=Math.abs(dy)*1.3){suppressTapUntil=Date.now()+700;move(dx<0?1:-1)}else if(Math.abs(dy)>=75&&Math.abs(dy)>=Math.abs(dx)*1.3){suppressTapUntil=Date.now()+700;moveBatch(dy<0?1:-1)}},{passive:true});
+let start=null;
+$('learning').addEventListener('touchstart',e=>{
+ if(scratchDrawing()||e.target.closest('button,input,select,label,a,details,.recall-correction')||e.touches.length!==1)return;
+ start={x:e.touches[0].clientX,y:e.touches[0].clientY,time:Date.now()};
+},{passive:true});
+$('learning').addEventListener('touchmove',e=>{
+ if(!start||!e.touches?.[0])return;
+ if(Math.abs(e.touches[0].clientX-start.x)>10||Math.abs(e.touches[0].clientY-start.y)>10)
+  suppressTapUntil=window.__paiTapSuppressUntil=Date.now()+700;
+},{passive:true});
+$('learning').addEventListener('touchend',e=>{
+ if(scratchDrawing()||!start||e.changedTouches.length!==1){start=null;return}
+ const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y,dt=Date.now()-start.time;start=null;
+ if(dt>700)return;
+ if(Math.abs(dx)>=65&&Math.abs(dx)>=Math.abs(dy)*1.3)move(dx<0?1:-1);
+ else if(Math.abs(dy)>=75&&Math.abs(dy)>=Math.abs(dx)*1.3)moveBatch(dy<0?1:-1);
+},{passive:true});
 function stopAuto(){autoBrowse.stop()}
 function startAuto(){autoBrowse.start()}
 $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
 $('auto-speed').addEventListener('click',e=>e.stopPropagation());
 $('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoBrowse.setDelay(Number(e.target.value))});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAuto()});
-function clearHand(){const canvas=$('draw-canvas'),ctx=canvas.getContext('2d');ctx?.clearRect(0,0,canvas.width,canvas.height)}
-function enterHand(){stopAuto();handMode=true;$('handwrite').hidden=false;const canvas=$('draw-canvas');const rect=canvas.getBoundingClientRect();canvas.width=Math.max(1,Math.floor(rect.width*devicePixelRatio));canvas.height=Math.max(1,Math.floor(rect.height*devicePixelRatio));canvas.getContext('2d').scale(devicePixelRatio,devicePixelRatio)}
-function exitHand(){handMode=false;$('handwrite').hidden=true;clearHand()}
-const canvas=$('draw-canvas');
-canvas.addEventListener('pointerdown',e=>{if(!handMode)return;pointerDown=true;canvas.setPointerCapture(e.pointerId);const rect=canvas.getBoundingClientRect();const c=canvas.getContext('2d');c.strokeStyle='#174c83';c.lineWidth=3;c.lineCap='round';c.beginPath();c.moveTo(e.clientX-rect.left,e.clientY-rect.top)});
-canvas.addEventListener('pointermove',e=>{if(!pointerDown||!handMode)return;const rect=canvas.getBoundingClientRect();const c=canvas.getContext('2d');c.lineTo(e.clientX-rect.left,e.clientY-rect.top);c.stroke()});
-canvas.addEventListener('pointerup',()=>{pointerDown=false});canvas.addEventListener('pointercancel',()=>{pointerDown=false});
-let canvasHold=null;const hand=$('handwrite');hand.addEventListener('touchstart',e=>{if(e.touches.length===1)canvasHold=setTimeout(()=>{exitHand()},700)},{passive:true});hand.addEventListener('touchmove',()=>{clearTimeout(canvasHold)},{passive:true});hand.addEventListener('touchend',()=>{clearTimeout(canvasHold)},{passive:true});
-
 document.addEventListener('keydown',e=>{if($('learning').hidden)return;if(e.key==='ArrowLeft')move(-1);else if(e.key==='ArrowRight')move(1);else if(e.key===' '){e.preventDefault();show()}else if(e.key==='Escape')home()});
+window.render=renderCard;
+window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
 load();
-</script></body></html>
+</script><script src="./scene500-native-scratch.js"></script></body></html>
