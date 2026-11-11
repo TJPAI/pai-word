@@ -100,8 +100,11 @@ for(const [original,mirror] of scene500StylePaths){
 const nativeTapFlow=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
 assert(nativeTapFlow.includes("function choose(score){") && nativeTapFlow.includes("startRatedSequence(score);"),
  'current Scene500 controller must accept question-side grade via choose');
-assert(script.includes("function demoGrade(grade){if(handMode||$('learning').hidden)return;stopAuto();phaseController.choose(grade)}"),
- 'Scene1341 must delegate direct question/answer grading to the read-only phase adapter');
+assert(script.includes('function demoGrade(grade){') &&
+ script.includes('phaseController.choose(grade)') &&
+ script.includes('window.PAI_SCRATCH_BEGIN_RATING?.()') &&
+ script.includes('window.PAI_SCRATCH_FINISH_RATING?.()'),
+ 'Scene1341 must delegate grading to read-only phase controller with native scratch hooks');
 
 const scene500Renderer=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
 const scene500Face=scene500Renderer.slice(scene500Renderer.indexOf('const autoSwitch=`'),scene500Renderer.indexOf(" let query='';",scene500Renderer.indexOf('const autoSwitch=`')));
