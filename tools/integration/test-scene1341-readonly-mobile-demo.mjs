@@ -539,9 +539,11 @@ const previewClickStart=script.indexOf("$('learning').addEventListener('click',e
 assert(previewClickStart>=0,'Scene1341 must have one delegated learning click handler');
 const previewClick=script.slice(previewClickStart,previewClickStart+580);
 assert(nativeClick.includes("e.target.closest('button,a,input,select,textarea,summary,details,.auto-word-toggle,[data-word-audio],[data-example-audio]')"),
- 'reference uses only actual interaction controls, not the entire answer panel');
-assert(!previewClick.includes("e.target.closest('.answer,"),
- 'answer content is valid native blank-tap area; a learner can tap it to flip');
+ 'native global handler excludes only controls, while answerHtml independently shields its own content');
+assert(scene500Renderer.includes('onclick="event.stopPropagation()"'),
+ 'complete Scene500 answerHtml explicitly stops answer-content taps bubbling to global listener');
+assert(previewClick.includes("e.target.closest('.answer,"),
+ 'Scene1341 must implement native answer-container propagation shield while allowing non-answer blank taps');
 for(const ctrl of ['button','a','input','select','textarea','summary','details','.auto-word-toggle','[data-word-audio]','[data-example-audio]'])
  assert(previewClick.includes(ctrl),'Scene1341 blank click must ignore native control '+ctrl);
 assert(previewClick.includes('window.getSelection?.()?.toString()'),
