@@ -231,7 +231,7 @@ assert(scene500Renderer.includes('const autoInterval=(speechEnded=false)=>') &&
  'native Scene500 auto-browse waits for post-speech interval');
 assert(script.includes('createReadOnlyAutoBrowse(') &&
  script.includes('isBusy:()=>phaseController.state().pending||wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)') &&
- script.includes('navigate:()=>{if(subset().length<2)return false;move(1,true);return true}'),
+ script.includes('navigate:()=>autoNextWithinBatch()'),
  'Scene1341 must use Scene500-like speech-idle and correction-idle AUTO NEXT, not automatic answer flip');
 assert(!script.includes('if(!revealed)show();else if(index<subset().length-1)move(1)'),
  'old alternate reveal/move auto-browse loop must never return');
@@ -396,12 +396,45 @@ assert(scene500Renderer.includes("const batchSize=Math.max(1,Number(state.wordsP
  scene500Renderer.includes("state.wordsPerRound=10;"),
  'native Scene500 default batch size is ten KU');
 assert(script.includes("let BATCH=10,selectedGrade=null;") && script.includes("BATCH=prefs.wordsPerRound;"),'Scene1341 default must match native 10-KU batch');
+/* Native Scene500 auto browse wraps INSIDE the current scene batch, not
+   across the entire Scene1341 catalog. Execute the real staged handler with
+   multiple full, partial and singleton batches, at all supported batch sizes. */
+assert(scene500Renderer.includes('const cycleKeys=()=>') &&
+ scene500Renderer.includes('return all.slice(start,start+size);') &&
+ scene500Renderer.includes('const next=(index+direction+keys.length)%keys.length;'),
+ 'Scene500 native auto-navigation must cycle within the current batch');
+const autoFnBegin=script.indexOf('function autoNextWithinBatch(){');
+const autoFnEnd=script.indexOf('\nfunction syncReadOnlySettingsControls(',autoFnBegin);
+assert(autoFnBegin>0&&autoFnEnd>autoFnBegin,'isolate actual Scene1341 batch-auto function');
+const autoFnCode=script.slice(autoFnBegin,autoFnEnd).trim();
+for(const [count,batch,current,expected] of [
+ [26,10,0,1],[26,10,8,9],[26,10,9,0],
+ [26,10,10,11],[26,10,19,10],
+ [26,10,20,21],[26,10,25,20],
+ [26,25,24,0],[26,25,25,25],
+ [26,50,25,0],[10,10,9,0],[1,10,0,0]
+]){
+ const ctx={BATCH:batch,index:current,subset:()=>Array.from({length:count},(_,i)=>i)};
+ let calls=0;
+ ctx.move=(delta,fromAuto)=>{
+  calls++;assert.equal(fromAuto,true,'cycle must call auto navigation, not manual');
+  ctx.index=(ctx.index+delta%count+count)%count;
+ };
+ const step=vm.runInNewContext('('+autoFnCode+')',ctx);
+ assert.equal(step(),true,'valid batch must be auto-browsable, including singleton');
+ assert.equal(calls,1,'exactly one automatic navigation per timer expiration');
+ assert.equal(ctx.index,expected,`count=${count}, batch=${batch}, index=${current}`);
+}
+const noRows={BATCH:10,index:0,subset:()=>[],move:()=>{throw Error('no navigation')}};
+assert.equal(vm.runInNewContext('('+autoFnCode+')',noRows)(),false,
+ 'no available KUs must stop, rather than spin forever');
+
 assert(script.includes("index=(index+delta%rows.length+rows.length)%rows.length"),
  'Scene1341 must perform circular word navigation');
 assert(script.includes("((now+delta%batches+batches)%batches)*BATCH"),
  'Scene1341 must perform circular batch navigation');
-assert(script.includes('navigate:()=>{if(subset().length<2)return false;move(1,true);return true}'),
- 'auto browse must loop too when more than one KU exists');
+assert(script.includes('navigate:()=>autoNextWithinBatch()'),
+ 'automatic browse must use the current Scene500 batch cycle, even for a singleton');
 for(const [size,index,offset,expected] of [
  [10,9,1,0],[10,0,-1,9],[10,3,1,4],[10,3,-1,2],[3,2,1,0],[3,0,-1,2]]){
  const next=(index+offset%size+size)%size;
