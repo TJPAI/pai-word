@@ -952,6 +952,41 @@ for(const choice of ['good','hard','again']){liveGrade(choice);assert.equal(grad
 assert.equal(gradePauseCount,3,'all three grading buttons pause rather than disable auto');
 assert.equal(gradeStopCount,0);
 
+/* Formal Scene500 rated-auto parity: AFTER a rated result, the same KU
+   remains visible until the next automatic timer. Never skip directly from
+   the rating display into the next KU; manual mode still moves forward.
+   Exercise the actual Scene1341 callback, not a reimplementation. */
+assert(scene500Renderer.includes('window.PAI_RESUME_AUTO_RATED_CARD=(k)=>') &&
+ scene500Renderer.includes('Rating has already committed. Keep the same KU visible, with no navigation here.'),
+ 'native Scene500 rated-auto behavior must be source-anchored');
+const ratedAdvanceStart=script.indexOf(' onAdvance:()=>{');
+const ratedAdvanceEnd=script.indexOf('\n });',ratedAdvanceStart);
+assert(ratedAdvanceStart>=0&&ratedAdvanceEnd>ratedAdvanceStart,'find actual rated-auto handler');
+const ratedAdvanceFnText=script.slice(ratedAdvanceStart,ratedAdvanceEnd).trim().replace(/^onAdvance:/,'');
+for(const enabled of [true,false]){
+ let index=0,moves=0,resumes=0,rests=0,finishes=0;
+ const ctx={
+   index,subset:()=>[{scene_ku_id:'A'},{scene_ku_id:'B'}],
+   autoBrowse:{isEnabled:()=>enabled,resume:()=>{resumes++}},
+   phaseController:{navigate:key=>{rests++;assert.equal(key,'A')}},
+   move:(delta,fromAuto,fromRated)=>{moves++;assert.equal(delta,1);assert.equal(fromAuto,false);assert.equal(fromRated,true)},
+   $:()=>({textContent:''}),set:()=>{},
+   window:{PAI_SCRATCH_FINISH_RATING:()=>{finishes++}}
+ };
+ const actualRatedAdvance=vm.runInNewContext('('+ratedAdvanceFnText+')',ctx);
+ actualRatedAdvance();
+ assert.equal(moves,enabled?0:1,'AUTO-rated must hold same KU; manual mode advances');
+ assert.equal(rests,enabled?1:0,'AUTO-rated stays on same visible KU');
+ assert.equal(resumes,enabled?1:0,'AUTO-rated restarts timer on same card');
+ assert.equal(finishes,1,'handwriting completion exactly once');
+}
+assert(script.includes('data-srs-write="disabled"') === false ||
+ html.includes('data-srs-write="disabled"'),
+ 'never silently enable SRS for unapproved Scene1341 author drafts');
+assert(html.includes('data-srs-write="disabled"') &&
+ script.includes('onGradeComplete:grade=>{transientRatings[grade]++}'),
+ 'read-only draft rating is transient, not a persisted Scene500 SRS record');
+
 /* Execute the REAL isolated word-audio handlers, including the Safari stale
    callback race and changing to a next card with pronunciation disabled. */
 const wordAudioStart=script.indexOf('let wordAudioGeneration=0');
