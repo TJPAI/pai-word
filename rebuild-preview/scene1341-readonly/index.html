@@ -149,11 +149,7 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
   if(autoBrowse.isEnabled()){
    phaseController.navigate(subset()[index].scene_ku_id);
    autoBrowse.resume();
-  }else if(index<subset().length-1)move(1,false,true);
-  else{
-   phaseController.navigate(subset()[index].scene_ku_id);
-   set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。');
-  }
+  }else move(1,false,true);
   window.PAI_SCRATCH_FINISH_RATING?.();
  }
 });
@@ -167,16 +163,22 @@ const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
 const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
 const subset=()=>items.filter(x=>x.scene_id===sceneId);
-// Native Scene500 cycleKeys() wraps strictly inside the current 10/25/50-KU
-// batch. Horizontal/manual navigation remains an independent user action.
+// Same two-stage cycle as native Scene500 cycleKeys() + browseAnswer():
+// slice the CURRENT round (10/25/50 KUs), then wrap within that slice.
+// This is the sole word-index owner for auto, manual, and rated advance.
+function currentBatchNextIndex(rows,current,direction){
+ if(!rows.length)return -1;
+ const size=[10,25,50].includes(Number(BATCH))?Number(BATCH):10;
+ const start=Math.floor(Math.max(0,current)/size)*size;
+ const keys=rows.slice(start,start+size);
+ if(!keys.length)return -1;
+ const position=Math.max(0,Math.min(keys.length-1,current-start));
+ const next=(position+direction%keys.length+keys.length)%keys.length;
+ return start+next;
+}
 function autoNextWithinBatch(){
- const rows=subset();if(!rows.length)return false;
- const batch=Math.max(1,Number(BATCH)||10);
- const start=Math.floor(index/batch)*batch;
- const end=Math.min(start+batch,rows.length);
- if(index<start||index>=end)return false;
- const next=start+(index-start+1)%(end-start);
- move(next-index,true);
+ if(!subset().length)return false;
+ move(1,true);
  return true;
 }
 function syncReadOnlySettingsControls(prefs){
@@ -363,7 +365,8 @@ function show(){
 function move(delta,fromAuto=false,fromRatedAdvance=false){
  const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
  const keepDrawing=fromAuto&&scratchDrawing();
- index=(index+delta%rows.length+rows.length)%rows.length;
+ const nextIndex=currentBatchNextIndex(rows,index,delta);if(nextIndex<0)return;
+ index=nextIndex;
  if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true;
  try{
   if(!keepDrawing)resetScratch();
