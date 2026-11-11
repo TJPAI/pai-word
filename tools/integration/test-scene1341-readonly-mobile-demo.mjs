@@ -960,9 +960,9 @@ assert(scene500Renderer.includes('window.PAI_RESUME_AUTO_RATED_CARD=(k)=>') &&
  scene500Renderer.includes('Rating has already committed. Keep the same KU visible, with no navigation here.'),
  'native Scene500 rated-auto behavior must be source-anchored');
 const ratedAdvanceStart=script.indexOf(' onAdvance:()=>{');
-const ratedAdvanceEnd=script.indexOf('\n });',ratedAdvanceStart);
+const ratedAdvanceEnd=script.indexOf('\n }\n});',ratedAdvanceStart);
 assert(ratedAdvanceStart>=0&&ratedAdvanceEnd>ratedAdvanceStart,'find actual rated-auto handler');
-const ratedAdvanceFnText=script.slice(ratedAdvanceStart,ratedAdvanceEnd).trim().replace(/^onAdvance:/,'');
+const ratedAdvanceFnText=script.slice(ratedAdvanceStart,ratedAdvanceEnd+3).trim().replace(/^onAdvance:/,'');
 for(const enabled of [true,false]){
  let index=0,moves=0,resumes=0,rests=0,finishes=0;
  const ctx={
