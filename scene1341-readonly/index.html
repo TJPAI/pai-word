@@ -289,7 +289,7 @@ function show(){
  if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;
  const pending=phaseController.state().selected!==null;
  phaseController.tap();
- if(pending){window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}
+ if(pending){stopWordAudio();window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}
  if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(subset()[index]?.expression);
 }
 function move(delta,fromAuto=false,fromRatedAdvance=false){
