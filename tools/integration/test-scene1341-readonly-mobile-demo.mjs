@@ -99,7 +99,8 @@ for(const [original,mirror] of scene500StylePaths){
 }
 const nativeTapFlow=fs.readFileSync('tap-flow.js','utf8');
 assert(nativeTapFlow.includes("!['answer','answer-paused','example'].includes(phase)"),'Scene500 correction requires answer phase');
-assert(script.includes("function demoGrade(grade){if(!revealed||"),'unrevealed Scene1341 question must reject corrections just like Scene500');
+assert(script.includes("function demoGrade(grade){if(handMode||$('learning').hidden)return;stopAuto();phaseController.choose(grade)}"),
+ 'Scene1341 must delegate direct question/answer grading to the read-only phase adapter');
 
 const scene500Renderer=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
 const scene500Face=scene500Renderer.slice(scene500Renderer.indexOf('const autoSwitch=`'),scene500Renderer.indexOf(" let query='';",scene500Renderer.indexOf('const autoSwitch=`')));
@@ -127,4 +128,57 @@ assert(script.includes("Math.abs(dx)>=65") && script.includes("Math.abs(dy)>=75"
  script.includes("Math.abs(dy)*1.3"),'native Scene500 swipe gesture thresholds');
 assert(script.includes("holdTimer=setTimeout(()=>{enterHand();start=null},600)"),
  'long press must use native 600ms threshold');
+
+const phaseAssetPath='rebuild-preview/scene1341-readonly/scene500-readonly-phase.js';
+const phaseSource=fs.readFileSync(phaseAssetPath,'utf8');
+assert(html.includes('<script src="./scene500-readonly-phase.js"></script>'),
+ 'preview must load real local read-only phase adapter before inline learning script');
+assert(!/localStorage|sessionStorage|indexedDB|navigator\\.serviceWorker|\\.commit\\s*\\(/.test(phaseSource),
+ 'isolated controller must be free of durable learning state / storage APIs');
+assert(script.includes('phaseController.start(') && script.includes('phaseController.navigate(')
+ && script.includes('phaseController.tap()') && script.includes('phaseController.choose(grade)'),
+ 'both question and answer pages must share one read-only interaction state machine');
+assert(scene500Renderer.includes("function choose(score){") &&
+ scene500Renderer.includes("const defaults={goodWithin:2,hardWithin:5,goodShow:2,hardShow:4,againShow:6"),
+ 'reference current ACTIVE Scene500 phase contract, not obsolete tap-flow.js');
+const context={};vm.runInNewContext(phaseSource,context,{filename:phaseAssetPath});
+const api=context.PAI_SCENE500_READONLY_PHASE;
+assert(api&&typeof api.createReadOnlyPhaseController==='function','read-only controller loaded in V8');
+assert.equal(api.DEFAULT_SHOW_MS.good,2000);
+assert.equal(api.DEFAULT_SHOW_MS.hard,4000);
+assert.equal(api.DEFAULT_SHOW_MS.again,6000);
+let timerID=0;const pendingTimers=new Map(),actualGrades=[],actualAdvance=[],seenFaces=[];
+const schedule=(fn,ms)=>{const id=++timerID;pendingTimers.set(id,{fn,ms});return id};
+const unschedule=id=>pendingTimers.delete(id);
+const phase=api.createReadOnlyPhaseController({
+ onUpdate:state=>seenFaces.push({face:state.phase,selected:state.selected}),
+ onGradeComplete:(grade,key)=>actualGrades.push([grade,key]),
+ onAdvance:(grade,key)=>actualAdvance.push([grade,key]),
+ schedule,unschedule
+});
+phase.start('SC1341-KU-00001');
+assert.equal(phase.state().revealed,false);
+assert.equal(phase.choose('good'),true,'native Scene500 permits direct rating from question');
+assert.equal(phase.state().revealed,true);
+assert.equal(phase.state().selected,'good');
+assert.equal([...pendingTimers.values()][0].ms,2000);
+for(const [id,x] of [...pendingTimers]){pendingTimers.delete(id);x.fn()}
+assert.equal(actualGrades.length,1);
+assert.equal(actualAdvance.length,1);
+assert.equal(actualAdvance[0][0],'good');
+phase.start('SC1341-KU-00002');phase.choose('hard');
+assert.equal([...pendingTimers.values()][0].ms,4000);
+phase.tap();
+assert.equal(phase.state().revealed,false);
+assert.equal(actualGrades.length,2);
+assert.equal(actualAdvance.length,1,'blank tap must not create an extra advance');
+assert.equal(pendingTimers.size,0,'tap cancels the pending grade timer');
+phase.choose('again');assert.equal([...pendingTimers.values()][0].ms,6000);
+phase.navigate('SC1341-KU-00003');
+assert.equal(phase.state().revealed,false);
+assert.equal(pendingTimers.size,0,'swipe cancels old pending delayed advance');
+assert.equal(actualGrades.length,3,'navigation settles pending transient grade once');
+assert.equal(actualAdvance.length,1,'no background timer can advance after swipe');
+assert.equal(phase.choose('invalid'),false);
+phase.cancel();assert.equal(phase.state().cardKey,null);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
