@@ -237,8 +237,12 @@ $('back').addEventListener('click',home);$('continue').addEventListener('click',
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 $('reveal').addEventListener('click',show);$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
-$('hero').addEventListener('click',e=>{if(!e.target.closest('button,input,label,select,a,details')){e.stopPropagation();show()}});
-$('studybody').addEventListener('click',e=>{if(!e.target.closest('button,a,details'))show()});
+// Match native Scene500 single delegated blank-click handler on the whole study screen.
+$('learning').addEventListener('click',e=>{
+ if(e.target.closest('button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
+ if(window.getSelection?.()?.toString()||Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0))return;
+ show();
+});
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
 function playWord(text){
  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'||document.hidden)return false;
@@ -273,7 +277,13 @@ $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.c
 $('auto-speed').addEventListener('click',e=>e.stopPropagation());
 $('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoBrowse.setDelay(Number(e.target.value))});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAuto()});
-document.addEventListener('keydown',e=>{if($('learning').hidden)return;if(e.key==='ArrowLeft')move(-1);else if(e.key==='ArrowRight')move(1);else if(e.key===' '){e.preventDefault();show()}else if(e.key==='Escape')home()});
+document.addEventListener('keydown',e=>{
+ if($('learning').hidden||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;
+ if(e.key==='ArrowLeft')move(-1);
+ else if(e.key==='ArrowRight')move(1);
+ else if(e.code==='Space'){e.preventDefault();show()}
+ else if(e.key==='Escape')home();
+});
 window.render=renderCard;
 window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
 load();
