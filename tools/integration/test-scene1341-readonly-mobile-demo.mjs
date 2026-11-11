@@ -739,6 +739,8 @@ vm.runInNewContext(fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-
 const settingsA=settingCtx.window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings();
 for(const [key,value] of [['voiceAccent','gb'],['speechSpeed',120],['wordsPerRound',25],['autoPronounce.swipe',false],['showExamples',false]])
  assert.equal(settingsA.set(key,value),true);
+assert(fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-readonly-settings.js','utf8').includes('function reset(){values=clone();save(values);'),
+ 'reset must persist defaults, not only clear in-memory preferences');
 const settingsB=settingCtx.window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings();
 for(const [key,value] of [['voiceAccent','gb'],['speechSpeed',120],['wordsPerRound',25],['autoPronounce.swipe',false],['showExamples',false]])
  assert.equal(settingsB.get(key),value,'preference must survive reload: '+key);
