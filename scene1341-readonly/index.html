@@ -161,12 +161,24 @@ const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden,
  isBusy:()=>phaseController.state().pending||wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
  isSpeaking:()=>wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
- navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
+ navigate:()=>autoNextWithinBatch(),
  onState:enabled=>{$('auto-toggle').checked=enabled}
 });
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
 const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
 const subset=()=>items.filter(x=>x.scene_id===sceneId);
+// Native Scene500 cycleKeys() wraps strictly inside the current 10/25/50-KU
+// batch. Horizontal/manual navigation remains an independent user action.
+function autoNextWithinBatch(){
+ const rows=subset();if(!rows.length)return false;
+ const batch=Math.max(1,Number(BATCH)||10);
+ const start=Math.floor(index/batch)*batch;
+ const end=Math.min(start+batch,rows.length);
+ if(index<start||index>=end)return false;
+ const next=start+(index-start+1)%(end-start);
+ move(next-index,true);
+ return true;
+}
 function syncReadOnlySettingsControls(prefs){
  const panel=$('settings-panel');
  if(!panel)return;
