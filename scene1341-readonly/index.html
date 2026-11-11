@@ -256,7 +256,7 @@ $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;render
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 // Match native Scene500 single delegated blank-click handler on the whole study screen.
 $('learning').addEventListener('click',e=>{
- if(e.target.closest('button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
+ if(e.target.closest('.answer,button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
  if(window.getSelection?.()?.toString()||Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0))return;
  show();
 });
