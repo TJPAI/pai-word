@@ -84,6 +84,8 @@ assert.equal(qa.flags.length,27);
 const nativeIndex=fs.readFileSync('rebuild-preview/index.html','utf8');
 const nativeCss=nativeIndex.match(/<style id="pai-preview-rating-bar">([\s\S]*?)<\/style>/)?.[1];
 assert(nativeCss && html.includes(nativeCss),'Scene500 native preview geometry CSS must remain identical');
+assert(html.indexOf('Scene1341 responsive expression sizing')>html.indexOf(nativeCss)+nativeCss.length,
+ 'responsive long-question typography must live AFTER the unmodified Scene500 layout block');
 for(const cls of [
  'class="screen study-screen learning-screen demo-learning"',
  'class="study-top"','class="study-scene"','class="study-progress"',
