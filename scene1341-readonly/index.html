@@ -139,7 +139,20 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
    if(started)synthesis.cancel();
   };
  },
- onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。');autoBrowse.resume()}window.PAI_SCRATCH_FINISH_RATING?.()}
+ onAdvance:()=>{
+  // Native Scene500 PAI_RESUME_AUTO_RATED_CARD: after a rated answer is
+  // completed, keep the same KU on screen while auto browsing remains ON.
+  // Only the NEXT auto timer, after the applicable speech gap, moves the card.
+  if(autoBrowse.isEnabled()){
+   phaseController.navigate(subset()[index].scene_ku_id);
+   autoBrowse.resume();
+  }else if(index<subset().length-1)move(1,false,true);
+  else{
+   phaseController.navigate(subset()[index].scene_ku_id);
+   set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。');
+  }
+  window.PAI_SCRATCH_FINISH_RATING?.();
+ }
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden,
