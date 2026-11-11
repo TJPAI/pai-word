@@ -75,10 +75,28 @@ assert.equal(autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.get(),true,'re
 autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.set(false);
 assert.equal(autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.get(),false);
 assert.equal(stateStore.size,0,'explicit OFF clears the preference record');
+assert.equal(prefStore.getSpeed(),1.5,'auto speed defaults to native 1.5s');
+assert.equal(prefStore.setSpeed(2),false,'only Scene500 speed options may persist');
+assert.equal(prefStore.setSpeed(3),true);
+assert.equal(prefStore.getSpeed(),3,'changed speed applies immediately');
+assert.equal(stateStore.size,1,'speed uses its own isolated preference key');
+vm.runInNewContext(autoPreferenceSource,autoPrefContext);
+assert.equal(autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.getSpeed(),3,
+ 'reload restores selected 3-second auto interval');
+autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.setSpeed(1.5);
+assert.equal(autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.getSpeed(),1.5);
+assert(script.includes("autoPreference.setSpeed(prefs.autoBrowseInterval);autoBrowse.setDelay(") &&
+ script.includes("readOnlyPrefs.set('autoBrowseInterval',autoPreference.getSpeed())"),
+ 'auto interval saves changes and is restored before first scene opens');
+
 const privateSafari={window:{localStorage:{getItem(){throw Error('private')},setItem(){throw Error('private')},removeItem(){throw Error('private')}}}};
 vm.runInNewContext(autoPreferenceSource,privateSafari);
 privateSafari.window.PAI_SCENE1341_AUTO_PREFERENCE.set(true);
 assert.equal(privateSafari.window.PAI_SCENE1341_AUTO_PREFERENCE.get(),true,'private Safari keeps in-memory auto ON');
+privateSafari.window.PAI_SCENE1341_AUTO_PREFERENCE.setSpeed(6);
+assert.equal(privateSafari.window.PAI_SCENE1341_AUTO_PREFERENCE.getSpeed(),6,
+ 'private Safari uses in-memory auto interval fallback');
+
 assert(script.includes('autoBrowse.pause();sceneId=id') &&
  script.includes("autoBrowse.pause();stopWordAudio();resetScratch();$('learning').hidden=true;"),
  'entering/leaving the scene must PAUSE the timer instead of clearing enabled flag');
