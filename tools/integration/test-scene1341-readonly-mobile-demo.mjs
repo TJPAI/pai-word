@@ -190,7 +190,7 @@ assert(scene500Renderer.includes('const autoInterval=(speechEnded=false)=>') &&
  scene500Renderer.includes('const afterSpeech={0.9:0.2,1.5:0.6,3:2,6:5}'),
  'native Scene500 auto-browse waits for post-speech interval');
 assert(script.includes('createReadOnlyAutoBrowse(') &&
- script.includes('isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking') &&
+ script.includes('isBusy:()=>phaseController.state().pending||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)') &&
  script.includes('navigate:()=>{if(subset().length<2)return false;move(1,true);return true}'),
  'Scene1341 must use Scene500-like speech-idle and correction-idle AUTO NEXT, not automatic answer flip');
 assert(!script.includes('if(!revealed)show();else if(index<subset().length-1)move(1)'),
@@ -392,7 +392,7 @@ assert(scene500Renderer.includes('onclick="event.stopPropagation()"'),
  'native Scene500 answer panel suppresses blank-click face switch');
 assert(script.includes("e.target.closest('.answer,button,a,input,select"),
  'Scene1341 answer-content taps must not toggle question face');
-assert(script.includes("isSpeaking:()=>!!window.speechSynthesis?.speaking"),
+assert(script.includes("isSpeaking:()=>!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending)"),
  'Scene1341 must distinguish busy grading from actual TTS for auto timer');
 assert(phaseSource.includes('const postSpeech=Object.freeze({900:200,1500:600,3000:2000,6000:5000})'),
  'normal 0.9/1.5/3/6 sec must map to 0.2/0.6/2/5 sec after audio');
