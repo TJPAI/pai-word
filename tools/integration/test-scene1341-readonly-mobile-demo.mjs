@@ -89,9 +89,10 @@ assert(script.includes('function stopAuto(){autoBrowse.stop();autoPreference.set
  'only explicit toggle changes persisted ON/OFF state');
 assert(script.includes("readOnlyPrefs.reset();stopAuto()"),
  'restore defaults turns auto OFF as native Scene500 does');
-assert(scene500Renderer.includes('state.autoBrowseEnabled=!!enabled;save();restartAutoBrowse();render();') &&
- scene500Renderer.includes('window.PAI_AUTOBROWSE?.stop();') &&
- scene500Renderer.includes('state.autoBrowseEnabled=false;'),
+const autoNativeSource=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+assert(autoNativeSource.includes('state.autoBrowseEnabled=!!enabled;save();restartAutoBrowse();render();') &&
+ autoNativeSource.includes('window.PAI_AUTOBROWSE?.stop();') &&
+ autoNativeSource.includes('state.autoBrowseEnabled=false;'),
  'UI persistence and reset are grounded in native Scene500 behavior');
 
 // The catalog and author KU data are pinned to immutable, distinct commits.
