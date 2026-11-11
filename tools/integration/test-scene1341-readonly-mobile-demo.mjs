@@ -53,7 +53,7 @@ const autoPreferencePath='rebuild-preview/scene1341-readonly/scene1341-auto-pref
 const autoPreferenceSource=fs.readFileSync(autoPreferencePath,'utf8');
 assert(html.includes('<script src="./scene1341-auto-preference.js"></script>'),
  'load the isolated auto preference before learning script');
-assert(!/pai-word-scene500|ku-durable|scene1341-v2|records|indexedDB/i.test(autoPreferenceSource),
+assert(!/pai-word-scene500|ku-durable|scene1341-v2|indexedDB|\.commit\(|\.transaction\(/i.test(autoPreferenceSource),
  'auto preference adapter cannot read or write Scene500/SRS state');
 assert(autoPreferenceSource.includes('pai-word-scene1341-readonly-auto-enabled-v1'),
  'auto preference must use its own read-only preview namespace');
