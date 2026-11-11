@@ -1331,4 +1331,78 @@ assert(script.includes('if(synthesis.paused)synthesis.resume()') &&
 assert(script.includes('if(synthesis.speaking||synthesis.pending)synthesis.cancel()'),
  'rated watchdog must invalidate a stuck utterance before continuing');
 
+/* Combined Scene500 state-contract matrix on REAL Scene1341 handlers.
+ * Reproduce rating + manual swipe, rating correction, blank-tap early
+ * completion, stale timer, auto-rated hold and next auto movement. */
+const crossMoveText=script.slice(script.indexOf('function move(delta,fromAuto=false,fromRatedAdvance=false){'),script.indexOf('\nfunction moveBatch(',script.indexOf('function move(delta,fromAuto=false,fromRatedAdvance=false){')));
+const crossGradeText=script.slice(script.indexOf('function demoGrade('),script.indexOf("$('back').addEventListener",script.indexOf('function demoGrade(')));
+const crossShowText=script.slice(script.indexOf('function show(){'),script.indexOf('\nfunction move(delta,',script.indexOf('function show(){')));
+const crossCycleText=script.slice(script.indexOf('function currentBatchNextIndex('),script.indexOf('\nfunction syncReadOnlySettingsControls(',script.indexOf('function currentBatchNextIndex(')));
+const crossRatedStart=script.indexOf(' onAdvance:()=>{');
+const crossRatedEnd=script.indexOf('\n }\n});',crossRatedStart);
+const crossRatedText=script.slice(crossRatedStart,crossRatedEnd+3).trim().replace(/^onAdvance:/,'');
+const crossClock=new Map(),crossGrades=[],crossAudio=[];let crossTick=0,crossTimer=0,autoOn=false,paused=0,resumed=0,restarted=0;
+const crossRows=Array.from({length:26},(_,i)=>({scene_ku_id:'C-'+i,expression:'word '+i}));
+const crossCtx={index:9,BATCH:10,selectedGrade:null,revealed:false,suppressTapUntil:0,
+ subset:()=>crossRows,scratchDrawing:()=>false,resetScratch:()=>{},
+ stopWordAudio:()=>{crossAudio.push('stop')},playWord:()=>false,
+ readOnlyPrefs:{get:()=>false},
+ window:{PAI_SCRATCH_BEGIN_RATING:()=>{},PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false},
+ $:()=>({hidden:false}),Date,
+ autoBrowse:{isEnabled:()=>autoOn,pause:()=>{paused++},resume:()=>{resumed++},restart:()=>{restarted++}},
+};
+const crossPhase=api.createReadOnlyPhaseController({
+ onUpdate:state=>{crossCtx.revealed=state.revealed;crossCtx.selectedGrade=state.selected},
+ onGradeComplete:(grade,key)=>crossGrades.push([grade,key]),
+ onAdvance:()=>crossCtx.ratedAdvance(),
+ playRatedWord:null,
+ schedule:(fn,ms)=>{const id=++crossTimer;crossClock.set(id,{fn,ms});return id},
+ unschedule:id=>crossClock.delete(id)
+});
+crossCtx.phaseController=crossPhase;
+vm.runInNewContext(crossCycleText+'\n'+crossMoveText+'\n'+crossGradeText+'\n'+crossShowText+
+ '\nthis.move=move;this.demoGrade=demoGrade;this.show=show;this.ratedAdvance='+crossRatedText+';',crossCtx);
+const fireCross=()=>{
+ const entry=[...crossClock.entries()][0];
+ assert(entry,'expected cross-state rating timer');
+ crossClock.delete(entry[0]);entry[1].fn();
+};
+crossPhase.start('C-9');crossPhase.tap();
+assert.equal(crossPhase.state().revealed,true);
+crossCtx.demoGrade('good');assert.equal(paused,1);
+crossCtx.move(1); // Swipe while rated answer timer pending; commit once and move inside round.
+assert.equal(crossCtx.index,0);
+assert.equal(crossPhase.state().cardKey,'C-0');
+assert.equal(crossPhase.state().revealed,true,'ANSWER face must persist after interrupted grading swipe');
+assert.deepEqual(crossGrades,[['good','C-9']]);
+assert.equal(crossClock.size,0,'interrupted rating removes old pending timer');
+crossCtx.demoGrade('hard');
+crossCtx.show(); // Native blank-tap early settlement must HOLD same KU.
+assert.equal(crossCtx.index,0,'blank rating tap must not advance');
+assert.equal(crossPhase.state().cardKey,'C-0');
+assert.equal(crossPhase.state().revealed,false,'blank tap returns to QUESTION');
+assert.equal(crossGrades.length,2);
+assert.deepEqual(crossGrades[1],['hard','C-0']);
+assert.equal(crossClock.size,0,'blank tap removes pending rating timer');
+crossCtx.demoGrade('again');
+crossCtx.demoGrade('good'); // Correction before the first rating commits.
+assert.equal(crossClock.size,1,'rating correction keeps only current countdown');
+fireCross();
+assert.deepEqual(crossGrades[2],['good','C-0'],'only corrected grade is settled');
+assert.equal(crossGrades.length,3,'no extra stale grade commits');
+assert.equal(crossCtx.index,1,'manual-mode rated completion moves forward exactly one word');
+assert.equal(crossPhase.state().revealed,false,'manual-rated completion preserves QUESTION mode');
+autoOn=true;
+crossCtx.demoGrade('hard');
+fireCross();
+assert.deepEqual(crossGrades[3],['hard','C-1']);
+assert.equal(crossCtx.index,1,'AUTO-rated must hold current KU until next timer');
+assert.equal(crossPhase.state().cardKey,'C-1');
+assert(resumed>0,'AUTO-rated completion must resume timer');
+crossCtx.move(1,true);
+assert.equal(crossCtx.index,2,'next auto tick advances only then');
+assert.equal(crossPhase.state().revealed,false,'automatic movement preserves QUESTION face');
+assert.equal(crossGrades.length,4,'auto movement must not create any additional score');
+assert(restarted>0,'manual swipe and blank tap must restore auto timer');
+
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
