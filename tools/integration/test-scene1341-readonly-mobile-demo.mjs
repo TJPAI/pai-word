@@ -46,6 +46,54 @@ const veryLongFit=makeFit('extraordinary '.repeat(24),300);
 assert(veryLongFit.size>=8&&veryLongFit.scale?.startsWith('scaleX('),
  'extremely long expressions must stay on one line using a last-resort horizontal fit');
 
+/* Auto-toggle state parity: unlike SRS and KU, the user's ON/OFF UI
+ * preference is saved in an isolated key and must survive home/reload.
+ * Test actual JS adapter with persistent mock store and private Safari fallback. */
+const autoPreferencePath='rebuild-preview/scene1341-readonly/scene1341-auto-preference.js';
+const autoPreferenceSource=fs.readFileSync(autoPreferencePath,'utf8');
+assert(html.includes('<script src="./scene1341-auto-preference.js"></script>'),
+ 'load the isolated auto preference before learning script');
+assert(!/pai-word-scene500|ku-durable|scene1341-v2|records|indexedDB/i.test(autoPreferenceSource),
+ 'auto preference adapter cannot read or write Scene500/SRS state');
+assert(autoPreferenceSource.includes('pai-word-scene1341-readonly-auto-enabled-v1'),
+ 'auto preference must use its own read-only preview namespace');
+const stateStore=new Map();
+const mockLocalStorage={
+ getItem:key=>stateStore.get(key)||null,
+ setItem:(key,val)=>stateStore.set(key,String(val)),
+ removeItem:key=>stateStore.delete(key)
+};
+const autoPrefContext={window:{localStorage:mockLocalStorage}};
+vm.runInNewContext(autoPreferenceSource,autoPrefContext);
+const prefStore=autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE;
+assert.equal(prefStore.get(),false,'auto toggle OFF on first visit');
+prefStore.set(true);
+assert.equal(prefStore.get(),true,'toggle ON immediately');
+assert.equal(stateStore.size,1,'only one isolated auto preference record written');
+vm.runInNewContext(autoPreferenceSource,autoPrefContext);
+assert.equal(autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.get(),true,'reload restores auto ON');
+autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.set(false);
+assert.equal(autoPrefContext.window.PAI_SCENE1341_AUTO_PREFERENCE.get(),false);
+assert.equal(stateStore.size,0,'explicit OFF clears the preference record');
+const privateSafari={window:{localStorage:{getItem(){throw Error('private')},setItem(){throw Error('private')},removeItem(){throw Error('private')}}}};
+vm.runInNewContext(autoPreferenceSource,privateSafari);
+privateSafari.window.PAI_SCENE1341_AUTO_PREFERENCE.set(true);
+assert.equal(privateSafari.window.PAI_SCENE1341_AUTO_PREFERENCE.get(),true,'private Safari keeps in-memory auto ON');
+assert(script.includes('autoBrowse.pause();sceneId=id') &&
+ script.includes("autoBrowse.pause();stopWordAudio();resetScratch();$('learning').hidden=true;"),
+ 'entering/leaving the scene must PAUSE the timer instead of clearing enabled flag');
+assert(script.includes("if(autoPreference.get())autoBrowse.start();else autoBrowse.stop();"),
+ 'reentering scene restores the ON preference and restarts the timer');
+assert(script.includes('function stopAuto(){autoBrowse.stop();autoPreference.set(false)}') &&
+ script.includes('function startAuto(){autoPreference.set(true);autoBrowse.start()}'),
+ 'only explicit toggle changes persisted ON/OFF state');
+assert(script.includes("readOnlyPrefs.reset();stopAuto()"),
+ 'restore defaults turns auto OFF as native Scene500 does');
+assert(scene500Renderer.includes('state.autoBrowseEnabled=!!enabled;save();restartAutoBrowse();render();') &&
+ scene500Renderer.includes('window.PAI_AUTOBROWSE?.stop();') &&
+ scene500Renderer.includes('state.autoBrowseEnabled=false;'),
+ 'UI persistence and reset are grounded in native Scene500 behavior');
+
 // The catalog and author KU data are pinned to immutable, distinct commits.
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
 assert(script.includes("const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c'"));
