@@ -191,7 +191,7 @@ assert(scene500Renderer.includes('const autoInterval=(speechEnded=false)=>') &&
  'native Scene500 auto-browse waits for post-speech interval');
 assert(script.includes('createReadOnlyAutoBrowse(') &&
  script.includes('isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking') &&
- script.includes('navigate:()=>{if(index>=subset().length-1)return false;move(1,true);return true}'),
+ script.includes('navigate:()=>{if(subset().length<2)return false;move(1,true);return true}'),
  'Scene1341 must use Scene500-like speech-idle and correction-idle AUTO NEXT, not automatic answer flip');
 assert(!script.includes('if(!revealed)show();else if(index<subset().length-1)move(1)'),
  'old alternate reveal/move auto-browse loop must never return');
@@ -344,4 +344,45 @@ face.tap();face.navigate('F-7');
 assert.equal(face.state().revealed,true);
 face.cancel();face.start('F-NEW-SCENE');
 assert.equal(face.state().revealed,false,'starting a new scene resets initial face to question');
+
+/* Check direct source parity of navigation and native entry voice. */
+assert(scene500Renderer.includes("const next=(index+direction+keys.length)%keys.length"),
+ 'native Scene500 word browsing wraps at both edges');
+assert(scene500Renderer.includes("const nextBatch=(Math.floor(position/size)+direction+batches)%batches"),
+ 'native Scene500 batch browsing wraps at both ends');
+assert(scene500Renderer.includes("const batchSize=Math.max(1,Number(state.wordsPerRound)||10)") &&
+ scene500Renderer.includes("state.wordsPerRound=10;"),
+ 'native Scene500 default batch size is ten KU');
+assert(script.includes("const BATCH=10;"),'Scene1341 default must match native 10-KU batch');
+assert(script.includes("index=(index+delta%rows.length+rows.length)%rows.length"),
+ 'Scene1341 must perform circular word navigation');
+assert(script.includes("((now+delta%batches+batches)%batches)*BATCH"),
+ 'Scene1341 must perform circular batch navigation');
+assert(script.includes('navigate:()=>{if(subset().length<2)return false;move(1,true);return true}'),
+ 'auto browse must loop too when more than one KU exists');
+for(const [size,index,offset,expected] of [
+ [10,9,1,0],[10,0,-1,9],[10,3,1,4],[10,3,-1,2],[3,2,1,0],[3,0,-1,2]]){
+ const next=(index+offset%size+size)%size;
+ assert.equal(next,expected,'circular word index parity');
+}
+for(const [count,size,index,delta,expected] of [
+ [26,10,25,1,0],[26,10,0,-1,20],[26,10,8,1,10],[26,10,12,-1,0]]){
+ const batches=Math.ceil(count/size),now=Math.floor(index/size);
+ assert.equal(((now+delta%batches+batches)%batches)*size,expected,'circular batch index parity');
+}
+assert(script.includes('playWord(rows[index].expression)') &&
+ script.includes('playWord(subset()[0].expression)') &&
+ script.includes("if(!autoBrowse.isEnabled())playWord(subset()[index]?.expression)"),
+ 'Scene500 speech should occur on entry, manual/auto navigation and manual face flip');
+assert(script.includes("utterance.lang='en-US'") &&
+ script.includes("window.speechSynthesis.speak(utterance)"),
+ 'native US-English voice and synthesis fallback required');
+assert(script.includes("$('learning').addEventListener('click',e=>") &&
+ !script.includes("$('hero').addEventListener('click'") &&
+ !script.includes("$('studybody').addEventListener('click'"),
+ 'only ONE delegated native blank-click handler may toggle question/answer');
+assert(script.includes("window.getSelection?.()?.toString()") &&
+ script.includes("e.code==='Space'") &&
+ script.includes("/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName)"),
+ 'Scene500 text selection / focused control / Space key guards');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
