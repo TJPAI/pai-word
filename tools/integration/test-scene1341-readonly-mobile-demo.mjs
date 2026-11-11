@@ -32,7 +32,7 @@ assert(!html.includes('class="demo-qa"'), 'internal QA metadata cannot add learn
 assert(html.includes('scene500-mobile.css'));
 assert(html.includes('scene500-learning.css'));
 assert(html.includes('scene500-home.css'));
-for(const speed of [900,1500,3000,6000])assert(html.includes('value="'+speed+'"'));
+for(const speed of ['0.9','1.5','3','6'])assert(html.includes('value="'+speed+'"'), 'Scene500 native auto-browse speed in seconds');
 for(const file of ['scene500-mobile.css','scene500-learning.css','scene500-home.css'])
  assert(fs.statSync('rebuild-preview/scene1341-readonly/'+file).size>0);
 
