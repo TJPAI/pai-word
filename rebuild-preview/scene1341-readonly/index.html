@@ -310,7 +310,17 @@ function startAuto(){autoBrowse.start()}
 $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
 $('auto-speed').addEventListener('click',e=>e.stopPropagation());
 $('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoBrowse.setDelay(Number(e.target.value))});
-document.addEventListener('visibilitychange',()=>{if(document.hidden)autoBrowse.pause();else autoBrowse.resume()});
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden){
+  autoBrowse.pause();
+  window.speechSynthesis?.cancel();
+  if(!$('learning').hidden){
+   const hadRatedAnswer=phaseController.state().selected!==null;
+   phaseController.suspend();
+   if(hadRatedAnswer)window.PAI_SCRATCH_FINISH_RATING?.();
+  }
+ }else autoBrowse.resume();
+});
 document.addEventListener('keydown',e=>{
  if($('learning').hidden||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;
  if(e.key==='ArrowLeft')move(-1);
