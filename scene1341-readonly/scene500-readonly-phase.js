@@ -75,8 +75,28 @@
   // once spoken: 0.2 / 0.6 / 2 / 5 sec.
   const postSpeech=Object.freeze({900:200,1500:600,3000:2000,6000:5000});
   let enabled=false,tier=1500,timer=null,generation=0;
+  let wakeLock=null,wakeGeneration=0;
   const clear=()=>{generation++;if(timer!==null){unschedule(timer);timer=null}};
-  function stop(){clear();enabled=false;onState(false)}
+  const releaseWake=()=>{
+   wakeGeneration++;
+   const lock=wakeLock;wakeLock=null;
+   if(lock)Promise.resolve().then(()=>lock.release()).catch(()=>{});
+  };
+  async function syncWake(){
+   const epoch=++wakeGeneration;
+   if(!enabled||!shouldRun()){releaseWake();return}
+   if(wakeLock||typeof navigator==='undefined'||!navigator.wakeLock?.request)return;
+   try{
+    const lock=await navigator.wakeLock.request('screen');
+    if(epoch!==wakeGeneration||!enabled||!shouldRun()){
+     try{await lock.release()}catch(_){}
+     return;
+    }
+    wakeLock=lock;
+    lock.addEventListener?.('release',()=>{if(wakeLock===lock)wakeLock=null},{once:true});
+   }catch(_){/* Unsupported/denied: ordinary foreground auto-browse continues. */}
+  }
+  function stop(){clear();enabled=false;releaseWake();onState(false)}
   function next(speechEnded=false){
    if(!enabled)return;
    if(!shouldRun()){pause();return}
@@ -95,9 +115,9 @@
     next();
    },speechEnded?postSpeech[tier]:tier);
   }
-  function start(){clear();enabled=true;onState(true);next()}
-  function pause(){clear()}
-  function resume(){if(enabled){clear();next()}}
+  function start(){clear();enabled=true;onState(true);next();void syncWake()}
+  function pause(){clear();releaseWake()}
+  function resume(){if(enabled){clear();next();void syncWake()}}
   function restart(){if(enabled)start()}
   function setDelay(ms){
    const n=Number(ms);if(!Object.hasOwn(postSpeech,n))return false;
