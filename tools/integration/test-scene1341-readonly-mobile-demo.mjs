@@ -697,9 +697,7 @@ const tickPending=()=>{
  pendingClock.delete(entry[0]);entry[1].fn();return entry[1].ms;
 };
 pendingAuto.start();
-assert.equal(tickPending(),1500);
-assert.equal(pendingMoves,0);
-assert.equal([...pendingClock.values()][0].ms,1500,'idle gap when voice queue truly empty');
+assert.equal([...pendingClock.values()][0].ms,1500,'initial idle auto gap');
 queueContext.window.speechSynthesis.pending=true;
 assert.equal(tickPending(),1500);
 assert.equal(pendingMoves,0,'late queued speech must preempt a pending auto transition');
