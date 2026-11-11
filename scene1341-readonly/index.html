@@ -94,7 +94,7 @@ const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
 const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
  onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)window.render?.()},
  onGradeComplete:grade=>{transientRatings[grade]++},
- onAdvance:()=>{if(index<subset().length-1)move(1);else{phaseController.start(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}}
+ onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.start(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}window.PAI_SCRATCH_FINISH_RATING?.()}
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden&&!scratchDrawing(),
@@ -181,7 +181,7 @@ function openStudy(id){
  set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
  phaseController.start(subset()[0].scene_ku_id);
 }
-function home(){stopAuto();resetScratch();$('learning').hidden=true;phaseController.cancel();$('home').hidden=false;renderHome()}
+function home(){stopAuto();resetScratch();$('learning').hidden=true;window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome()}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  $('learning').classList.toggle('revealed',revealed);
@@ -207,10 +207,10 @@ function renderCard(){
  $('studybody').scrollTop=0;
 }
 let suppressTapUntil=0;
-function show(){if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;phaseController.tap()}
-function move(delta,fromAuto=false){const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));resetScratch();phaseController.navigate(rows[index].scene_ku_id);if(!fromAuto)autoBrowse.restart()}
-function moveBatch(delta){const rows=subset();index=Math.max(0,Math.min(rows.length-1,Math.floor(index/BATCH)*BATCH+delta*BATCH));resetScratch();phaseController.navigate(rows[index].scene_ku_id);autoBrowse.restart()}
-function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();stopAuto();phaseController.choose(grade);window.PAI_SCRATCH_FINISH_RATING?.()}
+function show(){if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;const pending=phaseController.state().selected!==null;phaseController.tap();if(pending)window.PAI_SCRATCH_FINISH_RATING?.()}
+function move(delta,fromAuto=false,fromRatedAdvance=false){const hadPending=phaseController.state().selected!==null;const rows=subset();index=Math.max(0,Math.min(rows.length-1,index+delta));resetScratch();phaseController.navigate(rows[index].scene_ku_id);if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.();if(!fromAuto)autoBrowse.restart()}
+function moveBatch(delta){const hadPending=phaseController.state().selected!==null;const rows=subset();index=Math.max(0,Math.min(rows.length-1,Math.floor(index/BATCH)*BATCH+delta*BATCH));resetScratch();phaseController.navigate(rows[index].scene_ku_id);if(hadPending)window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}
+function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();stopAuto();phaseController.choose(grade)}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene));
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
