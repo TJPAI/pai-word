@@ -8,6 +8,44 @@ const script=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert(script,'isolated demo must include executable inline JS');
 new vm.Script(script,{filename:'scene1341-readonly-inline.js'});
 
+/* Long phrases on the QUESTION page must remain on exactly one row
+   at actual viewport width, without reducing the standard short-word size. */
+assert(html.includes('white-space:nowrap!important') &&
+ html.includes('overflow-wrap:normal!important') &&
+ html.includes('word-break:normal!important'),
+ 'long question expressions must not wrap even before the font-size fit');
+assert(script.includes("set('expression',r.expression);scheduleQuestionFit()") &&
+ script.includes("window.addEventListener('resize',scheduleQuestionFit)"),
+ 'every new word and viewport resize must re-measure the question expression');
+const fitStart=script.indexOf('function fitQuestionExpression(){');
+const fitEnd=script.indexOf('\nlet questionFitFrame=',fitStart);
+assert(fitStart>0&&fitEnd>fitStart,'must expose the actual responsive text fit function');
+const fitBody=script.slice(fitStart,fitEnd);
+const makeFit=(label,room)=>{
+ let value=null,scale=null;
+ const style={
+  setProperty:(key,text,priority)=>{assert.equal(priority,'important');if(key==='font-size')value=parseFloat(text);if(key==='transform')scale=text},
+  removeProperty:key=>{if(key==='font-size')value=null;if(key==='transform')scale=null},
+  set transform(text){scale=text},
+  get transform(){return scale}
+ };
+ const word={textContent:label,style,parentElement:{clientWidth:room},
+  getBoundingClientRect:()=>({width:label.length*(value??44)*.58})};
+ const fit=vm.runInNewContext('('+fitBody+')',{
+  $:()=>word,getComputedStyle:()=>({fontSize:(value??44)+'px'})
+ });
+ fit();return {size:value??44,scale,width:label.length*(value??44)*.58};
+};
+const shortFit=makeFit('soon',300);
+assert.equal(shortFit.size,44,'short word must keep original Scene500 typography');
+assert.equal(shortFit.scale,null);
+const longFit=makeFit('I am looking forward to hearing from you',300);
+assert(longFit.size<44,'long phrase must reduce font size');
+assert(longFit.width<=298.5,'long phrase must fit within one viewport line');
+const veryLongFit=makeFit('extraordinary '.repeat(24),300);
+assert(veryLongFit.size>=8&&veryLongFit.scale?.startsWith('scaleX('),
+ 'extremely long expressions must stay on one line using a last-resort horizontal fit');
+
 // The catalog and author KU data are pinned to immutable, distinct commits.
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
 assert(script.includes("const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c'"));
