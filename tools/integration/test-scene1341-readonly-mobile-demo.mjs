@@ -462,6 +462,46 @@ for(const [start,dir,want] of [[9,1,0],[0,-1,9],[19,1,10],[25,1,20]]){
  assert.equal(controller.state().cardKey,'K'+want);
  assert.equal(controller.state().revealed,true,'manual navigation retains ANSWER face');
 }
+/* Independent PASS 2: EXECUTE the composed UI navigation paths in order,
+   rather than checking manual, auto and vertical swipes in isolation.
+   This guards the exact failure where auto was batch-local while manual
+   accidentally looped over the entire Scene1341 catalog. */
+const composedRows=Array.from({length:26},(_,i)=>({scene_ku_id:'N-'+i,expression:'word '+i}));
+let composedScratch=0,composedAudioStops=0,composedAutoRestarts=0,composedSpeeches=0;
+const composed={index:9,BATCH:10,revealed:true,subset:()=>composedRows,
+ scratchDrawing:()=>false,resetScratch:()=>{composedScratch++},
+ stopWordAudio:()=>{composedAudioStops++},
+ readOnlyPrefs:{get:()=>false},
+ playWord:()=>{composedSpeeches++},
+ autoBrowse:{restart:()=>{composedAutoRestarts++}},
+ window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
+const composedPhase=api.createReadOnlyPhaseController({
+ onUpdate:state=>{composed.revealed=state.revealed},
+ onGradeComplete:()=>{},onAdvance:()=>{}});
+composed.phaseController=composedPhase;
+composedPhase.start('N-9');composedPhase.tap();
+vm.runInNewContext(batchCycleCode+'\n'+moveSource+'\n'+nativeBatchCode+
+ '\nthis.manualMove=move;this.manualBatch=moveBatch;this.autoStep=autoNextWithinBatch;',composed);
+const checkComposed=(expected,label)=>{
+ assert.equal(composed.index,expected,label+' index');
+ assert.equal(composedPhase.state().cardKey,'N-'+expected,label+' KU');
+ assert.equal(composedPhase.state().revealed,true,label+' ANSWER face');
+};
+composed.manualMove(1);checkComposed(0,'manual end-of-batch forward wrap');
+composed.manualMove(-1);checkComposed(9,'manual first-to-last backward wrap');
+assert.equal(composed.autoStep(),true);checkComposed(0,'auto wrap from last of batch 1');
+composed.manualBatch(1);checkComposed(10,'vertical swipe selects batch 2');
+composed.manualMove(-1);checkComposed(19,'manual backward wrap in batch 2');
+assert.equal(composed.autoStep(),true);checkComposed(10,'automatic wrap in batch 2');
+composed.manualBatch(1);checkComposed(20,'vertical swipe selects partial batch 3');
+composed.manualMove(-1);checkComposed(25,'partial batch backward wrap');
+assert.equal(composed.autoStep(),true);checkComposed(20,'partial batch automatic wrap');
+composed.manualBatch(1);checkComposed(0,'vertical last-batch-to-first wrap');
+assert.equal(composedSpeeches,0,'pronunciation-disabled sequence should not speak');
+assert.equal(composedAudioStops,10,'every real navigation cancels previous word speech');
+assert.equal(composedScratch,10,'every manual navigation and vertical transition resets scratch');
+assert.equal(composedAutoRestarts,7,'manual or vertical navigation restarts auto; auto timer itself does not');
+
 assert(script.includes('const nextIndex=currentBatchNextIndex(rows,index,delta);if(nextIndex<0)return;'),
  'Scene1341 must perform circular word navigation');
 assert(script.includes("((now+delta%batches+batches)%batches)*BATCH"),
