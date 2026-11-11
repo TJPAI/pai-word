@@ -97,8 +97,9 @@ for(const [original,mirror] of scene500StylePaths){
  const mirrorBytes=fs.readFileSync('rebuild-preview/scene1341-readonly/'+mirror);
  assert(originBytes.equals(mirrorBytes),mirror+' must match source byte-for-byte');
 }
-const nativeTapFlow=fs.readFileSync('tap-flow.js','utf8');
-assert(nativeTapFlow.includes("!['answer','answer-paused','example'].includes(phase)"),'Scene500 correction requires answer phase');
+const nativeTapFlow=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+assert(nativeTapFlow.includes("function choose(score){") && nativeTapFlow.includes("startRatedSequence(score);"),
+ 'current Scene500 controller must accept question-side grade via choose');
 assert(script.includes("function demoGrade(grade){if(handMode||$('learning').hidden)return;stopAuto();phaseController.choose(grade)}"),
  'Scene1341 must delegate direct question/answer grading to the read-only phase adapter');
 
