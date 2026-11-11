@@ -97,7 +97,7 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
  onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}window.PAI_SCRATCH_FINISH_RATING?.()}
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
- shouldRun:()=>!$('learning').hidden&&!document.hidden&&!scratchDrawing(),
+ shouldRun:()=>!$('learning').hidden&&!document.hidden,
  isBusy:()=>phaseController.state().pending||!!window.speechSynthesis?.speaking,
  isSpeaking:()=>!!window.speechSynthesis?.speaking,
  navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
@@ -218,8 +218,13 @@ function show(){
 }
 function move(delta,fromAuto=false,fromRatedAdvance=false){
  const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
+ const keepDrawing=fromAuto&&scratchDrawing();
  index=(index+delta%rows.length+rows.length)%rows.length;
- resetScratch();phaseController.navigate(rows[index].scene_ku_id);
+ if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true;
+ try{
+  if(!keepDrawing)resetScratch();
+  phaseController.navigate(rows[index].scene_ku_id);
+ }finally{if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false}
  if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.();
  playWord(rows[index].expression);
  if(!fromAuto)autoBrowse.restart();
@@ -277,7 +282,7 @@ function startAuto(){autoBrowse.start()}
 $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
 $('auto-speed').addEventListener('click',e=>e.stopPropagation());
 $('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoBrowse.setDelay(Number(e.target.value))});
-document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAuto()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)autoBrowse.pause();else autoBrowse.resume()});
 document.addEventListener('keydown',e=>{
  if($('learning').hidden||e.repeat||e.ctrlKey||e.metaKey||e.altKey||/INPUT|TEXTAREA|SELECT|BUTTON/.test(e.target.tagName))return;
  if(e.key==='ArrowLeft')move(-1);

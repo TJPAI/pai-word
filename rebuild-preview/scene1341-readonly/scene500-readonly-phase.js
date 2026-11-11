@@ -71,12 +71,14 @@
    },speechEnded?postSpeech[tier]:tier);
   }
   function start(){clear();enabled=true;onState(true);next()}
+  function pause(){clear()}
+  function resume(){if(enabled){clear();next()}}
   function restart(){if(enabled)start()}
   function setDelay(ms){
    const n=Number(ms);if(!Object.hasOwn(postSpeech,n))return false;
    tier=n;restart();return true
   }
-  return Object.freeze({start,stop,restart,setDelay,isEnabled:()=>enabled,getDelay:()=>tier});
+  return Object.freeze({start,stop,pause,resume,restart,setDelay,isEnabled:()=>enabled,getDelay:()=>tier});
  }
  root.PAI_SCENE500_READONLY_PHASE=Object.freeze({createReadOnlyPhaseController,createReadOnlyAutoBrowse,DEFAULT_SHOW_MS});
 })(typeof window!=='undefined'?window:globalThis);
