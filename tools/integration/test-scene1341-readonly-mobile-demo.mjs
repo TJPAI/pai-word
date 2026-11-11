@@ -668,8 +668,8 @@ assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
  script.includes('phaseController.suspend();') &&
  script.includes('}else autoBrowse.resume();'),
  'visibilitychange must pause auto and pending graded answer without losing selected toggle');
-assert(phaseSource.includes('function pause(){clear()}') &&
- phaseSource.includes('function resume(){if(enabled){clear();next()}}'),
+assert(phaseSource.includes('function pause(){clear();releaseWake()}') &&
+ phaseSource.includes('function resume(){if(enabled){clear();next();void syncWake()}}'),
  'visibility pause-resume must preserve enabled flag but cancel timers');
 let pauseID=0,canAuto=true;const pauseTimers=new Map();
 const backgroundAuto=api.createReadOnlyAutoBrowse({
