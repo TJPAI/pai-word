@@ -97,4 +97,7 @@ for(const [original,mirror] of scene500StylePaths){
  const mirrorBytes=fs.readFileSync('rebuild-preview/scene1341-readonly/'+mirror);
  assert(originBytes.equals(mirrorBytes),mirror+' must match source byte-for-byte');
 }
+const nativeTapFlow=fs.readFileSync('tap-flow.js','utf8');
+assert(nativeTapFlow.includes("!['answer','answer-paused','example'].includes(phase)"),'Scene500 correction requires answer phase');
+assert(script.includes("function demoGrade(grade){if(!revealed||"),'unrevealed Scene1341 question must reject corrections just like Scene500');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
