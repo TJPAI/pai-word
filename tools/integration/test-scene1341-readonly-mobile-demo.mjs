@@ -714,8 +714,10 @@ assert.equal(voiceTasks.size,0);
 
 /* Native Scene500 continue/resume keeps last card position and preferred face.
  * For draft-only Scene1341 the cursor is ephemeral, never written to SRS. */
-assert(script.includes('const transientCursors=new Map()'),
- 'Scene1341 must maintain a no-storage scene cursor');
+assert(script.includes('const transientCursors=new Map(Object.entries(savedDisplay.cursors))') &&
+ script.includes('const savedDisplay=displayBookmark.load()') &&
+ script.includes('displayBookmark.save(sceneId,index,phaseController.state().preferredFace)'),
+ 'Scene1341 must retain isolated UI bookmarks');
 assert(script.includes('function openStudy(id,resume=false)') &&
  script.includes('resume?transientCursors.get(id):null') &&
  script.includes('index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0'),
@@ -723,11 +725,44 @@ assert(script.includes('function openStudy(id,resume=false)') &&
 assert(script.includes("if(saved?.face==='answer')phaseController.tap()"),
  'continue must restore chosen answer face');
 assert(script.includes("transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace})"),
- 'leaving a scene must save in-memory cursor and explicit face choice');
+ 'leaving a scene must retain last cursor and explicit face choice');
 assert(script.includes("$('continue').addEventListener('click',()=>openStudy(lastScene,true))"),
  'continue action should restore saved cursor instead of entering from first item');
 assert(!/localStorage|sessionStorage|indexedDB/.test(script),
- 'read-only preview cursor must not persist any user data');
+ 'inline script must not write SRS; UI bookmarks live in isolated adapter');
+
+/* Executable UI persistence across reload, isolated from formal SRS. */
+const uiStore=new Map();
+const uiLocal={getItem:key=>uiStore.get(key)??null,setItem:(key,value)=>uiStore.set(key,String(value)),removeItem:key=>uiStore.delete(key)};
+const settingCtx={window:{localStorage:uiLocal}};
+vm.runInNewContext(fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-readonly-settings.js','utf8'),settingCtx);
+const settingsA=settingCtx.window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings();
+for(const [key,value] of [['voiceAccent','gb'],['speechSpeed',120],['wordsPerRound',25],['autoPronounce.swipe',false],['showExamples',false]])
+ assert.equal(settingsA.set(key,value),true);
+const settingsB=settingCtx.window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings();
+for(const [key,value] of [['voiceAccent','gb'],['speechSpeed',120],['wordsPerRound',25],['autoPronounce.swipe',false],['showExamples',false]])
+ assert.equal(settingsB.get(key),value,'preference must survive reload: '+key);
+settingsB.reset();
+assert.equal(settingCtx.window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings().get('voiceAccent'),'us');
+const bookmarkPath='rebuild-preview/scene1341-readonly/scene1341-display-bookmark.js';
+const bookmarkJs=fs.readFileSync(bookmarkPath,'utf8');
+assert(html.includes('<script src="./scene1341-display-bookmark.js"></script>'));
+assert(!/indexedDB|\.commit\(|\.transaction\(/.test(bookmarkJs));
+const bookmarkCtx={window:{localStorage:uiLocal}};
+vm.runInNewContext(bookmarkJs,bookmarkCtx);
+const bookmarkStore=bookmarkCtx.window.PAI_SCENE1341_DISPLAY_BOOKMARK;
+assert.equal(bookmarkStore.save('SC50-0001',9,'answer'),true);
+assert.equal(bookmarkStore.save('SC50-0002',23,'question'),true);
+assert.equal(bookmarkStore.save('bad',1,'answer'),false);
+vm.runInNewContext(bookmarkJs,bookmarkCtx);
+const recovered=bookmarkCtx.window.PAI_SCENE1341_DISPLAY_BOOKMARK.load();
+assert.equal(recovered.lastScene,'SC50-0002');
+assert.equal(recovered.cursors['SC50-0001'].index,9);
+assert.equal(recovered.cursors['SC50-0001'].face,'answer');
+assert.equal(recovered.cursors['SC50-0002'].index,23);
+assert.equal(recovered.cursors['SC50-0002'].face,'question');
+assert([...uiStore.keys()].every(key=>key.startsWith('pai-word-scene1341-readonly-')),
+ 'only isolated Scene1341 UI keys can persist');
 
 /* PASS 1 source-backed visual hierarchy: canonical native Scene500 footer. */
 const canonicalLearningFragment=scene500Renderer.slice(scene500Renderer.indexOf('const autoSwitch=\`'),scene500Renderer.indexOf(" let query='';",scene500Renderer.indexOf('const autoSwitch=\`')));
@@ -1041,8 +1076,9 @@ const prefsContext={};vm.runInNewContext(prefsSource,prefsContext);
 const prefsApi=prefsContext.PAI_SCENE500_READONLY_SETTINGS;
 assert(prefsApi&&typeof prefsApi.createReadOnlySettings==='function');
 assert(html.includes('<script src="./scene500-readonly-settings.js"></script>'),'settings contract loads before learning adapter');
-assert(!['localStorage','sessionStorage','indexedDB','fetch(','.commit(','.write('].some(x=>prefsSource.includes(x)),
- 'preview settings must not access browser SRS or app persistence');
+assert(prefsSource.includes('pai-word-scene1341-readonly-preferences-v1') &&
+ !['indexedDB','fetch(','.commit(','.write('].some(x=>prefsSource.includes(x)),
+ 'UI settings may save isolated preferences, never SRS or KU records');
 assert(scene500Renderer.includes("state.wordsPerRound=10;") &&
  scene500Renderer.includes("[10,25,50].includes(Number(state.wordsPerRound))"),
  'native Scene500 choices for batch size');
@@ -1096,7 +1132,7 @@ assert.equal(pref.set('autoPronounce.question',false),true);
 assert.equal(pref.get('autoPronounce.question'),false);
 assert.equal(pref.set('showExamples',false),true);
 assert.equal(pref.get('showExamples'),false);
-assert(prefChanges.length>=2 && prefChanges.every(p=>p.values&&p.key),'settings callbacks must receive memory-only snapshots');
+assert(prefChanges.length>=2 && prefChanges.every(p=>p.values&&p.key),'settings callbacks must receive detached snapshots');
 const captured=pref.snapshot();pref.reset();
 assert.equal(pref.get('wordsPerRound'),10);
 assert.equal(pref.get('showExamples'),true);
