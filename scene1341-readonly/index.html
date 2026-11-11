@@ -164,11 +164,11 @@ function applyReadOnlySetting(key,prefs){
  if(key==='autoBrowseInterval'||key==='reset')autoBrowse.setDelay(Math.round(prefs.autoBrowseInterval*1000));
  if(!$('learning').hidden)window.render?.();
 }
-function buildReadOnlyUtterance(text){
+function buildReadOnlyUtterance(text,baseRate=.84){
  const prefs=readOnlyPrefs.snapshot();
  const utterance=new SpeechSynthesisUtterance(String(text));
  utterance.lang=prefs.voiceAccent==='gb'?'en-GB':'en-US';
- utterance.rate=prefs.speechSpeed/100;
+ utterance.rate=baseRate*prefs.speechSpeed/100;
  const voices=window.speechSynthesis?.getVoices?.()||[];
  utterance.voice=voices.find(v=>String(v.lang).toLowerCase()===utterance.lang.toLowerCase())
   ||voices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
@@ -337,7 +337,7 @@ function playWord(text){
  return true;
 }
 $('speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].expression)});
-$('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=buildReadOnlyUtterance(subset()[index].answer.example_en);window.speechSynthesis.speak(utterance)});
+$('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=buildReadOnlyUtterance(subset()[index].answer.example_en,.9);window.speechSynthesis.speak(utterance)});
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
  if(scratchDrawing()||e.target.closest('button,input,select,label,a,details,.recall-correction')||e.touches.length!==1)return;
