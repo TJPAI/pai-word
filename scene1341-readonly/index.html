@@ -46,7 +46,22 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
   <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
   <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
-  <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。<label style="display:inline-flex;gap:6px;align-items:center;margin-left:8px">自动浏览速度 <select id="auto-speed" aria-label="自动浏览间隔" style="padding:6px;border:1px solid #ddd;border-radius:8px"><option value="900">更快</option><option value="1500" selected>快</option><option value="3000">中</option><option value="6000">慢</option></select></label></p></div>
+  <details id="settings-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
+   <summary style="cursor:pointer;font-weight:650">设置 · 复用 Scene500 选项</summary>
+   <p class="demo-tip">与 Scene500 使用相同的选项值和默认值。仅本页内存有效，不修改正式 App 设置或 SRS。</p>
+   <div class="setting-row"><span>每轮词数</span><select data-setting="wordsPerRound" aria-label="每轮词数"><option value="10">10</option><option value="25">25</option><option value="50">50</option></select></div>
+   <div class="setting-row"><span>自动切词速度</span><select id="auto-speed" data-setting="autoBrowseInterval" aria-label="自动切词速度"><option value="0.9">更快</option><option value="1.5">快</option><option value="3">中</option><option value="6">慢</option></select></div>
+   <div class="setting-row"><span>朗读速度</span><select data-setting="speechSpeed" aria-label="朗读速度"><option value="80">80%</option><option value="100">100%</option><option value="120">120%</option><option value="150">150%</option></select></div>
+   <div class="setting-row"><span>发音口音</span><select data-setting="voiceAccent" aria-label="发音口音"><option value="us">美音</option><option value="gb">英音</option></select></div>
+   <div class="setting-row"><span>隐藏单词（听音模式）</span><button type="button" class="switch" data-toggle-setting="hideWord" aria-label="隐藏单词（听音模式）" aria-pressed="false"><i></i></button></div>
+   <div class="setting-row"><span>显示高频搭配</span><button type="button" class="switch" data-toggle-setting="showCollocations" aria-label="显示高频搭配" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>显示例句</span><button type="button" class="switch" data-toggle-setting="showExamples" aria-label="显示例句" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>显示近义 / 易混词辨析</span><button type="button" class="switch" data-toggle-setting="showCompare" aria-label="显示近义 / 易混词辨析" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
+  </details>
+  <p class="demo-footer">本预览复用 Scene500 设置和移动端学习页样式。设置及评分仅在本页内存生效：刷新后恢复默认，不写 SRS，不修改正式 App 或 KU。教学内容仍属于审核草稿。</p></div>
 </section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
@@ -59,7 +74,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
-   <div class="answer-section examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
+   <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
    <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
   </div>
   <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
@@ -68,6 +83,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
  <p class="recall-note" id="demo-note" aria-live="polite">点空白看答案，左右滑切词，上下滑换批，长按手写或擦除</p>
  <div class="session-footnote"></div>
 </section></div>
+<script src="./scene500-readonly-settings.js"></script>
 <script src="./scene500-readonly-phase.js"></script>
 <script>
 'use strict';
@@ -79,7 +95,8 @@ const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA
 const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
-const BATCH=10;let selectedGrade=null;
+let BATCH=10,selectedGrade=null;
+const readOnlyPrefs=window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings({onChange:applyReadOnlySetting});
 const transientCursors=new Map(); // in-memory only; never persisted to SRS or browser storage
 const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true;
 const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
@@ -87,11 +104,11 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
  onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)window.render?.()},
  onGradeComplete:grade=>{transientRatings[grade]++},
  playRatedWord:(grade,iteration,done)=>{
+  if(!readOnlyPrefs.get('autoPronounce.swipe')){done();return null}
   const text=subset()[index]?.expression;
   if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){done();return null}
   const synthesis=window.speechSynthesis;
-  const utterance=new SpeechSynthesisUtterance(text);
-  utterance.lang='en-US';utterance.rate=1;
+  const utterance=buildReadOnlyUtterance(text);
   let finished=false,started=false,waitTimer=null,watchdog=null;
   const finish=()=>{
    if(finished)return;
@@ -127,6 +144,36 @@ const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
 const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
 const subset=()=>items.filter(x=>x.scene_id===sceneId);
+function syncReadOnlySettingsControls(prefs){
+ const panel=$('settings-panel');
+ if(!panel)return;
+ for(const select of panel.querySelectorAll('select[data-setting]')){
+  const key=select.dataset.setting,value=prefs[key];
+  select.value=String(value);
+ }
+ for(const button of panel.querySelectorAll('[data-toggle-setting]')){
+  const key=button.dataset.toggleSetting;
+  const value=key.startsWith('autoPronounce.')?prefs.autoPronounce[key.slice(14)]:prefs[key];
+  button.classList.toggle('on',value===true);
+  button.setAttribute('aria-pressed',String(value===true));
+ }
+}
+function applyReadOnlySetting(key,prefs){
+ BATCH=prefs.wordsPerRound;
+ syncReadOnlySettingsControls(prefs);
+ if(key==='autoBrowseInterval'||key==='reset')autoBrowse.setDelay(Math.round(prefs.autoBrowseInterval*1000));
+ if(!$('learning').hidden)window.render?.();
+}
+function buildReadOnlyUtterance(text){
+ const prefs=readOnlyPrefs.snapshot();
+ const utterance=new SpeechSynthesisUtterance(String(text));
+ utterance.lang=prefs.voiceAccent==='gb'?'en-GB':'en-US';
+ utterance.rate=prefs.speechSpeed/100;
+ const voices=window.speechSynthesis?.getVoices?.()||[];
+ utterance.voice=voices.find(v=>String(v.lang).toLowerCase()===utterance.lang.toLowerCase())
+  ||voices.find(v=>String(v.lang).toLowerCase().startsWith('en'))||null;
+ return utterance;
+}
 function parseCsv(src){
  const lines=[];let field='',row=[],quoted=false;
  src=src.replace(/^\uFEFF/,'');
@@ -205,7 +252,7 @@ function openStudy(id,resume=false){
  set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
  phaseController.start(rows[index].scene_ku_id);
  if(saved?.face==='answer')phaseController.tap();
- playWord(rows[index].expression);
+ if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
 }
 function home(){
  if(!$('learning').hidden)transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace});
@@ -214,19 +261,23 @@ function home(){
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
+ const prefs=readOnlyPrefs.snapshot();
  $('learning').classList.toggle('revealed',revealed);
+ $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
+ set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
  set('expression',r.expression);set('ipa',r.ipa||r.ipa_us||'');set('meaning',r.answer.meaning_zh);
  $('example-speak').dataset.speak=r.answer.example_en;
  set('example',r.answer.example_en);set('translation',r.answer.example_zh);
  // Answer-only contract: optional teaching sections must never render empty
  // or leak editorial/QA/source metadata into the learner-facing answer.
- const collocations=Array.isArray(r.answer.collocations)?r.answer.collocations.filter(v=>typeof v==='string'&&v.trim()):[];
+ const collocations=prefs.showCollocations&&Array.isArray(r.answer.collocations)?r.answer.collocations.filter(v=>typeof v==='string'&&v.trim()):[];
  const qaInternal=/待独立审核|尚未独立审核|待复核|待审核|源项为|增补候选|编辑候选|审核状态|QA状态|审核通过|发布门禁|作者草稿|待认证|未认证|release[_ -]?status|source[_ -]?rank/i;
- const teachingNotes=[r.answer.usage_note,r.answer.contrast_note].filter(v=>typeof v==='string'&&v.trim()&&!qaInternal.test(v));
+ const teachingNotes=[r.answer.usage_note,prefs.showCompare?r.answer.contrast_note:null].filter(v=>typeof v==='string'&&v.trim()&&!qaInternal.test(v));
  set('collocations',collocations.join(' · '));
  set('usage',teachingNotes.join(' '));
  $('collocations-section').hidden=collocations.length===0;
+ $('examples-section').hidden=!prefs.showExamples;
  $('usage-section').hidden=teachingNotes.length===0;
  $('answer').hidden=!revealed;
  for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
@@ -239,7 +290,7 @@ function show(){
  const pending=phaseController.state().selected!==null;
  phaseController.tap();
  if(pending)window.PAI_SCRATCH_FINISH_RATING?.();
- if(!autoBrowse.isEnabled())playWord(subset()[index]?.expression);
+ if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(subset()[index]?.expression);
 }
 function move(delta,fromAuto=false,fromRatedAdvance=false){
  const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
@@ -251,7 +302,7 @@ function move(delta,fromAuto=false,fromRatedAdvance=false){
   phaseController.navigate(rows[index].scene_ku_id);
  }finally{if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false}
  if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.();
- playWord(rows[index].expression);
+ if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
  if(!fromAuto)autoBrowse.restart();
 }
 function moveBatch(delta){
@@ -264,7 +315,7 @@ function moveBatch(delta){
  index=((now+delta%batches+batches)%batches)*BATCH;
  resetScratch();phaseController.navigate(rows[index].scene_ku_id);
  if(hadPending)window.PAI_SCRATCH_FINISH_RATING?.();
- playWord(rows[index].expression);
+ if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
  autoBrowse.restart();
 }
 function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();stopAuto();phaseController.choose(grade)}
@@ -281,13 +332,12 @@ for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('cli
 function playWord(text){
  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'||document.hidden)return false;
  window.speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(text);
- utterance.lang='en-US';utterance.rate=1;
+ const utterance=buildReadOnlyUtterance(text);
  window.speechSynthesis.speak(utterance);
  return true;
 }
 $('speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].expression)});
-$('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(subset()[index].answer.example_en);utterance.lang='en-US';window.speechSynthesis.speak(utterance)});
+$('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=buildReadOnlyUtterance(subset()[index].answer.example_en);window.speechSynthesis.speak(utterance)});
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
  if(scratchDrawing()||e.target.closest('button,input,select,label,a,details,.recall-correction')||e.touches.length!==1)return;
@@ -308,8 +358,17 @@ $('learning').addEventListener('touchend',e=>{
 function stopAuto(){autoBrowse.stop()}
 function startAuto(){autoBrowse.start()}
 $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
-$('auto-speed').addEventListener('click',e=>e.stopPropagation());
-$('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoBrowse.setDelay(Number(e.target.value))});
+$('settings-panel').addEventListener('change',e=>{
+ const key=e.target.dataset?.setting;
+ if(key)readOnlyPrefs.set(key,e.target.value);
+});
+$('settings-panel').addEventListener('click',e=>{
+ const button=e.target.closest('[data-toggle-setting]');
+ if(!button)return;
+ const key=button.dataset.toggleSetting;
+ readOnlyPrefs.set(key,!readOnlyPrefs.get(key));
+});
+$('settings-reset').addEventListener('click',()=>readOnlyPrefs.reset());
 document.addEventListener('visibilitychange',()=>{
  if(document.hidden){
   autoBrowse.pause();
@@ -330,5 +389,6 @@ document.addEventListener('keydown',e=>{
 });
 window.render=renderCard;
 window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
+syncReadOnlySettingsControls(readOnlyPrefs.snapshot());
 load();
 </script><script src="./scene500-native-scratch.js"></script></body></html>
