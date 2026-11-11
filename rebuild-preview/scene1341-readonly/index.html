@@ -93,14 +93,31 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
  playRatedWord:(grade,iteration,done)=>{
   const text=subset()[index]?.expression;
   if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){done();return null}
+  const synthesis=window.speechSynthesis;
   const utterance=new SpeechSynthesisUtterance(text);
   utterance.lang='en-US';utterance.rate=1;
-  let completed=false;
-  const finish=()=>{if(completed)return;completed=true;clearTimeout(watchdog);done()};
-  const watchdog=setTimeout(finish,8000);
-  utterance.onend=finish;utterance.onerror=finish;
-  window.speechSynthesis.cancel();window.speechSynthesis.speak(utterance);
-  return ()=>{clearTimeout(watchdog);utterance.onend=null;utterance.onerror=null;window.speechSynthesis.cancel()};
+  let finished=false,started=false,waitTimer=null,watchdog=null;
+  const finish=()=>{
+   if(finished)return;
+   finished=true;clearTimeout(waitTimer);clearTimeout(watchdog);done();
+  };
+  const begin=()=>{
+   waitTimer=null;if(finished)return;
+   // Native Scene500 waits for an existing question/auto/blank-tap utterance
+   // to finish before starting graded speech: never cancel that utterance.
+   if(synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
+   started=true;
+   utterance.onend=finish;utterance.onerror=finish;
+   watchdog=setTimeout(finish,8000);
+   synthesis.speak(utterance);
+  };
+  begin();
+  return ()=>{
+   if(finished)return;
+   finished=true;clearTimeout(waitTimer);clearTimeout(watchdog);
+   utterance.onend=null;utterance.onerror=null;
+   if(started)synthesis.cancel();
+  };
  },
  onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}window.PAI_SCRATCH_FINISH_RATING?.()}
 });
