@@ -81,4 +81,20 @@ assert(script.includes("$('answer').hidden=!revealed"),'question face must not r
 assert(!html.includes('data-approved-teaching-ku'), 'author drafts must not carry approved teaching DOM flags');
 assert(html.includes('data-test-teaching="example" data-publication-status="author-draft"'), 'bilingual examples must remain in Scene500 test teaching layout and explicitly marked draft');
 assert(html.includes('data-srs-write="disabled"'), 'unapproved drafts never write SRS');
+
+const scene500StylePaths=[
+ ['mobile.css','scene500-mobile.css'],
+ ['ux-fix.css','scene500-ux-fix.css'],
+ ['product-v2.css','scene500-product-v2.css'],
+ ['learning.css','scene500-learning.css'],
+ ['home-dashboard.css','scene500-home.css']
+];
+const linkedStylePaths=[...html.matchAll(/<link rel="stylesheet" href="\.\/([^"]+\.css)"/g)].map(x=>x[1]);
+assert.deepEqual(linkedStylePaths,scene500StylePaths.map(x=>x[1]),
+  'Scene1341 must load EXACT original Scene500 five-CSS cascade in native order');
+for(const [original,mirror] of scene500StylePaths){
+ const originBytes=fs.readFileSync(original);
+ const mirrorBytes=fs.readFileSync('rebuild-preview/scene1341-readonly/'+mirror);
+ assert(originBytes.equals(mirrorBytes),mirror+' must match source byte-for-byte');
+}
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
