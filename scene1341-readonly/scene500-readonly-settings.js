@@ -1,6 +1,7 @@
 /* Scene500 preference contract for isolated Scene1341 read-only author preview.
  * Source of defaults/options: rebuild-preview/learning-runtime.js native Settings.
- * Kept in memory ONLY; never imports Scene500 SRS, persistence, or App state.
+ * UI preferences persist in a dedicated Scene1341 namespace ONLY;
+ * never imports Scene500 KU/SRS or App state.
  */
 (function(root){
  'use strict';
@@ -17,8 +18,29 @@
  });
  const booleanKeys=Object.freeze(['hideWord','showCollocations','showExamples','showCompare']);
  const clone=()=>({...defaults,autoPronounce:{...defaults.autoPronounce}});
+ const KEY='pai-word-scene1341-readonly-preferences-v1';
+ const normalize=source=>{
+  const out=clone();if(!source||typeof source!=='object'||Array.isArray(source))return out;
+  for(const key of Object.keys(choices)){
+   const value=source[key];
+   if(choices[key].includes(value))out[key]=value;
+  }
+  for(const key of booleanKeys)if(typeof source[key]==='boolean')out[key]=source[key];
+  if(source.autoPronounce&&typeof source.autoPronounce==='object'){
+   for(const key of ['question','swipe'])
+    if(typeof source.autoPronounce[key]==='boolean')out.autoPronounce[key]=source.autoPronounce[key];
+  }
+  return out;
+ };
+ const read=()=>{
+  try{const raw=root.localStorage?.getItem(KEY);return raw?normalize(JSON.parse(raw)):clone()}
+  catch(_){return clone()}
+ };
+ const save=values=>{
+  try{root.localStorage?.setItem(KEY,JSON.stringify(values))}catch(_){/* Safari private-mode fallback */}
+ };
  function createReadOnlySettings({onChange=()=>{}}={}){
-  let values=clone();
+  let values=read();
   const snapshot=()=>Object.freeze({...values,autoPronounce:Object.freeze({...values.autoPronounce})});
   function set(key,value){
    if(key==='autoPronounce.question'||key==='autoPronounce.swipe'){
@@ -33,9 +55,9 @@
     if(!choices[key].includes(option))return false;
     values={...values,[key]:option};
    }else return false;
-   onChange(key,snapshot());return true;
+   save(values);onChange(key,snapshot());return true;
   }
-  function reset(){values=clone();onChange('reset',snapshot());return snapshot()}
+  function reset(){values=clone();save(values);onChange('reset',snapshot());return snapshot()}
   return Object.freeze({snapshot,get:key=>key.startsWith('autoPronounce.')?values.autoPronounce[key.slice(14)]:values[key],set,reset});
  }
  root.PAI_SCENE500_READONLY_SETTINGS=Object.freeze({defaults,choices,createReadOnlySettings});
