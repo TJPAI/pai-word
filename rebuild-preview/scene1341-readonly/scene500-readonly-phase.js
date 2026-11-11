@@ -42,36 +42,41 @@
   function cancel(){clearTimer();selected=null;cardKey=null;preferredFace='question';phase='question';onUpdate(state())}
   return Object.freeze({start,tap,choose,navigate,cancel,state});
  }
- function createReadOnlyAutoBrowse({shouldRun,isBusy,navigate,onState,
+ function createReadOnlyAutoBrowse({shouldRun,isBusy,isSpeaking=()=>false,navigate,onState,
   schedule=(fn,ms)=>setTimeout(fn,ms),unschedule=id=>clearTimeout(id)}={}){
-  if([shouldRun,isBusy,navigate,onState].some(fn=>typeof fn!=='function'))
+  if([shouldRun,isBusy,isSpeaking,navigate,onState].some(fn=>typeof fn!=='function'))
    throw Error('SCENE500_READONLY_AUTO_CALLBACK_REQUIRED');
-  const speeds=Object.freeze([200,600,2000,5000]);
-  let enabled=false,delay=2000,timer=null,generation=0;
+  // EXACT native Scene500 learning-runtime.js timing:
+  // normal tier: 0.9 / 1.5 / 3 / 6 sec;
+  // once spoken: 0.2 / 0.6 / 2 / 5 sec.
+  const postSpeech=Object.freeze({900:200,1500:600,3000:2000,6000:5000});
+  let enabled=false,tier=1500,timer=null,generation=0;
   const clear=()=>{generation++;if(timer!==null){unschedule(timer);timer=null}};
   function stop(){clear();enabled=false;onState(false)}
-  function next(){
+  function next(speechEnded=false){
    if(!enabled||!shouldRun()){stop();return}
    const epoch=generation;
-   // Match native Scene500: speech and pending correction have priority;
-   // start the navigation gap after they finish, never interrupt them.
    if(isBusy()){
-    timer=schedule(()=>{timer=null;if(epoch===generation)next()},120);
+    const spoken=speechEnded||isSpeaking();
+    timer=schedule(()=>{timer=null;if(epoch===generation)next(spoken)},120);
     return;
    }
    timer=schedule(()=>{
     timer=null;
     if(epoch!==generation||!enabled)return;
     if(!shouldRun()){stop();return}
-    if(isBusy()){next();return}
+    if(isBusy()){next(isSpeaking());return}
     if(navigate()===false){stop();return}
     next();
-   },delay);
+   },speechEnded?postSpeech[tier]:tier);
   }
   function start(){clear();enabled=true;onState(true);next()}
   function restart(){if(enabled)start()}
-  function setDelay(ms){const n=Number(ms);if(!speeds.includes(n))return false;delay=n;restart();return true}
-  return Object.freeze({start,stop,restart,setDelay,isEnabled:()=>enabled,getDelay:()=>delay});
+  function setDelay(ms){
+   const n=Number(ms);if(!Object.hasOwn(postSpeech,n))return false;
+   tier=n;restart();return true
+  }
+  return Object.freeze({start,stop,restart,setDelay,isEnabled:()=>enabled,getDelay:()=>tier});
  }
  root.PAI_SCENE500_READONLY_PHASE=Object.freeze({createReadOnlyPhaseController,createReadOnlyAutoBrowse,DEFAULT_SHOW_MS});
 })(typeof window!=='undefined'?window:globalThis);
