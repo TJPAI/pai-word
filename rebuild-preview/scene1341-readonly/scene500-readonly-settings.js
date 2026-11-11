@@ -57,7 +57,7 @@
    }else return false;
    save(values);onChange(key,snapshot());return true;
   }
-  function reset(){values=clone();onChange('reset',snapshot());return snapshot()}
+  function reset(){values=clone();save(values);onChange('reset',snapshot());return snapshot()}
   return Object.freeze({snapshot,get:key=>key.startsWith('autoPronounce.')?values.autoPronounce[key.slice(14)]:values[key],set,reset});
  }
  root.PAI_SCENE500_READONLY_SETTINGS=Object.freeze({defaults,choices,createReadOnlySettings});
