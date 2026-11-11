@@ -451,7 +451,8 @@ assert(phaseSource.includes("count={again:3,hard:2,good:1}[grade]") &&
  'read-only controller must gate finish on audio+deadline and repeat counts');
 assert(script.includes('playRatedWord:(grade,iteration,done)=>') &&
  script.includes("utterance.onend=finish;utterance.onerror=finish") &&
- script.includes("setTimeout(finish,8000)"),
+ script.includes("watchdog=setTimeout(()=>{") &&
+ script.includes("Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500))"),
  'Safari-safe voice replay callback must be wired to isolated controller');
 let voiceID=0,voiceCancels=0;
 const voiceTasks=new Map(),voicePlays=[],voiceDone=[],voiceAdvances=[];
