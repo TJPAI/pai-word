@@ -992,4 +992,17 @@ assert(script.includes('if(wordAudioActive||synthesis.speaking||synthesis.pendin
 assert(script.includes('stopWordAudio(); // Scene500 cancels previous word TTS on every card change'),
  'word navigation must stop old TTS regardless of next-card auto-pronounce setting');
 
+
+/* Double-audit mobile TTS hardening: native Scene500 uses a bounded,
+   rate/length-aware watchdog and resumes speechSynthesis after Safari pause. */
+assert(script.includes('const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500))'),
+ 'rated speech must use Scene500 dynamic watchdog, not fixed 8s');
+assert(!script.includes('watchdog=setTimeout(finish,8000)'),
+ 'remove fixed rated-audio 8 second cutoff');
+assert(script.includes('if(synthesis.paused)synthesis.resume()') &&
+ script.includes('if(window.speechSynthesis.paused)window.speechSynthesis.resume()'),
+ 'both rated and ordinary/exemplar speech must wake a Safari-paused queue');
+assert(script.includes('if(synthesis.speaking||synthesis.pending)synthesis.cancel()'),
+ 'rated watchdog must invalidate a stuck utterance before continuing');
+
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
