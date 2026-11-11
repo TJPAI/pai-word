@@ -118,7 +118,7 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
    waitTimer=null;if(finished)return;
    // Native Scene500 waits for an existing question/auto/blank-tap utterance
    // to finish before starting graded speech: never cancel that utterance.
-   if(synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
+   if(wordAudioActive||synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
    started=true;
    utterance.onend=finish;utterance.onerror=finish;
    watchdog=setTimeout(finish,8000);
@@ -132,12 +132,12 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
    if(started)synthesis.cancel();
   };
  },
- onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}window.PAI_SCRATCH_FINISH_RATING?.()}
+ onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。');autoBrowse.resume()}window.PAI_SCRATCH_FINISH_RATING?.()}
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden,
- isBusy:()=>phaseController.state().pending||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
- isSpeaking:()=>!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ isBusy:()=>phaseController.state().pending||wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ isSpeaking:()=>wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
  navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
  onState:enabled=>{$('auto-toggle').checked=enabled}
 });
@@ -256,7 +256,7 @@ function openStudy(id,resume=false){
 }
 function home(){
  if(!$('learning').hidden)transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace});
- stopAuto();window.speechSynthesis?.cancel();resetScratch();$('learning').hidden=true;
+ stopAuto();stopWordAudio();resetScratch();$('learning').hidden=true;
  window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome();
 }
 function renderCard(){
@@ -289,7 +289,7 @@ function show(){
  if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;
  const pending=phaseController.state().selected!==null;
  phaseController.tap();
- if(pending)window.PAI_SCRATCH_FINISH_RATING?.();
+ if(pending){stopWordAudio();window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}
  if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(subset()[index]?.expression);
 }
 function move(delta,fromAuto=false,fromRatedAdvance=false){
@@ -299,6 +299,7 @@ function move(delta,fromAuto=false,fromRatedAdvance=false){
  if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true;
  try{
   if(!keepDrawing)resetScratch();
+  stopWordAudio(); // Scene500 cancels previous word TTS on every card change, even if next auto-pronounce is off.
   phaseController.navigate(rows[index].scene_ku_id);
  }finally{if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false}
  if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.();
@@ -313,12 +314,12 @@ function moveBatch(delta){
  if(batches<2)return;
  const now=Math.floor(index/BATCH);
  index=((now+delta%batches+batches)%batches)*BATCH;
- resetScratch();phaseController.navigate(rows[index].scene_ku_id);
+ resetScratch();stopWordAudio();phaseController.navigate(rows[index].scene_ku_id);
  if(hadPending)window.PAI_SCRATCH_FINISH_RATING?.();
  if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
  autoBrowse.restart();
 }
-function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();stopAuto();phaseController.choose(grade)}
+function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
@@ -329,15 +330,31 @@ $('learning').addEventListener('click',e=>{
  show();
 });
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
-function playWord(text){
+let wordAudioGeneration=0,wordAudioWatchdog=null,wordAudioActive=false;
+function stopWordAudio(){
+ wordAudioGeneration++;wordAudioActive=false;
+ if(wordAudioWatchdog!==null){clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null}
+ if(window.speechSynthesis&&(window.speechSynthesis.speaking||window.speechSynthesis.pending))window.speechSynthesis.cancel();
+}
+function playWord(text,baseRate=.84){
  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'||document.hidden)return false;
- window.speechSynthesis.cancel();
- const utterance=buildReadOnlyUtterance(text);
- window.speechSynthesis.speak(utterance);
+ stopWordAudio();
+ const utterance=buildReadOnlyUtterance(text,baseRate),generation=wordAudioGeneration;
+ wordAudioActive=true;
+ let finished=false;
+ const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;wordAudioActive=false;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null};
+ utterance.onend=finish;utterance.onerror=finish;
+ try{
+  window.speechSynthesis.speak(utterance);
+  // Mirror Scene500's Safari speech watchdog; a stale completion cannot affect a subsequent word.
+  const scaledRate=Math.max(.5,Math.min(2,Number(utterance.rate)||1));
+  const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));
+  wordAudioWatchdog=setTimeout(()=>{if(generation!==wordAudioGeneration||finished)return;if(window.speechSynthesis.speaking||window.speechSynthesis.pending)window.speechSynthesis.cancel();finish()},maxWait);
+ }catch(_){finish();return false}
  return true;
 }
 $('speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].expression)});
-$('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=buildReadOnlyUtterance(subset()[index].answer.example_en,.9);window.speechSynthesis.speak(utterance)});
+$('example-speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].answer.example_en,.9)});
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
  if(scratchDrawing()||e.target.closest('button,input,select,label,a,details,.recall-correction')||e.touches.length!==1)return;
@@ -372,7 +389,7 @@ $('settings-reset').addEventListener('click',()=>readOnlyPrefs.reset());
 document.addEventListener('visibilitychange',()=>{
  if(document.hidden){
   autoBrowse.pause();
-  window.speechSynthesis?.cancel();
+  stopWordAudio();
   if(!$('learning').hidden){
    const hadRatedAnswer=phaseController.state().selected!==null;
    phaseController.suspend();
