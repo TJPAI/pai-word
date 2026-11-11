@@ -292,4 +292,56 @@ assert.equal(scheduled.ms,2000);
 scheduled.fn();
 assert.equal(advancedDuringRating,1);
 assert.equal(scratchFinishes,1,'one scratch finish after actual timed navigation');
+
+/* Scene500 persistent face contract: explicitly chosen answer remains answer
+ * across automatic navigation, horizontal word swipe, vertical batch change,
+ * and graded progression, without any SRS persistence. */
+assert(scene500Renderer.includes("preferredPageState='QUESTION'") &&
+ scene500Renderer.includes("const wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'") &&
+ scene500Renderer.includes("PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed)"),
+ 'ground face persistence in ACTIVE Scene500 browseAnswer controller');
+assert(phaseSource.includes("preferredFace") &&
+ phaseSource.includes("phase=preferredFace==='answer'?'answer-paused':'question'"),
+ 'Scene1341 navigate must inherit explicit preferred face, not force question');
+assert(script.includes('phaseController.navigate(rows[index].scene_ku_id)'),
+ 'horizontal and vertical user navigation must share persistent-face controller');
+assert(script.includes('move(1,true)') &&
+ script.includes("phaseController.navigate(subset()[index].scene_ku_id)"),
+ 'automatic and final rated navigation must also inherit preferred face');
+const faceUpdates=[],faceTimers=new Map();let faceTimerID=0;
+const face=api.createReadOnlyPhaseController({
+ onUpdate:next=>faceUpdates.push(next),
+ onGradeComplete:()=>{},
+ onAdvance:()=>{},
+ schedule:(fn,ms)=>{const id=++faceTimerID;faceTimers.set(id,{fn,ms});return id},
+ unschedule:id=>faceTimers.delete(id)
+});
+face.start('F-1');
+assert.equal(face.state().revealed,false,'fresh Scene1341 session begins on question');
+face.tap();
+assert.equal(face.state().revealed,true);
+assert.equal(face.state().preferredFace,'answer');
+for(const [route,key] of [['horizontal forward','F-2'],['horizontal backward','F-1'],['vertical next batch','F-26'],['vertical previous batch','F-1'],['auto next','F-3']]){
+ face.navigate(key);
+ assert.equal(face.state().revealed,true,route+' MUST retain answer face');
+ assert.equal(face.state().preferredFace,'answer',route+' must not change preference');
+}
+face.choose('good');
+assert.equal(face.state().revealed,true,'rated answer remains visible');
+face.navigate('F-4');
+assert.equal(face.state().revealed,true,'rated advance preserves chosen answer face');
+assert.equal(faceTimers.size,0,'navigation cancels stale rated countdown');
+face.tap();
+assert.equal(face.state().revealed,false,'explicit blank tap exits answer mode');
+face.navigate('F-5');
+assert.equal(face.state().revealed,false,'question mode persists after manual switch back');
+face.choose('hard');
+assert.equal(face.state().revealed,true,'direct question-side grading temporarily reveals answer');
+assert.equal(face.state().preferredFace,'question','rating does not redefine selected face');
+face.navigate('F-6');
+assert.equal(face.state().revealed,false,'rating from question mode must not permanently switch to answer');
+face.tap();face.navigate('F-7');
+assert.equal(face.state().revealed,true);
+face.cancel();face.start('F-NEW-SCENE');
+assert.equal(face.state().revealed,false,'starting a new scene resets initial face to question');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
