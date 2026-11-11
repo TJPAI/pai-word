@@ -95,7 +95,7 @@ const BATCH=25;let autoTimer=null,autoDelay=2000,handMode=false,holdTimer=null,p
 const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
  onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)renderCard()},
  onGradeComplete:grade=>{transientRatings[grade]++},
- onAdvance:()=>{if(index<subset().length-1)move(1);else{revealed=false;selectedGrade=null;renderCard();set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}}
+ onAdvance:()=>{if(index<subset().length-1)move(1);else{phaseController.start(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}}
 });
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
 const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
