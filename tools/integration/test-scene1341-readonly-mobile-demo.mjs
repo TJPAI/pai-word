@@ -373,9 +373,9 @@ for(const [count,size,index,delta,expected] of [
  assert.equal(((now+delta%batches+batches)%batches)*size,expected,'circular batch index parity');
 }
 assert(script.includes('playWord(rows[index].expression)') &&
- script.includes('playWord(subset()[0].expression)') &&
+ script.includes('function openStudy(id,resume=false)') &&
  script.includes("if(!autoBrowse.isEnabled())playWord(subset()[index]?.expression)"),
- 'Scene500 speech should occur on entry, manual/auto navigation and manual face flip');
+ 'Scene500 speech should occur on resumed entry, navigation and manual face flip');
 assert(script.includes("utterance.lang='en-US'") &&
  script.includes("window.speechSynthesis.speak(utterance)"),
  'native US-English voice and synthesis fallback required');
