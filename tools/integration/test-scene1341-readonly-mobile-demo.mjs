@@ -741,6 +741,7 @@ const batchContext={
  phaseController:{state:()=>({selected:null}),navigate:key=>{batchNavigates++;batchFace.navigate(key)}},
  resetScratch:()=>{batchScratchResets++},
  playWord:()=>{batchSpeeches++},
+ readOnlyPrefs:{get:()=>true},
  autoBrowse:{restart:()=>{batchRestarts++}},
  window:{PAI_SCRATCH_FINISH_RATING:()=>{}}
 };
