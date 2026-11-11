@@ -53,7 +53,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <p class="demo-footer">本预览使用 Scene500 原版移动端、学习页、首页 CSS。评分交互为仅限本页内存的模拟演示：刷新即清零、不写 SRS、不修改正式 App 或 KU。数据仍属于审核草稿。<label style="display:inline-flex;gap:6px;align-items:center;margin-left:8px">自动浏览速度 <select id="auto-speed" aria-label="自动浏览间隔" style="padding:6px;border:1px solid #ddd;border-radius:8px"><option value="900">更快</option><option value="1500" selected>快</option><option value="3000">中</option><option value="6000">慢</option></select></label></p></div>
 </section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
- <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><div id="batch-position">第1/1批</div><div id="progress">本批已学 0/25</div></div></div>
+ <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
  <div class="word-hero" id="hero">
    <div class="word-line"><div class="word" id="expression">加载中</div></div>
    <div class="ipa-line"><span class="ipa" id="ipa" aria-label="音标"></span><button class="speak-btn" id="speak" data-word-audio aria-label="播放单词">🔊</button></div>
@@ -256,7 +256,7 @@ $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;render
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 // Match native Scene500 single delegated blank-click handler on the whole study screen.
 $('learning').addEventListener('click',e=>{
- if(e.target.closest('.answer,button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
+ if(e.target.closest('button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
  if(window.getSelection?.()?.toString()||Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0))return;
  show();
 });
