@@ -43,9 +43,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 #learning .word-hero .ipa-line .speak-btn{position:absolute!important;right:12px;top:50%;transform:translateY(-50%);width:44px;height:44px;padding:0;display:grid!important;place-items:center}
 #learning .word-hero .recall-controls-row{position:relative;display:flex;align-items:center;justify-content:center;width:100%;min-height:41px;height:41px;flex:0 0 41px}
 #learning .word-hero .recall-controls-row .recall-cue{margin:0!important;text-align:center}
-#learning .word-hero .auto-word-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:44px;height:44px;display:grid;place-items:center;background:none;border:0;padding:0;cursor:pointer}
-#learning .word-hero .auto-word-symbol{display:grid;place-items:center;width:32px;height:30px;border-radius:8px;background:#2874e8;color:#fff;font-size:24px;line-height:1}
-#learning .word-hero .auto-word-toggle.is-on .auto-word-symbol{background:#184b9d}
+/* Use Scene500 native checkbox/auto-word-toggle and SVG rules from learning.css. */
 #learning .word-hero .tap-hint{display:none!important}
 #learning .demo-qa{display:none!important} /* Draft status remains on home; no extra rows on learning faces. */
 #learning .recall-note{font-size:12px;line-height:1.4}
@@ -72,13 +70,13 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 </section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><div id="batch-position">第1/1批</div><div id="progress">本批已学 0/25</div></div></div>
- <div class="study-body" id="studybody">
-  <div class="word-hero" id="hero">
+ <div class="word-hero" id="hero">
    <div class="word-line"><div class="word" id="expression">加载中</div></div>
-   <div class="ipa-line"><div class="ipa" id="ipa" aria-label="音标"></div><button class="speak-btn" id="speak" data-word-audio aria-label="播放单词">🔊</button></div>
-   <div class="recall-controls-row"><p class="recall-cue" id="cue">回忆词义</p><button type="button" class="auto-word-toggle" id="auto-toggle" aria-label="自动浏览"><span class="auto-word-symbol" aria-hidden="true">↻</span></button></div>
+   <div class="ipa-line"><span class="ipa" id="ipa" aria-label="音标"></span><button class="speak-btn" id="speak" data-word-audio aria-label="播放单词">🔊</button></div>
+   <div class="recall-controls-row"><p class="recall-cue" id="cue">回忆词义</p><label class="auto-word-toggle" title="自动切词：点击开启或关闭"><input id="auto-toggle" type="checkbox" aria-label="自动切词" aria-description="勾选后按照设置速度自动切换词卡"><span class="auto-word-symbol" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.9-4L3 9"/><path d="M3 4v5h5"/><path d="M4 13a8 8 0 0 0 14.9 4L21 15"/><path d="M16 15h5v5"/></svg></span></label></div>
    <p class="tap-hint" id="tap-hint" hidden>轻点空白处显示答案</p>
-  </div>
+ </div>
+ <div class="study-body" id="studybody">
   <div class="handwrite-board" id="handwrite" hidden><span class="handwrite-indicator">手写模式 · 长按退出</span><canvas id="draw-canvas"></canvas></div>
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
@@ -215,17 +213,17 @@ $('back').addEventListener('click',home);$('continue').addEventListener('click',
 $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 $('reveal').addEventListener('click',show);$('prev').addEventListener('click',()=>move(-1));$('next').addEventListener('click',()=>move(1));
-$('hero').addEventListener('click',e=>{if(!e.target.closest('button')){e.stopPropagation();show()}});
+$('hero').addEventListener('click',e=>{if(!e.target.closest('button,input,label,select,a,details')){e.stopPropagation();show()}});
 $('studybody').addEventListener('click',e=>{if(!e.target.closest('button,a,details'))show()});
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
 $('speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const s=new SpeechSynthesisUtterance(subset()[index].expression);s.lang='en-US';window.speechSynthesis.speak(s)});
 $('example-speak').addEventListener('click',e=>{e.stopPropagation();if(!('speechSynthesis'in window))return;window.speechSynthesis.cancel();const utterance=new SpeechSynthesisUtterance(subset()[index].answer.example_en);utterance.lang='en-US';window.speechSynthesis.speak(utterance)});
-let start=null;$('studybody').addEventListener('touchstart',e=>{if(handMode)return;if(e.touches.length===1){start={x:e.touches[0].clientX,y:e.touches[0].clientY};holdTimer=setTimeout(()=>{enterHand();start=null},700)}},{passive:true});
-$('studybody').addEventListener('touchmove',e=>{if(start&&(Math.abs(e.touches[0].clientX-start.x)>16||Math.abs(e.touches[0].clientY-start.y)>16)){clearTimeout(holdTimer);holdTimer=null}},{passive:true});
-$('studybody').addEventListener('touchend',e=>{clearTimeout(holdTimer);holdTimer=null;if(handMode||!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1);else if(Math.abs(dy)>85&&Math.abs(dy)>Math.abs(dx)*1.2)moveBatch(dy<0?1:-1)},{passive:true});
-function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}const btn=$('auto-toggle');if(btn)btn.classList.remove('is-on')}
-function startAuto(){stopAuto();$('auto-toggle').classList.add('is-on');autoTimer=setInterval(()=>{if($('learning').hidden||handMode){stopAuto();return}if(!revealed)show();else if(index<subset().length-1)move(1);else stopAuto()},autoDelay)}
-$('auto-toggle').addEventListener('click',e=>{e.stopPropagation();if(autoTimer)stopAuto();else startAuto()});
+let start=null;$('learning').addEventListener('touchstart',e=>{if(handMode)return;if(e.touches.length===1){start={x:e.touches[0].clientX,y:e.touches[0].clientY};holdTimer=setTimeout(()=>{enterHand();start=null},700)}},{passive:true});
+$('learning').addEventListener('touchmove',e=>{if(start&&(Math.abs(e.touches[0].clientX-start.x)>16||Math.abs(e.touches[0].clientY-start.y)>16)){clearTimeout(holdTimer);holdTimer=null}},{passive:true});
+$('learning').addEventListener('touchend',e=>{clearTimeout(holdTimer);holdTimer=null;if(handMode||!start)return;const dx=e.changedTouches[0].clientX-start.x,dy=e.changedTouches[0].clientY-start.y;start=null;if(Math.abs(dx)>65&&Math.abs(dx)>Math.abs(dy)*1.2)move(dx<0?1:-1);else if(Math.abs(dy)>85&&Math.abs(dy)>Math.abs(dx)*1.2)moveBatch(dy<0?1:-1)},{passive:true});
+function stopAuto(){if(autoTimer){clearInterval(autoTimer);autoTimer=null}const toggle=$('auto-toggle');if(toggle)toggle.checked=false}
+function startAuto(){stopAuto();$('auto-toggle').checked=true;autoTimer=setInterval(()=>{if($('learning').hidden||handMode){stopAuto();return}if(!revealed)show();else if(index<subset().length-1)move(1);else stopAuto()},autoDelay)}
+$('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
 $('auto-speed').addEventListener('click',e=>e.stopPropagation());
 $('auto-speed').addEventListener('change',e=>{e.stopPropagation();autoDelay=Number(e.target.value);if(autoTimer)startAuto()});
 function clearHand(){const canvas=$('draw-canvas'),ctx=canvas.getContext('2d');ctx?.clearRect(0,0,canvas.width,canvas.height)}
