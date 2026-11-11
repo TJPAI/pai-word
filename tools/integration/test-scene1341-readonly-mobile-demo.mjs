@@ -67,4 +67,15 @@ assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift 
 assert(html.includes('#learning .demo-qa{display:none!important}'),'staging QA notices must not add another row on question/answer faces');
 assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
 assert(script.includes("const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json'"),'read-only draft source unchanged');
+
+assert(html.includes('id="collocations-section"') && html.includes('id="usage-section"'),
+ 'optional answer teaching sections must have distinct view containers');
+assert(script.includes("$('collocations-section').hidden=collocations.length===0"),
+ 'empty collocation rows must not appear');
+assert(script.includes("$('usage-section').hidden=teachingNotes.length===0"),
+ 'empty usage sections must not appear');
+assert(script.includes('qaInternal.test(v)'),'internal QA/source notes must be quarantined from learner-visible teaching text');
+assert(html.includes('id="meaning"') && html.includes('id="example"') && html.includes('id="translation"'),
+ 'full answer must retain zh meaning and bilingual example');
+assert(script.includes("$('answer').hidden=!revealed"),'question face must not reveal teaching answer data');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
