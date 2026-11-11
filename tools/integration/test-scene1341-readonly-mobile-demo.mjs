@@ -312,8 +312,11 @@ assert.equal(fireOne(),600);assert.equal(autoMoves.length,1);
 auto.setDelay(900);assert.equal([...automaticTimers.values()][0].ms,900);
 auto.stop();assert.equal(automaticTimers.size,0);
 auto.start();allowed=false;fireOne();
-assert.equal(auto.isEnabled(),false,'background/hidden/handwriting must fail closed');
+assert.equal(auto.isEnabled(),true,'background/hidden must stop timing but preserve auto enabled state');
 assert.equal(automaticTimers.size,0);
+allowed=true;auto.resume();
+assert.equal([...automaticTimers.values()][0].ms,900,'foreground restores selected auto speed');
+auto.stop();assert.equal(auto.isEnabled(),false,'only explicit OFF should clear enabled flag');
 
 const nativeScratchPath='rebuild-preview/scene1341-readonly/scene500-native-scratch.js';
 const nativeScratch=fs.readFileSync(nativeScratchPath,'utf8');
