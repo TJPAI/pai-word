@@ -55,8 +55,16 @@
    if(typeof key!=='string'||!key)throw Error('SCENE500_READONLY_KU_REQUIRED');
    cardKey=key;selected=null;phase=preferredFace==='answer'?'answer-paused':'question';onUpdate(state());return state();
   }
+  function suspend(){
+   // Native Scene500 visibilitychange invalidates rated timers and keeps a
+   // revealed answer paused, without committing or navigating in background.
+   const wasRevealed=phase==='answer'||phase==='answer-paused';
+   clearTimer();selected=null;
+   phase=wasRevealed?'answer-paused':'question';
+   onUpdate(state());return state();
+  }
   function cancel(){clearTimer();selected=null;cardKey=null;preferredFace='question';phase='question';onUpdate(state())}
-  return Object.freeze({start,tap,choose,navigate,cancel,state});
+  return Object.freeze({start,tap,choose,navigate,suspend,cancel,state});
  }
  function createReadOnlyAutoBrowse({shouldRun,isBusy,isSpeaking=()=>false,navigate,onState,
   schedule=(fn,ms)=>setTimeout(fn,ms),unschedule=id=>clearTimeout(id)}={}){
