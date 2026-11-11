@@ -118,7 +118,7 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
    waitTimer=null;if(finished)return;
    // Native Scene500 waits for an existing question/auto/blank-tap utterance
    // to finish before starting graded speech: never cancel that utterance.
-   if(synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
+   if(wordAudioActive||synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
    started=true;
    utterance.onend=finish;utterance.onerror=finish;
    watchdog=setTimeout(finish,8000);
@@ -136,8 +136,8 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  shouldRun:()=>!$('learning').hidden&&!document.hidden,
- isBusy:()=>phaseController.state().pending||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
- isSpeaking:()=>!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ isBusy:()=>phaseController.state().pending||wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
+ isSpeaking:()=>wordAudioActive||!!(window.speechSynthesis?.speaking||window.speechSynthesis?.pending),
  navigate:()=>{if(subset().length<2)return false;move(1,true);return true},
  onState:enabled=>{$('auto-toggle').checked=enabled}
 });
@@ -330,9 +330,9 @@ $('learning').addEventListener('click',e=>{
  show();
 });
 for(const b of document.querySelectorAll('[data-grade]'))b.addEventListener('click',()=>demoGrade(b.dataset.grade));
-let wordAudioGeneration=0,wordAudioWatchdog=null;
+let wordAudioGeneration=0,wordAudioWatchdog=null,wordAudioActive=false;
 function stopWordAudio(){
- wordAudioGeneration++;
+ wordAudioGeneration++;wordAudioActive=false;
  if(wordAudioWatchdog!==null){clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null}
  if(window.speechSynthesis&&(window.speechSynthesis.speaking||window.speechSynthesis.pending))window.speechSynthesis.cancel();
 }
@@ -340,8 +340,9 @@ function playWord(text){
  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'||document.hidden)return false;
  stopWordAudio();
  const utterance=buildReadOnlyUtterance(text),generation=wordAudioGeneration;
+ wordAudioActive=true;
  let finished=false;
- const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null};
+ const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;wordAudioActive=false;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null};
  utterance.onend=finish;utterance.onerror=finish;
  try{
   window.speechSynthesis.speak(utterance);
