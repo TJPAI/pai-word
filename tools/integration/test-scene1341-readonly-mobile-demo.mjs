@@ -347,7 +347,7 @@ assert(phaseSource.includes("preferredFace") &&
  'Scene1341 navigate must inherit explicit preferred face, not force question');
 assert(script.includes('phaseController.navigate(rows[index].scene_ku_id)'),
  'horizontal and vertical user navigation must share persistent-face controller');
-assert(script.includes('move(1,true)') &&
+assert(script.includes('move(next-index,true)') &&
  script.includes("phaseController.navigate(subset()[index].scene_ku_id)"),
  'automatic and final rated navigation must also inherit preferred face');
 const faceUpdates=[],faceTimers=new Map();let faceTimerID=0;
