@@ -556,4 +556,51 @@ assert(scene500Renderer.includes('class="study-batch-line"'),
 assert(!learningFace.includes('<div id="batch-position">') &&
  !learningFace.includes('<div id="progress">'),
  'do not reintroduce non-native block header geometry');
+
+/* Double audit #2: actively execute rating-TTS handoff against ACTIVE native
+   Scene500 semantics: existing speech must finish; no premature cancellation. */
+assert(scene500Renderer.includes('window.PAI_AUDIO?.whenIdle?.(begin)'),
+ 'native Scene500 waits for existing question speech before graded repeats');
+const ratedStart=script.indexOf('playRatedWord:(grade,iteration,done)=>{');
+const ratedEnd=script.indexOf('\n onAdvance:()=>',ratedStart);
+assert(ratedStart>=0&&ratedEnd>ratedStart,'locate actual rated speech callback');
+const ratedSource=script.slice(ratedStart,ratedEnd).trim();
+assert(ratedSource.endsWith('},'),'rating callback must be object property');
+const ratedExpr='('+ratedSource.slice('playRatedWord:'.length,-1)+')';
+const speechTasks=new Map();let speechTaskID=0,speechCanceled=0,speechCalls=0,gradedFinished=0,startedUtterance=null;
+const synthesizer={
+ speaking:true,pending:false,
+ speak:u=>{speechCalls++;startedUtterance=u},
+ cancel:()=>{speechCanceled++}
+};
+const ratedCallback=vm.runInNewContext(ratedExpr,{
+ subset:()=>[{expression:'wake up'}],index:0,
+ window:{speechSynthesis:synthesizer},
+ SpeechSynthesisUtterance:class{constructor(v){this.text=v}},
+ setTimeout:(fn,ms)=>{const id=++speechTaskID;speechTasks.set(id,{fn,ms});return id},
+ clearTimeout:id=>speechTasks.delete(id)
+});
+const cancelQueued=ratedCallback('good',1,()=>{gradedFinished++});
+assert.equal(speechCalls,0,'rated voice must not interrupt existing speech');
+assert.equal(speechCanceled,0,'native normal speech must NOT be canceled on grade tap');
+assert.equal(speechTasks.size,1);
+assert.equal([...speechTasks.values()][0].ms,80,'wait for browser speech synthesis idle');
+cancelQueued();
+assert.equal(speechTasks.size,0,'cancel before speech start clears idle poll');
+assert.equal(speechCanceled,0,'cancel before rating starts must preserve existing question audio');
+const cancelActive=ratedCallback('good',1,()=>{gradedFinished++});
+synthesizer.speaking=false;
+const poll=speechTasks.entries().next().value;
+speechTasks.delete(poll[0]);poll[1].fn();
+assert.equal(speechCalls,1,'graded pronunciation starts once prior audio has ended');
+assert.equal(startedUtterance.text,'wake up');
+assert.equal(startedUtterance.lang,'en-US');
+assert.equal(speechCanceled,0,'starting graded pronunciation must not cancel previous audio');
+startedUtterance.onend();
+assert.equal(gradedFinished,1,'onend completes exactly once');
+startedUtterance.onend();
+assert.equal(gradedFinished,1,'duplicate voice completion must be ignored');
+cancelActive();
+assert.equal(speechCanceled,0,'completed callback must not cancel subsequent audio');
+assert.equal(speechTasks.size,0,'watchdog clears after completed voice');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
