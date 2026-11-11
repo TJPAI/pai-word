@@ -121,8 +121,15 @@ const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseCont
    if(wordAudioActive||synthesis.speaking||synthesis.pending){waitTimer=setTimeout(begin,80);return}
    started=true;
    utterance.onend=finish;utterance.onerror=finish;
-   watchdog=setTimeout(finish,8000);
-   synthesis.speak(utterance);
+   const scaledRate=Math.max(.5,Math.min(2,Number(utterance.rate)||1));
+   const maxWait=Math.min(15000,Math.max(1500,Math.ceil(String(text).length*650/scaledRate)+1500));
+   watchdog=setTimeout(()=>{
+    if(finished)return;
+    if(synthesis.speaking||synthesis.pending)synthesis.cancel();
+    finish();
+   },maxWait);
+   if(synthesis.paused)synthesis.resume();
+   try{synthesis.speak(utterance)}catch(_){finish()}
   };
   begin();
   return ()=>{
@@ -345,6 +352,7 @@ function playWord(text,baseRate=.84){
  const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;wordAudioActive=false;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null};
  utterance.onend=finish;utterance.onerror=finish;
  try{
+  if(window.speechSynthesis.paused)window.speechSynthesis.resume();
   window.speechSynthesis.speak(utterance);
   // Mirror Scene500's Safari speech watchdog; a stale completion cannot affect a subsequent word.
   const scaledRate=Math.max(.5,Math.min(2,Number(utterance.rate)||1));
