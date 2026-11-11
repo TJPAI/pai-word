@@ -530,4 +530,28 @@ assert(!script.includes("set('qa'") &&
  !script.includes("$('reveal')") &&
  !script.includes("$('next')"),
  'no orphan listener or metadata access after removing preview controls');
+
+/* PASS 2 independently checks real source handlers and header grammar. */
+const nativeClickStart=scene500Renderer.indexOf("document.addEventListener('click',e=>{if(state.view!=='learning'");
+assert(nativeClickStart>=0,'native Scene500 delegated learning click handler not found');
+const nativeClick=scene500Renderer.slice(nativeClickStart,nativeClickStart+580);
+const previewClickStart=script.indexOf("$('learning').addEventListener('click',e=>{");
+assert(previewClickStart>=0,'Scene1341 must have one delegated learning click handler');
+const previewClick=script.slice(previewClickStart,previewClickStart+580);
+assert(nativeClick.includes("e.target.closest('button,a,input,select,textarea,summary,details,.auto-word-toggle,[data-word-audio],[data-example-audio]')"),
+ 'reference uses only actual interaction controls, not the entire answer panel');
+assert(!previewClick.includes("e.target.closest('.answer,"),
+ 'answer content is valid native blank-tap area; a learner can tap it to flip');
+for(const ctrl of ['button','a','input','select','textarea','summary','details','.auto-word-toggle','[data-word-audio]','[data-example-audio]'])
+ assert(previewClick.includes(ctrl),'Scene1341 blank click must ignore native control '+ctrl);
+assert(previewClick.includes('window.getSelection?.()?.toString()'),
+ 'text selection must suppress accidental face flips');
+assert(learningFace.includes('<span class="study-batch-line" id="batch-position">') &&
+ learningFace.includes('<span class="study-batch-line" id="progress">'),
+ 'native Scene500 two-line batch header must use .study-batch-line spans');
+assert(scene500Renderer.includes('class="study-batch-line"'),
+ 'native Scene500 top renderer must have same batch header class');
+assert(!learningFace.includes('<div id="batch-position">') &&
+ !learningFace.includes('<div id="progress">'),
+ 'do not reintroduce non-native block header geometry');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
