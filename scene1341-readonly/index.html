@@ -89,6 +89,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene500-readonly-settings.js"></script>
 <script src="./scene500-readonly-phase.js"></script>
 <script src="./scene1341-auto-preference.js"></script>
+<script src="./scene1341-display-bookmark.js"></script>
 <script>
 'use strict';
 const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
@@ -101,7 +102,10 @@ const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=Strin
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null;
 const readOnlyPrefs=window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings({onChange:applyReadOnlySetting});
-const transientCursors=new Map(); // learning cursor remains in memory only; never stored as SRS
+const displayBookmark=window.PAI_SCENE1341_DISPLAY_BOOKMARK;
+const savedDisplay=displayBookmark.load();
+lastScene=savedDisplay.lastScene;
+const transientCursors=new Map(Object.entries(savedDisplay.cursors)); // isolated UI cursors; never KU/SRS records
 const autoPreference=window.PAI_SCENE1341_AUTO_PREFERENCE;
 const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true;
 const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
@@ -335,6 +339,7 @@ window.addEventListener('resize',scheduleQuestionFit);
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const prefs=readOnlyPrefs.snapshot();
+ displayBookmark.save(sceneId,index,phaseController.state().preferredFace);
  $('learning').classList.toggle('revealed',revealed);
  $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
