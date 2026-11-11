@@ -94,6 +94,18 @@ const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
 const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
  onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)window.render?.()},
  onGradeComplete:grade=>{transientRatings[grade]++},
+ playRatedWord:(grade,iteration,done)=>{
+  const text=subset()[index]?.expression;
+  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'){done();return null}
+  const utterance=new SpeechSynthesisUtterance(text);
+  utterance.lang='en-US';utterance.rate=1;
+  let completed=false;
+  const finish=()=>{if(completed)return;completed=true;clearTimeout(watchdog);done()};
+  const watchdog=setTimeout(finish,8000);
+  utterance.onend=finish;utterance.onerror=finish;
+  window.speechSynthesis.cancel();window.speechSynthesis.speak(utterance);
+  return ()=>{clearTimeout(watchdog);utterance.onend=null;utterance.onerror=null;window.speechSynthesis.cancel()};
+ },
  onAdvance:()=>{if(index<subset().length-1)move(1,false,true);else{phaseController.navigate(subset()[index].scene_ku_id);set('demo-note','本场景词卡已浏览完毕。评分仅模拟，不保存SRS。')}window.PAI_SCRATCH_FINISH_RATING?.()}
 });
 const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
