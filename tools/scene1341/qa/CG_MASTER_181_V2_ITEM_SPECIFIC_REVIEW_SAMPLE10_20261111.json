@@ -1,0 +1,132 @@
+{
+  "schema": "cg-master-semantic-editorial-v1",
+  "date": "2026-11-11",
+  "source_master": "PAI_Word_Scene1341_Three_Lines_Master_20261108_V1",
+  "source_v2_ledger": "CG_MASTER_SCENE1341_ALL181_EDITORIAL_CANDIDATES_AND_HOLDS_20261111_V2.csv",
+  "scope": "10 distinct sample records manually judged using English-Chinese semantics and V2 ledger WordNet candidates; NOT Kaikki-enhanced, NOT a completed 181/300 batch",
+  "source_kaikki_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "source_kaikki_status": "verified original identified, individual entries not retrieved",
+  "reviewed_count": 10,
+  "entries": [
+    {
+      "scene_id": "SC50-0952",
+      "expression": "implement",
+      "source_zh_variants": "落实条约 | 实施",
+      "editorial_verdict": "HOLD_CONTEXT",
+      "item_specific_reason": "implement (verb) can mean 实施/执行; 落实条约 is a narrower contextual translation, while implement (noun)=工具/器具. Must preserve separate POS and check legal sentence.",
+      "proposed_zh_gloss": "实施/执行（动词通用义）；落实条约仅在条约执行语境下使用",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0210",
+      "expression": "local search",
+      "source_zh_variants": "查找附近地点或服务的网络搜索 | 本地搜索",
+      "editorial_verdict": "HOLD_DOMAIN",
+      "item_specific_reason": "In local SEO, a search for nearby businesses/services; in software, searching local device/data. 中文'本地搜索'涵盖两种意义, explanatory translation narrower.",
+      "proposed_zh_gloss": "本地搜索；附近商户/服务搜索仅用于本地SEO语境",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0210",
+      "expression": "search bias",
+      "source_zh_variants": "搜索结果可能存在的偏向 | 搜索结果的系统性偏向",
+      "editorial_verdict": "HOLD_DOMAIN",
+      "item_specific_reason": "Search bias can be algorithmic/systematic ranking bias or user/cognitive bias in search behavior. 系统性 is not guaranteed by the bare expression.",
+      "proposed_zh_gloss": "搜索偏差/搜索偏向；系统性偏差需有明确证据",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0256",
+      "expression": "delayed diagnosis",
+      "source_zh_variants": "延迟诊断 | 诊断延迟",
+      "editorial_verdict": "PROPOSE_NEAR_SYNONYM_CONTEXT",
+      "item_specific_reason": "Both can express a diagnosis occurring later than appropriate. 延迟诊断 may also imply an actively deferred diagnostic action; 诊断延迟 emphasizes lateness. Source sentence decides.",
+      "proposed_zh_gloss": "诊断延迟（事件/结果）；延迟作出诊断（动作）",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0263",
+      "expression": "support network",
+      "source_zh_variants": "支持网络 | 可以提供支持的人际关系网络",
+      "editorial_verdict": "HOLD_DOMAIN",
+      "item_specific_reason": "In social/psychological care, support network refers to people/institutions offering practical/emotional support. In IT, network of support infrastructure possible. Avoid unqualified '支持网络' where ambiguity matters.",
+      "proposed_zh_gloss": "社会支持网络/支持系统（人际场景）；技术支持网络（IT场景）",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0506",
+      "expression": "meat thermometer",
+      "source_zh_variants": "肉类温度计 | 测量肉内部温度的食品温度计",
+      "editorial_verdict": "PROPOSE_NEAR_SYNONYM_CONTEXT",
+      "item_specific_reason": "Cooking utensil used to measure internal meat temperature. Short translation natural; longer is explanation, not a separate sense.",
+      "proposed_zh_gloss": "肉类温度计；测量肉内部温度的温度计为解释",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0510",
+      "expression": "instant-read thermometer",
+      "source_zh_variants": "即时读数的食物温度计 | 快速测量食物内部温度的温度计",
+      "editorial_verdict": "HOLD_SCOPE",
+      "item_specific_reason": "Instant-read refers to rapid reading, not literally zero latency. Generic device need not exclusively measure food; cooking scene can narrow it.",
+      "proposed_zh_gloss": "快速读数温度计；烹饪语境可译快速测温的食品温度计",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0680",
+      "expression": "light",
+      "source_zh_variants": "光 | 照亮",
+      "editorial_verdict": "PROPOSE_POS_SPLIT",
+      "item_specific_reason": "光 corresponds to noun light, 照亮 to verb light; both exist but not interchangeable senses. Check separate source member IDs before split recommendation.",
+      "proposed_zh_gloss": "n. 光/光线；v. 点亮/照亮",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0688",
+      "expression": "focus",
+      "source_zh_variants": "焦点 | 聚焦",
+      "editorial_verdict": "PROPOSE_POS_SPLIT",
+      "item_specific_reason": "焦点 (noun) vs 聚焦 (verb); also focus (noun) in attention sense=重点/关注点 and (verb)=集中注意. Optical vs cognitive usages need sentence-specific distinction.",
+      "proposed_zh_gloss": "n. 焦点/重点；v. 聚焦/集中注意力",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0689",
+      "expression": "approximate",
+      "source_zh_variants": "近似的 | 近似处理",
+      "editorial_verdict": "HOLD_POS_SCOPE",
+      "item_specific_reason": "approximate adjective=近似的/大约的, verb=估算/接近; 近似处理 is a specific procedural paraphrase rather than a broad verb gloss.",
+      "proposed_zh_gloss": "adj. 近似的/大约的；v. 估算/接近；近似处理须验证领域用法",
+      "external_kaikki_sense_verified": false,
+      "source_scene_examples_verified": false,
+      "independent_qa_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
