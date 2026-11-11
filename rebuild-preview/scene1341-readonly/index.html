@@ -256,7 +256,11 @@ function move(delta,fromAuto=false,fromRatedAdvance=false){
 }
 function moveBatch(delta){
  const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
- const batches=Math.ceil(rows.length/BATCH),now=Math.floor(index/BATCH);
+ const batches=Math.ceil(rows.length/BATCH);
+ // Native Scene500 PAI_CHANGE_BATCH returns without navigating when only
+ // one batch exists: do not jump back to its first card on a vertical swipe.
+ if(batches<2)return;
+ const now=Math.floor(index/BATCH);
  index=((now+delta%batches+batches)%batches)*BATCH;
  resetScratch();phaseController.navigate(rows[index].scene_ku_id);
  if(hadPending)window.PAI_SCRATCH_FINISH_RATING?.();
