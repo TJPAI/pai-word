@@ -5,14 +5,14 @@
 (function(root){
  'use strict';
  const DEFAULT_SHOW_MS=Object.freeze({again:6000,hard:4000,good:2000});
- function createReadOnlyPhaseController({onUpdate,onGradeComplete,onAdvance,
+ function createReadOnlyPhaseController({onUpdate,onGradeComplete,onAdvance,playRatedWord=null,
   schedule=(fn,ms)=>setTimeout(fn,ms),unschedule=id=>clearTimeout(id)}={}){
   if(typeof onUpdate!=='function'||typeof onGradeComplete!=='function'||typeof onAdvance!=='function')
    throw Error('SCENE500_READONLY_CALLBACK_REQUIRED');
-  let phase='question',preferredFace='question',cardKey=null,selected=null,timer=null,token=0;
+  let phase='question',preferredFace='question',cardKey=null,selected=null,timer=null,repeatTimer=null,audioCancel=null,token=0;
   const valid=grade=>Object.prototype.hasOwnProperty.call(DEFAULT_SHOW_MS,grade);
-  const state=()=>Object.freeze({phase,preferredFace,cardKey,selected,revealed:phase==='answer'||phase==='answer-paused',pending:timer!==null});
-  function clearTimer(){token++;if(timer!==null){unschedule(timer);timer=null}}
+  const state=()=>Object.freeze({phase,preferredFace,cardKey,selected,revealed:phase==='answer'||phase==='answer-paused',pending:selected!==null||timer!==null||repeatTimer!==null});
+  function clearTimer(){token++;if(timer!==null){unschedule(timer);timer=null}if(repeatTimer!==null){unschedule(repeatTimer);repeatTimer=null}if(typeof audioCancel==='function'){audioCancel();audioCancel=null}}
   function finishPending(){if(selected!==null){const grade=selected;selected=null;onGradeComplete(grade,cardKey)}}
   function start(key){
    if(typeof key!=='string'||!key)throw Error('SCENE500_READONLY_KU_REQUIRED');
@@ -27,11 +27,27 @@
   function choose(grade){
    if(!cardKey||!valid(grade))return false;
    clearTimer();selected=grade;phase='answer';onUpdate(state());
-   const startedKey=cardKey,epoch=token;
-   timer=schedule(()=>{
-    if(epoch!==token||startedKey!==cardKey||selected!==grade)return;
-    timer=null;finishPending();onAdvance(grade,startedKey);
-   },DEFAULT_SHOW_MS[grade]);
+   const startedKey=cardKey,epoch=token,count={again:3,hard:2,good:1}[grade];
+   const live=()=>epoch===token&&startedKey===cardKey&&selected===grade;
+   let elapsed=false,audioDone=typeof playRatedWord!=='function';
+   const finish=()=>{if(!live()||!elapsed||!audioDone)return;finishPending();onAdvance(grade,startedKey)};
+   timer=schedule(()=>{timer=null;elapsed=true;finish()},DEFAULT_SHOW_MS[grade]);
+   if(!audioDone){
+    let spoken=0;
+    const repeat=()=>{
+     repeatTimer=null;if(!live())return;
+     spoken++;
+     let completed=false;
+     const done=()=>{
+      if(completed||!live())return;completed=true;audioCancel=null;
+      if(spoken<count)repeatTimer=schedule(repeat,1000);
+      else{audioDone=true;finish()}
+     };
+     try{audioCancel=playRatedWord(grade,spoken,done)||null}
+     catch(_){done()}
+    };
+    repeat();
+   }
    return true;
   }
   function navigate(key){
