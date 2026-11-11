@@ -100,4 +100,31 @@ for(const [original,mirror] of scene500StylePaths){
 const nativeTapFlow=fs.readFileSync('tap-flow.js','utf8');
 assert(nativeTapFlow.includes("!['answer','answer-paused','example'].includes(phase)"),'Scene500 correction requires answer phase');
 assert(script.includes("function demoGrade(grade){if(!revealed||"),'unrevealed Scene1341 question must reject corrections just like Scene500');
+
+const scene500Renderer=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+const scene500Face=scene500Renderer.slice(scene500Renderer.indexOf('const autoSwitch=`'),scene500Renderer.indexOf(" let query='';",scene500Renderer.indexOf('const autoSwitch=`')));
+assert(scene500Face.includes('<div class="word-hero') && scene500Face.includes('<div class="study-body">'),
+ 'native Scene500 renderer must expose original hero/body shell');
+assert(scene500Face.indexOf('<div class="word-hero')<scene500Face.indexOf('<div class="study-body">'),
+ 'native Scene500 word hero must precede body');
+const heroIndex=learningFace.indexOf('<div class="word-hero" id="hero">');
+const studyBodyIndex=learningFace.indexOf('<div class="study-body" id="studybody">');
+assert(heroIndex>0&&studyBodyIndex>heroIndex,
+ 'Scene1341 learning face MUST use native fixed hero sibling BEFORE scrollable study-body');
+assert(/<div class="word-hero" id="hero">[\\s\\S]*?<\\/div>\\s*<div class="study-body" id="studybody">/.test(learningFace),
+ 'Scene1341 hero closing boundary must be outside study-body');
+assert(learningFace.includes('<label class="auto-word-toggle"') &&
+ learningFace.includes('id="auto-toggle" type="checkbox"') &&
+ learningFace.includes('class="auto-word-symbol"') &&
+ learningFace.includes('<svg viewBox="0 0 24 24"'),
+ 'Scene1341 auto-browse DOM must match the original Scene500 checkbox/SVG control');
+assert(scene500Face.includes('<label class="auto-word-toggle"')&&scene500Face.includes('type="checkbox"'),
+ 'Scene500 auto-browse reference must be the original checkbox implementation');
+assert(!html.includes('#learning .word-hero .ipa-line{'),
+ 'do not silently reintroduce isolated hero geometry overrides');
+assert(script.includes("suppressTapUntil=Date.now()+700"),'swipe must suppress synthetic click');
+assert(script.includes("Math.abs(dx)>=65") && script.includes("Math.abs(dy)>=75") &&
+ script.includes("Math.abs(dy)*1.3"),'native Scene500 swipe gesture thresholds');
+assert(script.includes("holdTimer=setTimeout(()=>{enterHand();start=null},600)"),
+ 'long press must use native 600ms threshold');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
