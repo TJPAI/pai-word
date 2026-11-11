@@ -480,7 +480,8 @@ const composedPhase=api.createReadOnlyPhaseController({
  onGradeComplete:()=>{},onAdvance:()=>{}});
 composed.phaseController=composedPhase;
 composedPhase.start('N-9');composedPhase.tap();
-vm.runInNewContext(batchCycleCode+'\n'+moveSource+'\n'+nativeBatchCode+
+const composedBatchCode=script.slice(script.indexOf('function moveBatch(delta){'),script.indexOf('function demoGrade(',script.indexOf('function moveBatch(delta){')));
+vm.runInNewContext(batchCycleCode+'\n'+moveSource+'\n'+composedBatchCode+
  '\nthis.manualMove=move;this.manualBatch=moveBatch;this.autoStep=autoNextWithinBatch;',composed);
 const checkComposed=(expected,label)=>{
  assert.equal(composed.index,expected,label+' index');
