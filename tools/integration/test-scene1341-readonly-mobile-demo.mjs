@@ -377,7 +377,7 @@ assert(script.includes("if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'aut
  script.includes("if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))"),
  'Scene500 speech preferences must control entry, navigation and manual face flip');
 assert(script.includes("utterance.lang=prefs.voiceAccent==='gb'?'en-GB':'en-US'") &&
- script.includes("utterance.rate=prefs.speechSpeed/100") &&
+ script.includes("utterance.rate=baseRate*prefs.speechSpeed/100") &&
  script.includes("window.speechSynthesis.speak(utterance)"),
  'native US/UK voice and 80/100/120/150% synthesis speed must be respected');
 assert(script.includes("$('learning').addEventListener('click',e=>") &&
@@ -903,7 +903,7 @@ assert(script.includes("$('hero').classList.toggle('listen-only',prefs.hideWord&
 assert(script.includes("readOnlyPrefs.get('autoPronounce.swipe')") &&
  script.includes("readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question')"),
  'native question/swipe auto voice preferences must gate real audio');
-const makeVoiceStart=script.indexOf('function buildReadOnlyUtterance(text){');
+const makeVoiceStart=script.indexOf('function buildReadOnlyUtterance(text,baseRate=.84){');
 const makeVoiceEnd=script.indexOf('\nfunction parseCsv(',makeVoiceStart);
 assert(makeVoiceStart>0&&makeVoiceEnd>makeVoiceStart,'read-only voice builder must exist');
 const voiceFactory=vm.runInNewContext('('+script.slice(makeVoiceStart,makeVoiceEnd).trim()+')',{
@@ -913,12 +913,15 @@ const voiceFactory=vm.runInNewContext('('+script.slice(makeVoiceStart,makeVoiceE
 pref.set('speechSpeed',120);pref.set('voiceAccent','gb');
 const ukVoice=voiceFactory('wake up');
 assert.equal(ukVoice.lang,'en-GB');
-assert.equal(ukVoice.rate,1.2);
+assert(Math.abs(ukVoice.rate-.84*1.2)<1e-10,'native word base rate .84 x speed');
+const ukExample=voiceFactory('Example',.9);
+assert(Math.abs(ukExample.rate-.9*1.2)<1e-10,'native example base rate .9 x speed');
+assert(script.includes('buildReadOnlyUtterance(subset()[index].answer.example_en,.9)'));
 assert.equal(ukVoice.voice.name,'UK');
 pref.set('speechSpeed',80);pref.set('voiceAccent','us');
 const usVoice=voiceFactory('soon');
 assert.equal(usVoice.lang,'en-US');
-assert.equal(usVoice.rate,.8);
+assert(Math.abs(usVoice.rate-.84*.8)<1e-10,'native word base rate .84 x speed');
 assert.equal(usVoice.voice.name,'US');
 
 const currentBatch=10,largeBatch=25,largestBatch=50;
