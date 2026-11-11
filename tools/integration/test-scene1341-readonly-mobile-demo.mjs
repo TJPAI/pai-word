@@ -654,4 +654,107 @@ for(let k=0;k<40;k++){
  assert.equal(storm.state().revealed,false,'QUESTION preference lost during rapid navigation #'+k);
 }
 storm.cancel();assert.equal(stormTimers.size,0);
+
+/* New independent PASS 1: queued but not yet speaking browser speech is busy.
+   Exercise the EXACT callbacks extracted from the staged HTML, not a retyped mock. */
+assert(scene500Renderer.includes('window.PAI_AUDIO?.isActive?.()'),
+ 'live Scene500 audio controls guard queued/active utterances');
+const busyStart=script.indexOf('isBusy:()=>');
+const busyEnd=script.indexOf('\n isSpeaking:',busyStart);
+const speakingEnd=script.indexOf('\n navigate:',busyEnd);
+assert(busyStart>0&&busyEnd>busyStart&&speakingEnd>busyEnd,'locate auto busy callbacks');
+const queueContext={
+ phaseController:{state:()=>({pending:false})},
+ window:{speechSynthesis:{speaking:false,pending:true}}
+};
+const extractAutoCallback=src=>vm.runInNewContext(
+ '('+src.slice(src.indexOf(':')+1).trim().replace(/,$/,'')+')',queueContext
+);
+const queueBusy=extractAutoCallback(script.slice(busyStart,busyEnd));
+const queueSpeaking=extractAutoCallback(script.slice(busyEnd+2,speakingEnd));
+assert.equal(queueBusy(),true,'speechSynthesis.pending=true must block auto navigation');
+assert.equal(queueSpeaking(),true,'queued speech must count as post-speech sequence');
+queueContext.window.speechSynthesis.pending=false;
+assert.equal(queueBusy(),false);
+assert.equal(queueSpeaking(),false);
+queueContext.window.speechSynthesis.speaking=true;
+assert.equal(queueBusy(),true);
+queueContext.window.speechSynthesis.speaking=false;
+queueContext.phaseController.state=()=>({pending:true});
+assert.equal(queueBusy(),true,'pending grade also blocks auto navigation');
+queueContext.phaseController.state=()=>({pending:false});
+const pendingClock=new Map();let pendingId=0,pendingMoves=0;
+const pendingAuto=api.createReadOnlyAutoBrowse({
+ shouldRun:()=>true,isBusy:queueBusy,isSpeaking:queueSpeaking,
+ navigate:()=>{pendingMoves++;return true},
+ onState:()=>{},
+ schedule:(fn,ms)=>{const id=++pendingId;pendingClock.set(id,{fn,ms});return id},
+ unschedule:id=>pendingClock.delete(id)
+});
+const tickPending=()=>{
+ const entry=pendingClock.entries().next().value;
+ assert(entry,'auto queue timer needed');
+ pendingClock.delete(entry[0]);entry[1].fn();return entry[1].ms;
+};
+pendingAuto.start();
+assert.equal(tickPending(),1500);
+assert.equal(pendingMoves,0);
+assert.equal([...pendingClock.values()][0].ms,1500,'idle gap when voice queue truly empty');
+queueContext.window.speechSynthesis.pending=true;
+assert.equal(tickPending(),1500);
+assert.equal(pendingMoves,0,'late queued speech must preempt a pending auto transition');
+assert.equal([...pendingClock.values()][0].ms,120);
+assert.equal(tickPending(),120);
+assert.equal(pendingMoves,0);
+queueContext.window.speechSynthesis.pending=false;
+assert.equal(tickPending(),120);
+assert.equal([...pendingClock.values()][0].ms,600,'post-speech gap starts only after queued TTS is fully idle');
+assert.equal(tickPending(),600);
+assert.equal(pendingMoves,1);
+pendingAuto.pause();assert.equal(pendingClock.size,0,'background pause clears scheduled timers');
+pendingAuto.resume();assert.equal([...pendingClock.values()][0].ms,1500);
+pendingAuto.stop();assert.equal(pendingClock.size,0);
+
+/* New independent PASS 2: run original vertical-batch handler with one
+   batch vs multiple; ensure no change in card, answer face, audio, or scratch. */
+assert(scene500Renderer.includes('if(batches<2)return false;'),
+ 'active Scene500 vertical batch swipe is a no-op with fewer than two batches');
+const batchBegin=script.indexOf('function moveBatch(delta){');
+const batchEnd=script.indexOf('function demoGrade(',batchBegin);
+assert(batchBegin>=0&&batchEnd>batchBegin,'find actual staged vertical-swipe handler');
+const nativeBatchCode=script.slice(batchBegin,batchEnd).trim();
+let batchScratchResets=0,batchSpeeches=0,batchRestarts=0,batchNavigates=0;
+const batchRows=Array.from({length:8},(_,i)=>({scene_ku_id:'ONE-'+i,expression:'sample '+i}));
+const batchFaceUpdates=[];
+const batchFace=api.createReadOnlyPhaseController({
+ onUpdate:state=>batchFaceUpdates.push(state),
+ onGradeComplete:()=>{},onAdvance:()=>{}
+});
+batchFace.start('ONE-7');batchFace.tap();
+const batchContext={
+ BATCH:10,index:7,
+ subset:()=>batchRows,
+ phaseController:{state:()=>({selected:null}),navigate:key=>{batchNavigates++;batchFace.navigate(key)}},
+ resetScratch:()=>{batchScratchResets++},
+ playWord:()=>{batchSpeeches++},
+ autoBrowse:{restart:()=>{batchRestarts++}},
+ window:{PAI_SCRATCH_FINISH_RATING:()=>{}}
+};
+const actualMoveBatch=vm.runInNewContext('('+nativeBatchCode+')',batchContext);
+actualMoveBatch(1);actualMoveBatch(-1);
+assert.equal(batchContext.index,7,'single batch swipe must stay at the current card, not reset to first');
+assert.equal(batchNavigates,0,'no page re-render/navigation on single batch');
+assert.equal(batchScratchResets,0);
+assert.equal(batchSpeeches,0,'no spurious speech after no-op vertical swipe');
+assert.equal(batchRestarts,0,'no auto timer restart on no-op vertical swipe');
+assert.equal(batchFace.state().revealed,true,'single-batch swipe must retain ANSWER mode');
+const multipleRows=Array.from({length:23},(_,i)=>({scene_ku_id:'MULTI-'+i,expression:'example '+i}));
+batchContext.subset=()=>multipleRows;
+actualMoveBatch(1);assert.equal(batchContext.index,10);
+assert.equal(batchFace.state().revealed,true,'next batch stays in answer mode');
+actualMoveBatch(1);assert.equal(batchContext.index,20);
+actualMoveBatch(1);assert.equal(batchContext.index,0,'native multi-batch navigation wraps to first batch');
+actualMoveBatch(-1);assert.equal(batchContext.index,20,'native previous-batch wraps to last batch');
+assert.equal(batchNavigates,4);
+assert.equal(batchScratchResets,4);
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
