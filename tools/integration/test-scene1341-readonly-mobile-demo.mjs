@@ -297,7 +297,7 @@ assert.equal(scratchFinishes,1,'one scratch finish after actual timed navigation
  * across automatic navigation, horizontal word swipe, vertical batch change,
  * and graded progression, without any SRS persistence. */
 assert(scene500Renderer.includes("preferredPageState='QUESTION'") &&
- scene500Renderer.includes("const wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'") &&
+ scene500Renderer.includes("wasRevealed=window.PAI_PREFERRED_CARD_FACE?.()==='ANSWER'") &&
  scene500Renderer.includes("PAI_TAP_FLOW.browseReady(u.k,()=>window.advanceBrowsedAnswer(),wasRevealed)"),
  'ground face persistence in ACTIVE Scene500 browseAnswer controller');
 assert(phaseSource.includes("preferredFace") &&
