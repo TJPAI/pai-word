@@ -257,4 +257,39 @@ assert(script.includes('const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()=
  'source controller must consume only isolated Scene1341 read-only view adapter');
 assert(script.includes('resetScratch();phaseController.navigate('),
  'word and batch navigation must reset handwriting safely');
+
+/* Active Scene500 scratch integration expects FINISH after delayed advance,
+   not synchronously with button click (2/4/6 sec graded answer display). */
+const gradeFn=script.slice(script.indexOf('function demoGrade('),script.indexOf("$('back').addEventListener",script.indexOf('function demoGrade(')));
+const advanceHandler=script.slice(script.indexOf('onAdvance:()=>'),script.indexOf('});',script.indexOf('onAdvance:()=>'))+3);
+assert(gradeFn.includes('window.PAI_SCRATCH_BEGIN_RATING?.()'),'grading must record active drawing');
+assert(gradeFn.includes('phaseController.choose(grade)'),'grading must reveal the timed answer');
+assert(!gradeFn.includes('PAI_SCRATCH_FINISH_RATING'),'do not restore drawing onto previous answer before timer expires');
+assert(advanceHandler.includes("move(1,false,true)"),'rated advance must mark navigation as delayed rating transition');
+assert(advanceHandler.indexOf('move(1,false,true)')<advanceHandler.indexOf('PAI_SCRATCH_FINISH_RATING?.()'),
+ 'scratch finish must follow rated advance, never precede it');
+const manualMove=script.slice(script.indexOf('function move('),script.indexOf('function demoGrade('));
+assert(manualMove.includes('if(hadPending&&!fromRatedAdvance)window.PAI_SCRATCH_FINISH_RATING?.()'),
+ 'manual swipe during pending grade must cancel and settle scratch once');
+const blankTap=script.slice(script.indexOf('function show(){'),script.indexOf('function move('));
+assert(blankTap.includes('if(pending)window.PAI_SCRATCH_FINISH_RATING?.()'),
+ 'blank tap cancellation must clear pending drawing rating');
+let advancedDuringRating=0,scratchFinishes=0;
+const delayedTasks=new Map();let taskID=0;
+const transition=api.createReadOnlyPhaseController({
+ onUpdate:()=>{},
+ onGradeComplete:()=>{},
+ onAdvance:()=>{advancedDuringRating++;scratchFinishes++},
+ schedule:(fn,ms)=>{const id=++taskID;delayedTasks.set(id,{fn,ms});return id},
+ unschedule:id=>delayedTasks.delete(id)
+});
+transition.start('KU-SCRATCH-01');
+transition.choose('good');
+assert.equal(advancedDuringRating,0);
+assert.equal(scratchFinishes,0,'must not call scratch finish at grade click');
+const scheduled=delayedTasks.values().next().value;
+assert.equal(scheduled.ms,2000);
+scheduled.fn();
+assert.equal(advancedDuringRating,1);
+assert.equal(scratchFinishes,1,'one scratch finish after actual timed navigation');
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
