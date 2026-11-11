@@ -355,7 +355,7 @@ assert(scene500Renderer.includes("const nextBatch=(Math.floor(position/size)+dir
 assert(scene500Renderer.includes("const batchSize=Math.max(1,Number(state.wordsPerRound)||10)") &&
  scene500Renderer.includes("state.wordsPerRound=10;"),
  'native Scene500 default batch size is ten KU');
-assert(script.includes("const BATCH=10;"),'Scene1341 default must match native 10-KU batch');
+assert(script.includes("let BATCH=10,selectedGrade=null;") && script.includes("BATCH=prefs.wordsPerRound;"),'Scene1341 default must match native 10-KU batch');
 assert(script.includes("index=(index+delta%rows.length+rows.length)%rows.length"),
  'Scene1341 must perform circular word navigation');
 assert(script.includes("((now+delta%batches+batches)%batches)*BATCH"),
@@ -372,13 +372,14 @@ for(const [count,size,index,delta,expected] of [
  const batches=Math.ceil(count/size),now=Math.floor(index/size);
  assert.equal(((now+delta%batches+batches)%batches)*size,expected,'circular batch index parity');
 }
-assert(script.includes('playWord(rows[index].expression)') &&
+assert(script.includes("if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression)") &&
  script.includes('function openStudy(id,resume=false)') &&
- script.includes("if(!autoBrowse.isEnabled())playWord(subset()[index]?.expression)"),
- 'Scene500 speech should occur on resumed entry, navigation and manual face flip');
-assert(script.includes("utterance.lang='en-US'") &&
+ script.includes("if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))"),
+ 'Scene500 speech preferences must control entry, navigation and manual face flip');
+assert(script.includes("utterance.lang=prefs.voiceAccent==='gb'?'en-GB':'en-US'") &&
+ script.includes("utterance.rate=prefs.speechSpeed/100") &&
  script.includes("window.speechSynthesis.speak(utterance)"),
- 'native US-English voice and synthesis fallback required');
+ 'native US/UK voice and 80/100/120/150% synthesis speed must be respected');
 assert(script.includes("$('learning').addEventListener('click',e=>") &&
  !script.includes("$('hero').addEventListener('click'") &&
  !script.includes("$('studybody').addEventListener('click'"),
@@ -580,6 +581,8 @@ const ratedCallback=vm.runInNewContext(ratedExpr,{
  subset:()=>[{expression:'wake up'}],index:0,
  window:{speechSynthesis:synthesizer},
  SpeechSynthesisUtterance:class{constructor(v){this.text=v}},
+ readOnlyPrefs:{get:()=>true},
+ buildReadOnlyUtterance:text=>({text,lang:'en-US',rate:1}),
  setTimeout:(fn,ms)=>{const id=++speechTaskID;speechTasks.set(id,{fn,ms});return id},
  clearTimeout:id=>speechTasks.delete(id)
 });
@@ -809,4 +812,119 @@ lifecycle.start('BG-QUESTION');
 lifecycle.suspend();
 assert.equal(lifecycle.state().revealed,false,'hiding a normal question should not reveal it');
 assert.equal(lifecycleTimers.size,0);
+
+/* Scene500 shared preference contract: in-memory only and exact native
+   defaults/options; no draft KU/SRS persist, no extra study-page controls. */
+const prefsPath='rebuild-preview/scene1341-readonly/scene500-readonly-settings.js';
+const prefsSource=fs.readFileSync(prefsPath,'utf8');
+new vm.Script(prefsSource,{filename:prefsPath});
+const prefsContext={};vm.runInNewContext(prefsSource,prefsContext);
+const prefsApi=prefsContext.PAI_SCENE500_READONLY_SETTINGS;
+assert(prefsApi&&typeof prefsApi.createReadOnlySettings==='function');
+assert(html.includes('<script src="./scene500-readonly-settings.js"></script>'),'settings contract loads before learning adapter');
+assert(!['localStorage','sessionStorage','indexedDB','fetch(','.commit(','.write('].some(x=>prefsSource.includes(x)),
+ 'preview settings must not access browser SRS or app persistence');
+assert(scene500Renderer.includes("state.wordsPerRound=10;") &&
+ scene500Renderer.includes("[10,25,50].includes(Number(state.wordsPerRound))"),
+ 'native Scene500 choices for batch size');
+assert(scene500Renderer.includes("state.autoBrowseInterval=1.5;") &&
+ scene500Renderer.includes("['0.9','更快']") &&
+ scene500Renderer.includes("['1.5','快']") &&
+ scene500Renderer.includes("['3','中']") &&
+ scene500Renderer.includes("['6','慢']"),
+ 'native Scene500 browse speed labels and intervals');
+assert(scene500Renderer.includes('[80,100,120,150]') &&
+ scene500Renderer.includes("state.voiceAccent='us'") &&
+ scene500Renderer.includes("state.hideWord=false;") &&
+ scene500Renderer.includes("state.showCollocations=true;") &&
+ scene500Renderer.includes("state.showExamples=true;") &&
+ scene500Renderer.includes("state.showCompare=true;"),
+ 'native Scene500 speech, word visibility and answer defaults');
+const prefChanges=[],pref=prefsApi.createReadOnlySettings({onChange:(key,values)=>prefChanges.push({key,values})});
+assert.equal(pref.get('wordsPerRound'),10);
+assert.equal(pref.get('autoBrowseInterval'),1.5);
+assert.equal(pref.get('speechSpeed'),100);
+assert.equal(pref.get('voiceAccent'),'us');
+for(const key of ['hideWord','showCollocations','showExamples','showCompare']){
+ assert.equal(pref.get(key),prefsApi.defaults[key]);
+ assert(html.includes('data-toggle-setting="'+key+'"'),'home settings toggle missing '+key);
+}
+for(const key of ['autoPronounce.question','autoPronounce.swipe']){
+ assert.equal(pref.get(key),true);
+ assert(html.includes('data-toggle-setting="'+key+'"'),'home pronunciation setting missing '+key);
+}
+for(const [key,vals] of [
+ ['wordsPerRound',[10,25,50]],
+ ['autoBrowseInterval',[0.9,1.5,3,6]],
+ ['speechSpeed',[80,100,120,150]],
+ ['voiceAccent',['us','gb']]
+]){
+ assert(html.includes('data-setting="'+key+'"'),'native choice missing '+key);
+ for(const value of vals){
+  assert(prefsApi.choices[key].includes(value),'option missing from contract '+key+'/'+value);
+  assert.equal(pref.set(key,String(value)),true,'supported setting must accept DOM select values');
+  assert.equal(pref.get(key),value);
+  assert(html.includes('value="'+String(value)+'"'),'home selector missing '+key+'/'+value);
+ }
+}
+assert.equal(pref.set('wordsPerRound',30),false);
+assert.equal(pref.set('speechSpeed',70),false);
+assert.equal(pref.set('voiceAccent','fr'),false);
+assert.equal(pref.set('autoBrowseInterval',0.2),false,'post-speech delay is not a normal speed tier');
+assert.equal(pref.set('unknown','x'),false);
+assert.equal(pref.set('hideWord','false'),false,'boolean preferences must not accept truthy strings');
+assert.equal(pref.set('autoPronounce.question',false),true);
+assert.equal(pref.get('autoPronounce.question'),false);
+assert.equal(pref.set('showExamples',false),true);
+assert.equal(pref.get('showExamples'),false);
+assert(prefChanges.length>=2 && prefChanges.every(p=>p.values&&p.key),'settings callbacks must receive memory-only snapshots');
+const captured=pref.snapshot();pref.reset();
+assert.equal(pref.get('wordsPerRound'),10);
+assert.equal(pref.get('showExamples'),true);
+assert.equal(pref.get('autoPronounce.question'),true);
+assert.equal(captured.autoPronounce.question,false,'snapshots must be detached from subsequent reset');
+
+assert(learningFace.indexOf('settings-panel')<0 && learningFace.indexOf('data-setting=')<0,
+ 'preferences must not change pixel geometry of Scene500 learning face');
+assert(html.includes('id="settings-panel"') &&
+ html.includes('id="settings-reset"') &&
+ html.includes('class="setting-row"') &&
+ html.includes('class="switch"'),
+ 'home preferences reuse native Scene500 setting-row/switch CSS and reset control');
+assert(script.includes("BATCH=prefs.wordsPerRound") &&
+ script.includes("autoBrowse.setDelay(Math.round(prefs.autoBrowseInterval*1000))"),
+ 'settings must actually drive batch calculation and auto timer');
+assert(script.includes("$('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed)") &&
+ script.includes("$('examples-section').hidden=!prefs.showExamples") &&
+ script.includes('prefs.showCollocations') &&
+ script.includes('prefs.showCompare'),
+ 'native word hiding and answer-section options must control card output');
+assert(script.includes("readOnlyPrefs.get('autoPronounce.swipe')") &&
+ script.includes("readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question')"),
+ 'native question/swipe auto voice preferences must gate real audio');
+const makeVoiceStart=script.indexOf('function buildReadOnlyUtterance(text){');
+const makeVoiceEnd=script.indexOf('\nfunction parseCsv(',makeVoiceStart);
+assert(makeVoiceStart>0&&makeVoiceEnd>makeVoiceStart,'read-only voice builder must exist');
+const voiceFactory=vm.runInNewContext('('+script.slice(makeVoiceStart,makeVoiceEnd).trim()+')',{
+ readOnlyPrefs:pref,window:{speechSynthesis:{getVoices:()=>[{lang:'en-US',name:'US'},{lang:'en-GB',name:'UK'}]}},
+ SpeechSynthesisUtterance:class{constructor(value){this.text=value}}
+});
+pref.set('speechSpeed',120);pref.set('voiceAccent','gb');
+const ukVoice=voiceFactory('wake up');
+assert.equal(ukVoice.lang,'en-GB');
+assert.equal(ukVoice.rate,1.2);
+assert.equal(ukVoice.voice.name,'UK');
+pref.set('speechSpeed',80);pref.set('voiceAccent','us');
+const usVoice=voiceFactory('soon');
+assert.equal(usVoice.lang,'en-US');
+assert.equal(usVoice.rate,.8);
+assert.equal(usVoice.voice.name,'US');
+
+const currentBatch=10,largeBatch=25,largestBatch=50;
+for(const size of [currentBatch,largeBatch,largestBatch]){
+ const rowCount=101,position=66;
+ const batches=Math.ceil(rowCount/size),batch=Math.floor(position/size);
+ const target=((batch+1)%batches)*size;
+ assert(target>=0&&target<rowCount,'native dynamic batch target must remain in bounds');
+}
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
