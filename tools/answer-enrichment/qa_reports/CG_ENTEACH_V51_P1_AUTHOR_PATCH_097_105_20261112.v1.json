@@ -1,0 +1,435 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 9,
+    "master_review_required": 6
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01384",
+      "scene_id": "SC50-0007",
+      "source_rank": 149,
+      "source_sense_id": "SC-SENSE-01384",
+      "expression": "firm",
+      "source_sense_zh": "结实的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "结实的",
+        "example_en": "The tofu should be firm enough to hold its shape.",
+        "example_zh": "豆腐要足够结实，才能保持形状。",
+        "collocations": [
+          "firm tofu",
+          "firm texture"
+        ],
+        "usage_note": "firm在食物口感中指结实、有一定硬度。"
+      },
+      "revised_answer": {
+        "meaning_zh": "（质地）紧实的；较硬的",
+        "example_en": "The tofu should be firm enough to hold its shape.",
+        "example_zh": "豆腐要足够结实，才能保持形状。",
+        "collocations": [
+          "firm tofu",
+          "firm texture"
+        ],
+        "usage_note": "firm描述食物质地紧实，例如firm tofu指紧实豆腐，并不是结构坚固。"
+      },
+      "revised_display": {
+        "w": "firm",
+        "m": "（质地）紧实的；较硬的",
+        "c": "firm tofu · firm texture",
+        "e": "The tofu should be firm enough to hold its shape.",
+        "x": "firm描述食物质地紧实，例如firm tofu指紧实豆腐，并不是结构坚固。",
+        "example_zh": "豆腐要足够结实，才能保持形状。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01405",
+      "scene_id": "SC50-0007",
+      "source_rank": 170,
+      "source_sense_id": "SC-SENSE-01405",
+      "expression": "savory",
+      "source_sense_zh": "咸香的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "咸香的",
+        "example_en": "The mushroom broth has a rich savory taste.",
+        "example_zh": "蘑菇汤有浓郁的咸鲜风味。",
+        "collocations": [
+          "savory flavor",
+          "savory dish"
+        ],
+        "usage_note": "savory美式拼写，英式savoury，通常指非甜的咸香风味。"
+      },
+      "revised_answer": {
+        "meaning_zh": "咸鲜的；鲜香的；非甜口的",
+        "example_en": "The mushroom broth has a rich savory taste.",
+        "example_zh": "蘑菇汤有浓郁的咸鲜风味。",
+        "collocations": [
+          "savory flavor",
+          "savory dish"
+        ],
+        "usage_note": "savory（英式savoury）常描述非甜口或咸鲜风味，不一定很咸。"
+      },
+      "revised_display": {
+        "w": "savory",
+        "m": "咸鲜的；鲜香的；非甜口的",
+        "c": "savory flavor · savory dish",
+        "e": "The mushroom broth has a rich savory taste.",
+        "x": "savory（英式savoury）常描述非甜口或咸鲜风味，不一定很咸。",
+        "example_zh": "蘑菇汤有浓郁的咸鲜风味。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01409",
+      "scene_id": "SC50-0007",
+      "source_rank": 174,
+      "source_sense_id": "SC-SENSE-01409",
+      "expression": "ready to cook",
+      "source_sense_zh": "可以下锅烹饪的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "可以下锅烹饪的",
+        "example_en": "The vegetables are washed and ready to cook.",
+        "example_zh": "蔬菜洗好了，可以下锅了。",
+        "collocations": [
+          "ready to cook",
+          "ingredients ready to cook"
+        ],
+        "usage_note": "ready to cook表示食材已准备好开始烹调，并不代表已熟。"
+      },
+      "revised_answer": {
+        "meaning_zh": "准备好可以烹饪的",
+        "example_en": "The vegetables are washed and ready to cook.",
+        "example_zh": "蔬菜洗好了，可以下锅了。",
+        "collocations": [
+          "ready to cook",
+          "ingredients ready to cook"
+        ],
+        "usage_note": "ready to cook指食材已做好下锅、进烤箱等烹饪准备，不限于炒锅。"
+      },
+      "revised_display": {
+        "w": "ready to cook",
+        "m": "准备好可以烹饪的",
+        "c": "ready to cook · ingredients ready to cook",
+        "e": "The vegetables are washed and ready to cook.",
+        "x": "ready to cook指食材已做好下锅、进烤箱等烹饪准备，不限于炒锅。",
+        "example_zh": "蔬菜洗好了，可以下锅了。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01417",
+      "scene_id": "SC50-0007",
+      "source_rank": 182,
+      "source_sense_id": "SC-SENSE-01417",
+      "expression": "check the expiration date",
+      "source_sense_zh": "查看保质期",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "查看保质期",
+        "example_en": "Check the expiration date before using the packaged ingredient.",
+        "example_zh": "使用包装食材前查看有效日期。",
+        "collocations": [
+          "check the expiration date",
+          "expiration date on the label"
+        ],
+        "usage_note": "expiration date指标签所列期限；具体法律含义依产品和地区而异。"
+      },
+      "revised_answer": {
+        "meaning_zh": "查看到期日期；查看标注的失效日期",
+        "example_en": "Check the expiration date before using the packaged ingredient.",
+        "example_zh": "使用包装食材前查看有效日期。",
+        "collocations": [
+          "check the expiration date",
+          "expiration date on the label"
+        ],
+        "usage_note": "expiration date的实际标签含义因产品及地区而异，不宜直接等同于best-before或use-by。"
+      },
+      "revised_display": {
+        "w": "check the expiration date",
+        "m": "查看到期日期；查看标注的失效日期",
+        "c": "check the expiration date · expiration date on the label",
+        "e": "Check the expiration date before using the packaged ingredient.",
+        "x": "expiration date的实际标签含义因产品及地区而异，不宜直接等同于best-before或use-by。",
+        "example_zh": "使用包装食材前查看有效日期。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01438",
+      "scene_id": "SC50-0007",
+      "source_rank": 203,
+      "source_sense_id": "SC-SENSE-01438",
+      "expression": "clean up a spill",
+      "source_sense_zh": "清理洒出的液体",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "清理洒出的液体",
+        "example_en": "Clean up a spill before anyone slips.",
+        "example_zh": "有人滑倒前先把洒出的液体清理干净。",
+        "collocations": [
+          "clean up a spill",
+          "clean up a water spill"
+        ],
+        "usage_note": "clean up a spill意为清理洒漏。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清理洒出的液体",
+        "example_en": "Clean up a spill before anyone slips.",
+        "example_zh": "有人滑倒前先把洒出的液体清理干净。",
+        "collocations": [
+          "clean up a spill",
+          "mop up a spill"
+        ],
+        "usage_note": "clean up a spill意为清理洒漏。"
+      },
+      "revised_display": {
+        "w": "clean up a spill",
+        "m": "清理洒出的液体",
+        "c": "clean up a spill · mop up a spill",
+        "e": "Clean up a spill before anyone slips.",
+        "x": "clean up a spill意为清理洒漏。",
+        "example_zh": "有人滑倒前先把洒出的液体清理干净。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01445",
+      "scene_id": "SC50-0007",
+      "source_rank": 210,
+      "source_sense_id": "SC-SENSE-01445",
+      "expression": "check internal temperature",
+      "source_sense_zh": "检查食物内部温度",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "检查食物内部温度",
+        "example_en": "Check internal temperature with a thermometer.",
+        "example_zh": "用温度计测量食物内部温度。",
+        "collocations": [
+          "check internal temperature",
+          "check meat's internal temperature"
+        ],
+        "usage_note": "internal temperature是食物内部温度。"
+      },
+      "revised_answer": {
+        "meaning_zh": "检查食物内部温度",
+        "example_en": "Check internal temperature with a thermometer.",
+        "example_zh": "用温度计测量食物内部温度。",
+        "collocations": [
+          "check internal temperature",
+          "check the meat's internal temperature"
+        ],
+        "usage_note": "internal temperature是食物内部温度。"
+      },
+      "revised_display": {
+        "w": "check internal temperature",
+        "m": "检查食物内部温度",
+        "c": "check internal temperature · check the meat's internal temperature",
+        "e": "Check internal temperature with a thermometer.",
+        "x": "internal temperature是食物内部温度。",
+        "example_zh": "用温度计测量食物内部温度。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01475",
+      "scene_id": "SC50-0008",
+      "source_rank": 23,
+      "source_sense_id": "SC-SENSE-01475",
+      "expression": "home-cooked meal",
+      "source_sense_zh": "家常菜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-001-030.v2.json",
+      "source_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+      "original_answer": {
+        "meaning_zh": "家常菜",
+        "example_en": "What a lovely home-cooked meal!",
+        "example_zh": "这顿家常饭真棒！",
+        "collocations": [
+          "home-cooked meal",
+          "enjoy a home-cooked meal"
+        ],
+        "usage_note": "home-cooked强调在家里做的饭。"
+      },
+      "revised_answer": {
+        "meaning_zh": "家里做的一顿饭；家常饭",
+        "example_en": "What a lovely home-cooked meal!",
+        "example_zh": "这顿家常饭真棒！",
+        "collocations": [
+          "home-cooked meal",
+          "enjoy a home-cooked meal"
+        ],
+        "usage_note": "a home-cooked meal指在家制作的一顿饭，不等同于某一道家常菜。"
+      },
+      "revised_display": {
+        "w": "home-cooked meal",
+        "m": "家里做的一顿饭；家常饭",
+        "c": "home-cooked meal · enjoy a home-cooked meal",
+        "e": "What a lovely home-cooked meal!",
+        "x": "a home-cooked meal指在家制作的一顿饭，不等同于某一道家常菜。",
+        "example_zh": "这顿家常饭真棒！"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01498",
+      "scene_id": "SC50-0008",
+      "source_rank": 46,
+      "source_sense_id": "SC-SENSE-01498",
+      "expression": "cup",
+      "source_sense_zh": "杯子",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "original_answer": {
+        "meaning_zh": "杯子",
+        "example_en": "Could you bring me a cup of tea?",
+        "example_zh": "你能给我拿杯茶吗？",
+        "collocations": [
+          "cup of tea",
+          "coffee cup"
+        ],
+        "usage_note": "cup是杯子，也可作为一杯饮品的量词。"
+      },
+      "revised_answer": {
+        "meaning_zh": "杯子",
+        "example_en": "Could you bring me a cup for my tea?",
+        "example_zh": "你能给我拿个杯子喝茶吗？",
+        "collocations": [
+          "cup of tea",
+          "coffee cup"
+        ],
+        "usage_note": "cup本义是杯子；a cup of tea还可借容器表示一杯茶，此KU例句聚焦实物杯子。"
+      },
+      "revised_display": {
+        "w": "cup",
+        "m": "杯子",
+        "c": "cup of tea · coffee cup",
+        "e": "Could you bring me a cup for my tea?",
+        "x": "cup本义是杯子；a cup of tea还可借容器表示一杯茶，此KU例句聚焦实物杯子。",
+        "example_zh": "你能给我拿个杯子喝茶吗？"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01503",
+      "scene_id": "SC50-0008",
+      "source_rank": 51,
+      "source_sense_id": "SC-SENSE-01503",
+      "expression": "tablespoon",
+      "source_sense_zh": "大汤匙",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "original_answer": {
+        "meaning_zh": "大汤匙",
+        "example_en": "The recipe calls for a tablespoon of olive oil.",
+        "example_zh": "食谱要求加入一大汤匙橄榄油。",
+        "collocations": [
+          "tablespoon of oil",
+          "measuring tablespoon"
+        ],
+        "usage_note": "tablespoon可指大匙或计量单位，做菜最好用量匙。"
+      },
+      "revised_answer": {
+        "meaning_zh": "大汤匙；一大匙（计量单位）",
+        "example_en": "The recipe calls for a tablespoon of olive oil.",
+        "example_zh": "食谱要求加入一大汤匙橄榄油。",
+        "collocations": [
+          "tablespoon of oil",
+          "measuring tablespoon"
+        ],
+        "usage_note": "tablespoon可指大汤匙，也常指烹饪计量单位一大匙；具体容量标准随地区可能不同。"
+      },
+      "revised_display": {
+        "w": "tablespoon",
+        "m": "大汤匙；一大匙（计量单位）",
+        "c": "tablespoon of oil · measuring tablespoon",
+        "e": "The recipe calls for a tablespoon of olive oil.",
+        "x": "tablespoon可指大汤匙，也常指烹饪计量单位一大匙；具体容量标准随地区可能不同。",
+        "example_zh": "食谱要求加入一大汤匙橄榄油。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
