@@ -69,6 +69,9 @@ not_released:true,can_write_srs:false,
 matching_policy:'EXACT_NFKC_CASEFOLD_LEMMA_ONLY_NO_SENSE_INFERENCE',
 entries};
 const text=JSON.stringify(out);
+const pinnedProjection=path.resolve('rebuild-preview/scene1341-readonly/scene1341-enlex-v2-exact-preview.json');
+if(fs.existsSync(pinnedProjection)&&fs.readFileSync(pinnedProjection,'utf8')!==text)
+ throw Error('ENLEX_EXACT_PROJECTION_SOURCE_DRIFT');
 if(!out.exact_lemma_matches||out.exact_lemma_matches>qaExpressions.size)throw Error('LEXICON_JOIN_INVALID');
 console.log('CG_ENLEX_MATCH_SUMMARY '+JSON.stringify({
  totalSense:lexRows,qa:qaTotal,uniqueExpression:qaExpressions.size,
