@@ -1,0 +1,669 @@
+{
+  "schema": "cg-enteach-v51-p0-author-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_PACKS",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "counts": {
+    "records": 14,
+    "needs_master_review": 1
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00704",
+      "scene_id": "SC50-0004",
+      "source_rank": 92,
+      "source_sense_id": "SC-SENSE-00704",
+      "expression": "cleaning spray",
+      "source_sense_zh": "清洁喷雾",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-071-120.v2.json",
+      "source_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "original_answer": {
+        "meaning_zh": "清洁喷雾",
+        "example_en": "I sprayed a little cleaning spray on the countertop.",
+        "example_zh": "我往台面上喷了少量清洁喷雾。",
+        "collocations": [
+          "all-purpose cleaning spray",
+          "use cleaning spray"
+        ],
+        "usage_note": "cleaning spray泛指喷雾型清洁产品，不意味着一定有消毒功能。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清洁喷雾",
+        "example_en": "I used a little cleaning spray on the countertop.",
+        "example_zh": "我在台面上用了少量清洁喷雾。",
+        "collocations": [
+          "all-purpose cleaning spray",
+          "use cleaning spray"
+        ],
+        "usage_note": "cleaning spray泛指喷雾型清洁产品，不意味着一定有消毒功能。"
+      },
+      "revised_display": {
+        "w": "cleaning spray",
+        "m": "清洁喷雾",
+        "c": "all-purpose cleaning spray · use cleaning spray",
+        "e": "I used a little cleaning spray on the countertop.",
+        "x": "cleaning spray泛指喷雾型清洁产品，不意味着一定有消毒功能。",
+        "example_zh": "我在台面上用了少量清洁喷雾。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00804",
+      "scene_id": "SC50-0004",
+      "source_rank": 192,
+      "source_sense_id": "SC-SENSE-00804",
+      "expression": "breakable",
+      "source_sense_zh": "容易摔坏的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "容易摔坏的",
+        "example_en": "These decorations are breakable, so store them carefully.",
+        "example_zh": "这些装饰品容易摔坏，收纳时要小心。",
+        "collocations": [
+          "breakable items",
+          "highly breakable"
+        ],
+        "usage_note": "breakable表示容易破裂或损坏，与fragile相近。"
+      },
+      "revised_answer": {
+        "meaning_zh": "容易摔坏的",
+        "example_en": "These decorations are breakable, so store them carefully.",
+        "example_zh": "这些装饰品容易摔坏，收纳时要小心。",
+        "collocations": [
+          "breakable items",
+          "breakable decorations"
+        ],
+        "usage_note": "breakable表示容易破裂或损坏，与fragile相近。"
+      },
+      "revised_display": {
+        "w": "breakable",
+        "m": "容易摔坏的",
+        "c": "breakable items · breakable decorations",
+        "e": "These decorations are breakable, so store them carefully.",
+        "x": "breakable表示容易破裂或损坏，与fragile相近。",
+        "example_zh": "这些装饰品容易摔坏，收纳时要小心。"
+      },
+      "fields_changed": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00818",
+      "scene_id": "SC50-0004",
+      "source_rank": 206,
+      "source_sense_id": "SC-SENSE-00818",
+      "expression": "put things back where they belong",
+      "source_sense_zh": "把物品放回原位",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "把物品放回原位",
+        "example_en": "Put things back where they belong after using them.",
+        "example_zh": "用完东西后把它们放回原位。",
+        "collocations": [
+          "put things back where they belong",
+          "put everything back where it belongs"
+        ],
+        "usage_note": "where they belong表示物品应放的位置；该源项属待核验场景补缺。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把物品放回原位",
+        "example_en": "Put things back where they belong after using them.",
+        "example_zh": "用完东西后把它们放回原位。",
+        "collocations": [
+          "put things back where they belong",
+          "put everything back where it belongs"
+        ],
+        "usage_note": "where they belong指物品平时应当放回的位置；put back表示使用后放回原处。"
+      },
+      "revised_display": {
+        "w": "put things back where they belong",
+        "m": "把物品放回原位",
+        "c": "put things back where they belong · put everything back where it belongs",
+        "e": "Put things back where they belong after using them.",
+        "x": "where they belong指物品平时应当放回的位置；put back表示使用后放回原处。",
+        "example_zh": "用完东西后把它们放回原位。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00819",
+      "scene_id": "SC50-0004",
+      "source_rank": 207,
+      "source_sense_id": "SC-SENSE-00819",
+      "expression": "clear the clutter",
+      "source_sense_zh": "清除杂物",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "清除杂物",
+        "example_en": "Let's clear the clutter before buying more storage boxes.",
+        "example_zh": "买更多收纳箱之前，先把杂物清掉。",
+        "collocations": [
+          "clear the clutter",
+          "clear clutter from the desk"
+        ],
+        "usage_note": "clear the clutter强调减少杂物；该源项属待独立核验的场景补缺。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清除杂物",
+        "example_en": "Let's clear the clutter before buying more storage boxes.",
+        "example_zh": "买更多收纳箱之前，先把杂物清掉。",
+        "collocations": [
+          "clear the clutter",
+          "clear clutter from the desk"
+        ],
+        "usage_note": "clear the clutter表示清理散乱杂物；可以说clear clutter from the desk。"
+      },
+      "revised_display": {
+        "w": "clear the clutter",
+        "m": "清除杂物",
+        "c": "clear the clutter · clear clutter from the desk",
+        "e": "Let's clear the clutter before buying more storage boxes.",
+        "x": "clear the clutter表示清理散乱杂物；可以说clear clutter from the desk。",
+        "example_zh": "买更多收纳箱之前，先把杂物清掉。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00820",
+      "scene_id": "SC50-0004",
+      "source_rank": 208,
+      "source_sense_id": "SC-SENSE-00820",
+      "expression": "find a place for everything",
+      "source_sense_zh": "给每件东西安排固定位置",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "给每件东西安排固定位置",
+        "example_en": "Find a place for everything so the room stays organized.",
+        "example_zh": "给每样东西安排固定位置，房间才容易保持整齐。",
+        "collocations": [
+          "find a place for everything",
+          "a place for everything"
+        ],
+        "usage_note": "find a place for everything指确定固定收纳位置；源项为增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "给每件东西安排固定位置",
+        "example_en": "Find a place for everything so the room stays organized.",
+        "example_zh": "给每样东西安排固定位置，房间才容易保持整齐。",
+        "collocations": [
+          "find a place for everything",
+          "a place for everything"
+        ],
+        "usage_note": "find a place for everything表示为每件物品安排固定的收纳位置。"
+      },
+      "revised_display": {
+        "w": "find a place for everything",
+        "m": "给每件东西安排固定位置",
+        "c": "find a place for everything · a place for everything",
+        "e": "Find a place for everything so the room stays organized.",
+        "x": "find a place for everything表示为每件物品安排固定的收纳位置。",
+        "example_zh": "给每样东西安排固定位置，房间才容易保持整齐。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00821",
+      "scene_id": "SC50-0004",
+      "source_rank": 209,
+      "source_sense_id": "SC-SENSE-00821",
+      "expression": "sort through",
+      "source_sense_zh": "逐件翻检并整理",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "逐件翻检并整理",
+        "example_en": "I sort through old papers before deciding what to keep.",
+        "example_zh": "我逐一翻检旧文件，再决定哪些保留。",
+        "collocations": [
+          "sort through old papers",
+          "sort through belongings"
+        ],
+        "usage_note": "sort through指逐件查看并筛选，不只是按类型排列；源项为增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "逐件翻检并整理",
+        "example_en": "I sort through old papers before deciding what to keep.",
+        "example_zh": "我逐一翻检旧文件，再决定哪些保留。",
+        "collocations": [
+          "sort through old papers",
+          "sort through belongings"
+        ],
+        "usage_note": "sort through表示逐件翻看、检查和筛选，常用于旧文件或个人物品。"
+      },
+      "revised_display": {
+        "w": "sort through",
+        "m": "逐件翻检并整理",
+        "c": "sort through old papers · sort through belongings",
+        "e": "I sort through old papers before deciding what to keep.",
+        "x": "sort through表示逐件翻看、检查和筛选，常用于旧文件或个人物品。",
+        "example_zh": "我逐一翻检旧文件，再决定哪些保留。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00853",
+      "scene_id": "SC50-0005",
+      "source_rank": 31,
+      "source_sense_id": "SC-SENSE-00853",
+      "expression": "clean as you go",
+      "source_sense_zh": "边做事边随手清理",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "边做事边随手清理",
+        "example_en": "I try to clean as I go when cooking.",
+        "example_zh": "做饭时我尽量边做边收拾。",
+        "collocations": [
+          "clean as you go",
+          "clean as you go in the kitchen"
+        ],
+        "usage_note": "clean as you go指进行活动时及时清理；此项为源增补候选，仍待独立审查。"
+      },
+      "revised_answer": {
+        "meaning_zh": "边做事边随手清理",
+        "example_en": "I try to clean as I go when cooking.",
+        "example_zh": "做饭时我尽量边做边收拾。",
+        "collocations": [
+          "clean as you go",
+          "clean as you cook"
+        ],
+        "usage_note": "clean as you go强调边做事边及时清理；主语可变化，如I clean as I go。"
+      },
+      "revised_display": {
+        "w": "clean as you go",
+        "m": "边做事边随手清理",
+        "c": "clean as you go · clean as you cook",
+        "e": "I try to clean as I go when cooking.",
+        "x": "clean as you go强调边做事边及时清理；主语可变化，如I clean as I go。",
+        "example_zh": "做饭时我尽量边做边收拾。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00868",
+      "scene_id": "SC50-0005",
+      "source_rank": 46,
+      "source_sense_id": "SC-SENSE-00868",
+      "expression": "to-do list",
+      "source_sense_zh": "待办清单",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "待办清单",
+        "example_en": "I wrote a to-do list for the weekend cleaning.",
+        "example_zh": "我列了一张周末打扫的待办清单。",
+        "collocations": [
+          "make a to-do list",
+          "check off a to-do list"
+        ],
+        "usage_note": "to-do list是待办清单，任务完成后可用check off。"
+      },
+      "revised_answer": {
+        "meaning_zh": "待办清单",
+        "example_en": "I wrote a to-do list for the weekend cleaning.",
+        "example_zh": "我列了一张周末打扫的待办清单。",
+        "collocations": [
+          "make a to-do list",
+          "check items off a to-do list"
+        ],
+        "usage_note": "to-do list是待办清单；check an item off表示完成一项并在清单上勾除。"
+      },
+      "revised_display": {
+        "w": "to-do list",
+        "m": "待办清单",
+        "c": "make a to-do list · check items off a to-do list",
+        "e": "I wrote a to-do list for the weekend cleaning.",
+        "x": "to-do list是待办清单；check an item off表示完成一项并在清单上勾除。",
+        "example_zh": "我列了一张周末打扫的待办清单。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00929",
+      "scene_id": "SC50-0005",
+      "source_rank": 107,
+      "source_sense_id": "SC-SENSE-00929",
+      "expression": "smudged",
+      "source_sense_zh": "有擦痕或污迹的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-061-110.v2.json",
+      "source_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+      "original_answer": {
+        "meaning_zh": "有擦痕或污迹的",
+        "example_en": "The mirror looks smudged after someone touched it.",
+        "example_zh": "有人摸过镜子后，表面留下了模糊污迹。",
+        "collocations": [
+          "smudged mirror",
+          "smudged fingerprints"
+        ],
+        "usage_note": "smudged常指抹开的污迹或指印，不一定是永久污渍。"
+      },
+      "revised_answer": {
+        "meaning_zh": "有擦痕或污迹的",
+        "example_en": "The mirror looks smudged after someone touched it.",
+        "example_zh": "有人摸过镜子后，表面留下了模糊污迹。",
+        "collocations": [
+          "smudged mirror",
+          "smudged glass"
+        ],
+        "usage_note": "smudged表示表面有被抹开的模糊污迹；fingerprint smudges指指纹污痕。"
+      },
+      "revised_display": {
+        "w": "smudged",
+        "m": "有擦痕或污迹的",
+        "c": "smudged mirror · smudged glass",
+        "e": "The mirror looks smudged after someone touched it.",
+        "x": "smudged表示表面有被抹开的模糊污迹；fingerprint smudges指指纹污痕。",
+        "example_zh": "有人摸过镜子后，表面留下了模糊污迹。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01013",
+      "scene_id": "SC50-0005",
+      "source_rank": 191,
+      "source_sense_id": "SC-SENSE-01013",
+      "expression": "damaged surface",
+      "source_sense_zh": "受损的表面",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "受损的表面",
+        "example_en": "I tested the cleaner first to avoid a damaged surface.",
+        "example_zh": "我先试了试清洁剂，避免损伤物体表面。",
+        "collocations": [
+          "damaged surface",
+          "avoid damaging surfaces"
+        ],
+        "usage_note": "damaged surface指已经受到损害的表面，区别于普通污渍。"
+      },
+      "revised_answer": {
+        "meaning_zh": "受损的表面",
+        "example_en": "The cleaner left a damaged surface where it had been applied.",
+        "example_zh": "清洁剂涂抹过的地方，表面受到了损伤。",
+        "collocations": [
+          "damaged surface",
+          "avoid damaging surfaces"
+        ],
+        "usage_note": "damaged surface指已受损的表面；要表达避免损伤，应说avoid damaging the surface。"
+      },
+      "revised_display": {
+        "w": "damaged surface",
+        "m": "受损的表面",
+        "c": "damaged surface · avoid damaging surfaces",
+        "e": "The cleaner left a damaged surface where it had been applied.",
+        "x": "damaged surface指已受损的表面；要表达避免损伤，应说avoid damaging the surface。",
+        "example_zh": "清洁剂涂抹过的地方，表面受到了损伤。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01014",
+      "scene_id": "SC50-0005",
+      "source_rank": 192,
+      "source_sense_id": "SC-SENSE-01014",
+      "expression": "scratched floor",
+      "source_sense_zh": "刮花的地板",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "刮花的地板",
+        "example_en": "Dragging furniture left a scratched floor.",
+        "example_zh": "拖动家具把地板刮花了。",
+        "collocations": [
+          "scratched floor",
+          "repair a scratched floor"
+        ],
+        "usage_note": "scratched强调划痕，通常不能靠简单擦拭去除。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刮花的地板",
+        "example_en": "Dragging the furniture scratched the floor.",
+        "example_zh": "拖动家具把地板刮花了。",
+        "collocations": [
+          "scratched floor",
+          "repair a scratched floor"
+        ],
+        "usage_note": "scratched floor是已有划痕的地板；也可说leave scratches on the floor。"
+      },
+      "revised_display": {
+        "w": "scratched floor",
+        "m": "刮花的地板",
+        "c": "scratched floor · repair a scratched floor",
+        "e": "Dragging the furniture scratched the floor.",
+        "x": "scratched floor是已有划痕的地板；也可说leave scratches on the floor。",
+        "example_zh": "拖动家具把地板刮花了。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01034",
+      "scene_id": "SC50-0005",
+      "source_rank": 212,
+      "source_sense_id": "SC-SENSE-01034",
+      "expression": "spot-test a fabric",
+      "source_sense_zh": "在不明显部位测试面料",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-211-223.v2.json",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "original_answer": {
+        "meaning_zh": "在不明显部位测试面料",
+        "example_en": "Spot-test a fabric on a hidden seam first.",
+        "example_zh": "先在面料不显眼的接缝处做小面积测试。",
+        "collocations": [
+          "spot-test a fabric",
+          "spot-test on a hidden area"
+        ],
+        "usage_note": "spot-test用于检验是否褪色或受损。"
+      },
+      "revised_answer": {
+        "meaning_zh": "在不明显部位测试面料",
+        "example_en": "Spot-test the cleaner on a hidden area of the fabric first.",
+        "example_zh": "先在面料不显眼的地方小范围试用清洁剂。",
+        "collocations": [
+          "spot-test a fabric",
+          "spot-test on a hidden area"
+        ],
+        "usage_note": "spot-test指在小范围内试验清洁剂等，以检查是否会掉色或损伤面料。"
+      },
+      "revised_display": {
+        "w": "spot-test a fabric",
+        "m": "在不明显部位测试面料",
+        "c": "spot-test a fabric · spot-test on a hidden area",
+        "e": "Spot-test the cleaner on a hidden area of the fabric first.",
+        "x": "spot-test指在小范围内试验清洁剂等，以检查是否会掉色或损伤面料。",
+        "example_zh": "先在面料不显眼的地方小范围试用清洁剂。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01044",
+      "scene_id": "SC50-0005",
+      "source_rank": 222,
+      "source_sense_id": "SC-SENSE-01044",
+      "expression": "keep up with housework",
+      "source_sense_zh": "及时完成日常家务",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-211-223.v2.json",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "original_answer": {
+        "meaning_zh": "及时完成日常家务",
+        "example_en": "Doing a little daily helps me keep up with housework.",
+        "example_zh": "每天做一点能让我及时完成家务。",
+        "collocations": [
+          "keep up with housework",
+          "keep up with daily chores"
+        ],
+        "usage_note": "keep up with强调不让任务积压；来源为待核验补缺候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "及时完成日常家务",
+        "example_en": "Doing a little housework every day helps me keep up with the chores.",
+        "example_zh": "每天做一点家务，有助于我不让家务积压。",
+        "collocations": [
+          "keep up with housework",
+          "keep up with daily chores"
+        ],
+        "usage_note": "keep up with housework强调跟上家务进度，不让琐事越积越多。"
+      },
+      "revised_display": {
+        "w": "keep up with housework",
+        "m": "及时完成日常家务",
+        "c": "keep up with housework · keep up with daily chores",
+        "e": "Doing a little housework every day helps me keep up with the chores.",
+        "x": "keep up with housework强调跟上家务进度，不让琐事越积越多。",
+        "example_zh": "每天做一点家务，有助于我不让家务积压。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01045",
+      "scene_id": "SC50-0005",
+      "source_rank": 223,
+      "source_sense_id": "SC-SENSE-01045",
+      "expression": "do the housework",
+      "source_sense_zh": "做家务",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-211-223.v2.json",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "original_answer": {
+        "meaning_zh": "做家务",
+        "example_en": "I do the housework before lunch on Sundays.",
+        "example_zh": "周日午饭前我会做家务。",
+        "collocations": [
+          "do the housework",
+          "share the housework"
+        ],
+        "usage_note": "housework通常不可数；该源项为待独立验收增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "做家务",
+        "example_en": "I do the housework before lunch on Sundays.",
+        "example_zh": "周日午饭前我会做家务。",
+        "collocations": [
+          "do the housework",
+          "share the housework"
+        ],
+        "usage_note": "housework通常不可数；do the housework和share the housework都是自然表达。"
+      },
+      "revised_display": {
+        "w": "do the housework",
+        "m": "做家务",
+        "c": "do the housework · share the housework",
+        "e": "I do the housework before lunch on Sundays.",
+        "x": "housework通常不可数；do the housework和share the housework都是自然表达。",
+        "example_zh": "周日午饭前我会做家务。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    }
+  ]
+}
