@@ -3,6 +3,8 @@
  * No production activation; reviewed editorial content, staged app QA only.
  */
 const CACHE_NAME='pai-word-scene1341-ranked-v51-v61-20261109';
+const PINNED_MANIFEST_BLOB='803d2fccfd2d1ec200723f7f38e73d57495a5dd0';
+const PINNED_INDEX_BLOB='597e9f0a6bb2c097d545d6fbd3a195885eebf3d7';
 const BASE=new URL('../tools/integration/scene1341-ranked/',import.meta.url);
 const normalize=s=>String(s??'').normalize('NFKC').toLocaleLowerCase().trim();
 export function parseRankedCsv(input){
@@ -64,7 +66,22 @@ export function createRankedStore({fetchImpl=fetch,base=BASE}={}){
   const url=file=>new URL(file,base).href;
   async function initialize(){
     if(index)return index;
-    const [manifestBytes,indexBytes]=await Promise.all([requestBytes(url('manifest.json'),fetchImpl),requestBytes(url('index.json'),fetchImpl)]);
+    async function pinnedFile(name,expected){
+      const target=url(name);
+      let bytes=await requestBytes(target,fetchImpl);
+      try{await verifyBlob(bytes,expected);}
+      catch(error){
+        if(error.message!=='RANKED_SOURCE_BLOB_MISMATCH')throw error;
+        await removeCachedBytes(target);
+        bytes=await requestBytes(target,fetchImpl);
+        await verifyBlob(bytes,expected);
+      }
+      return bytes;
+    }
+    const [manifestBytes,indexBytes]=await Promise.all([
+      pinnedFile('manifest.json',PINNED_MANIFEST_BLOB),
+      pinnedFile('index.json',PINNED_INDEX_BLOB)
+    ]);
     manifest=JSON.parse(new TextDecoder().decode(manifestBytes));
     index=JSON.parse(new TextDecoder().decode(indexBytes));
     if(manifest.schema!=='pai-scene1341-ranked-recommendations-v1'||manifest.production_eligible!==false||
