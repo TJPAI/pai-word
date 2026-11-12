@@ -8,6 +8,7 @@ import {createHash} from 'node:crypto';
 import {inspectScene1341ProvisionalShard,inspectScene1341ProvisionalRecord} from '../../rebuild-preview/scene1341-provisional-intake.mjs';
 import {createScene1341QuarantineRegistry,createScene1341SrsStorageBoundary} from '../../rebuild-preview/scene1341-isolated-registry-srs.mjs';
 import {createScene1341ReadOnlyDisplayProjection} from '../../rebuild-preview/scene1341-native-display-projection.mjs';
+import {assertScene1341NativeAnswerHtml} from './scene1341-native-answer-renderer-harness.mjs';
 const pin=JSON.parse(fs.readFileSync('tools/integration/scene1341-provisional-intake-pin-20261112.v2.json','utf8'));
 assert.equal(pin.qa_manifest.records,1778);
 assert.equal(pin.v1_status,'SUPERSEDED_DO_NOT_CONSUME');
@@ -88,10 +89,12 @@ assert.equal(displayProjection.canWriteSrs,false);
 assert.equal(displayProjection.units.find(u=>u.k==='SC1341-KU-00001')?.w.w,'wake up');
 assert.equal(displayProjection.units.some(u=>u.k==='SC1341-KU-00365'),false);
 assert.equal(displayProjection.units.some(u=>u.k==='SC1341-KU-00297'),true);
+for(const item of displayProjection.units)assertScene1341NativeAnswerHtml(item);
+
 
 
 const report={status:'PASS',schema:pin.schema,qaSource:pin.qa_manifest.commit,
   cgQaPassCandidates:seen.size,structurallyAccepted:results.reduce((n,x)=>n+x.structurallyAccepted,0),masterAuthorizationVerified:0,
   stagedPlayable:0,formalReleased:0,museHistory:{historicalPassNotFinalCertification:historicalMusePass,deferredUntil20261113:museDeferred},
-  dataSourceGitBlobValidated:true,isolatedRegistry:{records:registry.records,quarantined:registry.quarantined,scenes:registry.scenes,nativeUnits:0,canWriteSrs:false,namespace:registry.namespace,storageKey:srsBoundary.key,readOnlyNativeAnswerUnits:displayProjection.count},shards:results};
+  dataSourceGitBlobValidated:true,isolatedRegistry:{records:registry.records,quarantined:registry.quarantined,scenes:registry.scenes,nativeUnits:0,canWriteSrs:false,namespace:registry.namespace,storageKey:srsBoundary.key,readOnlyNativeAnswerUnits:displayProjection.count,realScene500AnswerHtmlChecks:displayProjection.count},shards:results};
 console.log(JSON.stringify(report,null,2));
