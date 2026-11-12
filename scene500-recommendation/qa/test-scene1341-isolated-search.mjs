@@ -89,7 +89,7 @@ assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not n
  const make=()=>[cols.join(','),...rows.map(r=>cols.map(k=>quote(r[k])).join(','))].join('\n')+'\n';
  const sample=rows.find(r=>r.id==='SC50-1341');
  assert.ok(sample,'source scene 1341 missing');
- for(const key of ['name','category']){
+ for(const key of [sample.revised_name?.trim()?'revised_name':'name','category']){
   const original=sample[key];sample[key]=' ';
   assert.throws(()=>buildCatalog(make(),ranked,{sourceCommit:commit,manifestSha:blob}),/EMPTY_SCENE_METADATA/,'blank '+key+' must fail');
   sample[key]=original;
