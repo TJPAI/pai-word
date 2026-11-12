@@ -42,5 +42,9 @@ const mismatchedMaster={
 };
 assert.equal(check(base,mismatchedMaster).stagingEligible,false);
 assert.equal(check(base,{...mismatchedMaster,source_pack_blob:base.source_pack_blob,display_qa_pass:false}).stagingEligible,false);
+// A fully matching but caller-invented source/evidence SHA is still NOT Master approval.
+const forgedButMatching={...mismatchedMaster,source_pack_blob:base.source_pack_blob};
+assert.equal(check(base,forgedButMatching).stagingEligible,false,'FORGED_MASTER_EVIDENCE_MUST_NOT_ENABLE_STAGING');
+assert.equal(check(base,forgedButMatching).reason,'MASTER_AUTHORIZATION_MISMATCH_OR_DISPLAY_NOT_APPROVED');
 assert.throws(()=>inspectScene1341ProvisionalShard({shard:{__path:pin.shards[0].path},pin:{...pin,schema:'scene1341-provisional-intake-pin-v1'},blob:pin.shards[0].blob}),/INVALID_PIN/);
 console.log(JSON.stringify({status:'PASS',sourceCount:1778,shards:7,oldVersionRejected:true,heldDuplicateRejected:true,unauthorizedStagingRejected:true,publicRelease:false,productionSrs:false}));
