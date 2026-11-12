@@ -10,6 +10,7 @@ on:
       - 'scene500-recommendation/qa/benchmark-scene1341-cache.mjs'
       - 'scene500-recommendation/qa/measure-scene1341-memory.mjs'
       - 'scene500-recommendation/qa/validate-scene1341-budget.mjs'
+      - 'scene500-recommendation/qa/test-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
     branches: [scene500-recommendation-dev]
@@ -49,8 +50,12 @@ jobs:
           node --check rec/scene500-recommendation/qa/benchmark-scene1341-cache.mjs
           node --check rec/scene500-recommendation/qa/measure-scene1341-memory.mjs
           node --check rec/scene500-recommendation/qa/validate-scene1341-budget.mjs
+          node --check rec/scene500-recommendation/qa/test-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
+      - name: Verify engineering budget gate fails closed
+        run: |
+          node rec/scene500-recommendation/qa/test-scene1341-budget.mjs
       - name: Verify pinned editorial input identities
         run: |
           test "$(git -C source rev-parse HEAD)" = "17c6c758e1dfd27cfa2fe1669d3f1784bedb0668"
@@ -95,8 +100,7 @@ jobs:
           node rec/scene500-recommendation/qa/validate-scene1341-budget.mjs \
             scene1341-normalization-cache-ab.json \
             scene1341-memory-baseline.json \
-            scene1341-memory-candidate.json
-            scene1341-engineering-budget-gate.json \
+            scene1341-memory-candidate.json \
             > scene1341-engineering-budget-gate.json
       - uses: actions/upload-artifact@v4
         if: always()
@@ -107,3 +111,4 @@ jobs:
             scene1341-normalization-cache-ab.json
             scene1341-memory-baseline.json
             scene1341-memory-candidate.json
+            scene1341-engineering-budget-gate.json
