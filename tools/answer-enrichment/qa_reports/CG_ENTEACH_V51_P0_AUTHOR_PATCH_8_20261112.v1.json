@@ -1,0 +1,373 @@
+{
+  "schema": "cg-enteach-v51-p0-author-patch-v1",
+  "date": "2026-11-12",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "status": "ISOLATED_ANSWER_PATCH_QA_PENDING_NOT_APPLIED_TO_SOURCE",
+  "counts": {
+    "records": 8,
+    "presentation_metadata_fixes": 4,
+    "other_language_fixes": 4
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00318",
+      "scene_id": "SC50-0002",
+      "source_rank": 84,
+      "source_sense_id": "SC-SENSE-00318",
+      "expression": "lather up",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-071-100.v2.json",
+      "source_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+      "original_answer": {
+        "meaning_zh": "搓出泡沫",
+        "example_en": "Rub your hands together to lather up the soap.",
+        "example_zh": "双手互相搓一搓，让肥皂起泡。",
+        "collocations": [
+          "lather up",
+          "lather up with soap"
+        ],
+        "usage_note": "lather up是搓出泡沫，也可说work up a lather。"
+      },
+      "revised_answer": {
+        "meaning_zh": "搓出泡沫",
+        "example_en": "Rub your hands together with soap until they lather up.",
+        "example_zh": "双手抹上肥皂搓揉，直到起泡。",
+        "collocations": [
+          "lather up with soap",
+          "work up a lather"
+        ],
+        "usage_note": "lather up是搓出泡沫；说lather up with soap更自然。"
+      },
+      "revised_display": {
+        "w": "lather up",
+        "m": "搓出泡沫",
+        "c": "lather up with soap · work up a lather",
+        "e": "Rub your hands together with soap until they lather up.",
+        "x": "lather up是搓出泡沫；说lather up with soap更自然。",
+        "example_zh": "双手抹上肥皂搓揉，直到起泡。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "collocations",
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00337",
+      "scene_id": "SC50-0002",
+      "source_rank": 103,
+      "source_sense_id": "SC-SENSE-00337",
+      "expression": "apply moisturizer",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+      "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "original_answer": {
+        "meaning_zh": "擦保湿霜",
+        "example_en": "I apply moisturizer while my skin is still slightly damp.",
+        "example_zh": "皮肤还有一点湿润时，我会涂保湿霜。",
+        "collocations": [
+          "apply moisturizer",
+          "apply moisturizer to your face"
+        ],
+        "usage_note": "apply是护肤品涂抹的常用动词，moisturizer通常不可数。"
+      },
+      "revised_answer": {
+        "meaning_zh": "擦保湿霜",
+        "example_en": "I apply moisturizer while my skin is still slightly damp.",
+        "example_zh": "皮肤还有一点湿润时，我会涂保湿霜。",
+        "collocations": [
+          "apply moisturizer",
+          "use a gentle moisturizer"
+        ],
+        "usage_note": "moisturizer既可作可数名词（a moisturizer），也可在apply moisturizer中作物质名词；apply意为涂抹。"
+      },
+      "revised_display": {
+        "w": "apply moisturizer",
+        "m": "擦保湿霜",
+        "c": "apply moisturizer · use a gentle moisturizer",
+        "e": "I apply moisturizer while my skin is still slightly damp.",
+        "x": "moisturizer既可作可数名词（a moisturizer），也可在apply moisturizer中作物质名词；apply意为涂抹。",
+        "example_zh": "皮肤还有一点湿润时，我会涂保湿霜。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00406",
+      "scene_id": "SC50-0002",
+      "source_rank": 172,
+      "source_sense_id": "SC-SENSE-00406",
+      "expression": "apply lip balm",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "涂润唇膏",
+        "example_en": "I apply lip balm when my lips feel dry.",
+        "example_zh": "嘴唇发干时我会涂润唇膏。",
+        "collocations": [
+          "apply lip balm",
+          "use lip balm"
+        ],
+        "usage_note": "lip balm是润唇膏，apply表示涂抹；本源项为待独立核验的增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "涂润唇膏",
+        "example_en": "I apply lip balm when my lips feel dry.",
+        "example_zh": "嘴唇发干时我会涂润唇膏。",
+        "collocations": [
+          "apply lip balm",
+          "use lip balm"
+        ],
+        "usage_note": "apply lip balm指涂润唇膏；也可说put on lip balm。"
+      },
+      "revised_display": {
+        "w": "apply lip balm",
+        "m": "涂润唇膏",
+        "c": "apply lip balm · use lip balm",
+        "e": "I apply lip balm when my lips feel dry.",
+        "x": "apply lip balm指涂润唇膏；也可说put on lip balm。",
+        "example_zh": "嘴唇发干时我会涂润唇膏。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00407",
+      "scene_id": "SC50-0002",
+      "source_rank": 173,
+      "source_sense_id": "SC-SENSE-00407",
+      "expression": "brush twice a day",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "每天刷两次牙",
+        "example_en": "I brush twice a day, once in the morning and once at night.",
+        "example_zh": "我每天刷两次牙，早晚各一次。",
+        "collocations": [
+          "brush twice a day",
+          "brush your teeth twice a day"
+        ],
+        "usage_note": "省略teeth时，brush twice a day依赖刷牙语境；本源项属增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "每天刷两次牙",
+        "example_en": "I brush twice a day, once in the morning and once at night.",
+        "example_zh": "我每天刷两次牙，早晚各一次。",
+        "collocations": [
+          "brush twice a day",
+          "brush your teeth twice a day"
+        ],
+        "usage_note": "在刷牙语境中，brush twice a day可省略your teeth；完整表达是brush your teeth twice a day。"
+      },
+      "revised_display": {
+        "w": "brush twice a day",
+        "m": "每天刷两次牙",
+        "c": "brush twice a day · brush your teeth twice a day",
+        "e": "I brush twice a day, once in the morning and once at night.",
+        "x": "在刷牙语境中，brush twice a day可省略your teeth；完整表达是brush your teeth twice a day。",
+        "example_zh": "我每天刷两次牙，早晚各一次。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00408",
+      "scene_id": "SC50-0002",
+      "source_rank": 174,
+      "source_sense_id": "SC-SENSE-00408",
+      "expression": "wash off makeup",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "洗掉妆容",
+        "example_en": "I wash off my makeup before going to bed.",
+        "example_zh": "睡前我会把脸上的妆洗掉。",
+        "collocations": [
+          "wash off makeup",
+          "wash your makeup off"
+        ],
+        "usage_note": "wash off强调通过清洗去除，remove makeup可指更广泛卸妆方法；源项待核验。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗掉妆容",
+        "example_en": "I wash off my makeup before going to bed.",
+        "example_zh": "睡前我会把脸上的妆洗掉。",
+        "collocations": [
+          "wash off makeup",
+          "wash your makeup off"
+        ],
+        "usage_note": "wash off makeup强调用清洗去除妆容；remove makeup表示卸妆，方法不限。"
+      },
+      "revised_display": {
+        "w": "wash off makeup",
+        "m": "洗掉妆容",
+        "c": "wash off makeup · wash your makeup off",
+        "e": "I wash off my makeup before going to bed.",
+        "x": "wash off makeup强调用清洗去除妆容；remove makeup表示卸妆，方法不限。",
+        "example_zh": "睡前我会把脸上的妆洗掉。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00430",
+      "scene_id": "SC50-0003",
+      "source_rank": 22,
+      "source_sense_id": "SC-SENSE-00430",
+      "expression": "dress code",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-021-070.v2.json",
+      "source_pack_blob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+      "original_answer": {
+        "meaning_zh": "着装规定",
+        "example_en": "The restaurant has a smart-casual dress code.",
+        "example_zh": "这家餐厅要求商务休闲着装。",
+        "collocations": [
+          "follow the dress code",
+          "a strict dress code"
+        ],
+        "usage_note": "dress code指着装规定，不是服装品牌或尺码。"
+      },
+      "revised_answer": {
+        "meaning_zh": "着装规定",
+        "example_en": "The restaurant has a smart-casual dress code.",
+        "example_zh": "这家餐厅要求精致休闲着装。",
+        "collocations": [
+          "follow the dress code",
+          "a strict dress code"
+        ],
+        "usage_note": "smart casual是得体而稍讲究的休闲风格，不等同business casual；dress code指着装规定。"
+      },
+      "revised_display": {
+        "w": "dress code",
+        "m": "着装规定",
+        "c": "follow the dress code · a strict dress code",
+        "e": "The restaurant has a smart-casual dress code.",
+        "x": "smart casual是得体而稍讲究的休闲风格，不等同business casual；dress code指着装规定。",
+        "example_zh": "这家餐厅要求精致休闲着装。"
+      },
+      "fields_changed": [
+        "example_zh",
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00591",
+      "scene_id": "SC50-0003",
+      "source_rank": 183,
+      "source_sense_id": "SC-SENSE-00591",
+      "expression": "change a stained shirt",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+      "source_pack_blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+      "original_answer": {
+        "meaning_zh": "换掉弄脏的衬衫",
+        "example_en": "I had to change a stained shirt before the meeting.",
+        "example_zh": "开会前我不得不换下弄脏的衬衫。",
+        "collocations": [
+          "change a stained shirt",
+          "change out of a stained shirt"
+        ],
+        "usage_note": "change在此是换掉整件衣服，不只是去除污渍。"
+      },
+      "revised_answer": {
+        "meaning_zh": "换掉弄脏的衬衫",
+        "example_en": "I had to change out of my stained shirt before the meeting.",
+        "example_zh": "开会前我不得不换下沾污的衬衫。",
+        "collocations": [
+          "change out of a stained shirt",
+          "change your shirt because it's stained"
+        ],
+        "usage_note": "change在此是换掉整件衣服，不只是去除污渍。"
+      },
+      "revised_display": {
+        "w": "change a stained shirt",
+        "m": "换掉弄脏的衬衫",
+        "c": "change out of a stained shirt · change your shirt because it's stained",
+        "e": "I had to change out of my stained shirt before the meeting.",
+        "x": "change在此是换掉整件衣服，不只是去除污渍。",
+        "example_zh": "开会前我不得不换下沾污的衬衫。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "collocations"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00610",
+      "scene_id": "SC50-0003",
+      "source_rank": 202,
+      "source_sense_id": "SC-SENSE-00610",
+      "expression": "get changed",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+      "source_pack_blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+      "original_answer": {
+        "meaning_zh": "换衣服",
+        "example_en": "I'll get changed before we go out for dinner.",
+        "example_zh": "我们出去吃晚饭前我换身衣服。",
+        "collocations": [
+          "get changed",
+          "get changed for dinner"
+        ],
+        "usage_note": "get changed是换衣服的口语说法，源项为editorial_addition，仍需独立语义验收。"
+      },
+      "revised_answer": {
+        "meaning_zh": "换衣服",
+        "example_en": "I'll get changed before we go out for dinner.",
+        "example_zh": "我们出去吃晚饭前我换身衣服。",
+        "collocations": [
+          "get changed",
+          "get changed for dinner"
+        ],
+        "usage_note": "get changed是换衣服的常见口语说法，相当于change clothes。"
+      },
+      "revised_display": {
+        "w": "get changed",
+        "m": "换衣服",
+        "c": "get changed · get changed for dinner",
+        "e": "I'll get changed before we go out for dinner.",
+        "x": "get changed是换衣服的常见口语说法，相当于change clothes。",
+        "example_zh": "我们出去吃晚饭前我换身衣服。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    }
+  ]
+}
