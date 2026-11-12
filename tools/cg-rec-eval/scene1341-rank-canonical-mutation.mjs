@@ -37,6 +37,23 @@ for(const [label,dupe] of [['leading_zero','0'+rank],['decimal_equivalent',rank+
  if(!caught?.includes('DUPLICATE_OR_BAD_RANK'))throw Error('DUPLICATE_NUMERIC_RANK_NOT_BLOCKED '+label+' '+String(caught));
  report.push({label,duplicateText:dupe,rejectedAs:'DUPLICATE_OR_BAD_RANK'});
 }
+// The next mutations intentionally do NOT collide with the original rank 1.
+// They prove noncanonical formats are rejected as identities on their own.
+const invalidFormats=[
+ ['exponent','1e2'],['hexadecimal','0x10'],['leading_plus','+17'],
+ ['negative','-1'],['leading_space',' 17'],['trailing_space','17 '],
+ ['underscore','1_000'],['fractional','1.5'],['infinity','Infinity'],
+ ['unsafe_integer','9007199254740993'],['zero','0']
+];
+for(const [label,invalid] of invalidFormats){
+ const rows=selected.rows.map(r=>({...r}));
+ rows[selected.second].rank=invalid;
+ const shards=sources.slice();shards[selected.f]=encode(rows);
+ let caught=null;try{buildCatalog(catalog,shards,meta);}catch(e){caught=e.message;}
+ if(!caught?.includes('DUPLICATE_OR_BAD_RANK'))throw Error('NONCANONICAL_SOURCE_RANK_ACCEPTED '+label+' '+String(caught));
+ report.push({label,duplicateText:invalid,rejectedAs:'DUPLICATE_OR_BAD_RANK'});
+}
+if(report.length!==14)throw Error('EXPECTED_14_INDEPENDENT_MUTATIONS');
 console.log(JSON.stringify({status:'PASS',sourceCommit,manifestSha,coreCommit:process.env.CG_REC_SHA||null,
  sourceUnchanged:true,sceneCount:1341,expressionCount:19371,scene:selected.scene,firstRank:rank,
  mutatedRecord:selected.second,mutations:report,certified:false,releaseAllowed:false},null,2));
