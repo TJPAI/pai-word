@@ -1,0 +1,38 @@
+name: Scene1341 native Scene500 entry fail-closed preflight
+on:
+  push:
+    branches:
+      - cg-main-sc1341-native-entry-preflight-20261112
+    paths:
+      - 'rebuild-preview/scene1341-native-entry-preflight.mjs'
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
+      - 'rebuild-preview/home-dashboard.js'
+      - 'tools/integration/test-scene1341-native-entry-preflight.mjs'
+      - '.github/workflows/scene1341-native-entry-preflight.yml'
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-native-entry-preflight.mjs'
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
+      - 'rebuild-preview/home-dashboard.js'
+      - 'tools/integration/test-scene1341-native-entry-preflight.mjs'
+      - '.github/workflows/scene1341-native-entry-preflight.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check native preflight syntax
+        run: node --check rebuild-preview/scene1341-native-entry-preflight.mjs
+      - name: Native Scene1341 entrance must reject unapproved KU and legacy SRS
+        run: node tools/integration/test-scene1341-native-entry-preflight.mjs
+      - name: Repeat V2 1778 source and Master evidence gate
+        run: node tools/integration/test-scene1341-v2-intake-gate-regression.mjs
+      - name: Existing Scene1341 home regression
+        run: node tools/integration/test-scene1341-home-replacement.mjs
