@@ -4,6 +4,7 @@ on:
     branches: [scene500-recommendation-dev]
     paths:
       - 'scene500-recommendation/scene1341-isolated-search.mjs'
+      - 'scene500-recommendation/scene1341-experimental-intent-aliases.mjs'
       - 'scene500-recommendation/qa/test-scene1341-isolated-search.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   workflow_dispatch:
