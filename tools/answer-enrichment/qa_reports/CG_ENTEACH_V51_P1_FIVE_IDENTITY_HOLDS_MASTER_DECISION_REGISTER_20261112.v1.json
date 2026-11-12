@@ -1,0 +1,128 @@
+{
+  "schema": "cg-enteach-v51-p1-five-identity-holds-master-decision-register-v1",
+  "date": "2026-11-12",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source_author_manifest": {
+    "path": "tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-2038.json",
+    "blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118"
+  },
+  "independent_qa": {
+    "p1_master70_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+    "latest_delta17_blob": "f0eb3158219c34013596601d6d6648bf4fc63177"
+  },
+  "evidence_assets": [
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_IDENTITY_01213_01637_MASTER_DECISION_OPTIONS_20261112.v1.json",
+      "blob": "c9e01c1f7de0d5f46bbf057c83b222f0338b6331"
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_IDENTITY_01736_01749_02017_MASTER_OPTIONS_20261112.v1.json",
+      "blob": "c1083b84a5a7a62570e7b18f61fae19b850ae7bf",
+      "qualification": "KU01749 earlier suggested replacement is superseded by canonical collision evidence"
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_SC0010_NOTIFICATIONS_DUPLICATE_CROSSPACK_EVIDENCE_20261112.v1.json",
+      "blob": "ff49e7258dee8e87d657206b024ed98c869b3d54",
+      "source_scope": "SC50-0010: 5 packs/199 KUs"
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_SC0009_FILTER_CANONICAL_COLLISION_KU01749_01825_20261112.v1.json",
+      "blob": "74e005685ce352c0e83dc4a1055082d2f205ec36",
+      "source_scope": "SC50-0009: 5 packs/199 KUs"
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_SC0006_SC0008_NEIGHBOR_KU_CANONICAL_AUDIT_20261112.v1.json",
+      "blob": "2d855374752a577b7a07919afb238bde2c20245f",
+      "source_scope": "SC50-0006: 190 KUs; SC50-0008: 188 KUs"
+    }
+  ],
+  "items": [
+    {
+      "priority": 1,
+      "scene_ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02017",
+      "source_rank": 178,
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_expression": "turn off notifications",
+      "collision_with": "SC1341-KU-01956",
+      "collision_expression": "switch off notifications",
+      "evidence": "Source examples teach same notification-disabling action, first KU explicitly includes turn-off synonym",
+      "proposed": "Master decide whether to suppress secondary KU02017 in authorized learning queue, preserving frozen IDs",
+      "decision": "PENDING"
+    },
+    {
+      "priority": 2,
+      "scene_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01749",
+      "source_rank": 109,
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_expression": "empty the filter",
+      "collision_with": "SC1341-KU-01825",
+      "collision_expression": "clean the dishwasher filter",
+      "evidence": "Potential target replacement already exists as stable KU01825; original word empty and actual physical object may be conflated",
+      "proposed": "Master investigate original physical part and Sense; no automatic rename to clean filter; retain HOLD or suppress only under approval",
+      "decision": "PENDING"
+    },
+    {
+      "priority": 3,
+      "scene_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01637",
+      "source_rank": 185,
+      "source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "original_expression": "warm up a late dinner",
+      "neighbor_ku_ids": [
+        "SC1341-KU-01564",
+        "SC1341-KU-01565"
+      ],
+      "evidence": "Existing warm up food / reheat dinner express same action and the second has explicit late-return example; original phrase awkward",
+      "proposed": "Master decide distinct educational purpose or suppress separate learning objective; do not auto-edit canonical target",
+      "decision": "PENDING"
+    },
+    {
+      "priority": 4,
+      "scene_ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01736",
+      "source_rank": 96,
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_expression": "squirt on dish soap",
+      "evidence": "Source author example naturally uses Squirt some dish soap onto the sponge, but frozen teaching target as a standalone expression is awkward",
+      "proposed": "Master authorize clearer canonical target squirt dish soap onto a sponge only after checking authoritative source and same-scene duplicate scope",
+      "decision": "PENDING"
+    },
+    {
+      "priority": 5,
+      "scene_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01213",
+      "source_rank": 168,
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_expression": "spin failure",
+      "neighbor_ku_ids": [
+        "SC1341-KU-01059",
+        "SC1341-KU-01145",
+        "SC1341-KU-01210"
+      ],
+      "evidence": "No exact teaching duplicate in 190 source KUs, but term is technical and requires credible context; previous author example was verbal and did not instantiate target",
+      "proposed": "Master choose technical nominal expression with natural diagnostic example or authorize everyday verbal target and independent QA",
+      "decision": "PENDING"
+    }
+  ],
+  "status": {
+    "identity_items": 5,
+    "master_authorized": 0,
+    "cg_qa_new_pass": 0,
+    "muse_new_pass": 0,
+    "production_release": 0
+  },
+  "constraints": {
+    "no_frozen_master_overwrite": true,
+    "no_source_ku_identity_changes": true,
+    "master_item_decision_must_cite_original_record": true,
+    "independent_qa_after_approval": true,
+    "release_allowed": false
+  }
+}
