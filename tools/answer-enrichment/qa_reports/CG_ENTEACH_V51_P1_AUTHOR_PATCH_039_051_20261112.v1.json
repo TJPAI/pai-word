@@ -1,0 +1,619 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 13,
+    "master_review_required": 3
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "scene_id": "SC50-0004",
+      "source_rank": 23,
+      "source_sense_id": "SC-SENSE-00635",
+      "expression": "put away sharp tools",
+      "source_sense_zh": "收好尖锐工具",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-021-070.v2.json",
+      "source_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "original_answer": {
+        "meaning_zh": "收好尖锐工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "put away表示放回安全的收纳位置，不等于扔掉。"
+      },
+      "revised_answer": {
+        "meaning_zh": "锋利或尖锐的工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "sharp tools可以指带锋利刃口的工具或尖端尖锐的工具，不能只理解为尖头。"
+      },
+      "revised_display": {
+        "w": "put away sharp tools",
+        "m": "锋利或尖锐的工具",
+        "c": "put away sharp tools · store sharp tools safely",
+        "e": "Please put away sharp tools after using them.",
+        "x": "sharp tools可以指带锋利刃口的工具或尖端尖锐的工具，不能只理解为尖头。",
+        "example_zh": "用完锋利工具后请妥善收好。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00660",
+      "scene_id": "SC50-0004",
+      "source_rank": 48,
+      "source_sense_id": "SC-SENSE-00660",
+      "expression": "pick up clothes",
+      "source_sense_zh": "捡起散落衣服",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-021-070.v2.json",
+      "source_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "original_answer": {
+        "meaning_zh": "捡起散落衣服",
+        "example_en": "Please pick up the clothes you left on the floor.",
+        "example_zh": "请把你扔在地板上的衣服捡起来。",
+        "collocations": [
+          "pick up clothes",
+          "pick clothes up off the floor"
+        ],
+        "usage_note": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。"
+      },
+      "revised_answer": {
+        "meaning_zh": "捡起散落衣服",
+        "example_en": "Please pick up the clothes you left on the floor.",
+        "example_zh": "请把你留在地板上的衣服捡起来。",
+        "collocations": [
+          "pick up clothes",
+          "pick clothes up off the floor"
+        ],
+        "usage_note": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。"
+      },
+      "revised_display": {
+        "w": "pick up clothes",
+        "m": "捡起散落衣服",
+        "c": "pick up clothes · pick clothes up off the floor",
+        "e": "Please pick up the clothes you left on the floor.",
+        "x": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。",
+        "example_zh": "请把你留在地板上的衣服捡起来。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00686",
+      "scene_id": "SC50-0004",
+      "source_rank": 74,
+      "source_sense_id": "SC-SENSE-00686",
+      "expression": "nightstand",
+      "source_sense_zh": "床头柜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-071-120.v2.json",
+      "source_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "original_answer": {
+        "meaning_zh": "床头柜",
+        "example_en": "I keep my glasses on the nightstand.",
+        "example_zh": "我把眼镜放在床头柜上。",
+        "collocations": [
+          "bedside nightstand",
+          "nightstand drawer"
+        ],
+        "usage_note": "nightstand是美式常用的床头柜说法，英式也可说bedside table。"
+      },
+      "revised_answer": {
+        "meaning_zh": "床头柜",
+        "example_en": "I keep my glasses on the nightstand.",
+        "example_zh": "我把眼镜放在床头柜上。",
+        "collocations": [
+          "nightstand drawer",
+          "keep something on a nightstand"
+        ],
+        "usage_note": "nightstand是美式常用的床头柜说法，英式也可说bedside table。"
+      },
+      "revised_display": {
+        "w": "nightstand",
+        "m": "床头柜",
+        "c": "nightstand drawer · keep something on a nightstand",
+        "e": "I keep my glasses on the nightstand.",
+        "x": "nightstand是美式常用的床头柜说法，英式也可说bedside table。",
+        "example_zh": "我把眼镜放在床头柜上。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00715",
+      "scene_id": "SC50-0004",
+      "source_rank": 103,
+      "source_sense_id": "SC-SENSE-00715",
+      "expression": "corner",
+      "source_sense_zh": "房间角落",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-071-120.v2.json",
+      "source_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "original_answer": {
+        "meaning_zh": "房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "room corner",
+          "in the corner"
+        ],
+        "usage_note": "corner在这里指室内角落，不是街角。"
+      },
+      "revised_answer": {
+        "meaning_zh": "房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "in the corner of the room",
+          "a corner of the room"
+        ],
+        "usage_note": "corner在这里指室内角落，不是街角。"
+      },
+      "revised_display": {
+        "w": "corner",
+        "m": "房间角落",
+        "c": "in the corner of the room · a corner of the room",
+        "e": "I found a sock in the corner of the room.",
+        "x": "corner在这里指室内角落，不是街角。",
+        "example_zh": "我在房间角落找到了一只袜子。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00741",
+      "scene_id": "SC50-0004",
+      "source_rank": 129,
+      "source_sense_id": "SC-SENSE-00741",
+      "expression": "stale air",
+      "source_sense_zh": "不新鲜的空气",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-121-170.v2.json",
+      "source_pack_blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "original_answer": {
+        "meaning_zh": "不新鲜的空气",
+        "example_en": "The room has stale air because the windows have been closed.",
+        "example_zh": "窗户一直关着，房间里的空气很闷。",
+        "collocations": [
+          "stale air",
+          "let stale air out"
+        ],
+        "usage_note": "stale air指不新鲜、缺乏流通的空气。"
+      },
+      "revised_answer": {
+        "meaning_zh": "不新鲜的空气",
+        "example_en": "The air in the room is stale because the windows have been closed.",
+        "example_zh": "窗户一直关着，房间里的空气不新鲜了。",
+        "collocations": [
+          "stale air",
+          "let stale air out"
+        ],
+        "usage_note": "stale air指不新鲜、缺乏流通的空气。"
+      },
+      "revised_display": {
+        "w": "stale air",
+        "m": "不新鲜的空气",
+        "c": "stale air · let stale air out",
+        "e": "The air in the room is stale because the windows have been closed.",
+        "x": "stale air指不新鲜、缺乏流通的空气。",
+        "example_zh": "窗户一直关着，房间里的空气不新鲜了。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00747",
+      "scene_id": "SC50-0004",
+      "source_rank": 135,
+      "source_sense_id": "SC-SENSE-00747",
+      "expression": "spill",
+      "source_sense_zh": "洒出的液体",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-121-170.v2.json",
+      "source_pack_blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "original_answer": {
+        "meaning_zh": "洒出的液体",
+        "example_en": "Please wipe up the spill before it reaches the rug.",
+        "example_zh": "液体流到小地毯之前请先擦掉。",
+        "collocations": [
+          "clean up a spill",
+          "wipe up the spill"
+        ],
+        "usage_note": "spill在这里是洒出的液体或其造成的一摊污迹。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洒出的液体",
+        "example_en": "Please wipe up the spill before it reaches the rug.",
+        "example_zh": "洒出来的液体流到小地毯上之前，先把它擦干净。",
+        "collocations": [
+          "clean up a spill",
+          "wipe up the spill"
+        ],
+        "usage_note": "spill在这里是洒出的液体或其造成的一摊污迹。"
+      },
+      "revised_display": {
+        "w": "spill",
+        "m": "洒出的液体",
+        "c": "clean up a spill · wipe up the spill",
+        "e": "Please wipe up the spill before it reaches the rug.",
+        "x": "spill在这里是洒出的液体或其造成的一摊污迹。",
+        "example_zh": "洒出来的液体流到小地毯上之前，先把它擦干净。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00754",
+      "scene_id": "SC50-0004",
+      "source_rank": 142,
+      "source_sense_id": "SC-SENSE-00754",
+      "expression": "put dirty clothes in the hamper",
+      "source_sense_zh": "把脏衣服放入洗衣篮",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-121-170.v2.json",
+      "source_pack_blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "original_answer": {
+        "meaning_zh": "把脏衣服放入洗衣篮",
+        "example_en": "Put dirty clothes in the hamper instead of on the floor.",
+        "example_zh": "把脏衣服放进脏衣篮，别扔地上。",
+        "collocations": [
+          "put dirty clothes in the hamper",
+          "laundry hamper"
+        ],
+        "usage_note": "hamper在北美居家语境常指脏衣篮。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把脏衣服放入洗衣篮",
+        "example_en": "Put dirty clothes in the hamper instead of on the floor.",
+        "example_zh": "把脏衣服放进脏衣篮，别放在地上。",
+        "collocations": [
+          "put dirty clothes in the hamper",
+          "laundry hamper"
+        ],
+        "usage_note": "hamper在北美居家语境常指脏衣篮。"
+      },
+      "revised_display": {
+        "w": "put dirty clothes in the hamper",
+        "m": "把脏衣服放入洗衣篮",
+        "c": "put dirty clothes in the hamper · laundry hamper",
+        "e": "Put dirty clothes in the hamper instead of on the floor.",
+        "x": "hamper在北美居家语境常指脏衣篮。",
+        "example_zh": "把脏衣服放进脏衣篮，别放在地上。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00792",
+      "scene_id": "SC50-0004",
+      "source_rank": 180,
+      "source_sense_id": "SC-SENSE-00792",
+      "expression": "loose cable",
+      "source_sense_zh": "散落的电线",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "散落的电线",
+        "example_en": "I tucked the loose cable behind the desk.",
+        "example_zh": "我把散落的电线收到了书桌后面。",
+        "collocations": [
+          "loose cable",
+          "secure a loose cable"
+        ],
+        "usage_note": "loose在此指没有固定好的线缆，不一定已经损坏。"
+      },
+      "revised_answer": {
+        "meaning_zh": "松动的电线；未固定的线缆",
+        "example_en": "I tucked the loose cable behind the desk.",
+        "example_zh": "我把散落的电线收到了书桌后面。",
+        "collocations": [
+          "loose cable",
+          "secure a loose cable"
+        ],
+        "usage_note": "loose cable指松动、松脱或未固定好的线缆，不必然是散落在地上的电线。"
+      },
+      "revised_display": {
+        "w": "loose cable",
+        "m": "松动的电线；未固定的线缆",
+        "c": "loose cable · secure a loose cable",
+        "e": "I tucked the loose cable behind the desk.",
+        "x": "loose cable指松动、松脱或未固定好的线缆，不必然是散落在地上的电线。",
+        "example_zh": "我把散落的电线收到了书桌后面。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00794",
+      "scene_id": "SC50-0004",
+      "source_rank": 182,
+      "source_sense_id": "SC-SENSE-00794",
+      "expression": "tangled cables",
+      "source_sense_zh": "缠在一起的线缆",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "I untangled the cables behind my computer.",
+        "example_zh": "我把电脑后面缠在一起的线理开了。",
+        "collocations": [
+          "tangled cables",
+          "untangle tangled cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "revised_answer": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "I untangled the cables behind my computer.",
+        "example_zh": "我把电脑后面缠在一起的线理开了。",
+        "collocations": [
+          "tangled cables",
+          "untangle cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "revised_display": {
+        "w": "tangled cables",
+        "m": "缠在一起的线缆",
+        "c": "tangled cables · untangle cables",
+        "e": "I untangled the cables behind my computer.",
+        "x": "tangled强调缠绕打结，不等于线缆本身断裂。",
+        "example_zh": "我把电脑后面缠在一起的线理开了。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00800",
+      "scene_id": "SC50-0004",
+      "source_rank": 188,
+      "source_sense_id": "SC-SENSE-00800",
+      "expression": "mildew",
+      "source_sense_zh": "霉菌；霉斑（常见于潮湿表面）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "霉菌；霉斑（常见于潮湿表面）",
+        "example_en": "There are mildew spots on the bathroom curtain.",
+        "example_zh": "浴室窗帘上有些霉斑。",
+        "collocations": [
+          "mildew spots",
+          "mildew on fabric"
+        ],
+        "usage_note": "mildew常用于描述潮湿表面或织物上的霉斑，与mold意义重叠。"
+      },
+      "revised_answer": {
+        "meaning_zh": "霉菌；霉斑（常见于潮湿表面）",
+        "example_en": "There are mildew spots on the shower curtain.",
+        "example_zh": "浴帘上有霉斑。",
+        "collocations": [
+          "mildew spots",
+          "mildew on fabric"
+        ],
+        "usage_note": "mildew常用于描述潮湿表面或织物上的霉斑，与mold意义重叠。"
+      },
+      "revised_display": {
+        "w": "mildew",
+        "m": "霉菌；霉斑（常见于潮湿表面）",
+        "c": "mildew spots · mildew on fabric",
+        "e": "There are mildew spots on the shower curtain.",
+        "x": "mildew常用于描述潮湿表面或织物上的霉斑，与mold意义重叠。",
+        "example_zh": "浴帘上有霉斑。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00806",
+      "scene_id": "SC50-0004",
+      "source_rank": 194,
+      "source_sense_id": "SC-SENSE-00806",
+      "expression": "keep away from children",
+      "source_sense_zh": "放在儿童够不到的地方",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "放在儿童够不到的地方",
+        "example_en": "Keep cleaning chemicals away from children.",
+        "example_zh": "把清洁化学用品放在儿童接触不到的地方。",
+        "collocations": [
+          "keep away from children",
+          "keep cleaning products away from children"
+        ],
+        "usage_note": "keep away from children是安全提醒；通常还应妥善上锁保管危险物品。"
+      },
+      "revised_answer": {
+        "meaning_zh": "避免让儿童接触；放在儿童接触不到的地方",
+        "example_en": "Keep cleaning chemicals away from children.",
+        "example_zh": "把清洁化学用品放在儿童接触不到的地方。",
+        "collocations": [
+          "keep away from children",
+          "keep cleaning products away from children"
+        ],
+        "usage_note": "keep away from children是安全提醒，强调避免儿童接触，不限定只能放置在某个物理位置。"
+      },
+      "revised_display": {
+        "w": "keep away from children",
+        "m": "避免让儿童接触；放在儿童接触不到的地方",
+        "c": "keep away from children · keep cleaning products away from children",
+        "e": "Keep cleaning chemicals away from children.",
+        "x": "keep away from children是安全提醒，强调避免儿童接触，不限定只能放置在某个物理位置。",
+        "example_zh": "把清洁化学用品放在儿童接触不到的地方。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00812",
+      "scene_id": "SC50-0004",
+      "source_rank": 200,
+      "source_sense_id": "SC-SENSE-00812",
+      "expression": "keep cleaning products separate",
+      "source_sense_zh": "将不同清洁用品分开存放（勿随意混合）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "将不同清洁用品分开存放（勿随意混合）",
+        "example_en": "Keep cleaning products separate, and never mix them casually.",
+        "example_zh": "不同清洁用品要分开存放，不要随意混合。",
+        "collocations": [
+          "keep cleaning products separate",
+          "store cleaners separately"
+        ],
+        "usage_note": "separate在此是分开存放，切勿把清洁剂混合使用。"
+      },
+      "revised_answer": {
+        "meaning_zh": "将不同清洁用品分开存放（勿随意混合）",
+        "example_en": "Keep cleaning products separate, and never mix different cleaners.",
+        "example_zh": "把清洁产品分开放，绝不要混用不同的清洁剂。",
+        "collocations": [
+          "keep cleaning products separate",
+          "store cleaners separately"
+        ],
+        "usage_note": "separate在此是分开存放，切勿把清洁剂混合使用。"
+      },
+      "revised_display": {
+        "w": "keep cleaning products separate",
+        "m": "将不同清洁用品分开存放（勿随意混合）",
+        "c": "keep cleaning products separate · store cleaners separately",
+        "e": "Keep cleaning products separate, and never mix different cleaners.",
+        "x": "separate在此是分开存放，切勿把清洁剂混合使用。",
+        "example_zh": "把清洁产品分开放，绝不要混用不同的清洁剂。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00822",
+      "scene_id": "SC50-0004",
+      "source_rank": 210,
+      "source_sense_id": "SC-SENSE-00822",
+      "expression": "pest",
+      "source_sense_zh": "害虫",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "害虫",
+        "example_en": "We found a pest in the pantry and checked the food storage.",
+        "example_zh": "我们在食品储藏柜发现了一只害虫，便检查了食品存放情况。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest指令人困扰或有害的虫兽；此源项标记OPTIONAL。"
+      },
+      "revised_answer": {
+        "meaning_zh": "害虫",
+        "example_en": "We found signs of pests in the pantry and checked the stored food.",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest可指昆虫、啮齿类等有害生物，不只指虫子。"
+      },
+      "revised_display": {
+        "w": "pest",
+        "m": "害虫",
+        "c": "household pest · pest problem",
+        "e": "We found signs of pests in the pantry and checked the stored food.",
+        "x": "pest可指昆虫、啮齿类等有害生物，不只指虫子。",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
