@@ -1,0 +1,396 @@
+{
+  "schema": "cg-enteach-v51-p0-author-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PROPOSALS_ALL_MASTER_HOLD",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "counts": {
+    "records": 8,
+    "master_review_required": 8
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00753",
+      "scene_id": "SC50-0004",
+      "source_rank": 141,
+      "source_sense_id": "SC-SENSE-00753",
+      "expression": "separate clean clothes",
+      "original_source_sense_zh": "将干净衣服与脏衣服分开",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-121-170.v2.json",
+      "source_pack_blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "original_answer": {
+        "meaning_zh": "将干净衣服与脏衣服分开",
+        "example_en": "We separate clean clothes from dirty ones.",
+        "example_zh": "我们把干净衣服和脏衣服分开放。",
+        "collocations": [
+          "separate clean clothes",
+          "separate clean clothes from dirty clothes"
+        ],
+        "usage_note": "separate A from B指将两类东西分开。"
+      },
+      "revised_answer": {
+        "meaning_zh": "将干净衣服分开放",
+        "example_en": "We separate clean clothes from dirty ones.",
+        "example_zh": "我们把干净衣服和脏衣服分开放。",
+        "collocations": [
+          "separate clean clothes",
+          "separate clean clothes from dirty clothes"
+        ],
+        "usage_note": "separate clean clothes表示将干净衣物区分开；要明确与脏衣物分开，需补充from dirty clothes。"
+      },
+      "revised_display": {
+        "w": "separate clean clothes",
+        "m": "将干净衣服分开放",
+        "c": "separate clean clothes · separate clean clothes from dirty clothes",
+        "e": "We separate clean clothes from dirty ones.",
+        "x": "separate clean clothes表示将干净衣物区分开；要明确与脏衣物分开，需补充from dirty clothes。",
+        "example_zh": "我们把干净衣服和脏衣服分开放。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00795",
+      "scene_id": "SC50-0004",
+      "source_rank": 183,
+      "source_sense_id": "SC-SENSE-00795",
+      "expression": "cable organizer",
+      "original_source_sense_zh": "理线夹",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "original_answer": {
+        "meaning_zh": "理线夹",
+        "example_en": "I used a cable organizer to keep the cords together.",
+        "example_zh": "我用了一个理线器把电线整理在一起。",
+        "collocations": [
+          "cable organizer",
+          "desk cable organizer"
+        ],
+        "usage_note": "cable organizer是泛指理线用品，不一定仅为夹子。"
+      },
+      "revised_answer": {
+        "meaning_zh": "理线器；线缆整理用品",
+        "example_en": "I used a cable organizer to keep the cords together.",
+        "example_zh": "我用了一个理线器把电线整理在一起。",
+        "collocations": [
+          "cable organizer",
+          "desk cable organizer"
+        ],
+        "usage_note": "cable organizer泛指整理电线的工具或用品，不限定为夹子；cable clip才偏重理线夹。"
+      },
+      "revised_display": {
+        "w": "cable organizer",
+        "m": "理线器；线缆整理用品",
+        "c": "cable organizer · desk cable organizer",
+        "e": "I used a cable organizer to keep the cords together.",
+        "x": "cable organizer泛指整理电线的工具或用品，不限定为夹子；cable clip才偏重理线夹。",
+        "example_zh": "我用了一个理线器把电线整理在一起。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00837",
+      "scene_id": "SC50-0005",
+      "source_rank": 15,
+      "source_sense_id": "SC-SENSE-00837",
+      "expression": "laundry detergent",
+      "original_source_sense_zh": "洗衣液",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "洗衣液",
+        "example_en": "We're almost out of laundry detergent.",
+        "example_zh": "我们的洗衣液快用完了。",
+        "collocations": [
+          "liquid laundry detergent",
+          "laundry detergent for delicate clothes"
+        ],
+        "usage_note": "laundry detergent专指洗衣用的洗涤剂，可为液体或粉末。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗衣用洗涤剂；洗衣液或洗衣粉",
+        "example_en": "We're almost out of laundry detergent.",
+        "example_zh": "我们的洗衣用洗涤剂快用完了。",
+        "collocations": [
+          "liquid laundry detergent",
+          "laundry detergent for delicate clothes"
+        ],
+        "usage_note": "laundry detergent泛指洗衣用洗涤剂，可以是液体或粉末，liquid laundry detergent才特指洗衣液。"
+      },
+      "revised_display": {
+        "w": "laundry detergent",
+        "m": "洗衣用洗涤剂；洗衣液或洗衣粉",
+        "c": "liquid laundry detergent · laundry detergent for delicate clothes",
+        "e": "We're almost out of laundry detergent.",
+        "x": "laundry detergent泛指洗衣用洗涤剂，可以是液体或粉末，liquid laundry detergent才特指洗衣液。",
+        "example_zh": "我们的洗衣用洗涤剂快用完了。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01010",
+      "scene_id": "SC50-0005",
+      "source_rank": 188,
+      "source_sense_id": "SC-SENSE-01010",
+      "expression": "shrunk clothes",
+      "original_source_sense_zh": "缩水的衣服",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "缩水的衣服",
+        "example_en": "This sweater came out of the wash with shrunk sleeves.",
+        "example_zh": "这件毛衣洗完后，袖子缩水了。",
+        "collocations": [
+          "shrunk clothes",
+          "clothes shrink in the wash"
+        ],
+        "usage_note": "shrunk是shrink的过去分词，指衣物尺寸因洗涤而缩小。"
+      },
+      "revised_answer": {
+        "meaning_zh": "缩水的衣服",
+        "example_en": "This sweater shrank in the wash, especially around the sleeves.",
+        "example_zh": "这件毛衣洗后缩水了，尤其是袖口附近。",
+        "collocations": [
+          "shrunken clothes",
+          "clothes that have shrunk"
+        ],
+        "usage_note": "日常英语更自然说shrunken clothes或clothes that have shrunk；原目标shrunk clothes是否应改词头须经Master审定。"
+      },
+      "revised_display": {
+        "w": "shrunk clothes",
+        "m": "缩水的衣服",
+        "c": "shrunken clothes · clothes that have shrunk",
+        "e": "This sweater shrank in the wash, especially around the sleeves.",
+        "x": "日常英语更自然说shrunken clothes或clothes that have shrunk；原目标shrunk clothes是否应改词头须经Master审定。",
+        "example_zh": "这件毛衣洗后缩水了，尤其是袖口附近。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01234",
+      "scene_id": "SC50-0006",
+      "source_rank": 189,
+      "source_sense_id": "SC-SENSE-01234",
+      "expression": "color bleed",
+      "original_source_sense_zh": "衣物串色；掉色",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-188-190.v2.json",
+      "source_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "original_answer": {
+        "meaning_zh": "衣物串色；掉色",
+        "example_en": "The red towel caused color bleed in the wash.",
+        "example_zh": "红毛巾洗涤时掉色，导致衣物串色。",
+        "collocations": [
+          "color bleed in the wash",
+          "prevent color bleed"
+        ],
+        "usage_note": "color bleed为衣物染料转移或掉色的表达；属待独立审核补缺候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "衣物串色；掉色",
+        "example_en": "The red towel caused color bleeding in the wash.",
+        "example_zh": "红毛巾在洗涤中掉色，导致串色。",
+        "collocations": [
+          "color bleeding in the wash",
+          "prevent color bleeding"
+        ],
+        "usage_note": "洗护语境通常说color bleeding；color bleed亦可见，但可能与本场景color bleeding属同一教学目标，须由Master审核是否去重。"
+      },
+      "revised_display": {
+        "w": "color bleed",
+        "m": "衣物串色；掉色",
+        "c": "color bleeding in the wash · prevent color bleeding",
+        "e": "The red towel caused color bleeding in the wash.",
+        "x": "洗护语境通常说color bleeding；color bleed亦可见，但可能与本场景color bleeding属同一教学目标，须由Master审核是否去重。",
+        "example_zh": "红毛巾在洗涤中掉色，导致串色。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01235",
+      "scene_id": "SC50-0006",
+      "source_rank": 190,
+      "source_sense_id": "SC-SENSE-01235",
+      "expression": "take the laundry out",
+      "original_source_sense_zh": "把衣物从洗衣机取出",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-188-190.v2.json",
+      "source_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "original_answer": {
+        "meaning_zh": "把衣物从洗衣机取出",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take out表示从洗衣机中取出；此源项是待独立审核增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把洗好的衣物取出",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take the laundry out本身只指将衣物拿出来；具体是从洗衣机里取出，由当前洗涤程序的场景决定。"
+      },
+      "revised_display": {
+        "w": "take the laundry out",
+        "m": "把洗好的衣物取出",
+        "c": "take the laundry out · take laundry out of the washer",
+        "e": "Take the laundry out as soon as the cycle finishes.",
+        "x": "take the laundry out本身只指将衣物拿出来；具体是从洗衣机里取出，由当前洗涤程序的场景决定。",
+        "example_zh": "洗衣程序结束就把衣物取出来。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01242",
+      "scene_id": "SC50-0007",
+      "source_rank": 7,
+      "source_sense_id": "SC-SENSE-01242",
+      "expression": "pan",
+      "original_source_sense_zh": "平底锅",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "original_answer": {
+        "meaning_zh": "平底锅",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热平底锅。",
+        "collocations": [
+          "frying pan",
+          "heat a pan"
+        ],
+        "usage_note": "pan在此是平底锅，不是深锅pot。"
+      },
+      "revised_answer": {
+        "meaning_zh": "锅；平底锅等烹饪器具",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热锅具。",
+        "collocations": [
+          "frying pan",
+          "heat a pan"
+        ],
+        "usage_note": "pan是锅具的泛称，可指frying pan或saucepan；不等于仅指平底锅。"
+      },
+      "revised_display": {
+        "w": "pan",
+        "m": "锅；平底锅等烹饪器具",
+        "c": "frying pan · heat a pan",
+        "e": "Heat the pan over medium heat.",
+        "x": "pan是锅具的泛称，可指frying pan或saucepan；不等于仅指平底锅。",
+        "example_zh": "用中火加热锅具。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01265",
+      "scene_id": "SC50-0007",
+      "source_rank": 30,
+      "source_sense_id": "SC-SENSE-01265",
+      "expression": "lentils",
+      "original_source_sense_zh": "扁豆",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "original_answer": {
+        "meaning_zh": "扁豆",
+        "example_en": "Lentils cook well in a hearty soup.",
+        "example_zh": "扁豆很适合用来做浓汤。",
+        "collocations": [
+          "red lentils",
+          "cook lentils"
+        ],
+        "usage_note": "lentils是扁豆类食材，英语通常使用复数。"
+      },
+      "revised_answer": {
+        "meaning_zh": "小扁豆；兵豆",
+        "example_en": "Lentils cook well in a hearty soup.",
+        "example_zh": "小扁豆很适合用来做浓汤。",
+        "collocations": [
+          "red lentils",
+          "cook lentils"
+        ],
+        "usage_note": "lentils通常指可食用的小扁豆或兵豆（Lens culinaris），与中文某些地区称作扁豆的其他豆类应区别。"
+      },
+      "revised_display": {
+        "w": "lentils",
+        "m": "小扁豆；兵豆",
+        "c": "red lentils · cook lentils",
+        "e": "Lentils cook well in a hearty soup.",
+        "x": "lentils通常指可食用的小扁豆或兵豆（Lens culinaris），与中文某些地区称作扁豆的其他豆类应区别。",
+        "example_zh": "小扁豆很适合用来做浓汤。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_MASTER_AND_INDEPENDENT_QA",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_MASTER_CG_QA",
+      "activation_allowed": false
+    }
+  ]
+}
