@@ -10,9 +10,11 @@ export function inspectScene1341ProvisionalRecord(record,authorization=null){
    !KU.test(record.scene_ku_id)||!SC.test(record.scene_id)||
    !Number.isSafeInteger(record.source_rank)||record.source_rank<1||
    !SHA.test(record.source_pack_blob))return reject('INVALID_SOURCE_IDENTITY');
- if(record.cg_qa!=='PASS'||record.muse_qa!=='DEFERRED_QUOTA_20261113'||
+ const validMuseHistory=(record.muse_qa==='DEFERRED_QUOTA_20261113'&&record.muse_recheck_required===true)||
+   (record.muse_qa==='PASS'&&record.muse_recheck_required===false);
+ if(record.cg_qa!=='PASS'||!validMuseHistory||
     record.release_status!=='PROVISIONAL_PENDING_MUSE'||
-    record.muse_recheck_required!==true||record.author_draft!==true||
+    record.author_draft!==true||
     record.production_release_allowed!==false||
     record.source_master_authorization_verified!==false)
    return reject('NOT_ELIGIBLE_FOR_PROVISIONAL_INTAKE');
