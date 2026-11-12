@@ -138,6 +138,20 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             ../evaluation/tools/cg-rec-eval/scene1341-provisional-22.v0.1.json \
             | tee ../scene1341-browser-vs-engine-27.json
+      - name: Independently reject numeric-equivalent duplicate Scene1341 source ranks
+        env:
+          CG_REC_SHA: 8a884803c9bba1e0995e35441911b6bb1a6840cf
+        run: |
+          set -euo pipefail
+          mkdir -p browser-current/tools/cg-rec-eval
+          cp evaluation/tools/cg-rec-eval/scene1341-rank-canonical-mutation.mjs browser-current/tools/cg-rec-eval/
+          cd browser-current
+          node tools/cg-rec-eval/scene1341-rank-canonical-mutation.mjs \
+            ../source-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            ../source-data/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            | tee ../scene1341-rank-collision-negative3.json
       - name: Compare actual CG-MAIN browser opt-in with current CG-REC on frozen 41 queries
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
@@ -239,4 +253,5 @@ jobs:
             scene1341-browser-core-parity72.json
             scene1341-eval-summary.json
             scene1341-current-browser-vs-rec41.json
+            scene1341-rank-collision-negative3.json
           if-no-files-found: warn
