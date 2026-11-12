@@ -1,0 +1,679 @@
+{
+  "schema": "cg-qa-scene1341-v51-p1-author-delta17-independent-second-pass-v1",
+  "date": "2026-11-12",
+  "role": "CG-QA",
+  "source_qa_first_original": "fcb44ce94e745a7affbd68e769a3707d6a85853a",
+  "sources": [
+    {
+      "commit": "f6f44a732bc42c6e68f65257e7ad0b41c5b6f802",
+      "blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "rows": 12
+    },
+    {
+      "commit": "e062cf8f5d1bb7ec19998331cd4c3afb0a2e4140",
+      "blob": "b3abc46c84d388e2c48763f6abb37974f23613ff",
+      "rows": 5
+    }
+  ],
+  "scope": "Latest 12 QA-first conditional corrections and 5 Master-first targeted corrections; no updates of old QA rows",
+  "counts": {
+    "total": 17,
+    "unique": 17,
+    "PASS": 6,
+    "PASS_WITH_MASTER_HOLD": 5,
+    "IDENTITY_HOLD": 2,
+    "LEXICAL_SUPPORT_MASTER_HOLD": 4,
+    "master_authorization_pending": 11,
+    "dual_ai_certified": 0,
+    "released": 0
+  },
+  "policy": "CG-QA language result does not certify Master. Preserve all source and V30; release_allowed always false.",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00276",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00276",
+      "source_rank": 42,
+      "expression": "hot water",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "revised_answer": {
+        "meaning_zh": "热水",
+        "example_en": "The hot water is scalding, so be careful.",
+        "example_zh": "热水烫得厉害，要小心。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "revised_display": {
+        "w": "hot water",
+        "m": "热水",
+        "c": "run the hot water · hot water tap",
+        "e": "The hot water is scalding, so be careful.",
+        "x": "hot water表示热水，注意与warm water温水的程度区别。",
+        "example_zh": "热水烫得厉害，要小心。"
+      },
+      "cg_qa_result": "PASS",
+      "independent_semantic_reason": "The hot water is scalding直接示范hot water，scalding指烫得厉害，译文准确。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00364",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00364",
+      "source_rank": 130,
+      "expression": "blemish",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "revised_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我脸颊上出现了一处小斑点。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤上不完美的小斑点或瑕疵，有时可指痘痘，但并非与pimple完全同义。"
+      },
+      "revised_display": {
+        "w": "blemish",
+        "m": "皮肤瑕疵；斑点",
+        "c": "skin blemish · cover a blemish",
+        "e": "A small blemish appeared on my cheek.",
+        "x": "blemish泛指皮肤上不完美的小斑点或瑕疵，有时可指痘痘，但并非与pimple完全同义。",
+        "example_zh": "我脸颊上出现了一处小斑点。"
+      },
+      "cg_qa_result": "PASS",
+      "independent_semantic_reason": "blemish主释义不再把pimple作为恒定同义义项，例句与说明一致。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00428",
+      "scene_id": "SC50-0003",
+      "source_sense_id": "SC-SENSE-00428",
+      "source_rank": 20,
+      "expression": "pants",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+      "revised_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants",
+          "wear pants"
+        ],
+        "usage_note": "美式英语pants通常指长裤，英式英语pants多指内裤、长裤常说trousers；英国义项辨析属于用法说明，不是搭配。"
+      },
+      "revised_display": {
+        "w": "pants",
+        "m": "长裤（美式）；内裤（英式）",
+        "c": "a pair of pants · dress pants · wear pants",
+        "e": "I need a new pair of pants for work.",
+        "x": "美式英语pants通常指长裤，英式英语pants多指内裤、长裤常说trousers；英国义项辨析属于用法说明，不是搭配。",
+        "example_zh": "我需要买一条上班穿的新长裤。"
+      },
+      "cg_qa_result": "PASS",
+      "independent_semantic_reason": "英美pants差异放在usage_note，collocations均为可实际使用的搭配，语义正确。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00715",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00715",
+      "source_rank": 103,
+      "expression": "corner",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "revised_answer": {
+        "meaning_zh": "角落；（本场景）房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "in the corner of the room",
+          "a corner of the room"
+        ],
+        "usage_note": "corner可指房间角落、街角或物体的角；本例in the corner of the room明确是室内角落。"
+      },
+      "revised_display": {
+        "w": "corner",
+        "m": "角落；（本场景）房间角落",
+        "c": "in the corner of the room · a corner of the room",
+        "e": "I found a sock in the corner of the room.",
+        "x": "corner可指房间角落、街角或物体的角；本例in the corner of the room明确是室内角落。",
+        "example_zh": "我在房间角落找到了一只袜子。"
+      },
+      "cg_qa_result": "PASS_WITH_MASTER_HOLD",
+      "independent_semantic_reason": "新增角落通义及房间情景限定合理，但涉及原Master释义范围，须独立授权。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00822",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00822",
+      "source_rank": 210,
+      "expression": "pest",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "revised_answer": {
+        "meaning_zh": "有害生物；害虫或害兽",
+        "example_en": "We found signs of pests in the pantry and checked the stored food.",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest可指害虫、老鼠等造成危害或滋扰的生物，不只限于昆虫。"
+      },
+      "revised_display": {
+        "w": "pest",
+        "m": "有害生物；害虫或害兽",
+        "c": "household pest · pest problem",
+        "e": "We found signs of pests in the pantry and checked the stored food.",
+        "x": "pest可指害虫、老鼠等造成危害或滋扰的生物，不只限于昆虫。",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。"
+      },
+      "cg_qa_result": "PASS_WITH_MASTER_HOLD",
+      "independent_semantic_reason": "pest包含昆虫、鼠类等有害生物，新释义消除了单指昆虫的误导；Master glossscope待授权。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00848",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00848",
+      "source_rank": 26,
+      "expression": "scrub the bathtub",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "revised_answer": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I scrub the bathtub after wetting it.",
+        "example_zh": "我把浴缸打湿后，再用力刷洗。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "revised_display": {
+        "w": "scrub the bathtub",
+        "m": "刷浴缸",
+        "c": "scrub the bathtub · scrub the bathtub surface",
+        "e": "I scrub the bathtub after wetting it.",
+        "x": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。",
+        "example_zh": "我把浴缸打湿后，再用力刷洗。"
+      },
+      "cg_qa_result": "PASS",
+      "independent_semantic_reason": "I scrub the bathtub after wetting it直接示范目标短语，中文自然。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01041",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01041",
+      "source_rank": 219,
+      "expression": "fix an appliance",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "revised_answer": {
+        "meaning_zh": "修理家电",
+        "example_en": "We need to fix an appliance, so we called a technician.",
+        "example_zh": "有一件家电需要维修，所以我们叫了维修人员。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "revised_display": {
+        "w": "fix an appliance",
+        "m": "修理家电",
+        "c": "fix an appliance · repair a household appliance",
+        "e": "We need to fix an appliance, so we called a technician.",
+        "x": "fix an appliance指修理家用电器，注意电气安全。",
+        "example_zh": "有一件家电需要维修，所以我们叫了维修人员。"
+      },
+      "cg_qa_result": "PASS",
+      "independent_semantic_reason": "We need to fix an appliance使用目标完整动词短语，技术人员语境合理。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01153",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01153",
+      "source_rank": 108,
+      "expression": "hang up a shirt",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "revised_answer": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang up a shirt on a hanger after washing it.",
+        "example_zh": "衬衫洗好后，把它挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "revised_display": {
+        "w": "hang up a shirt",
+        "m": "挂起衬衫",
+        "c": "hang up a shirt · hang a shirt on a hanger",
+        "e": "Hang up a shirt on a hanger after washing it.",
+        "x": "hang up表示挂起来。",
+        "example_zh": "衬衫洗好后，把它挂到衣架上。"
+      },
+      "cg_qa_result": "PASS",
+      "independent_semantic_reason": "Hang up a shirt on a hanger自然，原目标短语已明确出现，中译对应。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01159",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01159",
+      "source_rank": 114,
+      "expression": "put clothes away",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "revised_answer": {
+        "meaning_zh": "把衣服收好；把衣服归位",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好衣服后把它们收起来。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put clothes away是把衣服收回合适的位置，并不必然表示衣服刚洗好或已经干净。"
+      },
+      "revised_display": {
+        "w": "put clothes away",
+        "m": "把衣服收好；把衣服归位",
+        "c": "put clothes away · put clean clothes away",
+        "e": "Put clothes away after folding them.",
+        "x": "put clothes away是把衣服收回合适的位置，并不必然表示衣服刚洗好或已经干净。",
+        "example_zh": "叠好衣服后把它们收起来。"
+      },
+      "cg_qa_result": "PASS_WITH_MASTER_HOLD",
+      "independent_semantic_reason": "put clothes away不限定刚洗完或干净，修改中文为把衣服收好/归位准确；Master glossscope待授权。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01213",
+      "source_rank": 168,
+      "expression": "spin failure",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "revised_answer": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer failed to spin at the end of the cycle.",
+        "example_zh": "洗衣程序结束时，洗衣机没能甩干衣物。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure可在技术描述中指甩干功能故障；日常说法更常是the washer failed to spin或the spin cycle failed。原表达是否保留为独立教学目标须Master裁定。"
+      },
+      "revised_display": {
+        "w": "spin failure",
+        "m": "无法脱水的故障",
+        "c": "spin failure · washer spin failure",
+        "e": "The washer failed to spin at the end of the cycle.",
+        "x": "spin failure可在技术描述中指甩干功能故障；日常说法更常是the washer failed to spin或the spin cycle failed。原表达是否保留为独立教学目标须Master裁定。",
+        "example_zh": "洗衣程序结束时，洗衣机没能甩干衣物。"
+      },
+      "cg_qa_result": "IDENTITY_HOLD",
+      "independent_semantic_reason": "The washer failed to spin用法自然，但新例句仍没有出现spin failure且作者主动标记原目标需Master决定。不得将释义编辑视为该独立教学表达获批准。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01872",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-01872",
+      "source_rank": 33,
+      "expression": "recover",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "revised_answer": {
+        "meaning_zh": "恢复；康复；（本场景）恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from exhaustion",
+          "fully recover"
+        ],
+        "usage_note": "recover可指从旅途疲劳、疾病、损伤或困难中恢复；本例recover from the long trip指长途旅行后恢复精力。"
+      },
+      "revised_display": {
+        "w": "recover",
+        "m": "恢复；康复；（本场景）恢复体力",
+        "c": "recover from exhaustion · fully recover",
+        "e": "It took me a day to recover from the long trip.",
+        "x": "recover可指从旅途疲劳、疾病、损伤或困难中恢复；本例recover from the long trip指长途旅行后恢复精力。",
+        "example_zh": "长途旅行后我花了一天恢复体力。"
+      },
+      "cg_qa_result": "PASS_WITH_MASTER_HOLD",
+      "independent_semantic_reason": "recover既可疾病康复也可恢复疲劳，场景例句是旅行疲劳恢复，译义全面但Master sense待对齐。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01905",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-01905",
+      "source_rank": 66,
+      "expression": "speaker",
+      "source_author_patch_blob": "b34575d3ec76136bfe8a3b66070fc9599b77fc49",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_QAFIRST_CONDITIONAL12_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "revised_answer": {
+        "meaning_zh": "扬声器；音箱（设备）",
+        "example_en": "Could you turn down the volume on the speaker a little?",
+        "example_zh": "你能把扬声器音量调低一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker作设备义可指扬声器单元或音箱；另有演讲者的不同词义，本KU仅讨论音频设备。"
+      },
+      "revised_display": {
+        "w": "speaker",
+        "m": "扬声器；音箱（设备）",
+        "c": "Bluetooth speaker · portable speaker",
+        "e": "Could you turn down the volume on the speaker a little?",
+        "x": "speaker作设备义可指扬声器单元或音箱；另有演讲者的不同词义，本KU仅讨论音频设备。",
+        "example_zh": "你能把扬声器音量调低一点吗？"
+      },
+      "cg_qa_result": "PASS_WITH_MASTER_HOLD",
+      "independent_semantic_reason": "音频设备义speaker可指扬声器单元或音箱，新增中译合适，须Master判断多义词源Sense是否仅设备。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00635",
+      "source_rank": 23,
+      "expression": "put away sharp tools",
+      "source_author_patch_blob": "b3abc46c84d388e2c48763f6abb37974f23613ff",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_MASTER70_TARGETED_5_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "previous_author_answer": {
+        "meaning_zh": "锋利或尖锐的工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "sharp tools可以指带锋利刃口的工具或尖端尖锐的工具，不能只理解为尖头。"
+      },
+      "revised_answer": {
+        "meaning_zh": "收好锋利或尖锐的工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "put away sharp tools指把锋利或尖锐的工具妥善收好；put away是收纳动作，sharp修饰tools。"
+      },
+      "revised_display": {
+        "w": "put away sharp tools",
+        "m": "收好锋利或尖锐的工具",
+        "c": "put away sharp tools · store sharp tools safely",
+        "e": "Please put away sharp tools after using them.",
+        "x": "put away sharp tools指把锋利或尖锐的工具妥善收好；put away是收纳动作，sharp修饰tools。",
+        "example_zh": "用完锋利工具后请妥善收好。"
+      },
+      "cg_qa_result": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "independent_semantic_reason": "动词短语put away sharp tools已补回“收好”动作；英文例句及中文搭配一致。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00876",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00876",
+      "source_rank": 54,
+      "expression": "hang out laundry",
+      "source_author_patch_blob": "b3abc46c84d388e2c48763f6abb37974f23613ff",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_MASTER70_TARGETED_5_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "previous_author_answer": {
+        "meaning_zh": "把洗好的衣物挂起来晾干",
+        "example_en": "I hang out the laundry when the weather is dry.",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。",
+        "collocations": [
+          "hang out the laundry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang out laundry或hang out the washing表示将衣物挂起来晾，尤其用于室外晾晒。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把衣物挂出去晾干",
+        "example_en": "I hang out the laundry when the weather is dry.",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。",
+        "collocations": [
+          "hang out the laundry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang out the laundry指把衣物挂出去晾晒，常指刚洗过的衣物，但表达本身不专门强调衣服已洗好。"
+      },
+      "revised_display": {
+        "w": "hang out laundry",
+        "m": "把衣物挂出去晾干",
+        "c": "hang out the laundry · hang laundry out to dry",
+        "e": "I hang out the laundry when the weather is dry.",
+        "x": "hang out the laundry指把衣物挂出去晾晒，常指刚洗过的衣物，但表达本身不专门强调衣服已洗好。",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。"
+      },
+      "cg_qa_result": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "independent_semantic_reason": "hang out laundry指挂衣晾晒，通常洗后，但主译不必加已洗好；修订准确。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01534",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01534",
+      "source_rank": 82,
+      "expression": "fill a glass",
+      "source_author_patch_blob": "b3abc46c84d388e2c48763f6abb37974f23613ff",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_MASTER70_TARGETED_5_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "previous_author_answer": {
+        "meaning_zh": "往杯中倒入饮料；将杯子装满",
+        "example_en": "Please fill a glass with water for our guest.",
+        "example_zh": "请给客人倒满一杯水。",
+        "collocations": [
+          "fill a glass with water",
+          "fill someone's glass"
+        ],
+        "usage_note": "fill a glass表示往杯子里倒入液体至合适高度或装满，不一定要求倒到杯沿。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把杯子装满；倒满一杯",
+        "example_en": "Please fill a glass with water for our guest.",
+        "example_zh": "请给客人倒满一杯水。",
+        "collocations": [
+          "fill a glass with water",
+          "fill someone's glass"
+        ],
+        "usage_note": "fill a glass指把杯子装到预期容量，不必满到杯沿；仅仅倒进少量水不能概括为fill。"
+      },
+      "revised_display": {
+        "w": "fill a glass",
+        "m": "把杯子装满；倒满一杯",
+        "c": "fill a glass with water · fill someone's glass",
+        "e": "Please fill a glass with water for our guest.",
+        "x": "fill a glass指把杯子装到预期容量，不必满到杯沿；仅仅倒进少量水不能概括为fill。",
+        "example_zh": "请给客人倒满一杯水。"
+      },
+      "cg_qa_result": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "independent_semantic_reason": "fill a glass意为把杯子填满至正常所需容量，不等于只倒入少量液体；中译收窄准确。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01637",
+      "source_rank": 185,
+      "expression": "warm up a late dinner",
+      "source_author_patch_blob": "b3abc46c84d388e2c48763f6abb37974f23613ff",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_MASTER70_TARGETED_5_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "previous_author_answer": {
+        "meaning_zh": "把晚吃的晚餐重新加热",
+        "example_en": "I'll warm up a late dinner for you when you get home.",
+        "example_zh": "你回家晚了，我会给你把晚餐热一下。",
+        "collocations": [
+          "warm up a late dinner",
+          "warm up dinner for someone"
+        ],
+        "usage_note": "late dinner指吃得较晚的一顿晚餐，不必然是晚归者的晚饭；若指某个人晚回家，应另明确说明。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把较晚吃的晚餐热一下",
+        "example_en": "I'll warm up dinner for you when you get home late.",
+        "example_zh": "你晚回家时，我会把晚餐给你热一下。",
+        "collocations": [
+          "warm up a late dinner",
+          "warm up dinner for someone"
+        ],
+        "usage_note": "warm up dinner比warm up a late dinner更自然；原目标是否须改为warm up dinner需CG-MASTER就表达身份作出裁定。"
+      },
+      "revised_display": {
+        "w": "warm up a late dinner",
+        "m": "把较晚吃的晚餐热一下",
+        "c": "warm up a late dinner · warm up dinner for someone",
+        "e": "I'll warm up dinner for you when you get home late.",
+        "x": "warm up dinner比warm up a late dinner更自然；原目标是否须改为warm up dinner需CG-MASTER就表达身份作出裁定。",
+        "example_zh": "你晚回家时，我会把晚餐给你热一下。"
+      },
+      "cg_qa_result": "IDENTITY_HOLD",
+      "independent_semantic_reason": "英语新例句warm up dinner for you自然，但原学习目标warm up a late dinner并未出现且相对生硬；必须Master先定目标表达身份。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02006",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02006",
+      "source_rank": 167,
+      "expression": "stuffy room",
+      "source_author_patch_blob": "b3abc46c84d388e2c48763f6abb37974f23613ff",
+      "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_MASTER70_TARGETED_5_AUTHOR_REPATCH_20261112.v1.json",
+      "original_source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "previous_author_answer": {
+        "meaning_zh": "闷、不通风的房间",
+        "example_en": "We opened the window to air out the stuffy room.",
+        "example_zh": "我们打开窗户给闷热的房间通风。",
+        "collocations": [
+          "stuffy room",
+          "air out a stuffy room"
+        ],
+        "usage_note": "stuffy room指空气不流通、令人感觉憋闷的房间，不一定温度很高。"
+      },
+      "revised_answer": {
+        "meaning_zh": "闷、不通风的房间",
+        "example_en": "We opened the window to air out the stuffy room.",
+        "example_zh": "我们打开窗户，给憋闷不通风的房间换换气。",
+        "collocations": [
+          "stuffy room",
+          "air out a stuffy room"
+        ],
+        "usage_note": "stuffy room指空气不流通、令人感觉憋闷的房间，不一定温度很高。"
+      },
+      "revised_display": {
+        "w": "stuffy room",
+        "m": "闷、不通风的房间",
+        "c": "stuffy room · air out a stuffy room",
+        "e": "We opened the window to air out the stuffy room.",
+        "x": "stuffy room指空气不流通、令人感觉憋闷的房间，不一定温度很高。",
+        "example_zh": "我们打开窗户，给憋闷不通风的房间换换气。"
+      },
+      "cg_qa_result": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "independent_semantic_reason": "stuffy room并不蕴含热，例句中文由闷热改为憋闷不通风后更准确。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
