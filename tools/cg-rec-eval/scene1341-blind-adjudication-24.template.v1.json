@@ -1,0 +1,622 @@
+{
+  "schema": "cg-rec-eval-blind-adjudication-form-v1",
+  "status": "UNLABELED_NO_BLIND_GOLD",
+  "querySourcePath": "tools/cg-rec-eval/scene1341-blind-intake-24.v1.json",
+  "querySourceBlob": "fb356b152f1225eec5853184bcf1eb9ce44c2720",
+  "instructions": {
+    "visibility": "Annotators must view query and frozen Scene1341 catalog only. Do not show model predictions or ranking scores until locked.",
+    "relevanceScale": {
+      "0": "Irrelevant: cannot serve the stated user task",
+      "1": "Weak or indirect: related topic, not a satisfactory situation",
+      "2": "Relevant: reasonably addresses user's primary task",
+      "3": "Highly relevant: directly supports user's concrete task in the correct situation"
+    },
+    "independentLabels": "Two independently authored records per query; at least one positive or explicit none_relevant; disagreement resolved only after each independent record is locked.",
+    "unanswerable": "none_relevant=true permitted only after inspecting catalog and recording evidence",
+    "evaluationMetrics": "Compute Top1/Recall@5/MRR@5/NDCG@5 only after sealed independent labels are attached; report coverage and empty-answer cases separately."
+  },
+  "cases": [
+    {
+      "query_id": "BH001",
+      "group": "zh",
+      "query": "我想知道包裹退回商家以后退款多久能到账",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH002",
+      "group": "zh",
+      "query": "我要给孩子量体温并记录发烧情况",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH003",
+      "group": "zh",
+      "query": "附近的公交末班车几点结束",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH004",
+      "group": "zh",
+      "query": "洗完衣服发现衬衣缩水了怎么办",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH005",
+      "group": "zh",
+      "query": "想预约牙医但不需要拔牙",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH006",
+      "group": "zh",
+      "query": "我想把坏掉的台灯修好，不是买新的",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH007",
+      "group": "zh",
+      "query": "手机电池充电很慢，可能是充电线的问题",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH008",
+      "group": "zh",
+      "query": "我需要在机场确认行李是否超重",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH009",
+      "group": "en",
+      "query": "I need to reschedule my dentist appointment.",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH010",
+      "group": "en",
+      "query": "Where can I check the tracking number for a returned parcel?",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH011",
+      "group": "en",
+      "query": "The washing machine is leaking but it still spins.",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH012",
+      "group": "en",
+      "query": "I want to renew my passport before it expires.",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH013",
+      "group": "en",
+      "query": "The heater stopped working during the night.",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH014",
+      "group": "en",
+      "query": "I need a dairy-free option for breakfast.",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH015",
+      "group": "en",
+      "query": "How do I dispute a charge on my credit card?",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH016",
+      "group": "en",
+      "query": "I want to ask for a refund, not an exchange.",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH017",
+      "group": "mixed",
+      "query": "passport 过期了应该去哪里更新",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH018",
+      "group": "mixed",
+      "query": "洗衣机 drain hose 漏水，应该先检查哪里",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH019",
+      "group": "mixed",
+      "query": "I need to change my flight 不是取消机票",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH020",
+      "group": "mixed",
+      "query": "把 invoice 发给客户之前检查税额",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH021",
+      "group": "mixed",
+      "query": "我的 laptop 无法连接办公室 Wi-Fi",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH022",
+      "group": "mixed",
+      "query": "vegetarian 餐厅想订靠窗的座位",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH023",
+      "group": "mixed",
+      "query": "不想 delivery，我打算 curbside pickup",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    },
+    {
+      "query_id": "BH024",
+      "group": "mixed",
+      "query": "到酒店 check out 后需要寄存行李",
+      "annotator_A": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "annotator_B": {
+        "status": "PENDING",
+        "assessor_id": null,
+        "scene_relevance": [],
+        "none_relevant": null,
+        "rationale": null
+      },
+      "adjudication": {
+        "status": "PENDING",
+        "scene_relevance": [],
+        "none_relevant": null,
+        "decision_reason": null
+      }
+    }
+  ],
+  "officialGold": false,
+  "releaseAllowed": false
+}
