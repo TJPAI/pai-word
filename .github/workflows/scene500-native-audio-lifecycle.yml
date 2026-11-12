@@ -1,0 +1,34 @@
+name: Scene500 native speech lifecycle isolated regression
+on:
+  pull_request:
+    paths:
+      - 'tools/integration/scene500-native-audio-lifecycle-harness.mjs'
+      - 'tools/integration/test-scene500-native-audio-lifecycle.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-audio-lifecycle.yml'
+  push:
+    branches:
+      - cg-main-native-audio-lifecycle-20261112
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audio:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute original Scene500 speech lifecycle
+        run: |
+          node --check tools/integration/scene500-native-audio-lifecycle-harness.mjs
+          node tools/integration/test-scene500-native-audio-lifecycle.mjs
+      - name: Preserve native navigation, card and handwriting
+        run: |
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene500-native-card-shell.mjs
+          node tools/integration/test-scene500-native-handwriting.mjs
+      - name: Keep separate Scene1341 learning and SRS disabled
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs
