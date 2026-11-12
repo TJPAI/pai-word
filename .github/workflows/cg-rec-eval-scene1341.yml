@@ -28,6 +28,12 @@ jobs:
           ref: 83a94cb1b6fd2a08143886b6be845ebc408e41e8
           path: candidate
           persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: e5c1f2dbf8e7958639f034273b5a502fe7d5bf69
+          path: browser
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -67,15 +73,30 @@ jobs:
             17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             | tee ../scene1341-negation-ablation14.json
+      - name: Compare exact browser home search with actual CG-REC candidate
+        run: |
+          set -euo pipefail
+          mkdir -p browser/tools/cg-rec-eval
+          cp evaluation/tools/cg-rec-eval/scene1341-browser-parity.mjs browser/tools/cg-rec-eval/
+          cd browser
+          node tools/cg-rec-eval/scene1341-browser-parity.mjs \
+            ../source-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            ../source-data/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            ../evaluation/tools/cg-rec-eval/scene1341-provisional-22.v0.1.json \
+            | tee ../scene1341-browser-vs-engine-27.json
       - name: Validate both outputs independently
         run: |
           node --input-type=module - <<'JS'
           import fs from 'node:fs';
           const ab=JSON.parse(fs.readFileSync('scene1341-lexical-vs-title-ab22.json','utf8'));
           const neg=JSON.parse(fs.readFileSync('scene1341-negation-ablation14.json','utf8'));
+          const parity=JSON.parse(fs.readFileSync('scene1341-browser-vs-engine-27.json','utf8'));
           if(ab.caseCount!==22||ab.sceneCount!==1341||ab.expressionCount!==19371||ab.official_gold!==false)throw Error('AB22_OUTPUT_MISMATCH');
           if(neg.queryCount!==14||neg.dataScenes!==1341||neg.expressionCount!==19371||neg.qa_status!=='PROVISIONAL_DIAGNOSTIC_NOT_GOLD')throw Error('NEG14_OUTPUT_MISMATCH');
-          console.log(JSON.stringify({ab22:ab.metrics,groups:ab.byGroup,negation:{n:neg.queryCount,changed:neg.changed,top1Changed:neg.top1Changed},source:ab.sourceCommit,notCertified:true}));
+          if(parity.queryCount!==27||parity.data.scenes!==1341||parity.data.expressions!==19371||parity.release_allowed!==false)throw Error('BROWSER_PARITY_OUTPUT_MISMATCH');
+          console.log(JSON.stringify({browserVsEngine:{n:parity.queryCount,top1Disagreements:parity.differentTop1},ab22:ab.metrics,groups:ab.byGroup,negation:{n:neg.queryCount,changed:neg.changed,top1Changed:neg.top1Changed},source:ab.sourceCommit,notCertified:true}));
           JS
       - name: Upload genuine case-level evidence
         if: always()
@@ -85,4 +106,5 @@ jobs:
           path: |
             scene1341-lexical-vs-title-ab22.json
             scene1341-negation-ablation14.json
+            scene1341-browser-vs-engine-27.json
           if-no-files-found: warn
