@@ -1,0 +1,764 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 16,
+    "master_review_required": 7
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00040",
+      "scene_id": "SC50-0001",
+      "source_rank": 40,
+      "source_sense_id": "SC-SENSE-00040",
+      "expression": "be short on sleep",
+      "original_source_sense_zh": "睡眠不足",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-021-050.v2.json",
+      "source_pack_blob": "f55b61c241d615f7c1f8285b332d1ea795e2b75b",
+      "original_answer": {
+        "meaning_zh": "睡眠不足",
+        "example_en": "I'm short on sleep after working late all week.",
+        "example_zh": "这周一直加班到很晚，我现在睡眠不足。",
+        "collocations": [
+          "be short on sleep",
+          "feel short on sleep"
+        ],
+        "usage_note": "be short on sleep表示睡眠不足；short on表示某物不够。"
+      },
+      "revised_answer": {
+        "meaning_zh": "睡眠不足",
+        "example_en": "I'm short on sleep after working late all week.",
+        "example_zh": "这周一直加班到很晚，我现在睡眠不足。",
+        "collocations": [
+          "be short on sleep",
+          "be seriously short on sleep"
+        ],
+        "usage_note": "be short on sleep表示睡眠不足；short on表示某物不够。"
+      },
+      "revised_display": {
+        "w": "be short on sleep",
+        "m": "睡眠不足",
+        "c": "be short on sleep · be seriously short on sleep",
+        "e": "I'm short on sleep after working late all week.",
+        "x": "be short on sleep表示睡眠不足；short on表示某物不够。",
+        "example_zh": "这周一直加班到很晚，我现在睡眠不足。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00058",
+      "scene_id": "SC50-0001",
+      "source_rank": 58,
+      "source_sense_id": "SC-SENSE-00058",
+      "expression": "miss the alarm",
+      "original_source_sense_zh": "错过闹铃",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "original_answer": {
+        "meaning_zh": "错过闹铃",
+        "example_en": "I missed the alarm because my phone was on silent.",
+        "example_zh": "手机设成静音，我没听到闹钟提醒。",
+        "collocations": [
+          "miss the alarm",
+          "miss your morning alarm"
+        ],
+        "usage_note": "miss the alarm在此指未听见或未注意到提醒；不表示错过预约。"
+      },
+      "revised_answer": {
+        "meaning_zh": "错过闹铃",
+        "example_en": "I didn't hear my alarm this morning and overslept.",
+        "example_zh": "今天早上我没听到闹钟，结果睡过头了。",
+        "collocations": [
+          "miss the alarm",
+          "miss your morning alarm"
+        ],
+        "usage_note": "miss the alarm表示没有听到或注意到闹钟提醒；更常说not hear your alarm或sleep through your alarm。手机静音模式不一定影响闹钟。"
+      },
+      "revised_display": {
+        "w": "miss the alarm",
+        "m": "错过闹铃",
+        "c": "miss the alarm · miss your morning alarm",
+        "e": "I didn't hear my alarm this morning and overslept.",
+        "x": "miss the alarm表示没有听到或注意到闹钟提醒；更常说not hear your alarm或sleep through your alarm。手机静音模式不一定影响闹钟。",
+        "example_zh": "今天早上我没听到闹钟，结果睡过头了。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00086",
+      "scene_id": "SC50-0001",
+      "source_rank": 86,
+      "source_sense_id": "SC-SENSE-00086",
+      "expression": "appointment",
+      "original_source_sense_zh": "预约安排",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "original_answer": {
+        "meaning_zh": "预约安排",
+        "example_en": "I have a doctor's appointment at nine.",
+        "example_zh": "我九点有个医生预约。",
+        "collocations": [
+          "make an appointment",
+          "doctor's appointment"
+        ],
+        "usage_note": "appointment多指约定好时间的会面或服务。"
+      },
+      "revised_answer": {
+        "meaning_zh": "预约安排",
+        "example_en": "I have a doctor's appointment at nine.",
+        "example_zh": "我九点预约了看医生。",
+        "collocations": [
+          "make an appointment",
+          "doctor's appointment"
+        ],
+        "usage_note": "appointment多指约定好时间的会面或服务。"
+      },
+      "revised_display": {
+        "w": "appointment",
+        "m": "预约安排",
+        "c": "make an appointment · doctor's appointment",
+        "e": "I have a doctor's appointment at nine.",
+        "x": "appointment多指约定好时间的会面或服务。",
+        "example_zh": "我九点预约了看医生。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00097",
+      "scene_id": "SC50-0001",
+      "source_rank": 97,
+      "source_sense_id": "SC-SENSE-00097",
+      "expression": "stand up",
+      "original_source_sense_zh": "站起身",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "original_answer": {
+        "meaning_zh": "站起身",
+        "example_en": "I stood up and walked to the bathroom.",
+        "example_zh": "我站起身，走向浴室。",
+        "collocations": [
+          "stand up slowly",
+          "stand up from bed"
+        ],
+        "usage_note": "stand up表示从坐姿等姿势站起。"
+      },
+      "revised_answer": {
+        "meaning_zh": "站起身",
+        "example_en": "I stood up and walked to the bathroom.",
+        "example_zh": "我站起身，走向浴室。",
+        "collocations": [
+          "stand up slowly",
+          "stand up from a chair"
+        ],
+        "usage_note": "stand up表示站起身；从床上起身通常说get out of bed。"
+      },
+      "revised_display": {
+        "w": "stand up",
+        "m": "站起身",
+        "c": "stand up slowly · stand up from a chair",
+        "e": "I stood up and walked to the bathroom.",
+        "x": "stand up表示站起身；从床上起身通常说get out of bed。",
+        "example_zh": "我站起身，走向浴室。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00103",
+      "scene_id": "SC50-0001",
+      "source_rank": 103,
+      "source_sense_id": "SC-SENSE-00103",
+      "expression": "get back into bed",
+      "original_source_sense_zh": "重新躺回床上",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-101-130.v2.json",
+      "source_pack_blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+      "original_answer": {
+        "meaning_zh": "重新躺回床上",
+        "example_en": "I got back into bed for another ten minutes.",
+        "example_zh": "我又回到床上躺了十分钟。",
+        "collocations": [
+          "get back into bed",
+          "get back into bed after breakfast"
+        ],
+        "usage_note": "get back into bed表示再次上床，区别于get out of bed。"
+      },
+      "revised_answer": {
+        "meaning_zh": "重新回到床上；再次上床",
+        "example_en": "I got back into bed for another ten minutes.",
+        "example_zh": "我又回床上待了十分钟。",
+        "collocations": [
+          "get back into bed",
+          "get back into bed after breakfast"
+        ],
+        "usage_note": "get back into bed表示再次上床，不一定说明已经躺下或继续睡觉。"
+      },
+      "revised_display": {
+        "w": "get back into bed",
+        "m": "重新回到床上；再次上床",
+        "c": "get back into bed · get back into bed after breakfast",
+        "e": "I got back into bed for another ten minutes.",
+        "x": "get back into bed表示再次上床，不一定说明已经躺下或继续睡觉。",
+        "example_zh": "我又回床上待了十分钟。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00117",
+      "scene_id": "SC50-0001",
+      "source_rank": 117,
+      "source_sense_id": "SC-SENSE-00117",
+      "expression": "bedside table",
+      "original_source_sense_zh": "床头柜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-101-130.v2.json",
+      "source_pack_blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+      "original_answer": {
+        "meaning_zh": "床头柜",
+        "example_en": "I left my glasses on the bedside table.",
+        "example_zh": "我把眼镜放在床头柜上了。",
+        "collocations": [
+          "on the bedside table",
+          "a bedside lamp"
+        ],
+        "usage_note": "bedside table是床旁小桌或柜，美式也常说nightstand。"
+      },
+      "revised_answer": {
+        "meaning_zh": "床头柜",
+        "example_en": "I left my glasses on the bedside table.",
+        "example_zh": "我把眼镜放在床头柜上了。",
+        "collocations": [
+          "on the bedside table",
+          "keep a book on the bedside table"
+        ],
+        "usage_note": "bedside table是床旁小桌或柜，美式也常说nightstand。"
+      },
+      "revised_display": {
+        "w": "bedside table",
+        "m": "床头柜",
+        "c": "on the bedside table · keep a book on the bedside table",
+        "e": "I left my glasses on the bedside table.",
+        "x": "bedside table是床旁小桌或柜，美式也常说nightstand。",
+        "example_zh": "我把眼镜放在床头柜上了。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00121",
+      "scene_id": "SC50-0001",
+      "source_rank": 121,
+      "source_sense_id": "SC-SENSE-00121",
+      "expression": "curtains",
+      "original_source_sense_zh": "窗帘",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-101-130.v2.json",
+      "source_pack_blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+      "original_answer": {
+        "meaning_zh": "窗帘",
+        "example_en": "I opened the curtains to let in the morning sun.",
+        "example_zh": "我拉开窗帘，让早晨的阳光照进来。",
+        "collocations": [
+          "draw the curtains",
+          "open the curtains"
+        ],
+        "usage_note": "draw the curtains可能表示拉上或拉开，须结合上下文；open更明确。"
+      },
+      "revised_answer": {
+        "meaning_zh": "窗帘",
+        "example_en": "I opened the curtains to let in the morning sun.",
+        "example_zh": "我拉开窗帘，让早晨的阳光照进来。",
+        "collocations": [
+          "draw the curtains",
+          "open the curtains"
+        ],
+        "usage_note": "draw the curtains通常指拉上窗帘；明确说拉开窗帘用open the curtains。个别语境中draw的方向可由上下文判断。"
+      },
+      "revised_display": {
+        "w": "curtains",
+        "m": "窗帘",
+        "c": "draw the curtains · open the curtains",
+        "e": "I opened the curtains to let in the morning sun.",
+        "x": "draw the curtains通常指拉上窗帘；明确说拉开窗帘用open the curtains。个别语境中draw的方向可由上下文判断。",
+        "example_zh": "我拉开窗帘，让早晨的阳光照进来。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00132",
+      "scene_id": "SC50-0001",
+      "source_rank": 132,
+      "source_sense_id": "SC-SENSE-00132",
+      "expression": "sit still for a minute",
+      "original_source_sense_zh": "坐着缓一会儿",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-131-180.v2.json",
+      "source_pack_blob": "78a58e8cffb265f98550ff34289a961b0bee0e3c",
+      "original_answer": {
+        "meaning_zh": "坐着缓一会儿",
+        "example_en": "I sat still for a minute before standing up.",
+        "example_zh": "站起来之前，我静静坐了一会儿。",
+        "collocations": [
+          "sit still",
+          "sit still for a moment"
+        ],
+        "usage_note": "still在这里表示不动，而非“仍然”。"
+      },
+      "revised_answer": {
+        "meaning_zh": "静静坐一会儿；坐着不动片刻",
+        "example_en": "I sat still for a minute before standing up.",
+        "example_zh": "站起来之前，我静静坐了一会儿。",
+        "collocations": [
+          "sit still",
+          "sit still for a moment"
+        ],
+        "usage_note": "sit still强调保持坐着、不乱动；不必然含休息恢复精神的意思。"
+      },
+      "revised_display": {
+        "w": "sit still for a minute",
+        "m": "静静坐一会儿；坐着不动片刻",
+        "c": "sit still · sit still for a moment",
+        "e": "I sat still for a minute before standing up.",
+        "x": "sit still强调保持坐着、不乱动；不必然含休息恢复精神的意思。",
+        "example_zh": "站起来之前，我静静坐了一会儿。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00152",
+      "scene_id": "SC50-0001",
+      "source_rank": 152,
+      "source_sense_id": "SC-SENSE-00152",
+      "expression": "grumpy",
+      "original_source_sense_zh": "起床气大、脾气不好的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-131-180.v2.json",
+      "source_pack_blob": "78a58e8cffb265f98550ff34289a961b0bee0e3c",
+      "original_answer": {
+        "meaning_zh": "起床气大、脾气不好的",
+        "example_en": "I'm always a little grumpy before breakfast.",
+        "example_zh": "早饭前我总有点起床气。",
+        "collocations": [
+          "feel grumpy",
+          "a grumpy mood"
+        ],
+        "usage_note": "grumpy是脾气不佳、容易抱怨，不专指起床气。"
+      },
+      "revised_answer": {
+        "meaning_zh": "脾气不佳的；易烦躁的",
+        "example_en": "I'm always a little grumpy before breakfast.",
+        "example_zh": "早餐前我总有点烦躁。",
+        "collocations": [
+          "feel grumpy",
+          "a grumpy mood"
+        ],
+        "usage_note": "grumpy指脾气不好、易烦躁，不专指刚起床的起床气。"
+      },
+      "revised_display": {
+        "w": "grumpy",
+        "m": "脾气不佳的；易烦躁的",
+        "c": "feel grumpy · a grumpy mood",
+        "e": "I'm always a little grumpy before breakfast.",
+        "x": "grumpy指脾气不好、易烦躁，不专指刚起床的起床气。",
+        "example_zh": "早餐前我总有点烦躁。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00161",
+      "scene_id": "SC50-0001",
+      "source_rank": 161,
+      "source_sense_id": "SC-SENSE-00161",
+      "expression": "feel like going back to bed",
+      "original_source_sense_zh": "想回去继续睡",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-131-180.v2.json",
+      "source_pack_blob": "78a58e8cffb265f98550ff34289a961b0bee0e3c",
+      "original_answer": {
+        "meaning_zh": "想回去继续睡",
+        "example_en": "It's so cold that I feel like going back to bed.",
+        "example_zh": "天太冷了，我想回床上再躺会儿。",
+        "collocations": [
+          "feel like going back to bed",
+          "feel like sleeping in"
+        ],
+        "usage_note": "feel like后接名词或动名词，不接动词原形。"
+      },
+      "revised_answer": {
+        "meaning_zh": "想回到床上再待一会儿",
+        "example_en": "It's so cold that I feel like going back to bed.",
+        "example_zh": "天太冷了，我想回床上再躺会儿。",
+        "collocations": [
+          "feel like going back to bed",
+          "feel like sleeping in"
+        ],
+        "usage_note": "feel like doing意为想做某事；going back to bed是回床上，不一定明确要继续睡。"
+      },
+      "revised_display": {
+        "w": "feel like going back to bed",
+        "m": "想回到床上再待一会儿",
+        "c": "feel like going back to bed · feel like sleeping in",
+        "e": "It's so cold that I feel like going back to bed.",
+        "x": "feel like doing意为想做某事；going back to bed是回床上，不一定明确要继续睡。",
+        "example_zh": "天太冷了，我想回床上再躺会儿。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00193",
+      "scene_id": "SC50-0001",
+      "source_rank": 193,
+      "source_sense_id": "SC-SENSE-00193",
+      "expression": "brew coffee",
+      "original_source_sense_zh": "煮咖啡",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-181-234.v2.json",
+      "source_pack_blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+      "original_answer": {
+        "meaning_zh": "煮咖啡",
+        "example_en": "I brew coffee with freshly ground beans every morning.",
+        "example_zh": "我每天早晨用现磨咖啡豆冲泡咖啡。",
+        "collocations": [
+          "brew coffee",
+          "freshly brewed coffee"
+        ],
+        "usage_note": "brew强调冲煮或萃取过程，不一定是在锅里煮沸。"
+      },
+      "revised_answer": {
+        "meaning_zh": "冲泡咖啡；萃取咖啡",
+        "example_en": "I brew coffee with freshly ground beans every morning.",
+        "example_zh": "我每天早晨用现磨咖啡豆冲泡咖啡。",
+        "collocations": [
+          "brew coffee",
+          "freshly brewed coffee"
+        ],
+        "usage_note": "brew coffee指冲泡或萃取咖啡，不一定是在锅里煮沸。"
+      },
+      "revised_display": {
+        "w": "brew coffee",
+        "m": "冲泡咖啡；萃取咖啡",
+        "c": "brew coffee · freshly brewed coffee",
+        "e": "I brew coffee with freshly ground beans every morning.",
+        "x": "brew coffee指冲泡或萃取咖啡，不一定是在锅里煮沸。",
+        "example_zh": "我每天早晨用现磨咖啡豆冲泡咖啡。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00195",
+      "scene_id": "SC50-0001",
+      "source_rank": 195,
+      "source_sense_id": "SC-SENSE-00195",
+      "expression": "put the kettle on",
+      "original_source_sense_zh": "烧水准备泡茶",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-181-234.v2.json",
+      "source_pack_blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+      "original_answer": {
+        "meaning_zh": "烧水准备泡茶",
+        "example_en": "I'll put the kettle on before I take a shower.",
+        "example_zh": "我洗澡前先把水壶烧上。",
+        "collocations": [
+          "put the kettle on",
+          "put the kettle on for tea"
+        ],
+        "usage_note": "英式口语常用，意为把水壶放上去烧水或启动电水壶。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把水壶放上去烧水；打开电水壶",
+        "example_en": "I'll put the kettle on before I take a shower.",
+        "example_zh": "我洗澡前先把水壶烧上。",
+        "collocations": [
+          "put the kettle on",
+          "put the kettle on for tea"
+        ],
+        "usage_note": "put the kettle on是英式日常表达，指开始烧水，常用于准备喝茶但不一定是为了泡茶。"
+      },
+      "revised_display": {
+        "w": "put the kettle on",
+        "m": "把水壶放上去烧水；打开电水壶",
+        "c": "put the kettle on · put the kettle on for tea",
+        "e": "I'll put the kettle on before I take a shower.",
+        "x": "put the kettle on是英式日常表达，指开始烧水，常用于准备喝茶但不一定是为了泡茶。",
+        "example_zh": "我洗澡前先把水壶烧上。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00234",
+      "scene_id": "SC50-0001",
+      "source_rank": 234,
+      "source_sense_id": "SC-SENSE-00234",
+      "expression": "turn on the alarm",
+      "original_source_sense_zh": "打开闹钟功能",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-181-234.v2.json",
+      "source_pack_blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+      "original_answer": {
+        "meaning_zh": "打开闹钟功能",
+        "example_en": "I turned on the alarm for six thirty tomorrow morning.",
+        "example_zh": "我打开了明早六点半的闹钟。",
+        "collocations": [
+          "turn on the alarm",
+          "turn the alarm on"
+        ],
+        "usage_note": "turn on the alarm在手机场景中可指启用已有闹钟；设定新时间更常说set an alarm。"
+      },
+      "revised_answer": {
+        "meaning_zh": "打开闹钟功能",
+        "example_en": "I switched my 6:30 alarm on for tomorrow morning.",
+        "example_zh": "我启用了明早六点半的闹钟。",
+        "collocations": [
+          "turn on the alarm",
+          "turn the alarm on"
+        ],
+        "usage_note": "turn an alarm on指启用已有闹钟；set an alarm通常指设定提醒时间。"
+      },
+      "revised_display": {
+        "w": "turn on the alarm",
+        "m": "打开闹钟功能",
+        "c": "turn on the alarm · turn the alarm on",
+        "e": "I switched my 6:30 alarm on for tomorrow morning.",
+        "x": "turn an alarm on指启用已有闹钟；set an alarm通常指设定提醒时间。",
+        "example_zh": "我启用了明早六点半的闹钟。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00241",
+      "scene_id": "SC50-0002",
+      "source_rank": 7,
+      "source_sense_id": "SC-SENSE-00241",
+      "expression": "shower curtain",
+      "original_source_sense_zh": "浴帘",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-001-020.v2.json",
+      "source_pack_blob": "d153f196e30a1b31a157050fb5f91eaedc94ccce",
+      "original_answer": {
+        "meaning_zh": "浴帘",
+        "example_en": "Pull the shower curtain closed before turning on the water.",
+        "example_zh": "开水前先把浴帘拉好。",
+        "collocations": [
+          "close the shower curtain",
+          "pull back the shower curtain"
+        ],
+        "usage_note": "shower curtain是浴帘，用来挡住淋浴时溅出的水。"
+      },
+      "revised_answer": {
+        "meaning_zh": "浴帘",
+        "example_en": "Pull the shower curtain closed before turning on the water.",
+        "example_zh": "打开淋浴水龙头前，先把浴帘拉好。",
+        "collocations": [
+          "close the shower curtain",
+          "pull back the shower curtain"
+        ],
+        "usage_note": "shower curtain是浴帘，用来挡住淋浴时溅出的水。"
+      },
+      "revised_display": {
+        "w": "shower curtain",
+        "m": "浴帘",
+        "c": "close the shower curtain · pull back the shower curtain",
+        "e": "Pull the shower curtain closed before turning on the water.",
+        "x": "shower curtain是浴帘，用来挡住淋浴时溅出的水。",
+        "example_zh": "打开淋浴水龙头前，先把浴帘拉好。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00272",
+      "scene_id": "SC50-0002",
+      "source_rank": 38,
+      "source_sense_id": "SC-SENSE-00272",
+      "expression": "tap",
+      "original_source_sense_zh": "水龙头（英式）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "水龙头（英式）",
+        "example_en": "The tap is dripping; could you tighten it?",
+        "example_zh": "水龙头在滴水，你能拧紧一点吗？",
+        "collocations": [
+          "turn on the tap",
+          "a dripping tap"
+        ],
+        "usage_note": "tap在英式英语常指水龙头，北美常说faucet。"
+      },
+      "revised_answer": {
+        "meaning_zh": "水龙头（英式）",
+        "example_en": "The tap keeps dripping. We should get it fixed.",
+        "example_zh": "水龙头一直滴水，我们该找人修一下。",
+        "collocations": [
+          "turn on the tap",
+          "a dripping tap"
+        ],
+        "usage_note": "tap在英式英语常指水龙头，北美常说faucet。"
+      },
+      "revised_display": {
+        "w": "tap",
+        "m": "水龙头（英式）",
+        "c": "turn on the tap · a dripping tap",
+        "e": "The tap keeps dripping. We should get it fixed.",
+        "x": "tap在英式英语常指水龙头，北美常说faucet。",
+        "example_zh": "水龙头一直滴水，我们该找人修一下。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00273",
+      "scene_id": "SC50-0002",
+      "source_rank": 39,
+      "source_sense_id": "SC-SENSE-00273",
+      "expression": "running water",
+      "original_source_sense_zh": "流动的自来水",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "流动的自来水",
+        "example_en": "Wash your hands under running water.",
+        "example_zh": "用流动的自来水洗手。",
+        "collocations": [
+          "under running water",
+          "rinse under running water"
+        ],
+        "usage_note": "running water表示流动的水，不是奔跑的水；不限定水温。"
+      },
+      "revised_answer": {
+        "meaning_zh": "流动的水；水龙头流出的水",
+        "example_en": "Wash your hands under running water.",
+        "example_zh": "用流动的自来水洗手。",
+        "collocations": [
+          "under running water",
+          "rinse under running water"
+        ],
+        "usage_note": "running water泛指流动的水；在洗手语境中通常是水龙头流出的水，不是所有场景都特指自来水。"
+      },
+      "revised_display": {
+        "w": "running water",
+        "m": "流动的水；水龙头流出的水",
+        "c": "under running water · rinse under running water",
+        "e": "Wash your hands under running water.",
+        "x": "running water泛指流动的水；在洗手语境中通常是水龙头流出的水，不是所有场景都特指自来水。",
+        "example_zh": "用流动的自来水洗手。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
