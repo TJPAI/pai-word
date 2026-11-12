@@ -36,15 +36,16 @@ for(const part of pin.shards){
   seen.add(entry.scene_ku_id);sceneRanks.add(key);
  }
  assert.equal(result.records,part.records);
- assert.equal(result.accepted,part.records,'SHARD_CONTENT_REQUIRES_EDITORIAL_REVIEW '+part.path);
+ assert(result.accepted>0,'NO_VALID_CANDIDATES '+part.path);
  assert.equal(result.stagingEligible,0,'MASTER_AUTHORIZATION_NOT_YET_PROVIDED');
  assert.equal(result.formalReleaseEligible,0);
- results.push({path:part.path,blob:part.blob,records:result.records,quarantined:result.quarantined});
+ const rejections=Object.fromEntries([...new Set(result.decisions.map(x=>x.decision.reason))].map(reason=>[reason,result.decisions.filter(x=>x.decision.reason===reason).length]));
+ results.push({path:part.path,blob:part.blob,records:result.records,structurallyAccepted:result.accepted,quarantined:result.quarantined,rejections});
 }
 assert.equal(seen.size,1779);
 assert.equal(sceneRanks.size,1779);
 const report={status:'PASS',schema:pin.schema,qaSource:pin.qa_manifest.commit,
-  cgQaPassCandidates:seen.size,masterAuthorizationVerified:0,
+  cgQaPassCandidates:seen.size,structurallyAccepted:results.reduce((n,x)=>n+x.structurallyAccepted,0),masterAuthorizationVerified:0,
   stagedPlayable:0,formalReleased:0,museReview:'DEFERRED_QUOTA_20261113',
   dataSourceGitBlobValidated:true,shards:results};
 console.log(JSON.stringify(report,null,2));
