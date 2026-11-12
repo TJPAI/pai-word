@@ -1,0 +1,954 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 20,
+    "master_review_required": 14
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01722",
+      "scene_id": "SC50-0009",
+      "source_rank": 82,
+      "source_sense_id": "SC-SENSE-01722",
+      "expression": "surface cleaner",
+      "source_sense_zh": "台面清洁剂",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "original_answer": {
+        "meaning_zh": "台面清洁剂",
+        "example_en": "Use a surface cleaner suitable for the countertop.",
+        "example_zh": "使用适合台面的表面清洁剂。",
+        "collocations": [
+          "kitchen surface cleaner",
+          "apply surface cleaner"
+        ],
+        "usage_note": "注意清洁剂适用材质。"
+      },
+      "revised_answer": {
+        "meaning_zh": "表面清洁剂",
+        "example_en": "Use a surface cleaner suitable for the countertop.",
+        "example_zh": "使用适合台面的表面清洁剂。",
+        "collocations": [
+          "kitchen surface cleaner",
+          "apply surface cleaner"
+        ],
+        "usage_note": "surface cleaner泛指用于清洁物体表面的产品，台面只是常见应用之一。"
+      },
+      "revised_display": {
+        "w": "surface cleaner",
+        "m": "表面清洁剂",
+        "c": "kitchen surface cleaner · apply surface cleaner",
+        "e": "Use a surface cleaner suitable for the countertop.",
+        "x": "surface cleaner泛指用于清洁物体表面的产品，台面只是常见应用之一。",
+        "example_zh": "使用适合台面的表面清洁剂。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01726",
+      "scene_id": "SC50-0009",
+      "source_rank": 86,
+      "source_sense_id": "SC-SENSE-01726",
+      "expression": "bin liner",
+      "source_sense_zh": "垃圾袋",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "original_answer": {
+        "meaning_zh": "垃圾袋",
+        "example_en": "Replace the bin liner when you empty the rubbish.",
+        "example_zh": "倒垃圾后换一个垃圾袋。",
+        "collocations": [
+          "replace a bin liner",
+          "fit a new bin liner"
+        ],
+        "usage_note": "bin liner是垃圾桶内衬袋。"
+      },
+      "revised_answer": {
+        "meaning_zh": "垃圾桶内衬袋",
+        "example_en": "Replace the bin liner when you empty the rubbish.",
+        "example_zh": "倒垃圾后换一个垃圾袋。",
+        "collocations": [
+          "replace a bin liner",
+          "fit a new bin liner"
+        ],
+        "usage_note": "bin liner特指套在垃圾桶内部的衬袋；与泛指垃圾袋的rubbish bag或trash bag有范围差别。"
+      },
+      "revised_display": {
+        "w": "bin liner",
+        "m": "垃圾桶内衬袋",
+        "c": "replace a bin liner · fit a new bin liner",
+        "e": "Replace the bin liner when you empty the rubbish.",
+        "x": "bin liner特指套在垃圾桶内部的衬袋；与泛指垃圾袋的rubbish bag或trash bag有范围差别。",
+        "example_zh": "倒垃圾后换一个垃圾袋。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_rank": 96,
+      "source_sense_id": "SC-SENSE-01736",
+      "expression": "squirt on dish soap",
+      "source_sense_zh": "挤一点洗洁精",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_answer": {
+        "meaning_zh": "挤一点洗洁精",
+        "example_en": "Squirt on dish soap and scrub the greasy pan.",
+        "example_zh": "挤一点洗洁精后刷洗油锅。",
+        "collocations": [
+          "squirt on dish soap",
+          "squirt dish soap onto a sponge"
+        ],
+        "usage_note": "squirt指从瓶中挤出少量液体。"
+      },
+      "revised_answer": {
+        "meaning_zh": "挤一点洗洁精",
+        "example_en": "Squirt some dish soap onto the sponge, then scrub the greasy pan.",
+        "example_zh": "往海绵上挤一点洗洁精，再刷洗油腻的锅。",
+        "collocations": [
+          "squirt on dish soap",
+          "squirt dish soap onto a sponge"
+        ],
+        "usage_note": "squirt dish soap onto something表示将少量洗洁精挤到某物上；原目标squirt on dish soap不如完整短语明确，需核对Master英文目标。"
+      },
+      "revised_display": {
+        "w": "squirt on dish soap",
+        "m": "挤一点洗洁精",
+        "c": "squirt on dish soap · squirt dish soap onto a sponge",
+        "e": "Squirt some dish soap onto the sponge, then scrub the greasy pan.",
+        "x": "squirt dish soap onto something表示将少量洗洁精挤到某物上；原目标squirt on dish soap不如完整短语明确，需核对Master英文目标。",
+        "example_zh": "往海绵上挤一点洗洁精，再刷洗油腻的锅。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_rank": 109,
+      "source_sense_id": "SC-SENSE-01749",
+      "expression": "empty the filter",
+      "source_sense_zh": "清空滤网",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_answer": {
+        "meaning_zh": "清空滤网",
+        "example_en": "Empty the filter according to the dishwasher manual.",
+        "example_zh": "按洗碗机说明清空滤网。",
+        "collocations": [
+          "empty the filter",
+          "empty the dishwasher filter"
+        ],
+        "usage_note": "filter指过滤食物残渣的部件。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清空滤网",
+        "example_en": "I emptied the debris trap and cleaned the dishwasher filter as directed.",
+        "example_zh": "我按说明倒空了集污槽，并清洁了洗碗机滤网。",
+        "collocations": [
+          "empty the filter",
+          "empty the dishwasher filter"
+        ],
+        "usage_note": "empty the filter只有在滤筒或过滤部件内确有可倒空内容时才自然；一般洗碗机滤网常说remove and clean the filter。"
+      },
+      "revised_display": {
+        "w": "empty the filter",
+        "m": "清空滤网",
+        "c": "empty the filter · empty the dishwasher filter",
+        "e": "I emptied the debris trap and cleaned the dishwasher filter as directed.",
+        "x": "empty the filter只有在滤筒或过滤部件内确有可倒空内容时才自然；一般洗碗机滤网常说remove and clean the filter。",
+        "example_zh": "我按说明倒空了集污槽，并清洁了洗碗机滤网。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01756",
+      "scene_id": "SC50-0009",
+      "source_rank": 116,
+      "source_sense_id": "SC-SENSE-01756",
+      "expression": "replace the bin liner",
+      "source_sense_zh": "更换垃圾袋",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_answer": {
+        "meaning_zh": "更换垃圾袋",
+        "example_en": "Replace the bin liner with a fresh bag.",
+        "example_zh": "换一个新的垃圾袋。",
+        "collocations": [
+          "replace the bin liner",
+          "fit a new bin liner"
+        ],
+        "usage_note": "bin liner为垃圾桶内衬袋。"
+      },
+      "revised_answer": {
+        "meaning_zh": "更换垃圾桶内衬袋",
+        "example_en": "Replace the bin liner with a fresh bag.",
+        "example_zh": "换一个新的垃圾袋。",
+        "collocations": [
+          "replace the bin liner",
+          "fit a new bin liner"
+        ],
+        "usage_note": "replace the bin liner指更换垃圾桶内部衬袋，不是泛指换任意垃圾袋。"
+      },
+      "revised_display": {
+        "w": "replace the bin liner",
+        "m": "更换垃圾桶内衬袋",
+        "c": "replace the bin liner · fit a new bin liner",
+        "e": "Replace the bin liner with a fresh bag.",
+        "x": "replace the bin liner指更换垃圾桶内部衬袋，不是泛指换任意垃圾袋。",
+        "example_zh": "换一个新的垃圾袋。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01771",
+      "scene_id": "SC50-0009",
+      "source_rank": 131,
+      "source_sense_id": "SC-SENSE-01771",
+      "expression": "burnt-on",
+      "source_sense_zh": "烧结粘牢的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_answer": {
+        "meaning_zh": "烧结粘牢的",
+        "example_en": "Soak the burnt-on food before scrubbing.",
+        "example_zh": "先浸泡烧结的食物残渣再刷洗。",
+        "collocations": [
+          "burnt-on food",
+          "burnt-on residue"
+        ],
+        "usage_note": "burnt-on形容烧焦并牢固粘附的污垢。"
+      },
+      "revised_answer": {
+        "meaning_zh": "烧焦并粘牢的；焦结在表面的",
+        "example_en": "Soak the burnt-on food before scrubbing.",
+        "example_zh": "先浸泡烧结的食物残渣再刷洗。",
+        "collocations": [
+          "burnt-on food",
+          "burnt-on residue"
+        ],
+        "usage_note": "burnt-on通常形容粘牢在锅具表面的烧焦食物或残渣，比技术性的烧结更口语化。"
+      },
+      "revised_display": {
+        "w": "burnt-on",
+        "m": "烧焦并粘牢的；焦结在表面的",
+        "c": "burnt-on food · burnt-on residue",
+        "e": "Soak the burnt-on food before scrubbing.",
+        "x": "burnt-on通常形容粘牢在锅具表面的烧焦食物或残渣，比技术性的烧结更口语化。",
+        "example_zh": "先浸泡烧结的食物残渣再刷洗。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01781",
+      "scene_id": "SC50-0009",
+      "source_rank": 141,
+      "source_sense_id": "SC-SENSE-01781",
+      "expression": "cloudy",
+      "source_sense_zh": "杯子发雾不透亮的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_answer": {
+        "meaning_zh": "杯子发雾不透亮的",
+        "example_en": "The glasses look cloudy even after washing.",
+        "example_zh": "玻璃杯洗过后仍显得发雾。",
+        "collocations": [
+          "cloudy glasses",
+          "cloudy glassware"
+        ],
+        "usage_note": "cloudy在此指玻璃不透亮。"
+      },
+      "revised_answer": {
+        "meaning_zh": "浑浊的；不透亮的",
+        "example_en": "The glasses look cloudy even after washing.",
+        "example_zh": "玻璃杯洗过后仍显得发雾。",
+        "collocations": [
+          "cloudy glasses",
+          "cloudy glassware"
+        ],
+        "usage_note": "cloudy可指液体浑浊或玻璃表面不透亮；在本场景常见cloudy glasses。"
+      },
+      "revised_display": {
+        "w": "cloudy",
+        "m": "浑浊的；不透亮的",
+        "c": "cloudy glasses · cloudy glassware",
+        "e": "The glasses look cloudy even after washing.",
+        "x": "cloudy可指液体浑浊或玻璃表面不透亮；在本场景常见cloudy glasses。",
+        "example_zh": "玻璃杯洗过后仍显得发雾。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01815",
+      "scene_id": "SC50-0009",
+      "source_rank": 175,
+      "source_sense_id": "SC-SENSE-01815",
+      "expression": "damaged nonstick pan",
+      "source_sense_zh": "涂层损坏的不粘锅",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-143-192.v2.json",
+      "source_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f",
+      "original_answer": {
+        "meaning_zh": "涂层损坏的不粘锅",
+        "example_en": "We should replace this damaged nonstick pan.",
+        "example_zh": "这口涂层损坏的不粘锅该换了。",
+        "collocations": [
+          "damaged nonstick pan",
+          "replace a damaged pan"
+        ],
+        "usage_note": "不粘涂层损坏时应依制造商建议处理。"
+      },
+      "revised_answer": {
+        "meaning_zh": "损坏的不粘锅",
+        "example_en": "We should replace this damaged nonstick pan.",
+        "example_zh": "这口涂层损坏的不粘锅该换了。",
+        "collocations": [
+          "damaged nonstick pan",
+          "replace a damaged pan"
+        ],
+        "usage_note": "damaged nonstick pan表示不粘锅受损，不一定仅是涂层损坏；damaged nonstick coating才专指不粘涂层损伤。"
+      },
+      "revised_display": {
+        "w": "damaged nonstick pan",
+        "m": "损坏的不粘锅",
+        "c": "damaged nonstick pan · replace a damaged pan",
+        "e": "We should replace this damaged nonstick pan.",
+        "x": "damaged nonstick pan表示不粘锅受损，不一定仅是涂层损坏；damaged nonstick coating才专指不粘涂层损伤。",
+        "example_zh": "这口涂层损坏的不粘锅该换了。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01823",
+      "scene_id": "SC50-0009",
+      "source_rank": 183,
+      "source_sense_id": "SC-SENSE-01823",
+      "expression": "use a plunger",
+      "source_sense_zh": "使用皮搋子疏通",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-143-192.v2.json",
+      "source_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f",
+      "original_answer": {
+        "meaning_zh": "使用皮搋子疏通",
+        "example_en": "Use a plunger only if it's suitable for this drain.",
+        "example_zh": "只有适合这种排水口时才用皮搋子疏通。",
+        "collocations": [
+          "use a plunger",
+          "sink plunger"
+        ],
+        "usage_note": "plunger是通过压力疏通管道的工具。"
+      },
+      "revised_answer": {
+        "meaning_zh": "使用皮搋子",
+        "example_en": "Use a plunger only if it's suitable for this drain.",
+        "example_zh": "只有适合这种排水口时才用皮搋子疏通。",
+        "collocations": [
+          "use a plunger",
+          "sink plunger"
+        ],
+        "usage_note": "use a plunger指使用皮搋子；是否用于疏通水槽或马桶，由完整语境补充。"
+      },
+      "revised_display": {
+        "w": "use a plunger",
+        "m": "使用皮搋子",
+        "c": "use a plunger · sink plunger",
+        "e": "Use a plunger only if it's suitable for this drain.",
+        "x": "use a plunger指使用皮搋子；是否用于疏通水槽或马桶，由完整语境补充。",
+        "example_zh": "只有适合这种排水口时才用皮搋子疏通。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01857",
+      "scene_id": "SC50-0010",
+      "source_rank": 18,
+      "source_sense_id": "SC-SENSE-01857",
+      "expression": "relaxation",
+      "source_sense_zh": "放松状态",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "original_answer": {
+        "meaning_zh": "放松状态",
+        "example_en": "I find relaxation in a quiet evening at home.",
+        "example_zh": "安静地在家过一晚能让我放松。",
+        "collocations": [
+          "deep relaxation",
+          "relaxation at home"
+        ],
+        "usage_note": "relaxation是名词，表示放松状态或过程。"
+      },
+      "revised_answer": {
+        "meaning_zh": "放松状态",
+        "example_en": "I enjoy some quiet relaxation at home in the evening.",
+        "example_zh": "晚上我喜欢在家安静地放松一下。",
+        "collocations": [
+          "deep relaxation",
+          "relaxation at home"
+        ],
+        "usage_note": "relaxation是名词，表示放松状态或过程。"
+      },
+      "revised_display": {
+        "w": "relaxation",
+        "m": "放松状态",
+        "c": "deep relaxation · relaxation at home",
+        "e": "I enjoy some quiet relaxation at home in the evening.",
+        "x": "relaxation是名词，表示放松状态或过程。",
+        "example_zh": "晚上我喜欢在家安静地放松一下。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01872",
+      "scene_id": "SC50-0010",
+      "source_rank": 33,
+      "source_sense_id": "SC-SENSE-01872",
+      "expression": "recover",
+      "source_sense_zh": "恢复体力",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "original_answer": {
+        "meaning_zh": "恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from a trip",
+          "recover your energy"
+        ],
+        "usage_note": "recover from后接导致疲劳或需要恢复的事情。"
+      },
+      "revised_answer": {
+        "meaning_zh": "恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from exhaustion",
+          "fully recover"
+        ],
+        "usage_note": "recover from表示从疲劳、疾病等状态恢复；精力恢复常说regain your energy，不宜用recover your energy。"
+      },
+      "revised_display": {
+        "w": "recover",
+        "m": "恢复体力",
+        "c": "recover from exhaustion · fully recover",
+        "e": "It took me a day to recover from the long trip.",
+        "x": "recover from表示从疲劳、疾病等状态恢复；精力恢复常说regain your energy，不宜用recover your energy。",
+        "example_zh": "长途旅行后我花了一天恢复体力。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01874",
+      "scene_id": "SC50-0010",
+      "source_rank": 35,
+      "source_sense_id": "SC-SENSE-01874",
+      "expression": "sleep off",
+      "source_sense_zh": "通过睡眠消除或缓解（疲劳、酒意等）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "original_answer": {
+        "meaning_zh": "通过睡眠消除或缓解（疲劳、酒意等）",
+        "example_en": "I'll sleep off my tiredness and deal with it tomorrow.",
+        "example_zh": "我先睡一觉消除疲劳，明天再处理。",
+        "collocations": [
+          "sleep off tiredness",
+          "sleep off a headache"
+        ],
+        "usage_note": "sleep off指通过睡眠缓解不适，不能用于保证治愈。"
+      },
+      "revised_answer": {
+        "meaning_zh": "通过睡眠消除或缓解（疲劳、酒意等）",
+        "example_en": "I hope I can sleep off this headache tonight.",
+        "example_zh": "希望今晚睡一觉，头疼就能缓解。",
+        "collocations": [
+          "sleep off a headache",
+          "sleep off a hangover"
+        ],
+        "usage_note": "sleep off表示通过睡眠摆脱头痛、宿醉等不适；sleep off tiredness不如get some sleep自然。"
+      },
+      "revised_display": {
+        "w": "sleep off",
+        "m": "通过睡眠消除或缓解（疲劳、酒意等）",
+        "c": "sleep off a headache · sleep off a hangover",
+        "e": "I hope I can sleep off this headache tonight.",
+        "x": "sleep off表示通过睡眠摆脱头痛、宿醉等不适；sleep off tiredness不如get some sleep自然。",
+        "example_zh": "希望今晚睡一觉，头疼就能缓解。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01891",
+      "scene_id": "SC50-0010",
+      "source_rank": 52,
+      "source_sense_id": "SC-SENSE-01891",
+      "expression": "pillow",
+      "source_sense_zh": "枕头",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-044-093.v2.json",
+      "source_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "original_answer": {
+        "meaning_zh": "枕头",
+        "example_en": "This pillow is too firm for my neck.",
+        "example_zh": "这只枕头对我的脖子来说太硬了。",
+        "collocations": [
+          "soft pillow",
+          "sleeping pillow"
+        ],
+        "usage_note": "pillow是睡觉时枕头部的枕头。"
+      },
+      "revised_answer": {
+        "meaning_zh": "枕头",
+        "example_en": "This pillow is too firm for my neck.",
+        "example_zh": "这只枕头对我的脖子来说太硬了。",
+        "collocations": [
+          "soft pillow",
+          "comfortable pillow"
+        ],
+        "usage_note": "pillow是睡觉时枕头部的枕头。"
+      },
+      "revised_display": {
+        "w": "pillow",
+        "m": "枕头",
+        "c": "soft pillow · comfortable pillow",
+        "e": "This pillow is too firm for my neck.",
+        "x": "pillow是睡觉时枕头部的枕头。",
+        "example_zh": "这只枕头对我的脖子来说太硬了。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01905",
+      "scene_id": "SC50-0010",
+      "source_rank": 66,
+      "source_sense_id": "SC-SENSE-01905",
+      "expression": "speaker",
+      "source_sense_zh": "音箱",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-044-093.v2.json",
+      "source_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "original_answer": {
+        "meaning_zh": "音箱",
+        "example_en": "Could you turn down the speaker a little?",
+        "example_zh": "你能把音箱声音调小一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker在此是扬声器或音箱，不是演讲者。"
+      },
+      "revised_answer": {
+        "meaning_zh": "音箱",
+        "example_en": "Could you turn down the volume on the speaker a little?",
+        "example_zh": "你能把扬声器音量调低一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker在此是扬声器或音箱，不是演讲者。"
+      },
+      "revised_display": {
+        "w": "speaker",
+        "m": "音箱",
+        "c": "Bluetooth speaker · portable speaker",
+        "e": "Could you turn down the volume on the speaker a little?",
+        "x": "speaker在此是扬声器或音箱，不是演讲者。",
+        "example_zh": "你能把扬声器音量调低一点吗？"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01908",
+      "scene_id": "SC50-0010",
+      "source_rank": 69,
+      "source_sense_id": "SC-SENSE-01908",
+      "expression": "lamp",
+      "source_sense_zh": "台灯",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-044-093.v2.json",
+      "source_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "original_answer": {
+        "meaning_zh": "台灯",
+        "example_en": "Turn on the lamp next to the sofa, please.",
+        "example_zh": "请把沙发旁的台灯打开。",
+        "collocations": [
+          "table lamp",
+          "turn on a lamp"
+        ],
+        "usage_note": "lamp是独立灯具，不一定专指台灯。"
+      },
+      "revised_answer": {
+        "meaning_zh": "灯；灯具（如台灯）",
+        "example_en": "Turn on the lamp next to the sofa, please.",
+        "example_zh": "请把沙发旁的台灯打开。",
+        "collocations": [
+          "table lamp",
+          "turn on a lamp"
+        ],
+        "usage_note": "lamp泛指灯具，沙发旁或书桌上的台灯只是其中一种，不是词义唯一范围。"
+      },
+      "revised_display": {
+        "w": "lamp",
+        "m": "灯；灯具（如台灯）",
+        "c": "table lamp · turn on a lamp",
+        "e": "Turn on the lamp next to the sofa, please.",
+        "x": "lamp泛指灯具，沙发旁或书桌上的台灯只是其中一种，不是词义唯一范围。",
+        "example_zh": "请把沙发旁的台灯打开。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01928",
+      "scene_id": "SC50-0010",
+      "source_rank": 89,
+      "source_sense_id": "SC-SENSE-01928",
+      "expression": "take a nap",
+      "source_sense_zh": "睡个午觉",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-044-093.v2.json",
+      "source_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "original_answer": {
+        "meaning_zh": "睡个午觉",
+        "example_en": "I'm going to take a nap before dinner.",
+        "example_zh": "晚饭前我打算小睡一会儿。",
+        "collocations": [
+          "take a short nap",
+          "take an afternoon nap"
+        ],
+        "usage_note": "take a nap指短暂睡眠，不一定限定午后。"
+      },
+      "revised_answer": {
+        "meaning_zh": "小睡一会儿；打个盹",
+        "example_en": "I'm going to take a nap before dinner.",
+        "example_zh": "晚饭前我打算小睡一会儿。",
+        "collocations": [
+          "take a short nap",
+          "take an afternoon nap"
+        ],
+        "usage_note": "take a nap表示短暂睡一会儿，不局限午睡或中午时段。"
+      },
+      "revised_display": {
+        "w": "take a nap",
+        "m": "小睡一会儿；打个盹",
+        "c": "take a short nap · take an afternoon nap",
+        "e": "I'm going to take a nap before dinner.",
+        "x": "take a nap表示短暂睡一会儿，不局限午睡或中午时段。",
+        "example_zh": "晚饭前我打算小睡一会儿。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01940",
+      "scene_id": "SC50-0010",
+      "source_rank": 101,
+      "source_sense_id": "SC-SENSE-01940",
+      "expression": "light a candle",
+      "source_sense_zh": "点蜡烛",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-094-143.v2.json",
+      "source_pack_blob": "6ce1b5229f1581c04af717461ed45825e120de0d",
+      "original_answer": {
+        "meaning_zh": "点蜡烛",
+        "example_en": "I'd like to light a candle for a cozy evening.",
+        "example_zh": "我想点一支蜡烛，让晚上更温馨。",
+        "collocations": [
+          "light a candle",
+          "scented candle"
+        ],
+        "usage_note": "light作动词指点燃，蜡烛须远离可燃物。"
+      },
+      "revised_answer": {
+        "meaning_zh": "点蜡烛",
+        "example_en": "I'd like to light a candle for a cozy evening.",
+        "example_zh": "我想点一支蜡烛，让晚上更温馨。",
+        "collocations": [
+          "light a candle",
+          "light a scented candle"
+        ],
+        "usage_note": "light作动词指点燃，蜡烛须远离可燃物。"
+      },
+      "revised_display": {
+        "w": "light a candle",
+        "m": "点蜡烛",
+        "c": "light a candle · light a scented candle",
+        "e": "I'd like to light a candle for a cozy evening.",
+        "x": "light作动词指点燃，蜡烛须远离可燃物。",
+        "example_zh": "我想点一支蜡烛，让晚上更温馨。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02004",
+      "scene_id": "SC50-0010",
+      "source_rank": 165,
+      "source_sense_id": "SC-SENSE-02004",
+      "expression": "bright light",
+      "source_sense_zh": "刺眼的光",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_answer": {
+        "meaning_zh": "刺眼的光",
+        "example_en": "The bright light kept me awake.",
+        "example_zh": "刺眼的灯光让我睡不着。",
+        "collocations": [
+          "bright light",
+          "block bright light"
+        ],
+        "usage_note": "bright在此指强光。"
+      },
+      "revised_answer": {
+        "meaning_zh": "明亮的光；强光",
+        "example_en": "The bright light kept me awake.",
+        "example_zh": "刺眼的灯光让我睡不着。",
+        "collocations": [
+          "bright light",
+          "block bright light"
+        ],
+        "usage_note": "bright light指明亮或强烈的光，是否刺眼取决于环境和主观感受。"
+      },
+      "revised_display": {
+        "w": "bright light",
+        "m": "明亮的光；强光",
+        "c": "bright light · block bright light",
+        "e": "The bright light kept me awake.",
+        "x": "bright light指明亮或强烈的光，是否刺眼取决于环境和主观感受。",
+        "example_zh": "刺眼的灯光让我睡不着。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02006",
+      "scene_id": "SC50-0010",
+      "source_rank": 167,
+      "source_sense_id": "SC-SENSE-02006",
+      "expression": "stuffy room",
+      "source_sense_zh": "闷热不通风的房间",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_answer": {
+        "meaning_zh": "闷热不通风的房间",
+        "example_en": "We opened the window to air out the stuffy room.",
+        "example_zh": "我们打开窗户给闷热的房间通风。",
+        "collocations": [
+          "stuffy room",
+          "air out a stuffy room"
+        ],
+        "usage_note": "stuffy强调闷且不通风。"
+      },
+      "revised_answer": {
+        "meaning_zh": "闷、不通风的房间",
+        "example_en": "We opened the window to air out the stuffy room.",
+        "example_zh": "我们打开窗户给闷热的房间通风。",
+        "collocations": [
+          "stuffy room",
+          "air out a stuffy room"
+        ],
+        "usage_note": "stuffy room指空气不流通、令人感觉憋闷的房间，不一定温度很高。"
+      },
+      "revised_display": {
+        "w": "stuffy room",
+        "m": "闷、不通风的房间",
+        "c": "stuffy room · air out a stuffy room",
+        "e": "We opened the window to air out the stuffy room.",
+        "x": "stuffy room指空气不流通、令人感觉憋闷的房间，不一定温度很高。",
+        "example_zh": "我们打开窗户给闷热的房间通风。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_rank": 178,
+      "source_sense_id": "SC-SENSE-02017",
+      "expression": "turn off notifications",
+      "source_sense_zh": "关掉消息通知",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_answer": {
+        "meaning_zh": "关掉消息通知",
+        "example_en": "Turn off notifications during your break.",
+        "example_zh": "休息时关掉消息通知。",
+        "collocations": [
+          "turn off notifications",
+          "turn off phone notifications"
+        ],
+        "usage_note": "turn off用于关闭通知功能。"
+      },
+      "revised_answer": {
+        "meaning_zh": "关掉消息通知",
+        "example_en": "Turn off notifications during your break.",
+        "example_zh": "休息时关掉消息通知。",
+        "collocations": [
+          "turn off notifications",
+          "turn off phone notifications"
+        ],
+        "usage_note": "turn off notifications指关闭通知；同场景switch off notifications是常见变体，是否分别保留两条教学KU需Master核对。"
+      },
+      "revised_display": {
+        "w": "turn off notifications",
+        "m": "关掉消息通知",
+        "c": "turn off notifications · turn off phone notifications",
+        "e": "Turn off notifications during your break.",
+        "x": "turn off notifications指关闭通知；同场景switch off notifications是常见变体，是否分别保留两条教学KU需Master核对。",
+        "example_zh": "休息时关掉消息通知。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
