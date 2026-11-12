@@ -286,9 +286,10 @@ function renderHome(){
  }
  $('more').hidden=sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
 }
+let exampleToWordPending=false;
 function openStudy(id,resume=false){
  if(!available(id)||!items.length)return;
- autoBrowse.pause();sceneId=id;lastScene=id;revealed=false;resetScratch();
+ exampleToWordPending=false;autoBrowse.pause();sceneId=id;lastScene=id;revealed=false;resetScratch();
  const rows=subset(),saved=resume?transientCursors.get(id):null;
  index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0;
  $('home').hidden=true;$('learning').hidden=false;
@@ -300,7 +301,7 @@ function openStudy(id,resume=false){
 }
 function home(){
  if(!$('learning').hidden)transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace});
- autoBrowse.pause();stopWordAudio();resetScratch();$('learning').hidden=true;
+ exampleToWordPending=false;autoBrowse.pause();stopWordAudio();resetScratch();$('learning').hidden=true;
  window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome();
 }
 // Fit long English headwords/expressions to exactly one line without affecting
@@ -374,6 +375,7 @@ function move(delta,fromAuto=false,fromRatedAdvance=false){
  const hadPending=phaseController.state().selected!==null,rows=subset();if(!rows.length)return;
  const keepDrawing=fromAuto&&scratchDrawing();
  const nextIndex=currentBatchNextIndex(rows,index,delta);if(nextIndex<0)return;
+ exampleToWordPending=false;
  index=nextIndex;
  if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=true;
  try{
@@ -391,6 +393,7 @@ function moveBatch(delta){
  // Native Scene500 PAI_CHANGE_BATCH returns without navigating when only
  // one batch exists: do not jump back to its first card on a vertical swipe.
  if(batches<2)return;
+ exampleToWordPending=false;
  const now=Math.floor(index/BATCH);
  index=((now+delta%batches+batches)%batches)*BATCH;
  resetScratch();stopWordAudio();phaseController.navigate(rows[index].scene_ku_id);
@@ -433,7 +436,22 @@ function playWord(text,baseRate=.84,onDone=null){
  }catch(_){finish();return false}
  return true;
 }
-$('speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].expression)});
+$('speak').addEventListener('click',e=>{
+ e.stopPropagation();
+ // Replace an active example with word speech without leaving its phase
+ // or auto browsing stuck. Repeated speaker clicks keep the latest audio owner.
+ if(phaseController.state().phase==='example'){
+  phaseController.exampleFinished();
+  autoBrowse.pause();
+  exampleToWordPending=true;
+ }
+ const wordDone=()=>{
+  if(!exampleToWordPending)return;
+  exampleToWordPending=false;
+  autoBrowse.resumeAfterSpeech();
+ };
+ if(!playWord(subset()[index].expression,.84,wordDone))wordDone();
+});
 $('example-speak').addEventListener('click',e=>{
  e.stopPropagation();
  if(!phaseController.beginExample())return;
