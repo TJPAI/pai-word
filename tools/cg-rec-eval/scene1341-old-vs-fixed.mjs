@@ -21,7 +21,7 @@ if(new Set(queries.map(x=>x.id)).size!==36)throw Error('NONUNIQUE_CASE_ID');
 function run(engine,q){
  const start=performance.now(),r=engine.search(q,{limit:10,experimentalIntentAliases:false}),elapsedMs=performance.now()-start;
  const ids=r.map(x=>x.scene_id);
- if(ids.length>10||ids.length!==new Set(ids).size||ids.some(id=>!/^SC50-\\d{4}$/.test(id)))throw Error('INVALID_SEARCH_OUTPUT');
+ if(ids.length>10||ids.length!==new Set(ids).size||ids.some(id=>!/^SC50-\d{4}$/.test(id)))throw Error('INVALID_SEARCH_OUTPUT');
  return {top10:ids,top1:ids[0]||null,top5:ids.slice(0,5),elapsedMs,
   sourceIds:r.map(x=>x.explanations?.filter(y=>y.startsWith('matched_source_sense:'))||[])};
 }
