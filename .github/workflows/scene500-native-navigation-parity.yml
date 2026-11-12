@@ -1,0 +1,38 @@
+name: Scene500 native navigation parity isolated regression
+on:
+  pull_request:
+    paths:
+      - 'tools/integration/scene500-native-navigation-probe.mjs'
+      - 'tools/integration/test-scene500-native-navigation-parity.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-navigation-parity.yml'
+  push:
+    branches:
+      - cg-main-native-navigation-parity-ci-20261112
+    paths:
+      - 'tools/integration/scene500-native-navigation-probe.mjs'
+      - 'tools/integration/test-scene500-native-navigation-parity.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-navigation-parity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check harness syntax
+        run: |
+          node --check tools/integration/scene500-native-navigation-probe.mjs
+          node --check tools/integration/test-scene500-native-navigation-parity.mjs
+      - name: Execute original Scene500 swipe, batch, auto navigation
+        run: node tools/integration/test-scene500-native-navigation-parity.mjs
+      - name: Preserve isolated KU/SRS gate
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: Preserve existing 1778 KU native display mapping
+        run: node tools/integration/test-scene1341-native-display-projection.mjs
