@@ -1,0 +1,130 @@
+{
+  "schema": "cg-qa-v51-p0-second-pass-author-repatch-two-independent-v1",
+  "date": "2026-11-12",
+  "reviewer": "CG-QA",
+  "source_author_commit": "dd6a512403ddc0900a3833c66416a856fc5bd29e",
+  "source_repatch_blob": "512ac77783635348b42b69375af5314acb7eb397",
+  "prior_qa_blob": "60f83fa91a774db137c4a6f016d2c63324bc7c6f",
+  "counts": {
+    "reviewed": 2,
+    "pass": 2,
+    "conditional": 0,
+    "revise": 0,
+    "muse_pass_new": 0,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "policy": "Incremental verdict replaces previous current-P0-variant verdict ONLY; preserve historical previous reviews and V30. No source, master or runtime modification.",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00318",
+      "scene_id": "SC50-0002",
+      "source_sense_id": "SC-SENSE-00318",
+      "source_rank": 84,
+      "expression": "lather up",
+      "author_repatch_blob": "512ac77783635348b42b69375af5314acb7eb397",
+      "previous_author_patch_blob": "04eff5299329a028c950132093197cf59dc6b925",
+      "prior_cg_qa_result": "REVISE",
+      "original_answer": {
+        "meaning_zh": "搓出泡沫",
+        "example_en": "Rub your hands together to lather up the soap.",
+        "example_zh": "双手互相搓一搓，让肥皂起泡。",
+        "collocations": [
+          "lather up",
+          "lather up with soap"
+        ],
+        "usage_note": "lather up是搓出泡沫，也可说work up a lather。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "搓出泡沫",
+        "example_en": "Rub your hands together with soap until they lather up.",
+        "example_zh": "双手抹上肥皂搓揉，直到起泡。",
+        "collocations": [
+          "lather up with soap",
+          "work up a lather"
+        ],
+        "usage_note": "lather up是搓出泡沫；说lather up with soap更自然。"
+      },
+      "revised_answer": {
+        "meaning_zh": "搓出泡沫",
+        "example_en": "Rub some soap between your hands until it lathers.",
+        "example_zh": "在双手之间搓揉一些肥皂，直到肥皂起泡。",
+        "collocations": [
+          "lather up with soap",
+          "work up a lather"
+        ],
+        "usage_note": "lather up指用肥皂等搓出泡沫；也可说work up a lather。例句中的it指soap。"
+      },
+      "revised_display": {
+        "w": "lather up",
+        "m": "搓出泡沫",
+        "c": "lather up with soap · work up a lather",
+        "e": "Rub some soap between your hands until it lathers.",
+        "x": "lather up指用肥皂等搓出泡沫；也可说work up a lather。例句中的it指soap。",
+        "example_zh": "在双手之间搓揉一些肥皂，直到肥皂起泡。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "第二轮例句使用it明确指soap，lathers表示起泡自然；新中文释义与例句对齐，配套lather up with soap和work up a lather正确。",
+      "caveat": "其英语例句核心词形是lathers而非完整目标短语lather up，需在教材展示时确保目标w和搭配c仍展示。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00430",
+      "scene_id": "SC50-0003",
+      "source_sense_id": "SC-SENSE-00430",
+      "source_rank": 22,
+      "expression": "dress code",
+      "author_repatch_blob": "512ac77783635348b42b69375af5314acb7eb397",
+      "previous_author_patch_blob": "04eff5299329a028c950132093197cf59dc6b925",
+      "prior_cg_qa_result": "CONDITIONAL",
+      "original_answer": {
+        "meaning_zh": "着装规定",
+        "example_en": "The restaurant has a smart-casual dress code.",
+        "example_zh": "这家餐厅要求商务休闲着装。",
+        "collocations": [
+          "follow the dress code",
+          "a strict dress code"
+        ],
+        "usage_note": "dress code指着装规定，不是服装品牌或尺码。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "着装规定",
+        "example_en": "The restaurant has a smart-casual dress code.",
+        "example_zh": "这家餐厅要求精致休闲着装。",
+        "collocations": [
+          "follow the dress code",
+          "a strict dress code"
+        ],
+        "usage_note": "smart casual是得体而稍讲究的休闲风格，不等同business casual；dress code指着装规定。"
+      },
+      "revised_answer": {
+        "meaning_zh": "着装规定",
+        "example_en": "The restaurant has a smart-casual dress code.",
+        "example_zh": "这家餐厅要求穿着得体的休闲装束。",
+        "collocations": [
+          "follow the dress code",
+          "a strict dress code"
+        ],
+        "usage_note": "dress code指着装规定；smart casual指得体、略讲究的休闲装束，不等同于商务休闲（business casual）。"
+      },
+      "revised_display": {
+        "w": "dress code",
+        "m": "着装规定",
+        "c": "follow the dress code · a strict dress code",
+        "e": "The restaurant has a smart-casual dress code.",
+        "x": "dress code指着装规定；smart casual指得体、略讲究的休闲装束，不等同于商务休闲（business casual）。",
+        "example_zh": "这家餐厅要求穿着得体的休闲装束。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "smart-casual dress code译为得体的休闲装束自然；区分business casual准确，英文例句、中文和搭配一致。",
+      "caveat": "本次仅CG-QA语言学PASS，非Master或Muse发布授权。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
