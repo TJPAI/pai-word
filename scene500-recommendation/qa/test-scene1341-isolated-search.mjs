@@ -80,6 +80,21 @@ assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not n
    assert.throws(()=>buildCatalog(catalogText,changed,{sourceCommit:commit,manifestSha:blob}),/DUPLICATE_OR_BAD_RANK/, 'invalid rank encoding '+invalid);
  }
 }
+// Blank scene titles/categories in an otherwise count-valid authentic catalog must fail closed.
+{
+ const rows=csv(fs.readFileSync(catalog,'utf8'));
+ const cols=Object.keys(rows[0]);
+ const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ const ranked=Array.from({length:11},(_,i)=>fs.readFileSync(path.join(dir,'v'+(51+i)+'-ranked.csv'),'utf8'));
+ const make=()=>[cols.join(','),...rows.map(r=>cols.map(k=>quote(r[k])).join(','))].join('\n')+'\n';
+ const sample=rows.find(r=>r.id==='SC50-1341');
+ assert.ok(sample,'source scene 1341 missing');
+ for(const key of ['name','category']){
+  const original=sample[key];sample[key]=' ';
+  assert.throws(()=>buildCatalog(make(),ranked,{sourceCommit:commit,manifestSha:blob}),/EMPTY_SCENE_METADATA/,'blank '+key+' must fail');
+  sample[key]=original;
+ }
+}
 assert.equal(index.sceneCount,1341);assert.equal(index.rankedSceneCount,110);assert.equal(index.expressionCount,19371);assert.equal(index.certifiedCount,0);assert.equal(index.release_allowed,false);
 const queries=[
  ['起床与晨间准备','SC50-0001'],
