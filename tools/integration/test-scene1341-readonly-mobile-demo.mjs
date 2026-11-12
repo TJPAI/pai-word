@@ -1405,6 +1405,31 @@ assert.equal(crossPhase.state().revealed,false,'automatic movement preserves QUE
 assert.equal(crossGrades.length,4,'auto movement must not create any additional score');
 assert(restarted>0,'manual swipe and blank tap must restore auto timer');
 
+/* Scene500 after-speech timing contract for example audio:
+   full-gap starts only from normal resume; example completion must use the
+   native shorter gap (0.2 / 0.6 / 2 / 5 seconds) for its selected tier. */
+assert(phaseSource.includes('function resumeAfterSpeech(){') &&
+ phaseSource.includes('next(true);void syncWake()') &&
+ script.includes('autoBrowse.resumeAfterSpeech()'),
+ 'example completion must use post-speech short gap, not ordinary speed delay');
+for(const [tier,after] of [[900,200],[1500,600],[3000,2000],[6000,5000]]){
+ const timers=new Map();let id=0,steps=0;
+ const controller=api.createReadOnlyAutoBrowse({
+  shouldRun:()=>true,isBusy:()=>false,isSpeaking:()=>false,
+  navigate:()=>{steps++;return true},onState:()=>{},
+  schedule:(fn,ms)=>{const nextId=++id;timers.set(nextId,{fn,ms});return nextId},
+  unschedule:n=>timers.delete(n)
+ });
+ assert.equal(controller.setDelay(tier),true);
+ controller.start();assert.equal([...timers.values()][0].ms,tier,'normal gap '+tier);
+ controller.pause();assert.equal(timers.size,0);
+ controller.resumeAfterSpeech();
+ assert.equal([...timers.values()][0].ms,after,'post-example gap '+tier);
+ const task=[...timers.entries()][0];timers.delete(task[0]);task[1].fn();
+ assert.equal(steps,1,'post-example interval fires once');
+ controller.stop();assert.equal(timers.size,0);
+}
+
 /* Second independent state-contract audit: example audio is a phase transition,
  * not merely speechSynthesis.speak(). The native PAI_TAP_FLOW.beginExample()
  * invalidates rating timers; exampleFinished() restores paused ANSWER. */
@@ -1417,7 +1442,7 @@ assert(phaseSource.includes('function beginExample(){') &&
  'isolated phase adapter must expose the native example-audio lifecycle');
 assert(script.includes('if(!phaseController.beginExample())return;') &&
  script.includes('autoBrowse.pause();') &&
- script.includes('if(phaseController.exampleFinished())autoBrowse.resume()') &&
+ script.includes('phaseController.exampleFinished();autoBrowse.resumeAfterSpeech()') &&
  script.includes('playWord(subset()[index].answer.example_en,.9,finishExample)'),
  'real example speaker must pause grade and resume after audio completion');
 const exampleTimers=new Map(),exampleSettled=[];let exampleId=0,exampleMoved=0;
