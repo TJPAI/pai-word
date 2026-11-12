@@ -1,0 +1,166 @@
+{
+  "schema": "cg-qa-v51-provisional-answer-staging-manifest-v2",
+  "date": "2026-11-12",
+  "role": "CG-QA",
+  "purpose": "Actual answer-only payload shards derived from author V51 source packs and independent CG-QA PASS candidate filter, quarantined until consumer checks Master authorization and display risk.",
+  "repository": "TJPAI/pai-word",
+  "branch": "cg-qa-enlex-review-20261026",
+  "source_candidate_index": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_CG_PASS_PROVISIONAL_INDEX_20261112.v1.json",
+    "blob": "9cfcbd01ed7f2f6454d7a6559a522f2cf142248e"
+  },
+  "counts": {
+    "source_total": 2038,
+    "included_cg_pass_no_known_mu_objection": 1778,
+    "blocked": 260,
+    "unique_ku_ids": 1778,
+    "unique_scene_ranks": 1778,
+    "pack_count": 52,
+    "shards": 7
+  },
+  "shards": [
+    {
+      "shard": 1,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD01_20261112.v1.json",
+      "blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+      "counts": {
+        "source_records": 304,
+        "included": 275,
+        "blocked": 29
+      }
+    },
+    {
+      "shard": 2,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD02_20261112.v2.json",
+      "blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+      "counts": {
+        "source_records": 308,
+        "included": 270,
+        "blocked": 38
+      }
+    },
+    {
+      "shard": 3,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD03_20261112.v1.json",
+      "blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+      "counts": {
+        "source_records": 320,
+        "included": 272,
+        "blocked": 48
+      }
+    },
+    {
+      "shard": 4,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD04_20261112.v1.json",
+      "blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+      "counts": {
+        "source_records": 303,
+        "included": 246,
+        "blocked": 57
+      }
+    },
+    {
+      "shard": 5,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD05_20261112.v1.json",
+      "blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+      "counts": {
+        "source_records": 347,
+        "included": 304,
+        "blocked": 43
+      }
+    },
+    {
+      "shard": 6,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD06_20261112.v1.json",
+      "blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+      "counts": {
+        "source_records": 300,
+        "included": 265,
+        "blocked": 35
+      }
+    },
+    {
+      "shard": 7,
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD07_20261112.v1.json",
+      "blob": "873f5639e619426d743cdeacf289bb50128e3272",
+      "counts": {
+        "source_records": 156,
+        "included": 146,
+        "blocked": 10
+      }
+    }
+  ],
+  "global_checks": {
+    "every_index_eligible_ku_exactly_once": true,
+    "sha_source_pack_checked_in_each_shard": true,
+    "required_answer_fields_present": true,
+    "not_formal_semantic_reassessment": true,
+    "not_master_approved": true,
+    "not_muse_certified": true,
+    "production_release_allowed": false,
+    "source_backed_answer_records": 1778,
+    "all_display_w_m_e_example_zh_synced": true,
+    "within_scene_same_expression_groups_screened": 7,
+    "distinct_pos_sense_pairs_retained": 6,
+    "duplicate_teaching_goal_held": 1
+  },
+  "consumer_gate": "Use this V2 manifest rather than V1: reject held KU 00365; confirm Master authorization, prose/visible QA leakage and isolated staging policies before use; no formal certification.",
+  "versioned_delta_from": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_1779_MANIFEST_20261112.v1.json",
+    "blob": "73ced7c86435953479d59c7ed8671565f9a353ba"
+  },
+  "new_qa_holds": [
+    {
+      "scene_ku_id": "SC1341-KU-00365",
+      "source_sense_id": "SC-SENSE-00365",
+      "reason": "Same-scene near-exact duplicate of bad breath rank63, identical English example and collocations. Hold second KU pending Master/author sense differentiation.",
+      "hold_evidence_path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_DUPLICATE_BAD_BREATH_HOLD_20261112.v1.json",
+      "original_v30_cg_verdict": "PASS",
+      "staging_override": "HOLD_NEW_SEMANTIC_DUPLICATE"
+    }
+  ],
+  "audit_shards": [
+    {
+      "shard": 1,
+      "rows": 275,
+      "blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+      "display_mismatches": 0
+    },
+    {
+      "shard": 2,
+      "rows": 270,
+      "blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+      "display_mismatches": 0
+    },
+    {
+      "shard": 3,
+      "rows": 272,
+      "blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+      "display_mismatches": 0
+    },
+    {
+      "shard": 4,
+      "rows": 246,
+      "blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+      "display_mismatches": 0
+    },
+    {
+      "shard": 5,
+      "rows": 304,
+      "blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+      "display_mismatches": 0
+    },
+    {
+      "shard": 6,
+      "rows": 265,
+      "blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+      "display_mismatches": 0
+    },
+    {
+      "shard": 7,
+      "rows": 146,
+      "blob": "873f5639e619426d743cdeacf289bb50128e3272",
+      "display_mismatches": 0
+    }
+  ]
+}
