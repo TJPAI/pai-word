@@ -1,0 +1,81 @@
+{
+  "schema": "cg-enlex-v22-batch008-hold4-lexical-editorial-v1",
+  "date": "2026-11-12",
+  "role": "CG-ENLEX",
+  "source_type": "CG-MASTER issue #2 handoff summary; original Google Drive patch and complete source sentences not independently downloaded",
+  "source_issue_url": "https://github.com/TJPAI/pai-word/issues/2#issuecomment-6820397431",
+  "source_master_version": "Reviewed Master V13, V22 Batch008 editorial",
+  "reviewed": 4,
+  "counts": {
+    "lexical_keep_provisional": 1,
+    "lexical_revision_supported_conditional": 2,
+    "context_hold": 1,
+    "independent_qa_pass": 0,
+    "master_release_approved": 0
+  },
+  "decision_scope": "Lexicographic editorial only; preserve all original Master identities and glosses",
+  "muse_qa": "DEFERRED_QUOTA_20261113",
+  "release_allowed": false,
+  "records": [
+    {
+      "audit_row": 70007,
+      "expression": "water shutoff notice",
+      "master_editorial": "KEEP_MASTER_PROVISIONAL",
+      "enlex_verdict": "LEXICAL_KEEP_PROVISIONAL",
+      "preferred_zh": "停水通知",
+      "linguistic_assessment": "A water shutoff notice is a notice that water service is to be shut off; 停水通知 is semantically appropriate. 'Water shutoff' may also denote shutting off a supply at a valve, so the full source sentence should distinguish utility-service notification from a plumbing instruction.",
+      "request": "Confirm complete English source notice and whether it refers to a planned utility outage.",
+      "master_identity_verified": false,
+      "source_kaikki_sense_specific_verified": false,
+      "cg_qa": "PENDING_INDEPENDENT_REVIEW",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "audit_row": 70045,
+      "expression": "check the water meter for movement",
+      "master_editorial": "PROPOSE_ZH_REVISION",
+      "enlex_verdict": "LEXICAL_REVISION_SUPPORTED_CONDITIONAL",
+      "preferred_zh": "检查水表是否在转动；查看水表读数是否变化",
+      "linguistic_assessment": "Movement is not intrinsically limited to the wheel turning: in digital meters flow indicators or reading changes may be relevant. 检查水表是否仍在转动 can work for a mechanical meter, but '仍' adds a continuing-state presupposition absent from the bare English expression. Avoid inserting '不用水时' as it is not entailed.",
+      "request": "Inspect original sentence and meter type. For an analog spinning dial, '检查水表是否转动' is preferred; for an unspecified meter retain broader rendering.",
+      "master_identity_verified": false,
+      "source_kaikki_sense_specific_verified": false,
+      "cg_qa": "PENDING_INDEPENDENT_REVIEW",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "audit_row": 70047,
+      "expression": "constantly running",
+      "master_editorial": "NEEDS_VERIFICATION",
+      "enlex_verdict": "HOLD_CONTEXT",
+      "preferred_zh": null,
+      "linguistic_assessment": "Running has different interpretations across devices: a running toilet suggests continuous water flow, a running tap implies water discharge, and a running pump means operation. Constantly expresses temporal persistence, not the subject or malfunction by itself.",
+      "request": "Provide modified noun, full sentence, part of speech and collocation; no standalone '漏水' gloss.",
+      "master_identity_verified": false,
+      "source_kaikki_sense_specific_verified": false,
+      "cg_qa": "PENDING_INDEPENDENT_REVIEW",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "audit_row": 70081,
+      "expression": "hob",
+      "master_editorial": "PROPOSE_ZH_REVISION",
+      "enlex_verdict": "LEXICAL_REVISION_SUPPORTED_CONDITIONAL",
+      "preferred_zh": "炉灶灶面；炉灶加热区（英式英语）",
+      "linguistic_assessment": "In British English, hob ordinarily denotes a cooking surface/burner area of a cooker (often called cooktop or stovetop in North American English). But hob has unrelated senses; stable POS, scene and example must establish culinary usage.",
+      "request": "Confirm original English context and British cooking-appliance noun sense; do not remap frozen Sense based only on form match.",
+      "master_identity_verified": false,
+      "source_kaikki_sense_specific_verified": false,
+      "cg_qa": "PENDING_INDEPENDENT_REVIEW",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "master_approved": false,
+      "release_allowed": false
+    }
+  ]
+}
