@@ -1,0 +1,81 @@
+{
+  "schema": "cg-enteach-v51-sc0007-prep-ingredients-duplicate-evidence-v1",
+  "date": "2026-11-12",
+  "scene_id": "SC50-0007",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "source_packs": [
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "count": 47
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "count": 20
+    }
+  ],
+  "records_examined": 217,
+  "verified_pair": [
+    {
+      "scene_ku_id": "SC1341-KU-01450",
+      "source_sense_id": "SC-SENSE-01450",
+      "source_rank": 215,
+      "expression": "prep ingredients",
+      "meaning_zh": "预处理食材",
+      "example_en": "Prep ingredients before you heat the pan.",
+      "collocations": [
+        "prep ingredients",
+        "prep ingredients ahead of time"
+      ],
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01452",
+      "source_sense_id": "SC-SENSE-01452",
+      "source_rank": 217,
+      "expression": "prep the ingredients",
+      "meaning_zh": "准备食材",
+      "example_en": "Prep the ingredients while the oven heats up.",
+      "collocations": [
+        "prep the ingredients",
+        "prep ingredients for dinner"
+      ],
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce"
+    }
+  ],
+  "independent_qa_original": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P0_MASTER_HOLD31_LEXICAL_TRIAGE_20261112.v1.json",
+    "blob": "79d9ee69b617469df2852607ece97e1198354a4a",
+    "ku01452_verdict": "IDENTITY_HOLD"
+  },
+  "semantic_assessment": "Adding the definite article makes a particular set of ingredients contextually identifiable; no independent lexical Sense or teaching objective is shown. Source examples both teach the same ingredient-preparation action. KU01450 '预处理' and KU01452 '准备' differ in translation nuance but no explicit narrower distinct instructional target is evidenced.",
+  "recommendation": {
+    "provisional_primary": "SC1341-KU-01450",
+    "provisional_redundant_hold": "SC1341-KU-01452",
+    "reason": "Lower rank 215, natural generic target prep ingredients, source examples cover same task",
+    "master_action": "Confirm original stable Master record/Sense distinction and approve whether KU01452 should be excluded only from future authorized learning queues. Do not remove or merge frozen IDs.",
+    "if_master_retains_both": "Require demonstrably separate pragmatic sense and examples, then CG-QA independent review"
+  },
+  "status": "MASTER_HOLD",
+  "master_authorized": false,
+  "independent_qa_new_pass": 0,
+  "muse_pass": 0,
+  "activation_allowed": false,
+  "release_allowed": false
+}
