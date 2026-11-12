@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {inspectScene1341ProvisionalShard,inspectScene1341ProvisionalRecord} from '../../rebuild-preview/scene1341-provisional-intake.mjs';
+import {createScene1341QuarantineRegistry,createScene1341SrsStorageBoundary} from '../../rebuild-preview/scene1341-isolated-registry-srs.mjs';
 const pin=JSON.parse(fs.readFileSync('tools/integration/scene1341-provisional-intake-pin-20261112.v2.json','utf8'));
 assert.equal(pin.qa_manifest.records,1778);
 assert.equal(pin.v1_status,'SUPERSEDED_DO_NOT_CONSUME');
@@ -27,12 +28,13 @@ assert.equal(manifest.counts.included_cg_pass_no_known_mu_objection,1778);
 assert.equal(manifest.global_checks.duplicate_teaching_goal_held,1);
 assert.deepEqual(manifest.shards.map(s=>s.blob),pin.shards.map(s=>s.blob));
 assert.deepEqual(manifest.shards.map(s=>s.path),pin.shards.map(s=>s.path));
-const seen=new Set(),sceneRanks=new Set(),results=[];let historicalMusePass=0,museDeferred=0,retainedBadBreath=false;
+const seen=new Set(),sceneRanks=new Set(),results=[],sourceRecords=[];let historicalMusePass=0,museDeferred=0,retainedBadBreath=false;
 for(const part of pin.shards){
  const shard=await get(part.path,part.blob);
  shard.__path=part.path;
  const result=inspectScene1341ProvisionalShard({shard,pin,blob:part.blob});
  for(const entry of shard.records){
+  sourceRecords.push(entry);
   if(entry.muse_qa==='PASS')historicalMusePass++;
   else if(entry.muse_qa==='DEFERRED_QUOTA_20261113')museDeferred++;
   else throw Error('UNEXPECTED_MUSE_STATUS '+entry.scene_ku_id);
@@ -60,8 +62,23 @@ assert.equal(retainedBadBreath,true,'PRIMARY_BAD_BREATH_SHOULD_REMAIN');
 assert.equal(inspectScene1341ProvisionalRecord({scene_ku_id:pin.blocked_record.ku_id}).reason,'QA_V2_DUPLICATE_KU_HOLD');
 assert.equal(sceneRanks.size,1778);
 assert.equal(historicalMusePass+museDeferred,1778,'MUSE_HISTORY_STATUS_ACCOUNTING');
+const registry=createScene1341QuarantineRegistry({records:sourceRecords});
+const srsBoundary=createScene1341SrsStorageBoundary();
+assert.equal(registry.records,1778,'ALL_1778_IN_SEPARATE_REGISTRY');
+assert.equal(registry.quarantined,1778,'NO_UNAPPROVED_KU_IN_REGISTRY');
+assert.equal(registry.canCreateStudyQueue,false,'NO_NATIVE_QUEUE');
+assert.equal(registry.canWriteSrs,false,'NO_REGISTRY_SRS_WRITE');
+assert.equal(registry.productionReleaseAllowed,false,'NO_FORMAL_RELEASE');
+assert.deepEqual(registry.getNativeStudyUnits(),[],'NATIVE_UNITS_EMPTY');
+assert.equal(Object.hasOwn(registry,'byKU'),false,'NO_LEGACY_CORE20K_REGISTRY_ALIAS');
+assert.equal(registry.item('SC1341-KU-00365'),null,'HELD_KU_NEVER_ENTER_REGISTRY');
+assert.equal(registry.item('SC1341-KU-00297')?.acceptedForQuarantine,true,'PRIMARY_BAD_BREATH_QUARANTINED');
+assert.equal(srsBoundary.canWriteSrs,false);
+assert.equal(srsBoundary.canRestoreForLearning,false);
+assert.equal(srsBoundary.inspect().present,false);
+
 const report={status:'PASS',schema:pin.schema,qaSource:pin.qa_manifest.commit,
   cgQaPassCandidates:seen.size,structurallyAccepted:results.reduce((n,x)=>n+x.structurallyAccepted,0),masterAuthorizationVerified:0,
   stagedPlayable:0,formalReleased:0,museHistory:{historicalPassNotFinalCertification:historicalMusePass,deferredUntil20261113:museDeferred},
-  dataSourceGitBlobValidated:true,shards:results};
+  dataSourceGitBlobValidated:true,isolatedRegistry:{records:registry.records,quarantined:registry.quarantined,scenes:registry.scenes,nativeUnits:0,canWriteSrs:false,namespace:registry.namespace,storageKey:srsBoundary.key},shards:results};
 console.log(JSON.stringify(report,null,2));
