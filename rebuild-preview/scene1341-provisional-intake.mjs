@@ -6,6 +6,7 @@ const SHA=/^[0-9a-f]{40}$/, KU=/^SC1341-KU-\d{5,}$/, SC=/^SC50-\d{4}$/;
 const reject=(reason)=>Object.freeze({accepted:false,stagingEligible:false,reason});
 const required=['scene_ku_id','scene_id','source_sense_id','expression','source_pack_path','source_pack_blob'];
 export function inspectScene1341ProvisionalRecord(record,authorization=null){
+ if(record?.scene_ku_id==='SC1341-KU-00365')return reject('QA_V2_DUPLICATE_KU_HOLD');
  if(!record||required.some(key=>typeof record[key]!=='string'||!record[key].trim())||
    !KU.test(record.scene_ku_id)||!SC.test(record.scene_id)||
    !Number.isSafeInteger(record.source_rank)||record.source_rank<1||
@@ -49,12 +50,14 @@ export function inspectScene1341ProvisionalRecord(record,authorization=null){
  return Object.freeze({accepted:true,stagingEligible:true,reason:'STAGING_ONLY_CG_PASS_MUSE_DEFERRED'});
 }
 export function inspectScene1341ProvisionalShard({shard,pin,blob,masterAuthorizations={}}={}){
- if(!pin||pin.schema!=='scene1341-provisional-intake-pin-v1'||pin.not_public_release!==true||
+ if(!pin||pin.schema!=='scene1341-provisional-intake-pin-v2'||pin.not_public_release!==true||
     pin.not_production_srs!==true||pin.status!=='QUARANTINED'||pin.release_approved!==0)
    throw Error('SCENE1341_PROVISIONAL_INVALID_PIN');
+ if(pin.blocked_record?.ku_id!=='SC1341-KU-00365'||pin.v1_status!=='SUPERSEDED_DO_NOT_CONSUME')
+   throw Error('SCENE1341_PROVISIONAL_V2_HOLD_MISSING');
  const expected=pin.shards.find(s=>s.path===shard?.__path);
  if(!expected||expected.blob!==blob||!SHA.test(blob||'')||
-   shard?.schema!=='cg-qa-v51-staging-answer-provisional-shard-v1'||
+   !['cg-qa-v51-staging-answer-provisional-shard-v1','cg-qa-v51-staging-answer-provisional-shard-v2'].includes(shard?.schema)||
    !Array.isArray(shard.records)||shard.records.length!==expected.records||
    shard.records.length!==shard.counts?.included||
    shard.source_candidate_index_blob!=='9cfcbd01ed7f2f6454d7a6559a522f2cf142248e')

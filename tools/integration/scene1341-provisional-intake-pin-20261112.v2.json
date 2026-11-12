@@ -1,0 +1,73 @@
+{
+  "schema": "scene1341-provisional-intake-pin-v2",
+  "mode": "isolated-staging-quarantine",
+  "supersedes": "tools/integration/scene1341-provisional-intake-pin-20261112.v1.json",
+  "v1_status": "SUPERSEDED_DO_NOT_CONSUME",
+  "not_public_release": true,
+  "not_production_srs": true,
+  "qa_manifest": {
+    "repo": "TJPAI/pai-word",
+    "commit": "79ad2a35a3922b70cea00976627935c7d34a3630",
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_1778_MANIFEST_20261112.v2.json",
+    "blob": "f8967fb97573bbccd89b4c645303dd2c983bb1da",
+    "records": 1778
+  },
+  "shards": [
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD01_20261112.v1.json",
+      "blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+      "records": 275
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD02_20261112.v2.json",
+      "blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+      "records": 270
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD03_20261112.v1.json",
+      "blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+      "records": 272
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD04_20261112.v1.json",
+      "blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+      "records": 246
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD05_20261112.v1.json",
+      "blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+      "records": 304
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD06_20261112.v1.json",
+      "blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+      "records": 265
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD07_20261112.v1.json",
+      "blob": "873f5639e619426d743cdeacf289bb50128e3272",
+      "records": 146
+    }
+  ],
+  "blocked_record": {
+    "ku_id": "SC1341-KU-00365",
+    "scene_id": "SC50-0002",
+    "source_sense_id": "SC-SENSE-00365",
+    "reason": "HOLD_DUPLICATE_SENSE_TEACHING_OBJECTIVE",
+    "evidence_blob": "1594bc56470b08279c5659a021f8ddf04fe02596"
+  },
+  "required_record_flags": {
+    "cg_qa": "PASS",
+    "muse_qa": [
+      "PASS",
+      "DEFERRED_QUOTA_20261113"
+    ],
+    "release_status": "PROVISIONAL_PENDING_MUSE",
+    "source_master_authorization_verified": false,
+    "production_release_allowed": false
+  },
+  "master_gate": "REQUIRES_ITEM_SPECIFIC_INDEPENDENT_MASTER_AUTHORIZATION",
+  "display_validation": "REQUIRES_EXPLICIT_LEARNER_VISIBLE_QA",
+  "status": "QUARANTINED",
+  "release_approved": 0
+}
