@@ -636,6 +636,8 @@ document.addEventListener('keydown',e=>{
  else if(e.code==='Space'){e.preventDefault();show()}
  else if(e.key==='Escape')home();
 });
+// Original welcome catalog action enters the isolated Scene1341 catalog, not Scene500.
+window.PAI_OPEN_CATALOG_LAZY=()=>$('browse').click();
 window.render=renderCard;
 window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
 readOnlyPrefs.set('autoBrowseInterval',autoPreference.getSpeed());
