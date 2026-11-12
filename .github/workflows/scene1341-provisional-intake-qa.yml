@@ -10,6 +10,7 @@ on:
       - 'tools/integration/scene1341-provisional-intake-pin-20261112.v2.json'
       - 'tools/integration/validate-scene1341-provisional-intake.mjs'
       - '.github/workflows/scene1341-provisional-intake-qa.yml'
+      - 'tools/integration/test-scene1341-v2-intake-gate-regression.mjs'
   pull_request:
     paths:
       - 'rebuild-preview/scene1341-provisional-intake.mjs'
@@ -30,5 +31,7 @@ jobs:
           node-version: '22'
       - name: Check fail-closed provisional gate syntax
         run: node --check rebuild-preview/scene1341-provisional-intake.mjs
+      - name: Regression V2 hold, source identity and unauthorized staging
+        run: node tools/integration/test-scene1341-v2-intake-gate-regression.mjs
       - name: Verify CG-QA corrected V2 1778 KU and reject held duplicate
         run: node tools/integration/validate-scene1341-provisional-intake.mjs
