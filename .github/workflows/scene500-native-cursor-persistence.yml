@@ -1,0 +1,38 @@
+name: Scene500 native cursor persistence isolated regression
+on:
+  pull_request:
+    paths:
+      - 'tools/integration/scene500-native-cursor-persistence-harness.mjs'
+      - 'tools/integration/test-scene500-native-cursor-persistence.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-cursor-persistence.yml'
+  push:
+    branches:
+      - cg-main-native-cursor-persistence-20261112
+    paths:
+      - 'tools/integration/scene500-native-cursor-persistence-harness.mjs'
+      - 'tools/integration/test-scene500-native-cursor-persistence.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-cursor-persistence.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cursor-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute original Scene500 pagehide/background bookmark logic
+        run: |
+          node --check tools/integration/scene500-native-cursor-persistence-harness.mjs
+          node tools/integration/test-scene500-native-cursor-persistence.mjs
+      - name: Original native navigation and shell tests
+        run: |
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene500-native-card-shell.mjs
+      - name: Isolated Scene1341 SRS must remain read-only
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs
