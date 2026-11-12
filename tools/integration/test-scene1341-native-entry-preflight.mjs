@@ -31,7 +31,12 @@ const quarantined=inspect({sceneId,records:[rec],authorizations:{[rec.scene_ku_i
 assert.equal(quarantined.sourceRecords,1);
 assert.equal(quarantined.provisionalStagingEligible,0);
 assert.equal(quarantined.quarantined,1);
-assert.equal(quarantined.nativeRuntimeNamespaceImplemented,true);
+// Even caller-forged "verified" booleans are not real storage/registry evidence.
+assert.equal(quarantined.nativeRuntimeNamespaceImplemented,false);
+assert.equal(quarantined.quarantineRegistryRecords,1);
+assert.equal(quarantined.quarantineRegistryEntries,1);
+assert.equal(quarantined.isolatedSrsStorageKey,'pai-word:scene1341-v2:srs:v1');
+assert.equal(quarantined.canRestoreIsolatedSrs,false);
 assert.equal(quarantined.canEnterNativeLearning,false);
 assert.equal(quarantined.canWriteSrs,false);
 assert(quarantined.blockerCodes.includes('MASTER_ITEM_AUTHORIZATION_OR_DISPLAY_QA_PENDING'));
