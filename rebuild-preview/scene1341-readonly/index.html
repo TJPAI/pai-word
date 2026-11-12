@@ -69,7 +69,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
     <div><span class="eyebrow">继续学习</span><h2 id="continue-name">开始一个场景</h2>
      <p id="continue-description">英文教学内容正在载入 · 仅用于体验</p>
     </div>
-    <div class="continue-actions"><button id="continue" class="continue-primary" type="button">继续学习</button></div>
+    <div class="continue-actions"><button id="continue" class="continue-primary" type="button" disabled>继续学习</button></div>
    </section>
    <section class="scene-search-card">
     <div class="scene-search-title"><span class="eyebrow">Scene1341</span>
@@ -147,7 +147,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null;
-let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null;
+let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
  const q=filter.trim(),ticket=++recRequest;
@@ -332,27 +332,38 @@ function renderCategories(){
 }
 function renderHome(){
  if(!catalog.length)return;
- const q=filter.trim().toLowerCase();
- // Query results are from CG-REC in the existing Scene500-style catalog UI.
- // Normal unfiltered catalog remains available, preserving all prior preview KUs.
- const result=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean)
-                :catalog;
- const selected=result.filter(x=>category==='全部'||x.category===category);
+ const q=filter.trim().toLowerCase(),active=!!q||catalogVisible;
+ const results=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean):catalog;
+ const selected=results.filter(x=>category==='全部'||x.category===category);
+ const sorted=q?selected:catalogVisible&&category==='全部'
+   ?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]
+   :selected;
  $('scenes').replaceChildren();
- const sorted=!q&&category==='全部'?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]:selected;
- const message=!q?'场景目录 · 1,341 场景':recPending?'正在运行 CG-REC 实验推荐…'
-   :recError?'推荐查询失败（未使用未经验证的结果）：'+recError
-   :('CG-REC 实验推荐 · '+sorted.length+' 个场景；结果未获 CG-QA/Muse 认证');
+ const message=!q?'1,341场景目录 · 使用最新CG-REC搜索相关场景'
+   :recPending?'正在运行 CG-REC 中英文推荐…'
+   :recError?'查询失败：'+recError
+   :('CG-REC 场景推荐 · '+sorted.length+'个结果 · 未认证教学内容仅供体验');
  set('rec-status',message);
- for(const sc of sorted.slice(0,visible)){
-  const btn=document.createElement('button');btn.className='demo-scene';btn.type='button';
-  const title=document.createElement('div'),b=document.createElement('b'),small=document.createElement('small'),right=document.createElement('span');
-  b.textContent=sc.name;small.textContent=sc.id+' · '+sc.category+(q?' · 实验推荐／未认证':'');title.append(b,small);
-  right.textContent=available(sc.id)?available(sc.id)+'条词卡 · 体验':'待教学内容认证';
-  right.className=available(sc.id)?'ready':'unready';btn.disabled=!available(sc.id);btn.append(title,right);
-  btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+ if(active){
+  for(const [position,sc] of sorted.slice(0,q?10:visible).entries()){
+   const btn=document.createElement('button');
+   btn.className='scene-result';btn.type='button';
+   const no=document.createElement('span');no.className='scene-result-no';
+   no.textContent=String(position+1).padStart(2,'0');
+   const name=document.createElement('span');name.className='scene-result-main';
+   const title=document.createElement('b');title.textContent=sc.name;
+   const categoryEl=document.createElement('small');
+   categoryEl.textContent=sc.id+' · '+sc.category+(q?' · CG-REC实验推荐':'');
+   name.append(title,categoryEl);
+   const count=document.createElement('span');count.className='pai-count-slot';
+   const n=available(sc.id);
+   count.textContent=n?n+' 条可体验':'教学待交付';
+   btn.disabled=!n;btn.append(no,name,count);
+   btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+  }
  }
- $('more').hidden=!!q||sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
+ $('more').hidden=!!q||!catalogVisible||sorted.length<=visible;
+ set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
 }
 let exampleToWordPending=false;
 function openStudy(id,resume=false){
@@ -471,7 +482,25 @@ function moveBatch(delta){
 }
 function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
-$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;void updateSceneRecommendations()});
+$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;catalogVisible=false;void updateSceneRecommendations()});
+$('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
+$('browse').addEventListener('click',()=>{
+ filter='';$('search').value='';category='全部';catalogVisible=true;visible=35;
+ recRequest++;recRows=null;recPending=false;renderCategories();renderHome();
+ $('categories').hidden=false;
+});
+$('preview-settings-button').addEventListener('click',()=>{
+ const node=$('settings-panel');node.open=!node.open;if(node.open)node.scrollIntoView({block:'nearest',behavior:'smooth'});
+});
+$('preview-stats-button').addEventListener('click',()=>{
+ const node=$('stats-panel');node.open=!node.open;
+ set('preview-stats-content','Scene1341 目录：'+catalog.length+
+   ' 场景；QA暂通过教学词卡：'+items.length+
+   ' 条；本次体验评分：不知道 '+transientRatings.again+
+   ' / 模糊 '+transientRatings.hard+' / 知道 '+transientRatings.good+
+   '（仅内存，未写入正式SRS）');
+ if(node.open)node.scrollIntoView({block:'nearest',behavior:'smooth'});
+});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 // Match native Scene500 single delegated blank-click handler on the whole study screen.
 $('learning').addEventListener('click',e=>{
