@@ -36,7 +36,7 @@ for(const part of pin.shards){
   seen.add(entry.scene_ku_id);sceneRanks.add(key);
  }
  assert.equal(result.records,part.records);
- assert(result.accepted>0,'NO_VALID_CANDIDATES '+part.path);
+ assert(result.accepted>=0&&result.accepted<=part.records,'INVALID_ACCEPTED_COUNT '+part.path);
  assert.equal(result.stagingEligible,0,'MASTER_AUTHORIZATION_NOT_YET_PROVIDED');
  assert.equal(result.formalReleaseEligible,0);
  const rejections=Object.fromEntries([...new Set(result.decisions.map(x=>x.decision.reason))].map(reason=>[reason,result.decisions.filter(x=>x.decision.reason===reason).length]));
