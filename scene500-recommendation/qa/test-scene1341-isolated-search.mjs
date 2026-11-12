@@ -107,9 +107,9 @@ for(const [q,id] of queries){const got=index.search(q);assert.equal(got[0]?.scen
 // Unicode NFKC and whitespace metamorphic invariants: ordinary mobile keyboard
 // spacing / line wrap must not alter ranked results or source-certification flags.
 const whitespaceCases=[
- {canonical:'wake up',variants:['wake   up','wake\\tup','wake\\nup','  WAKE    UP  ','ｗａｋｅ　ｕｐ']},
- {canonical:'not hotel check in, but taxi',variants:['not  hotel check in, but taxi','not hotel\\tcheck in, but taxi','NOT HOTEL check in, but taxi']},
- {canonical:'早上 wake up 之后洗漱',variants:['早上   wake up 之后洗漱','早上\\twake up\\n之后洗漱']},
+ {canonical:'wake up',variants:['wake   up','wake\tup','wake\nup','  WAKE    UP  ','ｗａｋｅ　ｕｐ']},
+ {canonical:'not hotel check in, but taxi',variants:['not  hotel check in, but taxi','not hotel\tcheck in, but taxi','NOT HOTEL check in, but taxi']},
+ {canonical:'早上 wake up 之后洗漱',variants:['早上   wake up 之后洗漱','早上\twake up\n之后洗漱']},
  {canonical:'SC50-0001',variants:['  SC50-0001  ','ＳＣ５０－０００１']}
 ];
 let whitespaceComparisons=0;
