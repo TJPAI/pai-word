@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import {createHash} from 'node:crypto';
 import {inspectScene1341ProvisionalShard,inspectScene1341ProvisionalRecord} from '../../rebuild-preview/scene1341-provisional-intake.mjs';
 import {createScene1341QuarantineRegistry,createScene1341SrsStorageBoundary} from '../../rebuild-preview/scene1341-isolated-registry-srs.mjs';
+import {createScene1341ReadOnlyDisplayProjection} from '../../rebuild-preview/scene1341-native-display-projection.mjs';
 const pin=JSON.parse(fs.readFileSync('tools/integration/scene1341-provisional-intake-pin-20261112.v2.json','utf8'));
 assert.equal(pin.qa_manifest.records,1778);
 assert.equal(pin.v1_status,'SUPERSEDED_DO_NOT_CONSUME');
@@ -76,9 +77,21 @@ assert.equal(registry.item('SC1341-KU-00297')?.acceptedForQuarantine,true,'PRIMA
 assert.equal(srsBoundary.canWriteSrs,false);
 assert.equal(srsBoundary.canRestoreForLearning,false);
 assert.equal(srsBoundary.inspect().present,false);
+const displayProjection=createScene1341ReadOnlyDisplayProjection(sourceRecords);
+assert.equal(displayProjection.count,1778,'ALL_REAL_1778_DISPLAY_UNITS');
+assert.equal(displayProjection.units.filter(u=>u.s.playable===false).length,1778,'EVERY_UNIT_NON_PLAYABLE');
+assert.equal(displayProjection.units.filter(u=>u.canWriteSrs===false).length,1778,'EVERY_UNIT_NON_WRITABLE');
+assert.equal(displayProjection.units.filter(u=>u.readOnly===true).length,1778,'EVERY_UNIT_READ_ONLY');
+assert.deepEqual(displayProjection.nativePlayableUnits,[],'NO_NATIVE_STUDY_QUEUE');
+assert.equal(displayProjection.canCreateStudyQueue,false);
+assert.equal(displayProjection.canWriteSrs,false);
+assert.equal(displayProjection.units.find(u=>u.k==='SC1341-KU-00001')?.w.w,'wake up');
+assert.equal(displayProjection.units.some(u=>u.k==='SC1341-KU-00365'),false);
+assert.equal(displayProjection.units.some(u=>u.k==='SC1341-KU-00297'),true);
+
 
 const report={status:'PASS',schema:pin.schema,qaSource:pin.qa_manifest.commit,
   cgQaPassCandidates:seen.size,structurallyAccepted:results.reduce((n,x)=>n+x.structurallyAccepted,0),masterAuthorizationVerified:0,
   stagedPlayable:0,formalReleased:0,museHistory:{historicalPassNotFinalCertification:historicalMusePass,deferredUntil20261113:museDeferred},
-  dataSourceGitBlobValidated:true,isolatedRegistry:{records:registry.records,quarantined:registry.quarantined,scenes:registry.scenes,nativeUnits:0,canWriteSrs:false,namespace:registry.namespace,storageKey:srsBoundary.key},shards:results};
+  dataSourceGitBlobValidated:true,isolatedRegistry:{records:registry.records,quarantined:registry.quarantined,scenes:registry.scenes,nativeUnits:0,canWriteSrs:false,namespace:registry.namespace,storageKey:srsBoundary.key,readOnlyNativeAnswerUnits:displayProjection.count},shards:results};
 console.log(JSON.stringify(report,null,2));
