@@ -1,0 +1,138 @@
+{
+  "status": "CATALOG_INFORMED_PROVISIONAL_DIAGNOSTIC",
+  "method": "non-blind hand-authored queries from known titles and selected everyday paraphrases; no independent relevance adjudication; one expected scene per case",
+  "cases": [
+    {
+      "id": "S001",
+      "query": "起床与晨间准备",
+      "expected": "SC50-0001",
+      "group": "exact_title"
+    },
+    {
+      "id": "S002",
+      "query": "洗漱与个人清洁",
+      "expected": "SC50-0002",
+      "group": "exact_title"
+    },
+    {
+      "id": "S003",
+      "query": "穿衣与搭配",
+      "expected": "SC50-0003",
+      "group": "exact_title"
+    },
+    {
+      "id": "S004",
+      "query": "整理房间",
+      "expected": "SC50-0004",
+      "group": "exact_title"
+    },
+    {
+      "id": "S005",
+      "query": "做家务",
+      "expected": "SC50-0005",
+      "group": "exact_title"
+    },
+    {
+      "id": "S006",
+      "query": "洗衣与晾晒",
+      "expected": "SC50-0006",
+      "group": "exact_title"
+    },
+    {
+      "id": "S007",
+      "query": "看电视与流媒体",
+      "expected": "SC50-0011",
+      "group": "exact_title"
+    },
+    {
+      "id": "S008",
+      "query": "照顾宠物",
+      "expected": "SC50-0014",
+      "group": "exact_title"
+    },
+    {
+      "id": "S009",
+      "query": "咖啡馆",
+      "expected": "SC50-0023",
+      "group": "exact_title"
+    },
+    {
+      "id": "S010",
+      "query": "点餐",
+      "expected": "SC50-0028",
+      "group": "exact_title"
+    },
+    {
+      "id": "S011",
+      "query": "食品储存与食用安全",
+      "expected": "SC50-0042",
+      "group": "exact_title"
+    },
+    {
+      "id": "S012",
+      "query": "外卖下单",
+      "expected": "SC50-0036",
+      "group": "exact_title"
+    },
+    {
+      "id": "P001",
+      "query": "早上起来要洗脸刷牙",
+      "expected": "SC50-0002",
+      "group": "zh_paraphrase"
+    },
+    {
+      "id": "P002",
+      "query": "想把卧室收拾整齐",
+      "expected": "SC50-0004",
+      "group": "zh_paraphrase"
+    },
+    {
+      "id": "P003",
+      "query": "睡前刷牙准备休息",
+      "expected": "SC50-0022",
+      "group": "zh_paraphrase"
+    },
+    {
+      "id": "P004",
+      "query": "我想喝杯拿铁咖啡",
+      "expected": "SC50-0023",
+      "group": "zh_paraphrase"
+    },
+    {
+      "id": "P005",
+      "query": "刚下单的外卖什么时候送达",
+      "expected": "SC50-0037",
+      "group": "zh_paraphrase"
+    },
+    {
+      "id": "P006",
+      "query": "食物会不会过期",
+      "expected": "SC50-0042",
+      "group": "zh_paraphrase"
+    },
+    {
+      "id": "M001",
+      "query": "wake up 早上准备出门",
+      "expected": "SC50-0001",
+      "group": "mixed"
+    },
+    {
+      "id": "M002",
+      "query": "coffee 点一杯拿铁",
+      "expected": "SC50-0023",
+      "group": "mixed"
+    },
+    {
+      "id": "M003",
+      "query": "laundry 洗衣晾衣服",
+      "expected": "SC50-0006",
+      "group": "mixed"
+    },
+    {
+      "id": "M004",
+      "query": "takeaway 外卖送到哪儿了",
+      "expected": "SC50-0037",
+      "group": "mixed"
+    }
+  ]
+}
