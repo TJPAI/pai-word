@@ -1,0 +1,481 @@
+{
+  "schema": "cg-enteach-v51-p0-author-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_SOURCE",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "counts": {
+    "records": 10,
+    "master_review_required": 5
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01651",
+      "scene_id": "SC50-0009",
+      "source_rank": 11,
+      "source_sense_id": "SC-SENSE-01651",
+      "expression": "dishwasher tablet",
+      "source_sense_zh": "洗碗机清洁片",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "original_answer": {
+        "meaning_zh": "洗碗机清洁片",
+        "example_en": "Put a dishwasher tablet in the dispenser as instructed.",
+        "example_zh": "按说明把洗碗机洗涤块放进投放格。",
+        "collocations": [
+          "dishwasher tablet",
+          "use a dishwasher tablet"
+        ],
+        "usage_note": "dishwasher tablet是机用洗涤块，不是手洗餐具用洗洁精。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗碗机专用洗涤块；洗涤片",
+        "example_en": "Put a dishwasher tablet in the dispenser as instructed.",
+        "example_zh": "按说明把洗碗机洗涤块放进投放格。",
+        "collocations": [
+          "dishwasher tablet",
+          "use a dishwasher tablet"
+        ],
+        "usage_note": "dishwasher tablet通常是用于清洗餐具的洗碗机洗涤块，不等同于清洗洗碗机机体的专用清洁片。"
+      },
+      "revised_display": {
+        "w": "dishwasher tablet",
+        "m": "洗碗机专用洗涤块；洗涤片",
+        "c": "dishwasher tablet · use a dishwasher tablet",
+        "e": "Put a dishwasher tablet in the dispenser as instructed.",
+        "x": "dishwasher tablet通常是用于清洗餐具的洗碗机洗涤块，不等同于清洗洗碗机机体的专用清洁片。",
+        "example_zh": "按说明把洗碗机洗涤块放进投放格。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01664",
+      "scene_id": "SC50-0009",
+      "source_rank": 24,
+      "source_sense_id": "SC-SENSE-01664",
+      "expression": "dishwasher residue",
+      "source_sense_zh": "洗碗机洗剂残留",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "original_answer": {
+        "meaning_zh": "洗碗机洗剂残留",
+        "example_en": "White dishwasher residue was left on some glasses.",
+        "example_zh": "一些玻璃杯上留有白色洗涤残留物。",
+        "collocations": [
+          "dishwasher residue",
+          "remove dishwasher residue"
+        ],
+        "usage_note": "residue指清洗后残留的物质，成因可能不同。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗碗机洗后残留物",
+        "example_en": "There was a white residue on some glasses after the dishwasher cycle.",
+        "example_zh": "洗碗程序结束后，一些玻璃杯上有白色残留物。",
+        "collocations": [
+          "white residue on dishes",
+          "residue after a dishwasher cycle"
+        ],
+        "usage_note": "residue指洗后留下的残留物，可能与洗涤剂或硬水矿物质有关，不应未经证据断定来源。"
+      },
+      "revised_display": {
+        "w": "dishwasher residue",
+        "m": "洗碗机洗后残留物",
+        "c": "white residue on dishes · residue after a dishwasher cycle",
+        "e": "There was a white residue on some glasses after the dishwasher cycle.",
+        "x": "residue指洗后留下的残留物，可能与洗涤剂或硬水矿物质有关，不应未经证据断定来源。",
+        "example_zh": "洗碗程序结束后，一些玻璃杯上有白色残留物。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "example_en",
+        "example_zh",
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01737",
+      "scene_id": "SC50-0009",
+      "source_rank": 97,
+      "source_sense_id": "SC-SENSE-01737",
+      "expression": "lather up a sponge",
+      "source_sense_zh": "让海绵起泡",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_answer": {
+        "meaning_zh": "让海绵起泡",
+        "example_en": "Lather up a sponge with a little warm water.",
+        "example_zh": "用少量温水让海绵起泡。",
+        "collocations": [
+          "lather up a sponge",
+          "lather up with dish soap"
+        ],
+        "usage_note": "lather up指形成泡沫。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让海绵起泡",
+        "example_en": "Lather up the sponge with a little dish soap and warm water.",
+        "example_zh": "用少量洗洁精和温水把海绵搓出泡沫。",
+        "collocations": [
+          "lather up a sponge",
+          "lather up with dish soap"
+        ],
+        "usage_note": "lather up表示使肥皂或洗涤剂起泡；只有温水通常无法产生皂泡。"
+      },
+      "revised_display": {
+        "w": "lather up a sponge",
+        "m": "让海绵起泡",
+        "c": "lather up a sponge · lather up with dish soap",
+        "e": "Lather up the sponge with a little dish soap and warm water.",
+        "x": "lather up表示使肥皂或洗涤剂起泡；只有温水通常无法产生皂泡。",
+        "example_zh": "用少量洗洁精和温水把海绵搓出泡沫。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01809",
+      "scene_id": "SC50-0009",
+      "source_rank": 169,
+      "source_sense_id": "SC-SENSE-01809",
+      "expression": "water overflow",
+      "source_sense_zh": "水溢出来",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-143-192.v2.json",
+      "source_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f",
+      "original_answer": {
+        "meaning_zh": "水溢出来",
+        "example_en": "The water overflow damaged the cabinet below the sink.",
+        "example_zh": "溢出的水把水槽下方的柜子弄坏了。",
+        "collocations": [
+          "water overflow",
+          "prevent water overflow"
+        ],
+        "usage_note": "water overflow指水溢出所造成的情况。"
+      },
+      "revised_answer": {
+        "meaning_zh": "溢水；水溢出现象（名词）",
+        "example_en": "The water overflow damaged the cabinet below the sink.",
+        "example_zh": "溢出的水把水槽下方的柜子弄坏了。",
+        "collocations": [
+          "water overflow",
+          "prevent water overflow"
+        ],
+        "usage_note": "water overflow在此是名词性表达；表示水正在溢出来可说the water is overflowing。"
+      },
+      "revised_display": {
+        "w": "water overflow",
+        "m": "溢水；水溢出现象（名词）",
+        "c": "water overflow · prevent water overflow",
+        "e": "The water overflow damaged the cabinet below the sink.",
+        "x": "water overflow在此是名词性表达；表示水正在溢出来可说the water is overflowing。",
+        "example_zh": "溢出的水把水槽下方的柜子弄坏了。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01837",
+      "scene_id": "SC50-0009",
+      "source_rank": 197,
+      "source_sense_id": "SC-SENSE-01837",
+      "expression": "scrape food scraps into the bin",
+      "source_sense_zh": "把食物残渣刮进垃圾桶",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "original_answer": {
+        "meaning_zh": "把食物残渣刮进垃圾桶",
+        "example_en": "Scrape food scraps into the bin before washing the plates.",
+        "example_zh": "洗盘子前先把食物残渣刮进垃圾桶。",
+        "collocations": [
+          "scrape food scraps into the bin",
+          "scrape scraps off plates"
+        ],
+        "usage_note": "scrape表示用器具刮除；该表达是编辑候选，仍待独立审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把食物残渣刮进垃圾桶",
+        "example_en": "Scrape food scraps into the bin before washing the plates.",
+        "example_zh": "洗盘子前先把食物残渣刮进垃圾桶。",
+        "collocations": [
+          "scrape food scraps into the bin",
+          "scrape scraps off plates"
+        ],
+        "usage_note": "scrape表示用刀具或其他器具刮除；scrape food scraps into the bin是把残渣刮进垃圾桶。"
+      },
+      "revised_display": {
+        "w": "scrape food scraps into the bin",
+        "m": "把食物残渣刮进垃圾桶",
+        "c": "scrape food scraps into the bin · scrape scraps off plates",
+        "e": "Scrape food scraps into the bin before washing the plates.",
+        "x": "scrape表示用刀具或其他器具刮除；scrape food scraps into the bin是把残渣刮进垃圾桶。",
+        "example_zh": "洗盘子前先把食物残渣刮进垃圾桶。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01838",
+      "scene_id": "SC50-0009",
+      "source_rank": 198,
+      "source_sense_id": "SC-SENSE-01838",
+      "expression": "let the dishes air-dry",
+      "source_sense_zh": "让餐具自然晾干",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "original_answer": {
+        "meaning_zh": "让餐具自然晾干",
+        "example_en": "Let the dishes air-dry on the rack before putting them away.",
+        "example_zh": "餐具收起来之前放在架子上自然晾干。",
+        "collocations": [
+          "let the dishes air-dry",
+          "let plates air-dry"
+        ],
+        "usage_note": "air-dry表示在空气中自然晾干；源表达待独立审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让餐具自然晾干",
+        "example_en": "Let the dishes air-dry on the rack before putting them away.",
+        "example_zh": "餐具收起来之前放在架子上自然晾干。",
+        "collocations": [
+          "let the dishes air-dry",
+          "let plates air-dry"
+        ],
+        "usage_note": "air-dry表示在空气中自然晾干；let the dishes air-dry是让餐具自行晾干。"
+      },
+      "revised_display": {
+        "w": "let the dishes air-dry",
+        "m": "让餐具自然晾干",
+        "c": "let the dishes air-dry · let plates air-dry",
+        "e": "Let the dishes air-dry on the rack before putting them away.",
+        "x": "air-dry表示在空气中自然晾干；let the dishes air-dry是让餐具自行晾干。",
+        "example_zh": "餐具收起来之前放在架子上自然晾干。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01839",
+      "scene_id": "SC50-0009",
+      "source_rank": 199,
+      "source_sense_id": "SC-SENSE-01839",
+      "expression": "let the dishes soak",
+      "source_sense_zh": "让餐具浸泡一会儿",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "original_answer": {
+        "meaning_zh": "让餐具浸泡一会儿",
+        "example_en": "Let the dishes soak in warm water for a while.",
+        "example_zh": "让餐具在温水里浸泡一会儿。",
+        "collocations": [
+          "let the dishes soak",
+          "let dirty dishes soak"
+        ],
+        "usage_note": "soak指浸泡，编辑增补表达仍需独立验证。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让餐具浸泡一会儿",
+        "example_en": "Let the dishes soak in warm water for a while.",
+        "example_zh": "让餐具在温水里浸泡一会儿。",
+        "collocations": [
+          "let the dishes soak",
+          "let dirty dishes soak"
+        ],
+        "usage_note": "let the dishes soak指让餐具浸泡一段时间；soak可搭配in warm water。"
+      },
+      "revised_display": {
+        "w": "let the dishes soak",
+        "m": "让餐具浸泡一会儿",
+        "c": "let the dishes soak · let dirty dishes soak",
+        "e": "Let the dishes soak in warm water for a while.",
+        "x": "let the dishes soak指让餐具浸泡一段时间；soak可搭配in warm water。",
+        "example_zh": "让餐具在温水里浸泡一会儿。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01856",
+      "scene_id": "SC50-0010",
+      "source_rank": 17,
+      "source_sense_id": "SC-SENSE-01856",
+      "expression": "watch TV",
+      "source_sense_zh": "看电视",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "original_answer": {
+        "meaning_zh": "看电视",
+        "example_en": "We usually watch TV together after dinner.",
+        "example_zh": "我们通常晚饭后一起看电视。",
+        "collocations": [
+          "watch TV",
+          "watch TV in the evening"
+        ],
+        "usage_note": "watch TV是常见口语搭配；该源项为待审核增补。"
+      },
+      "revised_answer": {
+        "meaning_zh": "看电视",
+        "example_en": "We usually watch TV together after dinner.",
+        "example_zh": "我们通常晚饭后一起看电视。",
+        "collocations": [
+          "watch TV",
+          "watch TV in the evening"
+        ],
+        "usage_note": "watch TV是日常表达；这里的TV通常不加冠词the，而watch the television也可以。"
+      },
+      "revised_display": {
+        "w": "watch TV",
+        "m": "看电视",
+        "c": "watch TV · watch TV in the evening",
+        "e": "We usually watch TV together after dinner.",
+        "x": "watch TV是日常表达；这里的TV通常不加冠词the，而watch the television也可以。",
+        "example_zh": "我们通常晚饭后一起看电视。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01992",
+      "scene_id": "SC50-0010",
+      "source_rank": 153,
+      "source_sense_id": "SC-SENSE-01992",
+      "expression": "peace and quiet",
+      "source_sense_zh": "清静安宁",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_answer": {
+        "meaning_zh": "清静安宁",
+        "example_en": "I need some peace and quiet after work.",
+        "example_zh": "下班后我需要一点安宁清静。",
+        "collocations": [
+          "peace and quiet",
+          "enjoy peace and quiet"
+        ],
+        "usage_note": "peace and quiet是固定短语。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清静安宁",
+        "example_en": "I need some peace and quiet after work.",
+        "example_zh": "下班后我需要一点安宁清静。",
+        "collocations": [
+          "peace and quiet",
+          "enjoy peace and quiet"
+        ],
+        "usage_note": "peace and quiet是固定名词短语，表示安宁清静；与本场景另一条同表达KU重复，须经Master判断是否合并。"
+      },
+      "revised_display": {
+        "w": "peace and quiet",
+        "m": "清静安宁",
+        "c": "peace and quiet · enjoy peace and quiet",
+        "e": "I need some peace and quiet after work.",
+        "x": "peace and quiet是固定名词短语，表示安宁清静；与本场景另一条同表达KU重复，须经Master判断是否合并。",
+        "example_zh": "下班后我需要一点安宁清静。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02028",
+      "scene_id": "SC50-0010",
+      "source_rank": 189,
+      "source_sense_id": "SC-SENSE-02028",
+      "expression": "take a screen break",
+      "source_sense_zh": "让眼睛休息一下",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_answer": {
+        "meaning_zh": "让眼睛休息一下",
+        "example_en": "Take a screen break if your eyes feel tired.",
+        "example_zh": "眼睛累了就暂停看屏幕。",
+        "collocations": [
+          "take a screen break",
+          "take regular screen breaks"
+        ],
+        "usage_note": "screen break指暂时远离屏幕。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让眼睛休息一下",
+        "example_en": "Take a screen break if your eyes feel tired.",
+        "example_zh": "眼睛累了就暂停看屏幕。",
+        "collocations": [
+          "take a screen break",
+          "take regular screen breaks"
+        ],
+        "usage_note": "take a screen break指暂时停止看电子屏幕；与本场景另一条同表达KU重复，需Master决定唯一教学目标。"
+      },
+      "revised_display": {
+        "w": "take a screen break",
+        "m": "让眼睛休息一下",
+        "c": "take a screen break · take regular screen breaks",
+        "e": "Take a screen break if your eyes feel tired.",
+        "x": "take a screen break指暂时停止看电子屏幕；与本场景另一条同表达KU重复，需Master决定唯一教学目标。",
+        "example_zh": "眼睛累了就暂停看屏幕。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    }
+  ]
+}
