@@ -128,6 +128,10 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
    <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
+   <details class="answer-section" id="enlex-section" hidden>
+    <summary class="answer-label">英文 Core20K V2 词库参考（匹配词头，不代表场景词义认证）</summary>
+    <div class="root" id="enlex-details"></div>
+   </details>
   </div>
   <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
  </div>
@@ -146,7 +150,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
-let BATCH=10,selectedGrade=null;
+let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
@@ -416,6 +420,30 @@ function scheduleQuestionFit(){
  questionFitFrame=requestAnimationFrame(()=>{questionFitFrame=0;if(!$('learning').hidden)fitQuestionExpression()});
 }
 window.addEventListener('resize',scheduleQuestionFit);
+async function renderLexiconReference(card){
+ const seq=++lexiconSequence;
+ const node=$('enlex-section'),container=$('enlex-details');
+ node.hidden=true;
+ if(!revealed)return;
+ try{
+  if(!lexiconPromise)lexiconPromise=import('./scene1341-enlex-preview.mjs')
+    .then(m=>m.englishCore20KV2Preview)
+    .catch(err=>{lexiconPromise=null;throw err});
+  const source=await lexiconPromise;
+  const rows=await source.lookup(card.expression);
+  if(seq!==lexiconSequence||!revealed||
+     subset()[index]?.scene_ku_id!==card.scene_ku_id)return;
+  container.replaceChildren();
+  if(!rows.length)return;
+  node.open=false;node.hidden=false;
+  for(const row of rows){
+    const line=document.createElement('p');
+    line.textContent=(row.pos?row.pos+' · ':'')+row.gloss_zh+
+       (row.gloss_en?' ('+row.gloss_en+')':'');
+    container.appendChild(line);
+  }
+ }catch(error){window.PAI_SCENE1341_ENLEX_PREVIEW_ERROR=String(error)}
+}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const prefs=readOnlyPrefs.snapshot();
@@ -438,6 +466,7 @@ function renderCard(){
  $('examples-section').hidden=!prefs.showExamples;
  $('usage-section').hidden=teachingNotes.length===0;
  $('answer').hidden=!revealed;
+ void renderLexiconReference(r);
  for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
  set('demo-note',revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除');
  $('studybody').scrollTop=0;
