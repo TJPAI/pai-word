@@ -41,7 +41,7 @@ function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha}={}){
        if(bestId&&score>0)reasons.push('matched_source_sense:'+bestId);
      }
      // Avoid lexical evidence leakage from explicit negation into ranking.
-     if(negative.length){for(const t of negative)if(title.includes(t))score=Math.max(0,score-12);}
+     if(negative.size){for(const t of negative)if(title.includes(t))score=Math.max(0,score-12);}
      for(const h of activeHints){if(h.scene_id===id){score+=h.weight;reasons.push('EXPERIMENTAL_UNCERTIFIED_INTENT:'+h.id+':'+h.source_sense_id);}}
      if(score>0)ranked.push({scene_id:id,name:scene.name,score:Math.round(score*1000)/1000,has_ranked_data:scene.has_ranked_data,ranked_records:scene.record_count,cg_qa:'NOT_REVIEWED_FOR_THIS_INDEX',muse_qa:'DEFERRED_QUOTA_20261113',release_status:'BLOCKED_PENDING_CG_QA_AND_MUSE',muse_recheck_required:true,explanations:[...new Set(reasons)],provenance:{source_commit:sourceCommit,ranked_manifest_blob:manifestSha}});
    }
