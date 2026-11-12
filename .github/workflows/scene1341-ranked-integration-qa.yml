@@ -7,6 +7,9 @@ on:
       - 'tools/integration/scene1341-ranked/**'
       - 'tools/integration/validate-scene1341-ranked.py'
       - 'tools/integration/test-scene1341-ranked-browser.mjs'
+      - 'tools/integration/scene1341-provisional-intake-pin-20261112.v1.json'
+      - 'tools/integration/validate-scene1341-provisional-intake.mjs'
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
       - 'rebuild-preview/scene1341-ranked-**'
       - 'rebuild-preview/scene1341-ranked/**'
       - 'rebuild-preview/home-dashboard.js'
@@ -52,6 +55,8 @@ jobs:
           node-version: '22'
       - name: Verify 11 source Git blobs and 19371 ranked expressions
         run: python tools/integration/validate-scene1341-ranked.py
+      - name: Verify CG-QA 1779 answer candidates remain quarantined until Master approval
+        run: node tools/integration/validate-scene1341-provisional-intake.mjs
       - name: Validate Safari-safe isolated preview module
         run: |
           node --check rebuild-preview/scene1341-ranked-preview.mjs
