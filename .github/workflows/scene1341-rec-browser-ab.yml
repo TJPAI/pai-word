@@ -10,6 +10,10 @@ on:
       - 'rebuild-preview/scene1341-experimental-intent-aliases.mjs'
       - 'tools/integration/test-scene1341-rec-browser-ab.mjs'
       - '.github/workflows/scene1341-rec-browser-ab.yml'
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
+      - 'tools/integration/scene1341-provisional-intake-pin-20261112.v2.json'
+      - 'tools/integration/validate-scene1341-provisional-intake.mjs'
+      - 'tools/integration/test-scene1341-v2-intake-gate-regression.mjs'
   pull_request:
     paths:
       - 'rebuild-preview/scene1341-home-adapter.mjs'
@@ -18,6 +22,10 @@ on:
       - 'rebuild-preview/scene1341-experimental-intent-aliases.mjs'
       - 'tools/integration/test-scene1341-rec-browser-ab.mjs'
       - '.github/workflows/scene1341-rec-browser-ab.yml'
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
+      - 'tools/integration/scene1341-provisional-intake-pin-20261112.v2.json'
+      - 'tools/integration/validate-scene1341-provisional-intake.mjs'
+      - 'tools/integration/test-scene1341-v2-intake-gate-regression.mjs'
   workflow_dispatch:
 permissions:
   contents: read
