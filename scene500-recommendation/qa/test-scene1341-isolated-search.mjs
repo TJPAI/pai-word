@@ -73,7 +73,7 @@ assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not n
  const firstRank=rows[0].rank;
  assert.match(firstRank,/^[1-9][0-9]*$/,'original source should use canonical ranks');
  const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
- for(const invalid of ['0'+firstRank,firstRank+'.0','1e2','0x10','9007199254740993','+1','-1',' 1 ']){
+ for(const invalid of ['0'+firstRank,firstRank+'.0','1e2','0x10','9007199254740993','+1','-1',' 1 ','1_000','1.5','Infinity']){
    rows[0].rank=invalid;
    const shard=[columns.join(','),...rows.map(row=>columns.map(k=>quote(row[k])).join(','))].join(String.fromCharCode(10))+String.fromCharCode(10);
    const changed=[shard,...valid.slice(1)];
