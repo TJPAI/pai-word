@@ -74,5 +74,6 @@ console.log('CG_ENLEX_MATCH_SUMMARY '+JSON.stringify({
  totalSense:lexRows,qa:qaTotal,uniqueExpression:qaExpressions.size,
  exactMatched:out.exact_lemma_matches,outputBytes:Buffer.byteLength(text)}));
 console.log('CG_ENLEX_JSON_BEGIN');
-console.log(text);
+for(let i=0;i<text.length;i+=6000)
+ console.log('CG_ENLEX_CHUNK '+(i/6000)+':'+text.slice(i,i+6000));
 console.log('CG_ENLEX_JSON_END');
