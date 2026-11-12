@@ -1061,7 +1061,7 @@ assert(scene500Renderer.includes("if(document.hidden){\n   hiddenAt=Date.now();h
  'native Scene500 background visibility contract must remain source-backed');
 assert(phaseSource.includes('function suspend(){') &&
  phaseSource.includes("phase=wasRevealed?'answer-paused':'question'") &&
- phaseSource.includes('return Object.freeze({start,tap,choose,navigate,suspend,cancel,state})'),
+ phaseSource.includes('return Object.freeze({start,tap,choose,navigate,beginExample,exampleFinished,suspend,cancel,state})'),
  'read-only controller must expose suspend preserving revealed answer');
 assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
  script.includes("if(document.hidden){\n  autoBrowse.pause();") &&
