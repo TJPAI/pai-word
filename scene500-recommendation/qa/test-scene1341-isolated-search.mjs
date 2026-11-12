@@ -15,6 +15,21 @@ const mixed=['早上 wake up 之后洗漱','hotel 预订入住','我想找 nearb
 const diagnostic=mixed.map(query=>({query,top5:index.search(query).slice(0,5).map(x=>({scene_id:x.scene_id,score:x.score,has_ranked_data:x.has_ranked_data,explanations:x.explanations}))}));
 for(const d of diagnostic){assert.ok(d.top5.length<=5);assert.equal(new Set(d.top5.map(x=>x.scene_id)).size,d.top5.length);}
 const notDelivered=index.search('SC50-1341')[0];assert.equal(notDelivered.scene_id,'SC50-1341');assert.equal(notDelivered.has_ranked_data,false);assert.equal(notDelivered.ranked_records,0);
+// Experiments must be opt-in, source anchored and never mutate baseline results.
+const missed=[
+ {q:'刚下单的外卖什么时候送达',expected:'SC50-0037',anchor:'SC50-0037-0017'},
+ {q:'食物会不会过期',expected:'SC50-0042',anchor:'SC50-0042-0020'},
+ {q:'takeaway 外卖送到哪儿了',expected:'SC50-0037',anchor:'SC50-0037-0017'}
+];
+for(const c of missed){
+ const baseline=index.search(c.q,{limit:10});
+ const optin=index.search(c.q,{limit:10,experimentalIntentAliases:true});
+ assert.ok(optin.some(x=>x.scene_id===c.expected&&x.explanations.some(e=>e.includes('EXPERIMENTAL_UNCERTIFIED_INTENT')&&e.includes(c.anchor))),JSON.stringify(c));
+ assert.deepEqual(index.search(c.q,{limit:10}),baseline,'baseline must remain identical after experiments');
+ assert.equal(optin[0].release_status,'BLOCKED_PENDING_CG_QA_AND_MUSE');
+}
+const noLeak=index.search('我要买外卖，但还没下单',{experimentalIntentAliases:true});
+assert.ok(!noLeak.some(x=>x.explanations.some(e=>e.startsWith('EXPERIMENTAL_UNCERTIFIED_INTENT'))));
 assert.deepEqual(csv('one,two\na,"b,c"\n'),[{one:'a',two:'b,c'}]);
 assert.throws(()=>loadInputs(catalog,dir,{sourceCommit:'unversioned',manifestSha:blob}),/PINNED_SOURCE/);
 console.log(JSON.stringify({status:'PASS_ISOLATED_STRUCTURE_AND_SMOKE',gold_labels:'PROVISIONAL_NON_BLIND',source_commit:commit,manifest_blob:blob,scenes:index.sceneCount,ranked_scenes:index.rankedSceneCount,ranked_expressions:index.expressionCount,independent_certified:0,release_allowed:false,smoke_query_count:queries.length,mixed_diagnostic_count:diagnostic.length,diagnostic},null,2));
