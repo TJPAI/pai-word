@@ -40,5 +40,16 @@ for(const engine of ['title_only','scene1341_lexical_v01']){
  const latency=rows.map(x=>x.elapsedMs).sort((a,b)=>a-b);
  metrics[engine]={n,top1:average('top1'),recall5:average('hit5'),recall10:average('hit10'),mrr10:average('rr'),ndcg5:average('ndcg5'),empty:rows.filter(x=>x.empty).length,p50Ms:latency[Math.floor(n*.5)],p95Ms:latency[Math.ceil(n*.95)-1]};
 }
-const result={status:'SC1341_REAL_ENGINE_VS_TITLE_ONLY_PROVISIONAL_NOT_BLIND',sourceCommit,manifestBlob,sceneCount:index.sceneCount,rankedSceneCount:index.rankedSceneCount,expressionCount:index.expressionCount,candidateSourceSHA:process.env.CG_REC_SHA||null,production_eligible:false,official_gold:false,caseCount:all.length,metrics,changes:all.filter(x=>x.tested.title_only.ids.join('|')!==x.tested.scene1341_lexical_v01.ids.join('|')).length,top1Regressions:all.filter(x=>x.tested.title_only.top1&&!x.tested.scene1341_lexical_v01.top1).map(x=>x.id),top5Regressions:all.filter(x=>x.tested.title_only.hit5&&!x.tested.scene1341_lexical_v01.hit5).map(x=>x.id),rows:all};
+const byGroup={};
+for(const group of [...new Set(all.map(x=>x.group))]){
+ const subset=all.filter(x=>x.group===group),n=subset.length;
+ byGroup[group]={n};
+ for(const engine of ['title_only','scene1341_lexical_v01']){
+  const xs=subset.map(x=>x.tested[engine]);
+  byGroup[group][engine]={top1:xs.filter(x=>x.top1).length,hit5:xs.filter(x=>x.hit5).length,empty:xs.filter(x=>x.empty).length,mrr10:xs.reduce((a,x)=>a+x.rr,0)/n,ndcg5:xs.reduce((a,x)=>a+x.ndcg5,0)/n};
+ }
+}
+const sourceIntegrity={catalogScenes:catalog.length,rankedScenes:index.rankedSceneCount,rankedExpressions:index.expressionCount,sourceCommitPinned:/^[a-f0-9]{40}$/.test(sourceCommit),manifestBlobPinned:/^[a-f0-9]{40}$/.test(manifestBlob),officialBlindGold:false};
+const fullRegressionCases=all.filter(x=>(x.tested.title_only.top1&&!x.tested.scene1341_lexical_v01.top1)||(x.tested.title_only.hit5&&!x.tested.scene1341_lexical_v01.hit5)).map(x=>({id:x.id,group:x.group,query:x.query,expected:x.expected,titleTop5:x.tested.title_only.ids.slice(0,5),lexicalTop5:x.tested.scene1341_lexical_v01.ids.slice(0,5)}));
+const result={status:'SC1341_REAL_ENGINE_VS_TITLE_ONLY_PROVISIONAL_NOT_BLIND',sourceCommit,manifestBlob,sceneCount:index.sceneCount,rankedSceneCount:index.rankedSceneCount,expressionCount:index.expressionCount,candidateSourceSHA:process.env.CG_REC_SHA||null,production_eligible:false,official_gold:false,caseCount:all.length,sourceIntegrity,byGroup,metrics,fullRegressionCases,changes:all.filter(x=>x.tested.title_only.ids.join('|')!==x.tested.scene1341_lexical_v01.ids.join('|')).length,top1Regressions:all.filter(x=>x.tested.title_only.top1&&!x.tested.scene1341_lexical_v01.top1).map(x=>x.id),top5Regressions:all.filter(x=>x.tested.title_only.hit5&&!x.tested.scene1341_lexical_v01.hit5).map(x=>x.id),rows:all};
 console.log(JSON.stringify(result,null,2));
