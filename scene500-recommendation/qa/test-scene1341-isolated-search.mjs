@@ -104,6 +104,25 @@ const queries=[
  ['洗衣与晾晒','SC50-0006']
 ];
 for(const [q,id] of queries){const got=index.search(q);assert.equal(got[0]?.scene_id,id,JSON.stringify({q,top:got.slice(0,3)}));assert.deepEqual(got,index.search(q));assert.ok(got.length<=10);assert.equal(got[0].release_status,'BLOCKED_PENDING_CG_QA_AND_MUSE');}
+// Unicode NFKC and whitespace metamorphic invariants: ordinary mobile keyboard
+// spacing / line wrap must not alter ranked results or source-certification flags.
+const whitespaceCases=[
+ {canonical:'wake up',variants:['wake   up','wake\\tup','wake\\nup','  WAKE    UP  ','ｗａｋｅ　ｕｐ']},
+ {canonical:'not hotel check in, but taxi',variants:['not  hotel check in, but taxi','not hotel\\tcheck in, but taxi','NOT HOTEL check in, but taxi']},
+ {canonical:'早上 wake up 之后洗漱',variants:['早上   wake up 之后洗漱','早上\\twake up\\n之后洗漱']},
+ {canonical:'SC50-0001',variants:['  SC50-0001  ','ＳＣ５０－０００１']}
+];
+let whitespaceComparisons=0;
+for(const c of whitespaceCases){
+ for(const aliases of [false,true]){
+  const expected=index.search(c.canonical,{experimentalIntentAliases:aliases});
+  for(const v of c.variants){
+   const variant=v;
+   assert.deepEqual(index.search(variant,{experimentalIntentAliases:aliases}),expected,JSON.stringify({canonical:c.canonical,variant,aliases}));
+   whitespaceComparisons++;
+  }
+ }
+}
 const mixed=['早上 wake up 之后洗漱','hotel 预订入住','我想找 nearby coffee','机场 check in','地铁停运 take taxi','我不是搬家，只是整理卧室'];
 const diagnostic=mixed.map(query=>({query,top5:index.search(query).slice(0,5).map(x=>({scene_id:x.scene_id,score:x.score,has_ranked_data:x.has_ranked_data,explanations:x.explanations}))}));
 for(const d of diagnostic){assert.ok(d.top5.length<=5);assert.equal(new Set(d.top5.map(x=>x.scene_id)).size,d.top5.length);}
@@ -149,4 +168,4 @@ assert.ok(!noLeak.some(x=>x.explanations.some(e=>e.startsWith('EXPERIMENTAL_UNCE
 assert.deepEqual(csv('one,two\na,"b,c"\n'),[{one:'a',two:'b,c'}]);
 assert.throws(()=>loadInputs(catalog,dir,{sourceCommit:'unversioned',manifestSha:blob}),/PINNED_SOURCE/);
 const experimentalCaseComparisons=missed.map(c=>({query:c.q,provisional_target:c.expected,baseline_top10:index.search(c.q,{limit:10}).map(x=>x.scene_id),optin_top10:index.search(c.q,{limit:10,experimentalIntentAliases:true}).map(x=>x.scene_id),review_status:'UNADJUDICATED_EXPERIMENT_ONLY'}));
-console.log(JSON.stringify({experimentalCaseComparisons,status:'PASS_ISOLATED_STRUCTURE_AND_SMOKE',gold_labels:'PROVISIONAL_NON_BLIND',source_commit:commit,manifest_blob:blob,scenes:index.sceneCount,ranked_scenes:index.rankedSceneCount,ranked_expressions:index.expressionCount,independent_certified:0,release_allowed:false,smoke_query_count:queries.length,mixed_diagnostic_count:diagnostic.length,diagnostic},null,2));
+console.log(JSON.stringify({experimentalCaseComparisons,status:'PASS_ISOLATED_STRUCTURE_AND_SMOKE',gold_labels:'PROVISIONAL_NON_BLIND',source_commit:commit,manifest_blob:blob,scenes:index.sceneCount,ranked_scenes:index.rankedSceneCount,ranked_expressions:index.expressionCount,independent_certified:0,release_allowed:false,smoke_query_count:queries.length,whitespace_comparisons:whitespaceComparisons,mixed_diagnostic_count:diagnostic.length,diagnostic},null,2));
