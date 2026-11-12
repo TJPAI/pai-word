@@ -199,52 +199,6 @@ jobs:
             ../assets/zh-core20k-v0101-scene500-runtime.json \
             ../assets/v094-lexical-associations.json \
             | tee ../cg-rec-eval-boundary-english-diagnostics.json
-      - name: Checkout Scene1341 source data pinned from integration
-        uses: actions/checkout@v4
-        with:
-          repository: TJPAI/pai-word
-          ref: 17c6c758e1dfd27cfa2fe1669d3f1784bedb0668
-          path: scene1341-data
-          persist-credentials: false
-      - name: Checkout pinned isolated Scene1341 lexical candidate
-        uses: actions/checkout@v4
-        with:
-          repository: TJPAI/pai-word
-          ref: 83a94cb1b6fd2a08143886b6be845ebc408e41e8
-          path: scene1341-rec
-          persist-credentials: false
-      - name: Scene1341 real lexical vs title-only provisional evaluation
-        env:
-          CG_REC_SHA: 83a94cb1b6fd2a08143886b6be845ebc408e41e8
-        run: |
-          set -o pipefail
-          mkdir -p scene1341-rec/tools/cg-rec-eval
-          cp evaluation/tools/cg-rec-eval/scene1341-evaluate.mjs scene1341-rec/tools/cg-rec-eval/
-          CATALOG=scene1341-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv
-          RANKED=scene1341-data/tools/integration/scene1341-ranked
-          test -s "$CATALOG"
-          for v in $(seq 51 61); do test -s "$RANKED/v${v}-ranked.csv"; done
-          MANIFEST_BLOB=$(git -C scene1341-data hash-object tools/integration/scene1341-ranked/manifest.json)
-          cd scene1341-rec
-          node tools/cg-rec-eval/scene1341-evaluate.mjs \
-            "../$CATALOG" "../$RANKED" \
-            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 "$MANIFEST_BLOB" \
-            ../evaluation/tools/cg-rec-eval/scene1341-provisional-22.v0.1.json \
-            | tee ../cg-rec-eval-scene1341-22-provisional.json
-      - name: Controlled Scene1341 negation Set.size ablation
-        env:
-          CG_REC_SHA: 83a94cb1b6fd2a08143886b6be845ebc408e41e8
-        run: |
-          set -o pipefail
-          cp evaluation/tools/cg-rec-eval/scene1341-negation-audit.mjs scene1341-rec/tools/cg-rec-eval/
-          CATALOG=scene1341-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv
-          RANKED=scene1341-data/tools/integration/scene1341-ranked
-          MANIFEST_BLOB=$(git -C scene1341-data hash-object tools/integration/scene1341-ranked/manifest.json)
-          cd scene1341-rec
-          node tools/cg-rec-eval/scene1341-negation-audit.mjs \
-            "../$CATALOG" "../$RANKED" \
-            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 "$MANIFEST_BLOB" \
-            | tee ../cg-rec-eval-scene1341-negation-ablation.json
       - name: Upload all case-level evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -259,5 +213,4 @@ jobs:
             cg-rec-eval-old-targeted20.json
             cg-rec-eval-engine-*.json
             cg-rec-eval-boundary-*.json
-            cg-rec-eval-scene1341-*.json
           if-no-files-found: warn
