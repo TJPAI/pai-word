@@ -8,8 +8,8 @@ export function csv(data){const rows=[];let row=[],f='',quoted=false;data=String
 const tokens=s=>[...new Set([...english(s).filter(x=>x.length>1),...grams(s)])];
 // Delimit contrasted positive clauses before scanning negative spans; do not swallow 只是/而是 intentions.
 export function negatedSpans(query){
- const q=normalize(query).replace(/(只是|而是|但是|不过|\\bbut\\b|\\brather\\b)/giu,'，$1');
- const re=/(?:不是|不要|不想|而非|并非|\\bnot\\b|instead of)\\s*([\\p{Script=Han}a-z\\s]{1,18})/giu;
+ const q=normalize(query).replace(/(只是|而是|但是|不过|\bbut\b|\brather\b)/giu,'，$1');
+ const re=/(?:不是|不要|不想|而非|并非|\bnot\b|instead of)\s*([\p{Script=Han}a-z\s]{1,18})/giu;
  return [...q.matchAll(re)].map(m=>m[1].trim()).filter(Boolean);
 }
 
