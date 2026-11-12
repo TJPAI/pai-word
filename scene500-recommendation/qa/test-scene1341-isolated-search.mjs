@@ -14,6 +14,23 @@ for(const [q,id] of queries){const got=index.search(q);assert.equal(got[0]?.scen
 const mixed=['早上 wake up 之后洗漱','hotel 预订入住','我想找 nearby coffee','机场 check in','地铁停运 take taxi','我不是搬家，只是整理卧室'];
 const diagnostic=mixed.map(query=>({query,top5:index.search(query).slice(0,5).map(x=>({scene_id:x.scene_id,score:x.score,has_ranked_data:x.has_ranked_data,explanations:x.explanations}))}));
 for(const d of diagnostic){assert.ok(d.top5.length<=5);assert.equal(new Set(d.top5.map(x=>x.scene_id)).size,d.top5.length);}
+// Regression: negated scene titles must be downweighted, not treated as positive intent.
+const negativeDiagnostics=[
+ '不是搬家，只是整理卧室',
+ '不是整理房间，只是洗衣与晾晒',
+ 'not hotel check in, instead of that I need a taxi'
+];
+for(const query of negativeDiagnostics){
+ const results=index.search(query,{limit:10});
+ assert.ok(results.length>0,JSON.stringify({query,results}));
+ assert.deepEqual(results,index.search(query,{limit:10}));
+ assert.equal(new Set(results.map(x=>x.scene_id)).size,results.length);
+}
+// A negative query referencing a delivered scene must never be treated as certification.
+for(const result of index.search('不是整理房间，只是洗衣与晾晒')){
+ assert.equal(result.release_status,'BLOCKED_PENDING_CG_QA_AND_MUSE');
+ assert.equal(result.muse_recheck_required,true);
+}
 const notDelivered=index.search('SC50-1341')[0];assert.equal(notDelivered.scene_id,'SC50-1341');assert.equal(notDelivered.has_ranked_data,false);assert.equal(notDelivered.ranked_records,0);
 // Experiments must be opt-in, source anchored and never mutate baseline results.
 const missed=[
