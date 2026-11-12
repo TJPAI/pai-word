@@ -32,6 +32,20 @@ evil.display.m=evil.answer.meaning_zh;
 const safeHtml=renderWithRealScene500AnswerHtml(projectScene1341AnswerOnlyUnit(evil));
 assert(safeHtml.includes('想&lt;注入&gt; &amp; 测试'));
 assert(!safeHtml.includes('想<注入>'));
+const featureOptions=[
+ {showExamples:true,showCollocations:true,showCompare:true},
+ {showExamples:false,showCollocations:true,showCompare:true},
+ {showExamples:true,showCollocations:false,showCompare:true},
+ {showExamples:true,showCollocations:true,showCompare:false}
+];
+for(const options of featureOptions){
+ const rendered=renderWithRealScene500AnswerHtml(unit,options);
+ assert(rendered.includes('class="answer density-'));
+ assert.equal(rendered.includes('scene1341-example-translation'),options.showExamples);
+ assert.equal(rendered.includes('data-example-audio'),options.showExamples);
+ assert.equal(rendered.includes('class="collocations"'),options.showCollocations);
+}
+
 
 assert.equal(unit.k,'SC1341-KU-00001');
 assert.equal(unit.w.w,'wake up');
