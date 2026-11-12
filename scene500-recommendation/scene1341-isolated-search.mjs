@@ -1,6 +1,7 @@
 // Scene1341 isolated bilingual lexical candidate ranker. Never a semantic certification or Runtime asset.
 import fs from 'node:fs';
 import path from 'node:path';
+import {hypotheses,matchIntentHypotheses} from './scene1341-experimental-intent-aliases.mjs';
 const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").trim();
 const english=s=>normalize(s).match(/[a-z]+(?:'[a-z]+)?|[0-9]+/g)||[];
 const han=s=>normalize(s).match(/[\p{Script=Han}]+/gu)||[];
@@ -15,12 +16,14 @@ function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha}={}){
  if(rankedCsvFiles.length!==11)throw Error('EXPECTED_11_RANKED_FILES');let total=0;const sourceSenseIds=new Set(),sceneRankIds=new Set();
  for(const blob of rankedCsvFiles){for(const r of csv(blob)){if(!scenes.has(r.scene_id))throw Error('UNKNOWN_SCENE '+r.scene_id);if(!r.expression?.trim()||!r.sense_zh?.trim()||!/^(?:SC-SENSE-\d+|SC50-\d{4}-\d{4})$/.test(r.sense_id))throw Error('BAD_RANKED_SOURCE');if(sourceSenseIds.has(r.sense_id))throw Error('DUPLICATE_SOURCE_SENSE');sourceSenseIds.add(r.sense_id);const rank=Number(r.rank),rk=r.scene_id+':'+r.rank;if(!Number.isInteger(rank)||rank<1||sceneRankIds.has(rk))throw Error('DUPLICATE_OR_BAD_RANK '+rk);sceneRankIds.add(rk);const scene=scenes.get(r.scene_id);if(normalize(scene.name)!==normalize(r.scene_name))throw Error('SCENE_NAME_MISMATCH '+r.scene_id);scene.record_count++;scene.has_ranked_data=true;if(!exprs.has(r.scene_id))exprs.set(r.scene_id,[]);exprs.get(r.scene_id).push({source_sense_id:r.sense_id,expression:r.expression,meaning:r.sense_zh,rank,tier:r.tier,terms:tokens(r.expression+' '+r.sense_zh)});total++;}}
  if(total!==19371||[...scenes.values()].filter(s=>s.has_ranked_data).length!==110)throw Error('RANKED_COUNTS_MISMATCH');
+ for(const h of hypotheses){const entry=exprs.get(h.scene_id)?.find(x=>x.source_sense_id===h.source_sense_id);if(!entry||entry.expression!==h.source_expression||entry.meaning!==h.source_meaning)throw Error('EXPERIMENTAL_ALIAS_ANCHOR_MISMATCH '+h.id);}
  const documentFrequency=new Map();for(const [sid,rows] of exprs){const ts=new Set();for(const row of rows)for(const t of row.terms)ts.add(t);for(const t of ts)documentFrequency.set(t,(documentFrequency.get(t)||0)+1);}
  const titleTerms=new Map([...scenes].map(([id,s])=>[id,tokens(s.name+' '+s.category)]));
- function search(query,{limit=10}={}){
+ function search(query,{limit=10,experimentalIntentAliases=false}={}){
    const q=normalize(query);if(!q)return [];const qt=tokens(q);if(!qt.length)return [];
    const negative=new Set();const negRe=/(?:不是|不要|不想|而非|并非|not|instead of)\s*([\p{Script=Han}a-z\s]{1,18})/giu;for(const m of q.matchAll(negRe))for(const t of tokens(m[1]))negative.add(t);
    const positive=qt.filter(t=>!negative.has(t));if(!positive.length)return [];
+   const activeHints=experimentalIntentAliases?matchIntentHypotheses(query):[];
    const ranked=[];
    for(const [id,scene] of scenes){
      let score=0;const reasons=[];const title=titleTerms.get(id),name=normalize(scene.name);
@@ -39,6 +42,7 @@ function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha}={}){
      }
      // Avoid lexical evidence leakage from explicit negation into ranking.
      if(negative.length){for(const t of negative)if(title.includes(t))score=Math.max(0,score-12);}
+     for(const h of activeHints){if(h.scene_id===id){score+=h.weight;reasons.push('EXPERIMENTAL_UNCERTIFIED_INTENT:'+h.id+':'+h.source_sense_id);}}
      if(score>0)ranked.push({scene_id:id,name:scene.name,score:Math.round(score*1000)/1000,has_ranked_data:scene.has_ranked_data,ranked_records:scene.record_count,cg_qa:'NOT_REVIEWED_FOR_THIS_INDEX',muse_qa:'DEFERRED_QUOTA_20261113',release_status:'BLOCKED_PENDING_CG_QA_AND_MUSE',muse_recheck_required:true,explanations:[...new Set(reasons)],provenance:{source_commit:sourceCommit,ranked_manifest_blob:manifestSha}});
    }
    return ranked.sort((a,b)=>b.score-a.score||a.scene_id.localeCompare(b.scene_id)).slice(0,Math.max(1,Math.min(10,Math.floor(limit)||10)));
