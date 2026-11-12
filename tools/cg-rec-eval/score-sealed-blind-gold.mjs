@@ -11,18 +11,28 @@ if(g.status!=='LOCKED_ADJUDICATED_GOLD'||g.officialGold!==true||g.cases?.length!
 if(p.status!=='PREDICTIONS_SEPARATED_FROM_UNADJUDICATED_QUERY_SET'||p.rows?.length!==24||
  p.queryCount!==24||p.labeledCount!==0)throw Error('PREDICTION_CONTRACT_INVALID');
 const expectedGroup={zh:8,en:8,mixed:8};
+const sceneIdValid=id=>typeof id==='string'&&/^SC50-\\d{4}$/.test(id)&&Number(id.slice(5))>=1&&Number(id.slice(5))<=1341;
+function validateReview(review,id,role){
+ if(!review||review.status!=='LOCKED'||typeof review.assessor_id!=='string'||!review.assessor_id.trim()||
+   !Array.isArray(review.scene_relevance)||typeof review.none_relevant!=='boolean'||
+   typeof review.rationale!=='string'||!review.rationale.trim())
+   throw Error('INDEPENDENT_REVIEW_INCOMPLETE '+id+' '+role);
+ const seen=new Set();
+ for(const item of review.scene_relevance){
+   if(!item||!sceneIdValid(item.scene_id)||!Number.isInteger(item.grade)||item.grade<0||item.grade>3||seen.has(item.scene_id))
+    throw Error('INVALID_REVIEW_LABEL '+id+' '+role);
+   seen.add(item.scene_id);
+ }
+ const positive=review.scene_relevance.some(x=>x.grade>=2);
+ if(review.none_relevant===positive)throw Error('REVIEW_NONE_RELEVANT_CONFLICT '+id+' '+role);
+}
 const usedIds=new Set(),data=[];
 for(const entry of g.cases){
  if(usedIds.has(entry.query_id))throw Error('DUPLICATE_GOLD_QUERY');
  usedIds.add(entry.query_id);
  const pred=p.rows.find(x=>x.id===entry.query_id);
  if(!pred||entry.query!==pred.query||entry.group!==pred.group)throw Error('QUERY_IDENTITY_MISMATCH '+entry.query_id);
- for(const role of ['annotator_A','annotator_B']){
-  const a=entry[role];
-  if(a?.status!=='LOCKED'||typeof a.assessor_id!=='string'||!a.assessor_id.trim()||
-  !Array.isArray(a.scene_relevance)||typeof a.none_relevant!=='boolean'||!a.rationale?.trim())
-  throw Error('INDEPENDENT_REVIEW_INCOMPLETE '+entry.query_id+' '+role);
- }
+ for(const role of ['annotator_A','annotator_B'])validateReview(entry[role],entry.query_id,role);
  if(entry.annotator_A.assessor_id===entry.annotator_B.assessor_id)throw Error('DUPLICATE_REVIEWERS '+entry.query_id);
  const a=entry.adjudication;
  if(a?.status!=='LOCKED'||typeof a.none_relevant!=='boolean'||!Array.isArray(a.scene_relevance)||
