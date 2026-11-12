@@ -164,6 +164,30 @@ jobs:
           if(neg.changed!==neg.rows.filter(x=>x.changed).length||neg.top1Changed!==neg.rows.filter(x=>x.top1Changed).length)throw Error('NEG14_AGGREGATE_MISMATCH');
           if(parity.differentTop1!==parity.rows.filter(x=>!x.top1Same).length||parity.matchedTop1!==parity.rows.filter(x=>x.top1Same).length)throw Error('PARITY27_AGGREGATE_MISMATCH');
           if(ab.official_gold!==false||parity.release_allowed!==false||ab.production_eligible!==false)throw Error('UNCERTIFIED_OUTPUT_MISLABELED');
+          const summary={
+            schema:'cg-rec-eval-scene1341-ci-evidence-v1',
+            status:'NONBLIND_PROVISIONAL_DIAGNOSTIC_NOT_CERTIFIED',
+            evaluationHead:process.env.GITHUB_SHA,
+            sourceCommit:ab.sourceCommit,
+            oldEngine:fixed.candidateOld,
+            negationFixedEngine:fixed.candidateFixed,
+            browserCore:coreParity.browserCoreHead,
+            cases:{lexicalTitle:22,negation:14,browserVersusEngine:27,nodeVersusBrowserCore:72},
+            oldVersusFixed:{
+              changedTop10:fixed.changed,changedTop1:fixed.top1Changed,
+              top5Regressions:fixed.top5Regressions,top5Gains:fixed.top5Gains,
+              historical:fixed.metrics.historical,fixed:fixed.metrics.fixed,
+              changedCases:fixed.rows.filter(x=>x.changed).map(x=>({id:x.id,query:x.query,expected:x.expected,before:x.before.top10.slice(0,5),after:x.after.top10.slice(0,5)}))
+            },
+            coreParity:{compared:coreParity.comparisons,identical:coreParity.identical,mismatched:coreParity.mismatched},
+            browserVersusEngine:{
+              count:parity.queryCount,matchedTop1:parity.matchedTop1,differentTop1:parity.differentTop1,
+              groups:parity.groups,
+              emptyBrowser:parity.rows.filter(x=>x.browserTop10.length===0).map(x=>({id:x.id,query:x.query,group:x.group,engineTop5:x.engineTop10.slice(0,5)}))
+            },
+            semanticGold:false,releaseAllowed:false
+          };
+          fs.writeFileSync('scene1341-eval-summary.json',JSON.stringify(summary,null,2)+'\\n');
           console.log(JSON.stringify({browserVsEngine:{n:parity.queryCount,top1Disagreements:parity.differentTop1},ab22:ab.metrics,groups:ab.byGroup,negation:{n:neg.queryCount,changed:neg.changed,top1Changed:neg.top1Changed},source:ab.sourceCommit,notCertified:true}));
           JS
       - name: Upload genuine case-level evidence
@@ -177,4 +201,5 @@ jobs:
             scene1341-browser-vs-engine-27.json
             scene1341-old-vs-fixed-36.json
             scene1341-browser-core-parity72.json
+            scene1341-eval-summary.json
           if-no-files-found: warn
