@@ -30,9 +30,21 @@ jobs:
           sparse-checkout: |
             tools/core20k_lexicon/qa
           persist-credentials: false
+      - name: Checkout pinned frozen English Core20K V2 for schema inspection
+        uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 9a740bd3ce898cff9da778ea0af8a1c4ea07c936
+          path: enlex-source
+          sparse-checkout: |
+            tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Inspect frozen English V2 Sense source without modifying it
+        run: |
+          node -e "const fs=require('fs');const p='enlex-source/tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_01.jsonl';const first=JSON.parse(fs.readFileSync(p,'utf8').split('\\n')[0]);console.log(JSON.stringify({source:'frozen-enlex-v2',keys:Object.keys(first),sample:first}).slice(0,4500))"
       - name: Validate exact Scene500 UI components and seven real QA shards
         env:
           SCENE1341_QA_SOURCE_DIR: qa-source
