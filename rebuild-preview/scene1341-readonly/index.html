@@ -440,7 +440,7 @@ $('example-speak').addEventListener('click',e=>{
  autoBrowse.pause();
  // Example audio owns the example phase, never a stale rated countdown.
  // Return to the paused answer once its utterance (or Safari watchdog) ends.
- const finishExample=()=>{if(phaseController.exampleFinished())autoBrowse.resume()};
+ const finishExample=()=>{phaseController.exampleFinished();autoBrowse.resumeAfterSpeech()};
  if(!playWord(subset()[index].answer.example_en,.9,finishExample))finishExample();
 });
 let start=null;
