@@ -7,6 +7,7 @@ on:
       - 'scene500-recommendation/scene1341-search-core.mjs'
       - 'scene500-recommendation/scene1341-experimental-intent-aliases.mjs'
       - 'scene500-recommendation/qa/test-scene1341-isolated-search.mjs'
+      - 'scene500-recommendation/qa/benchmark-scene1341-cache.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   workflow_dispatch:
 permissions:
@@ -23,6 +24,12 @@ jobs:
           repository: TJPAI/pai-word
           ref: 17c6c758e1dfd27cfa2fe1669d3f1784bedb0668
           path: source
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 6e66864e8fe494fb5d83c443a912b997d2b0d926
+          path: rec/baseline
           persist-credentials: false
       - uses: actions/setup-node@v4
         with:
@@ -41,7 +48,19 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-isolated-search-smoke.json
           node -e "const r=require('./scene1341-isolated-search-smoke.json');if(r.status!=='PASS_ISOLATED_STRUCTURE_AND_SMOKE'||r.release_allowed!==false||r.independent_certified!==0)process.exit(1);"
+      - name: Benchmark cached normalization against pinned uncached baseline
+        run: |
+          test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
+          node rec/scene500-recommendation/qa/benchmark-scene1341-cache.mjs \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            > scene1341-normalization-cache-ab.json
+          node -e "const r=require('./scene1341-normalization-cache-ab.json');if(r.status!=='PASS_SOURCE_PINNED_PARITY'||r.parityComparisons!==46||r.release_allowed!==false)process.exit(1);"
       - uses: actions/upload-artifact@v4
         with:
           name: cg-rec-scene1341-isolated-mixed-smoke
-          path: scene1341-isolated-search-smoke.json
+          path: |
+            scene1341-isolated-search-smoke.json
+            scene1341-normalization-cache-ab.json
