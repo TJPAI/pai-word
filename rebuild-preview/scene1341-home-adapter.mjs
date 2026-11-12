@@ -3,6 +3,7 @@
  * Editorial expressions are distinct from frozen Core20K teaching KU.
  */
 import {createRankedStore} from './scene1341-ranked-preview.mjs';
+import {buildCatalog} from './scene1341-search-core.mjs';
 
 const BASE=new URL('../tools/integration/scene1341-source/',import.meta.url);
 const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().trim().replace(/[，。！？、,.;:!?]/g,' ').replace(/\s+/g,' ');
@@ -28,7 +29,7 @@ export function parseSceneCatalogCsv(text){
   });
 }
 export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedStore()}={}){
-  let pending=null,catalog=null;
+  let pending=null,catalog=null,catalogCsv=null,recEngine=null,recPending=null;
   async function initialize(){
     if(catalog)return catalog;
     if(pending)return pending;
@@ -38,7 +39,8 @@ export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedS
         ranked.initialize()
       ]);
       if(!raw.ok)throw Error('SCENE1341_CATALOG_HTTP_'+raw.status);
-      const rows=parseSceneCatalogCsv(await raw.text());
+      const sourceCsv=await raw.text();
+      const rows=parseSceneCatalogCsv(sourceCsv);
       if(rows.length!==1341||index.scenes.length!==110)throw Error('SCENE1341_CATALOG_COUNT_INVALID');
       const delivered=new Map(index.scenes.map(x=>[x.scene_id,x]));
       const scenes=rows.map(r=>{
@@ -51,6 +53,7 @@ export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedS
           searchText:normalize([r.id,r.revised_name,r.category].join(' '))});
       });
       if(new Set(scenes.map(x=>x.id)).size!==1341)throw Error('SCENE1341_CATALOG_DUPLICATE');
+      catalogCsv=sourceCsv;
       catalog=Object.freeze({version:'SCENE1341-V51-V61-STAGING',scenes:Object.freeze(scenes)});
       return catalog;
     })();
@@ -115,6 +118,59 @@ export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedS
         release_status:'BLOCKED_PENDING_CG_QA_AND_MUSE',
         production_release_allowed:false}));
   }
+  // Opt-in A/B only: actual CG-REC browser-safe core on the same source-verified
+  // 1341 catalog and 11 ranked batches. Not a production router or KU release.
+  // Parsed source rows are losslessly re-encoded as CSV fields before ranking;
+  // the ranked loader has already checked each ORIGINAL byte stream's Git blob.
+  const csvEncode=value=>'"'+String(value??'').replace(/"/g,'""')+'"';
+  function rowsToCsv(rows){
+    if(!rows.length)throw Error('SCENE1341_REC_EMPTY_BATCH');
+    const fields=Object.keys(rows[0]);
+    return [fields.map(csvEncode).join(','),...rows.map(row=>fields.map(f=>csvEncode(row[f])).join(','))].join('\n')+'\n';
+  }
+  async function recCatalog(){
+    if(recEngine)return recEngine;
+    if(recPending)return recPending;
+    recPending=(async()=>{
+      await initialize();
+      const chunks=[];
+      for(let v=51;v<=61;v++)chunks.push(rowsToCsv(await ranked.batch(v)));
+      const engine=buildCatalog(catalogCsv,chunks,{
+        sourceCommit:'17c6c758e1dfd27cfa2fe1669d3f1784bedb0668',
+        manifestSha:'803d2fccfd2d1ec200723f7f38e73d57495a5dd0'
+      });
+      if(engine.sceneCount!==1341||engine.rankedSceneCount!==110||engine.expressionCount!==19371||
+         engine.production_eligible!==false||engine.release_allowed!==false)
+        throw Error('SCENE1341_REC_UNVERIFIED_ENGINE');
+      recEngine=engine;return engine;
+    })();
+    try{return await recPending;}finally{recPending=null;}
+  }
+  async function searchWithRecEngine(text,{limit=10}={}){
+    if(!Number.isInteger(limit)||limit<1||limit>10)throw Error('SCENE1341_REC_AB_LIMIT_INVALID');
+    const engine=await recCatalog(),{scenes}=await initialize();
+    const byId=new Map(scenes.map(s=>[s.id,s]));
+    return engine.search(text,{limit,experimentalIntentAliases:false}).map(result=>{
+      const scene=byId.get(result.scene_id);
+      if(!scene||result.release_status!=='BLOCKED_PENDING_CG_QA_AND_MUSE'||
+         result.cg_qa!=='NOT_REVIEWED_FOR_THIS_INDEX')throw Error('SCENE1341_REC_AB_GATE_INVALID');
+      return Object.freeze({...scene,score:result.score,explanations:result.explanations,
+        provenance:result.provenance,searchEvidence:'CG_REC_LEXICAL_UNCERTIFIED',
+        cg_qa:result.cg_qa,muse_qa:result.muse_qa,
+        release_status:result.release_status,production_release_allowed:false,
+        canCreateStudyQueue:false,canWriteSrs:false});
+    });
+  }
+  async function compareSearch(text,{limit=10}={}){
+    if(!Number.isInteger(limit)||limit<1||limit>10)throw Error('SCENE1341_REC_AB_LIMIT_INVALID');
+    const [current,candidate]=await Promise.all([search(text,{limit}),searchWithRecEngine(text,{limit})]);
+    const candidateIds=new Set(candidate.map(x=>x.id));
+    return Object.freeze({query:String(text),current,candidate,
+      top1Same:!!current.length&&!!candidate.length&&current[0].id===candidate[0].id,
+      overlap:current.filter(x=>candidateIds.has(x.id)).length,
+      source:'VERIFIED_V51_V61_19371',certified:false,releaseAllowed:false,
+      canCreateStudyQueue:false,canWriteSrs:false});
+  }
   async function getScene(id){
     const {scenes}=await initialize();
     return scenes.find(s=>s.id===id)||null;
@@ -126,7 +182,7 @@ export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedS
     const result=await ranked.scene(id);
     return {...result,scene};
   }
-  return Object.freeze({initialize,search,getScene,expressions,
+  return Object.freeze({initialize,search,searchWithRecEngine,compareSearch,getScene,expressions,
     releaseEligible:false,canCreateStudyQueue:false,canWriteSrs:false,
     get ready(){return !!catalog;}});
 }

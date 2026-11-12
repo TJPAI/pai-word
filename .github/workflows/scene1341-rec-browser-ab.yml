@@ -1,0 +1,39 @@
+name: Scene1341 CG-REC real browser-core isolated A/B
+on:
+  push:
+    branches:
+      - cg-main-scene1341-rec-browser-ab-20261112
+    paths:
+      - 'rebuild-preview/scene1341-home-adapter.mjs'
+      - 'rebuild-preview/scene1341-search-core.mjs'
+      - 'rebuild-preview/scene1341-experimental-intent-aliases.mjs'
+      - 'tools/integration/test-scene1341-rec-browser-ab.mjs'
+      - '.github/workflows/scene1341-rec-browser-ab.yml'
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-home-adapter.mjs'
+      - 'rebuild-preview/scene1341-search-core.mjs'
+      - 'rebuild-preview/scene1341-experimental-intent-aliases.mjs'
+      - 'tools/integration/test-scene1341-rec-browser-ab.mjs'
+      - '.github/workflows/scene1341-rec-browser-ab.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  real-browser-core-ab:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax verify actual CG-REC browser core and adapter
+        run: |
+          node --check rebuild-preview/scene1341-search-core.mjs
+          node --check rebuild-preview/scene1341-experimental-intent-aliases.mjs
+          node --check rebuild-preview/scene1341-home-adapter.mjs
+      - name: Confirm existing Scene1341 browser search unchanged
+        run: node tools/integration/test-scene1341-home-replacement.mjs
+      - name: Source-verified real CG-REC browser A/B with fail-closed learning flags
+        run: node tools/integration/test-scene1341-rec-browser-ab.mjs
