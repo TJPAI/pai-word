@@ -1,0 +1,63 @@
+import assert from 'node:assert/strict';
+import {createNativeScene500NavigationProbe as make} from './scene500-native-navigation-probe.mjs';
+const p=make({count:23,batchSize:10,initialIndex:9,face:'ANSWER'});
+assert.equal(p.cycleKeys().length,10,'Only current batch');
+assert.equal(p.cycleKeys()[0],p.units[0].k);
+assert.equal(await p.window.PAI_NAVIGATE_LEARNING(1,'swipe'),true);
+assert.equal(p.current(),p.units[0].k,'Swipe wraps within batch');
+assert.equal(p.face(),'ANSWER','Answer face remains visible');
+assert.equal(p.state.revealed,true);
+assert.equal(await p.window.PAI_NAVIGATE_LEARNING(-1,'swipe'),true);
+assert.equal(p.current(),p.units[9].k,'Swipe backwards wraps');
+assert.equal(p.face(),'ANSWER');
+assert.equal(await p.window.PAI_CHANGE_BATCH(1),true);
+assert.equal(p.current(),p.units[10].k,'Down swipe goes next batch');
+assert.equal(p.face(),'ANSWER');
+assert.equal(p.cycleKeys().length,10);
+assert.equal(await p.window.PAI_NAVIGATE_LEARNING(-1,'swipe'),true);
+assert.equal(p.current(),p.units[19].k,'New batch wraps independently');
+assert.equal(await p.window.PAI_CHANGE_BATCH(1),true);
+assert.equal(p.current(),p.units[20].k);
+assert.equal(p.cycleKeys().length,3,'Partial last batch');
+assert.equal(await p.window.PAI_NAVIGATE_LEARNING(-1,'swipe'),true);
+assert.equal(p.current(),p.units[22].k,'Last partial batch reverse wrap');
+assert.equal(await p.window.PAI_CHANGE_BATCH(1),true);
+assert.equal(p.current(),p.units[0].k,'Last batch -> first wrap');
+assert.equal(await p.window.PAI_CHANGE_BATCH(-1),true);
+assert.equal(p.current(),p.units[20].k,'First batch -> last wrap');
+assert.equal(p.face(),'ANSWER');
+const auto=make({count:11,initialIndex:9,face:'ANSWER'});
+assert.equal(await auto.window.PAI_NAVIGATE_LEARNING(1,'auto'),true);
+assert.equal(auto.current(),auto.units[0].k);
+assert.equal(auto.face(),'ANSWER');
+assert.equal(auto.saveCount(),0,'Auto browsing never calls persistence');
+const question=make({count:11,initialIndex:9,face:'QUESTION',phase:'question'});
+assert.equal(await question.window.PAI_NAVIGATE_LEARNING(1,'swipe'),true);
+assert.equal(question.face(),'QUESTION','Question face preserved');
+assert.equal(await question.window.PAI_CHANGE_BATCH(1),true);
+assert.equal(question.face(),'QUESTION');
+const blocked=make({count:11,face:'ANSWER',phase:'answer'});
+assert.equal(await blocked.window.PAI_NAVIGATE_LEARNING(1,'auto'),false,'Auto cannot commit rating');
+assert.equal(await blocked.window.PAI_NAVIGATE_LEARNING(1,'swipe'),false,'Swipe delegates early grade commit; never silently skips');
+assert(blocked.events.includes('commitEarly'));
+assert.equal(blocked.saveCount(),0);
+const hidden=make({count:11,face:'ANSWER'});
+hidden.setDocumentHidden(true);
+assert.equal(await hidden.window.PAI_NAVIGATE_LEARNING(1,'auto'),false);
+const storage=make({count:11,face:'ANSWER'});
+storage.setWriteDeferred(true);
+assert.equal(await storage.window.PAI_NAVIGATE_LEARNING(1,'swipe'),false);
+assert.equal(await storage.window.PAI_CHANGE_BATCH(1),false);
+const small=make({count:8,face:'ANSWER'});
+assert.equal(await small.window.PAI_CHANGE_BATCH(1),false,'Cannot switch nonexistent batch');
+for(const batchSize of [10,25,50]){
+ const check=make({count:batchSize+2,batchSize,initialIndex:batchSize-1,face:'ANSWER'});
+ assert.equal(await check.window.PAI_NAVIGATE_LEARNING(1,'auto'),true);
+ assert.equal(check.current(),check.units[0].k);
+ assert.equal(await check.window.PAI_CHANGE_BATCH(1),true);
+ assert.equal(check.current(),check.units[batchSize].k);
+}
+console.log(JSON.stringify({status:'PASS',code:'exact native Scene500 navigation source',
+  cases:['answer-face swipe both directions','auto wrap','partial batch','up/down batch wrapping',
+  'question-face persistence','rating guard','background guard','save guard','10/25/50 batch settings'],
+  newSrsWrites:0,scene1341LearningActivated:false}));
