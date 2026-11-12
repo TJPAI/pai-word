@@ -45,6 +45,11 @@ jobs:
       - name: Inspect frozen English V2 Sense source without modifying it
         run: |
           node -e "const fs=require('fs');const p='enlex-source/tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_01.jsonl';const first=JSON.parse(fs.readFileSync(p,'utf8').split('\\n')[0]);console.log(JSON.stringify({source:'frozen-enlex-v2',keys:Object.keys(first),sample:first}).slice(0,4500))"
+      - name: Generate source-exact English Core20K V2 lexical matching evidence
+        env:
+          SCENE1341_QA_SOURCE_DIR: qa-source
+          SCENE1341_ENLEX_SOURCE_DIR: enlex-source
+        run: node tools/integration/build-scene1341-enlex-v2-exact-preview.mjs
       - name: Validate exact Scene500 UI components and seven real QA shards
         env:
           SCENE1341_QA_SOURCE_DIR: qa-source
