@@ -1,0 +1,67 @@
+{
+  "schema": "scene1341-provisional-intake-pin-v1",
+  "mode": "isolated-staging-quarantine",
+  "not_public_release": true,
+  "not_production_srs": true,
+  "qa_manifest": {
+    "repo": "TJPAI/pai-word",
+    "commit": "328c7937ea5ef2da2f514ff802b00cb94208fd1f",
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_1779_MANIFEST_20261112.v1.json",
+    "blob": "73ced7c86435953479d59c7ed8671565f9a353ba",
+    "records": 1779
+  },
+  "shards": [
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD01_20261112.v1.json",
+      "blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+      "records": 275
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD02_20261112.v1.json",
+      "blob": "f6aa244a07504a5472f42fa6afa35e67088fbc0b",
+      "records": 271
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD03_20261112.v1.json",
+      "blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+      "records": 272
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD04_20261112.v1.json",
+      "blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+      "records": 246
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD05_20261112.v1.json",
+      "blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+      "records": 304
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD06_20261112.v1.json",
+      "blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+      "records": 265
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD07_20261112.v1.json",
+      "blob": "873f5639e619426d743cdeacf289bb50128e3272",
+      "records": 146
+    }
+  ],
+  "required_record_flags": {
+    "cg_qa": "PASS",
+    "muse_qa": [
+      "PASS",
+      "DEFERRED_QUOTA_20261113"
+    ],
+    "release_status": "PROVISIONAL_PENDING_MUSE",
+    "muse_recheck_required": "true if deferred; false if existing historic PASS",
+    "source_master_authorization_verified": false,
+    "production_release_allowed": false
+  },
+  "master_gate": "REQUIRES_ITEM_SPECIFIC_INDEPENDENT_MASTER_AUTHORIZATION",
+  "author_source_validation": "REQUIRES_PACK_BLOB_AND_KU_SENSE_SCENE_RANK_MATCH",
+  "display_validation": "REQUIRES_EXPLICIT_LEARNER_VISIBLE_QA",
+  "status": "QUARANTINED",
+  "release_approved": 0,
+  "existing_muse_pass_not_a_formal_release": true
+}
