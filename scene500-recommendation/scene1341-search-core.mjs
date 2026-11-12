@@ -1,6 +1,6 @@
 // Scene1341 isolated bilingual lexical candidate ranker. Never a semantic certification or Runtime asset.
 import {hypotheses,matchIntentHypotheses} from './scene1341-experimental-intent-aliases.mjs';
-const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").trim();
+const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/gu,' ').trim();
 const english=s=>normalize(s).match(/[a-z]+(?:'[a-z]+)?|[0-9]+/g)||[];
 const han=s=>normalize(s).match(/[\p{Script=Han}]+/gu)||[];
 function grams(s){const out=[];for(const run of han(s)){if(run.length===1)out.push(run);else for(let i=0;i<run.length-1;i++)out.push(run.slice(i,i+2));}return out;}
