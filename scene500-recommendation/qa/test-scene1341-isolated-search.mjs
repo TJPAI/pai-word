@@ -15,6 +15,19 @@ const browserCore=buildCatalog(fs.readFileSync(catalog,'utf8'),Array.from({lengt
 for(const q of ['醒来 wake up','不是搬家，只是整理卧室','酒店入住 hotel check in','食物会不会过期']){
  assert.deepEqual(browserCore.search(q),index.search(q),'browser-vs-Node core mismatch: '+q);
 }
+// Precomputed normalization must not change deterministic results over representative queries.
+const cacheParityQueries=[
+ '起床与晨间准备','洗漱与个人清洁','整理房间','wake up','洗衣与晾晒',
+ '早上 wake up 之后洗漱','hotel 预订入住','我想找 nearby coffee',
+ '机场 check in','地铁停运 take taxi','我不是搬家，只是整理卧室',
+ '不是搬家只是整理卧室','不是整理房间，而是洗衣与晾晒',
+ 'not hotel check in, but taxi','刚下单的外卖什么时候送达',
+ '食物会不会过期','takeaway 外卖送到哪儿了','SC50-1341'
+];
+for(const q of cacheParityQueries){
+ assert.deepEqual(index.search(q),browserCore.search(q), 'normalized cache parity: '+q);
+}
+assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not negation');
 assert.equal(index.sceneCount,1341);assert.equal(index.rankedSceneCount,110);assert.equal(index.expressionCount,19371);assert.equal(index.certifiedCount,0);assert.equal(index.release_allowed,false);
 const queries=[
  ['起床与晨间准备','SC50-0001'],
