@@ -415,13 +415,13 @@ function stopWordAudio(){
  if(wordAudioWatchdog!==null){clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null}
  if(window.speechSynthesis&&(window.speechSynthesis.speaking||window.speechSynthesis.pending))window.speechSynthesis.cancel();
 }
-function playWord(text,baseRate=.84){
+function playWord(text,baseRate=.84,onDone=null){
  if(!text||!('speechSynthesis'in window)||typeof SpeechSynthesisUtterance==='undefined'||document.hidden)return false;
  stopWordAudio();
  const utterance=buildReadOnlyUtterance(text,baseRate),generation=wordAudioGeneration;
  wordAudioActive=true;
  let finished=false;
- const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;wordAudioActive=false;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null};
+ const finish=()=>{if(finished||generation!==wordAudioGeneration)return;finished=true;wordAudioActive=false;clearTimeout(wordAudioWatchdog);wordAudioWatchdog=null;onDone?.()};
  utterance.onend=finish;utterance.onerror=finish;
  try{
   if(window.speechSynthesis.paused)window.speechSynthesis.resume();
@@ -434,7 +434,15 @@ function playWord(text,baseRate=.84){
  return true;
 }
 $('speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].expression)});
-$('example-speak').addEventListener('click',e=>{e.stopPropagation();playWord(subset()[index].answer.example_en,.9)});
+$('example-speak').addEventListener('click',e=>{
+ e.stopPropagation();
+ if(!phaseController.beginExample())return;
+ autoBrowse.pause();
+ // Example audio owns the example phase, never a stale rated countdown.
+ // Return to the paused answer once its utterance (or Safari watchdog) ends.
+ const finishExample=()=>{if(phaseController.exampleFinished())autoBrowse.resume()};
+ if(!playWord(subset()[index].answer.example_en,.9,finishExample))finishExample();
+});
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
  if(scratchDrawing()||e.target.closest('button,input,select,label,a,details,.recall-correction')||e.touches.length!==1)return;
