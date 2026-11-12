@@ -46,6 +46,16 @@ for(const poisoned of ['manifest.json','index.json']){
 }
 await assert.rejects(()=>adapter.compareSearch('wake up',{limit:11}),/SCENE1341_REC_AB_LIMIT_INVALID/);
 assert.deepEqual(await adapter.searchWithRecEngine(''),[]);
+// Regression: newly updated CG-REC negation core must be callable through
+// the real browser adapter, without promoting unreviewed ranked expressions.
+for(const query of ['不是搬家只是整理卧室','不想洗车而是买咖啡','not food delivery but order status']){
+  const output=await adapter.searchWithRecEngine(query,{limit:10});
+  assert(output.length<=10);
+  assert(output.every(item=>item.searchEvidence==='CG_REC_LEXICAL_UNCERTIFIED'));
+  assert(output.every(item=>item.production_release_allowed===false));
+  assert(output.every(item=>item.canCreateStudyQueue===false&&item.canWriteSrs===false));
+}
+
 assert((await adapter.search('oversleep')).length>0,'Existing browser default must remain usable');
 const homepage=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
 assert(homepage.includes("get('scene1341_rec')==='1'"),'Explicit opt-in flag required');
