@@ -40,6 +40,12 @@ jobs:
           ref: 2d143b98953a3010e72ae51059ea7557eeef1aec
           path: candidate-latest
           persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 111539d59691e4032da215580e533822fcbb6f41
+          path: candidate-browser
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -57,6 +63,7 @@ jobs:
           cp evaluation/tools/cg-rec-eval/scene1341-evaluate.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/scene1341-negation-audit.mjs candidate/tools/cg-rec-eval/
           cp evaluation/tools/cg-rec-eval/scene1341-old-vs-fixed.mjs candidate/tools/cg-rec-eval/
+          cp evaluation/tools/cg-rec-eval/scene1341-browser-core-parity.mjs candidate/tools/cg-rec-eval/
       - name: Execute true engine vs title-only A/B on 22 provisional cases
         env:
           CG_REC_SHA: 83a94cb1b6fd2a08143886b6be845ebc408e41e8
@@ -93,6 +100,19 @@ jobs:
             ../evaluation/tools/cg-rec-eval/scene1341-provisional-22.v0.1.json \
             ../scene1341-negation-ablation14.json \
             | tee ../scene1341-old-vs-fixed-36.json
+      - name: Verify fixed Node ranker equals upstream browser-safe core on 72 paired cases
+        run: |
+          set -euo pipefail
+          test "$(git -C candidate-browser rev-parse HEAD)" = "111539d59691e4032da215580e533822fcbb6f41"
+          cd candidate
+          node tools/cg-rec-eval/scene1341-browser-core-parity.mjs \
+            ../source-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            ../source-data/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            ../evaluation/tools/cg-rec-eval/scene1341-provisional-22.v0.1.json \
+            ../scene1341-negation-ablation14.json \
+            | tee ../scene1341-browser-core-parity72.json
       - name: Compare exact browser home search with actual CG-REC candidate
         run: |
           set -euo pipefail
@@ -114,6 +134,8 @@ jobs:
           const neg=JSON.parse(fs.readFileSync('scene1341-negation-ablation14.json','utf8'));
           const parity=JSON.parse(fs.readFileSync('scene1341-browser-vs-engine-27.json','utf8'));
           const fixed=JSON.parse(fs.readFileSync('scene1341-old-vs-fixed-36.json','utf8'));
+          const coreParity=JSON.parse(fs.readFileSync('scene1341-browser-core-parity72.json','utf8'));
+          if(coreParity.queries!==36||coreParity.comparisons!==72||coreParity.mismatched!==0||coreParity.identical!==72||coreParity.releaseAllowed!==false||coreParity.certified!==false)throw Error('BROWSER_CORE_PARITY_FAILED');
           if(fixed.queryCount!==36||fixed.sceneCount!==1341||fixed.expressionCount!==19371||fixed.officialGold!==false||fixed.releaseAllowed!==false||fixed.rows?.length!==36)throw Error('OLD_VS_FIXED_36_INVALID');
           if(fixed.changed!==fixed.rows.filter(x=>x.changed).length||fixed.top1Changed!==fixed.rows.filter(x=>x.top1Changed).length)throw Error('OLD_VS_FIXED_AGGREGATE_MISMATCH');
           if(ab.caseCount!==22||ab.sceneCount!==1341||ab.expressionCount!==19371||ab.official_gold!==false)throw Error('AB22_OUTPUT_MISMATCH');
@@ -154,4 +176,5 @@ jobs:
             scene1341-negation-ablation14.json
             scene1341-browser-vs-engine-27.json
             scene1341-old-vs-fixed-36.json
+            scene1341-browser-core-parity72.json
           if-no-files-found: warn
