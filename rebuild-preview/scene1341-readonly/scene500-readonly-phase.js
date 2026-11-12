@@ -11,7 +11,7 @@
    throw Error('SCENE500_READONLY_CALLBACK_REQUIRED');
   let phase='question',preferredFace='question',cardKey=null,selected=null,timer=null,repeatTimer=null,audioCancel=null,token=0;
   const valid=grade=>Object.prototype.hasOwnProperty.call(DEFAULT_SHOW_MS,grade);
-  const state=()=>Object.freeze({phase,preferredFace,cardKey,selected,revealed:phase==='answer'||phase==='answer-paused',pending:selected!==null||timer!==null||repeatTimer!==null});
+  const state=()=>Object.freeze({phase,preferredFace,cardKey,selected,revealed:phase==='answer'||phase==='answer-paused'||phase==='example',pending:selected!==null||timer!==null||repeatTimer!==null});
   function clearTimer(){token++;if(timer!==null){unschedule(timer);timer=null}if(repeatTimer!==null){unschedule(repeatTimer);repeatTimer=null}if(typeof audioCancel==='function'){audioCancel();audioCancel=null}}
   function finishPending(){if(selected!==null){const grade=selected;selected=null;onGradeComplete(grade,cardKey)}}
   function start(key){
@@ -68,7 +68,7 @@
   function suspend(){
    // Native Scene500 visibilitychange invalidates rated timers and keeps a
    // revealed answer paused, without committing or navigating in background.
-   const wasRevealed=phase==='answer'||phase==='answer-paused';
+   const wasRevealed=phase==='answer'||phase==='answer-paused'||phase==='example';
    clearTimer();selected=null;
    phase=wasRevealed?'answer-paused':'question';
    onUpdate(state());return state();
