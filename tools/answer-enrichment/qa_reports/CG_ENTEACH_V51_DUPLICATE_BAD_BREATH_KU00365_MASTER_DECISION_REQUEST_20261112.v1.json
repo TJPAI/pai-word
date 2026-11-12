@@ -1,0 +1,34 @@
+{
+  "schema": "cg-enteach-v51-author-duplicate-disposition-proposal-v1",
+  "date": "2026-11-12",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "relationship_to_219_manifest": "EXTRA_220TH_FINDING_NOT_PART_OF_ORIGINAL_219",
+  "qa_duplicate_evidence": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_DUPLICATE_BAD_BREATH_HOLD_20261112.v1.json",
+    "git_blob": "1594bc56470b08279c5659a021f8ddf04fe02596"
+  },
+  "scene_id": "SC50-0002",
+  "expression": "bad breath",
+  "primary": {
+    "scene_ku_id": "SC1341-KU-00297",
+    "source_sense_id": "SC-SENSE-00297",
+    "rank": 63,
+    "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+    "meaning_zh": "口臭"
+  },
+  "redundant": {
+    "scene_ku_id": "SC1341-KU-00365",
+    "source_sense_id": "SC-SENSE-00365",
+    "rank": 131,
+    "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+    "meaning_zh": "口气不佳"
+  },
+  "author_semantic_assessment": "Both English expressions represent the same common sense of halitosis/bad breath, with identical English example and collocations. Chinese phrasing difference alone does not support separate pedagogical objectives. Do not fabricate a second sense just to keep a duplicate learning unit.",
+  "author_recommendation": "SUPPRESS_REDUNDANT_KU_FROM_FUTURE_LEARNING_QUEUE_ONLY_IF_CG_MASTER_CONFIRMS_SAME_SENSE_AND_APPROVES; keep stable IDs and original Master unchanged; retain primary KU00297. If Master proves contextual semantic differentiation, request distinct example, collocations, gloss and renewed CG-QA review rather than silent merge.",
+  "master_approval_status": "PENDING_CG_MASTER_IDENTITY_AND_DUPLICATE_DECISION",
+  "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+  "muse_qa": "DEFERRED_QUOTA_20261113",
+  "activation_allowed": false,
+  "release_allowed": false,
+  "original_qa_v30_verdicts_immutable": true
+}
