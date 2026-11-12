@@ -98,7 +98,7 @@ jobs:
           if(parity.queryCount!==27||parity.data.scenes!==1341||parity.data.expressions!==19371||parity.release_allowed!==false)throw Error('BROWSER_PARITY_OUTPUT_MISMATCH');
           // Cross-check every recorded case, not only aggregate row counts.
           const unique=(xs)=>new Set(xs).size===xs.length;
-          const validScene=(id)=>/^SC50-\\d{4}$/.test(id)&&+id.slice(5)>=1&&+id.slice(5)<=1341;
+          const validScene=(id)=>/^SC50-\d{4}$/.test(id)&&+id.slice(5)>=1&&+id.slice(5)<=1341;
           const validTop=(ids)=>Array.isArray(ids)&&ids.length<=10&&unique(ids)&&ids.every(validScene);
           if(!Array.isArray(ab.rows)||ab.rows.length!==22||!unique(ab.rows.map(x=>x.id)))throw Error('AB22_ROWS_INVALID');
           if(!Array.isArray(neg.rows)||neg.rows.length!==14||!unique(neg.rows.map(x=>x.id)))throw Error('NEG14_ROWS_INVALID');
