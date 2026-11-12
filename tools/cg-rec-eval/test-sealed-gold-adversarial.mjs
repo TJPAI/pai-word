@@ -20,6 +20,7 @@ try{
  const run=()=>{fs.writeFileSync(g,JSON.stringify(gold));return spawnSync(process.execPath,[scorer,g,p],{encoding:'utf8'});};
  const control=run();
  if(control.status!==0||!control.stdout.includes('SEALED_ADJUDICATED_GOLD_ONLY'))throw Error('SYNTHETIC_CONTROL_FAILED '+control.stderr);
+ const pristine=structuredClone(gold);
  const tests=[
   ['duplicate_review_scene',()=>gold.cases[0].annotator_A.scene_relevance.push({scene_id:'SC50-0001',grade:3})],
   ['scene_out_of_range',()=>gold.cases[1].annotator_A.scene_relevance[0].scene_id='SC50-9999'],
@@ -30,6 +31,7 @@ try{
  ];
  const outcomes=[];
  for(const [id,mutate] of tests){
+  gold.cases=structuredClone(pristine.cases);
   mutate();const result=run();if(result.status===0)throw Error('INVALID_GOLD_ACCEPTED '+id);
   outcomes.push({id,rejected:true});
  }
