@@ -1,0 +1,174 @@
+{
+  "schema": "cg-enteach-v51-p1-sc0006-sc0008-canonical-neighbor-audit-v1",
+  "date": "2026-11-12",
+  "author_branch": "answer-enrichment-main-dev-20261026",
+  "authoritative_source_manifest": {
+    "path": "tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-2038.json",
+    "git_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118"
+  },
+  "method": "Read all 10 actual frozen V51 JSON source packs covering SC50-0006 (190 KUs) and SC50-0008 (188 KUs), compare candidate targets to contextually related neighboring teaching units; semantic distinctions are editorial assessments, not Master approvals.",
+  "scenes": [
+    {
+      "scene_id": "SC50-0006",
+      "record_count": 190,
+      "packs": [
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+          "blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+          "count": 37
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+          "blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+          "count": 50
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+          "blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+          "count": 50
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+          "blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+          "count": 50
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-188-190.v2.json",
+          "blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+          "count": 3
+        }
+      ],
+      "subject": {
+        "scene_ku_id": "SC1341-KU-01213",
+        "source_sense_id": "SC-SENSE-01213",
+        "source_rank": 168,
+        "expression": "spin failure",
+        "meaning_zh": "无法脱水的故障",
+        "original_example_en": "The washer reported a spin failure at the end of the cycle.",
+        "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a"
+      },
+      "related_distinct_kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01059",
+          "source_rank": 14,
+          "expression": "spin cycle",
+          "meaning_zh": "脱水程序",
+          "distinction": "This is a washing machine program, not its failure."
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01145",
+          "source_rank": 100,
+          "expression": "spin the clothes",
+          "meaning_zh": "对衣物脱水",
+          "distinction": "This is an action, not a diagnosed error."
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01210",
+          "source_rank": 165,
+          "expression": "drainage problem",
+          "meaning_zh": "排水故障",
+          "distinction": "Drainage failure is mechanically distinct from spin failure; problems may correlate but cannot be merged semantically."
+        }
+      ],
+      "editorial_finding": "No exact canonical spin-failure duplicate found among all 190 records. Distinct concept exists, but standalone phrase is technical; original example 'washer reported' should not imply every washer uses that error label.",
+      "recommended_master_options": [
+        {
+          "choice": "KEEP_TECHNICAL_WITH_PROVENANCE",
+          "target": "spin failure",
+          "meaning_zh": "甩干功能故障；脱水故障",
+          "example_en": "The technician diagnosed a spin failure in the washing machine.",
+          "example_zh": "维修人员诊断出这台洗衣机的甩干功能故障。",
+          "requirement": "Cite source or manufacturer/technical context; CG-QA independent naturalness review"
+        },
+        {
+          "choice": "APPROVE_NATURAL_EVERYDAY_TARGET",
+          "target": "the washer failed to spin",
+          "meaning_zh": "洗衣机没能甩干",
+          "example_en": "The washer failed to spin at the end of the cycle.",
+          "example_zh": "洗衣程序结束时，洗衣机没能甩干衣物。",
+          "requirement": "Master authorizes target replacement; check source Sense identity and rank"
+        }
+      ],
+      "master_authorization": "PENDING"
+    },
+    {
+      "scene_id": "SC50-0008",
+      "record_count": 188,
+      "packs": [
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-001-030.v2.json",
+          "blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+          "count": 30
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+          "blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+          "count": 50
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+          "blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+          "count": 50
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-131-180.v2.json",
+          "blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+          "count": 50
+        },
+        {
+          "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+          "blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+          "count": 8
+        }
+      ],
+      "subject": {
+        "scene_ku_id": "SC1341-KU-01637",
+        "source_sense_id": "SC-SENSE-01637",
+        "source_rank": 185,
+        "expression": "warm up a late dinner",
+        "meaning_zh": "给晚归的人热晚餐",
+        "original_example_en": "I'll warm up a late dinner for you when you get home.",
+        "source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1"
+      },
+      "related_potential_overlaps": [
+        {
+          "scene_ku_id": "SC1341-KU-01564",
+          "source_rank": 112,
+          "expression": "warm up food",
+          "meaning_zh": "把食物热一下",
+          "example_en": "Could you warm up food for the children?",
+          "overlap": "Same warm up + food action; dinner is a specific food meal."
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01565",
+          "source_rank": 113,
+          "expression": "reheat dinner",
+          "meaning_zh": "重新加热晚餐",
+          "example_en": "We need to reheat dinner because everyone got home late.",
+          "overlap": "Existing late-return dinner reheating context directly covers likely pedagogical intent of KU01637."
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01638",
+          "source_rank": 186,
+          "expression": "save someone a plate",
+          "meaning_zh": "给某人留一盘饭菜",
+          "example_en": "I saved you a plate of dinner in the fridge.",
+          "overlap": "Distinct action of reserving food, not reheating; must not merge."
+        }
+      ],
+      "editorial_finding": "There is no exact string duplicate, but a near-complete teaching-objective overlap with KU01564 and especially KU01565. Replacing KU01637 target with warm up dinner would still compete with existing KU01565 reheat dinner.",
+      "recommended_master_action": "Prefer to retain frozen KU01637 as identity HOLD; ask Master whether to suppress its separate learning objective after verifying stable source, or document a genuinely distinct pragmatic target and new example. Do not auto-replace it with warm up dinner or merge frozen identities.",
+      "master_authorization": "PENDING"
+    }
+  ],
+  "policy": {
+    "no_frozen_source_modification": true,
+    "no_automatic_semantic_release": true,
+    "master_approval_required": true,
+    "independent_qa_after_decision": true,
+    "muse_qa_deferred": "DEFERRED_QUOTA_20261113",
+    "runtime_srs_writes": 0,
+    "activation_allowed": false,
+    "release_allowed": false
+  }
+}
