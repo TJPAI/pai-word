@@ -1,0 +1,57 @@
+{
+  "schema": "cg-enteach-v51-p0-nonmaster-qa-delta-summary-v1",
+  "date": "2026-11-12",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "baseline_219_manifest": {
+    "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_ALL219_AUTHOR_CORRECTIONS_HANDOFF_20261112.v1.json",
+    "blob": "429fccd0ae33e78681770040222110bb13a661f1"
+  },
+  "independent_qa_evidence": [
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P0_AUTHOR_RECHECK_8_20261112.v1.json",
+      "blob": "60f83fa91a774db137c4a6f016d2c63324bc7c6f"
+    },
+    {
+      "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P0_REMAINING_NONMASTER_37_20261112.v1.json",
+      "blob": "786f28e4f1e8486e0d266a04b8b96dbc51ac2db3"
+    }
+  ],
+  "qa_totals_on_previous_patch": {
+    "reviewed": 45,
+    "pass": 38,
+    "conditional": 5,
+    "revise": 2
+  },
+  "new_author_repatches": [
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_QA_DIRECTED_REPATCH_2_20261112.v2.json",
+      "git_blob": "512ac77783635348b42b69375af5314acb7eb397",
+      "records": 2,
+      "ku_ids": [
+        "SC1341-KU-00318",
+        "SC1341-KU-00430"
+      ]
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_QA_DIRECTED_REPATCH_5_20261112.v3.json",
+      "git_blob": "2c2b626412239576683c45ea982060206270d055",
+      "records": 5,
+      "ku_ids": [
+        "SC1341-KU-00804",
+        "SC1341-KU-00929",
+        "SC1341-KU-01013",
+        "SC1341-KU-01014",
+        "SC1341-KU-01595"
+      ]
+    }
+  ],
+  "repatch_unique_ids": 7,
+  "master_approval_precaution_on_repatch": 2,
+  "still_original_p0_master_hold": 31,
+  "new_repatch_cg_qa_pass": 0,
+  "new_muse_pass": 0,
+  "dual_ai_certified": 0,
+  "activation_allowed": false,
+  "production_release_allowed": false,
+  "notes": "Seven second-pass edits are not certified; specifically KU00804 and KU00929 may affect source gloss, hence Master approval check. Original 219 audit unchanged. Require independent QA delta review of new exact Git blobs."
+}
