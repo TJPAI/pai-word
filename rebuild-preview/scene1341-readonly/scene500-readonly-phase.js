@@ -128,12 +128,13 @@
   function start(){clear();enabled=true;onState(true);next();void syncWake()}
   function pause(){clear();releaseWake()}
   function resume(){if(enabled){clear();next();void syncWake()}}
+  function resumeAfterSpeech(){if(enabled){clear();next(true);void syncWake()}}
   function restart(){if(enabled)start()}
   function setDelay(ms){
    const n=Number(ms);if(!Object.hasOwn(postSpeech,n))return false;
    tier=n;restart();return true
   }
-  return Object.freeze({start,stop,pause,resume,restart,setDelay,isEnabled:()=>enabled,getDelay:()=>tier});
+  return Object.freeze({start,stop,pause,resume,resumeAfterSpeech,restart,setDelay,isEnabled:()=>enabled,getDelay:()=>tier});
  }
  root.PAI_SCENE500_READONLY_PHASE=Object.freeze({createReadOnlyPhaseController,createReadOnlyAutoBrowse,DEFAULT_SHOW_MS});
 })(typeof window!=='undefined'?window:globalThis);
