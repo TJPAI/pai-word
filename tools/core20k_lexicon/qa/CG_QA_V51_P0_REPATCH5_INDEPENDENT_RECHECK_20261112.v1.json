@@ -1,0 +1,200 @@
+{
+  "schema": "cg-qa-v51-p0-5-repatch-independent-recheck-v1",
+  "date": "2026-11-12",
+  "role": "CG-QA",
+  "source_commit": "f92d164322c186a1c5cb262c5f166095956bc825",
+  "source_blob": "2c2b626412239576683c45ea982060206270d055",
+  "prior_qa_blob": "786f28e4f1e8486e0d266a04b8b96dbc51ac2db3",
+  "review_method": "Five independent case-level evaluations of meaning, English examples, Chinese translation and pedagogical notes",
+  "counts": {
+    "reviewed": 5,
+    "linguistic_pass": 5,
+    "master_hold": 2,
+    "muse_pass_new": 0,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "policy": "Retain V30 and previous QA verdicts as history. PASS_WITH_MASTER_HOLD is language quality support only. No Master/Runtime/SRS write.",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00804",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00804",
+      "source_rank": 192,
+      "expression": "breakable",
+      "original_source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "previous_author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "previous_cg_qa_result": "CONDITIONAL",
+      "revised_answer": {
+        "meaning_zh": "易碎的；容易破损的",
+        "example_en": "These decorations are breakable, so store them carefully.",
+        "example_zh": "这些装饰品容易破损，收纳时要小心。",
+        "collocations": [
+          "breakable items",
+          "breakable decorations"
+        ],
+        "usage_note": "breakable指容易破碎或损坏的物品，不限于摔落造成的损坏；fragile还可强调整体脆弱、需要小心轻放。"
+      },
+      "revised_display": {
+        "w": "breakable",
+        "m": "易碎的；容易破损的",
+        "c": "breakable items · breakable decorations",
+        "e": "These decorations are breakable, so store them carefully.",
+        "x": "breakable指容易破碎或损坏的物品，不限于摔落造成的损坏；fragile还可强调整体脆弱、需要小心轻放。",
+        "example_zh": "这些装饰品容易破损，收纳时要小心。"
+      },
+      "source_repatch_blob": "2c2b626412239576683c45ea982060206270d055",
+      "cg_qa_lexical_result": "PASS_WITH_MASTER_HOLD",
+      "cg_qa_reason": "中文扩大为易碎/易损符合breakable词义范围，例句及搭配自然；但作者明确新增Master释义审定依赖。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00929",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00929",
+      "source_rank": 107,
+      "expression": "smudged",
+      "original_source_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+      "previous_author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "previous_cg_qa_result": "CONDITIONAL",
+      "revised_answer": {
+        "meaning_zh": "被抹花的；有模糊污迹的",
+        "example_en": "The mirror looks smudged after someone touched it.",
+        "example_zh": "有人碰过镜子后，镜面留下了模糊的污迹。",
+        "collocations": [
+          "smudged mirror",
+          "smudged glass"
+        ],
+        "usage_note": "smudged指墨迹、化妆品、指印等被擦抹后形成模糊污痕；不同于scratched（被划伤的）。"
+      },
+      "revised_display": {
+        "w": "smudged",
+        "m": "被抹花的；有模糊污迹的",
+        "c": "smudged mirror · smudged glass",
+        "e": "The mirror looks smudged after someone touched it.",
+        "x": "smudged指墨迹、化妆品、指印等被擦抹后形成模糊污痕；不同于scratched（被划伤的）。",
+        "example_zh": "有人碰过镜子后，镜面留下了模糊的污迹。"
+      },
+      "source_repatch_blob": "2c2b626412239576683c45ea982060206270d055",
+      "cg_qa_lexical_result": "PASS_WITH_MASTER_HOLD",
+      "cg_qa_reason": "smudged指被抹开的模糊污痕，和scratched清楚区分；修改中文及例句自然。须Master核定gloss。",
+      "master_authorization_required": true,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01013",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01013",
+      "source_rank": 191,
+      "expression": "damaged surface",
+      "original_source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "previous_author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "previous_cg_qa_result": "REVISE",
+      "revised_answer": {
+        "meaning_zh": "受损的表面",
+        "example_en": "The damaged surface needs repair after the cleaner stripped the finish.",
+        "example_zh": "清洁剂剥掉表面涂层后，受损的表面需要修复。",
+        "collocations": [
+          "damaged surface",
+          "avoid damaging surfaces"
+        ],
+        "usage_note": "damaged surface强调已经受损的表面；strip the finish指剥掉表面涂层，与一般的污迹不同。"
+      },
+      "revised_display": {
+        "w": "damaged surface",
+        "m": "受损的表面",
+        "c": "damaged surface · avoid damaging surfaces",
+        "e": "The damaged surface needs repair after the cleaner stripped the finish.",
+        "x": "damaged surface强调已经受损的表面；strip the finish指剥掉表面涂层，与一般的污迹不同。",
+        "example_zh": "清洁剂剥掉表面涂层后，受损的表面需要修复。"
+      },
+      "source_repatch_blob": "2c2b626412239576683c45ea982060206270d055",
+      "cg_qa_lexical_result": "PASS",
+      "cg_qa_reason": "新句直接包含damaged surface且strip the finish逻辑自然，中文对应。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01014",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01014",
+      "source_rank": 192,
+      "expression": "scratched floor",
+      "original_source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "previous_author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "previous_cg_qa_result": "CONDITIONAL",
+      "revised_answer": {
+        "meaning_zh": "刮花的地板",
+        "example_en": "The scratched floor needs repair.",
+        "example_zh": "刮花的地板需要修复。",
+        "collocations": [
+          "scratched floor",
+          "repair a scratched floor"
+        ],
+        "usage_note": "scratched floor指有划痕的地板；dragging furniture may scratch the floor（拖动家具可能划伤地板）。"
+      },
+      "revised_display": {
+        "w": "scratched floor",
+        "m": "刮花的地板",
+        "c": "scratched floor · repair a scratched floor",
+        "e": "The scratched floor needs repair.",
+        "x": "scratched floor指有划痕的地板；dragging furniture may scratch the floor（拖动家具可能划伤地板）。",
+        "example_zh": "刮花的地板需要修复。"
+      },
+      "source_repatch_blob": "2c2b626412239576683c45ea982060206270d055",
+      "cg_qa_lexical_result": "PASS",
+      "cg_qa_reason": "新句直接覆盖scratched floor，例句及中文一致。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01595",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01595",
+      "source_rank": 143,
+      "expression": "starving",
+      "original_source_pack_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "previous_author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "previous_cg_qa_result": "CONDITIONAL",
+      "revised_answer": {
+        "meaning_zh": "饿极了",
+        "example_en": "I'm starving; can we eat now?",
+        "example_zh": "我快饿坏了，现在能吃饭吗？",
+        "collocations": [
+          "absolutely starving",
+          "be starving"
+        ],
+        "usage_note": "starving口语中可夸张表示非常饿；I'm starving是非常自然的表达，不应断言其他形式一律错误。"
+      },
+      "revised_display": {
+        "w": "starving",
+        "m": "饿极了",
+        "c": "absolutely starving · be starving",
+        "e": "I'm starving; can we eat now?",
+        "x": "starving口语中可夸张表示非常饿；I'm starving是非常自然的表达，不应断言其他形式一律错误。",
+        "example_zh": "我快饿坏了，现在能吃饭吗？"
+      },
+      "source_repatch_blob": "2c2b626412239576683c45ea982060206270d055",
+      "cg_qa_lexical_result": "PASS",
+      "cg_qa_reason": "删除绝对化feel starving禁用说法，保留I'm starving自然口语示例。",
+      "master_authorization_required": false,
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
