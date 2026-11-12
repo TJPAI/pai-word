@@ -47,12 +47,14 @@ const quoted=parseSceneCatalogCsv('id,revised_name,category,gate\nSC50-0001,"hel
 assert.equal(quoted[0].revised_name,'hello, "world"');
 
 const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
-assert(home.includes("get('scene1341')==='1'"));
+assert(home.includes('const scene1341Mode=true;'));
 assert(home.includes('PAI_SCENE1341_OPEN'));
 assert(home.includes('PAI_SCENE1341_BROWSE'));
 assert(home.includes('scene1341-home-adapter.mjs'));
-assert(home.includes('href="rebuild-preview/index.html?scene1341=1"'));
+assert(!home.includes('切换到 Scene1341 场景'));
 assert(home.includes("scene1341Mode?'PAI_SCENE1341_OPEN':'PAI_SCENE_SEARCH.open'"));
+assert(home.includes('const scene1341RecExperiment=true;'));
+assert(home.includes('api.searchWithRecEngine(q,{limit:10})'));
 assert(home.includes('Scene1341推荐表达与教学KU分层'));
 console.log(JSON.stringify({status:'PASS',catalog:1341,delivered:110,notDelivered:1231,firstSceneRows:234,
   mode:'SAME_HOME_SCENE_CARDS',SRS:false,learningKU:false}));
