@@ -27,7 +27,8 @@ const queries=[
  'not hotel check in, but taxi','刚下单的外卖什么时候送达',
  '食物会不会过期','takeaway 外卖送到哪儿了','SC50-1341',
  '想把卧室收拾整齐','我想喝杯拿铁咖啡','wake up 早上准备出门',
- '不是外卖只是查询订单状态','notebook and notes'
+ '不是外卖只是查询订单状态','notebook and notes',
+ '不是整理房间只是洗衣与晾晒','notebook not hotel but taxi','SC50-0001'
 ];
 for(const q of queries){for(const experimentalIntentAliases of [false,true]){
  const o=baseline.index.search(q,{experimentalIntentAliases});
