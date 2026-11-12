@@ -1,0 +1,618 @@
+{
+  "schema": "cg-enteach-v51-p0-author-patch-v1",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED",
+  "date": "2026-11-12",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "counts": {
+    "records": 13,
+    "master_review_required": 3
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01386",
+      "scene_id": "SC50-0007",
+      "source_rank": 151,
+      "source_sense_id": "SC-SENSE-01386",
+      "expression": "dry",
+      "original_source_sense_zh": "口感干的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "口感干的",
+        "example_en": "The chicken breast turned dry after too much cooking.",
+        "example_zh": "鸡胸肉煮太久，口感变干了。",
+        "collocations": [
+          "dry chicken",
+          "dry texture"
+        ],
+        "usage_note": "dry在此指食物缺乏水分和汁液，而非未沾水。"
+      },
+      "revised_answer": {
+        "meaning_zh": "口感干的",
+        "example_en": "The chicken breast became dry because it was overcooked.",
+        "example_zh": "鸡胸肉煮过头，口感变干了。",
+        "collocations": [
+          "dry chicken",
+          "dry texture"
+        ],
+        "usage_note": "dry在此指食物缺乏水分和汁液，而非未沾水。"
+      },
+      "revised_display": {
+        "w": "dry",
+        "m": "口感干的",
+        "c": "dry chicken · dry texture",
+        "e": "The chicken breast became dry because it was overcooked.",
+        "x": "dry在此指食物缺乏水分和汁液，而非未沾水。",
+        "example_zh": "鸡胸肉煮过头，口感变干了。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01396",
+      "scene_id": "SC50-0007",
+      "source_rank": 161,
+      "source_sense_id": "SC-SENSE-01396",
+      "expression": "simmering",
+      "original_source_sense_zh": "小火微沸的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "小火微沸的",
+        "example_en": "Keep the sauce at a simmering temperature.",
+        "example_zh": "让酱汁保持小火微沸的状态。",
+        "collocations": [
+          "simmering sauce",
+          "simmering liquid"
+        ],
+        "usage_note": "simmering比剧烈沸腾更温和。"
+      },
+      "revised_answer": {
+        "meaning_zh": "小火微沸的",
+        "example_en": "Keep the sauce simmering gently.",
+        "example_zh": "让酱汁保持轻微沸腾。",
+        "collocations": [
+          "simmering sauce",
+          "simmering liquid"
+        ],
+        "usage_note": "simmering比剧烈沸腾更温和。"
+      },
+      "revised_display": {
+        "w": "simmering",
+        "m": "小火微沸的",
+        "c": "simmering sauce · simmering liquid",
+        "e": "Keep the sauce simmering gently.",
+        "x": "simmering比剧烈沸腾更温和。",
+        "example_zh": "让酱汁保持轻微沸腾。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01397",
+      "scene_id": "SC50-0007",
+      "source_rank": 162,
+      "source_sense_id": "SC-SENSE-01397",
+      "expression": "golden brown",
+      "original_source_sense_zh": "金黄色的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-148-197.v2.json",
+      "source_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "original_answer": {
+        "meaning_zh": "金黄色的",
+        "example_en": "Bake the potatoes until they turn golden brown.",
+        "example_zh": "把土豆烤到金黄色。",
+        "collocations": [
+          "golden brown crust",
+          "turn golden brown"
+        ],
+        "usage_note": "golden brown常描述烤制后的金褐色表面。"
+      },
+      "revised_answer": {
+        "meaning_zh": "金褐色的；金棕色的",
+        "example_en": "Bake the potatoes until they turn golden brown.",
+        "example_zh": "把土豆烤到金褐色。",
+        "collocations": [
+          "golden brown crust",
+          "turn golden brown"
+        ],
+        "usage_note": "golden brown强调金黄与棕褐相间的烤制颜色，不等于单纯的黄色。"
+      },
+      "revised_display": {
+        "w": "golden brown",
+        "m": "金褐色的；金棕色的",
+        "c": "golden brown crust · turn golden brown",
+        "e": "Bake the potatoes until they turn golden brown.",
+        "x": "golden brown强调金黄与棕褐相间的烤制颜色，不等于单纯的黄色。",
+        "example_zh": "把土豆烤到金褐色。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01444",
+      "scene_id": "SC50-0007",
+      "source_rank": 209,
+      "source_sense_id": "SC-SENSE-01444",
+      "expression": "avoid leaving food out",
+      "original_source_sense_zh": "不要把食物长时间放在外面",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "不要把食物长时间放在外面",
+        "example_en": "Avoid leaving food out for too long after cooking.",
+        "example_zh": "烹调后不要把食物长时间放在室温下。",
+        "collocations": [
+          "avoid leaving food out",
+          "leave perishable food out"
+        ],
+        "usage_note": "leave out在此指食物没有及时冷藏。"
+      },
+      "revised_answer": {
+        "meaning_zh": "不要把食物长时间放在外面",
+        "example_en": "Avoid leaving food out for too long after cooking.",
+        "example_zh": "烹调后不要把食物长时间放在室温下。",
+        "collocations": [
+          "avoid leaving food out",
+          "leave perishable food out"
+        ],
+        "usage_note": "leave food out表示把食物放在室温环境、不及时冷藏；不同于leave an ingredient out（省略某种食材）。"
+      },
+      "revised_display": {
+        "w": "avoid leaving food out",
+        "m": "不要把食物长时间放在外面",
+        "c": "avoid leaving food out · leave perishable food out",
+        "e": "Avoid leaving food out for too long after cooking.",
+        "x": "leave food out表示把食物放在室温环境、不及时冷藏；不同于leave an ingredient out（省略某种食材）。",
+        "example_zh": "烹调后不要把食物长时间放在室温下。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01449",
+      "scene_id": "SC50-0007",
+      "source_rank": 214,
+      "source_sense_id": "SC-SENSE-01449",
+      "expression": "mise en place",
+      "original_source_sense_zh": "烹饪前把食材与用具准备就绪",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "烹饪前把食材与用具准备就绪",
+        "example_en": "Good mise en place makes dinner preparation easier.",
+        "example_zh": "烹饪前备齐食材和工具，做晚餐会更轻松。",
+        "collocations": [
+          "mise en place",
+          "prepare your mise en place"
+        ],
+        "usage_note": "mise en place是烹饪准备的专业术语，源项待审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "烹饪前把食材与用具准备就绪",
+        "example_en": "Good mise en place makes dinner preparation easier.",
+        "example_zh": "烹饪前备齐食材和工具，做晚餐会更轻松。",
+        "collocations": [
+          "get your mise en place ready",
+          "prepare your mise en place"
+        ],
+        "usage_note": "mise en place源自法语，是专业烹饪用语，指正式烹调前备齐食材、器具及相关准备。"
+      },
+      "revised_display": {
+        "w": "mise en place",
+        "m": "烹饪前把食材与用具准备就绪",
+        "c": "get your mise en place ready · prepare your mise en place",
+        "e": "Good mise en place makes dinner preparation easier.",
+        "x": "mise en place源自法语，是专业烹饪用语，指正式烹调前备齐食材、器具及相关准备。",
+        "example_zh": "烹饪前备齐食材和工具，做晚餐会更轻松。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01450",
+      "scene_id": "SC50-0007",
+      "source_rank": 215,
+      "source_sense_id": "SC-SENSE-01450",
+      "expression": "prep ingredients",
+      "original_source_sense_zh": "预处理食材",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "预处理食材",
+        "example_en": "Prep ingredients before you heat the pan.",
+        "example_zh": "加热锅具前先预处理食材。",
+        "collocations": [
+          "prep ingredients",
+          "prep ingredients ahead of time"
+        ],
+        "usage_note": "prep是prepare的口语缩写，源项待审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "预处理食材",
+        "example_en": "Prep ingredients before you heat the pan.",
+        "example_zh": "加热锅具前先预处理食材。",
+        "collocations": [
+          "prep ingredients",
+          "prep ingredients ahead of time"
+        ],
+        "usage_note": "prep是prepare的口语缩写；prep ingredients表示备料，常用于家庭烹饪或专业厨房。"
+      },
+      "revised_display": {
+        "w": "prep ingredients",
+        "m": "预处理食材",
+        "c": "prep ingredients · prep ingredients ahead of time",
+        "e": "Prep ingredients before you heat the pan.",
+        "x": "prep是prepare的口语缩写；prep ingredients表示备料，常用于家庭烹饪或专业厨房。",
+        "example_zh": "加热锅具前先预处理食材。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01451",
+      "scene_id": "SC50-0007",
+      "source_rank": 216,
+      "source_sense_id": "SC-SENSE-01451",
+      "expression": "cook over medium heat",
+      "original_source_sense_zh": "用中火烹饪",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "用中火烹饪",
+        "example_en": "Cook over medium heat until the onions soften.",
+        "example_zh": "用中火烹调，直到洋葱变软。",
+        "collocations": [
+          "cook over medium heat",
+          "cook over medium-low heat"
+        ],
+        "usage_note": "medium heat是中火，源项为编辑增补。"
+      },
+      "revised_answer": {
+        "meaning_zh": "用中火烹饪",
+        "example_en": "Cook over medium heat until the onions soften.",
+        "example_zh": "用中火烹调，直到洋葱变软。",
+        "collocations": [
+          "cook over medium heat",
+          "cook over medium-low heat"
+        ],
+        "usage_note": "cook over medium heat是常见烹饪指令；medium-low heat则是中小火。"
+      },
+      "revised_display": {
+        "w": "cook over medium heat",
+        "m": "用中火烹饪",
+        "c": "cook over medium heat · cook over medium-low heat",
+        "e": "Cook over medium heat until the onions soften.",
+        "x": "cook over medium heat是常见烹饪指令；medium-low heat则是中小火。",
+        "example_zh": "用中火烹调，直到洋葱变软。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01452",
+      "scene_id": "SC50-0007",
+      "source_rank": 217,
+      "source_sense_id": "SC-SENSE-01452",
+      "expression": "prep the ingredients",
+      "original_source_sense_zh": "准备食材",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "original_answer": {
+        "meaning_zh": "准备食材",
+        "example_en": "Prep the ingredients while the oven heats up.",
+        "example_zh": "烤箱升温时先把食材准备好。",
+        "collocations": [
+          "prep the ingredients",
+          "prep ingredients for dinner"
+        ],
+        "usage_note": "prep the ingredients指备料，源项为编辑增补待核验。"
+      },
+      "revised_answer": {
+        "meaning_zh": "准备食材",
+        "example_en": "Prep the ingredients while the oven heats up.",
+        "example_zh": "烤箱升温时先把食材准备好。",
+        "collocations": [
+          "prep the ingredients",
+          "prep ingredients for dinner"
+        ],
+        "usage_note": "prep the ingredients表示备料，与prep ingredients一般仅相差冠词，是否保留独立教学KU需核对同场景重复项。"
+      },
+      "revised_display": {
+        "w": "prep the ingredients",
+        "m": "准备食材",
+        "c": "prep the ingredients · prep ingredients for dinner",
+        "e": "Prep the ingredients while the oven heats up.",
+        "x": "prep the ingredients表示备料，与prep ingredients一般仅相差冠词，是否保留独立教学KU需核对同场景重复项。",
+        "example_zh": "烤箱升温时先把食材准备好。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01472",
+      "scene_id": "SC50-0008",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-01472",
+      "expression": "help yourself to seconds",
+      "original_source_sense_zh": "自己再盛一份",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-001-030.v2.json",
+      "source_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+      "original_answer": {
+        "meaning_zh": "自己再盛一份",
+        "example_en": "Help yourself to seconds if you're still hungry.",
+        "example_zh": "没吃饱就自己再添一份。",
+        "collocations": [
+          "help yourself to seconds",
+          "go back for seconds"
+        ],
+        "usage_note": "seconds表示再添的食物，属待审核增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "自己再盛一份",
+        "example_en": "Help yourself to seconds if you're still hungry.",
+        "example_zh": "没吃饱就自己再添一份。",
+        "collocations": [
+          "help yourself to seconds",
+          "go back for seconds"
+        ],
+        "usage_note": "seconds指在吃完一份后再添的食物；help yourself to seconds表示请自己再添一份。"
+      },
+      "revised_display": {
+        "w": "help yourself to seconds",
+        "m": "自己再盛一份",
+        "c": "help yourself to seconds · go back for seconds",
+        "e": "Help yourself to seconds if you're still hungry.",
+        "x": "seconds指在吃完一份后再添的食物；help yourself to seconds表示请自己再添一份。",
+        "example_zh": "没吃饱就自己再添一份。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01482",
+      "scene_id": "SC50-0008",
+      "source_rank": 30,
+      "source_sense_id": "SC-SENSE-01482",
+      "expression": "serving",
+      "original_source_sense_zh": "一份（食物）；上菜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-001-030.v2.json",
+      "source_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+      "original_answer": {
+        "meaning_zh": "一份（食物）；上菜",
+        "example_en": "This recipe makes four servings.",
+        "example_zh": "这份食谱能做四人份。",
+        "collocations": [
+          "four servings",
+          "serving size"
+        ],
+        "usage_note": "serving指一份食物，也用于食谱标示。"
+      },
+      "revised_answer": {
+        "meaning_zh": "一份（食物）；食用份量",
+        "example_en": "This recipe makes four servings.",
+        "example_zh": "这份食谱能做四人份。",
+        "collocations": [
+          "four servings",
+          "serving size"
+        ],
+        "usage_note": "serving在食谱中指一份食物或每份份量；上菜动作一般用serve，须另辨析。"
+      },
+      "revised_display": {
+        "w": "serving",
+        "m": "一份（食物）；食用份量",
+        "c": "four servings · serving size",
+        "e": "This recipe makes four servings.",
+        "x": "serving在食谱中指一份食物或每份份量；上菜动作一般用serve，须另辨析。",
+        "example_zh": "这份食谱能做四人份。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01595",
+      "scene_id": "SC50-0008",
+      "source_rank": 143,
+      "source_sense_id": "SC-SENSE-01595",
+      "expression": "starving",
+      "original_source_sense_zh": "饿极了",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-131-180.v2.json",
+      "source_pack_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "original_answer": {
+        "meaning_zh": "饿极了",
+        "example_en": "I'm starving; can we eat now?",
+        "example_zh": "我快饿坏了，现在能吃饭吗？",
+        "collocations": [
+          "absolutely starving",
+          "feel starving"
+        ],
+        "usage_note": "starving口语中常夸张表示饿极了。"
+      },
+      "revised_answer": {
+        "meaning_zh": "饿极了",
+        "example_en": "I'm starving; can we eat now?",
+        "example_zh": "我快饿坏了，现在能吃饭吗？",
+        "collocations": [
+          "absolutely starving",
+          "be starving"
+        ],
+        "usage_note": "starving在口语中常夸张表示饿极了；常说I'm starving，不说feel starving。"
+      },
+      "revised_display": {
+        "w": "starving",
+        "m": "饿极了",
+        "c": "absolutely starving · be starving",
+        "e": "I'm starving; can we eat now?",
+        "x": "starving在口语中常夸张表示饿极了；常说I'm starving，不说feel starving。",
+        "example_zh": "我快饿坏了，现在能吃饭吗？"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01639",
+      "scene_id": "SC50-0008",
+      "source_rank": 187,
+      "source_sense_id": "SC-SENSE-01639",
+      "expression": "pass the dish around",
+      "original_source_sense_zh": "把菜盘传给大家",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "original_answer": {
+        "meaning_zh": "把菜盘传给大家",
+        "example_en": "Pass the dish around so everyone gets a serving.",
+        "example_zh": "把菜盘传给大家，每个人都能盛一点。",
+        "collocations": [
+          "pass the dish around",
+          "pass the serving dish around"
+        ],
+        "usage_note": "pass around表示在多人间依次传递；来源为待独立审核候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把菜盘传给大家",
+        "example_en": "Pass the dish around so everyone gets a serving.",
+        "example_zh": "把菜盘传给大家，每个人都能盛一点。",
+        "collocations": [
+          "pass the dish around",
+          "pass the serving dish around"
+        ],
+        "usage_note": "pass around表示在一群人中依次传递；pass the dish around指将菜盘传给大家。"
+      },
+      "revised_display": {
+        "w": "pass the dish around",
+        "m": "把菜盘传给大家",
+        "c": "pass the dish around · pass the serving dish around",
+        "e": "Pass the dish around so everyone gets a serving.",
+        "x": "pass around表示在一群人中依次传递；pass the dish around指将菜盘传给大家。",
+        "example_zh": "把菜盘传给大家，每个人都能盛一点。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01640",
+      "scene_id": "SC50-0008",
+      "source_rank": 188,
+      "source_sense_id": "SC-SENSE-01640",
+      "expression": "silverware",
+      "original_source_sense_zh": "刀叉勺等餐具（美式，不限银制）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "original_answer": {
+        "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+        "example_en": "Could you put the silverware on the table?",
+        "example_zh": "你能把刀叉勺摆在餐桌上吗？",
+        "collocations": [
+          "set out the silverware",
+          "clean silverware"
+        ],
+        "usage_note": "silverware在美式常泛指刀叉勺，不一定由银制成；源项待审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+        "example_en": "Could you put the silverware on the table?",
+        "example_zh": "你能把刀叉勺摆在餐桌上吗？",
+        "collocations": [
+          "set out the silverware",
+          "clean silverware"
+        ],
+        "usage_note": "silverware在美式英语中常指刀叉勺等餐具，不一定是银制品；英式可说cutlery。"
+      },
+      "revised_display": {
+        "w": "silverware",
+        "m": "刀叉勺等餐具（美式，不限银制）",
+        "c": "set out the silverware · clean silverware",
+        "e": "Could you put the silverware on the table?",
+        "x": "silverware在美式英语中常指刀叉勺等餐具，不一定是银制品；英式可说cutlery。",
+        "example_zh": "你能把刀叉勺摆在餐桌上吗？"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    }
+  ]
+}
