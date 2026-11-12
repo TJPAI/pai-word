@@ -38,7 +38,7 @@ for(const query of examples){
 for(const poisoned of ['manifest.json','index.json']){
   const tamper=async url=>{
     const bytes=await fs.readFile(fileURLToPath(url));
-    const payload=url.pathname.endsWith('/'+poisoned)?Buffer.concat([bytes,Buffer.from(' ')]):bytes;
+    const payload=new URL(url).pathname.endsWith('/'+poisoned)?Buffer.concat([bytes,Buffer.from(' ')]):bytes;
     return new Response(payload,{status:200});
   };
   const badStore=createRankedStore({fetchImpl:tamper,base:new URL('./scene1341-ranked/',import.meta.url)});
