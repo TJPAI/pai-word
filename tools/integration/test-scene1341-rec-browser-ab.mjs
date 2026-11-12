@@ -34,6 +34,16 @@ for(const query of examples){
   assert(ab.candidate.every(x=>x.provenance.ranked_manifest_blob==='803d2fccfd2d1ec200723f7f38e73d57495a5dd0'));
   cases.push({query,existingTop1:ab.current[0]?.id??null,recTop1:ab.candidate[0]?.id??null,overlap:ab.overlap});
 }
+// Neither a tampered manifest nor a tampered index may supply trusted shard hashes.
+for(const poisoned of ['manifest.json','index.json']){
+  const tamper=async url=>{
+    const bytes=await fs.readFile(fileURLToPath(url));
+    const payload=url.pathname.endsWith('/'+poisoned)?Buffer.concat([bytes,Buffer.from(' ')]):bytes;
+    return new Response(payload,{status:200});
+  };
+  const badStore=createRankedStore({fetchImpl:tamper,base:new URL('./scene1341-ranked/',import.meta.url)});
+  await assert.rejects(()=>badStore.initialize(),/RANKED_SOURCE_BLOB_MISMATCH/);
+}
 await assert.rejects(()=>adapter.compareSearch('wake up',{limit:11}),/SCENE1341_REC_AB_LIMIT_INVALID/);
 assert.deepEqual(await adapter.searchWithRecEngine(''),[]);
 assert((await adapter.search('oversleep')).length>0,'Existing browser default must remain usable');
