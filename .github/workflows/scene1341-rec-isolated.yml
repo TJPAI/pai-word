@@ -70,7 +70,7 @@ jobs:
             17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-normalization-cache-ab.json
-          node -e "const r=require('./scene1341-normalization-cache-ab.json');if(r.status!=='PASS_SOURCE_PINNED_PARITY'||r.parityComparisons!==46||r.release_allowed!==false)process.exit(1);"
+          node -e "const r=require('./scene1341-normalization-cache-ab.json');if(r.status!=='PASS_SOURCE_PINNED_PARITY'||r.parityComparisons!==52||r.release_allowed!==false)process.exit(1);"
       - uses: actions/upload-artifact@v4
         with:
           name: cg-rec-scene1341-isolated-mixed-smoke
