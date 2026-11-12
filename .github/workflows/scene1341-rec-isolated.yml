@@ -100,8 +100,7 @@ jobs:
           node rec/scene500-recommendation/qa/validate-scene1341-budget.mjs \
             scene1341-normalization-cache-ab.json \
             scene1341-memory-baseline.json \
-            scene1341-memory-candidate.json
-            scene1341-engineering-budget-gate.json \
+            scene1341-memory-candidate.json \
             > scene1341-engineering-budget-gate.json
       - uses: actions/upload-artifact@v4
         if: always()
@@ -112,3 +111,4 @@ jobs:
             scene1341-normalization-cache-ab.json
             scene1341-memory-baseline.json
             scene1341-memory-candidate.json
+            scene1341-engineering-budget-gate.json
