@@ -40,6 +40,11 @@ for(const query of negativeDiagnostics){
  assert.deepEqual(results,index.search(query,{limit:10}));
  assert.equal(new Set(results.map(x=>x.scene_id)).size,results.length);
 }
+// A negated full scene title cannot receive the strong affirmative title-phrase boost.
+for(const query of ['不是整理房间，而是洗衣与晾晒','不是整理房间只是洗衣与晾晒']){
+ const negated=index.search(query).find(x=>x.scene_id==='SC50-0004');
+ assert.ok(!negated?.explanations.includes('scene_title_phrase'),JSON.stringify({query,negated}));
+}
 // A negative query referencing a delivered scene must never be treated as certification.
 for(const result of index.search('不是整理房间，只是洗衣与晾晒')){
  assert.equal(result.release_status,'BLOCKED_PENDING_CG_QA_AND_MUSE');
