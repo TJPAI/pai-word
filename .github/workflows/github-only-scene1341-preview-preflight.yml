@@ -1,0 +1,33 @@
+name: GitHub-only Scene1341 preview predeploy source audit
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/index.html'
+      - 'rebuild-preview/home-dashboard.js'
+      - 'tools/integration/test-github-pages-project-paths.mjs'
+      - '.github/workflows/github-only-scene1341-preview-preflight.yml'
+  push:
+    branches:
+      - cg-main-github-pages-preflight-20261112
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pages-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify GitHub Pages project-root asset paths
+        run: node tools/integration/test-github-pages-project-paths.mjs
+      - name: Existing Scene500 preview source and learning isolation regressions
+        run: |
+          node tools/integration/test-scene500-native-card-shell.mjs
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: No external publish is performed by this workflow
+        run: |
+          echo 'PREDEPLOY_ONLY: no upload-pages-artifact and no deploy-pages'
