@@ -56,21 +56,64 @@ export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedS
     })();
     try{return await pending;}finally{pending=null;}
   }
+  // On-demand, source-verified lexical search over the 110 delivered scenes.
+  // Never equate lexical hits with CG-QA approved Sense/KU or SRS permission.
+  let lexical=null,lexicalPending=null;
+  async function lexicalIndex(){
+    if(lexical)return lexical;
+    if(lexicalPending)return lexicalPending;
+    lexicalPending=(async()=>{
+      const rows=[];
+      // Browser loader verifies each CSV against its Git blob before exposing rows.
+      for(let v=51;v<=61;v++)rows.push(...await ranked.batch(v));
+      if(rows.length!==19371)throw Error('SCENE1341_LEXICAL_COUNT_INVALID');
+      const byScene=new Map();
+      for(const row of rows){
+        if(!/^SC50-\d{4}$/.test(row.scene_id)||!row.expression?.trim()||!row.sense_zh?.trim())
+          throw Error('SCENE1341_LEXICAL_SOURCE_INVALID');
+        const entry=byScene.get(row.scene_id)||[];
+        entry.push(Object.freeze({expression:normalize(row.expression),gloss:normalize(row.sense_zh),
+          sourceSenseId:row.sense_id}));
+        byScene.set(row.scene_id,entry);
+      }
+      lexical=byScene;return lexical;
+    })();
+    try{return await lexicalPending}finally{lexicalPending=null}
+  }
   async function search(text,{limit=10}={}){
     const {scenes}=await initialize();
     const q=normalize(text);
     if(!q)return [];
     if(!Number.isInteger(limit)||limit<1||limit>100)throw Error('SCENE1341_SEARCH_LIMIT_INVALID');
-    const tokens=q.split(' ').filter(Boolean);
-    return scenes.map(s=>{
-      const title=normalize(s.name);
-      const exact=title===q||s.id.toLowerCase()===q;
-      const score=exact?100: title.includes(q)?60:s.searchText.includes(q)?30:
-        tokens.every(t=>s.searchText.includes(t))?15:0;
-      return {scene:s,score};
-    }).filter(x=>x.score>0)
-      .sort((a,b)=>b.score-a.score||a.scene.id.localeCompare(b.scene.id))
-      .slice(0,limit).map(x=>x.scene);
+    const tokens=q.match(/[a-z]+(?:'[a-z]+)?|[\p{Script=Han}]+/gu)||[];
+    // Source is available on demand, never silently fail over to an unverified index.
+    const byScene=await lexicalIndex();
+    return scenes.map(scene=>{
+      const title=normalize(scene.name);
+      let score=title===q||scene.id.toLowerCase()===q?240:
+        title.includes(q)?165:scene.searchText.includes(q)?115:
+        tokens.length&&tokens.every(t=>scene.searchText.includes(t))?75:0;
+      let evidence=score?'SCENE_CATALOG':'NONE',matchingSenseId=null;
+      for(const row of byScene.get(scene.id)||[]){
+        const en=row.expression,zh=row.gloss;
+        const field=en+' '+zh;
+        const matched=en===q?205:zh===q?185:
+          en.includes(q)?145:zh.includes(q)?130:
+          tokens.length&&tokens.every(t=>field.includes(t))?95:0;
+        if(matched>score){
+          score=matched;evidence='RANKED_LEXICAL_UNREVIEWED';
+          matchingSenseId=row.sourceSenseId;
+        }
+      }
+      return {scene,score,evidence,matchingSenseId};
+    }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||
+      a.scene.id.localeCompare(b.scene.id))
+      .slice(0,limit).map(({scene,evidence,matchingSenseId})=>Object.freeze({...scene,
+        searchEvidence:evidence,matchingSenseId,
+        cg_qa:evidence==='RANKED_LEXICAL_UNREVIEWED'?'NOT_REVIEWED_FOR_THIS_INDEX':null,
+        muse_qa:'DEFERRED_QUOTA_20261113',
+        release_status:'BLOCKED_PENDING_CG_QA_AND_MUSE',
+        production_release_allowed:false}));
   }
   async function getScene(id){
     const {scenes}=await initialize();
