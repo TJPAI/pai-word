@@ -1,0 +1,240 @@
+{
+  "schema": "cg-qa-v13-needs-verification-403-independent-editorial-reconciliation-v1",
+  "date": "2026-11-12",
+  "reviewer": "CG-QA",
+  "source_enlex_reconciliation_blob": "460b5355a641726eb6c1d6a5e3ac6a4d80651c28",
+  "counts": {
+    "reviewed": 403,
+    "unique": 403,
+    "source_identity_mismatches": 0,
+    "lexical_support": 275,
+    "proposed_gloss_revisions": 22,
+    "other_context_pos_identity_risks": 106,
+    "by_verdict": {
+      "HOLD_CONTEXT": 14,
+      "LEXICAL_SUPPORT": 275,
+      "REVISE_GLOSS": 22,
+      "CONDITIONAL_SCOPE": 48,
+      "HOLD_POS": 12,
+      "CONDITIONAL_CONTEXT": 11,
+      "CONDITIONAL_NATURALNESS": 3,
+      "CONDITIONAL_DIALECT": 5,
+      "HOLD_SENSE_ID": 8,
+      "CONDITIONAL_POS": 2,
+      "HOLD_CERTIFICATION_CONTEXT": 2,
+      "HOLD_SENSE_CONTEXT": 1
+    },
+    "master_authorized": 0,
+    "muse_new_pass": 0,
+    "dual_ai_certified": 0,
+    "released": 0
+  },
+  "files": [
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_FIRST24_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "ed909465dcc9374b425b4af9a315beec2af175bc",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_FIRST24_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "5f4031f09e0201301a21783158683c78036bef35",
+      "records": 24
+    },
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_NEXT60_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "7e793707dbbf92ccedc5e3deb65e387ab05ab962",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_NEXT60_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "d3c041ad5ed29159f541a1189fdb767a3075fa8d",
+      "records": 60
+    },
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_POS085_144_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "5f6ca3778be62e84857c9d9aca760a2782120ab7",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS085_144_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "4b15a52a1afb41e5cb680eef6ff59421ec28d750",
+      "records": 60
+    },
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_POS145_204_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "42c83cba80fd443607264d9753ead693f65d734e",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS145_204_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "c5cdd427b9a0ca1b0545581d55e623d03f0596ab",
+      "records": 60
+    },
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_POS205_264_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "24cb0b54090184696eb93cfc2ff7b977e095d0c0",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS205_264_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "c3a73025fc4246f96d5eb4518a3d9c0bcc3b198b",
+      "records": 60
+    },
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_POS265_324_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "a2f61adb0c4dc5c44abc54ae085befdce0ee9573",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS265_324_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "0435f1f13afd0a2db7ceff944074f5c6a247745a",
+      "records": 60
+    },
+    {
+      "qa_path": "tools/core20k_lexicon/qa/CG_QA_V13_NEEDS_VERIFICATION_POS325_403_FINAL79_INDEPENDENT_TRIAGE_20261112.v1.json",
+      "qa_blob": "5d43c1ecebed1a0e01081d52e0d14d86e126408a",
+      "enlex_path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS325_403_SEMANTIC_TRIAGE_20261112.v1.json",
+      "enlex_blob": "f1483b55c9e36da326226f726fc0acb52f1c1a26",
+      "records": 79
+    }
+  ],
+  "gloss_revision_rows": [
+    {
+      "audit_row_no": 676,
+      "scene_id": "SC50-0004",
+      "english_expression": "basket",
+      "original_zh": "篮筐",
+      "reason": "basket一般指篮子/筐，裸词翻成“篮筐”容易联想到篮球篮圈；应修正为更稳定的“篮子；筐”，保留例句细化。"
+    },
+    {
+      "audit_row_no": 948,
+      "scene_id": "SC50-0005",
+      "english_expression": "manageable",
+      "original_zh": "能够完成的",
+      "reason": "manageable表示难度或负担在可掌控范围内，并不保证能够将任务做完；“能够完成的”过于结果化。应改“可应付的；可处理的”。"
+    },
+    {
+      "audit_row_no": 1242,
+      "scene_id": "SC50-0007",
+      "english_expression": "pan",
+      "original_zh": "平底锅",
+      "reason": "pan并非必为平底锅，也可为深一些的锅具或烤盘；源译过窄，建议“锅；平底锅（依对象）”。"
+    },
+    {
+      "audit_row_no": 1384,
+      "scene_id": "SC50-0007",
+      "english_expression": "firm",
+      "original_zh": "结实的",
+      "reason": "firm tofu指紧实、较硬质地，原“结实的”易误指结构坚固；建议食物义“紧实的；较硬的”。"
+    },
+    {
+      "audit_row_no": 1793,
+      "scene_id": "SC50-0009",
+      "english_expression": "slippery",
+      "original_zh": "湿滑的",
+      "reason": "slippery只表示易滑/光滑，不必由水造成，源“湿滑的”给裸词额外加了原因。"
+    },
+    {
+      "audit_row_no": 3106,
+      "scene_id": "SC50-0016",
+      "english_expression": "shelf",
+      "original_zh": "置物架板",
+      "reason": "shelf是单块搁板/架板，不必是完整置物架；“置物架板”生硬，建议“搁板；架板”。"
+    },
+    {
+      "audit_row_no": 3276,
+      "scene_id": "SC50-0016",
+      "english_expression": "slippery",
+      "original_zh": "容易滑动的",
+      "reason": "slippery是表面易打滑，不等于物体自身容易滑动；建议“光滑易滑的；容易打滑的”。"
+    },
+    {
+      "audit_row_no": 4219,
+      "scene_id": "SC50-0021",
+      "english_expression": "curb",
+      "original_zh": "路边缘（美式）",
+      "reason": "curb是路缘或凸起的路缘石，原“路边缘”不够准确，建议“路缘；路缘石”。"
+    },
+    {
+      "audit_row_no": 5228,
+      "scene_id": "SC50-0025",
+      "english_expression": "savory",
+      "original_zh": "咸鲜可口的",
+      "reason": "savory只保证咸鲜或非甜口，不承诺“可口”，建议“咸鲜的；非甜口的”。"
+    },
+    {
+      "audit_row_no": 5432,
+      "scene_id": "SC50-0026",
+      "english_expression": "creamy",
+      "original_zh": "奶油味浓厚的",
+      "reason": "creamy指奶油般细腻柔滑的质地，不必真的有奶油味；原“奶油味浓厚的”过窄，建议“绵密顺滑的；奶油般的”。"
+    },
+    {
+      "audit_row_no": 5436,
+      "scene_id": "SC50-0026",
+      "english_expression": "savory",
+      "original_zh": "咸鲜可口的",
+      "reason": "savory不内含“可口”评价；改“咸鲜的；非甜口的”，口感好坏需单独说明。"
+    },
+    {
+      "audit_row_no": 6723,
+      "scene_id": "SC50-0034",
+      "english_expression": "crust",
+      "original_zh": "派或蛋糕外层酥皮",
+      "reason": "crust可为派底、外壳、边皮，不一定是酥皮；蛋糕也不一定有酥皮，建议“外皮；饼皮；硬壳（依对象）”。"
+    },
+    {
+      "audit_row_no": 7329,
+      "scene_id": "SC50-0037",
+      "english_expression": "curb",
+      "original_zh": "路缘；路边等候点",
+      "reason": "curb是道路路缘或路缘石，不能等同路边等候点；后者应完整短语curbside pickup area。"
+    },
+    {
+      "audit_row_no": 7880,
+      "scene_id": "SC50-0040",
+      "english_expression": "pan",
+      "original_zh": "平底锅",
+      "reason": "pan不是仅平底锅，可指锅、煎锅或烤盘，原中文范围过窄。"
+    },
+    {
+      "audit_row_no": 8097,
+      "scene_id": "SC50-0041",
+      "english_expression": "smoke",
+      "original_zh": "烟熏味来源",
+      "reason": "Smoke可为烟、烟味、熏制等词性不同义；“烟熏味来源”不是标准词义，建议按原句改“烟；烟味；熏制”。"
+    },
+    {
+      "audit_row_no": 8162,
+      "scene_id": "SC50-0041",
+      "english_expression": "plain",
+      "original_zh": "未加太多调味的",
+      "reason": "Plain可以指原味、不加调味、朴素，不一定少量加料；建议“原味的；不加额外配料的”。"
+    },
+    {
+      "audit_row_no": 8842,
+      "scene_id": "SC50-0045",
+      "english_expression": "strap",
+      "original_zh": "鞋带；固定带",
+      "reason": "Strap指鞋袢、扣带/固定带，shoelace才是鞋带；原将“鞋带”作为并列常规译义会误导。"
+    },
+    {
+      "audit_row_no": 8899,
+      "scene_id": "SC50-0045",
+      "english_expression": "tight",
+      "original_zh": "过紧的",
+      "reason": "Tight通常是紧/贴合；过紧应是too tight或明显不适，建议“紧的；紧贴的”。"
+    },
+    {
+      "audit_row_no": 9448,
+      "scene_id": "SC50-0049",
+      "english_expression": "mystery",
+      "original_zh": "悬疑小说",
+      "reason": "Mystery书籍类型可为悬疑/推理故事或作品，未必长篇小说；改“悬疑/推理作品；悬疑小说（具体）”。"
+    },
+    {
+      "audit_row_no": 9495,
+      "scene_id": "SC50-0049",
+      "english_expression": "shelf",
+      "original_zh": "书架",
+      "reason": "Shelf是书架的一块搁板/一层，完整书架通常bookshelf/bookcase；直接译“书架”易混。"
+    },
+    {
+      "audit_row_no": 9760,
+      "scene_id": "SC50-0051",
+      "english_expression": "bench",
+      "original_zh": "试鞋座椅",
+      "reason": "Bench通常是长凳/工作台，不是“试鞋座椅”的固有义；可在场景中解释“供试鞋的长凳”。"
+    },
+    {
+      "audit_row_no": 9826,
+      "scene_id": "SC50-0051",
+      "english_expression": "tight",
+      "original_zh": "过紧的",
+      "reason": "Tight原“过紧的”含超过适宜程度，裸词未必有负面，建议“紧的；贴合的”。"
+    }
+  ],
+  "policy": "All 403 original V13 NEEDS_VERIFICATION unchanged. Lexical editorial review only. No original full Master stable records and context/per-Sense Kaikki source verified, no Muse certification. No author or master edits; release_allowed false."
+}
