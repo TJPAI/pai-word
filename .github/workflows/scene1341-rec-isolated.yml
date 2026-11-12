@@ -1,0 +1,45 @@
+name: CG-REC Scene1341 isolated bilingual retrieval
+on:
+  push:
+    branches: [scene500-recommendation-dev]
+    paths:
+      - 'scene500-recommendation/scene1341-isolated-search.mjs'
+      - 'scene500-recommendation/qa/test-scene1341-isolated-search.mjs'
+      - '.github/workflows/scene1341-rec-isolated.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  isolated-search:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: rec
+      - uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 17c6c758e1dfd27cfa2fe1669d3f1784bedb0668
+          path: source
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify pinned editorial input identities
+        run: |
+          test "$(git -C source rev-parse HEAD)" = "17c6c758e1dfd27cfa2fe1669d3f1784bedb0668"
+          test "$(git -C source rev-parse HEAD:tools/integration/scene1341-ranked/manifest.json)" = "803d2fccfd2d1ec200723f7f38e73d57495a5dd0"
+          test "$(git -C source rev-parse HEAD:tools/integration/scene1341-ranked/v51-ranked.csv)" = "eaa6d729bb04a9bedbafd8e1081a11fc791caa39"
+      - name: Run real 1341 catalog and 19371-row isolated recommendation smoke
+        run: |
+          node rec/scene500-recommendation/qa/test-scene1341-isolated-search.mjs \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            > scene1341-isolated-search-smoke.json
+          node -e "const r=require('./scene1341-isolated-search-smoke.json');if(r.status!=='PASS_ISOLATED_STRUCTURE_AND_SMOKE'||r.release_allowed!==false||r.independent_certified!==0)process.exit(1);"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cg-rec-scene1341-isolated-mixed-smoke
+          path: scene1341-isolated-search-smoke.json
