@@ -25,22 +25,26 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
  for(const h of hypotheses){const entry=exprs.get(h.scene_id)?.find(x=>x.source_sense_id===h.source_sense_id);if(!entry||entry.expression!==h.source_expression||entry.meaning!==h.source_meaning)throw Error('EXPERIMENTAL_ALIAS_ANCHOR_MISMATCH '+h.id);}
  const documentFrequency=new Map();for(const [sid,rows] of exprs){const ts=new Set();for(const row of rows)for(const t of row.terms)ts.add(t);for(const t of ts)documentFrequency.set(t,(documentFrequency.get(t)||0)+1);}
  const titleTerms=new Map([...scenes].map(([id,s])=>[id,tokens(s.name+' '+s.category)]));
+ const normalizedSceneNames=new Map([...scenes].map(([id,s])=>[id,normalize(s.name)]));
  function search(query,{limit=10,experimentalIntentAliases=false}={}){
    const q=normalize(query);if(!q)return [];const qt=tokens(q);if(!qt.length)return [];
    const negSpans=negatedSpans(q),negative=new Set();for(const span of negSpans)for(const t of tokens(span))negative.add(t);
    const positive=qt.filter(t=>!negative.has(t));if(!positive.length)return [];
+   // Query-local weight cache preserves the original per-term score and accumulation order.
+   const titleWeights=new Map(positive.map(t=>[t,Math.min(8,2.5+2/(documentFrequency.get(t)||1))]));
+   const expressionWeights=new Map(positive.map(t=>[t,Math.min(3.2,1.8/Math.sqrt(documentFrequency.get(t)||1))+0.1]));
    const activeHints=experimentalIntentAliases?matchIntentHypotheses(query):[];
    const ranked=[];
    for(const [id,scene] of scenes){
-     let score=0;const reasons=[];const title=titleTerms.get(id),name=normalize(scene.name);
+     let score=0;const reasons=[];const title=titleTerms.get(id),name=normalizedSceneNames.get(id);
      if(q===normalize(id)||q===name){score+=100;reasons.push('exact_scene');}
      if(q.includes(name)&&name.length>1&&!negSpans.some(span=>span.includes(name))){score+=38;reasons.push('scene_title_phrase');}
-     for(const t of positive){if(title.includes(t)){score+=Math.min(8,2.5+2/(documentFrequency.get(t)||1));reasons.push('title_token');}}
+     for(const t of positive){if(title.includes(t)){score+=titleWeights.get(t);reasons.push('title_token');}}
      if(scene.has_ranked_data){
        let best=0,bestId=null;for(const row of exprs.get(id)){
          let hit=0;const e=row.normalizedExpression,zh=row.normalizedMeaning;
          if(q===e||q===zh)hit=16;else if(e.length>2&&q.includes(e)&&!negSpans.some(span=>span.includes(e)))hit=12;else if(zh.length>1&&q.includes(zh)&&!negSpans.some(span=>span.includes(zh)))hit=10;
-         for(const t of positive){if(row.terms.includes(t)){const df=documentFrequency.get(t)||1;hit+=Math.min(3.2,1.8/Math.sqrt(df))+0.1;}}
+         for(const t of positive){if(row.terms.includes(t)){hit+=expressionWeights.get(t);}}
          if(hit>best){best=hit;bestId=row.source_sense_id;}
        }
        if(best>0){score+=Math.min(24,best);reasons.push('unverified_ranked_expression_match');}
