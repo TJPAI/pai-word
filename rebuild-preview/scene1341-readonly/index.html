@@ -45,8 +45,8 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <section class="home-dashboard demo-home" id="home">
   <div class="home-shell"><div class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>Scene1341 · Scene500 同款交互预览</p></div><div class="home-actions"><span class="read-only-pill">未认证 · 只读数据</span></div></div>
   <div class="home-focus"><div class="continue-card"><div><span class="eyebrow">继续浏览</span><h2 id="continue-name">起床与晨间准备</h2><p id="continue-description">真实教学草稿 · 不保存学习记录</p></div><div class="continue-actions"><button id="continue" class="continue-primary" type="button">进入词卡</button></div></div>
-  <div class="scene-search-card" style="padding:16px"><span class="eyebrow">场景检索 · 1,341 场景目录</span><h2 style="margin:8px 0">查找学习场景</h2><input class="demo-search" id="search" placeholder="搜索场景名称、分类或SC50编号" autocomplete="off" aria-label="查找场景">
-  <div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
+  <div class="scene-search-card" style="padding:16px"><span class="eyebrow">场景检索 · 1,341 场景目录</span><h2 style="margin:8px 0">查找学习场景</h2><input class="demo-search" id="search" placeholder="输入中文、英文或中英混合需求，推荐相关场景" autocomplete="off" aria-label="查找场景">
+  <p class="demo-tip" id="rec-status" aria-live="polite">输入需求即可体验 CG-REC 场景推荐；检索结果未认证，不开放新的学习记录。</p><div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
   <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
   <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
   <details id="settings-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
@@ -101,6 +101,23 @@ const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-11
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null;
+let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null;
+const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
+async function updateSceneRecommendations(){
+ const q=filter.trim(),ticket=++recRequest;
+ if(!q){recRows=null;recPending=false;recError='';renderHome();return}
+ recPending=true;recError='';recRows=null;renderHome();
+ try{
+  const adapter=await getRecBridge();
+  const rows=await adapter.search(q);
+  if(ticket!==recRequest)return;
+  recRows=rows;recPending=false;renderHome();
+ }catch(e){
+  if(ticket!==recRequest)return;
+  recRows=[];recPending=false;recError=String(e?.message||e);renderHome();
+ }
+}
+
 const readOnlyPrefs=window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings({onChange:applyReadOnlySetting});
 const displayBookmark=window.PAI_SCENE1341_DISPLAY_BOOKMARK;
 const savedDisplay=displayBookmark.load();
@@ -272,19 +289,26 @@ function renderCategories(){
 function renderHome(){
  if(!catalog.length)return;
  const q=filter.trim().toLowerCase();
- const result=catalog.filter(x=>(category==='全部'||x.category===category)&&(!q||(x.id+' '+x.name+' '+x.category).toLowerCase().includes(q)));
+ // Query results are from CG-REC in the existing Scene500-style catalog UI.
+ // Normal unfiltered catalog remains available, preserving all prior preview KUs.
+ const result=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean)
+                :catalog;
+ const selected=result.filter(x=>category==='全部'||x.category===category);
  $('scenes').replaceChildren();
- // Keep both authored scenes visible by default, followed by the full official catalog.
- const sorted=!q&&category==='全部'?[...result.filter(x=>available(x.id)),...result.filter(x=>!available(x.id))]:result;
+ const sorted=!q&&category==='全部'?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]:selected;
+ const message=!q?'场景目录 · 1,341 场景':recPending?'正在运行 CG-REC 实验推荐…'
+   :recError?'推荐查询失败（未使用未经验证的结果）：'+recError
+   :('CG-REC 实验推荐 · '+sorted.length+' 个场景；结果未获 CG-QA/Muse 认证');
+ set('rec-status',message);
  for(const sc of sorted.slice(0,visible)){
   const btn=document.createElement('button');btn.className='demo-scene';btn.type='button';
   const title=document.createElement('div'),b=document.createElement('b'),small=document.createElement('small'),right=document.createElement('span');
-  b.textContent=sc.name;small.textContent=sc.id+' · '+sc.category;title.append(b,small);
+  b.textContent=sc.name;small.textContent=sc.id+' · '+sc.category+(q?' · 实验推荐／未认证':'');title.append(b,small);
   right.textContent=available(sc.id)?available(sc.id)+'条词卡 · 体验':'待教学内容认证';
   right.className=available(sc.id)?'ready':'unready';btn.disabled=!available(sc.id);btn.append(title,right);
   btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
  }
- $('more').hidden=sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
+ $('more').hidden=!!q||sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
 }
 let exampleToWordPending=false;
 function openStudy(id,resume=false){
@@ -403,7 +427,7 @@ function moveBatch(delta){
 }
 function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
-$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;renderHome()});
+$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;void updateSceneRecommendations()});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 // Match native Scene500 single delegated blank-click handler on the whole study screen.
 $('learning').addEventListener('click',e=>{
