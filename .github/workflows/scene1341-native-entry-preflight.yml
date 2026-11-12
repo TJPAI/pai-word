@@ -5,16 +5,20 @@ on:
       - cg-main-sc1341-native-entry-preflight-20261112
     paths:
       - 'rebuild-preview/scene1341-native-entry-preflight.mjs'
+      - 'rebuild-preview/scene1341-isolated-registry-srs.mjs'
       - 'rebuild-preview/scene1341-provisional-intake.mjs'
       - 'rebuild-preview/home-dashboard.js'
       - 'tools/integration/test-scene1341-native-entry-preflight.mjs'
+      - 'tools/integration/test-scene1341-isolated-registry-srs.mjs'
       - '.github/workflows/scene1341-native-entry-preflight.yml'
   pull_request:
     paths:
       - 'rebuild-preview/scene1341-native-entry-preflight.mjs'
+      - 'rebuild-preview/scene1341-isolated-registry-srs.mjs'
       - 'rebuild-preview/scene1341-provisional-intake.mjs'
       - 'rebuild-preview/home-dashboard.js'
       - 'tools/integration/test-scene1341-native-entry-preflight.mjs'
+      - 'tools/integration/test-scene1341-isolated-registry-srs.mjs'
       - '.github/workflows/scene1341-native-entry-preflight.yml'
   workflow_dispatch:
 permissions:
@@ -30,6 +34,10 @@ jobs:
           node-version: '22'
       - name: Check native preflight syntax
         run: node --check rebuild-preview/scene1341-native-entry-preflight.mjs
+      - name: Check registry and isolated SRS contract syntax
+        run: node --check rebuild-preview/scene1341-isolated-registry-srs.mjs
+      - name: Prove quarantine registry/SRS never mutate legacy learner storage
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs
       - name: Native Scene1341 entrance must reject unapproved KU and legacy SRS
         run: node tools/integration/test-scene1341-native-entry-preflight.mjs
       - name: Repeat V2 1778 source and Master evidence gate
