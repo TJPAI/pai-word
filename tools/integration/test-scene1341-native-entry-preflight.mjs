@@ -46,6 +46,11 @@ assert.throws(()=>inspect({sceneId:'S001'}),/INVALID_SCENE/);
 assert.throws(()=>inspect({sceneId,records:[rec,rec]}),/SCENE_OR_KU_ID_MISMATCH/);
 assert.throws(()=>inspect({sceneId:'SC50-0003',records:[rec]}),/SCENE_OR_KU_ID_MISMATCH/);
 assert.equal(legacyCalls,0);
+const fs=await import('node:fs/promises');
+const home=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
+assert(home.includes("scene1341-native-entry-preflight.mjs"),'Native entry preflight must be wired in existing scene details');
+assert(home.includes("entryModule.inspectScene1341NativeEntry({sceneId:id})"));
+assert(home.includes('SCENE1341_NATIVE_STAGING_MUST_NOT_AUTO_ACTIVATE'));
 console.log(JSON.stringify({status:'PASS',source:'V2_1778_QUARANTINE',
  checked:['no-authorizations','forged-master-approval','held-bad-breath','native-namespace-only','duplicate-and-cross-scene'],
  stagingEligible:0,legacyRuntimeCalls:legacyCalls,SRS:false,release:false}));
