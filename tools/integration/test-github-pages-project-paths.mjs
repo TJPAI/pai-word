@@ -36,7 +36,10 @@ assert(home.includes("get('scene1341')==='1'"));
 assert(home.includes("get('scene1341_rec')==='1'"));
 assert(home.includes('canCreateStudyQueue:false'));
 assert(home.includes('canWriteSrs:false'));
-const externalFallback=html.includes('https://cdn.jsdelivr.net/npm/pako@');
+assert(!html.includes('https://cdn.jsdelivr.net'),'Third-party CDN must not load in GitHub-only preview');
+assert(!html.includes('raw.githack'),'Third-party preview host must not appear in preview HTML');
+assert(html.includes('CORE20K_GZIP_NATIVE_REQUIRED_GITHUB_ONLY'),'Unsupported native gzip must fail closed without third-party downloads');
+const externalFallback=false;
 const result={
  status:'PASS_SOURCE_PATHS_ONLY',
  mode:'GITHUB_PAGES_PREDEPLOY_NO_PUBLISH',
