@@ -1489,4 +1489,42 @@ activeAudio.stopWordAudio();
 cancelledExample.onend();
 assert.equal(exampleCallbacks,1,'cancelled example voice never invokes stale completion');
 
+/* Second-pass composed browser-handler test: explicitly tapping the WORD
+ * speaker while an EXAMPLE is playing must not strand the phase or auto
+ * timer. Repeated word taps cannot let stale Safari onend resume twice. */
+const wordButtonStart=script.indexOf("$('speak').addEventListener('click',e=>{");
+const wordButtonEnd=script.indexOf("$('example-speak').addEventListener",wordButtonStart);
+assert(wordButtonStart>0&&wordButtonEnd>wordButtonStart,'extract real word-speaker handler');
+assert(script.includes('if(phaseController.state().phase===\'example\')') &&
+ script.includes('autoBrowse.resumeAfterSpeech()') &&
+ script.includes('exampleToWordPending=false;'),
+ 'word speaker must take over example state and explicitly resume automatic browsing');
+const realSpeakerHandlers={};let takeOverPaused=0,takeOverResumed=0;
+const wordSpeakerContext={
+ $:id=>({addEventListener:(event,fn)=>{realSpeakerHandlers[id+':'+event]=fn}}),
+ phaseController:examplePhase,
+ autoBrowse:{pause:()=>{takeOverPaused++},resumeAfterSpeech:()=>{takeOverResumed++}},
+ subset:()=>[{expression:'wake up'}],index:0,
+ playWord:(...args)=>activeAudio.playWord(...args)
+};
+vm.runInNewContext("let exampleToWordPending=false;\n"+script.slice(wordButtonStart,wordButtonEnd)+
+ "\nthis.getPending=()=>exampleToWordPending;",wordSpeakerContext);
+const wordClick=()=>realSpeakerHandlers['speak:click']({stopPropagation:()=>{}});
+examplePhase.beginExample();
+assert.equal(examplePhase.state().phase,'example');
+wordClick();
+assert.equal(examplePhase.state().phase,'answer-paused','word speaker must leave example phase');
+assert.equal(takeOverPaused,1,'word speaker pauses until its own utterance completes');
+const replacedWord=audioSynth.last;
+wordClick();
+const latestWord=audioSynth.last;
+assert.equal(takeOverPaused,1,'repeated word speaker does not double-pause');
+replacedWord.onend();
+assert.equal(takeOverResumed,0,'late Safari onend from cancelled word cannot resume auto early');
+latestWord.onend();
+assert.equal(takeOverResumed,1,'latest word speech resumes auto after spoken delay once');
+assert.equal(wordSpeakerContext.getPending(),false,'word speaker clears example takeover state');
+latestWord.onend();
+assert.equal(takeOverResumed,1,'duplicate Safari onend is idempotent');
+
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
