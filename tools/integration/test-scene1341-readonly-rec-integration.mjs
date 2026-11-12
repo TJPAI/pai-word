@@ -10,11 +10,11 @@ import {createRankedStore} from '../../rebuild-preview/scene1341-ranked-preview.
 
 const html=await fs.readFile(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
 for(const term of ['id="search"','id="rec-status"','scene1341-rec-bridge.mjs',
-  'updateSceneRecommendations()','recRows=rows','CG-REC 实验推荐','openStudy(sc.id)',
+  'updateSceneRecommendations()','recRows=rows','CG-REC 场景推荐','openStudy(sc.id)',
   'scene500-native-scratch.js','scene500-readonly-phase.js','scene1341-display-bookmark.js']){
  assert(html.includes(term),'Fixed-route integration missing '+term);
 }
-assert(html.includes("btn.disabled=!available(sc.id)"),
+assert(html.includes("btn.disabled=!n"),
   'Unapproved target must remain non-playable');
 assert(!html.includes('raw.githack.com'));
 assert(!html.includes('cdn.jsdelivr.net'));

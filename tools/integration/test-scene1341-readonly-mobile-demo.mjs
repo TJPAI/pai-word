@@ -113,18 +113,13 @@ assert(autoNativeSource.includes('state.autoBrowseEnabled=!!enabled;save();resta
  autoNativeSource.includes('state.autoBrowseEnabled=false;'),
  'UI persistence and reset are grounded in native Scene500 behavior');
 
-// The catalog and author KU data are pinned to immutable, distinct commits.
+// The canonical 1341 scene catalog remains pinned; the visible content now
+// comes from the newer 1778 CG-QA screened provisional answers, read-only.
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
-assert(script.includes("const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c'"));
-assert(script.includes("const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json'"));
-assert(script.includes('packs.length!==30'));
-assert(script.includes('items.length!==1182'));
-assert(script.includes('manifest.counts?.production_playable!==0'));
-assert(script.includes('manifest.counts?.question_payloads!==0'));
-assert(script.includes("pack.identity?.srs_namespace!=='scene1341-v2'"));
-assert(script.includes('r.activation_allowed!==false'));
-assert(script.includes("Object.hasOwn(r,'question')"));
-assert(script.includes('qa.counts?.release_approved!==0'));
+assert(script.includes('scene1341-qa-preview-loader.mjs'));
+assert(script.includes('items.length!==1778'));
+assert(script.includes('CG-QA 暂通过'));
+assert(!script.includes('pai-word-preview-ku-durable'));
 
 // No browser-side persisted learning state and no service worker inside isolated preview.
 assert(!/localStorage\b|sessionStorage\b|indexedDB\b|navigator\.serviceWorker\b|\.commit\s*\(/.test(script),
@@ -173,7 +168,7 @@ assert(/class="recall-controls-row"[^>]*>.*?class="recall-cue".*?class="auto-wor
 assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift the study hero geometry');
 assert(!learningFace.includes('class="demo-ops"') && !learningFace.includes('class="demo-qa"') && !learningFace.includes('class="tap-hint"'), 'no Scene1341-only learning controls or notices');
 assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
-assert(script.includes("const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json'"),'read-only draft source unchanged');
+assert(script.includes('scene1341-qa-preview-loader.mjs'),'QA provisional, immutable preview source');
 
 assert(html.includes('id="collocations-section"') && html.includes('id="usage-section"'),
  'optional answer teaching sections must have distinct view containers');
@@ -500,7 +495,7 @@ assert(scene500Renderer.includes("const nextBatch=(Math.floor(position/size)+dir
 assert(scene500Renderer.includes("const batchSize=Math.max(1,Number(state.wordsPerRound)||10)") &&
  scene500Renderer.includes("state.wordsPerRound=10;"),
  'native Scene500 default batch size is ten KU');
-assert(script.includes("let BATCH=10,selectedGrade=null;") && script.includes("BATCH=prefs.wordsPerRound;"),'Scene1341 default must match native 10-KU batch');
+assert(script.includes("let BATCH=10,selectedGrade=null") && script.includes("BATCH=prefs.wordsPerRound;"),'Scene1341 default must match native 10-KU batch');
 /* Native Scene500 auto browse wraps INSIDE the current scene batch, not
    across the entire Scene1341 catalog. Execute the real staged handler with
    multiple full, partial and singleton batches, at all supported batch sizes. */
@@ -1554,4 +1549,4 @@ assert.equal(failedAudioPauses,1);
 assert.equal(failedAudioResumes,1,'synchronous failed audio must not restore the auto timer twice');
 assert.equal(examplePhase.state().phase,'answer-paused');
 
-console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+console.log(JSON.stringify({status:'PASS',preview:'1778 SHA-pinned QA provisional',blocked:260,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));

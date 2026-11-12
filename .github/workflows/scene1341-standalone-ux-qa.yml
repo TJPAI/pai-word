@@ -1,0 +1,71 @@
+name: Scene1341 standalone native Scene500 UX and QA provisional
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-readonly/**'
+      - 'tools/integration/test-scene1341-standalone-ui-qa.mjs'
+      - 'tools/integration/test-scene1341-readonly-mobile-demo.mjs'
+      - 'tools/integration/test-scene1341-readonly-rec-integration.mjs'
+      - '.github/workflows/scene1341-standalone-ux-qa.yml'
+      - 'rebuild-preview/welcome.js'
+      - 'rebuild-preview/home-dashboard.js'
+      - 'rebuild-preview/index.html'
+  push:
+    branches: [cg-main-scene1341-standalone-ui-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  standalone-ux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout exactly pinned CG-QA V2 1778 provisional teaching content
+        uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 79ad2a35a3922b70cea00976627935c7d34a3630
+          path: qa-source
+          sparse-checkout: |
+            tools/core20k_lexicon/qa
+          persist-credentials: false
+      - name: Checkout pinned frozen English Core20K V2 for schema inspection
+        uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 9a740bd3ce898cff9da778ea0af8a1c4ea07c936
+          path: enlex-source
+          sparse-checkout: |
+            tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect frozen English V2 Sense source without modifying it
+        run: |
+          node -e "const fs=require('fs');const p='enlex-source/tools/core20k_lexicon/production_v3/qa_reports/cg_enlex_mu_integrated_v2/full_pack/shard_01.jsonl';const first=JSON.parse(fs.readFileSync(p,'utf8').split('\\n')[0]);console.log(JSON.stringify({source:'frozen-enlex-v2',keys:Object.keys(first),sample:first}).slice(0,4500))"
+      - name: Generate source-exact English Core20K V2 lexical matching evidence
+        env:
+          SCENE1341_QA_SOURCE_DIR: qa-source
+          SCENE1341_ENLEX_SOURCE_DIR: enlex-source
+        run: node tools/integration/build-scene1341-enlex-v2-exact-preview.mjs
+      - name: Verify compact frozen English Core20K V2 reference in native answer page
+        run: |
+          node --check rebuild-preview/scene1341-readonly/scene1341-enlex-preview.mjs
+          node tools/integration/test-scene1341-enlex-v2-exact-preview.mjs
+      - name: Validate exact Scene500 UI components and seven real QA shards
+        env:
+          SCENE1341_QA_SOURCE_DIR: qa-source
+        run: |
+          node --check rebuild-preview/scene1341-readonly/scene1341-qa-preview-loader.mjs
+          node tools/integration/test-scene1341-standalone-ui-qa.mjs
+      - name: Preserve native standalone study gestures and source-backed recommendation
+        run: |
+          node tools/integration/test-scene1341-readonly-mobile-demo.mjs
+          node tools/integration/test-scene1341-readonly-rec-integration.mjs
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene500-native-card-shell.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: Never deploy from CI
+        run: echo 'DEPLOY_ONLY_VIA_OWNER_MANUAL_GITHUB_PAGES_RUN_WORKFLOW'

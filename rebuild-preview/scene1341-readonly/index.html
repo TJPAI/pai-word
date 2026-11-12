@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff"><meta name="apple-mobile-web-app-capable" content="yes">
 <title>PAI Word · Scene1341｜Scene500 同款交互预览</title>
-<link rel="stylesheet" href="./scene500-mobile.css"><link rel="stylesheet" href="./scene500-ux-fix.css"><link rel="stylesheet" href="./scene500-product-v2.css"><link rel="stylesheet" href="./scene500-learning.css"><link rel="stylesheet" href="./scene500-home.css">
+<link rel="stylesheet" href="./scene500-mobile.css"><link rel="stylesheet" href="./scene500-ux-fix.css"><link rel="stylesheet" href="./scene500-product-v2.css"><link rel="stylesheet" href="./scene500-learning.css"><link rel="stylesheet" href="./scene500-home.css"><link rel="stylesheet" href="../welcome.css">
 <style>
 /* Overrides are constrained to the isolated demo route, never the original app. */
 body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-shell{max-width:820px;margin:auto}
@@ -40,15 +40,64 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 /* Native Scene500 answer density, label sizing, bilingual example layout,
    rating rail and scratch geometry are inherited from the five original CSS
    sheets. Do not override them inside this isolated author-draft page. */
+
+/* Use original Scene500 home structure and five copied Scene500 styles. */
+#home .scene-results-list:not(:empty){border-top:1px solid #e5e9f0;margin-top:10px}
+#home .scene-result{display:grid;grid-template-columns:30px minmax(0,1fr) 76px;width:100%;align-items:center;text-align:left;border:0;border-bottom:1px solid #eef1f5;background:white;cursor:pointer;min-height:66px;gap:9px;padding:12px 0;color:#152237}
+#home .scene-result:disabled{opacity:.58;cursor:default}
+#home .scene-result-main b{display:block;font-size:15px}
+#home .scene-result-main small{display:block;font-size:11px;color:#768396;margin-top:4px}
+#home .pai-count-slot{font-size:11px;color:#586c86;text-align:right}
+#home #stats-panel:not([open]){display:none}
+#home #categories[hidden]{display:none!important}
+#home .home-brand .demo-tip{display:block;margin-top:8px;font-size:11px}
 </style></head>
 <body><div id="app">
 <section class="home-dashboard demo-home" id="home">
-  <div class="home-shell"><div class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>Scene1341 · Scene500 同款交互预览</p></div><div class="home-actions"><span class="read-only-pill">未认证 · 只读数据</span></div></div>
-  <div class="home-focus"><div class="continue-card"><div><span class="eyebrow">继续浏览</span><h2 id="continue-name">起床与晨间准备</h2><p id="continue-description">真实教学草稿 · 不保存学习记录</p></div><div class="continue-actions"><button id="continue" class="continue-primary" type="button">进入词卡</button></div></div>
-  <div class="scene-search-card" style="padding:16px"><span class="eyebrow">场景检索 · 1,341 场景目录</span><h2 style="margin:8px 0">查找学习场景</h2><input class="demo-search" id="search" placeholder="输入中文、英文或中英混合需求，推荐相关场景" autocomplete="off" aria-label="查找场景">
-  <p class="demo-tip" id="rec-status" aria-live="polite">输入需求即可体验 CG-REC 场景推荐；检索结果未认证，不开放新的学习记录。</p><div class="demo-categories" id="categories"></div><p class="demo-tip" id="scope">目前已有6个场景、1,182条答案型KU作者草稿可只读体验；其余场景只显示目录，不伪造教学数据。</p>
-  <div class="demo-status" id="status" role="status">正在载入场景目录和真实教学数据…</div><div class="demo-scenes" id="scenes"></div>
-  <button id="more" class="home-quiet-btn" type="button" hidden style="width:100%;margin-top:12px">查看更多场景</button></div></div>
+ <div class="home-shell">
+  <header class="home-topbar">
+   <div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p>
+    <small class="demo-tip">Scene1341 · CG-REC 中英文场景推荐 · 英文教学预览（独立数据）</small>
+   </div>
+   <div class="home-actions">
+    <button id="preview-stats-button" class="home-quiet-btn" type="button">统计</button>
+    <button id="preview-settings-button" class="home-quiet-btn" type="button">设置</button>
+   </div>
+  </header>
+  <main class="home-focus">
+   <section class="continue-card">
+    <div><span class="eyebrow">继续学习</span><h2 id="continue-name">开始一个场景</h2>
+     <p id="continue-description">英文教学内容正在载入 · 仅用于体验</p>
+    </div>
+    <div class="continue-actions"><button id="continue" class="continue-primary" type="button" disabled>继续学习</button></div>
+   </section>
+   <section class="scene-search-card">
+    <div class="scene-search-title"><span class="eyebrow">Scene1341</span>
+     <h2>你现在想学什么？</h2>
+     <p>直接说一句你的场景，例如“我要去美国参加学术会议，还要坐飞机和住酒店”。</p>
+    </div>
+    <textarea class="scene-query" id="search" rows="2"
+     placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。" autocomplete="off"
+     aria-label="描述你的场景需求"></textarea>
+    <div class="scene-search-controls">
+     <label>难度 <select id="difficulty" aria-label="难度筛选尚未接入" disabled><option value="all">全部</option></select></label>
+     <button id="find-scenes" class="find-scenes" type="button">找场景</button>
+    </div>
+    <p id="rec-status" class="demo-tip" role="status" aria-live="polite">CG-REC 中英文混合场景推荐 · 仅供体验</p>
+    <div id="scenes" class="scene-results-list"></div>
+    <div id="categories" class="demo-categories" hidden></div>
+    <p class="demo-tip" id="scope">正在加载 Scene1341 教学内容；未获正式认证的词卡仅在此独立体验。</p>
+    <div class="demo-status" id="status" role="status">正在载入 1,341 场景目录及教学词卡…</div>
+    <button id="more" class="home-quiet-btn" type="button" hidden>查看更多场景</button>
+   </section>
+   <div class="browse-link">
+    <button id="browse" class="catalog-back" type="button">浏览场景目录 →</button>
+    <span>Scene1341 共 1,341 个场景；有真实教学内容的场景可进入词卡体验。</span>
+   </div>
+  </main>
+  <details id="stats-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
+   <summary>体验统计（不写入正式 SRS）</summary><p id="preview-stats-content" class="demo-tip"></p>
+  </details>
   <details id="settings-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
    <summary style="cursor:pointer;font-weight:650">设置 · 复用 Scene500 选项</summary>
    <p class="demo-tip">与 Scene500 使用相同的选项值和默认值。自动切词、全部学习页选项和浏览位置在独立预览空间保存，不修改正式 App 设置或 SRS。</p>
@@ -79,6 +128,10 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
    <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
+   <details class="answer-section" id="enlex-section" hidden>
+    <summary class="answer-label">英文 Core20K V2 词库参考（匹配词头，不代表场景词义认证）</summary>
+    <div class="root" id="enlex-details"></div>
+   </details>
   </div>
   <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
  </div>
@@ -86,7 +139,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
  <p class="recall-note" id="demo-note" aria-live="polite">点空白看答案，左右滑切词，上下滑换批，长按手写或擦除</p>
  <div class="session-footnote"></div>
 </section></div>
-<script src="./scene500-readonly-settings.js"></script>
+<script src="./scene1341-welcome.js?v=scene1341-native-20261113"></script><script src="./scene500-readonly-settings.js"></script>
 <script src="./scene500-readonly-phase.js"></script>
 <script src="./scene1341-auto-preference.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
@@ -95,13 +148,10 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
 const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/integration/';
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
-const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c';
-const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA+'/';
-const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
-let BATCH=10,selectedGrade=null;
-let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null;
+let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null;
+let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
  const q=filter.trim(),ticket=++recRequest;
@@ -249,38 +299,36 @@ function parseCsv(src){
 async function getText(url){const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);return res.text()}
 async function load(){
  try{
-  const [catalogRaw,manifestRaw,qaRaw]=await Promise.all([
-   getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
-   getText(AUTHOR_ROOT+MANIFEST),
-   getText(ROOT+'scene1341-teaching/qa-304-status-staging.v1.json')
+  const [catalogRaw,qa]=await Promise.all([
+    getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
+    import('./scene1341-qa-preview-loader.mjs').then(m=>m.loadScene1341QAProvisional())
   ]);
   const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
-  catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')])).map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
-  if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)throw Error('场景目录数量或ID异常');
-  const manifest=JSON.parse(manifestRaw),packs=manifest.assets?.packs;
-  if(manifest.schema_version!=='pai-scene1341-answer-only-v2-progress-manifest'||manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE'||!Array.isArray(packs)||packs.length!==30||manifest.counts?.authored_answer_only!==1182||manifest.counts?.production_playable!==0||manifest.counts?.question_payloads!==0||packs.reduce((n,p)=>n+p.records,0)!==1182)throw Error('作者清单未通过隔离预览门禁');
-  if(new Set(packs.map(p=>p.path)).size!==packs.length||packs.some(p=>!/^tools\/answer-enrichment\/scene1341-v51-.*\.v2\.json$/.test(p.path)||!/^([0-9a-f]{40})$/.test(p.git_blob)||p.records<1))throw Error('作者清单文件身份异常');
-  const rawPacks=await Promise.all(packs.map(p=>getText(AUTHOR_ROOT+p.path)));
-  const ids=new Set(),ranks=new Set();items=[];
-  rawPacks.forEach((raw,i)=>{
-   const pack=JSON.parse(raw),p=packs[i];
-   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2'||pack.identity?.core20k_ku_reused!==false||!Array.isArray(pack.records)||pack.records.length!==p.records)throw Error('KU源Pack身份异常：'+p.path);
-   for(const r of pack.records){
-    const key=r.scene_id+':'+r.source_rank;
-    if(!/^SC1341-KU-\d{5}$/.test(r.scene_ku_id)||ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||Object.hasOwn(r,'choices')||Object.hasOwn(r,'scoring')||!r.expression||!r.answer?.meaning_zh||!r.answer?.example_en||!r.answer?.example_zh||!Array.isArray(r.answer.collocations)||!catalog.some(c=>c.id===r.scene_id)||ranks.has(key))throw Error('KU不能进入只读预览：'+r.scene_ku_id);
-    ids.add(r.scene_ku_id);ranks.add(key);items.push(r);
-   }
-  });
-  if(items.length!==1182||ids.size!==1182)throw Error('KU总数或唯一身份异常');
-  const perScene=new Map();for(const r of items){const a=perScene.get(r.scene_id)||[];a.push(r.source_rank);perScene.set(r.scene_id,a)}
-  for(const [scene,rs] of perScene){rs.sort((a,b)=>a-b);if(rs.some((n,i)=>n!==i+1))throw Error('场景rank不连续：'+scene)}
-  items.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
-  const qa=JSON.parse(qaRaw);
-  if(qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('QA 304历史审核门禁异常');
-  flags=new Map(qa.flags.map(f=>[f.ku_id,f]));
-  set('status','已载入1,341个场景目录｜'+perScene.size+'个场景共'+items.length+'条作者草稿（未正式认证）');
-  set('continue-name',label(lastScene));renderCategories();renderHome();
- }catch(e){items=[];set('status','数据加载失败：'+e.message+'。请联网使用 Safari 打开，暂不展示未经验证的数据。');$('continue').disabled=true;set('scope','数据没有通过校验；不开放任何评分或学习记录。')}
+  catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')]))
+    .map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
+  if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)
+    throw Error('SCENE1341_CATALOG_ID_OR_COUNT_MISMATCH');
+  items=[...qa.items]; // preview-only, no Scene500 PAI_CORE mutation.
+  const countByScene=new Map();
+  for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
+  if(countByScene.size!==10||items.length!==1778)throw Error('QA_PROVISIONAL_PREVIEW_COUNT_MISMATCH');
+  set('scope','英文教学预览：'+countByScene.size+'个场景、'+items.length+
+    '条 CG-QA 暂通过答案型 KU；另有260条阻塞未展示。尚未完成 Master/Muse 正式认证，不计入 SRS。');
+  set('status','Scene1341 目录 1,341 · CG-REC 推荐场景 110 · QA 暂通过教学词卡 '+items.length);
+  if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
+  set('continue-name',label(lastScene));
+  set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 仅保存浏览位置');
+  $('continue').disabled=!available(lastScene);
+  renderCategories();renderHome();
+ }catch(e){
+  items=[];set('status','数据校验失败：'+String(e?.message||e));
+  set('scope','本次预览暂不可进入未经验证的词卡；请核对 GitHub 数据来源。');
+  $('continue').disabled=true;
+  renderHome();
+ }finally{
+  document.body.classList.add('pai-boot-ready');
+  window.dispatchEvent(new Event('pai-home-ready'));
+ }
 }
 function renderCategories(){
  const cats=['全部',...new Set(catalog.map(x=>x.category))];$('categories').replaceChildren();
@@ -288,27 +336,38 @@ function renderCategories(){
 }
 function renderHome(){
  if(!catalog.length)return;
- const q=filter.trim().toLowerCase();
- // Query results are from CG-REC in the existing Scene500-style catalog UI.
- // Normal unfiltered catalog remains available, preserving all prior preview KUs.
- const result=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean)
-                :catalog;
- const selected=result.filter(x=>category==='全部'||x.category===category);
+ const q=filter.trim().toLowerCase(),active=!!q||catalogVisible;
+ const results=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean):catalog;
+ const selected=results.filter(x=>category==='全部'||x.category===category);
+ const sorted=q?selected:catalogVisible&&category==='全部'
+   ?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]
+   :selected;
  $('scenes').replaceChildren();
- const sorted=!q&&category==='全部'?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]:selected;
- const message=!q?'场景目录 · 1,341 场景':recPending?'正在运行 CG-REC 实验推荐…'
-   :recError?'推荐查询失败（未使用未经验证的结果）：'+recError
-   :('CG-REC 实验推荐 · '+sorted.length+' 个场景；结果未获 CG-QA/Muse 认证');
+ const message=!q?'1,341场景目录 · 使用最新CG-REC搜索相关场景'
+   :recPending?'正在运行 CG-REC 中英文推荐…'
+   :recError?'查询失败：'+recError
+   :('CG-REC 场景推荐 · '+sorted.length+'个结果 · 未认证教学内容仅供体验');
  set('rec-status',message);
- for(const sc of sorted.slice(0,visible)){
-  const btn=document.createElement('button');btn.className='demo-scene';btn.type='button';
-  const title=document.createElement('div'),b=document.createElement('b'),small=document.createElement('small'),right=document.createElement('span');
-  b.textContent=sc.name;small.textContent=sc.id+' · '+sc.category+(q?' · 实验推荐／未认证':'');title.append(b,small);
-  right.textContent=available(sc.id)?available(sc.id)+'条词卡 · 体验':'待教学内容认证';
-  right.className=available(sc.id)?'ready':'unready';btn.disabled=!available(sc.id);btn.append(title,right);
-  btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+ if(active){
+  for(const [position,sc] of sorted.slice(0,q?10:visible).entries()){
+   const btn=document.createElement('button');
+   btn.className='scene-result';btn.type='button';
+   const no=document.createElement('span');no.className='scene-result-no';
+   no.textContent=String(position+1).padStart(2,'0');
+   const name=document.createElement('span');name.className='scene-result-main';
+   const title=document.createElement('b');title.textContent=sc.name;
+   const categoryEl=document.createElement('small');
+   categoryEl.textContent=sc.id+' · '+sc.category+(q?' · CG-REC实验推荐':'');
+   name.append(title,categoryEl);
+   const count=document.createElement('span');count.className='pai-count-slot';
+   const n=available(sc.id);
+   count.textContent=n?n+' 条可体验':'教学待交付';
+   btn.disabled=!n;btn.append(no,name,count);
+   btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+  }
  }
- $('more').hidden=!!q||sorted.length<=visible;set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
+ $('more').hidden=!!q||!catalogVisible||sorted.length<=visible;
+ set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
 }
 let exampleToWordPending=false;
 function openStudy(id,resume=false){
@@ -361,6 +420,30 @@ function scheduleQuestionFit(){
  questionFitFrame=requestAnimationFrame(()=>{questionFitFrame=0;if(!$('learning').hidden)fitQuestionExpression()});
 }
 window.addEventListener('resize',scheduleQuestionFit);
+async function renderLexiconReference(card){
+ const seq=++lexiconSequence;
+ const node=$('enlex-section'),container=$('enlex-details');
+ node.hidden=true;
+ if(!revealed)return;
+ try{
+  if(!lexiconPromise)lexiconPromise=import('./scene1341-enlex-preview.mjs')
+    .then(m=>m.englishCore20KV2Preview)
+    .catch(err=>{lexiconPromise=null;throw err});
+  const source=await lexiconPromise;
+  const rows=await source.lookup(card.expression);
+  if(seq!==lexiconSequence||!revealed||
+     subset()[index]?.scene_ku_id!==card.scene_ku_id)return;
+  container.replaceChildren();
+  if(!rows.length)return;
+  node.open=false;node.hidden=false;
+  for(const row of rows){
+    const line=document.createElement('p');
+    line.textContent=(row.pos?row.pos+' · ':'')+row.gloss_zh+
+       (row.gloss_en?' ('+row.gloss_en+')':'');
+    container.appendChild(line);
+  }
+ }catch(error){window.PAI_SCENE1341_ENLEX_PREVIEW_ERROR=String(error)}
+}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const prefs=readOnlyPrefs.snapshot();
@@ -383,6 +466,7 @@ function renderCard(){
  $('examples-section').hidden=!prefs.showExamples;
  $('usage-section').hidden=teachingNotes.length===0;
  $('answer').hidden=!revealed;
+ void renderLexiconReference(r);
  for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
  set('demo-note',revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除');
  $('studybody').scrollTop=0;
@@ -427,7 +511,25 @@ function moveBatch(delta){
 }
 function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
-$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;void updateSceneRecommendations()});
+$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;catalogVisible=false;void updateSceneRecommendations()});
+$('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
+$('browse').addEventListener('click',()=>{
+ filter='';$('search').value='';category='全部';catalogVisible=true;visible=35;
+ recRequest++;recRows=null;recPending=false;renderCategories();renderHome();
+ $('categories').hidden=false;
+});
+$('preview-settings-button').addEventListener('click',()=>{
+ const node=$('settings-panel');node.open=!node.open;if(node.open)node.scrollIntoView({block:'nearest',behavior:'smooth'});
+});
+$('preview-stats-button').addEventListener('click',()=>{
+ const node=$('stats-panel');node.open=!node.open;
+ set('preview-stats-content','Scene1341 目录：'+catalog.length+
+   ' 场景；QA暂通过教学词卡：'+items.length+
+   ' 条；本次体验评分：不知道 '+transientRatings.again+
+   ' / 模糊 '+transientRatings.hard+' / 知道 '+transientRatings.good+
+   '（仅内存，未写入正式SRS）');
+ if(node.open)node.scrollIntoView({block:'nearest',behavior:'smooth'});
+});
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
 // Match native Scene500 single delegated blank-click handler on the whole study screen.
 $('learning').addEventListener('click',e=>{
@@ -534,6 +636,8 @@ document.addEventListener('keydown',e=>{
  else if(e.code==='Space'){e.preventDefault();show()}
  else if(e.key==='Escape')home();
 });
+// Original welcome catalog action enters the isolated Scene1341 catalog, not Scene500.
+window.PAI_OPEN_CATALOG_LAZY=()=>$('browse').click();
 window.render=renderCard;
 window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
 readOnlyPrefs.set('autoBrowseInterval',autoPreference.getSpeed());

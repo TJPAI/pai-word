@@ -1,0 +1,37 @@
+name: Scene1341 standalone original Scene500 UX and provisional teaching
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-readonly/**'
+      - 'tools/integration/test-scene1341-standalone-scene500-parity.mjs'
+      - '.github/workflows/scene1341-standalone-scene500-parity.yml'
+  push:
+    branches: [cg-main-scene1341-standalone-ui-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  standalone-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-original Scene500 vs isolated Scene1341 UI and KU gate
+        run: |
+          node --check tools/integration/test-scene1341-standalone-scene500-parity.mjs
+          node tools/integration/test-scene1341-standalone-scene500-parity.mjs
+          node --check rebuild-preview/scene1341-readonly/scene1341-qa-preview-loader.mjs
+          node --check rebuild-preview/scene1341-readonly/scene1341-enlex-preview.mjs
+      - name: CG-REC exact source with source-pinned ranked expressions
+        run: node tools/integration/test-scene1341-readonly-rec-integration.mjs
+      - name: Existing Scene500 native learning controls still unchanged
+        run: |
+          node tools/integration/test-scene500-native-card-shell.mjs
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene500-native-handwriting.mjs
+          node tools/integration/test-scene500-native-audio-lifecycle.mjs
+      - name: No Scene1341 production SRS writes
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs

@@ -1,5 +1,5 @@
 (async function(){
- const VERSION='scene1341-original-scene500-ui-20261113';window.PAI_APP_VERSION=VERSION;
+ const VERSION='answer-bilingual-audio-v3-20261026';window.PAI_APP_VERSION=VERSION;
  // Core20K dataset is independent of UI revisions. Change this token ONLY when
  // data/core20k-runtime.json.gz changes; otherwise retain the verified text cache.
  window.PAI_CORE20K_ASSET_VERSION='core20k-runtime-dataset-v1';
