@@ -1,0 +1,86 @@
+{
+  "schema": "cg-qa-scene1341-v51-p1-first16-secondpass-2",
+  "date": "2026-11-12",
+  "source_author_commit": "05cd50f222d8d9e3db773704d9b3fea7b54d235b",
+  "source_author_blob": "831281ea48430fd75967ca74cc890ebc3951d541",
+  "counts": {
+    "reviewed": 2,
+    "pass": 2,
+    "conditional": 0,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "policy": "Two updated current variant judgments supersede earlier P1 CONDITIONAL only for the respective revised content. Original judgments retained, no formal Master/Muse approval.",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00058",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00058",
+      "source_rank": 58,
+      "expression": "miss the alarm",
+      "source_repatch_blob": "831281ea48430fd75967ca74cc890ebc3951d541",
+      "original_source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "previous_author_patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "prior_qa_result": "CONDITIONAL",
+      "revised_answer": {
+        "meaning_zh": "错过闹铃",
+        "example_en": "I missed my alarm this morning and overslept.",
+        "example_zh": "今天早上我没听到闹钟，结果睡过头了。",
+        "collocations": [
+          "miss the alarm",
+          "miss your morning alarm"
+        ],
+        "usage_note": "miss your alarm意为没听见或没注意到闹钟提醒；更常见的说法还有sleep through your alarm或not hear your alarm。手机静音不一定会使闹钟静音。"
+      },
+      "revised_display": {
+        "w": "miss the alarm",
+        "m": "错过闹铃",
+        "c": "miss the alarm · miss your morning alarm",
+        "e": "I missed my alarm this morning and overslept.",
+        "x": "miss your alarm意为没听见或没注意到闹钟提醒；更常见的说法还有sleep through your alarm或not hear your alarm。手机静音不一定会使闹钟静音。",
+        "example_zh": "今天早上我没听到闹钟，结果睡过头了。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "I missed my alarm this morning and overslept真实展示miss my alarm这一自然所有格变体；释义、例句与中译一致，未误将静音模式当作必要原因。",
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00234",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00234",
+      "source_rank": 234,
+      "expression": "turn on the alarm",
+      "source_repatch_blob": "831281ea48430fd75967ca74cc890ebc3951d541",
+      "original_source_pack_blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+      "previous_author_patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "prior_qa_result": "CONDITIONAL",
+      "revised_answer": {
+        "meaning_zh": "打开闹钟功能",
+        "example_en": "I turned on my 6:30 alarm for tomorrow morning.",
+        "example_zh": "我启用了明早六点半的闹钟。",
+        "collocations": [
+          "turn on the alarm",
+          "turn the alarm on"
+        ],
+        "usage_note": "turn on an alarm表示启用已有闹钟；set an alarm通常指设置提醒时间。"
+      },
+      "revised_display": {
+        "w": "turn on the alarm",
+        "m": "打开闹钟功能",
+        "c": "turn on the alarm · turn the alarm on",
+        "e": "I turned on my 6:30 alarm for tomorrow morning.",
+        "x": "turn on an alarm表示启用已有闹钟；set an alarm通常指设置提醒时间。",
+        "example_zh": "我启用了明早六点半的闹钟。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "I turned on my 6:30 alarm真实展示turn on + alarm（所有格修饰）短语；启用已有闹钟而非设置新提醒的说明准确。",
+      "master_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
