@@ -91,7 +91,7 @@ assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not n
  assert.ok(sample,'source scene 1341 missing');
  for(const key of [sample.revised_name?.trim()?'revised_name':'name','category']){
   const original=sample[key];sample[key]=' ';
-  assert.throws(()=>buildCatalog(make(),ranked,{sourceCommit:commit,manifestSha:blob}),/EMPTY_SCENE_METADATA/,'blank '+key+' must fail');
+  assert.throws(()=>buildCatalog(make(),ranked,{sourceCommit:commit,manifestSha:blob}),/EMPTY_SCENE_METADATA SC50-1341/,'blank '+key+' must fail');
   sample[key]=original;
  }
 }
