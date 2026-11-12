@@ -1207,7 +1207,7 @@ assert.equal(ukVoice.lang,'en-GB');
 assert(Math.abs(ukVoice.rate-.84*1.2)<1e-10,'native word base rate .84 x speed');
 const ukExample=voiceFactory('Example',.9);
 assert(Math.abs(ukExample.rate-.9*1.2)<1e-10,'native example base rate .9 x speed');
-assert(script.includes('playWord(subset()[index].answer.example_en,.9)')&&script.includes('const utterance=buildReadOnlyUtterance(text,baseRate)'),'example and word must share audio lifecycle with native example .9 base rate');
+assert(script.includes('playWord(subset()[index].answer.example_en,.9,finishExample)')&&script.includes('const utterance=buildReadOnlyUtterance(text,baseRate)'),'example and word must share audio lifecycle with native example .9 base rate');
 assert.equal(ukVoice.voice.name,'UK');
 pref.set('speechSpeed',80);pref.set('voiceAccent','us');
 const usVoice=voiceFactory('soon');
