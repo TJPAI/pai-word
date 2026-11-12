@@ -1,0 +1,33 @@
+name: Scene1341 provisional KU intake source and QA gate
+on:
+  push:
+    branches:
+      - cg-main-provisional-1779-intake-20261112
+      - main
+    paths:
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
+      - 'tools/integration/scene1341-provisional-intake-pin-20261112.v1.json'
+      - 'tools/integration/validate-scene1341-provisional-intake.mjs'
+      - '.github/workflows/scene1341-provisional-intake-qa.yml'
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-provisional-intake.mjs'
+      - 'tools/integration/scene1341-provisional-intake-pin-20261112.v1.json'
+      - 'tools/integration/validate-scene1341-provisional-intake.mjs'
+      - '.github/workflows/scene1341-provisional-intake-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  candidate-source-intake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check fail-closed provisional gate syntax
+        run: node --check rebuild-preview/scene1341-provisional-intake.mjs
+      - name: Verify all seven real CG-QA sources, 1779 KU and Master hold
+        run: node tools/integration/validate-scene1341-provisional-intake.mjs
