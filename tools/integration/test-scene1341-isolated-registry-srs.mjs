@@ -26,7 +26,7 @@ assert.equal(registry.namespace,'scene1341-v2');
 assert.equal(registry.records,2);
 assert.equal(registry.quarantined,2);
 assert.equal(registry.item(base.scene_ku_id).stagingEligible,false);
-assert.equal(registry.item(base.scene_ku_id).acceptedForQuarantine,false===true?false:true);
+assert.equal(registry.item(base.scene_ku_id).acceptedForQuarantine,true);
 assert.equal(registry.listScene('SC50-0002').length,2);
 assert.deepEqual(registry.getNativeStudyUnits(),[]);
 assert.equal(registry.canCreateStudyQueue,false);
