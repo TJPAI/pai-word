@@ -1,0 +1,625 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 13,
+    "master_review_required": 6
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00276",
+      "scene_id": "SC50-0002",
+      "source_rank": 42,
+      "source_sense_id": "SC-SENSE-00276",
+      "expression": "hot water",
+      "source_sense_zh": "热水",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "热水",
+        "example_en": "Be careful—the hot water is very hot.",
+        "example_zh": "小心，热水很烫。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "revised_answer": {
+        "meaning_zh": "热水",
+        "example_en": "The water is too hot. Turn down the temperature a little.",
+        "example_zh": "水太烫了，把温度调低一点。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "revised_display": {
+        "w": "hot water",
+        "m": "热水",
+        "c": "run the hot water · hot water tap",
+        "e": "The water is too hot. Turn down the temperature a little.",
+        "x": "hot water表示热水，注意与warm water温水的程度区别。",
+        "example_zh": "水太烫了，把温度调低一点。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00300",
+      "scene_id": "SC50-0002",
+      "source_rank": 66,
+      "source_sense_id": "SC-SENSE-00300",
+      "expression": "shaver",
+      "source_sense_zh": "电动剃须刀；剃须刀",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "电动剃须刀；剃须刀",
+        "example_en": "He uses an electric shaver in the morning.",
+        "example_zh": "他早晨用电动剃须刀刮胡子。",
+        "collocations": [
+          "electric shaver",
+          "recharge a shaver"
+        ],
+        "usage_note": "shaver尤指电动剃须刀；razor多指刀片式剃刀。"
+      },
+      "revised_answer": {
+        "meaning_zh": "电动剃须刀；剃须刀",
+        "example_en": "He uses an electric shaver in the morning.",
+        "example_zh": "他早晨用电动剃须刀刮胡子。",
+        "collocations": [
+          "electric shaver",
+          "recharge a shaver"
+        ],
+        "usage_note": "shaver通常指电动剃须刀；手动刀片式剃须刀通常说razor，两者不要混淆。"
+      },
+      "revised_display": {
+        "w": "shaver",
+        "m": "电动剃须刀；剃须刀",
+        "c": "electric shaver · recharge a shaver",
+        "e": "He uses an electric shaver in the morning.",
+        "x": "shaver通常指电动剃须刀；手动刀片式剃须刀通常说razor，两者不要混淆。",
+        "example_zh": "他早晨用电动剃须刀刮胡子。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00307",
+      "scene_id": "SC50-0002",
+      "source_rank": 73,
+      "source_sense_id": "SC-SENSE-00307",
+      "expression": "cotton swab",
+      "source_sense_zh": "棉签",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-071-100.v2.json",
+      "source_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+      "original_answer": {
+        "meaning_zh": "棉签",
+        "example_en": "I use a cotton swab to clean around the makeup bottle.",
+        "example_zh": "我用棉签清理化妆品瓶子周围。",
+        "collocations": [
+          "cotton swab",
+          "use a cotton swab"
+        ],
+        "usage_note": "cotton swab为美式常用说法，英式也常见cotton bud。"
+      },
+      "revised_answer": {
+        "meaning_zh": "棉签",
+        "example_en": "I used a cotton swab to clean around the cap of the makeup bottle.",
+        "example_zh": "我用棉签清洁化妆品瓶盖周围。",
+        "collocations": [
+          "cotton swab",
+          "use a cotton swab"
+        ],
+        "usage_note": "cotton swab为美式常用说法，英式也常见cotton bud。"
+      },
+      "revised_display": {
+        "w": "cotton swab",
+        "m": "棉签",
+        "c": "cotton swab · use a cotton swab",
+        "e": "I used a cotton swab to clean around the cap of the makeup bottle.",
+        "x": "cotton swab为美式常用说法，英式也常见cotton bud。",
+        "example_zh": "我用棉签清洁化妆品瓶盖周围。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00332",
+      "scene_id": "SC50-0002",
+      "source_rank": 98,
+      "source_sense_id": "SC-SENSE-00332",
+      "expression": "towel-dry your hair",
+      "source_sense_zh": "用毛巾把头发擦到半干",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-071-100.v2.json",
+      "source_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+      "original_answer": {
+        "meaning_zh": "用毛巾把头发擦到半干",
+        "example_en": "I towel-dry my hair before using the hair dryer.",
+        "example_zh": "用吹风机前我先用毛巾把头发擦到半干。",
+        "collocations": [
+          "towel-dry your hair",
+          "gently towel-dry"
+        ],
+        "usage_note": "towel-dry指用毛巾吸去水分，不一定完全干透。"
+      },
+      "revised_answer": {
+        "meaning_zh": "用毛巾擦去头发多余水分",
+        "example_en": "I towel-dry my hair before using the hair dryer.",
+        "example_zh": "用吹风机之前，我先用毛巾吸去头发上多余的水分。",
+        "collocations": [
+          "towel-dry your hair",
+          "gently towel-dry"
+        ],
+        "usage_note": "towel-dry是用毛巾擦干或吸去多余水分，不必然恰好达到半干。"
+      },
+      "revised_display": {
+        "w": "towel-dry your hair",
+        "m": "用毛巾擦去头发多余水分",
+        "c": "towel-dry your hair · gently towel-dry",
+        "e": "I towel-dry my hair before using the hair dryer.",
+        "x": "towel-dry是用毛巾擦干或吸去多余水分，不必然恰好达到半干。",
+        "example_zh": "用吹风机之前，我先用毛巾吸去头发上多余的水分。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00364",
+      "scene_id": "SC50-0002",
+      "source_rank": 130,
+      "source_sense_id": "SC-SENSE-00364",
+      "expression": "blemish",
+      "source_sense_zh": "皮肤瑕疵；斑点；痘痘",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+      "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "original_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点；痘痘",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我的脸颊上冒出一个小瑕疵。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤斑点或瑕疵，不一定就是痘痘。"
+      },
+      "revised_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点；痘痘",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我脸颊上出现了一处小斑点。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤斑点或瑕疵，不一定就是痘痘。"
+      },
+      "revised_display": {
+        "w": "blemish",
+        "m": "皮肤瑕疵；斑点；痘痘",
+        "c": "skin blemish · cover a blemish",
+        "e": "A small blemish appeared on my cheek.",
+        "x": "blemish泛指皮肤斑点或瑕疵，不一定就是痘痘。",
+        "example_zh": "我脸颊上出现了一处小斑点。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00374",
+      "scene_id": "SC50-0002",
+      "source_rank": 140,
+      "source_sense_id": "SC-SENSE-00374",
+      "expression": "close shave",
+      "source_sense_zh": "刮得很干净；贴面剃须",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+      "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "original_answer": {
+        "meaning_zh": "刮得很干净；贴面剃须",
+        "example_en": "I prefer a close shave before a formal event.",
+        "example_zh": "正式活动前，我喜欢把胡子刮得很干净。",
+        "collocations": [
+          "a close shave",
+          "get a close shave"
+        ],
+        "usage_note": "close shave在此指贴面剃须；另有“险些出事”的惯用义。"
+      },
+      "revised_answer": {
+        "meaning_zh": "贴面剃须；刮得很干净的一次剃须",
+        "example_en": "I prefer a close shave before a formal event.",
+        "example_zh": "正式活动前，我喜欢把胡子刮得很干净。",
+        "collocations": [
+          "a close shave",
+          "get a close shave"
+        ],
+        "usage_note": "a close shave在此指一次刮得贴近皮肤的剃须；另有险些出事的惯用义，不应混为一谈。"
+      },
+      "revised_display": {
+        "w": "close shave",
+        "m": "贴面剃须；刮得很干净的一次剃须",
+        "c": "a close shave · get a close shave",
+        "e": "I prefer a close shave before a formal event.",
+        "x": "a close shave在此指一次刮得贴近皮肤的剃须；另有险些出事的惯用义，不应混为一谈。",
+        "example_zh": "正式活动前，我喜欢把胡子刮得很干净。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00384",
+      "scene_id": "SC50-0002",
+      "source_rank": 150,
+      "source_sense_id": "SC-SENSE-00384",
+      "expression": "unclog the drain",
+      "source_sense_zh": "疏通下水道",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+      "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "original_answer": {
+        "meaning_zh": "疏通下水道",
+        "example_en": "We need to unclog the drain before using the shower.",
+        "example_zh": "使用淋浴前，我们得把排水口疏通。",
+        "collocations": [
+          "unclog the drain",
+          "unclog a shower drain"
+        ],
+        "usage_note": "unclog是疏通堵塞物，和clean the drain仅清洁有区别。"
+      },
+      "revised_answer": {
+        "meaning_zh": "疏通排水口；疏通排水管",
+        "example_en": "We need to unclog the drain before using the shower.",
+        "example_zh": "使用淋浴前，我们得把排水口疏通。",
+        "collocations": [
+          "unclog the drain",
+          "unclog a shower drain"
+        ],
+        "usage_note": "drain指排水口或排水管；unclog是清除堵塞物，不等于简单擦洗。"
+      },
+      "revised_display": {
+        "w": "unclog the drain",
+        "m": "疏通排水口；疏通排水管",
+        "c": "unclog the drain · unclog a shower drain",
+        "e": "We need to unclog the drain before using the shower.",
+        "x": "drain指排水口或排水管；unclog是清除堵塞物，不等于简单擦洗。",
+        "example_zh": "使用淋浴前，我们得把排水口疏通。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00385",
+      "scene_id": "SC50-0002",
+      "source_rank": 151,
+      "source_sense_id": "SC-SENSE-00385",
+      "expression": "clean up spilled water",
+      "source_sense_zh": "擦干洒出的水",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "擦干洒出的水",
+        "example_en": "Please clean up the spilled water before someone slips.",
+        "example_zh": "请把洒出来的水擦干，免得有人滑倒。",
+        "collocations": [
+          "clean up spilled water",
+          "clean up a spill"
+        ],
+        "usage_note": "clean up强调把洒出的东西清理干净；spill可作名词。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清理洒出的水",
+        "example_en": "Please clean up the spilled water before someone slips.",
+        "example_zh": "请把洒出来的水擦干，免得有人滑倒。",
+        "collocations": [
+          "clean up spilled water",
+          "clean up a spill"
+        ],
+        "usage_note": "clean up spilled water强调清理洒出的水，可以用擦拭等方式，不一定限定为擦干。"
+      },
+      "revised_display": {
+        "w": "clean up spilled water",
+        "m": "清理洒出的水",
+        "c": "clean up spilled water · clean up a spill",
+        "e": "Please clean up the spilled water before someone slips.",
+        "x": "clean up spilled water强调清理洒出的水，可以用擦拭等方式，不一定限定为擦干。",
+        "example_zh": "请把洒出来的水擦干，免得有人滑倒。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00390",
+      "scene_id": "SC50-0002",
+      "source_rank": 156,
+      "source_sense_id": "SC-SENSE-00390",
+      "expression": "treat a small cut",
+      "source_sense_zh": "处理小伤口",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "处理小伤口",
+        "example_en": "I cleaned and covered a small cut on my finger.",
+        "example_zh": "我清洁并盖住了手指上的小伤口。",
+        "collocations": [
+          "treat a small cut",
+          "a small cut on your finger"
+        ],
+        "usage_note": "treat a cut指处理伤口；具体医疗处置应遵从专业建议。"
+      },
+      "revised_answer": {
+        "meaning_zh": "处理小伤口",
+        "example_en": "I treated a small cut on my finger by cleaning it and covering it with a bandage.",
+        "example_zh": "我清洁了手指上的小伤口，并用创可贴覆盖，进行了简单处理。",
+        "collocations": [
+          "treat a small cut",
+          "a small cut on your finger"
+        ],
+        "usage_note": "treat a cut表示处理伤口；这里是语言示例，具体医疗处理应遵循专业建议。"
+      },
+      "revised_display": {
+        "w": "treat a small cut",
+        "m": "处理小伤口",
+        "c": "treat a small cut · a small cut on your finger",
+        "e": "I treated a small cut on my finger by cleaning it and covering it with a bandage.",
+        "x": "treat a cut表示处理伤口；这里是语言示例，具体医疗处理应遵循专业建议。",
+        "example_zh": "我清洁了手指上的小伤口，并用创可贴覆盖，进行了简单处理。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00393",
+      "scene_id": "SC50-0002",
+      "source_rank": 159,
+      "source_sense_id": "SC-SENSE-00393",
+      "expression": "wipe up the mess",
+      "source_sense_zh": "擦掉弄脏的地方",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "擦掉弄脏的地方",
+        "example_en": "I wiped up the mess around the sink.",
+        "example_zh": "我把洗手池周围弄脏的地方擦干净了。",
+        "collocations": [
+          "wipe up the mess",
+          "wipe up a spill"
+        ],
+        "usage_note": "wipe up通常强调把洒出的液体或污物擦掉。"
+      },
+      "revised_answer": {
+        "meaning_zh": "擦净洒出的污物或液体",
+        "example_en": "I wiped up the mess around the sink.",
+        "example_zh": "我把洗手池周围洒出的脏东西擦干净了。",
+        "collocations": [
+          "wipe up the mess",
+          "wipe up a spill"
+        ],
+        "usage_note": "wipe up通常强调把洒出的液体或污物擦掉。"
+      },
+      "revised_display": {
+        "w": "wipe up the mess",
+        "m": "擦净洒出的污物或液体",
+        "c": "wipe up the mess · wipe up a spill",
+        "e": "I wiped up the mess around the sink.",
+        "x": "wipe up通常强调把洒出的液体或污物擦掉。",
+        "example_zh": "我把洗手池周围洒出的脏东西擦干净了。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00404",
+      "scene_id": "SC50-0002",
+      "source_rank": 170,
+      "source_sense_id": "SC-SENSE-00404",
+      "expression": "wash a reusable cloth",
+      "source_sense_zh": "清洗可重复使用的洗脸巾",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-151-174.v2.json",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "清洗可重复使用的洗脸巾",
+        "example_en": "I wash the reusable cloth after cleaning my face.",
+        "example_zh": "用可重复使用的洗脸巾擦脸后，我会把它洗干净。",
+        "collocations": [
+          "wash a reusable cloth",
+          "reusable cleaning cloth"
+        ],
+        "usage_note": "reusable指可以洗净后再次使用，不等同于disposable。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清洗可重复使用的布巾",
+        "example_en": "I wash the reusable cloth after cleaning my face.",
+        "example_zh": "用可重复使用的洗脸巾擦脸后，我会把它洗干净。",
+        "collocations": [
+          "wash a reusable cloth",
+          "reusable cleaning cloth"
+        ],
+        "usage_note": "reusable cloth可指可反复清洗使用的布巾、擦拭布或清洁布，不限于洗脸巾。"
+      },
+      "revised_display": {
+        "w": "wash a reusable cloth",
+        "m": "清洗可重复使用的布巾",
+        "c": "wash a reusable cloth · reusable cleaning cloth",
+        "e": "I wash the reusable cloth after cleaning my face.",
+        "x": "reusable cloth可指可反复清洗使用的布巾、擦拭布或清洁布，不限于洗脸巾。",
+        "example_zh": "用可重复使用的洗脸巾擦脸后，我会把它洗干净。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00428",
+      "scene_id": "SC50-0003",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-00428",
+      "expression": "pants",
+      "source_sense_zh": "长裤（美式）；内裤（英式）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-001-020.v2.json",
+      "source_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+      "original_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants"
+        ],
+        "usage_note": "pants美式指长裤，英式常指内裤；英式长裤常说trousers。"
+      },
+      "revised_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants",
+          "pants (British English: underwear)"
+        ],
+        "usage_note": "美式pants通常指长裤，英式pants通常指内裤，英式长裤常说trousers。例如英国英语I need clean pants意为我需要干净内裤。"
+      },
+      "revised_display": {
+        "w": "pants",
+        "m": "长裤（美式）；内裤（英式）",
+        "c": "a pair of pants · dress pants · pants (British English: underwear)",
+        "e": "I need a new pair of pants for work.",
+        "x": "美式pants通常指长裤，英式pants通常指内裤，英式长裤常说trousers。例如英国英语I need clean pants意为我需要干净内裤。",
+        "example_zh": "我需要买一条上班穿的新长裤。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00434",
+      "scene_id": "SC50-0003",
+      "source_rank": 26,
+      "source_sense_id": "SC-SENSE-00434",
+      "expression": "put on a uniform",
+      "source_sense_zh": "穿制服",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-021-070.v2.json",
+      "source_pack_blob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+      "original_answer": {
+        "meaning_zh": "穿制服",
+        "example_en": "The staff put on a uniform before their shift.",
+        "example_zh": "员工上班前会换上制服。",
+        "collocations": [
+          "put on a uniform",
+          "wear a uniform"
+        ],
+        "usage_note": "put on表示穿上的动作，wear表示穿着状态。"
+      },
+      "revised_answer": {
+        "meaning_zh": "穿制服",
+        "example_en": "Staff members put on their uniforms before their shifts.",
+        "example_zh": "员工们在上班前穿上自己的制服。",
+        "collocations": [
+          "put on a uniform",
+          "wear a uniform"
+        ],
+        "usage_note": "put on表示穿上的动作，wear表示穿着状态。"
+      },
+      "revised_display": {
+        "w": "put on a uniform",
+        "m": "穿制服",
+        "c": "put on a uniform · wear a uniform",
+        "e": "Staff members put on their uniforms before their shifts.",
+        "x": "put on表示穿上的动作，wear表示穿着状态。",
+        "example_zh": "员工们在上班前穿上自己的制服。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
