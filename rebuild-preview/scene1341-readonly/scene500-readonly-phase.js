@@ -55,6 +55,16 @@
    if(typeof key!=='string'||!key)throw Error('SCENE500_READONLY_KU_REQUIRED');
    cardKey=key;selected=null;phase=preferredFace==='answer'?'answer-paused':'question';onUpdate(state());return state();
   }
+  // Follow native Scene500's beginExample/exampleFinished phase transition.
+  // Example playback invalidates pending rated audio/countdown without scoring.
+  function beginExample(){
+   if(!cardKey||!['answer','answer-paused','example'].includes(phase))return false;
+   clearTimer();selected=null;phase='example';onUpdate(state());return true;
+  }
+  function exampleFinished(){
+   if(phase!=='example')return false;
+   phase='answer-paused';onUpdate(state());return true;
+  }
   function suspend(){
    // Native Scene500 visibilitychange invalidates rated timers and keeps a
    // revealed answer paused, without committing or navigating in background.
@@ -64,7 +74,7 @@
    onUpdate(state());return state();
   }
   function cancel(){clearTimer();selected=null;cardKey=null;preferredFace='question';phase='question';onUpdate(state())}
-  return Object.freeze({start,tap,choose,navigate,suspend,cancel,state});
+  return Object.freeze({start,tap,choose,navigate,beginExample,exampleFinished,suspend,cancel,state});
  }
  function createReadOnlyAutoBrowse({shouldRun,isBusy,isSpeaking=()=>false,navigate,onState,
   schedule=(fn,ms)=>setTimeout(fn,ms),unschedule=id=>clearTimeout(id)}={}){
