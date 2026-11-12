@@ -1,0 +1,132 @@
+{
+  "schema": "cg-enteach-v51-p0-masterhold-two-gloss-author-corrections-v1",
+  "date": "2026-11-12",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source_qa_path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P0_MASTER_HOLD31_LEXICAL_TRIAGE_20261112.v1.json",
+  "source_qa_blob": "79d9ee69b617469df2852607ece97e1198354a4a",
+  "baseline_219_author_manifest_blob": "429fccd0ae33e78681770040222110bb13a661f1",
+  "scope": "Two targeted linguistic answer correction proposals from P0 Master-HOLD31 CG-QA CONDITIONAL; do not rewrite frozen authoritative Master gloss",
+  "counts": {
+    "new_author_proposals": 2,
+    "still_master_hold": 2,
+    "new_qa_pass": 0,
+    "muse_pass": 0,
+    "released": 0
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00089",
+      "scene_id": "SC50-0001",
+      "source_rank": 89,
+      "source_sense_id": "SC-SENSE-00089",
+      "expression": "first thing in the morning",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0001-answer-only-051-100.v2.json",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_12_20261112.v1.json",
+      "previous_author_patch_blob": "e8c7c2ec4b1df6a87fc1237cec2db5f4b76dda64",
+      "original_answer": {
+        "meaning_zh": "一早首先做的事",
+        "example_en": "First thing in the morning, I check my messages.",
+        "example_zh": "早上一起来，我首先查看消息。",
+        "collocations": [
+          "first thing in the morning",
+          "call first thing in the morning"
+        ],
+        "usage_note": "指早晨很早或首先做某事，不必是字面上的第一件物品。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "早上一起来就；早晨第一件事就",
+        "example_en": "First thing in the morning, I check my messages.",
+        "example_zh": "早上一起来，我第一件事就是查看消息。",
+        "collocations": [
+          "first thing in the morning",
+          "call first thing in the morning"
+        ],
+        "usage_note": "first thing in the morning是表示时间的状语性短语，常修饰call、check、leave等动作。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清晨一开始就；一大早首先",
+        "example_en": "First thing in the morning, I check my messages.",
+        "example_zh": "早晨一开始，我就查看消息。",
+        "collocations": [
+          "first thing in the morning",
+          "call first thing in the morning"
+        ],
+        "usage_note": "first thing in the morning通常指清晨一开始或一大早就做某事，不一定是醒来后立即做的第一件事；属时间状语性短语。"
+      },
+      "revised_display": {
+        "w": "first thing in the morning",
+        "m": "清晨一开始就；一大早首先",
+        "c": "first thing in the morning · call first thing in the morning",
+        "e": "First thing in the morning, I check my messages.",
+        "x": "first thing in the morning通常指清晨一开始或一大早就做某事，不一定是醒来后立即做的第一件事；属时间状语性短语。",
+        "example_zh": "早晨一开始，我就查看消息。"
+      },
+      "independent_qa_prior_verdict": "CONDITIONAL",
+      "independent_qa_prior_blob": "79d9ee69b617469df2852607ece97e1198354a4a",
+      "master_review_required": true,
+      "master_approval_status": "PENDING",
+      "cg_qa": "PENDING_INDEPENDENT_SECOND_PASS",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01235",
+      "scene_id": "SC50-0006",
+      "source_rank": 190,
+      "source_sense_id": "SC-SENSE-01235",
+      "expression": "take the laundry out",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-188-190.v2.json",
+      "source_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_8_MASTER_HOLD_20261112.v1.json",
+      "previous_author_patch_blob": "7a8f55444e223e3d9e2381ead4fd2dfcf7d3499d",
+      "original_answer": {
+        "meaning_zh": "把衣物从洗衣机取出",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take out表示从洗衣机中取出；此源项是待独立审核增补候选。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "把洗好的衣物取出",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take the laundry out本身只指将衣物拿出来；具体是从洗衣机里取出，由当前洗涤程序的场景决定。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把衣物拿出来；（本场景）从洗衣机取出衣物",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take the laundry out指把衣物拿出来，本身不要求衣物已经洗好；例句中as soon as the cycle finishes才表示程序结束后取出。"
+      },
+      "revised_display": {
+        "w": "take the laundry out",
+        "m": "把衣物拿出来；（本场景）从洗衣机取出衣物",
+        "c": "take the laundry out · take laundry out of the washer",
+        "e": "Take the laundry out as soon as the cycle finishes.",
+        "x": "take the laundry out指把衣物拿出来，本身不要求衣物已经洗好；例句中as soon as the cycle finishes才表示程序结束后取出。",
+        "example_zh": "洗衣程序结束就把衣物取出来。"
+      },
+      "independent_qa_prior_verdict": "CONDITIONAL",
+      "independent_qa_prior_blob": "79d9ee69b617469df2852607ece97e1198354a4a",
+      "master_review_required": true,
+      "master_approval_status": "PENDING",
+      "cg_qa": "PENDING_INDEPENDENT_SECOND_PASS",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "activation_allowed": false,
+      "release_allowed": false
+    }
+  ]
+}
