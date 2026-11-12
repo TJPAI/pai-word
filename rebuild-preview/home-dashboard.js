@@ -170,7 +170,7 @@
         if(ticket!==querySerial||state.view!=='scenes')return;
         for(const scene of matches)scene1341Cache.set(scene.id,scene);
         state.sceneSearchUi={query:q,difficulty,resultIds:matches.map(s=>s.id),page:0};
-        window.PAI_SCENE1341_SEARCH_REPORT={query:q,mode:'catalog_title_category_only',count:matches.length,fullSemantic:false};
+        window.PAI_SCENE1341_SEARCH_REPORT={query:q,mode:'verified_ranked_lexical_CN_EN_110_scenes',count:matches.length,fullSemantic:false};
         save();render();
       }catch(error){window.PAI_SCENE1341_LAST_ERROR=String(error);
         if(ticket===querySerial){state.sceneSearchUi={query:q,difficulty,resultIds:[],page:0};save();render();}}
@@ -360,7 +360,7 @@
   };
   function updateEngineVersion(){
     const node=document.getElementById('pai-engine-version');if(!node)return;
-    if(typeof scene1341Mode!=='undefined'&&scene1341Mode){node.textContent='引擎：Scene1341目录检索（仅标题及分类） · 编辑表达V51–V61 · 未接入教学KU';return;}
+    if(typeof scene1341Mode!=='undefined'&&scene1341Mode){node.textContent='引擎：Scene1341目录+V51–V61源校验双语词汇检索（非语义认证） · 未审核表达不可直接生成学习KU';return;}
     const report=window.PAI_SCENE500_SEARCH_REPORT;
     const mode=report?.mode;
     const label=mode==='hybrid'?'Hybrid 模式报告（正式关联待核验）':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
