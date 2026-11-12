@@ -1,0 +1,860 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 18,
+    "master_review_required": 11
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01509",
+      "scene_id": "SC50-0008",
+      "source_rank": 57,
+      "source_sense_id": "SC-SENSE-01509",
+      "expression": "pitcher",
+      "source_sense_zh": "冷饮水壶（美式）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "original_answer": {
+        "meaning_zh": "冷饮水壶（美式）",
+        "example_en": "There's a pitcher of cold water in the fridge.",
+        "example_zh": "冰箱里有一壶凉水。",
+        "collocations": [
+          "pitcher of water",
+          "water pitcher"
+        ],
+        "usage_note": "pitcher在美式英语常指倒水用的壶。"
+      },
+      "revised_answer": {
+        "meaning_zh": "（美式）有嘴的盛液体壶；水壶",
+        "example_en": "There's a pitcher of cold water in the fridge.",
+        "example_zh": "冰箱里有一壶凉水。",
+        "collocations": [
+          "pitcher of water",
+          "water pitcher"
+        ],
+        "usage_note": "pitcher在美式英语中常指带倾倒口的盛液体容器，可装水、果汁等，不限冷饮。"
+      },
+      "revised_display": {
+        "w": "pitcher",
+        "m": "（美式）有嘴的盛液体壶；水壶",
+        "c": "pitcher of water · water pitcher",
+        "e": "There's a pitcher of cold water in the fridge.",
+        "x": "pitcher在美式英语中常指带倾倒口的盛液体容器，可装水、果汁等，不限冷饮。",
+        "example_zh": "冰箱里有一壶凉水。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01526",
+      "scene_id": "SC50-0008",
+      "source_rank": 74,
+      "source_sense_id": "SC-SENSE-01526",
+      "expression": "trivet",
+      "source_sense_zh": "隔热垫",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "original_answer": {
+        "meaning_zh": "隔热垫",
+        "example_en": "Put a trivet under the hot casserole dish.",
+        "example_zh": "热砂锅下面垫个隔热垫。",
+        "collocations": [
+          "heat-resistant trivet",
+          "put a pot on a trivet"
+        ],
+        "usage_note": "trivet是放在热锅或热盘下面保护桌面的隔热垫。"
+      },
+      "revised_answer": {
+        "meaning_zh": "隔热垫",
+        "example_en": "Put a trivet under the hot casserole dish.",
+        "example_zh": "在盛热菜的烤盘下面放一个隔热托。",
+        "collocations": [
+          "heat-resistant trivet",
+          "put a pot on a trivet"
+        ],
+        "usage_note": "trivet是放在热锅或热盘下面保护桌面的隔热垫。"
+      },
+      "revised_display": {
+        "w": "trivet",
+        "m": "隔热垫",
+        "c": "heat-resistant trivet · put a pot on a trivet",
+        "e": "Put a trivet under the hot casserole dish.",
+        "x": "trivet是放在热锅或热盘下面保护桌面的隔热垫。",
+        "example_zh": "在盛热菜的烤盘下面放一个隔热托。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01534",
+      "scene_id": "SC50-0008",
+      "source_rank": 82,
+      "source_sense_id": "SC-SENSE-01534",
+      "expression": "fill a glass",
+      "source_sense_zh": "把杯子倒满",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+      "source_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "original_answer": {
+        "meaning_zh": "把杯子倒满",
+        "example_en": "Please fill a glass with water for our guest.",
+        "example_zh": "请给客人倒满一杯水。",
+        "collocations": [
+          "fill a glass with water",
+          "fill someone's glass"
+        ],
+        "usage_note": "fill强调把杯子装到所需液面。"
+      },
+      "revised_answer": {
+        "meaning_zh": "往杯中倒入饮料；将杯子装满",
+        "example_en": "Please fill a glass with water for our guest.",
+        "example_zh": "请给客人倒满一杯水。",
+        "collocations": [
+          "fill a glass with water",
+          "fill someone's glass"
+        ],
+        "usage_note": "fill a glass表示往杯子里倒入液体至合适高度或装满，不一定要求倒到杯沿。"
+      },
+      "revised_display": {
+        "w": "fill a glass",
+        "m": "往杯中倒入饮料；将杯子装满",
+        "c": "fill a glass with water · fill someone's glass",
+        "e": "Please fill a glass with water for our guest.",
+        "x": "fill a glass表示往杯子里倒入液体至合适高度或装满，不一定要求倒到杯沿。",
+        "example_zh": "请给客人倒满一杯水。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01558",
+      "scene_id": "SC50-0008",
+      "source_rank": 106,
+      "source_sense_id": "SC-SENSE-01558",
+      "expression": "put leftovers away",
+      "source_sense_zh": "把剩菜收进冰箱",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+      "source_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "original_answer": {
+        "meaning_zh": "把剩菜收进冰箱",
+        "example_en": "Put leftovers away promptly after the meal.",
+        "example_zh": "饭后及时把剩菜收进冰箱。",
+        "collocations": [
+          "put leftovers away",
+          "refrigerate leftovers"
+        ],
+        "usage_note": "put away指妥善收纳，易腐食物需及时冷藏。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把剩菜收好；妥善存放剩食",
+        "example_en": "Put leftovers away promptly after the meal.",
+        "example_zh": "饭后及时把剩菜收进冰箱。",
+        "collocations": [
+          "put leftovers away",
+          "refrigerate leftovers"
+        ],
+        "usage_note": "put leftovers away指将剩食妥善收好，不必然指放冰箱；易腐食物应遵循食品储存安全要求。"
+      },
+      "revised_display": {
+        "w": "put leftovers away",
+        "m": "把剩菜收好；妥善存放剩食",
+        "c": "put leftovers away · refrigerate leftovers",
+        "e": "Put leftovers away promptly after the meal.",
+        "x": "put leftovers away指将剩食妥善收好，不必然指放冰箱；易腐食物应遵循食品储存安全要求。",
+        "example_zh": "饭后及时把剩菜收进冰箱。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01564",
+      "scene_id": "SC50-0008",
+      "source_rank": 112,
+      "source_sense_id": "SC-SENSE-01564",
+      "expression": "warm up food",
+      "source_sense_zh": "把食物热一下",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+      "source_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "original_answer": {
+        "meaning_zh": "把食物热一下",
+        "example_en": "Could you warm up food for the children?",
+        "example_zh": "能给孩子们把饭菜热一下吗？",
+        "collocations": [
+          "warm up food",
+          "warm up some soup"
+        ],
+        "usage_note": "warm up指加热至较温暖状态。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把食物热一下",
+        "example_en": "Could you warm up some food for the children?",
+        "example_zh": "你能给孩子们热一点吃的吗？",
+        "collocations": [
+          "warm up food",
+          "warm up some soup"
+        ],
+        "usage_note": "warm up指加热至较温暖状态。"
+      },
+      "revised_display": {
+        "w": "warm up food",
+        "m": "把食物热一下",
+        "c": "warm up food · warm up some soup",
+        "e": "Could you warm up some food for the children?",
+        "x": "warm up指加热至较温暖状态。",
+        "example_zh": "你能给孩子们热一点吃的吗？"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01579",
+      "scene_id": "SC50-0008",
+      "source_rank": 127,
+      "source_sense_id": "SC-SENSE-01579",
+      "expression": "stale",
+      "source_sense_zh": "不新鲜的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+      "source_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "original_answer": {
+        "meaning_zh": "不新鲜的",
+        "example_en": "The bread has gone stale overnight.",
+        "example_zh": "面包放了一夜变得不新鲜了。",
+        "collocations": [
+          "stale bread",
+          "go stale"
+        ],
+        "usage_note": "stale指食物失去新鲜口感。"
+      },
+      "revised_answer": {
+        "meaning_zh": "（面包等）放久变陈的；失去原有口感的",
+        "example_en": "The bread has gone stale overnight.",
+        "example_zh": "面包放了一夜变得不新鲜了。",
+        "collocations": [
+          "stale bread",
+          "go stale"
+        ],
+        "usage_note": "stale常指面包、饼干等放久后口感变差，不必然是发霉、变质或不宜食用。"
+      },
+      "revised_display": {
+        "w": "stale",
+        "m": "（面包等）放久变陈的；失去原有口感的",
+        "c": "stale bread · go stale",
+        "e": "The bread has gone stale overnight.",
+        "x": "stale常指面包、饼干等放久后口感变差，不必然是发霉、变质或不宜食用。",
+        "example_zh": "面包放了一夜变得不新鲜了。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01613",
+      "scene_id": "SC50-0008",
+      "source_rank": 161,
+      "source_sense_id": "SC-SENSE-01613",
+      "expression": "food intolerance",
+      "source_sense_zh": "食物不耐受",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-131-180.v2.json",
+      "source_pack_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "original_answer": {
+        "meaning_zh": "食物不耐受",
+        "example_en": "She has a food intolerance rather than a food allergy.",
+        "example_zh": "她是食物不耐受，而不是食物过敏。",
+        "collocations": [
+          "food intolerance",
+          "lactose intolerance"
+        ],
+        "usage_note": "food intolerance与免疫性食物过敏需区分。"
+      },
+      "revised_answer": {
+        "meaning_zh": "食物不耐受",
+        "example_en": "She has a food intolerance rather than a food allergy.",
+        "example_zh": "她是食物不耐受，而不是食物过敏。",
+        "collocations": [
+          "have a food intolerance",
+          "common food intolerances"
+        ],
+        "usage_note": "food intolerance与免疫性食物过敏需区分。"
+      },
+      "revised_display": {
+        "w": "food intolerance",
+        "m": "食物不耐受",
+        "c": "have a food intolerance · common food intolerances",
+        "e": "She has a food intolerance rather than a food allergy.",
+        "x": "food intolerance与免疫性食物过敏需区分。",
+        "example_zh": "她是食物不耐受，而不是食物过敏。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01625",
+      "scene_id": "SC50-0008",
+      "source_rank": 173,
+      "source_sense_id": "SC-SENSE-01625",
+      "expression": "heat through",
+      "source_sense_zh": "充分热透",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-131-180.v2.json",
+      "source_pack_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "original_answer": {
+        "meaning_zh": "充分热透",
+        "example_en": "Heat through the leftovers before serving them.",
+        "example_zh": "剩菜上桌前要充分热透。",
+        "collocations": [
+          "heat through",
+          "heat food through"
+        ],
+        "usage_note": "heat through强调食物内部也热透。"
+      },
+      "revised_answer": {
+        "meaning_zh": "充分热透",
+        "example_en": "Heat the leftovers through before serving them.",
+        "example_zh": "上桌前把剩菜彻底热透。",
+        "collocations": [
+          "heat through",
+          "heat food through"
+        ],
+        "usage_note": "heat through表示从里到外充分加热，常说heat the food through；食品安全仍应按实际指导执行。"
+      },
+      "revised_display": {
+        "w": "heat through",
+        "m": "充分热透",
+        "c": "heat through · heat food through",
+        "e": "Heat the leftovers through before serving them.",
+        "x": "heat through表示从里到外充分加热，常说heat the food through；食品安全仍应按实际指导执行。",
+        "example_zh": "上桌前把剩菜彻底热透。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01626",
+      "scene_id": "SC50-0008",
+      "source_rank": 174,
+      "source_sense_id": "SC-SENSE-01626",
+      "expression": "check if it's cooked",
+      "source_sense_zh": "确认食物熟了",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-131-180.v2.json",
+      "source_pack_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "original_answer": {
+        "meaning_zh": "确认食物熟了",
+        "example_en": "Check if it's cooked using a food thermometer.",
+        "example_zh": "用食品温度计确认食物是否熟透。",
+        "collocations": [
+          "check if it's cooked",
+          "check if meat is cooked"
+        ],
+        "usage_note": "肉类是否安全熟透不能只凭颜色判断。"
+      },
+      "revised_answer": {
+        "meaning_zh": "确认食物熟了",
+        "example_en": "I checked if the chicken was cooked by measuring its internal temperature.",
+        "example_zh": "我测量鸡肉的内部温度，确认它是否熟了。",
+        "collocations": [
+          "check if it's cooked",
+          "check if meat is cooked"
+        ],
+        "usage_note": "check if it's cooked是确认食物是否煮熟；温度计用于检查内部温度，不等于仅凭外表判断。"
+      },
+      "revised_display": {
+        "w": "check if it's cooked",
+        "m": "确认食物熟了",
+        "c": "check if it's cooked · check if meat is cooked",
+        "e": "I checked if the chicken was cooked by measuring its internal temperature.",
+        "x": "check if it's cooked是确认食物是否煮熟；温度计用于检查内部温度，不等于仅凭外表判断。",
+        "example_zh": "我测量鸡肉的内部温度，确认它是否熟了。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_rank": 185,
+      "source_sense_id": "SC-SENSE-01637",
+      "expression": "warm up a late dinner",
+      "source_sense_zh": "给晚归的人热晚餐",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "original_answer": {
+        "meaning_zh": "给晚归的人热晚餐",
+        "example_en": "I'll warm up a late dinner for you when you get home.",
+        "example_zh": "你回家晚了，我会给你把晚餐热一下。",
+        "collocations": [
+          "warm up a late dinner",
+          "warm up dinner for someone"
+        ],
+        "usage_note": "warm up指加热，需确保易腐剩菜储存安全。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把晚吃的晚餐重新加热",
+        "example_en": "I'll warm up a late dinner for you when you get home.",
+        "example_zh": "你回家晚了，我会给你把晚餐热一下。",
+        "collocations": [
+          "warm up a late dinner",
+          "warm up dinner for someone"
+        ],
+        "usage_note": "late dinner指吃得较晚的一顿晚餐，不必然是晚归者的晚饭；若指某个人晚回家，应另明确说明。"
+      },
+      "revised_display": {
+        "w": "warm up a late dinner",
+        "m": "把晚吃的晚餐重新加热",
+        "c": "warm up a late dinner · warm up dinner for someone",
+        "e": "I'll warm up a late dinner for you when you get home.",
+        "x": "late dinner指吃得较晚的一顿晚餐，不必然是晚归者的晚饭；若指某个人晚回家，应另明确说明。",
+        "example_zh": "你回家晚了，我会给你把晚餐热一下。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01645",
+      "scene_id": "SC50-0009",
+      "source_rank": 5,
+      "source_sense_id": "SC-SENSE-01645",
+      "expression": "scrub brush",
+      "source_sense_zh": "刷洗刷",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "original_answer": {
+        "meaning_zh": "刷洗刷",
+        "example_en": "Use a scrub brush for the stubborn dirt on the pan.",
+        "example_zh": "锅上有顽固污垢时用刷洗刷。",
+        "collocations": [
+          "scrub brush",
+          "stiff scrub brush"
+        ],
+        "usage_note": "scrub brush指刷洗用的刷子，应根据锅具表面选用。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刷洗刷",
+        "example_en": "I used a scrub brush to remove stuck-on food from the pan.",
+        "example_zh": "我用硬毛刷清理锅上粘牢的食物残渣。",
+        "collocations": [
+          "scrub brush",
+          "stiff scrub brush"
+        ],
+        "usage_note": "scrub brush指刷洗用的刷子，应根据锅具表面选用。"
+      },
+      "revised_display": {
+        "w": "scrub brush",
+        "m": "刷洗刷",
+        "c": "scrub brush · stiff scrub brush",
+        "e": "I used a scrub brush to remove stuck-on food from the pan.",
+        "x": "scrub brush指刷洗用的刷子，应根据锅具表面选用。",
+        "example_zh": "我用硬毛刷清理锅上粘牢的食物残渣。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01659",
+      "scene_id": "SC50-0009",
+      "source_rank": 19,
+      "source_sense_id": "SC-SENSE-01659",
+      "expression": "put dishes away",
+      "source_sense_zh": "把餐具收回橱柜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "original_answer": {
+        "meaning_zh": "把餐具收回橱柜",
+        "example_en": "Put dishes away once they are dry.",
+        "example_zh": "餐具晾干后放回橱柜。",
+        "collocations": [
+          "put dishes away",
+          "put clean dishes away"
+        ],
+        "usage_note": "put away指收纳归位。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把餐具收好；把碗碟归位",
+        "example_en": "Put dishes away once they are dry.",
+        "example_zh": "餐具晾干后放回橱柜。",
+        "collocations": [
+          "put dishes away",
+          "put clean dishes away"
+        ],
+        "usage_note": "put dishes away意为把碗盘等收回适当的位置，不必然是放进橱柜。"
+      },
+      "revised_display": {
+        "w": "put dishes away",
+        "m": "把餐具收好；把碗碟归位",
+        "c": "put dishes away · put clean dishes away",
+        "e": "Put dishes away once they are dry.",
+        "x": "put dishes away意为把碗盘等收回适当的位置，不必然是放进橱柜。",
+        "example_zh": "餐具晾干后放回橱柜。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01666",
+      "scene_id": "SC50-0009",
+      "source_rank": 26,
+      "source_sense_id": "SC-SENSE-01666",
+      "expression": "dishes",
+      "source_sense_zh": "需要洗的餐具",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "original_answer": {
+        "meaning_zh": "需要洗的餐具",
+        "example_en": "There are still dirty dishes in the sink.",
+        "example_zh": "水槽里还有待洗的脏餐具。",
+        "collocations": [
+          "dirty dishes",
+          "wash the dishes"
+        ],
+        "usage_note": "dishes在洗碗场景常统称碗盘等餐具。"
+      },
+      "revised_answer": {
+        "meaning_zh": "碗盘等餐具",
+        "example_en": "There are still dirty dishes in the sink.",
+        "example_zh": "水槽里还有待洗的脏餐具。",
+        "collocations": [
+          "dirty dishes",
+          "wash the dishes"
+        ],
+        "usage_note": "dishes指碗、盘等餐具；dirty dishes才明确是脏餐具或待洗碗盘。"
+      },
+      "revised_display": {
+        "w": "dishes",
+        "m": "碗盘等餐具",
+        "c": "dirty dishes · wash the dishes",
+        "e": "There are still dirty dishes in the sink.",
+        "x": "dishes指碗、盘等餐具；dirty dishes才明确是脏餐具或待洗碗盘。",
+        "example_zh": "水槽里还有待洗的脏餐具。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01671",
+      "scene_id": "SC50-0009",
+      "source_rank": 31,
+      "source_sense_id": "SC-SENSE-01671",
+      "expression": "dish detergent",
+      "source_sense_zh": "洗碗清洁剂",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "original_answer": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether the dish detergent is suitable for the dishwasher.",
+        "example_zh": "确认这种洗碗清洁剂是否适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂，机洗必须使用适配产品。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether this detergent is labeled for use in a dishwasher.",
+        "example_zh": "检查这款洗涤剂是否标明适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。"
+      },
+      "revised_display": {
+        "w": "dish detergent",
+        "m": "洗碗清洁剂",
+        "c": "dish detergent · dishwasher detergent",
+        "e": "Check whether this detergent is labeled for use in a dishwasher.",
+        "x": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。",
+        "example_zh": "检查这款洗涤剂是否标明适用于洗碗机。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01711",
+      "scene_id": "SC50-0009",
+      "source_rank": 71,
+      "source_sense_id": "SC-SENSE-01711",
+      "expression": "wooden board",
+      "source_sense_zh": "木质砧板",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "original_answer": {
+        "meaning_zh": "木质砧板",
+        "example_en": "Dry the wooden board after washing.",
+        "example_zh": "洗完木砧板后晾干。",
+        "collocations": [
+          "wooden board",
+          "dry a wooden board"
+        ],
+        "usage_note": "wooden board在此指木砧板。"
+      },
+      "revised_answer": {
+        "meaning_zh": "木板；木质板",
+        "example_en": "Dry the wooden board after washing.",
+        "example_zh": "洗完木砧板后晾干。",
+        "collocations": [
+          "wooden board",
+          "dry a wooden board"
+        ],
+        "usage_note": "wooden board泛指木制板材或板子；木质砧板通常说wooden cutting board。"
+      },
+      "revised_display": {
+        "w": "wooden board",
+        "m": "木板；木质板",
+        "c": "wooden board · dry a wooden board",
+        "e": "Dry the wooden board after washing.",
+        "x": "wooden board泛指木制板材或板子；木质砧板通常说wooden cutting board。",
+        "example_zh": "洗完木砧板后晾干。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01712",
+      "scene_id": "SC50-0009",
+      "source_rank": 72,
+      "source_sense_id": "SC-SENSE-01712",
+      "expression": "plastic container",
+      "source_sense_zh": "塑料保鲜盒",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "original_answer": {
+        "meaning_zh": "塑料保鲜盒",
+        "example_en": "Check that the plastic container is dishwasher-safe.",
+        "example_zh": "确认塑料盒可用洗碗机清洗。",
+        "collocations": [
+          "plastic food container",
+          "wash a plastic container"
+        ],
+        "usage_note": "耐机洗须依据产品标记。"
+      },
+      "revised_answer": {
+        "meaning_zh": "塑料容器；塑料盒",
+        "example_en": "Check that the plastic container is dishwasher-safe.",
+        "example_zh": "确认塑料盒可用洗碗机清洗。",
+        "collocations": [
+          "plastic food container",
+          "wash a plastic container"
+        ],
+        "usage_note": "plastic container泛指塑料容器，不一定是食品保鲜盒，需按完整语境判断。"
+      },
+      "revised_display": {
+        "w": "plastic container",
+        "m": "塑料容器；塑料盒",
+        "c": "plastic food container · wash a plastic container",
+        "e": "Check that the plastic container is dishwasher-safe.",
+        "x": "plastic container泛指塑料容器，不一定是食品保鲜盒，需按完整语境判断。",
+        "example_zh": "确认塑料盒可用洗碗机清洗。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01719",
+      "scene_id": "SC50-0009",
+      "source_rank": 79,
+      "source_sense_id": "SC-SENSE-01719",
+      "expression": "steel wool",
+      "source_sense_zh": "钢丝球",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "original_answer": {
+        "meaning_zh": "钢丝球",
+        "example_en": "Don't use steel wool on a nonstick coating.",
+        "example_zh": "别用钢丝球擦不粘涂层。",
+        "collocations": [
+          "steel wool pad",
+          "scrub with steel wool"
+        ],
+        "usage_note": "steel wool具有较强磨蚀性。"
+      },
+      "revised_answer": {
+        "meaning_zh": "钢丝棉；钢丝擦洗垫",
+        "example_en": "Don't use steel wool on a nonstick coating.",
+        "example_zh": "别用钢丝球擦不粘涂层。",
+        "collocations": [
+          "steel wool pad",
+          "scrub with steel wool"
+        ],
+        "usage_note": "steel wool是细钢丝制成的清洁材料，可呈团状或球状，不限于钢丝球。"
+      },
+      "revised_display": {
+        "w": "steel wool",
+        "m": "钢丝棉；钢丝擦洗垫",
+        "c": "steel wool pad · scrub with steel wool",
+        "e": "Don't use steel wool on a nonstick coating.",
+        "x": "steel wool是细钢丝制成的清洁材料，可呈团状或球状，不限于钢丝球。",
+        "example_zh": "别用钢丝球擦不粘涂层。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01721",
+      "scene_id": "SC50-0009",
+      "source_rank": 81,
+      "source_sense_id": "SC-SENSE-01721",
+      "expression": "paper towel",
+      "source_sense_zh": "厨房纸巾",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "original_answer": {
+        "meaning_zh": "厨房纸巾",
+        "example_en": "Wipe up the water with a paper towel.",
+        "example_zh": "用厨房纸巾擦掉洒出的水。",
+        "collocations": [
+          "paper towel",
+          "wipe with a paper towel"
+        ],
+        "usage_note": "paper towel是吸水纸巾。"
+      },
+      "revised_answer": {
+        "meaning_zh": "吸水纸巾；擦拭用纸巾",
+        "example_en": "Wipe up the water with a paper towel.",
+        "example_zh": "用厨房纸巾擦掉洒出的水。",
+        "collocations": [
+          "paper towel",
+          "wipe with a paper towel"
+        ],
+        "usage_note": "paper towel指用于擦拭吸水的纸巾或厨房纸，不限厨房场景。"
+      },
+      "revised_display": {
+        "w": "paper towel",
+        "m": "吸水纸巾；擦拭用纸巾",
+        "c": "paper towel · wipe with a paper towel",
+        "e": "Wipe up the water with a paper towel.",
+        "x": "paper towel指用于擦拭吸水的纸巾或厨房纸，不限厨房场景。",
+        "example_zh": "用厨房纸巾擦掉洒出的水。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
