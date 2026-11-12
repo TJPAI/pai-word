@@ -194,6 +194,8 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             ../evaluation/tools/cg-rec-eval/scene1341-blind-intake-24.v1.json \
             | tee ../scene1341-blind-intake-predictions24.json
+      - name: Adversarially reject synthetic invalid gold labels without saving gold
+        run: node evaluation/tools/cg-rec-eval/test-sealed-gold-adversarial.mjs
       - name: Reject unsealed blind-gold scoring and forbid fabricated accuracy
         run: |
           node evaluation/tools/cg-rec-eval/score-sealed-blind-gold.mjs \
