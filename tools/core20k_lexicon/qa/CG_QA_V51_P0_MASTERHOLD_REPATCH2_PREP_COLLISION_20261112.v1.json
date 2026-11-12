@@ -1,0 +1,164 @@
+{
+  "schema": "cg-qa-v51-p0-masterhold-repatch2-and-prep-duplicate-v1",
+  "date": "2026-11-12",
+  "role": "CG-QA",
+  "scope": "Two new P0 language corrections plus one distinct source-backed same-scene educational-target collision",
+  "source_author_repatch": {
+    "ref": "cc64dda3a667f3c89860566477a4e6a282006a0a",
+    "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_MASTERHOLD31_CONDITIONAL2_GLOSS_REPATCH_20261112.v1.json",
+    "blob": "e3d054ca5925562f2cc02553241dd566b5d5a738"
+  },
+  "source_frozen_pack": {
+    "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+    "blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+    "record_count": 20
+  },
+  "source_author_pair_evidence_blob": "e9ef16245475b6b9308c79388421c97303d7e859",
+  "counts": {
+    "p0_rechecked": 2,
+    "lexical_support_master_hold": 2,
+    "pair_records_lexically_compared": 2,
+    "pair_candidate_collisions": 1,
+    "master_approved": 0,
+    "muse_new_pass": 0,
+    "release_allowed": 0
+  },
+  "two_case_independent_review": [
+    {
+      "scene_ku_id": "SC1341-KU-00089",
+      "scene_id": "SC50-0001",
+      "source_sense_id": "SC-SENSE-00089",
+      "source_rank": 89,
+      "expression": "first thing in the morning",
+      "source_author_patch_blob": "e3d054ca5925562f2cc02553241dd566b5d5a738",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "previous_author_patch_blob": "e8c7c2ec4b1df6a87fc1237cec2db5f4b76dda64",
+      "original_answer": {
+        "meaning_zh": "一早首先做的事",
+        "example_en": "First thing in the morning, I check my messages.",
+        "example_zh": "早上一起来，我首先查看消息。",
+        "collocations": [
+          "first thing in the morning",
+          "call first thing in the morning"
+        ],
+        "usage_note": "指早晨很早或首先做某事，不必是字面上的第一件物品。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清晨一开始就；一大早首先",
+        "example_en": "First thing in the morning, I check my messages.",
+        "example_zh": "早晨一开始，我就查看消息。",
+        "collocations": [
+          "first thing in the morning",
+          "call first thing in the morning"
+        ],
+        "usage_note": "first thing in the morning通常指清晨一开始或一大早就做某事，不一定是醒来后立即做的第一件事；属时间状语性短语。"
+      },
+      "revised_display": {
+        "w": "first thing in the morning",
+        "m": "清晨一开始就；一大早首先",
+        "c": "first thing in the morning · call first thing in the morning",
+        "e": "First thing in the morning, I check my messages.",
+        "x": "first thing in the morning通常指清晨一开始或一大早就做某事，不一定是醒来后立即做的第一件事；属时间状语性短语。",
+        "example_zh": "早晨一开始，我就查看消息。"
+      },
+      "cg_qa_current_lexical_result": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "cg_qa_independent_semantic_reason": "清晨一开始、早晨第一件事这样用，未蕴含醒来立刻；First thing in the morning, I check my messages与新中文对齐，call first thing in the morning搭配正常；不过“清晨”常指早些时候而非严格黎明，当前语用可接受。",
+      "master_review_required": true,
+      "master_authorized": false,
+      "muse_qa": "PENDING_INDEPENDENT",
+      "formal_dual_ai_certified": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01235",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01235",
+      "source_rank": 190,
+      "expression": "take the laundry out",
+      "source_author_patch_blob": "e3d054ca5925562f2cc02553241dd566b5d5a738",
+      "source_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "previous_author_patch_blob": "7a8f55444e223e3d9e2381ead4fd2dfcf7d3499d",
+      "original_answer": {
+        "meaning_zh": "把衣物从洗衣机取出",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take out表示从洗衣机中取出；此源项是待独立审核增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把衣物拿出来；（本场景）从洗衣机取出衣物",
+        "example_en": "Take the laundry out as soon as the cycle finishes.",
+        "example_zh": "洗衣程序结束就把衣物取出来。",
+        "collocations": [
+          "take the laundry out",
+          "take laundry out of the washer"
+        ],
+        "usage_note": "take the laundry out指把衣物拿出来，本身不要求衣物已经洗好；例句中as soon as the cycle finishes才表示程序结束后取出。"
+      },
+      "revised_display": {
+        "w": "take the laundry out",
+        "m": "把衣物拿出来；（本场景）从洗衣机取出衣物",
+        "c": "take the laundry out · take laundry out of the washer",
+        "e": "Take the laundry out as soon as the cycle finishes.",
+        "x": "take the laundry out指把衣物拿出来，本身不要求衣物已经洗好；例句中as soon as the cycle finishes才表示程序结束后取出。",
+        "example_zh": "洗衣程序结束就把衣物取出来。"
+      },
+      "cg_qa_current_lexical_result": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "cg_qa_independent_semantic_reason": "take the laundry out在洗涤语境就是把衣物从机器取出，不内含“洗好”；as soon as the cycle finishes引入程序完成这一独立情境，中文译文准确。",
+      "master_review_required": true,
+      "master_authorized": false,
+      "muse_qa": "PENDING_INDEPENDENT",
+      "formal_dual_ai_certified": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    }
+  ],
+  "identity_collision": {
+    "scene_id": "SC50-0007",
+    "left": {
+      "scene_ku_id": "SC1341-KU-01450",
+      "source_sense_id": "SC-SENSE-01450",
+      "source_rank": 215,
+      "expression": "prep ingredients",
+      "answer": {
+        "meaning_zh": "预处理食材",
+        "example_en": "Prep ingredients before you heat the pan.",
+        "example_zh": "加热锅具前先预处理食材。",
+        "collocations": [
+          "prep ingredients",
+          "prep ingredients ahead of time"
+        ],
+        "usage_note": "prep是prepare的口语缩写，源项待审核。"
+      }
+    },
+    "right": {
+      "scene_ku_id": "SC1341-KU-01452",
+      "source_sense_id": "SC-SENSE-01452",
+      "source_rank": 217,
+      "expression": "prep the ingredients",
+      "answer": {
+        "meaning_zh": "准备食材",
+        "example_en": "Prep the ingredients while the oven heats up.",
+        "example_zh": "烤箱升温时先把食材准备好。",
+        "collocations": [
+          "prep the ingredients",
+          "prep ingredients for dinner"
+        ],
+        "usage_note": "prep the ingredients指备料，源项为编辑增补待核验。"
+      }
+    },
+    "qa_editorial_result": "MASTER_IDENTITY_HOLD_DUPLICATE_LEARNING_OBJECTIVE",
+    "independent_reason": "Prep ingredients and prep the ingredients denote the same preparing-food-ingredients act; definite article only marks context and is not a separate semantic skill. Both source examples are natural and bilingual, yet changing determiner does not establish independent KU. The '预处理' versus '准备' nuance is not demonstrated as a distinct taught sense by actual examples; a stable Master source sentence and Sense mapping are needed.",
+    "provisional_primary": "SC1341-KU-01450",
+    "provisional_redundant": "SC1341-KU-01452",
+    "master_authorized": false,
+    "delete_original_id": false,
+    "merge_frozen_source": false,
+    "release_allowed": false
+  },
+  "limitations": "Only source frozen author KU and targeted author repatch were fetched. Full Google Drive Master stable identity, per-Sense Kaikki and official Master decision were not read. All candidate status remains HOLD; no production authorization."
+}
