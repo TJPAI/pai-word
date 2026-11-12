@@ -1405,4 +1405,63 @@ assert.equal(crossPhase.state().revealed,false,'automatic movement preserves QUE
 assert.equal(crossGrades.length,4,'auto movement must not create any additional score');
 assert(restarted>0,'manual swipe and blank tap must restore auto timer');
 
+/* Second independent state-contract audit: example audio is a phase transition,
+ * not merely speechSynthesis.speak(). The native PAI_TAP_FLOW.beginExample()
+ * invalidates rating timers; exampleFinished() restores paused ANSWER. */
+assert(scene500Renderer.includes("function beginExample(){") &&
+ scene500Renderer.includes("function exampleFinished(){"),
+ 'anchor this state transition to active Scene500 rather than ad-hoc preview behavior');
+assert(phaseSource.includes('function beginExample(){') &&
+ phaseSource.includes('function exampleFinished(){') &&
+ phaseSource.includes('beginExample,exampleFinished'),
+ 'isolated phase adapter must expose the native example-audio lifecycle');
+assert(script.includes('if(!phaseController.beginExample())return;') &&
+ script.includes('autoBrowse.pause();') &&
+ script.includes('if(phaseController.exampleFinished())autoBrowse.resume()') &&
+ script.includes('playWord(subset()[index].answer.example_en,.9,finishExample)'),
+ 'real example speaker must pause grade and resume after audio completion');
+const exampleTimers=new Map(),exampleSettled=[];let exampleId=0,exampleMoved=0;
+const examplePhase=api.createReadOnlyPhaseController({
+ onUpdate:()=>{},onGradeComplete:(grade,key)=>exampleSettled.push([grade,key]),
+ onAdvance:()=>{exampleMoved++},
+ schedule:(fn,ms)=>{const id=++exampleId;exampleTimers.set(id,fn);return id},
+ unschedule:id=>exampleTimers.delete(id)
+});
+examplePhase.start('EX-1');
+assert.equal(examplePhase.beginExample(),false,'example cannot start from hidden question');
+examplePhase.tap();assert.equal(examplePhase.state().revealed,true);
+assert.equal(examplePhase.beginExample(),true);
+assert.equal(examplePhase.state().phase,'example');
+assert.equal(examplePhase.state().revealed,true,'answer remains visible while playing example');
+assert.equal(examplePhase.exampleFinished(),true);
+assert.equal(examplePhase.state().phase,'answer-paused');
+examplePhase.choose('hard');
+assert.equal(examplePhase.state().selected,'hard');
+assert.equal(exampleTimers.size,1);
+const oldExampleCountdown=[...exampleTimers.values()][0];
+assert.equal(examplePhase.beginExample(),true,'new example interrupts graded answer');
+assert.equal(exampleTimers.size,0,'rated countdown cancelled by example');
+assert.equal(examplePhase.state().selected,null,'pending rating must not be silently committed');
+assert.equal(examplePhase.state().revealed,true);
+oldExampleCountdown();
+assert.equal(exampleSettled.length,0,'cancelled timer cannot commit an orphan grade');
+assert.equal(exampleMoved,0,'cancelled timer cannot advance during example speech');
+assert.equal(examplePhase.exampleFinished(),true);
+examplePhase.navigate('EX-2');
+assert.equal(examplePhase.state().revealed,true,'ANSWER preference survives example and navigation');
+examplePhase.beginExample();examplePhase.suspend();
+assert.equal(examplePhase.state().revealed,true,'background preserves ANSWER while example was speaking');
+assert.equal(examplePhase.exampleFinished(),false,'stale example onend cannot alter background phase');
+assert.equal(exampleSettled.length,0);
+let exampleCallbacks=0;
+assert.equal(activeAudio.playWord('Example playback',.9,()=>{exampleCallbacks++}),true);
+const audibleExample=audioSynth.last;
+audibleExample.onend();assert.equal(exampleCallbacks,1,'example speech completion fires once');
+audibleExample.onend();assert.equal(exampleCallbacks,1,'repeated Safari onend must be idempotent');
+assert.equal(activeAudio.playWord('Interrupted example',.9,()=>{exampleCallbacks++}),true);
+const cancelledExample=audioSynth.last;
+activeAudio.stopWordAudio();
+cancelledExample.onend();
+assert.equal(exampleCallbacks,1,'cancelled example voice never invokes stale completion');
+
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
