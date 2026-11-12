@@ -1,0 +1,230 @@
+{
+  "schema": "cg-enteach-v51-p1-example-target-coverage-repatch-v2",
+  "date": "2026-11-12",
+  "baseline_219_manifest_blob": "429fccd0ae33e78681770040222110bb13a661f1",
+  "status": "FOUR_AUTHOR_PROPOSALS_CGQA_PENDING",
+  "review_method": "Manual linguistic review of flagged surface-form coverage; morphological differences, word order and synonym examples are not automatically wrong.",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00794",
+      "scene_id": "SC50-0004",
+      "source_rank": 182,
+      "source_sense_id": "SC-SENSE-00794",
+      "expression": "tangled cables",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "previous_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "previous_patch_blob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "original_answer": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "I untangled the cables behind my computer.",
+        "example_zh": "我把电脑后面缠在一起的线理开了。",
+        "collocations": [
+          "tangled cables",
+          "untangle tangled cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "I untangled the cables behind my computer.",
+        "example_zh": "我把电脑后面缠在一起的线理开了。",
+        "collocations": [
+          "tangled cables",
+          "untangle cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "revised_answer": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "The tangled cables behind my computer took ages to sort out.",
+        "example_zh": "我花了很长时间才把电脑后面缠在一起的线缆理好。",
+        "collocations": [
+          "tangled cables",
+          "untangle cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "revised_display": {
+        "w": "tangled cables",
+        "m": "缠在一起的线缆",
+        "c": "tangled cables · untangle cables",
+        "e": "The tangled cables behind my computer took ages to sort out.",
+        "x": "tangled强调缠绕打结，不等于线缆本身断裂。",
+        "example_zh": "我花了很长时间才把电脑后面缠在一起的线缆理好。"
+      },
+      "issue": "Original P1 revised example lacked explicit target phrase even though it was comprehensible; the new example directly teaches the target.",
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01120",
+      "scene_id": "SC50-0006",
+      "source_rank": 75,
+      "source_sense_id": "SC-SENSE-01120",
+      "expression": "zipper",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "previous_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "previous_patch_blob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "original_answer": {
+        "meaning_zh": "拉链",
+        "example_en": "Zip up the jacket before putting it in the wash if the label advises it.",
+        "example_zh": "如果洗护说明建议，洗前先拉好外套拉链。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "拉链",
+        "example_en": "Zip up the jacket before washing it if the care label recommends it.",
+        "example_zh": "如果洗护标签建议，洗之前先把夹克拉链拉好。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "revised_answer": {
+        "meaning_zh": "拉链",
+        "example_en": "Check that the zipper is closed before washing the jacket.",
+        "example_zh": "清洗夹克前，检查拉链是否已拉好。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "revised_display": {
+        "w": "zipper",
+        "m": "拉链",
+        "c": "jacket zipper · close a zipper",
+        "e": "Check that the zipper is closed before washing the jacket.",
+        "x": "zipper是拉链，美式常用；英式也可说zip。",
+        "example_zh": "清洗夹克前，检查拉链是否已拉好。"
+      },
+      "issue": "Original P1 revised example lacked explicit target phrase even though it was comprehensible; the new example directly teaches the target.",
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01671",
+      "scene_id": "SC50-0009",
+      "source_rank": 31,
+      "source_sense_id": "SC-SENSE-01671",
+      "expression": "dish detergent",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "previous_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "previous_patch_blob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "original_answer": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether the dish detergent is suitable for the dishwasher.",
+        "example_zh": "确认这种洗碗清洁剂是否适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂，机洗必须使用适配产品。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether this detergent is labeled for use in a dishwasher.",
+        "example_zh": "检查这款洗涤剂是否标明适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether the dish detergent is intended for hand-washing or for use in a dishwasher.",
+        "example_zh": "确认这款洗碗清洁剂是用于手洗餐具，还是适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。"
+      },
+      "revised_display": {
+        "w": "dish detergent",
+        "m": "洗碗清洁剂",
+        "c": "dish detergent · dishwasher detergent",
+        "e": "Check whether the dish detergent is intended for hand-washing or for use in a dishwasher.",
+        "x": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。",
+        "example_zh": "确认这款洗碗清洁剂是用于手洗餐具，还是适用于洗碗机。"
+      },
+      "issue": "Original P1 revised example lacked explicit target phrase even though it was comprehensible; the new example directly teaches the target.",
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00857",
+      "scene_id": "SC50-0005",
+      "source_rank": 35,
+      "source_sense_id": "SC-SENSE-00857",
+      "expression": "deep cleaning",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "previous_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "previous_patch_blob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "original_answer": {
+        "meaning_zh": "深度清洁",
+        "example_en": "The kitchen needs deep cleaning before the holidays.",
+        "example_zh": "节日前厨房需要彻底清洁一次。",
+        "collocations": [
+          "deep cleaning",
+          "deep cleaning the kitchen"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "previous_author_answer": {
+        "meaning_zh": "深度清洁",
+        "example_en": "The kitchen needs a deep clean before the holidays.",
+        "example_zh": "节日前厨房需要彻底清洁一次。",
+        "collocations": [
+          "give the kitchen a deep clean",
+          "deep-clean the kitchen"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "revised_answer": {
+        "meaning_zh": "深度清洁",
+        "example_en": "Deep cleaning the kitchen will take all afternoon.",
+        "example_zh": "彻底清洁厨房要花整个下午。",
+        "collocations": [
+          "deep cleaning",
+          "deep cleaning the kitchen",
+          "schedule a deep cleaning"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "revised_display": {
+        "w": "deep cleaning",
+        "m": "深度清洁",
+        "c": "deep cleaning · deep cleaning the kitchen · schedule a deep cleaning",
+        "e": "Deep cleaning the kitchen will take all afternoon.",
+        "x": "deep cleaning指比日常表面清洁更全面的清洁。",
+        "example_zh": "彻底清洁厨房要花整个下午。"
+      },
+      "issue": "Original P1 revised example lacked explicit target phrase even though it was comprehensible; the new example directly teaches the target.",
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "activation_allowed": false,
+      "release_allowed": false
+    }
+  ]
+}
