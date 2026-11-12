@@ -1,0 +1,483 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 10,
+    "master_review_required": 1
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01132",
+      "scene_id": "SC50-0006",
+      "source_rank": 87,
+      "source_sense_id": "SC-SENSE-01132",
+      "expression": "fasten buttons",
+      "source_sense_zh": "扣好纽扣",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "扣好纽扣",
+        "example_en": "Fasten buttons before washing if the care instructions call for it.",
+        "example_zh": "如果洗护说明要求，洗衣前扣好纽扣。",
+        "collocations": [
+          "fasten buttons",
+          "fasten shirt buttons"
+        ],
+        "usage_note": "fasten buttons指扣好扣子，具体做法依衣物标签。"
+      },
+      "revised_answer": {
+        "meaning_zh": "扣好纽扣",
+        "example_en": "Fasten buttons before washing if the care instructions call for it.",
+        "example_zh": "如果洗护说明要求，洗衣前扣好纽扣。",
+        "collocations": [
+          "fasten buttons",
+          "fasten shirt buttons"
+        ],
+        "usage_note": "fasten buttons表示扣好纽扣；洗衣前是否扣纽扣要遵循衣物洗护标签，不应视为统一规则。"
+      },
+      "revised_display": {
+        "w": "fasten buttons",
+        "m": "扣好纽扣",
+        "c": "fasten buttons · fasten shirt buttons",
+        "e": "Fasten buttons before washing if the care instructions call for it.",
+        "x": "fasten buttons表示扣好纽扣；洗衣前是否扣纽扣要遵循衣物洗护标签，不应视为统一规则。",
+        "example_zh": "如果洗护说明要求，洗衣前扣好纽扣。"
+      },
+      "changed_fields": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01153",
+      "scene_id": "SC50-0006",
+      "source_rank": 108,
+      "source_sense_id": "SC-SENSE-01153",
+      "expression": "hang up a shirt",
+      "source_sense_zh": "挂起衬衫",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang up a shirt on a hanger after washing it.",
+        "example_zh": "洗好衬衫后把它挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "revised_answer": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang the clean shirt on a hanger after washing it.",
+        "example_zh": "衬衫洗好后，把干净的衬衫挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "revised_display": {
+        "w": "hang up a shirt",
+        "m": "挂起衬衫",
+        "c": "hang up a shirt · hang a shirt on a hanger",
+        "e": "Hang the clean shirt on a hanger after washing it.",
+        "x": "hang up表示挂起来。",
+        "example_zh": "衬衫洗好后，把干净的衬衫挂到衣架上。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01159",
+      "scene_id": "SC50-0006",
+      "source_rank": 114,
+      "source_sense_id": "SC-SENSE-01159",
+      "expression": "put clothes away",
+      "source_sense_zh": "把干净衣服收起来",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "把干净衣服收起来",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好后把衣服放回衣柜。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put away表示归位收纳。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把干净衣服收起来",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好衣服后把它们收起来。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put clothes away表示把衣服收回适当的位置，不一定是衣柜。"
+      },
+      "revised_display": {
+        "w": "put clothes away",
+        "m": "把干净衣服收起来",
+        "c": "put clothes away · put clean clothes away",
+        "e": "Put clothes away after folding them.",
+        "x": "put clothes away表示把衣服收回适当的位置，不一定是衣柜。",
+        "example_zh": "叠好衣服后把它们收起来。"
+      },
+      "changed_fields": [
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01162",
+      "scene_id": "SC50-0006",
+      "source_rank": 117,
+      "source_sense_id": "SC-SENSE-01162",
+      "expression": "shake out wrinkles",
+      "source_sense_zh": "抖开褶皱",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "抖开褶皱",
+        "example_en": "Shake out wrinkles before hanging the shirt.",
+        "example_zh": "挂衬衫前抖一抖，减少褶皱。",
+        "collocations": [
+          "shake out wrinkles",
+          "shake wrinkles out of clothes"
+        ],
+        "usage_note": "shake out指通过抖动舒展褶皱。"
+      },
+      "revised_answer": {
+        "meaning_zh": "抖开褶皱",
+        "example_en": "Shake out the wrinkles before hanging the shirt.",
+        "example_zh": "把衬衫挂起来之前，先抖一抖褶皱。",
+        "collocations": [
+          "shake out the wrinkles",
+          "shake wrinkles out of a shirt"
+        ],
+        "usage_note": "shake out指通过抖动舒展褶皱。"
+      },
+      "revised_display": {
+        "w": "shake out wrinkles",
+        "m": "抖开褶皱",
+        "c": "shake out the wrinkles · shake wrinkles out of a shirt",
+        "e": "Shake out the wrinkles before hanging the shirt.",
+        "x": "shake out指通过抖动舒展褶皱。",
+        "example_zh": "把衬衫挂起来之前，先抖一抖褶皱。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01180",
+      "scene_id": "SC50-0006",
+      "source_rank": 135,
+      "source_sense_id": "SC-SENSE-01180",
+      "expression": "stretched out",
+      "source_sense_zh": "被拉松变形的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "被拉松变形的",
+        "example_en": "The neckline is stretched out from hanging.",
+        "example_zh": "领口悬挂后被拉松变形了。",
+        "collocations": [
+          "stretched-out neckline",
+          "stretched out clothes"
+        ],
+        "usage_note": "stretched out指拉长松弛。"
+      },
+      "revised_answer": {
+        "meaning_zh": "被拉松变形的",
+        "example_en": "The neckline is stretched out from hanging.",
+        "example_zh": "领口悬挂后被拉松变形了。",
+        "collocations": [
+          "stretched-out sleeves",
+          "stretched-out neckline"
+        ],
+        "usage_note": "stretched out指拉长松弛。"
+      },
+      "revised_display": {
+        "w": "stretched out",
+        "m": "被拉松变形的",
+        "c": "stretched-out sleeves · stretched-out neckline",
+        "e": "The neckline is stretched out from hanging.",
+        "x": "stretched out指拉长松弛。",
+        "example_zh": "领口悬挂后被拉松变形了。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01183",
+      "scene_id": "SC50-0006",
+      "source_rank": 138,
+      "source_sense_id": "SC-SENSE-01183",
+      "expression": "color bleeding",
+      "source_sense_zh": "衣物染料串色；掉色染到其他衣物",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_answer": {
+        "meaning_zh": "衣物染料串色；掉色染到其他衣物",
+        "example_en": "The red socks caused color bleeding onto my white shirt.",
+        "example_zh": "红袜子掉色，把我的白衬衫染上了颜色。",
+        "collocations": [
+          "prevent color bleeding",
+          "color bleeding in the wash"
+        ],
+        "usage_note": "color bleeding指染料在洗涤时转移到其他衣物，区别于单纯褪色。"
+      },
+      "revised_answer": {
+        "meaning_zh": "衣物染料串色；掉色染到其他衣物",
+        "example_en": "The red socks caused color bleeding in the wash.",
+        "example_zh": "红袜子在洗涤时掉色，导致串色。",
+        "collocations": [
+          "prevent color bleeding",
+          "color bleeding in the wash"
+        ],
+        "usage_note": "color bleeding指洗涤时染料脱落或转移；要突出染料染到白衣上，可说The red socks bled dye onto my white shirt。"
+      },
+      "revised_display": {
+        "w": "color bleeding",
+        "m": "衣物染料串色；掉色染到其他衣物",
+        "c": "prevent color bleeding · color bleeding in the wash",
+        "e": "The red socks caused color bleeding in the wash.",
+        "x": "color bleeding指洗涤时染料脱落或转移；要突出染料染到白衣上，可说The red socks bled dye onto my white shirt。",
+        "example_zh": "红袜子在洗涤时掉色，导致串色。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01190",
+      "scene_id": "SC50-0006",
+      "source_rank": 145,
+      "source_sense_id": "SC-SENSE-01190",
+      "expression": "hand-wash only",
+      "source_sense_zh": "只能手洗的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_answer": {
+        "meaning_zh": "只能手洗的",
+        "example_en": "The label says this sweater is hand-wash only.",
+        "example_zh": "标签注明这件毛衣只能手洗。",
+        "collocations": [
+          "hand-wash only label",
+          "hand-wash only garments"
+        ],
+        "usage_note": "hand-wash only是洗护限制，不能按普通机洗程序处理。"
+      },
+      "revised_answer": {
+        "meaning_zh": "只能手洗的",
+        "example_en": "The label says this sweater is hand-wash only.",
+        "example_zh": "标签注明这件毛衣只能手洗。",
+        "collocations": [
+          "a hand-wash-only label",
+          "the label says hand wash only"
+        ],
+        "usage_note": "hand-wash only是洗护限制，不能按普通机洗程序处理。"
+      },
+      "revised_display": {
+        "w": "hand-wash only",
+        "m": "只能手洗的",
+        "c": "a hand-wash-only label · the label says hand wash only",
+        "e": "The label says this sweater is hand-wash only.",
+        "x": "hand-wash only是洗护限制，不能按普通机洗程序处理。",
+        "example_zh": "标签注明这件毛衣只能手洗。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01203",
+      "scene_id": "SC50-0006",
+      "source_rank": 158,
+      "source_sense_id": "SC-SENSE-01203",
+      "expression": "set-in stain",
+      "source_sense_zh": "已经渗入织物的旧污渍",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_answer": {
+        "meaning_zh": "已经渗入织物的旧污渍",
+        "example_en": "This old set-in stain may be difficult to remove.",
+        "example_zh": "这块渗进面料的旧污渍可能很难去除。",
+        "collocations": [
+          "set-in stain",
+          "treat a set-in stain"
+        ],
+        "usage_note": "set-in stain通常指已附着较久、深入纤维的污渍。"
+      },
+      "revised_answer": {
+        "meaning_zh": "已固定、难以去除的顽固污渍",
+        "example_en": "This old set-in stain may be difficult to remove.",
+        "example_zh": "这块渗进面料的旧污渍可能很难去除。",
+        "collocations": [
+          "set-in stain",
+          "treat a set-in stain"
+        ],
+        "usage_note": "set-in stain指已附着固定而难去除的污渍，不一定是很旧或渗透很深。"
+      },
+      "revised_display": {
+        "w": "set-in stain",
+        "m": "已固定、难以去除的顽固污渍",
+        "c": "set-in stain · treat a set-in stain",
+        "e": "This old set-in stain may be difficult to remove.",
+        "x": "set-in stain指已附着固定而难去除的污渍，不一定是很旧或渗透很深。",
+        "example_zh": "这块渗进面料的旧污渍可能很难去除。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_rank": 168,
+      "source_sense_id": "SC-SENSE-01213",
+      "expression": "spin failure",
+      "source_sense_zh": "无法脱水的故障",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_answer": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer reported a spin failure at the end of the cycle.",
+        "example_zh": "洗涤结束时洗衣机提示脱水故障。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure指设备无法正常甩干，具体原因需检查。"
+      },
+      "revised_answer": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer had a spin failure at the end of the cycle.",
+        "example_zh": "洗衣机在程序结束时出现脱水故障。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure描述脱水或甩干功能故障，不一定是洗衣机屏幕上的统一错误码；口语也可说The washer failed to spin。"
+      },
+      "revised_display": {
+        "w": "spin failure",
+        "m": "无法脱水的故障",
+        "c": "spin failure · washer spin failure",
+        "e": "The washer had a spin failure at the end of the cycle.",
+        "x": "spin failure描述脱水或甩干功能故障，不一定是洗衣机屏幕上的统一错误码；口语也可说The washer failed to spin。",
+        "example_zh": "洗衣机在程序结束时出现脱水故障。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01227",
+      "scene_id": "SC50-0006",
+      "source_rank": 182,
+      "source_sense_id": "SC-SENSE-01227",
+      "expression": "use a color catcher",
+      "source_sense_zh": "使用防串色吸色片",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_answer": {
+        "meaning_zh": "使用防串色吸色片",
+        "example_en": "I use a color catcher when washing mixed-color items as directed.",
+        "example_zh": "按产品说明混洗不同颜色衣物时，我会用吸色片。",
+        "collocations": [
+          "use a color catcher",
+          "laundry color catcher"
+        ],
+        "usage_note": "color catcher是吸附游离染料的洗衣用品，不能保证完全防止串色。"
+      },
+      "revised_answer": {
+        "meaning_zh": "使用防串色吸色片",
+        "example_en": "I use a color catcher with mixed-color laundry, following the product instructions.",
+        "example_zh": "混洗不同颜色衣物时，我按产品说明使用防串色吸色片。",
+        "collocations": [
+          "use a color catcher",
+          "laundry color catcher"
+        ],
+        "usage_note": "color catcher是吸附游离染料的洗衣用品，不能保证完全防止串色。"
+      },
+      "revised_display": {
+        "w": "use a color catcher",
+        "m": "使用防串色吸色片",
+        "c": "use a color catcher · laundry color catcher",
+        "e": "I use a color catcher with mixed-color laundry, following the product instructions.",
+        "x": "color catcher是吸附游离染料的洗衣用品，不能保证完全防止串色。",
+        "example_zh": "混洗不同颜色衣物时，我按产品说明使用防串色吸色片。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
