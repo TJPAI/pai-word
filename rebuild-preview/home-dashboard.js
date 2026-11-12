@@ -6,6 +6,8 @@
   const searchApi=()=>window.PAI_SCENE_SEARCH;
   // Optional migration proof in the same original home component, not a second UI.
   const scene1341Mode=new URLSearchParams(location.search).get('scene1341')==='1';
+  // Off by default. Testing-only query flag reuses the existing Scene500 home UI.
+  const scene1341RecExperiment=scene1341Mode&&new URLSearchParams(location.search).get('scene1341_rec')==='1';
   let scene1341Adapter=null,scene1341Promise=null;
   const scene1341Cache=new Map();
   const getScene1341=()=>scene1341Promise||(scene1341Promise=import(new URL('rebuild-preview/scene1341-home-adapter.mjs',document.baseURI).href)
@@ -166,11 +168,17 @@
     if(scene1341Mode){
       try{
         const api=await getScene1341();
-        const matches=await api.search(q,{limit:100});
+        const matches=scene1341RecExperiment
+          ?await api.searchWithRecEngine(q,{limit:10})
+          :await api.search(q,{limit:100});
         if(ticket!==querySerial||state.view!=='scenes')return;
         for(const scene of matches)scene1341Cache.set(scene.id,scene);
         state.sceneSearchUi={query:q,difficulty,resultIds:matches.map(s=>s.id),page:0};
-        window.PAI_SCENE1341_SEARCH_REPORT={query:q,mode:'verified_ranked_lexical_CN_EN_110_scenes',count:matches.length,fullSemantic:false};
+        window.PAI_SCENE1341_SEARCH_REPORT={query:q,
+          mode:scene1341RecExperiment?'CG_REC_BROWSER_CORE_OPTIN_SOURCE_PINNED':'verified_ranked_lexical_CN_EN_110_scenes',
+          count:matches.length,fullSemantic:false,
+          releaseAllowed:false,canCreateStudyQueue:false,canWriteSrs:false,
+          sourceManifestBlob:scene1341RecExperiment?'803d2fccfd2d1ec200723f7f38e73d57495a5dd0':null};
         save();render();
       }catch(error){window.PAI_SCENE1341_LAST_ERROR=String(error);
         if(ticket===querySerial){state.sceneSearchUi={query:q,difficulty,resultIds:[],page:0};save();render();}}

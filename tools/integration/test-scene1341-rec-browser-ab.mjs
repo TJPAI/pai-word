@@ -47,4 +47,10 @@ for(const poisoned of ['manifest.json','index.json']){
 await assert.rejects(()=>adapter.compareSearch('wake up',{limit:11}),/SCENE1341_REC_AB_LIMIT_INVALID/);
 assert.deepEqual(await adapter.searchWithRecEngine(''),[]);
 assert((await adapter.search('oversleep')).length>0,'Existing browser default must remain usable');
+const homepage=await fs.readFile(new URL('../../rebuild-preview/home-dashboard.js',import.meta.url),'utf8');
+assert(homepage.includes("get('scene1341_rec')==='1'"),'Explicit opt-in flag required');
+assert(homepage.includes("scene1341Mode&&new URLSearchParams"),'Opt-in must never apply to Scene500');
+assert(homepage.includes('api.searchWithRecEngine(q,{limit:10})'),'Existing home must invoke real CG-REC core only in opt-in mode');
+assert(homepage.includes('api.search(q,{limit:100})'),'Existing default search must be preserved');
+assert(homepage.includes("canCreateStudyQueue:false,canWriteSrs:false"),'Search diagnostic must preserve non-learning contract');
 console.log(JSON.stringify({status:'PASS',mode:'OPT_IN_AB_ONLY',candidateSource:'EXACT_CG_REC_BROWSER_CORE',catalog:1341,rankedScenes:110,expressions:19371,production:false,srs:false,cases},null,2));
