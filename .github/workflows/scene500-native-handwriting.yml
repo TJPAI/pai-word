@@ -1,0 +1,33 @@
+name: Scene500 native handwriting behavior isolated regression
+on:
+  pull_request:
+    paths:
+      - 'tools/integration/scene500-native-handwriting-harness.mjs'
+      - 'tools/integration/test-scene500-native-handwriting.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-handwriting.yml'
+  push:
+    branches:
+      - cg-main-native-handwriting-behavior-20261112
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  handwriting:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original Scene500 handwriting interaction regression
+        run: |
+          node --check tools/integration/scene500-native-handwriting-harness.mjs
+          node tools/integration/test-scene500-native-handwriting.mjs
+      - name: Bookmark and native card regressions
+        run: |
+          node tools/integration/test-scene500-native-cursor-persistence.mjs
+          node tools/integration/test-scene500-native-card-shell.mjs
+      - name: Scene1341 isolated SRS remains off
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs
