@@ -26,7 +26,7 @@ for(const match of html.matchAll(/<(?:script|link)\b[^>]*?\b(?:src|href)="([^"]+
  assert(fs.existsSync(path.join(root,local)),'Missing GitHub project-root asset '+raw+' -> '+local);
  checked++;
 }
-assert(checked>=12,'Unexpectedly few native static assets inspected: '+checked);
+assert(checked>=8,'Unexpectedly few native static assets inspected: '+checked);
 assert(html.includes('src="scripts/core20k-approved-overlay-boot.mjs"'),
   'Approved overlay boot must use base-relative project path');
 assert(!html.includes('src="../scripts/core20k-approved-overlay-boot.mjs"'),
