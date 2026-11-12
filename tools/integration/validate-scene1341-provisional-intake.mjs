@@ -5,7 +5,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {createHash} from 'node:crypto';
-import {inspectScene1341ProvisionalShard} from '../../rebuild-preview/scene1341-provisional-intake.mjs';
+import {inspectScene1341ProvisionalShard,inspectScene1341ProvisionalRecord} from '../../rebuild-preview/scene1341-provisional-intake.mjs';
 const pin=JSON.parse(fs.readFileSync('tools/integration/scene1341-provisional-intake-pin-20261112.v2.json','utf8'));
 assert.equal(pin.qa_manifest.records,1778);
 assert.equal(pin.v1_status,'SUPERSEDED_DO_NOT_CONSUME');
@@ -27,7 +27,7 @@ assert.equal(manifest.counts.included_cg_pass_no_known_mu_objection,1778);
 assert.equal(manifest.global_checks.duplicate_teaching_goal_held,1);
 assert.deepEqual(manifest.shards.map(s=>s.blob),pin.shards.map(s=>s.blob));
 assert.deepEqual(manifest.shards.map(s=>s.path),pin.shards.map(s=>s.path));
-const seen=new Set(),sceneRanks=new Set(),results=[];let historicalMusePass=0,museDeferred=0;
+const seen=new Set(),sceneRanks=new Set(),results=[];let historicalMusePass=0,museDeferred=0,retainedBadBreath=false;
 for(const part of pin.shards){
  const shard=await get(part.path,part.blob);
  shard.__path=part.path;
@@ -38,6 +38,11 @@ for(const part of pin.shards){
   else throw Error('UNEXPECTED_MUSE_STATUS '+entry.scene_ku_id);
   assert(!seen.has(entry.scene_ku_id),'GLOBAL_DUPLICATE_KU '+entry.scene_ku_id);
   assert.notEqual(entry.scene_ku_id,pin.blocked_record.ku_id,'HELD_DUPLICATE_LEAKED');
+  if(entry.scene_ku_id==='SC1341-KU-00297'){
+   assert.equal(entry.scene_id,'SC50-0002');
+   assert.equal(entry.expression,'bad breath');
+   retainedBadBreath=true;
+  }
   const key=entry.scene_id+':'+entry.source_rank;
   assert(!sceneRanks.has(key),'GLOBAL_DUPLICATE_SCENE_RANK '+key);
   seen.add(entry.scene_ku_id);sceneRanks.add(key);
@@ -51,6 +56,8 @@ for(const part of pin.shards){
 }
 assert.equal(seen.size,1778);
 assert.equal(pin.qa_manifest.records,seen.size);
+assert.equal(retainedBadBreath,true,'PRIMARY_BAD_BREATH_SHOULD_REMAIN');
+assert.equal(inspectScene1341ProvisionalRecord({scene_ku_id:pin.blocked_record.ku_id}).reason,'QA_V2_DUPLICATE_KU_HOLD');
 assert.equal(sceneRanks.size,1778);
 assert.equal(historicalMusePass+museDeferred,1778,'MUSE_HISTORY_STATUS_ACCOUNTING');
 const report={status:'PASS',schema:pin.schema,qaSource:pin.qa_manifest.commit,
