@@ -144,9 +144,6 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
 const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/integration/';
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
-const AUTHOR_SHA='5211c3b17078101c286fb9c3c01fb07a7684d07c';
-const AUTHOR_ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+AUTHOR_SHA+'/';
-const MANIFEST='tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1182.json';
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null;
@@ -298,38 +295,36 @@ function parseCsv(src){
 async function getText(url){const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);return res.text()}
 async function load(){
  try{
-  const [catalogRaw,manifestRaw,qaRaw]=await Promise.all([
-   getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
-   getText(AUTHOR_ROOT+MANIFEST),
-   getText(ROOT+'scene1341-teaching/qa-304-status-staging.v1.json')
+  const [catalogRaw,qa]=await Promise.all([
+    getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
+    import('./scene1341-qa-preview-loader.mjs').then(m=>m.loadScene1341QAProvisional())
   ]);
   const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
-  catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')])).map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
-  if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)throw Error('场景目录数量或ID异常');
-  const manifest=JSON.parse(manifestRaw),packs=manifest.assets?.packs;
-  if(manifest.schema_version!=='pai-scene1341-answer-only-v2-progress-manifest'||manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE'||!Array.isArray(packs)||packs.length!==30||manifest.counts?.authored_answer_only!==1182||manifest.counts?.production_playable!==0||manifest.counts?.question_payloads!==0||packs.reduce((n,p)=>n+p.records,0)!==1182)throw Error('作者清单未通过隔离预览门禁');
-  if(new Set(packs.map(p=>p.path)).size!==packs.length||packs.some(p=>!/^tools\/answer-enrichment\/scene1341-v51-.*\.v2\.json$/.test(p.path)||!/^([0-9a-f]{40})$/.test(p.git_blob)||p.records<1))throw Error('作者清单文件身份异常');
-  const rawPacks=await Promise.all(packs.map(p=>getText(AUTHOR_ROOT+p.path)));
-  const ids=new Set(),ranks=new Set();items=[];
-  rawPacks.forEach((raw,i)=>{
-   const pack=JSON.parse(raw),p=packs[i];
-   if(pack.schema_version!=='pai-scene1341-answer-only-ku-v2'||pack.release_status!=='EDITORIAL_STAGING_ONLY'||pack.identity?.srs_namespace!=='scene1341-v2'||pack.identity?.core20k_ku_reused!==false||!Array.isArray(pack.records)||pack.records.length!==p.records)throw Error('KU源Pack身份异常：'+p.path);
-   for(const r of pack.records){
-    const key=r.scene_id+':'+r.source_rank;
-    if(!/^SC1341-KU-\d{5}$/.test(r.scene_ku_id)||ids.has(r.scene_ku_id)||r.activation_allowed!==false||Object.hasOwn(r,'question')||Object.hasOwn(r,'choices')||Object.hasOwn(r,'scoring')||!r.expression||!r.answer?.meaning_zh||!r.answer?.example_en||!r.answer?.example_zh||!Array.isArray(r.answer.collocations)||!catalog.some(c=>c.id===r.scene_id)||ranks.has(key))throw Error('KU不能进入只读预览：'+r.scene_ku_id);
-    ids.add(r.scene_ku_id);ranks.add(key);items.push(r);
-   }
-  });
-  if(items.length!==1182||ids.size!==1182)throw Error('KU总数或唯一身份异常');
-  const perScene=new Map();for(const r of items){const a=perScene.get(r.scene_id)||[];a.push(r.source_rank);perScene.set(r.scene_id,a)}
-  for(const [scene,rs] of perScene){rs.sort((a,b)=>a-b);if(rs.some((n,i)=>n!==i+1))throw Error('场景rank不连续：'+scene)}
-  items.sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
-  const qa=JSON.parse(qaRaw);
-  if(qa.release_eligible!==false||qa.counts?.release_approved!==0||qa.flags?.length!==27)throw Error('QA 304历史审核门禁异常');
-  flags=new Map(qa.flags.map(f=>[f.ku_id,f]));
-  set('status','已载入1,341个场景目录｜'+perScene.size+'个场景共'+items.length+'条作者草稿（未正式认证）');
-  set('continue-name',label(lastScene));renderCategories();renderHome();
- }catch(e){items=[];set('status','数据加载失败：'+e.message+'。请联网使用 Safari 打开，暂不展示未经验证的数据。');$('continue').disabled=true;set('scope','数据没有通过校验；不开放任何评分或学习记录。')}
+  catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')]))
+    .map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
+  if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)
+    throw Error('SCENE1341_CATALOG_ID_OR_COUNT_MISMATCH');
+  items=[...qa.items]; // preview-only, no Scene500 PAI_CORE mutation.
+  const countByScene=new Map();
+  for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
+  if(countByScene.size!==10||items.length!==1778)throw Error('QA_PROVISIONAL_PREVIEW_COUNT_MISMATCH');
+  set('scope','英文教学预览：'+countByScene.size+'个场景、'+items.length+
+    '条 CG-QA 暂通过答案型 KU；另有260条阻塞未展示。尚未完成 Master/Muse 正式认证，不计入 SRS。');
+  set('status','Scene1341 目录 1,341 · CG-REC 推荐场景 110 · QA 暂通过教学词卡 '+items.length);
+  if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
+  set('continue-name',label(lastScene));
+  set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 仅保存浏览位置');
+  $('continue').disabled=!available(lastScene);
+  renderCategories();renderHome();
+ }catch(e){
+  items=[];set('status','数据校验失败：'+String(e?.message||e));
+  set('scope','本次预览暂不可进入未经验证的词卡；请核对 GitHub 数据来源。');
+  $('continue').disabled=true;
+  renderHome();
+ }finally{
+  document.body.classList.add('pai-boot-ready');
+  window.dispatchEvent(new Event('pai-home-ready'));
+ }
 }
 function renderCategories(){
  const cats=['全部',...new Set(catalog.map(x=>x.category))];$('categories').replaceChildren();
