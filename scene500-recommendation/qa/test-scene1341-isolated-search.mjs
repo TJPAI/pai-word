@@ -41,7 +41,7 @@ assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not n
        row.rank='0'+previous.rank;
        const cols=Object.keys(rows[0]);
        const quote=value=>'"'+String(value??'').replace(/"/g,'""')+'"';
-       shards[shard]=[cols.join(','),...rows.map(r=>cols.map(k=>quote(r[k])).join(','))].join('\\n')+'\\n';
+       shards[shard]=[cols.join(','),...rows.map(r=>cols.map(k=>quote(r[k])).join(','))].join('\n')+'\n';
        mutated=true;break;
      }
      seen.set(row.scene_id,row);
