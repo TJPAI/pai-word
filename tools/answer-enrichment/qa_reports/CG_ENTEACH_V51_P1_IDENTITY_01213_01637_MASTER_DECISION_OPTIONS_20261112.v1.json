@@ -1,0 +1,83 @@
+{
+  "schema": "cg-enteach-v51-p1-identity-two-master-options-v1",
+  "date": "2026-11-12",
+  "role": "CG-ENTEACH",
+  "purpose": "Request authoritative Master disposition for two teacher-target identity mismatches; editorial alternatives only, no source rewrite",
+  "qa_evidence": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P1_LATEST_AUTHOR_DELTA17_20261112.v1.json",
+    "blob": "f0eb3158219c34013596601d6d6648bf4fc63177"
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_rank": 168,
+      "source_sense_id": "SC-SENSE-01213",
+      "original_source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "current_target": "spin failure",
+      "current_example": "The washer failed to spin at the end of the cycle.",
+      "semantic_issue": "The example uses a natural verb construction but does not instantiate the nominal spin failure; a descriptive technical term should not be treated as a common household expression without context.",
+      "editorial_options": [
+        {
+          "choice": "RETAIN_NOUN_IF_SOURCE_JUSTIFIES",
+          "expression": "spin failure",
+          "meaning_zh": "甩干功能故障；脱水故障",
+          "example_en": "The technician diagnosed a spin failure in the washer.",
+          "example_zh": "维修人员诊断出洗衣机的甩干功能故障。",
+          "usage_note": "技术诊断表达，需标明技术语境而非通用口语"
+        },
+        {
+          "choice": "APPROVE_REPLACE_WITH_NATURAL_VERB",
+          "expression": "the washer failed to spin",
+          "meaning_zh": "洗衣机未能甩干",
+          "example_en": "The washer failed to spin at the end of the cycle.",
+          "example_zh": "洗衣程序结束时，洗衣机没能甩干衣物。",
+          "usage_note": "目标变更须Master权威身份批准，并核查是否与其他现存KU重复"
+        }
+      ],
+      "author_preference": "APPROVE_REPLACE_WITH_NATURAL_VERB_IF_MASTER_CONFIRMS_DISTINCT_CANONICAL_TARGET",
+      "master_decision": "PENDING",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_rank": 185,
+      "source_sense_id": "SC-SENSE-01637",
+      "original_source_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "current_target": "warm up a late dinner",
+      "current_example": "I'll warm up dinner for you when you get home late.",
+      "semantic_issue": "Warm up dinner is idiomatic; warm up a late dinner awkwardly makes lateness an inherent attribute of a reheated meal, and revised example no longer uses original target.",
+      "editorial_options": [
+        {
+          "choice": "RETAIN_IF_MASTER_DEMONSTRATES_DISTINCT_USE",
+          "expression": "warm up a late dinner",
+          "meaning_zh": "把较晚吃的晚餐热一下",
+          "example_en": "We can warm up a late dinner after the meeting.",
+          "example_zh": "会议结束后，我们可以把晚些时候吃的晚餐热一下。",
+          "usage_note": "此例仍须独立QA审查自然度与实际教学价值"
+        },
+        {
+          "choice": "APPROVE_REPLACE_WITH_IDIOMATIC_TARGET",
+          "expression": "warm up dinner",
+          "meaning_zh": "把晚餐热一下",
+          "example_en": "I'll warm up dinner for you when you get home late.",
+          "example_zh": "你晚回家时，我会把晚餐给你热一下。",
+          "usage_note": "应核查本场景现存warm up dinner/warm dinner表达是否已占独立KU"
+        }
+      ],
+      "author_preference": "APPROVE_REPLACE_WITH_IDIOMATIC_TARGET_IF_NOT_DUPLICATE",
+      "master_decision": "PENDING",
+      "activation_allowed": false
+    }
+  ],
+  "controls": {
+    "stable_scene_ku_id": true,
+    "no_master_mutation": true,
+    "no_sense_identity_change_without_master": true,
+    "duplicate_check_required": true,
+    "independent_cg_qa_recheck_after_master_decision": true,
+    "muse_recheck_required": true,
+    "formal_release_allowed": false
+  }
+}
