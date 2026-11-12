@@ -1,0 +1,68 @@
+{
+  "schema": "cg-enteach-v51-sc0009-filter-identity-evidence-v1",
+  "date": "2026-11-12",
+  "source_scene": "SC50-0009",
+  "frozen_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "packs": [
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "git_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "count": 42
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "git_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "git_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-143-192.v2.json",
+      "git_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "git_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "count": 7
+    }
+  ],
+  "records_checked": 199,
+  "candidates": [
+    {
+      "scene_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_rank": 109,
+      "source_sense_id": "SC-SENSE-01749",
+      "expression": "empty the filter",
+      "meaning_zh": "清空滤网",
+      "example_en": "Empty the filter according to the dishwasher manual.",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01825",
+      "scene_id": "SC50-0009",
+      "source_rank": 185,
+      "source_sense_id": "SC-SENSE-01825",
+      "expression": "clean the dishwasher filter",
+      "meaning_zh": "清理洗碗机滤网",
+      "example_en": "Clean the dishwasher filter according to the manual.",
+      "source_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f"
+    }
+  ],
+  "new_finding": "Recommended replacement for 01749 clean the dishwasher filter is already a separate stable KU01825 in the same source scene; applying it to 01749 would duplicate a current educational goal.",
+  "revised_author_disposition": "KEEP_KU01749_IDENTITY_HOLD; do not change its canonical expression to clean the dishwasher filter. Recommend Master decide whether original empty the filter maps to a genuinely distinct filter-canister emptying action with physical source context; otherwise suppress its teaching objective in future authorized queue, retaining original frozen identity. Preserve existing KU01825.",
+  "disposition_prior_artifact": {
+    "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_IDENTITY_01736_01749_02017_MASTER_OPTIONS_20261112.v1.json",
+    "blob": "c1083b84a5a7a62570e7b18f61fae19b850ae7bf",
+    "status": "SUPERSEDED_FOR_KU01749_RECOMMENDATION_ONLY"
+  },
+  "authorization": "PENDING_CG_MASTER",
+  "independent_qa": "PENDING",
+  "muse_qa": "DEFERRED_QUOTA_20261113",
+  "activation_allowed": false,
+  "release_allowed": false
+}
