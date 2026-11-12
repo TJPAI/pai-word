@@ -8,6 +8,7 @@ on:
       - 'scene500-recommendation/scene1341-experimental-intent-aliases.mjs'
       - 'scene500-recommendation/qa/test-scene1341-isolated-search.mjs'
       - 'scene500-recommendation/qa/benchmark-scene1341-cache.mjs'
+      - 'scene500-recommendation/qa/measure-scene1341-memory.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
     branches: [scene500-recommendation-dev]
@@ -45,6 +46,7 @@ jobs:
           node --check rec/scene500-recommendation/scene1341-isolated-search.mjs
           node --check rec/scene500-recommendation/qa/test-scene1341-isolated-search.mjs
           node --check rec/scene500-recommendation/qa/benchmark-scene1341-cache.mjs
+          node --check rec/scene500-recommendation/qa/measure-scene1341-memory.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
       - name: Verify pinned editorial input identities
@@ -71,9 +73,26 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-normalization-cache-ab.json
           node -e "const r=require('./scene1341-normalization-cache-ab.json');if(r.status!=='PASS_SOURCE_PINNED_PARITY'||r.parityComparisons!==52||r.release_allowed!==false)process.exit(1);"
+      - name: Measure separate-process Node heap and cold index construction
+        run: |
+          node --expose-gc rec/scene500-recommendation/qa/measure-scene1341-memory.mjs baseline \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            > scene1341-memory-baseline.json
+          node --expose-gc rec/scene500-recommendation/qa/measure-scene1341-memory.mjs candidate \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            > scene1341-memory-candidate.json
+          node -e "const fs=require('fs');const a=JSON.parse(fs.readFileSync('scene1341-memory-baseline.json'));const b=JSON.parse(fs.readFileSync('scene1341-memory-candidate.json'));if(a.variant!=='baseline'||b.variant!=='candidate'||a.trials.length!==3||b.trials.length!==3||a.sourceBytes!==b.sourceBytes||a.release_allowed||b.release_allowed)process.exit(1);"
       - uses: actions/upload-artifact@v4
         with:
           name: cg-rec-scene1341-isolated-mixed-smoke
           path: |
             scene1341-isolated-search-smoke.json
             scene1341-normalization-cache-ab.json
+            scene1341-memory-baseline.json
+            scene1341-memory-candidate.json
