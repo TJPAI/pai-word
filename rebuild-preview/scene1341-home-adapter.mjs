@@ -126,7 +126,7 @@ export function createScene1341HomeCatalog({fetchImpl=fetch,ranked=createRankedS
   function rowsToCsv(rows){
     if(!rows.length)throw Error('SCENE1341_REC_EMPTY_BATCH');
     const fields=Object.keys(rows[0]);
-    return [fields.map(csvEncode).join(','),...rows.map(row=>fields.map(f=>csvEncode(row[f])).join(','))].join('\\n')+'\\n';
+    return [fields.map(csvEncode).join(','),...rows.map(row=>fields.map(f=>csvEncode(row[f])).join(','))].join('\n')+'\n';
   }
   async function recCatalog(){
     if(recEngine)return recEngine;
