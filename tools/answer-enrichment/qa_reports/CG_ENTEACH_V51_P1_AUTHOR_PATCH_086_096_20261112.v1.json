@@ -1,0 +1,527 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 11,
+    "master_review_required": 7
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01246",
+      "scene_id": "SC50-0007",
+      "source_rank": 11,
+      "source_sense_id": "SC-SENSE-01246",
+      "expression": "preheat the oven",
+      "source_sense_zh": "预热烤箱",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "original_answer": {
+        "meaning_zh": "预热烤箱",
+        "example_en": "Preheat the oven to the temperature in the recipe.",
+        "example_zh": "按食谱要求的温度预热烤箱。",
+        "collocations": [
+          "preheat the oven",
+          "preheat the oven to 180 degrees"
+        ],
+        "usage_note": "preheat指放入食物前先使烤箱达到所需温度。"
+      },
+      "revised_answer": {
+        "meaning_zh": "预热烤箱",
+        "example_en": "Preheat the oven to the temperature in the recipe.",
+        "example_zh": "按食谱要求的温度预热烤箱。",
+        "collocations": [
+          "preheat the oven to 180°C",
+          "preheat the oven to the required temperature"
+        ],
+        "usage_note": "食谱中的烤箱温度务必写明°C或°F，180 degrees单独使用可能产生摄氏/华氏歧义。"
+      },
+      "revised_display": {
+        "w": "preheat the oven",
+        "m": "预热烤箱",
+        "c": "preheat the oven to 180°C · preheat the oven to the required temperature",
+        "e": "Preheat the oven to the temperature in the recipe.",
+        "x": "食谱中的烤箱温度务必写明°C或°F，180 degrees单独使用可能产生摄氏/华氏歧义。",
+        "example_zh": "按食谱要求的温度预热烤箱。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01248",
+      "scene_id": "SC50-0007",
+      "source_rank": 13,
+      "source_sense_id": "SC-SENSE-01248",
+      "expression": "roast chicken",
+      "source_sense_zh": "烤鸡",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "original_answer": {
+        "meaning_zh": "烤鸡",
+        "example_en": "We plan to roast chicken with potatoes on Sunday.",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。",
+        "collocations": [
+          "roast chicken",
+          "roast chicken in the oven"
+        ],
+        "usage_note": "roast chicken在此作动词词组，指烤鸡肉。"
+      },
+      "revised_answer": {
+        "meaning_zh": "烤鸡肉（动词短语）",
+        "example_en": "We plan to roast chicken with potatoes on Sunday.",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。",
+        "collocations": [
+          "roast chicken",
+          "roast chicken in the oven"
+        ],
+        "usage_note": "本KU中的roast chicken按动词roast加宾语chicken教学；名词roast chicken也可指一只烤鸡或烤鸡菜肴。"
+      },
+      "revised_display": {
+        "w": "roast chicken",
+        "m": "烤鸡肉（动词短语）",
+        "c": "roast chicken · roast chicken in the oven",
+        "e": "We plan to roast chicken with potatoes on Sunday.",
+        "x": "本KU中的roast chicken按动词roast加宾语chicken教学；名词roast chicken也可指一只烤鸡或烤鸡菜肴。",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01268",
+      "scene_id": "SC50-0007",
+      "source_rank": 33,
+      "source_sense_id": "SC-SENSE-01268",
+      "expression": "seasoning",
+      "source_sense_zh": "调味料；调味",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "original_answer": {
+        "meaning_zh": "调味料；调味",
+        "example_en": "Taste the soup before adding more seasoning.",
+        "example_zh": "再加调味料前先尝尝汤。",
+        "collocations": [
+          "add seasoning",
+          "adjust the seasoning"
+        ],
+        "usage_note": "seasoning可指调味料，也可指调味的过程。"
+      },
+      "revised_answer": {
+        "meaning_zh": "调味料（此场景义）",
+        "example_en": "Taste the soup before adding more seasoning.",
+        "example_zh": "再加调味料前先尝尝汤。",
+        "collocations": [
+          "add seasoning",
+          "adjust the seasoning"
+        ],
+        "usage_note": "seasoning作名词可指调味料，也可指调味的过程或程度；本条例句主要体现调味料义。"
+      },
+      "revised_display": {
+        "w": "seasoning",
+        "m": "调味料（此场景义）",
+        "c": "add seasoning · adjust the seasoning",
+        "e": "Taste the soup before adding more seasoning.",
+        "x": "seasoning作名词可指调味料，也可指调味的过程或程度；本条例句主要体现调味料义。",
+        "example_zh": "再加调味料前先尝尝汤。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01285",
+      "scene_id": "SC50-0007",
+      "source_rank": 50,
+      "source_sense_id": "SC-SENSE-01285",
+      "expression": "kitchen counter",
+      "source_sense_zh": "厨房操作台",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "厨房操作台",
+        "example_en": "Wipe the kitchen counter before preparing food.",
+        "example_zh": "备餐前先擦净厨房操作台。",
+        "collocations": [
+          "wipe the kitchen counter",
+          "clean kitchen counter"
+        ],
+        "usage_note": "counter指厨房操作台面，不是柜子。"
+      },
+      "revised_answer": {
+        "meaning_zh": "厨房操作台",
+        "example_en": "Wipe the kitchen counter before preparing food.",
+        "example_zh": "备餐前先擦净厨房操作台。",
+        "collocations": [
+          "clean the kitchen counter",
+          "wipe down the kitchen counter"
+        ],
+        "usage_note": "counter指厨房操作台面，不是柜子。"
+      },
+      "revised_display": {
+        "w": "kitchen counter",
+        "m": "厨房操作台",
+        "c": "clean the kitchen counter · wipe down the kitchen counter",
+        "e": "Wipe the kitchen counter before preparing food.",
+        "x": "counter指厨房操作台面，不是柜子。",
+        "example_zh": "备餐前先擦净厨房操作台。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01297",
+      "scene_id": "SC50-0007",
+      "source_rank": 62,
+      "source_sense_id": "SC-SENSE-01297",
+      "expression": "spatula",
+      "source_sense_zh": "锅铲",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "锅铲",
+        "example_en": "Flip the pancakes with a spatula.",
+        "example_zh": "用锅铲把煎饼翻面。",
+        "collocations": [
+          "heat-resistant spatula",
+          "flip with a spatula"
+        ],
+        "usage_note": "spatula可指翻铲或刮刀，依具体形状而定。"
+      },
+      "revised_answer": {
+        "meaning_zh": "锅铲；刮刀",
+        "example_en": "Flip the pancakes with a spatula.",
+        "example_zh": "用锅铲把煎饼翻面。",
+        "collocations": [
+          "heat-resistant spatula",
+          "flip with a spatula"
+        ],
+        "usage_note": "spatula可指翻锅用锅铲，也可指厨房刮刀；具体看形状与操作。"
+      },
+      "revised_display": {
+        "w": "spatula",
+        "m": "锅铲；刮刀",
+        "c": "heat-resistant spatula · flip with a spatula",
+        "e": "Flip the pancakes with a spatula.",
+        "x": "spatula可指翻锅用锅铲，也可指厨房刮刀；具体看形状与操作。",
+        "example_zh": "用锅铲把煎饼翻面。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01316",
+      "scene_id": "SC50-0007",
+      "source_rank": 81,
+      "source_sense_id": "SC-SENSE-01316",
+      "expression": "freezer",
+      "source_sense_zh": "冷冻柜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "冷冻柜",
+        "example_en": "The frozen peas are in the freezer.",
+        "example_zh": "冻豌豆放在冷冻柜里。",
+        "collocations": [
+          "freezer compartment",
+          "store in the freezer"
+        ],
+        "usage_note": "freezer用于冷冻保存，区别于冷藏refrigerator。"
+      },
+      "revised_answer": {
+        "meaning_zh": "冰柜；冰箱冷冻室",
+        "example_en": "The frozen peas are in the freezer.",
+        "example_zh": "冻豌豆放在冷冻柜里。",
+        "collocations": [
+          "freezer compartment",
+          "store in the freezer"
+        ],
+        "usage_note": "freezer可指独立冰柜，也可指冰箱内部的冷冻室。"
+      },
+      "revised_display": {
+        "w": "freezer",
+        "m": "冰柜；冰箱冷冻室",
+        "c": "freezer compartment · store in the freezer",
+        "e": "The frozen peas are in the freezer.",
+        "x": "freezer可指独立冰柜，也可指冰箱内部的冷冻室。",
+        "example_zh": "冻豌豆放在冷冻柜里。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01318",
+      "scene_id": "SC50-0007",
+      "source_rank": 83,
+      "source_sense_id": "SC-SENSE-01318",
+      "expression": "food container",
+      "source_sense_zh": "食物保鲜盒",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "食物保鲜盒",
+        "example_en": "Put the leftover soup in a food container.",
+        "example_zh": "把剩下的汤放进食物保鲜盒。",
+        "collocations": [
+          "airtight food container",
+          "reusable food container"
+        ],
+        "usage_note": "food container指装食物的容器，材质与耐热性应符合用途。"
+      },
+      "revised_answer": {
+        "meaning_zh": "食品容器；食物收纳盒",
+        "example_en": "Put the leftover soup in a food container.",
+        "example_zh": "把剩下的汤放进食物保鲜盒。",
+        "collocations": [
+          "airtight food container",
+          "reusable food container"
+        ],
+        "usage_note": "food container是装食物的容器，不必然是密封保鲜盒。"
+      },
+      "revised_display": {
+        "w": "food container",
+        "m": "食品容器；食物收纳盒",
+        "c": "airtight food container · reusable food container",
+        "e": "Put the leftover soup in a food container.",
+        "x": "food container是装食物的容器，不必然是密封保鲜盒。",
+        "example_zh": "把剩下的汤放进食物保鲜盒。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01325",
+      "scene_id": "SC50-0007",
+      "source_rank": 90,
+      "source_sense_id": "SC-SENSE-01325",
+      "expression": "read the instructions",
+      "source_sense_zh": "阅读烹饪步骤",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "阅读烹饪步骤",
+        "example_en": "Read the instructions before turning on the oven.",
+        "example_zh": "开烤箱前先读烹饪步骤。",
+        "collocations": [
+          "read the instructions",
+          "follow cooking instructions"
+        ],
+        "usage_note": "instructions在这里特指食谱中的操作步骤。"
+      },
+      "revised_answer": {
+        "meaning_zh": "阅读说明；按此场景阅读食谱步骤",
+        "example_en": "Read the instructions before turning on the oven.",
+        "example_zh": "开烤箱前先读烹饪步骤。",
+        "collocations": [
+          "read the instructions",
+          "follow cooking instructions"
+        ],
+        "usage_note": "read the instructions泛指阅读说明，在做饭场景中可以指查看食谱操作步骤。"
+      },
+      "revised_display": {
+        "w": "read the instructions",
+        "m": "阅读说明；按此场景阅读食谱步骤",
+        "c": "read the instructions · follow cooking instructions",
+        "e": "Read the instructions before turning on the oven.",
+        "x": "read the instructions泛指阅读说明，在做饭场景中可以指查看食谱操作步骤。",
+        "example_zh": "开烤箱前先读烹饪步骤。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01351",
+      "scene_id": "SC50-0007",
+      "source_rank": 116,
+      "source_sense_id": "SC-SENSE-01351",
+      "expression": "heat the pan",
+      "source_sense_zh": "把锅加热",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "original_answer": {
+        "meaning_zh": "把锅加热",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热平底锅。",
+        "collocations": [
+          "heat the pan",
+          "heat a pan over medium heat"
+        ],
+        "usage_note": "heat the pan是给锅预热。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把锅加热",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热锅具。",
+        "collocations": [
+          "heat the pan",
+          "heat a pan over medium heat"
+        ],
+        "usage_note": "heat the pan是给锅预热。"
+      },
+      "revised_display": {
+        "w": "heat the pan",
+        "m": "把锅加热",
+        "c": "heat the pan · heat a pan over medium heat",
+        "e": "Heat the pan over medium heat.",
+        "x": "heat the pan是给锅预热。",
+        "example_zh": "用中火加热锅具。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01367",
+      "scene_id": "SC50-0007",
+      "source_rank": 132,
+      "source_sense_id": "SC-SENSE-01367",
+      "expression": "adjust the seasoning",
+      "source_sense_zh": "调整调味",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "original_answer": {
+        "meaning_zh": "调整调味",
+        "example_en": "Adjust the seasoning after tasting.",
+        "example_zh": "尝过以后再调整调味。",
+        "collocations": [
+          "adjust the seasoning",
+          "adjust seasoning to taste"
+        ],
+        "usage_note": "adjust seasoning指增减调味料。"
+      },
+      "revised_answer": {
+        "meaning_zh": "调整调味",
+        "example_en": "Adjust the seasoning after tasting.",
+        "example_zh": "尝过后再调整咸淡和调味程度。",
+        "collocations": [
+          "adjust the seasoning",
+          "adjust seasoning to taste"
+        ],
+        "usage_note": "adjust seasoning指增减调味料。"
+      },
+      "revised_display": {
+        "w": "adjust the seasoning",
+        "m": "调整调味",
+        "c": "adjust the seasoning · adjust seasoning to taste",
+        "e": "Adjust the seasoning after tasting.",
+        "x": "adjust seasoning指增减调味料。",
+        "example_zh": "尝过后再调整咸淡和调味程度。"
+      },
+      "changed_fields": [
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01375",
+      "scene_id": "SC50-0007",
+      "source_rank": 140,
+      "source_sense_id": "SC-SENSE-01375",
+      "expression": "raw",
+      "source_sense_zh": "生的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "original_answer": {
+        "meaning_zh": "生的",
+        "example_en": "Keep raw chicken separate from cooked food.",
+        "example_zh": "生鸡肉要与熟食分开放。",
+        "collocations": [
+          "raw chicken",
+          "raw ingredients"
+        ],
+        "usage_note": "raw指未煮熟，生熟分开以避免交叉污染。"
+      },
+      "revised_answer": {
+        "meaning_zh": "生的；未经烹调的",
+        "example_en": "Keep raw chicken separate from cooked food.",
+        "example_zh": "生鸡肉要与熟食分开放。",
+        "collocations": [
+          "raw chicken",
+          "raw ingredients"
+        ],
+        "usage_note": "raw指生的或未经烹调的；undercooked指没有完全做熟，二者不同。"
+      },
+      "revised_display": {
+        "w": "raw",
+        "m": "生的；未经烹调的",
+        "c": "raw chicken · raw ingredients",
+        "e": "Keep raw chicken separate from cooked food.",
+        "x": "raw指生的或未经烹调的；undercooked指没有完全做熟，二者不同。",
+        "example_zh": "生鸡肉要与熟食分开放。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
