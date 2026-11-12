@@ -3,6 +3,11 @@
  * Does not mutate author drafts, user SRS, or existing approved runtime.
  */
 const SHA=/^[0-9a-f]{40}$/, KU=/^SC1341-KU-\d{5,}$/, SC=/^SC50-\d{4}$/;
+// No Master item-specific authorization evidence has been independently verified
+// and pinned in CG-MAIN. An arbitrary caller-supplied SHA is never evidence.
+// A future authorized rollout must explicitly pin/verify the source before
+// populating this allowlist; the current V2 batch remains quarantined.
+const VERIFIED_MASTER_APPROVAL_EVIDENCE_BLOBS=Object.freeze([]);
 const reject=(reason)=>Object.freeze({accepted:false,stagingEligible:false,reason});
 const required=['scene_ku_id','scene_id','source_sense_id','expression','source_pack_path','source_pack_blob'];
 export function inspectScene1341ProvisionalRecord(record,authorization=null){
@@ -45,7 +50,8 @@ export function inspectScene1341ProvisionalRecord(record,authorization=null){
     authorization.source_pack_blob!==record.source_pack_blob||
     !SHA.test(authorization.master_snapshot_blob||'')||
     !SHA.test(authorization.approval_evidence_blob||'')||
-    authorization.display_qa_pass!==true)
+    authorization.display_qa_pass!==true||
+    !VERIFIED_MASTER_APPROVAL_EVIDENCE_BLOBS.includes(authorization.approval_evidence_blob))
    return reject('MASTER_AUTHORIZATION_MISMATCH_OR_DISPLAY_NOT_APPROVED');
  return Object.freeze({accepted:true,stagingEligible:true,reason:'STAGING_ONLY_CG_PASS_MUSE_DEFERRED'});
 }
