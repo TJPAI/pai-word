@@ -1,0 +1,67 @@
+{
+  "schema": "cg-enteach-v51-p1-identity-three-master-disposition-v1",
+  "date": "2026-11-12",
+  "role": "CG-ENTEACH",
+  "source_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+  "source_author_patch_blob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+  "source_qa_path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P1_MASTER70_LEXICAL_TRIAGE_20261112.v1.json",
+  "source_qa_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+  "purpose": "Three unresolved canonical target or duplicate-review cases; editorial options only, source KU and Master unchanged",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_rank": 96,
+      "source_sense_id": "SC-SENSE-01736",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_target": "squirt on dish soap",
+      "issue": "Original expression is an awkward standalone target; revised example naturally uses squirt some dish soap onto the sponge.",
+      "recommended_canonical_target": "squirt dish soap onto a sponge",
+      "recommended_gloss_zh": "往海绵上挤一点洗洁精",
+      "recommended_example_en": "Squirt some dish soap onto the sponge before scrubbing the pan.",
+      "recommended_example_zh": "刷锅之前，先往海绵上挤一点洗洁精。",
+      "option_if_identity_must_be_preserved": "Retain source target as HOLD until authoritative evidence supports it; do not assert QA pass.",
+      "required_master_action": "DECIDE_CANONICAL_EXPRESSION_AND_DUPLICATE_CHECK"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_rank": 109,
+      "source_sense_id": "SC-SENSE-01749",
+      "source_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "original_target": "empty the filter",
+      "issue": "Dishwasher mesh filters generally require removal/cleaning; empty is natural for a debris trap or canister with collected matter, not interchangeable with cleaning a filter.",
+      "recommended_canonical_target": "clean the dishwasher filter",
+      "recommended_gloss_zh": "清洁洗碗机滤网",
+      "recommended_example_en": "Remove and clean the dishwasher filter as directed in the manual.",
+      "recommended_example_zh": "按照说明书拆下并清洁洗碗机滤网。",
+      "alternative_if_source_is_debris_trap": {
+        "expression": "empty the debris trap",
+        "meaning_zh": "清空集污槽",
+        "example_en": "Empty the debris trap before cleaning the filter.",
+        "example_zh": "清洁滤网前，先倒空集污槽。"
+      },
+      "required_master_action": "CONFIRM_HARDWARE_PART_AND_TARGET_SENSE"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_rank": 178,
+      "source_sense_id": "SC-SENSE-02017",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "original_target": "turn off notifications",
+      "issue": "The turn off / switch off variants may duplicate another learning item; same-scene duplication has not yet been established against all V51 source packs.",
+      "recommended_disposition": "RETAIN_HOLD_PENDING_CROSS_PACK_DUPLICATE_EVIDENCE",
+      "recommended_example_en": "Turn off notifications during your break.",
+      "recommended_example_zh": "休息时关掉消息通知。",
+      "required_master_action": "COMPARE_ALL_SC50_0010_KU_CANONICAL_TARGETS_AND_SENSE_IDENTITIES_BEFORE_MERGE_OR_SUPPRESSION"
+    }
+  ],
+  "status": "MASTER_DECISION_PENDING",
+  "authorization_verified": false,
+  "cg_qa_recheck_required": true,
+  "muse_recheck_required": true,
+  "activation_allowed": false,
+  "production_release_allowed": false,
+  "original_frozen_kus_untouched": true
+}
