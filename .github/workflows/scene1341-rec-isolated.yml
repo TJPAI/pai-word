@@ -87,7 +87,7 @@ jobs:
             17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-memory-candidate.json
-          node -e "const fs=require('fs');const a=JSON.parse(fs.readFileSync('scene1341-memory-baseline.json'));const b=JSON.parse(fs.readFileSync('scene1341-memory-candidate.json'));if(a.variant!=='baseline'||b.variant!=='candidate'||a.trials.length!==3||b.trials.length!==3||a.sourceBytes!==b.sourceBytes||a.release_allowed||b.release_allowed)process.exit(1);"
+          node -e "const fs=require('fs');const a=JSON.parse(fs.readFileSync('scene1341-memory-baseline.json'));const b=JSON.parse(fs.readFileSync('scene1341-memory-candidate.json'));if(a.variant!=='baseline'||b.variant!=='candidate'||a.trials.length!==5||b.trials.length!==5||a.processIsolation!=='FRESH_NODE_PROCESS_PER_TRIAL'||b.processIsolation!=='FRESH_NODE_PROCESS_PER_TRIAL'||a.sourceBytes!==b.sourceBytes||a.sourceBytes<1000000||a.release_allowed||b.release_allowed||![...a.trials,...b.trials].every(x=>Number.isFinite(x.buildMs)&&Number.isFinite(x.retainedHeapDeltaBytes)))process.exit(1);"
       - uses: actions/upload-artifact@v4
         with:
           name: cg-rec-scene1341-isolated-mixed-smoke
