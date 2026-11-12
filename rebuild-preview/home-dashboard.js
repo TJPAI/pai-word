@@ -269,6 +269,18 @@
         message.textContent='此场景已列入Scene1341目录，但编辑推荐表达尚未交付；不会调用旧Scene500词池。';return;
       }
       message.textContent='场景英语表达 · 按原始rank排序 · 不计入KU学习及SRS';
+      // Native Scene500 learning requires an independent Scene1341-v2 registry,
+      // separate SRS namespace, Master per-KU approval and formal release.
+      // No V2 quarantined KU records are loaded as native study units here.
+      const entryModule=await import(new URL('rebuild-preview/scene1341-native-entry-preflight.mjs',document.baseURI).href);
+      const entryGate=entryModule.inspectScene1341NativeEntry({sceneId:id});
+      if(entryGate.canEnterNativeLearning||entryGate.canWriteSrs)
+        throw Error('SCENE1341_NATIVE_STAGING_MUST_NOT_AUTO_ACTIVATE');
+      const learningStatus=document.createElement('p');
+      learningStatus.setAttribute('role','status');
+      learningStatus.textContent='正式学习入口待逐项Master授权、CG-QA复核及原生隔离SRS接入；当前仅可查看推荐表达或只读教学草稿。';
+      learningStatus.style.cssText='font-size:13px;color:#64748b;margin:10px 0';
+      panel.appendChild(learningStatus);
       if(id==='SC50-0001'||id==='SC50-0002'){
         const preview=document.createElement('button');
         preview.type='button';
