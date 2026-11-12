@@ -1,0 +1,1464 @@
+{
+  "schema": "cg-qa-scene1341-v51-p0-remaining-nonmaster-recheck-v1",
+  "date": "2026-11-12",
+  "role": "CG-QA",
+  "source_author_commit": "f43d3ec4cdce5d6346a6b74fdf5942e13b2b16fe",
+  "source_author_manifest_blob": "b999d39b98a593086e24fd7c0343af1c25c8833b",
+  "prior_recheck_commit": "f1eb55b090e11a851e5527439331a7d1b154f51e",
+  "method": "independent item-specific lexical, bilingual meaning, example, collocation and teaching-review",
+  "scope": "37 remaining of 45 author P0 items without Master hold; previous 8 assessed separately",
+  "counts": {
+    "reviewed": 37,
+    "pass": 32,
+    "conditional": 4,
+    "revise": 1,
+    "muse_pass_new": 0,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "policy": "Original V30 judgment retained. Author patch is not master approval. Muse status deferred. No runtime, SRS, source-author or Master changes.",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00006",
+      "scene_id": "SC50-0001",
+      "source_rank": 6,
+      "source_sense_id": "SC-SENSE-00006",
+      "expression": "snooze",
+      "original_pack_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_12_20261112.v1.json",
+      "author_patch_blob": "e8c7c2ec4b1df6a87fc1237cec2db5f4b76dda64",
+      "original_answer": {
+        "meaning_zh": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+        "example_en": "I pressed snooze and went back to sleep for ten minutes.",
+        "example_zh": "我按了闹钟的贪睡键，又睡了十分钟。",
+        "collocations": [
+          "hit snooze",
+          "snooze the alarm"
+        ],
+        "usage_note": "在闹钟语境中，snooze表示暂时延后提醒；也可指小睡。",
+        "contrast_note": "snooze the alarm是延后提醒，turn off the alarm是关掉提醒。"
+      },
+      "revised_answer": {
+        "meaning_zh": "按闹钟贪睡键，让闹钟稍后再响；小睡一会儿",
+        "example_en": "I pressed snooze and went back to sleep for ten minutes.",
+        "example_zh": "我按了闹钟的贪睡键，又睡了十分钟。",
+        "collocations": [
+          "hit snooze",
+          "snooze the alarm",
+          "have a quick snooze"
+        ],
+        "usage_note": "在闹钟语境中hit snooze是按贪睡键；snooze也指打盹，例如I had a quick snooze after lunch（午饭后我打了个盹）。",
+        "contrast_note": "snooze the alarm是延后提醒，turn off the alarm是关掉提醒。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "闹钟snooze和小睡动词/名词用法已分清，hit snooze自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00268",
+      "scene_id": "SC50-0002",
+      "source_rank": 34,
+      "source_sense_id": "SC-SENSE-00268",
+      "expression": "wash up",
+      "original_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_12_20261112.v1.json",
+      "author_patch_blob": "e8c7c2ec4b1df6a87fc1237cec2db5f4b76dda64",
+      "original_answer": {
+        "meaning_zh": "简单洗漱（美式常见）；洗碗（英式常见）",
+        "example_en": "I need to wash up before breakfast.",
+        "example_zh": "早饭前我得先洗漱一下。",
+        "collocations": [
+          "wash up before breakfast",
+          "go wash up"
+        ],
+        "usage_note": "美式wash up常指洗手或简单洗漱；英式wash up常指洗碗，需看语境。"
+      },
+      "revised_answer": {
+        "meaning_zh": "简单洗漱（美式常见）；洗碗（英式常见）",
+        "example_en": "I'll wash up after dinner.",
+        "example_zh": "晚饭后我来洗碗。",
+        "collocations": [
+          "wash up after dinner",
+          "do the washing-up",
+          "wash up before breakfast"
+        ],
+        "usage_note": "英式wash up常指洗碗（I'll wash up after dinner）；美式wash up常指洗手或简单洗漱（I need to wash up before breakfast）。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "英式wash up洗碗与美式洗手洗漱的方言对比准确，例句在英式语境成立",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00704",
+      "scene_id": "SC50-0004",
+      "source_rank": 92,
+      "source_sense_id": "SC-SENSE-00704",
+      "expression": "cleaning spray",
+      "original_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "清洁喷雾",
+        "example_en": "I sprayed a little cleaning spray on the countertop.",
+        "example_zh": "我往台面上喷了少量清洁喷雾。",
+        "collocations": [
+          "all-purpose cleaning spray",
+          "use cleaning spray"
+        ],
+        "usage_note": "cleaning spray泛指喷雾型清洁产品，不意味着一定有消毒功能。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清洁喷雾",
+        "example_en": "I used a little cleaning spray on the countertop.",
+        "example_zh": "我在台面上用了少量清洁喷雾。",
+        "collocations": [
+          "all-purpose cleaning spray",
+          "use cleaning spray"
+        ],
+        "usage_note": "cleaning spray泛指喷雾型清洁产品，不意味着一定有消毒功能。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "喷雾型清洁剂含义与台面例句自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00804",
+      "scene_id": "SC50-0004",
+      "source_rank": 192,
+      "source_sense_id": "SC-SENSE-00804",
+      "expression": "breakable",
+      "original_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "容易摔坏的",
+        "example_en": "These decorations are breakable, so store them carefully.",
+        "example_zh": "这些装饰品容易摔坏，收纳时要小心。",
+        "collocations": [
+          "breakable items",
+          "highly breakable"
+        ],
+        "usage_note": "breakable表示容易破裂或损坏，与fragile相近。"
+      },
+      "revised_answer": {
+        "meaning_zh": "容易摔坏的",
+        "example_en": "These decorations are breakable, so store them carefully.",
+        "example_zh": "这些装饰品容易摔坏，收纳时要小心。",
+        "collocations": [
+          "breakable items",
+          "breakable decorations"
+        ],
+        "usage_note": "breakable表示容易破裂或损坏，与fragile相近。"
+      },
+      "fields_changed": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "breakable语义含易碎和容易损坏，不仅是容易摔坏；需扩大中文释义",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00818",
+      "scene_id": "SC50-0004",
+      "source_rank": 206,
+      "source_sense_id": "SC-SENSE-00818",
+      "expression": "put things back where they belong",
+      "original_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "把物品放回原位",
+        "example_en": "Put things back where they belong after using them.",
+        "example_zh": "用完东西后把它们放回原位。",
+        "collocations": [
+          "put things back where they belong",
+          "put everything back where it belongs"
+        ],
+        "usage_note": "where they belong表示物品应放的位置；该源项属待核验场景补缺。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把物品放回原位",
+        "example_en": "Put things back where they belong after using them.",
+        "example_zh": "用完东西后把它们放回原位。",
+        "collocations": [
+          "put things back where they belong",
+          "put everything back where it belongs"
+        ],
+        "usage_note": "where they belong指物品平时应当放回的位置；put back表示使用后放回原处。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "put things back where they belong习惯搭配及译文正确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00819",
+      "scene_id": "SC50-0004",
+      "source_rank": 207,
+      "source_sense_id": "SC-SENSE-00819",
+      "expression": "clear the clutter",
+      "original_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "清除杂物",
+        "example_en": "Let's clear the clutter before buying more storage boxes.",
+        "example_zh": "买更多收纳箱之前，先把杂物清掉。",
+        "collocations": [
+          "clear the clutter",
+          "clear clutter from the desk"
+        ],
+        "usage_note": "clear the clutter强调减少杂物；该源项属待独立核验的场景补缺。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清除杂物",
+        "example_en": "Let's clear the clutter before buying more storage boxes.",
+        "example_zh": "买更多收纳箱之前，先把杂物清掉。",
+        "collocations": [
+          "clear the clutter",
+          "clear clutter from the desk"
+        ],
+        "usage_note": "clear the clutter表示清理散乱杂物；可以说clear clutter from the desk。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "clear the clutter清理杂物自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00820",
+      "scene_id": "SC50-0004",
+      "source_rank": 208,
+      "source_sense_id": "SC-SENSE-00820",
+      "expression": "find a place for everything",
+      "original_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "给每件东西安排固定位置",
+        "example_en": "Find a place for everything so the room stays organized.",
+        "example_zh": "给每样东西安排固定位置，房间才容易保持整齐。",
+        "collocations": [
+          "find a place for everything",
+          "a place for everything"
+        ],
+        "usage_note": "find a place for everything指确定固定收纳位置；源项为增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "给每件东西安排固定位置",
+        "example_en": "Find a place for everything so the room stays organized.",
+        "example_zh": "给每样东西安排固定位置，房间才容易保持整齐。",
+        "collocations": [
+          "find a place for everything",
+          "a place for everything"
+        ],
+        "usage_note": "find a place for everything表示为每件物品安排固定的收纳位置。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "find a place for everything符合收纳场景",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00821",
+      "scene_id": "SC50-0004",
+      "source_rank": 209,
+      "source_sense_id": "SC-SENSE-00821",
+      "expression": "sort through",
+      "original_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "逐件翻检并整理",
+        "example_en": "I sort through old papers before deciding what to keep.",
+        "example_zh": "我逐一翻检旧文件，再决定哪些保留。",
+        "collocations": [
+          "sort through old papers",
+          "sort through belongings"
+        ],
+        "usage_note": "sort through指逐件查看并筛选，不只是按类型排列；源项为增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "逐件翻检并整理",
+        "example_en": "I sort through old papers before deciding what to keep.",
+        "example_zh": "我逐一翻检旧文件，再决定哪些保留。",
+        "collocations": [
+          "sort through old papers",
+          "sort through belongings"
+        ],
+        "usage_note": "sort through表示逐件翻看、检查和筛选，常用于旧文件或个人物品。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "sort through指翻检并筛选，准确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00853",
+      "scene_id": "SC50-0005",
+      "source_rank": 31,
+      "source_sense_id": "SC-SENSE-00853",
+      "expression": "clean as you go",
+      "original_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "边做事边随手清理",
+        "example_en": "I try to clean as I go when cooking.",
+        "example_zh": "做饭时我尽量边做边收拾。",
+        "collocations": [
+          "clean as you go",
+          "clean as you go in the kitchen"
+        ],
+        "usage_note": "clean as you go指进行活动时及时清理；此项为源增补候选，仍待独立审查。"
+      },
+      "revised_answer": {
+        "meaning_zh": "边做事边随手清理",
+        "example_en": "I try to clean as I go when cooking.",
+        "example_zh": "做饭时我尽量边做边收拾。",
+        "collocations": [
+          "clean as you go",
+          "clean as you cook"
+        ],
+        "usage_note": "clean as you go强调边做事边及时清理；主语可变化，如I clean as I go。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "clean as you go是自然的随手清理表达",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00868",
+      "scene_id": "SC50-0005",
+      "source_rank": 46,
+      "source_sense_id": "SC-SENSE-00868",
+      "expression": "to-do list",
+      "original_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "待办清单",
+        "example_en": "I wrote a to-do list for the weekend cleaning.",
+        "example_zh": "我列了一张周末打扫的待办清单。",
+        "collocations": [
+          "make a to-do list",
+          "check off a to-do list"
+        ],
+        "usage_note": "to-do list是待办清单，任务完成后可用check off。"
+      },
+      "revised_answer": {
+        "meaning_zh": "待办清单",
+        "example_en": "I wrote a to-do list for the weekend cleaning.",
+        "example_zh": "我列了一张周末打扫的待办清单。",
+        "collocations": [
+          "make a to-do list",
+          "check items off a to-do list"
+        ],
+        "usage_note": "to-do list是待办清单；check an item off表示完成一项并在清单上勾除。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "to-do list及check items off均为自然搭配",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00929",
+      "scene_id": "SC50-0005",
+      "source_rank": 107,
+      "source_sense_id": "SC-SENSE-00929",
+      "expression": "smudged",
+      "original_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "有擦痕或污迹的",
+        "example_en": "The mirror looks smudged after someone touched it.",
+        "example_zh": "有人摸过镜子后，表面留下了模糊污迹。",
+        "collocations": [
+          "smudged mirror",
+          "smudged fingerprints"
+        ],
+        "usage_note": "smudged常指抹开的污迹或指印，不一定是永久污渍。"
+      },
+      "revised_answer": {
+        "meaning_zh": "有擦痕或污迹的",
+        "example_en": "The mirror looks smudged after someone touched it.",
+        "example_zh": "有人摸过镜子后，表面留下了模糊污迹。",
+        "collocations": [
+          "smudged mirror",
+          "smudged glass"
+        ],
+        "usage_note": "smudged表示表面有被抹开的模糊污迹；fingerprint smudges指指纹污痕。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "smudged为被擦抹开的模糊污迹，非任意刮擦划痕；建议被抹花的或有模糊污迹的",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01013",
+      "scene_id": "SC50-0005",
+      "source_rank": 191,
+      "source_sense_id": "SC-SENSE-01013",
+      "expression": "damaged surface",
+      "original_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "受损的表面",
+        "example_en": "I tested the cleaner first to avoid a damaged surface.",
+        "example_zh": "我先试了试清洁剂，避免损伤物体表面。",
+        "collocations": [
+          "damaged surface",
+          "avoid damaging surfaces"
+        ],
+        "usage_note": "damaged surface指已经受到损害的表面，区别于普通污渍。"
+      },
+      "revised_answer": {
+        "meaning_zh": "受损的表面",
+        "example_en": "The cleaner left a damaged surface where it had been applied.",
+        "example_zh": "清洁剂涂抹过的地方，表面受到了损伤。",
+        "collocations": [
+          "damaged surface",
+          "avoid damaging surfaces"
+        ],
+        "usage_note": "damaged surface指已受损的表面；要表达避免损伤，应说avoid damaging the surface。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "REVISE",
+      "cg_qa_reason": "例句The cleaner left a damaged surface搭配生硬；建议The damaged surface needs repair after the cleaner stripped the finish.",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01014",
+      "scene_id": "SC50-0005",
+      "source_rank": 192,
+      "source_sense_id": "SC-SENSE-01014",
+      "expression": "scratched floor",
+      "original_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "刮花的地板",
+        "example_en": "Dragging furniture left a scratched floor.",
+        "example_zh": "拖动家具把地板刮花了。",
+        "collocations": [
+          "scratched floor",
+          "repair a scratched floor"
+        ],
+        "usage_note": "scratched强调划痕，通常不能靠简单擦拭去除。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刮花的地板",
+        "example_en": "Dragging the furniture scratched the floor.",
+        "example_zh": "拖动家具把地板刮花了。",
+        "collocations": [
+          "scratched floor",
+          "repair a scratched floor"
+        ],
+        "usage_note": "scratched floor是已有划痕的地板；也可说leave scratches on the floor。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "例句自然却未出现目标搭配scratched floor；建议The scratched floor needs repair.",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01044",
+      "scene_id": "SC50-0005",
+      "source_rank": 222,
+      "source_sense_id": "SC-SENSE-01044",
+      "expression": "keep up with housework",
+      "original_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "及时完成日常家务",
+        "example_en": "Doing a little daily helps me keep up with housework.",
+        "example_zh": "每天做一点能让我及时完成家务。",
+        "collocations": [
+          "keep up with housework",
+          "keep up with daily chores"
+        ],
+        "usage_note": "keep up with强调不让任务积压；来源为待核验补缺候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "及时完成日常家务",
+        "example_en": "Doing a little housework every day helps me keep up with the chores.",
+        "example_zh": "每天做一点家务，有助于我不让家务积压。",
+        "collocations": [
+          "keep up with housework",
+          "keep up with daily chores"
+        ],
+        "usage_note": "keep up with housework强调跟上家务进度，不让琐事越积越多。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "keep up with housework为跟上家务进度",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01045",
+      "scene_id": "SC50-0005",
+      "source_rank": 223,
+      "source_sense_id": "SC-SENSE-01045",
+      "expression": "do the housework",
+      "original_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_14_20261112.v1.json",
+      "author_patch_blob": "e89fb06470e37960b47947a81238beeae187a708",
+      "original_answer": {
+        "meaning_zh": "做家务",
+        "example_en": "I do the housework before lunch on Sundays.",
+        "example_zh": "周日午饭前我会做家务。",
+        "collocations": [
+          "do the housework",
+          "share the housework"
+        ],
+        "usage_note": "housework通常不可数；该源项为待独立验收增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "做家务",
+        "example_en": "I do the housework before lunch on Sundays.",
+        "example_zh": "周日午饭前我会做家务。",
+        "collocations": [
+          "do the housework",
+          "share the housework"
+        ],
+        "usage_note": "housework通常不可数；do the housework和share the housework都是自然表达。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "housework不可数，搭配及例句正确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01065",
+      "scene_id": "SC50-0006",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-01065",
+      "expression": "hang clothes to dry",
+      "original_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "把衣服挂起来晾干",
+        "example_en": "I hang clothes to dry on sunny days.",
+        "example_zh": "天气晴朗时我把衣服挂起来晾干。",
+        "collocations": [
+          "hang clothes to dry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "该表达是来源中的场景补缺候选，尚待独立审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把衣服挂起来晾干",
+        "example_en": "I hang clothes to dry on sunny days.",
+        "example_zh": "天气晴朗时我把衣服挂起来晾干。",
+        "collocations": [
+          "hang clothes to dry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang clothes to dry表示把衣服挂起晾干；hang laundry out to dry还可表示挂到室外晾晒。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "hang clothes to dry与hang laundry out to dry都自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01106",
+      "scene_id": "SC50-0006",
+      "source_rank": 61,
+      "source_sense_id": "SC-SENSE-01106",
+      "expression": "bath towels",
+      "original_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "浴巾",
+        "example_en": "I wash the bath towels once they're ready for laundry.",
+        "example_zh": "浴巾该洗的时候，我就把它们洗了。",
+        "collocations": [
+          "wash bath towels",
+          "fresh bath towels"
+        ],
+        "usage_note": "bath towel是洗澡后擦身体的大毛巾。"
+      },
+      "revised_answer": {
+        "meaning_zh": "浴巾",
+        "example_en": "I wash the bath towels every few days.",
+        "example_zh": "我每隔几天洗一次浴巾。",
+        "collocations": [
+          "wash bath towels",
+          "fresh bath towels"
+        ],
+        "usage_note": "bath towel是洗澡后擦身体的大毛巾。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "bath towels的复数用法与洗浴语境正确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01175",
+      "scene_id": "SC50-0006",
+      "source_rank": 130,
+      "source_sense_id": "SC-SENSE-01175",
+      "expression": "bone-dry",
+      "original_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "完全干透的",
+        "example_en": "The towels were bone-dry after a day in the sun.",
+        "example_zh": "毛巾晒了一天后完全干透了。",
+        "collocations": [
+          "bone-dry towels",
+          "completely bone-dry"
+        ],
+        "usage_note": "bone-dry表示非常干燥。"
+      },
+      "revised_answer": {
+        "meaning_zh": "完全干透的",
+        "example_en": "The towels were bone-dry after a day in the sun.",
+        "example_zh": "毛巾晒了一天后完全干透了。",
+        "collocations": [
+          "bone-dry towels",
+          "bone-dry clothes"
+        ],
+        "usage_note": "bone-dry本身已强调完全干透，通常不再添加completely。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "bone-dry指彻底干透，与例句准确一致",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01210",
+      "scene_id": "SC50-0006",
+      "source_rank": 165,
+      "source_sense_id": "SC-SENSE-01210",
+      "expression": "drainage problem",
+      "original_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "排水故障",
+        "example_en": "The washer isn't draining properly because of a drainage problem.",
+        "example_zh": "洗衣机排水出了故障，水排不干净。",
+        "collocations": [
+          "drainage problem",
+          "washer drainage problem"
+        ],
+        "usage_note": "drainage指排水，problem可以是堵塞或其他故障。"
+      },
+      "revised_answer": {
+        "meaning_zh": "排水故障",
+        "example_en": "The technician found a drainage problem in the washing machine.",
+        "example_zh": "维修人员发现洗衣机存在排水故障。",
+        "collocations": [
+          "drainage problem",
+          "washer drainage problem"
+        ],
+        "usage_note": "drainage指排水，problem可以是堵塞或其他故障。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "drainage problem是洗衣机排水问题的自然搭配",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01295",
+      "scene_id": "SC50-0007",
+      "source_rank": 60,
+      "source_sense_id": "SC-SENSE-01295",
+      "expression": "measuring spoon",
+      "original_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "量匙",
+        "example_en": "Add one teaspoon using a measuring spoon.",
+        "example_zh": "用量匙量取一茶匙加入。",
+        "collocations": [
+          "set of measuring spoons",
+          "level measuring spoon"
+        ],
+        "usage_note": "measuring spoon是量匙，不是普通餐匙。"
+      },
+      "revised_answer": {
+        "meaning_zh": "量匙",
+        "example_en": "Measure one teaspoon of salt with a measuring spoon.",
+        "example_zh": "用量匙量取一茶匙盐。",
+        "collocations": [
+          "set of measuring spoons",
+          "level measuring spoon"
+        ],
+        "usage_note": "measuring spoon是量匙，不是普通餐匙。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "measuring spoon和teaspoon的区别及例句准确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01308",
+      "scene_id": "SC50-0007",
+      "source_rank": 73,
+      "source_sense_id": "SC-SENSE-01308",
+      "expression": "hob",
+      "original_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "炉灶灶面（英式）",
+        "example_en": "Keep the saucepan on the back hob.",
+        "example_zh": "把小锅放在靠后的灶面加热区。",
+        "collocations": [
+          "gas hob",
+          "electric hob"
+        ],
+        "usage_note": "hob是英式英语中的炉灶灶面。"
+      },
+      "revised_answer": {
+        "meaning_zh": "炉灶灶面（英式）",
+        "example_en": "Clean the hob after it cools down.",
+        "example_zh": "灶面冷却后再清洁。",
+        "collocations": [
+          "gas hob",
+          "electric hob"
+        ],
+        "usage_note": "hob是英式英语中的整个炉灶灶面，不是单个炉眼；单个加热区可说burner或cooking zone。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "英式hob指炉灶灶面而非单个炉眼，已明确方言",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01380",
+      "scene_id": "SC50-0007",
+      "source_rank": 145,
+      "source_sense_id": "SC-SENSE-01380",
+      "expression": "tough",
+      "original_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_11_20261112.v1.json",
+      "author_patch_blob": "9d6d69fad108ce89a1db3f35984624b052188cd2",
+      "original_answer": {
+        "meaning_zh": "难嚼的",
+        "example_en": "The steak became tough after overheating.",
+        "example_zh": "牛排火候过大变得难嚼。",
+        "collocations": [
+          "tough steak",
+          "tough meat"
+        ],
+        "usage_note": "tough在这里指肉质难嚼。"
+      },
+      "revised_answer": {
+        "meaning_zh": "难嚼的",
+        "example_en": "The steak became tough because it was overcooked.",
+        "example_zh": "牛排煎过头，变得难嚼。",
+        "collocations": [
+          "tough steak",
+          "tough meat"
+        ],
+        "usage_note": "tough在这里指肉质难嚼。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "tough meat指难嚼的肉，译文与例句正确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01386",
+      "scene_id": "SC50-0007",
+      "source_rank": 151,
+      "source_sense_id": "SC-SENSE-01386",
+      "expression": "dry",
+      "original_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "口感干的",
+        "example_en": "The chicken breast turned dry after too much cooking.",
+        "example_zh": "鸡胸肉煮太久，口感变干了。",
+        "collocations": [
+          "dry chicken",
+          "dry texture"
+        ],
+        "usage_note": "dry在此指食物缺乏水分和汁液，而非未沾水。"
+      },
+      "revised_answer": {
+        "meaning_zh": "口感干的",
+        "example_en": "The chicken breast became dry because it was overcooked.",
+        "example_zh": "鸡胸肉煮过头，口感变干了。",
+        "collocations": [
+          "dry chicken",
+          "dry texture"
+        ],
+        "usage_note": "dry在此指食物缺乏水分和汁液，而非未沾水。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "食物dry指干柴缺汁液",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01396",
+      "scene_id": "SC50-0007",
+      "source_rank": 161,
+      "source_sense_id": "SC-SENSE-01396",
+      "expression": "simmering",
+      "original_pack_blob": "73b8e2d6745e8a9114c55ba9dd7c33f2365d694b",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "小火微沸的",
+        "example_en": "Keep the sauce at a simmering temperature.",
+        "example_zh": "让酱汁保持小火微沸的状态。",
+        "collocations": [
+          "simmering sauce",
+          "simmering liquid"
+        ],
+        "usage_note": "simmering比剧烈沸腾更温和。"
+      },
+      "revised_answer": {
+        "meaning_zh": "小火微沸的",
+        "example_en": "Keep the sauce simmering gently.",
+        "example_zh": "让酱汁保持轻微沸腾。",
+        "collocations": [
+          "simmering sauce",
+          "simmering liquid"
+        ],
+        "usage_note": "simmering比剧烈沸腾更温和。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "simmering表示温和微沸",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01444",
+      "scene_id": "SC50-0007",
+      "source_rank": 209,
+      "source_sense_id": "SC-SENSE-01444",
+      "expression": "avoid leaving food out",
+      "original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "不要把食物长时间放在外面",
+        "example_en": "Avoid leaving food out for too long after cooking.",
+        "example_zh": "烹调后不要把食物长时间放在室温下。",
+        "collocations": [
+          "avoid leaving food out",
+          "leave perishable food out"
+        ],
+        "usage_note": "leave out在此指食物没有及时冷藏。"
+      },
+      "revised_answer": {
+        "meaning_zh": "不要把食物长时间放在外面",
+        "example_en": "Avoid leaving food out for too long after cooking.",
+        "example_zh": "烹调后不要把食物长时间放在室温下。",
+        "collocations": [
+          "avoid leaving food out",
+          "leave perishable food out"
+        ],
+        "usage_note": "leave food out表示把食物放在室温环境、不及时冷藏；不同于leave an ingredient out（省略某种食材）。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "leave food out在食物存放语境区别于省略配料",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01449",
+      "scene_id": "SC50-0007",
+      "source_rank": 214,
+      "source_sense_id": "SC-SENSE-01449",
+      "expression": "mise en place",
+      "original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "烹饪前把食材与用具准备就绪",
+        "example_en": "Good mise en place makes dinner preparation easier.",
+        "example_zh": "烹饪前备齐食材和工具，做晚餐会更轻松。",
+        "collocations": [
+          "mise en place",
+          "prepare your mise en place"
+        ],
+        "usage_note": "mise en place是烹饪准备的专业术语，源项待审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "烹饪前把食材与用具准备就绪",
+        "example_en": "Good mise en place makes dinner preparation easier.",
+        "example_zh": "烹饪前备齐食材和工具，做晚餐会更轻松。",
+        "collocations": [
+          "get your mise en place ready",
+          "prepare your mise en place"
+        ],
+        "usage_note": "mise en place源自法语，是专业烹饪用语，指正式烹调前备齐食材、器具及相关准备。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "mise en place为厨房备料及工位准备，语用自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01450",
+      "scene_id": "SC50-0007",
+      "source_rank": 215,
+      "source_sense_id": "SC-SENSE-01450",
+      "expression": "prep ingredients",
+      "original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "预处理食材",
+        "example_en": "Prep ingredients before you heat the pan.",
+        "example_zh": "加热锅具前先预处理食材。",
+        "collocations": [
+          "prep ingredients",
+          "prep ingredients ahead of time"
+        ],
+        "usage_note": "prep是prepare的口语缩写，源项待审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "预处理食材",
+        "example_en": "Prep ingredients before you heat the pan.",
+        "example_zh": "加热锅具前先预处理食材。",
+        "collocations": [
+          "prep ingredients",
+          "prep ingredients ahead of time"
+        ],
+        "usage_note": "prep是prepare的口语缩写；prep ingredients表示备料，常用于家庭烹饪或专业厨房。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "prep ingredients是常见备料表达",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01451",
+      "scene_id": "SC50-0007",
+      "source_rank": 216,
+      "source_sense_id": "SC-SENSE-01451",
+      "expression": "cook over medium heat",
+      "original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "用中火烹饪",
+        "example_en": "Cook over medium heat until the onions soften.",
+        "example_zh": "用中火烹调，直到洋葱变软。",
+        "collocations": [
+          "cook over medium heat",
+          "cook over medium-low heat"
+        ],
+        "usage_note": "medium heat是中火，源项为编辑增补。"
+      },
+      "revised_answer": {
+        "meaning_zh": "用中火烹饪",
+        "example_en": "Cook over medium heat until the onions soften.",
+        "example_zh": "用中火烹调，直到洋葱变软。",
+        "collocations": [
+          "cook over medium heat",
+          "cook over medium-low heat"
+        ],
+        "usage_note": "cook over medium heat是常见烹饪指令；medium-low heat则是中小火。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "medium heat与medium-low heat对比准确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01472",
+      "scene_id": "SC50-0008",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-01472",
+      "expression": "help yourself to seconds",
+      "original_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "自己再盛一份",
+        "example_en": "Help yourself to seconds if you're still hungry.",
+        "example_zh": "没吃饱就自己再添一份。",
+        "collocations": [
+          "help yourself to seconds",
+          "go back for seconds"
+        ],
+        "usage_note": "seconds表示再添的食物，属待审核增补候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "自己再盛一份",
+        "example_en": "Help yourself to seconds if you're still hungry.",
+        "example_zh": "没吃饱就自己再添一份。",
+        "collocations": [
+          "help yourself to seconds",
+          "go back for seconds"
+        ],
+        "usage_note": "seconds指在吃完一份后再添的食物；help yourself to seconds表示请自己再添一份。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "help yourself to seconds表示自己再添一份",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01595",
+      "scene_id": "SC50-0008",
+      "source_rank": 143,
+      "source_sense_id": "SC-SENSE-01595",
+      "expression": "starving",
+      "original_pack_blob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "饿极了",
+        "example_en": "I'm starving; can we eat now?",
+        "example_zh": "我快饿坏了，现在能吃饭吗？",
+        "collocations": [
+          "absolutely starving",
+          "feel starving"
+        ],
+        "usage_note": "starving口语中常夸张表示饿极了。"
+      },
+      "revised_answer": {
+        "meaning_zh": "饿极了",
+        "example_en": "I'm starving; can we eat now?",
+        "example_zh": "我快饿坏了，现在能吃饭吗？",
+        "collocations": [
+          "absolutely starving",
+          "be starving"
+        ],
+        "usage_note": "starving在口语中常夸张表示饿极了；常说I'm starving，不说feel starving。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "usage note断言不说feel starving过度绝对化；建议仅说明I'm starving最自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01639",
+      "scene_id": "SC50-0008",
+      "source_rank": 187,
+      "source_sense_id": "SC-SENSE-01639",
+      "expression": "pass the dish around",
+      "original_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "把菜盘传给大家",
+        "example_en": "Pass the dish around so everyone gets a serving.",
+        "example_zh": "把菜盘传给大家，每个人都能盛一点。",
+        "collocations": [
+          "pass the dish around",
+          "pass the serving dish around"
+        ],
+        "usage_note": "pass around表示在多人间依次传递；来源为待独立审核候选。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把菜盘传给大家",
+        "example_en": "Pass the dish around so everyone gets a serving.",
+        "example_zh": "把菜盘传给大家，每个人都能盛一点。",
+        "collocations": [
+          "pass the dish around",
+          "pass the serving dish around"
+        ],
+        "usage_note": "pass around表示在一群人中依次传递；pass the dish around指将菜盘传给大家。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "pass the dish around在同桌分菜语境自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01640",
+      "scene_id": "SC50-0008",
+      "source_rank": 188,
+      "source_sense_id": "SC-SENSE-01640",
+      "expression": "silverware",
+      "original_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_13_20261112.v1.json",
+      "author_patch_blob": "39359f5ab3094d44f6961ecbbe7b27b8d4e739da",
+      "original_answer": {
+        "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+        "example_en": "Could you put the silverware on the table?",
+        "example_zh": "你能把刀叉勺摆在餐桌上吗？",
+        "collocations": [
+          "set out the silverware",
+          "clean silverware"
+        ],
+        "usage_note": "silverware在美式常泛指刀叉勺，不一定由银制成；源项待审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+        "example_en": "Could you put the silverware on the table?",
+        "example_zh": "你能把刀叉勺摆在餐桌上吗？",
+        "collocations": [
+          "set out the silverware",
+          "clean silverware"
+        ],
+        "usage_note": "silverware在美式英语中常指刀叉勺等餐具，不一定是银制品；英式可说cutlery。"
+      },
+      "fields_changed": [],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "美式silverware指刀叉勺等餐具，不必银制",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01737",
+      "scene_id": "SC50-0009",
+      "source_rank": 97,
+      "source_sense_id": "SC-SENSE-01737",
+      "expression": "lather up a sponge",
+      "original_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_10_20261112.v1.json",
+      "author_patch_blob": "992a32c0d2d38135d4e9e8884dfedcf5c9d67fbb",
+      "original_answer": {
+        "meaning_zh": "让海绵起泡",
+        "example_en": "Lather up a sponge with a little warm water.",
+        "example_zh": "用少量温水让海绵起泡。",
+        "collocations": [
+          "lather up a sponge",
+          "lather up with dish soap"
+        ],
+        "usage_note": "lather up指形成泡沫。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让海绵起泡",
+        "example_en": "Lather up the sponge with a little dish soap and warm water.",
+        "example_zh": "用少量洗洁精和温水把海绵搓出泡沫。",
+        "collocations": [
+          "lather up a sponge",
+          "lather up with dish soap"
+        ],
+        "usage_note": "lather up表示使肥皂或洗涤剂起泡；只有温水通常无法产生皂泡。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "dish soap和温水使海绵起泡，用法准确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01837",
+      "scene_id": "SC50-0009",
+      "source_rank": 197,
+      "source_sense_id": "SC-SENSE-01837",
+      "expression": "scrape food scraps into the bin",
+      "original_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_10_20261112.v1.json",
+      "author_patch_blob": "992a32c0d2d38135d4e9e8884dfedcf5c9d67fbb",
+      "original_answer": {
+        "meaning_zh": "把食物残渣刮进垃圾桶",
+        "example_en": "Scrape food scraps into the bin before washing the plates.",
+        "example_zh": "洗盘子前先把食物残渣刮进垃圾桶。",
+        "collocations": [
+          "scrape food scraps into the bin",
+          "scrape scraps off plates"
+        ],
+        "usage_note": "scrape表示用器具刮除；该表达是编辑候选，仍待独立审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把食物残渣刮进垃圾桶",
+        "example_en": "Scrape food scraps into the bin before washing the plates.",
+        "example_zh": "洗盘子前先把食物残渣刮进垃圾桶。",
+        "collocations": [
+          "scrape food scraps into the bin",
+          "scrape scraps off plates"
+        ],
+        "usage_note": "scrape表示用刀具或其他器具刮除；scrape food scraps into the bin是把残渣刮进垃圾桶。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "scrape food scraps into the bin自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01838",
+      "scene_id": "SC50-0009",
+      "source_rank": 198,
+      "source_sense_id": "SC-SENSE-01838",
+      "expression": "let the dishes air-dry",
+      "original_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_10_20261112.v1.json",
+      "author_patch_blob": "992a32c0d2d38135d4e9e8884dfedcf5c9d67fbb",
+      "original_answer": {
+        "meaning_zh": "让餐具自然晾干",
+        "example_en": "Let the dishes air-dry on the rack before putting them away.",
+        "example_zh": "餐具收起来之前放在架子上自然晾干。",
+        "collocations": [
+          "let the dishes air-dry",
+          "let plates air-dry"
+        ],
+        "usage_note": "air-dry表示在空气中自然晾干；源表达待独立审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让餐具自然晾干",
+        "example_en": "Let the dishes air-dry on the rack before putting them away.",
+        "example_zh": "餐具收起来之前放在架子上自然晾干。",
+        "collocations": [
+          "let the dishes air-dry",
+          "let plates air-dry"
+        ],
+        "usage_note": "air-dry表示在空气中自然晾干；let the dishes air-dry是让餐具自行晾干。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "let dishes air-dry使役结构自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01839",
+      "scene_id": "SC50-0009",
+      "source_rank": 199,
+      "source_sense_id": "SC-SENSE-01839",
+      "expression": "let the dishes soak",
+      "original_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_10_20261112.v1.json",
+      "author_patch_blob": "992a32c0d2d38135d4e9e8884dfedcf5c9d67fbb",
+      "original_answer": {
+        "meaning_zh": "让餐具浸泡一会儿",
+        "example_en": "Let the dishes soak in warm water for a while.",
+        "example_zh": "让餐具在温水里浸泡一会儿。",
+        "collocations": [
+          "let the dishes soak",
+          "let dirty dishes soak"
+        ],
+        "usage_note": "soak指浸泡，编辑增补表达仍需独立验证。"
+      },
+      "revised_answer": {
+        "meaning_zh": "让餐具浸泡一会儿",
+        "example_en": "Let the dishes soak in warm water for a while.",
+        "example_zh": "让餐具在温水里浸泡一会儿。",
+        "collocations": [
+          "let the dishes soak",
+          "let dirty dishes soak"
+        ],
+        "usage_note": "let the dishes soak指让餐具浸泡一段时间；soak可搭配in warm water。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "let dishes soak in warm water自然",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01856",
+      "scene_id": "SC50-0010",
+      "source_rank": 17,
+      "source_sense_id": "SC-SENSE-01856",
+      "expression": "watch TV",
+      "original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P0_AUTHOR_PATCH_10_20261112.v1.json",
+      "author_patch_blob": "992a32c0d2d38135d4e9e8884dfedcf5c9d67fbb",
+      "original_answer": {
+        "meaning_zh": "看电视",
+        "example_en": "We usually watch TV together after dinner.",
+        "example_zh": "我们通常晚饭后一起看电视。",
+        "collocations": [
+          "watch TV",
+          "watch TV in the evening"
+        ],
+        "usage_note": "watch TV是常见口语搭配；该源项为待审核增补。"
+      },
+      "revised_answer": {
+        "meaning_zh": "看电视",
+        "example_en": "We usually watch TV together after dinner.",
+        "example_zh": "我们通常晚饭后一起看电视。",
+        "collocations": [
+          "watch TV",
+          "watch TV in the evening"
+        ],
+        "usage_note": "watch TV是日常表达；这里的TV通常不加冠词the，而watch the television也可以。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "watch TV无需冠词，方言用法正确",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
