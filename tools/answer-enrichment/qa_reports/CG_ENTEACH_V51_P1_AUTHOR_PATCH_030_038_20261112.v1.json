@@ -1,0 +1,438 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 9,
+    "master_review_required": 5
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00458",
+      "scene_id": "SC50-0003",
+      "source_rank": 50,
+      "source_sense_id": "SC-SENSE-00458",
+      "expression": "wardrobe",
+      "source_sense_zh": "衣橱；个人拥有的全部衣服",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-021-070.v2.json",
+      "source_pack_blob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+      "original_answer": {
+        "meaning_zh": "衣橱；个人拥有的全部衣服",
+        "example_en": "I need to update my winter wardrobe.",
+        "example_zh": "我需要添置些冬季衣物。",
+        "collocations": [
+          "winter wardrobe",
+          "update your wardrobe"
+        ],
+        "usage_note": "wardrobe既可指衣柜，也可指某人拥有的全部衣服。"
+      },
+      "revised_answer": {
+        "meaning_zh": "衣橱；个人拥有的全部衣服",
+        "example_en": "I need to update my winter wardrobe.",
+        "example_zh": "我需要添置些冬季衣物。",
+        "collocations": [
+          "winter wardrobe",
+          "update your wardrobe",
+          "hang clothes in the wardrobe"
+        ],
+        "usage_note": "wardrobe可指衣柜，也可指某人所有的衣服。例：She hung the dress in the wardrobe（她把连衣裙挂进衣柜）。"
+      },
+      "revised_display": {
+        "w": "wardrobe",
+        "m": "衣橱；个人拥有的全部衣服",
+        "c": "winter wardrobe · update your wardrobe · hang clothes in the wardrobe",
+        "e": "I need to update my winter wardrobe.",
+        "x": "wardrobe可指衣柜，也可指某人所有的衣服。例：She hung the dress in the wardrobe（她把连衣裙挂进衣柜）。",
+        "example_zh": "我需要添置些冬季衣物。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00504",
+      "scene_id": "SC50-0003",
+      "source_rank": 96,
+      "source_sense_id": "SC-SENSE-00504",
+      "expression": "snug",
+      "source_sense_zh": "贴身合适的；紧而舒适的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-071-120.v2.json",
+      "source_pack_blob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+      "original_answer": {
+        "meaning_zh": "贴身合适的；紧而舒适的",
+        "example_en": "The gloves fit snugly without squeezing my hands.",
+        "example_zh": "这副手套贴合双手，但不会勒手。",
+        "collocations": [
+          "snug fit",
+          "fit snugly"
+        ],
+        "usage_note": "snug强调贴合、包裹感，常带舒适意味，不等于过紧。"
+      },
+      "revised_answer": {
+        "meaning_zh": "贴身合适的；紧而舒适的",
+        "example_en": "The gloves have a snug fit without squeezing my hands.",
+        "example_zh": "这副手套贴合双手，却不会勒手。",
+        "collocations": [
+          "snug fit",
+          "fit snugly"
+        ],
+        "usage_note": "snug强调贴合、包裹感，常带舒适意味，不等于过紧。"
+      },
+      "revised_display": {
+        "w": "snug",
+        "m": "贴身合适的；紧而舒适的",
+        "c": "snug fit · fit snugly",
+        "e": "The gloves have a snug fit without squeezing my hands.",
+        "x": "snug强调贴合、包裹感，常带舒适意味，不等于过紧。",
+        "example_zh": "这副手套贴合双手，却不会勒手。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00523",
+      "scene_id": "SC50-0003",
+      "source_rank": 115,
+      "source_sense_id": "SC-SENSE-00523",
+      "expression": "solid color",
+      "source_sense_zh": "纯色；单色",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-071-120.v2.json",
+      "source_pack_blob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+      "original_answer": {
+        "meaning_zh": "纯色；单色",
+        "example_en": "I chose a solid color because the jacket has a bold pattern.",
+        "example_zh": "夹克花纹很醒目，所以我选了一件纯色上衣。",
+        "collocations": [
+          "solid color",
+          "solid-color shirt"
+        ],
+        "usage_note": "solid color指单色无图案，常与patterned相对。"
+      },
+      "revised_answer": {
+        "meaning_zh": "纯色；单色",
+        "example_en": "I chose a solid-color top because the jacket has a bold pattern.",
+        "example_zh": "夹克的花纹很醒目，所以我选了一件纯色上衣。",
+        "collocations": [
+          "solid color",
+          "solid-color shirt"
+        ],
+        "usage_note": "solid color指单色无图案，常与patterned相对。"
+      },
+      "revised_display": {
+        "w": "solid color",
+        "m": "纯色；单色",
+        "c": "solid color · solid-color shirt",
+        "e": "I chose a solid-color top because the jacket has a bold pattern.",
+        "x": "solid color指单色无图案，常与patterned相对。",
+        "example_zh": "夹克的花纹很醒目，所以我选了一件纯色上衣。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00527",
+      "scene_id": "SC50-0003",
+      "source_rank": 119,
+      "source_sense_id": "SC-SENSE-00527",
+      "expression": "pastel",
+      "source_sense_zh": "浅淡柔和的颜色",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-071-120.v2.json",
+      "source_pack_blob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+      "original_answer": {
+        "meaning_zh": "浅淡柔和的颜色",
+        "example_en": "She wore a pastel pink cardigan.",
+        "example_zh": "她穿了一件淡粉色针织开衫。",
+        "collocations": [
+          "pastel shades",
+          "pastel pink"
+        ],
+        "usage_note": "pastel可作形容词指浅淡柔和的颜色，也可作名词。"
+      },
+      "revised_answer": {
+        "meaning_zh": "浅淡柔和色调的；柔和浅色（名词）",
+        "example_en": "She wore a pastel pink cardigan.",
+        "example_zh": "她穿了一件淡粉色针织开衫。",
+        "collocations": [
+          "pastel shades",
+          "pastel pink"
+        ],
+        "usage_note": "pastel可作形容词，表示浅淡柔和色调的，如pastel pink；也可作名词指柔和的浅色。"
+      },
+      "revised_display": {
+        "w": "pastel",
+        "m": "浅淡柔和色调的；柔和浅色（名词）",
+        "c": "pastel shades · pastel pink",
+        "e": "She wore a pastel pink cardigan.",
+        "x": "pastel可作形容词，表示浅淡柔和色调的，如pastel pink；也可作名词指柔和的浅色。",
+        "example_zh": "她穿了一件淡粉色针织开衫。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00539",
+      "scene_id": "SC50-0003",
+      "source_rank": 131,
+      "source_sense_id": "SC-SENSE-00539",
+      "expression": "lightweight",
+      "source_sense_zh": "轻薄的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-121-170.v2.json",
+      "source_pack_blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+      "original_answer": {
+        "meaning_zh": "轻薄的",
+        "example_en": "I packed a lightweight jacket for the trip.",
+        "example_zh": "旅行时我带了一件轻薄夹克。",
+        "collocations": [
+          "lightweight jacket",
+          "lightweight fabric"
+        ],
+        "usage_note": "lightweight强调重量轻，未必意味着不保暖。"
+      },
+      "revised_answer": {
+        "meaning_zh": "轻便的；重量轻的",
+        "example_en": "I packed a lightweight jacket for the trip.",
+        "example_zh": "旅行时我带了一件轻便夹克。",
+        "collocations": [
+          "lightweight jacket",
+          "lightweight fabric"
+        ],
+        "usage_note": "lightweight侧重重量轻，不必然表示布料薄或保暖性低。"
+      },
+      "revised_display": {
+        "w": "lightweight",
+        "m": "轻便的；重量轻的",
+        "c": "lightweight jacket · lightweight fabric",
+        "e": "I packed a lightweight jacket for the trip.",
+        "x": "lightweight侧重重量轻，不必然表示布料薄或保暖性低。",
+        "example_zh": "旅行时我带了一件轻便夹克。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00583",
+      "scene_id": "SC50-0003",
+      "source_rank": 175,
+      "source_sense_id": "SC-SENSE-00583",
+      "expression": "broken zipper",
+      "source_sense_zh": "拉链坏了",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+      "source_pack_blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+      "original_answer": {
+        "meaning_zh": "拉链坏了",
+        "example_en": "I can't zip up this jacket because it has a broken zipper.",
+        "example_zh": "这件夹克拉链坏了，我拉不上。",
+        "collocations": [
+          "broken zipper",
+          "fix a broken zipper"
+        ],
+        "usage_note": "broken zipper表示拉链无法正常使用；stuck zipper仅指卡住。"
+      },
+      "revised_answer": {
+        "meaning_zh": "坏掉的拉链",
+        "example_en": "I can't zip up this jacket because it has a broken zipper.",
+        "example_zh": "这件夹克拉链坏了，我拉不上。",
+        "collocations": [
+          "broken zipper",
+          "fix a broken zipper"
+        ],
+        "usage_note": "broken zipper是名词短语，指坏掉的拉链；句子The zipper is broken才表示拉链坏了。"
+      },
+      "revised_display": {
+        "w": "broken zipper",
+        "m": "坏掉的拉链",
+        "c": "broken zipper · fix a broken zipper",
+        "e": "I can't zip up this jacket because it has a broken zipper.",
+        "x": "broken zipper是名词短语，指坏掉的拉链；句子The zipper is broken才表示拉链坏了。",
+        "example_zh": "这件夹克拉链坏了，我拉不上。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00585",
+      "scene_id": "SC50-0003",
+      "source_rank": 177,
+      "source_sense_id": "SC-SENSE-00585",
+      "expression": "tear in the fabric",
+      "source_sense_zh": "布料破洞",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+      "source_pack_blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+      "original_answer": {
+        "meaning_zh": "布料破洞",
+        "example_en": "I found a small tear in the fabric near the pocket.",
+        "example_zh": "我发现口袋旁的布料有一道小破口。",
+        "collocations": [
+          "tear in the fabric",
+          "mend a tear"
+        ],
+        "usage_note": "tear在此为可数名词“裂口”，读音与动词tear撕裂相同。"
+      },
+      "revised_answer": {
+        "meaning_zh": "布料上的裂口；破口",
+        "example_en": "I found a small tear in the fabric near the pocket.",
+        "example_zh": "我发现口袋旁的布料有一道小破口。",
+        "collocations": [
+          "tear in the fabric",
+          "mend a tear"
+        ],
+        "usage_note": "a tear in the fabric指布料撕裂形成的破口或裂缝，不一定是贯穿的洞。"
+      },
+      "revised_display": {
+        "w": "tear in the fabric",
+        "m": "布料上的裂口；破口",
+        "c": "tear in the fabric · mend a tear",
+        "e": "I found a small tear in the fabric near the pocket.",
+        "x": "a tear in the fabric指布料撕裂形成的破口或裂缝，不一定是贯穿的洞。",
+        "example_zh": "我发现口袋旁的布料有一道小破口。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00598",
+      "scene_id": "SC50-0003",
+      "source_rank": 190,
+      "source_sense_id": "SC-SENSE-00598",
+      "expression": "pack an extra layer",
+      "source_sense_zh": "多带一层保暖衣物",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-171-204.v2.json",
+      "source_pack_blob": "48d04d7064011b5db91f6dea18fdeffb15434e08",
+      "original_answer": {
+        "meaning_zh": "多带一层保暖衣物",
+        "example_en": "I'll pack an extra layer because the evening may be cold.",
+        "example_zh": "我会多带一层衣服，因为晚上可能冷。",
+        "collocations": [
+          "pack an extra layer",
+          "bring an extra layer"
+        ],
+        "usage_note": "layer在穿衣语境指一层衣物，不一定是一件厚外套。"
+      },
+      "revised_answer": {
+        "meaning_zh": "多带一层衣物",
+        "example_en": "I'll pack an extra layer because the evening may be cold.",
+        "example_zh": "我会多带一层衣服，因为晚上可能冷。",
+        "collocations": [
+          "pack an extra layer",
+          "bring an extra layer"
+        ],
+        "usage_note": "pack an extra layer是多带一层衣物，可用于保暖、防风或气温变化等场景。"
+      },
+      "revised_display": {
+        "w": "pack an extra layer",
+        "m": "多带一层衣物",
+        "c": "pack an extra layer · bring an extra layer",
+        "e": "I'll pack an extra layer because the evening may be cold.",
+        "x": "pack an extra layer是多带一层衣物，可用于保暖、防风或气温变化等场景。",
+        "example_zh": "我会多带一层衣服，因为晚上可能冷。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00625",
+      "scene_id": "SC50-0004",
+      "source_rank": 13,
+      "source_sense_id": "SC-SENSE-00625",
+      "expression": "shelf",
+      "source_sense_zh": "架子",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-001-020.v2.json",
+      "source_pack_blob": "cf4f0ecf3fded5ff2a230f3a4a2cdab7d0471867",
+      "original_answer": {
+        "meaning_zh": "架子",
+        "example_en": "I put the books back on the shelf.",
+        "example_zh": "我把书放回架子上。",
+        "collocations": [
+          "bookshelf",
+          "put something on a shelf"
+        ],
+        "usage_note": "shelf是单层架板，复数shelves。"
+      },
+      "revised_answer": {
+        "meaning_zh": "架子",
+        "example_en": "I put the books back on the shelf.",
+        "example_zh": "我把书放回架子上。",
+        "collocations": [
+          "on a shelf",
+          "put something on a shelf"
+        ],
+        "usage_note": "shelf是架板或置物层板，复数为shelves；bookshelf是书架这一复合词。"
+      },
+      "revised_display": {
+        "w": "shelf",
+        "m": "架子",
+        "c": "on a shelf · put something on a shelf",
+        "e": "I put the books back on the shelf.",
+        "x": "shelf是架板或置物层板，复数为shelves；bookshelf是书架这一复合词。",
+        "example_zh": "我把书放回架子上。"
+      },
+      "changed_fields": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
