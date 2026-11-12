@@ -1,0 +1,125 @@
+{
+  "schema": "cg-enteach-v51-six-identity-holds-author-editorial-disposition-v1",
+  "date": "2026-11-12",
+  "role": "CG-ENTEACH",
+  "base_head_verified": "a415a0014434baea88b828ef3615dbb572b6b5c1",
+  "purpose": "Decision-ready author-side English teaching assessment for five unresolved P1 cases plus independently detected P0 duplicate; no Master authorization or QA certification implied.",
+  "pinned_sources": [
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_FIVE_IDENTITY_HOLDS_MASTER_DECISION_REGISTER_20261112.v1.json",
+      "blob": "5cae98acfc05a217ca634f06663ef95a5f4be1d9"
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_SC0007_PREP_INGREDIENTS_DUPLICATE_KU01450_01452_20261112.v1.json",
+      "blob": "e9ef16245475b6b9308c79388421c97303d7e859"
+    },
+    {
+      "path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_IDENTITY_01736_01749_02017_MASTER_OPTIONS_20261112.v1.json",
+      "blob": "c1083b84a5a7a62570e7b18f61fae19b850ae7bf"
+    }
+  ],
+  "cases": [
+    {
+      "ku_id": "SC1341-KU-01452",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01452",
+      "source_rank": 217,
+      "target": "prep the ingredients",
+      "competing_ku_id": "SC1341-KU-01450",
+      "editorial_verdict": "DUPLICATE_TEACHING_OBJECTIVE_PROBABLE",
+      "semantic_reason": "Definite article the selects contextually identifiable ingredients; it does not create a separate lexical sense of prep. Both frozen examples teach preparing ingredients.",
+      "recommended_master_option": "SUPPRESS_SECONDARY_FROM_FUTURE_AUTHORIZED_QUEUE_ONLY",
+      "provisional_keep": "SC1341-KU-01450",
+      "caveat": "Confirm original Master senses and intended distinction before changing any learning queue."
+    },
+    {
+      "ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02017",
+      "source_rank": 178,
+      "target": "turn off notifications",
+      "competing_ku_id": "SC1341-KU-01956",
+      "editorial_verdict": "DUPLICATE_TEACHING_OBJECTIVE_PROBABLE",
+      "semantic_reason": "turn off and switch off express the same notification-disabling action in this context; dialect/style preference is not an independent teaching sense.",
+      "recommended_master_option": "SELECT_SINGLE_PRIMARY_LEARNING_TARGET; retain secondary synonym in answer collocations if approved",
+      "caveat": "Do not merge source IDs without Master decision."
+    },
+    {
+      "ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01749",
+      "source_rank": 109,
+      "target": "empty the filter",
+      "competing_ku_id": "SC1341-KU-01825",
+      "editorial_verdict": "OBJECT_AND_ACTION_IDENTITY_HOLD",
+      "semantic_reason": "Empty a debris trap/container is not synonymous with clean a dishwasher filter; the latter already has a canonical KU. Previous suggestion to retarget to clean the dishwasher filter is superseded by verified collision.",
+      "recommended_master_option": "REQUIRE_SOURCE_PHYSICAL_OBJECT_AND_ACTION_EVIDENCE; if unsupported HOLD or suppress separately; do not rename into KU01825",
+      "caveat": "No assumption that every filter can meaningfully be emptied."
+    },
+    {
+      "ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01637",
+      "source_rank": 185,
+      "target": "warm up a late dinner",
+      "competing_ku_ids": [
+        "SC1341-KU-01564",
+        "SC1341-KU-01565"
+      ],
+      "editorial_verdict": "AWKWARD_TARGET_AND_DUPLICATE_FUNCTION_PROBABLE",
+      "semantic_reason": "Warm up dinner is idiomatic, but the modifier late dinner does not introduce a new reheating meaning; existing reheat dinner example expressly covers late return.",
+      "recommended_master_option": "HOLD_SECONDARY_OBJECTIVE_UNLESS_AUTHORITY_SHOWS_DISTINCT_SENSE",
+      "caveat": "Do not auto-replace expression and accidentally duplicate another KU."
+    },
+    {
+      "ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01736",
+      "source_rank": 96,
+      "target": "squirt on dish soap",
+      "editorial_verdict": "NATURALNESS_REPAIR_REQUIRES_CANONICAL_APPROVAL",
+      "semantic_reason": "Standalone target has unclear object/recipient; natural construction is 'squirt some dish soap onto the sponge' or 'squirt a little dish soap onto the sponge'.",
+      "proposed_answer_only": {
+        "expression": "squirt dish soap onto a sponge",
+        "meaning_zh": "往海绵上挤洗洁精",
+        "example_en": "Squirt a little dish soap onto the sponge before washing the pan.",
+        "example_zh": "洗锅前往海绵上挤一点洗洁精。"
+      },
+      "recommended_master_option": "AUTHORIZE_TARGET_REWRITE_ONLY_AFTER_SENSE_AND_SCENE_DUPLICATE_CHECK",
+      "caveat": "Proposed answer is editorial candidate, not integrated or certified."
+    },
+    {
+      "ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01213",
+      "source_rank": 168,
+      "target": "spin failure",
+      "editorial_verdict": "TECHNICAL_NOMINAL_SENSE_HOLD",
+      "semantic_reason": "Spin failure can denote malfunction of a washer's spin function, but it is less natural as a standalone everyday learning target than 'the washer won't spin'. Neither spin cycle nor drainage problem has the same meaning.",
+      "proposed_answer_only_if_technical_sense_approved": {
+        "expression": "spin failure",
+        "meaning_zh": "脱水功能故障",
+        "example_en": "The technician diagnosed a spin failure in the washing machine.",
+        "example_zh": "维修人员诊断洗衣机的脱水功能发生了故障。"
+      },
+      "recommended_master_option": "AUTHORIZE_TECHNICAL_CONTEXT_OR_HOLD; never classify distinct existing spin-cycle and drainage KUs as duplicates",
+      "caveat": "Source meaning and original Master Sense must be checked."
+    }
+  ],
+  "status": {
+    "cases_reviewed": 6,
+    "author_editorial_only": true,
+    "master_decisions_verified": 0,
+    "new_independent_qa_pass": 0,
+    "new_muse_pass": 0,
+    "activation_allowed": false,
+    "release_allowed": false
+  },
+  "non_mutation": [
+    "frozen Master",
+    "frozen Core20K",
+    "original V51 KU packs",
+    "formal Runtime",
+    "SRS"
+  ]
+}
