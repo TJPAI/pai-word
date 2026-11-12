@@ -1,0 +1,673 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 14,
+    "master_review_required": 7
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00825",
+      "scene_id": "SC50-0005",
+      "source_rank": 3,
+      "source_sense_id": "SC-SENSE-00825",
+      "expression": "chore chart",
+      "source_sense_zh": "家务分工表",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-001-010.v2.json",
+      "source_pack_blob": "15b4f654660bd3bf4f9a7b3b60df17794e49cfa8",
+      "original_answer": {
+        "meaning_zh": "家务分工表",
+        "example_en": "We use a chore chart to divide tasks among the family.",
+        "example_zh": "我们用家务分工表给家庭成员分配任务。",
+        "collocations": [
+          "make a chore chart",
+          "follow a chore chart"
+        ],
+        "usage_note": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。"
+      },
+      "revised_answer": {
+        "meaning_zh": "家务分工表",
+        "example_en": "We use a chore chart to divide tasks among family members.",
+        "example_zh": "我们用家务分工表把任务分配给各位家庭成员。",
+        "collocations": [
+          "make a chore chart",
+          "follow a chore chart"
+        ],
+        "usage_note": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。"
+      },
+      "revised_display": {
+        "w": "chore chart",
+        "m": "家务分工表",
+        "c": "make a chore chart · follow a chore chart",
+        "e": "We use a chore chart to divide tasks among family members.",
+        "x": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。",
+        "example_zh": "我们用家务分工表把任务分配给各位家庭成员。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00846",
+      "scene_id": "SC50-0005",
+      "source_rank": 24,
+      "source_sense_id": "SC-SENSE-00846",
+      "expression": "scrub the sink",
+      "source_sense_zh": "刷洗洗手池",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "刷洗洗手池",
+        "example_en": "I scrub the sink with a soft brush.",
+        "example_zh": "我用软刷把水槽刷干净。",
+        "collocations": [
+          "scrub the sink",
+          "scrub a stained sink"
+        ],
+        "usage_note": "scrub比wipe更强调擦洗用力；根据表面材料选合适工具。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刷洗水槽；刷洗洗手池",
+        "example_en": "I scrub the sink with a soft brush.",
+        "example_zh": "我用软刷把水槽刷干净。",
+        "collocations": [
+          "scrub the sink",
+          "scrub a stained sink"
+        ],
+        "usage_note": "sink可指厨房水槽或卫生间洗手池，具体看场景。"
+      },
+      "revised_display": {
+        "w": "scrub the sink",
+        "m": "刷洗水槽；刷洗洗手池",
+        "c": "scrub the sink · scrub a stained sink",
+        "e": "I scrub the sink with a soft brush.",
+        "x": "sink可指厨房水槽或卫生间洗手池，具体看场景。",
+        "example_zh": "我用软刷把水槽刷干净。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00848",
+      "scene_id": "SC50-0005",
+      "source_rank": 26,
+      "source_sense_id": "SC-SENSE-00848",
+      "expression": "scrub the bathtub",
+      "source_sense_zh": "刷浴缸",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I scrub the bathtub after soaking it with water.",
+        "example_zh": "把浴缸浸湿后，我会刷洗浴缸。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I wet the bathtub before scrubbing it.",
+        "example_zh": "我先把浴缸弄湿，再刷洗。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "revised_display": {
+        "w": "scrub the bathtub",
+        "m": "刷浴缸",
+        "c": "scrub the bathtub · scrub the bathtub surface",
+        "e": "I wet the bathtub before scrubbing it.",
+        "x": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。",
+        "example_zh": "我先把浴缸弄湿，再刷洗。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00857",
+      "scene_id": "SC50-0005",
+      "source_rank": 35,
+      "source_sense_id": "SC-SENSE-00857",
+      "expression": "deep cleaning",
+      "source_sense_zh": "深度清洁",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "深度清洁",
+        "example_en": "The kitchen needs deep cleaning before the holidays.",
+        "example_zh": "节日前厨房需要彻底清洁一次。",
+        "collocations": [
+          "deep cleaning",
+          "deep cleaning the kitchen"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "revised_answer": {
+        "meaning_zh": "深度清洁",
+        "example_en": "The kitchen needs a deep clean before the holidays.",
+        "example_zh": "节日前厨房需要彻底清洁一次。",
+        "collocations": [
+          "give the kitchen a deep clean",
+          "deep-clean the kitchen"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "revised_display": {
+        "w": "deep cleaning",
+        "m": "深度清洁",
+        "c": "give the kitchen a deep clean · deep-clean the kitchen",
+        "e": "The kitchen needs a deep clean before the holidays.",
+        "x": "deep cleaning指比日常表面清洁更全面的清洁。",
+        "example_zh": "节日前厨房需要彻底清洁一次。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00876",
+      "scene_id": "SC50-0005",
+      "source_rank": 54,
+      "source_sense_id": "SC-SENSE-00876",
+      "expression": "hang out laundry",
+      "source_sense_zh": "把衣服挂出去晾",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "original_answer": {
+        "meaning_zh": "把衣服挂出去晾",
+        "example_en": "I hang out the laundry when the weather is dry.",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。",
+        "collocations": [
+          "hang out the laundry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang out the laundry指挂到室外或晾衣处晾干；hang out还有社交义。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把洗好的衣物挂起来晾干",
+        "example_en": "I hang out the laundry when the weather is dry.",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。",
+        "collocations": [
+          "hang out the laundry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang out laundry或hang out the washing表示将衣物挂起来晾，尤其用于室外晾晒。"
+      },
+      "revised_display": {
+        "w": "hang out laundry",
+        "m": "把洗好的衣物挂起来晾干",
+        "c": "hang out the laundry · hang laundry out to dry",
+        "e": "I hang out the laundry when the weather is dry.",
+        "x": "hang out laundry或hang out the washing表示将衣物挂起来晾，尤其用于室外晾晒。",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00916",
+      "scene_id": "SC50-0005",
+      "source_rank": 94,
+      "source_sense_id": "SC-SENSE-00916",
+      "expression": "drying rack",
+      "source_sense_zh": "晾衣架",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-061-110.v2.json",
+      "source_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+      "original_answer": {
+        "meaning_zh": "晾衣架",
+        "example_en": "I spread the shirts over the drying rack.",
+        "example_zh": "我把衬衫摊挂在晾衣架上。",
+        "collocations": [
+          "folding drying rack",
+          "hang clothes on a drying rack"
+        ],
+        "usage_note": "drying rack是晾衣架，不是烘干机。"
+      },
+      "revised_answer": {
+        "meaning_zh": "晾衣架",
+        "example_en": "I hung the shirts on the drying rack.",
+        "example_zh": "我把衬衫挂在晾衣架上。",
+        "collocations": [
+          "folding drying rack",
+          "hang clothes on a drying rack"
+        ],
+        "usage_note": "drying rack是晾衣架，不是烘干机。"
+      },
+      "revised_display": {
+        "w": "drying rack",
+        "m": "晾衣架",
+        "c": "folding drying rack · hang clothes on a drying rack",
+        "e": "I hung the shirts on the drying rack.",
+        "x": "drying rack是晾衣架，不是烘干机。",
+        "example_zh": "我把衬衫挂在晾衣架上。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00940",
+      "scene_id": "SC50-0005",
+      "source_rank": 118,
+      "source_sense_id": "SC-SENSE-00940",
+      "expression": "fresh-smelling",
+      "source_sense_zh": "闻起来清新的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-111-160.v2.json",
+      "source_pack_blob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+      "original_answer": {
+        "meaning_zh": "闻起来清新的",
+        "example_en": "The room was fresh-smelling after we opened the windows.",
+        "example_zh": "打开窗户后，房间闻起来很清新。",
+        "collocations": [
+          "fresh-smelling room",
+          "fresh-smelling laundry"
+        ],
+        "usage_note": "fresh-smelling描述气味清新，不等于已去除所有污染源。"
+      },
+      "revised_answer": {
+        "meaning_zh": "闻起来清新的",
+        "example_en": "The fresh-smelling laundry made the room feel inviting.",
+        "example_zh": "散发清新气味的洗好衣物，让房间显得很舒适。",
+        "collocations": [
+          "fresh-smelling laundry",
+          "fresh-smelling clothes"
+        ],
+        "usage_note": "fresh-smelling是形容词，常修饰洗好的衣物；说房间闻起来清新也可用The room smells fresh。"
+      },
+      "revised_display": {
+        "w": "fresh-smelling",
+        "m": "闻起来清新的",
+        "c": "fresh-smelling laundry · fresh-smelling clothes",
+        "e": "The fresh-smelling laundry made the room feel inviting.",
+        "x": "fresh-smelling是形容词，常修饰洗好的衣物；说房间闻起来清新也可用The room smells fresh。",
+        "example_zh": "散发清新气味的洗好衣物，让房间显得很舒适。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "collocations",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00944",
+      "scene_id": "SC50-0005",
+      "source_rank": 122,
+      "source_sense_id": "SC-SENSE-00944",
+      "expression": "overdue",
+      "source_sense_zh": "早该做却拖延了的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-111-160.v2.json",
+      "source_pack_blob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+      "original_answer": {
+        "meaning_zh": "早该做却拖延了的",
+        "example_en": "Cleaning the oven is long overdue.",
+        "example_zh": "烤箱早就该清洁了，一直拖到现在。",
+        "collocations": [
+          "long overdue",
+          "overdue cleaning"
+        ],
+        "usage_note": "overdue表示超过应做的时间，不是日常意义上的迟到。"
+      },
+      "revised_answer": {
+        "meaning_zh": "早该做却拖延了的",
+        "example_en": "Cleaning the oven is long overdue.",
+        "example_zh": "烤箱早就该清洁了，一直拖到现在。",
+        "collocations": [
+          "long-overdue cleaning",
+          "cleaning is overdue"
+        ],
+        "usage_note": "overdue表示超过应做的时间，不是日常意义上的迟到。"
+      },
+      "revised_display": {
+        "w": "overdue",
+        "m": "早该做却拖延了的",
+        "c": "long-overdue cleaning · cleaning is overdue",
+        "e": "Cleaning the oven is long overdue.",
+        "x": "overdue表示超过应做的时间，不是日常意义上的迟到。",
+        "example_zh": "烤箱早就该清洁了，一直拖到现在。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00979",
+      "scene_id": "SC50-0005",
+      "source_rank": 157,
+      "source_sense_id": "SC-SENSE-00979",
+      "expression": "sort the laundry",
+      "source_sense_zh": "分类脏衣服",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-111-160.v2.json",
+      "source_pack_blob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+      "original_answer": {
+        "meaning_zh": "分类脏衣服",
+        "example_en": "I sort the laundry before starting the washing machine.",
+        "example_zh": "开洗衣机前我先给脏衣服分类。",
+        "collocations": [
+          "sort the laundry",
+          "sort laundry by fabric"
+        ],
+        "usage_note": "sort the laundry指将待洗衣物按颜色、材质等分类。"
+      },
+      "revised_answer": {
+        "meaning_zh": "给衣物分类；给待洗衣物分类",
+        "example_en": "I sort the laundry before starting the washing machine.",
+        "example_zh": "开洗衣机前我先给脏衣服分类。",
+        "collocations": [
+          "sort the laundry",
+          "sort laundry by fabric"
+        ],
+        "usage_note": "sort the laundry可以指给待洗衣物按颜色、面料等分类，也可按语境指洗好的衣物分类。"
+      },
+      "revised_display": {
+        "w": "sort the laundry",
+        "m": "给衣物分类；给待洗衣物分类",
+        "c": "sort the laundry · sort laundry by fabric",
+        "e": "I sort the laundry before starting the washing machine.",
+        "x": "sort the laundry可以指给待洗衣物按颜色、面料等分类，也可按语境指洗好的衣物分类。",
+        "example_zh": "开洗衣机前我先给脏衣服分类。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00994",
+      "scene_id": "SC50-0005",
+      "source_rank": 172,
+      "source_sense_id": "SC-SENSE-00994",
+      "expression": "put dishes away",
+      "source_sense_zh": "把碗碟放回橱柜",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "把碗碟放回橱柜",
+        "example_en": "Please put dishes away after they are dry.",
+        "example_zh": "碗碟干了之后请放回橱柜。",
+        "collocations": [
+          "put dishes away",
+          "put the dishes back"
+        ],
+        "usage_note": "put away强调收回指定位置，与单纯从桌上移开不同。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把碗碟收好；放回原处",
+        "example_en": "Please put dishes away after they are dry.",
+        "example_zh": "碗碟干了之后请放回橱柜。",
+        "collocations": [
+          "put dishes away",
+          "put the dishes back"
+        ],
+        "usage_note": "put dishes away指把碗碟放回收纳位置，并不一定指橱柜。"
+      },
+      "revised_display": {
+        "w": "put dishes away",
+        "m": "把碗碟收好；放回原处",
+        "c": "put dishes away · put the dishes back",
+        "e": "Please put dishes away after they are dry.",
+        "x": "put dishes away指把碗碟放回收纳位置，并不一定指橱柜。",
+        "example_zh": "碗碟干了之后请放回橱柜。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00995",
+      "scene_id": "SC50-0005",
+      "source_rank": 173,
+      "source_sense_id": "SC-SENSE-00995",
+      "expression": "change the air filter",
+      "source_sense_zh": "更换空气滤芯",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "更换空气滤芯",
+        "example_en": "I change the air filter according to the manufacturer's schedule.",
+        "example_zh": "我按厂家的建议周期更换空气滤芯。",
+        "collocations": [
+          "change the air filter",
+          "replace an air filter"
+        ],
+        "usage_note": "air filter是空气过滤器滤芯，换新前应遵循设备说明。"
+      },
+      "revised_answer": {
+        "meaning_zh": "更换空气过滤器或滤网",
+        "example_en": "I change the air filter according to the manufacturer's schedule.",
+        "example_zh": "我按厂家的建议周期更换空气滤芯。",
+        "collocations": [
+          "change the air filter",
+          "replace an air filter"
+        ],
+        "usage_note": "air filter可指可更换的滤网、过滤器等，实际结构要看设备。"
+      },
+      "revised_display": {
+        "w": "change the air filter",
+        "m": "更换空气过滤器或滤网",
+        "c": "change the air filter · replace an air filter",
+        "e": "I change the air filter according to the manufacturer's schedule.",
+        "x": "air filter可指可更换的滤网、过滤器等，实际结构要看设备。",
+        "example_zh": "我按厂家的建议周期更换空气滤芯。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01012",
+      "scene_id": "SC50-0005",
+      "source_rank": 190,
+      "source_sense_id": "SC-SENSE-01012",
+      "expression": "delicate fabric",
+      "source_sense_zh": "易损面料",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "易损面料",
+        "example_en": "This blouse has delicate fabric, so follow its care label.",
+        "example_zh": "这件女式衬衫的面料很娇贵，洗护要看标签。",
+        "collocations": [
+          "delicate fabric",
+          "wash delicate fabric"
+        ],
+        "usage_note": "delicate fabric易在粗暴洗涤中受损。"
+      },
+      "revised_answer": {
+        "meaning_zh": "易损面料",
+        "example_en": "This blouse is made of delicate fabric, so follow its care label.",
+        "example_zh": "这件衬衫用娇贵面料制成，因此要按洗护标签处理。",
+        "collocations": [
+          "delicate fabric",
+          "wash delicate fabric"
+        ],
+        "usage_note": "delicate fabric易在粗暴洗涤中受损。"
+      },
+      "revised_display": {
+        "w": "delicate fabric",
+        "m": "易损面料",
+        "c": "delicate fabric · wash delicate fabric",
+        "e": "This blouse is made of delicate fabric, so follow its care label.",
+        "x": "delicate fabric易在粗暴洗涤中受损。",
+        "example_zh": "这件衬衫用娇贵面料制成，因此要按洗护标签处理。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01016",
+      "scene_id": "SC50-0005",
+      "source_rank": 194,
+      "source_sense_id": "SC-SENSE-01016",
+      "expression": "cleaning fumes",
+      "source_sense_zh": "清洁剂挥发气体",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "清洁剂挥发气体",
+        "example_en": "Open the windows if cleaning fumes build up, and leave the area if needed.",
+        "example_zh": "如果清洁剂气体积聚，就开窗通风，必要时离开现场。",
+        "collocations": [
+          "cleaning fumes",
+          "breathe in cleaning fumes"
+        ],
+        "usage_note": "cleaning fumes指挥发性气体或刺激性气味；出现不适应停止接触。"
+      },
+      "revised_answer": {
+        "meaning_zh": "清洁剂蒸气；刺激性气体",
+        "example_en": "Open the windows if cleaning fumes build up, and leave the area if needed.",
+        "example_zh": "如果清洁剂气体积聚，就开窗通风，必要时离开现场。",
+        "collocations": [
+          "cleaning fumes",
+          "breathe in cleaning fumes"
+        ],
+        "usage_note": "cleaning fumes指清洁剂释放的刺激性蒸气或挥发物；使用时应遵循产品说明，不能只靠开窗替代安全指导。"
+      },
+      "revised_display": {
+        "w": "cleaning fumes",
+        "m": "清洁剂蒸气；刺激性气体",
+        "c": "cleaning fumes · breathe in cleaning fumes",
+        "e": "Open the windows if cleaning fumes build up, and leave the area if needed.",
+        "x": "cleaning fumes指清洁剂释放的刺激性蒸气或挥发物；使用时应遵循产品说明，不能只靠开窗替代安全指导。",
+        "example_zh": "如果清洁剂气体积聚，就开窗通风，必要时离开现场。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01022",
+      "scene_id": "SC50-0005",
+      "source_rank": 200,
+      "source_sense_id": "SC-SENSE-01022",
+      "expression": "pet-safe cleaner",
+      "source_sense_zh": "对宠物相对安全的清洁剂",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-161-210.v2.json",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "original_answer": {
+        "meaning_zh": "对宠物相对安全的清洁剂",
+        "example_en": "Choose a pet-safe cleaner and follow its instructions carefully.",
+        "example_zh": "选择对宠物相对安全的清洁剂，并认真按说明使用。",
+        "collocations": [
+          "pet-safe cleaner",
+          "pet-safe cleaning products"
+        ],
+        "usage_note": "pet-safe并不保证绝对无风险，仍须避免宠物接触未干表面。"
+      },
+      "revised_answer": {
+        "meaning_zh": "适用于有宠物家庭的清洁剂",
+        "example_en": "Choose a pet-safe cleaner and follow its instructions carefully.",
+        "example_zh": "选择对宠物相对安全的清洁剂，并认真按说明使用。",
+        "collocations": [
+          "pet-safe cleaner",
+          "pet-safe cleaning products"
+        ],
+        "usage_note": "pet-safe cleaner是产品相对适用性表述，不代表任何条件下绝对无害；应遵守产品标签和使用说明。"
+      },
+      "revised_display": {
+        "w": "pet-safe cleaner",
+        "m": "适用于有宠物家庭的清洁剂",
+        "c": "pet-safe cleaner · pet-safe cleaning products",
+        "e": "Choose a pet-safe cleaner and follow its instructions carefully.",
+        "x": "pet-safe cleaner是产品相对适用性表述，不代表任何条件下绝对无害；应遵守产品标签和使用说明。",
+        "example_zh": "选择对宠物相对安全的清洁剂，并认真按说明使用。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
