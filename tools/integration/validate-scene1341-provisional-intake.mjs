@@ -24,12 +24,15 @@ const manifest=await get(pin.qa_manifest.path,pin.qa_manifest.blob);
 assert.equal(manifest.counts.included_cg_pass_no_known_mu_objection,1779);
 assert.deepEqual(manifest.shards.map(s=>s.blob),pin.shards.map(s=>s.blob));
 assert.deepEqual(manifest.shards.map(s=>s.path),pin.shards.map(s=>s.path));
-const seen=new Set(),sceneRanks=new Set(),results=[];
+const seen=new Set(),sceneRanks=new Set(),results=[];let historicalMusePass=0,museDeferred=0;
 for(const part of pin.shards){
  const shard=await get(part.path,part.blob);
  shard.__path=part.path;
  const result=inspectScene1341ProvisionalShard({shard,pin,blob:part.blob});
  for(const entry of shard.records){
+  if(entry.muse_qa==='PASS')historicalMusePass++;
+  else if(entry.muse_qa==='DEFERRED_QUOTA_20261113')museDeferred++;
+  else throw Error('UNEXPECTED_MUSE_STATUS '+entry.scene_ku_id);
   assert(!seen.has(entry.scene_ku_id),'GLOBAL_DUPLICATE_KU '+entry.scene_ku_id);
   const key=entry.scene_id+':'+entry.source_rank;
   assert(!sceneRanks.has(key),'GLOBAL_DUPLICATE_SCENE_RANK '+key);
@@ -44,8 +47,9 @@ for(const part of pin.shards){
 }
 assert.equal(seen.size,1779);
 assert.equal(sceneRanks.size,1779);
+assert.equal(historicalMusePass+museDeferred,1779,'MUSE_HISTORY_STATUS_ACCOUNTING');
 const report={status:'PASS',schema:pin.schema,qaSource:pin.qa_manifest.commit,
   cgQaPassCandidates:seen.size,structurallyAccepted:results.reduce((n,x)=>n+x.structurallyAccepted,0),masterAuthorizationVerified:0,
-  stagedPlayable:0,formalReleased:0,museReview:'DEFERRED_QUOTA_20261113',
+  stagedPlayable:0,formalReleased:0,museHistory:{historicalPassNotFinalCertification:historicalMusePass,deferredUntil20261113:museDeferred},
   dataSourceGitBlobValidated:true,shards:results};
 console.log(JSON.stringify(report,null,2));
