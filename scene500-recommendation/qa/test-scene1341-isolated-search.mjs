@@ -1,9 +1,14 @@
 import assert from 'node:assert/strict';
 import {loadInputs,csv} from '../scene1341-isolated-search.mjs';
-import {buildCatalog} from '../scene1341-search-core.mjs';
+import {buildCatalog,negatedSpans} from '../scene1341-search-core.mjs';
 import fs from 'node:fs';
 import path from 'node:path';
 const [catalog,dir,commit,blob]=process.argv.slice(2);
+assert.deepEqual(negatedSpans('不是搬家只是整理卧室'),['搬家']);
+assert.deepEqual(negatedSpans('不是整理房间，而是洗衣与晾晒'),['整理房间']);
+assert.deepEqual(negatedSpans('not hotel check in, but taxi'),['hotel check in']);
+assert.deepEqual(negatedSpans('wake up 醒来'),[]);
+
 const index=loadInputs(catalog,dir,{sourceCommit:commit,manifestSha:blob});
 // Browser-safe pure core must reproduce the Node loader's ranking byte-for-byte.
 const browserCore=buildCatalog(fs.readFileSync(catalog,'utf8'),Array.from({length:11},(_,i)=>fs.readFileSync(path.join(dir,'v'+(51+i)+'-ranked.csv'),'utf8')),{sourceCommit:commit,manifestSha:blob});
@@ -25,6 +30,7 @@ for(const d of diagnostic){assert.ok(d.top5.length<=5);assert.equal(new Set(d.to
 // Regression: negated scene titles must be downweighted, not treated as positive intent.
 const negativeDiagnostics=[
  '不是搬家，只是整理卧室',
+ '不是搬家只是整理卧室',
  '不是整理房间，只是洗衣与晾晒',
  'not hotel check in, instead of that I need a taxi'
 ];
