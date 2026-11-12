@@ -1,0 +1,40 @@
+name: Scene1341 fixed-route CG-REC integration isolation
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-readonly/index.html'
+      - 'rebuild-preview/scene1341-readonly/scene1341-rec-bridge.mjs'
+      - 'rebuild-preview/scene1341-search-core.mjs'
+      - 'tools/integration/test-scene1341-readonly-rec-integration.mjs'
+      - '.github/workflows/scene1341-readonly-rec-integration.yml'
+  push:
+    branches:
+      - cg-main-scene1341-readonly-rec-integration-20261113
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  readonly-rec-integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source check and 7 real latest CG-REC browser queries
+        run: |
+          node --check rebuild-preview/scene1341-readonly/scene1341-rec-bridge.mjs
+          node --check rebuild-preview/scene1341-search-core.mjs
+          node tools/integration/test-scene1341-readonly-rec-integration.mjs
+      - name: Existing source-pinned real browser A/B and ranked integrity
+        run: |
+          node tools/integration/test-scene1341-rec-browser-ab.mjs
+          node tools/integration/test-scene1341-ranked-browser.mjs
+      - name: Preserve original native Scene500 behavior and no SRS release
+        run: |
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene500-native-card-shell.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: No deployment
+        run: echo 'GITHUB_PAGES_DEPLOYMENT_REQUIRES_OWNER_RUN_WORKFLOW'

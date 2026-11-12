@@ -1,6 +1,6 @@
 // Scene1341 isolated bilingual lexical candidate ranker. Never a semantic certification or Runtime asset.
 import {hypotheses,matchIntentHypotheses} from './scene1341-experimental-intent-aliases.mjs';
-const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").trim();
+const normalize=s=>String(s??'').normalize('NFKC').toLowerCase().replace(/[’‘]/g,"'").replace(/\s+/gu,' ').trim();
 const english=s=>normalize(s).match(/[a-z]+(?:'[a-z]+)?|[0-9]+/g)||[];
 const han=s=>normalize(s).match(/[\p{Script=Han}]+/gu)||[];
 function grams(s){const out=[];for(const run of han(s)){if(run.length===1)out.push(run);else for(let i=0;i<run.length-1;i++)out.push(run.slice(i,i+2));}return out;}
@@ -17,29 +17,34 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
  if(!/^[0-9a-f]{40}$/.test(sourceCommit||''))throw Error('PINNED_SOURCE_COMMIT_REQUIRED');
  if(!/^[0-9a-f]{40}$/.test(manifestSha||''))throw Error('PINNED_MANIFEST_BLOB_REQUIRED');
  const catalog=csv(catalogCsv),scenes=new Map(),exprs=new Map();if(catalog.length!==1341)throw Error('EXPECTED_1341_SCENES');
- for(const r of catalog){if(!/^SC50-\d{4}$/.test(r.id)||scenes.has(r.id))throw Error('INVALID_SCENE_ID '+r.id);scenes.set(r.id,{scene_id:r.id,name:r.revised_name||r.name,category:r.category,has_ranked_data:false,record_count:0});}
+ for(const r of catalog){if(!/^SC50-\d{4}$/.test(r.id)||Number(r.id.slice(5))<1||Number(r.id.slice(5))>1341||scenes.has(r.id))throw Error('INVALID_SCENE_ID '+r.id);if(!String(r.revised_name||r.name||'').trim()||!String(r.category||'').trim())throw Error('EMPTY_SCENE_METADATA '+r.id);scenes.set(r.id,{scene_id:r.id,name:r.revised_name||r.name,category:r.category,has_ranked_data:false,record_count:0});}
+ for(let sceneNumber=1;sceneNumber<=1341;sceneNumber++){const expected='SC50-'+String(sceneNumber).padStart(4,'0');if(!scenes.has(expected))throw Error('MISSING_CANONICAL_SCENE '+expected);}
  if(rankedCsvFiles.length!==11)throw Error('EXPECTED_11_RANKED_FILES');let total=0;const sourceSenseIds=new Set(),sceneRankIds=new Set();
- for(const blob of rankedCsvFiles){for(const r of csv(blob)){if(!scenes.has(r.scene_id))throw Error('UNKNOWN_SCENE '+r.scene_id);if(!r.expression?.trim()||!r.sense_zh?.trim()||!/^(?:SC-SENSE-\d+|SC50-\d{4}-\d{4})$/.test(r.sense_id))throw Error('BAD_RANKED_SOURCE');if(sourceSenseIds.has(r.sense_id))throw Error('DUPLICATE_SOURCE_SENSE');sourceSenseIds.add(r.sense_id);const rank=Number(r.rank),rk=r.scene_id+':'+r.rank;if(!Number.isInteger(rank)||rank<1||sceneRankIds.has(rk))throw Error('DUPLICATE_OR_BAD_RANK '+rk);sceneRankIds.add(rk);const scene=scenes.get(r.scene_id);if(normalize(scene.name)!==normalize(r.scene_name))throw Error('SCENE_NAME_MISMATCH '+r.scene_id);scene.record_count++;scene.has_ranked_data=true;if(!exprs.has(r.scene_id))exprs.set(r.scene_id,[]);exprs.get(r.scene_id).push({source_sense_id:r.sense_id,expression:r.expression,meaning:r.sense_zh,rank,tier:r.tier,terms:tokens(r.expression+' '+r.sense_zh)});total++;}}
+ for(const blob of rankedCsvFiles){for(const r of csv(blob)){if(!scenes.has(r.scene_id))throw Error('UNKNOWN_SCENE '+r.scene_id);if(!r.expression?.trim()||!r.sense_zh?.trim()||!/^(?:SC-SENSE-\d+|SC50-\d{4}-\d{4})$/.test(r.sense_id))throw Error('BAD_RANKED_SOURCE');if(sourceSenseIds.has(r.sense_id))throw Error('DUPLICATE_SOURCE_SENSE');sourceSenseIds.add(r.sense_id);const rank=Number(r.rank),rk=r.scene_id+':'+rank;if(!/^[1-9][0-9]*$/.test(r.rank)||!Number.isSafeInteger(rank)||sceneRankIds.has(rk))throw Error('DUPLICATE_OR_BAD_RANK '+rk);sceneRankIds.add(rk);const scene=scenes.get(r.scene_id);if(normalize(scene.name)!==normalize(r.scene_name))throw Error('SCENE_NAME_MISMATCH '+r.scene_id);scene.record_count++;scene.has_ranked_data=true;if(!exprs.has(r.scene_id))exprs.set(r.scene_id,[]);exprs.get(r.scene_id).push({source_sense_id:r.sense_id,expression:r.expression,meaning:r.sense_zh,normalizedExpression:normalize(r.expression),normalizedMeaning:normalize(r.sense_zh),rank,tier:r.tier,terms:tokens(r.expression+' '+r.sense_zh)});total++;}}
  if(total!==19371||[...scenes.values()].filter(s=>s.has_ranked_data).length!==110)throw Error('RANKED_COUNTS_MISMATCH');
  for(const h of hypotheses){const entry=exprs.get(h.scene_id)?.find(x=>x.source_sense_id===h.source_sense_id);if(!entry||entry.expression!==h.source_expression||entry.meaning!==h.source_meaning)throw Error('EXPERIMENTAL_ALIAS_ANCHOR_MISMATCH '+h.id);}
  const documentFrequency=new Map();for(const [sid,rows] of exprs){const ts=new Set();for(const row of rows)for(const t of row.terms)ts.add(t);for(const t of ts)documentFrequency.set(t,(documentFrequency.get(t)||0)+1);}
  const titleTerms=new Map([...scenes].map(([id,s])=>[id,tokens(s.name+' '+s.category)]));
+ const normalizedSceneNames=new Map([...scenes].map(([id,s])=>[id,normalize(s.name)]));
  function search(query,{limit=10,experimentalIntentAliases=false}={}){
    const q=normalize(query);if(!q)return [];const qt=tokens(q);if(!qt.length)return [];
    const negSpans=negatedSpans(q),negative=new Set();for(const span of negSpans)for(const t of tokens(span))negative.add(t);
    const positive=qt.filter(t=>!negative.has(t));if(!positive.length)return [];
+   // Query-local weight cache preserves the original per-term score and accumulation order.
+   const titleWeights=new Map(positive.map(t=>[t,Math.min(8,2.5+2/(documentFrequency.get(t)||1))]));
+   const expressionWeights=new Map(positive.map(t=>[t,Math.min(3.2,1.8/Math.sqrt(documentFrequency.get(t)||1))+0.1]));
    const activeHints=experimentalIntentAliases?matchIntentHypotheses(query):[];
    const ranked=[];
    for(const [id,scene] of scenes){
-     let score=0;const reasons=[];const title=titleTerms.get(id),name=normalize(scene.name);
+     let score=0;const reasons=[];const title=titleTerms.get(id),name=normalizedSceneNames.get(id);
      if(q===normalize(id)||q===name){score+=100;reasons.push('exact_scene');}
      if(q.includes(name)&&name.length>1&&!negSpans.some(span=>span.includes(name))){score+=38;reasons.push('scene_title_phrase');}
-     for(const t of positive){if(title.includes(t)){score+=Math.min(8,2.5+2/(documentFrequency.get(t)||1));reasons.push('title_token');}}
+     for(const t of positive){if(title.includes(t)){score+=titleWeights.get(t);reasons.push('title_token');}}
      if(scene.has_ranked_data){
        let best=0,bestId=null;for(const row of exprs.get(id)){
-         let hit=0;const e=normalize(row.expression),zh=normalize(row.meaning);
+         let hit=0;const e=row.normalizedExpression,zh=row.normalizedMeaning;
          if(q===e||q===zh)hit=16;else if(e.length>2&&q.includes(e)&&!negSpans.some(span=>span.includes(e)))hit=12;else if(zh.length>1&&q.includes(zh)&&!negSpans.some(span=>span.includes(zh)))hit=10;
-         for(const t of positive){if(row.terms.includes(t)){const df=documentFrequency.get(t)||1;hit+=Math.min(3.2,1.8/Math.sqrt(df))+0.1;}}
+         for(const t of positive){if(row.terms.includes(t)){hit+=expressionWeights.get(t);}}
          if(hit>best){best=hit;bestId=row.source_sense_id;}
        }
        if(best>0){score+=Math.min(24,best);reasons.push('unverified_ranked_expression_match');}
