@@ -1442,7 +1442,7 @@ assert(phaseSource.includes('function beginExample(){') &&
  'isolated phase adapter must expose the native example-audio lifecycle');
 assert(script.includes('if(!phaseController.beginExample())return;') &&
  script.includes('autoBrowse.pause();') &&
- script.includes('phaseController.exampleFinished();autoBrowse.resumeAfterSpeech()') &&
+ script.includes('if(phaseController.exampleFinished())autoBrowse.resumeAfterSpeech()') &&
  script.includes('playWord(subset()[index].answer.example_en,.9,finishExample)'),
  'real example speaker must pause grade and resume after audio completion');
 const exampleTimers=new Map(),exampleSettled=[];let exampleId=0,exampleMoved=0;
@@ -1526,5 +1526,32 @@ assert.equal(takeOverResumed,1,'latest word speech resumes auto after spoken del
 assert.equal(wordSpeakerContext.getPending(),false,'word speaker clears example takeover state');
 latestWord.onend();
 assert.equal(takeOverResumed,1,'duplicate Safari onend is idempotent');
+
+/* Actual example click handler: Safari's synchronous speak() failure invokes
+ * onDone in playWord's catch AND the caller's false-return fallback. The
+ * answer phase must be exited only once, and auto resumed only once. */
+const exampleClickStart=script.indexOf("$('example-speak').addEventListener('click',e=>{");
+const exampleClickEnd=script.indexOf('\nlet start=null;',exampleClickStart);
+assert(exampleClickStart>0&&exampleClickEnd>exampleClickStart);
+const realExampleButtons={};let failedAudioPauses=0,failedAudioResumes=0,failedAudioAttempts=0;
+const failedExampleContext={
+ $:id=>({addEventListener:(type,fn)=>{realExampleButtons[id+':'+type]=fn}}),
+ phaseController:examplePhase,
+ autoBrowse:{pause:()=>{failedAudioPauses++},resumeAfterSpeech:()=>{failedAudioResumes++}},
+ subset:()=>[{answer:{example_en:'A short example sentence.'}}],index:0,
+ playWord:(text,rate,onDone)=>{
+  failedAudioAttempts++;
+  assert.equal(rate,.9);
+  onDone(); // synchronous exception recovery in real playWord()
+  return false;
+ }
+};
+vm.runInNewContext(script.slice(exampleClickStart,exampleClickEnd),failedExampleContext);
+examplePhase.navigate('EX-3');
+realExampleButtons['example-speak:click']({stopPropagation:()=>{}});
+assert.equal(failedAudioAttempts,1);
+assert.equal(failedAudioPauses,1);
+assert.equal(failedAudioResumes,1,'synchronous failed audio must not restore the auto timer twice');
+assert.equal(examplePhase.state().phase,'answer-paused');
 
 console.log(JSON.stringify({status:'PASS',authorManifest:'1182/30 fixed',legacyQaFlags:27,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
