@@ -1,0 +1,532 @@
+{
+  "schema": "cg-enteach-v51-p0-author-patch-v1",
+  "date": "2026-11-12",
+  "source_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "counts": {
+    "records": 11,
+    "master_review_required": 4
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01065",
+      "scene_id": "SC50-0006",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-01065",
+      "expression": "hang clothes to dry",
+      "original_source_sense_zh": "把衣服挂起来晾干",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "original_answer": {
+        "meaning_zh": "把衣服挂起来晾干",
+        "example_en": "I hang clothes to dry on sunny days.",
+        "example_zh": "天气晴朗时我把衣服挂起来晾干。",
+        "collocations": [
+          "hang clothes to dry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "该表达是来源中的场景补缺候选，尚待独立审核。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把衣服挂起来晾干",
+        "example_en": "I hang clothes to dry on sunny days.",
+        "example_zh": "天气晴朗时我把衣服挂起来晾干。",
+        "collocations": [
+          "hang clothes to dry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang clothes to dry表示把衣服挂起晾干；hang laundry out to dry还可表示挂到室外晾晒。"
+      },
+      "revised_display": {
+        "w": "hang clothes to dry",
+        "m": "把衣服挂起来晾干",
+        "c": "hang clothes to dry · hang laundry out to dry",
+        "e": "I hang clothes to dry on sunny days.",
+        "x": "hang clothes to dry表示把衣服挂起晾干；hang laundry out to dry还可表示挂到室外晾晒。",
+        "example_zh": "天气晴朗时我把衣服挂起来晾干。"
+      },
+      "fields_changed": [
+        "usage_note"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01106",
+      "scene_id": "SC50-0006",
+      "source_rank": 61,
+      "source_sense_id": "SC-SENSE-01106",
+      "expression": "bath towels",
+      "original_source_sense_zh": "浴巾",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "浴巾",
+        "example_en": "I wash the bath towels once they're ready for laundry.",
+        "example_zh": "浴巾该洗的时候，我就把它们洗了。",
+        "collocations": [
+          "wash bath towels",
+          "fresh bath towels"
+        ],
+        "usage_note": "bath towel是洗澡后擦身体的大毛巾。"
+      },
+      "revised_answer": {
+        "meaning_zh": "浴巾",
+        "example_en": "I wash the bath towels every few days.",
+        "example_zh": "我每隔几天洗一次浴巾。",
+        "collocations": [
+          "wash bath towels",
+          "fresh bath towels"
+        ],
+        "usage_note": "bath towel是洗澡后擦身体的大毛巾。"
+      },
+      "revised_display": {
+        "w": "bath towels",
+        "m": "浴巾",
+        "c": "wash bath towels · fresh bath towels",
+        "e": "I wash the bath towels every few days.",
+        "x": "bath towel是洗澡后擦身体的大毛巾。",
+        "example_zh": "我每隔几天洗一次浴巾。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01136",
+      "scene_id": "SC50-0006",
+      "source_rank": 91,
+      "source_sense_id": "SC-SENSE-01136",
+      "expression": "measure the detergent",
+      "original_source_sense_zh": "量取洗衣液",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "量取洗衣液",
+        "example_en": "Measure the detergent according to the label.",
+        "example_zh": "按照标签说明量取洗涤剂。",
+        "collocations": [
+          "measure detergent",
+          "measure liquid detergent"
+        ],
+        "usage_note": "measure指按指定用量量取。"
+      },
+      "revised_answer": {
+        "meaning_zh": "量取洗衣用洗涤剂",
+        "example_en": "Measure the detergent according to the label.",
+        "example_zh": "按照标签说明量取洗涤剂。",
+        "collocations": [
+          "measure detergent",
+          "measure liquid detergent"
+        ],
+        "usage_note": "detergent可指洗衣液或洗衣粉；measure表示按照包装建议量取适量洗涤剂。"
+      },
+      "revised_display": {
+        "w": "measure the detergent",
+        "m": "量取洗衣用洗涤剂",
+        "c": "measure detergent · measure liquid detergent",
+        "e": "Measure the detergent according to the label.",
+        "x": "detergent可指洗衣液或洗衣粉；measure表示按照包装建议量取适量洗涤剂。",
+        "example_zh": "按照标签说明量取洗涤剂。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_gloss_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01137",
+      "scene_id": "SC50-0006",
+      "source_rank": 92,
+      "source_sense_id": "SC-SENSE-01137",
+      "expression": "add detergent",
+      "original_source_sense_zh": "加入洗衣液",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "加入洗衣液",
+        "example_en": "Add detergent to the correct compartment.",
+        "example_zh": "将洗涤剂加入正确的投放格。",
+        "collocations": [
+          "add detergent",
+          "add detergent to the dispenser"
+        ],
+        "usage_note": "detergent是洗涤剂，不能与柔顺剂混淆。"
+      },
+      "revised_answer": {
+        "meaning_zh": "加入洗衣用洗涤剂",
+        "example_en": "Add detergent to the correct compartment.",
+        "example_zh": "将洗涤剂加入正确的投放格。",
+        "collocations": [
+          "add detergent",
+          "add detergent to the dispenser"
+        ],
+        "usage_note": "detergent泛指洗涤剂，可为液体或粉末；add detergent表示将其加入洗衣机。"
+      },
+      "revised_display": {
+        "w": "add detergent",
+        "m": "加入洗衣用洗涤剂",
+        "c": "add detergent · add detergent to the dispenser",
+        "e": "Add detergent to the correct compartment.",
+        "x": "detergent泛指洗涤剂，可为液体或粉末；add detergent表示将其加入洗衣机。",
+        "example_zh": "将洗涤剂加入正确的投放格。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_gloss_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01175",
+      "scene_id": "SC50-0006",
+      "source_rank": 130,
+      "source_sense_id": "SC-SENSE-01175",
+      "expression": "bone-dry",
+      "original_source_sense_zh": "完全干透的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "original_answer": {
+        "meaning_zh": "完全干透的",
+        "example_en": "The towels were bone-dry after a day in the sun.",
+        "example_zh": "毛巾晒了一天后完全干透了。",
+        "collocations": [
+          "bone-dry towels",
+          "completely bone-dry"
+        ],
+        "usage_note": "bone-dry表示非常干燥。"
+      },
+      "revised_answer": {
+        "meaning_zh": "完全干透的",
+        "example_en": "The towels were bone-dry after a day in the sun.",
+        "example_zh": "毛巾晒了一天后完全干透了。",
+        "collocations": [
+          "bone-dry towels",
+          "bone-dry clothes"
+        ],
+        "usage_note": "bone-dry本身已强调完全干透，通常不再添加completely。"
+      },
+      "revised_display": {
+        "w": "bone-dry",
+        "m": "完全干透的",
+        "c": "bone-dry towels · bone-dry clothes",
+        "e": "The towels were bone-dry after a day in the sun.",
+        "x": "bone-dry本身已强调完全干透，通常不再添加completely。",
+        "example_zh": "毛巾晒了一天后完全干透了。"
+      },
+      "fields_changed": [
+        "collocations",
+        "usage_note"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01210",
+      "scene_id": "SC50-0006",
+      "source_rank": 165,
+      "source_sense_id": "SC-SENSE-01210",
+      "expression": "drainage problem",
+      "original_source_sense_zh": "排水故障",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "original_answer": {
+        "meaning_zh": "排水故障",
+        "example_en": "The washer isn't draining properly because of a drainage problem.",
+        "example_zh": "洗衣机排水出了故障，水排不干净。",
+        "collocations": [
+          "drainage problem",
+          "washer drainage problem"
+        ],
+        "usage_note": "drainage指排水，problem可以是堵塞或其他故障。"
+      },
+      "revised_answer": {
+        "meaning_zh": "排水故障",
+        "example_en": "The technician found a drainage problem in the washing machine.",
+        "example_zh": "维修人员发现洗衣机存在排水故障。",
+        "collocations": [
+          "drainage problem",
+          "washer drainage problem"
+        ],
+        "usage_note": "drainage指排水，problem可以是堵塞或其他故障。"
+      },
+      "revised_display": {
+        "w": "drainage problem",
+        "m": "排水故障",
+        "c": "drainage problem · washer drainage problem",
+        "e": "The technician found a drainage problem in the washing machine.",
+        "x": "drainage指排水，problem可以是堵塞或其他故障。",
+        "example_zh": "维修人员发现洗衣机存在排水故障。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01295",
+      "scene_id": "SC50-0007",
+      "source_rank": 60,
+      "source_sense_id": "SC-SENSE-01295",
+      "expression": "measuring spoon",
+      "original_source_sense_zh": "量匙",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "量匙",
+        "example_en": "Add one teaspoon using a measuring spoon.",
+        "example_zh": "用量匙量取一茶匙加入。",
+        "collocations": [
+          "set of measuring spoons",
+          "level measuring spoon"
+        ],
+        "usage_note": "measuring spoon是量匙，不是普通餐匙。"
+      },
+      "revised_answer": {
+        "meaning_zh": "量匙",
+        "example_en": "Measure one teaspoon of salt with a measuring spoon.",
+        "example_zh": "用量匙量取一茶匙盐。",
+        "collocations": [
+          "set of measuring spoons",
+          "level measuring spoon"
+        ],
+        "usage_note": "measuring spoon是量匙，不是普通餐匙。"
+      },
+      "revised_display": {
+        "w": "measuring spoon",
+        "m": "量匙",
+        "c": "set of measuring spoons · level measuring spoon",
+        "e": "Measure one teaspoon of salt with a measuring spoon.",
+        "x": "measuring spoon是量匙，不是普通餐匙。",
+        "example_zh": "用量匙量取一茶匙盐。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01308",
+      "scene_id": "SC50-0007",
+      "source_rank": 73,
+      "source_sense_id": "SC-SENSE-01308",
+      "expression": "hob",
+      "original_source_sense_zh": "炉灶灶面（英式）",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-048-097.v2.json",
+      "source_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "original_answer": {
+        "meaning_zh": "炉灶灶面（英式）",
+        "example_en": "Keep the saucepan on the back hob.",
+        "example_zh": "把小锅放在靠后的灶面加热区。",
+        "collocations": [
+          "gas hob",
+          "electric hob"
+        ],
+        "usage_note": "hob是英式英语中的炉灶灶面。"
+      },
+      "revised_answer": {
+        "meaning_zh": "炉灶灶面（英式）",
+        "example_en": "Clean the hob after it cools down.",
+        "example_zh": "灶面冷却后再清洁。",
+        "collocations": [
+          "gas hob",
+          "electric hob"
+        ],
+        "usage_note": "hob是英式英语中的整个炉灶灶面，不是单个炉眼；单个加热区可说burner或cooking zone。"
+      },
+      "revised_display": {
+        "w": "hob",
+        "m": "炉灶灶面（英式）",
+        "c": "gas hob · electric hob",
+        "e": "Clean the hob after it cools down.",
+        "x": "hob是英式英语中的整个炉灶灶面，不是单个炉眼；单个加热区可说burner或cooking zone。",
+        "example_zh": "灶面冷却后再清洁。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01346",
+      "scene_id": "SC50-0007",
+      "source_rank": 111,
+      "source_sense_id": "SC-SENSE-01346",
+      "expression": "whisk the eggs",
+      "original_source_sense_zh": "用打蛋器搅打鸡蛋",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "original_answer": {
+        "meaning_zh": "用打蛋器搅打鸡蛋",
+        "example_en": "Whisk the eggs until the yolks and whites combine.",
+        "example_zh": "用打蛋器搅打鸡蛋，直到蛋黄蛋清混合。",
+        "collocations": [
+          "whisk the eggs",
+          "whisk eggs together"
+        ],
+        "usage_note": "whisk强调使用打蛋器搅打。"
+      },
+      "revised_answer": {
+        "meaning_zh": "搅打鸡蛋",
+        "example_en": "Whisk the eggs until the yolks and whites combine.",
+        "example_zh": "搅打鸡蛋，直到蛋黄和蛋清混合。",
+        "collocations": [
+          "whisk the eggs",
+          "whisk eggs together"
+        ],
+        "usage_note": "whisk表示快速搅打，可使用打蛋器或叉子，不能把器具限制为打蛋器。"
+      },
+      "revised_display": {
+        "w": "whisk the eggs",
+        "m": "搅打鸡蛋",
+        "c": "whisk the eggs · whisk eggs together",
+        "e": "Whisk the eggs until the yolks and whites combine.",
+        "x": "whisk表示快速搅打，可使用打蛋器或叉子，不能把器具限制为打蛋器。",
+        "example_zh": "搅打鸡蛋，直到蛋黄和蛋清混合。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_gloss_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01361",
+      "scene_id": "SC50-0007",
+      "source_rank": 126,
+      "source_sense_id": "SC-SENSE-01361",
+      "expression": "toast bread",
+      "original_source_sense_zh": "烤吐司",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "original_answer": {
+        "meaning_zh": "烤吐司",
+        "example_en": "Toast bread until golden.",
+        "example_zh": "把吐司烤到金黄。",
+        "collocations": [
+          "toast bread",
+          "toasted bread"
+        ],
+        "usage_note": "toast通常指把面包片烤黄烤脆。"
+      },
+      "revised_answer": {
+        "meaning_zh": "烤面包；烤面包片",
+        "example_en": "Toast bread until golden.",
+        "example_zh": "把面包烤到金黄色。",
+        "collocations": [
+          "toast bread",
+          "toasted bread"
+        ],
+        "usage_note": "toast bread指将面包或面包片烤黄、烤脆，并不专指吐司这种面包。"
+      },
+      "revised_display": {
+        "w": "toast bread",
+        "m": "烤面包；烤面包片",
+        "c": "toast bread · toasted bread",
+        "e": "Toast bread until golden.",
+        "x": "toast bread指将面包或面包片烤黄、烤脆，并不专指吐司这种面包。",
+        "example_zh": "把面包烤到金黄色。"
+      },
+      "fields_changed": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_gloss_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01380",
+      "scene_id": "SC50-0007",
+      "source_rank": 145,
+      "source_sense_id": "SC-SENSE-01380",
+      "expression": "tough",
+      "original_source_sense_zh": "难嚼的",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "original_answer": {
+        "meaning_zh": "难嚼的",
+        "example_en": "The steak became tough after overheating.",
+        "example_zh": "牛排火候过大变得难嚼。",
+        "collocations": [
+          "tough steak",
+          "tough meat"
+        ],
+        "usage_note": "tough在这里指肉质难嚼。"
+      },
+      "revised_answer": {
+        "meaning_zh": "难嚼的",
+        "example_en": "The steak became tough because it was overcooked.",
+        "example_zh": "牛排煎过头，变得难嚼。",
+        "collocations": [
+          "tough steak",
+          "tough meat"
+        ],
+        "usage_note": "tough在这里指肉质难嚼。"
+      },
+      "revised_display": {
+        "w": "tough",
+        "m": "难嚼的",
+        "c": "tough steak · tough meat",
+        "e": "The steak became tough because it was overcooked.",
+        "x": "tough在这里指肉质难嚼。",
+        "example_zh": "牛排煎过头，变得难嚼。"
+      },
+      "fields_changed": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_gloss_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA",
+      "activation_allowed": false
+    }
+  ]
+}
