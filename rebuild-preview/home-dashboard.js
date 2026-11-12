@@ -4,10 +4,11 @@
   if(typeof baseRender!=='function')return;
   const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\"/g,'&quot;');
   const searchApi=()=>window.PAI_SCENE_SEARCH;
-  // Optional migration proof in the same original home component, not a second UI.
-  const scene1341Mode=new URLSearchParams(location.search).get('scene1341')==='1';
-  // Off by default. Testing-only query flag reuses the existing Scene500 home UI.
-  const scene1341RecExperiment=scene1341Mode&&new URLSearchParams(location.search).get('scene1341_rec')==='1';
+  // Scene1341 replaces the Scene500 catalog in the ORIGINAL Scene500 homepage.
+  // Original welcome screen, learning UI, settings and SRS implementation stay intact.
+  // Uncertified Scene1341 ranked expressions remain recommendations, never playable KU.
+  const scene1341Mode=true;
+  const scene1341RecExperiment=true;
   let scene1341Adapter=null,scene1341Promise=null;
   const scene1341Cache=new Map();
   const getScene1341=()=>scene1341Promise||(scene1341Promise=import(new URL('rebuild-preview/scene1341-home-adapter.mjs',document.baseURI).href)
@@ -43,7 +44,15 @@
   function inventory(id,difficulty='all'){return searchApi()?.inventory?.(id,difficulty)||{reviewedCount:searchApi()?.wordCount?.(id,difficulty)||0,candidateCount:null}}
   function firstPlayable(){return playable().find(s=>inventory(s.id,'all').reviewedCount>0)?.id||null}
   function difficultyLabel(v){return({all:'全部',basic:'基础',common:'常用',advanced:'进阶',high:'高阶'})[v]||'全部'}
-  function ui(){state.sceneSearchUi=state.sceneSearchUi||{query:'',difficulty:'all',resultIds:[]};return state.sceneSearchUi}
+  function ui(){
+    const existing=state.sceneSearchUi;
+    // The same Pages origin can contain older Scene500 searches (S001 ids).
+    // Never reinterpret an old Scene500 result or queue as a Scene1341 result.
+    if(!existing||scene1341Mode&&Array.isArray(existing.resultIds)&&
+      existing.resultIds.some(id=>!/^SC50-\d{4}$/.test(id)))
+      state.sceneSearchUi={query:'',difficulty:'all',resultIds:[],page:0};
+    return state.sceneSearchUi;
+  }
   const sceneCategories=['日常起居与家庭生活','餐饮与食品','购物与消费','出行与城市交通','旅行与旅游','学校与学习','大学与学术研究','工作与职场','求职与职业发展','商务与企业经营','数字生活与互联网','科技、AI与工程','医疗与健康','运动与健身','娱乐、文化与休闲','社交、人际与情感','公共服务、法律与社会生活','语言功能与沟通任务','自然、环境与世界','认知、表达与高级思维'];
   function stableSceneDescription(id){
     const canonical=/^S(\d{3})$/.exec(id);
@@ -109,12 +118,14 @@
     return resumableScene()?.id===scene;
   }
   function renderHome(){
-    const b=budget(),session=resumableScene(),last=lastScene(),display=session||last,s=ui();
+    const b=budget(),session=scene1341Mode?null:resumableScene(),last=scene1341Mode?null:lastScene(),display=session||last,s=ui();
     const sceneLoad=!scene1341Mode&&window.PAI_SCENE500_TOP100?.error?'Scene500 词池加载失败，请刷新重试':'';
     // Do not invent a default study target from an asynchronously hydrated scene index.
     const continueId=display?.id||null,continueDifficulty=session?.difficulty||(last?searchApi()?.recentDifficulty?.(last.id)||'all':'all');
     const resume=!!session;
-    const status=`今日新学 ${b.dailyCompleted} 词 · 每批 ${b.roundLimit} KU${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
+    const status=scene1341Mode
+      ?'当前场景表达为未认证推荐；正式 Scene1341 学习与 SRS 待审核'
+      :`今日新学 ${b.dailyCompleted} 词 · 每批 ${b.roundLimit} KU${b.reinforcementRemaining?` · 强化 ${b.reinforcementRemaining}`:''}${b.due?` · 到期 ${b.due}`:''}`;
     return `<div class="home-dashboard"><div class="home-shell">
       <header class="home-topbar"><div class="home-brand"><h1>PAI Word</h1><p>场景化高效英语词汇学习</p><small id="pai-home-source-sha" style="display:block;margin-top:3px;font-size:10px;opacity:.45;line-height:1.3;overflow-wrap:anywhere" aria-label="当前部署提交"></small><small style="display:block;margin-top:2px;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="当前引擎与中文词库版本"><span id="pai-engine-version">引擎：Scene500（尚未加载） · 中文词库：V0.9.4（配置）</span></small><small style="display:block;font-size:10px;opacity:.55;line-height:1.4;overflow-wrap:anywhere" aria-label="英文词库生产与教学版本">英文生产：Core20K V2.0.6冻结基线 · 英文教学：S113 七条内容已双AI审核（Staging未激活；新候选待审）</small></div><div class="home-actions"><button class="home-quiet-btn" onclick="openPanel('stats')">统计</button><button class="home-quiet-btn" onclick="openPanel('settings')">设置</button></div></header>
       <main class="home-focus">${sceneLoad?`<p class="scene-note" role="status">${esc(sceneLoad)}</p>`:''}
@@ -123,10 +134,6 @@
           <textarea id="scene-query" class="scene-query" oninput="PAI_SCENE_QUERY_CHANGED()" oncompositionstart="PAI_SCENE_QUERY_CHANGED()" rows="2" placeholder="我要去美国参加学术会议，还要坐飞机和住酒店。">${esc(s.query||'')}</textarea>
           <div class="scene-search-controls"><label>难度<select id="scene-difficulty" onchange="refreshScene500Difficulty(this.value)"><option value="all" ${s.difficulty==='all'?'selected':''}>全部</option><option value="basic" ${s.difficulty==='basic'?'selected':''}>基础</option><option value="common" ${s.difficulty==='common'?'selected':''}>常用</option><option value="advanced" ${s.difficulty==='advanced'?'selected':''}>进阶</option><option value="high" ${s.difficulty==='high'?'selected':''}>高阶</option></select></label><button class="find-scenes" onclick="findScene500()">找场景</button></div>
           ${resultHtml()}
-          <p class="scene1341-ranked-staging-entry" style="${scene1341Mode?'display:none;':''}" style="margin:12px 0 0;font-size:13px;line-height:1.5">
-            <a href="rebuild-preview/index.html?scene1341=1" style="display:inline-block;padding:9px 12px;border:1px solid #cbd5e1;border-radius:9px;text-decoration:none;color:#26577c;background:#f8fafc">切换到 Scene1341 场景（保持原界面）</a>
-            <small style="display:block;margin-top:6px;color:#64748b">原首页布局与场景结果卡片不变；现有学习记录保持隔离</small>
-          </p>
         </section>
         ${recentHtml()}
         <div class="browse-link"><button type="button" class="catalog-back" onclick="${scene1341Mode?'PAI_SCENE1341_BROWSE()':'PAI_OPEN_CATALOG_LAZY()'}">浏览场景目录 →</button><span>${scene1341Mode?'Scene1341共1341场景；V51–V61已交付110场景表达，未交付场景保持明确状态。':'Scene500 场景词池独立于“每轮单词数”；当前只让已审核 Sense/KU 直接进入学习。'}</span></div>
@@ -244,7 +251,7 @@
     }catch(e){window.PAI_SCENE1341_LAST_ERROR=String(e);}
   };
   window.PAI_SCENE1341_OPEN=async function(id){
-    if(!scene1341Mode||!/^SC50-\\d{4}$/.test(id))return;
+    if(!scene1341Mode||!/^SC50-\d{4}$/.test(id))return;
     let panel=document.getElementById('pai-scene1341-detail');
     if(!panel){
       panel=document.createElement('section');panel.id='pai-scene1341-detail';
@@ -380,7 +387,7 @@
   };
   function updateEngineVersion(){
     const node=document.getElementById('pai-engine-version');if(!node)return;
-    if(typeof scene1341Mode!=='undefined'&&scene1341Mode){node.textContent='引擎：Scene1341目录+V51–V61源校验双语词汇检索（非语义认证） · 未审核表达不可直接生成学习KU';return;}
+    if(scene1341Mode){node.textContent='引擎：Scene1341 CG-REC 中英混合推荐 · 1341场景 / 110场景有表达 · 未认证内容不进入SRS';return;}
     const report=window.PAI_SCENE500_SEARCH_REPORT;
     const mode=report?.mode;
     const label=mode==='hybrid'?'Hybrid 模式报告（正式关联待核验）':mode==='rule_fallback'?'规则回退':mode==='legacy_fallback'?'旧版回退':'尚未加载';
