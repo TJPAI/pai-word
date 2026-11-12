@@ -1,0 +1,586 @@
+{
+  "schema": "cg-enteach-v51-p1-qafirst-conditional12-author-repatch-v1",
+  "date": "2026-11-12",
+  "author_branch": "answer-enrichment-main-dev-20261026",
+  "baseline_manifest_blob": "429fccd0ae33e78681770040222110bb13a661f1",
+  "qa_evidence_blobs": [
+    "946c4d505eae364a77edd20b91f6713c62eda693",
+    "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a"
+  ],
+  "scope": "12 remaining conditional P1 QA-first cases after 2 target-example corrections independently passed; source Sense/gloss not modified",
+  "counts": {
+    "author_repatch": 12,
+    "master_precaution": 6,
+    "new_independent_pass": 0,
+    "muse_pass": 0,
+    "released": 0
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00276",
+      "scene_id": "SC50-0002",
+      "source_rank": 42,
+      "source_sense_id": "SC-SENSE-00276",
+      "expression": "hot water",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-021-070.v2.json",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "previous_author_patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "previous_answer": {
+        "meaning_zh": "热水",
+        "example_en": "The water is too hot. Turn down the temperature a little.",
+        "example_zh": "水太烫了，把温度调低一点。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "revised_answer": {
+        "meaning_zh": "热水",
+        "example_en": "The hot water is scalding, so be careful.",
+        "example_zh": "热水烫得厉害，要小心。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "revised_display": {
+        "w": "hot water",
+        "m": "热水",
+        "c": "run the hot water · hot water tap",
+        "e": "The hot water is scalding, so be careful.",
+        "x": "hot water表示热水，注意与warm water温水的程度区别。",
+        "example_zh": "热水烫得厉害，要小心。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "946c4d505eae364a77edd20b91f6713c62eda693",
+      "master_review_required": false,
+      "master_review_status": "NOT_FLAGGED_BY_AUTHOR",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00364",
+      "scene_id": "SC50-0002",
+      "source_rank": 130,
+      "source_sense_id": "SC-SENSE-00364",
+      "expression": "blemish",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0002-answer-only-101-150.v2.json",
+      "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "previous_author_patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "previous_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点；痘痘",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我脸颊上出现了一处小斑点。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤斑点或瑕疵，不一定就是痘痘。"
+      },
+      "revised_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我脸颊上出现了一处小斑点。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤上不完美的小斑点或瑕疵，有时可指痘痘，但并非与pimple完全同义。"
+      },
+      "revised_display": {
+        "w": "blemish",
+        "m": "皮肤瑕疵；斑点",
+        "c": "skin blemish · cover a blemish",
+        "e": "A small blemish appeared on my cheek.",
+        "x": "blemish泛指皮肤上不完美的小斑点或瑕疵，有时可指痘痘，但并非与pimple完全同义。",
+        "example_zh": "我脸颊上出现了一处小斑点。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "946c4d505eae364a77edd20b91f6713c62eda693",
+      "master_review_required": false,
+      "master_review_status": "NOT_FLAGGED_BY_AUTHOR",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00428",
+      "scene_id": "SC50-0003",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-00428",
+      "expression": "pants",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0003-answer-only-001-020.v2.json",
+      "source_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "previous_author_patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "previous_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants",
+          "pants (British English: underwear)"
+        ],
+        "usage_note": "美式pants通常指长裤，英式pants通常指内裤，英式长裤常说trousers。例如英国英语I need clean pants意为我需要干净内裤。"
+      },
+      "revised_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants",
+          "wear pants"
+        ],
+        "usage_note": "美式英语pants通常指长裤，英式英语pants多指内裤、长裤常说trousers；英国义项辨析属于用法说明，不是搭配。"
+      },
+      "revised_display": {
+        "w": "pants",
+        "m": "长裤（美式）；内裤（英式）",
+        "c": "a pair of pants · dress pants · wear pants",
+        "e": "I need a new pair of pants for work.",
+        "x": "美式英语pants通常指长裤，英式英语pants多指内裤、长裤常说trousers；英国义项辨析属于用法说明，不是搭配。",
+        "example_zh": "我需要买一条上班穿的新长裤。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "946c4d505eae364a77edd20b91f6713c62eda693",
+      "master_review_required": false,
+      "master_review_status": "NOT_FLAGGED_BY_AUTHOR",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00715",
+      "scene_id": "SC50-0004",
+      "source_rank": 103,
+      "source_sense_id": "SC-SENSE-00715",
+      "expression": "corner",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-071-120.v2.json",
+      "source_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "previous_author_patch_blob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "previous_answer": {
+        "meaning_zh": "房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "in the corner of the room",
+          "a corner of the room"
+        ],
+        "usage_note": "corner在这里指室内角落，不是街角。"
+      },
+      "revised_answer": {
+        "meaning_zh": "角落；（本场景）房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "in the corner of the room",
+          "a corner of the room"
+        ],
+        "usage_note": "corner可指房间角落、街角或物体的角；本例in the corner of the room明确是室内角落。"
+      },
+      "revised_display": {
+        "w": "corner",
+        "m": "角落；（本场景）房间角落",
+        "c": "in the corner of the room · a corner of the room",
+        "e": "I found a sock in the corner of the room.",
+        "x": "corner可指房间角落、街角或物体的角；本例in the corner of the room明确是室内角落。",
+        "example_zh": "我在房间角落找到了一只袜子。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": true,
+      "master_review_status": "PENDING_SOURCE_GLOSS_OR_EXPRESSION_IDENTITY",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00822",
+      "scene_id": "SC50-0004",
+      "source_rank": 210,
+      "source_sense_id": "SC-SENSE-00822",
+      "expression": "pest",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-171-210.v2.json",
+      "source_pack_blob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "previous_author_patch_blob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "previous_answer": {
+        "meaning_zh": "害虫",
+        "example_en": "We found signs of pests in the pantry and checked the stored food.",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest可指昆虫、啮齿类等有害生物，不只指虫子。"
+      },
+      "revised_answer": {
+        "meaning_zh": "有害生物；害虫或害兽",
+        "example_en": "We found signs of pests in the pantry and checked the stored food.",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest可指害虫、老鼠等造成危害或滋扰的生物，不只限于昆虫。"
+      },
+      "revised_display": {
+        "w": "pest",
+        "m": "有害生物；害虫或害兽",
+        "c": "household pest · pest problem",
+        "e": "We found signs of pests in the pantry and checked the stored food.",
+        "x": "pest可指害虫、老鼠等造成危害或滋扰的生物，不只限于昆虫。",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": true,
+      "master_review_status": "PENDING_SOURCE_GLOSS_OR_EXPRESSION_IDENTITY",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00848",
+      "scene_id": "SC50-0005",
+      "source_rank": 26,
+      "source_sense_id": "SC-SENSE-00848",
+      "expression": "scrub the bathtub",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "previous_author_patch_blob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "previous_answer": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I wet the bathtub before scrubbing it.",
+        "example_zh": "我先把浴缸弄湿，再刷洗。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "revised_answer": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I scrub the bathtub after wetting it.",
+        "example_zh": "我把浴缸打湿后，再用力刷洗。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "revised_display": {
+        "w": "scrub the bathtub",
+        "m": "刷浴缸",
+        "c": "scrub the bathtub · scrub the bathtub surface",
+        "e": "I scrub the bathtub after wetting it.",
+        "x": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。",
+        "example_zh": "我把浴缸打湿后，再用力刷洗。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": false,
+      "master_review_status": "NOT_FLAGGED_BY_AUTHOR",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01041",
+      "scene_id": "SC50-0005",
+      "source_rank": 219,
+      "source_sense_id": "SC-SENSE-01041",
+      "expression": "fix an appliance",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-211-223.v2.json",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "previous_author_patch_blob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "previous_answer": {
+        "meaning_zh": "修理家电",
+        "example_en": "I asked a technician to fix our washing machine.",
+        "example_zh": "我请技术人员修理我们的洗衣机。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "revised_answer": {
+        "meaning_zh": "修理家电",
+        "example_en": "We need to fix an appliance, so we called a technician.",
+        "example_zh": "有一件家电需要维修，所以我们叫了维修人员。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "revised_display": {
+        "w": "fix an appliance",
+        "m": "修理家电",
+        "c": "fix an appliance · repair a household appliance",
+        "e": "We need to fix an appliance, so we called a technician.",
+        "x": "fix an appliance指修理家用电器，注意电气安全。",
+        "example_zh": "有一件家电需要维修，所以我们叫了维修人员。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": false,
+      "master_review_status": "NOT_FLAGGED_BY_AUTHOR",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01153",
+      "scene_id": "SC50-0006",
+      "source_rank": 108,
+      "source_sense_id": "SC-SENSE-01153",
+      "expression": "hang up a shirt",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "previous_author_patch_blob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "previous_answer": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang the clean shirt on a hanger after washing it.",
+        "example_zh": "衬衫洗好后，把干净的衬衫挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "revised_answer": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang up a shirt on a hanger after washing it.",
+        "example_zh": "衬衫洗好后，把它挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "revised_display": {
+        "w": "hang up a shirt",
+        "m": "挂起衬衫",
+        "c": "hang up a shirt · hang a shirt on a hanger",
+        "e": "Hang up a shirt on a hanger after washing it.",
+        "x": "hang up表示挂起来。",
+        "example_zh": "衬衫洗好后，把它挂到衣架上。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": false,
+      "master_review_status": "NOT_FLAGGED_BY_AUTHOR",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01159",
+      "scene_id": "SC50-0006",
+      "source_rank": 114,
+      "source_sense_id": "SC-SENSE-01159",
+      "expression": "put clothes away",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-088-137.v2.json",
+      "source_pack_blob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "previous_author_patch_blob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "previous_answer": {
+        "meaning_zh": "把干净衣服收起来",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好衣服后把它们收起来。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put clothes away表示把衣服收回适当的位置，不一定是衣柜。"
+      },
+      "revised_answer": {
+        "meaning_zh": "把衣服收好；把衣服归位",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好衣服后把它们收起来。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put clothes away是把衣服收回合适的位置，并不必然表示衣服刚洗好或已经干净。"
+      },
+      "revised_display": {
+        "w": "put clothes away",
+        "m": "把衣服收好；把衣服归位",
+        "c": "put clothes away · put clean clothes away",
+        "e": "Put clothes away after folding them.",
+        "x": "put clothes away是把衣服收回合适的位置，并不必然表示衣服刚洗好或已经干净。",
+        "example_zh": "叠好衣服后把它们收起来。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": true,
+      "master_review_status": "PENDING_SOURCE_GLOSS_OR_EXPRESSION_IDENTITY",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_rank": 168,
+      "source_sense_id": "SC-SENSE-01213",
+      "expression": "spin failure",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "previous_author_patch_blob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "previous_answer": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer had a spin failure at the end of the cycle.",
+        "example_zh": "洗衣机在程序结束时出现脱水故障。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure描述脱水或甩干功能故障，不一定是洗衣机屏幕上的统一错误码；口语也可说The washer failed to spin。"
+      },
+      "revised_answer": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer failed to spin at the end of the cycle.",
+        "example_zh": "洗衣程序结束时，洗衣机没能甩干衣物。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure可在技术描述中指甩干功能故障；日常说法更常是the washer failed to spin或the spin cycle failed。原表达是否保留为独立教学目标须Master裁定。"
+      },
+      "revised_display": {
+        "w": "spin failure",
+        "m": "无法脱水的故障",
+        "c": "spin failure · washer spin failure",
+        "e": "The washer failed to spin at the end of the cycle.",
+        "x": "spin failure可在技术描述中指甩干功能故障；日常说法更常是the washer failed to spin或the spin cycle failed。原表达是否保留为独立教学目标须Master裁定。",
+        "example_zh": "洗衣程序结束时，洗衣机没能甩干衣物。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": true,
+      "master_review_status": "PENDING_SOURCE_GLOSS_OR_EXPRESSION_IDENTITY",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01872",
+      "scene_id": "SC50-0010",
+      "source_rank": 33,
+      "source_sense_id": "SC-SENSE-01872",
+      "expression": "recover",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "previous_author_patch_blob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "previous_answer": {
+        "meaning_zh": "恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from exhaustion",
+          "fully recover"
+        ],
+        "usage_note": "recover from表示从疲劳、疾病等状态恢复；精力恢复常说regain your energy，不宜用recover your energy。"
+      },
+      "revised_answer": {
+        "meaning_zh": "恢复；康复；（本场景）恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from exhaustion",
+          "fully recover"
+        ],
+        "usage_note": "recover可指从旅途疲劳、疾病、损伤或困难中恢复；本例recover from the long trip指长途旅行后恢复精力。"
+      },
+      "revised_display": {
+        "w": "recover",
+        "m": "恢复；康复；（本场景）恢复体力",
+        "c": "recover from exhaustion · fully recover",
+        "e": "It took me a day to recover from the long trip.",
+        "x": "recover可指从旅途疲劳、疾病、损伤或困难中恢复；本例recover from the long trip指长途旅行后恢复精力。",
+        "example_zh": "长途旅行后我花了一天恢复体力。"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": true,
+      "master_review_status": "PENDING_SOURCE_GLOSS_OR_EXPRESSION_IDENTITY",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01905",
+      "scene_id": "SC50-0010",
+      "source_rank": 66,
+      "source_sense_id": "SC-SENSE-01905",
+      "expression": "speaker",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-044-093.v2.json",
+      "source_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "previous_author_patch_blob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "previous_answer": {
+        "meaning_zh": "音箱",
+        "example_en": "Could you turn down the volume on the speaker a little?",
+        "example_zh": "你能把扬声器音量调低一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker在此是扬声器或音箱，不是演讲者。"
+      },
+      "revised_answer": {
+        "meaning_zh": "扬声器；音箱（设备）",
+        "example_en": "Could you turn down the volume on the speaker a little?",
+        "example_zh": "你能把扬声器音量调低一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker作设备义可指扬声器单元或音箱；另有演讲者的不同词义，本KU仅讨论音频设备。"
+      },
+      "revised_display": {
+        "w": "speaker",
+        "m": "扬声器；音箱（设备）",
+        "c": "Bluetooth speaker · portable speaker",
+        "e": "Could you turn down the volume on the speaker a little?",
+        "x": "speaker作设备义可指扬声器单元或音箱；另有演讲者的不同词义，本KU仅讨论音频设备。",
+        "example_zh": "你能把扬声器音量调低一点吗？"
+      },
+      "cg_qa_prior": "CONDITIONAL",
+      "qa_source_blob": "4d73c9d5a4f0421d06298e1a5ce93d95b7b5f60a",
+      "master_review_required": true,
+      "master_review_status": "PENDING_SOURCE_GLOSS_OR_EXPRESSION_IDENTITY",
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_allowed": false,
+      "activation_allowed": false
+    }
+  ]
+}
