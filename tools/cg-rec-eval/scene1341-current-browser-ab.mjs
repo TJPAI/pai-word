@@ -68,6 +68,19 @@ function metrics(key){
   mrr10:gold.reduce((a,r)=>a+(pos(r)<0?0:1/(pos(r)+1)),0)/n,
   ndcg5:gold.reduce((a,r)=>a+(pos(r)<0||pos(r)>=5?0:1/Math.log2(pos(r)+2)),0)/n};
 }
+function latencySummary(key){
+ const vals=summaries.map(x=>x.latencyMs[key]).sort((a,b)=>a-b);
+ return {n:vals.length,p50Ms:vals[Math.ceil(vals.length*.5)-1],p95Ms:vals[Math.ceil(vals.length*.95)-1],maxMs:vals[vals.length-1]};
+}
+const queryGroups=Object.fromEntries([...new Set(summaries.map(x=>x.group))].map(g=>{
+ const rows=summaries.filter(x=>x.group===g);
+ const withTarget=rows.filter(x=>x.expected);
+ const countHit=(field,k)=>withTarget.filter(x=>{const rank=x[field].indexOf(x.expected);return rank>=0&&rank<k}).length;
+ return [g,{n:rows.length,targeted:withTarget.length,baselineEmpty:rows.filter(x=>x.baselineEmpty).length,
+  integrationEmpty:rows.filter(x=>x.integrationEmpty).length,latestEmpty:rows.filter(x=>x.latestEmpty).length,
+  baselineTop1:countHit('baselineTop10',1),integrationTop1:countHit('integrationTop10',1),latestTop1:countHit('latestTop10',1),
+  baselineHit5:countHit('baselineTop10',5),integrationHit5:countHit('integrationTop10',5),latestHit5:countHit('latestTop10',5)}];
+}));
 const diff=summaries.filter(x=>!x.integrationVersusUpstreamSame);
 const report={schema:'cg-rec-eval-live-integration-ab-v1',
  status:'INDEPENDENT_NONBLIND_SCENE1341_INTEGRATED_BROWSER_VS_LATEST',
@@ -75,6 +88,10 @@ const report={schema:'cg-rec-eval-live-integration-ab-v1',
  upstreamCommit:process.env.CG_REC_SHA,
  sourceCommit,manifestSha,cases:41,catalogScenes:1341,rankedScenes:110,expressions:19371,
  metrics:{baseline:metrics('baseline'),integration:metrics('integration'),latest:metrics('latest')},
+ latencyCI:{baseline:latencySummary('baseline'),integration:latencySummary('integration'),latest:latencySummary('latest')},
+ sourceCsvBytes:Buffer.byteLength(catalogText)+csvTexts.reduce((a,x)=>a+Buffer.byteLength(x),0),
+ sourceCsvBytesAreNotIndexFootprint:true,
+ queryGroups,
  baselineEmpty:summaries.filter(x=>x.baselineEmpty).map(x=>x.id),
  integrationEmpty:summaries.filter(x=>x.integrationEmpty).map(x=>x.id),
  upstreamEmpty:summaries.filter(x=>x.latestEmpty).map(x=>x.id),
