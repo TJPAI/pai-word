@@ -1,7 +1,15 @@
 import assert from 'node:assert/strict';
 import {loadInputs,csv} from '../scene1341-isolated-search.mjs';
+import {buildCatalog} from '../scene1341-search-core.mjs';
+import fs from 'node:fs';
+import path from 'node:path';
 const [catalog,dir,commit,blob]=process.argv.slice(2);
 const index=loadInputs(catalog,dir,{sourceCommit:commit,manifestSha:blob});
+// Browser-safe pure core must reproduce the Node loader's ranking byte-for-byte.
+const browserCore=buildCatalog(fs.readFileSync(catalog,'utf8'),Array.from({length:11},(_,i)=>fs.readFileSync(path.join(dir,'v'+(51+i)+'-ranked.csv'),'utf8')),{sourceCommit:commit,manifestSha:blob});
+for(const q of ['醒来 wake up','不是搬家，只是整理卧室','酒店入住 hotel check in','食物会不会过期']){
+ assert.deepEqual(browserCore.search(q),index.search(q),'browser-vs-Node core mismatch: '+q);
+}
 assert.equal(index.sceneCount,1341);assert.equal(index.rankedSceneCount,110);assert.equal(index.expressionCount,19371);assert.equal(index.certifiedCount,0);assert.equal(index.release_allowed,false);
 const queries=[
  ['起床与晨间准备','SC50-0001'],
