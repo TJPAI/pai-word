@@ -495,7 +495,7 @@ assert(scene500Renderer.includes("const nextBatch=(Math.floor(position/size)+dir
 assert(scene500Renderer.includes("const batchSize=Math.max(1,Number(state.wordsPerRound)||10)") &&
  scene500Renderer.includes("state.wordsPerRound=10;"),
  'native Scene500 default batch size is ten KU');
-assert(script.includes("let BATCH=10,selectedGrade=null;") && script.includes("BATCH=prefs.wordsPerRound;"),'Scene1341 default must match native 10-KU batch');
+assert(script.includes("let BATCH=10,selectedGrade=null") && script.includes("BATCH=prefs.wordsPerRound;"),'Scene1341 default must match native 10-KU batch');
 /* Native Scene500 auto browse wraps INSIDE the current scene batch, not
    across the entire Scene1341 catalog. Execute the real staged handler with
    multiple full, partial and singleton batches, at all supported batch sizes. */
