@@ -1,0 +1,482 @@
+{
+  "schema": "cg-enteach-v51-p1-answer-only-patch-v1",
+  "date": "2026-11-12",
+  "status": "ISOLATED_AUTHOR_PATCH_NOT_APPLIED_TO_FROZEN_SOURCE",
+  "qa_queue_blob": "8af46e5ba8d2521218d733a7e0a09acb2eaa4310",
+  "author_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+  "counts": {
+    "records": 10,
+    "master_review_required": 3
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-01033",
+      "scene_id": "SC50-0005",
+      "source_rank": 211,
+      "source_sense_id": "SC-SENSE-01033",
+      "expression": "remove a stain",
+      "source_sense_zh": "去掉污渍",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-211-223.v2.json",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "original_answer": {
+        "meaning_zh": "去掉污渍",
+        "example_en": "I used a stain remover to remove a stain from my shirt.",
+        "example_zh": "我用去渍剂去掉了衬衫上的污渍。",
+        "collocations": [
+          "remove stains from clothing",
+          "remove a stubborn stain"
+        ],
+        "usage_note": "remove a stain指去除污渍，须遵照面料洗护要求。"
+      },
+      "revised_answer": {
+        "meaning_zh": "去掉污渍",
+        "example_en": "I managed to remove a coffee stain from my shirt with a little detergent.",
+        "example_zh": "我用一点洗涤剂去掉了衬衫上的咖啡渍。",
+        "collocations": [
+          "remove stains from clothing",
+          "remove a stubborn stain"
+        ],
+        "usage_note": "remove a stain指去除污渍，须遵照面料洗护要求。"
+      },
+      "revised_display": {
+        "w": "remove a stain",
+        "m": "去掉污渍",
+        "c": "remove stains from clothing · remove a stubborn stain",
+        "e": "I managed to remove a coffee stain from my shirt with a little detergent.",
+        "x": "remove a stain指去除污渍，须遵照面料洗护要求。",
+        "example_zh": "我用一点洗涤剂去掉了衬衫上的咖啡渍。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01041",
+      "scene_id": "SC50-0005",
+      "source_rank": 219,
+      "source_sense_id": "SC-SENSE-01041",
+      "expression": "fix an appliance",
+      "source_sense_zh": "修理家电",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-211-223.v2.json",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "original_answer": {
+        "meaning_zh": "修理家电",
+        "example_en": "I asked a technician to fix an appliance.",
+        "example_zh": "我请技术人员修理一台家电。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "revised_answer": {
+        "meaning_zh": "修理家电",
+        "example_en": "I asked a technician to fix our washing machine.",
+        "example_zh": "我请技术人员修理我们的洗衣机。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "revised_display": {
+        "w": "fix an appliance",
+        "m": "修理家电",
+        "c": "fix an appliance · repair a household appliance",
+        "e": "I asked a technician to fix our washing machine.",
+        "x": "fix an appliance指修理家用电器，注意电气安全。",
+        "example_zh": "我请技术人员修理我们的洗衣机。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01048",
+      "scene_id": "SC50-0006",
+      "source_rank": 3,
+      "source_sense_id": "SC-SENSE-01048",
+      "expression": "laundry load",
+      "source_sense_zh": "一批待洗衣服",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "original_answer": {
+        "meaning_zh": "一批待洗衣服",
+        "example_en": "This laundry load is too large for the machine.",
+        "example_zh": "这一批衣服太多，洗衣机装不下。",
+        "collocations": [
+          "laundry load",
+          "small laundry load"
+        ],
+        "usage_note": "laundry load指一次洗涤的衣物量。"
+      },
+      "revised_answer": {
+        "meaning_zh": "一批待洗衣服",
+        "example_en": "This load of laundry is too large for the washing machine.",
+        "example_zh": "这批待洗的衣服太多，洗衣机装不下。",
+        "collocations": [
+          "laundry load",
+          "small laundry load"
+        ],
+        "usage_note": "日常口语常说a load of laundry；laundry load也用于指一次洗涤的衣物量。"
+      },
+      "revised_display": {
+        "w": "laundry load",
+        "m": "一批待洗衣服",
+        "c": "laundry load · small laundry load",
+        "e": "This load of laundry is too large for the washing machine.",
+        "x": "日常口语常说a load of laundry；laundry load也用于指一次洗涤的衣物量。",
+        "example_zh": "这批待洗的衣服太多，洗衣机装不下。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh",
+        "usage_note"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01075",
+      "scene_id": "SC50-0006",
+      "source_rank": 30,
+      "source_sense_id": "SC-SENSE-01075",
+      "expression": "mesh laundry bag",
+      "source_sense_zh": "洗衣网袋",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "original_answer": {
+        "meaning_zh": "洗衣网袋",
+        "example_en": "I put the delicate socks in a mesh laundry bag.",
+        "example_zh": "我把娇贵的袜子装进洗衣网袋。",
+        "collocations": [
+          "mesh laundry bag",
+          "wash in a mesh bag"
+        ],
+        "usage_note": "mesh laundry bag能减少衣物摩擦和勾挂。"
+      },
+      "revised_answer": {
+        "meaning_zh": "洗衣网袋",
+        "example_en": "I put my delicate wool socks in a mesh laundry bag.",
+        "example_zh": "我把需要小心洗护的羊毛袜装进洗衣网袋。",
+        "collocations": [
+          "mesh laundry bag",
+          "wash in a mesh bag"
+        ],
+        "usage_note": "mesh laundry bag能减少衣物摩擦和勾挂。"
+      },
+      "revised_display": {
+        "w": "mesh laundry bag",
+        "m": "洗衣网袋",
+        "c": "mesh laundry bag · wash in a mesh bag",
+        "e": "I put my delicate wool socks in a mesh laundry bag.",
+        "x": "mesh laundry bag能减少衣物摩擦和勾挂。",
+        "example_zh": "我把需要小心洗护的羊毛袜装进洗衣网袋。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01086",
+      "scene_id": "SC50-0006",
+      "source_rank": 41,
+      "source_sense_id": "SC-SENSE-01086",
+      "expression": "drying time",
+      "source_sense_zh": "晾干所需时间",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "晾干所需时间",
+        "example_en": "The drying time is longer on humid days.",
+        "example_zh": "潮湿天气衣服晾干所需时间更长。",
+        "collocations": [
+          "drying time",
+          "reduce drying time"
+        ],
+        "usage_note": "drying time是晾干或烘干所需的时间。"
+      },
+      "revised_answer": {
+        "meaning_zh": "晾干或烘干所需时间",
+        "example_en": "The drying time is longer on humid days.",
+        "example_zh": "潮湿天气衣服晾干所需时间更长。",
+        "collocations": [
+          "drying time",
+          "reduce drying time"
+        ],
+        "usage_note": "drying time可指自然晾干或机器烘干的时间，取决于当前洗衣场景。"
+      },
+      "revised_display": {
+        "w": "drying time",
+        "m": "晾干或烘干所需时间",
+        "c": "drying time · reduce drying time",
+        "e": "The drying time is longer on humid days.",
+        "x": "drying time可指自然晾干或机器烘干的时间，取决于当前洗衣场景。",
+        "example_zh": "潮湿天气衣服晾干所需时间更长。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01094",
+      "scene_id": "SC50-0006",
+      "source_rank": 49,
+      "source_sense_id": "SC-SENSE-01094",
+      "expression": "delicates",
+      "source_sense_zh": "精细易损衣物",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "精细易损衣物",
+        "example_en": "I put the delicates in a mesh laundry bag.",
+        "example_zh": "我把精细衣物装进洗衣网袋。",
+        "collocations": [
+          "wash delicates",
+          "bag for delicates"
+        ],
+        "usage_note": "delicates是需要轻柔护理的衣物，常用复数。"
+      },
+      "revised_answer": {
+        "meaning_zh": "精细易损衣物",
+        "example_en": "I put the delicates in a mesh laundry bag.",
+        "example_zh": "我把精细衣物装进洗衣网袋。",
+        "collocations": [
+          "wash delicates",
+          "wash delicates in a mesh bag"
+        ],
+        "usage_note": "delicates是需要轻柔护理的衣物，常用复数。"
+      },
+      "revised_display": {
+        "w": "delicates",
+        "m": "精细易损衣物",
+        "c": "wash delicates · wash delicates in a mesh bag",
+        "e": "I put the delicates in a mesh laundry bag.",
+        "x": "delicates是需要轻柔护理的衣物，常用复数。",
+        "example_zh": "我把精细衣物装进洗衣网袋。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01095",
+      "scene_id": "SC50-0006",
+      "source_rank": 50,
+      "source_sense_id": "SC-SENSE-01095",
+      "expression": "wool",
+      "source_sense_zh": "羊毛衣物或材质",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "羊毛衣物或材质",
+        "example_en": "This sweater is made of wool and needs gentle care.",
+        "example_zh": "这件毛衣是羊毛的，需要轻柔护理。",
+        "collocations": [
+          "wool sweater",
+          "wash wool carefully"
+        ],
+        "usage_note": "wool在这里指羊毛材质，通常不可数。"
+      },
+      "revised_answer": {
+        "meaning_zh": "羊毛；羊毛面料",
+        "example_en": "This sweater is made of wool and needs gentle care.",
+        "example_zh": "这件毛衣是羊毛的，需要轻柔护理。",
+        "collocations": [
+          "wool sweater",
+          "wash wool carefully"
+        ],
+        "usage_note": "wool本义指羊毛或羊毛织物，在衣物语境中有时借指羊毛制品。"
+      },
+      "revised_display": {
+        "w": "wool",
+        "m": "羊毛；羊毛面料",
+        "c": "wool sweater · wash wool carefully",
+        "e": "This sweater is made of wool and needs gentle care.",
+        "x": "wool本义指羊毛或羊毛织物，在衣物语境中有时借指羊毛制品。",
+        "example_zh": "这件毛衣是羊毛的，需要轻柔护理。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01096",
+      "scene_id": "SC50-0006",
+      "source_rank": 51,
+      "source_sense_id": "SC-SENSE-01096",
+      "expression": "cotton",
+      "source_sense_zh": "棉质衣物或材质",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "棉质衣物或材质",
+        "example_en": "I prefer cotton towels because they absorb water well.",
+        "example_zh": "我更喜欢棉毛巾，因为它们吸水性好。",
+        "collocations": [
+          "cotton towels",
+          "100% cotton"
+        ],
+        "usage_note": "cotton表示棉或棉质面料，在材质义上通常不可数。"
+      },
+      "revised_answer": {
+        "meaning_zh": "棉；棉质面料",
+        "example_en": "I prefer cotton towels because they absorb water well.",
+        "example_zh": "我更喜欢棉毛巾，因为它们吸水性好。",
+        "collocations": [
+          "cotton towels",
+          "100% cotton"
+        ],
+        "usage_note": "cotton是棉或棉纤维，也可作定语指棉质，如cotton towels，不直接等同一件棉衣。"
+      },
+      "revised_display": {
+        "w": "cotton",
+        "m": "棉；棉质面料",
+        "c": "cotton towels · 100% cotton",
+        "e": "I prefer cotton towels because they absorb water well.",
+        "x": "cotton是棉或棉纤维，也可作定语指棉质，如cotton towels，不直接等同一件棉衣。",
+        "example_zh": "我更喜欢棉毛巾，因为它们吸水性好。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "master_review_required": true,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01118",
+      "scene_id": "SC50-0006",
+      "source_rank": 73,
+      "source_sense_id": "SC-SENSE-01118",
+      "expression": "fabric",
+      "source_sense_zh": "织物",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "织物",
+        "example_en": "This fabric feels too delicate for a hot wash.",
+        "example_zh": "这种面料太娇贵，不适合高温洗涤。",
+        "collocations": [
+          "delicate fabric",
+          "wash a fabric"
+        ],
+        "usage_note": "fabric指织物或面料，泛指材料而非特定一件衣物。"
+      },
+      "revised_answer": {
+        "meaning_zh": "织物",
+        "example_en": "This fabric feels too delicate for a hot wash.",
+        "example_zh": "这种面料太娇贵，不适合高温洗涤。",
+        "collocations": [
+          "delicate fabric",
+          "wash delicate fabric"
+        ],
+        "usage_note": "fabric指织物或面料，泛指材料而非特定一件衣物。"
+      },
+      "revised_display": {
+        "w": "fabric",
+        "m": "织物",
+        "c": "delicate fabric · wash delicate fabric",
+        "e": "This fabric feels too delicate for a hot wash.",
+        "x": "fabric指织物或面料，泛指材料而非特定一件衣物。",
+        "example_zh": "这种面料太娇贵，不适合高温洗涤。"
+      },
+      "changed_fields": [
+        "collocations"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01120",
+      "scene_id": "SC50-0006",
+      "source_rank": 75,
+      "source_sense_id": "SC-SENSE-01120",
+      "expression": "zipper",
+      "source_sense_zh": "拉链",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "original_answer": {
+        "meaning_zh": "拉链",
+        "example_en": "Zip up the jacket before putting it in the wash if the label advises it.",
+        "example_zh": "如果洗护说明建议，洗前先拉好外套拉链。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "revised_answer": {
+        "meaning_zh": "拉链",
+        "example_en": "Zip up the jacket before washing it if the care label recommends it.",
+        "example_zh": "如果洗护标签建议，洗之前先把夹克拉链拉好。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "revised_display": {
+        "w": "zipper",
+        "m": "拉链",
+        "c": "jacket zipper · close a zipper",
+        "e": "Zip up the jacket before washing it if the care label recommends it.",
+        "x": "zipper是拉链，美式常用；英式也可说zip。",
+        "example_zh": "如果洗护标签建议，洗之前先把夹克拉链拉好。"
+      },
+      "changed_fields": [
+        "example_en",
+        "example_zh"
+      ],
+      "master_review_required": false,
+      "cg_qa": "PENDING_INDEPENDENT_RECHECK",
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "release_status": "BLOCKED_PENDING_CG_QA_AND_MASTER_IF_NEEDED",
+      "activation_allowed": false
+    }
+  ]
+}
