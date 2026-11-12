@@ -1,0 +1,598 @@
+{
+  "schema": "cg-qa-scene1341-v51-p1-nonmaster-16-independent-review-v1",
+  "date": "2026-11-12",
+  "reviewer": "CG-QA",
+  "source_author_manifest_blob": "429fccd0ae33e78681770040222110bb13a661f1",
+  "source_author_commit": "ef23e086f3b0020512caee8053d51f5dc7a116b1",
+  "scope": "First sixteen P1 entries without Master hold from author batches 001-029; only specific changed KU revisions, not broader validation",
+  "method": "Independent bilingual sense, collocation, example and learner-facing usage evaluation",
+  "counts": {
+    "reviewed": 16,
+    "pass": 11,
+    "conditional": 5,
+    "revise": 0,
+    "muse_pass_new": 0,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "policy": "Preserve V30 original, any revised gloss still subject to authority checks, Muse deferred, no production release",
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00040",
+      "scene_id": "SC50-0001",
+      "source_rank": 40,
+      "source_sense_id": "SC-SENSE-00040",
+      "expression": "be short on sleep",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "f55b61c241d615f7c1f8285b332d1ea795e2b75b",
+      "original_answer": {
+        "meaning_zh": "睡眠不足",
+        "example_en": "I'm short on sleep after working late all week.",
+        "example_zh": "这周一直加班到很晚，我现在睡眠不足。",
+        "collocations": [
+          "be short on sleep",
+          "feel short on sleep"
+        ],
+        "usage_note": "be short on sleep表示睡眠不足；short on表示某物不够。"
+      },
+      "revised_answer": {
+        "meaning_zh": "睡眠不足",
+        "example_en": "I'm short on sleep after working late all week.",
+        "example_zh": "这周一直加班到很晚，我现在睡眠不足。",
+        "collocations": [
+          "be short on sleep",
+          "be seriously short on sleep"
+        ],
+        "usage_note": "be short on sleep表示睡眠不足；short on表示某物不够。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "be short on sleep表达睡眠不足，seriously short on sleep搭配自然；例句译文准确。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00058",
+      "scene_id": "SC50-0001",
+      "source_rank": 58,
+      "source_sense_id": "SC-SENSE-00058",
+      "expression": "miss the alarm",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "original_answer": {
+        "meaning_zh": "错过闹铃",
+        "example_en": "I missed the alarm because my phone was on silent.",
+        "example_zh": "手机设成静音，我没听到闹钟提醒。",
+        "collocations": [
+          "miss the alarm",
+          "miss your morning alarm"
+        ],
+        "usage_note": "miss the alarm在此指未听见或未注意到提醒；不表示错过预约。"
+      },
+      "revised_answer": {
+        "meaning_zh": "错过闹铃",
+        "example_en": "I didn't hear my alarm this morning and overslept.",
+        "example_zh": "今天早上我没听到闹钟，结果睡过头了。",
+        "collocations": [
+          "miss the alarm",
+          "miss your morning alarm"
+        ],
+        "usage_note": "miss the alarm表示没有听到或注意到闹钟提醒；更常说not hear your alarm或sleep through your alarm。手机静音模式不一定影响闹钟。"
+      },
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "原句手机静音未必影响闹钟已纠正；新版didn't hear my alarm自然但没有示范目标miss the alarm，建议补I missed my alarm and overslept，或将主目标改sleep through my alarm并经身份审批。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00086",
+      "scene_id": "SC50-0001",
+      "source_rank": 86,
+      "source_sense_id": "SC-SENSE-00086",
+      "expression": "appointment",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "original_answer": {
+        "meaning_zh": "预约安排",
+        "example_en": "I have a doctor's appointment at nine.",
+        "example_zh": "我九点有个医生预约。",
+        "collocations": [
+          "make an appointment",
+          "doctor's appointment"
+        ],
+        "usage_note": "appointment多指约定好时间的会面或服务。"
+      },
+      "revised_answer": {
+        "meaning_zh": "预约安排",
+        "example_en": "I have a doctor's appointment at nine.",
+        "example_zh": "我九点预约了看医生。",
+        "collocations": [
+          "make an appointment",
+          "doctor's appointment"
+        ],
+        "usage_note": "appointment多指约定好时间的会面或服务。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "doctor's appointment例句自然；预约医生的中文翻译准确。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00097",
+      "scene_id": "SC50-0001",
+      "source_rank": 97,
+      "source_sense_id": "SC-SENSE-00097",
+      "expression": "stand up",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+      "original_answer": {
+        "meaning_zh": "站起身",
+        "example_en": "I stood up and walked to the bathroom.",
+        "example_zh": "我站起身，走向浴室。",
+        "collocations": [
+          "stand up slowly",
+          "stand up from bed"
+        ],
+        "usage_note": "stand up表示从坐姿等姿势站起。"
+      },
+      "revised_answer": {
+        "meaning_zh": "站起身",
+        "example_en": "I stood up and walked to the bathroom.",
+        "example_zh": "我站起身，走向浴室。",
+        "collocations": [
+          "stand up slowly",
+          "stand up from a chair"
+        ],
+        "usage_note": "stand up表示站起身；从床上起身通常说get out of bed。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "stand up表示站起，from a chair搭配自然，区别get out of bed合理。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00117",
+      "scene_id": "SC50-0001",
+      "source_rank": 117,
+      "source_sense_id": "SC-SENSE-00117",
+      "expression": "bedside table",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+      "original_answer": {
+        "meaning_zh": "床头柜",
+        "example_en": "I left my glasses on the bedside table.",
+        "example_zh": "我把眼镜放在床头柜上了。",
+        "collocations": [
+          "on the bedside table",
+          "a bedside lamp"
+        ],
+        "usage_note": "bedside table是床旁小桌或柜，美式也常说nightstand。"
+      },
+      "revised_answer": {
+        "meaning_zh": "床头柜",
+        "example_en": "I left my glasses on the bedside table.",
+        "example_zh": "我把眼镜放在床头柜上了。",
+        "collocations": [
+          "on the bedside table",
+          "keep a book on the bedside table"
+        ],
+        "usage_note": "bedside table是床旁小桌或柜，美式也常说nightstand。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "bedside table与nightstand关系准确，替换搭配符合语境。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00121",
+      "scene_id": "SC50-0001",
+      "source_rank": 121,
+      "source_sense_id": "SC-SENSE-00121",
+      "expression": "curtains",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "6bf55d6e8d4c01542d51213a4d70fe1c09fdfa22",
+      "original_answer": {
+        "meaning_zh": "窗帘",
+        "example_en": "I opened the curtains to let in the morning sun.",
+        "example_zh": "我拉开窗帘，让早晨的阳光照进来。",
+        "collocations": [
+          "draw the curtains",
+          "open the curtains"
+        ],
+        "usage_note": "draw the curtains可能表示拉上或拉开，须结合上下文；open更明确。"
+      },
+      "revised_answer": {
+        "meaning_zh": "窗帘",
+        "example_en": "I opened the curtains to let in the morning sun.",
+        "example_zh": "我拉开窗帘，让早晨的阳光照进来。",
+        "collocations": [
+          "draw the curtains",
+          "open the curtains"
+        ],
+        "usage_note": "draw the curtains通常指拉上窗帘；明确说拉开窗帘用open the curtains。个别语境中draw的方向可由上下文判断。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "draw the curtains通常指拉上，open语义更明确；保留语境例外恰当。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00234",
+      "scene_id": "SC50-0001",
+      "source_rank": 234,
+      "source_sense_id": "SC-SENSE-00234",
+      "expression": "turn on the alarm",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "b78235ebf6bcfda0ee5f5e48d9a7976c04ac403e",
+      "original_answer": {
+        "meaning_zh": "打开闹钟功能",
+        "example_en": "I turned on the alarm for six thirty tomorrow morning.",
+        "example_zh": "我打开了明早六点半的闹钟。",
+        "collocations": [
+          "turn on the alarm",
+          "turn the alarm on"
+        ],
+        "usage_note": "turn on the alarm在手机场景中可指启用已有闹钟；设定新时间更常说set an alarm。"
+      },
+      "revised_answer": {
+        "meaning_zh": "打开闹钟功能",
+        "example_en": "I switched my 6:30 alarm on for tomorrow morning.",
+        "example_zh": "我启用了明早六点半的闹钟。",
+        "collocations": [
+          "turn on the alarm",
+          "turn the alarm on"
+        ],
+        "usage_note": "turn an alarm on指启用已有闹钟；set an alarm通常指设定提醒时间。"
+      },
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "switch an alarm on解释启用已有闹钟准确，但例句未直接包含目标turn on the alarm；建议I turned on my 6:30 alarm for tomorrow morning，并保留启用与设定的区分。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00241",
+      "scene_id": "SC50-0002",
+      "source_rank": 7,
+      "source_sense_id": "SC-SENSE-00241",
+      "expression": "shower curtain",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "d153f196e30a1b31a157050fb5f91eaedc94ccce",
+      "original_answer": {
+        "meaning_zh": "浴帘",
+        "example_en": "Pull the shower curtain closed before turning on the water.",
+        "example_zh": "开水前先把浴帘拉好。",
+        "collocations": [
+          "close the shower curtain",
+          "pull back the shower curtain"
+        ],
+        "usage_note": "shower curtain是浴帘，用来挡住淋浴时溅出的水。"
+      },
+      "revised_answer": {
+        "meaning_zh": "浴帘",
+        "example_en": "Pull the shower curtain closed before turning on the water.",
+        "example_zh": "打开淋浴水龙头前，先把浴帘拉好。",
+        "collocations": [
+          "close the shower curtain",
+          "pull back the shower curtain"
+        ],
+        "usage_note": "shower curtain是浴帘，用来挡住淋浴时溅出的水。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "close shower curtain挡水、使用前拉上浴帘的例句准确。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00272",
+      "scene_id": "SC50-0002",
+      "source_rank": 38,
+      "source_sense_id": "SC-SENSE-00272",
+      "expression": "tap",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_001_016_20261112.v1.json",
+      "patch_blob": "3c1c36d5fa20ae4d4e6f00e8cf85d70645282bac",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "水龙头（英式）",
+        "example_en": "The tap is dripping; could you tighten it?",
+        "example_zh": "水龙头在滴水，你能拧紧一点吗？",
+        "collocations": [
+          "turn on the tap",
+          "a dripping tap"
+        ],
+        "usage_note": "tap在英式英语常指水龙头，北美常说faucet。"
+      },
+      "revised_answer": {
+        "meaning_zh": "水龙头（英式）",
+        "example_en": "The tap keeps dripping. We should get it fixed.",
+        "example_zh": "水龙头一直滴水，我们该找人修一下。",
+        "collocations": [
+          "turn on the tap",
+          "a dripping tap"
+        ],
+        "usage_note": "tap在英式英语常指水龙头，北美常说faucet。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "tap的英式水龙头义、dripping water语境与faucet对照准确。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00276",
+      "scene_id": "SC50-0002",
+      "source_rank": 42,
+      "source_sense_id": "SC-SENSE-00276",
+      "expression": "hot water",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "热水",
+        "example_en": "Be careful—the hot water is very hot.",
+        "example_zh": "小心，热水很烫。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "revised_answer": {
+        "meaning_zh": "热水",
+        "example_en": "The water is too hot. Turn down the temperature a little.",
+        "example_zh": "水太烫了，把温度调低一点。",
+        "collocations": [
+          "run the hot water",
+          "hot water tap"
+        ],
+        "usage_note": "hot water表示热水，注意与warm water温水的程度区别。"
+      },
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "The water is too hot例句正确但没有示范目标hot water词组；建议The hot water is too hot to use直接或改The hot water is scalding.以免重复。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00300",
+      "scene_id": "SC50-0002",
+      "source_rank": 66,
+      "source_sense_id": "SC-SENSE-00300",
+      "expression": "shaver",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+      "original_answer": {
+        "meaning_zh": "电动剃须刀；剃须刀",
+        "example_en": "He uses an electric shaver in the morning.",
+        "example_zh": "他早晨用电动剃须刀刮胡子。",
+        "collocations": [
+          "electric shaver",
+          "recharge a shaver"
+        ],
+        "usage_note": "shaver尤指电动剃须刀；razor多指刀片式剃刀。"
+      },
+      "revised_answer": {
+        "meaning_zh": "电动剃须刀；剃须刀",
+        "example_en": "He uses an electric shaver in the morning.",
+        "example_zh": "他早晨用电动剃须刀刮胡子。",
+        "collocations": [
+          "electric shaver",
+          "recharge a shaver"
+        ],
+        "usage_note": "shaver通常指电动剃须刀；手动刀片式剃须刀通常说razor，两者不要混淆。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "electric shaver与手动razor区分合理，例句准确。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00307",
+      "scene_id": "SC50-0002",
+      "source_rank": 73,
+      "source_sense_id": "SC-SENSE-00307",
+      "expression": "cotton swab",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+      "original_answer": {
+        "meaning_zh": "棉签",
+        "example_en": "I use a cotton swab to clean around the makeup bottle.",
+        "example_zh": "我用棉签清理化妆品瓶子周围。",
+        "collocations": [
+          "cotton swab",
+          "use a cotton swab"
+        ],
+        "usage_note": "cotton swab为美式常用说法，英式也常见cotton bud。"
+      },
+      "revised_answer": {
+        "meaning_zh": "棉签",
+        "example_en": "I used a cotton swab to clean around the cap of the makeup bottle.",
+        "example_zh": "我用棉签清洁化妆品瓶盖周围。",
+        "collocations": [
+          "cotton swab",
+          "use a cotton swab"
+        ],
+        "usage_note": "cotton swab为美式常用说法，英式也常见cotton bud。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "cotton swab与cotton bud的英美用法自然，例句中英文对齐。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00364",
+      "scene_id": "SC50-0002",
+      "source_rank": 130,
+      "source_sense_id": "SC-SENSE-00364",
+      "expression": "blemish",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "700f0ee318cc026ef2d7ca94c788e7222106be1e",
+      "original_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点；痘痘",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我的脸颊上冒出一个小瑕疵。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤斑点或瑕疵，不一定就是痘痘。"
+      },
+      "revised_answer": {
+        "meaning_zh": "皮肤瑕疵；斑点；痘痘",
+        "example_en": "A small blemish appeared on my cheek.",
+        "example_zh": "我脸颊上出现了一处小斑点。",
+        "collocations": [
+          "skin blemish",
+          "cover a blemish"
+        ],
+        "usage_note": "blemish泛指皮肤斑点或瑕疵，不一定就是痘痘。"
+      },
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "blemish泛指小瑕疵而非一定是痘痘，中文释义将'痘痘'并列易误导为等义，建议“皮肤瑕疵；斑点”，注释某些情境可能指痘痘。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00390",
+      "scene_id": "SC50-0002",
+      "source_rank": 156,
+      "source_sense_id": "SC-SENSE-00390",
+      "expression": "treat a small cut",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "dc8d607423b87ac67b20f3ab92efec9870c73c5c",
+      "original_answer": {
+        "meaning_zh": "处理小伤口",
+        "example_en": "I cleaned and covered a small cut on my finger.",
+        "example_zh": "我清洁并盖住了手指上的小伤口。",
+        "collocations": [
+          "treat a small cut",
+          "a small cut on your finger"
+        ],
+        "usage_note": "treat a cut指处理伤口；具体医疗处置应遵从专业建议。"
+      },
+      "revised_answer": {
+        "meaning_zh": "处理小伤口",
+        "example_en": "I treated a small cut on my finger by cleaning it and covering it with a bandage.",
+        "example_zh": "我清洁了手指上的小伤口，并用创可贴覆盖，进行了简单处理。",
+        "collocations": [
+          "treat a small cut",
+          "a small cut on your finger"
+        ],
+        "usage_note": "treat a cut表示处理伤口；这里是语言示例，具体医疗处理应遵循专业建议。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "treat a small cut与例句相符；语言用途、中文表达和搭配准确，医疗说明不构成新增质量承诺。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00428",
+      "scene_id": "SC50-0003",
+      "source_rank": 20,
+      "source_sense_id": "SC-SENSE-00428",
+      "expression": "pants",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+      "original_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants"
+        ],
+        "usage_note": "pants美式指长裤，英式常指内裤；英式长裤常说trousers。"
+      },
+      "revised_answer": {
+        "meaning_zh": "长裤（美式）；内裤（英式）",
+        "example_en": "I need a new pair of pants for work.",
+        "example_zh": "我需要买一条上班穿的新长裤。",
+        "collocations": [
+          "a pair of pants",
+          "dress pants",
+          "pants (British English: underwear)"
+        ],
+        "usage_note": "美式pants通常指长裤，英式pants通常指内裤，英式长裤常说trousers。例如英国英语I need clean pants意为我需要干净内裤。"
+      },
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "英美pants义项对比准确，但collocations列表混入'pants (British English: underwear)'说明文字并非自然搭配，移入usage_note；例句属美式义。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00434",
+      "scene_id": "SC50-0003",
+      "source_rank": 26,
+      "source_sense_id": "SC-SENSE-00434",
+      "expression": "put on a uniform",
+      "patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_017_029_20261112.v1.json",
+      "patch_blob": "028e1e329e955ee3b9647e22153842e581268d35",
+      "source_pack_blob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+      "original_answer": {
+        "meaning_zh": "穿制服",
+        "example_en": "The staff put on a uniform before their shift.",
+        "example_zh": "员工上班前会换上制服。",
+        "collocations": [
+          "put on a uniform",
+          "wear a uniform"
+        ],
+        "usage_note": "put on表示穿上的动作，wear表示穿着状态。"
+      },
+      "revised_answer": {
+        "meaning_zh": "穿制服",
+        "example_en": "Staff members put on their uniforms before their shifts.",
+        "example_zh": "员工们在上班前穿上自己的制服。",
+        "collocations": [
+          "put on a uniform",
+          "wear a uniform"
+        ],
+        "usage_note": "put on表示穿上的动作，wear表示穿着状态。"
+      },
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "put on动作与wear状态的区分准确，制服复数及译文自然。",
+      "master_review_required": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
