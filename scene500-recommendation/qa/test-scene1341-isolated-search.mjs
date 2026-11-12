@@ -28,6 +28,28 @@ for(const q of cacheParityQueries){
  assert.deepEqual(index.search(q),browserCore.search(q), 'normalized cache parity: '+q);
 }
 assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not negation');
+// Reject numeric-equivalent duplicate ranks (e.g., 1 vs 01) even when source strings differ.
+// Work on a copied authentic shard; frozen source CSVs remain unchanged.
+{
+ const shards=Array.from({length:11},(_,i)=>fs.readFileSync(path.join(dir,'v'+(51+i)+'-ranked.csv'),'utf8'));
+ let mutated=false;
+ for(let shard=0;shard<shards.length&&!mutated;shard++){
+   const rows=csv(shards[shard]),seen=new Map();
+   for(const row of rows){
+     const previous=seen.get(row.scene_id);
+     if(previous){
+       row.rank='0'+previous.rank;
+       const cols=Object.keys(rows[0]);
+       const quote=value=>'"'+String(value??'').replace(/"/g,'""')+'"';
+       shards[shard]=[cols.join(','),...rows.map(r=>cols.map(k=>quote(r[k])).join(','))].join('\\n')+'\\n';
+       mutated=true;break;
+     }
+     seen.set(row.scene_id,row);
+   }
+ }
+ assert.ok(mutated,'source needs two ranked expressions in one scene');
+ assert.throws(()=>buildCatalog(fs.readFileSync(catalog,'utf8'),shards,{sourceCommit:commit,manifestSha:blob}),/DUPLICATE_OR_BAD_RANK/);
+}
 assert.equal(index.sceneCount,1341);assert.equal(index.rankedSceneCount,110);assert.equal(index.expressionCount,19371);assert.equal(index.certifiedCount,0);assert.equal(index.release_allowed,false);
 const queries=[
  ['起床与晨间准备','SC50-0001'],
