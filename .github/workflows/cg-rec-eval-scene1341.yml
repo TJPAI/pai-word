@@ -187,7 +187,7 @@ jobs:
             },
             semanticGold:false,releaseAllowed:false
           };
-          fs.writeFileSync('scene1341-eval-summary.json',JSON.stringify(summary,null,2)+'\\n');
+          fs.writeFileSync('scene1341-eval-summary.json',JSON.stringify(summary,null,2)+'\n');
           console.log(JSON.stringify({browserVsEngine:{n:parity.queryCount,top1Disagreements:parity.differentTop1},ab22:ab.metrics,groups:ab.byGroup,negation:{n:neg.queryCount,changed:neg.changed,top1Changed:neg.top1Changed},source:ab.sourceCommit,notCertified:true}));
           JS
       - name: Upload genuine case-level evidence
