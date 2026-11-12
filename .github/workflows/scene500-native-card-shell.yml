@@ -1,0 +1,38 @@
+name: Scene500 native card shell markup parity
+on:
+  pull_request:
+    paths:
+      - 'tools/integration/scene500-native-card-shell-harness.mjs'
+      - 'tools/integration/test-scene500-native-card-shell.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-card-shell.yml'
+  push:
+    branches:
+      - cg-main-native-card-shell-contract-20261112
+    paths:
+      - 'tools/integration/scene500-native-card-shell-harness.mjs'
+      - 'tools/integration/test-scene500-native-card-shell.mjs'
+      - 'rebuild-preview/learning-runtime.js'
+      - '.github/workflows/scene500-native-card-shell.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-card:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Native Scene500 question and answer shell markup
+        run: |
+          node --check tools/integration/scene500-native-card-shell-harness.mjs
+          node tools/integration/test-scene500-native-card-shell.mjs
+      - name: Existing native navigation and answer logic regression
+        run: |
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene1341-native-display-projection.mjs
+      - name: Confirm isolated SRS gate remains closed
+        run: node tools/integration/test-scene1341-isolated-registry-srs.mjs
