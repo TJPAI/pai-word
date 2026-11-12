@@ -1,0 +1,90 @@
+{
+  "schema": "cg-enteach-v51-p1-sc0010-duplicate-notifications-evidence-v1",
+  "date": "2026-11-12",
+  "scene_id": "SC50-0010",
+  "scope": {
+    "author_manifest_path": "tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-2038.json",
+    "manifest_git_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+    "all_scene_packs_examined": 5,
+    "records_examined": 199,
+    "records_source_identity_verified": true
+  },
+  "source_packs": [
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "count": 43
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-044-093.v2.json",
+      "blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-094-143.v2.json",
+      "blob": "6ce1b5229f1581c04af717461ed45825e120de0d",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "count": 50
+    },
+    {
+      "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "count": 6
+    }
+  ],
+  "candidate_pair": [
+    {
+      "scene_ku_id": "SC1341-KU-01956",
+      "source_sense_id": "SC-SENSE-01956",
+      "source_rank": 117,
+      "expression": "switch off notifications",
+      "meaning_zh": "关掉通知",
+      "example_en": "Switch off notifications while you're resting.",
+      "example_zh": "休息时把通知关掉吧。",
+      "collocations": [
+        "switch off notifications",
+        "turn off app notifications"
+      ],
+      "usage_note": "switch off与turn off在这里都指关闭通知功能。",
+      "source_pack_blob": "6ce1b5229f1581c04af717461ed45825e120de0d"
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02017",
+      "source_sense_id": "SC-SENSE-02017",
+      "source_rank": 178,
+      "expression": "turn off notifications",
+      "meaning_zh": "关掉消息通知",
+      "example_en": "Turn off notifications during your break.",
+      "example_zh": "休息时关掉消息通知。",
+      "collocations": [
+        "turn off notifications",
+        "turn off phone notifications"
+      ],
+      "usage_note": "turn off用于关闭通知功能。",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea"
+    }
+  ],
+  "expert_assessment": {
+    "lexical_difference": "switch off versus turn off is a stylistic/varietal verb alternative in this notification-control context; both cover the same user action.",
+    "pedagogical_difference": "Both teach disabling notifications during a break. The collocations and examples offer no clearly distinct learning objective in source.",
+    "evidence_strength": "STRONG_SAME_SCENE_PEDAGOGICAL_REDUNDANCY",
+    "not_proven": "Master canonical Sense identity and permission to suppress either KU have NOT been verified."
+  },
+  "author_recommendation": {
+    "provisional_primary_retained": "SC1341-KU-01956",
+    "provisional_secondary_hold": "SC1341-KU-02017",
+    "rationale": "rank 117 is earlier than rank 178 and first KU already explicitly teaches the turn off synonym in its collocation and usage note; this is an author proposal, not automatic authoritative priority.",
+    "master_action": "CONFIRM_WITH_AUTHORITATIVE_MASTER_RECORDS_AND_DUPLICATE_POLICY_BEFORE_SUPPRESSION",
+    "if_approved": "Suppress secondary learning objective in future authorized queue only; do not delete or merge frozen KU/Sense records.",
+    "if_not_approved": "Document distinct intended learning objective with separate examples and collocations, then send to CG-QA."
+  },
+  "qa_status": "PENDING_INDEPENDENT_RECHECK",
+  "master_status": "PENDING_CANONICAL_DISPOSITION",
+  "muse_qa": "DEFERRED_QUOTA_20261113",
+  "activation_allowed": false,
+  "release_allowed": false
+}
