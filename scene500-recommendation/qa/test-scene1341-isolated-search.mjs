@@ -64,6 +64,22 @@ assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not n
  assert.ok(mutated,'source needs two ranked expressions in one scene');
  assert.throws(()=>buildCatalog(fs.readFileSync(catalog,'utf8'),shards,{sourceCommit:commit,manifestSha:blob}),/DUPLICATE_OR_BAD_RANK/);
 }
+// Enforce canonical ASCII positive-decimal rank identity in authentic source copies.
+// Each invalid encoding must fail even without colliding with another source rank.
+{
+ const valid=Array.from({length:11},(_,i)=>fs.readFileSync(path.join(dir,'v'+(51+i)+'-ranked.csv'),'utf8'));
+ const catalogText=fs.readFileSync(catalog,'utf8');
+ const rows=csv(valid[0]),columns=Object.keys(rows[0]);
+ const firstRank=rows[0].rank;
+ assert.match(firstRank,/^[1-9][0-9]*$/,'original source should use canonical ranks');
+ const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+ for(const invalid of ['0'+firstRank,firstRank+'.0','1e2','0x10','9007199254740993','+1','-1',' 1 ']){
+   rows[0].rank=invalid;
+   const shard=[columns.join(','),...rows.map(row=>columns.map(k=>quote(row[k])).join(','))].join(String.fromCharCode(10))+String.fromCharCode(10);
+   const changed=[shard,...valid.slice(1)];
+   assert.throws(()=>buildCatalog(catalogText,changed,{sourceCommit:commit,manifestSha:blob}),/DUPLICATE_OR_BAD_RANK/, 'invalid rank encoding '+invalid);
+ }
+}
 assert.equal(index.sceneCount,1341);assert.equal(index.rankedSceneCount,110);assert.equal(index.expressionCount,19371);assert.equal(index.certifiedCount,0);assert.equal(index.release_allowed,false);
 const queries=[
  ['起床与晨间准备','SC50-0001'],
