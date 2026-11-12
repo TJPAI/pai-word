@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: TJPAI/pai-word
-          ref: 8a884803c9bba1e0995e35441911b6bb1a6840cf
+          ref: 7bfca39fa55e72d449383cb99863efa2f0f6762f
           path: candidate-current
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -140,7 +140,7 @@ jobs:
             | tee ../scene1341-browser-vs-engine-27.json
       - name: Independently reject numeric-equivalent duplicate Scene1341 source ranks
         env:
-          CG_REC_SHA: 8a884803c9bba1e0995e35441911b6bb1a6840cf
+          CG_REC_SHA: 7bfca39fa55e72d449383cb99863efa2f0f6762f
         run: |
           set -euo pipefail
           mkdir -p browser-current/tools/cg-rec-eval
@@ -155,13 +155,13 @@ jobs:
       - name: Compare actual CG-MAIN browser opt-in with current CG-REC on frozen 41 queries
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
-          CG_REC_SHA: 8a884803c9bba1e0995e35441911b6bb1a6840cf
+          CG_REC_SHA: 7bfca39fa55e72d449383cb99863efa2f0f6762f
         run: |
           set -euo pipefail
           test "$(git -C browser-current rev-parse HEAD)" = "$CG_MAIN_SHA"
           test "$(git -C candidate-current rev-parse HEAD)" = "$CG_REC_SHA"
           test "$(git -C browser-current hash-object rebuild-preview/scene1341-search-core.mjs)" = "1271f3ea4eaea371ea4db89b43d42117ae2cc644"
-          test "$(git -C candidate-current hash-object scene500-recommendation/scene1341-search-core.mjs)" = "2a3f5cc9342e70305108c50820f542e41f93127f"
+          test "$(git -C candidate-current hash-object scene500-recommendation/scene1341-search-core.mjs)" = "a5f8964c67e3f12fa4b4c6774e4a7a5884d4d950"
           mkdir -p browser-current/tools/cg-rec-eval
           cp evaluation/tools/cg-rec-eval/scene1341-current-browser-ab.mjs browser-current/tools/cg-rec-eval/
           cd browser-current
@@ -176,7 +176,7 @@ jobs:
       - name: Generate 24 blind-ready holdout predictions with no gold labels
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
-          CG_REC_SHA: 8a884803c9bba1e0995e35441911b6bb1a6840cf
+          CG_REC_SHA: 7bfca39fa55e72d449383cb99863efa2f0f6762f
         run: |
           set -euo pipefail
           mkdir -p browser-current/tools/cg-rec-eval
