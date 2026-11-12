@@ -96,6 +96,29 @@ jobs:
           if(ab.caseCount!==22||ab.sceneCount!==1341||ab.expressionCount!==19371||ab.official_gold!==false)throw Error('AB22_OUTPUT_MISMATCH');
           if(neg.queryCount!==14||neg.dataScenes!==1341||neg.expressionCount!==19371||neg.qa_status!=='PROVISIONAL_DIAGNOSTIC_NOT_GOLD')throw Error('NEG14_OUTPUT_MISMATCH');
           if(parity.queryCount!==27||parity.data.scenes!==1341||parity.data.expressions!==19371||parity.release_allowed!==false)throw Error('BROWSER_PARITY_OUTPUT_MISMATCH');
+          // Cross-check every recorded case, not only aggregate row counts.
+          const unique=(xs)=>new Set(xs).size===xs.length;
+          const validScene=(id)=>/^SC50-\\d{4}$/.test(id)&&+id.slice(5)>=1&&+id.slice(5)<=1341;
+          const validTop=(ids)=>Array.isArray(ids)&&ids.length<=10&&unique(ids)&&ids.every(validScene);
+          if(!Array.isArray(ab.rows)||ab.rows.length!==22||!unique(ab.rows.map(x=>x.id)))throw Error('AB22_ROWS_INVALID');
+          if(!Array.isArray(neg.rows)||neg.rows.length!==14||!unique(neg.rows.map(x=>x.id)))throw Error('NEG14_ROWS_INVALID');
+          if(!Array.isArray(parity.rows)||parity.rows.length!==27||!unique(parity.rows.map(x=>x.id)))throw Error('PARITY27_ROWS_INVALID');
+          for(const c of ab.rows){
+            if(!validScene(c.expected))throw Error('AB22_EXPECTED_SCENE_INVALID '+c.id);
+            for(const v of Object.values(c.tested||{}))if(!validTop(v.ids))throw Error('AB22_TOP_INVALID '+c.id);
+          }
+          for(const c of neg.rows){
+            if(!validTop(c.before?.top10)||!validTop(c.patched?.top10))throw Error('NEG14_TOP_INVALID '+c.id);
+            if(c.changed!==(c.before.top10.join('|')!==c.patched.top10.join('|')))throw Error('NEG14_CHANGE_FLAG_INVALID '+c.id);
+            if(c.top1Changed!==(c.before.top10[0]!==c.patched.top10[0]))throw Error('NEG14_TOP1_CHANGE_FLAG_INVALID '+c.id);
+          }
+          for(const c of parity.rows){
+            if(!validTop(c.browserTop10)||!validTop(c.engineTop10))throw Error('PARITY27_TOP_INVALID '+c.id);
+            if(c.top1Same!==(c.browserTop10[0]===c.engineTop10[0]))throw Error('PARITY27_TOP1_FLAG_INVALID '+c.id);
+          }
+          if(neg.changed!==neg.rows.filter(x=>x.changed).length||neg.top1Changed!==neg.rows.filter(x=>x.top1Changed).length)throw Error('NEG14_AGGREGATE_MISMATCH');
+          if(parity.differentTop1!==parity.rows.filter(x=>!x.top1Same).length||parity.matchedTop1!==parity.rows.filter(x=>x.top1Same).length)throw Error('PARITY27_AGGREGATE_MISMATCH');
+          if(ab.official_gold!==false||parity.release_allowed!==false||ab.production_eligible!==false)throw Error('UNCERTIFIED_OUTPUT_MISLABELED');
           console.log(JSON.stringify({browserVsEngine:{n:parity.queryCount,top1Disagreements:parity.differentTop1},ab22:ab.metrics,groups:ab.byGroup,negation:{n:neg.queryCount,changed:neg.changed,top1Changed:neg.top1Changed},source:ab.sourceCommit,notCertified:true}));
           JS
       - name: Upload genuine case-level evidence
