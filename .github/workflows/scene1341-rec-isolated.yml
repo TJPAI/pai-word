@@ -9,6 +9,11 @@ on:
       - 'scene500-recommendation/qa/test-scene1341-isolated-search.mjs'
       - 'scene500-recommendation/qa/benchmark-scene1341-cache.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
+  pull_request:
+    branches: [scene500-recommendation-dev]
+    paths:
+      - 'scene500-recommendation/**'
+      - '.github/workflows/scene1341-rec-isolated.yml'
   workflow_dispatch:
 permissions:
   contents: read
