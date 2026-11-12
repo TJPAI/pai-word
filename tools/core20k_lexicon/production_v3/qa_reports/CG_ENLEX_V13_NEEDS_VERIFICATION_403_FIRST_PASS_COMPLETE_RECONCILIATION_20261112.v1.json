@@ -1,0 +1,83 @@
+{
+  "schema": "cg-enlex-v13-403-case-complete-first-pass-reconciliation-v1",
+  "date": "2026-11-12",
+  "role": "CG-ENLEX",
+  "source_drive_url": "https://drive.google.com/file/d/19sm_1X0ThdXDLqWrMHxFMzxkIsQZunJy/view",
+  "original_v13_consolidated_rows": 566,
+  "source_original_pending": 403,
+  "editorially_reviewed": 403,
+  "all_unique_403": true,
+  "source_order_and_identity_mismatch": 0,
+  "distinct_audit_row_no": 403,
+  "release_flag_violation": 0,
+  "original_masters_modified": false,
+  "lexical_keep_provisional": 278,
+  "lexical_hold_or_context_needed": 125,
+  "independent_cgqa_certified_in_this_report": 0,
+  "muse_certified_in_this_report": 0,
+  "master_approved_in_this_report": 0,
+  "source_level_restrictions": [
+    "This index reconciles the 7 independent ENLEX editorial files to all 403 original NEEDS_VERIFICATION rows from one historical V13 566-row evidence CSV.",
+    "Earlier first24 uses master_approval, later files master_approved. Both false. Original audit_decision remains NEEDS_VERIFICATION even where editorial keep is proposed.",
+    "No canonical full Master stable IDs, scene sentence, or individually checked Kaikki entry.word/POS/gloss are supplied by this source CSV.",
+    "CG-QA independent editorial triage has started on earlier batches; it is not itself certified Sense-SCENE approval or Muse certification."
+  ],
+  "files": [
+    {
+      "index": 1,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_FIRST24_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "5f4031f09e0201301a21783158683c78036bef35",
+      "records": 24,
+      "first_audit_row_no": 668,
+      "last_audit_row_no": 951
+    },
+    {
+      "index": 2,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_NEXT60_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "d3c041ad5ed29159f541a1189fdb767a3075fa8d",
+      "records": 60,
+      "first_audit_row_no": 1096,
+      "last_audit_row_no": 2300
+    },
+    {
+      "index": 3,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS085_144_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "4b15a52a1afb41e5cb680eef6ff59421ec28d750",
+      "records": 60,
+      "first_audit_row_no": 2301,
+      "last_audit_row_no": 3902
+    },
+    {
+      "index": 4,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS145_204_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "c5cdd427b9a0ca1b0545581d55e623d03f0596ab",
+      "records": 60,
+      "first_audit_row_no": 3957,
+      "last_audit_row_no": 5434
+    },
+    {
+      "index": 5,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS205_264_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "c3a73025fc4246f96d5eb4518a3d9c0bcc3b198b",
+      "records": 60,
+      "first_audit_row_no": 5436,
+      "last_audit_row_no": 6813
+    },
+    {
+      "index": 6,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS265_324_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "0435f1f13afd0a2db7ceff944074f5c6a247745a",
+      "records": 60,
+      "first_audit_row_no": 6817,
+      "last_audit_row_no": 7986
+    },
+    {
+      "index": 7,
+      "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_V13_NEEDS_VERIFICATION_POS325_403_SEMANTIC_TRIAGE_20261112.v1.json",
+      "blob": "f1483b55c9e36da326226f726fc0acb52f1c1a26",
+      "records": 79,
+      "first_audit_row_no": 7987,
+      "last_audit_row_no": 9982
+    }
+  ]
+}
