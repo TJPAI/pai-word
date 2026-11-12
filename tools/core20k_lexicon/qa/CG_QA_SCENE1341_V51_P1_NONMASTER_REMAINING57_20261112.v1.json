@@ -1,0 +1,2588 @@
+{
+  "schema": "cg-qa-sc1341-v51-p1-nonmaster-remaining57-independent-review-v1",
+  "date": "2026-11-12",
+  "reviewer": "CG-QA",
+  "source_author_commit": "ef23e086f3b0020512caee8053d51f5dc7a116b1",
+  "source_author_manifest_blob": "429fccd0ae33e78681770040222110bb13a661f1",
+  "scope": "Remaining P1 57 author items without originally flagged Master dependency, after prior first16",
+  "method": "Individual English lexical meaning, naturalness, target phrase coverage, bilingual translation, collocations and learner-facing usage review",
+  "counts": {
+    "reviewed": 57,
+    "pass": 46,
+    "conditional": 11,
+    "revise": 0,
+    "gloss_or_identity_precaution": 6,
+    "unique": 57,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "policy": "CONDITIONAL and Master-gloss precaution cannot enter provisional learner queue. All others subject to per-KU Master authority and independent Muse. Preserve V30, all author patches, frozen KU and Master.",
+  "rows": [
+    {
+      "id": "SC1341-KU-00458",
+      "scene": "SC50-0003",
+      "rank": 50,
+      "sense": "SC-SENSE-00458",
+      "expression": "wardrobe",
+      "original": {
+        "meaning_zh": "衣橱；个人拥有的全部衣服",
+        "example_en": "I need to update my winter wardrobe.",
+        "example_zh": "我需要添置些冬季衣物。",
+        "collocations": [
+          "winter wardrobe",
+          "update your wardrobe"
+        ],
+        "usage_note": "wardrobe既可指衣柜，也可指某人拥有的全部衣服。"
+      },
+      "revised": {
+        "meaning_zh": "衣橱；个人拥有的全部衣服",
+        "example_en": "I need to update my winter wardrobe.",
+        "example_zh": "我需要添置些冬季衣物。",
+        "collocations": [
+          "winter wardrobe",
+          "update your wardrobe",
+          "hang clothes in the wardrobe"
+        ],
+        "usage_note": "wardrobe可指衣柜，也可指某人所有的衣服。例：She hung the dress in the wardrobe（她把连衣裙挂进衣柜）。"
+      },
+      "display": {
+        "w": "wardrobe",
+        "m": "衣橱；个人拥有的全部衣服",
+        "c": "winter wardrobe · update your wardrobe · hang clothes in the wardrobe",
+        "e": "I need to update my winter wardrobe.",
+        "x": "wardrobe可指衣柜，也可指某人所有的衣服。例：She hung the dress in the wardrobe（她把连衣裙挂进衣柜）。",
+        "example_zh": "我需要添置些冬季衣物。"
+      },
+      "sourcePackBlob": "9ffab74131efdb69533803abfaae3b5d9a8e5e88",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_030_038_20261112.v1.json",
+      "sourceBlob": "79ca0e6d4db61e24312a8dab6dcc89f4b876bfe0",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "wardrobe既可指衣柜又可指个人衣物总量；更新冬季衣橱为自然转喻",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00504",
+      "scene": "SC50-0003",
+      "rank": 96,
+      "sense": "SC-SENSE-00504",
+      "expression": "snug",
+      "original": {
+        "meaning_zh": "贴身合适的；紧而舒适的",
+        "example_en": "The gloves fit snugly without squeezing my hands.",
+        "example_zh": "这副手套贴合双手，但不会勒手。",
+        "collocations": [
+          "snug fit",
+          "fit snugly"
+        ],
+        "usage_note": "snug强调贴合、包裹感，常带舒适意味，不等于过紧。"
+      },
+      "revised": {
+        "meaning_zh": "贴身合适的；紧而舒适的",
+        "example_en": "The gloves have a snug fit without squeezing my hands.",
+        "example_zh": "这副手套贴合双手，却不会勒手。",
+        "collocations": [
+          "snug fit",
+          "fit snugly"
+        ],
+        "usage_note": "snug强调贴合、包裹感，常带舒适意味，不等于过紧。"
+      },
+      "display": {
+        "w": "snug",
+        "m": "贴身合适的；紧而舒适的",
+        "c": "snug fit · fit snugly",
+        "e": "The gloves have a snug fit without squeezing my hands.",
+        "x": "snug强调贴合、包裹感，常带舒适意味，不等于过紧。",
+        "example_zh": "这副手套贴合双手，却不会勒手。"
+      },
+      "sourcePackBlob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_030_038_20261112.v1.json",
+      "sourceBlob": "79ca0e6d4db61e24312a8dab6dcc89f4b876bfe0",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "snug fit与fit snugly为自然舒适贴合用法，例句明确不勒手",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00523",
+      "scene": "SC50-0003",
+      "rank": 115,
+      "sense": "SC-SENSE-00523",
+      "expression": "solid color",
+      "original": {
+        "meaning_zh": "纯色；单色",
+        "example_en": "I chose a solid color because the jacket has a bold pattern.",
+        "example_zh": "夹克花纹很醒目，所以我选了一件纯色上衣。",
+        "collocations": [
+          "solid color",
+          "solid-color shirt"
+        ],
+        "usage_note": "solid color指单色无图案，常与patterned相对。"
+      },
+      "revised": {
+        "meaning_zh": "纯色；单色",
+        "example_en": "I chose a solid-color top because the jacket has a bold pattern.",
+        "example_zh": "夹克的花纹很醒目，所以我选了一件纯色上衣。",
+        "collocations": [
+          "solid color",
+          "solid-color shirt"
+        ],
+        "usage_note": "solid color指单色无图案，常与patterned相对。"
+      },
+      "display": {
+        "w": "solid color",
+        "m": "纯色；单色",
+        "c": "solid color · solid-color shirt",
+        "e": "I chose a solid-color top because the jacket has a bold pattern.",
+        "x": "solid color指单色无图案，常与patterned相对。",
+        "example_zh": "夹克的花纹很醒目，所以我选了一件纯色上衣。"
+      },
+      "sourcePackBlob": "2c93b426b637f1a7313a7e9e69920f0a054efdad",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_030_038_20261112.v1.json",
+      "sourceBlob": "79ca0e6d4db61e24312a8dab6dcc89f4b876bfe0",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "solid-color top形容词连字符正确，纯色和图案对比明确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00625",
+      "scene": "SC50-0004",
+      "rank": 13,
+      "sense": "SC-SENSE-00625",
+      "expression": "shelf",
+      "original": {
+        "meaning_zh": "架子",
+        "example_en": "I put the books back on the shelf.",
+        "example_zh": "我把书放回架子上。",
+        "collocations": [
+          "bookshelf",
+          "put something on a shelf"
+        ],
+        "usage_note": "shelf是单层架板，复数shelves。"
+      },
+      "revised": {
+        "meaning_zh": "架子",
+        "example_en": "I put the books back on the shelf.",
+        "example_zh": "我把书放回架子上。",
+        "collocations": [
+          "on a shelf",
+          "put something on a shelf"
+        ],
+        "usage_note": "shelf是架板或置物层板，复数为shelves；bookshelf是书架这一复合词。"
+      },
+      "display": {
+        "w": "shelf",
+        "m": "架子",
+        "c": "on a shelf · put something on a shelf",
+        "e": "I put the books back on the shelf.",
+        "x": "shelf是架板或置物层板，复数为shelves；bookshelf是书架这一复合词。",
+        "example_zh": "我把书放回架子上。"
+      },
+      "sourcePackBlob": "cf4f0ecf3fded5ff2a230f3a4a2cdab7d0471867",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_030_038_20261112.v1.json",
+      "sourceBlob": "79ca0e6d4db61e24312a8dab6dcc89f4b876bfe0",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "shelf复数shelves及bookshelf区分正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00660",
+      "scene": "SC50-0004",
+      "rank": 48,
+      "sense": "SC-SENSE-00660",
+      "expression": "pick up clothes",
+      "original": {
+        "meaning_zh": "捡起散落衣服",
+        "example_en": "Please pick up the clothes you left on the floor.",
+        "example_zh": "请把你扔在地板上的衣服捡起来。",
+        "collocations": [
+          "pick up clothes",
+          "pick clothes up off the floor"
+        ],
+        "usage_note": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。"
+      },
+      "revised": {
+        "meaning_zh": "捡起散落衣服",
+        "example_en": "Please pick up the clothes you left on the floor.",
+        "example_zh": "请把你留在地板上的衣服捡起来。",
+        "collocations": [
+          "pick up clothes",
+          "pick clothes up off the floor"
+        ],
+        "usage_note": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。"
+      },
+      "display": {
+        "w": "pick up clothes",
+        "m": "捡起散落衣服",
+        "c": "pick up clothes · pick clothes up off the floor",
+        "e": "Please pick up the clothes you left on the floor.",
+        "x": "pick up强调从地上或表面捡起，后续还可能需要折叠收纳。",
+        "example_zh": "请把你留在地板上的衣服捡起来。"
+      },
+      "sourcePackBlob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "pick up clothes表示捡起散落衣服，例句与中译相符",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00686",
+      "scene": "SC50-0004",
+      "rank": 74,
+      "sense": "SC-SENSE-00686",
+      "expression": "nightstand",
+      "original": {
+        "meaning_zh": "床头柜",
+        "example_en": "I keep my glasses on the nightstand.",
+        "example_zh": "我把眼镜放在床头柜上。",
+        "collocations": [
+          "bedside nightstand",
+          "nightstand drawer"
+        ],
+        "usage_note": "nightstand是美式常用的床头柜说法，英式也可说bedside table。"
+      },
+      "revised": {
+        "meaning_zh": "床头柜",
+        "example_en": "I keep my glasses on the nightstand.",
+        "example_zh": "我把眼镜放在床头柜上。",
+        "collocations": [
+          "nightstand drawer",
+          "keep something on a nightstand"
+        ],
+        "usage_note": "nightstand是美式常用的床头柜说法，英式也可说bedside table。"
+      },
+      "display": {
+        "w": "nightstand",
+        "m": "床头柜",
+        "c": "nightstand drawer · keep something on a nightstand",
+        "e": "I keep my glasses on the nightstand.",
+        "x": "nightstand是美式常用的床头柜说法，英式也可说bedside table。",
+        "example_zh": "我把眼镜放在床头柜上。"
+      },
+      "sourcePackBlob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "nightstand美式床头柜与bedside table对应恰当",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00715",
+      "scene": "SC50-0004",
+      "rank": 103,
+      "sense": "SC-SENSE-00715",
+      "expression": "corner",
+      "original": {
+        "meaning_zh": "房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "room corner",
+          "in the corner"
+        ],
+        "usage_note": "corner在这里指室内角落，不是街角。"
+      },
+      "revised": {
+        "meaning_zh": "房间角落",
+        "example_en": "I found a sock in the corner of the room.",
+        "example_zh": "我在房间角落找到了一只袜子。",
+        "collocations": [
+          "in the corner of the room",
+          "a corner of the room"
+        ],
+        "usage_note": "corner在这里指室内角落，不是街角。"
+      },
+      "display": {
+        "w": "corner",
+        "m": "房间角落",
+        "c": "in the corner of the room · a corner of the room",
+        "e": "I found a sock in the corner of the room.",
+        "x": "corner在这里指室内角落，不是街角。",
+        "example_zh": "我在房间角落找到了一只袜子。"
+      },
+      "sourcePackBlob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "corner本身也可指街角、转角；当前'房间角落'为场景限定译义。建议中文主释义'角落；（本场景）房间角落'，若改Master gloss须另审批。",
+      "master_gloss_or_identity_precaution": true,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00741",
+      "scene": "SC50-0004",
+      "rank": 129,
+      "sense": "SC-SENSE-00741",
+      "expression": "stale air",
+      "original": {
+        "meaning_zh": "不新鲜的空气",
+        "example_en": "The room has stale air because the windows have been closed.",
+        "example_zh": "窗户一直关着，房间里的空气很闷。",
+        "collocations": [
+          "stale air",
+          "let stale air out"
+        ],
+        "usage_note": "stale air指不新鲜、缺乏流通的空气。"
+      },
+      "revised": {
+        "meaning_zh": "不新鲜的空气",
+        "example_en": "The air in the room is stale because the windows have been closed.",
+        "example_zh": "窗户一直关着，房间里的空气不新鲜了。",
+        "collocations": [
+          "stale air",
+          "let stale air out"
+        ],
+        "usage_note": "stale air指不新鲜、缺乏流通的空气。"
+      },
+      "display": {
+        "w": "stale air",
+        "m": "不新鲜的空气",
+        "c": "stale air · let stale air out",
+        "e": "The air in the room is stale because the windows have been closed.",
+        "x": "stale air指不新鲜、缺乏流通的空气。",
+        "example_zh": "窗户一直关着，房间里的空气不新鲜了。"
+      },
+      "sourcePackBlob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "stale air指不新鲜不流通空气，例句符合",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00747",
+      "scene": "SC50-0004",
+      "rank": 135,
+      "sense": "SC-SENSE-00747",
+      "expression": "spill",
+      "original": {
+        "meaning_zh": "洒出的液体",
+        "example_en": "Please wipe up the spill before it reaches the rug.",
+        "example_zh": "液体流到小地毯之前请先擦掉。",
+        "collocations": [
+          "clean up a spill",
+          "wipe up the spill"
+        ],
+        "usage_note": "spill在这里是洒出的液体或其造成的一摊污迹。"
+      },
+      "revised": {
+        "meaning_zh": "洒出的液体",
+        "example_en": "Please wipe up the spill before it reaches the rug.",
+        "example_zh": "洒出来的液体流到小地毯上之前，先把它擦干净。",
+        "collocations": [
+          "clean up a spill",
+          "wipe up the spill"
+        ],
+        "usage_note": "spill在这里是洒出的液体或其造成的一摊污迹。"
+      },
+      "display": {
+        "w": "spill",
+        "m": "洒出的液体",
+        "c": "clean up a spill · wipe up the spill",
+        "e": "Please wipe up the spill before it reaches the rug.",
+        "x": "spill在这里是洒出的液体或其造成的一摊污迹。",
+        "example_zh": "洒出来的液体流到小地毯上之前，先把它擦干净。"
+      },
+      "sourcePackBlob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "spill作名词洒漏液体，wipe up a spill自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00754",
+      "scene": "SC50-0004",
+      "rank": 142,
+      "sense": "SC-SENSE-00754",
+      "expression": "put dirty clothes in the hamper",
+      "original": {
+        "meaning_zh": "把脏衣服放入洗衣篮",
+        "example_en": "Put dirty clothes in the hamper instead of on the floor.",
+        "example_zh": "把脏衣服放进脏衣篮，别扔地上。",
+        "collocations": [
+          "put dirty clothes in the hamper",
+          "laundry hamper"
+        ],
+        "usage_note": "hamper在北美居家语境常指脏衣篮。"
+      },
+      "revised": {
+        "meaning_zh": "把脏衣服放入洗衣篮",
+        "example_en": "Put dirty clothes in the hamper instead of on the floor.",
+        "example_zh": "把脏衣服放进脏衣篮，别放在地上。",
+        "collocations": [
+          "put dirty clothes in the hamper",
+          "laundry hamper"
+        ],
+        "usage_note": "hamper在北美居家语境常指脏衣篮。"
+      },
+      "display": {
+        "w": "put dirty clothes in the hamper",
+        "m": "把脏衣服放入洗衣篮",
+        "c": "put dirty clothes in the hamper · laundry hamper",
+        "e": "Put dirty clothes in the hamper instead of on the floor.",
+        "x": "hamper在北美居家语境常指脏衣篮。",
+        "example_zh": "把脏衣服放进脏衣篮，别放在地上。"
+      },
+      "sourcePackBlob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "北美hamper常指脏衣篮，例句准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00794",
+      "scene": "SC50-0004",
+      "rank": 182,
+      "sense": "SC-SENSE-00794",
+      "expression": "tangled cables",
+      "original": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "I untangled the cables behind my computer.",
+        "example_zh": "我把电脑后面缠在一起的线理开了。",
+        "collocations": [
+          "tangled cables",
+          "untangle tangled cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "revised": {
+        "meaning_zh": "缠在一起的线缆",
+        "example_en": "I untangled the cables behind my computer.",
+        "example_zh": "我把电脑后面缠在一起的线理开了。",
+        "collocations": [
+          "tangled cables",
+          "untangle cables"
+        ],
+        "usage_note": "tangled强调缠绕打结，不等于线缆本身断裂。"
+      },
+      "display": {
+        "w": "tangled cables",
+        "m": "缠在一起的线缆",
+        "c": "tangled cables · untangle cables",
+        "e": "I untangled the cables behind my computer.",
+        "x": "tangled强调缠绕打结，不等于线缆本身断裂。",
+        "example_zh": "我把电脑后面缠在一起的线理开了。"
+      },
+      "sourcePackBlob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "例句I untangled the cables未出现目标tangled cables，改为The tangled cables behind my computer took time to sort out。",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00800",
+      "scene": "SC50-0004",
+      "rank": 188,
+      "sense": "SC-SENSE-00800",
+      "expression": "mildew",
+      "original": {
+        "meaning_zh": "霉菌；霉斑（常见于潮湿表面）",
+        "example_en": "There are mildew spots on the bathroom curtain.",
+        "example_zh": "浴室窗帘上有些霉斑。",
+        "collocations": [
+          "mildew spots",
+          "mildew on fabric"
+        ],
+        "usage_note": "mildew常用于描述潮湿表面或织物上的霉斑，与mold意义重叠。"
+      },
+      "revised": {
+        "meaning_zh": "霉菌；霉斑（常见于潮湿表面）",
+        "example_en": "There are mildew spots on the shower curtain.",
+        "example_zh": "浴帘上有霉斑。",
+        "collocations": [
+          "mildew spots",
+          "mildew on fabric"
+        ],
+        "usage_note": "mildew常用于描述潮湿表面或织物上的霉斑，与mold意义重叠。"
+      },
+      "display": {
+        "w": "mildew",
+        "m": "霉菌；霉斑（常见于潮湿表面）",
+        "c": "mildew spots · mildew on fabric",
+        "e": "There are mildew spots on the shower curtain.",
+        "x": "mildew常用于描述潮湿表面或织物上的霉斑，与mold意义重叠。",
+        "example_zh": "浴帘上有霉斑。"
+      },
+      "sourcePackBlob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "mildew潮湿表面霉斑与mold有交叉，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00812",
+      "scene": "SC50-0004",
+      "rank": 200,
+      "sense": "SC-SENSE-00812",
+      "expression": "keep cleaning products separate",
+      "original": {
+        "meaning_zh": "将不同清洁用品分开存放（勿随意混合）",
+        "example_en": "Keep cleaning products separate, and never mix them casually.",
+        "example_zh": "不同清洁用品要分开存放，不要随意混合。",
+        "collocations": [
+          "keep cleaning products separate",
+          "store cleaners separately"
+        ],
+        "usage_note": "separate在此是分开存放，切勿把清洁剂混合使用。"
+      },
+      "revised": {
+        "meaning_zh": "将不同清洁用品分开存放（勿随意混合）",
+        "example_en": "Keep cleaning products separate, and never mix different cleaners.",
+        "example_zh": "把清洁产品分开放，绝不要混用不同的清洁剂。",
+        "collocations": [
+          "keep cleaning products separate",
+          "store cleaners separately"
+        ],
+        "usage_note": "separate在此是分开存放，切勿把清洁剂混合使用。"
+      },
+      "display": {
+        "w": "keep cleaning products separate",
+        "m": "将不同清洁用品分开存放（勿随意混合）",
+        "c": "keep cleaning products separate · store cleaners separately",
+        "e": "Keep cleaning products separate, and never mix different cleaners.",
+        "x": "separate在此是分开存放，切勿把清洁剂混合使用。",
+        "example_zh": "把清洁产品分开放，绝不要混用不同的清洁剂。"
+      },
+      "sourcePackBlob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "keep cleaning products separate与避免随意混合的实际用法一致",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00822",
+      "scene": "SC50-0004",
+      "rank": 210,
+      "sense": "SC-SENSE-00822",
+      "expression": "pest",
+      "original": {
+        "meaning_zh": "害虫",
+        "example_en": "We found a pest in the pantry and checked the food storage.",
+        "example_zh": "我们在食品储藏柜发现了一只害虫，便检查了食品存放情况。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest指令人困扰或有害的虫兽；此源项标记OPTIONAL。"
+      },
+      "revised": {
+        "meaning_zh": "害虫",
+        "example_en": "We found signs of pests in the pantry and checked the stored food.",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。",
+        "collocations": [
+          "household pest",
+          "pest problem"
+        ],
+        "usage_note": "pest可指昆虫、啮齿类等有害生物，不只指虫子。"
+      },
+      "display": {
+        "w": "pest",
+        "m": "害虫",
+        "c": "household pest · pest problem",
+        "e": "We found signs of pests in the pantry and checked the stored food.",
+        "x": "pest可指昆虫、啮齿类等有害生物，不只指虫子。",
+        "example_zh": "我们在食品储藏柜发现有害生物活动的迹象，于是检查了储存的食物。"
+      },
+      "sourcePackBlob": "67a94c4ea8cc4df164bd9af1a92f1cee818699bd",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "sourceBlob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "pest不仅昆虫，也包括鼠类等有害动物；中文主释义仅'害虫'过窄，改'有害生物；害虫或鼠害'，需确认Master语义范围。",
+      "master_gloss_or_identity_precaution": true,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00825",
+      "scene": "SC50-0005",
+      "rank": 3,
+      "sense": "SC-SENSE-00825",
+      "expression": "chore chart",
+      "original": {
+        "meaning_zh": "家务分工表",
+        "example_en": "We use a chore chart to divide tasks among the family.",
+        "example_zh": "我们用家务分工表给家庭成员分配任务。",
+        "collocations": [
+          "make a chore chart",
+          "follow a chore chart"
+        ],
+        "usage_note": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。"
+      },
+      "revised": {
+        "meaning_zh": "家务分工表",
+        "example_en": "We use a chore chart to divide tasks among family members.",
+        "example_zh": "我们用家务分工表把任务分配给各位家庭成员。",
+        "collocations": [
+          "make a chore chart",
+          "follow a chore chart"
+        ],
+        "usage_note": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。"
+      },
+      "display": {
+        "w": "chore chart",
+        "m": "家务分工表",
+        "c": "make a chore chart · follow a chore chart",
+        "e": "We use a chore chart to divide tasks among family members.",
+        "x": "chore chart用于记录由谁承担哪些家务，chart在这里是表格。",
+        "example_zh": "我们用家务分工表把任务分配给各位家庭成员。"
+      },
+      "sourcePackBlob": "15b4f654660bd3bf4f9a7b3b60df17794e49cfa8",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "chore chart家务分工表与任务分配场景准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00848",
+      "scene": "SC50-0005",
+      "rank": 26,
+      "sense": "SC-SENSE-00848",
+      "expression": "scrub the bathtub",
+      "original": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I scrub the bathtub after soaking it with water.",
+        "example_zh": "把浴缸浸湿后，我会刷洗浴缸。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "revised": {
+        "meaning_zh": "刷浴缸",
+        "example_en": "I wet the bathtub before scrubbing it.",
+        "example_zh": "我先把浴缸弄湿，再刷洗。",
+        "collocations": [
+          "scrub the bathtub",
+          "scrub the bathtub surface"
+        ],
+        "usage_note": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。"
+      },
+      "display": {
+        "w": "scrub the bathtub",
+        "m": "刷浴缸",
+        "c": "scrub the bathtub · scrub the bathtub surface",
+        "e": "I wet the bathtub before scrubbing it.",
+        "x": "scrub the bathtub强调刷洗浴缸，不等于冲淋或简单擦干。",
+        "example_zh": "我先把浴缸弄湿，再刷洗。"
+      },
+      "sourcePackBlob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "例句I wet the bathtub before scrubbing it语义正确但未原样出现scrub the bathtub；推荐I scrub the bathtub after wetting it，教学目标直接出现。",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00857",
+      "scene": "SC50-0005",
+      "rank": 35,
+      "sense": "SC-SENSE-00857",
+      "expression": "deep cleaning",
+      "original": {
+        "meaning_zh": "深度清洁",
+        "example_en": "The kitchen needs deep cleaning before the holidays.",
+        "example_zh": "节日前厨房需要彻底清洁一次。",
+        "collocations": [
+          "deep cleaning",
+          "deep cleaning the kitchen"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "revised": {
+        "meaning_zh": "深度清洁",
+        "example_en": "The kitchen needs a deep clean before the holidays.",
+        "example_zh": "节日前厨房需要彻底清洁一次。",
+        "collocations": [
+          "give the kitchen a deep clean",
+          "deep-clean the kitchen"
+        ],
+        "usage_note": "deep cleaning指比日常表面清洁更全面的清洁。"
+      },
+      "display": {
+        "w": "deep cleaning",
+        "m": "深度清洁",
+        "c": "give the kitchen a deep clean · deep-clean the kitchen",
+        "e": "The kitchen needs a deep clean before the holidays.",
+        "x": "deep cleaning指比日常表面清洁更全面的清洁。",
+        "example_zh": "节日前厨房需要彻底清洁一次。"
+      },
+      "sourcePackBlob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "目标deep cleaning却只在例句中使用a deep clean，名词变体自然但教学目标未原样示范，建议The kitchen needs deep cleaning before the holidays。",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00916",
+      "scene": "SC50-0005",
+      "rank": 94,
+      "sense": "SC-SENSE-00916",
+      "expression": "drying rack",
+      "original": {
+        "meaning_zh": "晾衣架",
+        "example_en": "I spread the shirts over the drying rack.",
+        "example_zh": "我把衬衫摊挂在晾衣架上。",
+        "collocations": [
+          "folding drying rack",
+          "hang clothes on a drying rack"
+        ],
+        "usage_note": "drying rack是晾衣架，不是烘干机。"
+      },
+      "revised": {
+        "meaning_zh": "晾衣架",
+        "example_en": "I hung the shirts on the drying rack.",
+        "example_zh": "我把衬衫挂在晾衣架上。",
+        "collocations": [
+          "folding drying rack",
+          "hang clothes on a drying rack"
+        ],
+        "usage_note": "drying rack是晾衣架，不是烘干机。"
+      },
+      "display": {
+        "w": "drying rack",
+        "m": "晾衣架",
+        "c": "folding drying rack · hang clothes on a drying rack",
+        "e": "I hung the shirts on the drying rack.",
+        "x": "drying rack是晾衣架，不是烘干机。",
+        "example_zh": "我把衬衫挂在晾衣架上。"
+      },
+      "sourcePackBlob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "drying rack晾衣架与烘干机区分清楚",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00940",
+      "scene": "SC50-0005",
+      "rank": 118,
+      "sense": "SC-SENSE-00940",
+      "expression": "fresh-smelling",
+      "original": {
+        "meaning_zh": "闻起来清新的",
+        "example_en": "The room was fresh-smelling after we opened the windows.",
+        "example_zh": "打开窗户后，房间闻起来很清新。",
+        "collocations": [
+          "fresh-smelling room",
+          "fresh-smelling laundry"
+        ],
+        "usage_note": "fresh-smelling描述气味清新，不等于已去除所有污染源。"
+      },
+      "revised": {
+        "meaning_zh": "闻起来清新的",
+        "example_en": "The fresh-smelling laundry made the room feel inviting.",
+        "example_zh": "散发清新气味的洗好衣物，让房间显得很舒适。",
+        "collocations": [
+          "fresh-smelling laundry",
+          "fresh-smelling clothes"
+        ],
+        "usage_note": "fresh-smelling是形容词，常修饰洗好的衣物；说房间闻起来清新也可用The room smells fresh。"
+      },
+      "display": {
+        "w": "fresh-smelling",
+        "m": "闻起来清新的",
+        "c": "fresh-smelling laundry · fresh-smelling clothes",
+        "e": "The fresh-smelling laundry made the room feel inviting.",
+        "x": "fresh-smelling是形容词，常修饰洗好的衣物；说房间闻起来清新也可用The room smells fresh。",
+        "example_zh": "散发清新气味的洗好衣物，让房间显得很舒适。"
+      },
+      "sourcePackBlob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "fresh-smelling形容词搭配衣物，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-00944",
+      "scene": "SC50-0005",
+      "rank": 122,
+      "sense": "SC-SENSE-00944",
+      "expression": "overdue",
+      "original": {
+        "meaning_zh": "早该做却拖延了的",
+        "example_en": "Cleaning the oven is long overdue.",
+        "example_zh": "烤箱早就该清洁了，一直拖到现在。",
+        "collocations": [
+          "long overdue",
+          "overdue cleaning"
+        ],
+        "usage_note": "overdue表示超过应做的时间，不是日常意义上的迟到。"
+      },
+      "revised": {
+        "meaning_zh": "早该做却拖延了的",
+        "example_en": "Cleaning the oven is long overdue.",
+        "example_zh": "烤箱早就该清洁了，一直拖到现在。",
+        "collocations": [
+          "long-overdue cleaning",
+          "cleaning is overdue"
+        ],
+        "usage_note": "overdue表示超过应做的时间，不是日常意义上的迟到。"
+      },
+      "display": {
+        "w": "overdue",
+        "m": "早该做却拖延了的",
+        "c": "long-overdue cleaning · cleaning is overdue",
+        "e": "Cleaning the oven is long overdue.",
+        "x": "overdue表示超过应做的时间，不是日常意义上的迟到。",
+        "example_zh": "烤箱早就该清洁了，一直拖到现在。"
+      },
+      "sourcePackBlob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "overdue任务过期/早该做与cleaning is overdue自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01012",
+      "scene": "SC50-0005",
+      "rank": 190,
+      "sense": "SC-SENSE-01012",
+      "expression": "delicate fabric",
+      "original": {
+        "meaning_zh": "易损面料",
+        "example_en": "This blouse has delicate fabric, so follow its care label.",
+        "example_zh": "这件女式衬衫的面料很娇贵，洗护要看标签。",
+        "collocations": [
+          "delicate fabric",
+          "wash delicate fabric"
+        ],
+        "usage_note": "delicate fabric易在粗暴洗涤中受损。"
+      },
+      "revised": {
+        "meaning_zh": "易损面料",
+        "example_en": "This blouse is made of delicate fabric, so follow its care label.",
+        "example_zh": "这件衬衫用娇贵面料制成，因此要按洗护标签处理。",
+        "collocations": [
+          "delicate fabric",
+          "wash delicate fabric"
+        ],
+        "usage_note": "delicate fabric易在粗暴洗涤中受损。"
+      },
+      "display": {
+        "w": "delicate fabric",
+        "m": "易损面料",
+        "c": "delicate fabric · wash delicate fabric",
+        "e": "This blouse is made of delicate fabric, so follow its care label.",
+        "x": "delicate fabric易在粗暴洗涤中受损。",
+        "example_zh": "这件衬衫用娇贵面料制成，因此要按洗护标签处理。"
+      },
+      "sourcePackBlob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "sourceBlob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "delicate fabric易损面料与护理标签例句准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01033",
+      "scene": "SC50-0005",
+      "rank": 211,
+      "sense": "SC-SENSE-01033",
+      "expression": "remove a stain",
+      "original": {
+        "meaning_zh": "去掉污渍",
+        "example_en": "I used a stain remover to remove a stain from my shirt.",
+        "example_zh": "我用去渍剂去掉了衬衫上的污渍。",
+        "collocations": [
+          "remove stains from clothing",
+          "remove a stubborn stain"
+        ],
+        "usage_note": "remove a stain指去除污渍，须遵照面料洗护要求。"
+      },
+      "revised": {
+        "meaning_zh": "去掉污渍",
+        "example_en": "I managed to remove a coffee stain from my shirt with a little detergent.",
+        "example_zh": "我用一点洗涤剂去掉了衬衫上的咖啡渍。",
+        "collocations": [
+          "remove stains from clothing",
+          "remove a stubborn stain"
+        ],
+        "usage_note": "remove a stain指去除污渍，须遵照面料洗护要求。"
+      },
+      "display": {
+        "w": "remove a stain",
+        "m": "去掉污渍",
+        "c": "remove stains from clothing · remove a stubborn stain",
+        "e": "I managed to remove a coffee stain from my shirt with a little detergent.",
+        "x": "remove a stain指去除污渍，须遵照面料洗护要求。",
+        "example_zh": "我用一点洗涤剂去掉了衬衫上的咖啡渍。"
+      },
+      "sourcePackBlob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "remove a stain去除污渍，例句搭配自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01041",
+      "scene": "SC50-0005",
+      "rank": 219,
+      "sense": "SC-SENSE-01041",
+      "expression": "fix an appliance",
+      "original": {
+        "meaning_zh": "修理家电",
+        "example_en": "I asked a technician to fix an appliance.",
+        "example_zh": "我请技术人员修理一台家电。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "revised": {
+        "meaning_zh": "修理家电",
+        "example_en": "I asked a technician to fix our washing machine.",
+        "example_zh": "我请技术人员修理我们的洗衣机。",
+        "collocations": [
+          "fix an appliance",
+          "repair a household appliance"
+        ],
+        "usage_note": "fix an appliance指修理家用电器，注意电气安全。"
+      },
+      "display": {
+        "w": "fix an appliance",
+        "m": "修理家电",
+        "c": "fix an appliance · repair a household appliance",
+        "e": "I asked a technician to fix our washing machine.",
+        "x": "fix an appliance指修理家用电器，注意电气安全。",
+        "example_zh": "我请技术人员修理我们的洗衣机。"
+      },
+      "sourcePackBlob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "例句使用fix our washing machine而非fix an appliance；建议We need to fix an appliance, so we called a technician。",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01048",
+      "scene": "SC50-0006",
+      "rank": 3,
+      "sense": "SC-SENSE-01048",
+      "expression": "laundry load",
+      "original": {
+        "meaning_zh": "一批待洗衣服",
+        "example_en": "This laundry load is too large for the machine.",
+        "example_zh": "这一批衣服太多，洗衣机装不下。",
+        "collocations": [
+          "laundry load",
+          "small laundry load"
+        ],
+        "usage_note": "laundry load指一次洗涤的衣物量。"
+      },
+      "revised": {
+        "meaning_zh": "一批待洗衣服",
+        "example_en": "This load of laundry is too large for the washing machine.",
+        "example_zh": "这批待洗的衣服太多，洗衣机装不下。",
+        "collocations": [
+          "laundry load",
+          "small laundry load"
+        ],
+        "usage_note": "日常口语常说a load of laundry；laundry load也用于指一次洗涤的衣物量。"
+      },
+      "display": {
+        "w": "laundry load",
+        "m": "一批待洗衣服",
+        "c": "laundry load · small laundry load",
+        "e": "This load of laundry is too large for the washing machine.",
+        "x": "日常口语常说a load of laundry；laundry load也用于指一次洗涤的衣物量。",
+        "example_zh": "这批待洗的衣服太多，洗衣机装不下。"
+      },
+      "sourcePackBlob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "laundry load与a load of laundry的形式对比准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01075",
+      "scene": "SC50-0006",
+      "rank": 30,
+      "sense": "SC-SENSE-01075",
+      "expression": "mesh laundry bag",
+      "original": {
+        "meaning_zh": "洗衣网袋",
+        "example_en": "I put the delicate socks in a mesh laundry bag.",
+        "example_zh": "我把娇贵的袜子装进洗衣网袋。",
+        "collocations": [
+          "mesh laundry bag",
+          "wash in a mesh bag"
+        ],
+        "usage_note": "mesh laundry bag能减少衣物摩擦和勾挂。"
+      },
+      "revised": {
+        "meaning_zh": "洗衣网袋",
+        "example_en": "I put my delicate wool socks in a mesh laundry bag.",
+        "example_zh": "我把需要小心洗护的羊毛袜装进洗衣网袋。",
+        "collocations": [
+          "mesh laundry bag",
+          "wash in a mesh bag"
+        ],
+        "usage_note": "mesh laundry bag能减少衣物摩擦和勾挂。"
+      },
+      "display": {
+        "w": "mesh laundry bag",
+        "m": "洗衣网袋",
+        "c": "mesh laundry bag · wash in a mesh bag",
+        "e": "I put my delicate wool socks in a mesh laundry bag.",
+        "x": "mesh laundry bag能减少衣物摩擦和勾挂。",
+        "example_zh": "我把需要小心洗护的羊毛袜装进洗衣网袋。"
+      },
+      "sourcePackBlob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "mesh laundry bag保护精细织物语境明确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01094",
+      "scene": "SC50-0006",
+      "rank": 49,
+      "sense": "SC-SENSE-01094",
+      "expression": "delicates",
+      "original": {
+        "meaning_zh": "精细易损衣物",
+        "example_en": "I put the delicates in a mesh laundry bag.",
+        "example_zh": "我把精细衣物装进洗衣网袋。",
+        "collocations": [
+          "wash delicates",
+          "bag for delicates"
+        ],
+        "usage_note": "delicates是需要轻柔护理的衣物，常用复数。"
+      },
+      "revised": {
+        "meaning_zh": "精细易损衣物",
+        "example_en": "I put the delicates in a mesh laundry bag.",
+        "example_zh": "我把精细衣物装进洗衣网袋。",
+        "collocations": [
+          "wash delicates",
+          "wash delicates in a mesh bag"
+        ],
+        "usage_note": "delicates是需要轻柔护理的衣物，常用复数。"
+      },
+      "display": {
+        "w": "delicates",
+        "m": "精细易损衣物",
+        "c": "wash delicates · wash delicates in a mesh bag",
+        "e": "I put the delicates in a mesh laundry bag.",
+        "x": "delicates是需要轻柔护理的衣物，常用复数。",
+        "example_zh": "我把精细衣物装进洗衣网袋。"
+      },
+      "sourcePackBlob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "delicates复数为需轻柔洗护衣物，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01118",
+      "scene": "SC50-0006",
+      "rank": 73,
+      "sense": "SC-SENSE-01118",
+      "expression": "fabric",
+      "original": {
+        "meaning_zh": "织物",
+        "example_en": "This fabric feels too delicate for a hot wash.",
+        "example_zh": "这种面料太娇贵，不适合高温洗涤。",
+        "collocations": [
+          "delicate fabric",
+          "wash a fabric"
+        ],
+        "usage_note": "fabric指织物或面料，泛指材料而非特定一件衣物。"
+      },
+      "revised": {
+        "meaning_zh": "织物",
+        "example_en": "This fabric feels too delicate for a hot wash.",
+        "example_zh": "这种面料太娇贵，不适合高温洗涤。",
+        "collocations": [
+          "delicate fabric",
+          "wash delicate fabric"
+        ],
+        "usage_note": "fabric指织物或面料，泛指材料而非特定一件衣物。"
+      },
+      "display": {
+        "w": "fabric",
+        "m": "织物",
+        "c": "delicate fabric · wash delicate fabric",
+        "e": "This fabric feels too delicate for a hot wash.",
+        "x": "fabric指织物或面料，泛指材料而非特定一件衣物。",
+        "example_zh": "这种面料太娇贵，不适合高温洗涤。"
+      },
+      "sourcePackBlob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "fabric泛指面料及织物，与单件衣物区别准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01120",
+      "scene": "SC50-0006",
+      "rank": 75,
+      "sense": "SC-SENSE-01120",
+      "expression": "zipper",
+      "original": {
+        "meaning_zh": "拉链",
+        "example_en": "Zip up the jacket before putting it in the wash if the label advises it.",
+        "example_zh": "如果洗护说明建议，洗前先拉好外套拉链。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "revised": {
+        "meaning_zh": "拉链",
+        "example_en": "Zip up the jacket before washing it if the care label recommends it.",
+        "example_zh": "如果洗护标签建议，洗之前先把夹克拉链拉好。",
+        "collocations": [
+          "jacket zipper",
+          "close a zipper"
+        ],
+        "usage_note": "zipper是拉链，美式常用；英式也可说zip。"
+      },
+      "display": {
+        "w": "zipper",
+        "m": "拉链",
+        "c": "jacket zipper · close a zipper",
+        "e": "Zip up the jacket before washing it if the care label recommends it.",
+        "x": "zipper是拉链，美式常用；英式也可说zip。",
+        "example_zh": "如果洗护标签建议，洗之前先把夹克拉链拉好。"
+      },
+      "sourcePackBlob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_066_075_20261112.v1.json",
+      "sourceBlob": "619afddb24e97a97eed5fef421808e28801a207a",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "zipper拉链，美式用法与英式zip对比正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01132",
+      "scene": "SC50-0006",
+      "rank": 87,
+      "sense": "SC-SENSE-01132",
+      "expression": "fasten buttons",
+      "original": {
+        "meaning_zh": "扣好纽扣",
+        "example_en": "Fasten buttons before washing if the care instructions call for it.",
+        "example_zh": "如果洗护说明要求，洗衣前扣好纽扣。",
+        "collocations": [
+          "fasten buttons",
+          "fasten shirt buttons"
+        ],
+        "usage_note": "fasten buttons指扣好扣子，具体做法依衣物标签。"
+      },
+      "revised": {
+        "meaning_zh": "扣好纽扣",
+        "example_en": "Fasten buttons before washing if the care instructions call for it.",
+        "example_zh": "如果洗护说明要求，洗衣前扣好纽扣。",
+        "collocations": [
+          "fasten buttons",
+          "fasten shirt buttons"
+        ],
+        "usage_note": "fasten buttons表示扣好纽扣；洗衣前是否扣纽扣要遵循衣物洗护标签，不应视为统一规则。"
+      },
+      "display": {
+        "w": "fasten buttons",
+        "m": "扣好纽扣",
+        "c": "fasten buttons · fasten shirt buttons",
+        "e": "Fasten buttons before washing if the care instructions call for it.",
+        "x": "fasten buttons表示扣好纽扣；洗衣前是否扣纽扣要遵循衣物洗护标签，不应视为统一规则。",
+        "example_zh": "如果洗护说明要求，洗衣前扣好纽扣。"
+      },
+      "sourcePackBlob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "fasten buttons动作与遵循护理说明限制正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01153",
+      "scene": "SC50-0006",
+      "rank": 108,
+      "sense": "SC-SENSE-01153",
+      "expression": "hang up a shirt",
+      "original": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang up a shirt on a hanger after washing it.",
+        "example_zh": "洗好衬衫后把它挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "revised": {
+        "meaning_zh": "挂起衬衫",
+        "example_en": "Hang the clean shirt on a hanger after washing it.",
+        "example_zh": "衬衫洗好后，把干净的衬衫挂到衣架上。",
+        "collocations": [
+          "hang up a shirt",
+          "hang a shirt on a hanger"
+        ],
+        "usage_note": "hang up表示挂起来。"
+      },
+      "display": {
+        "w": "hang up a shirt",
+        "m": "挂起衬衫",
+        "c": "hang up a shirt · hang a shirt on a hanger",
+        "e": "Hang the clean shirt on a hanger after washing it.",
+        "x": "hang up表示挂起来。",
+        "example_zh": "衬衫洗好后，把干净的衬衫挂到衣架上。"
+      },
+      "sourcePackBlob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "示例Hang the clean shirt...未出现hang up a shirt目标搭配；推荐Hang up the clean shirt on a hanger after washing it。",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01159",
+      "scene": "SC50-0006",
+      "rank": 114,
+      "sense": "SC-SENSE-01159",
+      "expression": "put clothes away",
+      "original": {
+        "meaning_zh": "把干净衣服收起来",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好后把衣服放回衣柜。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put away表示归位收纳。"
+      },
+      "revised": {
+        "meaning_zh": "把干净衣服收起来",
+        "example_en": "Put clothes away after folding them.",
+        "example_zh": "叠好衣服后把它们收起来。",
+        "collocations": [
+          "put clothes away",
+          "put clean clothes away"
+        ],
+        "usage_note": "put clothes away表示把衣服收回适当的位置，不一定是衣柜。"
+      },
+      "display": {
+        "w": "put clothes away",
+        "m": "把干净衣服收起来",
+        "c": "put clothes away · put clean clothes away",
+        "e": "Put clothes away after folding them.",
+        "x": "put clothes away表示把衣服收回适当的位置，不一定是衣柜。",
+        "example_zh": "叠好衣服后把它们收起来。"
+      },
+      "sourcePackBlob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "教学表达put clothes away并不规定衣服必然干净；中文当前'把干净衣服收起来'范围过窄。建议'把衣服收好/归位'，Master源gloss是否需改另审。",
+      "master_gloss_or_identity_precaution": true,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01162",
+      "scene": "SC50-0006",
+      "rank": 117,
+      "sense": "SC-SENSE-01162",
+      "expression": "shake out wrinkles",
+      "original": {
+        "meaning_zh": "抖开褶皱",
+        "example_en": "Shake out wrinkles before hanging the shirt.",
+        "example_zh": "挂衬衫前抖一抖，减少褶皱。",
+        "collocations": [
+          "shake out wrinkles",
+          "shake wrinkles out of clothes"
+        ],
+        "usage_note": "shake out指通过抖动舒展褶皱。"
+      },
+      "revised": {
+        "meaning_zh": "抖开褶皱",
+        "example_en": "Shake out the wrinkles before hanging the shirt.",
+        "example_zh": "把衬衫挂起来之前，先抖一抖褶皱。",
+        "collocations": [
+          "shake out the wrinkles",
+          "shake wrinkles out of a shirt"
+        ],
+        "usage_note": "shake out指通过抖动舒展褶皱。"
+      },
+      "display": {
+        "w": "shake out wrinkles",
+        "m": "抖开褶皱",
+        "c": "shake out the wrinkles · shake wrinkles out of a shirt",
+        "e": "Shake out the wrinkles before hanging the shirt.",
+        "x": "shake out指通过抖动舒展褶皱。",
+        "example_zh": "把衬衫挂起来之前，先抖一抖褶皱。"
+      },
+      "sourcePackBlob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "shake out wrinkles表示抖开褶皱，例句清晰",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01180",
+      "scene": "SC50-0006",
+      "rank": 135,
+      "sense": "SC-SENSE-01180",
+      "expression": "stretched out",
+      "original": {
+        "meaning_zh": "被拉松变形的",
+        "example_en": "The neckline is stretched out from hanging.",
+        "example_zh": "领口悬挂后被拉松变形了。",
+        "collocations": [
+          "stretched-out neckline",
+          "stretched out clothes"
+        ],
+        "usage_note": "stretched out指拉长松弛。"
+      },
+      "revised": {
+        "meaning_zh": "被拉松变形的",
+        "example_en": "The neckline is stretched out from hanging.",
+        "example_zh": "领口悬挂后被拉松变形了。",
+        "collocations": [
+          "stretched-out sleeves",
+          "stretched-out neckline"
+        ],
+        "usage_note": "stretched out指拉长松弛。"
+      },
+      "display": {
+        "w": "stretched out",
+        "m": "被拉松变形的",
+        "c": "stretched-out sleeves · stretched-out neckline",
+        "e": "The neckline is stretched out from hanging.",
+        "x": "stretched out指拉长松弛。",
+        "example_zh": "领口悬挂后被拉松变形了。"
+      },
+      "sourcePackBlob": "13843e9b20f00702e3c9634be3923943acbc9e0a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "stretched out用于被拉松的领口，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01183",
+      "scene": "SC50-0006",
+      "rank": 138,
+      "sense": "SC-SENSE-01183",
+      "expression": "color bleeding",
+      "original": {
+        "meaning_zh": "衣物染料串色；掉色染到其他衣物",
+        "example_en": "The red socks caused color bleeding onto my white shirt.",
+        "example_zh": "红袜子掉色，把我的白衬衫染上了颜色。",
+        "collocations": [
+          "prevent color bleeding",
+          "color bleeding in the wash"
+        ],
+        "usage_note": "color bleeding指染料在洗涤时转移到其他衣物，区别于单纯褪色。"
+      },
+      "revised": {
+        "meaning_zh": "衣物染料串色；掉色染到其他衣物",
+        "example_en": "The red socks caused color bleeding in the wash.",
+        "example_zh": "红袜子在洗涤时掉色，导致串色。",
+        "collocations": [
+          "prevent color bleeding",
+          "color bleeding in the wash"
+        ],
+        "usage_note": "color bleeding指洗涤时染料脱落或转移；要突出染料染到白衣上，可说The red socks bled dye onto my white shirt。"
+      },
+      "display": {
+        "w": "color bleeding",
+        "m": "衣物染料串色；掉色染到其他衣物",
+        "c": "prevent color bleeding · color bleeding in the wash",
+        "e": "The red socks caused color bleeding in the wash.",
+        "x": "color bleeding指洗涤时染料脱落或转移；要突出染料染到白衣上，可说The red socks bled dye onto my white shirt。",
+        "example_zh": "红袜子在洗涤时掉色，导致串色。"
+      },
+      "sourcePackBlob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "color bleeding是洗涤掉色/串色，中文与场景对应；源重复另由Master处理",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01190",
+      "scene": "SC50-0006",
+      "rank": 145,
+      "sense": "SC-SENSE-01190",
+      "expression": "hand-wash only",
+      "original": {
+        "meaning_zh": "只能手洗的",
+        "example_en": "The label says this sweater is hand-wash only.",
+        "example_zh": "标签注明这件毛衣只能手洗。",
+        "collocations": [
+          "hand-wash only label",
+          "hand-wash only garments"
+        ],
+        "usage_note": "hand-wash only是洗护限制，不能按普通机洗程序处理。"
+      },
+      "revised": {
+        "meaning_zh": "只能手洗的",
+        "example_en": "The label says this sweater is hand-wash only.",
+        "example_zh": "标签注明这件毛衣只能手洗。",
+        "collocations": [
+          "a hand-wash-only label",
+          "the label says hand wash only"
+        ],
+        "usage_note": "hand-wash only是洗护限制，不能按普通机洗程序处理。"
+      },
+      "display": {
+        "w": "hand-wash only",
+        "m": "只能手洗的",
+        "c": "a hand-wash-only label · the label says hand wash only",
+        "e": "The label says this sweater is hand-wash only.",
+        "x": "hand-wash only是洗护限制，不能按普通机洗程序处理。",
+        "example_zh": "标签注明这件毛衣只能手洗。"
+      },
+      "sourcePackBlob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "hand-wash only洗护限制表达，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01213",
+      "scene": "SC50-0006",
+      "rank": 168,
+      "sense": "SC-SENSE-01213",
+      "expression": "spin failure",
+      "original": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer reported a spin failure at the end of the cycle.",
+        "example_zh": "洗涤结束时洗衣机提示脱水故障。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure指设备无法正常甩干，具体原因需检查。"
+      },
+      "revised": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer had a spin failure at the end of the cycle.",
+        "example_zh": "洗衣机在程序结束时出现脱水故障。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure描述脱水或甩干功能故障，不一定是洗衣机屏幕上的统一错误码；口语也可说The washer failed to spin。"
+      },
+      "display": {
+        "w": "spin failure",
+        "m": "无法脱水的故障",
+        "c": "spin failure · washer spin failure",
+        "e": "The washer had a spin failure at the end of the cycle.",
+        "x": "spin failure描述脱水或甩干功能故障，不一定是洗衣机屏幕上的统一错误码；口语也可说The washer failed to spin。",
+        "example_zh": "洗衣机在程序结束时出现脱水故障。"
+      },
+      "sourcePackBlob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "spin failure可理解为脱水故障但生活中更常说spin cycle failure或the washer failed to spin；还需决定是否保留该名词教学目标，不可无身份裁决替换。",
+      "master_gloss_or_identity_precaution": true,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01227",
+      "scene": "SC50-0006",
+      "rank": 182,
+      "sense": "SC-SENSE-01227",
+      "expression": "use a color catcher",
+      "original": {
+        "meaning_zh": "使用防串色吸色片",
+        "example_en": "I use a color catcher when washing mixed-color items as directed.",
+        "example_zh": "按产品说明混洗不同颜色衣物时，我会用吸色片。",
+        "collocations": [
+          "use a color catcher",
+          "laundry color catcher"
+        ],
+        "usage_note": "color catcher是吸附游离染料的洗衣用品，不能保证完全防止串色。"
+      },
+      "revised": {
+        "meaning_zh": "使用防串色吸色片",
+        "example_en": "I use a color catcher with mixed-color laundry, following the product instructions.",
+        "example_zh": "混洗不同颜色衣物时，我按产品说明使用防串色吸色片。",
+        "collocations": [
+          "use a color catcher",
+          "laundry color catcher"
+        ],
+        "usage_note": "color catcher是吸附游离染料的洗衣用品，不能保证完全防止串色。"
+      },
+      "display": {
+        "w": "use a color catcher",
+        "m": "使用防串色吸色片",
+        "c": "use a color catcher · laundry color catcher",
+        "e": "I use a color catcher with mixed-color laundry, following the product instructions.",
+        "x": "color catcher是吸附游离染料的洗衣用品，不能保证完全防止串色。",
+        "example_zh": "混洗不同颜色衣物时，我按产品说明使用防串色吸色片。"
+      },
+      "sourcePackBlob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_076_085_20261112.v1.json",
+      "sourceBlob": "1ed01655ce1e27dcd5579b351f22a740d63cd61c",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "color catcher可吸附游离染料，明确不能确保防串色",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01246",
+      "scene": "SC50-0007",
+      "rank": 11,
+      "sense": "SC-SENSE-01246",
+      "expression": "preheat the oven",
+      "original": {
+        "meaning_zh": "预热烤箱",
+        "example_en": "Preheat the oven to the temperature in the recipe.",
+        "example_zh": "按食谱要求的温度预热烤箱。",
+        "collocations": [
+          "preheat the oven",
+          "preheat the oven to 180 degrees"
+        ],
+        "usage_note": "preheat指放入食物前先使烤箱达到所需温度。"
+      },
+      "revised": {
+        "meaning_zh": "预热烤箱",
+        "example_en": "Preheat the oven to the temperature in the recipe.",
+        "example_zh": "按食谱要求的温度预热烤箱。",
+        "collocations": [
+          "preheat the oven to 180°C",
+          "preheat the oven to the required temperature"
+        ],
+        "usage_note": "食谱中的烤箱温度务必写明°C或°F，180 degrees单独使用可能产生摄氏/华氏歧义。"
+      },
+      "display": {
+        "w": "preheat the oven",
+        "m": "预热烤箱",
+        "c": "preheat the oven to 180°C · preheat the oven to the required temperature",
+        "e": "Preheat the oven to the temperature in the recipe.",
+        "x": "食谱中的烤箱温度务必写明°C或°F，180 degrees单独使用可能产生摄氏/华氏歧义。",
+        "example_zh": "按食谱要求的温度预热烤箱。"
+      },
+      "sourcePackBlob": "df1e062106f13a580993d4eb0918006a83474175",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_086_096_20261112.v1.json",
+      "sourceBlob": "253556d0978983d93ee4ed8620b3ae5f82eea905",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "preheat the oven温度单位说明准确，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01285",
+      "scene": "SC50-0007",
+      "rank": 50,
+      "sense": "SC-SENSE-01285",
+      "expression": "kitchen counter",
+      "original": {
+        "meaning_zh": "厨房操作台",
+        "example_en": "Wipe the kitchen counter before preparing food.",
+        "example_zh": "备餐前先擦净厨房操作台。",
+        "collocations": [
+          "wipe the kitchen counter",
+          "clean kitchen counter"
+        ],
+        "usage_note": "counter指厨房操作台面，不是柜子。"
+      },
+      "revised": {
+        "meaning_zh": "厨房操作台",
+        "example_en": "Wipe the kitchen counter before preparing food.",
+        "example_zh": "备餐前先擦净厨房操作台。",
+        "collocations": [
+          "clean the kitchen counter",
+          "wipe down the kitchen counter"
+        ],
+        "usage_note": "counter指厨房操作台面，不是柜子。"
+      },
+      "display": {
+        "w": "kitchen counter",
+        "m": "厨房操作台",
+        "c": "clean the kitchen counter · wipe down the kitchen counter",
+        "e": "Wipe the kitchen counter before preparing food.",
+        "x": "counter指厨房操作台面，不是柜子。",
+        "example_zh": "备餐前先擦净厨房操作台。"
+      },
+      "sourcePackBlob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_086_096_20261112.v1.json",
+      "sourceBlob": "253556d0978983d93ee4ed8620b3ae5f82eea905",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "kitchen counter厨房操作台面，例句准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01351",
+      "scene": "SC50-0007",
+      "rank": 116,
+      "sense": "SC-SENSE-01351",
+      "expression": "heat the pan",
+      "original": {
+        "meaning_zh": "把锅加热",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热平底锅。",
+        "collocations": [
+          "heat the pan",
+          "heat a pan over medium heat"
+        ],
+        "usage_note": "heat the pan是给锅预热。"
+      },
+      "revised": {
+        "meaning_zh": "把锅加热",
+        "example_en": "Heat the pan over medium heat.",
+        "example_zh": "用中火加热锅具。",
+        "collocations": [
+          "heat the pan",
+          "heat a pan over medium heat"
+        ],
+        "usage_note": "heat the pan是给锅预热。"
+      },
+      "display": {
+        "w": "heat the pan",
+        "m": "把锅加热",
+        "c": "heat the pan · heat a pan over medium heat",
+        "e": "Heat the pan over medium heat.",
+        "x": "heat the pan是给锅预热。",
+        "example_zh": "用中火加热锅具。"
+      },
+      "sourcePackBlob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_086_096_20261112.v1.json",
+      "sourceBlob": "253556d0978983d93ee4ed8620b3ae5f82eea905",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "heat the pan over medium heat为常见烹饪指令",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01367",
+      "scene": "SC50-0007",
+      "rank": 132,
+      "sense": "SC-SENSE-01367",
+      "expression": "adjust the seasoning",
+      "original": {
+        "meaning_zh": "调整调味",
+        "example_en": "Adjust the seasoning after tasting.",
+        "example_zh": "尝过以后再调整调味。",
+        "collocations": [
+          "adjust the seasoning",
+          "adjust seasoning to taste"
+        ],
+        "usage_note": "adjust seasoning指增减调味料。"
+      },
+      "revised": {
+        "meaning_zh": "调整调味",
+        "example_en": "Adjust the seasoning after tasting.",
+        "example_zh": "尝过后再调整咸淡和调味程度。",
+        "collocations": [
+          "adjust the seasoning",
+          "adjust seasoning to taste"
+        ],
+        "usage_note": "adjust seasoning指增减调味料。"
+      },
+      "display": {
+        "w": "adjust the seasoning",
+        "m": "调整调味",
+        "c": "adjust the seasoning · adjust seasoning to taste",
+        "e": "Adjust the seasoning after tasting.",
+        "x": "adjust seasoning指增减调味料。",
+        "example_zh": "尝过后再调整咸淡和调味程度。"
+      },
+      "sourcePackBlob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_086_096_20261112.v1.json",
+      "sourceBlob": "253556d0978983d93ee4ed8620b3ae5f82eea905",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "adjust the seasoning为尝后调整调味，常见搭配正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01438",
+      "scene": "SC50-0007",
+      "rank": 203,
+      "sense": "SC-SENSE-01438",
+      "expression": "clean up a spill",
+      "original": {
+        "meaning_zh": "清理洒出的液体",
+        "example_en": "Clean up a spill before anyone slips.",
+        "example_zh": "有人滑倒前先把洒出的液体清理干净。",
+        "collocations": [
+          "clean up a spill",
+          "clean up a water spill"
+        ],
+        "usage_note": "clean up a spill意为清理洒漏。"
+      },
+      "revised": {
+        "meaning_zh": "清理洒出的液体",
+        "example_en": "Clean up a spill before anyone slips.",
+        "example_zh": "有人滑倒前先把洒出的液体清理干净。",
+        "collocations": [
+          "clean up a spill",
+          "mop up a spill"
+        ],
+        "usage_note": "clean up a spill意为清理洒漏。"
+      },
+      "display": {
+        "w": "clean up a spill",
+        "m": "清理洒出的液体",
+        "c": "clean up a spill · mop up a spill",
+        "e": "Clean up a spill before anyone slips.",
+        "x": "clean up a spill意为清理洒漏。",
+        "example_zh": "有人滑倒前先把洒出的液体清理干净。"
+      },
+      "sourcePackBlob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_097_105_20261112.v1.json",
+      "sourceBlob": "c2be7efd2b7e653309dc48a2c1ef8131ec005df2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "clean up a spill与mop up a spill自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01445",
+      "scene": "SC50-0007",
+      "rank": 210,
+      "sense": "SC-SENSE-01445",
+      "expression": "check internal temperature",
+      "original": {
+        "meaning_zh": "检查食物内部温度",
+        "example_en": "Check internal temperature with a thermometer.",
+        "example_zh": "用温度计测量食物内部温度。",
+        "collocations": [
+          "check internal temperature",
+          "check meat's internal temperature"
+        ],
+        "usage_note": "internal temperature是食物内部温度。"
+      },
+      "revised": {
+        "meaning_zh": "检查食物内部温度",
+        "example_en": "Check internal temperature with a thermometer.",
+        "example_zh": "用温度计测量食物内部温度。",
+        "collocations": [
+          "check internal temperature",
+          "check the meat's internal temperature"
+        ],
+        "usage_note": "internal temperature是食物内部温度。"
+      },
+      "display": {
+        "w": "check internal temperature",
+        "m": "检查食物内部温度",
+        "c": "check internal temperature · check the meat's internal temperature",
+        "e": "Check internal temperature with a thermometer.",
+        "x": "internal temperature是食物内部温度。",
+        "example_zh": "用温度计测量食物内部温度。"
+      },
+      "sourcePackBlob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_097_105_20261112.v1.json",
+      "sourceBlob": "c2be7efd2b7e653309dc48a2c1ef8131ec005df2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "internal temperature是食物内部温度，测量动词搭配正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01498",
+      "scene": "SC50-0008",
+      "rank": 46,
+      "sense": "SC-SENSE-01498",
+      "expression": "cup",
+      "original": {
+        "meaning_zh": "杯子",
+        "example_en": "Could you bring me a cup of tea?",
+        "example_zh": "你能给我拿杯茶吗？",
+        "collocations": [
+          "cup of tea",
+          "coffee cup"
+        ],
+        "usage_note": "cup是杯子，也可作为一杯饮品的量词。"
+      },
+      "revised": {
+        "meaning_zh": "杯子",
+        "example_en": "Could you bring me a cup for my tea?",
+        "example_zh": "你能给我拿个杯子喝茶吗？",
+        "collocations": [
+          "cup of tea",
+          "coffee cup"
+        ],
+        "usage_note": "cup本义是杯子；a cup of tea还可借容器表示一杯茶，此KU例句聚焦实物杯子。"
+      },
+      "display": {
+        "w": "cup",
+        "m": "杯子",
+        "c": "cup of tea · coffee cup",
+        "e": "Could you bring me a cup for my tea?",
+        "x": "cup本义是杯子；a cup of tea还可借容器表示一杯茶，此KU例句聚焦实物杯子。",
+        "example_zh": "你能给我拿个杯子喝茶吗？"
+      },
+      "sourcePackBlob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_097_105_20261112.v1.json",
+      "sourceBlob": "c2be7efd2b7e653309dc48a2c1ef8131ec005df2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "cup容器名词义，杯子与a cup of tea量词转喻区分准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01526",
+      "scene": "SC50-0008",
+      "rank": 74,
+      "sense": "SC-SENSE-01526",
+      "expression": "trivet",
+      "original": {
+        "meaning_zh": "隔热垫",
+        "example_en": "Put a trivet under the hot casserole dish.",
+        "example_zh": "热砂锅下面垫个隔热垫。",
+        "collocations": [
+          "heat-resistant trivet",
+          "put a pot on a trivet"
+        ],
+        "usage_note": "trivet是放在热锅或热盘下面保护桌面的隔热垫。"
+      },
+      "revised": {
+        "meaning_zh": "隔热垫",
+        "example_en": "Put a trivet under the hot casserole dish.",
+        "example_zh": "在盛热菜的烤盘下面放一个隔热托。",
+        "collocations": [
+          "heat-resistant trivet",
+          "put a pot on a trivet"
+        ],
+        "usage_note": "trivet是放在热锅或热盘下面保护桌面的隔热垫。"
+      },
+      "display": {
+        "w": "trivet",
+        "m": "隔热垫",
+        "c": "heat-resistant trivet · put a pot on a trivet",
+        "e": "Put a trivet under the hot casserole dish.",
+        "x": "trivet是放在热锅或热盘下面保护桌面的隔热垫。",
+        "example_zh": "在盛热菜的烤盘下面放一个隔热托。"
+      },
+      "sourcePackBlob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "trivet指垫于热容器下的隔热垫，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01564",
+      "scene": "SC50-0008",
+      "rank": 112,
+      "sense": "SC-SENSE-01564",
+      "expression": "warm up food",
+      "original": {
+        "meaning_zh": "把食物热一下",
+        "example_en": "Could you warm up food for the children?",
+        "example_zh": "能给孩子们把饭菜热一下吗？",
+        "collocations": [
+          "warm up food",
+          "warm up some soup"
+        ],
+        "usage_note": "warm up指加热至较温暖状态。"
+      },
+      "revised": {
+        "meaning_zh": "把食物热一下",
+        "example_en": "Could you warm up some food for the children?",
+        "example_zh": "你能给孩子们热一点吃的吗？",
+        "collocations": [
+          "warm up food",
+          "warm up some soup"
+        ],
+        "usage_note": "warm up指加热至较温暖状态。"
+      },
+      "display": {
+        "w": "warm up food",
+        "m": "把食物热一下",
+        "c": "warm up food · warm up some soup",
+        "e": "Could you warm up some food for the children?",
+        "x": "warm up指加热至较温暖状态。",
+        "example_zh": "你能给孩子们热一点吃的吗？"
+      },
+      "sourcePackBlob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "warm up food为把食物加热，日常表达自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01613",
+      "scene": "SC50-0008",
+      "rank": 161,
+      "sense": "SC-SENSE-01613",
+      "expression": "food intolerance",
+      "original": {
+        "meaning_zh": "食物不耐受",
+        "example_en": "She has a food intolerance rather than a food allergy.",
+        "example_zh": "她是食物不耐受，而不是食物过敏。",
+        "collocations": [
+          "food intolerance",
+          "lactose intolerance"
+        ],
+        "usage_note": "food intolerance与免疫性食物过敏需区分。"
+      },
+      "revised": {
+        "meaning_zh": "食物不耐受",
+        "example_en": "She has a food intolerance rather than a food allergy.",
+        "example_zh": "她是食物不耐受，而不是食物过敏。",
+        "collocations": [
+          "have a food intolerance",
+          "common food intolerances"
+        ],
+        "usage_note": "food intolerance与免疫性食物过敏需区分。"
+      },
+      "display": {
+        "w": "food intolerance",
+        "m": "食物不耐受",
+        "c": "have a food intolerance · common food intolerances",
+        "e": "She has a food intolerance rather than a food allergy.",
+        "x": "food intolerance与免疫性食物过敏需区分。",
+        "example_zh": "她是食物不耐受，而不是食物过敏。"
+      },
+      "sourcePackBlob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "food intolerance与food allergy语义区分正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01625",
+      "scene": "SC50-0008",
+      "rank": 173,
+      "sense": "SC-SENSE-01625",
+      "expression": "heat through",
+      "original": {
+        "meaning_zh": "充分热透",
+        "example_en": "Heat through the leftovers before serving them.",
+        "example_zh": "剩菜上桌前要充分热透。",
+        "collocations": [
+          "heat through",
+          "heat food through"
+        ],
+        "usage_note": "heat through强调食物内部也热透。"
+      },
+      "revised": {
+        "meaning_zh": "充分热透",
+        "example_en": "Heat the leftovers through before serving them.",
+        "example_zh": "上桌前把剩菜彻底热透。",
+        "collocations": [
+          "heat through",
+          "heat food through"
+        ],
+        "usage_note": "heat through表示从里到外充分加热，常说heat the food through；食品安全仍应按实际指导执行。"
+      },
+      "display": {
+        "w": "heat through",
+        "m": "充分热透",
+        "c": "heat through · heat food through",
+        "e": "Heat the leftovers through before serving them.",
+        "x": "heat through表示从里到外充分加热，常说heat the food through；食品安全仍应按实际指导执行。",
+        "example_zh": "上桌前把剩菜彻底热透。"
+      },
+      "sourcePackBlob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "heat through指充分热透，动词结构及例句正确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01626",
+      "scene": "SC50-0008",
+      "rank": 174,
+      "sense": "SC-SENSE-01626",
+      "expression": "check if it's cooked",
+      "original": {
+        "meaning_zh": "确认食物熟了",
+        "example_en": "Check if it's cooked using a food thermometer.",
+        "example_zh": "用食品温度计确认食物是否熟透。",
+        "collocations": [
+          "check if it's cooked",
+          "check if meat is cooked"
+        ],
+        "usage_note": "肉类是否安全熟透不能只凭颜色判断。"
+      },
+      "revised": {
+        "meaning_zh": "确认食物熟了",
+        "example_en": "I checked if the chicken was cooked by measuring its internal temperature.",
+        "example_zh": "我测量鸡肉的内部温度，确认它是否熟了。",
+        "collocations": [
+          "check if it's cooked",
+          "check if meat is cooked"
+        ],
+        "usage_note": "check if it's cooked是确认食物是否煮熟；温度计用于检查内部温度，不等于仅凭外表判断。"
+      },
+      "display": {
+        "w": "check if it's cooked",
+        "m": "确认食物熟了",
+        "c": "check if it's cooked · check if meat is cooked",
+        "e": "I checked if the chicken was cooked by measuring its internal temperature.",
+        "x": "check if it's cooked是确认食物是否煮熟；温度计用于检查内部温度，不等于仅凭外表判断。",
+        "example_zh": "我测量鸡肉的内部温度，确认它是否熟了。"
+      },
+      "sourcePackBlob": "9a534a7da81db6b41a765f18cf8d0faf80c0eeec",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "check if it's cooked通过测温确认熟度，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01645",
+      "scene": "SC50-0009",
+      "rank": 5,
+      "sense": "SC-SENSE-01645",
+      "expression": "scrub brush",
+      "original": {
+        "meaning_zh": "刷洗刷",
+        "example_en": "Use a scrub brush for the stubborn dirt on the pan.",
+        "example_zh": "锅上有顽固污垢时用刷洗刷。",
+        "collocations": [
+          "scrub brush",
+          "stiff scrub brush"
+        ],
+        "usage_note": "scrub brush指刷洗用的刷子，应根据锅具表面选用。"
+      },
+      "revised": {
+        "meaning_zh": "刷洗刷",
+        "example_en": "I used a scrub brush to remove stuck-on food from the pan.",
+        "example_zh": "我用硬毛刷清理锅上粘牢的食物残渣。",
+        "collocations": [
+          "scrub brush",
+          "stiff scrub brush"
+        ],
+        "usage_note": "scrub brush指刷洗用的刷子，应根据锅具表面选用。"
+      },
+      "display": {
+        "w": "scrub brush",
+        "m": "刷洗刷",
+        "c": "scrub brush · stiff scrub brush",
+        "e": "I used a scrub brush to remove stuck-on food from the pan.",
+        "x": "scrub brush指刷洗用的刷子，应根据锅具表面选用。",
+        "example_zh": "我用硬毛刷清理锅上粘牢的食物残渣。"
+      },
+      "sourcePackBlob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "scrub brush刷洗用刷子，锅具场景准确",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01671",
+      "scene": "SC50-0009",
+      "rank": 31,
+      "sense": "SC-SENSE-01671",
+      "expression": "dish detergent",
+      "original": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether the dish detergent is suitable for the dishwasher.",
+        "example_zh": "确认这种洗碗清洁剂是否适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂，机洗必须使用适配产品。"
+      },
+      "revised": {
+        "meaning_zh": "洗碗清洁剂",
+        "example_en": "Check whether this detergent is labeled for use in a dishwasher.",
+        "example_zh": "检查这款洗涤剂是否标明适用于洗碗机。",
+        "collocations": [
+          "dish detergent",
+          "dishwasher detergent"
+        ],
+        "usage_note": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。"
+      },
+      "display": {
+        "w": "dish detergent",
+        "m": "洗碗清洁剂",
+        "c": "dish detergent · dishwasher detergent",
+        "e": "Check whether this detergent is labeled for use in a dishwasher.",
+        "x": "dish detergent可泛指洗碗清洁剂；用于洗碗机应明确使用dishwasher detergent，不能随意以手洗洗洁精替代。",
+        "example_zh": "检查这款洗涤剂是否标明适用于洗碗机。"
+      },
+      "sourcePackBlob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "sourceBlob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "dish detergent与dishwasher detergent需要区别，说明明确且安全",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01857",
+      "scene": "SC50-0010",
+      "rank": 18,
+      "sense": "SC-SENSE-01857",
+      "expression": "relaxation",
+      "original": {
+        "meaning_zh": "放松状态",
+        "example_en": "I find relaxation in a quiet evening at home.",
+        "example_zh": "安静地在家过一晚能让我放松。",
+        "collocations": [
+          "deep relaxation",
+          "relaxation at home"
+        ],
+        "usage_note": "relaxation是名词，表示放松状态或过程。"
+      },
+      "revised": {
+        "meaning_zh": "放松状态",
+        "example_en": "I enjoy some quiet relaxation at home in the evening.",
+        "example_zh": "晚上我喜欢在家安静地放松一下。",
+        "collocations": [
+          "deep relaxation",
+          "relaxation at home"
+        ],
+        "usage_note": "relaxation是名词，表示放松状态或过程。"
+      },
+      "display": {
+        "w": "relaxation",
+        "m": "放松状态",
+        "c": "deep relaxation · relaxation at home",
+        "e": "I enjoy some quiet relaxation at home in the evening.",
+        "x": "relaxation是名词，表示放松状态或过程。",
+        "example_zh": "晚上我喜欢在家安静地放松一下。"
+      },
+      "sourcePackBlob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "sourceBlob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "relaxation表示放松活动或状态，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01872",
+      "scene": "SC50-0010",
+      "rank": 33,
+      "sense": "SC-SENSE-01872",
+      "expression": "recover",
+      "original": {
+        "meaning_zh": "恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from a trip",
+          "recover your energy"
+        ],
+        "usage_note": "recover from后接导致疲劳或需要恢复的事情。"
+      },
+      "revised": {
+        "meaning_zh": "恢复体力",
+        "example_en": "It took me a day to recover from the long trip.",
+        "example_zh": "长途旅行后我花了一天恢复体力。",
+        "collocations": [
+          "recover from exhaustion",
+          "fully recover"
+        ],
+        "usage_note": "recover from表示从疲劳、疾病等状态恢复；精力恢复常说regain your energy，不宜用recover your energy。"
+      },
+      "display": {
+        "w": "recover",
+        "m": "恢复体力",
+        "c": "recover from exhaustion · fully recover",
+        "e": "It took me a day to recover from the long trip.",
+        "x": "recover from表示从疲劳、疾病等状态恢复；精力恢复常说regain your energy，不宜用recover your energy。",
+        "example_zh": "长途旅行后我花了一天恢复体力。"
+      },
+      "sourcePackBlob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "sourceBlob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "recover含疾病、疲劳、事故等恢复，'恢复体力'为旅行例句特化义而非通用gloss；建议'恢复；康复；恢复体力（视语境）'，Master确认gloss。",
+      "master_gloss_or_identity_precaution": true,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01874",
+      "scene": "SC50-0010",
+      "rank": 35,
+      "sense": "SC-SENSE-01874",
+      "expression": "sleep off",
+      "original": {
+        "meaning_zh": "通过睡眠消除或缓解（疲劳、酒意等）",
+        "example_en": "I'll sleep off my tiredness and deal with it tomorrow.",
+        "example_zh": "我先睡一觉消除疲劳，明天再处理。",
+        "collocations": [
+          "sleep off tiredness",
+          "sleep off a headache"
+        ],
+        "usage_note": "sleep off指通过睡眠缓解不适，不能用于保证治愈。"
+      },
+      "revised": {
+        "meaning_zh": "通过睡眠消除或缓解（疲劳、酒意等）",
+        "example_en": "I hope I can sleep off this headache tonight.",
+        "example_zh": "希望今晚睡一觉，头疼就能缓解。",
+        "collocations": [
+          "sleep off a headache",
+          "sleep off a hangover"
+        ],
+        "usage_note": "sleep off表示通过睡眠摆脱头痛、宿醉等不适；sleep off tiredness不如get some sleep自然。"
+      },
+      "display": {
+        "w": "sleep off",
+        "m": "通过睡眠消除或缓解（疲劳、酒意等）",
+        "c": "sleep off a headache · sleep off a hangover",
+        "e": "I hope I can sleep off this headache tonight.",
+        "x": "sleep off表示通过睡眠摆脱头痛、宿醉等不适；sleep off tiredness不如get some sleep自然。",
+        "example_zh": "希望今晚睡一觉，头疼就能缓解。"
+      },
+      "sourcePackBlob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "sourceBlob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "sleep off a headache or hangover为通过睡眠缓解不适，搭配自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01891",
+      "scene": "SC50-0010",
+      "rank": 52,
+      "sense": "SC-SENSE-01891",
+      "expression": "pillow",
+      "original": {
+        "meaning_zh": "枕头",
+        "example_en": "This pillow is too firm for my neck.",
+        "example_zh": "这只枕头对我的脖子来说太硬了。",
+        "collocations": [
+          "soft pillow",
+          "sleeping pillow"
+        ],
+        "usage_note": "pillow是睡觉时枕头部的枕头。"
+      },
+      "revised": {
+        "meaning_zh": "枕头",
+        "example_en": "This pillow is too firm for my neck.",
+        "example_zh": "这只枕头对我的脖子来说太硬了。",
+        "collocations": [
+          "soft pillow",
+          "comfortable pillow"
+        ],
+        "usage_note": "pillow是睡觉时枕头部的枕头。"
+      },
+      "display": {
+        "w": "pillow",
+        "m": "枕头",
+        "c": "soft pillow · comfortable pillow",
+        "e": "This pillow is too firm for my neck.",
+        "x": "pillow是睡觉时枕头部的枕头。",
+        "example_zh": "这只枕头对我的脖子来说太硬了。"
+      },
+      "sourcePackBlob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "sourceBlob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "pillow床上枕头，例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01905",
+      "scene": "SC50-0010",
+      "rank": 66,
+      "sense": "SC-SENSE-01905",
+      "expression": "speaker",
+      "original": {
+        "meaning_zh": "音箱",
+        "example_en": "Could you turn down the speaker a little?",
+        "example_zh": "你能把音箱声音调小一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker在此是扬声器或音箱，不是演讲者。"
+      },
+      "revised": {
+        "meaning_zh": "音箱",
+        "example_en": "Could you turn down the volume on the speaker a little?",
+        "example_zh": "你能把扬声器音量调低一点吗？",
+        "collocations": [
+          "Bluetooth speaker",
+          "portable speaker"
+        ],
+        "usage_note": "speaker在此是扬声器或音箱，不是演讲者。"
+      },
+      "display": {
+        "w": "speaker",
+        "m": "音箱",
+        "c": "Bluetooth speaker · portable speaker",
+        "e": "Could you turn down the volume on the speaker a little?",
+        "x": "speaker在此是扬声器或音箱，不是演讲者。",
+        "example_zh": "你能把扬声器音量调低一点吗？"
+      },
+      "sourcePackBlob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "sourceBlob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "cg_qa_result": "CONDITIONAL",
+      "cg_qa_reason": "speaker作音箱义例句自然但中国教学释义'音箱'与'扬声器'范围略有差别；建议'扬声器；音箱（设备）'，须核Sense源gloss。",
+      "master_gloss_or_identity_precaution": true,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "SC1341-KU-01940",
+      "scene": "SC50-0010",
+      "rank": 101,
+      "sense": "SC-SENSE-01940",
+      "expression": "light a candle",
+      "original": {
+        "meaning_zh": "点蜡烛",
+        "example_en": "I'd like to light a candle for a cozy evening.",
+        "example_zh": "我想点一支蜡烛，让晚上更温馨。",
+        "collocations": [
+          "light a candle",
+          "scented candle"
+        ],
+        "usage_note": "light作动词指点燃，蜡烛须远离可燃物。"
+      },
+      "revised": {
+        "meaning_zh": "点蜡烛",
+        "example_en": "I'd like to light a candle for a cozy evening.",
+        "example_zh": "我想点一支蜡烛，让晚上更温馨。",
+        "collocations": [
+          "light a candle",
+          "light a scented candle"
+        ],
+        "usage_note": "light作动词指点燃，蜡烛须远离可燃物。"
+      },
+      "display": {
+        "w": "light a candle",
+        "m": "点蜡烛",
+        "c": "light a candle · light a scented candle",
+        "e": "I'd like to light a candle for a cozy evening.",
+        "x": "light作动词指点燃，蜡烛须远离可燃物。",
+        "example_zh": "我想点一支蜡烛，让晚上更温馨。"
+      },
+      "sourcePackBlob": "6ce1b5229f1581c04af717461ed45825e120de0d",
+      "sourcePath": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "sourceBlob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "cg_qa_result": "PASS",
+      "cg_qa_reason": "light a candle是点燃蜡烛，搭配及例句自然",
+      "master_gloss_or_identity_precaution": false,
+      "master_source_authorized": false,
+      "muse_qa": "DEFERRED_QUOTA_20261113",
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
