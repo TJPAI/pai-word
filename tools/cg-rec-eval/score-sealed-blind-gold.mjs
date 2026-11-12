@@ -11,7 +11,7 @@ if(g.status!=='LOCKED_ADJUDICATED_GOLD'||g.officialGold!==true||g.cases?.length!
 if(p.status!=='PREDICTIONS_SEPARATED_FROM_UNADJUDICATED_QUERY_SET'||p.rows?.length!==24||
  p.queryCount!==24||p.labeledCount!==0)throw Error('PREDICTION_CONTRACT_INVALID');
 const expectedGroup={zh:8,en:8,mixed:8};
-const sceneIdValid=id=>typeof id==='string'&&/^SC50-\\d{4}$/.test(id)&&Number(id.slice(5))>=1&&Number(id.slice(5))<=1341;
+const sceneIdValid=id=>typeof id==='string'&&/^SC50-\d{4}$/.test(id)&&Number(id.slice(5))>=1&&Number(id.slice(5))<=1341;
 function validateReview(review,id,role){
  if(!review||review.status!=='LOCKED'||typeof review.assessor_id!=='string'||!review.assessor_id.trim()||
    !Array.isArray(review.scene_relevance)||typeof review.none_relevant!=='boolean'||
