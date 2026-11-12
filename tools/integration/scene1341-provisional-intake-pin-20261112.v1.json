@@ -49,9 +49,12 @@
   ],
   "required_record_flags": {
     "cg_qa": "PASS",
-    "muse_qa": "DEFERRED_QUOTA_20261113",
+    "muse_qa": [
+      "PASS",
+      "DEFERRED_QUOTA_20261113"
+    ],
     "release_status": "PROVISIONAL_PENDING_MUSE",
-    "muse_recheck_required": true,
+    "muse_recheck_required": "true if deferred; false if existing historic PASS",
     "source_master_authorization_verified": false,
     "production_release_allowed": false
   },
@@ -59,5 +62,6 @@
   "author_source_validation": "REQUIRES_PACK_BLOB_AND_KU_SENSE_SCENE_RANK_MATCH",
   "display_validation": "REQUIRES_EXPLICIT_LEARNER_VISIBLE_QA",
   "status": "QUARANTINED",
-  "release_approved": 0
+  "release_approved": 0,
+  "existing_muse_pass_not_a_formal_release": true
 }
