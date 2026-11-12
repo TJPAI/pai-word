@@ -28,6 +28,20 @@ for(const q of cacheParityQueries){
  assert.deepEqual(index.search(q),browserCore.search(q), 'normalized cache parity: '+q);
 }
 assert.deepEqual(negatedSpans('notebook and notes'),[],'not in notebook is not negation');
+// The editorial catalog is a canonical contiguous 1..1341 identity set, not merely 1341 well-formed rows.
+{
+ const catalogRows=csv(fs.readFileSync(catalog,'utf8'));
+ const originalIds=new Set(catalogRows.map(r=>r.id));
+ assert.equal(originalIds.size,1341);
+ for(let id=1;id<=1341;id++)assert.ok(originalIds.has('SC50-'+String(id).padStart(4,'0')));
+ const mutated=catalogRows.map(r=>({...r}));
+ mutated[mutated.length-1].id='SC50-9999';
+ const columns=Object.keys(mutated[0]);
+ const quote=value=>'"'+String(value??'').replace(/"/g,'""')+'"';
+ const tampered=[columns.join(','),...mutated.map(row=>columns.map(k=>quote(row[k])).join(','))].join(String.fromCharCode(10))+String.fromCharCode(10);
+ const ranked=Array.from({length:11},(_,i)=>fs.readFileSync(path.join(dir,'v'+(51+i)+'-ranked.csv'),'utf8'));
+ assert.throws(()=>buildCatalog(tampered,ranked,{sourceCommit:commit,manifestSha:blob}),/INVALID_SCENE_ID|MISSING_CANONICAL_SCENE/);
+}
 // Reject numeric-equivalent duplicate ranks (e.g., 1 vs 01) even when source strings differ.
 // Work on a copied authentic shard; frozen source CSVs remain unchanged.
 {
