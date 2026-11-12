@@ -9,6 +9,7 @@ on:
       - 'scene500-recommendation/qa/test-scene1341-isolated-search.mjs'
       - 'scene500-recommendation/qa/benchmark-scene1341-cache.mjs'
       - 'scene500-recommendation/qa/measure-scene1341-memory.mjs'
+      - 'scene500-recommendation/qa/validate-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
     branches: [scene500-recommendation-dev]
@@ -47,6 +48,7 @@ jobs:
           node --check rec/scene500-recommendation/qa/test-scene1341-isolated-search.mjs
           node --check rec/scene500-recommendation/qa/benchmark-scene1341-cache.mjs
           node --check rec/scene500-recommendation/qa/measure-scene1341-memory.mjs
+          node --check rec/scene500-recommendation/qa/validate-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
       - name: Verify pinned editorial input identities
@@ -88,7 +90,16 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-memory-candidate.json
           node -e "const fs=require('fs');const a=JSON.parse(fs.readFileSync('scene1341-memory-baseline.json'));const b=JSON.parse(fs.readFileSync('scene1341-memory-candidate.json'));if(a.variant!=='baseline'||b.variant!=='candidate'||a.trials.length!==5||b.trials.length!==5||a.processIsolation!=='FRESH_NODE_PROCESS_PER_TRIAL'||b.processIsolation!=='FRESH_NODE_PROCESS_PER_TRIAL'||a.sourceBytes!==b.sourceBytes||a.sourceBytes<1000000||a.release_allowed||b.release_allowed||![...a.trials,...b.trials].every(x=>Number.isFinite(x.buildMs)&&Number.isFinite(x.retainedHeapDeltaBytes)))process.exit(1);"
+      - name: Enforce pinned query latency and Node heap/build budgets
+        run: |
+          node rec/scene500-recommendation/qa/validate-scene1341-budget.mjs \
+            scene1341-normalization-cache-ab.json \
+            scene1341-memory-baseline.json \
+            scene1341-memory-candidate.json
+            scene1341-engineering-budget-gate.json \
+            > scene1341-engineering-budget-gate.json
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: cg-rec-scene1341-isolated-mixed-smoke
           path: |
