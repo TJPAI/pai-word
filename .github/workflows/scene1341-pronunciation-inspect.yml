@@ -1,5 +1,9 @@
 name: Scene1341 pronunciation source inspection
 on:
+  pull_request:
+    paths:
+      - 'tools/integration/inspect-core20k-pronunciation.mjs'
+      - '.github/workflows/scene1341-pronunciation-inspect.yml'
   push:
     branches: [cg-main-sc1341-ipa-20261113]
   workflow_dispatch:
