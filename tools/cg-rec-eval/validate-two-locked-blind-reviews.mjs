@@ -20,8 +20,16 @@ const validPacket=(packet,role)=>{
  packet.adjudicationIncluded!==false||
  packet.formalGoldCount!==0||packet.releaseAllowed!==false)
  throw Error('INDEPENDENT_PACKET_CONTRACT_INVALID '+role);
- if(Object.keys(packet).some(k=>/prediction|ranking|modelOutput/i.test(k)&&k!=='modelPredictionsIncluded'))
- throw Error('FORBIDDEN_PREDICTION_KEY '+role);
+ // Closed schema: unknown keys can conceal engine recommendations under innocuous names.
+ const packetKeys=new Set(['schema','status','role','sourceStatus','sourceQueryCount',
+  'instructions','scoreScale','cases','modelPredictionsIncluded',
+  'otherReviewerLabelsIncluded','adjudicationIncluded','formalGoldCount','releaseAllowed']);
+ if(Object.keys(packet).some(k=>!packetKeys.has(k)))
+  throw Error('UNKNOWN_REVIEWER_PACKET_FIELD '+role);
+ if(packet.status!=='UNLABELED_REVIEWER_PACKET_NOT_GOLD'||
+  packet.sourceStatus!=='QUERY_ONLY_UNADJUDICATED_NO_GOLD'||
+  packet.sourceQueryCount!==24)
+  throw Error('REVIEWER_PACKET_SOURCE_STATUS_INVALID '+role);
  const ids=new Set(),reviewerIds=new Set();
  for(let i=0;i<24;i++){
   const c=packet.cases[i],src=q.queries[i];
@@ -33,8 +41,10 @@ const validPacket=(packet,role)=>{
    !Array.isArray(c.source_catalog_evidence))
    throw Error('INCOMPLETE_LOCKED_CASE '+role+' '+src.id);
   ids.add(c.query_id);reviewerIds.add(c.assessor_id);
-  if(Object.keys(c).some(k=>/prediction|rank|modelOutput|otherReviewer|adjudication|integration|upstream|top10|scores|target/i.test(k)))
-   throw Error('PREDICTION_LEAK_IN_CASE '+role+' '+src.id);
+  const caseKeys=new Set(['query_id','group','query','status','assessor_id',
+   'scene_relevance','none_relevant','rationale','source_catalog_evidence']);
+  if(Object.keys(c).some(k=>!caseKeys.has(k)))
+   throw Error('UNKNOWN_REVIEWER_CASE_FIELD '+role+' '+src.id);
   const seen=new Set();
   for(const item of c.scene_relevance){
    if(!item||!sceneId(item.scene_id)||!Number.isInteger(item.grade)||
