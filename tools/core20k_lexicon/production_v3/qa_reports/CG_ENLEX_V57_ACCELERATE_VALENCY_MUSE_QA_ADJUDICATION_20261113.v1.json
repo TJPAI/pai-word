@@ -1,0 +1,57 @@
+{
+  "schema": "cg-enlex-muse-v57-accelerate-valency-source-editorial-v1",
+  "date": "2026-11-13",
+  "audit_row_no": 104671,
+  "expression": "accelerate",
+  "scene_name": "宇宙膨胀与大爆炸",
+  "original_master_zh": "加速",
+  "mu_source": {
+    "file": "tools/core20k_lexicon/staging/MU_ENLEX_V57_NINE_HOLDS.v1.json",
+    "git_blob": "c45fca4e1c1990af7d97b41f77b35c814ac7e6ae",
+    "verdict": "DISAGREE",
+    "source_gloss": "To cause to move faster; to quicken the motion of; to add to the speed of.",
+    "pos": "verb"
+  },
+  "cg_qa_latest": {
+    "issue_1_comment": 6848254018,
+    "decision": "HOLD_VALENCY_SOURCE_MISMATCH",
+    "reason": "Preserved transitive causative source gloss cannot by itself certify intransitive cosmological expansion."
+  },
+  "cg_enlex_editorial": {
+    "semantic_family": "increase speed or rate",
+    "lexical_valency_distinction": "transitive causative: X accelerates Y / intransitive inchoative: Y accelerates",
+    "contrast": [
+      {
+        "construction": "The expansion of the universe is accelerating.",
+        "valency": "intransitive",
+        "target_meaning_zh": "宇宙膨胀正在加速",
+        "status": "illustrative_analyst_example_NOT_ORIGINAL_MASTER"
+      },
+      {
+        "construction": "The force accelerates the particle.",
+        "valency": "transitive",
+        "target_meaning_zh": "该力使粒子加速",
+        "status": "illustrative_analyst_example_NOT_ORIGINAL_MASTER"
+      }
+    ],
+    "source_candidate_from_cg_master_v56": "Kaikki intransitive sense5 candidate reported in Issue #1 6844613405, but exact original source gloss and original source row not verified in this file",
+    "decision": "HOLD_PENDING_EXACT_INTRANSITIVE_SOURCE_AND_MASTER_SENTENCE",
+    "release_allowed": false
+  },
+  "required_evidence": [
+    "Authoritative Master stable record_id and original full scene sentence for audit_row_no 104671",
+    "Original Kaikki entry.word, POS, source line/index and full intransitive sense5 gloss, plus source batch/file SHA",
+    "Independent CG-QA and MU-ENLEX agreement on valency of original scene usage"
+  ],
+  "not_claimed": [
+    "new Kaikki source sense verified",
+    "original scene sentence retrieved",
+    "formal Sense–Scene certification"
+  ],
+  "approvals": {
+    "cg_qa_pass": false,
+    "muse_pass": false,
+    "master_pass": false,
+    "release_allowed": false
+  }
+}
