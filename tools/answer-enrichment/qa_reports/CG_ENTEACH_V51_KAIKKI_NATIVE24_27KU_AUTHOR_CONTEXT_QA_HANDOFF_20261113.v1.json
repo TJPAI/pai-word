@@ -1,0 +1,1113 @@
+{
+  "schema": "cg-enteach-native24-27ku-qa-ready-source-identity-review-v1",
+  "date": "2026-11-13",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source_qa_manifest": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_1778_MANIFEST_20261112.v2.json",
+    "blob": "f8967fb97573bbccd89b4c645303dd2c983bb1da",
+    "shards": [
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD01_20261112.v1.json",
+        "blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD02_20261112.v2.json",
+        "blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD03_20261112.v1.json",
+        "blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD04_20261112.v1.json",
+        "blob": "4cf5b756983091d207fb65492aae2e4f316b65af"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD05_20261112.v1.json",
+        "blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD06_20261112.v1.json",
+        "blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca"
+      },
+      {
+        "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_STAGING_ANSWER_PROVISIONAL_SHARD07_20261112.v1.json",
+        "blob": "873f5639e619426d743cdeacf289bb50128e3272"
+      }
+    ]
+  },
+  "source_enlex_editorial_gate": {
+    "path": "tools/core20k_lexicon/production_v3/qa_reports/CG_ENLEX_KAIKKI_NATIVE24_PHONETIC_EDITORIAL_GATES_20261113.v2.json",
+    "blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+    "ci_run": 43355324052,
+    "artifact_id": 14005418416,
+    "kaikki_gzip_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99"
+  },
+  "counts": {
+    "native_phrase_expressions": 24,
+    "source_joined_ku": 27,
+    "unique_stable_ku": 27,
+    "unmatched_enlex_expression": 0,
+    "ku_sound_records_attached": 0,
+    "qa_ipa_pass": 0,
+    "master_approved": 0,
+    "muse_approved": 0,
+    "release_allowed": 0
+  },
+  "notes": "Stable KU identities+teaching contexts are real from seven QA V2 shards. ENLEX source has verified 27 KU native phrase candidate classification. Current GitHub ENLEX gate summarizes editorial rules but does not embed verbatim per-sound source readings, so no IPA values, source lines or locale labels are invented here. Await explicit original artifact sound-level join and independent QA.",
+  "records": [
+    {
+      "expression": "wake up",
+      "source_editorial_route": "NOTATION_MIXED",
+      "source_editorial_risk": "Keep /…/ phonemic separate from […] phonetic detail",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Retain each verbatim /…/ and […] reading in separate fields",
+        "Never count surface transcription as an independent lexical variant"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00001",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00001",
+          "source_rank": 1,
+          "expression": "wake up",
+          "source_meaning_zh": "醒来",
+          "answer_meaning_zh": "醒来",
+          "example_en": "I woke up before my alarm rang.",
+          "example_zh": "闹钟还没响，我就醒了。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "sleep in",
+      "source_editorial_route": "REGIONAL_VARIANTS",
+      "source_editorial_risk": "Keep US/UK/other variants distinct",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00004",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00004",
+          "source_rank": 4,
+          "expression": "sleep in",
+          "source_meaning_zh": "睡懒觉",
+          "answer_meaning_zh": "睡懒觉",
+          "example_en": "I like to sleep in on Saturday mornings.",
+          "example_zh": "星期六早上我喜欢睡懒觉。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "night owl",
+      "source_editorial_route": "REGIONAL_VARIANTS",
+      "source_editorial_risk": "Check UK/US stress notation",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00051",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00051",
+          "source_rank": 51,
+          "expression": "night owl",
+          "source_meaning_zh": "夜猫子",
+          "answer_meaning_zh": "夜猫子",
+          "example_en": "My brother is a night owl and rarely goes to bed before midnight.",
+          "example_zh": "我弟弟是个夜猫子，几乎从不在午夜前睡觉。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "day off",
+      "source_editorial_route": "MULTIPLE_UNTAGGED",
+      "source_editorial_risk": "Two untagged stress forms",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Do not assign US or UK label absent explicit supporting evidence",
+        "Resolve distinct stress or reduced-form context before card choice"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00079",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00079",
+          "source_rank": 79,
+          "expression": "day off",
+          "source_meaning_zh": "休息日",
+          "answer_meaning_zh": "休息日",
+          "example_en": "Tomorrow is my day off, so I can sleep in.",
+          "example_zh": "明天我休息，可以睡个懒觉。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "roll over",
+      "source_editorial_route": "NO_REGION",
+      "source_editorial_risk": "No explicit US/UK tags",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00098",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00098",
+          "source_rank": 98,
+          "expression": "roll over",
+          "source_meaning_zh": "翻身",
+          "answer_meaning_zh": "翻身",
+          "example_en": "I rolled over and checked the time on my phone.",
+          "example_zh": "我翻了个身，看了看手机上的时间。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "hand towel",
+      "source_editorial_route": "OPTIONAL_SEGMENTS",
+      "source_editorial_risk": "IPA optional segment notation",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Retain exact optional-segment source notation as candidate",
+        "Determine whether editorial simplified display changes meaning or source fidelity"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00279",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00279",
+          "source_rank": 45,
+          "expression": "hand towel",
+          "source_meaning_zh": "擦手巾",
+          "answer_meaning_zh": "擦手巾",
+          "example_en": "There's a hand towel beside the sink.",
+          "example_zh": "洗手池旁边有条擦手巾。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "bath towel",
+      "source_editorial_route": "MANY_REGIONAL_FORMS",
+      "source_editorial_risk": "Many source regional variants",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Keep full region-tagged source candidates",
+        "Select display candidate only against product locale and human QA"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00280",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00280",
+          "source_rank": 46,
+          "expression": "bath towel",
+          "source_meaning_zh": "浴巾",
+          "answer_meaning_zh": "浴巾",
+          "example_en": "I hung the bath towel up to dry.",
+          "example_zh": "我把浴巾挂起来晾干。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "nail file",
+      "source_editorial_route": "MANY_REGIONAL_FORMS",
+      "source_editorial_risk": "Multiple tagged regional variants",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Keep full region-tagged source candidates",
+        "Select display candidate only against product locale and human QA"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00314",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00314",
+          "source_rank": 80,
+          "expression": "nail file",
+          "source_meaning_zh": "指甲锉",
+          "answer_meaning_zh": "指甲锉",
+          "example_en": "I use a nail file to smooth the edges of my nails.",
+          "example_zh": "我用指甲锉把指甲边缘磨平。",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "source_author_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "put on",
+      "source_editorial_route": "SCENE_SENSE_SCOPE",
+      "source_editorial_risk": "Polysemous phrasal verb; check KU sense context",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Bind entry POS and intended phrasal-verb sense to stable KU",
+        "Do not infer pronunciation certification from a generic headword match"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00412",
+          "scene_id": "SC50-0003",
+          "source_sense_id": "SC-SENSE-00412",
+          "source_rank": 4,
+          "expression": "put on",
+          "source_meaning_zh": "穿上或戴上",
+          "answer_meaning_zh": "穿上或戴上",
+          "example_en": "Put on your jacket before going out.",
+          "example_zh": "出门前把夹克穿上。",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "source_author_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "inside out",
+      "source_editorial_route": "MULTIPLE_POS",
+      "source_editorial_risk": "Same IPA under adj and adv entries",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Record adjective/adverb entry provenance separately",
+        "Identical IPA string does not prove correct scene sense or POS"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00532",
+          "scene_id": "SC50-0003",
+          "source_sense_id": "SC-SENSE-00532",
+          "source_rank": 124,
+          "expression": "inside out",
+          "source_meaning_zh": "里朝外的",
+          "answer_meaning_zh": "里朝外的",
+          "example_en": "Your T-shirt is inside out.",
+          "example_zh": "你的T恤穿反了，里朝外。",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "source_author_pack_blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "get rid of",
+      "source_editorial_route": "NO_REGION",
+      "source_editorial_risk": "Region not specified",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00640",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00640",
+          "source_rank": 28,
+          "expression": "get rid of",
+          "source_meaning_zh": "处理掉不需要的东西",
+          "answer_meaning_zh": "处理掉不需要的东西",
+          "example_en": "I want to get rid of things I no longer use.",
+          "example_zh": "我想处理掉不再使用的东西。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "living room",
+      "source_editorial_route": "SINGLE_BOTH_REGIONS",
+      "source_editorial_risk": "One IPA tagged US+UK",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve the explicit shared US+UK evidence tag",
+        "Avoid manufacturing accent contrast where source has only one form"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00667",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00667",
+          "source_rank": 55,
+          "expression": "living room",
+          "source_meaning_zh": "起居室",
+          "answer_meaning_zh": "起居室",
+          "example_en": "We moved the sofa to clean the living room.",
+          "example_zh": "我们挪开沙发打扫客厅。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01918",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01918",
+          "source_rank": 79,
+          "expression": "living room",
+          "source_meaning_zh": "客厅",
+          "answer_meaning_zh": "客厅",
+          "example_en": "The living room is where we unwind in the evenings.",
+          "example_zh": "客厅是我们晚上放松的地方。",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "source_author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "window sill",
+      "source_editorial_route": "REGIONAL_VARIANTS",
+      "source_editorial_risk": "UK multiple and US reading",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00695",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00695",
+          "source_rank": 83,
+          "expression": "window sill",
+          "source_meaning_zh": "窗台",
+          "answer_meaning_zh": "窗台",
+          "example_en": "Dust has collected on the window sill.",
+          "example_zh": "窗台上积了一层灰。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "dust bunny",
+      "source_editorial_route": "SINGLE_BOTH_REGIONS",
+      "source_editorial_risk": "One IPA tagged US+UK",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve the explicit shared US+UK evidence tag",
+        "Avoid manufacturing accent contrast where source has only one form"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00743",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00743",
+          "source_rank": 131,
+          "expression": "dust bunny",
+          "source_meaning_zh": "积在角落的灰尘毛絮团",
+          "answer_meaning_zh": "积在角落的灰尘毛絮团",
+          "example_en": "I found a dust bunny under the bed.",
+          "example_zh": "我在床底发现了一团毛絮灰尘。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "all-purpose cleaner",
+      "source_editorial_route": "US_ONLY",
+      "source_editorial_risk": "No native UK evidence",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00899",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00899",
+          "source_rank": 77,
+          "expression": "all-purpose cleaner",
+          "source_meaning_zh": "多用途清洁剂",
+          "answer_meaning_zh": "多用途清洁剂",
+          "example_en": "I use an all-purpose cleaner on suitable kitchen surfaces.",
+          "example_zh": "我在适用的厨房表面使用多用途清洁剂。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "fabric softener",
+      "source_editorial_route": "REGIONAL_VARIANTS",
+      "source_editorial_risk": "Cot-caught-merger and US/UK readings",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00903",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00903",
+          "source_rank": 81,
+          "expression": "fabric softener",
+          "source_meaning_zh": "衣物柔顺剂",
+          "answer_meaning_zh": "衣物柔顺剂",
+          "example_en": "I skipped fabric softener for these towels.",
+          "example_zh": "洗这些毛巾时我没用衣物柔顺剂。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01055",
+          "scene_id": "SC50-0006",
+          "source_sense_id": "SC-SENSE-01055",
+          "source_rank": 10,
+          "expression": "fabric softener",
+          "source_meaning_zh": "衣物柔顺剂",
+          "answer_meaning_zh": "衣物柔顺剂",
+          "example_en": "I skip fabric softener when washing sports towels.",
+          "example_zh": "洗运动毛巾时我不用柔顺剂。",
+          "source_qa_shard_blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+          "source_author_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "fair share",
+      "source_editorial_route": "REGIONAL_VARIANTS",
+      "source_editorial_risk": "UK and US differences",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-00950",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00950",
+          "source_rank": 128,
+          "expression": "fair share",
+          "source_meaning_zh": "公平分担的部分",
+          "answer_meaning_zh": "公平分担的部分",
+          "example_en": "Everyone should do their fair share of the chores.",
+          "example_zh": "每个人都应该公平分担自己那份家务。",
+          "source_qa_shard_blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+          "source_author_pack_blob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "cutting board",
+      "source_editorial_route": "US_ONLY",
+      "source_editorial_risk": "General-American source only; review symbol granularity",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01241",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01241",
+          "source_rank": 6,
+          "expression": "cutting board",
+          "source_meaning_zh": "砧板",
+          "answer_meaning_zh": "砧板",
+          "example_en": "Use a clean cutting board for the vegetables.",
+          "example_zh": "切蔬菜要用干净的砧板。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01710",
+          "scene_id": "SC50-0009",
+          "source_sense_id": "SC-SENSE-01710",
+          "source_rank": 70,
+          "expression": "cutting board",
+          "source_meaning_zh": "砧板",
+          "answer_meaning_zh": "砧板",
+          "example_en": "Wash the cutting board after preparing raw meat.",
+          "example_zh": "处理生肉后清洗砧板。",
+          "source_qa_shard_blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+          "source_author_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "meal prep",
+      "source_editorial_route": "NO_REGION",
+      "source_editorial_risk": "Source lacks region tags",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01249",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01249",
+          "source_rank": 14,
+          "expression": "meal prep",
+          "source_meaning_zh": "提前备餐；预先准备多餐食材或饭菜",
+          "answer_meaning_zh": "提前备餐；预先准备多餐食材或饭菜",
+          "example_en": "I do meal prep on Sundays so weekday dinners are easier.",
+          "example_zh": "我周日提前备餐，工作日做晚饭就轻松些。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "wooden spoon",
+      "source_editorial_route": "NO_REGION",
+      "source_editorial_risk": "Source lacks region tags",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01298",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01298",
+          "source_rank": 63,
+          "expression": "wooden spoon",
+          "source_meaning_zh": "木勺",
+          "answer_meaning_zh": "木勺",
+          "example_en": "Stir the sauce gently with a wooden spoon.",
+          "example_zh": "用木勺轻轻搅拌酱汁。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "dining room",
+      "source_editorial_route": "US_ONLY",
+      "source_editorial_risk": "US source only",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01478",
+          "scene_id": "SC50-0008",
+          "source_sense_id": "SC-SENSE-01478",
+          "source_rank": 26,
+          "expression": "dining room",
+          "source_meaning_zh": "餐厅",
+          "answer_meaning_zh": "餐厅",
+          "example_en": "We'll eat in the dining room.",
+          "example_zh": "我们在餐厅吃饭。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "salt shaker",
+      "source_editorial_route": "US_ONLY",
+      "source_editorial_risk": "US source only",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01514",
+          "scene_id": "SC50-0008",
+          "source_sense_id": "SC-SENSE-01514",
+          "source_rank": 62,
+          "expression": "salt shaker",
+          "source_meaning_zh": "盐瓶",
+          "answer_meaning_zh": "盐瓶",
+          "example_en": "The salt shaker is beside the pepper mill.",
+          "example_zh": "盐瓶放在胡椒研磨器旁边。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "cup of tea",
+      "source_editorial_route": "MULTIPLE_UNTAGGED",
+      "source_editorial_risk": "Check /əv/ and /ə/ informal variation",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Do not assign US or UK label absent explicit supporting evidence",
+        "Resolve distinct stress or reduced-form context before card choice"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01897",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01897",
+          "source_rank": 58,
+          "expression": "cup of tea",
+          "source_meaning_zh": "一杯茶",
+          "answer_meaning_zh": "一杯茶",
+          "example_en": "A cup of tea helps me slow down after work.",
+          "example_zh": "下班后喝杯茶能让我放慢节奏。",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "source_author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    },
+    {
+      "expression": "air conditioner",
+      "source_editorial_route": "REGIONAL_VARIANTS",
+      "source_editorial_risk": "Rhotic US and non-rhotic UK",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "source_enlex_gate_blob": "1ea9c287ae9f59cc6ec5f8afbf201e3b548b5526",
+      "ku_records": [
+        {
+          "scene_ku_id": "SC1341-KU-01913",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01913",
+          "source_rank": 74,
+          "expression": "air conditioner",
+          "source_meaning_zh": "空调",
+          "answer_meaning_zh": "空调",
+          "example_en": "The air conditioner keeps the living room cool.",
+          "example_zh": "空调让客厅保持凉爽。",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "source_author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_qa_provisional": "PASS",
+          "ipa_candidates": [],
+          "raw_sound_source_lines": [],
+          "raw_sound_tags": [],
+          "pronunciation_scope": "NATIVE_PHRASE_CANDIDATE_NEEDS_SOUND_JOIN",
+          "ipa_review_status": "WAITING_SOUND_LEVEL_EVIDENCE",
+          "master_sense_approved": false,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "release_allowed": false
+        }
+      ],
+      "expression_level_decision": "SOURCE_CANDIDATE_NOT_CERTIFIED",
+      "review_followup": "CG-QA verify actual per-KU Kaikki sound-level artifact, source phonemic/phonetic notation, geographic tags and source POS. CG-MASTER must confirm intended KU Sense.",
+      "release_allowed": false
+    }
+  ]
+}
