@@ -1,0 +1,74 @@
+name: CG-ENLEX Kaikki IPA isolated candidate extraction
+on:
+  push:
+    branches:
+      - experiment/enlex-v3-production-rebuild-20261030
+    paths:
+      - '.github/workflows/enlex-kaikki-ipa-isolated.yml'
+      - 'tools/core20k_lexicon/production_v3/ipa/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cg-enlex-kaikki-ipa-isolated-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  regression-and-real-candidate-extraction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source code syntax and synthetic regression
+        run: |
+          set -euo pipefail
+          node --check tools/core20k_lexicon/production_v3/ipa/extract-kaikki-ipa.mjs
+          node --check tools/core20k_lexicon/production_v3/ipa/prepare-scene1341-ipa-targets.mjs
+          node --check tools/core20k_lexicon/production_v3/ipa/validate-kaikki-ipa-output.mjs
+          node tools/core20k_lexicon/production_v3/ipa/test-kaikki-ipa.mjs
+          node tools/core20k_lexicon/production_v3/ipa/test-scene1341-ipa-target-adapter.mjs
+      - name: Fetch pinned author QA1778 target source
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/enlex-ipa
+          curl --fail --location --retry 3 --connect-timeout 30 --max-time 120 \
+            'https://raw.githubusercontent.com/TJPAI/pai-word/a99a3cbd9943067afdb5ed910a016d42ed102010/tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_QA1778_KAIKKI_IPA_AUTHOR_REQUEST_20261113.v1.json' \
+            --output /tmp/enlex-ipa/author-request.json
+          test "$(git hash-object /tmp/enlex-ipa/author-request.json)" = '4b5651ad5d49cddc9dfabf64571440ecde317681'
+          node tools/core20k_lexicon/production_v3/ipa/prepare-scene1341-ipa-targets.mjs \
+            /tmp/enlex-ipa/author-request.json /tmp/enlex-ipa/targets.json 1778
+      - name: Download public Kaikki English source (transient, NOT artifact)
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 2 --connect-timeout 30 --max-time 900 \
+            'https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz' \
+            --output /tmp/enlex-ipa/kaikki-English.jsonl.gz
+          test "$(stat -c %s /tmp/enlex-ipa/kaikki-English.jsonl.gz)" -gt 100000000
+          sha256sum /tmp/enlex-ipa/kaikki-English.jsonl.gz | tee /tmp/enlex-ipa/source-sha256.txt
+          printf 'URL=https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz\n' > /tmp/enlex-ipa/source-provenance.txt
+          printf 'Google_Drive_original_same_bytes=NOT_VERIFIED\n' >> /tmp/enlex-ipa/source-provenance.txt
+      - name: Extract real source-native IPA candidates, not final certification
+        run: |
+          set -euo pipefail
+          node tools/core20k_lexicon/production_v3/ipa/extract-kaikki-ipa.mjs \
+            /tmp/enlex-ipa/kaikki-English.jsonl.gz /tmp/enlex-ipa/targets.json /tmp/enlex-ipa/results
+          node tools/core20k_lexicon/production_v3/ipa/validate-kaikki-ipa-output.mjs \
+            /tmp/enlex-ipa/results /tmp/enlex-ipa/targets.json
+          cp /tmp/enlex-ipa/source-provenance.txt /tmp/enlex-ipa/results/source-provenance.txt
+          cp /tmp/enlex-ipa/source-sha256.txt /tmp/enlex-ipa/results/source-sha256.txt
+      - name: Upload candidate evidence only; never upload original dictionary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cg-enlex-kaikki-ipa-source-candidates
+          path: |
+            /tmp/enlex-ipa/results/
+          if-no-files-found: warn
+          retention-days: 7
+      - name: Never write to frozen Core20K, Master, Runtime or SRS
+        if: always()
+        run: |
+          git status --porcelain
+          test -z "$(git status --porcelain)"
