@@ -107,10 +107,26 @@ const aggregate=(rows,engine)=>{
  unanswerableEmpty:emptyUnanswerable,
  unanswerableReturnRate:unanswerable.length?returnedUnanswerable/unanswerable.length:null};
 };
+// Paired A/B differences use the SAME eligible queries for both engines.
+// No confidence or significance claims are made for a tiny 24-query holdout.
+const paired=(rows)=>{
+ const eligible=rows.filter(x=>!x.none_relevant);
+ const metrics=['top1','recall5','mrr5','ndcg5'];
+ const out={n:rows.length,eligible:eligible.length,unanswerable:rows.length-eligible.length};
+ for(const metric of metrics){
+  const deltas=eligible.map(x=>x.metrics.integration[metric]-x.metrics.upstream[metric]);
+  out[metric]={meanDelta:deltas.length?deltas.reduce((a,b)=>a+b,0)/deltas.length:null,
+   gains:deltas.filter(x=>x>1e-12).length,
+   regressions:deltas.filter(x=>x< -1e-12).length,
+   ties:deltas.filter(x=>Math.abs(x)<=1e-12).length};
+ }
+ return out;
+};
 const result={schema:'cg-rec-eval-24-sealed-gold-score-v1',status:'SEALED_ADJUDICATED_GOLD_ONLY',
  sourcePredictionCommit:p.upstreamCommit,sourceManifest:p.manifestSha,
  overall:{integration:aggregate(data,'integration'),upstream:aggregate(data,'upstream')},
  byGroup:Object.fromEntries(['zh','en','mixed'].map(k=>[k,{integration:aggregate(data.filter(x=>x.group===k),'integration'),upstream:aggregate(data.filter(x=>x.group===k),'upstream')}])),
+ paired:{overall:paired(data),byGroup:Object.fromEntries(['zh','en','mixed'].map(k=>[k,paired(data.filter(x=>x.group===k))]))},
  rows:data,releaseAllowed:false};
 if(mode==='--expect-unsealed')throw Error('UNSEALED_CHECK_UNEXPECTEDLY_PASSED');
 console.log(JSON.stringify(result,null,2));
