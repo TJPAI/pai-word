@@ -1,0 +1,83 @@
+{
+  "schema": "cg-qa-mu-enlex-v57-four-disagreements-independent-adjudication-v1",
+  "date": "2026-11-13",
+  "muse_source_branch": "core20k-teaching-qa-b162-20261024",
+  "muse_source_path": "tools/core20k_lexicon/staging/MU_ENLEX_V57_NINE_HOLDS.v1.json",
+  "muse_source_git_blob": "c45fca4e1c1990af7d97b41f77b35c814ac7e6ae",
+  "prior_cg_qa_v57_commit": "f05424034acf14edf2ecdeb6aecb75645d915695",
+  "scope": "Reconcile four specific independent Muse disagreements against preserved Kaikki gloss and scene names. Editorial state may relax previous conservative HOLD, but absence of original scene sentences forbids formal PASS and release.",
+  "counts": {
+    "disputed_rows": 4,
+    "conditional_lexical_support": 3,
+    "hold_valency_source_mismatch": 1,
+    "formal_sense_scene_pass": 0,
+    "dual_ai_certified": 0,
+    "release_allowed": 0
+  },
+  "records": [
+    {
+      "audit_row_no": 99922,
+      "english_expression": "irregular",
+      "master_original_zh": "不规则的（心律）",
+      "scene_name": "心血管系统疾病",
+      "preserved_pos": "adj",
+      "preserved_gloss": "Without symmetry, regularity, or uniformity.",
+      "muse_verdict": "DISAGREE",
+      "muse_rationale": "The preserved gloss is the broad, domain-neutral sense of irregular — lacking regularity — and an irregular heart rhythm is literally a rhythm lacking regularity, so the gloss taken literally describes the scene's use. The Master ZH 不规则的（心律） narrows the generic gloss to the cardiac application, but nothing in the gloss conflicts with that application: unlike the open/connect/react rows, there is no competing domain restriction in the gloss (no visitors, no electrical lines, no chemical agents). The gloss is generic, not wrong. This is not a full PASS: without the original scene sentence the cardiac application itself (heart rhythm vs. e.g. irregular pulse shape) cannot be confirmed, but there is no demonstrated sense mismatch.",
+      "qa_adjudicated_state": "CONDITIONAL_LEXICAL_SUPPORT",
+      "qa_independent_adjudication": "Accept Muse argument that regularity adjective compositionally describes irregular rhythm; a dedicated medical sense is not inherently required. Retain sentence/attachment requirement: source must actually modify heartbeat/rhythm, and translation must not turn merely 'irregular' into a diagnosis of arrhythmia.",
+      "evidence_required": "Confirm original English noun phrase and whether 心律 is explicitly present in source context.",
+      "formal_sense_scene_pass": false,
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 104875,
+      "english_expression": "massive",
+      "master_original_zh": "质量巨大的",
+      "scene_name": "黑洞中子星与致密天体",
+      "preserved_pos": "adj",
+      "preserved_gloss": "Substantial in mass; bulky, heavy and solid.",
+      "muse_verdict": "DISAGREE",
+      "muse_rationale": "The preserved gloss's head clause, 'substantial in mass', is exactly the astrophysical sense the scene requires: a massive black hole or massive star is one of very great mass, which is precisely what the Master ZH 质量巨大的 states. The trailing 'bulky, heavy and solid' is the same sense's elaboration for everyday objects, not a conflicting domain restriction — it does not reassign massive to a different sense the way 'electrical line' or 'visitors' do in the mismatch rows. Frozen Core20K massive s01 ('very large, heavy, serious, or important') corroborates that the mass reading is the operative sense. No demonstrated mismatch; this is not a full PASS, since the original scene sentence is still needed to confirm the intended collocation (e.g. massive black hole vs. massive star).",
+      "qa_adjudicated_state": "CONDITIONAL_MASS_SENSE",
+      "qa_independent_adjudication": "Accept that the exact leading clause 'Substantial in mass' explicitly covers astrophysical mass; this is stronger than a pure bulky-size gloss. Do not use bulk/heavy/solid parts to imply black holes are large-volume solid objects. Still require scientific collocation.",
+      "evidence_required": "Check original object and only select scientifically appropriate mass facet; avoid bulk or solidity in learner gloss.",
+      "formal_sense_scene_pass": false,
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 104671,
+      "english_expression": "accelerate",
+      "master_original_zh": "加速",
+      "scene_name": "宇宙膨胀与大爆炸",
+      "preserved_pos": "verb",
+      "preserved_gloss": "To cause to move faster; to quicken the motion of; to add to the speed of.",
+      "muse_verdict": "DISAGREE",
+      "muse_rationale": "The preserved gloss's sense is an increase in speed or rate of motion ('to quicken the motion of; to add to the speed of'), and cosmic acceleration is exactly an increase in the rate of expansion of the universe — the gloss taken literally describes the scene's use, and the Master ZH 加速 matches it directly. The gloss is framed transitively ('to cause to move faster') while cosmological use is often intransitive ('the expansion accelerates'), but that is a valency framing, not a different sense: the underlying meaning (rate increase) is the same in both. No domain restriction in the gloss conflicts with the cosmology scene. Not a full PASS: the original scene sentence is still needed to confirm the intended subject (the expansion itself vs. a particle's motion).",
+      "qa_adjudicated_state": "HOLD_VALENCY_SOURCE_MISMATCH",
+      "qa_independent_adjudication": "Muse is correct that speed increase belongs to broad accelerate semantic family, but a selected causative transitive dictionary sense is not an exact substitute for the intransitive 'expansion accelerates'. V56 attests an explicit intransitive Kaikki source candidate (verb sense5) that should be selected if the original syntax is intransitive; original sentence missing.",
+      "evidence_required": "Obtain original cosmic expansion sentence, determine transitive vs intransitive subject/object, re-select attested Kaikki sense5 when applicable.",
+      "formal_sense_scene_pass": false,
+      "dual_ai_certified": false,
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 106457,
+      "english_expression": "print",
+      "master_original_zh": "印记",
+      "scene_name": "地层化石与地质年代",
+      "preserved_pos": "noun",
+      "preserved_gloss": "A visible impression on a surface.",
+      "muse_verdict": "DISAGREE",
+      "muse_rationale": "The preserved gloss — 'a visible impression on a surface' — is exactly the fossil-imprint sense the scene requires: a fossil print (footprint, leaf impression preserved in rock) is a visible impression left on a surface (strata), and the Master ZH 印记 matches it directly. Notably, the frozen Core20K inventory for print contains only the printing senses (printed text; produce text/images) and has no imprint sense, so the preserved gloss is the only source supplying the sense this scene needs — and it supplies the right one. No demonstrated mismatch. Not a full PASS: the original scene sentence is still needed to confirm the row is the fossil-imprint application rather than another impression (e.g. a track or mould).",
+      "qa_adjudicated_state": "CONDITIONAL_IMPRINT_NOUN",
+      "qa_independent_adjudication": "Accept Muse lexical distinction: noun 'a visible impression on a surface' directly supports 印记 in fossil context; speculative possibility of a verbal original must not be treated as demonstrated error. Preserve noun until sentence confirms syntax, and do not force a Core20K printing-only sense link.",
+      "evidence_required": "Confirm original phrase 'print' appears as noun (e.g. footprint/fossil print); keep scene-specific attested imprint gloss and do not map to printing sense.",
+      "formal_sense_scene_pass": false,
+      "dual_ai_certified": false,
+      "release_allowed": false
+    }
+  ]
+}
