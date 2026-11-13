@@ -13,6 +13,7 @@ on:
       - 'scene500-recommendation/qa/scene1341-nonblind-error-casebook.mjs'
       - 'scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs'
       - 'scene500-recommendation/qa/scene1341-functional-token-ab.mjs'
+      - 'scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs'
       - 'scene500-recommendation/qa/test-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
@@ -56,6 +57,7 @@ jobs:
           node --check rec/scene500-recommendation/qa/scene1341-nonblind-error-casebook.mjs
           node --check rec/scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs
           node --check rec/scene500-recommendation/qa/scene1341-functional-token-ab.mjs
+          node --check rec/scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs
           node --check rec/scene500-recommendation/qa/test-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
@@ -137,6 +139,13 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-functional-token-ab.json
           node -e "const r=require('./scene1341-functional-token-ab.json');if(r.caseCount!==32||r.queryEvaluations!==128||r.distinctTop1ChangedQueryCount!==3||r.distinctQueryCount>128||r.independentGoldCount!==0||r.release_allowed!==false||r.experiment!=='ONLY_OPT_IN')process.exit(1);"
+      - name: Build eight unique-query independent semantic adjudication handoff
+        run: |
+          node rec/scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs \
+            scene1341-functional-token-ab.json \
+            scene1341-nonblind-source-provenance.json \
+            > scene1341-eight-unique-query-review-packet.json
+          node -e "const r=require('./scene1341-eight-unique-query-review-packet.json');if(r.affectedUniqueQueries!==8||r.top1ChangedUniqueQueries!==3||r.formalHumanGold!==0||r.release_allowed!==false||r.reviewItems.some(x=>x.independentRelevanceVerdict!=='NOT_ADJUDICATED'))process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -150,3 +159,4 @@ jobs:
             scene1341-nonblind-error-casebook.json
             scene1341-nonblind-source-provenance.json
             scene1341-functional-token-ab.json
+            scene1341-eight-unique-query-review-packet.json
