@@ -1,0 +1,30 @@
+name: Scene1341 Safari home vs study hidden visibility
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-readonly/index.html'
+      - 'tools/integration/test-scene1341-hidden-screens.mjs'
+      - '.github/workflows/scene1341-hidden-screens.yml'
+  push:
+    branches: [cg-main-sc1341-hidden-screen-fix-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  hidden-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inactive screen never displayed on Scene1341 Safari homepage
+        run: node tools/integration/test-scene1341-hidden-screens.mjs
+      - name: Regression for Scene500 home parity and read-only native cards
+        run: |
+          node tools/integration/test-scene1341-home-layout-parity.mjs
+          node tools/integration/test-scene1341-readonly-mobile-demo.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: Do not deploy
+        run: echo 'PREVIEW_DEPLOY_ONLY_BY_OWNER_RUN_WORKFLOW'
