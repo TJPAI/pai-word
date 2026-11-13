@@ -1,0 +1,72 @@
+{
+  "schema": "cg-rec-eval-sc1341-source-anchored-error-triage-v1",
+  "status": "NONBLIND_SOURCE_ANCHORED_RISK_NOT_ADJUDICATED",
+  "evalBranch": "cg-rec-eval-isolated-20261027",
+  "recCommit": "8ea1addac4dcd2df766bb6bed0e92a493e0c1463",
+  "sourceCommit": "17c6c758e1dfd27cfa2fe1669d3f1784bedb0668",
+  "manifestBlob": "803d2fccfd2d1ec200723f7f38e73d57495a5dd0",
+  "derivedFrom": "scene1341-rec-diagnostics32-provenance.json",
+  "certifiedGoldCount": 0,
+  "productionReleaseAllowed": false,
+  "risks": [
+    {
+      "id": "NB-RISK-01",
+      "query": "刚下单的外卖什么时候送达",
+      "observedTop1": "SC50-0020",
+      "observedTop1Scene": "收快递与包裹",
+      "evidence": "Context-agnostic 下单 overlap from place an order ranks generic parcel/coffee contexts ahead of delivery-specific contexts",
+      "candidateForHumanReview": [
+        "SC50-0037",
+        "SC50-0036",
+        "SC50-0020"
+      ],
+      "hypothesis": "Expression-level token hit overweights common action 下单 without constrained delivery intent",
+      "semanticVerdict": "NOT_ADJUDICATED",
+      "nextStep": "Independent relevance review of parcel vs food-delivery intent; check noun-verb co-occurrence on original scenes"
+    },
+    {
+      "id": "NB-RISK-02",
+      "query": "食物会不会过期",
+      "observedTop1": "SC50-0046",
+      "observedTop1Scene": "化妆品购物",
+      "evidence": "Source meaning of hypoallergenic includes 并非保证不会过敏; generic negation 不会 overlaps query while food-safety scene ranks lower",
+      "candidateForHumanReview": [
+        "SC50-0042",
+        "SC50-0512",
+        "SC50-0046"
+      ],
+      "hypothesis": "Function-word overlap from Chinese gloss causes cross-domain false recall",
+      "semanticVerdict": "NOT_ADJUDICATED",
+      "nextStep": "Review stopword/IDF and evidence matching at lexical phrase context; do not declare ground truth before independent catalog review"
+    },
+    {
+      "id": "NB-RISK-03",
+      "query": "不是买票，我要退票",
+      "observedTop1": "SC50-0033",
+      "observedTop1Scene": "饮料与酒水",
+      "evidence": "Generic 我+要 matching in beverage expression competes with get a fare refund in public transport; ticket refund scene not Top10",
+      "candidateForHumanReview": [
+        "SC50-0075",
+        "SC50-0064",
+        "SC50-0033"
+      ],
+      "hypothesis": "Positive intent refund mis-scored after negative scope and generic pronoun overlap",
+      "semanticVerdict": "NOT_ADJUDICATED",
+      "nextStep": "Independently compare public transport fare refund vs ticket/refund semantics"
+    },
+    {
+      "id": "NB-RISK-04",
+      "query": "不是买咖啡，而是想找厕所",
+      "observedTop1": "SC50-0543",
+      "observedTop1Scene": "公共厕所与卫生设施",
+      "evidence": "Correct-looking top1 matches restroom title, but generic 不/想 overlap also surfaces unrelated bookshop content",
+      "candidateForHumanReview": [
+        "SC50-0543",
+        "SC50-0049"
+      ],
+      "hypothesis": "Top1 success may mask Top5 contextual noise and unstable evidence",
+      "semanticVerdict": "NOT_ADJUDICATED",
+      "nextStep": "Grade top5 intent-aligned vs unrelated contexts instead of only measuring Top1"
+    }
+  ]
+}
