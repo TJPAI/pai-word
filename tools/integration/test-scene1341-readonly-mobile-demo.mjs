@@ -519,7 +519,7 @@ const nativeCycleSource=fs.readFileSync('rebuild-preview/scene1341-readonly/scen
 const nativeCycleContext={window:{}};
 vm.runInNewContext(nativeCycleSource,nativeCycleContext);
 const nativeCycle=nativeCycleContext.window.PAI_SCENE1341_NATIVE_CYCLE;
-assert(script.includes('<script src="./scene500-native-cycle-exact.js"></script>'),
+assert(html.includes('<script src="./scene500-native-cycle-exact.js"></script>'),
  'source-exact native Scene500 cycle adapter must load before inline learning runtime');
 assert(batchCycleCode.includes('window.PAI_SCENE1341_NATIVE_CYCLE.nextIndex(rows,current,direction,BATCH)'),
  'both manual and auto navigation must call source-exact Scene500 cycleKeys');
