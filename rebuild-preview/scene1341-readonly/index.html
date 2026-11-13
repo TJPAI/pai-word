@@ -151,6 +151,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene500-readonly-phase.js"></script>
 <script src="./scene1341-auto-preference.js"></script>
 <script src="./scene500-native-answer-exact.js"></script>
+<script src="./scene500-native-question-hero-exact.js"></script>
 <script src="./scene500-native-cycle-exact.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
 <script>
@@ -489,6 +490,28 @@ async function renderLexiconReference(card){
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const prefs=readOnlyPrefs.snapshot();
+ // Reversible P0 A/B: actual Scene500 learning-screen question hero HTML,
+ // with isolated source-pinned IPA hydration and no production registry.
+ if(new URLSearchParams(location.search).get('nativeQuestion')==='1'){
+  const original=$('hero'),template=document.createElement('template');
+  template.innerHTML=window.PAI_SCENE1341_NATIVE_QUESTION.render({
+   expression:r.expression,revealed,hideWord:prefs.hideWord,
+   autoBrowseEnabled:autoBrowse.isEnabled(),
+   readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
+  });
+  const hero=template.content.firstElementChild;
+  if(!hero||!hero.classList.contains('word-hero'))throw Error('SC1341_NATIVE_QUESTION_INVALID_HERO');
+  hero.id='hero';
+  hero.querySelector('.word').id='expression';
+  hero.querySelector('.ipa').id='ipa';
+  hero.querySelector('.speak-btn').id='speak';
+  hero.querySelector('.recall-cue').id='cue';
+  const auto=hero.querySelector('.auto-word-toggle input');
+  auto.id='auto-toggle';
+  auto.removeAttribute('onchange'); // Native app mutator MUST NOT run.
+  original.replaceWith(hero);
+ }
+
  displayBookmark.save(sceneId,index,phaseController.state().preferredFace);
  $('learning').classList.toggle('revealed',revealed);
  $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
@@ -695,6 +718,24 @@ $('learning').addEventListener('touchend',e=>{
 function stopAuto(){autoBrowse.stop();autoPreference.set(false)}
 function startAuto(){autoPreference.set(true);autoBrowse.start()}
 $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.checked)startAuto();else stopAuto()});
+// Native source-exact question A/B redraws the original word and auto buttons.
+// Delegate back to the *existing isolated* handlers retained on detached
+// original nodes; do not invoke native setAutoBrowse or PAI_AUDIO/SRS APIs.
+const legacyAutoInput=$('auto-toggle'),legacyWordSpeaker=$('speak');
+$('learning').addEventListener('change',e=>{
+ if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'||
+    e.target?.id!=='auto-toggle'||e.target===legacyAutoInput)return;
+ e.stopPropagation();
+ legacyAutoInput.checked=e.target.checked;
+ legacyAutoInput.dispatchEvent(new Event('change'));
+});
+$('learning').addEventListener('click',e=>{
+ if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'||
+    !e.target.closest('#speak')||e.target===legacyWordSpeaker)return;
+ e.stopPropagation();
+ legacyWordSpeaker.click();
+});
+
 $('settings-panel').addEventListener('change',e=>{
  const key=e.target.dataset?.setting;
  if(key)readOnlyPrefs.set(key,e.target.value);
