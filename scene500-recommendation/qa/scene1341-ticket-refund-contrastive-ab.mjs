@@ -13,7 +13,13 @@ const cases=[
  {id:'refund_positive',query:'我要退票',target:null},
  {id:'refund_buy',query:'我要买票',target:null},
  {id:'refund_other',query:'不是买咖啡，而是想找厕所',target:null},
- {id:'refund_english',query:'not buying a ticket, I need a ticket refund',target:'SC50-0075'}
+ {id:'refund_english',query:'not buying a ticket, I need a ticket refund',target:'SC50-0075'},
+ {id:'refund_reversed',query:'不是退票，我要买票',target:null},
+ {id:'refund_reversed_en',query:'not refunding my ticket, I want to buy a ticket',target:null},
+ {id:'refund_both_but_no_negation',query:'买票后怎么退票',target:null},
+ {id:'refund_noisy',query:'不是买票，我想退票',target:'SC50-0075'},
+ {id:'refund_en_without_negation',query:'buy a ticket or get a ticket refund',target:null},
+ {id:'refund_en_reversed',query:'refund a ticket? no, I want to buy a ticket',target:null}
 ];
 const results=cases.map(c=>{
  const baseline=index.search(c.query,{limit:10,experimentalContrastiveTicketRefund:false});
