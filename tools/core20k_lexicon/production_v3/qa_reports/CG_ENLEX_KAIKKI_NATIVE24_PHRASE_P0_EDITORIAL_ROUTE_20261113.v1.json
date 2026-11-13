@@ -1,0 +1,178 @@
+{
+  "schema": "cg-enlex-native-24-phrase-editorial-routing-summary-v1",
+  "date": "2026-11-13",
+  "source_run": "https://github.com/TJPAI/pai-word/actions/runs/43355324052",
+  "source_artifact_id": 14005418416,
+  "source_kaikki_gzip_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "source_zip_sha256": "a0aafd965f815fe66c4348c4a5a9f7012b842deee92b34e5d3745b00f4d41b8a",
+  "scope": {
+    "native_ipa_ku": 27,
+    "native_ipa_distinct_phrases": 24,
+    "missing_native_phrase_ku": 1018,
+    "missing_distinct_phrases": 952,
+    "priority_missing_phrase_lookups": 75,
+    "priority_missing_ku_references": 141
+  },
+  "editorial_source": "24 source-backed expression-specific QA routes from actual native_phrase.jsonl and raw candidate rows; interpretive concerns are CG-ENLEX editorial triage, not approved pronunciations",
+  "native_phrase_routes": [
+    {
+      "expression": "wake up",
+      "review_route": "NOTATION_MIXED",
+      "review_question": "Keep /…/ phonemic separate from […] phonetic detail",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "sleep in",
+      "review_route": "REGIONAL_VARIANTS",
+      "review_question": "Keep US/UK/other variants distinct",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "night owl",
+      "review_route": "REGIONAL_VARIANTS",
+      "review_question": "Check UK/US stress notation",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "day off",
+      "review_route": "MULTIPLE_UNTAGGED",
+      "review_question": "Two untagged stress forms",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "roll over",
+      "review_route": "NO_REGION",
+      "review_question": "No explicit US/UK tags",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "hand towel",
+      "review_route": "OPTIONAL_SEGMENTS",
+      "review_question": "IPA optional segment notation",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "bath towel",
+      "review_route": "MANY_REGIONAL_FORMS",
+      "review_question": "Many source regional variants",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "nail file",
+      "review_route": "MANY_REGIONAL_FORMS",
+      "review_question": "Multiple tagged regional variants",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "put on",
+      "review_route": "SCENE_SENSE_SCOPE",
+      "review_question": "Polysemous phrasal verb; check KU sense context",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "inside out",
+      "review_route": "MULTIPLE_POS",
+      "review_question": "Same IPA under adj and adv entries",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "get rid of",
+      "review_route": "NO_REGION",
+      "review_question": "Region not specified",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "living room",
+      "review_route": "SINGLE_BOTH_REGIONS",
+      "review_question": "One IPA tagged US+UK",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "window sill",
+      "review_route": "REGIONAL_VARIANTS",
+      "review_question": "UK multiple and US reading",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "dust bunny",
+      "review_route": "SINGLE_BOTH_REGIONS",
+      "review_question": "One IPA tagged US+UK",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "all-purpose cleaner",
+      "review_route": "US_ONLY",
+      "review_question": "No native UK evidence",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "fabric softener",
+      "review_route": "REGIONAL_VARIANTS",
+      "review_question": "Cot-caught-merger and US/UK readings",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "fair share",
+      "review_route": "REGIONAL_VARIANTS",
+      "review_question": "UK and US differences",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "cutting board",
+      "review_route": "US_ONLY",
+      "review_question": "General-American source only; review symbol granularity",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "meal prep",
+      "review_route": "NO_REGION",
+      "review_question": "Source lacks region tags",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "wooden spoon",
+      "review_route": "NO_REGION",
+      "review_question": "Source lacks region tags",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "dining room",
+      "review_route": "US_ONLY",
+      "review_question": "US source only",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "salt shaker",
+      "review_route": "US_ONLY",
+      "review_question": "US source only",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "cup of tea",
+      "review_route": "MULTIPLE_UNTAGGED",
+      "review_question": "Check /əv/ and /ə/ informal variation",
+      "formal_ipa_approved": false
+    },
+    {
+      "expression": "air conditioner",
+      "review_route": "REGIONAL_VARIANTS",
+      "review_question": "Rhotic US and non-rhotic UK",
+      "formal_ipa_approved": false
+    }
+  ],
+  "recommendation": "CG-QA must compare source tags, IPA phonemic vs phonetic transcriptions, target KU Sense/POS and relevant scene before accepting. No UK IPA may be inferred from US-only data.",
+  "priority_missing_phrase_examples": [
+    "laundry basket",
+    "microfiber cloth",
+    "tidy up",
+    "load the dishwasher",
+    "make the bed",
+    "wash your hands",
+    "take out the trash"
+  ],
+  "large_source_note": "Full 27-KU sound-level evidence and 75 exact phrase-to-KU reference tasks are retained in the companion generated JSON attachment; the GitHub source CI artifact contains all 1778 original KU records.",
+  "master_approved": 0,
+  "cg_qa_pass": 0,
+  "muse_pass": 0,
+  "release_allowed": false
+}
