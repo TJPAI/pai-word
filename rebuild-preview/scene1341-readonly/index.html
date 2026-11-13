@@ -53,6 +53,10 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 #home #stats-panel:not([open]),#home #settings-panel:not([open]){display:none}
 #home #categories[hidden]{display:none!important}
 #home .home-brand .demo-tip{display:block;margin-top:8px;font-size:11px}
+/* Unwrap the isolated native answer source in the same study-body geometry;
+   hidden must always win over this A/B-only display rule. */
+#scene1341-native-answer-pilot:not([hidden]){display:contents}
+#scene1341-native-answer-pilot[hidden]{display:none!important}
 </style></head>
 <body><div id="app">
 <section class="home-dashboard demo-home" id="home">
@@ -527,9 +531,15 @@ function renderCard(){
    readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
   };
   nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs);
+  // Keep the same optional, source-pinned Core20K reference on whichever
+  // answer is visible; never duplicate or replace its source/identity.
+  nativeSlot.querySelector('.answer')?.append($('enlex-section'));
   nativeSlot.hidden=!revealed;
   $('answer').hidden=true;
- }else if(nativeSlot){nativeSlot.hidden=true}
+ }else{
+  $('answer').append($('enlex-section'));
+  if(nativeSlot)nativeSlot.hidden=true;
+ }
  void renderLexiconReference(r);
  for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
  set('demo-note',revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除');
@@ -644,14 +654,27 @@ $('speak').addEventListener('click',e=>{
  };
  if(!playWord(subset()[index].expression,.84,wordDone))wordDone();
 });
-$('example-speak').addEventListener('click',e=>{
- e.stopPropagation();
+function playCurrentExample(){
+ if($('learning').hidden||!revealed||!subset()[index])return;
  if(!phaseController.beginExample())return;
  autoBrowse.pause();
- // Example audio owns the example phase, never a stale rated countdown.
- // Return to the paused answer once its utterance (or Safari watchdog) ends.
+ // Both the legacy and source-exact native Scene500 example buttons use
+ // the same isolated audio phase and Safari watchdog. A stale card is
+ // already canceled by navigation's stopWordAudio/phaseController.navigate.
  const finishExample=()=>{if(phaseController.exampleFinished())autoBrowse.resumeAfterSpeech()};
  if(!playWord(subset()[index].answer.example_en,.9,finishExample))finishExample();
+}
+$('example-speak').addEventListener('click',e=>{
+ e.stopPropagation();playCurrentExample();
+});
+// Native Scene500 answerHtml inserts dynamic data-example-audio buttons;
+// delegate rather than wiring nodes destroyed on each new word.
+$('learning').addEventListener('click',e=>{
+ const button=e.target.closest('#scene1341-native-answer-pilot .example-play[data-example-audio]');
+ if(!button||$('scene1341-native-answer-pilot')?.hidden)return;
+ e.stopPropagation();
+ if(button.dataset.speak!==subset()[index]?.answer.example_en)return;
+ playCurrentExample();
 });
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
