@@ -39,7 +39,11 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
    const activeHints=experimentalIntentAliases?matchIntentHypotheses(query):[];
    // Uncertified, catalog-title-only hypothesis: refund intent vs negated purchase.
    // Deliberately opt-in; not a verified Sense–Scene mapping or shipping behavior.
-   const refundIntent=experimentalContrastiveTicketRefund && /(?:退票|退车票|ticket\s+refund|refund\s+(?:my\s+)?ticket)/iu.test(q) && /(?:不是|不要|不想|而非|并非|\bnot\b|instead of)/iu.test(q) && /(?:买票|购票|buy(?:ing)?\s+(?:a\s+)?ticket|purchase\s+(?:a\s+)?ticket)/iu.test(q);
+   // Strict directionality: explicitly negate PURCHASE first, then request REFUND.
+   // Opposite intent ('not refund, buy') must never activate this experimental bridge.
+   const contrastiveRefundZh=/(?:不是|不要|不想|并非|而非)\\s*(?:买票|购票)[，,。；;\\s]*(?:我)?(?:要|想|需要|打算)?\\s*(?:退票|退车票)/u.test(q);
+   const contrastiveRefundEn=/\\bnot\\s+(?:buy|buying|purchase|purchasing)\\s+(?:a\\s+|my\\s+|the\\s+)?ticket\\b[\\s,;.!?]*(?:i\\s+(?:need|want|would\\s+like)\\s+(?:a\\s+|my\\s+)?|instead\\s+)?(?:ticket\\s+refund|refund\\s+(?:my\\s+|the\\s+|a\\s+)?ticket)\\b/iu.test(q);
+   const refundIntent=experimentalContrastiveTicketRefund && (contrastiveRefundZh || contrastiveRefundEn);
    const ranked=[];
    for(const [id,scene] of scenes){
      let score=0;const reasons=[];const title=titleTerms.get(id),name=normalizedSceneNames.get(id);
