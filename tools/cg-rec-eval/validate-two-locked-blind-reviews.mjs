@@ -33,7 +33,7 @@ const validPacket=(packet,role)=>{
    !Array.isArray(c.source_catalog_evidence))
    throw Error('INCOMPLETE_LOCKED_CASE '+role+' '+src.id);
   ids.add(c.query_id);reviewerIds.add(c.assessor_id);
-  if(Object.keys(c).some(k=>/prediction|rank|modelOutput|otherReviewer|adjudication/i.test(k)))
+  if(Object.keys(c).some(k=>/prediction|rank|modelOutput|otherReviewer|adjudication|integration|upstream|top10|scores|target/i.test(k)))
    throw Error('PREDICTION_LEAK_IN_CASE '+role+' '+src.id);
   const seen=new Set();
   for(const item of c.scene_relevance){
