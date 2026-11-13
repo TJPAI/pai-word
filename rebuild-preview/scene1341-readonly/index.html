@@ -153,7 +153,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
-let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null;
+let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null,ipaSequence=0,ipaIndexPromise=null;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
@@ -436,6 +436,32 @@ function scheduleQuestionFit(){
  questionFitFrame=requestAnimationFrame(()=>{questionFitFrame=0;if(!$('learning').hidden)fitQuestionExpression()});
 }
 window.addEventListener('resize',scheduleQuestionFit);
+async function renderQuestionIPA(card){
+ const ticket=++ipaSequence,expectedKU=card.scene_ku_id;
+ const el=$('ipa');
+ const initial=String(card.ipa||card.ipa_us||'').trim();
+ if(initial){el.textContent=initial;el.title='词卡自带音标';return}
+ el.textContent='音标加载中…';
+ el.title='正在读取仓库 Core20K 发音数据';
+ try{
+  if(!ipaIndexPromise)ipaIndexPromise=import('./scene1341-ipa-preview.mjs')
+    .then(m=>m.scene1341IPAReference)
+    .catch(error=>{ipaIndexPromise=null;throw error});
+  const source=await ipaIndexPromise;
+  const result=await source.lookup(card);
+  if(ticket!==ipaSequence||$('learning').hidden||
+     subset()[index]?.scene_ku_id!==expectedKU)return;
+  el.textContent=result?.ipa||'音标待补';
+  el.title=result?.kind==='word_by_word'
+   ?'Core20K 逐词参考音标，非经校验的整词组连读音标'
+   :result?'来自 Core20K 原词头的音标':'尚无经核实的完整音标';
+ }catch(error){
+  if(ticket!==ipaSequence||$('learning').hidden||
+     subset()[index]?.scene_ku_id!==expectedKU)return;
+  el.textContent='音标待补';el.title='音标索引加载失败或内容未核实';
+  window.PAI_SCENE1341_IPA_PREVIEW_ERROR=String(error);
+ }
+}
 async function renderLexiconReference(card){
  const seq=++lexiconSequence;
  const node=$('enlex-section'),container=$('enlex-details');
@@ -468,7 +494,7 @@ function renderCard(){
  $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
- set('expression',r.expression);scheduleQuestionFit();set('ipa',r.ipa||r.ipa_us||'');set('meaning',r.answer.meaning_zh);
+ set('expression',r.expression);scheduleQuestionFit();void renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
  $('example-speak').dataset.speak=r.answer.example_en;
  set('example',r.answer.example_en);set('translation',r.answer.example_zh);
  // Answer-only contract: optional teaching sections must never render empty
