@@ -72,5 +72,6 @@ for(const group of groups){
 }
 assert.equal(cases.length,32);
 assert.equal(new Set(cases.map(c=>c.id)).size,32);
+assert.deepEqual(groups.map(g=>g.pairs.length),[8,8,8,8]);
 const report={schema:'cg-rec-sc1341-open-nonblind-diagnostic-v1',sourceCommit,manifestSha,engine:'scene500-recommendation-dev',engineReleaseAllowed:false,editorialSourceReadOnly:true,independentGoldCount:0,certifiedCount:0,cohorts:groups.map(g=>({name:g.name,pairs:g.pairs.length})),caseCount:cases.length,queryExecutions:cases.length*2,top1ChangedCount:cases.filter(c=>c.top1_changed).length,emptyQueryCount:cases.reduce((n,c)=>n+Number(c.control.empty)+Number(c.contrast.empty),0),cases,disclaimer:'Exploratory author-written casebook. Query pairs deliberately alter intent/context; changed ranking may be appropriate. No precision, recall, NDCG, independent human labels, Safari claim or release authorization.'};
 console.log(JSON.stringify(report,null,2));
