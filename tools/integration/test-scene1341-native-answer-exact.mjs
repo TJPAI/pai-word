@@ -3,6 +3,14 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 import {renderWithRealScene500AnswerHtml} from './scene1341-native-answer-renderer-harness.mjs';
 const native=fs.readFileSync('rebuild-preview/learning-runtime.js','utf8');
+const page=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
+assert(page.includes('<script src="./scene500-native-answer-exact.js"></script>'));
+assert(page.includes("get('nativeAnswer')==='1'"),'source-exact answer is opt-in, never silently enabled');
+assert(page.includes('window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs)'));
+assert(page.includes("nativeSlot.hidden=!revealed"),'native answer obeys question/answer state');
+assert(page.includes("readOnly:true,canWriteSrs:false,productionReleaseAllowed:false"),
+ 'pilot must explicitly quarantine every projected unit');
+
 const adapter=fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-native-answer-exact.js','utf8');
 const start=native.indexOf('  window.answerHtml=function(u){');
 const end=native.indexOf('\n  // Settings actions',start);
