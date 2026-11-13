@@ -55,7 +55,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: TJPAI/pai-word
-          ref: 7f2dd788f9d96cc5a70de6df38d9e583a8aff13a
+          ref: 8ea1addac4dcd2df766bb6bed0e92a493e0c1463
           path: candidate-current
           persist-credentials: false
       - uses: actions/setup-node@v4
@@ -140,7 +140,7 @@ jobs:
             | tee ../scene1341-browser-vs-engine-27.json
       - name: Independently reject numeric-equivalent duplicate Scene1341 source ranks
         env:
-          CG_REC_SHA: 7f2dd788f9d96cc5a70de6df38d9e583a8aff13a
+          CG_REC_SHA: 8ea1addac4dcd2df766bb6bed0e92a493e0c1463
         run: |
           set -euo pipefail
           mkdir -p browser-current/tools/cg-rec-eval
@@ -154,7 +154,7 @@ jobs:
             | tee ../scene1341-rank-collision-negative14.json
       - name: Check latest PR75 core with 3 scene-metadata tamper and 240 query-normalization probes
         env:
-          CG_REC_SHA: 7f2dd788f9d96cc5a70de6df38d9e583a8aff13a
+          CG_REC_SHA: 8ea1addac4dcd2df766bb6bed0e92a493e0c1463
         run: |
           set -euo pipefail
           mkdir -p browser-current/tools/cg-rec-eval
@@ -186,10 +186,32 @@ jobs:
             }
             console.log(JSON.stringify({status:'INDEPENDENT_NONBLIND_DIAGNOSTIC_CONTRACT_PASS',cases:32,queries:64,top1Changes:r.top1ChangedCount,empty:r.emptyQueryCount,formalGold:0}));
           "
+      - name: Reconstruct the original source senses behind all 32 nonblind diagnostic pairs
+        run: |
+          set -euo pipefail
+          node candidate-current/scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs \
+            scene1341-rec-nonblind-diagnostics32.json \
+            source-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source-data/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            | tee scene1341-rec-diagnostics32-provenance.json
+          node --input-type=module -e "
+            import fs from 'node:fs';
+            const r=JSON.parse(fs.readFileSync('scene1341-rec-diagnostics32-provenance.json','utf8'));
+            if(r.caseCount!==32||r.cases?.length!==32||r.watched?.length!==4||r.sourceSenseRows!==19371||r.sourceSceneRows!==1341||r.independentGoldCount!==0||r.release_allowed!==false)throw Error('PROVENANCE_CONTRACT_INVALID');
+            for(const c of r.cases)for(const k of ['control','contrast'])for(const item of c[k].results){
+              if(!item.scene_name||!item.scene_category||!item.scene_id)throw Error('MISSING_SCENE_IDENTITY');
+              if(item.matched_source_sense_id&&(!item.matched_source_expression||!item.matched_source_meaning||!item.source_shard))throw Error('MISSING_SOURCE_SENSE_PROVENANCE');
+            }
+            const lookup=(q,id)=>r.watched.find(w=>w.query===q)?.sceneDirectory.find(s=>s.scene_id===id);
+            if(lookup('食物会不会过期','SC50-0046')?.retrievalRank!==1)throw Error('KNOWN_LEXICAL_NOISE_CHANGED_REVIEW_REQUIRED');
+            console.log(JSON.stringify({status:'INDEPENDENT_PROVENANCE_AUDIT_PASS',pairs:32,sourceSenses:19371,sourceScenes:1341,watched:4,gold:0}));
+          "
       - name: Compare actual CG-MAIN browser opt-in with current CG-REC on frozen 41 queries
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
-          CG_REC_SHA: 7f2dd788f9d96cc5a70de6df38d9e583a8aff13a
+          CG_REC_SHA: 8ea1addac4dcd2df766bb6bed0e92a493e0c1463
         run: |
           set -euo pipefail
           test "$(git -C browser-current rev-parse HEAD)" = "$CG_MAIN_SHA"
@@ -215,7 +237,7 @@ jobs:
       - name: Generate 24 blind-ready holdout predictions with no gold labels
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
-          CG_REC_SHA: 7f2dd788f9d96cc5a70de6df38d9e583a8aff13a
+          CG_REC_SHA: 8ea1addac4dcd2df766bb6bed0e92a493e0c1463
         run: |
           set -euo pipefail
           mkdir -p browser-current/tools/cg-rec-eval
@@ -324,4 +346,5 @@ jobs:
             scene1341-blind-intake-predictions24.json
             scene1341-pr75-metadata-query-normalization.json
             scene1341-rec-nonblind-diagnostics32.json
+            scene1341-rec-diagnostics32-provenance.json
           if-no-files-found: warn
