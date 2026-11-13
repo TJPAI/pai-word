@@ -439,26 +439,26 @@ window.addEventListener('resize',scheduleQuestionFit);
 async function renderQuestionIPA(card){
  const ticket=++ipaSequence,expectedKU=card.scene_ku_id;
  const el=$('ipa');
- const initial=String(card.ipa||card.ipa_us||'').trim();
- if(initial){el.textContent=initial;el.title='词卡自带音标';return}
  el.textContent='音标加载中…';
- el.title='正在读取仓库 Core20K 发音数据';
+ el.title='正在核对Scene1341预览音标来源';
  try{
-  if(!ipaIndexPromise)ipaIndexPromise=import('./scene1341-ipa-preview.mjs')
-    .then(m=>m.scene1341IPAReference)
-    .catch(error=>{ipaIndexPromise=null;throw error});
-  const source=await ipaIndexPromise;
+  const [{describeScene1341IPA},source]=await Promise.all([
+   import('./scene1341-ipa-display-policy.mjs'),
+   (ipaIndexPromise||=import('./scene1341-ipa-preview.mjs')
+     .then(m=>m.scene1341IPAReference)
+     .catch(error=>{ipaIndexPromise=null;throw error}))
+  ]);
   const result=await source.lookup(card);
   if(ticket!==ipaSequence||$('learning').hidden||
      subset()[index]?.scene_ku_id!==expectedKU)return;
-  el.textContent=result?.ipa||'音标待补';
-  el.title=result?.kind==='word_by_word'
-   ?'Core20K 逐词参考音标，非经校验的整词组连读音标'
-   :result?'来自 Core20K 原词头的音标':'尚无经核实的完整音标';
+  const display=describeScene1341IPA(card,result);
+  el.textContent=display.text;el.title=display.title;
+  el.dataset.ipaStatus=display.status;
  }catch(error){
   if(ticket!==ipaSequence||$('learning').hidden||
      subset()[index]?.scene_ku_id!==expectedKU)return;
-  el.textContent='音标待补';el.title='音标索引加载失败或内容未核实';
+  el.textContent='音标待补';el.title='音标数据加载失败或来源尚未核实';
+  el.dataset.ipaStatus='missing';
   window.PAI_SCENE1341_IPA_PREVIEW_ERROR=String(error);
  }
 }
