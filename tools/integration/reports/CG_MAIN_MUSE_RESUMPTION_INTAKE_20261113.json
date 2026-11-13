@@ -1,6 +1,6 @@
 {
   "schema": "cg-main-muse-resumption-intake-v1",
-  "as_of": "2026-11-13T07:32:00Z",
+  "as_of": "2026-11-13T07:50:00Z",
   "authorization": "Muse quota restored by project owner",
   "github_notifications": [
     "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6846716547",
@@ -25,12 +25,21 @@
       "muse_certified": false,
       "release_allowed": false,
       "muse_ack": {
-        "source": "MU-ENTEACH Issue #1 comment 6846984591",
-        "state": "INDEPENDENT_BLIND_REVIEW_STARTED",
+        "source": "MU-ENTEACH Issue #1 comment 6847264380",
+        "state": "INDEPENDENT_REVIEW_COMPLETED_NOT_DUAL_CERTIFIED",
         "first_review": 219,
+        "pass": 181,
+        "revise": 35,
+        "hold": 3,
         "master_approval_required": 101,
+        "pass_without_master_hold": 103,
         "additional_unreviewed": 706,
-        "certified": 0
+        "certified": 0,
+        "evidence_commit": "e5ff6f56e25335cd1923a67202fc7b4b42c267f0",
+        "evidence_path": "tools/core20k_lexicon/staging/enteach_v51_219_revisions_muse_review.json",
+        "source_branch": "core20k-teaching-qa-b162-20261024",
+        "supersession_conflict": "QA_DIRECTED6 vs TARGETED_5 for KU 00635/00876/01534/02006; author to adjudicate",
+        "release_allowed": false
       }
     },
     {
@@ -43,9 +52,14 @@
       "muse_certified": false,
       "release_allowed": false,
       "muse_ack": {
-        "source": "MU-ENLEX Issue #1 comment 6846878554",
-        "state": "RECEIVED_WAITING_FOR_MASTER_ID_AND_KAIKKI_EVIDENCE",
-        "certified": 0
+        "source": "MU-ENLEX Issue #1 comment 6847277169",
+        "state": "403_IDENTITY_VERIFIED_125_SEMANTIC_HOLDS_PENDING",
+        "identity_verified": 403,
+        "identity_mismatch": 0,
+        "semantic_hold_reviewed": 0,
+        "certified": 0,
+        "evidence_commit": "b170e7c4fa00d7996985a140567882fef28a092c",
+        "release_allowed": false
       }
     },
     {
@@ -76,6 +90,18 @@
         "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
         "identity_decision": "PENDING_CG_MASTER",
         "release_allowed": false
+      },
+      "batch002": {
+        "source": "MU-MAIN Issue #1 comment 6847035980",
+        "source_rows": 10000,
+        "independent_certified": 0,
+        "release_allowed": false
+      },
+      "batch003": {
+        "source": "MU-MAIN Issue #1 comment 6847097075",
+        "source_rows": 10000,
+        "independent_certified": 0,
+        "release_allowed": false
       }
     },
     {
@@ -83,14 +109,51 @@
       "owner": "MU-ENLEX+CG-ENLEX+MU-QA",
       "source": "verified Kaikki native IPA only",
       "muse_certified": false,
-      "release_allowed": false
+      "release_allowed": false,
+      "muse_review": {
+        "source": "MU-ENLEX Issue #1 comment 6847277169",
+        "source_commit": "b170e7c4fa00d7996985a140567882fef28a092c",
+        "native27": {
+          "total": 27,
+          "pass": 19,
+          "conditional": 8,
+          "hold": 0
+        },
+        "nativeword100": {
+          "total": 100,
+          "pass": 34,
+          "conditional": 66,
+          "hold": 0
+        },
+        "missing75": {
+          "expressions": 75,
+          "ku": 141,
+          "not_found": 75
+        },
+        "v57": {
+          "total": 9,
+          "agree_hold": 5,
+          "disagree": 4
+        },
+        "muse_pass_total": 53,
+        "muse_conditional_total": 74,
+        "dual_ai_certified": 0,
+        "release_allowed": false,
+        "region_policy_pending": true
+      }
     },
     {
       "id": "scene1341-recommendation",
       "owner": "MU-REC+CG-REC+CG-REC-EVAL",
       "source": "MU-REC Issue #1 comment 6846937653",
       "muse_certified": false,
-      "release_allowed": false
+      "release_allowed": false,
+      "muse_ack": {
+        "source": "MU-REC Issue #1 comments 6847076558 and 6847172165",
+        "state": "ISOLATED_ENGINEERING_EVIDENCE_SECOND_REVIEW_PASS",
+        "semantic_gold_certified": 0,
+        "release_allowed": false
+      }
     }
   ],
   "required_per_item": [
