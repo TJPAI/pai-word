@@ -247,6 +247,13 @@ jobs:
           node evaluation/tools/cg-rec-eval/validate-blind-adjudication-intake.mjs \
             evaluation/tools/cg-rec-eval/scene1341-blind-intake-24.v1.json \
             evaluation/tools/cg-rec-eval/scene1341-blind-adjudication-24.template.v1.json
+      - name: Verify separate unlabelled reviewer A and B packet generator
+        run: |
+          node evaluation/tools/cg-rec-eval/scene1341-test-blind-reviewer-packets.mjs
+          node evaluation/tools/cg-rec-eval/scene1341-blind-reviewer-packets.mjs \
+            evaluation/tools/cg-rec-eval/scene1341-blind-intake-24.v1.json \
+            scene1341-reviewer-A-query-only.json \
+            scene1341-reviewer-B-query-only.json
       - name: Generate 24 blind-ready holdout predictions with no gold labels
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
@@ -271,7 +278,9 @@ jobs:
         run: |
           node evaluation/tools/cg-rec-eval/score-sealed-blind-gold.mjs \
             evaluation/tools/cg-rec-eval/scene1341-blind-adjudication-24.template.v1.json \
-            scene1341-blind-intake-predictions24.json \
+            scene1341-blind-intake-predictions24.json
+            scene1341-reviewer-A-query-only.json
+            scene1341-reviewer-B-query-only.json \
             --expect-unsealed
       - name: Validate both outputs independently
         run: |
