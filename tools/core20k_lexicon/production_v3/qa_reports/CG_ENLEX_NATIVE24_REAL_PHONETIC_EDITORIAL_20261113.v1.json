@@ -1,0 +1,416 @@
+{
+  "schema": "cg-enlex-native24-independent-author-phonetic-editorial-v1",
+  "date": "2026-11-13",
+  "role": "CG-ENLEX",
+  "source": {
+    "run": 43355324052,
+    "artifact": 14005418416,
+    "raw_report_sha256": "4e6ed00bcf157e59f61b6c7fef935c6eaa462ee010153391f9c2455a705891a5",
+    "prior_manifest_blob": "41ef9e1c09eb2dd2c928c7341828e4bcce329465"
+  },
+  "scope": {
+    "expressions": 24,
+    "ku": 27,
+    "source_sound_rows": 57
+  },
+  "review_principle": "Each line is the author's phonetic/lexicographic editorial assessment of verbatim original evidence, not an approved IPA or CG-QA/Muse certification. IPA transcription between slashes can still contain phonetic/narrow detail.",
+  "rows": [
+    {
+      "n": 1,
+      "expression": "wake up",
+      "editorial_decision": "RETAIN_WITH_NOTATION_SEPARATION",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌweɪk ˈʌp/",
+        "source_line": 50969,
+        "sound_index": 0,
+        "source_region": "both"
+      },
+      "professional_assessment": "Bracket [ˌweɪ̯ˈkʌp] is a phonetic realization, not automatically an alternate phoneme sequence.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 2,
+      "expression": "sleep in",
+      "editorial_decision": "RETAIN_REGION_DISTINCT",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌsliːp ˈɪn/",
+        "source_line": 107661,
+        "sound_index": 1,
+        "source_region": "uk"
+      },
+      "professional_assessment": "The /ˌslip ˈɪn/ reading is tagged Canada/General-American/Scotland, not a spelling error; NZ has /ˌsliːp ˈən/.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 3,
+      "expression": "night owl",
+      "editorial_decision": "RETAIN_REGION_STRESS_DISTINCT",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈnaɪt aʊl/",
+        "source_line": 54010,
+        "sound_index": 0,
+        "source_region": "uk"
+      },
+      "professional_assessment": "US source has /ˈnaɪt ˌaʊl/; accent/stress rendering must not be conflated with changed Sense.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 4,
+      "expression": "day off",
+      "editorial_decision": "HOLD_UNTAGGED_STRESS_SELECTION",
+      "evidence_candidate": {
+        "raw_ipa": "/deɪˈɒf/",
+        "source_line": 164261,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Source has /ˈdeɪ.ɒf/ too, with no region; cannot classify either US or UK.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 5,
+      "expression": "roll over",
+      "editorial_decision": "HOLD_UNTAGGED_OPTIONAL_RHOTIC",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌɹəʊl ˈəʊvə(ɹ)/",
+        "source_line": 195091,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Parenthesized r is conditional, not an independent recorded US pronunciation; phrase sense context still needed.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 6,
+      "expression": "hand towel",
+      "editorial_decision": "HOLD_OPTIONAL_SEGMENT_DISPLAY",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈhæn(d)ˌtaʊ(ə)l/",
+        "source_line": 387926,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Optional d and schwa make direct learner-card display ambiguous; no unsupported expansion into new source readings.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 7,
+      "expression": "bath towel",
+      "editorial_decision": "HOLD_MULTI_REGION_SOURCE_CHOICE",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌbæθ ˈtaʊ̯.əl/",
+        "source_line": 588069,
+        "sound_index": 1,
+        "source_region": "both"
+      },
+      "professional_assessment": "Several source-supported Australian, NZ, Scottish and Indian variants; do not promote one to international default or infer all source recordings equal.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 8,
+      "expression": "nail file",
+      "editorial_decision": "HOLD_MULTI_REGION_SOURCE_CHOICE",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈneɪl ˌfaɪl/",
+        "source_line": 134937,
+        "sound_index": 1,
+        "source_region": "both"
+      },
+      "professional_assessment": "Eight raw source variants, including regional alternatives; needs an accent-specific default and nonduplicate variant policy.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 9,
+      "expression": "put on",
+      "editorial_decision": "HOLD_SENSE_AND_REGION",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌpʊt ˈɒn/",
+        "source_line": 10993,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Phrasal verb with multiple meanings; vowel shape alone must not authorize untagged US/UK normalization.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 10,
+      "expression": "inside out",
+      "editorial_decision": "HOLD_POS_CONTEXT",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌɪnsaɪdˈaʊt/",
+        "source_line": 44395,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Two source entries (lines 44395/44396) share identical IPA; do not infer identical adjective/adverb Sense.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 11,
+      "expression": "get rid of",
+      "editorial_decision": "HOLD_UNTAGGED_WEAK_FORM",
+      "evidence_candidate": {
+        "raw_ipa": "/ɡɛt ɹɪd ʌv/",
+        "source_line": 68126,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Unmarked expression candidate may differ from connected-speech reduced of; cannot claim a universal accent.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 12,
+      "expression": "living room",
+      "editorial_decision": "RETAIN_SHARED_US_UK_SOURCE",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈlɪvɪŋ ɹuːm/",
+        "source_line": 44836,
+        "sound_index": 0,
+        "source_region": "both"
+      },
+      "professional_assessment": "Raw source tags both General-American and Received-Pronunciation; rhoticity cannot be inferred as a separate phrase variant.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 13,
+      "expression": "window sill",
+      "editorial_decision": "RETAIN_REGION_DISTINCT",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈwɪndəʊ ˌsɪl/",
+        "source_line": 162218,
+        "sound_index": 0,
+        "source_region": "uk"
+      },
+      "professional_assessment": "UK also has /ˈwɪndə ˌsɪl/; US source /ˈwɪndoʊ ˌsɪl/; preserve both UK source alternatives.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 14,
+      "expression": "dust bunny",
+      "editorial_decision": "RETAIN_SHARED_US_UK_SOURCE",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈdʌst bʌni/",
+        "source_line": 59332,
+        "sound_index": 0,
+        "source_region": "both"
+      },
+      "professional_assessment": "Single source reading with two explicit region tags; avoid inventing pronunciation variants.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 15,
+      "expression": "all-purpose cleaner",
+      "editorial_decision": "RETAIN_US_ONLY",
+      "evidence_candidate": {
+        "raw_ipa": "/ˌɔl.pɝpəsˈklinɚ/",
+        "source_line": 1288887,
+        "sound_index": 0,
+        "source_region": "us"
+      },
+      "professional_assessment": "General-American alone is evidenced; no UK counterpart in original native phrase source.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 16,
+      "expression": "fabric softener",
+      "editorial_decision": "HOLD_MERGER_ACCENT_MAPPING",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈfæbrɪk ˈsɔfənər/",
+        "source_line": 290873,
+        "sound_index": 2,
+        "source_region": "us"
+      },
+      "professional_assessment": "The source /ˈfæbrɪk ˈsɑfənər/ is labeled cot-caught-merger, not universally generic; other source candidate tagged Canada+UK.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 17,
+      "expression": "fair share",
+      "editorial_decision": "RETAIN_REGION_DISTINCT",
+      "evidence_candidate": {
+        "raw_ipa": "/fɛɚ ʃɛɚ/",
+        "source_line": 1266115,
+        "sound_index": 2,
+        "source_region": "us"
+      },
+      "professional_assessment": "UK source /fɛə ʃɛə/ and /fɛː ʃɛə/ are separate candidates; annotate rhotic US vs non-rhotic UK.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 18,
+      "expression": "cutting board",
+      "editorial_decision": "HOLD_PHONETIC_DETAIL_IN_SLASH",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈkʰʌɾɪŋ bɔɹd/",
+        "source_line": 422939,
+        "sound_index": 0,
+        "source_region": "us"
+      },
+      "professional_assessment": "Aspiration kʰ and intervocalic flap ɾ encode narrow phonetic realization despite slashes; do not label automatically as broad phonemic.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 19,
+      "expression": "meal prep",
+      "editorial_decision": "HOLD_UNTAGGED_STRESS_BOUNDARY",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈmiːlˌpɹɛp/",
+        "source_line": 1031070,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "No region source tag; source stress/spacing should be inspected before card display.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 20,
+      "expression": "wooden spoon",
+      "editorial_decision": "HOLD_UNTAGGED_REGION",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈwʊdən spuːn/",
+        "source_line": 49500,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Source geographic region is unspecified; the phonemic candidate is not certified universal.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 21,
+      "expression": "dining room",
+      "editorial_decision": "RETAIN_US_ONLY",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈdaɪnɪŋˌɹum/",
+        "source_line": 58824,
+        "sound_index": 0,
+        "source_region": "us"
+      },
+      "professional_assessment": "Explicit US source; do not construct UK counterpart by deleting r or altering vowels.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 22,
+      "expression": "salt shaker",
+      "editorial_decision": "RETAIN_US_ONLY",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈsɔltˌʃeɪkɚ/",
+        "source_line": 50485,
+        "sound_index": 0,
+        "source_region": "us"
+      },
+      "professional_assessment": "General-American source only; no independently sourced UK expression IPA.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 23,
+      "expression": "cup of tea",
+      "editorial_decision": "HOLD_REGISTER_WEAK_FORM",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈkʌp əv ˈtiː/",
+        "source_line": 77220,
+        "sound_index": 0,
+        "source_region": "unmarked"
+      },
+      "professional_assessment": "Second source /ˌkʌp ə ˈtiː/ is explicitly informal; don't assume a different Sense or fabricate region.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    },
+    {
+      "n": 24,
+      "expression": "air conditioner",
+      "editorial_decision": "RETAIN_REGION_DISTINCT",
+      "evidence_candidate": {
+        "raw_ipa": "/ˈɛɹ kənˌdɪʃ(ə)nɚ/",
+        "source_line": 73480,
+        "sound_index": 2,
+        "source_region": "us"
+      },
+      "professional_assessment": "UK original /ˈɛə kənˌdɪʃn̩ə/ differs; US contains optional schwa, requiring learner-facing display policy.",
+      "independent_cg_qa_pass": false,
+      "muse_pass": false,
+      "master_approved": false,
+      "release_allowed": false
+    }
+  ],
+  "review_counts": {
+    "candidate_retain_for_independent_qa": 11,
+    "editorial_hold_pending_resolution": 13
+  },
+  "next_gate": "CG-QA independent sound-level review of all 57 rows with staged 27 KU context; resolve whether US/UK source candidate selection fits sentence Sense, POS and phonemic transcription policy. 24 reviewed expressions are not 24 passed.",
+  "unchanged": [
+    "frozen Core20K",
+    "original Scene500",
+    "Master",
+    "Runtime",
+    "SRS"
+  ],
+  "release_allowed": false
+}
