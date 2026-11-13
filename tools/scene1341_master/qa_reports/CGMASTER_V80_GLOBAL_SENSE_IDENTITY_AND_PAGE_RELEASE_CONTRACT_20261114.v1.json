@@ -1,0 +1,104 @@
+{
+  "schema": "cgmaster_v80_global_sense_identity_release_contract_v1",
+  "date": "2026-11-14",
+  "role": "CG-MASTER",
+  "status": "SOURCE_GROUNDED_HANDOFF_ONLY_NO_SEMANTIC_CERTIFICATION",
+  "source_master": {
+    "drive_id": "1bT_STgfNsJQA5v5x-8bP4T4DH9_eLNaF",
+    "sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "rows": 230289,
+    "scene_count": 1341
+  },
+  "predecessor": {
+    "version": "V79",
+    "report_drive_id": "1KFi4y1Cxh55qZqmb_3Dv96A8WUwzhTMn",
+    "report_sha256": "f8f023802a9091b42cf46dca9f9fa234168a6c09db2959c11cf032b073942f6b",
+    "crossjoin_commit": "27e57e8dfe32ae1358cf80d49d7bb9f736e8c165"
+  },
+  "census": {
+    "normalized_expressions": 127609,
+    "expression_gloss_candidate_groups": 176006,
+    "candidate_groups_with_zh": 175806,
+    "candidate_groups_missing_zh": 200,
+    "candidate_groups_cross_scene": 17718,
+    "candidate_groups_with_polygloss_expression": 63979,
+    "global_authorized_unique_sense_total": null,
+    "global_semantically_deduplicated_count": null,
+    "unresolved_semantic_cases_total": null
+  },
+  "teaching": {
+    "author_v51_ku": 2038,
+    "author_five_answer_fields_present": 2038,
+    "scene_expression_matched_to_final": 2000,
+    "exact_master_gloss_match": 1894,
+    "gloss_mismatch": 106,
+    "unmatched_scene_expression": 38,
+    "kaikki_ipa_staging_ku": 1778,
+    "native_ipa_candidates": 672,
+    "native_ipa_not_found": 1106,
+    "author_ipa_and_exact_master_gloss_ku": 619,
+    "author_ipa_and_exact_master_gloss_candidate_keys": 533
+  },
+  "strict_pages": {
+    "denominator": "AUTHORIZED_GLOBAL_INDEPENDENT_SENSE",
+    "denominator_count": null,
+    "question_complete_count": null,
+    "answer_complete_count": null,
+    "both_complete_count": null,
+    "question_complete_rate": null,
+    "answer_complete_rate": null,
+    "both_complete_rate": null,
+    "certified_release_sense_count": 0,
+    "formally_certified_rate": null
+  },
+  "identity_contract": {
+    "record_id": "IMMUTABLE_SOURCE_RECORD_ID; preserve original FINAL source triplet and full FINAL source SHA; V65 IDs candidate only pending MU-MASTER authorization",
+    "canonical_sense_id": "ISSUE_ONLY_AFTER_INDEPENDENT_SEMANTIC_ADJUDICATION; unique globally within Scene1341; never borrow frozen Core20K IDs or Scene500 identities",
+    "sense_scene_link": "MANY_TO_MANY; separate relation ID with scene_id, canonical_sense_id, original record_id(s), context and version evidence",
+    "alias_vs_polysemy": "No automatic merge based on expression or Chinese gloss equality; check Kaikki POS, exact gloss, source SHA, source locator, scene context and reviewer verdict",
+    "status_enums": [
+      "SOURCE_CANDIDATE",
+      "EVIDENCE_ATTACHED",
+      "EDITORIAL_REVIEWED",
+      "CG_QA_APPROVED",
+      "MU_QA_APPROVED",
+      "DUAL_AI_CERTIFIED",
+      "HOLD",
+      "REVISE"
+    ],
+    "release_rule": "FAIL_CLOSED; requires approved canonical Sense ID, exact immutable source evidence and same-version CG-QA+MU-QA independent favorable decisions plus page field validity"
+  },
+  "review_handoffs": [
+    {
+      "owner": "MU-MASTER",
+      "action": "Authorize immutable source-record ID formula and full provenance/Scene1341-only lineage; supply original scene-context evidence"
+    },
+    {
+      "owner": "CG-ENLEX,MU-ENLEX",
+      "action": "Supply exact Kaikki source SHA, entry, POS, gloss, sense index and source locator for V72 first 300 groups/733 rows, then scale to global candidate groups; log explicit no-match"
+    },
+    {
+      "owner": "CG-ENTEACH,MU-ENTEACH",
+      "action": "Supply stable source-anchored teaching field crosswalk for all scenes; address first 106 gloss mismatches and 38 missing scene-expression joins; mark draft not certified"
+    },
+    {
+      "owner": "CG-QA,MU-QA",
+      "action": "Independently adjudicate same source version and candidate boundaries, including polysemy and true aliases; return two separate decisions; do not copy CG-MASTER editorial findings as certifications"
+    },
+    {
+      "owner": "CG-MAIN",
+      "action": "Read-only quarantined intake only; no deployment until identity, independent QA and page coverage gates pass"
+    }
+  ],
+  "preserved": [
+    "FINAL source CSV",
+    "Reviewed Master V13",
+    "frozen Core20K",
+    "Scene500 data",
+    "runtime",
+    "SRS",
+    "KU histories"
+  ],
+  "release_allowed": false,
+  "note": "This V80 is a reproducible decision/measurement contract grounded in V79 source reports. It neither creates new canonical Sense IDs nor claims fresh full-population semantic adjudication."
+}
