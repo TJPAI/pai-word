@@ -1,0 +1,447 @@
+{
+  "schema": "cg-enlex-native13-hold-contextual-phonetics-v1",
+  "date": "2026-11-13",
+  "role": "CG-ENLEX",
+  "source": {
+    "native24_author_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+    "enteach_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+    "original_ci_run": 43355324052,
+    "original_artifact_id": 14005418416,
+    "original_raw_27_report_sha256": "4e6ed00bcf157e59f61b6c7fef935c6eaa462ee010153391f9c2455a705891a5"
+  },
+  "scope": {
+    "reviewed_hold_expressions": 13,
+    "distinct_ku": 15,
+    "previous_author_hold_count": 13,
+    "contextually_resolved_phrasal_or_pos_cases": 4,
+    "remaining_ipa_editorial_holds": 13
+  },
+  "caution": "Source staging KU prose QA=PASS is not pronunciation certification. Clarification of phrase meaning/part of speech does not approve any IPA. Only currently known exact original candidate excerpts shown here; full 57 rows remain in earlier original source artifact.",
+  "rows": [
+    {
+      "expression": "day off",
+      "prior_author_decision": "HOLD_UNTAGGED_STRESS_SELECTION",
+      "source_line": 164261,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/deɪˈɒf/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "STRESS_AND_UNMARKED_REGION",
+      "contextual_sense_judgment": "Noun phrase 'a day off' corresponds to a scheduled nonworking day; target scene semantically compatible.",
+      "source_phonetics_judgment": "Both two unmarked Kaikki stress patterns exist; neither has US/UK tagging. Reject geographic inference.",
+      "independent_qa_action": "Independent reviewer select learner-facing stress form with source and idiomatic use; retain alternate only with explicit basis.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00079",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00079",
+          "source_rank": 79,
+          "meaning_zh": "休息日",
+          "example_en": "Tomorrow is my day off, so I can sleep in.",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "roll over",
+      "prior_author_decision": "HOLD_UNTAGGED_OPTIONAL_RHOTIC",
+      "source_line": 195091,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˌɹəʊl ˈəʊvə(ɹ)/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "SENSE_RESOLVED_IPA_REGION_PENDING",
+      "contextual_sense_judgment": "In 'I rolled over and checked the time', roll over means turn one's body while lying down, NOT transfer a balance/contract.",
+      "source_phonetics_judgment": "Original optional-r /ˌɹəʊl ˈəʊvə(ɹ)/ remains untagged. Parentheses indicate conditional segment; not a separately sourced regional IPA.",
+      "independent_qa_action": "Retain optional segment verbatim, confirm selected dialect and broad vs narrow transcription before release.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00098",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00098",
+          "source_rank": 98,
+          "meaning_zh": "翻身",
+          "example_en": "I rolled over and checked the time on my phone.",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "hand towel",
+      "prior_author_decision": "HOLD_OPTIONAL_SEGMENT_DISPLAY",
+      "source_line": 387926,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˈhæn(d)ˌtaʊ(ə)l/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "OPTIONAL_SEGMENT_DISPLAY",
+      "contextual_sense_judgment": "The sink context confirms a hand-drying towel noun, not a bath towel.",
+      "source_phonetics_judgment": "Only the source /ˈhæn(d)ˌtaʊ(ə)l/ provides optional /d/ and schwa; cannot expand into multiple alleged recordings.",
+      "independent_qa_action": "QA decide safe learner display and phonemic transcription, preserving native source in provenance.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00279",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00279",
+          "source_rank": 45,
+          "meaning_zh": "擦手巾",
+          "example_en": "There's a hand towel beside the sink.",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "author_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "bath towel",
+      "prior_author_decision": "HOLD_MULTI_REGION_SOURCE_CHOICE",
+      "source_line": 588069,
+      "source_sound_index": 1,
+      "verbatim_source_candidate": "/ˌbæθ ˈtaʊ̯.əl/",
+      "source_region": "both",
+      "phonetic_editorial_category": "MULTI_REGION_VARIANTS",
+      "contextual_sense_judgment": "The sentence refers to a full-size bath towel hung to dry.",
+      "source_phonetics_judgment": "Eight actual regional source forms exist, including both-tagged and geographically restricted. Candidate count is not eight accepted standard pronunciation variants.",
+      "independent_qa_action": "Select source-backed locale variants while checking stress and regional original tags, leaving nonselected forms archived.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00280",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00280",
+          "source_rank": 46,
+          "meaning_zh": "浴巾",
+          "example_en": "I hung the bath towel up to dry.",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "author_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "nail file",
+      "prior_author_decision": "HOLD_MULTI_REGION_SOURCE_CHOICE",
+      "source_line": 134937,
+      "source_sound_index": 1,
+      "verbatim_source_candidate": "/ˈneɪl ˌfaɪl/",
+      "source_region": "both",
+      "phonetic_editorial_category": "MULTI_REGION_VARIANTS",
+      "contextual_sense_judgment": "Use for filing nails, clear grooming noun; excludes a computer file or a carpentry rasp.",
+      "source_phonetics_judgment": "Eight variants from original tags, some geographically restricted; Scotland/India/Australia forms cannot be labelled generic.",
+      "independent_qa_action": "Confirm user learning locale and choose an exact tagged candidate; avoid projecting accent beyond source.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00314",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00314",
+          "source_rank": 80,
+          "meaning_zh": "指甲锉",
+          "example_en": "I use a nail file to smooth the edges of my nails.",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "author_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "put on",
+      "prior_author_decision": "HOLD_SENSE_AND_REGION",
+      "source_line": 10993,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˌpʊt ˈɒn/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "SENSE_RESOLVED_IPA_REGION_PENDING",
+      "contextual_sense_judgment": "Imperative 'Put on your jacket before going out' resolves phrasal verb to wear/don clothing, not staging a show or weight gain.",
+      "source_phonetics_judgment": "Only /ˌpʊt ˈɒn/ is attested at phrase level with no region tag; cannot claim US+UK.",
+      "independent_qa_action": "QA phrasal stress and locale on this specific wear sense; source IPA may be shown only as unverified candidate.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00412",
+          "scene_id": "SC50-0003",
+          "source_sense_id": "SC-SENSE-00412",
+          "source_rank": 4,
+          "meaning_zh": "穿上或戴上",
+          "example_en": "Put on your jacket before going out.",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "author_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "inside out",
+      "prior_author_decision": "HOLD_POS_CONTEXT",
+      "source_line": 44395,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˌɪnsaɪdˈaʊt/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "POS_RESOLVED_IPA_REGION_PENDING",
+      "contextual_sense_judgment": "In 'Your T-shirt is inside out', phrase acts as predicative adjective; original source adjective entry (line 44396) is appropriate; adverb entry (44395) not chosen merely because IPA string is identical.",
+      "source_phonetics_judgment": "IPA /ˌɪnsaɪdˈaʊt/ is verbatim in both POS entries; POS resolution does not authenticate dialect because region is untagged.",
+      "independent_qa_action": "Review adjective exact source row 44396 in CG-QA and Master; retain source POS identity.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00532",
+          "scene_id": "SC50-0003",
+          "source_sense_id": "SC-SENSE-00532",
+          "source_rank": 124,
+          "meaning_zh": "里朝外的",
+          "example_en": "Your T-shirt is inside out.",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "author_pack_blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "get rid of",
+      "prior_author_decision": "HOLD_UNTAGGED_WEAK_FORM",
+      "source_line": 68126,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ɡɛt ɹɪd ʌv/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "SENSE_RESOLVED_IPA_REGION_PENDING",
+      "contextual_sense_judgment": "'Get rid of things I no longer use' is to dispose of unwanted things; intended verb phrase and object confirmed.",
+      "source_phonetics_judgment": "Source unmarked /ɡɛt ɹɪd ʌv/ gives the nonreduced form. Reduced connected-speech form is not in this native expression candidate.",
+      "independent_qa_action": "Do not generate weak-form IPA and call it Kaikki-native; QA source unmarked IPA and connected-speech teaching separately.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00640",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00640",
+          "source_rank": 28,
+          "meaning_zh": "处理掉不需要的东西",
+          "example_en": "I want to get rid of things I no longer use.",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "author_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "fabric softener",
+      "prior_author_decision": "HOLD_MERGER_ACCENT_MAPPING",
+      "source_line": 290873,
+      "source_sound_index": 2,
+      "verbatim_source_candidate": "/ˈfæbrɪk ˈsɔfənər/",
+      "source_region": "us",
+      "phonetic_editorial_category": "PHONETIC_MERGER_REGION",
+      "contextual_sense_judgment": "Both KU-00903 and KU-01055 refer to the laundry product; distinct learning contexts must retain distinct KU/Sense identities.",
+      "source_phonetics_judgment": "Source tags /ˈfæbrɪk ˈsɒfənər/ Canada+UK, /ˈfæbrɪk ˈsɔfənər/ US and /ˈfæbrɪk ˈsɑfənər/ cot-caught-merger (not region). Merger is an accent feature, not geographic universal.",
+      "independent_qa_action": "Regional and feature tags must remain on candidate level, with no unsupported broad normalization.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-00903",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00903",
+          "source_rank": 81,
+          "meaning_zh": "衣物柔顺剂",
+          "example_en": "I skipped fabric softener for these towels.",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "author_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+          "source_staging_qa_provisional": "PASS"
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01055",
+          "scene_id": "SC50-0006",
+          "source_sense_id": "SC-SENSE-01055",
+          "source_rank": 10,
+          "meaning_zh": "衣物柔顺剂",
+          "example_en": "I skip fabric softener when washing sports towels.",
+          "source_qa_shard_blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+          "author_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "cutting board",
+      "prior_author_decision": "HOLD_PHONETIC_DETAIL_IN_SLASH",
+      "source_line": 422939,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˈkʰʌɾɪŋ bɔɹd/",
+      "source_region": "us",
+      "phonetic_editorial_category": "NARROW_DETAIL_NOTATION",
+      "contextual_sense_judgment": "Both KU contexts clearly refer to a kitchen chopping board, yet separate original scenes/KU identities are retained.",
+      "source_phonetics_judgment": "Original /ˈkʰʌɾɪŋ bɔɹd/ contains kʰ aspiration and ɾ flap; despite slashes it is phonetically detailed. No independent broad native phrase transcription in this extract.",
+      "independent_qa_action": "Flag transcription_level=PHONETIC_DETAIL_IN_SLASH and review with competent phonetician. Never silently strip diacritics or convert to broad IPA.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01241",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01241",
+          "source_rank": 6,
+          "meaning_zh": "砧板",
+          "example_en": "Use a clean cutting board for the vegetables.",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "author_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+          "source_staging_qa_provisional": "PASS"
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01710",
+          "scene_id": "SC50-0009",
+          "source_sense_id": "SC-SENSE-01710",
+          "source_rank": 70,
+          "meaning_zh": "砧板",
+          "example_en": "Wash the cutting board after preparing raw meat.",
+          "source_qa_shard_blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+          "author_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "meal prep",
+      "prior_author_decision": "HOLD_UNTAGGED_STRESS_BOUNDARY",
+      "source_line": 1031070,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˈmiːlˌpɹɛp/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "STRESS_AND_UNMARKED_REGION",
+      "contextual_sense_judgment": "Sunday advance meal preparation, not ingredient prep as a vague category; noun sense context is supported.",
+      "source_phonetics_judgment": "Single original /ˈmiːlˌpɹɛp/ is unmarked region and has stress adjoining tokens; cannot assert one universal citation form.",
+      "independent_qa_action": "Independent QA validate stress, phonemic formatting, and nonregional learner display.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01249",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01249",
+          "source_rank": 14,
+          "meaning_zh": "提前备餐；预先准备多餐食材或饭菜",
+          "example_en": "I do meal prep on Sundays so weekday dinners are easier.",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "author_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "wooden spoon",
+      "prior_author_decision": "HOLD_UNTAGGED_REGION",
+      "source_line": 49500,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˈwʊdən spuːn/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "UNMARKED_REGION",
+      "contextual_sense_judgment": "Physical utensil used to stir sauce; noun phrase reading straightforward.",
+      "source_phonetics_judgment": "Single /ˈwʊdən spuːn/ with no regional tags; no US/UK inference permitted.",
+      "independent_qa_action": "Source candidate remains usable for QA comparison but locale is explicitly unknown.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01298",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01298",
+          "source_rank": 63,
+          "meaning_zh": "木勺",
+          "example_en": "Stir the sauce gently with a wooden spoon.",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "author_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "expression": "cup of tea",
+      "prior_author_decision": "HOLD_REGISTER_WEAK_FORM",
+      "source_line": 77220,
+      "source_sound_index": 0,
+      "verbatim_source_candidate": "/ˈkʌp əv ˈtiː/",
+      "source_region": "unmarked",
+      "phonetic_editorial_category": "REGISTER_WEAK_FORM",
+      "contextual_sense_judgment": "The example denotes a literal beverage, not the idiom 'not my cup of tea'.",
+      "source_phonetics_judgment": "Two original untagged candidates: /ˈkʌp əv ˈtiː/ neutral and /ˌkʌp ə ˈtiː/ tagged informal; informal weak 'of' is an attested register/connected-speech alternative, not a different sense.",
+      "independent_qa_action": "Maintain register annotation and avoid labeling the two variants as US/UK.",
+      "kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01897",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01897",
+          "source_rank": 58,
+          "meaning_zh": "一杯茶",
+          "example_en": "A cup of tea helps me slow down after work.",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_staging_qa_provisional": "PASS"
+        }
+      ],
+      "ipa_editorial_hold": true,
+      "independent_ipa_qa_pass": false,
+      "muse_ipa_pass": false,
+      "master_ipa_approved": false,
+      "release_allowed": false
+    }
+  ],
+  "approval": {
+    "cg_qa_ipa_pass": 0,
+    "muse_ipa_pass": 0,
+    "master_approved": 0,
+    "release_allowed": false
+  },
+  "untouched": [
+    "Frozen English Core20K headwords and Senses",
+    "Historical V13 403 / V17 125 risk queues",
+    "Master V13",
+    "Scene500",
+    "Production Runtime/SRS"
+  ]
+}
