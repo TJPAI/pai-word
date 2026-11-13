@@ -1,0 +1,197 @@
+{
+  "schema": "cg-qa-v39-manual19-independent-scientific-semantic-triage-v1",
+  "reviewer": "CG-QA",
+  "date": "2026-11-13",
+  "source_drive_file_id": "1q-TvrONVcdfQ6KnlLHwasVMYNRRPa1L3",
+  "source_drive_name": "CGMASTER_V39_MANUAL19_POS_GLOSS_CONTEXT_CASES.json",
+  "source_sha256_reported_by_master": "7c81c89b2941b8077606f2257d55e14379a838bada3b752ca2646a7c778b48cc",
+  "scope": "Independent human-level bilingual technical semantic and POS judgment of 19 source evidence cases; retains all source reports and pending approvals.",
+  "counts": {
+    "reviewed": 19,
+    "unique": 19,
+    "LEXICAL_SUPPORT_CONTEXT_PENDING": 12,
+    "CONDITIONAL_DOMAIN_SENSE": 2,
+    "CONDITIONAL_SCIENTIFIC_SCOPE": 1,
+    "HOLD_DOMAIN_SENSE": 2,
+    "CONDITIONAL_POS_SENSE_SCOPE": 1,
+    "HOLD_POS_SENSE_MISMATCH": 1,
+    "master_approvals": 0,
+    "muse_certifications": 0,
+    "dual_ai_certifications": 0
+  },
+  "source_caveat": "Source file provides expression, Chinese original, chosen Kaikki gloss/POS, source batch and editorial reasoning, but not complete authoritative Master sentence / full identity approval. For all 19 QA editorial judgments are NOT formal certifications.",
+  "rows": [
+    {
+      "audit_row_no": 91050,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "radioactivity专业义“放射性活度”由单位时间衰变次数的准确源释义直接支持；核放射场景适配，但需核Master原句是否讲该量而非一般活动。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91068,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "excitation作为核、原子、分子吸收能量跃迁到激发态的名词可译“激发”；不能把激发态与激发过程当成同一语法角色。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91078,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "nuclear fission的整短语直接对应核裂变；源条目明确大核分裂为较小核。需确保原始目标确为核反应而非其他借喻。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91279,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "short-lived在放射性核素语境下表示半衰期短；原中文“寿命短暂的”基本可用，但宜在教学用法说明中具体标注半衰期而非任意物体使用寿命。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91303,
+      "independent_editorial_verdict": "CONDITIONAL_DOMAIN_SENSE",
+      "independent_semantic_reason": "composite的一般形容词义可支持“复合的”，但材料学composite material、复合粒子等专业类型需源句确认，不以一般义冒充专业术语定义。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91427,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "inertial指与惯性有关，可译“惯性的”；但inertial frame常译惯性参考系，需避免将形容词的独立含义与整体专业搭配混同。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91512,
+      "independent_editorial_verdict": "CONDITIONAL_DOMAIN_SENSE",
+      "independent_semantic_reason": "stationary的当前Kaikki词义仅“不移动的”，支持静止；在随机过程stationary=平稳，语义不同，原中文不能据词头自动跨学科沿用。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91586,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "amorphous在材料学为非晶态，源义确指non-crystalline solid，中文“非晶态的”准确；须核场景和原句。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91661,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "stress在材料力学中对应单位面积内力的应力；与心理压力、应变strain应明确区别。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91667,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "terminal的实际来源明确电气导线端部或可连接硬件，语义足以支持“端子”这一专业译义；但不能泛化到计算机终端或航站楼，原句/器件身份待确认。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91906,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "condense作动词在相变义为气态变液态，可译凝结/冷凝；不能无证据推广到压缩文字或凝华（气→固）。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 91984,
+      "independent_editorial_verdict": "CONDITIONAL_SCIENTIFIC_SCOPE",
+      "independent_semantic_reason": "coherence可译相干性；但Kaikki所引同波长和同相位不是所有相干情况的充分通用定义，尤其部分相干、时间和空间相干需用相位相关性表述；原中文后半段是教学扩展解释而非单字释义。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92047,
+      "independent_editorial_verdict": "HOLD_DOMAIN_SENSE",
+      "independent_semantic_reason": "monochromatic当前来源是单一颜色及色调例子，并未证明光学严格单频/窄带意义；“单色的”可一般支持但专业光谱Sense需外部光学证据。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92250,
+      "independent_editorial_verdict": "CONDITIONAL_POS_SENSE_SCOPE",
+      "independent_semantic_reason": "divergence在向量分析可译“散度”，而原Master中文“发散”更可能表示发散现象；所引来源是微分算子，不足以自动支持同一原目标，需核数学对象与原句。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92366,
+      "independent_editorial_verdict": "HOLD_DOMAIN_SENSE",
+      "independent_semantic_reason": "nonlinear来源只证实几何点不共直线，不等于非线性方程、函数或系统；需找专业非线性Sense或原句。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92393,
+      "independent_editorial_verdict": "HOLD_POS_SENSE_MISMATCH",
+      "independent_semantic_reason": "contract当前命中名词“合同”，与原中文“收缩”完全不同；必须重查动词contract（物体收缩）或物理领域明确义项，不能沿用当前证据。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92394,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "converge在数学序列或级数有有限极限，原译“收敛”准确；须与光线汇聚、意见趋同区分。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92491,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "hypothesis科学用法为可通过观察/实验进一步检验的暂定解释，可支持原中文；不是所有普通猜想都具有严格可检验性，需场景匹配。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "audit_row_no": 92461,
+      "independent_editorial_verdict": "LEXICAL_SUPPORT_CONTEXT_PENDING",
+      "independent_semantic_reason": "threshold在触发机制中的定量界限可译阈值；但不总是下限，原句是否涉及触发、上限、下限需具体核对。",
+      "master_original_sentence_verified": false,
+      "master_canonical_sense_authorized": false,
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    }
+  ],
+  "release_allowed": false
+}
