@@ -10,6 +10,22 @@ if(g.status!=='LOCKED_ADJUDICATED_GOLD'||g.officialGold!==true||g.cases?.length!
  refuse('GOLD_NOT_ADJUDICATED');
 if(p.status!=='PREDICTIONS_SEPARATED_FROM_UNADJUDICATED_QUERY_SET'||p.rows?.length!==24||
  p.queryCount!==24||p.labeledCount!==0)throw Error('PREDICTION_CONTRACT_INVALID');
+// Enforce a one-to-one prediction/gold join; Array.find() alone hides duplicated rows.
+const predictionIds=p.rows.map(row=>row?.id);
+if(predictionIds.some(id=>typeof id!=='string'||!id.trim())||
+ new Set(predictionIds).size!==24)throw Error('DUPLICATE_OR_INVALID_PREDICTION_QUERY');
+const goldIds=g.cases.map(row=>row?.query_id);
+if(goldIds.some(id=>typeof id!=='string'||!id.trim())||
+ new Set(goldIds).size!==24||
+ predictionIds.some(id=>!goldIds.includes(id)))
+ throw Error('PREDICTION_GOLD_QUERY_SET_MISMATCH');
+for(const row of p.rows){
+ if(typeof row.query!=='string'||!row.query.trim()||
+ !['zh','en','mixed'].includes(row.group)||
+ !Array.isArray(row.integrationTop10)||!Array.isArray(row.upstreamTop10))
+ throw Error('MALFORMED_PREDICTION_ROW '+row.id);
+}
+const predictionsById=new Map(p.rows.map(row=>[row.id,row]));
 const expectedGroup={zh:8,en:8,mixed:8};
 const sceneIdValid=id=>typeof id==='string'&&/^SC50-\d{4}$/.test(id)&&Number(id.slice(5))>=1&&Number(id.slice(5))<=1341;
 function validateReview(review,id,role){
@@ -30,7 +46,7 @@ const usedIds=new Set(),data=[];
 for(const entry of g.cases){
  if(usedIds.has(entry.query_id))throw Error('DUPLICATE_GOLD_QUERY');
  usedIds.add(entry.query_id);
- const pred=p.rows.find(x=>x.id===entry.query_id);
+ const pred=predictionsById.get(entry.query_id);
  if(!pred||entry.query!==pred.query||entry.group!==pred.group)throw Error('QUERY_IDENTITY_MISMATCH '+entry.query_id);
  for(const role of ['annotator_A','annotator_B'])validateReview(entry[role],entry.query_id,role);
  if(entry.annotator_A.assessor_id===entry.annotator_B.assessor_id)throw Error('DUPLICATE_REVIEWERS '+entry.query_id);
