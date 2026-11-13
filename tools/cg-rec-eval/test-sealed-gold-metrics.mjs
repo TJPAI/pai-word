@@ -12,9 +12,15 @@ try{
   annotator_B:{status:'LOCKED',assessor_id:'SYNTHETIC_B',scene_relevance:[{scene_id:'SC50-0001',grade:3},{scene_id:'SC50-0002',grade:0}],none_relevant:false,rationale:'synthetic calibration'},
   adjudication:{status:'LOCKED',none_relevant:false,scene_relevance:[{scene_id:'SC50-0001',grade:3},{scene_id:'SC50-0002',grade:0}],decision_reason:'synthetic fixture'}
  }));
+ // One fully adjudicated synthetic no-answer query tests abstention/return reporting.
+ for(const role of ['annotator_A','annotator_B','adjudication']){
+  cases[23][role].scene_relevance=[{scene_id:'SC50-0001',grade:0},{scene_id:'SC50-0002',grade:0}];
+  cases[23][role].none_relevant=true;
+ }
  const gold={status:'LOCKED_ADJUDICATED_GOLD',officialGold:true,cases};
  const predictions={status:'PREDICTIONS_SEPARATED_FROM_UNADJUDICATED_QUERY_SET',queryCount:24,labeledCount:0,upstreamCommit:'SYNTHETIC_TEST_ONLY',manifestSha:'SYNTHETIC_TEST_ONLY',
  rows:source.queries.map(q=>({id:q.id,query:q.query,group:q.group,integrationTop10:[{scene_id:'SC50-0001'}],upstreamTop10:[{scene_id:'SC50-0002'},{scene_id:'SC50-0001'}]}))};
+ predictions.rows[23].integrationTop10=[];
  const gp=path.join(folder,'synthetic-gold.json'),pp=path.join(folder,'synthetic-predictions.json');
  fs.writeFileSync(gp,JSON.stringify(gold));fs.writeFileSync(pp,JSON.stringify(predictions));
  const scorer=new URL('./score-sealed-blind-gold.mjs',import.meta.url).pathname;
@@ -33,5 +39,11 @@ try{
  ];
  for(const [key,actual,expected]of checks)if(!exact(actual,expected))throw Error('METRIC_CALIBRATION_FAILED '+key+' '+actual+' expected '+expected);
  for(const group of ['zh','en','mixed'])if(output.byGroup[group].integration.n!==8||output.byGroup[group].upstream.mrr5!==.5)throw Error('GROUP_METRIC_ERROR '+group);
+ if(output.overall.integration.eligible!==23||output.overall.integration.unanswerable!==1||
+ output.overall.integration.unanswerableEmpty!==1||output.overall.integration.unanswerableReturned!==0||
+ output.overall.integration.unanswerableReturnRate!==0||
+ output.overall.upstream.unanswerableEmpty!==0||output.overall.upstream.unanswerableReturned!==1||
+ output.overall.upstream.unanswerableReturnRate!==1)
+ throw Error('SYNTHETIC_UNANSWERABLE_METRICS_INVALID');
  console.log(JSON.stringify({status:'SYNTHETIC_METRIC_CALIBRATION_PASS',syntheticOnly:true,realGoldCreated:false,checks:checks.length,realCertifiedGold:0}));
 }finally{fs.rmSync(folder,{recursive:true,force:true});}
