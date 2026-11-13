@@ -1,0 +1,122 @@
+{
+  "schema": "cg-enlex-kaikki-ipa-real-ci-firstpass-audit-v1",
+  "date": "2026-11-13",
+  "role": "CG-ENLEX",
+  "workflow": {
+    "run_id": 43343410833,
+    "url": "https://github.com/TJPAI/pai-word/actions/runs/43343410833",
+    "status": "completed",
+    "conclusion": "success",
+    "head_sha": "efaa115c7b4f22a1f0e05b6a89966d20505be952",
+    "job_id": 131616912949,
+    "artifact_id": 14000393268,
+    "artifact_name": "cg-enlex-kaikki-ipa-source-candidates"
+  },
+  "source": {
+    "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz",
+    "compressed_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "not_proven_byte_identical_to_drive_source": true,
+    "target_author_git_blob": "4b5651ad5d49cddc9dfabf64571440ecde317681",
+    "target_file_sha256": "45cc6ef2fad1978e61cf569a935185e7c1d58af34f0ed85719eaa7212e626d6c"
+  },
+  "counts": {
+    "target_ku": 1778,
+    "unique_normalized_expressions": 1559,
+    "scanned_jsonl_lines": 1499161,
+    "malformed_jsonl_lines": 0,
+    "matching_source_entries": 1779,
+    "matching_ipa_readings": 4335,
+    "native_ipa_candidate_ku": 672,
+    "not_found_ku": 1106,
+    "direct_phrase_candidate_ku": 27,
+    "direct_word_candidate_ku": 645,
+    "multi_reading_ku": 460
+  },
+  "firstpass_region_counts_invalidated": true,
+  "observed_issue": "Actual sound tags General-American and Received-Pronunciation were not normalized by first pass; 109 US/144 UK/10 both/626 generic were incorrect undercounts or misclassifications; never publish these first-pass regional counts",
+  "fix": {
+    "first_commit": "5c682e5a6497faf5709eb2776097fbafa42d6565",
+    "test_commit": "3bb4093da7885f47627ba22d19ab961f58120e29",
+    "test_sha": "121f0117e853fdb783903e68fef91f83e20bb40d",
+    "rematch_ci_run": "https://github.com/TJPAI/pai-word/actions/runs/43344112740",
+    "rematch_ci_at_reporting": "pending"
+  },
+  "sample_direct_native_phrases": [
+    {
+      "ku_id": "SC1341-KU-00001",
+      "expression": "wake up",
+      "ipa": "/ˌweɪk ˈʌp/",
+      "source_line": 50969,
+      "tags": [
+        "General-American",
+        "Received-Pronunciation"
+      ]
+    },
+    {
+      "ku_id": "SC1341-KU-00004",
+      "expression": "sleep in",
+      "ipa": "/ˌsliːp ˈɪn/",
+      "source_line": 107661,
+      "tags": [
+        "Australia",
+        "India",
+        "Received-Pronunciation"
+      ]
+    },
+    {
+      "ku_id": "SC1341-KU-00280",
+      "expression": "bath towel",
+      "ipa": "/ˌbæθ ˈtaʊ̯.əl/",
+      "source_line": 588069,
+      "tags": [
+        "Canada",
+        "General-American",
+        "Received-Pronunciation"
+      ]
+    },
+    {
+      "ku_id": "SC1341-KU-00667",
+      "expression": "living room",
+      "ipa": "/ˈlɪvɪŋ ɹuːm/",
+      "source_line": 44836,
+      "tags": [
+        "General-American",
+        "Received-Pronunciation"
+      ]
+    },
+    {
+      "ku_id": "SC1341-KU-01241",
+      "expression": "cutting board",
+      "ipa": "/ˈkʰʌɾɪŋ bɔɹd/",
+      "source_line": 422939,
+      "tags": [
+        "General-American"
+      ]
+    }
+  ],
+  "sample_not_found": [
+    {
+      "ku_id": "SC1341-KU-00002",
+      "expression": "get up"
+    },
+    {
+      "ku_id": "SC1341-KU-00624",
+      "expression": "make the bed"
+    },
+    {
+      "ku_id": "SC1341-KU-00581",
+      "expression": "laundry basket"
+    }
+  ],
+  "ipa_review_status": "CANDIDATE_ONLY",
+  "master_approvals": 0,
+  "qa_pass": 0,
+  "muse_pass": 0,
+  "release_allowed": false,
+  "notes": [
+    "First-pass results directly verified from GitHub Actions log and materialized actual ZIP artifact; the ZIP contains 7008 candidate-or-missing JSONL rows covering 1778 KU IDs.",
+    "Multiple raw dictionary entries and readings can refer to one KU; 7008 result records are not 7008 approved words.",
+    "Direct phrase IPA only; no synthetic word-by-word IPA counted.",
+    "Regional classification requires corrected rerun and separate QA; original source tags retained."
+  ]
+}
