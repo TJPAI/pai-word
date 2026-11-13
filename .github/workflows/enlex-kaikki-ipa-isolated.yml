@@ -28,6 +28,7 @@ jobs:
           node --check tools/core20k_lexicon/production_v3/ipa/prepare-scene1341-ipa-targets.mjs
           node --check tools/core20k_lexicon/production_v3/ipa/validate-kaikki-ipa-output.mjs
           node --check tools/core20k_lexicon/production_v3/ipa/build-kaikki-ipa-review-queues.mjs
+          node --check tools/core20k_lexicon/production_v3/ipa/build-native27-sound-handoff.mjs
           node tools/core20k_lexicon/production_v3/ipa/test-kaikki-ipa.mjs
           node tools/core20k_lexicon/production_v3/ipa/test-scene1341-ipa-target-adapter.mjs
       - name: Fetch pinned author QA1778 target source
@@ -40,6 +41,13 @@ jobs:
           test "$(git hash-object /tmp/enlex-ipa/author-request.json)" = '4b5651ad5d49cddc9dfabf64571440ecde317681'
           node tools/core20k_lexicon/production_v3/ipa/prepare-scene1341-ipa-targets.mjs \
             /tmp/enlex-ipa/author-request.json /tmp/enlex-ipa/targets.json 1778
+      - name: Fetch pinned 27-KU teaching contexts for original-sound QA handoff
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --connect-timeout 30 --max-time 120 \
+            'https://raw.githubusercontent.com/TJPAI/pai-word/949aa18a7a93d35c9cd53a42f2b9f814a87148b8/tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_KAIKKI_NATIVE24_27KU_AUTHOR_CONTEXT_QA_HANDOFF_20261113.v1.json' \
+            --output /tmp/enlex-ipa/27-ku-context.json
+          test "$(git hash-object /tmp/enlex-ipa/27-ku-context.json)" = 'd41476ad003238e1534f75947c867e868b57533a'
       - name: Download public Kaikki English source (transient, NOT artifact)
         run: |
           set -euo pipefail
@@ -59,6 +67,8 @@ jobs:
             /tmp/enlex-ipa/results /tmp/enlex-ipa/targets.json
           node tools/core20k_lexicon/production_v3/ipa/build-kaikki-ipa-review-queues.mjs \
             /tmp/enlex-ipa/results /tmp/enlex-ipa/targets.json
+          node tools/core20k_lexicon/production_v3/ipa/build-native27-sound-handoff.mjs \
+            /tmp/enlex-ipa/results /tmp/enlex-ipa/27-ku-context.json
           cp /tmp/enlex-ipa/source-provenance.txt /tmp/enlex-ipa/results/source-provenance.txt
           cp /tmp/enlex-ipa/source-sha256.txt /tmp/enlex-ipa/results/source-sha256.txt
       - name: Upload candidate evidence only; never upload original dictionary
