@@ -49,7 +49,13 @@ for(const entry of g.cases){
  for(const engine of ['integration','upstream']){
   const top=pred[engine+'Top10'].map(x=>x.scene_id);
   if(top.length>10||new Set(top).size!==top.length)throw Error('INVALID_TOP10 '+entry.query_id);
-  const rel=top.map(id=>relevant.get(id)||0),binary=rel.map(v=>v>=2?1:0);
+  // Unjudged is NOT irrelevant. Require complete adjudication for every returned scene.
+  // This prevents optimistic/deflated metrics when a model surfaces unreviewed candidates.
+  for(const sceneId of top){
+   if(!sceneIdValid(sceneId))throw Error('INVALID_PREDICTED_SCENE '+entry.query_id+' '+engine);
+   if(!relevant.has(sceneId))throw Error('UNJUDGED_PREDICTED_SCENE '+entry.query_id+' '+engine+' '+sceneId);
+  }
+  const rel=top.map(id=>relevant.get(id)),binary=rel.map(v=>v>=2?1:0);
   const first=binary.findIndex(Boolean);
   const dcg=rel.slice(0,5).reduce((s,v,k)=>s+(2**v-1)/Math.log2(k+2),0);
   const ideal=[...relevant.values()].sort((x,y)=>y-x).slice(0,5).reduce((s,v,k)=>s+(2**v-1)/Math.log2(k+2),0);
