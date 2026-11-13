@@ -4,6 +4,16 @@ import vm from 'node:vm';
 
 const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
 assert(html.startsWith('<!doctype html>'));
+assert(html.includes('<section id="settings-page"') && html.includes('id="settings-back"'),
+ 'settings must be a dedicated page with its own back button');
+assert(html.indexOf('id="settings-page"')>html.indexOf('</section>'),
+ 'settings page must not be nested in the home dashboard');
+assert(html.includes('#settings-page[hidden]{display:none!important}'),
+ 'dedicated settings page must honor hidden state');
+assert(html.includes(" $('home').hidden=true;$('settings-page').hidden=false;") &&
+ html.includes(" $('settings-page').hidden=true;$('home').hidden=false;renderHome();"),
+ 'settings navigation must hide home and restore it without resetting preferences');
+
 const script=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert(script,'isolated demo must include executable inline JS');
 new vm.Script(script,{filename:'scene1341-readonly-inline.js'});
