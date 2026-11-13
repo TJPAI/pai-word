@@ -152,11 +152,11 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null;
-let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0;
+let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
- const q=filter.trim(),ticket=++recRequest;resultPage=0;
- if(!q){recRows=null;recPending=false;recError='';resultPage=0;renderHome();return}
+ const q=filter.trim(),ticket=++recRequest;resultPage=0;recSubmitted=!!q;
+ if(!q){recRows=null;recPending=false;recError='';resultPage=0;recSubmitted=false;renderHome();return}
  recPending=true;recError='';recRows=null;renderHome();
  try{
   const adapter=await getRecBridge();
@@ -337,7 +337,7 @@ function renderCategories(){
 }
 function renderHome(){
  if(!catalog.length)return;
- const q=filter.trim(),active=!!q||catalogVisible;
+ const q=filter.trim(),active=(!!q&&recSubmitted)||catalogVisible;
  const matches=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean):catalog;
  const selected=matches.filter(x=>category==='全部'||x.category===category);
  const sorted=q?selected:catalogVisible&&category==='全部'
@@ -525,11 +525,11 @@ function moveBatch(delta){
 }
 function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
-$('search').addEventListener('input',e=>{filter=e.target.value;visible=35;catalogVisible=false;void updateSceneRecommendations()});
+$('search').addEventListener('input',e=>{filter=e.target.value;catalogVisible=false;recRequest++;recPending=false;recSubmitted=false;recRows=null;recError='';resultPage=0;renderHome()});
 $('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
 $('browse').addEventListener('click',()=>{
  filter='';$('search').value='';category='全部';catalogVisible=true;visible=35;
- recRequest++;recRows=null;recPending=false;resultPage=0;renderCategories();renderHome();
+ recRequest++;recRows=null;recPending=false;resultPage=0;recSubmitted=false;renderCategories();renderHome();
  $('categories').hidden=false;
 });
 $('recommendation-prev').addEventListener('click',()=>{if(resultPage>0){resultPage--;renderHome()}});
