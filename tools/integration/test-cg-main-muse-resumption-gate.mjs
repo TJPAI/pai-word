@@ -28,6 +28,14 @@ assert.equal(ipa.nativeword100.pass+ipa.nativeword100.conditional+ipa.nativeword
 assert.equal(ipa.muse_pass_total,ipa.native27.pass+ipa.nativeword100.pass);
 assert.equal(ipa.muse_conditional_total,ipa.native27.conditional+ipa.nativeword100.conditional);
 assert.equal(ipa.v57.agree_hold+ipa.v57.disagree,9);
+const v57=ipa.v57.cg_qa_adjudication;
+assert.equal(v57.disagreement_count,4);
+assert.equal(v57.conditional+v57.hold,v57.disagreement_count);
+assert.equal(v57.formal_pass,0);
+assert.equal(v57.original_sentences_available,0);
+assert.equal(new Set(v57.rows.map(x=>x.row)).size,4);
+assert(v57.rows.every(x=>x.decision.startsWith('CONDITIONAL_')||x.decision.startsWith('HOLD_')));
+assert.equal(v57.release_allowed,false);
 assert.equal(ipa.dual_ai_certified,0);
 assert.equal(ipa.release_allowed,false);
 assert.equal(manifest.queues.find(q=>q.id==='core20k-v13-risk').muse_ack.semantic_hold_reviewed,0);
