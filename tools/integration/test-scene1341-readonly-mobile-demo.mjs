@@ -707,10 +707,11 @@ assert(scene500Renderer.includes("const count={again:3,hard:2,good:1}[score]") &
  scene500Renderer.includes("repeatGap:1") &&
  scene500Renderer.includes("Math.max(0,ratingDeadline-Date.now())"),
  'rating voice schedule must be grounded in native Scene500');
-assert(phaseSource.includes("count={again:3,hard:2,good:1}[grade]") &&
- phaseSource.includes("if(spoken<count)repeatTimer=schedule(repeat,1000)") &&
+assert(phaseSource.includes("count=plan?.repeatCount??{again:3,hard:2,good:1}[grade]") &&
+ phaseSource.includes("plan?.showMs??DEFAULT_SHOW_MS[grade]") &&
+ phaseSource.includes("if(spoken<count)repeatTimer=schedule(repeat,plan?.repeatGapMs??1000)") &&
  phaseSource.includes("if(!live()||!elapsed||!audioDone)return"),
- 'read-only controller must gate finish on audio+deadline and repeat counts');
+ 'read-only controller must consume the native grade plan, gate on audio+deadline, and retain isolated fallback');
 assert(script.includes('playRatedWord:(grade,iteration,done)=>') &&
  script.includes("utterance.onend=finish;utterance.onerror=finish") &&
  script.includes("watchdog=setTimeout(()=>{") &&
