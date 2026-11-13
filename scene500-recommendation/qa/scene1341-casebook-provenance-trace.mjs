@@ -49,5 +49,8 @@ const watched=[
  const half=c.control.query===item.query?c.control:c.contrast;
  return {query:item.query,context:half,sceneDirectory:item.scenes.map(id=>({scene_id:id,...scenes.get(id),retrievalRank:half.results.find(r=>r.scene_id===id)?.rank||null})),reviewStatus:'UNLABELED_SEMANTIC_RISK'};
 });
+assert.equal(watched.find(w=>w.query==='刚下单的外卖什么时候送达').sceneDirectory.find(s=>s.scene_id==='SC50-0023').name,'咖啡馆');
+assert.equal(watched.find(w=>w.query==='食物会不会过期').sceneDirectory.find(s=>s.scene_id==='SC50-0046').name,'化妆品购物');
+assert.equal(watched.find(w=>w.query==='食物会不会过期').sceneDirectory.find(s=>s.scene_id==='SC50-0811').name,'生态系统与食物网');
 const report={schema:'cg-rec-sc1341-nonblind-source-provenance-trace-v1',sourceCommit,manifestSha,caseCount:cases.length,sourceSenseRows:total,sourceSceneRows:scenes.size,casebookAuthoredNonblind:true,release_allowed:false,independentGoldCount:0,certifiedCount:0,watched, cases,limitation:'Top10 is a diagnostic snapshot with source evidence, not a gold label. Cross-category contrasts are not automatic correctness judgments. No hidden blind intake used, no production activation.'};
 console.log(JSON.stringify(report,null,2));
