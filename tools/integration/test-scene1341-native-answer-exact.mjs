@@ -68,4 +68,28 @@ const injection={...unit,s:{...unit.s,m:'<img src=x onerror=alert(1)>'}};
 const escaped=render(injection);
 assert(escaped.includes('&lt;img'), 'native renderer escapes malicious source fields');
 assert(!escaped.includes('<img'));
+
+const cycleAdapter=fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-native-cycle-exact.js','utf8');
+const cycleStart=native.indexOf(' const cycleKeys=()=>{');
+const cycleStop=native.indexOf('\n let pendingRatedBatchDirection',cycleStart);
+assert(cycleStart>=0&&cycleStop>cycleStart);
+const nativeCycleExact=native.slice(cycleStart,cycleStop);
+assert(cycleAdapter.includes(nativeCycleExact),
+ 'Scene1341 cycleKeys must be byte-identical to native Scene500 source');
+assert.equal(cycleAdapter.split(nativeCycleExact).length,2);
+const cycleSandbox={window:{}};
+vm.runInNewContext(cycleAdapter,cycleSandbox,{timeout:1500});
+const nextIndex=cycleSandbox.window.PAI_SCENE1341_NATIVE_CYCLE.nextIndex;
+for(const [count,batch,current,direction,expected] of [
+ [26,10,9,1,0],[26,10,0,-1,9],[26,10,19,1,10],
+ [26,10,25,1,20],[26,25,24,1,0],
+ [26,50,25,1,0],[1,10,0,1,0]
+]){
+ const rows=Array.from({length:count},(_,i)=>({scene_ku_id:'SC1341-KU-'+String(i).padStart(5,'0')}));
+ assert.equal(nextIndex(rows,current,direction,batch),expected);
+}
+assert.equal(nextIndex([],0,1,10),-1);
+assert.throws(()=>nextIndex([{scene_ku_id:'DUP'},{scene_ku_id:'DUP'}],0,1,10),/BAD_KU_IDENTITY/);
+assert(page.includes('window.PAI_SCENE1341_NATIVE_CYCLE.nextIndex(rows,current,direction,BATCH)'));
+
 console.log('SC1341_EXACT_NATIVE_ANSWER_SOURCE_AND_BROWSER_ISOLATION_PASS');

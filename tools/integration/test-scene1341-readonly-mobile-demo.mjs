@@ -515,9 +515,14 @@ const batchCycleBegin=script.indexOf('function currentBatchNextIndex(');
 const batchCycleEnd=script.indexOf('\nfunction syncReadOnlySettingsControls(',batchCycleBegin);
 assert(batchCycleBegin>0&&batchCycleEnd>batchCycleBegin,'locate one shared batch-index algorithm');
 const batchCycleCode=script.slice(batchCycleBegin,batchCycleEnd);
-assert(batchCycleCode.includes('const keys=rows.slice(start,start+size)') &&
- batchCycleCode.includes('const next=(position+direction%keys.length+keys.length)%keys.length'),
- 'both manual and automatic index rules must reuse native Scene500 cycleKeys + browseAnswer strategy');
+const nativeCycleSource=fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-native-cycle-exact.js','utf8');
+const nativeCycleContext={window:{}};
+vm.runInNewContext(nativeCycleSource,nativeCycleContext);
+const nativeCycle=nativeCycleContext.window.PAI_SCENE1341_NATIVE_CYCLE;
+assert(html.includes('<script src="./scene500-native-cycle-exact.js"></script>'),
+ 'source-exact native Scene500 cycle adapter must load before inline learning runtime');
+assert(batchCycleCode.includes('window.PAI_SCENE1341_NATIVE_CYCLE.nextIndex(rows,current,direction,BATCH)'),
+ 'both manual and auto navigation must call source-exact Scene500 cycleKeys');
 assert(script.includes('navigate:()=>autoNextWithinBatch()') &&
  script.includes('move(1,true)') &&
  script.includes('const nextIndex=currentBatchNextIndex(rows,index,delta);if(nextIndex<0)return;') &&
@@ -532,7 +537,8 @@ for(const [count,batch,current,delta,expected] of [
  [26,50,25,1,0],[10,10,9,1,0],[1,10,0,1,0]
 ]){
  const rows=Array.from({length:count},(_,i)=>({scene_ku_id:'K'+i,expression:'word'+i}));
- const ctx={BATCH:batch,index:current,subset:()=>rows,moves:0};
+ const ctx={BATCH:batch,index:current,subset:()=>rows,moves:0,
+  window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle}};
  ctx.move=(d,auto)=>{
   assert.equal(auto,true);ctx.moves++;
   ctx.index=ctx.currentBatchNextIndex(rows,ctx.index,d);
@@ -546,7 +552,8 @@ for(const [count,batch,current,delta,expected] of [
   assert.equal(ctx.moves,1);
  }
 }
-const empty={BATCH:10,index:0,subset:()=>[],move:()=>{throw Error('no navigation')}};
+const empty={BATCH:10,index:0,subset:()=>[],move:()=>{throw Error('no navigation')},
+ window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle}};
 vm.runInNewContext(batchCycleCode+'\nthis.autoNextWithinBatch=autoNextWithinBatch;',empty);
 assert.equal(empty.autoNextWithinBatch(),false,'empty current batch must stop auto');
 /* Call the actual horizontal/keyboard move function, not just batch math.
@@ -563,7 +570,7 @@ for(const [start,dir,want] of [[9,1,0],[0,-1,9],[19,1,10],[25,1,20]]){
  const ctx={index:start,BATCH:10,revealed:true,subset:()=>rows,phaseController:controller,
   scratchDrawing:()=>false,resetScratch:()=>{},stopWordAudio:()=>{},
   readOnlyPrefs:{get:()=>false},autoBrowse:{restart:()=>{}},
-  window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
+  window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle,PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
  vm.runInNewContext(batchCycleCode+'\n'+moveSource+'\nthis.manualMove=move;',ctx);
  ctx.manualMove(dir);
  assert.equal(ctx.index,want,'manual navigation stays in current round');
@@ -582,7 +589,7 @@ const composed={index:9,BATCH:10,revealed:true,subset:()=>composedRows,
  readOnlyPrefs:{get:()=>false},
  playWord:()=>{composedSpeeches++},
  autoBrowse:{restart:()=>{composedAutoRestarts++}},
- window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
+ window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle,PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
 const composedPhase=api.createReadOnlyPhaseController({
  onUpdate:state=>{composed.revealed=state.revealed},
  onGradeComplete:()=>{},onAdvance:()=>{}});
@@ -1350,7 +1357,7 @@ const crossCtx={index:9,BATCH:10,selectedGrade:null,revealed:false,suppressTapUn
  subset:()=>crossRows,scratchDrawing:()=>false,resetScratch:()=>{},
  stopWordAudio:()=>{crossAudio.push('stop')},playWord:()=>false,
  readOnlyPrefs:{get:()=>false},
- window:{PAI_SCRATCH_BEGIN_RATING:()=>{},PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false},
+ window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle,PAI_SCRATCH_BEGIN_RATING:()=>{},PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false},
  $:()=>({hidden:false}),Date,
  autoBrowse:{isEnabled:()=>autoOn,pause:()=>{paused++},resume:()=>{resumed++},restart:()=>{restarted++}},
 };
