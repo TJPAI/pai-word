@@ -27,6 +27,7 @@ jobs:
           node --check tools/core20k_lexicon/production_v3/ipa/extract-kaikki-ipa.mjs
           node --check tools/core20k_lexicon/production_v3/ipa/prepare-scene1341-ipa-targets.mjs
           node --check tools/core20k_lexicon/production_v3/ipa/validate-kaikki-ipa-output.mjs
+          node --check tools/core20k_lexicon/production_v3/ipa/build-kaikki-ipa-review-queues.mjs
           node tools/core20k_lexicon/production_v3/ipa/test-kaikki-ipa.mjs
           node tools/core20k_lexicon/production_v3/ipa/test-scene1341-ipa-target-adapter.mjs
       - name: Fetch pinned author QA1778 target source
@@ -55,6 +56,8 @@ jobs:
           node tools/core20k_lexicon/production_v3/ipa/extract-kaikki-ipa.mjs \
             /tmp/enlex-ipa/kaikki-English.jsonl.gz /tmp/enlex-ipa/targets.json /tmp/enlex-ipa/results
           node tools/core20k_lexicon/production_v3/ipa/validate-kaikki-ipa-output.mjs \
+            /tmp/enlex-ipa/results /tmp/enlex-ipa/targets.json
+          node tools/core20k_lexicon/production_v3/ipa/build-kaikki-ipa-review-queues.mjs \
             /tmp/enlex-ipa/results /tmp/enlex-ipa/targets.json
           cp /tmp/enlex-ipa/source-provenance.txt /tmp/enlex-ipa/results/source-provenance.txt
           cp /tmp/enlex-ipa/source-sha256.txt /tmp/enlex-ipa/results/source-sha256.txt
