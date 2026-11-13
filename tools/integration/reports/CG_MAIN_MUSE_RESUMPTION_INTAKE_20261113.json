@@ -1,6 +1,6 @@
 {
   "schema": "cg-main-muse-resumption-intake-v1",
-  "as_of": "2026-11-13",
+  "as_of": "2026-11-13T07:32:00Z",
   "authorization": "Muse quota restored by project owner",
   "github_notifications": [
     "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6846716547",
@@ -23,7 +23,15 @@
       "p0_author_patch": 76,
       "p1_author_patch": 143,
       "muse_certified": false,
-      "release_allowed": false
+      "release_allowed": false,
+      "muse_ack": {
+        "source": "MU-ENTEACH Issue #1 comment 6846984591",
+        "state": "INDEPENDENT_BLIND_REVIEW_STARTED",
+        "first_review": 219,
+        "master_approval_required": 101,
+        "additional_unreviewed": 706,
+        "certified": 0
+      }
     },
     {
       "id": "core20k-v13-risk",
@@ -33,7 +41,12 @@
       "review_queue": 403,
       "risk_queue": 125,
       "muse_certified": false,
-      "release_allowed": false
+      "release_allowed": false,
+      "muse_ack": {
+        "source": "MU-ENLEX Issue #1 comment 6846878554",
+        "state": "RECEIVED_WAITING_FOR_MASTER_ID_AND_KAIKKI_EVIDENCE",
+        "certified": 0
+      }
     },
     {
       "id": "core20k-v17-historical",
@@ -45,15 +58,37 @@
     },
     {
       "id": "scene1341-master",
-      "owner": "MU-QA+CG-MASTER+CG-QA",
+      "owner": "MU-MAIN+CG-MAIN+CG-MASTER+CG-REC",
       "source": "Google Drive authoritative Scene1341 Master",
       "muse_certified": false,
-      "release_allowed": false
+      "release_allowed": false,
+      "qa_adjudication": "CG-QA+MU-QA",
+      "batch001": {
+        "source": "MU-MAIN Issue #1 comment 6846937427",
+        "source_master_rows": 10000,
+        "structural_pass": 9968,
+        "structural_hold": 32,
+        "duplicate_groups": 16,
+        "semantic_sample_pass": 19,
+        "semantic_sample_conditional": 1,
+        "stable_sense_id_present": 0,
+        "independent_certified": 0,
+        "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+        "identity_decision": "PENDING_CG_MASTER",
+        "release_allowed": false
+      }
     },
     {
       "id": "scene1341-ipa",
       "owner": "MU-ENLEX+CG-ENLEX+MU-QA",
       "source": "verified Kaikki native IPA only",
+      "muse_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "scene1341-recommendation",
+      "owner": "MU-REC+CG-REC+CG-REC-EVAL",
+      "source": "MU-REC Issue #1 comment 6846937653",
       "muse_certified": false,
       "release_allowed": false
     }
