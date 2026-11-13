@@ -34,3 +34,6 @@ jobs:
         run: |
           node tools/integration/inspect-core20k-pronunciation.mjs
           node tools/integration/build-scene1341-ipa-preview.mjs
+          node tools/integration/test-scene1341-question-ipa.mjs
+          node tools/integration/test-scene1341-readonly-mobile-demo.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
