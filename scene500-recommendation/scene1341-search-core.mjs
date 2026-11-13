@@ -29,7 +29,7 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
  // These are open experimental function-word hypotheses, not certified semantic stopwords.
  // No default behavior changes, and they never affect independent blind evaluation.
  const exploratoryFunctionTokens=new Set(['不会','我要','不是','而是','只是','不要','不想','我想']);
- function search(query,{limit=10,experimentalIntentAliases=false,experimentalFunctionalTokenGuard=false}={}){
+ function search(query,{limit=10,experimentalIntentAliases=false,experimentalFunctionalTokenGuard=false,experimentalContrastiveTicketRefund=false}={}){
    const q=normalize(query);if(!q)return [];const qt=tokens(q);if(!qt.length)return [];
    const negSpans=negatedSpans(q),negative=new Set();for(const span of negSpans)for(const t of tokens(span))negative.add(t);
    const positive=qt.filter(t=>!negative.has(t)&&(!experimentalFunctionalTokenGuard||!exploratoryFunctionTokens.has(t)));if(!positive.length)return [];
@@ -37,6 +37,9 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
    const titleWeights=new Map(positive.map(t=>[t,Math.min(8,2.5+2/(documentFrequency.get(t)||1))]));
    const expressionWeights=new Map(positive.map(t=>[t,Math.min(3.2,1.8/Math.sqrt(documentFrequency.get(t)||1))+0.1]));
    const activeHints=experimentalIntentAliases?matchIntentHypotheses(query):[];
+   // Uncertified, catalog-title-only hypothesis: refund intent vs negated purchase.
+   // Deliberately opt-in; not a verified Sense–Scene mapping or shipping behavior.
+   const refundIntent=experimentalContrastiveTicketRefund && /(?:退票|退车票|ticket\s+refund|refund\s+(?:my\s+)?ticket)/iu.test(q) && /(?:不是|不要|不想|而非|并非|\bnot\b|instead of)/iu.test(q) && /(?:买票|购票|buy\s+(?:a\s+)?ticket|purchase\s+(?:a\s+)?ticket)/iu.test(q);
    const ranked=[];
    for(const [id,scene] of scenes){
      let score=0;const reasons=[];const title=titleTerms.get(id),name=normalizedSceneNames.get(id);
@@ -55,6 +58,11 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
      }
      // Avoid lexical evidence leakage from explicit negation into ranking.
      if(negative.size){for(const t of negative)if(title.includes(t))score=Math.max(0,score-12);}
+     if(refundIntent && id==='SC50-0075'){
+       if(!scene.name.includes('车票'))throw Error('EXPERIMENTAL_REFUND_CATALOG_ANCHOR_CHANGED');
+       score+=34;
+       reasons.push('EXPERIMENTAL_UNCERTIFIED_CONTRASTIVE_ACTION:ticket_refund:CATALOG_TITLE_ONLY');
+     }
      for(const h of activeHints){if(h.scene_id===id){score+=h.weight;reasons.push('EXPERIMENTAL_UNCERTIFIED_INTENT:'+h.id+':'+h.source_sense_id);}}
      if(score>0)ranked.push({scene_id:id,name:scene.name,score:Math.round(score*1000)/1000,has_ranked_data:scene.has_ranked_data,ranked_records:scene.record_count,cg_qa:'NOT_REVIEWED_FOR_THIS_INDEX',muse_qa:'DEFERRED_QUOTA_20261113',release_status:'BLOCKED_PENDING_CG_QA_AND_MUSE',muse_recheck_required:true,explanations:[...new Set(reasons)],provenance:{source_commit:sourceCommit,ranked_manifest_blob:manifestSha}});
    }
