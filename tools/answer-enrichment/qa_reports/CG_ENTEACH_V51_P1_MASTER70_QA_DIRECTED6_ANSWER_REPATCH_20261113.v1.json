@@ -1,0 +1,335 @@
+{
+  "schema": "cg-enteach-v51-p1-master70-qa-directed6-answer-only-repatch-v1",
+  "date": "2026-11-13",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source_qa_path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P1_MASTER70_LEXICAL_TRIAGE_20261112.v1.json",
+  "source_qa_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+  "author_base_head": "a9dee027d5e50ad6e9f116788cab6490746bca86",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00635",
+      "source_rank": 23,
+      "expression": "put away sharp tools",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0004-answer-only-021-070.v2.json",
+      "source_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_039_051_20261112.v1.json",
+      "previous_author_patch_blob": "d043e8f4e320697f9817bf598007ac81b108250f",
+      "independent_qa_source_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+      "independent_qa_verdict": "REVISE",
+      "qa_reason": "原学习目标是put away sharp tools这一完整动词短语，新中文仅“锋利或尖锐的工具”，遗漏put away的收纳动作。应改“收好锋利或尖锐的工具”，另在用法说明解释sharp。",
+      "previous_author_answer": {
+        "meaning_zh": "锋利或尖锐的工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "sharp tools可以指带锋利刃口的工具或尖端尖锐的工具，不能只理解为尖头。"
+      },
+      "proposed_answer": {
+        "meaning_zh": "收好锋利或尖锐的工具",
+        "example_en": "Please put away sharp tools after using them.",
+        "example_zh": "用完锋利工具后请妥善收好。",
+        "collocations": [
+          "put away sharp tools",
+          "store sharp tools safely"
+        ],
+        "usage_note": "put away强调把工具收纳好；sharp tools可指刀刃锋利或尖端尖锐的工具，不能把动词短语缩减成名词。"
+      },
+      "proposed_display": {
+        "w": "put away sharp tools",
+        "m": "收好锋利或尖锐的工具",
+        "c": "put away sharp tools · store sharp tools safely",
+        "e": "Please put away sharp tools after using them.",
+        "x": "put away强调把工具收纳好；sharp tools可指刀刃锋利或尖端尖锐的工具，不能把动词短语缩减成名词。",
+        "example_zh": "用完锋利工具后请妥善收好。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "requires_master_sense_decision": false,
+      "master_authorized": false,
+      "new_independent_qa_pass": false,
+      "muse_pass": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00876",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-00876",
+      "source_rank": 54,
+      "expression": "hang out laundry",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0005-answer-only-011-060.v2.json",
+      "source_pack_blob": "41ebe4056edfa2b1851afb9e983c72525ab7be88",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_052_065_20261112.v1.json",
+      "previous_author_patch_blob": "4d36b7dd4b795888d9a63385d8fed24dfb45d569",
+      "independent_qa_source_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+      "independent_qa_verdict": "CONDITIONAL",
+      "qa_reason": "hang out the laundry/ washing常为晾挂衣物，原中文新释义添“洗好的”合理语境但非绝对词义；建议“把衣物挂出去晾干”，例句可说明洗后。",
+      "previous_author_answer": {
+        "meaning_zh": "把洗好的衣物挂起来晾干",
+        "example_en": "I hang out the laundry when the weather is dry.",
+        "example_zh": "天气干燥时我把洗好的衣服挂出去晾。",
+        "collocations": [
+          "hang out the laundry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang out laundry或hang out the washing表示将衣物挂起来晾，尤其用于室外晾晒。"
+      },
+      "proposed_answer": {
+        "meaning_zh": "把衣物挂出去晾干",
+        "example_en": "I hang out the laundry when the weather is dry.",
+        "example_zh": "天气干燥时，我把衣物挂出去晾干。",
+        "collocations": [
+          "hang out the laundry",
+          "hang laundry out to dry"
+        ],
+        "usage_note": "hang out the laundry（也常说hang out the washing）表示把衣物挂出去晾晒；衣物是否已洗好由实际语境决定，非表达本身的必要语义。"
+      },
+      "proposed_display": {
+        "w": "hang out laundry",
+        "m": "把衣物挂出去晾干",
+        "c": "hang out the laundry · hang laundry out to dry",
+        "e": "I hang out the laundry when the weather is dry.",
+        "x": "hang out the laundry（也常说hang out the washing）表示把衣物挂出去晾晒；衣物是否已洗好由实际语境决定，非表达本身的必要语义。",
+        "example_zh": "天气干燥时，我把衣物挂出去晾干。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "requires_master_sense_decision": false,
+      "master_authorized": false,
+      "new_independent_qa_pass": false,
+      "muse_pass": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01248",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01248",
+      "source_rank": 13,
+      "expression": "roast chicken",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_086_096_20261112.v1.json",
+      "previous_author_patch_blob": "253556d0978983d93ee4ed8620b3ae5f82eea905",
+      "independent_qa_source_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+      "independent_qa_verdict": "CONDITIONAL",
+      "qa_reason": "roast chicken既可动词roast+chicken又可整体名词'烤鸡'，当前例句仅教动词结构；需Master明确教学Sense及词性身份，不要默改跨Sense解释。",
+      "previous_author_answer": {
+        "meaning_zh": "烤鸡肉（动词短语）",
+        "example_en": "We plan to roast chicken with potatoes on Sunday.",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。",
+        "collocations": [
+          "roast chicken",
+          "roast chicken in the oven"
+        ],
+        "usage_note": "本KU中的roast chicken按动词roast加宾语chicken教学；名词roast chicken也可指一只烤鸡或烤鸡菜肴。"
+      },
+      "proposed_answer": {
+        "meaning_zh": "烤鸡肉；烤制鸡肉（本例作动词短语）",
+        "example_en": "We plan to roast chicken with potatoes on Sunday.",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。",
+        "collocations": [
+          "roast chicken",
+          "roast chicken in the oven"
+        ],
+        "usage_note": "本例We plan to roast chicken中的roast为动词、chicken为宾语；单独的roast chicken亦可作名词指烤鸡菜肴。教学目标按原Sense作暂定，需Master核定POS身份。"
+      },
+      "proposed_display": {
+        "w": "roast chicken",
+        "m": "烤鸡肉；烤制鸡肉（本例作动词短语）",
+        "c": "roast chicken · roast chicken in the oven",
+        "e": "We plan to roast chicken with potatoes on Sunday.",
+        "x": "本例We plan to roast chicken中的roast为动词、chicken为宾语；单独的roast chicken亦可作名词指烤鸡菜肴。教学目标按原Sense作暂定，需Master核定POS身份。",
+        "example_zh": "我们计划周日用烤箱烤鸡配土豆。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "requires_master_sense_decision": true,
+      "master_authorized": false,
+      "new_independent_qa_pass": false,
+      "muse_pass": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01534",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01534",
+      "source_rank": 82,
+      "expression": "fill a glass",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+      "source_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "previous_author_patch_blob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "independent_qa_source_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+      "independent_qa_verdict": "CONDITIONAL",
+      "qa_reason": "fill a glass通常表示装满杯子或装到预期容量，原中文新释义“往杯中倒入饮料”过宽；建议“把杯子装满；倒满一杯”，保留不一定到杯沿的注释。",
+      "previous_author_answer": {
+        "meaning_zh": "往杯中倒入饮料；将杯子装满",
+        "example_en": "Please fill a glass with water for our guest.",
+        "example_zh": "请给客人倒满一杯水。",
+        "collocations": [
+          "fill a glass with water",
+          "fill someone's glass"
+        ],
+        "usage_note": "fill a glass表示往杯子里倒入液体至合适高度或装满，不一定要求倒到杯沿。"
+      },
+      "proposed_answer": {
+        "meaning_zh": "把杯子装满；倒满一杯",
+        "example_en": "Please fill a glass with water for our guest.",
+        "example_zh": "请给客人倒满一杯水。",
+        "collocations": [
+          "fill a glass with water",
+          "fill someone's glass"
+        ],
+        "usage_note": "fill a glass强调使杯子达到预期满度，并不等于仅往杯中倒入一点液体；通常不要求液面到杯沿。"
+      },
+      "proposed_display": {
+        "w": "fill a glass",
+        "m": "把杯子装满；倒满一杯",
+        "c": "fill a glass with water · fill someone's glass",
+        "e": "Please fill a glass with water for our guest.",
+        "x": "fill a glass强调使杯子达到预期满度，并不等于仅往杯中倒入一点液体；通常不要求液面到杯沿。",
+        "example_zh": "请给客人倒满一杯水。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "usage_note"
+      ],
+      "requires_master_sense_decision": false,
+      "master_authorized": false,
+      "new_independent_qa_pass": false,
+      "muse_pass": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01711",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01711",
+      "source_rank": 71,
+      "expression": "wooden board",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-043-092.v2.json",
+      "source_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_106_123_20261112.v1.json",
+      "previous_author_patch_blob": "cf0f58aa032cb6810e07b69f100def850e4011b1",
+      "independent_qa_source_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+      "independent_qa_verdict": "CONDITIONAL",
+      "qa_reason": "wooden board泛指木板，当前厨房例句实际木砧板，宽泛修订可接受，但厨房教学更自然教wooden cutting board，源表达身份须Master核对。",
+      "previous_author_answer": {
+        "meaning_zh": "木板；木质板",
+        "example_en": "Dry the wooden board after washing.",
+        "example_zh": "洗完木砧板后晾干。",
+        "collocations": [
+          "wooden board",
+          "dry a wooden board"
+        ],
+        "usage_note": "wooden board泛指木制板材或板子；木质砧板通常说wooden cutting board。"
+      },
+      "proposed_answer": {
+        "meaning_zh": "木板；木制板子",
+        "example_en": "Dry the wooden board after washing.",
+        "example_zh": "清洗后把那块木板晾干。",
+        "collocations": [
+          "wooden board",
+          "dry a wooden board"
+        ],
+        "usage_note": "wooden board泛指木板；厨房中若特指砧板，更明确的表达是wooden cutting board。原目标是否特指砧板须由Master凭场景Sense核定。"
+      },
+      "proposed_display": {
+        "w": "wooden board",
+        "m": "木板；木制板子",
+        "c": "wooden board · dry a wooden board",
+        "e": "Dry the wooden board after washing.",
+        "x": "wooden board泛指木板；厨房中若特指砧板，更明确的表达是wooden cutting board。原目标是否特指砧板须由Master凭场景Sense核定。",
+        "example_zh": "清洗后把那块木板晾干。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "requires_master_sense_decision": true,
+      "master_authorized": false,
+      "new_independent_qa_pass": false,
+      "muse_pass": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02006",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02006",
+      "source_rank": 167,
+      "expression": "stuffy room",
+      "source_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "previous_author_patch_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_AUTHOR_PATCH_124_143_20261112.v1.json",
+      "previous_author_patch_blob": "a82f7e92da7ca4faca5c516760c1363cb3777aa2",
+      "independent_qa_source_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+      "independent_qa_verdict": "CONDITIONAL",
+      "qa_reason": "stuffy room表示空气闷、不流通而不必闷热；中文主释义正确，但例句译文仍写“闷热的房间”，建议“憋闷不通风的房间”。",
+      "previous_author_answer": {
+        "meaning_zh": "闷、不通风的房间",
+        "example_en": "We opened the window to air out the stuffy room.",
+        "example_zh": "我们打开窗户给闷热的房间通风。",
+        "collocations": [
+          "stuffy room",
+          "air out a stuffy room"
+        ],
+        "usage_note": "stuffy room指空气不流通、令人感觉憋闷的房间，不一定温度很高。"
+      },
+      "proposed_answer": {
+        "meaning_zh": "空气憋闷、不通风的房间",
+        "example_en": "We opened the window to air out the stuffy room.",
+        "example_zh": "我们打开窗户，给那间空气不流通的房间通风。",
+        "collocations": [
+          "stuffy room",
+          "air out a stuffy room"
+        ],
+        "usage_note": "stuffy描述空气不流通、让人感到憋闷，并不一定表示气温高；例句中的air out表示通风换气。"
+      },
+      "proposed_display": {
+        "w": "stuffy room",
+        "m": "空气憋闷、不通风的房间",
+        "c": "stuffy room · air out a stuffy room",
+        "e": "We opened the window to air out the stuffy room.",
+        "x": "stuffy描述空气不流通、让人感到憋闷，并不一定表示气温高；例句中的air out表示通风换气。",
+        "example_zh": "我们打开窗户，给那间空气不流通的房间通风。"
+      },
+      "changed_fields": [
+        "meaning_zh",
+        "example_zh",
+        "usage_note"
+      ],
+      "requires_master_sense_decision": false,
+      "master_authorized": false,
+      "new_independent_qa_pass": false,
+      "muse_pass": false,
+      "activation_allowed": false,
+      "release_allowed": false
+    }
+  ],
+  "counts": {
+    "unique_kus": 6,
+    "revise": 1,
+    "conditional": 5,
+    "master_approved": 0,
+    "new_cg_qa_pass": 0,
+    "muse_pass": 0,
+    "release": 0
+  },
+  "constraints": "Author-side only; never overwrite frozen V51 KU, Master, Core20K, Runtime or SRS; CG-QA must independently review new version; Master owns POS/Sense authorization."
+}
