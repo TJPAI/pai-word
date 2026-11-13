@@ -1,0 +1,82 @@
+{
+  "schema": "cg-enlex-kaikki-ipa-qa1778-region-and-queues-v2",
+  "date": "2026-11-13",
+  "responsible": "CG-ENLEX",
+  "source_run": {
+    "url": "https://github.com/TJPAI/pai-word/actions/runs/43355324052",
+    "run_id": 43355324052,
+    "conclusion": "success",
+    "head_sha": "31b32f60b5179e3431a215422b275cfdc68edb3e",
+    "artifact_id": 14005418416,
+    "artifact_sha256": "a0aafd965f815fe66c4348c4a5a9f7012b842deee92b34e5d3745b00f4d41b8a",
+    "artifact_file_count": 10
+  },
+  "source": {
+    "kaikki_public_url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz",
+    "compressed_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "drive_source_byte_identity_verified": false,
+    "author_request_blob": "4b5651ad5d49cddc9dfabf64571440ecde317681",
+    "qa_source_count": 1778,
+    "unique_normalized_expressions": 1559
+  },
+  "qa_queue_counts": {
+    "native_phrase": 27,
+    "native_word": 645,
+    "not_found_phrase": 1018,
+    "not_found_word": 88
+  },
+  "candidate_counts": {
+    "native_ipa_ku": 672,
+    "not_found_ku": 1106,
+    "source_ipa_candidate_rows": 5902,
+    "artifact_candidate_plus_missing_rows": 7008,
+    "multi_ipa_variant_ku": 460,
+    "multiple_source_entry_pos_ku": 486
+  },
+  "regional_ku_counts_nonexclusive": {
+    "explicit_us": 338,
+    "explicit_uk": 334,
+    "explicit_both": 98,
+    "generic_or_unmarked": 404,
+    "other_explicit_regions": 203
+  },
+  "review_queue_zip_files": [
+    "qa-queues/native_phrase.jsonl",
+    "qa-queues/native_word.jsonl",
+    "qa-queues/not_found_phrase.jsonl",
+    "qa-queues/not_found_word.jsonl",
+    "qa-queues/qa-queue-summary.json",
+    "ipa-candidates.jsonl",
+    "manifest.json",
+    "validated-summary.json",
+    "source-provenance.txt",
+    "source-sha256.txt"
+  ],
+  "verified_from_actual_zip": {
+    "ten_expected_files_present": true,
+    "each_queue_line_count_matches_summary": true,
+    "all_1778_ku_ids_covered": true,
+    "source_candidate_rows_verified": 5902,
+    "raw_data_rows_verified": 7008
+  },
+  "editorial_limitations": [
+    "IPA candidate coverage is not linguistic QA or production approval.",
+    "Generic here denotes unmarked/nonregional-tag source only; not claimed to be a universal pronunciation.",
+    "Regional KU counts overlap; do not sum.",
+    "Source candidate entries with different POS remain review-only until Sense identity is checked.",
+    "Unknown IPA for 1018 multiword expressions cannot be replaced by word-by-word synthesis while claiming native phrase IPA.",
+    "Kaikki public source hash not verified identical to Google Drive user's 531827440 byte archive."
+  ],
+  "approval": {
+    "cg_qa_pass": 0,
+    "muse_pass": 0,
+    "master_approved": 0,
+    "release": false
+  },
+  "source_preservation": {
+    "core20k_frozen_unchanged": true,
+    "master_unchanged": true,
+    "scene500_unchanged": true,
+    "production_srs_unchanged": true
+  }
+}
