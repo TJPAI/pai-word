@@ -35,6 +35,14 @@ try{
   mutate();const result=run();if(result.status===0)throw Error('INVALID_GOLD_ACCEPTED '+id);
   outcomes.push({id,rejected:true});
  }
+ // A finalized adjudication must not silently insert a scene missing from one reviewer.
+ gold.cases=structuredClone(pristine.cases);
+ gold.cases[0].adjudication.scene_relevance.push({scene_id:'SC50-0002',grade:0});
+ const incomplete=run();
+ if(incomplete.status===0||!incomplete.stderr.includes('DOUBLE_BLIND_SCENE_POOL_INCOMPLETE'))
+  throw Error('SINGLE_REVIEWER_SCENE_POOL_ACCEPTED '+incomplete.stderr);
+ outcomes.push({id:'incomplete_double_blind_scene_pool',rejected:true});
+ gold.cases=structuredClone(pristine.cases);
  // An engine-returned scene with no adjudicated grade must never default to irrelevant.
  gold.cases=structuredClone(pristine.cases);
  fs.writeFileSync(g,JSON.stringify(gold));
