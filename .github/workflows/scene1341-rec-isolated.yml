@@ -12,6 +12,7 @@ on:
       - 'scene500-recommendation/qa/validate-scene1341-budget.mjs'
       - 'scene500-recommendation/qa/scene1341-nonblind-error-casebook.mjs'
       - 'scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs'
+      - 'scene500-recommendation/qa/scene1341-functional-token-ab.mjs'
       - 'scene500-recommendation/qa/test-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
@@ -54,6 +55,7 @@ jobs:
           node --check rec/scene500-recommendation/qa/validate-scene1341-budget.mjs
           node --check rec/scene500-recommendation/qa/scene1341-nonblind-error-casebook.mjs
           node --check rec/scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs
+          node --check rec/scene500-recommendation/qa/scene1341-functional-token-ab.mjs
           node --check rec/scene500-recommendation/qa/test-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
@@ -125,6 +127,16 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-nonblind-source-provenance.json
           node -e "const r=require('./scene1341-nonblind-source-provenance.json');if(r.caseCount!==32||r.watched.length!==4||r.sourceSenseRows!==19371||r.sourceSceneRows!==1341||r.independentGoldCount!==0||r.release_allowed!==false)process.exit(1);"
+      - name: Compare 128 opt-in functional-token hypothesis trials against frozen open casebook
+        run: |
+          node rec/scene500-recommendation/qa/scene1341-functional-token-ab.mjs \
+            scene1341-nonblind-error-casebook.json \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            > scene1341-functional-token-ab.json
+          node -e "const r=require('./scene1341-functional-token-ab.json');if(r.caseCount!==32||r.queryEvaluations!==128||r.independentGoldCount!==0||r.release_allowed!==false||r.experiment!=='ONLY_OPT_IN')process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -137,3 +149,4 @@ jobs:
             scene1341-engineering-budget-gate.json
             scene1341-nonblind-error-casebook.json
             scene1341-nonblind-source-provenance.json
+            scene1341-functional-token-ab.json
