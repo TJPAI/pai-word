@@ -38,11 +38,13 @@ for(const face of ['question','answer']){
     exampleToWordPending:true
    };
    vm.runInNewContext(navigation+'\nthis.move=move;this.moveBatch=moveBatch;',ctx,{timeout:1000});
-   if(operation==='left')ctx.move(-1);
-   if(operation==='right')ctx.move(1);
-   if(operation==='auto-next')ctx.move(1,true);
-   if(operation==='batch-next')ctx.moveBatch(1);
-   if(operation==='batch-prev')ctx.moveBatch(-1);
+   try{
+    if(operation==='left')ctx.move(-1);
+    if(operation==='right')ctx.move(1);
+    if(operation==='auto-next')ctx.move(1,true);
+    if(operation==='batch-next')ctx.moveBatch(1);
+    if(operation==='batch-prev')ctx.moveBatch(-1);
+   }catch(error){throw Error(face+' rated='+rated+' operation='+operation+' index='+ctx.index+' : '+error.message)}
    const expected={
     left:10,right:12,'auto-next':12,'batch-next':20,'batch-prev':0
    }[operation];
