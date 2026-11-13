@@ -350,7 +350,7 @@ function renderHome(){
  const message=!q?'场景目录 · 1,341 场景'
    :recPending?'正在运行 CG-REC 中英文推荐…'
    :recError?'查询失败：'+recError
-   :('CG-REC 实验推荐 · '+sorted.length+'个相关场景；未认证内容仅供体验');
+   :('CG-REC 场景推荐 · '+sorted.length+'个相关场景；未认证内容仅供体验');
  set('rec-status',message);
  if(active){
   for(const [position,sc] of sorted.slice(start,start+5).entries()){
