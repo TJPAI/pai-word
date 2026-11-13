@@ -152,6 +152,21 @@ jobs:
             17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             | tee ../scene1341-rank-collision-negative14.json
+      - name: Check latest PR75 core with 3 scene-metadata tamper and 240 query-normalization probes
+        env:
+          CG_REC_SHA: f6b1caa1db5ab2fe5b994f7d841bc79fd169b31e
+        run: |
+          set -euo pipefail
+          mkdir -p browser-current/tools/cg-rec-eval
+          cp evaluation/tools/cg-rec-eval/scene1341-metadata-query-normalization.mjs browser-current/tools/cg-rec-eval/
+          cd browser-current
+          node tools/cg-rec-eval/scene1341-metadata-query-normalization.mjs \
+            ../source-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            ../source-data/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            ../evaluation/tools/cg-rec-eval/scene1341-blind-intake-24.v1.json \
+            | tee ../scene1341-pr75-metadata-query-normalization.json
       - name: Compare actual CG-MAIN browser opt-in with current CG-REC on frozen 41 queries
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
@@ -202,7 +217,8 @@ jobs:
         run: |
           node evaluation/tools/cg-rec-eval/score-sealed-blind-gold.mjs \
             evaluation/tools/cg-rec-eval/scene1341-blind-adjudication-24.template.v1.json \
-            scene1341-blind-intake-predictions24.json \
+            scene1341-blind-intake-predictions24.json
+            scene1341-pr75-metadata-query-normalization.json \
             --expect-unsealed
       - name: Validate both outputs independently
         run: |
