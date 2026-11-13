@@ -27,11 +27,14 @@
   function choose(grade){
    if(!cardKey||!valid(grade))return false;
    clearTimer();selected=grade;phase='answer';onUpdate(state());
-   const startedKey=cardKey,epoch=token,count={again:3,hard:2,good:1}[grade];
+   // Consume native Scene500 tap-flow grade plan when the source-exact
+   // policy is present; the fallback preserves isolated legacy harnesses.
+   const plan=root.PAI_SCENE500_NATIVE_RATING_POLICY?.ratingPlan(grade);
+   const startedKey=cardKey,epoch=token,count=plan?.repeatCount??{again:3,hard:2,good:1}[grade];
    const live=()=>epoch===token&&startedKey===cardKey&&selected===grade;
    let elapsed=false,audioDone=typeof playRatedWord!=='function';
    const finish=()=>{if(!live()||!elapsed||!audioDone)return;finishPending();onAdvance(grade,startedKey)};
-   timer=schedule(()=>{timer=null;elapsed=true;finish()},DEFAULT_SHOW_MS[grade]);
+   timer=schedule(()=>{timer=null;elapsed=true;finish()},plan?.showMs??DEFAULT_SHOW_MS[grade]);
    if(!audioDone){
     let spoken=0;
     const repeat=()=>{
@@ -40,7 +43,7 @@
      let completed=false;
      const done=()=>{
       if(completed||!live())return;completed=true;audioCancel=null;
-      if(spoken<count)repeatTimer=schedule(repeat,1000);
+      if(spoken<count)repeatTimer=schedule(repeat,plan?.repeatGapMs??1000);
       else{audioDone=true;finish()}
      };
      try{audioCancel=playRatedWord(grade,spoken,done)||null}
