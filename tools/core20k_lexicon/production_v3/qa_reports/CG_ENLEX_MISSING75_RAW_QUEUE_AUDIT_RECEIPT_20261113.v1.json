@@ -1,0 +1,61 @@
+{
+  "schema": "cg-enlex-missing75-original-artifact-audit-receipt-v1",
+  "date": "2026-11-13",
+  "source": {
+    "run": 43368425601,
+    "artifact": 14011925246,
+    "zip_sha256": "59b4dd3ee4a34bc7b7787b13976270a2aa64e1517d31ace65e28cf9ea011ff98",
+    "queue": "qa-queues/not_found_phrase.jsonl",
+    "full_ranked_json_sha256": "8abb39c6a17b67964ac8b6e167a9088f2480951a11060596bd05caa5a0440820",
+    "full_ranked_json_name": "CG_ENLEX_MISSING75_SOURCE_PINNED_20261113.v1.json",
+    "full_ranked_json_location": "ChatGPT current conversation attachment; NOT fully uploaded to GitHub; original source is reproducible from Actions artifact"
+  },
+  "baseline": {
+    "not_found_phrase_ku": 1018,
+    "unique_not_found_phrases": 952,
+    "selected_unique_phrases": 75,
+    "selected_ku": 141
+  },
+  "ranking": "Normalized expression grouping, descending KU frequency, then ascending earliest stable numeric KU suffix, then lexical expression; no invented IPA",
+  "top_examples": [
+    {
+      "expression": "laundry basket",
+      "ku": 4
+    },
+    {
+      "expression": "make the bed",
+      "ku": 3
+    },
+    {
+      "expression": "tidy up",
+      "ku": 3
+    },
+    {
+      "expression": "wash your hands",
+      "ku": 3
+    },
+    {
+      "expression": "take out the trash",
+      "ku": 3
+    },
+    {
+      "expression": "microfiber cloth",
+      "ku": 3
+    },
+    {
+      "expression": "load the dishwasher",
+      "ku": 3
+    }
+  ],
+  "status": "ORIGINAL_KAIKKI_NATIVE_PHRASE_IPA_NOT_FOUND",
+  "qa_policy": "No synthetic IPA may be attributed to Kaikki phrase source; word-level/TTS fallback must be distinctly labeled and independently reviewed",
+  "formal_ipa_qa_pass": 0,
+  "muse_pass": 0,
+  "release_allowed": false,
+  "unchanged": [
+    "frozen Core20K",
+    "Master",
+    "Scene500",
+    "Runtime/SRS"
+  ]
+}
