@@ -5,6 +5,11 @@ on:
     paths:
       - '.github/workflows/cg-rec-eval-scene1341.yml'
       - 'tools/cg-rec-eval/scene1341-*'
+      - 'tools/cg-rec-eval/validate-two-locked-blind-reviews.mjs'
+      - 'tools/cg-rec-eval/test-two-locked-blind-reviews.mjs'
+      - 'tools/cg-rec-eval/validate-blind-adjudication-intake.mjs'
+      - 'tools/cg-rec-eval/score-sealed-blind-gold.mjs'
+      - 'tools/cg-rec-eval/test-sealed-gold-*.mjs'
   workflow_dispatch:
 permissions:
   contents: read
