@@ -540,6 +540,16 @@ function renderCard(){
   }
   $('auto-toggle').checked=autoBrowse.isEnabled();
   $('speak').dataset.speak=r.expression;
+  // The native Scene500 hero conditionally includes a function-word hint.
+  // A stable DOM must still update that per-KU conditional on every swipe;
+  // otherwise the hint from the first word leaks onto unrelated words.
+  const hero=$('hero'),isFunctionWord=/^(the|a|an|and|to|of)$/.test(r.expression);
+  let hint=hero.querySelector(':scope > small.muted');
+  if(isFunctionWord&&!hint){
+   hint=document.createElement('small');hint.className='muted';
+   hint.textContent='功能词读音会随重读与连读语境变化。';
+   hero.querySelector('.recall-controls-row').before(hint);
+  }else if(!isFunctionWord&&hint)hint.remove();
  }
 
  displayBookmark.save(sceneId,index,phaseController.state().preferredFace);
