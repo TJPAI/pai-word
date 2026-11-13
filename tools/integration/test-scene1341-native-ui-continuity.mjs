@@ -141,4 +141,34 @@ for(const autoEnabled of [true,false]){
  assert.equal(played,0,'canceling example must not force word speech when disabled');
 }
 
+
+const gradeStart=script.indexOf('function demoGrade(grade){');
+const gradeEnd=script.indexOf("\n$('back').addEventListener",gradeStart);
+assert(gradeStart>0&&gradeEnd>gradeStart);
+const gradeCode=script.slice(gradeStart,gradeEnd);
+assert(gradeCode.includes("phaseController.state().phase==='example'"));
+assert(gradeCode.indexOf('stopWordAudio()')<gradeCode.indexOf('phaseController.choose(grade)'),
+ 'old example audio must stop before rated speech begins');
+for(const priorPhase of ['example','answer-paused']){
+ const events=[],context={
+  $:()=>({hidden:false}),phaseController:{
+   state:()=>({phase:priorPhase}),
+   choose:grade=>events.push('choose:'+grade)
+  },
+  stopWordAudio:()=>events.push('stop-example'),
+  autoBrowse:{pause:()=>events.push('pause-auto')},
+  window:{PAI_SCRATCH_BEGIN_RATING:()=>events.push('scratch-rating')},
+  exampleToWordPending:true
+ };
+ vm.runInNewContext(gradeCode+'\nthis.invokeGrade=demoGrade;',context,{timeout:1000});
+ context.invokeGrade('good');
+ assert.equal(events.at(-1),'choose:good');
+ assert.equal(events.includes('stop-example'),priorPhase==='example',
+  'only active example speech is preempted');
+ if(priorPhase==='example'){
+  assert.equal(context.exampleToWordPending,false);
+  assert(events.indexOf('stop-example')<events.indexOf('choose:good'));
+ }
+}
+
 console.log('SC1341_NATIVE_UI_COMBINED_STABLE_HERO_AND_IPA_CACHE_PASS');
