@@ -44,6 +44,21 @@ try{
  if(unjudged.status===0||!unjudged.stderr.includes('UNJUDGED_PREDICTED_SCENE'))
   throw Error('UNJUDGED_PREDICTION_NOT_REJECTED '+unjudged.stderr);
  outcomes.push({id:'unjudged_prediction',rejected:true});
+ // The scorer must not silently consume only the first duplicate row (Array.find hazard).
+ preds.rows[0].integrationTop10=[];
+ preds.rows[1].id=preds.rows[0].id;
+ fs.writeFileSync(p,JSON.stringify(preds));
+ const duplicate=spawnSync(process.execPath,[scorer,g,p],{encoding:'utf8'});
+ if(duplicate.status===0||!duplicate.stderr.includes('DUPLICATE_OR_INVALID_PREDICTION_QUERY'))
+  throw Error('DUPLICATE_PREDICTION_NOT_REJECTED '+duplicate.stderr);
+ outcomes.push({id:'duplicate_prediction_query',rejected:true});
+ // Also reject a valid-looking but unrelated query id in place of an expected gold id.
+ preds.rows[1].id='BH999';
+ fs.writeFileSync(p,JSON.stringify(preds));
+ const replacement=spawnSync(process.execPath,[scorer,g,p],{encoding:'utf8'});
+ if(replacement.status===0||!replacement.stderr.includes('PREDICTION_GOLD_QUERY_SET_MISMATCH'))
+  throw Error('QUERY_SET_MISMATCH_NOT_REJECTED '+replacement.stderr);
+ outcomes.push({id:'prediction_gold_query_set_mismatch',rejected:true});
  console.log(JSON.stringify({status:'SYNTHETIC_NEGATIVE_TESTS_PASS',syntheticOnly:true,
    realGoldCreated:false,positiveFixtureValidated:true,invalidRejected:outcomes.length,outcomes}));
 }finally{fs.rmSync(root,{recursive:true,force:true});}
