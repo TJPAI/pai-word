@@ -1,0 +1,543 @@
+{
+  "schema": "cg-enlex-kaikki-native24-phonetic-editorial-gate-v2",
+  "date": "2026-11-13",
+  "branch": "experiment/enlex-v3-production-rebuild-20261030",
+  "source": {
+    "prior_commit": "0d38377ea1e5ac7501a26de9724c30903fdf9ad9",
+    "prior_blob": "1aea06fcdc6d3bcaddc9eb923bfaba1ff4743b81",
+    "source_ci_run": 43355324052,
+    "artifact_id": 14005418416,
+    "source_kaikki_gzip_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99"
+  },
+  "scope": {
+    "native_phrase_ku": 27,
+    "unique_expressions": 24,
+    "source_candidate_routes_reviewed": 24,
+    "ipa_values_transcribed_from_original_artifact_in_this_file": 0,
+    "not_found_phrase_ku": 1018,
+    "prioritized_not_found_unique_phrases": 75,
+    "priority_ku_refs": 141,
+    "enteach_phrase300_overlap_unique": 10,
+    "enteach_phrase300_not_in_native_unique": 290,
+    "enteach_native_outside_phrase300": 14
+  },
+  "disposition_policy": "24/24 individual phrase-specific editorial gates specified using existing source-backed risk routing; NO claim of independently sound-level reviewing all 27 original candidate rows in this file. Request downstream QA to read actual per-KU sound entries from source artifact. Never interpret 24 as IPA-certified.",
+  "checks": [
+    {
+      "ordinal": 1,
+      "expression": "wake up",
+      "source_review_route": "NOTATION_MIXED",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Keep /…/ phonemic separate from […] phonetic detail",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Retain each verbatim /…/ and […] reading in separate fields",
+        "Never count surface transcription as an independent lexical variant"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 2,
+      "expression": "sleep in",
+      "source_review_route": "REGIONAL_VARIANTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Keep US/UK/other variants distinct",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 3,
+      "expression": "night owl",
+      "source_review_route": "REGIONAL_VARIANTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Check UK/US stress notation",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 4,
+      "expression": "day off",
+      "source_review_route": "MULTIPLE_UNTAGGED",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Two untagged stress forms",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Do not assign US or UK label absent explicit supporting evidence",
+        "Resolve distinct stress or reduced-form context before card choice"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 5,
+      "expression": "roll over",
+      "source_review_route": "NO_REGION",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "No explicit US/UK tags",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 6,
+      "expression": "hand towel",
+      "source_review_route": "OPTIONAL_SEGMENTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "IPA optional segment notation",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Retain exact optional-segment source notation as candidate",
+        "Determine whether editorial simplified display changes meaning or source fidelity"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 7,
+      "expression": "bath towel",
+      "source_review_route": "MANY_REGIONAL_FORMS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Many source regional variants",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Keep full region-tagged source candidates",
+        "Select display candidate only against product locale and human QA"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 8,
+      "expression": "nail file",
+      "source_review_route": "MANY_REGIONAL_FORMS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Multiple tagged regional variants",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Keep full region-tagged source candidates",
+        "Select display candidate only against product locale and human QA"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 9,
+      "expression": "put on",
+      "source_review_route": "SCENE_SENSE_SCOPE",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Polysemous phrasal verb; check KU sense context",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Bind entry POS and intended phrasal-verb sense to stable KU",
+        "Do not infer pronunciation certification from a generic headword match"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 10,
+      "expression": "inside out",
+      "source_review_route": "MULTIPLE_POS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Same IPA under adj and adv entries",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Record adjective/adverb entry provenance separately",
+        "Identical IPA string does not prove correct scene sense or POS"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 11,
+      "expression": "get rid of",
+      "source_review_route": "NO_REGION",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Region not specified",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 12,
+      "expression": "living room",
+      "source_review_route": "SINGLE_BOTH_REGIONS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "One IPA tagged US+UK",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve the explicit shared US+UK evidence tag",
+        "Avoid manufacturing accent contrast where source has only one form"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 13,
+      "expression": "window sill",
+      "source_review_route": "REGIONAL_VARIANTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "UK multiple and US reading",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 14,
+      "expression": "dust bunny",
+      "source_review_route": "SINGLE_BOTH_REGIONS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "One IPA tagged US+UK",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve the explicit shared US+UK evidence tag",
+        "Avoid manufacturing accent contrast where source has only one form"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 15,
+      "expression": "all-purpose cleaner",
+      "source_review_route": "US_ONLY",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "No native UK evidence",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 16,
+      "expression": "fabric softener",
+      "source_review_route": "REGIONAL_VARIANTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Cot-caught-merger and US/UK readings",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 17,
+      "expression": "fair share",
+      "source_review_route": "REGIONAL_VARIANTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "UK and US differences",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 18,
+      "expression": "cutting board",
+      "source_review_route": "US_ONLY",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "General-American source only; review symbol granularity",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 19,
+      "expression": "meal prep",
+      "source_review_route": "NO_REGION",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Source lacks region tags",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 20,
+      "expression": "wooden spoon",
+      "source_review_route": "NO_REGION",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Source lacks region tags",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve region=null; do not silently promote to en-US or en-GB",
+        "Check phrase entry and KU sense before release"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 21,
+      "expression": "dining room",
+      "source_review_route": "US_ONLY",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "US source only",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 22,
+      "expression": "salt shaker",
+      "source_review_route": "US_ONLY",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "US source only",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Allow source-tagged US candidate only; UK remains unknown",
+        "Do not mechanically transform rhoticity for missing UK candidate"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 23,
+      "expression": "cup of tea",
+      "source_review_route": "MULTIPLE_UNTAGGED",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Check /əv/ and /ə/ informal variation",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Do not assign US or UK label absent explicit supporting evidence",
+        "Resolve distinct stress or reduced-form context before card choice"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    },
+    {
+      "ordinal": 24,
+      "expression": "air conditioner",
+      "source_review_route": "REGIONAL_VARIANTS",
+      "editorial_disposition": "SOURCE_CANDIDATE_RETAIN_QA_HOLD",
+      "specific_risk": "Rhotic US and non-rhotic UK",
+      "required_evidence": [
+        "Exact native-phrase candidate per-KU source line and sound_index from Actions artifact 14005418416",
+        "Raw IPA transcription including /…/ vs […] notation",
+        "Unmodified tags, entry POS, stable KU ID and intended scene Sense",
+        "Preserve original source tags at reading level",
+        "Resolve US/UK or other accent variants without merging transcription systems"
+      ],
+      "approval": {
+        "cg_enlex_source_editorial_only": true,
+        "independent_cg_qa_pass": false,
+        "muse_pass": false,
+        "master_approved": false,
+        "release_allowed": false
+      }
+    }
+  ],
+  "next_actions": {
+    "cg_qa": "Read source ZIP; assess all 27 KU candidate rows separately, with phoneme/phone and region distinction; independently record PASS/CONDITIONAL/HOLD",
+    "cg_enteach": "Map source lines and KU/Sense IDs for 10 overlapping native phrases and 14 outside priority300; leave 290 unmatched phrase expressions NOT_FOUND",
+    "cg_master": "Check stable KU Sense/POS and context before Master acceptance",
+    "cg_main": "Show explicitly sourced pending candidates only in isolated preview; do not mark ready or write production SRS",
+    "muse": "Perform independent phonetic judgment only upon actual review, not implied by this route file"
+  },
+  "frozen_data_unchanged": true,
+  "independent_cg_qa_pass": 0,
+  "muse_pass": 0,
+  "master_approved": 0,
+  "release_allowed": false
+}
