@@ -150,6 +150,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene500-readonly-phase.js"></script>
 <script src="./scene1341-auto-preference.js"></script>
 <script src="./scene500-native-answer-exact.js"></script>
+<script src="./scene500-native-cycle-exact.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
 <script>
 'use strict';
@@ -248,14 +249,7 @@ const subset=()=>items.filter(x=>x.scene_id===sceneId);
 // slice the CURRENT round (10/25/50 KUs), then wrap within that slice.
 // This is the sole word-index owner for auto, manual, and rated advance.
 function currentBatchNextIndex(rows,current,direction){
- if(!rows.length)return -1;
- const size=[10,25,50].includes(Number(BATCH))?Number(BATCH):10;
- const start=Math.floor(Math.max(0,current)/size)*size;
- const keys=rows.slice(start,start+size);
- if(!keys.length)return -1;
- const position=Math.max(0,Math.min(keys.length-1,current-start));
- const next=(position+direction%keys.length+keys.length)%keys.length;
- return start+next;
+ return window.PAI_SCENE1341_NATIVE_CYCLE.nextIndex(rows,current,direction,BATCH);
 }
 function autoNextWithinBatch(){
  if(!subset().length)return false;
