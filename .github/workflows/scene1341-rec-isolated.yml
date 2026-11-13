@@ -15,6 +15,7 @@ on:
       - 'scene500-recommendation/qa/scene1341-functional-token-ab.mjs'
       - 'scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs'
       - 'scene500-recommendation/qa/scene1341-factorial-open-ab.mjs'
+      - 'scene500-recommendation/qa/scene1341-open-counterfactual-top5-audit.mjs'
       - 'scene500-recommendation/qa/test-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
@@ -60,6 +61,7 @@ jobs:
           node --check rec/scene500-recommendation/qa/scene1341-functional-token-ab.mjs
           node --check rec/scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs
           node --check rec/scene500-recommendation/qa/scene1341-factorial-open-ab.mjs
+          node --check rec/scene500-recommendation/qa/scene1341-open-counterfactual-top5-audit.mjs
           node --check rec/scene500-recommendation/qa/test-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
@@ -158,6 +160,11 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-four-arm-open-factorial.json
           node -e "const x=require('./scene1341-four-arm-open-factorial.json');if(x.stats.queries!==59||x.stats.evaluations!==236||x.formalHumanGold!==0||x.release_allowed!==false||!x.defaultFlagsBothFalse||x.protectedBlind24Accessed)process.exit(1);"
+      - name: Audit four open failure cases with full Top5 rank deltas and source-only anchors
+        run: |
+          node rec/scene500-recommendation/qa/scene1341-open-counterfactual-top5-audit.mjs \
+            scene1341-four-arm-open-factorial.json > scene1341-open-counterfactual-top5-audit.json
+          node -e "const a=require('./scene1341-open-counterfactual-top5-audit.json');if(a.targetCases.length!==4||a.formalHumanGold!==0||a.blind24Accessed||a.release_allowed||a.algorithmChanged||a.sourceQueries!==59||a.fourArmExecutions!==236)process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -173,3 +180,4 @@ jobs:
             scene1341-functional-token-ab.json
             scene1341-eight-unique-query-review-packet.json
             scene1341-four-arm-open-factorial.json
+            scene1341-open-counterfactual-top5-audit.json
