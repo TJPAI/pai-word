@@ -42,5 +42,22 @@ const watched=[
  assert.ok(rec,'open casebook missing '+query);
  return {query,baselineTop5:rec.baseline.slice(0,5),guardTop5:rec.guard.slice(0,5),top1Changed:rec.top1Changed,changed:rec.changed};
 });
-const report={schema:'cg-rec-sc1341-functional-token-open-ab-v1',sourceCommit,manifestSha,caseCount:32,queryEvaluations:128,experiment:'ONLY_OPT_IN',functionalTokenSet:['不会','我要','不是','而是','只是','不要','不想','我想'],changedComparisons:all.filter(x=>x.changed).length,top1ChangedComparisons:all.filter(x=>x.top1Changed).length,emptyBaseline:all.filter(x=>x.emptyBaseline).length,emptyExperimental:all.filter(x=>x.emptyGuard).length,watched,records,independentGoldCount:0,release_allowed:false,conclusion:'NO_RELEVANCE_VERDICT_INFERRED: exploratory nonblind lexical ablation; all quality decisions need independent humans.'};
+// A query can recur in multiple author cohorts and alias modes. Separate
+// evaluation-level counts from distinct-query impact; never inflate wins.
+const uniqueQueries=new Map();
+for(const x of all){
+ const key=x.query;
+ const old=uniqueQueries.get(key);
+ if(old){
+  if(old.top1Changed!==x.top1Changed||old.changed!==x.changed){
+   // Alias-on and alias-off can genuinely differ. Record both statuses.
+   old.changedVariants.add(x.changed);
+   old.top1ChangedVariants.add(x.top1Changed);
+  }
+ }else uniqueQueries.set(key,{query:key,changedVariants:new Set([x.changed]),top1ChangedVariants:new Set([x.top1Changed]),baselineTop1:x.baseline[0]?.scene_id||null,guardTop1:x.guard[0]?.scene_id||null});
+}
+const distinctChangedQueries=[...uniqueQueries.values()].filter(x=>x.changedVariants.has(true)).map(x=>({query:x.query,baselineTop1:x.baselineTop1,guardTop1:x.guardTop1}));
+const distinctTop1ChangedQueries=[...uniqueQueries.values()].filter(x=>x.top1ChangedVariants.has(true)).map(x=>({query:x.query,baselineTop1:x.baselineTop1,guardTop1:x.guardTop1}));
+assert.ok(distinctTop1ChangedQueries.length<=all.filter(x=>x.top1Changed).length);
+const report={schema:'cg-rec-sc1341-functional-token-open-ab-v1',sourceCommit,manifestSha,caseCount:32,queryEvaluations:128,experiment:'ONLY_OPT_IN',functionalTokenSet:['不会','我要','不是','而是','只是','不要','不想','我想'],changedComparisons:all.filter(x=>x.changed).length,distinctQueryCount:uniqueQueries.size,distinctChangedQueryCount:distinctChangedQueries.length,distinctChangedQueries,distinctTop1ChangedQueryCount:distinctTop1ChangedQueries.length,distinctTop1ChangedQueries,top1ChangedComparisons:all.filter(x=>x.top1Changed).length,emptyBaseline:all.filter(x=>x.emptyBaseline).length,emptyExperimental:all.filter(x=>x.emptyGuard).length,watched,records,independentGoldCount:0,release_allowed:false,conclusion:'NO_RELEVANCE_VERDICT_INFERRED: exploratory nonblind lexical ablation; all quality decisions need independent humans.'};
 console.log(JSON.stringify(report,null,2));
