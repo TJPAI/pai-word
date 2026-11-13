@@ -10,6 +10,8 @@ on:
       - 'tools/integration/test-scene1341-rated-navigation-races.mjs'
       - 'tools/integration/test-scene1341-speech-owner-races.mjs'
       - 'tools/integration/test-scene1341-real-navigation-races.mjs'
+      - 'tools/integration/test-cg-main-muse-resumption-gate.mjs'
+      - 'tools/integration/reports/CG_MAIN_MUSE_RESUMPTION_INTAKE_20261113.json'
       - 'tools/integration/test-scene1341-readonly-rec-integration.mjs'
       - '.github/workflows/scene1341-standalone-ux-qa.yml'
       - 'rebuild-preview/welcome.js'
@@ -72,6 +74,7 @@ jobs:
           node tools/integration/test-scene1341-rated-navigation-races.mjs
           node tools/integration/test-scene1341-speech-owner-races.mjs
           node tools/integration/test-scene1341-real-navigation-races.mjs
+          node tools/integration/test-cg-main-muse-resumption-gate.mjs
           node tools/integration/test-scene1341-readonly-mobile-demo.mjs
           node tools/integration/test-scene1341-readonly-rec-integration.mjs
           node tools/integration/test-scene500-native-navigation-parity.mjs
