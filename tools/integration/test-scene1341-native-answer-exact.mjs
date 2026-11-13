@@ -7,6 +7,25 @@ const page=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8
 assert(page.includes('<script src="./scene500-native-answer-exact.js"></script>'));
 assert(page.includes("get('nativeAnswer')==='1'"),'source-exact answer is opt-in, never silently enabled');
 assert(page.includes('window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs)'));
+assert(page.includes("#scene1341-native-answer-pilot:not([hidden]){display:contents}"),
+ 'native A/B must expose the actual native .answer block without extra flex geometry');
+assert(page.includes("#scene1341-native-answer-pilot[hidden]{display:none!important}"),
+ 'hidden answer may never leak on question face');
+const detach=page.indexOf("const enlexNode=$('enlex-section');");
+const replace=page.indexOf("nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs)");
+const attach=page.indexOf("nativeSlot.querySelector('.answer')?.append($('enlex-section'))");
+assert(detach>=0&&replace>detach&&attach>replace,
+ 'detach the stable ENLEX details BEFORE replacing disposable native HTML, then reattach');
+assert(page.includes("$('answer').append($('enlex-section'))"),
+ 'default view must regain the same ENLEX reference node');
+assert(page.includes("button.dataset.speak!==subset()[index]?.answer.example_en"),
+ 'native example speaker must reject stale-card speech requests');
+assert(page.includes("e.target.closest('#scene1341-native-answer-pilot .example-play[data-example-audio]')"),
+ 'dynamic Scene500 example speaker must use delegated event handling');
+assert(page.includes("playCurrentExample()")&&page.includes("phaseController.beginExample()")&&
+ page.includes("phaseController.exampleFinished()"),
+ 'both example buttons must share isolated speech/phase lifecycle');
+
 assert(page.includes("nativeSlot.hidden=!revealed"),'native answer obeys question/answer state');
 assert(page.includes("readOnly:true,canWriteSrs:false,productionReleaseAllowed:false"),
  'pilot must explicitly quarantine every projected unit');
