@@ -530,6 +530,10 @@ function renderCard(){
       example_zh:r.answer.example_zh,x:teachingNotes.join(' '),playable:false},
    readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
   };
+  // Move the stable ENLEX <details> out of the disposable rendered HTML
+  // before replacing the native pilot: prevents deleting its event/DOM identity.
+  const enlexNode=$('enlex-section');
+  if(enlexNode) $('answer').append(enlexNode);
   nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs);
   // Keep the same optional, source-pinned Core20K reference on whichever
   // answer is visible; never duplicate or replace its source/identity.
