@@ -48,7 +48,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 #home .scene-result-main b{display:block;font-size:15px}
 #home .scene-result-main small{display:block;font-size:11px;color:#768396;margin-top:4px}
 #home .pai-count-slot{font-size:11px;color:#586c86;text-align:right}
-#home #stats-panel:not([open]){display:none}
+#home #stats-panel:not([open]),#home #settings-panel:not([open]){display:none}
 #home #categories[hidden]{display:none!important}
 #home .home-brand .demo-tip{display:block;margin-top:8px;font-size:11px}
 </style></head>
@@ -84,12 +84,13 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
      <button id="find-scenes" class="find-scenes" type="button">找场景</button>
     </div>
     <p id="rec-status" class="demo-tip" role="status" aria-live="polite">CG-REC 中英文混合场景推荐 · 仅供体验</p>
-    <div id="scenes" class="scene-results-list"></div>
+    <section class="scene-results" id="recommendations" hidden><div class="scene-results-head"><h3>为你推荐</h3><span id="recommendation-difficulty">全部</span></div><div id="scenes" class="scene-results-list"></div><div class="scene-pages" id="recommendation-pages" hidden><button id="recommendation-prev" type="button">上一页</button><span id="recommendation-position">1 / 1</span><button id="recommendation-next" type="button">下一页</button></div><p class="scene-results-note">当前场景仅表示相关教学候选；未正式认证的 KU 仅在隔离体验中可学习，不进入正式 SRS。</p></section>
     <div id="categories" class="demo-categories" hidden></div>
     <p class="demo-tip" id="scope">正在加载 Scene1341 教学内容；未获正式认证的词卡仅在此独立体验。</p>
     <div class="demo-status" id="status" role="status">正在载入 1,341 场景目录及教学词卡…</div>
     <button id="more" class="home-quiet-btn" type="button" hidden>查看更多场景</button>
    </section>
+   <section class="home-recent" id="recent-section" hidden><div class="home-section-head"><h3>最近学习</h3></div><div class="recent-row" id="recent-row"></div></section>
    <div class="browse-link">
     <button id="browse" class="catalog-back" type="button">浏览场景目录 →</button>
     <span>Scene1341 共 1,341 个场景；有真实教学内容的场景可进入词卡体验。</span>
@@ -151,11 +152,11 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null;
-let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false;
+let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
- const q=filter.trim(),ticket=++recRequest;
- if(!q){recRows=null;recPending=false;recError='';renderHome();return}
+ const q=filter.trim(),ticket=++recRequest;resultPage=0;
+ if(!q){recRows=null;recPending=false;recError='';resultPage=0;renderHome();return}
  recPending=true;recError='';recRows=null;renderHome();
  try{
   const adapter=await getRecBridge();
@@ -336,38 +337,51 @@ function renderCategories(){
 }
 function renderHome(){
  if(!catalog.length)return;
- const q=filter.trim().toLowerCase(),active=!!q||catalogVisible;
- const results=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean):catalog;
- const selected=results.filter(x=>category==='全部'||x.category===category);
+ const q=filter.trim(),active=!!q||catalogVisible;
+ const matches=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean):catalog;
+ const selected=matches.filter(x=>category==='全部'||x.category===category);
  const sorted=q?selected:catalogVisible&&category==='全部'
-   ?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]
-   :selected;
+   ?[...selected.filter(x=>available(x.id)),...selected.filter(x=>!available(x.id))]:selected;
+ const totalPages=Math.max(1,Math.ceil(sorted.length/5));
+ resultPage=Math.min(totalPages-1,Math.max(0,resultPage));
+ const start=resultPage*5;
+ $('recommendations').hidden=!active;
  $('scenes').replaceChildren();
- const message=!q?'1,341场景目录 · 使用最新CG-REC搜索相关场景'
+ const message=!q?'场景目录 · 1,341 场景'
    :recPending?'正在运行 CG-REC 中英文推荐…'
    :recError?'查询失败：'+recError
-   :('CG-REC 场景推荐 · '+sorted.length+'个结果 · 未认证教学内容仅供体验');
+   :('CG-REC 实验推荐 · '+sorted.length+'个相关场景；未认证内容仅供体验');
  set('rec-status',message);
  if(active){
-  for(const [position,sc] of sorted.slice(0,q?10:visible).entries()){
-   const btn=document.createElement('button');
-   btn.className='scene-result';btn.type='button';
+  for(const [position,sc] of sorted.slice(start,start+5).entries()){
+   const btn=document.createElement('button');btn.className='scene-result';btn.type='button';
    const no=document.createElement('span');no.className='scene-result-no';
-   no.textContent=String(position+1).padStart(2,'0');
+   no.textContent=String(start+position+1).padStart(2,'0');
    const name=document.createElement('span');name.className='scene-result-main';
    const title=document.createElement('b');title.textContent=sc.name;
    const categoryEl=document.createElement('small');
-   categoryEl.textContent=sc.id+' · '+sc.category+(q?' · CG-REC实验推荐':'');
+   categoryEl.textContent=sc.category+' · '+sc.id+(q?' · CG-REC实验推荐':'');
    name.append(title,categoryEl);
-   const count=document.createElement('span');count.className='pai-count-slot';
+   const count=document.createElement('span');count.className='pai-count-slot scene-result-count';
    const n=available(sc.id);
-   count.textContent=n?n+' 条可体验':'教学待交付';
+   const quantity=document.createElement('b'),sub=document.createElement('small');
+   quantity.textContent=n?String(n):'—';sub.textContent=n?'可体验':'待交付';
+   count.append(quantity,sub);
    btn.disabled=!n;btn.append(no,name,count);
    btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
   }
  }
- $('more').hidden=!!q||!catalogVisible||sorted.length<=visible;
- set('more','查看更多（剩余'+Math.max(0,sorted.length-visible)+'）');
+ $('recommendation-pages').hidden=!active||sorted.length<=5;
+ set('recommendation-position',(resultPage+1)+' / '+totalPages);
+ $('recommendation-prev').disabled=resultPage<=0;
+ $('recommendation-next').disabled=resultPage+1>=totalPages;
+ $('more').hidden=true;
+ const recent=$('recent-section'),list=$('recent-row');list.replaceChildren();
+ const last=lastScene&&available(lastScene)?lastScene:null;
+ recent.hidden=!last;
+ if(last){const btn=document.createElement('button');btn.type='button';
+   btn.textContent=label(lastScene);btn.addEventListener('click',()=>openStudy(lastScene,true));
+   list.appendChild(btn)}
 }
 let exampleToWordPending=false;
 function openStudy(id,resume=false){
@@ -515,9 +529,11 @@ $('search').addEventListener('input',e=>{filter=e.target.value;visible=35;catalo
 $('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
 $('browse').addEventListener('click',()=>{
  filter='';$('search').value='';category='全部';catalogVisible=true;visible=35;
- recRequest++;recRows=null;recPending=false;renderCategories();renderHome();
+ recRequest++;recRows=null;recPending=false;resultPage=0;renderCategories();renderHome();
  $('categories').hidden=false;
 });
+$('recommendation-prev').addEventListener('click',()=>{if(resultPage>0){resultPage--;renderHome()}});
+$('recommendation-next').addEventListener('click',()=>{resultPage++;renderHome()});
 $('preview-settings-button').addEventListener('click',()=>{
  const node=$('settings-panel');node.open=!node.open;if(node.open)node.scrollIntoView({block:'nearest',behavior:'smooth'});
 });
