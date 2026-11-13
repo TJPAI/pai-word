@@ -1,0 +1,42 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import vm from 'node:vm';
+import {createScene1341IPAReference} from '../../rebuild-preview/scene1341-readonly/scene1341-ipa-preview.mjs';
+const index=JSON.parse(await fs.readFile(new URL('../../rebuild-preview/scene1341-readonly/scene1341-ipa-preview.json',import.meta.url),'utf8'));
+assert.equal(index.schema,'pai-scene1341-core20k-ipa-preview-v1');
+assert.equal(index.sourceCore20kWords,20000);
+assert.equal(index.sourceQAprovisionalKU,1778);
+assert.equal(index.coveredWords,457);
+assert.equal(index.coveredCompositionalPhrases,616);
+assert.equal(index.missing,705);
+assert.equal(Object.keys(index.entries).length,1073);
+assert.equal(index.productionRelease,false);
+assert.equal(index.canWriteSrs,false);
+const wake=index.entries['SC1341-KU-00001'];
+assert.deepEqual(wake,{ipa:'/weɪk ʌp/',kind:'word_by_word',source:'Core20K',wordRanks:[1527,11]});
+const source=createScene1341IPAReference({fetchImpl:async()=>new Response(JSON.stringify(index),{status:200})});
+assert.deepEqual(await source.lookup({scene_ku_id:'SC1341-KU-00001'}),wake);
+assert.equal(await source.lookup({scene_ku_id:'NON_VERIFIED_KU'}),null);
+const absent=Array.from({length:1778},(_,i)=>'SC1341-KU-'+String(i+1).padStart(5,'0'))
+ .find(id=>!Object.hasOwn(index.entries,id));
+assert(absent);
+assert.equal(await source.lookup({scene_ku_id:absent}),null);
+const corrupt=createScene1341IPAReference({fetchImpl:async()=>new Response(JSON.stringify({...index,productionRelease:true}),{status:200})});
+await assert.rejects(()=>corrupt.lookup({scene_ku_id:'SC1341-KU-00001'}),/SC1341_IPA_INDEX_SOURCE_GATE/);
+const html=await fs.readFile(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const inline=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+assert(inline);
+new vm.Script(inline,{filename:'scene1341-readonly'});
+assert(html.includes('id="ipa"'));
+assert(html.includes("void renderQuestionIPA(r)"));
+assert(html.includes('scene1341-ipa-preview.mjs'));
+assert(html.includes('音标待补'));
+assert(html.includes('ticket!==ipaSequence'));
+assert(html.includes('subset()[index]?.scene_ku_id!==expectedKU'));
+assert(html.includes('Core20K 逐词参考音标'));
+assert(!html.includes('raw.githack.com'));
+const native=await fs.readFile(new URL('../../rebuild-preview/index.html',import.meta.url),'utf8');
+assert(native.includes('rebuild-preview/welcome.js'));
+console.log(JSON.stringify({status:'PASS',wakeUp:wake.ipa,covered:1073,total:1778,remaining:705,
+ sourcePin:true,staleCardGuard:true,missingHonest:true,scene500Unchanged:true,
+ productionSrsWrites:0,deploy:false}));
