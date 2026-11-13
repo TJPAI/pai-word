@@ -1,0 +1,47 @@
+name: Scene1341 versus Scene500 full-page independent source audit
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-readonly/**'
+      - 'rebuild-preview/learning-runtime.js'
+      - 'rebuild-preview/home-dashboard.js'
+      - 'rebuild-preview/welcome.js'
+      - 'tools/integration/test-scene1341-full-page-audit.mjs'
+      - 'tools/integration/reports/CG_MAIN_SCENE1341_SCENE500_FULL_PAGE_AUDIT_20261113.md'
+      - '.github/workflows/scene1341-full-page-audit.yml'
+  push:
+    branches: [cg-main-sc1341-full-parity-audit-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit every screen with explicit open-gap labels
+        run: |
+          node tools/integration/test-scene1341-full-page-audit.mjs
+          node tools/integration/test-scene1341-standalone-scene500-parity.mjs
+          node tools/integration/test-scene1341-hidden-screens.mjs
+          node tools/integration/test-scene1341-home-layout-parity.mjs
+      - name: Original native Scene500 reference tests
+        run: |
+          node tools/integration/test-scene500-native-card-shell.mjs
+          node tools/integration/test-scene500-native-navigation-parity.mjs
+          node tools/integration/test-scene500-native-handwriting.mjs
+          node tools/integration/test-scene500-native-audio-lifecycle.mjs
+          node tools/integration/test-scene500-native-cursor-persistence.mjs
+      - name: Scene1341 preview-only data and quiz isolation
+        run: |
+          node tools/integration/test-scene1341-readonly-mobile-demo.mjs
+          node tools/integration/test-scene1341-readonly-rec-integration.mjs
+          node tools/integration/test-scene1341-question-ipa.mjs
+          node tools/integration/test-scene1341-enlex-v2-exact-preview.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: Audit only never publishes Pages
+        run: echo 'NO_DEPLOYMENT__OWNER_APPROVAL_REQUIRED'
