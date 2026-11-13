@@ -1,0 +1,105 @@
+{
+  "schema": "cg-enlex-muse-ipa-independent-review-intake-v1",
+  "date": "2026-11-13",
+  "role": "CG-ENLEX",
+  "coordination": {
+    "notice_issue_1_comment": 6846716547,
+    "notice_issue_2_comment": 6846717109,
+    "mu_enlex_ack_issue_1_comment": 6846878554,
+    "mu_enlex_ack_state": "RECEIVED; REVIEW_PENDING_EVIDENCE",
+    "do_not_infer_review_from_ack": true
+  },
+  "source_pins": {
+    "ci_run": 43368425601,
+    "ci_commit": "62dd2ce5414624e6fba11418156d46f56ff5764f",
+    "artifact_id": 14011925246,
+    "artifact_zip_sha256": "59b4dd3ee4a34bc7b7787b13976270a2aa64e1517d31ace65e28cf9ea011ff98",
+    "raw_source_candidates": "ipa-candidates.jsonl",
+    "native_phrase_context": "qa-queues/native27-exact-sound-context-handoff.json",
+    "native_word_queue": "qa-queues/native_word.jsonl",
+    "not_found_phrase_queue": "qa-queues/not_found_phrase.jsonl",
+    "nativeword100_receipt_blob": "6afdfd95eacb2c86d9a8163b4d67646857369870",
+    "nativeword100_full_attachment_sha256": "5e82268a4a7727571a15d712310b227cf376b61ed39d7bbf21d51bc624f0f066",
+    "missing75_full_attachment_sha256": "8abb39c6a17b67964ac8b6e167a9088f2480951a11060596bd05caa5a0440820"
+  },
+  "review_lanes": [
+    {
+      "id": "NATIVE27",
+      "target": "CG-QA + MU-ENLEX",
+      "size": {
+        "ku": 27,
+        "expressions": 24,
+        "raw_sounds": 57
+      },
+      "source": "qa-queues/native27-exact-sound-context-handoff.json",
+      "task": "Independently compare each original candidate with intended KU scene/Sense/POS, accent labels, phonemic vs phonetic notation, optional segments, weak forms and stress; give exact source_line+sound_index in decision.",
+      "current_author_state": "11 candidate expressions retained for QA; 13 expression HOLD; all unapproved"
+    },
+    {
+      "id": "NATIVEWORD100",
+      "target": "CG-QA + MU-ENLEX",
+      "size": {
+        "ku": 100,
+        "raw_sounds": 2698
+      },
+      "source": "qa-queues/native_word.jsonl plus ipa-candidates.jsonl; ranked original 100KU attachment SHA256 pinned",
+      "task": "Review target KU meaning and POS before selecting original source sound; do not confuse 2698 source rows with 2698 valid phonemes; explicitly distinguish source regional tags, mixed slash/bracket, stress and duplicate source entries.",
+      "current_author_state": "source-risk-queue only, not editorial pass"
+    },
+    {
+      "id": "MISSING75",
+      "target": "CG-QA + MU-ENLEX + CG-ENTEACH",
+      "size": {
+        "expressions": 75,
+        "ku": 141
+      },
+      "source": "qa-queues/not_found_phrase.jsonl; original 75 expression attachment SHA256 pinned",
+      "task": "Verify exact native phrase absence in pinned extract; propose explicitly labelled fallback policy (word-level phonemes/TTS) only after separate review. Never call compositional output Kaikki-native phrase IPA.",
+      "current_author_state": "source not found, no IPA generated"
+    }
+  ],
+  "decision_schema": {
+    "required": [
+      "review_lane",
+      "scene_ku_id",
+      "expression",
+      "source_sense_id",
+      "reviewer",
+      "independent_model_or_person",
+      "source_artifact_id",
+      "source_line",
+      "sound_index",
+      "source_ipa_verbatim",
+      "target_pos",
+      "target_sense_context",
+      "regional_tag_original",
+      "transcription_type",
+      "decision_PASS_CONDITIONAL_HOLD",
+      "reason",
+      "review_timestamp"
+    ],
+    "note": "For missing75 no source_line/sound_index/IPA exists: set explicit null with NOT_FOUND reason, do not fabricate.",
+    "no_auto_approval": true
+  },
+  "historical_lexicon_review": {
+    "frozen_headwords": 20000,
+    "frozen_senses": 27471,
+    "v13_needs_verification": 403,
+    "v13_risk": 125,
+    "v17_historical_risk": 125,
+    "never_merge_v13_v17": true
+  },
+  "current_approval": {
+    "cg_qa_ipa_pass": 0,
+    "mu_enlex_ipa_pass": 0,
+    "master_ipa_pass": 0,
+    "production_release": 0
+  },
+  "excluded_mutations": [
+    "frozen Core20K",
+    "Master",
+    "Scene500",
+    "Runtime/SRS"
+  ],
+  "next_gate": "Wait for actual MU-ENLEX source-cited independent review records and CG-QA adjudication; acknowledgement is not approval."
+}
