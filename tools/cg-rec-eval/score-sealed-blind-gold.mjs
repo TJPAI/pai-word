@@ -59,6 +59,14 @@ for(const entry of g.cases){
     !Number.isInteger(item.grade)||item.grade<0||item.grade>3||relevant.has(item.scene_id))throw Error('BAD_ADJUDICATED_LABEL '+entry.query_id);
   relevant.set(item.scene_id,item.grade);
  }
+ // Every adjudicated candidate must have been independently assessed by both reviewers.
+ // This does not require reviewer agreement on grade; differences belong in adjudication.
+ const finalPool=new Set(relevant.keys());
+ for(const role of ['annotator_A','annotator_B']){
+  const reviewed=new Set(entry[role].scene_relevance.map(x=>x.scene_id));
+  if(reviewed.size!==finalPool.size||[...finalPool].some(id=>!reviewed.has(id)))
+   throw Error('DOUBLE_BLIND_SCENE_POOL_INCOMPLETE '+entry.query_id+' '+role);
+ }
  const n=[...relevant.values()].filter(x=>x>=2).length;
  if(a.none_relevant!==(n===0))throw Error('NONE_RELEVANT_INCONSISTENT '+entry.query_id);
  const ranks={};
