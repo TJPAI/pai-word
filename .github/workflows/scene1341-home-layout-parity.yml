@@ -1,0 +1,33 @@
+name: Scene1341 actual Scene500 homepage layout and pager parity
+on:
+  pull_request:
+    paths:
+      - 'rebuild-preview/scene1341-readonly/index.html'
+      - 'tools/integration/test-scene1341-home-layout-parity.mjs'
+      - '.github/workflows/scene1341-home-layout-parity.yml'
+  push:
+    branches:
+      - cg-main-scene1341-home-exact-parity-20261113
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  home-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Match original Scene500 home sections, five-result pagination and settings visibility
+        run: node tools/integration/test-scene1341-home-layout-parity.mjs
+      - name: Keep original Scene500 interaction and Scene1341 isolation
+        run: |
+          node tools/integration/test-scene1341-readonly-mobile-demo.mjs
+          node tools/integration/test-scene1341-readonly-rec-integration.mjs
+          node tools/integration/test-scene1341-standalone-scene500-parity.mjs
+          node tools/integration/test-scene1341-enlex-v2-exact-preview.mjs
+          node tools/integration/test-scene1341-isolated-registry-srs.mjs
+      - name: Deploy only by user
+        run: echo 'NO_GITHUB_PAGES_DEPLOYMENT_IN_CI'
