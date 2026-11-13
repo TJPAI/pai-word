@@ -43,8 +43,16 @@ try{
  right.cases[1].assessor_id='SYNTHETIC_B';
  right.cases[1].integrationTop10=[{scene_id:'SC50-0001'}];write();
  if(invoke().status===0)throw Error('MODEL_PREDICTION_LEAK_ACCEPTED');
+ delete right.cases[1].integrationTop10;
+ right.cases[1].suggestions=[{scene_id:'SC50-0001',score:0.99}];
+ write();
+ if(invoke().status===0)throw Error('DISGUISED_CASE_RECOMMENDATIONS_ACCEPTED');
+ delete right.cases[1].suggestions;
+ right.hiddenEngineRecommendations=[{scene_id:'SC50-0001',score:0.99}];
+ write();
+ if(invoke().status===0)throw Error('DISGUISED_TOP_LEVEL_RECOMMENDATIONS_ACCEPTED');
  console.log(JSON.stringify({status:'SYNTHETIC_TWO_LOCKED_REVIEW_GATE_PASS',
   syntheticOnly:true,cases:24,detectedIncompletePool:true,
   detectedDisagreement:true,rejectedInconsistentReviewer:true,
-  rejectedModelPredictionLeak:true,formalGoldCount:0,releaseAllowed:false}));
+  rejectedModelPredictionLeak:true,rejectedDisguisedFields:true,formalGoldCount:0,releaseAllowed:false}));
 }finally{fs.rmSync(tmp,{recursive:true,force:true});}
