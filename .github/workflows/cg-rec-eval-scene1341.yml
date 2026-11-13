@@ -217,8 +217,7 @@ jobs:
         run: |
           node evaluation/tools/cg-rec-eval/score-sealed-blind-gold.mjs \
             evaluation/tools/cg-rec-eval/scene1341-blind-adjudication-24.template.v1.json \
-            scene1341-blind-intake-predictions24.json
-            scene1341-pr75-metadata-query-normalization.json \
+            scene1341-blind-intake-predictions24.json \
             --expect-unsealed
       - name: Validate both outputs independently
         run: |
@@ -304,4 +303,5 @@ jobs:
             scene1341-current-browser-vs-rec41.json
             scene1341-rank-collision-negative14.json
             scene1341-blind-intake-predictions24.json
+            scene1341-pr75-metadata-query-normalization.json
           if-no-files-found: warn
