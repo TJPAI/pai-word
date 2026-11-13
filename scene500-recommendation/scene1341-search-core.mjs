@@ -26,10 +26,13 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
  const documentFrequency=new Map();for(const [sid,rows] of exprs){const ts=new Set();for(const row of rows)for(const t of row.terms)ts.add(t);for(const t of ts)documentFrequency.set(t,(documentFrequency.get(t)||0)+1);}
  const titleTerms=new Map([...scenes].map(([id,s])=>[id,tokens(s.name+' '+s.category)]));
  const normalizedSceneNames=new Map([...scenes].map(([id,s])=>[id,normalize(s.name)]));
- function search(query,{limit=10,experimentalIntentAliases=false}={}){
+ // These are open experimental function-word hypotheses, not certified semantic stopwords.
+ // No default behavior changes, and they never affect independent blind evaluation.
+ const exploratoryFunctionTokens=new Set(['不会','我要','不是','而是','只是','不要','不想','我想']);
+ function search(query,{limit=10,experimentalIntentAliases=false,experimentalFunctionalTokenGuard=false}={}){
    const q=normalize(query);if(!q)return [];const qt=tokens(q);if(!qt.length)return [];
    const negSpans=negatedSpans(q),negative=new Set();for(const span of negSpans)for(const t of tokens(span))negative.add(t);
-   const positive=qt.filter(t=>!negative.has(t));if(!positive.length)return [];
+   const positive=qt.filter(t=>!negative.has(t)&&(!experimentalFunctionalTokenGuard||!exploratoryFunctionTokens.has(t)));if(!positive.length)return [];
    // Query-local weight cache preserves the original per-term score and accumulation order.
    const titleWeights=new Map(positive.map(t=>[t,Math.min(8,2.5+2/(documentFrequency.get(t)||1))]));
    const expressionWeights=new Map(positive.map(t=>[t,Math.min(3.2,1.8/Math.sqrt(documentFrequency.get(t)||1))+0.1]));
