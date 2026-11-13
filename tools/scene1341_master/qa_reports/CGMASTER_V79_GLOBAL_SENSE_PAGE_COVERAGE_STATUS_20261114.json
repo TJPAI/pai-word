@@ -1,0 +1,87 @@
+{
+  "version": "CGMASTER-V79-20261114",
+  "status": "SOURCE_VERIFIED_GLOBAL_CANDIDATE_CENSUS_PLUS_PARTIAL_MULTIPACK_CROSSWALK; NO_FORMAL_SENSE_AUTHORIZATION; RELEASE_FALSE",
+  "scope": {
+    "scene_count": 1341,
+    "authoritative_master_rows": 230289,
+    "english_expressions_normalized_distinct": 127609,
+    "candidate_expression_gloss_groups": 176006,
+    "global_formal_independent_sense_total": null,
+    "candidate_groups_with_english_zh": 175806,
+    "candidate_groups_missing_zh": 200,
+    "candidate_groups_reused_across_scenes": 17718,
+    "candidate_groups_with_polygloss_expression": 63979
+  },
+  "source_anchors": {
+    "final_master_drive_id": "1bT_STgfNsJQA5v5x-8bP4T4DH9_eLNaF",
+    "final_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "author_manifest_github_branch": "answer-enrichment-main-dev-20261026",
+    "author_manifest_git_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+    "author_source_packs": 52,
+    "author_ku": 2038,
+    "qa_staging_manifest_git_blob": "f8967fb97573bbccd89b4c645303dd2c983bb1da",
+    "ipa_qa_staging_ku": 1778,
+    "kaikki_ipa_ci_artifact_id": 14005418416,
+    "kaikki_ipa_ci_zip_sha256": "a0aafd965f815fe66c4348c4a5a9f7012b842deee92b34e5d3745b00f4d41b8a",
+    "kaikki_public_source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "kaikki_drive_original_id": "1zIgVQhJGILx4ZtyF7FIB3MP37SgAi1lF",
+    "kaikki_drive_original_size_bytes": 531827440,
+    "kaikki_public_vs_drive_binary_same_version": "NOT_VERIFIED",
+    "core20k_enlex_frozen_v2_sense_count": 27471,
+    "core20k_identity_reuse_in_scene1341": "FORBIDDEN"
+  },
+  "answer_author_field_coverage_in_2038_scope": {
+    "meaning_zh": 2038,
+    "example_en": 2038,
+    "example_zh": 2038,
+    "collocations": 2038,
+    "usage_note": 2038,
+    "all_five": 2038,
+    "all_five_draft_rate": 1.0,
+    "scene_expression_matched_master": 2000,
+    "scene_expression_original_gloss_exact": 1894,
+    "expression_matched_but_zh_mismatch": 106,
+    "expression_not_matched_in_same_scene": 38,
+    "exact_author_lexical_candidate_groups_distinct": 1758,
+    "formal_semantic_qa_approved": 0
+  },
+  "kaikki_ipa_qa_staging_1778_scope": {
+    "source_native_ipa_candidate_ku": 672,
+    "source_native_ipa_missing_ku": 1106,
+    "native_phrase_ku": 27,
+    "native_word_ku": 645,
+    "native_ipa_candidate_rate": 0.3779527559055118,
+    "master_scene_expression_matched": 1769,
+    "master_scene_expression_unmatched": 9,
+    "independent_ipa_qa_approved": 0
+  },
+  "three_source_intersection": {
+    "ku_with_author_fields_all_five_and_source_native_ipa_candidate": 672,
+    "ku_also_exact_english_zh_in_master": 619,
+    "distinct_expression_gloss_candidate_groups_among_those_619": 533,
+    "distinct_expression_gloss_candidate_group_rate_among_global_176006": 0.0030283058532095497,
+    "meaning": "A verified lower-bound subset of author content plus raw IPA candidate plus exact Master source gloss. NOT complete page certification and NOT a semantic de-duplicated Sense count. Only 10 V51 source scenes."
+  },
+  "page_completeness": {
+    "counting_unit_requested": "FORMALLY_AUTHORIZED_GLOBAL_INDEPENDENT_SENSE",
+    "denominator": null,
+    "question_full_complete_count": null,
+    "answer_full_complete_count": null,
+    "both_full_complete_count": null,
+    "question_full_rate": null,
+    "answer_full_rate": null,
+    "both_full_rate": null,
+    "formal_release_approved_senses": 0,
+    "reason": "Canonical Sense IDs have not been independently adjudicated. The exact matching expressions/glosses are only lexical candidate groups. IPA and author field QA not formally approved. There is no complete 1341-scene ENTEACH join."
+  },
+  "required_release_work": [
+    "Pin all source packages and actual Kaikki entry/POS/sense/gloss/source line/IPA versions; verify source SHA and licensing",
+    "Review true global polysemy and synonym gloss variance, authorize a scene1341-only canonical Sense ID, preserve immutable source record IDs and Sense-Scene relations",
+    "Join current ENTEACH answer fields by approved Sense identity; inspect 106 gloss mismatches and 38 unpaired author KU in the first ten scenes",
+    "Acquire and source-pin missing full-scene teaching content; prioritize independent Kaikki native IPA QA for 672 candidate KU, handle 1106 no-hit explicitly",
+    "Compute exact per-field question/answer coverage on authorized Sense IDs; no Scene500 fallback; CG-QA and MU-QA same-version review; release_allowed calculated fail-closed"
+  ],
+  "original_master_overwritten": false,
+  "runtime_modified": false,
+  "release_allowed": false
+}
