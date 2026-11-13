@@ -35,6 +35,15 @@ try{
   mutate();const result=run();if(result.status===0)throw Error('INVALID_GOLD_ACCEPTED '+id);
   outcomes.push({id,rejected:true});
  }
+ // An engine-returned scene with no adjudicated grade must never default to irrelevant.
+ gold.cases=structuredClone(pristine.cases);
+ fs.writeFileSync(g,JSON.stringify(gold));
+ preds.rows[0].integrationTop10=[{scene_id:'SC50-0002'}];
+ fs.writeFileSync(p,JSON.stringify(preds));
+ const unjudged=spawnSync(process.execPath,[scorer,g,p],{encoding:'utf8'});
+ if(unjudged.status===0||!unjudged.stderr.includes('UNJUDGED_PREDICTED_SCENE'))
+  throw Error('UNJUDGED_PREDICTION_NOT_REJECTED '+unjudged.stderr);
+ outcomes.push({id:'unjudged_prediction',rejected:true});
  console.log(JSON.stringify({status:'SYNTHETIC_NEGATIVE_TESTS_PASS',syntheticOnly:true,
    realGoldCreated:false,positiveFixtureValidated:true,invalidRejected:outcomes.length,outcomes}));
 }finally{fs.rmSync(root,{recursive:true,force:true});}
