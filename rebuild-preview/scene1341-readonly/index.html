@@ -653,7 +653,19 @@ function moveBatch(delta){
  if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
  autoBrowse.restart();
 }
-function demoGrade(grade){if($('learning').hidden)return;window.PAI_SCRATCH_BEGIN_RATING?.();autoBrowse.pause();phaseController.choose(grade)}
+function demoGrade(grade){
+ if($('learning').hidden)return;
+ // An example utterance owns the old answer audio. Rating must preempt it
+ // before graded speech begins, otherwise the graded TTS waits for the old
+ // utterance while its stale completion may interfere with the new phase.
+ if(phaseController.state().phase==='example'){
+  exampleToWordPending=false;
+  stopWordAudio();
+ }
+ window.PAI_SCRATCH_BEGIN_RATING?.();
+ autoBrowse.pause();
+ phaseController.choose(grade);
+}
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
 $('search').addEventListener('input',e=>{filter=e.target.value;catalogVisible=false;recRequest++;recPending=false;recSubmitted=false;recRows=null;recError='';resultPage=0;renderHome()});
 $('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
