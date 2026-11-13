@@ -1,0 +1,201 @@
+{
+  "schema": "cg-enteach-v51-p0-identity-hold8-directed-answer-proposals-v1",
+  "date": "2026-11-13",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source_qa": {
+    "path": "tools/core20k_lexicon/qa/CG_QA_SCENE1341_V51_P0_MASTER_HOLD31_LEXICAL_TRIAGE_20261112.v1.json",
+    "blob": "79d9ee69b617469df2852607ece97e1198354a4a",
+    "original_identity_hold_total": 9,
+    "already_handled_separately": "SC1341-KU-01452"
+  },
+  "source_author_baseline_head": "957e0ae65e42dec366f0a7315b35635699434a0d",
+  "scope": "8 remaining P0 identity-HOLD proposals after prep duplicate report",
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00636",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00636",
+      "source_rank": 24,
+      "source_original_expression": "put away clutter",
+      "source_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "qa_original_reason": "put away clutter虽能理解，但clear away clutter或put away scattered items更自然；新版例句已换目标表达，需Master批准canonical目标及Sense身份。",
+      "editorial_class": "TARGET_AND_EXAMPLE_MISMATCH",
+      "author_candidate_answer_only": {
+        "expression": "put away scattered items",
+        "meaning_zh": "把散乱物品收起来",
+        "example_en": "Put away the scattered items on your desk before you start work.",
+        "example_zh": "开始工作前，把桌上散乱的物品收起来。"
+      },
+      "editorial_reason_or_constraint": "If source intent instead stresses removal of mess, clear away clutter is a distinct natural candidate; Master chooses one canonical action.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01010",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01010",
+      "source_rank": 188,
+      "source_original_expression": "shrunk clothes",
+      "source_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "qa_original_reason": "shrunken clothes、clothes that have shrunk比作前置修饰语的shrunk clothes通常更自然；作者例句已避开原目标，需要Master裁定规范表达。",
+      "editorial_class": "NONCANONICAL_ATTRIBUTIVE_FORM",
+      "author_candidate_answer_only": {
+        "expression": "shrunken clothes",
+        "meaning_zh": "缩水的衣服",
+        "example_en": "These shrunken clothes no longer fit me.",
+        "example_zh": "这些缩水的衣服我已经穿不下了。"
+      },
+      "editorial_reason_or_constraint": "Clothes that have shrunk is a natural paraphrase; do not silently treat the source past-participle form shrunk clothes as a certified head expression.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01034",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01034",
+      "source_rank": 212,
+      "source_original_expression": "spot-test a fabric",
+      "source_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "qa_original_reason": "当前例句spot-test the cleaner on a hidden area of the fabric自然；与目标spot-test a fabric的宾语结构不一致。清洁剂适配性与面料测试是不同教学目标，须Master裁决。",
+      "editorial_class": "ARGUMENT_STRUCTURE_MISMATCH",
+      "author_candidate_answer_only": {
+        "expression": "spot-test a cleaner on fabric",
+        "meaning_zh": "在布料不显眼处试用清洁剂",
+        "example_en": "Spot-test the cleaner on a hidden part of the fabric first.",
+        "example_zh": "先在布料不显眼的部位试用清洁剂。"
+      },
+      "editorial_reason_or_constraint": "This explicitly teaches testing a product on fabric; testing fabric properties itself would be another target, so Master must choose original Sense.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01234",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01234",
+      "source_rank": 189,
+      "source_original_expression": "color bleed",
+      "source_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "qa_original_reason": "color bleed与color bleeding在衣物掉色语境可能同一教学目标；新例句使用后者，需Master做同场景去重及目标词形裁决。",
+      "editorial_class": "NOMINAL_VARIANT_SENSE_CHECK",
+      "author_candidate_answer_only": {
+        "expression": "color bleeding",
+        "meaning_zh": "衣物掉色；洗涤时串色",
+        "example_en": "Color bleeding from the red towel stained the white shirts.",
+        "example_zh": "红毛巾掉色，把白衬衫染上了颜色。"
+      },
+      "editorial_reason_or_constraint": "Color bleed is also used as a noun in specialist laundry/fabric contexts; a natural example alone cannot justify changing the canonical name. Check other same-scene items.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01664",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01664",
+      "source_rank": 24,
+      "source_original_expression": "dishwasher residue",
+      "source_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "qa_original_reason": "dishwasher residue指向不够清晰，可能是洗后餐具残留也可能是机器内残留；新例句明确在玻璃杯上，需Master决定目标改residue on dishes。",
+      "editorial_class": "REFERENT_AMBIGUITY",
+      "author_candidate_answer_only": {
+        "expression": "residue on dishes after dishwashing",
+        "meaning_zh": "洗碗后餐具上的残留物",
+        "example_en": "There was a white residue on the glasses after the dishwasher cycle.",
+        "example_zh": "洗碗机运行结束后，玻璃杯上留有白色残留物。"
+      },
+      "editorial_reason_or_constraint": "Machine-interior residue and residue on cleaned dishes are different referents; original Master context determines the target.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01809",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01809",
+      "source_rank": 169,
+      "source_original_expression": "water overflow",
+      "source_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f",
+      "qa_original_reason": "water overflow可作技术名词，但The water overflow damaged...日常英语较生硬；可用An overflow of water damaged...或Overflowing water damaged...；目标词性及场景由Master确定。",
+      "editorial_class": "TECHNICAL_NOUN_VS_NATURAL_SENTENCE",
+      "author_candidate_answer_only": {
+        "expression": "water overflow",
+        "meaning_zh": "溢水；水溢出的现象",
+        "example_en": "The sensor detected a water overflow near the sink.",
+        "example_zh": "传感器检测到水槽附近发生了溢水。"
+      },
+      "editorial_reason_or_constraint": "The noun phrase is usable in technical alerts; for everyday prose use Water overflowed from the sink or An overflow of water damaged the cabinet. Do not replace noun Sense with verb Sense automatically.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01992",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-01992",
+      "source_rank": 153,
+      "source_original_expression": "peace and quiet",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "qa_original_reason": "peace and quiet原表达与例句自然，但同场景若另一KU具有相同词义及学习目标应去重；须核真实ID，不凭词形直接删除。",
+      "editorial_class": "VALID_IDIOM_DUPLICATE_NOT_YET_ESTABLISHED",
+      "author_candidate_answer_only": {
+        "expression": "peace and quiet",
+        "meaning_zh": "清静；安宁",
+        "example_en": "I need some peace and quiet after work.",
+        "example_zh": "下班后我需要一点清静。"
+      },
+      "editorial_reason_or_constraint": "Retain natural original as provisional; QA raised potential duplicate but has not named a specific verified competing stable KU. Need full-scene source comparison, no suppression recommendation yet.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02028",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02028",
+      "source_rank": 189,
+      "source_original_expression": "take a screen break",
+      "source_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "qa_original_reason": "take a screen break自然，不应仅凭同义改写否定；须核同场景其他KU是否重复相同学习目标。",
+      "editorial_class": "VALID_PHRASE_DUPLICATE_NOT_YET_ESTABLISHED",
+      "author_candidate_answer_only": {
+        "expression": "take a screen break",
+        "meaning_zh": "暂时离开屏幕休息一下",
+        "example_en": "Take a screen break if your eyes feel tired.",
+        "example_zh": "如果眼睛累了，就暂时离开屏幕休息一下。"
+      },
+      "editorial_reason_or_constraint": "Avoid narrowing break to eye rest only; original phrase is idiomatic, no verified duplicate KU ID supplied. Retain provisional pending same-scene target comparison.",
+      "master_decision": "PENDING",
+      "qa_recheck": "PENDING",
+      "muse_recheck": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    }
+  ],
+  "checks": {
+    "records": 8,
+    "unique_stable_ku": 8,
+    "all_author_editorial_only": true,
+    "master_authorized": 0,
+    "new_qa_pass": 0,
+    "new_muse_pass": 0,
+    "release_allowed": false
+  },
+  "constraints": "No replacement of frozen original answer packs, Master, Core20K, Runtime, SRS; any rewritten canonical expression requires Master authorization and independent QA and Muse checks."
+}
