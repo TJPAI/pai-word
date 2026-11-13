@@ -23,8 +23,8 @@ for(const face of ['question','answer']){
    const ctx={
     phaseController,subset:()=>rows,
     scratchDrawing:()=>false,
-    currentBatchNextIndex:(list,current,delta,size)=>{
-     const lo=Math.floor(current/size)*size,hi=Math.min(list.length,lo+size);
+    currentBatchNextIndex:(list,current,delta)=>{
+     const size=10,lo=Math.floor(current/size)*size,hi=Math.min(list.length,lo+size);
      return lo+((current-lo+delta)%(hi-lo)+(hi-lo))%(hi-lo);
     },
     BATCH:10,index,
