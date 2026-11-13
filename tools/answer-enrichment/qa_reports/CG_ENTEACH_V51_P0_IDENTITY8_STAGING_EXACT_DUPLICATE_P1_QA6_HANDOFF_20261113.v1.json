@@ -1,0 +1,288 @@
+{
+  "schema": "cg-enteach-v51-p0-8-source-anchored-staged-duplicate-and-p1-6-qa-closure-v1",
+  "date": "2026-11-13",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source": {
+    "p0_author_proposals_blob": "6dabe0e11bd08ba18d91dfa02c066b8c7d963ab0",
+    "p1_independent_qa_blob": "e6a729d0834072b573d9b113c0c734acebef25d6",
+    "staged_ku_count": 1778,
+    "qa_staging_shard_blobs": [
+      "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+      "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+      "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+      "4cf5b756983091d207fb65492aae2e4f316b65af",
+      "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+      "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+      "873f5639e619426d743cdeacf289bb50128e3272"
+    ],
+    "author_start_head": "f6eb633ccd605b61e911c03583358e076ef83a97"
+  },
+  "counts": {
+    "p0_identity_hold": 8,
+    "p0_found_exact_competing_staged_expressions": 2,
+    "p0_not_found_in_1778_staging": 8,
+    "p0_not_proven_not_duplicate": 6,
+    "p1_independently_rechecked": 6,
+    "p1_lexical_support_master_hold": 4,
+    "p1_pos_or_identity_hold": 2,
+    "new_qa_certification": 0,
+    "muse_certification": 0,
+    "master_authorization": 0,
+    "release_allowed": 0
+  },
+  "interpretation": "P0 original 8 KU absent from the provisional staged 1778, as expected for blocked records. Staging exact-expression matches for P0 KU01992 and KU02028 are real competing stable KU with CG-QA provisional PASS, NOT final Master canonical choice. No exact match among staged records for six other proposals does not establish uniqueness across the 260 blocked KU or authoritative Master. P1 six cases have independent linguistic QA feedback on author repatches, but remain Master/Muse blocked.",
+  "p0_identity_cases": [
+    {
+      "scene_ku_id": "SC1341-KU-00636",
+      "scene_id": "SC50-0004",
+      "source_sense_id": "SC-SENSE-00636",
+      "source_rank": 24,
+      "original_expression": "put away clutter",
+      "author_proposal": {
+        "expression": "put away scattered items",
+        "meaning_zh": "把散乱物品收起来",
+        "example_en": "Put away the scattered items on your desk before you start work.",
+        "example_zh": "开始工作前，把桌上散乱的物品收起来。"
+      },
+      "original_author_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+      "qa_original_reason": "put away clutter虽能理解，但clear away clutter或put away scattered items更自然；新版例句已换目标表达，需Master批准canonical目标及Sense身份。",
+      "exact_expression_competing_staged_ku": null,
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_RESOLVE_IDENTITY_AND_CONTEXT; no exact expression match found in 1778 staging, full 2038/master comparison still required",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01010",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01010",
+      "source_rank": 188,
+      "original_expression": "shrunk clothes",
+      "author_proposal": {
+        "expression": "shrunken clothes",
+        "meaning_zh": "缩水的衣服",
+        "example_en": "These shrunken clothes no longer fit me.",
+        "example_zh": "这些缩水的衣服我已经穿不下了。"
+      },
+      "original_author_pack_blob": "545aa3cc5efa8a7a7366d795420ec99388d5f8ca",
+      "qa_original_reason": "shrunken clothes、clothes that have shrunk比作前置修饰语的shrunk clothes通常更自然；作者例句已避开原目标，需要Master裁定规范表达。",
+      "exact_expression_competing_staged_ku": null,
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_RESOLVE_IDENTITY_AND_CONTEXT; no exact expression match found in 1778 staging, full 2038/master comparison still required",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01034",
+      "scene_id": "SC50-0005",
+      "source_sense_id": "SC-SENSE-01034",
+      "source_rank": 212,
+      "original_expression": "spot-test a fabric",
+      "author_proposal": {
+        "expression": "spot-test a cleaner on fabric",
+        "meaning_zh": "在布料不显眼处试用清洁剂",
+        "example_en": "Spot-test the cleaner on a hidden part of the fabric first.",
+        "example_zh": "先在布料不显眼的部位试用清洁剂。"
+      },
+      "original_author_pack_blob": "ac6c17468c41af7fc834e763d554a07ddbaac867",
+      "qa_original_reason": "当前例句spot-test the cleaner on a hidden area of the fabric自然；与目标spot-test a fabric的宾语结构不一致。清洁剂适配性与面料测试是不同教学目标，须Master裁决。",
+      "exact_expression_competing_staged_ku": null,
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_RESOLVE_IDENTITY_AND_CONTEXT; no exact expression match found in 1778 staging, full 2038/master comparison still required",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01234",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01234",
+      "source_rank": 189,
+      "original_expression": "color bleed",
+      "author_proposal": {
+        "expression": "color bleeding",
+        "meaning_zh": "衣物掉色；洗涤时串色",
+        "example_en": "Color bleeding from the red towel stained the white shirts.",
+        "example_zh": "红毛巾掉色，把白衬衫染上了颜色。"
+      },
+      "original_author_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "qa_original_reason": "color bleed与color bleeding在衣物掉色语境可能同一教学目标；新例句使用后者，需Master做同场景去重及目标词形裁决。",
+      "exact_expression_competing_staged_ku": null,
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_RESOLVE_IDENTITY_AND_CONTEXT; no exact expression match found in 1778 staging, full 2038/master comparison still required",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01664",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01664",
+      "source_rank": 24,
+      "original_expression": "dishwasher residue",
+      "author_proposal": {
+        "expression": "residue on dishes after dishwashing",
+        "meaning_zh": "洗碗后餐具上的残留物",
+        "example_en": "There was a white residue on the glasses after the dishwasher cycle.",
+        "example_zh": "洗碗机运行结束后，玻璃杯上留有白色残留物。"
+      },
+      "original_author_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "qa_original_reason": "dishwasher residue指向不够清晰，可能是洗后餐具残留也可能是机器内残留；新例句明确在玻璃杯上，需Master决定目标改residue on dishes。",
+      "exact_expression_competing_staged_ku": null,
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_RESOLVE_IDENTITY_AND_CONTEXT; no exact expression match found in 1778 staging, full 2038/master comparison still required",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01809",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01809",
+      "source_rank": 169,
+      "original_expression": "water overflow",
+      "author_proposal": {
+        "expression": "water overflow",
+        "meaning_zh": "溢水；水溢出的现象",
+        "example_en": "The sensor detected a water overflow near the sink.",
+        "example_zh": "传感器检测到水槽附近发生了溢水。"
+      },
+      "original_author_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f",
+      "qa_original_reason": "water overflow可作技术名词，但The water overflow damaged...日常英语较生硬；可用An overflow of water damaged...或Overflowing water damaged...；目标词性及场景由Master确定。",
+      "exact_expression_competing_staged_ku": null,
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_RESOLVE_IDENTITY_AND_CONTEXT; no exact expression match found in 1778 staging, full 2038/master comparison still required",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01992",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-01992",
+      "source_rank": 153,
+      "original_expression": "peace and quiet",
+      "author_proposal": {
+        "expression": "peace and quiet",
+        "meaning_zh": "清静；安宁",
+        "example_en": "I need some peace and quiet after work.",
+        "example_zh": "下班后我需要一点清静。"
+      },
+      "original_author_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "qa_original_reason": "peace and quiet原表达与例句自然，但同场景若另一KU具有相同词义及学习目标应去重；须核真实ID，不凭词形直接删除。",
+      "exact_expression_competing_staged_ku": {
+        "scene_ku_id": "SC1341-KU-01880",
+        "expression": "peace and quiet",
+        "sense_zh": "安宁清静",
+        "cg_qa": "PASS",
+        "source_staging_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272"
+      },
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_DECIDE_DUPLICATE; retain existing staged KU pending verification; never auto-delete original",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02028",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02028",
+      "source_rank": 189,
+      "original_expression": "take a screen break",
+      "author_proposal": {
+        "expression": "take a screen break",
+        "meaning_zh": "暂时离开屏幕休息一下",
+        "example_en": "Take a screen break if your eyes feel tired.",
+        "example_zh": "如果眼睛累了，就暂时离开屏幕休息一下。"
+      },
+      "original_author_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "qa_original_reason": "take a screen break自然，不应仅凭同义改写否定；须核同场景其他KU是否重复相同学习目标。",
+      "exact_expression_competing_staged_ku": {
+        "scene_ku_id": "SC1341-KU-01954",
+        "expression": "take a screen break",
+        "sense_zh": "暂停看屏幕",
+        "cg_qa": "PASS",
+        "source_staging_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272"
+      },
+      "original_p0_ku_present_in_staged1778": false,
+      "editorial_action": "MASTER_DECIDE_DUPLICATE; retain existing staged KU pending verification; never auto-delete original",
+      "master_decision": "PENDING",
+      "independent_cg_qa_on_this_new_comparison": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    }
+  ],
+  "p1_latest_qa_cases": [
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "expression": "put away sharp tools",
+      "independent_qa_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "新译保留put away收纳动作、sharp对应锋利或尖锐；例句和中文一致，搭配自然。",
+      "author_repatch_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_approval": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00876",
+      "expression": "hang out laundry",
+      "independent_qa_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "去除“洗好的”强制前提后译文与hang out the laundry晾晒动作相符，例句翻译同步；用法说明正确区分语境。",
+      "author_repatch_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_approval": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01248",
+      "expression": "roast chicken",
+      "independent_qa_verdict": "LANGUAGE_SUPPORT_POS_SENSE_HOLD",
+      "reason": "例句We plan to roast chicken确是动词roast+宾语chicken，教学解释正确；裸表达roast chicken可被读作菜肴名词短语，仍须Master确定冻结Sense/POS和KU目标。",
+      "author_repatch_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_approval": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01534",
+      "expression": "fill a glass",
+      "independent_qa_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "新译体现fill的装满/达到预期满度语义，不再混同仅倒入少量液体；with water例句对应。",
+      "author_repatch_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_approval": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01711",
+      "expression": "wooden board",
+      "independent_qa_verdict": "LANGUAGE_SUPPORT_IDENTITY_HOLD",
+      "reason": "木板、木制板子和新例句语义一致，删去原不受证据支持的“砧板”；但在厨房上下文要检验是否应单独教学cutting board。",
+      "author_repatch_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_approval": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02006",
+      "expression": "stuffy room",
+      "independent_qa_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "空气憋闷、不通风而非必然闷热，英文例句air out与新中文准确一致，用法说明自然。",
+      "author_repatch_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_approval": "PENDING",
+      "muse_review": "PENDING",
+      "release_allowed": false
+    }
+  ],
+  "allowed_next_step": "CG-MASTER adjudicate each exact stable identity and canonical sense; CG-QA independently assess duplicates and P1 latest QA; Muse separate review. No automatic suppression or rewrite of frozen KU; only further answer-only candidates may be authored.",
+  "release_allowed": false
+}
