@@ -39,7 +39,7 @@ export function buildCatalog(catalogCsv,rankedCsvFiles,{sourceCommit,manifestSha
    const activeHints=experimentalIntentAliases?matchIntentHypotheses(query):[];
    // Uncertified, catalog-title-only hypothesis: refund intent vs negated purchase.
    // Deliberately opt-in; not a verified Sense–Scene mapping or shipping behavior.
-   const refundIntent=experimentalContrastiveTicketRefund && /(?:退票|退车票|ticket\s+refund|refund\s+(?:my\s+)?ticket)/iu.test(q) && /(?:不是|不要|不想|而非|并非|\bnot\b|instead of)/iu.test(q) && /(?:买票|购票|buy\s+(?:a\s+)?ticket|purchase\s+(?:a\s+)?ticket)/iu.test(q);
+   const refundIntent=experimentalContrastiveTicketRefund && /(?:退票|退车票|ticket\s+refund|refund\s+(?:my\s+)?ticket)/iu.test(q) && /(?:不是|不要|不想|而非|并非|\bnot\b|instead of)/iu.test(q) && /(?:买票|购票|buy(?:ing)?\s+(?:a\s+)?ticket|purchase\s+(?:a\s+)?ticket)/iu.test(q);
    const ranked=[];
    for(const [id,scene] of scenes){
      let score=0;const reasons=[];const title=titleTerms.get(id),name=normalizedSceneNames.get(id);
