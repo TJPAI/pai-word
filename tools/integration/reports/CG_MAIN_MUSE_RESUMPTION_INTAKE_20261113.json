@@ -1,0 +1,73 @@
+{
+  "schema": "cg-main-muse-resumption-intake-v1",
+  "as_of": "2026-11-13",
+  "authorization": "Muse quota restored by project owner",
+  "github_notifications": [
+    "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6846716547",
+    "https://github.com/TJPAI/pai-word/issues/2#issuecomment-6846717109"
+  ],
+  "integration": {
+    "branch": "cg-main-fourline-integration-20261026",
+    "baseline_head": "23d379c2bfcc9da627e01f5218e5e6deac8161cc",
+    "qa_staging_pin": "79ad2a35a3922b70cea00976627935c7d34a3630",
+    "enlex_frozen_pin": "9a740bd3ce898cff9da778ea0af8a1c4ea07c936",
+    "manual_pages_only": true
+  },
+  "queues": [
+    {
+      "id": "scene1341-answer-v51",
+      "owner": "MU-ENTEACH+CG-ENTEACH+CG-QA",
+      "total": 2038,
+      "provisional": 1778,
+      "blocked": 260,
+      "p0_author_patch": 76,
+      "p1_author_patch": 143,
+      "muse_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "core20k-v13-risk",
+      "owner": "MU-ENLEX+CG-ENLEX+CG-QA",
+      "frozen_headwords": 20000,
+      "frozen_senses": 27471,
+      "review_queue": 403,
+      "risk_queue": 125,
+      "muse_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "core20k-v17-historical",
+      "owner": "MU-ENLEX+CG-ENLEX+CG-QA",
+      "risk_queue": 125,
+      "separate_from_v13": true,
+      "muse_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "scene1341-master",
+      "owner": "MU-QA+CG-MASTER+CG-QA",
+      "source": "Google Drive authoritative Scene1341 Master",
+      "muse_certified": false,
+      "release_allowed": false
+    },
+    {
+      "id": "scene1341-ipa",
+      "owner": "MU-ENLEX+CG-ENLEX+MU-QA",
+      "source": "verified Kaikki native IPA only",
+      "muse_certified": false,
+      "release_allowed": false
+    }
+  ],
+  "required_per_item": [
+    "stable_record_id",
+    "source_branch",
+    "source_commit",
+    "source_blob_sha",
+    "chatgpt_qa_decision",
+    "muse_independent_decision",
+    "evidence_path",
+    "adjudication",
+    "release_scope"
+  ],
+  "promotion_policy": "NO_AUTOMATIC_PROMOTION; requires version-locked dual-AI QA evidence, Master identity and explicit integration approval"
+}
