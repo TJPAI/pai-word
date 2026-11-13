@@ -63,6 +63,12 @@ jobs:
           ref: 8ea1addac4dcd2df766bb6bed0e92a493e0c1463
           path: candidate-current
           persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: b9e3ad59ceb74a56c8e3857a590627615df33bd5
+          path: contrastive-open-candidate
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -247,6 +253,21 @@ jobs:
             ../evaluation/tools/cg-rec-eval/scene1341-provisional-22.v0.1.json \
             ../scene1341-negation-ablation14.json \
             | tee ../scene1341-current-browser-vs-rec41.json
+      - name: Independently probe latest opt-in refund experiment on 24 NEW open queries
+        env:
+          CG_REC_EVAL_CANDIDATE_SHA: b9e3ad59ceb74a56c8e3857a590627615df33bd5
+        run: |
+          set -euo pipefail
+          test "$(git -C contrastive-open-candidate rev-parse HEAD)" = "$CG_REC_EVAL_CANDIDATE_SHA"
+          mkdir -p contrastive-open-candidate/tools/cg-rec-eval
+          cp evaluation/tools/cg-rec-eval/scene1341-open-contrastive-newquery24.mjs contrastive-open-candidate/tools/cg-rec-eval/
+          cd contrastive-open-candidate
+          node tools/cg-rec-eval/scene1341-open-contrastive-newquery24.mjs \
+            ../source-data/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            ../source-data/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            | tee ../scene1341-eval-open-contrastive-newquery24.json
       - name: Verify query-only 24-case blind template has no prefilled labels
         run: |
           node evaluation/tools/cg-rec-eval/validate-blind-adjudication-intake.mjs \
@@ -376,4 +397,5 @@ jobs:
             scene1341-pr75-metadata-query-normalization.json
             scene1341-rec-nonblind-diagnostics32.json
             scene1341-rec-diagnostics32-provenance.json
+            scene1341-eval-open-contrastive-newquery24.json
           if-no-files-found: warn
