@@ -1,0 +1,67 @@
+{
+  "schema": "cg-enlex-existing-kaikki-sound-field-audit-v1",
+  "date": "2026-11-13",
+  "role": "CG-ENLEX",
+  "scope": "Direct binary decompression and field-structure inspection of four Google Drive CG-MASTER Kaikki-derived assets; source dictionaries not yet inspected",
+  "assets": [
+    {
+      "name": "CGMASTER_V37_BATCH011_TARGET_LEMMA_ONLY.jsonl.gz",
+      "drive_file_id": "1zM125_wVAZDMXyh-njNtJB3LV3R_pshI",
+      "sha256": "313a024d590d1a7eff6011407141eee14abbbf2a1f7ba5d2265c3d1457f03140",
+      "lookup_keys": 1746,
+      "nested_entries": 2238,
+      "entries_with_sounds_or_ipa": 0
+    },
+    {
+      "name": "CGMASTER_V37_BATCH012_TARGET_LEMMA_ONLY.jsonl.gz",
+      "drive_file_id": "1dvB26ZpjfIYCtz7Y7UmnW9i1S8OyDC8d",
+      "sha256": "9bc64c2e888c317cf51c67d8a4b72c0ae79fc75a7d57c2044dab349f18deb141",
+      "lookup_keys": 1931,
+      "nested_entries": 2597,
+      "entries_with_sounds_or_ipa": 0
+    },
+    {
+      "name": "CGMASTER_V37_BATCH013_TARGET_LEMMA_ONLY.jsonl.gz",
+      "drive_file_id": "13a9dtRqe_IssaBjabBSXwaanEr5S4hqZ",
+      "sha256": "3294b10af995a8bbc0c1f87542b2cdb171d5fecc6c4e276cc5857102fe629e13",
+      "lookup_keys": 1428,
+      "nested_entries": 1788,
+      "entries_with_sounds_or_ipa": 0
+    },
+    {
+      "name": "CGMASTER_V38_CROSSBATCH_RECOVERABLE_EVIDENCE.jsonl.gz",
+      "drive_file_id": "1moPDsxlpaLIPdlU72V5RT6X6tZjexGeG",
+      "sha256": "7348c6cb5bcf3d5b6ea742f269722dae37eb00929885683145857f27ce3940dc",
+      "target_lemma_rows": 577,
+      "crossbatch_entries": 3748,
+      "entries_with_sounds_or_ipa": 0
+    }
+  ],
+  "totals": {
+    "v37_entries_examined": 6623,
+    "v38_crossbatch_entries_examined": 3748,
+    "total_entry_observations": 10371,
+    "entries_with_sounds_or_ipa": 0,
+    "independent_unique_dictionary_entries": "NOT_DEDUPLICATED"
+  },
+  "observed_v37_nested_entry_keys": [
+    "word",
+    "pos",
+    "senses",
+    "redirects",
+    "etymology_number"
+  ],
+  "observed_v38_crossbatch_entry_keys": [
+    "batch",
+    "source_file",
+    "pos",
+    "word",
+    "senses"
+  ],
+  "conclusion": "No IPA/sounds fields present in these derivative evidence assets. This does NOT prove their upstream FullSenseDictionary files lacked IPA fields. Inspect upstream original source structure before deciding re-extraction from whole 531827440-byte Kaikki corpus.",
+  "ipa_candidates_created": 0,
+  "source_ipa_coverage": "NOT_MEASURED",
+  "qa_pass": 0,
+  "muse_pass": 0,
+  "release_allowed": false
+}
