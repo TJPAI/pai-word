@@ -80,6 +80,8 @@ const destination='rebuild-preview/scene1341-readonly/scene1341-ipa-preview.json
 if(fs.existsSync(destination)&&fs.readFileSync(destination,'utf8')!==text)
  throw Error('IPA_PINNED_PROJECTION_DRIFT');
 console.log('IPA_SUMMARY '+JSON.stringify({exact,phrase,missing,covered:exact+phrase,coverage:((exact+phrase)/1778*100).toFixed(1)+'%',bytes:Buffer.byteLength(text),wakeUp:Object.values(entries).find(x=>x.kind==='word_by_word'&&x.ipa.includes('weɪk'))||null}));
-console.log('IPA_JSON_BEGIN');
-for(let i=0;i<text.length;i+=6000)console.log('IPA_CHUNK '+(i/6000)+':'+text.slice(i,i+6000));
-console.log('IPA_JSON_END');
+if(process.env.IPA_EMIT_JSON==='1'){
+ console.log('IPA_JSON_BEGIN');
+ for(let i=0;i<text.length;i+=6000)console.log('IPA_CHUNK '+(i/6000)+':'+text.slice(i,i+6000));
+ console.log('IPA_JSON_END');
+}
