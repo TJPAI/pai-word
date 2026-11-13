@@ -11,7 +11,7 @@ if(raw.status!=='QUERY_ONLY_UNADJUDICATED_NO_GOLD'||raw.labelsVisible!==false||
  throw Error('BLIND_SOURCE_NOT_QUERY_ONLY');
 const ids=new Set(),groups={zh:0,en:0,mixed:0};
 for(const q of raw.queries){
- if(typeof q.id!=='string'||!/^BH\\d{3}$/.test(q.id)||ids.has(q.id)||
+ if(typeof q.id!=='string'||!/^BH\d{3}$/.test(q.id)||ids.has(q.id)||
  !Object.hasOwn(groups,q.group)||typeof q.query!=='string'||!q.query.trim()||
  Object.keys(q).some(k=>!['id','group','query'].includes(k)))
  throw Error('BLIND_QUERY_INTEGRITY');
