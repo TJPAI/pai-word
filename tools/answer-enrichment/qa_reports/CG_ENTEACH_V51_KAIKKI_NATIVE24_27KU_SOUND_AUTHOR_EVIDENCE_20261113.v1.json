@@ -1,0 +1,1016 @@
+{
+  "schema": "cg-enteach-v51-kaikki-native24-27ku-author-sound-evidence-staging-v1",
+  "date": "2026-11-13",
+  "role": "CG-ENTEACH",
+  "source": {
+    "enteach_base_head": "949aa18a7a93d35c9cd53a42f2b9f814a87148b8",
+    "enteach_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+    "enlex_author_sound_editorial_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+    "original_ci_run": 43355324052,
+    "original_artifact": 14005418416,
+    "source_original_exact_sound_report_sha256": "4e6ed00bcf157e59f61b6c7fef935c6eaa462ee010153391f9c2455a705891a5"
+  },
+  "scope": {
+    "unique_expressions": 24,
+    "stable_ku": 27,
+    "author_retain_for_qa": 11,
+    "author_hold": 13,
+    "independent_ipa_pass": 0,
+    "muse_pass": 0,
+    "master_sense_approved": 0,
+    "release_allowed": 0
+  },
+  "safety": "Each source_candidate_example is verbatim from ENLEX author review but does not replace full 57-row raw artifact. Never assign this example to runtime, never infer a region, never treat author RETAIN as QA PASS. Different KU with same expression retain separate Sense IDs. All IPA are non-certified evidence.",
+  "records": [
+    {
+      "expression": "wake up",
+      "author_review": "RETAIN_WITH_NOTATION_SEPARATION",
+      "author_specific_assessment": "Bracket [ˌweɪ̯ˈkʌp] is a phonetic realization, not automatically an alternate phoneme sequence.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌweɪk ˈʌp/",
+        "source_line": 50969,
+        "sound_index": 0,
+        "source_region": "both",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00001",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00001",
+          "source_rank": 1,
+          "answer_meaning_zh": "醒来",
+          "example_en": "I woke up before my alarm rang.",
+          "example_zh": "闹钟还没响，我就醒了。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "sleep in",
+      "author_review": "RETAIN_REGION_DISTINCT",
+      "author_specific_assessment": "The /ˌslip ˈɪn/ reading is tagged Canada/General-American/Scotland, not a spelling error; NZ has /ˌsliːp ˈən/.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌsliːp ˈɪn/",
+        "source_line": 107661,
+        "sound_index": 1,
+        "source_region": "uk",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00004",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00004",
+          "source_rank": 4,
+          "answer_meaning_zh": "睡懒觉",
+          "example_en": "I like to sleep in on Saturday mornings.",
+          "example_zh": "星期六早上我喜欢睡懒觉。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "b6c39ebcebf4d6ce9848122cc60ecc899274c74f",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "night owl",
+      "author_review": "RETAIN_REGION_STRESS_DISTINCT",
+      "author_specific_assessment": "US source has /ˈnaɪt ˌaʊl/; accent/stress rendering must not be conflated with changed Sense.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈnaɪt aʊl/",
+        "source_line": 54010,
+        "sound_index": 0,
+        "source_region": "uk",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00051",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00051",
+          "source_rank": 51,
+          "answer_meaning_zh": "夜猫子",
+          "example_en": "My brother is a night owl and rarely goes to bed before midnight.",
+          "example_zh": "我弟弟是个夜猫子，几乎从不在午夜前睡觉。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "day off",
+      "author_review": "HOLD_UNTAGGED_STRESS_SELECTION",
+      "author_specific_assessment": "Source has /ˈdeɪ.ɒf/ too, with no region; cannot classify either US or UK.",
+      "source_candidate_example": {
+        "raw_ipa": "/deɪˈɒf/",
+        "source_line": 164261,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00079",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00079",
+          "source_rank": 79,
+          "answer_meaning_zh": "休息日",
+          "example_en": "Tomorrow is my day off, so I can sleep in.",
+          "example_zh": "明天我休息，可以睡个懒觉。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "roll over",
+      "author_review": "HOLD_UNTAGGED_OPTIONAL_RHOTIC",
+      "author_specific_assessment": "Parenthesized r is conditional, not an independent recorded US pronunciation; phrase sense context still needed.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌɹəʊl ˈəʊvə(ɹ)/",
+        "source_line": 195091,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00098",
+          "scene_id": "SC50-0001",
+          "source_sense_id": "SC-SENSE-00098",
+          "source_rank": 98,
+          "answer_meaning_zh": "翻身",
+          "example_en": "I rolled over and checked the time on my phone.",
+          "example_zh": "我翻了个身，看了看手机上的时间。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "fa6bdba1c4f799871758b02c5391e61c8ef9cb8a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "hand towel",
+      "author_review": "HOLD_OPTIONAL_SEGMENT_DISPLAY",
+      "author_specific_assessment": "Optional d and schwa make direct learner-card display ambiguous; no unsupported expansion into new source readings.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈhæn(d)ˌtaʊ(ə)l/",
+        "source_line": 387926,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00279",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00279",
+          "source_rank": 45,
+          "answer_meaning_zh": "擦手巾",
+          "example_en": "There's a hand towel beside the sink.",
+          "example_zh": "洗手池旁边有条擦手巾。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "bath towel",
+      "author_review": "HOLD_MULTI_REGION_SOURCE_CHOICE",
+      "author_specific_assessment": "Several source-supported Australian, NZ, Scottish and Indian variants; do not promote one to international default or infer all source recordings equal.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌbæθ ˈtaʊ̯.əl/",
+        "source_line": 588069,
+        "sound_index": 1,
+        "source_region": "both",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00280",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00280",
+          "source_rank": 46,
+          "answer_meaning_zh": "浴巾",
+          "example_en": "I hung the bath towel up to dry.",
+          "example_zh": "我把浴巾挂起来晾干。",
+          "source_qa_shard_blob": "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+          "source_author_pack_blob": "f60431b82d2797c399cf391bf7af0752476f16cc",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "nail file",
+      "author_review": "HOLD_MULTI_REGION_SOURCE_CHOICE",
+      "author_specific_assessment": "Eight raw source variants, including regional alternatives; needs an accent-specific default and nonduplicate variant policy.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈneɪl ˌfaɪl/",
+        "source_line": 134937,
+        "sound_index": 1,
+        "source_region": "both",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00314",
+          "scene_id": "SC50-0002",
+          "source_sense_id": "SC-SENSE-00314",
+          "source_rank": 80,
+          "answer_meaning_zh": "指甲锉",
+          "example_en": "I use a nail file to smooth the edges of my nails.",
+          "example_zh": "我用指甲锉把指甲边缘磨平。",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "source_author_pack_blob": "ac8c7e35511e3ff77274a1462e9ba8159bdec463",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "put on",
+      "author_review": "HOLD_SENSE_AND_REGION",
+      "author_specific_assessment": "Phrasal verb with multiple meanings; vowel shape alone must not authorize untagged US/UK normalization.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌpʊt ˈɒn/",
+        "source_line": 10993,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00412",
+          "scene_id": "SC50-0003",
+          "source_sense_id": "SC-SENSE-00412",
+          "source_rank": 4,
+          "answer_meaning_zh": "穿上或戴上",
+          "example_en": "Put on your jacket before going out.",
+          "example_zh": "出门前把夹克穿上。",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "source_author_pack_blob": "410871bece458eb1b6e3330ae6594623cb334327",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "inside out",
+      "author_review": "HOLD_POS_CONTEXT",
+      "author_specific_assessment": "Two source entries (lines 44395/44396) share identical IPA; do not infer identical adjective/adverb Sense.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌɪnsaɪdˈaʊt/",
+        "source_line": 44395,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00532",
+          "scene_id": "SC50-0003",
+          "source_sense_id": "SC-SENSE-00532",
+          "source_rank": 124,
+          "answer_meaning_zh": "里朝外的",
+          "example_en": "Your T-shirt is inside out.",
+          "example_zh": "你的T恤穿反了，里朝外。",
+          "source_qa_shard_blob": "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+          "source_author_pack_blob": "81c64976d30d287b29d13c4714bb3cc7b4b233e8",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "get rid of",
+      "author_review": "HOLD_UNTAGGED_WEAK_FORM",
+      "author_specific_assessment": "Unmarked expression candidate may differ from connected-speech reduced of; cannot claim a universal accent.",
+      "source_candidate_example": {
+        "raw_ipa": "/ɡɛt ɹɪd ʌv/",
+        "source_line": 68126,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00640",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00640",
+          "source_rank": 28,
+          "answer_meaning_zh": "处理掉不需要的东西",
+          "example_en": "I want to get rid of things I no longer use.",
+          "example_zh": "我想处理掉不再使用的东西。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "living room",
+      "author_review": "RETAIN_SHARED_US_UK_SOURCE",
+      "author_specific_assessment": "Raw source tags both General-American and Received-Pronunciation; rhoticity cannot be inferred as a separate phrase variant.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈlɪvɪŋ ɹuːm/",
+        "source_line": 44836,
+        "sound_index": 0,
+        "source_region": "both",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00667",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00667",
+          "source_rank": 55,
+          "answer_meaning_zh": "起居室",
+          "example_en": "We moved the sofa to clean the living room.",
+          "example_zh": "我们挪开沙发打扫客厅。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "99ce945c7c72f2cbc80a93bd224fe9e01b8dbec4",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01918",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01918",
+          "source_rank": 79,
+          "answer_meaning_zh": "客厅",
+          "example_en": "The living room is where we unwind in the evenings.",
+          "example_zh": "客厅是我们晚上放松的地方。",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "source_author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "window sill",
+      "author_review": "RETAIN_REGION_DISTINCT",
+      "author_specific_assessment": "UK also has /ˈwɪndə ˌsɪl/; US source /ˈwɪndoʊ ˌsɪl/; preserve both UK source alternatives.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈwɪndəʊ ˌsɪl/",
+        "source_line": 162218,
+        "sound_index": 0,
+        "source_region": "uk",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00695",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00695",
+          "source_rank": 83,
+          "answer_meaning_zh": "窗台",
+          "example_en": "Dust has collected on the window sill.",
+          "example_zh": "窗台上积了一层灰。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "d69da3f6fed79ce0a28d3e9676c358b273a9a3d8",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "dust bunny",
+      "author_review": "RETAIN_SHARED_US_UK_SOURCE",
+      "author_specific_assessment": "Single source reading with two explicit region tags; avoid inventing pronunciation variants.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈdʌst bʌni/",
+        "source_line": 59332,
+        "sound_index": 0,
+        "source_region": "both",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00743",
+          "scene_id": "SC50-0004",
+          "source_sense_id": "SC-SENSE-00743",
+          "source_rank": 131,
+          "answer_meaning_zh": "积在角落的灰尘毛絮团",
+          "example_en": "I found a dust bunny under the bed.",
+          "example_zh": "我在床底发现了一团毛絮灰尘。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "c695fac50b8d20f9e6c1ccf24129ec565280b05a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "all-purpose cleaner",
+      "author_review": "RETAIN_US_ONLY",
+      "author_specific_assessment": "General-American alone is evidenced; no UK counterpart in original native phrase source.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˌɔl.pɝpəsˈklinɚ/",
+        "source_line": 1288887,
+        "sound_index": 0,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00899",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00899",
+          "source_rank": 77,
+          "answer_meaning_zh": "多用途清洁剂",
+          "example_en": "I use an all-purpose cleaner on suitable kitchen surfaces.",
+          "example_zh": "我在适用的厨房表面使用多用途清洁剂。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "fabric softener",
+      "author_review": "HOLD_MERGER_ACCENT_MAPPING",
+      "author_specific_assessment": "The source /ˈfæbrɪk ˈsɑfənər/ is labeled cot-caught-merger, not universally generic; other source candidate tagged Canada+UK.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈfæbrɪk ˈsɔfənər/",
+        "source_line": 290873,
+        "sound_index": 2,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00903",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00903",
+          "source_rank": 81,
+          "answer_meaning_zh": "衣物柔顺剂",
+          "example_en": "I skipped fabric softener for these towels.",
+          "example_zh": "洗这些毛巾时我没用衣物柔顺剂。",
+          "source_qa_shard_blob": "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+          "source_author_pack_blob": "864c17ca8a6fde50961b24d58b8270652f367a1a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01055",
+          "scene_id": "SC50-0006",
+          "source_sense_id": "SC-SENSE-01055",
+          "source_rank": 10,
+          "answer_meaning_zh": "衣物柔顺剂",
+          "example_en": "I skip fabric softener when washing sports towels.",
+          "example_zh": "洗运动毛巾时我不用柔顺剂。",
+          "source_qa_shard_blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+          "source_author_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "fair share",
+      "author_review": "RETAIN_REGION_DISTINCT",
+      "author_specific_assessment": "UK source /fɛə ʃɛə/ and /fɛː ʃɛə/ are separate candidates; annotate rhotic US vs non-rhotic UK.",
+      "source_candidate_example": {
+        "raw_ipa": "/fɛɚ ʃɛɚ/",
+        "source_line": 1266115,
+        "sound_index": 2,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-00950",
+          "scene_id": "SC50-0005",
+          "source_sense_id": "SC-SENSE-00950",
+          "source_rank": 128,
+          "answer_meaning_zh": "公平分担的部分",
+          "example_en": "Everyone should do their fair share of the chores.",
+          "example_zh": "每个人都应该公平分担自己那份家务。",
+          "source_qa_shard_blob": "4cf5b756983091d207fb65492aae2e4f316b65af",
+          "source_author_pack_blob": "113ef0896f8212ace1746e328cf716dd77ef6f4a",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "cutting board",
+      "author_review": "HOLD_PHONETIC_DETAIL_IN_SLASH",
+      "author_specific_assessment": "Aspiration kʰ and intervocalic flap ɾ encode narrow phonetic realization despite slashes; do not label automatically as broad phonemic.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈkʰʌɾɪŋ bɔɹd/",
+        "source_line": 422939,
+        "sound_index": 0,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01241",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01241",
+          "source_rank": 6,
+          "answer_meaning_zh": "砧板",
+          "example_en": "Use a clean cutting board for the vegetables.",
+          "example_zh": "切蔬菜要用干净的砧板。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01710",
+          "scene_id": "SC50-0009",
+          "source_sense_id": "SC-SENSE-01710",
+          "source_rank": 70,
+          "answer_meaning_zh": "砧板",
+          "example_en": "Wash the cutting board after preparing raw meat.",
+          "example_zh": "处理生肉后清洗砧板。",
+          "source_qa_shard_blob": "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+          "source_author_pack_blob": "566979cae072265d1d5b60a1386f6d9d4de62e73",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "meal prep",
+      "author_review": "HOLD_UNTAGGED_STRESS_BOUNDARY",
+      "author_specific_assessment": "No region source tag; source stress/spacing should be inspected before card display.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈmiːlˌpɹɛp/",
+        "source_line": 1031070,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01249",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01249",
+          "source_rank": 14,
+          "answer_meaning_zh": "提前备餐；预先准备多餐食材或饭菜",
+          "example_en": "I do meal prep on Sundays so weekday dinners are easier.",
+          "example_zh": "我周日提前备餐，工作日做晚饭就轻松些。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "wooden spoon",
+      "author_review": "HOLD_UNTAGGED_REGION",
+      "author_specific_assessment": "Source geographic region is unspecified; the phonemic candidate is not certified universal.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈwʊdən spuːn/",
+        "source_line": 49500,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01298",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01298",
+          "source_rank": 63,
+          "answer_meaning_zh": "木勺",
+          "example_en": "Stir the sauce gently with a wooden spoon.",
+          "example_zh": "用木勺轻轻搅拌酱汁。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "d3cc4d9f87a68871c525cfb2ed55c4295f2aea74",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "dining room",
+      "author_review": "RETAIN_US_ONLY",
+      "author_specific_assessment": "Explicit US source; do not construct UK counterpart by deleting r or altering vowels.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈdaɪnɪŋˌɹum/",
+        "source_line": 58824,
+        "sound_index": 0,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01478",
+          "scene_id": "SC50-0008",
+          "source_sense_id": "SC-SENSE-01478",
+          "source_rank": 26,
+          "answer_meaning_zh": "餐厅",
+          "example_en": "We'll eat in the dining room.",
+          "example_zh": "我们在餐厅吃饭。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "salt shaker",
+      "author_review": "RETAIN_US_ONLY",
+      "author_specific_assessment": "General-American source only; no independently sourced UK expression IPA.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈsɔltˌʃeɪkɚ/",
+        "source_line": 50485,
+        "sound_index": 0,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01514",
+          "scene_id": "SC50-0008",
+          "source_sense_id": "SC-SENSE-01514",
+          "source_rank": 62,
+          "answer_meaning_zh": "盐瓶",
+          "example_en": "The salt shaker is beside the pepper mill.",
+          "example_zh": "盐瓶放在胡椒研磨器旁边。",
+          "source_qa_shard_blob": "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+          "source_author_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "cup of tea",
+      "author_review": "HOLD_REGISTER_WEAK_FORM",
+      "author_specific_assessment": "Second source /ˌkʌp ə ˈtiː/ is explicitly informal; don't assume a different Sense or fabricate region.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈkʌp əv ˈtiː/",
+        "source_line": 77220,
+        "sound_index": 0,
+        "source_region": "unmarked",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01897",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01897",
+          "source_rank": 58,
+          "answer_meaning_zh": "一杯茶",
+          "example_en": "A cup of tea helps me slow down after work.",
+          "example_zh": "下班后喝杯茶能让我放慢节奏。",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "source_author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    },
+    {
+      "expression": "air conditioner",
+      "author_review": "RETAIN_REGION_DISTINCT",
+      "author_specific_assessment": "UK original /ˈɛə kənˌdɪʃn̩ə/ differs; US contains optional schwa, requiring learner-facing display policy.",
+      "source_candidate_example": {
+        "raw_ipa": "/ˈɛɹ kənˌdɪʃ(ə)nɚ/",
+        "source_line": 73480,
+        "sound_index": 2,
+        "source_region": "us",
+        "candidate_status": "SOURCE_EXAMPLE_NOT_QA_APPROVED",
+        "candidate_origin": "CG-ENLEX author source-exact editorial, not independently re-extracted here"
+      },
+      "stable_ku": [
+        {
+          "scene_ku_id": "SC1341-KU-01913",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01913",
+          "source_rank": 74,
+          "answer_meaning_zh": "空调",
+          "example_en": "The air conditioner keeps the living room cool.",
+          "example_zh": "空调让客厅保持凉爽。",
+          "source_qa_shard_blob": "873f5639e619426d743cdeacf289bb50128e3272",
+          "source_author_pack_blob": "477c4971271204ccbf74811a85a4b2ac8a21efe9",
+          "source_qa_provisional": "PASS",
+          "ipa_display_approved": false,
+          "ipa_author_evidence_only": true,
+          "qa_ipa_pass": false,
+          "muse_ipa_pass": false,
+          "master_sense_approved": false,
+          "release_allowed": false
+        }
+      ],
+      "author_source_exact_blob": "234eb26c15072144920f8f009e121ff84d297ddb",
+      "source_context_blob": "d41476ad003238e1534f75947c867e868b57533a",
+      "independent_qa_required": true,
+      "master_identity_approval_required": true,
+      "muse_review_required": true,
+      "release_allowed": false
+    }
+  ]
+}
