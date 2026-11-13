@@ -254,6 +254,8 @@ jobs:
             evaluation/tools/cg-rec-eval/scene1341-blind-intake-24.v1.json \
             scene1341-reviewer-A-query-only.json \
             scene1341-reviewer-B-query-only.json
+      - name: Verify two separately locked human-review intake gates with synthetic data only
+        run: node evaluation/tools/cg-rec-eval/test-two-locked-blind-reviews.mjs
       - name: Generate 24 blind-ready holdout predictions with no gold labels
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
