@@ -79,4 +79,33 @@ rows=[cardA];await ctx.renderIPA(cardA);
 assert.equal(lookups,2,'return to prior KU should reuse its own cached phonetic value');
 assert.equal(dom.ipa.textContent,'/weɪk ʌp/');
 
+
+// Native Scene500's conditional function-word hint is word-specific.
+// A persistent hero must recompute it when swiping a/the -> ordinary KU.
+const hintStart=script.indexOf("const hero=$('hero'),isFunctionWord=/^(the|a|an|and|to|of)$/.test(r.expression);");
+const hintEnd=script.indexOf("\n }",hintStart);
+assert(hintStart>0&&hintEnd>hintStart,'per-KU native hint must update in stable DOM');
+const hintCode=script.slice(hintStart,hintEnd);
+const hints=[];
+const fakeHint={remove(){const i=hints.indexOf(this);if(i>=0)hints.splice(i,1)}};
+const fakeHero={
+ querySelector(selector){
+  if(selector===':scope > small.muted')return hints[0]||null;
+  if(selector==='.recall-controls-row')return {before(node){hints.push(node)}};
+  throw Error('unexpected selector '+selector);
+ }
+};
+const hintContext={
+ r:{expression:'the'},$:()=>fakeHero,
+ document:{createElement:tag=>{assert.equal(tag,'small');return fakeHint}}
+};
+const runHint=()=>vm.runInNewContext('{'+hintCode+'}',hintContext,{timeout:1000});
+runHint();assert.equal(hints.length,1,'function word should add native hint');
+hintContext.r={expression:'soon'};runHint();
+assert.equal(hints.length,0,'normal word must remove previous KU function-word hint');
+hintContext.r={expression:'an'};runHint();
+assert.equal(hints.length,1,'function word after normal word must restore hint');
+hintContext.r={expression:'and'};runHint();
+assert.equal(hints.length,1,'function word hint must not duplicate on rerender');
+
 console.log('SC1341_NATIVE_UI_COMBINED_STABLE_HERO_AND_IPA_CACHE_PASS');
