@@ -1,0 +1,69 @@
+{
+  "schema": "cg-rec-eval-scene1341-open-contrastive-independent-review-v1",
+  "status": "SOURCE_PINNED_REAL_CI_NONBLIND_STRUCTURAL_REVIEW_NOT_GOLD",
+  "date": "2026-11-13",
+  "eval_source_commit": "a2f618cc1a3d9945449f3ff799f627add3620f75",
+  "candidate_commit": "b9e3ad59ceb74a56c8e3857a590627615df33bd5",
+  "frozen_data_commit": "17c6c758e1dfd27cfa2fe1669d3f1784bedb0668",
+  "manifest_blob": "803d2fccfd2d1ec200723f7f38e73d57495a5dd0",
+  "exact_ci_run": 43386573228,
+  "ci_conclusion": "success",
+  "ci_artifact_id": 14019260505,
+  "ci_artifact_sha256": "c1f6243209c3a86ccb613c31fb8145b3dfe867466321eba0c8616208e0449d91",
+  "test_asset": "tools/cg-rec-eval/scene1341-open-contrastive-newquery24.mjs",
+  "counts": {
+    "distinct_open_queries": 24,
+    "actual_searches": 72,
+    "changed_queries": 2,
+    "changed_top1_queries": 1,
+    "unchanged_queries": 22,
+    "protected_blind_queries_used": 0,
+    "formal_double_human_gold": 0
+  },
+  "observed_change_cases": [
+    {
+      "id": "cn_no_buy_refund",
+      "query": "不要买票，想退票",
+      "baseline_top1": "SC50-0038",
+      "experimental_top1": "SC50-0075",
+      "baseline_top1_score": 2.393,
+      "experimental_top1_score": 34,
+      "marker_count": 1,
+      "editorial_verdict": "NOT_ADJUDICATED"
+    },
+    {
+      "id": "en_not_purchase_refund",
+      "query": "Not purchasing a ticket, I would like a ticket refund",
+      "baseline_top1": "SC50-0075",
+      "experimental_top1": "SC50-0075",
+      "baseline_top1_score": 12.484,
+      "experimental_top1_score": 46.484,
+      "marker_count": 1,
+      "editorial_verdict": "NOT_ADJUDICATED"
+    }
+  ],
+  "noteworthy_unchanged_case": {
+    "id": "cn_buy_no",
+    "query": "不是退票，是要买票",
+    "baseline_top1": "SC50-0075",
+    "experimental_top1": "SC50-0075",
+    "experimental_marker_count": 0,
+    "interpretation": "Source catalog title only; cannot decide semantic correctness without independent relevance judgments"
+  },
+  "factual_interpretation": "Changed Top1/rank is an experimental structural observation only. SC50-0075 has no certified refund Sense-Scene mapping; catalog anchor cannot support relevance certification. The unchanged reverse-intent Top1 is a review priority, not a proven error.",
+  "safeguards": {
+    "default_flag_disabled_same_as_explicit_false": true,
+    "author_original_11_not_reused": true,
+    "blind_BH001_to_BH024_not_read": true,
+    "scene500_80_baseline_unchanged": true,
+    "master_runtime_srs_unchanged": true,
+    "production_deployed": false
+  },
+  "next_actions": [
+    "CG-REC review reverse-intent baseline source title match; do not promote experimental flag",
+    "CG-QA and independent reviewers assess relevance using frozen catalog independently, not predicted labels",
+    "CG-REC-EVAL retain 24 open probes as diagnostics; reserve protected blind24 for independent sealed gold"
+  ],
+  "official_accuracy_delta": null,
+  "release_allowed": false
+}
