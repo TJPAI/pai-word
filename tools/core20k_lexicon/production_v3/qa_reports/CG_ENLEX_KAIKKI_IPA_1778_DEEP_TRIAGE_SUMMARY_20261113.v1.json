@@ -1,0 +1,122 @@
+{
+  "schema": "cg-enlex-kaikki-ipa-deep-triage-summary-v1",
+  "date": "2026-11-13",
+  "branch": "experiment/enlex-v3-production-rebuild-20261030",
+  "scope": "Read and parsed actual GitHub Actions 43355324052 ZIP artifact, all 7008 JSONL result rows and four per-KU QA queues.",
+  "source": {
+    "run_id": 43355324052,
+    "artifact_id": 14005418416,
+    "artifact_zip_sha256": "a0aafd965f815fe66c4348c4a5a9f7012b842deee92b34e5d3745b00f4d41b8a",
+    "candidate_jsonl_sha256": "9a389f89456aacd1f636c5d9bbfce383bd7331cfc29205fa4dab92215257d615",
+    "kaikki_gzip_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "author_git_blob": "4b5651ad5d49cddc9dfabf64571440ecde317681",
+    "source_line_ref_kind": "1-based index of decompressed Kaikki JSONL line"
+  },
+  "population": {
+    "ku": 1778,
+    "native_phrase_ku": 27,
+    "native_word_ku": 645,
+    "not_found_phrase_ku": 1018,
+    "not_found_word_ku": 88,
+    "unique_not_found_phrases": 952
+  },
+  "candidate_source_flags_nonexclusive": {
+    "multiple_source_pos_ku": 486,
+    "multiple_phonemic_slash_forms_ku": 435,
+    "phonemic_and_phonetic_notation_both_ku": 150,
+    "multiple_phonetic_bracket_forms_ku": 95,
+    "no_slash_phonemic_form_ku": 3,
+    "multi_region_classes_ku": 403,
+    "multiple_distinct_ipa_forms_ku": 460
+  },
+  "important_qualification": "Different slash IPA forms may reflect region variants, not necessarily ambiguous or incorrect pronunciations. Slash-phonemic and bracket-phonetic forms are different notation detail, not automatically alternate pronunciations. Source POS variants must not be treated as a proven KU Sense/POS mismatch.",
+  "source_evidence_examples": [
+    {
+      "ku": "SC1341-KU-00001",
+      "expression": "wake up",
+      "source_line": 50969,
+      "phonemic": "/ˌweɪk ˈʌp/",
+      "phonetic": "[ˌweɪ̯ˈkʌp]",
+      "tags": [
+        "General-American",
+        "Received-Pronunciation"
+      ],
+      "quality_decision": "PENDING"
+    },
+    {
+      "ku": "SC1341-KU-00135",
+      "expression": "tired",
+      "source_lines": [
+        10845,
+        10846,
+        10847
+      ],
+      "slash_phonemic_count": 0,
+      "bracket_phonetic_examples": [
+        "[ˈtajəd]",
+        "[ˈtaɪ̯əd]"
+      ],
+      "quality_decision": "PENDING"
+    },
+    {
+      "ku": "SC1341-KU-01973",
+      "expression": "tired",
+      "source_lines": [
+        10845,
+        10846,
+        10847
+      ],
+      "slash_phonemic_count": 0,
+      "quality_decision": "PENDING"
+    }
+  ],
+  "unmatched_phrase_priority_examples": [
+    {
+      "expression": "laundry basket",
+      "ku_count": 4
+    },
+    {
+      "expression": "microfiber cloth",
+      "ku_count": 3
+    },
+    {
+      "expression": "tidy up",
+      "ku_count": 3
+    },
+    {
+      "expression": "load the dishwasher",
+      "ku_count": 3
+    },
+    {
+      "expression": "make the bed",
+      "ku_count": 3
+    },
+    {
+      "expression": "wash your hands",
+      "ku_count": 3
+    },
+    {
+      "expression": "take out the trash",
+      "ku_count": 3
+    }
+  ],
+  "deliverables": {
+    "full_local_report_filename": "CG_ENLEX_KAIKKI_IPA_1778_DEEP_SOURCE_TRIAGE_20261113.v1.json",
+    "full_local_report_sha256": "2825377cced2280f669c820357e9c26677272224f889ae934dc95797b1260f59",
+    "priority_ipa_qa_cases": 100,
+    "missing_native_phrase_lookup_cases": 75,
+    "github_report_scope": "summary-and-source-links; full 175-case dataset as conversation attachment"
+  },
+  "review_gate": {
+    "master_approval": 0,
+    "independent_ipa_qa_pass": 0,
+    "muse_pass": 0,
+    "release": false
+  },
+  "unmodified": [
+    "frozen Core20K",
+    "Scene1341 Master",
+    "original Scene500",
+    "production SRS"
+  ]
+}
