@@ -5,6 +5,7 @@ on:
       - 'rebuild-preview/scene1341-readonly/**'
       - 'tools/integration/test-scene1341-standalone-ui-qa.mjs'
       - 'tools/integration/test-scene1341-readonly-mobile-demo.mjs'
+      - 'tools/integration/test-scene1341-native-answer-exact.mjs'
       - 'tools/integration/test-scene1341-readonly-rec-integration.mjs'
       - '.github/workflows/scene1341-standalone-ux-qa.yml'
       - 'rebuild-preview/welcome.js'
@@ -62,6 +63,7 @@ jobs:
           node tools/integration/test-scene1341-standalone-ui-qa.mjs
       - name: Preserve native standalone study gestures and source-backed recommendation
         run: |
+          node tools/integration/test-scene1341-native-answer-exact.mjs
           node tools/integration/test-scene1341-readonly-mobile-demo.mjs
           node tools/integration/test-scene1341-readonly-rec-integration.mjs
           node tools/integration/test-scene500-native-navigation-parity.mjs
