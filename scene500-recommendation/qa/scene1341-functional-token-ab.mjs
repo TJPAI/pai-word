@@ -19,7 +19,7 @@ const inspect=(query,existing,experimentalIntentAliases)=>{
  const baseline=index.search(query,{limit:10,experimentalIntentAliases});
  const defaultExplicit=index.search(query,{limit:10,experimentalIntentAliases,experimentalFunctionalTokenGuard:false});
  assert.deepEqual(defaultExplicit,baseline,'opt-in flag must not change default');
- if(!experimentalIntentAliases)assert.deepEqual(baseline.map(x=>({scene_id:x.scene_id,score:x.score,explanations:x.explanations})),existing.top10,'must preserve previously captured open casebook results');
+ if(!experimentalIntentAliases)assert.deepEqual(baseline.map(x=>({scene_id:x.scene_id,score:x.score,has_ranked_data:x.has_ranked_data,explanations:x.explanations})),existing.top10,'must preserve previously captured open casebook results');
  const changed=index.search(query,{limit:10,experimentalIntentAliases,experimentalFunctionalTokenGuard:true});
  for(const res of changed){assert.equal(res.release_status,'BLOCKED_PENDING_CG_QA_AND_MUSE');assert.equal(res.cg_qa,'NOT_REVIEWED_FOR_THIS_INDEX');}
  const projection=items=>items.map((x,i)=>({rank:i+1,scene_id:x.scene_id,name:x.name,score:x.score,has_ranked_data:x.has_ranked_data,explanations:x.explanations}));
