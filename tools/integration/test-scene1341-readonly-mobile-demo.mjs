@@ -570,7 +570,7 @@ for(const [start,dir,want] of [[9,1,0],[0,-1,9],[19,1,10],[25,1,20]]){
  const ctx={index:start,BATCH:10,revealed:true,subset:()=>rows,phaseController:controller,
   scratchDrawing:()=>false,resetScratch:()=>{},stopWordAudio:()=>{},
   readOnlyPrefs:{get:()=>false},autoBrowse:{restart:()=>{}},
-  window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
+  window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle,PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
  vm.runInNewContext(batchCycleCode+'\n'+moveSource+'\nthis.manualMove=move;',ctx);
  ctx.manualMove(dir);
  assert.equal(ctx.index,want,'manual navigation stays in current round');
@@ -589,7 +589,7 @@ const composed={index:9,BATCH:10,revealed:true,subset:()=>composedRows,
  readOnlyPrefs:{get:()=>false},
  playWord:()=>{composedSpeeches++},
  autoBrowse:{restart:()=>{composedAutoRestarts++}},
- window:{PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
+ window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle,PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false}};
 const composedPhase=api.createReadOnlyPhaseController({
  onUpdate:state=>{composed.revealed=state.revealed},
  onGradeComplete:()=>{},onAdvance:()=>{}});
@@ -1357,7 +1357,7 @@ const crossCtx={index:9,BATCH:10,selectedGrade:null,revealed:false,suppressTapUn
  subset:()=>crossRows,scratchDrawing:()=>false,resetScratch:()=>{},
  stopWordAudio:()=>{crossAudio.push('stop')},playWord:()=>false,
  readOnlyPrefs:{get:()=>false},
- window:{PAI_SCRATCH_BEGIN_RATING:()=>{},PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false},
+ window:{PAI_SCENE1341_NATIVE_CYCLE:nativeCycle,PAI_SCRATCH_BEGIN_RATING:()=>{},PAI_SCRATCH_FINISH_RATING:()=>{},PAI_SCRATCH_AUTO_TRANSITION:false},
  $:()=>({hidden:false}),Date,
  autoBrowse:{isEnabled:()=>autoOn,pause:()=>{paused++},resume:()=>{resumed++},restart:()=>{restarted++}},
 };
