@@ -129,12 +129,20 @@ assert(html.includes('data-grade="hard" disabled'));
 assert(html.includes('data-grade="good" disabled'));
 assert(script.includes('transientRatings'));
 assert(!html.includes('class="demo-qa"'), 'internal QA metadata cannot add learning UI rows');
-assert(html.includes('scene500-mobile.css'));
-assert(html.includes('scene500-learning.css'));
-assert(html.includes('scene500-home.css'));
+assert(html.includes('href="../../mobile.css"'));
+assert(html.includes('href="../../learning.css"'));
+assert(html.includes('href="../../home-dashboard.css"'));
 for(const speed of ['0.9','1.5','3','6'])assert(html.includes('value="'+speed+'"'), 'Scene500 native auto-browse speed in seconds');
-for(const file of ['scene500-mobile.css','scene500-learning.css','scene500-home.css'])
- assert(fs.statSync('rebuild-preview/scene1341-readonly/'+file).size>0);
+for(const [legacy,native] of [
+ ['scene500-mobile.css','mobile.css'],['scene500-ux-fix.css','ux-fix.css'],
+ ['scene500-product-v2.css','product-v2.css'],['scene500-learning.css','learning.css'],
+ ['scene500-home.css','home-dashboard.css']
+]){
+ assert(html.includes('href="../../'+native+'"'), 'Scene1341 must link the real native stylesheet '+native);
+ assert(!html.includes('href="./'+legacy+'"'), 'Scene1341 must not load copied stylesheet '+legacy);
+ assert.equal(fs.readFileSync('rebuild-preview/scene1341-readonly/'+legacy,'utf8'),
+  fs.readFileSync(native,'utf8'), 'historical copy has diverged from native Scene500: '+legacy);
+}
 
 // The older 304 records remain only as historical QA fixtures; no longer the demo limit.
 const root='tools/integration/scene1341-teaching/';
@@ -907,7 +915,7 @@ for(const forbidden of [
  '#learning .answer .example-translation{',
  '#learning .answer .example-text{'
 ])assert(!html.includes(forbidden),'no isolated CSS may override native Scene500 answer styling: '+forbidden);
-assert(html.includes('scene500-ux-fix.css') && html.includes('scene500-learning.css'),
+assert(html.includes('href="../../ux-fix.css"') && html.includes('href="../../learning.css"'),
  'original Scene500 answer geometry and bilingual example layout must be imported');
 
 /* Independent re-audit B: worst-case alternating face, repeated grading,
