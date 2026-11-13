@@ -8,9 +8,9 @@ try{
  const source=JSON.parse(fs.readFileSync(new URL('./scene1341-blind-intake-24.v1.json',import.meta.url),'utf8'));
  const cases=source.queries.map((q,k)=>({
   query_id:q.id,query:q.query,group:q.group,
-  annotator_A:{status:'LOCKED',assessor_id:'SYNTHETIC_A',scene_relevance:[{scene_id:'SC50-0001',grade:3}],none_relevant:false,rationale:'synthetic calibration'},
-  annotator_B:{status:'LOCKED',assessor_id:'SYNTHETIC_B',scene_relevance:[{scene_id:'SC50-0001',grade:3}],none_relevant:false,rationale:'synthetic calibration'},
-  adjudication:{status:'LOCKED',none_relevant:false,scene_relevance:[{scene_id:'SC50-0001',grade:3}],decision_reason:'synthetic fixture'}
+  annotator_A:{status:'LOCKED',assessor_id:'SYNTHETIC_A',scene_relevance:[{scene_id:'SC50-0001',grade:3},{scene_id:'SC50-0002',grade:0}],none_relevant:false,rationale:'synthetic calibration'},
+  annotator_B:{status:'LOCKED',assessor_id:'SYNTHETIC_B',scene_relevance:[{scene_id:'SC50-0001',grade:3},{scene_id:'SC50-0002',grade:0}],none_relevant:false,rationale:'synthetic calibration'},
+  adjudication:{status:'LOCKED',none_relevant:false,scene_relevance:[{scene_id:'SC50-0001',grade:3},{scene_id:'SC50-0002',grade:0}],decision_reason:'synthetic fixture'}
  }));
  const gold={status:'LOCKED_ADJUDICATED_GOLD',officialGold:true,cases};
  const predictions={status:'PREDICTIONS_SEPARATED_FROM_UNADJUDICATED_QUERY_SET',queryCount:24,labeledCount:0,upstreamCommit:'SYNTHETIC_TEST_ONLY',manifestSha:'SYNTHETIC_TEST_ONLY',
