@@ -1,8 +1,9 @@
-name: Scene1341 pronunciation source inspection
+name: Scene1341 source-pinned pronunciation build
 on:
   pull_request:
     paths:
-      - 'tools/integration/inspect-core20k-pronunciation.mjs'
+      - 'tools/integration/build-scene1341-ipa-preview.mjs'
+      - 'rebuild-preview/scene1341-readonly/**'
       - '.github/workflows/scene1341-pronunciation-inspect.yml'
   push:
     branches: [cg-main-sc1341-ipa-20261113]
@@ -12,9 +13,24 @@ permissions:
 jobs:
   ipa:
     runs-on: ubuntu-latest
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
+      - name: Checkout SHA-pinned QA provisional answers
+        uses: actions/checkout@v4
+        with:
+          repository: TJPAI/pai-word
+          ref: 79ad2a35a3922b70cea00976627935c7d34a3630
+          path: qa-source
+          sparse-checkout: |
+            tools/core20k_lexicon/qa
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: node tools/integration/inspect-core20k-pronunciation.mjs
+      - name: Build IPA from original 20K phonetic corpus and 1778 candidate KU
+        env:
+          SCENE1341_QA_SOURCE_DIR: qa-source
+        run: |
+          node tools/integration/inspect-core20k-pronunciation.mjs
+          node tools/integration/build-scene1341-ipa-preview.mjs
