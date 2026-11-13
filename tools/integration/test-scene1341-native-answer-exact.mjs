@@ -95,7 +95,7 @@ assert(page.includes('window.PAI_SCENE1341_NATIVE_CYCLE.nextIndex(rows,current,d
 
 const ratingSource=fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-native-rating-policy-exact.js','utf8');
 const ratingBegin=native.indexOf(' const defaults={goodWithin:2,hardWithin:5,goodShow:2,hardShow:4,againShow:6,repeatCount:3,repeatGap:1};');
-const ratingEnd=native.indexOf('\\n let ratedVisibleKey=',ratingBegin);
+const ratingEnd=native.indexOf('\n let ratedVisibleKey=',ratingBegin);
 assert(ratingBegin>=0&&ratingEnd>ratingBegin);
 const nativeRatingPolicy=native.slice(ratingBegin,ratingEnd);
 assert(ratingSource.includes(nativeRatingPolicy),'rating defaults and config must be byte-identical to native tap-flow');
