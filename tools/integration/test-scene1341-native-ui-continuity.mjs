@@ -108,4 +108,37 @@ assert.equal(hints.length,1,'function word after normal word must restore hint')
 hintContext.r={expression:'and'};runHint();
 assert.equal(hints.length,1,'function word hint must not duplicate on rerender');
 
+
+const showStart=script.indexOf('function show(){');
+const showEnd=script.indexOf('\nfunction move(delta',showStart);
+assert(showStart>0&&showEnd>showStart);
+const showCode=script.slice(showStart,showEnd);
+assert(showCode.includes("if(prior.phase==='example')"));
+assert(showCode.includes("stopWordAudio();"));
+assert(showCode.includes("autoBrowse.resume()"));
+for(const autoEnabled of [true,false]){
+ let phase='example',stopped=0,resumed=0,played=0,oldAudioEnd=null;
+ const ctrl={
+  state:()=>({phase,selected:null}),
+  tap:()=>{phase='question'}
+ };
+ const context={
+  Date:{now:()=>100},suppressTapUntil:0,window:{__paiTapSuppressUntil:0},
+  scratchDrawing:()=>false,phaseController:ctrl,
+  stopWordAudio:()=>{stopped++;oldAudioEnd=null},
+  autoBrowse:{isEnabled:()=>autoEnabled,resume:()=>{resumed++}},
+  readOnlyPrefs:{get:()=>false},subset:()=>[{expression:'wake up'}],
+  index:0,playWord:()=>{played++},
+  exampleToWordPending:true,revealed:true
+ };
+ vm.runInNewContext(showCode+'\nthis.invokeShow=show;',context,{timeout:1000});
+ context.invokeShow();
+ assert.equal(stopped,1,'blank tap must stop example audio before changing face');
+ assert.equal(context.exampleToWordPending,false);
+ assert.equal(phase,'question','blank tap must return to question');
+ assert.equal(resumed,autoEnabled?1:0,
+  'auto browsing must resume after example cancellation only when enabled');
+ assert.equal(played,0,'canceling example must not force word speech when disabled');
+}
+
 console.log('SC1341_NATIVE_UI_COMBINED_STABLE_HERO_AND_IPA_CACHE_PASS');

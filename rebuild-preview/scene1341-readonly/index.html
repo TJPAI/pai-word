@@ -610,9 +610,17 @@ function renderCard(){
 let suppressTapUntil=0;
 function show(){
  if(Date.now()<Math.max(suppressTapUntil,window.__paiTapSuppressUntil||0)||scratchDrawing())return;
- const pending=phaseController.state().selected!==null;
+ const prior=phaseController.state(),pending=prior.selected!==null;
+ // A blank tap while example audio is playing changes the preferred face.
+ // Cancel that example before changing phase; otherwise its stale onend
+ // cannot resume auto-browse and speech continues over the question card.
+ if(prior.phase==='example'){
+  exampleToWordPending=false;
+  stopWordAudio();
+ }
  phaseController.tap();
  if(pending){stopWordAudio();window.PAI_SCRATCH_FINISH_RATING?.();autoBrowse.restart()}
+ else if(prior.phase==='example'&&autoBrowse.isEnabled())autoBrowse.resume();
  if(!autoBrowse.isEnabled()&&readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(subset()[index]?.expression);
 }
 function move(delta,fromAuto=false,fromRatedAdvance=false){
