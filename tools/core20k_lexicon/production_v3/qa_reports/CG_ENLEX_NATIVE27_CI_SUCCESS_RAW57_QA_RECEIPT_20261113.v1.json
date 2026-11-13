@@ -1,0 +1,84 @@
+{
+  "schema": "cg-enlex-native27-ci-verified-qa-receipt-v1",
+  "date": "2026-11-13",
+  "source": {
+    "commit": "62dd2ce5414624e6fba11418156d46f56ff5764f",
+    "run_id": 43368425601,
+    "run_conclusion": "success",
+    "artifact_id": 14011925246,
+    "artifact_zip_sha256": "59b4dd3ee4a34bc7b7787b13976270a2aa64e1517d31ace65e28cf9ea011ff98",
+    "source_candidate_jsonl_sha256": "9a389f89456aacd1f636c5d9bbfce383bd7331cfc29205fa4dab92215257d615",
+    "native_phrase_queue_sha256": "22324b3039e0f3aaa9c2eda17d4e1ed727be035a7da3f56088307e3bc72d1425",
+    "context_git_blob": "d41476ad003238e1534f75947c867e868b57533a",
+    "artifact_path": "qa-queues/native27-exact-sound-context-handoff.json"
+  },
+  "independent_artifact_readback": {
+    "zip_downloaded": true,
+    "extracted_json_parsed": true,
+    "unique_ku": 27,
+    "unique_expressions": 24,
+    "raw_sound_candidate_rows": 57,
+    "source_line_and_sound_index_in_each_candidate": true,
+    "source_pos_and_region_tags_in_each_candidate": true,
+    "ku_sense_chinese_meaning_example_context_joined": true,
+    "all_rows_release_blocked": true
+  },
+  "critical_observations": [
+    {
+      "expression": "inside out",
+      "ku": "SC1341-KU-00532",
+      "raw_source_entries": [
+        {
+          "source_pos": "adv",
+          "source_line": 44395
+        },
+        {
+          "source_pos": "adj",
+          "source_line": 44396
+        }
+      ],
+      "editorial": "Context 'Your T-shirt is inside out' favors predicative adjective, but do not delete adverb source evidence."
+    },
+    {
+      "expression": "cutting board",
+      "kus": [
+        "SC1341-KU-01241",
+        "SC1341-KU-01710"
+      ],
+      "source_ipa": "/ˈkʰʌɾɪŋ bɔɹd/",
+      "editorial": "Phonetic aspiration and flap in slash notation require independent transcription-level QA."
+    },
+    {
+      "expression": "cup of tea",
+      "ku": "SC1341-KU-01897",
+      "editorial": "Retain both source candidates and the informal weak form distinction; never infer geographic tags."
+    },
+    {
+      "expression": "fabric softener",
+      "kus": [
+        "SC1341-KU-00903",
+        "SC1341-KU-01055"
+      ],
+      "editorial": "Maintain UK/US/merger-feature distinction; 'generic' parser category is not proof of universally accepted IPA."
+    }
+  ],
+  "crossline_action": {
+    "cg_qa": "Download artifact 14011925246; review 57 source sound candidates independently with 27 original contexts; report explicit pass/conditional/hold per KU",
+    "cg_enteach": "Use exact CI output for 27 KU source mapping; do not claim independent QA",
+    "cg_master": "Review intended scene Sense/POS and any multi-pos ambiguity",
+    "cg_main": "Keep source-only IPA in isolated preview with provenance and provisional label; do not publish as certified"
+  },
+  "approvals": {
+    "cg_qa_pass": 0,
+    "muse_pass": 0,
+    "master_approved": 0,
+    "release_allowed": false
+  },
+  "unchanged": [
+    "Core20K frozen 20000 headwords 27471 Senses",
+    "V13 403 and V17 125 separate historical queues",
+    "Master",
+    "Scene500",
+    "Runtime/SRS"
+  ]
+}
