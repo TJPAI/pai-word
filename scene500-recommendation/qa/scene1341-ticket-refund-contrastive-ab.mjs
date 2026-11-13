@@ -19,7 +19,7 @@ const results=cases.map(c=>{
  const baseline=index.search(c.query,{limit:10,experimentalContrastiveTicketRefund:false});
  const candidate=index.search(c.query,{limit:10,experimentalContrastiveTicketRefund:true});
  const saved=prior.records.find(r=>r.query===c.query);
- if(saved)assert.deepEqual(baseline.map(x=>({scene_id:x.scene_id,score:x.score,has_ranked_data:x.has_ranked_data,explanations:x.explanations})),saved.arms.baseline,'default parity vs PR96');
+ if(saved)assert.deepEqual(baseline.map((x,i)=>({rank:i+1,scene_id:x.scene_id,name:x.name,score:x.score,explanations:x.explanations,has_ranked_data:x.has_ranked_data})),saved.arms.baseline,'default parity vs PR96');
  const hints=candidate.flatMap(x=>x.explanations.filter(z=>z.startsWith('EXPERIMENTAL_UNCERTIFIED_CONTRASTIVE_ACTION:')));
  assert.equal(hints.length,c.target?1:0,'narrow experimental activation');
  if(c.target){assert.equal(candidate[0].scene_id,c.target);assert.ok(candidate.some(x=>x.scene_id===c.target));}
