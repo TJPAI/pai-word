@@ -14,6 +14,7 @@ on:
       - 'scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs'
       - 'scene500-recommendation/qa/scene1341-functional-token-ab.mjs'
       - 'scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs'
+      - 'scene500-recommendation/qa/scene1341-factorial-open-ab.mjs'
       - 'scene500-recommendation/qa/test-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
@@ -58,6 +59,7 @@ jobs:
           node --check rec/scene500-recommendation/qa/scene1341-casebook-provenance-trace.mjs
           node --check rec/scene500-recommendation/qa/scene1341-functional-token-ab.mjs
           node --check rec/scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs
+          node --check rec/scene500-recommendation/qa/scene1341-factorial-open-ab.mjs
           node --check rec/scene500-recommendation/qa/test-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
@@ -146,6 +148,16 @@ jobs:
             scene1341-nonblind-source-provenance.json \
             > scene1341-eight-unique-query-review-packet.json
           node -e "const r=require('./scene1341-eight-unique-query-review-packet.json');if(r.affectedUniqueQueries!==8||r.top1ChangedUniqueQueries!==3||r.formalHumanGold!==0||r.release_allowed!==false||r.reviewItems.some(x=>x.independentRelevanceVerdict!=='NOT_ADJUDICATED'))process.exit(1);"
+      - name: Evaluate 59 distinct open queries across four source-pinned counterfactual engines
+        run: |
+          node rec/scene500-recommendation/qa/scene1341-factorial-open-ab.mjs \
+            scene1341-nonblind-error-casebook.json \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            > scene1341-four-arm-open-factorial.json
+          node -e "const x=require('./scene1341-four-arm-open-factorial.json');if(x.stats.queries!==59||x.stats.evaluations!==236||x.formalHumanGold!==0||x.release_allowed!==false||!x.defaultFlagsBothFalse||x.protectedBlind24Accessed)process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -160,3 +172,4 @@ jobs:
             scene1341-nonblind-source-provenance.json
             scene1341-functional-token-ab.json
             scene1341-eight-unique-query-review-packet.json
+            scene1341-four-arm-open-factorial.json
