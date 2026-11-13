@@ -16,6 +16,7 @@ on:
       - 'scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs'
       - 'scene500-recommendation/qa/scene1341-factorial-open-ab.mjs'
       - 'scene500-recommendation/qa/scene1341-open-counterfactual-top5-audit.mjs'
+      - 'scene500-recommendation/qa/scene1341-ticket-refund-contrastive-ab.mjs'
       - 'scene500-recommendation/qa/test-scene1341-budget.mjs'
       - '.github/workflows/scene1341-rec-isolated.yml'
   pull_request:
@@ -62,6 +63,7 @@ jobs:
           node --check rec/scene500-recommendation/qa/scene1341-eight-query-review-packet.mjs
           node --check rec/scene500-recommendation/qa/scene1341-factorial-open-ab.mjs
           node --check rec/scene500-recommendation/qa/scene1341-open-counterfactual-top5-audit.mjs
+          node --check rec/scene500-recommendation/qa/scene1341-ticket-refund-contrastive-ab.mjs
           node --check rec/scene500-recommendation/qa/test-scene1341-budget.mjs
           node --check rec/baseline/scene500-recommendation/scene1341-search-core.mjs
           test "$(git -C rec/baseline rev-parse HEAD)" = "6e66864e8fe494fb5d83c443a912b997d2b0d926"
@@ -165,6 +167,16 @@ jobs:
           node rec/scene500-recommendation/qa/scene1341-open-counterfactual-top5-audit.mjs \
             scene1341-four-arm-open-factorial.json > scene1341-open-counterfactual-top5-audit.json
           node -e "const a=require('./scene1341-open-counterfactual-top5-audit.json');if(a.targetCases.length!==4||a.formalHumanGold!==0||a.blind24Accessed||a.release_allowed||a.algorithmChanged||a.sourceQueries!==59||a.fourArmExecutions!==236)process.exit(1);"
+      - name: Test isolated contrastive ticket refund opt-in against untouched default
+        run: |
+          node rec/scene500-recommendation/qa/scene1341-ticket-refund-contrastive-ab.mjs \
+            source/tools/integration/scene1341-source/PAI_Word_Scene50_V1.5_Structural_Catalog.csv \
+            source/tools/integration/scene1341-ranked \
+            17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
+            803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
+            scene1341-four-arm-open-factorial.json \
+            > scene1341-ticket-refund-contrastive-ab.json
+          node -e "const x=require('./scene1341-ticket-refund-contrastive-ab.json');if(x.queries!==5||x.searches!==10||x.independentHumanGold!==0||x.release_allowed||!x.defaultBehaviorUnchanged||x.protectedBlind24Accessed)process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -181,3 +193,4 @@ jobs:
             scene1341-eight-unique-query-review-packet.json
             scene1341-four-arm-open-factorial.json
             scene1341-open-counterfactual-top5-audit.json
+            scene1341-ticket-refund-contrastive-ab.json
