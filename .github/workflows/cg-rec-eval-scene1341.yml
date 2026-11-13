@@ -208,6 +208,19 @@ jobs:
             if(lookup('食物会不会过期','SC50-0046')?.retrievalRank!==1)throw Error('KNOWN_LEXICAL_NOISE_CHANGED_REVIEW_REQUIRED');
             console.log(JSON.stringify({status:'INDEPENDENT_PROVENANCE_AUDIT_PASS',pairs:32,sourceSenses:19371,sourceScenes:1341,watched:4,gold:0}));
           "
+      - name: Validate independent source-linked four-risk nonblind triage
+        run: |
+          node --input-type=module -e "
+            import fs from 'node:fs';
+            const doc=JSON.parse(fs.readFileSync('evaluation/tools/cg-rec-eval/scene1341-nonblind-source-risk4.v1.json','utf8'));
+            const source=JSON.parse(fs.readFileSync('scene1341-rec-diagnostics32-provenance.json','utf8'));
+            if(doc.status!=='NONBLIND_SOURCE_ANCHORED_RISK_NOT_ADJUDICATED'||doc.certifiedGoldCount!==0||doc.productionReleaseAllowed!==false||doc.risks?.length!==4)throw Error('RISK_REGISTER_RELEASE_OR_GOLD_INVALID');
+            for(const risk of doc.risks){
+              const witness=source.watched.find(x=>x.query===risk.query);
+              if(!witness||witness.context.results?.[0]?.scene_id!==risk.observedTop1||witness.context.results?.[0]?.scene_name!==risk.observedTop1Scene||risk.semanticVerdict!=='NOT_ADJUDICATED'||!risk.hypothesis||!risk.nextStep)throw Error('SOURCE_RISK_WITNESS_INVALID '+risk.id);
+            }
+            console.log(JSON.stringify({status:'FOUR_SOURCE_ANCHORED_NONBLIND_RISKS_VERIFIED',cases:4,verifiedTop1:4,blindGold:0,release:false}));
+          "
       - name: Compare actual CG-MAIN browser opt-in with current CG-REC on frozen 41 queries
         env:
           CG_MAIN_SHA: fbe6dc1fc71a294165f3d361655d05b2d9d65dd1
