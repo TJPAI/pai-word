@@ -145,6 +145,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene1341-welcome.js?v=scene1341-native-20261113"></script><script src="./scene500-readonly-settings.js"></script>
 <script src="./scene500-readonly-phase.js"></script>
 <script src="./scene1341-auto-preference.js"></script>
+<script src="./scene500-native-answer-exact.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
 <script>
 'use strict';
@@ -508,6 +509,27 @@ function renderCard(){
  $('examples-section').hidden=!prefs.showExamples;
  $('usage-section').hidden=teachingNotes.length===0;
  $('answer').hidden=!revealed;
+ // Opt-in A/B only: original Scene500 answerHtml byte-identical renderer,
+ // with an explicitly quarantined unit and no native study queue/SRS writes.
+ // Default Scene1341 preview remains unchanged until UX/Safari review.
+ const nativePilot=new URLSearchParams(location.search).get('nativeAnswer')==='1';
+ let nativeSlot=$('scene1341-native-answer-pilot');
+ if(nativePilot){
+  if(!nativeSlot){
+   nativeSlot=document.createElement('div');nativeSlot.id='scene1341-native-answer-pilot';
+   $('answer').after(nativeSlot);
+  }
+  const draftUnit={
+   k:r.scene_ku_id,w:{w:r.expression,pos:'',allSenses:[]},
+   s:{ku_id:r.scene_ku_id,kuType:'scene1341',pos:'',m:r.answer.meaning_zh,
+      c:collocations.join(' · '),e:[r.answer.example_en],
+      example_zh:r.answer.example_zh,x:teachingNotes.join(' '),playable:false},
+   readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
+  };
+  nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs);
+  nativeSlot.hidden=!revealed;
+  $('answer').hidden=true;
+ }else if(nativeSlot){nativeSlot.hidden=true}
  void renderLexiconReference(r);
  for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
  set('demo-note',revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除');
