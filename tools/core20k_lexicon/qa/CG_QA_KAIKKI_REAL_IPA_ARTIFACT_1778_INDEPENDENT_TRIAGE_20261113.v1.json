@@ -1,0 +1,212 @@
+{
+  "schema": "cg-qa-kaikki-real-ipa-artifact-independent-triage-v1",
+  "date": "2026-11-13",
+  "reviewer": "CG-QA",
+  "source": {
+    "repo": "TJPAI/pai-word",
+    "run_id": 43344075319,
+    "run_url": "https://github.com/TJPAI/pai-word/actions/runs/43344075319",
+    "artifact_id": 14000344135,
+    "artifact_name": "cg-enlex-kaikki-ipa-source-candidates",
+    "file": "ipa-candidates.jsonl",
+    "manifest": "manifest.json",
+    "source_compressed_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "target_file_sha256": "45cc6ef2fad1978e61cf569a935185e7c1d58af34f0ed85719eaa7212e626d6c",
+    "source_original_drive_version_byte_identical": false
+  },
+  "independent_artifact_checks": {
+    "zip_downloaded_and_opened": true,
+    "zip_files": [
+      "ipa-candidates.jsonl",
+      "manifest.json",
+      "source-provenance.txt",
+      "source-sha256.txt",
+      "validated-summary.json"
+    ],
+    "emitted_rows": 7008,
+    "unique_ku_ids": 1778,
+    "ku_with_at_least_one_native_ipa": 672,
+    "ku_not_found": 1106,
+    "ku_with_native_phrase_ipa": 27,
+    "ku_with_native_word_ipa": 645,
+    "rows_with_ipa": 5902,
+    "not_found_rows": 1106,
+    "ipa_rows_scope_phrase": 57,
+    "ipa_rows_scope_word": 5845,
+    "ipa_rows_region_us": 904,
+    "ipa_rows_region_uk": 1179,
+    "ipa_rows_region_both": 318,
+    "ipa_rows_region_generic": 3501,
+    "ku_with_multiple_candidate_pos": 486,
+    "ipa_notation_slash_rows": 4693,
+    "ipa_notation_square_bracket_rows": 1209,
+    "regional_us_ku_coverage": 253,
+    "regional_uk_ku_coverage": 330,
+    "regional_both_ku_coverage": 81,
+    "regional_generic_ku_coverage": 533
+  },
+  "disclaimer": "Counts independently reproduced by unpacking exact workflow artifact; 486 multiple-POS KUs are a QA review queue and not proof that any specific KU is wrongly mapped. Regional counts at KU level overlap, row counts are not distinct KUs. Source extracted JSONL line references are supplied by producer but not yet independently opened in full raw Kaikki original; independent source-audio validation and Master POS/Sense not complete.",
+  "case_count": 7,
+  "cases": [
+    {
+      "scene_ku_id": "SC1341-KU-00001",
+      "expression": "wake up",
+      "source_line": 50969,
+      "observed_native_ipa": [
+        "/ˌweɪk ˈʌp/",
+        "[ˌweɪ̯ˈkʌp]"
+      ],
+      "source_tags": [
+        "General-American",
+        "Received-Pronunciation"
+      ],
+      "pronunciation_scope": "phrase",
+      "verdict": "CONDITIONAL_PHONEMIC_VS_PHONETIC",
+      "reason": "Same native multiword entry has slash phonemic and square-bracket phonetic realizations; retain notation category and tags; both-tag does not independently prove distinct US and UK pronunciation recordings.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00004",
+      "expression": "sleep in",
+      "source_line": 107661,
+      "observed_native_ipa": [
+        "/ˌsliːp ˈɪn/",
+        "/ˌslip ˈɪn/",
+        "/ˌsliːp ˈən/"
+      ],
+      "source_tags": [
+        "Received-Pronunciation",
+        "Australia",
+        "India",
+        "General-American",
+        "Canada",
+        "Scotland",
+        "New-Zealand"
+      ],
+      "pronunciation_scope": "phrase",
+      "verdict": "CONDITIONAL_MIXED_REGION_AND_VARIANTS",
+      "reason": "Individual sounds have overlapping geographical tags; UK/US fields are valid only for explicit labels, while Australia, India, Canada, Scotland and New-Zealand evidence must remain separately preserved and not be erased by US/UK aggregation.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00011",
+      "expression": "alarm",
+      "source_line": [
+        19566,
+        19567
+      ],
+      "observed_native_ipa": [
+        "/əˈlɑːm/",
+        "/əˈlɑɹm/",
+        "/əˈlɑ(rə)m/"
+      ],
+      "source_tags": [
+        "Received-Pronunciation",
+        "General-American",
+        "South-Asia"
+      ],
+      "pronunciation_scope": "word",
+      "verdict": "HOLD_POS_AMBIGUITY",
+      "reason": "Noun and verb are different Kaikki entries with six emitted candidate records; no canonical KU target POS/Sense match is certified merely by identical word and pronunciation.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00280",
+      "expression": "bath towel",
+      "source_line": 588069,
+      "observed_native_ipa": [
+        "/ˌbæθ ˈtaʊ̯.əl/",
+        "/ˌbaθ ˈtaʊ̯.əl/"
+      ],
+      "source_tags": [
+        "Canada",
+        "General-American",
+        "Received-Pronunciation",
+        "Australia",
+        "New-Zealand",
+        "Scotland",
+        "India"
+      ],
+      "pronunciation_scope": "phrase",
+      "verdict": "CONDITIONAL_MULTI_REGION",
+      "reason": "Eight distinct source pronunciation records under one noun phrase; do not choose a default from 'both' tags or collapse regional variants without native/region review.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00667",
+      "expression": "living room",
+      "source_line": 44836,
+      "observed_native_ipa": [
+        "/ˈlɪvɪŋ ɹuːm/"
+      ],
+      "source_tags": [
+        "General-American",
+        "Received-Pronunciation"
+      ],
+      "pronunciation_scope": "phrase",
+      "verdict": "LEXICAL_IPA_SOURCE_PRESENT_NOT_CERTIFIED",
+      "reason": "Exact native multiword noun entry and real sound tags are present; useful phrase-level evidence but external source line/version and Master KU Sense remain pending independent signoff.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01241",
+      "expression": "cutting board",
+      "source_line": 422939,
+      "observed_native_ipa": [
+        "/ˈkʰʌɾɪŋ bɔɹd/"
+      ],
+      "source_tags": [
+        "General-American"
+      ],
+      "pronunciation_scope": "phrase",
+      "verdict": "LEXICAL_IPA_SOURCE_PRESENT_NOT_CERTIFIED",
+      "reason": "Native two-word noun IPA tagged General-American; no UK claim, cannot map generic wooden board to cutting board without semantic authorization.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00002",
+      "expression": "get up",
+      "source_line": null,
+      "observed_native_ipa": [],
+      "source_tags": [],
+      "pronunciation_scope": null,
+      "verdict": "NOT_FOUND_NO_SYNTHETIC_PHRASE_PASS",
+      "reason": "Exact phrase is NOT_FOUND in this source extraction; per-word Core20K fallback is not native phrase IPA nor certified pronunciation.",
+      "qa_ipa_pass": false,
+      "muse_ipa_pass": false,
+      "master_identity_approved": false,
+      "release_allowed": false
+    }
+  ],
+  "next_gates": [
+    "Independently fetch representative unprocessed original Kaikki entry lines for phrase and word pronunciation",
+    "Compare source entry.word, pos, sounds[].ipa and tags with emitted artifact by stable KU ID",
+    "Disambiguate POS for 486 KUs containing >1 candidate POS",
+    "Keep phonemic /.../ and phonetic [...] transcriptions distinct",
+    "Preserve mixed or non-US/UK dialect tags without invented region assignment",
+    "Do not activate 1106 NOT_FOUND as native phrase IPA",
+    "Require Master canonical Sense, Muse independent review, and approved release policy"
+  ],
+  "master_approved": 0,
+  "qa_ipa_certified": 0,
+  "muse_ipa_certified": 0,
+  "release_allowed": false
+}
