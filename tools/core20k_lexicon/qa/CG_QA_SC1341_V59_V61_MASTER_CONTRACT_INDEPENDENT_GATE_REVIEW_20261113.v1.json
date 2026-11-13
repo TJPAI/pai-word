@@ -1,0 +1,195 @@
+{
+  "schema": "cg-qa-master-contract-v59-v61-independent-gate-review-v1",
+  "date": "2026-11-13",
+  "review_role": "CG-QA",
+  "authority_files": [
+    {
+      "name": "CGMASTER_V59_MASTER_FULL_TEACHING_SCHEMA_DRAFT.json",
+      "drive_file_id": "1oCOw4HL-Z9lOclEbUb9N26NjZGq0kbxl",
+      "sha256_reported": "888ea4ac1a55fff896b90615d8350b9cd553d52dc6e9395d2b6e1b6d01771c02"
+    },
+    {
+      "name": "CGMASTER_V59_V13_IDENTITY_AUDIT_REPORT.json",
+      "drive_file_id": "1K7RCccKa8FHIxL-NV_TEBMh1_H8YApNX",
+      "sha256_reported": "0779a371d4b43e0b37a554e5df3d95ecbb65da1026b17828ba191ecc7563bf44"
+    },
+    {
+      "name": "CGMASTER_V61_FINAL_LINEAGE_IDENTITY_AND_DUPLICATE_GATE_20261113.json",
+      "drive_file_id": "18uoZrA9VXRQa2LP0fSDSUX9L9IUyvSbG",
+      "sha256_reported": "93cde99c2c7ff1d7482bffea0e619fc4123bf24a7bfb467fcd3cbb1eac261e61"
+    }
+  ],
+  "review_scope": "Independently assess draft V59 schema and V61 lineage/duplicate gates against owner directives Issue #1 6853476368,6853615020. The FINAL raw 230289-row CSV was NOT inspected by CG-QA here; reported FINAL counts are not independently established.",
+  "source_derived_counts": {
+    "v13_rows_verified_by_cg_master": 200144,
+    "v13_kaikki_unreconciled_reported": 200144,
+    "final_rows_reported_third_party": 230289,
+    "mu_main_first_3_batches_reported": 30000,
+    "reported_duplicate_groups_first_3_batches": 77,
+    "reported_duplicate_hold_rows": 154,
+    "reported_sense_id_populated_first_3_batches": 0
+  },
+  "gate_status": "DRAFT_NOT_APPROVED_FAIL_CLOSED",
+  "checks": [
+    {
+      "id": "G01",
+      "area": "AUTHORITY_LINEAGE",
+      "status": "BLOCK",
+      "observation": "V59 V13 has 200144 rows; FINAL reports 230289, its exact bytes and file ID are not independently available. No binding of V13 candidate to FINAL record_id allowed.",
+      "required_action": "Obtain FINAL raw bytes and pin sha256; re-run authoritative FINAL row count and source-key uniqueness."
+    },
+    {
+      "id": "G02",
+      "area": "STABLE_RECORD_ID",
+      "status": "BLOCK",
+      "observation": "Proposed SC1341-R hash truncated 24 bytes of hex uses source key of V13; collision-free V13 does not establish FINAL uniqueness, authority or 1:1 semantic identity.",
+      "required_action": "CG-MASTER authorized identity specification over FINAL, source_sha/row/scene inclusion, version immutability and collision test."
+    },
+    {
+      "id": "G03",
+      "area": "SENSE_ID_SEPARATE_FROM_RECORD_ID",
+      "status": "BLOCK",
+      "observation": "The first 30000 FINAL rows reportedly have no populated sense_id. Same scene/expression duplicates can be noun/verb polysemy and may not be merged.",
+      "required_action": "Distinct authorized sense_id and canonical_alias rules backed by POS/gloss/context, with 77 duplicate groups reviewed."
+    },
+    {
+      "id": "G04",
+      "area": "CROSSWALK_V13_FINAL",
+      "status": "BLOCK",
+      "observation": "Reported V13 unmatched 8516 and FINAL unmatched 38660; lexical join by scene/expression does not prove identical sense/Chinese gloss.",
+      "required_action": "Row-level crosswalk with both source SHA, join basis, original zh, POS, sentence and manual authorizations."
+    },
+    {
+      "id": "G05",
+      "area": "MASTER_LEXICAL_AUTHORITY",
+      "status": "BLOCK",
+      "observation": "Teaching expansion shall not replace source Master english_expression/sense_zh, and source expression must be tied to approved FINAL record not a V51 stand-alone KU.",
+      "required_action": "Immutable Master field refs in QA ledger, mismatch gate and corrected author patch lineage."
+    },
+    {
+      "id": "G06",
+      "area": "IPA_SOURCE_AND_REGION",
+      "status": "BLOCK",
+      "observation": "Proposed V59 IPA extension fields exist but no field-level verifier contract for candidate region, phonemic/phonetic brackets, native phrase vs composed word, source sound index integrity.",
+      "required_action": "Verify exact Scene1341 Kaikki source line/sound index/POS/region, notation and source hashes; explicit missing reasons. Scene500 IPA content fallback prohibited."
+    },
+    {
+      "id": "G07",
+      "area": "CONTENT_TYPE_NA",
+      "status": "NEEDS_CLARIFICATION",
+      "observation": "V59 requires content_type but does not enumerate allowed values nor which POS/IPA/collocations fields are not_applicable per word/phrase/sentence type.",
+      "required_action": "Enumerate content_type with controlled values; per-field not_applicable_reason must be reviewed and cannot disguise unavailable evidence."
+    },
+    {
+      "id": "G08",
+      "area": "QUESTION_FIELDS",
+      "status": "BLOCK",
+      "observation": "No released complete question view is demonstrated. phonation target, pronunciation availability, IPA source and page display values must be snapshot-resolved.",
+      "required_action": "Typed question_view with source Master identity, IPA status and display contract; no run-time fallback."
+    },
+    {
+      "id": "G09",
+      "area": "ANSWER_FIELDS",
+      "status": "BLOCK",
+      "observation": "No full snapshot binds Master sense_zh to author example_en/example_zh/collocations/usage_note and field-level QA for all authorized records.",
+      "required_action": "Version-pinned teaching extension keyed to approved record_id and source_sense_version; ensure English example demonstrates target."
+    },
+    {
+      "id": "G10",
+      "area": "PER_FIELD_PROVENANCE",
+      "status": "NEEDS_CLARIFICATION",
+      "observation": "Schema lists field_level_provenance and field_level_qa but not their typed evidence structures, per-field SHA, exact reviewer and status taxonomy.",
+      "required_action": "Define entries for each question/answer field with source uri/file SHA, row/line, revision, reviewer, decision, timestamp and immutable result."
+    },
+    {
+      "id": "G11",
+      "area": "SAME_VERSION_DUAL_AI",
+      "status": "BLOCK",
+      "observation": "V59 gate says same-version certified but lacks a machine-verifiable exact content digest for each reviewer; Muse PASS on prior author patch cannot certify current fork.",
+      "required_action": "Require CG-QA and MU-QA verdicts on one identical record_id+content_sha+source snapshot+extension SHA, and final dispute disposition."
+    },
+    {
+      "id": "G12",
+      "area": "FAIL_CLOSED",
+      "status": "NEEDS_CLARIFICATION",
+      "observation": "V59 explicitly fail_closed but requires release_allowed field without specifying whether it is computed-only or user-authored; a literal true must not bypass pending evidence.",
+      "required_action": "Compute release_allowed in build gate only; reject rows with missing/stale/dissenting field statuses or any unapproved source."
+    },
+    {
+      "id": "G13",
+      "area": "SCENE500_DATA_ISOLATION",
+      "status": "BLOCK",
+      "observation": "V59 prohibits Scene500 sources conceptually; no proof of static/CI dependency closure and negative fixtures in consumed snapshot.",
+      "required_action": "No Core20K/Scene500 KU/IPA/Sense-scene content references; test source lineage and runtime fallback rejection."
+    },
+    {
+      "id": "G14",
+      "area": "FULL_POPULATION_COVERAGE",
+      "status": "BLOCK",
+      "observation": "V59 identities enumerate V13 working candidates only, not all authorized FINAL records; preview V51 2038 and staging 1778 cannot substitute for full authorized snapshot.",
+      "required_action": "Compute field completeness and reason-coded missing for every FINAL record, by scene, type and source snapshot; release only complete authorized rows."
+    },
+    {
+      "id": "G15",
+      "area": "DUPLICATE_CONFLICT_POLICY",
+      "status": "BLOCK",
+      "observation": "V61 flags 77 reported duplicate groups / 154 rows in first 30000 FINAL; 5 polysemy examples, but no row-level evidence or decisions in V61.",
+      "required_action": "Pin raw duplicate group rows; resolve true polysemy vs same-sense alias without dropping source records; HOLD ambiguity."
+    },
+    {
+      "id": "G16",
+      "area": "STATUS_SEPARATION",
+      "status": "BLOCK",
+      "observation": "V13 statuses NOT_REVIEWED 198030 and PROVISIONAL_EDIT 2114, Kaikki unreconciled 200144; none mean linguistic certification. MU-MAIN PASS_STRUCT 29846 is structural only.",
+      "required_action": "Separate SOURCE_FOUND, LEXICAL_VERIFIED, SCENE_SENSE_REVIEWED, DUAL_AI_CERTIFIED, RELEASE_READY fields with provenance."
+    },
+    {
+      "id": "G17",
+      "area": "NO_MUTATION",
+      "status": "PASS_POLICY_ONLY",
+      "observation": "V59 and V61 explicitly forbid replacing frozen V13, FINAL, Scene500 or runtime; audit is read-only.",
+      "required_action": "Retain this invariant in deploy pipeline and preserve original QA history."
+    }
+  ],
+  "machine_enforceable_minimum": {
+    "key_tuple": [
+      "master_authority_snapshot_sha256",
+      "master_record_id",
+      "canonical_sense_id",
+      "scene_id",
+      "content_version_sha256"
+    ],
+    "two_level_identity": true,
+    "source_allowed": [
+      "Scene1341 authoritative FINAL Master verified sha256",
+      "Scene1341 Kaikki verified source extension",
+      "Master-bound Scene1341 teaching version"
+    ],
+    "forbidden_lookups": [
+      "Scene500 Core20K",
+      "Scene500 KU",
+      "Scene500 IPA preview",
+      "Scene500 Sense-Scene mapping"
+    ],
+    "decision": "release_allowed must be computed from immutable evidence, never copied from author input",
+    "candidate_snapshot_rule": "every authorized FINAL record accounted for in manifest; nonrelease rows explicit missing reasons; release-ready rows have complete offline question+answer and same-content CG-QA MU-QA certification"
+  },
+  "counts": {
+    "checks": 17,
+    "pass_policy_only": 1,
+    "block": 13,
+    "needs_clarification": 3,
+    "formal_certified": 0,
+    "release_allowed": 0
+  },
+  "next_actions": [
+    "CG-MASTER/MU-MASTER supply the exact FINAL raw file Drive ID/hash and 77 group row-level evidence",
+    "CG-MASTER formally approve source-record vs sense identity and canonical aliases",
+    "CG-MAIN implement fail-closed static gate and deny Scene500 content fallback",
+    "CG-ENTEACH/CG-ENLEX provide row-level version-pinned mappings for full question+answer fields",
+    "MU-QA independently assess the contract and disputed sources"
+  ],
+  "master_approved": false,
+  "muse_independent_contract_approved": false,
+  "release_allowed": false
+}
