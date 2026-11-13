@@ -199,9 +199,9 @@ const scene500StylePaths=[
  ['learning.css','scene500-learning.css'],
  ['home-dashboard.css','scene500-home.css']
 ];
-const linkedStylePaths=[...html.matchAll(/<link rel="stylesheet" href="\.\/([^"]+\.css)"/g)].map(x=>x[1]);
-assert.deepEqual(linkedStylePaths,scene500StylePaths.map(x=>x[1]),
-  'Scene1341 must load EXACT original Scene500 five-CSS cascade in native order');
+const linkedStylePaths=[...html.matchAll(/<link rel="stylesheet" href="\.\.\/\.\.\/([^"]+\.css)"/g)].map(x=>x[1]);
+assert.deepEqual(linkedStylePaths,scene500StylePaths.map(x=>x[0]),
+  'Scene1341 must load the original native Scene500 five-CSS cascade in order');
 for(const [original,mirror] of scene500StylePaths){
  const originBytes=fs.readFileSync(original);
  const mirrorBytes=fs.readFileSync('rebuild-preview/scene1341-readonly/'+mirror);
