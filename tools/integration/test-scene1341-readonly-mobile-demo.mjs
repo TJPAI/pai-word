@@ -1533,12 +1533,13 @@ assert.equal(takeOverResumed,1,'duplicate Safari onend is idempotent');
 /* Actual example click handler: Safari's synchronous speak() failure invokes
  * onDone in playWord's catch AND the caller's false-return fallback. The
  * answer phase must be exited only once, and auto resumed only once. */
-const exampleClickStart=script.indexOf("$('example-speak').addEventListener('click',e=>{");
+const exampleClickStart=script.indexOf('function playCurrentExample(){');
 const exampleClickEnd=script.indexOf('\nlet start=null;',exampleClickStart);
 assert(exampleClickStart>0&&exampleClickEnd>exampleClickStart);
 const realExampleButtons={};let failedAudioPauses=0,failedAudioResumes=0,failedAudioAttempts=0;
 const failedExampleContext={
- $:id=>({addEventListener:(type,fn)=>{realExampleButtons[id+':'+type]=fn}}),
+ $:id=>({hidden:false,addEventListener:(type,fn)=>{realExampleButtons[id+':'+type]=fn}}),
+ revealed:true,
  phaseController:examplePhase,
  autoBrowse:{pause:()=>{failedAudioPauses++},resumeAfterSpeech:()=>{failedAudioResumes++}},
  subset:()=>[{answer:{example_en:'A short example sentence.'}}],index:0,
@@ -1555,6 +1556,19 @@ realExampleButtons['example-speak:click']({stopPropagation:()=>{}});
 assert.equal(failedAudioAttempts,1);
 assert.equal(failedAudioPauses,1);
 assert.equal(failedAudioResumes,1,'synchronous failed audio must not restore the auto timer twice');
+assert.equal(examplePhase.state().phase,'answer-paused');
+// Native source-rendered example button uses event delegation, but must
+// converge on exactly the same phase and failed-Safari-audio recovery.
+examplePhase.navigate('EX-4');
+const dynamic=realExampleButtons['learning:click'];
+assert.equal(typeof dynamic,'function','native dynamic example speaker handler missing');
+dynamic({stopPropagation:()=>{},target:{closest:selector=>{
+ assert(selector.includes('[data-example-audio]'));
+ return {dataset:{speak:'A short example sentence.'}};
+}}});
+assert.equal(failedAudioAttempts,2);
+assert.equal(failedAudioPauses,2);
+assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
 console.log(JSON.stringify({status:'PASS',preview:'1778 SHA-pinned QA provisional',blocked:260,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
