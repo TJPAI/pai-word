@@ -437,25 +437,44 @@ function scheduleQuestionFit(){
  questionFitFrame=requestAnimationFrame(()=>{questionFitFrame=0;if(!$('learning').hidden)fitQuestionExpression()});
 }
 window.addEventListener('resize',scheduleQuestionFit);
+// Cache only source-verified display projections under stable Scene1341 KU IDs.
+// Deduplicate an in-flight lookup when rating/face rendering occurs repeatedly.
+const ipaDisplayCache=new Map(),ipaPendingByKU=new Map();
 async function renderQuestionIPA(card){
  const ticket=++ipaSequence,expectedKU=card.scene_ku_id;
  const el=$('ipa');
- el.textContent='音标加载中…';
- el.title='正在核对Scene1341预览音标来源';
- try{
-  const [{describeScene1341IPA},source]=await Promise.all([
-   import('./scene1341-ipa-display-policy.mjs'),
-   (ipaIndexPromise||=import('./scene1341-ipa-preview.mjs')
-     .then(m=>m.scene1341IPAReference)
-     .catch(error=>{ipaIndexPromise=null;throw error}))
-  ]);
-  const result=await source.lookup(card);
+ const apply=display=>{
   if(ticket!==ipaSequence||$('learning').hidden||
      subset()[index]?.scene_ku_id!==expectedKU)return;
-  const display=describeScene1341IPA(card,result);
   el.textContent=display.text;el.title=display.title;
   el.dataset.ipaStatus=display.status;
- }catch(error){
+ };
+ const cached=ipaDisplayCache.get(expectedKU);
+ if(cached){apply(cached);return}
+ el.textContent='音标加载中…';
+ el.title='正在核对Scene1341预览音标来源';
+ let pending=ipaPendingByKU.get(expectedKU);
+ if(!pending){
+  pending=(async()=>{
+   const [{describeScene1341IPA},source]=await Promise.all([
+    import('./scene1341-ipa-display-policy.mjs'),
+    (ipaIndexPromise||=import('./scene1341-ipa-preview.mjs')
+      .then(m=>m.scene1341IPAReference)
+      .catch(error=>{ipaIndexPromise=null;throw error}))
+   ]);
+   const result=await source.lookup(card);
+   const display=describeScene1341IPA(card,result);
+   // Cache the source-pinned policy result, including an explicit
+   // missing/ambiguous status; never fabricate phrase IPA.
+   ipaDisplayCache.set(expectedKU,display);
+   return display;
+  })();
+  ipaPendingByKU.set(expectedKU,pending);
+  pending.finally(()=>{if(ipaPendingByKU.get(expectedKU)===pending)ipaPendingByKU.delete(expectedKU)})
+   .catch(()=>{}); // Rejection is surfaced in each caller below.
+ }
+ try{apply(await pending)}
+ catch(error){
   if(ticket!==ipaSequence||$('learning').hidden||
      subset()[index]?.scene_ku_id!==expectedKU)return;
   el.textContent='音标待补';el.title='音标数据加载失败或来源尚未核实';
@@ -490,26 +509,37 @@ async function renderLexiconReference(card){
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const prefs=readOnlyPrefs.snapshot();
+ // Combined opt-in exercises the true native question and answer together.
+ // The default preview and independent one-sided A/B modes stay unchanged.
+ const nativeUI=new URLSearchParams(location.search).get('nativeUI')==='1';
  // Reversible P0 A/B: actual Scene500 learning-screen question hero HTML,
  // with isolated source-pinned IPA hydration and no production registry.
- if(new URLSearchParams(location.search).get('nativeQuestion')==='1'){
-  const original=$('hero'),template=document.createElement('template');
-  template.innerHTML=window.PAI_SCENE1341_NATIVE_QUESTION.render({
-   expression:r.expression,revealed,hideWord:prefs.hideWord,
-   autoBrowseEnabled:autoBrowse.isEnabled(),
-   readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
-  });
-  const hero=template.content.firstElementChild;
-  if(!hero||!hero.classList.contains('word-hero'))throw Error('SC1341_NATIVE_QUESTION_INVALID_HERO');
-  hero.id='hero';
-  hero.querySelector('.word').id='expression';
-  hero.querySelector('.ipa').id='ipa';
-  hero.querySelector('.speak-btn').id='speak';
-  hero.querySelector('.recall-cue').id='cue';
-  const auto=hero.querySelector('.auto-word-toggle input');
-  auto.id='auto-toggle';
-  auto.removeAttribute('onchange'); // Native app mutator MUST NOT run.
-  original.replaceWith(hero);
+ if(new URLSearchParams(location.search).get('nativeQuestion')==='1'||nativeUI){
+  const original=$('hero');
+  // A stable source-exact DOM is crucial: an auto-switch or rating redraw
+  // must not destroy its control mid-click or force another IPA fetch.
+  if(original.dataset.nativeQuestionSource!=='scene500'){
+   const template=document.createElement('template');
+   template.innerHTML=window.PAI_SCENE1341_NATIVE_QUESTION.render({
+    expression:r.expression,revealed,hideWord:prefs.hideWord,
+    autoBrowseEnabled:autoBrowse.isEnabled(),
+    readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
+   });
+   const hero=template.content.firstElementChild;
+   if(!hero||!hero.classList.contains('word-hero'))throw Error('SC1341_NATIVE_QUESTION_INVALID_HERO');
+   hero.id='hero';
+   hero.dataset.nativeQuestionSource='scene500';
+   hero.querySelector('.word').id='expression';
+   hero.querySelector('.ipa').id='ipa';
+   hero.querySelector('.speak-btn').id='speak';
+   hero.querySelector('.recall-cue').id='cue';
+   const auto=hero.querySelector('.auto-word-toggle input');
+   auto.id='auto-toggle';
+   auto.removeAttribute('onchange'); // Native app mutator MUST NOT run.
+   original.replaceWith(hero);
+  }
+  $('auto-toggle').checked=autoBrowse.isEnabled();
+  $('speak').dataset.speak=r.expression;
  }
 
  displayBookmark.save(sceneId,index,phaseController.state().preferredFace);
@@ -534,7 +564,7 @@ function renderCard(){
  // Opt-in A/B only: original Scene500 answerHtml byte-identical renderer,
  // with an explicitly quarantined unit and no native study queue/SRS writes.
  // Default Scene1341 preview remains unchanged until UX/Safari review.
- const nativePilot=new URLSearchParams(location.search).get('nativeAnswer')==='1';
+ const nativePilot=new URLSearchParams(location.search).get('nativeAnswer')==='1'||nativeUI;
  let nativeSlot=$('scene1341-native-answer-pilot');
  if(nativePilot){
   if(!nativeSlot){
@@ -723,15 +753,17 @@ $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.c
 // original nodes; do not invoke native setAutoBrowse or PAI_AUDIO/SRS APIs.
 const legacyAutoInput=$('auto-toggle'),legacyWordSpeaker=$('speak');
 $('learning').addEventListener('change',e=>{
- if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'||
-    e.target?.id!=='auto-toggle'||e.target===legacyAutoInput)return;
+ if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'&&
+    new URLSearchParams(location.search).get('nativeUI')!=='1')return;
+ if(e.target?.id!=='auto-toggle'||e.target===legacyAutoInput)return;
  e.stopPropagation();
  legacyAutoInput.checked=e.target.checked;
  legacyAutoInput.dispatchEvent(new Event('change'));
 });
 $('learning').addEventListener('click',e=>{
- if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'||
-    !e.target.closest('#speak')||e.target===legacyWordSpeaker)return;
+ if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'&&
+    new URLSearchParams(location.search).get('nativeUI')!=='1')return;
+ if(!e.target.closest('#speak')||e.target===legacyWordSpeaker)return;
  e.stopPropagation();
  legacyWordSpeaker.click();
 });
