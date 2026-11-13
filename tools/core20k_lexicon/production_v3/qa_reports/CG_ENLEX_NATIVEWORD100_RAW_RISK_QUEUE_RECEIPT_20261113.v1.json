@@ -1,0 +1,60 @@
+{
+  "schema": "cg-enlex-nativeword100-source-risk-queue-receipt-v1",
+  "date": "2026-11-13",
+  "source": {
+    "ci_run": 43368425601,
+    "artifact_id": 14011925246,
+    "zip_sha256": "59b4dd3ee4a34bc7b7787b13976270a2aa64e1517d31ace65e28cf9ea011ff98",
+    "queue": "qa-queues/native_word.jsonl",
+    "candidate_file": "ipa-candidates.jsonl"
+  },
+  "verified_scope": {
+    "native_word_ku": 645,
+    "priority_ku": 100,
+    "raw_sound_candidate_rows": 2698,
+    "full_100ku_json_sha256": "5e82268a4a7727571a15d712310b227cf376b61ed39d7bbf21d51bc624f0f066"
+  },
+  "risk_heuristic": "POS multiplicity, untagged/other region, multi-region, mixed phonemic/phonetic notation, distinct IPA variants and high candidate count; deterministic risk queue, not formal clinical/linguistic QA.",
+  "examples": [
+    {
+      "expression": "pan",
+      "source_sound_count": 73,
+      "editorial_gate": "Multiple POS and 73 raw pronunciation entries; choose cooking noun Sense and appropriate source region before IPA display."
+    },
+    {
+      "expression": "fold",
+      "source_sound_count": 65,
+      "editorial_gate": "Multiple POS; target action Sense required before candidate selection."
+    },
+    {
+      "expression": "bare",
+      "source_sound_count": 50,
+      "editorial_gate": "Multiple POS and regional variants; do not merge lexical POS."
+    },
+    {
+      "expression": "blanket",
+      "source_sound_count": 48,
+      "editorial_gate": "Repeated KU with same source word; retain distinct KU identities."
+    },
+    {
+      "expression": "schedule",
+      "source_sound_count": 42,
+      "editorial_gate": "Regional and pronunciation variants must be preserved."
+    }
+  ],
+  "next": "Independent CG-QA sample source-sound evidence, verify each target KU Sense/POS, and decide phonemic vs phonetic display; do not infer a universal IPA from any untagged or mixed-notation candidate.",
+  "status": {
+    "source_evidence_generated": true,
+    "author_ipa_editorial_pass": 0,
+    "independent_qa_pass": 0,
+    "muse_pass": 0,
+    "master_pass": 0,
+    "release_allowed": false
+  },
+  "immutability": [
+    "Frozen Core20K 20,000 headwords 27,471 Senses",
+    "Master",
+    "Scene500",
+    "Runtime/SRS"
+  ]
+}
