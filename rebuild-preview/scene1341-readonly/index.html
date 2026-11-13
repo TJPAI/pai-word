@@ -32,6 +32,8 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 .learning-screen .word-line{width:100%;min-width:0;justify-content:center}
 .learning-screen .word{white-space:nowrap!important;overflow-wrap:normal!important;word-break:normal!important;flex:none;max-width:none;transform-origin:center center;text-align:center}
 #learning.demo-learning{height:100dvh;min-height:0;overflow:hidden;display:flex;flex-direction:column;background:#fff}
+/* CSS display:flex overrides the UA [hidden] rule unless hidden is explicitly honored. */
+#learning.demo-learning[hidden],#home.demo-home[hidden]{display:none!important}
 #learning .study-top{flex:0 0 auto;min-width:0}
 #learning .study-scene{min-width:0}
 #learning .study-body{position:relative}
