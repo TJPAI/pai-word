@@ -176,7 +176,7 @@ jobs:
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             scene1341-four-arm-open-factorial.json \
             > scene1341-ticket-refund-contrastive-ab.json
-          node -e "const x=require('./scene1341-ticket-refund-contrastive-ab.json');if(x.queries!==5||x.searches!==10||x.independentHumanGold!==0||x.release_allowed||!x.defaultBehaviorUnchanged||x.protectedBlind24Accessed)process.exit(1);"
+          node -e "const x=require('./scene1341-ticket-refund-contrastive-ab.json');if(x.queries!==11||x.searches!==22||x.independentHumanGold!==0||x.release_allowed||!x.defaultBehaviorUnchanged||x.protectedBlind24Accessed)process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
