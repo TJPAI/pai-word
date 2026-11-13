@@ -143,4 +143,41 @@ for(const [grade,ms,count] of [['again',6000,3],['hard',4000,2],['good',2000,1]]
 assert.equal(grades.length,3);
 assert.equal(advances.length,3);
 
+
+const questionAdapter=fs.readFileSync('rebuild-preview/scene1341-readonly/scene500-native-question-hero-exact.js','utf8');
+const nativeAutoStart=native.indexOf('  const autoSwitch=`<label class="auto-word-toggle"',110000);
+const nativeAutoEnd=native.indexOf('\n  const label=',nativeAutoStart);
+const nativeHeroStart=native.indexOf('<div class="word-hero${hidden}">',nativeAutoEnd);
+const nativeHeroEnd=native.indexOf('<div class="study-body">',nativeHeroStart);
+assert(nativeAutoStart>0&&nativeAutoEnd>nativeAutoStart&&nativeHeroEnd>nativeHeroStart);
+const exactAuto=native.slice(nativeAutoStart,nativeAutoEnd);
+const exactHero=native.slice(nativeHeroStart,nativeHeroEnd);
+assert(questionAdapter.includes(exactAuto),'question auto-switch template must be byte-exact native Scene500');
+assert(questionAdapter.includes(exactHero),'question hero template must be byte-exact native Scene500');
+assert.equal(questionAdapter.split(exactHero).length,2);
+assert(page.includes('<script src="./scene500-native-question-hero-exact.js"></script>'));
+assert(page.includes("get('nativeQuestion')==='1'"),'new question rendering is opt-in only');
+assert(page.includes("auto.removeAttribute('onchange')"),'native onchange must never touch production settings');
+assert(page.includes("legacyWordSpeaker.click()"),'native word speaker must call isolated existing handler');
+assert(page.includes("legacyAutoInput.dispatchEvent(new Event('change'))"),
+ 'native auto toggle must call isolated existing handler');
+const questionSandbox={window:{}};
+vm.runInNewContext(questionAdapter,questionSandbox,{timeout:1000});
+const renderQuestion=questionSandbox.window.PAI_SCENE1341_NATIVE_QUESTION.render;
+const questionUnit={expression:'wake up',hideWord:false,revealed:false,autoBrowseEnabled:true,
+ readOnly:true,canWriteSrs:false,productionReleaseAllowed:false};
+const questionHTML=renderQuestion(questionUnit);
+assert(questionHTML.includes('wake up'));
+assert(questionHTML.includes('class="ipa"'));
+assert(questionHTML.includes('class="recall-controls-row"'));
+assert(questionHTML.includes('type="checkbox" checked'));
+assert(questionHTML.includes('data-word-audio'));
+assert(renderQuestion({...questionUnit,hideWord:true}).includes('listen-only'));
+assert(renderQuestion({...questionUnit,revealed:true}).includes('class="word-hero"'));
+assert(renderQuestion({...questionUnit,expression:'<img src=x onerror=1>'}).includes('&lt;img'));
+assert(!renderQuestion({...questionUnit,expression:'<img src=x onerror=1>'}).includes('<img'));
+for(const bad of [{...questionUnit,readOnly:false},{...questionUnit,canWriteSrs:true},
+ {...questionUnit,productionReleaseAllowed:true}])
+ assert.throws(()=>renderQuestion(bad),/NONQUARANTINED/);
+
 console.log('SC1341_EXACT_NATIVE_ANSWER_SOURCE_AND_BROWSER_ISOLATION_PASS');
