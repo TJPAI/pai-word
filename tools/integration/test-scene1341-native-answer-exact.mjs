@@ -129,10 +129,10 @@ const ctrl=context.window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseControl
 });
 ctrl.start('SC1341-KU-00001');
 for(const [grade,ms,count] of [['again',6000,3],['hard',4000,2],['good',2000,1]]){
+ const repeatedBefore=speaks.length;
  ctrl.choose(grade);
  const entries=[...clock.entries()];
  assert(entries.some(([id,x])=>x.ms===ms),'native rating show duration not scheduled: '+grade);
- const repeatedBefore=speaks.length;
  for(let guard=0;guard<10&&clock.size;guard++){
   const [id,x]=clock.entries().next().value;clock.delete(id);x.fn();
  }
