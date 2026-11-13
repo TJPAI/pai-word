@@ -1,0 +1,91 @@
+{
+  "schema": "cg-enlex-native27-raw-source-evidence-extraction-handoff-v1",
+  "date": "2026-11-13",
+  "git_source": {
+    "ci_url": "https://github.com/TJPAI/pai-word/actions/runs/43355324052",
+    "artifact_id": 14005418416,
+    "source_zip_sha256": "a0aafd965f815fe66c4348c4a5a9f7012b842deee92b34e5d3745b00f4d41b8a",
+    "source_candidate_jsonl_sha256": "9a389f89456aacd1f636c5d9bbfce383bd7331cfc29205fa4dab92215257d615"
+  },
+  "extracted_immutable_report": {
+    "file_name": "CG_ENLEX_NATIVE27_EXACT_IPA_SOURCE_20261113.v1.json",
+    "sha256": "4e6ed00bcf157e59f61b6c7fef935c6eaa462ee010153391f9c2455a705891a5",
+    "byte_size": 65086,
+    "location": "ChatGPT conversation attachment, not yet present as full bytes in GitHub. Retrieve directly from original GitHub Actions artifact ZIP to reproduce; never cite this summary as substitute for original 57 candidate rows."
+  },
+  "scope": {
+    "unique_kus": 27,
+    "unique_phrases": 24,
+    "raw_sound_candidates": 57,
+    "phonemic_slash_candidate_rows": 56,
+    "phonetic_bracket_candidate_rows": 1,
+    "multiple_region_ku": 9,
+    "multiple_phonemic_form_ku": 11,
+    "untagged_region_ku": 11,
+    "optional_segment_ku": 4,
+    "multiple_pos_ku": 1
+  },
+  "provenance_validation": [
+    "Read complete original ZIP artifact via GitHub connection",
+    "Counted all 27 native_phrase queue rows, and filtered corresponding candidate source rows from ipa-candidates.jsonl",
+    "For all 27 KU, validated candidate_count matches exact extracted raw IPA rows",
+    "For all 27 KU, validated candidate IPA set and source_line refs match queue",
+    "Validated exact expression equals source entry_word case-insensitively",
+    "Preserved original candidate-level source_line, sound_index, source_tags, region, POS, ipa_us, ipa_uk, ipa_generic and distinct original transcription notations"
+  ],
+  "editorial_attention": [
+    {
+      "ku": "SC1341-KU-00001",
+      "expression": "wake up",
+      "ipa_examples": [
+        "/ˌweɪk ˈʌp/",
+        "[ˌweɪ̯ˈkʌp]"
+      ],
+      "decision": "Phonemic versus phonetic; no false variant count"
+    },
+    {
+      "ku": "SC1341-KU-01241",
+      "expression": "cutting board",
+      "ipa_examples": [
+        "/ˈkʰʌɾɪŋ bɔɹd/"
+      ],
+      "decision": "General-American only and phonetic-detail symbols in slash notation; review transcription level"
+    },
+    {
+      "ku": "SC1341-KU-00899",
+      "expression": "all-purpose cleaner",
+      "ipa_examples": [
+        "/ˌɔl.pɝpəsˈklinɚ/"
+      ],
+      "decision": "US-only evidence; no invented UK"
+    },
+    {
+      "ku": "SC1341-KU-01897",
+      "expression": "cup of tea",
+      "ipa_examples": [
+        "/ˈkʌp əv ˈtiː/",
+        "/ˌkʌp ə ˈtiː/"
+      ],
+      "decision": "Keep informal weak form as separately source-tagged"
+    },
+    {
+      "ku": "SC1341-KU-00532",
+      "expression": "inside out",
+      "ipa_examples": [
+        "/ˌɪnsaɪdˈaʊt/"
+      ],
+      "decision": "Two original rows share IPA but differ POS; do not conflate source entries"
+    }
+  ],
+  "next_required": "CG-QA and MU-QA examine all 57 original sound records for phonemic vs phonetic, region, POS and semantic suitability; CG-ENTEACH map all 27 original KU ID contexts. No release until independent verification.",
+  "formal_certification": {
+    "cg_qa_pass": 0,
+    "muse_pass": 0,
+    "master_pass": 0,
+    "release_allowed": false
+  },
+  "frozen_core20k_unchanged": true,
+  "scene500_unchanged": true,
+  "master_unchanged": true,
+  "runtime_srs_unchanged": true
+}
