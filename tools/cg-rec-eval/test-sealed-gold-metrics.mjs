@@ -45,5 +45,18 @@ try{
  output.overall.upstream.unanswerableEmpty!==0||output.overall.upstream.unanswerableReturned!==1||
  output.overall.upstream.unanswerableReturnRate!==1)
  throw Error('SYNTHETIC_UNANSWERABLE_METRICS_INVALID');
+ const paired=output.paired.overall;
+ if(paired.n!==24||paired.eligible!==23||paired.unanswerable!==1||
+ paired.top1.gains!==23||paired.top1.regressions!==0||paired.top1.ties!==0||
+ paired.recall5.gains!==0||paired.recall5.regressions!==0||paired.recall5.ties!==23||
+ !exact(paired.top1.meanDelta,1)||!exact(paired.mrr5.meanDelta,.5)||
+ !exact(paired.ndcg5.meanDelta,1-1/Math.log2(3)))
+ throw Error('PAIRED_DELTA_CALIBRATION_FAILED');
+ for(const group of ['zh','en','mixed']){
+  const groupPaired=output.paired.byGroup[group];
+  const n=group==='mixed'?7:8;
+  if(groupPaired.eligible!==n||groupPaired.top1.gains!==n||groupPaired.recall5.ties!==n)
+   throw Error('GROUP_PAIRED_DELTA_CALIBRATION_FAILED '+group);
+ }
  console.log(JSON.stringify({status:'SYNTHETIC_METRIC_CALIBRATION_PASS',syntheticOnly:true,realGoldCreated:false,checks:checks.length,realCertifiedGold:0}));
 }finally{fs.rmSync(folder,{recursive:true,force:true});}
