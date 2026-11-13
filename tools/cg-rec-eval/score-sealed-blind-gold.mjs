@@ -86,9 +86,18 @@ if(data.length!==24||Object.keys(expectedGroup).some(g=>data.filter(x=>x.group==
 const aggregate=(rows,engine)=>{
  const eligible=rows.filter(x=>!x.none_relevant);
  const metric=k=>eligible.length?eligible.reduce((s,x)=>s+x.metrics[engine][k],0)/eligible.length:null;
- return {n:rows.length,eligible:eligible.length,unanswerable:rows.length-eligible.length,
+ const unanswerable=rows.filter(x=>x.none_relevant);
+ const emptyUnanswerable=unanswerable.filter(x=>x.metrics[engine].empty).length;
+ const returnedUnanswerable=unanswerable.length-emptyUnanswerable;
+ return {n:rows.length,eligible:eligible.length,unanswerable:unanswerable.length,
  top1:metric('top1'),recall5:metric('recall5'),mrr5:metric('mrr5'),ndcg5:metric('ndcg5'),
- empty:rows.filter(x=>x.metrics[engine].empty).length};
+ empty:rows.filter(x=>x.metrics[engine].empty).length,
+ // Report non-abstention separately: relevance accuracy excludes no-answer queries by design.
+ // Returning any result for a no-answer query is NOT a false-positive label without
+ // an explicit rejection/abstention policy; this metric is coverage, not semantic accuracy.
+ unanswerableReturned:returnedUnanswerable,
+ unanswerableEmpty:emptyUnanswerable,
+ unanswerableReturnRate:unanswerable.length?returnedUnanswerable/unanswerable.length:null};
 };
 const result={schema:'cg-rec-eval-24-sealed-gold-score-v1',status:'SEALED_ADJUDICATED_GOLD_ONLY',
  sourcePredictionCommit:p.upstreamCommit,sourceManifest:p.manifestSha,
