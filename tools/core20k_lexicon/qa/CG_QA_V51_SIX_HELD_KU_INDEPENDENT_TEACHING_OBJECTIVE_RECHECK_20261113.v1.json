@@ -1,0 +1,173 @@
+{
+  "schema": "cg-qa-v51-six-held-ku-independent-teaching-objective-recheck-v1",
+  "date": "2026-11-13",
+  "source_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_SIX_IDENTITY_HOLDS_STAGING_PEER_SOURCECHECK_20261113.v1.json",
+  "source_git_blob": "7263682fe392a287d9be7e541f52ec1c71baa515",
+  "scope": "Six held KU source-pinned author/peer staging evidence, NOT original 2038 complete author pack or original Master Sense-scene context. Independent English naturalness and distinction audit without formal acceptance.",
+  "counts": {
+    "held_cases": 6,
+    "original_held_present_in_provisional_1778": 0,
+    "proposed_rephrase": 2,
+    "formal_pass": 0,
+    "muse_pass": 0,
+    "release_allowed": 0
+  },
+  "records": [
+    {
+      "held_ku_id": "SC1341-KU-01452",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01452",
+      "held_expression": "prep the ingredients",
+      "peer_ku_ids": [
+        "SC1341-KU-01450"
+      ],
+      "peer_staging_observed": [
+        {
+          "ku_id": "SC1341-KU-01450",
+          "found_in_staging": false,
+          "expression": null
+        }
+      ],
+      "author_candidate": null,
+      "independent_qa_outcome": "HOLD_ORIGINAL_OBJECTIVE_NEEDED",
+      "independent_language_reason": "'Prep the ingredients' is idiomatic culinary English; duplication with KU01450 cannot be proved without the other KU original expression and source Sense. No automatic rejection on phrase quality.",
+      "required_evidence": "Original 2038 records for both KU01452 and KU01450, examples and Sense-scene goal.",
+      "original_2038_source_verified": false,
+      "full_scene_sentence_verified": false,
+      "formal_qa_pass": false,
+      "muse_pass": false,
+      "master_authorization": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02017",
+      "held_expression": "turn off notifications",
+      "peer_ku_ids": [
+        "SC1341-KU-01956"
+      ],
+      "peer_staging_observed": [
+        {
+          "ku_id": "SC1341-KU-01956",
+          "found_in_staging": true,
+          "expression": "switch off notifications"
+        }
+      ],
+      "author_candidate": null,
+      "independent_qa_outcome": "CONDITIONAL_TEACHING_OBJECTIVE_OVERLAP",
+      "independent_language_reason": "'Turn off notifications' and staged 'switch off notifications' are functional paraphrases in settings context. They are not literally identical lexical entries; separate KU identities remain valid until Master dedup policy resolves granularity.",
+      "required_evidence": "Master target-skill identity policy, original full sentence and how phrase variants are represented.",
+      "original_2038_source_verified": false,
+      "full_scene_sentence_verified": false,
+      "formal_qa_pass": false,
+      "muse_pass": false,
+      "master_authorization": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01749",
+      "held_expression": "empty the filter",
+      "peer_ku_ids": [
+        "SC1341-KU-01825"
+      ],
+      "peer_staging_observed": [
+        {
+          "ku_id": "SC1341-KU-01825",
+          "found_in_staging": true,
+          "expression": "clean the dishwasher filter"
+        }
+      ],
+      "author_candidate": null,
+      "independent_qa_outcome": "HOLD_ACTION_OBJECT_AMBIGUITY",
+      "independent_language_reason": "'Empty the filter' may mean remove retained contents or empty a removable trap; 'clean the dishwasher filter' implies cleaning, a distinct action. No synonym/duplicate conclusion is licensed.",
+      "required_evidence": "Original appliance type, filter/trap referent and complete example for KU01749.",
+      "original_2038_source_verified": false,
+      "full_scene_sentence_verified": false,
+      "formal_qa_pass": false,
+      "muse_pass": false,
+      "master_authorization": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01637",
+      "held_expression": "warm up a late dinner",
+      "peer_ku_ids": [
+        "SC1341-KU-01564",
+        "SC1341-KU-01565"
+      ],
+      "peer_staging_observed": [
+        {
+          "ku_id": "SC1341-KU-01564",
+          "found_in_staging": false,
+          "expression": null
+        },
+        {
+          "ku_id": "SC1341-KU-01565",
+          "found_in_staging": true,
+          "expression": "reheat dinner"
+        }
+      ],
+      "author_candidate": null,
+      "independent_qa_outcome": "CONDITIONAL_NEEDS_CONTEXT_OR_CANONICALIZATION",
+      "independent_language_reason": "'Warm up a late dinner' is grammatically possible but pragmatically marked: late modifies dinner time, not reheating action. 'Reheat dinner' teaches a clearer procedure, yet warm up may mean initial heating rather than reheating in some scenes.",
+      "required_evidence": "Original distinction among KU01637, KU01564 and KU01565 and exact context of 'late dinner'.",
+      "original_2038_source_verified": false,
+      "full_scene_sentence_verified": false,
+      "formal_qa_pass": false,
+      "muse_pass": false,
+      "master_authorization": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01736",
+      "held_expression": "squirt on dish soap",
+      "peer_ku_ids": [],
+      "peer_staging_observed": [],
+      "author_candidate": {
+        "expression": "squirt dish soap onto a sponge",
+        "meaning_zh": "往海绵上挤洗洁精",
+        "example_en": "Squirt a little dish soap onto the sponge before washing the pan.",
+        "example_zh": "洗锅前往海绵上挤一点洗洁精。"
+      },
+      "independent_qa_outcome": "LINGUISTIC_REVISION_CANDIDATE_NOT_CERTIFIED",
+      "independent_language_reason": "'Squirt on dish soap' is underspecified without an object/landing surface; 'squirt dish soap onto a sponge' is natural, clear and semantically precise for washing dishes. This is an author proposal, not a validated immutable-KU replacement.",
+      "required_evidence": "CG-MASTER approval of Sense-scene mapping, original example context and independent Muse review.",
+      "original_2038_source_verified": false,
+      "full_scene_sentence_verified": false,
+      "formal_qa_pass": false,
+      "muse_pass": false,
+      "master_authorization": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01213",
+      "held_expression": "spin failure",
+      "peer_ku_ids": [],
+      "peer_staging_observed": [],
+      "author_candidate": {
+        "expression": "spin failure",
+        "meaning_zh": "脱水功能故障",
+        "example_en": "The technician diagnosed a spin failure in the washing machine.",
+        "example_zh": "维修人员诊断洗衣机的脱水功能发生了故障。"
+      },
+      "independent_qa_outcome": "TECHNICAL_REGISTER_HOLD",
+      "independent_language_reason": "'Spin failure' is interpretable in washing-machine maintenance but as a standalone learner expression is context-dependent; idiomatic alternatives include 'the spin cycle isn't working' or 'a spin-cycle malfunction'. Preserve original until appliance technical terminology and goal verified.",
+      "required_evidence": "Original source Sense and intended repair/operator register; confirm whether teaching a noun label or user-facing utterance.",
+      "original_2038_source_verified": false,
+      "full_scene_sentence_verified": false,
+      "formal_qa_pass": false,
+      "muse_pass": false,
+      "master_authorization": false,
+      "release_allowed": false
+    }
+  ]
+}
