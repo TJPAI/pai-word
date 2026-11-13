@@ -136,7 +136,7 @@ jobs:
             17c6c758e1dfd27cfa2fe1669d3f1784bedb0668 \
             803d2fccfd2d1ec200723f7f38e73d57495a5dd0 \
             > scene1341-functional-token-ab.json
-          node -e "const r=require('./scene1341-functional-token-ab.json');if(r.caseCount!==32||r.queryEvaluations!==128||r.independentGoldCount!==0||r.release_allowed!==false||r.experiment!=='ONLY_OPT_IN')process.exit(1);"
+          node -e "const r=require('./scene1341-functional-token-ab.json');if(r.caseCount!==32||r.queryEvaluations!==128||r.distinctTop1ChangedQueryCount!==3||r.distinctQueryCount>128||r.independentGoldCount!==0||r.release_allowed!==false||r.experiment!=='ONLY_OPT_IN')process.exit(1);"
       - uses: actions/upload-artifact@v4
         if: always()
         with:
