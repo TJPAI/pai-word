@@ -171,4 +171,30 @@ for(const priorPhase of ['example','answer-paused']){
  }
 }
 
+
+const exampleStart=script.indexOf('function playCurrentExample(){');
+const exampleEnd=script.indexOf("\n$('example-speak').addEventListener",exampleStart);
+assert(exampleStart>0&&exampleEnd>exampleStart);
+const exampleCode=script.slice(exampleStart,exampleEnd);
+for(const pending of [true,false]){
+ const events=[];
+ const ctx={
+  $:()=>({hidden:false}),revealed:true,subset:()=>[{answer:{example_en:'Example sentence.'}}],
+  index:0,
+  phaseController:{
+   state:()=>({selected:pending?'good':null}),
+   beginExample:()=>{events.push('begin-example');return true},
+   exampleFinished:()=>{events.push('finish-example');return true}
+  },
+  window:{PAI_SCRATCH_FINISH_RATING:()=>events.push('scratch-finish')},
+  autoBrowse:{pause:()=>events.push('auto-pause'),resumeAfterSpeech:()=>events.push('auto-resume')},
+  playWord:(text,rate,done)=>{events.push('play-example');return true}
+ };
+ vm.runInNewContext(exampleCode+'\nthis.invokeExample=playCurrentExample;',ctx,{timeout:1000});
+ ctx.invokeExample();
+ assert.equal(events.filter(x=>x==='scratch-finish').length,pending?1:0);
+ assert(events.indexOf('begin-example')<events.indexOf('auto-pause'));
+ if(pending)assert(events.indexOf('scratch-finish')<events.indexOf('auto-pause'));
+}
+
 console.log('SC1341_NATIVE_UI_COMBINED_STABLE_HERO_AND_IPA_CACHE_PASS');

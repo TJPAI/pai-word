@@ -738,7 +738,12 @@ $('speak').addEventListener('click',e=>{
 });
 function playCurrentExample(){
  if($('learning').hidden||!revealed||!subset()[index])return;
+ // Starting example speech during a rated answer cancels the grade timer.
+ // Release the scratch rating overlay as well, otherwise it remains stuck
+ // after the phase controller discards that pending grade.
+ const hadPendingGrade=phaseController.state().selected!==null;
  if(!phaseController.beginExample())return;
+ if(hadPendingGrade)window.PAI_SCRATCH_FINISH_RATING?.();
  autoBrowse.pause();
  // Both the legacy and source-exact native Scene500 example buttons use
  // the same isolated audio phase and Safari watchdog. A stale card is
