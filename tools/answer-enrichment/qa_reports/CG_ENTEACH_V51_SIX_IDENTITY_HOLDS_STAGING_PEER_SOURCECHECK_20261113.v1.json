@@ -1,0 +1,183 @@
+{
+  "schema": "cg-enteach-v51-six-identity-holds-source-pinned-staging-peer-check-v1",
+  "date": "2026-11-13",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source": {
+    "prior_author_identity_matrix_blob": "4361979ab67307d59a15eadfc49e0c187d89ed36",
+    "qa_staging_shard_blobs": [
+      "556d9e88ec8d3afcc8c7d55990756f5d72e85fb0",
+      "ae69a4e5e808ffdab0dd493e6bcf6fb68a3c966e",
+      "910ef4e560425bf3013d581f2144ddc2f696b7d8",
+      "4cf5b756983091d207fb65492aae2e4f316b65af",
+      "758abc474c7fbcd19b7939233f2b6885dc9daf32",
+      "fdfdf07a90c81e64dc3b38124d2349cb7a506eca",
+      "873f5639e619426d743cdeacf289bb50128e3272"
+    ],
+    "scope_1778": "CG-QA V2 provisional staging only, not all original 2038 or authoritative Drive Master",
+    "previous_head": "060f7023eeea4699c67524d20c95e54a49aa0bca"
+  },
+  "counts": {
+    "held_six": 6,
+    "explicit_competing_ku_references": 5,
+    "peers_found_in_1778_staging": 3,
+    "peers_missing_from_1778_staging": 2,
+    "original_six_present_in_1778_staging": 0,
+    "master_authorized": 0,
+    "new_qa_approved": 0,
+    "muse_approved": 0,
+    "release_allowed": 0
+  },
+  "cases": [
+    {
+      "held_ku_id": "SC1341-KU-01452",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01452",
+      "source_rank": 217,
+      "held_expression": "prep the ingredients",
+      "source_author_editorial_verdict": "DUPLICATE_TEACHING_OBJECTIVE_PROBABLE",
+      "peer_evidence": [
+        {
+          "ku_id": "SC1341-KU-01450",
+          "found_in_staging": false,
+          "expression": null,
+          "meaning_zh": null,
+          "qa_staging_verdict": null,
+          "source_sense_id": null,
+          "source_rank": null
+        }
+      ],
+      "author_candidate": null,
+      "editorial_resolution": "P0 blocked prep variants: KU01450 itself not in 1778 staging; cannot promote either, check both original source packs and Master before deciding.",
+      "qa_new_verdict": "NOT_INDEPENDENTLY_REVIEWED",
+      "master_authorization": "PENDING",
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02017",
+      "source_rank": 178,
+      "held_expression": "turn off notifications",
+      "source_author_editorial_verdict": "DUPLICATE_TEACHING_OBJECTIVE_PROBABLE",
+      "peer_evidence": [
+        {
+          "ku_id": "SC1341-KU-01956",
+          "found_in_staging": true,
+          "expression": "switch off notifications",
+          "meaning_zh": "关掉通知",
+          "qa_staging_verdict": "PASS",
+          "source_sense_id": "SC-SENSE-01956",
+          "source_rank": 117
+        }
+      ],
+      "author_candidate": null,
+      "editorial_resolution": "The competing existing KU01956 is provisionally staged as 'switch off notifications'; same function is plausible but wording differs. Master must select canonical teaching objectives, not automatically merge IDs.",
+      "qa_new_verdict": "NOT_INDEPENDENTLY_REVIEWED",
+      "master_authorization": "PENDING",
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01749",
+      "source_rank": 109,
+      "held_expression": "empty the filter",
+      "source_author_editorial_verdict": "OBJECT_AND_ACTION_IDENTITY_HOLD",
+      "peer_evidence": [
+        {
+          "ku_id": "SC1341-KU-01825",
+          "found_in_staging": true,
+          "expression": "clean the dishwasher filter",
+          "meaning_zh": "清理洗碗机滤网",
+          "qa_staging_verdict": "PASS",
+          "source_sense_id": "SC-SENSE-01825",
+          "source_rank": 185
+        }
+      ],
+      "author_candidate": null,
+      "editorial_resolution": "Staged KU01825 teaches cleaning dishwasher filter; emptying a filter is not necessarily the same action. Check physical filter/trap and intended object; do NOT rewrite into KU01825.",
+      "qa_new_verdict": "NOT_INDEPENDENTLY_REVIEWED",
+      "master_authorization": "PENDING",
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01637",
+      "source_rank": 185,
+      "held_expression": "warm up a late dinner",
+      "source_author_editorial_verdict": "AWKWARD_TARGET_AND_DUPLICATE_FUNCTION_PROBABLE",
+      "peer_evidence": [
+        {
+          "ku_id": "SC1341-KU-01564",
+          "found_in_staging": false,
+          "expression": null,
+          "meaning_zh": null,
+          "qa_staging_verdict": null,
+          "source_sense_id": null,
+          "source_rank": null
+        },
+        {
+          "ku_id": "SC1341-KU-01565",
+          "found_in_staging": true,
+          "expression": "reheat dinner",
+          "meaning_zh": "重新加热晚餐",
+          "qa_staging_verdict": "PASS",
+          "source_sense_id": "SC-SENSE-01565",
+          "source_rank": 113
+        }
+      ],
+      "author_candidate": null,
+      "editorial_resolution": "Staged KU01565 is 'reheat dinner'; KU01564 not in 1778 staging. 'late dinner' does not independently justify separate reheating Sense, but Master must resolve source intent.",
+      "qa_new_verdict": "NOT_INDEPENDENTLY_REVIEWED",
+      "master_authorization": "PENDING",
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01736",
+      "source_rank": 96,
+      "held_expression": "squirt on dish soap",
+      "source_author_editorial_verdict": "NATURALNESS_REPAIR_REQUIRES_CANONICAL_APPROVAL",
+      "peer_evidence": [],
+      "author_candidate": {
+        "expression": "squirt dish soap onto a sponge",
+        "meaning_zh": "往海绵上挤洗洁精",
+        "example_en": "Squirt a little dish soap onto the sponge before washing the pan.",
+        "example_zh": "洗锅前往海绵上挤一点洗洁精。"
+      },
+      "editorial_resolution": "No specific competing stable KU was cited in original author matrix. Candidate 'squirt dish soap onto a sponge' is linguistically targeted but changing frozen expression requires Master; check same-scene soap-action goals.",
+      "qa_new_verdict": "NOT_INDEPENDENTLY_REVIEWED",
+      "master_authorization": "PENDING",
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01213",
+      "source_rank": 168,
+      "held_expression": "spin failure",
+      "source_author_editorial_verdict": "TECHNICAL_NOMINAL_SENSE_HOLD",
+      "peer_evidence": [],
+      "author_candidate": {
+        "expression": "spin failure",
+        "meaning_zh": "脱水功能故障",
+        "example_en": "The technician diagnosed a spin failure in the washing machine.",
+        "example_zh": "维修人员诊断洗衣机的脱水功能发生了故障。"
+      },
+      "editorial_resolution": "No specific competing stable KU was cited in original author matrix. Technical noun spin failure differs from spin cycle and spin speed; Master must confirm intended register and canonical Sense.",
+      "qa_new_verdict": "NOT_INDEPENDENTLY_REVIEWED",
+      "master_authorization": "PENDING",
+      "muse_verdict": "PENDING",
+      "release_allowed": false
+    }
+  ],
+  "policy": "Source-peer matches are evidence of potential teaching objective overlap, NOT final duplication verdict; no stable KU/Sense mapping may be changed without CG-MASTER. Staging CG-QA PASS does not mean Muse or Master certification. No original KU, frozen data, SRS, runtime or Pages changed.",
+  "release_allowed": false
+}
