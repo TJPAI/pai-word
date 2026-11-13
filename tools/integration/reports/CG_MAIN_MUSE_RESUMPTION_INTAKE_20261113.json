@@ -1,6 +1,6 @@
 {
   "schema": "cg-main-muse-resumption-intake-v1",
-  "as_of": "2026-11-13T07:50:00Z",
+  "as_of": "2026-11-13T08:45:00Z",
   "authorization": "Muse quota restored by project owner",
   "github_notifications": [
     "https://github.com/TJPAI/pai-word/issues/1#issuecomment-6846716547",
@@ -133,7 +133,40 @@
         "v57": {
           "total": 9,
           "agree_hold": 5,
-          "disagree": 4
+          "disagree": 4,
+          "cg_qa_adjudication": {
+            "source": "CG-QA Issue #1 comment 6848254018",
+            "commit": "c01aec84e360ba18190d075a2f4044532a672fe6",
+            "source_blob": "580f0116caa03164c511a99f5e63856d3b22e13f",
+            "disagreement_count": 4,
+            "conditional": 3,
+            "hold": 1,
+            "formal_pass": 0,
+            "original_sentences_available": 0,
+            "rows": [
+              {
+                "row": 99922,
+                "term": "irregular",
+                "decision": "CONDITIONAL_LEXICAL_SUPPORT"
+              },
+              {
+                "row": 104875,
+                "term": "massive",
+                "decision": "CONDITIONAL_MASS_SENSE"
+              },
+              {
+                "row": 104671,
+                "term": "accelerate",
+                "decision": "HOLD_VALENCY_SOURCE_MISMATCH"
+              },
+              {
+                "row": 106457,
+                "term": "print",
+                "decision": "CONDITIONAL_IMPRINT_NOUN"
+              }
+            ],
+            "release_allowed": false
+          }
         },
         "muse_pass_total": 53,
         "muse_conditional_total": 74,
