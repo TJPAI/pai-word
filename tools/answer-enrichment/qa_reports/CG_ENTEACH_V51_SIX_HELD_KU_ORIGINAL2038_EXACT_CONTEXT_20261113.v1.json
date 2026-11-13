@@ -1,0 +1,348 @@
+{
+  "schema": "cg-enteach-v51-six-held-ku-original-2038-exact-source-context-audit-v1",
+  "date": "2026-11-13",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source": {
+    "original_v51_manifest_path": "tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-2038.json",
+    "original_v51_manifest_blob": "b0e1a641217afe22574ab5ec56fb7d6167a94118",
+    "original_pack_blobs": [
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+        "blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+        "blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+        "blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+        "blob": "e5938bbcd926e46578e95da8f49806cd43a141c1"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+        "blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-143-192.v2.json",
+        "blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-094-143.v2.json",
+        "blob": "6ce1b5229f1581c04af717461ed45825e120de0d"
+      },
+      {
+        "path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+        "blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea"
+      }
+    ],
+    "independent_qa_six_blob": "8d8c6da36f98ee7dda182284302c527c7b1590bc",
+    "source_scope": "Original author V51 2038 KU packs; not authoritative Google Drive Master authorization",
+    "base_head": "e0810c4c42f99fdb6301a6c7fb71ad12badc0c18"
+  },
+  "counts": {
+    "held_kus": 6,
+    "original_held_records_verified": 6,
+    "original_peer_records_verified": 5,
+    "all_original_scenes_match": true,
+    "formal_master_decisions": 0,
+    "new_formal_qa_pass": 0,
+    "muse_approved": 0,
+    "release_allowed": 0
+  },
+  "cases": [
+    {
+      "held_ku_id": "SC1341-KU-01452",
+      "scene_id": "SC50-0007",
+      "source_sense_id": "SC-SENSE-01452",
+      "source_rank": 217,
+      "original_expression": "prep the ingredients",
+      "original_sense_zh": "准备食材",
+      "source_tier": "ADDITIONAL",
+      "original_answer": {
+        "meaning_zh": "准备食材",
+        "example_en": "Prep the ingredients while the oven heats up.",
+        "example_zh": "烤箱升温时先把食材准备好。",
+        "collocations": [
+          "prep the ingredients",
+          "prep ingredients for dinner"
+        ],
+        "usage_note": "prep the ingredients指备料，源项为编辑增补待核验。"
+      },
+      "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "competing_original_kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01450",
+          "scene_id": "SC50-0007",
+          "source_sense_id": "SC-SENSE-01450",
+          "source_rank": 215,
+          "expression": "prep ingredients",
+          "sense_zh": "预处理食材",
+          "source_tier": "SUPPORTING",
+          "example_en": "Prep ingredients before you heat the pan.",
+          "example_zh": "加热锅具前先预处理食材。",
+          "usage_note": "prep是prepare的口语缩写，源项待审核。",
+          "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+          "original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce"
+        }
+      ],
+      "independent_qa_outcome": "HOLD_ORIGINAL_OBJECTIVE_NEEDED",
+      "independent_qa_reason": "'Prep the ingredients' is idiomatic culinary English; duplication with KU01450 cannot be proved without the other KU original expression and source Sense. No automatic rejection on phrase quality.",
+      "author_candidate": null,
+      "author_editorial": {
+        "status": "HIGH_OBJECTIVE_OVERLAP_MASTER_HOLD",
+        "reason": "Original KU01450 'prep ingredients' and KU01452 'prep the ingredients' use the same prep action; definite article selects contextually given ingredients but does not in this scene demonstrate a separate learning Sense. Original sentences differ only in cooking preparation timing; preserve both stable identities until Master chooses pedagogical granularity.",
+        "master_request": "Compare original SC-SENSE-01450 and SC-SENSE-01452, approve one primary learning objective or document a nonduplicative distinction; retain secondary as variant if authorized."
+      },
+      "master_decision": "PENDING",
+      "muse_independent_review": "PENDING",
+      "formal_qa_pass": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-02017",
+      "scene_id": "SC50-0010",
+      "source_sense_id": "SC-SENSE-02017",
+      "source_rank": 178,
+      "original_expression": "turn off notifications",
+      "original_sense_zh": "关掉消息通知",
+      "source_tier": "SUPPORTING",
+      "original_answer": {
+        "meaning_zh": "关掉消息通知",
+        "example_en": "Turn off notifications during your break.",
+        "example_zh": "休息时关掉消息通知。",
+        "collocations": [
+          "turn off notifications",
+          "turn off phone notifications"
+        ],
+        "usage_note": "turn off用于关闭通知功能。"
+      },
+      "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "original_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "competing_original_kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01956",
+          "scene_id": "SC50-0010",
+          "source_sense_id": "SC-SENSE-01956",
+          "source_rank": 117,
+          "expression": "switch off notifications",
+          "sense_zh": "关掉通知",
+          "source_tier": "SUPPORTING",
+          "example_en": "Switch off notifications while you're resting.",
+          "example_zh": "休息时把通知关掉吧。",
+          "usage_note": "switch off与turn off在这里都指关闭通知功能。",
+          "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-094-143.v2.json",
+          "original_pack_blob": "6ce1b5229f1581c04af717461ed45825e120de0d"
+        }
+      ],
+      "independent_qa_outcome": "CONDITIONAL_TEACHING_OBJECTIVE_OVERLAP",
+      "independent_qa_reason": "'Turn off notifications' and staged 'switch off notifications' are functional paraphrases in settings context. They are not literally identical lexical entries; separate KU identities remain valid until Master dedup policy resolves granularity.",
+      "author_candidate": null,
+      "author_editorial": {
+        "status": "HIGH_FUNCTIONAL_OVERLAP_MASTER_HOLD",
+        "reason": "Original KU01956 'switch off notifications' and KU02017 'turn off notifications' both teach disabling phone/app notifications during rest; the existing KU01956 usage note explicitly says switch off and turn off are interchangeable here.",
+        "master_request": "Choose one learning target or approve teaching both as separate expression variants, never merge stable IDs silently."
+      },
+      "master_decision": "PENDING",
+      "muse_independent_review": "PENDING",
+      "formal_qa_pass": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01749",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01749",
+      "source_rank": 109,
+      "original_expression": "empty the filter",
+      "original_sense_zh": "清空滤网",
+      "source_tier": "SUPPORTING",
+      "original_answer": {
+        "meaning_zh": "清空滤网",
+        "example_en": "Empty the filter according to the dishwasher manual.",
+        "example_zh": "按洗碗机说明清空滤网。",
+        "collocations": [
+          "empty the filter",
+          "empty the dishwasher filter"
+        ],
+        "usage_note": "filter指过滤食物残渣的部件。"
+      },
+      "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "original_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "competing_original_kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01825",
+          "scene_id": "SC50-0009",
+          "source_sense_id": "SC-SENSE-01825",
+          "source_rank": 185,
+          "expression": "clean the dishwasher filter",
+          "sense_zh": "清理洗碗机滤网",
+          "source_tier": "SUPPORTING",
+          "example_en": "Clean the dishwasher filter according to the manual.",
+          "example_zh": "按说明书清洁洗碗机滤网。",
+          "usage_note": "filter清洁频率应以机型说明为准。",
+          "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-143-192.v2.json",
+          "original_pack_blob": "d2cd8e9fd7342de86f06cb4191afc60604791d2f"
+        }
+      ],
+      "independent_qa_outcome": "HOLD_ACTION_OBJECT_AMBIGUITY",
+      "independent_qa_reason": "'Empty the filter' may mean remove retained contents or empty a removable trap; 'clean the dishwasher filter' implies cleaning, a distinct action. No synonym/duplicate conclusion is licensed.",
+      "author_candidate": null,
+      "author_editorial": {
+        "status": "ACTION_OBJECT_DISTINCTION_HOLD",
+        "reason": "Original KU01749 says 'Empty the filter according to the dishwasher manual' while KU01825 says 'Clean the dishwasher filter according to the manual'. The former emphasizes removing retained contents and may not be mechanically feasible for a given filter; cleaning is separate. Original context is now available, but the actual appliance mechanism and intended target need Master verification.",
+        "master_request": "Confirm actual physical filter/trap referent and whether emptying is technically valid; do not replace KU01749 with KU01825 without authority."
+      },
+      "master_decision": "PENDING",
+      "muse_independent_review": "PENDING",
+      "formal_qa_pass": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01637",
+      "scene_id": "SC50-0008",
+      "source_sense_id": "SC-SENSE-01637",
+      "source_rank": 185,
+      "original_expression": "warm up a late dinner",
+      "original_sense_zh": "给晚归的人热晚餐",
+      "source_tier": "SUPPORTING",
+      "original_answer": {
+        "meaning_zh": "给晚归的人热晚餐",
+        "example_en": "I'll warm up a late dinner for you when you get home.",
+        "example_zh": "你回家晚了，我会给你把晚餐热一下。",
+        "collocations": [
+          "warm up a late dinner",
+          "warm up dinner for someone"
+        ],
+        "usage_note": "warm up指加热，需确保易腐剩菜储存安全。"
+      },
+      "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "original_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "competing_original_kus": [
+        {
+          "scene_ku_id": "SC1341-KU-01564",
+          "scene_id": "SC50-0008",
+          "source_sense_id": "SC-SENSE-01564",
+          "source_rank": 112,
+          "expression": "warm up food",
+          "sense_zh": "把食物热一下",
+          "source_tier": "SUPPORTING",
+          "example_en": "Could you warm up food for the children?",
+          "example_zh": "能给孩子们把饭菜热一下吗？",
+          "usage_note": "warm up指加热至较温暖状态。",
+          "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+          "original_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4"
+        },
+        {
+          "scene_ku_id": "SC1341-KU-01565",
+          "scene_id": "SC50-0008",
+          "source_sense_id": "SC-SENSE-01565",
+          "source_rank": 113,
+          "expression": "reheat dinner",
+          "sense_zh": "重新加热晚餐",
+          "source_tier": "SUPPORTING",
+          "example_en": "We need to reheat dinner because everyone got home late.",
+          "example_zh": "大家回来晚了，我们得重新加热晚饭。",
+          "usage_note": "reheat指再次加热已经做好的食物。",
+          "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-081-130.v2.json",
+          "original_pack_blob": "53de81d13063e9ff29aeeb43e4f311275bdaaec4"
+        }
+      ],
+      "independent_qa_outcome": "CONDITIONAL_NEEDS_CONTEXT_OR_CANONICALIZATION",
+      "independent_qa_reason": "'Warm up a late dinner' is grammatically possible but pragmatically marked: late modifies dinner time, not reheating action. 'Reheat dinner' teaches a clearer procedure, yet warm up may mean initial heating rather than reheating in some scenes.",
+      "author_candidate": null,
+      "author_editorial": {
+        "status": "HIGH_OBJECTIVE_OVERLAP_LATE_MODIFIER_HOLD",
+        "reason": "Original KU01564 means heating food, KU01565 means reheating cooked dinner with late arrival explicitly in its example, and KU01637 additionally teaches warming up a late dinner for a late-returning person. KU01637's original Chinese meaning '给晚归的人热晚餐' adds a beneficiary not entailed solely by English 'a late dinner'; possible duplication with both 01564/01565. Original 'when you get home' supplies late-return context in the sentence but does not make it a separate lexical Sense.",
+        "master_request": "Determine whether warmth vs reheating and late-arrival beneficiary make an authorized distinct learning skill; otherwise hold secondary rather than silently reassign."
+      },
+      "master_decision": "PENDING",
+      "muse_independent_review": "PENDING",
+      "formal_qa_pass": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01736",
+      "scene_id": "SC50-0009",
+      "source_sense_id": "SC-SENSE-01736",
+      "source_rank": 96,
+      "original_expression": "squirt on dish soap",
+      "original_sense_zh": "挤一点洗洁精",
+      "source_tier": "SUPPORTING",
+      "original_answer": {
+        "meaning_zh": "挤一点洗洁精",
+        "example_en": "Squirt on dish soap and scrub the greasy pan.",
+        "example_zh": "挤一点洗洁精后刷洗油锅。",
+        "collocations": [
+          "squirt on dish soap",
+          "squirt dish soap onto a sponge"
+        ],
+        "usage_note": "squirt指从瓶中挤出少量液体。"
+      },
+      "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-093-142.v2.json",
+      "original_pack_blob": "cc2fd0dfca7a03dbc23e09e8f9bdff587b763f3a",
+      "competing_original_kus": [],
+      "independent_qa_outcome": "LINGUISTIC_REVISION_CANDIDATE_NOT_CERTIFIED",
+      "independent_qa_reason": "'Squirt on dish soap' is underspecified without an object/landing surface; 'squirt dish soap onto a sponge' is natural, clear and semantically precise for washing dishes. This is an author proposal, not a validated immutable-KU replacement.",
+      "author_candidate": {
+        "expression": "squirt dish soap onto a sponge",
+        "meaning_zh": "往海绵上挤洗洁精",
+        "example_en": "Squirt a little dish soap onto the sponge before washing the pan.",
+        "example_zh": "洗锅前往海绵上挤一点洗洁精。"
+      },
+      "author_editorial": {
+        "status": "NATURALNESS_REVISION_MASTER_HOLD",
+        "reason": "Original English example 'Squirt on dish soap and scrub the greasy pan' is intelligible but underspecifies placement; author candidate 'Squirt a little dish soap onto the sponge before washing the pan' is more precise, but source expression identity changes and must be authorized.",
+        "master_request": "Authorize whether the stable Sense should target applying dish soap to a surface, and approve canonical expression before answer-only patch integration."
+      },
+      "master_decision": "PENDING",
+      "muse_independent_review": "PENDING",
+      "formal_qa_pass": false,
+      "release_allowed": false
+    },
+    {
+      "held_ku_id": "SC1341-KU-01213",
+      "scene_id": "SC50-0006",
+      "source_sense_id": "SC-SENSE-01213",
+      "source_rank": 168,
+      "original_expression": "spin failure",
+      "original_sense_zh": "无法脱水的故障",
+      "source_tier": "SUPPORTING",
+      "original_answer": {
+        "meaning_zh": "无法脱水的故障",
+        "example_en": "The washer reported a spin failure at the end of the cycle.",
+        "example_zh": "洗涤结束时洗衣机提示脱水故障。",
+        "collocations": [
+          "spin failure",
+          "washer spin failure"
+        ],
+        "usage_note": "spin failure指设备无法正常甩干，具体原因需检查。"
+      },
+      "original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "original_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "competing_original_kus": [],
+      "independent_qa_outcome": "TECHNICAL_REGISTER_HOLD",
+      "independent_qa_reason": "'Spin failure' is interpretable in washing-machine maintenance but as a standalone learner expression is context-dependent; idiomatic alternatives include 'the spin cycle isn't working' or 'a spin-cycle malfunction'. Preserve original until appliance technical terminology and goal verified.",
+      "author_candidate": {
+        "expression": "spin failure",
+        "meaning_zh": "脱水功能故障",
+        "example_en": "The technician diagnosed a spin failure in the washing machine.",
+        "example_zh": "维修人员诊断洗衣机的脱水功能发生了故障。"
+      },
+      "author_editorial": {
+        "status": "TECHNICAL_NOUN_REGISTER_HOLD",
+        "reason": "Original author sentence 'The washer reported a spin failure at the end of the cycle' substantiates a machine-report label more than an everyday utterance. The target can be retained as maintenance-register technical noun if Master attests device fault taxonomy; do not conflate with 'spin cycle' or 'spin speed'.",
+        "master_request": "Verify original technical fault terminology and whether learner objective is machine alert noun or conversational phrase; preserve original identity until decision."
+      },
+      "master_decision": "PENDING",
+      "muse_independent_review": "PENDING",
+      "formal_qa_pass": false,
+      "release_allowed": false
+    }
+  ],
+  "nonmutation": "No frozen Master/Core20K/original V51 source pack/runtime/SRS/Scene500/Pages modifications. Original expressions and stable Sense/KU IDs preserved. This is an author-side interpretation paired with source exact teaching examples; CG-QA/Muse and Master must independently authorize changes.",
+  "release_allowed": false
+}
