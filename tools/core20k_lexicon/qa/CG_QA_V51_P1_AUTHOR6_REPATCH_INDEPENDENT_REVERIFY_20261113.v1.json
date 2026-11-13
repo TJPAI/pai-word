@@ -1,0 +1,94 @@
+{
+  "schema": "cg-qa-v51-p1-master70-author-repatch6-independent-reverification-v1",
+  "date": "2026-11-13",
+  "source_author_branch": "answer-enrichment-main-dev-20261026",
+  "source_author_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_V51_P1_MASTER70_QA_DIRECTED6_ANSWER_REPATCH_20261113.v1.json",
+  "source_author_git_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+  "source_qa_prior_blob": "fab34b536b6bf9e72a43e12fcb944073dc863283",
+  "scope": "Six revised author Answer-only proposals independently linguistically checked on newly changed text, not full Master canon/Sense certification.",
+  "counts": {
+    "reviewed": 6,
+    "unique": 6,
+    "lexical_support_master_hold": 4,
+    "language_support_identity_pos_hold": 2,
+    "master_approved": 0,
+    "muse_certified": 0,
+    "dual_ai_certified": 0
+  },
+  "rows": [
+    {
+      "scene_ku_id": "SC1341-KU-00635",
+      "expression": "put away sharp tools",
+      "cg_qa_independent_latest_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "新译保留put away收纳动作、sharp对应锋利或尖锐；例句和中文一致，搭配自然。",
+      "source_author_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_review_required": true,
+      "master_approval": "PENDING",
+      "muse_independent_review": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00876",
+      "expression": "hang out laundry",
+      "cg_qa_independent_latest_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "去除“洗好的”强制前提后译文与hang out the laundry晾晒动作相符，例句翻译同步；用法说明正确区分语境。",
+      "source_author_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_review_required": true,
+      "master_approval": "PENDING",
+      "muse_independent_review": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01248",
+      "expression": "roast chicken",
+      "cg_qa_independent_latest_verdict": "LANGUAGE_SUPPORT_POS_SENSE_HOLD",
+      "reason": "例句We plan to roast chicken确是动词roast+宾语chicken，教学解释正确；裸表达roast chicken可被读作菜肴名词短语，仍须Master确定冻结Sense/POS和KU目标。",
+      "source_author_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_review_required": true,
+      "master_approval": "PENDING",
+      "muse_independent_review": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01534",
+      "expression": "fill a glass",
+      "cg_qa_independent_latest_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "新译体现fill的装满/达到预期满度语义，不再混同仅倒入少量液体；with water例句对应。",
+      "source_author_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_review_required": true,
+      "master_approval": "PENDING",
+      "muse_independent_review": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01711",
+      "expression": "wooden board",
+      "cg_qa_independent_latest_verdict": "LANGUAGE_SUPPORT_IDENTITY_HOLD",
+      "reason": "木板、木制板子和新例句语义一致，删去原不受证据支持的“砧板”；但在厨房上下文要检验是否应单独教学cutting board。",
+      "source_author_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_review_required": true,
+      "master_approval": "PENDING",
+      "muse_independent_review": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02006",
+      "expression": "stuffy room",
+      "cg_qa_independent_latest_verdict": "LEXICAL_SUPPORT_MASTER_HOLD",
+      "reason": "空气憋闷、不通风而非必然闷热，英文例句air out与新中文准确一致，用法说明自然。",
+      "source_author_blob": "a9556414f9c44bd568d65352ff781a5982175858",
+      "master_review_required": true,
+      "master_approval": "PENDING",
+      "muse_independent_review": "PENDING",
+      "activation_allowed": false,
+      "release_allowed": false
+    }
+  ],
+  "prior_original_reviews_preserved": true,
+  "release_allowed": false
+}
