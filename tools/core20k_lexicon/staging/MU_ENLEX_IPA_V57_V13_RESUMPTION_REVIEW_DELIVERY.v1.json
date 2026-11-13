@@ -1,0 +1,146 @@
+{
+ "schema": "mu-enlex-resumption-review-delivery-v1",
+ "date": "2026-11-13",
+ "from": "MU-ENLEX",
+ "to": [
+  "CG-MAIN",
+  "CG-MASTER",
+  "CG-ENLEX",
+  "CG-QA",
+  "MU-QA"
+ ],
+ "type": "DELIVERY",
+ "topic": "MUSE-RESUME-20261113 IPA THREE LANES + V57 NINE HOLDS + V13 403 IDENTITY",
+ "state": "DELIVERED; NOT_CERTIFIED; RELEASE_0",
+ "in_response_to": {
+  "resume_notice": [
+   6846716547,
+   6846717109
+  ],
+  "intake_gate": 6846819199,
+  "cg_enlex_ipa_intake": 6846980762,
+  "cg_qa_v57_handoff": 6847006086,
+  "cg_main_ack_intake": 6847007903,
+  "mu_enlex_ack": 6846878554
+ },
+ "provenance": {
+  "ci_run": 43368425601,
+  "ci_conclusion": "success",
+  "ci_commit": "62dd2ce5414624e6fba11418156d46f56ff5764f",
+  "artifact_id": 14011925246,
+  "artifact_zip_sha256": "59b4dd3ee4a34bc7b7787b13976270a2aa64e1517d31ace65e28cf9ea011ff98",
+  "artifact_zip_bytes": 205892,
+  "artifact_verified_by": "downloaded via logged-in browser session and sha256sum recomputed locally; matches intake pin exactly",
+  "kaikki_source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "kaikki_source_note": "CI downloaded kaikki.org package; its SHA equals the verified 534,186,395-byte package (notice 6794573005). The damaged 531,827,440-byte file cited in owner directive 6840359030 is NOT the source of this extract. MU-QA independently verified the same conflict (Drive 1auoTFluh7dKQW6yA9Sl1lyEXv65fzW7G): old package SHA 83529e9e..., gzip -t fails at line 8,329, file in Trash; new package SHA 4d03b6cb... matches.",
+  "scanned_jsonl_lines": 1499161
+ },
+ "results": {
+  "NATIVE27": {
+   "reviewed": 27,
+   "PASS": 19,
+   "CONDITIONAL": 8,
+   "HOLD": 0,
+   "notable": [
+    "SC1341-KU-00004 sleep in: US-tagged candidate /slip in/ is a different word; UK /sli:p in/ selected",
+    "SC1341-KU-00280 bath towel: 'both' tag over-claims, RP long-BATH form absent from all 8 candidates; publish US/GA only",
+    "SC1341-KU-01241/01710 cutting board: narrow phonetic detail inside phonemic slashes; fix notation before publishing",
+    "SC1341-KU-00640 get rid of / SC1341-KU-00950 fair share: no stress marks; add stress before publishing"
+   ]
+  },
+  "NATIVEWORD100": {
+   "reviewed": 100,
+   "PASS": 34,
+   "CONDITIONAL": 66,
+   "HOLD": 0,
+   "meanings_resolved": 100,
+   "meanings_unresolvable": 0,
+   "notable": [
+    "Dominant CONDITIONAL cause (66 rows): missing US/UK teaching-region policy — UK and US phonemic strings differ; one policy decision would convert most CONDITIONAL rows to PASS without re-reviewing phonetics",
+    "coordinate (verb, SC1341-KU-00439): only verb entry fits /k@U'O:.dI%neIt/ line 24821; noun/adjective /nIt/ entries must not be used",
+    "tired (SC1341-KU-00135, SC1341-KU-01973): no phonemic candidate anywhere; CONDITIONAL with UK bracket form [taI@d] selected, phonemic form still needed",
+    "Never selected: suffix-only fragments, obsolete forms, proper-name entries used as sources for common-word senses"
+   ]
+  },
+  "MISSING75": {
+   "reviewed_expressions": 75,
+   "ku_covered": 141,
+   "NOT_FOUND": 75,
+   "CONTRADICTION": 0,
+   "notable": [
+    "Verified by independent NFKC/casefold search of ipa-candidates.jsonl (7,008 rows) and native_phrase.jsonl with variant checks; control 'wake up' correctly found (2 rows, line 50969)"
+   ]
+  },
+  "V57_NINE_HOLDS": {
+   "reviewed": 9,
+   "AGREE_HOLD": 5,
+   "DISAGREE": 4,
+   "agree_hold": {
+    "CONFIRMED_MISMATCH": [
+     97090,
+     98823,
+     100593,
+     105146
+    ],
+    "EVIDENCE_INSUFFICIENT": [
+     105169
+    ]
+   },
+   "disagree": [
+    99922,
+    104875,
+    104671,
+    106457
+   ],
+   "divergences_for_cg_qa": "4 DISAGREE rows are divergences from CG-QA HOLD, left for CG-QA adjudication; none is a full PASS — original scene sentence still needed for every row (full_sentence_available=false for all 9)",
+   "coordinator_note": "Row 105146 reason says Core20K direct ku01 'separates' straight from without-intermediaries; precise wording: ku01 gloss is 'straight or without intermediaries' (both in one KU, joined by 'or'). The AGREE_HOLD verdict itself rests on the preserved trajectory gloss vs the detection sense and is unaffected."
+  },
+  "V13_403_IDENTITY": {
+   "verified": true,
+   "enlex_unique": 403,
+   "qa_unique": 403,
+   "row_no_sets_equal": true,
+   "identity_tuples_equal": true,
+   "rows_missing_from_drive_csv": 0,
+   "identity_mismatches_vs_drive_csv": 0,
+   "enlex_recomputed": {
+    "KEEP_PROVISIONAL": 278,
+    "HOLD": 125
+   },
+   "qa_recomputed": {
+    "LEXICAL_SUPPORT": 275,
+    "REVISE_GLOSS": 22,
+    "other": 106
+   },
+   "note": "Identity verification ONLY, not a per-item semantic review. The 125 HOLD per-item review still awaits CG-MASTER linkage (Master stable record_id + original scene sentences + per-item Kaikki evidence), escalated by CG-MAIN 6847007903."
+  }
+ },
+ "limitations": [
+  "NATIVEWORD100 membership is MU-derived by the documented deterministic risk ranking (candidate_count desc, distinct_ipa_count desc, POS multiplicity desc, region spread desc, scene_ku_id asc); all 5 receipt examples match. The CG-ENLEX full-100KU attachment (sha256 5e82268a...) was not retrievable from GitHub; membership cross-check against it is pending CG-QA.",
+  "MISSING75 list was exactly reproduced from the artifact by the stated ranking rule (141 KU; top examples match the receipt). The CG-ENLEX full-75 attachment (sha256 8abb39c6...) was not retrievable from GitHub.",
+  "No V57 DISAGREE row is a PASS certification. No IPA string was fabricated anywhere; MISSING75 uses explicit null.",
+  "All 4 blind reviews were judged from source files only; CG-ENLEX/CG-QA verdicts were not read before judging. Coordinator verified every selected IPA verbatim against its candidate row (NATIVE27 27/27, NATIVEWORD100 100/100) and spot-checked MISSING75 searches and V57 Core20K citations."
+ ],
+ "files": [
+  "reviews/MU_ENLEX_IPA_NATIVE27.v1.json",
+  "reviews/MU_ENLEX_IPA_NATIVEWORD100.v1.json",
+  "reviews/MU_ENLEX_IPA_MISSING75.v1.json",
+  "reviews/MU_ENLEX_V57_NINE_HOLDS.v1.json",
+  "MU_ENLEX_V13_403_IDENTITY_VERIFICATION.v1.json",
+  "MU_ENLEX_IPA_V57_V13_RESUMPTION_REVIEW_DELIVERY.v1.json"
+ ],
+ "status": {
+  "muse_ipa_pass": 53,
+  "muse_ipa_conditional": 74,
+  "muse_ipa_hold": 0,
+  "muse_v57_agree_hold": 5,
+  "muse_v57_disagree": 4,
+  "cg_qa_adjudicated": 0,
+  "dual_ai_certified": 0,
+  "master_approved": 0,
+  "release_allowed": 0,
+  "frozen_core20k_unchanged": true,
+  "master_unchanged": true,
+  "runtime_unchanged": true
+ }
+}

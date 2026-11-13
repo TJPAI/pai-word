@@ -1,0 +1,105 @@
+{
+ "schema": "mu-enlex-v13-403-identity-verification-v1",
+ "date": "2026-11-13",
+ "reviewer": "Muse",
+ "role": "MU-ENLEX",
+ "scope": "Identity verification of the V13 403 NEEDS_VERIFICATION queue ONLY. NOT a per-item semantic review. The 125 HOLD per-item review still awaits CG-MASTER evidence linkage (Master stable record_id + original scene sentences + per-item Kaikki entry.word/POS/gloss).",
+ "sources": {
+  "drive_v13_source_csv": {
+   "file_id": "19sm_1X0ThdXDLqWrMHxFMzxkIsQZunJy",
+   "rows": 566,
+   "unique_audit_row_no": 566,
+   "bytes_local": 127999
+  },
+  "cg_enlex_reconciliation_blob": "460b5355a641726eb6c1d6a5e3ac6a4d80651c28",
+  "cg_qa_reconciliation_blob": "bb5cf7a6fd559501eee1094cb026b40dadae4a6e",
+  "cg_enlex_shards": [
+   "5f4031f09e0201301a21783158683c78036bef35",
+   "d3c041ad5ed29159f541a1189fdb767a3075fa8d",
+   "4b15a52a1afb41e5cb680eef6ff59421ec28d750",
+   "c5cdd427b9a0ca1b0545581d55e623d03f0596ab",
+   "c3a73025fc4246f96d5eb4518a3d9c0bcc3b198b",
+   "0435f1f13afd0a2db7ceff944074f5c6a247745a",
+   "f1483b55c9e36da326226f726fc0acb52f1c1a26"
+  ],
+  "cg_qa_shards": [
+   "ed909465dcc9374b425b4af9a315beec2af175bc",
+   "7e793707dbbf92ccedc5e3deb65e387ab05ab962",
+   "5f6ca3778be62e84857c9d9aca760a2782120ab7",
+   "42c83cba80fd443607264d9753ead693f65d734e",
+   "24cb0b54090184696eb93cfc2ff7b977e095d0c0",
+   "a2f61adb0c4dc5c44abc54ae085befdce0ee9573",
+   "5d43c1ecebed1a0e01081d52e0d14d86e126408a"
+  ]
+ },
+ "checks": {
+  "enlex_shard_record_counts": [
+   24,
+   60,
+   60,
+   60,
+   60,
+   60,
+   79
+  ],
+  "qa_shard_record_counts": [
+   24,
+   60,
+   60,
+   60,
+   60,
+   60,
+   79
+  ],
+  "enlex_total": 403,
+  "qa_total": 403,
+  "enlex_unique_audit_row_no": 403,
+  "qa_unique_audit_row_no": 403,
+  "row_no_sets_equal_enlex_vs_qa": true,
+  "identity_tuples_equal_enlex_vs_qa": true,
+  "identity_tuple_fields": [
+   "audit_row_no",
+   "scene_id",
+   "english_expression",
+   "master_original_zh"
+  ],
+  "rows_missing_from_drive_csv": 0,
+  "identity_mismatches_vs_drive_csv": 0,
+  "drive_rows_not_in_403_queue": 163
+ },
+ "verdict_recompute": {
+  "enlex": {
+   "KEEP_PROVISIONAL": 264,
+   "LEXICAL_KEEP_PROVISIONAL": 14,
+   "HOLD_total": 125,
+   "total": 403,
+   "matches_reported_278_125": true
+  },
+  "qa": {
+   "LEXICAL_SUPPORT": 275,
+   "REVISE_GLOSS": 22,
+   "CONDITIONAL_SCOPE": 48,
+   "HOLD_CONTEXT": 14,
+   "HOLD_POS": 12,
+   "CONDITIONAL_CONTEXT": 11,
+   "HOLD_SENSE_ID": 8,
+   "CONDITIONAL_DIALECT": 5,
+   "CONDITIONAL_NATURALNESS": 3,
+   "CONDITIONAL_POS": 2,
+   "HOLD_CERTIFICATION_CONTEXT": 2,
+   "HOLD_SENSE_CONTEXT": 1,
+   "total": 403,
+   "matches_reported_275_22_106": true
+  }
+ },
+ "source_restrictions_noted": [
+  "CG-ENLEX recon: 'No canonical full Master stable IDs, scene sentence, or individually checked Kaikki entry.word/POS/gloss are supplied by this source CSV.'",
+  "CG-QA recon policy: 'No original full Master stable records and context/per-Sense Kaikki source verified, no Muse certification.'"
+ ],
+ "conclusion": "V13 403 queue identity VERIFIED: 403/403 unique, ENLEX/QA/Drive source 0 mismatches. Queue is real and consistent; per-item semantic evidence remains the open gap (CG-MASTER linkage pending, escalated by CG-MAIN 6847007903).",
+ "status": {
+  "muse_certified": 0,
+  "dual_ai_certified": 0,
+  "released": 0
+ }
+}

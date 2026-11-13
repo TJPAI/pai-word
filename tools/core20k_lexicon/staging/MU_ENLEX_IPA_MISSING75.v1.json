@@ -1,0 +1,1521 @@
+{
+  "summary": {
+    "review_lane": "MISSING75",
+    "reviewer": "Muse",
+    "review_timestamp": "2026-11-13T07:40:00Z",
+    "total_expressions": 75,
+    "decisions": {
+      "NOT_FOUND": 75,
+      "CONTRADICTION": 0
+    },
+    "total_ku_covered": 141,
+    "expected_total_ku": 141,
+    "ku_total_matches_expected": true,
+    "inconclusive": [],
+    "search_method": "NFKC/casefold exact entry-word match against ipa-candidates.jsonl real candidate rows (5,902 rows with entry_word/IPA) and native_phrase.jsonl (27 rows); variants checked: exact, leading-article stripped/added, possessive-determiner dropped, article dropped, possessive+article dropped, contraction expanded/formed, apostrophe stripped, hyphen<->space. NOT_FOUND placeholder rows (1,106, IPA null) treated as absence, not as IPA. Confirmation in not_found_phrase.jsonl (1,018 rows, all candidate_count 0). No word-by-word composition; no IPA fabricated.",
+    "provenance": {
+      "artifact_zip_sha256": "59b4dd3ee4a34bc7b7787b13976270a2aa64e1517d31ace65e28cf9ea011ff98",
+      "kaikki_source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+      "kaikki_source_sha256_verified_in_artifact": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99 (artifact/source-sha256.txt; matches provenance value above)",
+      "derived_list": "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/MISSING75_derived_list.json",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ]
+    }
+  },
+  "records": [
+    {
+      "review_lane": "MISSING75",
+      "expression": "laundry basket",
+      "ku_count": 4,
+      "scene_ku_ids": [
+        "SC1341-KU-00581",
+        "SC1341-KU-00696",
+        "SC1341-KU-00839",
+        "SC1341-KU-01049"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'laundry basket' (or any checked variant: laundry-basket, the laundry basket) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 4 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 4 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 4 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "make the bed",
+      "ku_count": 3,
+      "scene_ku_ids": [
+        "SC1341-KU-00020",
+        "SC1341-KU-00624",
+        "SC1341-KU-00883"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'make the bed' (or any checked variant: make bed, make-the-bed, the make the bed) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 3 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 3 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 3 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "tidy up",
+      "ku_count": 3,
+      "scene_ku_ids": [
+        "SC1341-KU-00189",
+        "SC1341-KU-00613",
+        "SC1341-KU-00869"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'tidy up' (or any checked variant: the tidy up, tidy-up) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 3 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 3 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 3 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wash your hands",
+      "ku_count": 3,
+      "scene_ku_ids": [
+        "SC1341-KU-00218",
+        "SC1341-KU-00252",
+        "SC1341-KU-01415"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wash your hands' (or any checked variant: the wash your hands, wash hands, wash-your-hands) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 3 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 3 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 3 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "take out the trash",
+      "ku_count": 3,
+      "scene_ku_ids": [
+        "SC1341-KU-00663",
+        "SC1341-KU-00879",
+        "SC1341-KU-01755"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'take out the trash' (or any checked variant: take out trash, take-out-the-trash, the take out the trash) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 3 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 3 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 3 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "microfiber cloth",
+      "ku_count": 3,
+      "scene_ku_ids": [
+        "SC1341-KU-00702",
+        "SC1341-KU-00892",
+        "SC1341-KU-01675"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'microfiber cloth' (or any checked variant: microfiber-cloth, the microfiber cloth) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 3 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 3 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 3 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "load the dishwasher",
+      "ku_count": 3,
+      "scene_ku_ids": [
+        "SC1341-KU-00881",
+        "SC1341-KU-01560",
+        "SC1341-KU-01660"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'load the dishwasher' (or any checked variant: load dishwasher, load-the-dishwasher, the load the dishwasher) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 3 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 3 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 3 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wash your face",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00022",
+        "SC1341-KU-00254"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wash your face' (or any checked variant: the wash your face, wash face, wash-your-face) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "brush your teeth",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00023",
+        "SC1341-KU-00249"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'brush your teeth' (or any checked variant: brush teeth, brush-your-teeth, the brush your teeth) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get enough sleep",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00039",
+        "SC1341-KU-02033"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get enough sleep' (or any checked variant: get-enough-sleep, the get enough sleep) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "close the blinds",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00124",
+        "SC1341-KU-02021"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'close the blinds' (or any checked variant: close blinds, close-the-blinds, the close the blinds) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "open the window",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00126",
+        "SC1341-KU-01943"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'open the window' (or any checked variant: open window, open-the-window, the open the window) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get some fresh air",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00127",
+        "SC1341-KU-02023"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get some fresh air' (or any checked variant: get-some-fresh-air, the get some fresh air) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "freshen up",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00174",
+        "SC1341-KU-00267"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'freshen up' (or any checked variant: freshen-up, the freshen up) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "rinse your mouth",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00175",
+        "SC1341-KU-00250"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'rinse your mouth' (or any checked variant: rinse mouth, rinse-your-mouth, the rinse your mouth) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "take a shower",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00176",
+        "SC1341-KU-00324"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'take a shower' (or any checked variant: take shower, take-a-shower, the take a shower) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "comb your hair",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00179",
+        "SC1341-KU-00257"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'comb your hair' (or any checked variant: comb hair, comb-your-hair, the comb your hair) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "brush your hair",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00180",
+        "SC1341-KU-00334"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'brush your hair' (or any checked variant: brush hair, brush-your-hair, the brush your hair) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get dressed",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00181",
+        "SC1341-KU-00409"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get dressed' (or any checked variant: get-dressed, the get dressed) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "change clothes",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00184",
+        "SC1341-KU-00411"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'change clothes' (or any checked variant: change-clothes, the change clothes) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "put on sunscreen",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00220",
+        "SC1341-KU-00339"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'put on sunscreen' (or any checked variant: put-on-sunscreen, the put on sunscreen) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "rinse off the soap",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00253",
+        "SC1341-KU-01657"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'rinse off the soap' (or any checked variant: rinse off soap, rinse-off-the-soap, the rinse off the soap) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "rinse off residue",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00261",
+        "SC1341-KU-01028"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'rinse off residue' (or any checked variant: rinse-off-residue, the rinse off residue) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "slippery floor",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00376",
+        "SC1341-KU-00790"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'slippery floor' (or any checked variant: slippery-floor, the slippery floor) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "leaky faucet",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00380",
+        "SC1341-KU-01807"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'leaky faucet' (or any checked variant: leaky-faucet, the leaky faucet) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "turn off the tap",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00398",
+        "SC1341-KU-01735"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'turn off the tap' (or any checked variant: the turn off the tap, turn off tap, turn-off-the-tap) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "care label",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00578",
+        "SC1341-KU-01058"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'care label' (or any checked variant: care-label, the care label) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "iron a shirt",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00588",
+        "SC1341-KU-01160"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'iron a shirt' (or any checked variant: iron shirt, iron-a-shirt, the iron a shirt) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "remove lint",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00590",
+        "SC1341-KU-01218"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'remove lint' (or any checked variant: remove-lint, the remove lint) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "hang clothes to dry",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00604",
+        "SC1341-KU-00983"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'hang clothes to dry' (or any checked variant: hang-clothes-to-dry, the hang clothes to dry) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "clean up",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00614",
+        "SC1341-KU-00826"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'clean up' (or any checked variant: clean-up, the clean up) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "vacuum cleaner",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00629",
+        "SC1341-KU-00834"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'vacuum cleaner' (or any checked variant: the vacuum cleaner, vacuum-cleaner) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "clean up broken glass",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00634",
+        "SC1341-KU-01831"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'clean up broken glass' (or any checked variant: clean-up-broken-glass, the clean up broken glass) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wipe down",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00652",
+        "SC1341-KU-00870"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wipe down' (or any checked variant: the wipe down, wipe-down) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "change the sheets",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00655",
+        "SC1341-KU-00884"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'change the sheets' (or any checked variant: change sheets, change-the-sheets, the change the sheets) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wipe up a spill",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00662",
+        "SC1341-KU-01000"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wipe up a spill' (or any checked variant: the wipe up a spill, wipe up spill, wipe-up-a-spill) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "trash can",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00697",
+        "SC1341-KU-01695"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'trash can' (or any checked variant: the trash can, trash-can) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "fold the laundry",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00755",
+        "SC1341-KU-01062"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'fold the laundry' (or any checked variant: fold laundry, fold-the-laundry, the fold the laundry) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "broken glass",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00788",
+        "SC1341-KU-01811"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'broken glass' (or any checked variant: broken-glass, the broken glass) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wash the dishes",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00880",
+        "SC1341-KU-01561"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wash the dishes' (or any checked variant: the wash the dishes, wash dishes, wash-the-dishes) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "rubber gloves",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00897",
+        "SC1341-KU-01717"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'rubber gloves' (or any checked variant: rubber-gloves, the rubber gloves) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "dish soap",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00902",
+        "SC1341-KU-01643"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'dish soap' (or any checked variant: dish-soap, the dish soap) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "stain remover",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00904",
+        "SC1341-KU-01056"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'stain remover' (or any checked variant: stain-remover, the stain remover) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "recycling bin",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00910",
+        "SC1341-KU-01696"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'recycling bin' (or any checked variant: recycling-bin, the recycling bin) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "compost bin",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00911",
+        "SC1341-KU-01727"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'compost bin' (or any checked variant: compost-bin, the compost bin) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "washing machine",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00913",
+        "SC1341-KU-01051"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'washing machine' (or any checked variant: the washing machine, washing-machine) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "stubborn stain",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00953",
+        "SC1341-KU-01202"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'stubborn stain' (or any checked variant: stubborn-stain, the stubborn stain) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "grease buildup",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00956",
+        "SC1341-KU-01662"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'grease buildup' (or any checked variant: grease-buildup, the grease buildup) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "food scraps",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00962",
+        "SC1341-KU-01691"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'food scraps' (or any checked variant: food-scraps, the food scraps) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "sort the recycling",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00988",
+        "SC1341-KU-01757"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'sort the recycling' (or any checked variant: sort recycling, sort-the-recycling, the sort the recycling) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "dry the dishes",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-00993",
+        "SC1341-KU-01562"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'dry the dishes' (or any checked variant: dry dishes, dry-the-dishes, the dry the dishes) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "blocked drain",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01004",
+        "SC1341-KU-01804"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'blocked drain' (or any checked variant: blocked-drain, the blocked drain) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "clogged filter",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01008",
+        "SC1341-KU-01209"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'clogged filter' (or any checked variant: clogged-filter, the clogged filter) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "allergic reaction",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01019",
+        "SC1341-KU-01611"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'allergic reaction' (or any checked variant: allergic-reaction, the allergic reaction) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "side dish",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01284",
+        "SC1341-KU-01484"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'side dish' (or any checked variant: side-dish, the side dish) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "taste the sauce",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01366",
+        "SC1341-KU-01554"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'taste the sauce' (or any checked variant: taste sauce, taste-the-sauce, the taste the sauce) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "water bottle",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01510",
+        "SC1341-KU-01715"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'water bottle' (or any checked variant: the water bottle, water-bottle) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "dish rack",
+      "ku_count": 2,
+      "scene_ku_ids": [
+        "SC1341-KU-01525",
+        "SC1341-KU-01649"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'dish rack' (or any checked variant: dish-rack, the dish rack) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 2 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 2 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 2 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get up",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00002"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get up' (or any checked variant: get-up, the get up) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get out of bed",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00003"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get out of bed' (or any checked variant: get-out-of-bed, the get out of bed) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wake up early",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00007"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wake up early' (or any checked variant: the wake up early, wake-up-early) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wake up late",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00008"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wake up late' (or any checked variant: the wake up late, wake-up-late) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get up early",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00009"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get up early' (or any checked variant: get-up-early, the get up early) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get up late",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00010"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get up late' (or any checked variant: get-up-late, the get up late) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "alarm clock",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00012"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'alarm clock' (or any checked variant: alarm-clock, the alarm clock) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "set an alarm",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00013"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'set an alarm' (or any checked variant: set alarm, set-an-alarm, the set an alarm) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "alarm goes off",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00014"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'alarm goes off' (or any checked variant: alarm-goes-off, the alarm goes off) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "snooze button",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00015"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'snooze button' (or any checked variant: snooze-button, the snooze button) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "running late",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00016"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'running late' (or any checked variant: running-late, the running late) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "morning routine",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00017"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'morning routine' (or any checked variant: morning-routine, the morning routine) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "wake up tired",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00021"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'wake up tired' (or any checked variant: the wake up tired, wake-up-tired) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "get ready",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00024"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'get ready' (or any checked variant: get-ready, the get ready) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "have breakfast",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00025"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'have breakfast' (or any checked variant: have-breakfast, the have breakfast) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "be awake",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00026"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'be awake' (or any checked variant: be-awake, the be awake) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    },
+    {
+      "review_lane": "MISSING75",
+      "expression": "be up",
+      "ku_count": 1,
+      "scene_ku_ids": [
+        "SC1341-KU-00027"
+      ],
+      "reviewer": "Muse",
+      "searched_files": [
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/ipa-candidates.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/native_phrase.jsonl",
+        "/home/hatch/workspace/pai-word-s113-enlex/out/v13_ipa_20261113/artifact/qa-queues/not_found_phrase.jsonl"
+      ],
+      "match_found": false,
+      "found_source": null,
+      "decision": "NOT_FOUND",
+      "reason": "No NFKC/casefold exact entry-word match for 'be up' (or any checked variant: be-up, the be up) in ipa-candidates.jsonl (5902 real candidate rows) or native_phrase.jsonl (27 rows). Confirmed in not_found_phrase.jsonl: 1 row(s) for this expression, all candidate_count 0, scene_ku_ids match derived list: True; ku_count 1 matches not_found row count: True; all listed KU ids present with candidate_count 0: True. Also present as 1 NOT_FOUND placeholder row(s) in ipa-candidates.jsonl (count matches ku_count: True). Explicit null IPA — no phrase IPA fabricated, no word-by-word composition used.",
+      "review_timestamp": "2026-11-13T07:40:00Z"
+    }
+  ]
+}
