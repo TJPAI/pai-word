@@ -13,7 +13,7 @@ export const MASTER_SCENE_BATCH_MANIFEST=Object.freeze([
 // A new author batch is added by one manifest entry, never by hardcoded totals.
 for(let i=0;i<MASTER_SCENE_BATCH_MANIFEST.length;i++){
  const item=MASTER_SCENE_BATCH_MANIFEST[i];
- if(!/^SC50-\\d{4}$/.test(item.scene)||item.last-item.first+1!==item.count||
+ if(!/^SC50-\d{4}$/.test(item.scene)||item.last-item.first+1!==item.count||
     !/^[a-f0-9]{40}$/.test(item.blob)||
     MASTER_SCENE_BATCH_MANIFEST.some((other,j)=>i!==j&&
       (item.scene===other.scene||
