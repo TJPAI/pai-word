@@ -52,17 +52,20 @@ export async function applyV190MasterAnswerIntake(cards,{fetchImpl=fetch}={}){
   counts.usage!==1461||counts.collocations!==1461)
   throw Error('V190_COVERAGE_MANIFEST_DRIFT_'+JSON.stringify(counts));
  let exact=0,held=0,enriched=0,preserved=0,examplesAdded=0;
+ const perScene=new Map();const touchedSourceIds=new Set();
+ const track=(scene,field)=>{const entry=perScene.get(scene)||{matched:0,enriched:0,preserved:0,identityHold:0};entry[field]++;perScene.set(scene,entry);};
  const result=cards.map(card=>{
   const source=sourceById.get(card.master_record_id);
   if(!source)return card;
+  touchedSourceIds.add(source.record_id);
   const q=source.question_page,a=source.answer_page;
   if(source.scene_id!==card.scene_id||source.source_final_row!==card.master_final_row||
    normalize(q.expression)!==normalize(card.expression)||
    normalize(q.cue_zh)!==normalize(card.question?.cue_zh)||
    normalize(a.meaning_zh)!==normalize(card.answer?.meaning_zh)){
-   held++;return card;
+   held++;track(card.scene_id,'identityHold');return card;
   }
-  exact++;
+  exact++;track(card.scene_id,'matched');
   const old=card.answer||{},next={...old};
   let changed=false;
   const addText=(field)=>{if(!clean(next[field])&&clean(a[field])){next[field]=a[field];changed=true;}};
@@ -85,17 +88,23 @@ export async function applyV190MasterAnswerIntake(cards,{fetchImpl=fetch}={}){
    changed=true;examplesAdded++;
   }
   if(!oldExamples.length&&merged.length){next.examples=merged;changed=true;}
-  // Explicit Sense approval is absent: never show proposed relationships.
-  if(!Array.isArray(next.synonyms))next.synonyms=[];
-  if(!Array.isArray(next.antonyms))next.antonyms=[];
-  next.synonyms_status='UNVERIFIED';next.antonyms_status='UNVERIFIED';
-  next.sense_disambiguation={note_zh:'',comparisons:[],status:'UNVERIFIED',source:null};
-  next.content_complete=next.content_complete===true;
-  if(changed){enriched++;return {...card,answer:next,master_latest_answer_source:'V190_TEST_ONLY',
+  // V190 has no certified semantic relations: NEVER erase legacy Sense
+  // annotations or fabricate an approval. New fields stay absent unless
+  // already present in the legacy answer.
+  if(!('synonyms' in next))next.synonyms=[];
+  if(!('antonyms' in next))next.antonyms=[];
+  if(!('synonyms_status' in next))next.synonyms_status='UNVERIFIED';
+  if(!('antonyms_status' in next))next.antonyms_status='UNVERIFIED';
+  if(!('sense_disambiguation' in next))next.sense_disambiguation={note_zh:'',comparisons:[],status:'UNVERIFIED',source:null};
+  if(changed){enriched++;track(card.scene_id,'enriched');return {...card,answer:next,master_latest_answer_source:'V190_TEST_ONLY',
      production_release_allowed:false};}
-  preserved++;return card;
+  preserved++;track(card.scene_id,'preserved');return card;
  });
- if(exact+held>2873||new Set(result.map(x=>x.master_record_id)).size!==2873)throw Error('V190_MERGE_IDENTITY_DRIFT');
+ const unmatchedSourceRows=3000-touchedSourceIds.size,legacyOutsideBatch=2873-touchedSourceIds.size;
+ if(exact+held>2873||new Set(result.map(x=>x.master_record_id)).size!==2873||
+    unmatchedSourceRows!==502||legacyOutsideBatch!==375)throw Error('V190_MERGE_IDENTITY_DRIFT');
  return Object.freeze({items:result,sourceRows:3000,exact,held,enriched,preserved,
-  examplesAdded,sourceCommit:PIN,formalReady:0,canWriteSrs:false,releaseAllowed:false});
+  examplesAdded,unmatchedSourceRows,legacyOutsideBatch,
+  perScene:Object.freeze(Object.fromEntries([...perScene.entries()].sort((a,b)=>a[0].localeCompare(b[0])))),
+  sourceCommit:PIN,formalReady:0,canWriteSrs:false,releaseAllowed:false});
 }
