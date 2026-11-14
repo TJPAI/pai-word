@@ -35,6 +35,7 @@ on:
       - 'tools/integration/test-scene1341-v111-master-loader.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene1341-v123-sc0011-loader.mjs'
       - 'tools/integration/test-scene1341-study-preview.mjs'
       - 'tools/integration/test-scene1341-srs-indexeddb.mjs'
       - 'tools/integration/test-scene1341-ranked-offline-shell.mjs'
@@ -87,7 +88,7 @@ jobs:
           node tools/integration/test-scene1341-study-preview.mjs
           node --check rebuild-preview/scene1341-qa-preview.mjs
           node tools/integration/test-scene1341-qa-preview.mjs
-      - name: Validate V116+V120 pinned Master and native Kaikki IPA
+      - name: Validate V116+V123 pinned Master and native Kaikki IPA
         run: node tools/integration/test-scene1341-v111-master-loader.mjs
       - name: Validate isolated read-only mobile demo
         run: node tools/integration/test-scene1341-readonly-mobile-demo.mjs
