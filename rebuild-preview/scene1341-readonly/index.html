@@ -324,9 +324,9 @@ async function load(){
   items=[...qa.items]; // preview-only, no Scene500 PAI_CORE mutation.
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
-  if(countByScene.size!==10||items.length!==1877)throw Error('MASTER_V106_SOURCE_EXACT_COUNT_MISMATCH');
-  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V106 作者词卡；161 条来源待裁决不开放。测试记录不保留，认证后置。');
-  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V106 测试词卡 '+items.length+'（未认证）');
+  if(countByScene.size!==10||items.length!==1877||qa.verifiedNativeIpa!==3)throw Error('MASTER_V111_SOURCE_EXACT_COUNT_MISMATCH');
+  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V111 Master 词卡；161 条来源待裁决不开放。测试记录不保留，认证后置。');
+  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V111 测试词卡 '+items.length+'（未认证）');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
@@ -448,47 +448,17 @@ window.addEventListener('resize',scheduleQuestionFit);
 // Cache only source-verified display projections under stable Scene1341 KU IDs.
 // Deduplicate an in-flight lookup when rating/face rendering occurs repeatedly.
 const ipaDisplayCache=new Map(),ipaPendingByKU=new Map();
-async function renderQuestionIPA(card){
+function renderQuestionIPA(card){
  const ticket=++ipaSequence,expectedKU=card.scene_ku_id;
  const el=$('ipa');
- const apply=display=>{
-  if(ticket!==ipaSequence||$('learning').hidden||
-     subset()[index]?.scene_ku_id!==expectedKU)return;
-  el.textContent=display.text;el.title=display.title;
-  el.dataset.ipaStatus=display.status;
- };
- const cached=ipaDisplayCache.get(expectedKU);
- if(cached){apply(cached);return}
- el.textContent='音标加载中…';
- el.title='正在核对Scene1341预览音标来源';
- let pending=ipaPendingByKU.get(expectedKU);
- if(!pending){
-  pending=(async()=>{
-   const [{describeScene1341IPA},source]=await Promise.all([
-    import('./scene1341-ipa-display-policy.mjs'),
-    (ipaIndexPromise||=import('./scene1341-ipa-preview.mjs')
-      .then(m=>m.scene1341IPAReference)
-      .catch(error=>{ipaIndexPromise=null;throw error}))
-   ]);
-   const result=await source.lookup(card);
-   const display=describeScene1341IPA(card,result);
-   // Cache the source-pinned policy result, including an explicit
-   // missing/ambiguous status; never fabricate phrase IPA.
-   ipaDisplayCache.set(expectedKU,display);
-   return display;
-  })();
-  ipaPendingByKU.set(expectedKU,pending);
-  pending.finally(()=>{if(ipaPendingByKU.get(expectedKU)===pending)ipaPendingByKU.delete(expectedKU)})
-   .catch(()=>{}); // Rejection is surfaced in each caller below.
- }
- try{apply(await pending)}
- catch(error){
-  if(ticket!==ipaSequence||$('learning').hidden||
-     subset()[index]?.scene_ku_id!==expectedKU)return;
-  el.textContent='音标待补';el.title='音标数据加载失败或来源尚未核实';
-  el.dataset.ipaStatus='missing';
-  window.PAI_SCENE1341_IPA_PREVIEW_ERROR=String(error);
- }
+ if(ticket!==ipaSequence||subset()[index]?.scene_ku_id!==expectedKU)return;
+ const question=card.question;
+ const native=question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'&&
+              question?.ipa_source?.headword===card.expression&&
+              question?.ipa_source?.url?.startsWith('https://kaikki.org/dictionary/English/');
+ el.textContent=native?question.ipa:'音标待补';
+ el.title=native?'CG-MASTER V111 · 已核验 Kaikki 原生 IPA（未认证测试）':'CG-MASTER 尚未提供本词条的核验 Kaikki IPA';
+ el.dataset.ipaStatus=native?'verified-master-test':'missing';
 }
 async function renderLexiconReference(card){
  const seq=++lexiconSequence;
@@ -565,7 +535,7 @@ function renderCard(){
  $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
- set('expression',r.expression);scheduleQuestionFit();void renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
+ set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
  $('example-speak').dataset.speak=r.answer.example_en;
  set('example',r.answer.example_en);set('translation',r.answer.example_zh);
  // Answer-only contract: optional teaching sections must never render empty
@@ -610,7 +580,7 @@ function renderCard(){
   $('answer').append($('enlex-section'));
   if(nativeSlot)nativeSlot.hidden=true;
  }
- void renderLexiconReference(r);
+ 
  for(const b of document.querySelectorAll('[data-grade]')){b.disabled=false;b.classList.toggle('is-selected',b.dataset.grade===selectedGrade);b.setAttribute('aria-pressed',String(b.dataset.grade===selectedGrade))}
  set('demo-note',revealed?'点空白回题目，左右滑切词，上下滑换批，长按手写或擦除':'点空白看答案，左右滑切词，上下滑换批，长按手写或擦除');
  $('studybody').scrollTop=0;
