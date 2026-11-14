@@ -64,7 +64,7 @@ assert.deepEqual([moves.length,batches.length],baseline(),'thresholds and long p
 // Hidden home controls must regain focus when the user returns from settings.
 const settingsBegin=script.indexOf(" $('preview-settings-button').addEventListener(");
 const actualSettingsBegin=settingsBegin>=0?settingsBegin:script.indexOf("$('preview-settings-button').addEventListener(");
-const settingsEnd=script.indexOf("\\n$('preview-stats-button').addEventListener(",actualSettingsBegin);
+const settingsEnd=script.indexOf("\n$('preview-stats-button').addEventListener(",actualSettingsBegin);
 assert(actualSettingsBegin>=0&&settingsEnd>actualSettingsBegin,'dedicated settings handler missing');
 const settingsEvents=[],settingsHandlers=new Map();
 const ui={
@@ -88,7 +88,7 @@ assert.equal(ui.home.hidden,false);
 assert.equal(ui['settings-page'].hidden,true);
 assert.equal(settingsEvents.at(-1),'focus-opener');
 const keyBegin=script.indexOf("document.addEventListener('keydown',e=>{");
-const keyEnd=script.indexOf("\\n// Original welcome catalog action",keyBegin);
+const keyEnd=script.indexOf("\n// Original welcome catalog action",keyBegin);
 assert(keyBegin>=0&&keyEnd>keyBegin,'keyboard navigation handler missing');
 let keyHandler,prevented=0;
 const keyCtx={
