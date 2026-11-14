@@ -1,0 +1,79 @@
+{
+  "schema": "cg-qa-v108-v106-full-blob-mechanical-independent-audit-v1",
+  "date": "2026-11-14",
+  "role": "CG-QA",
+  "audit_type": "NONCERTIFYING_REMOTE_GIT_BLOB_MECHANICAL_REVIEW",
+  "source": {
+    "repository": "TJPAI/pai-word",
+    "branch": "cg-master-kaikki-evidence-intake-20261111",
+    "blob_sha1": "e24209cbcb6d803e9d9c80b9f388165fb6e24f99",
+    "authoritative_final_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986"
+  },
+  "computed": {
+    "staging_records": 1877,
+    "hold_records": 161,
+    "author_total": 2038,
+    "distinct_ku_ids_across_staging_and_hold": 2038,
+    "distinct_final_rows_in_staging": 1877,
+    "scene_count": 10,
+    "per_scene_staging_count": {
+      "SC50-0001": 223,
+      "SC50-0002": 153,
+      "SC50-0003": 169,
+      "SC50-0004": 182,
+      "SC50-0005": 210,
+      "SC50-0006": 181,
+      "SC50-0007": 207,
+      "SC50-0008": 178,
+      "SC50-0009": 190,
+      "SC50-0010": 184
+    },
+    "source_row_range": [
+      1,
+      2379
+    ],
+    "staged_rows_with_full_mandatory_answer_fields": 1877,
+    "structural_errors": 0,
+    "hold_reason_counts": {
+      "V82_NOT_EXACT_SINGLE_FINAL_ROW": 161
+    },
+    "canonical_sense_approvals": 0,
+    "formal_chatgpt_certifications": 0,
+    "formal_muse_certifications": 0,
+    "release_allowed": false
+  },
+  "checks": [
+    {
+      "id": "KU_UNIQUE_ACROSS_STAGING_AND_HOLD",
+      "pass": true
+    },
+    {
+      "id": "STAGED_FINAL_SOURCE_ROW_UNIQUE",
+      "pass": true
+    },
+    {
+      "id": "V82_TOTAL_RECONCILES",
+      "pass": true
+    },
+    {
+      "id": "MANDATORY_FIELD_AND_SOURCE_RANGE",
+      "pass": true
+    },
+    {
+      "id": "SCENE_SCOPE_FIRST_TEN",
+      "pass": true
+    },
+    {
+      "id": "NO_PREMATURE_RELEASE_OR_CERTIFICATION",
+      "pass": true
+    }
+  ],
+  "structural_failures": [],
+  "explicit_limits": [
+    "This independent pass parses all 1,877 V106 author items and 161 HOLD metadata; it does NOT compare original V105 source-row bytes or verify V82 original source IDs against V105.",
+    "Field presence and collocation shape do not prove linguistic correctness, semantic identity, accurate example translation, or Kaikki native Sense match.",
+    "Kaikki IPA, full question-page completeness, all 100-scene authoring, independent ChatGPT/Muse formal certification remain unfinished.",
+    "No CG-MASTER production or frozen Core20K files changed."
+  ],
+  "follow_up": "Preserve blocked state until V105-vs-V106 source-row byte comparison and CG-MASTER-owned IPA/question/answer fields are supplied; subsequent formal bilingual semantic certification only in later unified phase."
+}
