@@ -376,6 +376,16 @@ async function load(){
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
   if(countByScene.size!==14||items.length!==2873||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410||countByScene.get('SC50-0011')!==255||countByScene.get('SC50-0012')!==253||countByScene.get('SC50-0013')!==245||countByScene.get('SC50-0014')!==243)throw Error('MASTER_MANIFEST_SOURCE_EXACT_COUNT_MISMATCH');
+  // Replace ONLY existing 996 SC0011–SC0014 test cards with full V171
+  // CG-MASTER paired question+answer rows; retain old Scene500 UI/controller.
+  // Fail closed if any record_id, source_final_row or English expression drifts.
+  const v171=await import('./scene1341-v171-paired-master-overlay.mjs')
+   .then(m=>m.applyV171PairedMasterOverlay(items));
+  if(v171.replaced!==996||v171.selectedIPA!==979||v171.missingIPA!==17||
+     v171.scenes!==4||v171.formalReady!==0||v171.canWriteSrs!==false)
+    throw Error('MASTER_V171_PAIRED_RELEASE_OR_COUNT_DRIFT');
+  items=[...v171.items];
+  set('master-ipa-coverage','SC0011–SC0014 已按V171源身份逐条接入996份完整题目/答案配对草稿；其中979条有测试IPA、17条待补。其余测试场景仍按原Master来源展示；正式认证0，完整可发布词卡0。');
   set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116+V128+V153+V154 Master 词卡；第11场景255/255条作者草稿；第12场景253/253条、第13场景245/245条，第14场景243/243条答案草稿（V154测试 IPA 已接入，正式认证0），161条旧来源待裁决不开放；测试记录不保留，认证后置。');
   set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V116+V128+V153+V154 测试词卡 '+items.length+'（未认证）');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
@@ -536,15 +546,20 @@ function renderQuestionIPA(card){
  // Only learner-facing typography changes: preserve the authoritative
  // question.ipa field, exact-source gating, and all unapproved status labels.
  // Both QUESTION and ANSWER faces share this native Scene500 hero IPA line.
+ const v171Paired=question?.ipa_test_only_v171===true&&
+                  question?.ipa_source?.source_type==='CGMASTER_V171_PAIRED_TEST'&&
+                  question?.ipa_provisional===true&&completeIPA&&
+                  card.master_paired_test_version==='V171';
  const learnerIPA=window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA(question?.ipa,{language:'en'});
- el.textContent=native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':'音标待补';
+ el.textContent=native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':v171Paired?learnerIPA+'（V171测试音标·未认证）':'音标待补';
  el.title=native?'CG-MASTER V116 · 原生 Kaikki IPA（测试中，未认证）':
           provisional?'CG-MASTER V116 · 原生单一读音候选，仅测试展示，尚未通过 POS/Sense 和 QA/Muse 认证':
           pageEvidence?'CG-MASTER V150 · 来自 Kaikki 网页，不是原生 JSONL 证据；测试专用，尚未完成 Sense/口音与 QA/Muse 认证':
           archived?'CG-MASTER V153 · 历史Kaikki来源候选有SHA与行号，但尚未进行目标Sense/POS及QA/Muse认证':
           localArchive?'CG-MASTER V154 · 完整本地Kaikki档案来源SHA和行号；未获Sense/POS和QA/Muse批准，仅测试展示':
+          v171Paired?'CG-MASTER V171 · 题目与答案配对草稿，Kaikki/CMU读音状态按源保留，未完成Sense/POS和QA认证':
           question?.ipa_candidates_pending?'存在多个原生 Kaikki 读音候选，等待 CG-MASTER 裁决，不随机选择':'CG-MASTER 尚未提供本词条可展示的 Kaikki IPA';
- el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':'missing';
+ el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':v171Paired?'v171-paired-test':'missing';
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
