@@ -154,6 +154,17 @@ assert.equal(coverage.formallyReady,0);
 assert.equal(coverage.formallyCertified,0);
 assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').webPageProvisional,4);
 assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').missingSelectedIpa,239);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.authorDrafts,0),2873);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.selectedTestIpa,0),202);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.missingSelectedIpa,0),2671);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.unselectedVariants,0),412);
+assert.deepEqual(coverage.byScene.filter(x=>x.scene_id>='SC50-0011').map(x=>[
+ x.scene_id,x.authorDrafts,x.selectedTestIpa
+]),[
+ ['SC50-0011',255,0],['SC50-0012',253,0],
+ ['SC50-0013',245,0],['SC50-0014',243,4]
+]);
+
 assert.throws(()=>measureScene1341MasterCoverage([...joined,joined[0]]),/IDENTITY|CONFLICT/);
 
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
