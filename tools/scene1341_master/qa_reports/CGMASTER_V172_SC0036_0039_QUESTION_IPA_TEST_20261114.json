@@ -1,0 +1,1000 @@
+{
+  "version": "V172",
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "kaikki_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "kaikki_entries_scanned": 1499161,
+  "native_source_headwords_with_phonemic": 1551,
+  "formal_approved": 0,
+  "release_allowed": false,
+  "scope": "SC50-0036..SC50-0039",
+  "record_count": 891,
+  "scene_count": 4,
+  "ipa_nonempty": 870,
+  "missing_ipa": 21,
+  "counts": {
+    "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY": 41,
+    "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD": 111,
+    "CMU_TOKEN_COMPOSED_PREVIEW_ONLY": 631,
+    "KAIKKI_COMPONENT_COMPOSED_PREVIEW_ONLY_NOT_NATIVE_PHRASE": 35,
+    "CMU_EXACT_LEXEME_PREVIEW_ONLY": 52,
+    "IPA_MISSING_REVIEW_REQUIRED": 18,
+    "KAIKKI_MULTIVARIANT_HOLD_NO_IPA": 3
+  },
+  "records": [
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8267,
+      "record_id": "SC1341-FINAL-SRC-508d1c11284b624211152f89e30ab595",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "takeout",
+        "cue_zh": "外带餐食（美式）",
+        "ipa": "/ˈteɪkaʊt/",
+        "ipa_status": "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY",
+        "audio_text": "takeout",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈteɪkaʊt/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈteɪkaʊt/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 72697,
+            "pos": "adj"
+          },
+          {
+            "ipa": "/ˈteɪkaʊt/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 72698,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "takeout",
+            "native_phonemic_candidates": [
+              "/ˈteɪkaʊt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8268,
+      "record_id": "SC1341-FINAL-SRC-b1c7b4c3734ec382281f7d2bd6a7b4f9",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "takeaway",
+        "cue_zh": "外带餐食（英式）",
+        "ipa": "/teɪkʌweɪ/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "takeaway",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈteɪkəweɪ/",
+          "/ˈtæɪkəwæɪ/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈteɪkəweɪ/",
+            "tags": [
+              "Canada",
+              "General-American",
+              "Received-Pronunciation"
+            ],
+            "line": 70606,
+            "pos": "adj"
+          },
+          {
+            "ipa": "/ˈtæɪkəwæɪ/",
+            "tags": [
+              "Australia",
+              "New-Zealand"
+            ],
+            "line": 70606,
+            "pos": "adj"
+          },
+          {
+            "ipa": "/ˈteɪkəweɪ/",
+            "tags": [
+              "Canada",
+              "General-American",
+              "Received-Pronunciation"
+            ],
+            "line": 70607,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈtæɪkəwæɪ/",
+            "tags": [
+              "Australia",
+              "New-Zealand"
+            ],
+            "line": 70607,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "takeaway",
+            "native_phonemic_candidates": [
+              "/ˈteɪkəweɪ/",
+              "/ˈtæɪkəwæɪ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8269,
+      "record_id": "SC1341-FINAL-SRC-056c091ff393383e9cdc3cb29e340aec",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "food delivery",
+        "cue_zh": "餐饮外送",
+        "ipa": "/fud dɪlɪvɝi/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "food delivery",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "food",
+            "native_phonemic_candidates": [
+              "/fuːd/",
+              "/fʊd/",
+              "/fʊɖ/"
+            ]
+          },
+          {
+            "token": "delivery",
+            "native_phonemic_candidates": [
+              "/dɪˈlɪv.(ə.)ɹi/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8270,
+      "record_id": "SC1341-FINAL-SRC-55d8e311ceddfca1ac15ba392988bed5",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "delivery app",
+        "cue_zh": "外卖应用",
+        "ipa": "/dɪlɪvɝi æp/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "delivery app",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "delivery",
+            "native_phonemic_candidates": [
+              "/dɪˈlɪv.(ə.)ɹi/"
+            ]
+          },
+          {
+            "token": "app",
+            "native_phonemic_candidates": [
+              "/ap/",
+              "/æp/",
+              "/ɛp/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8271,
+      "record_id": "SC1341-FINAL-SRC-386ee122c7331422f590f4938fb8d98b",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "restaurant listing",
+        "cue_zh": "应用中的餐厅列表",
+        "ipa": "/rɛstɝɑnt lɪstɪŋ/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "restaurant listing",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "restaurant",
+            "native_phonemic_candidates": [
+              "/ˈɹɛs.t(ə.)ɹɒnt/",
+              "/ˈɹɛs.t(ə.)ɹɒ̃/",
+              "/ˈɹɛs.t(ə.)ɹənt/",
+              "/ˈɹɛs.t(əˌ)ɹɑnt/",
+              "/ˈɹɛst.(ə.)ɹənt/"
+            ]
+          },
+          {
+            "token": "listing",
+            "native_phonemic_candidates": [
+              "/ˈlɪstɪŋ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8272,
+      "record_id": "SC1341-FINAL-SRC-6bc67bf75e42565b3cd2b14a62b3d000",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "menu",
+        "cue_zh": "外卖菜单",
+        "ipa": "/mɛnju/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "menu",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈmɛn.ju/",
+          "/ˈmɛn.juː/",
+          "/ˈmɛn.ɪu̯/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈmɛn.juː/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 9978,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈmɛn.ju/",
+            "tags": [
+              "Canada",
+              "General-American"
+            ],
+            "line": 9978,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈmɛn.ɪu̯/",
+            "tags": [],
+            "line": 9978,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈmɛn.juː/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 9979,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈmɛn.ju/",
+            "tags": [
+              "Canada",
+              "General-American"
+            ],
+            "line": 9979,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈmɛn.ɪu̯/",
+            "tags": [],
+            "line": 9979,
+            "pos": "verb"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "menu",
+            "native_phonemic_candidates": [
+              "/ˈmɛn.ju/",
+              "/ˈmɛn.juː/",
+              "/ˈmɛn.ɪu̯/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8273,
+      "record_id": "SC1341-FINAL-SRC-3228ebcef7d72fd36ec86c872838f6cc",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "online ordering",
+        "cue_zh": "在线下单",
+        "ipa": "/ɔnlaɪn ɔrdɝɪŋ/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "online ordering",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "online",
+            "native_phonemic_candidates": [
+              "/ɑnˈlaɪn/",
+              "/ɒnˈlaɪn/",
+              "/ɔnˈlaɪn/",
+              "/ɔnˈlɑen/",
+              "/ɔnˈlɑjn/",
+              "/ɔnˈlʌɪn/",
+              "/ˈɑnlaɪn/",
+              "/ˈɒnlaɪn/",
+              "/ˈɔnlaɪn/",
+              "/ˈɔnlɑen/",
+              "/ˈɔnlɑjn/",
+              "/ˈɔnlʌɪn/"
+            ]
+          },
+          {
+            "token": "ordering",
+            "native_phonemic_candidates": []
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8274,
+      "record_id": "SC1341-FINAL-SRC-79c59ab99f4d2e6b63ee5296b7a8c1e5",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "cart",
+        "cue_zh": "购物车；待结账餐品清单",
+        "ipa": "/kɑrt/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "cart",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/kɑɹt/",
+          "/kɑːt/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/kɑːt/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 18256,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/kɑɹt/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 18256,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/kɑːt/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 18257,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/kɑɹt/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 18257,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/kɑːt/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 18258,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/kɑɹt/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 18258,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "cart",
+            "native_phonemic_candidates": [
+              "/kɑɹt/",
+              "/kɑːt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8275,
+      "record_id": "SC1341-FINAL-SRC-c9d45a064e094b094d6a7c4108537040",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "checkout",
+        "cue_zh": "确认订单并付款的步骤",
+        "ipa": "/ˈt͡ʃɛkˌaʊt/",
+        "ipa_status": "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY",
+        "audio_text": "checkout",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈt͡ʃɛkˌaʊt/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈt͡ʃɛkˌaʊt/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 72710,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "checkout",
+            "native_phonemic_candidates": [
+              "/ˈt͡ʃɛkˌaʊt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8276,
+      "record_id": "SC1341-FINAL-SRC-81b60667514a12d842511c7110da84a8",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "order confirmation",
+        "cue_zh": "订单确认",
+        "ipa": "/ɔrdɝ kɑnfɝmeɪʃʌn/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "order confirmation",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "order",
+            "native_phonemic_candidates": [
+              "/ˈoɹ.dɚ/",
+              "/ˈoː.də/",
+              "/ˈɔː.də/",
+              "/ˈɔːdə(r)/"
+            ]
+          },
+          {
+            "token": "confirmation",
+            "native_phonemic_candidates": [
+              "/ˌkɑn.fəɹˈmeɪ.ʃən/",
+              "/ˌkɒn.fəˈmeɪ.ʃən/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8277,
+      "record_id": "SC1341-FINAL-SRC-a9c0bc242dbaba9000b66ed6faaf55d1",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "order number",
+        "cue_zh": "订单号",
+        "ipa": "/ɔrdɝ nʌmbɝ/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "order number",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "order",
+            "native_phonemic_candidates": [
+              "/ˈoɹ.dɚ/",
+              "/ˈoː.də/",
+              "/ˈɔː.də/",
+              "/ˈɔːdə(r)/"
+            ]
+          },
+          {
+            "token": "number",
+            "native_phonemic_candidates": [
+              "/ˈnʊmbə/",
+              "/ˈnʌmbər/",
+              "/ˈnʌmə/",
+              "/ˈnʌmɚ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8278,
+      "record_id": "SC1341-FINAL-SRC-7e88ea8c2a56db86d3e17bf0ab4cb588",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "minimum order",
+        "cue_zh": "最低起订金额",
+        "ipa": "/mɪnʌmʌm ɔrdɝ/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "minimum order",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "minimum",
+            "native_phonemic_candidates": [
+              "/ˈmɪnəməm/",
+              "/ˈmɪnɪməm/"
+            ]
+          },
+          {
+            "token": "order",
+            "native_phonemic_candidates": [
+              "/ˈoɹ.dɚ/",
+              "/ˈoː.də/",
+              "/ˈɔː.də/",
+              "/ˈɔːdə(r)/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8279,
+      "record_id": "SC1341-FINAL-SRC-01bdc480130def5b6a0b4ee9c910fefc",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "delivery fee",
+        "cue_zh": "配送费",
+        "ipa": "/dɪˈlɪv.(ə.)ɹi fiː/",
+        "ipa_status": "KAIKKI_COMPONENT_COMPOSED_PREVIEW_ONLY_NOT_NATIVE_PHRASE",
+        "audio_text": "delivery fee",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "delivery",
+            "native_phonemic_candidates": [
+              "/dɪˈlɪv.(ə.)ɹi/"
+            ]
+          },
+          {
+            "token": "fee",
+            "native_phonemic_candidates": [
+              "/fiː/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8280,
+      "record_id": "SC1341-FINAL-SRC-ed2b81dc8b0625d8ce3c00c13588976e",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "service fee",
+        "cue_zh": "平台服务费",
+        "ipa": "/sɝvʌs fi/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "service fee",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "service",
+            "native_phonemic_candidates": [
+              "/ˈsɜː.vɪs/",
+              "/ˈsɝ.vɪs/"
+            ]
+          },
+          {
+            "token": "fee",
+            "native_phonemic_candidates": [
+              "/fiː/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8281,
+      "record_id": "SC1341-FINAL-SRC-a04670cadf690eee3ba9396abdd77596",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "small-order fee",
+        "cue_zh": "小额订单附加费",
+        "ipa": "/smɔlɔrdɝ fi/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "small-order fee",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "small-order",
+            "native_phonemic_candidates": []
+          },
+          {
+            "token": "fee",
+            "native_phonemic_candidates": [
+              "/fiː/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8282,
+      "record_id": "SC1341-FINAL-SRC-659ec04b1752dc174a1e25b5059d18b0",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "free delivery",
+        "cue_zh": "免配送费",
+        "ipa": "/fri dɪlɪvɝi/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "free delivery",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "free",
+            "native_phonemic_candidates": [
+              "/fɹi/",
+              "/fɹiː/",
+              "/fɹɪj/"
+            ]
+          },
+          {
+            "token": "delivery",
+            "native_phonemic_candidates": [
+              "/dɪˈlɪv.(ə.)ɹi/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8283,
+      "record_id": "SC1341-FINAL-SRC-8d074cb591670221a701e0b612bda13d",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "promo code",
+        "cue_zh": "优惠码",
+        "ipa": "/proʊmoʊ koʊd/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "promo code",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "promo",
+            "native_phonemic_candidates": [
+              "/ˈpɹəʊməʊ/"
+            ]
+          },
+          {
+            "token": "code",
+            "native_phonemic_candidates": [
+              "/koʊd/",
+              "/kəʊd/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8284,
+      "record_id": "SC1341-FINAL-SRC-8c606546169fb975ba211cbca4351f2d",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "first-order discount",
+        "cue_zh": "首单优惠",
+        "ipa": "/fɝstɔrdɝ dɪskaʊnt/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "first-order discount",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "first-order",
+            "native_phonemic_candidates": []
+          },
+          {
+            "token": "discount",
+            "native_phonemic_candidates": [
+              "/dɪˈskaʊnt/",
+              "/ˈdɪskaʊnt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8285,
+      "record_id": "SC1341-FINAL-SRC-15ea381a634eec3f8bf974728adeb43a",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "delivery estimate",
+        "cue_zh": "预计送达时间",
+        "ipa": "/dɪlɪvɝi ɛstʌmʌt/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "delivery estimate",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "delivery",
+            "native_phonemic_candidates": [
+              "/dɪˈlɪv.(ə.)ɹi/"
+            ]
+          },
+          {
+            "token": "estimate",
+            "native_phonemic_candidates": [
+              "/ˈɛs.tə.mət/",
+              "/ˈɛs.təˌmeɪt/",
+              "/ˈɛs.tɪ.mət/",
+              "/ˈɛs.tɪˌmeɪt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8286,
+      "record_id": "SC1341-FINAL-SRC-969281707135b007f1983a8f2e056a00",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "estimated arrival",
+        "cue_zh": "预计到达时间",
+        "ipa": "/ˈɛstəˌmeɪtɪd əˈɹaɪ.vl̩/",
+        "ipa_status": "KAIKKI_COMPONENT_COMPOSED_PREVIEW_ONLY_NOT_NATIVE_PHRASE",
+        "audio_text": "estimated arrival",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "estimated",
+            "native_phonemic_candidates": [
+              "/ˈɛstəˌmeɪtɪd/"
+            ]
+          },
+          {
+            "token": "arrival",
+            "native_phonemic_candidates": [
+              "/əˈɹaɪ.vl̩/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0036",
+      "scene_name": "外卖下单",
+      "source_final_row": 8287,
+      "record_id": "SC1341-FINAL-SRC-97a9ce4c04b88e5f3edaca2e4c545334",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "pickup option",
+        "cue_zh": "自取选项",
+        "ipa": "/pɪkʌp ɑpʃʌn/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "pickup option",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "pickup",
+            "native_phonemic_candidates": [
+              "/ˈpɪkʌp/"
+            ]
+          },
+          {
+            "token": "option",
+            "native_phonemic_candidates": [
+              "/ˈɑpʃən/",
+              "/ˈɒpʃən/"
+            ]
+          }
+        ]
