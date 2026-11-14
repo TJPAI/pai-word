@@ -100,6 +100,13 @@ assert.deepEqual(MASTER_SCENE_BATCH_MANIFEST.map(x=>[x.scene,x.count]),[
  ['SC50-0012',253],['SC50-0013',245],['SC50-0014',243]
 ]);
 assert.equal(MASTER_SCENE_BATCH_MANIFEST.reduce((n,x)=>n+x.count,0),next.total);
+for(const [i,a] of MASTER_SCENE_BATCH_MANIFEST.entries()){
+ assert.equal(a.last-a.first+1,a.count,'manifest FINAL rows must be contiguous');
+ for(const [j,b] of MASTER_SCENE_BATCH_MANIFEST.entries())
+  if(i!==j)assert(a.scene!==b.scene&&(a.last<b.first||b.last<a.first),
+    'manifest batches must have unique scene IDs and non-overlapping source ranges');
+}
+
 
 assert.equal(next.canWriteSrs,false);
 assert.equal(next.productionRelease,false);
