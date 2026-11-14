@@ -31,7 +31,12 @@ assert.deepEqual([...handlers.keys()],['touchstart','touchmove','touchcancel','t
 start(150,200);drag(30,202);endTouch(30,202);
 assert.deepEqual(moves, [1],'left swipe advances one within current batch');
 assert(ctx.window.__paiTapSuppressUntil>clock,'Safari synthesized tap suppressed');
+// A very fast swipe may skip touchmove on iOS; touchend alone must suppress
+// the synthesized click that would otherwise flip the preferred card face.
+ctx.window.__paiTapSuppressUntil=0;ctx.suppressTapUntil=0;
 start(50,200);endTouch(160,202);assert.deepEqual(moves,[1,-1],'right swipe reverses');
+assert(ctx.window.__paiTapSuppressUntil===clock+700&&ctx.suppressTapUntil===clock+700,
+ 'fast touchend-only swipe suppresses Safari click without touchmove');
 start(80,200);endTouch(82,100);assert.deepEqual(batches,[1],'up swipe advances batch');
 start(80,100);endTouch(82,200);assert.deepEqual(batches,[1,-1],'down swipe reverses batch');
 const baseline=()=>[moves.length,batches.length];
