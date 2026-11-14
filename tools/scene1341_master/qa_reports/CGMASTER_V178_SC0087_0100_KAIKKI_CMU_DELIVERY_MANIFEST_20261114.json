@@ -1,0 +1,54 @@
+{
+  "version": "V178",
+  "date": "2026-11-14",
+  "scope": "SC50-0087..SC50-0100",
+  "scene_count": 14,
+  "records": 2582,
+  "source_final_rows": [
+    18115,
+    20696
+  ],
+  "kaikki_entries_scanned": 1499161,
+  "kaikki_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "status_counts": {
+    "KAIKKI_NATIVE_EXACT_SINGLE_TEST_ONLY": 119,
+    "COMPOSED_PREVIEW_NOT_NATIVE_PHRASE": 722,
+    "CMUDICT_LEGACY_COMPOSED_PREVIEW_UNRESOLVED": 1466,
+    "CMUDICT_EXACT_FALLBACK_TEST_ONLY": 242,
+    "IPA_MISSING_REVIEW_REQUIRED": 31,
+    "KAIKKI_MULTIVARIANT_UNRESOLVED": 2
+  },
+  "ipa_nonempty": 2549,
+  "ipa_missing": 33,
+  "canonical_sense_approved": 0,
+  "release_allowed": false,
+  "drive_zip": "https://drive.google.com/file/d/1_zW12Cb42ZF9wi1NbTOxx_gk5SN3xepT/view",
+  "drive_zip_sha256": "45cf608b7160d092869c0b75f647a02a118c9ace212fc7987bd8a46ba87cfb2d",
+  "shards": [
+    {
+      "part": 1,
+      "records": 650,
+      "bytes": 216140,
+      "blob_sha": "96690fb8b159cb368ce1a04f9e7ba429d1187bd1"
+    },
+    {
+      "part": 2,
+      "records": 650,
+      "bytes": 172579,
+      "blob_sha": "dc040f3adbe21ab5a243a4c3124c03d24f82e1c0"
+    },
+    {
+      "part": 3,
+      "records": 650,
+      "bytes": 202361,
+      "blob_sha": "7354244843aee4ec863d64a472c5c2300a9b9d59"
+    },
+    {
+      "part": 4,
+      "records": 632,
+      "bytes": 164892,
+      "blob_sha": "8b348883d6b4bb34963eccf9e1f32975871deeef"
+    }
+  ],
+  "notes": "Test only. No invented canonical sense ID or formal pronunciation approval. Native Kaikki single-IPA preferred; CMU exact fallback; composed legacy preview explicit."
+}
