@@ -124,9 +124,14 @@ assert(autoNativeSource.includes('state.autoBrowseEnabled=!!enabled;save();resta
  'UI persistence and reset are grounded in native Scene500 behavior');
 
 // The canonical 1341 scene catalog remains pinned; visible test-only cards
-// are sourced from CG-MASTER V106 (1,877 exact source-row author drafts).
+// are sourced from CG-MASTER V111 (1,877 exact source-row author drafts).
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
 assert(script.includes('scene1341-master-preview-loader.mjs'));
+assert(!html.includes('id="enlex-section"') &&
+ !script.includes('scene1341-enlex-preview.mjs') &&
+ !script.includes('renderLexiconReference(') &&
+ !script.includes("append($('enlex-section'))"),
+ 'Scene1341 must never mount legacy Core20K content or reference UI');
 assert(script.includes('items.length!==1877'));
 assert(script.includes('建设中 Master 测试'));
 assert(!script.includes('pai-word-preview-ku-durable'));
@@ -186,7 +191,7 @@ assert(/class="recall-controls-row"[^>]*>.*?class="recall-cue".*?class="auto-wor
 assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift the study hero geometry');
 assert(!learningFace.includes('class="demo-ops"') && !learningFace.includes('class="demo-qa"') && !learningFace.includes('class="tap-hint"'), 'no Scene1341-only learning controls or notices');
 assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
-assert(script.includes('scene1341-master-preview-loader.mjs'),'V106 Master source-exact staging preview');
+assert(script.includes('scene1341-master-preview-loader.mjs'),'V111 Master source-exact staging preview');
 
 assert(html.includes('id="collocations-section"') && html.includes('id="usage-section"'),
  'optional answer teaching sections must have distinct view containers');
@@ -774,7 +779,7 @@ assert(script.includes('const transientCursors=new Map(Object.entries(savedDispl
  script.includes("const savedDisplay={lastScene:'SC50-0001',cursors:{}};") &&
  !script.includes('displayBookmark.load()') &&
  !script.includes('displayBookmark.save('),
- 'V106 draft preview must keep in-session cursor only, never reload stale Master bookmarks');
+ 'V111 draft preview must keep in-session cursor only, never reload stale Master bookmarks');
 assert(script.includes('function openStudy(id,resume=false)') &&
  script.includes('resume?transientCursors.get(id):null') &&
  script.includes('index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0'),
@@ -1590,4 +1595,4 @@ assert.equal(failedAudioPauses,2);
 assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
-console.log(JSON.stringify({status:'PASS',preview:'1877 source-pinned CG-MASTER V106 author drafts',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+console.log(JSON.stringify({status:'PASS',preview:'1877 source-pinned CG-MASTER V111 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
