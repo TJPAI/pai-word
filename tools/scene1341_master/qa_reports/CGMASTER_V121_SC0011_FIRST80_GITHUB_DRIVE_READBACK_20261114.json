@@ -1,0 +1,64 @@
+{
+  "version": "V121",
+  "date": "2026-11-14",
+  "role": "CG-MASTER",
+  "kind": "FIRST80_GITHUB_AND_AUTHORITY_GOOGLE_DRIVE_BIDIRECTIONAL_READBACK",
+  "scene_id": "SC50-0011",
+  "scene_name": "看电视与流媒体",
+  "source_master_final_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "source_v105_sha256": "5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a",
+  "files": [
+    {
+      "type": "50 newly authored drafts",
+      "name": "CGMASTER_V119_SC0011_ROWS2410_2459_50_BILINGUAL_QA_DRAFT_20261114.json",
+      "github_blob": "d7854f6c80d94297fa9cb1c075268f59ee37d6e2",
+      "github_sha256": "25d2214bf805f6cd5154e4dc831692e26beec8d71cea3b9d20556cd72489d7f7",
+      "github_bytes": 60326,
+      "google_drive_id": "1lchLY6iXi5JYwrK3CrkIpvMM_BjXf-rY",
+      "google_drive_url": "https://drive.google.com/file/d/1lchLY6iXi5JYwrK3CrkIpvMM_BjXf-rY/view",
+      "google_drive_readback_bytes": 77282,
+      "google_drive_readback_sha256": "bca836d3074a2a9488ed660d9709ac1eb34e223d53c040959def2faa67a41f53",
+      "rows": 50
+    },
+    {
+      "type": "combined source-pinned author draft for Scene0011",
+      "name": "CGMASTER_V120_SC0011_FIRST80_BILINGUAL_QA_MERGED_20261114.json",
+      "github_blob": "6d73c17ddfa257d442bd0281b192bc3c272c0169",
+      "github_sha256": "e3a784b2d0f9a3ce7d43855c0b5bea1496738d16d0ac81cd728a751362f01149",
+      "github_bytes": 96721,
+      "google_drive_id": "1ZwH9kf8nkmt3PxhMo3HQpeJW1XBB3f1O",
+      "google_drive_url": "https://drive.google.com/file/d/1ZwH9kf8nkmt3PxhMo3HQpeJW1XBB3f1O/view",
+      "google_drive_readback_bytes": 96722,
+      "google_drive_readback_sha256": "008d60939229430f03038f8e47805b715faa1c62376939b50db0c9335aa040e8",
+      "rows": 80
+    }
+  ],
+  "verification": {
+    "original_final_source_row_range": "2380..2459",
+    "source_identity_distinct": 80,
+    "all_answers_have_english_and_chinese_examples": 80,
+    "all_answers_have_collocations_and_usage": 80,
+    "unverified_ipa": 80,
+    "selected_ipa": 0,
+    "formal_canonical_sense_ids": 0,
+    "release_violations": 0,
+    "QA_independent_certified": 0,
+    "source_row_conflicts": 0,
+    "drive_upload_succeeded": true,
+    "drive_readback_succeeded": true
+  },
+  "remaining": {
+    "scene_source_records": 255,
+    "author_drafts_complete": 80,
+    "author_drafts_pending": 175,
+    "remaining_scenes_with_no_authored_content_in_first100": 89
+  },
+  "notes": [
+    "V118 first30 source-preserved, V119 next50 added; V120 includes both",
+    "The data are author drafts, not QA certified or canonical Sense assigned",
+    "GitHub connector produces compact JSON without terminal newline, Drive preserves pretty JSON with newline. Distinct SHA256 represent equivalent parsed records, not identical bytes",
+    "Do not merge into certified Master or Scene500; CG-MAIN may use test-only"
+  ],
+  "status": "AUTHOR_DRAFT_DRIVE_AND_GITHUB_DELIVERED_NOT_CERTIFIED",
+  "release_allowed": false
+}
