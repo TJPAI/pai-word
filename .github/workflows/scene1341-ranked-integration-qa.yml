@@ -44,6 +44,8 @@ on:
       - 'tools/integration/test-scene1341-v171-paired-learning.mjs'
       - 'tools/integration/test-scene1341-v188-answer-presentation.mjs'
       - 'tools/integration/test-scene1341-v188-source-audit.mjs'
+      - 'tools/integration/test-scene1341-v190-main-answer-intake.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene1341-v190-master-answer-intake.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v188-answer-presentation.js'
       - 'rebuild-preview/scene1341-readonly/scene1341-v171-paired-master-overlay.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v172-question-first-loader.mjs'
@@ -130,3 +132,5 @@ jobs:
           node --check rebuild-preview/scene1341-readonly/scene1341-v188-answer-presentation.js
           node tools/integration/test-scene1341-v188-answer-presentation.mjs
           node tools/integration/test-scene1341-v188-source-audit.mjs
+          node --check rebuild-preview/scene1341-readonly/scene1341-v190-master-answer-intake.mjs
+          node tools/integration/test-scene1341-v190-main-answer-intake.mjs
