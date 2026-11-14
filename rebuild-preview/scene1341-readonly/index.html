@@ -387,7 +387,7 @@ async function load(){
   set('master-ipa-coverage','SC0011–SC0014 已按V171源身份逐条接入996份完整题目/答案配对草稿；其中979条有测试IPA、17条待补。其余测试场景仍按原Master来源展示；正式认证0，完整可发布词卡0。');
   const completeIPAInMain=items.filter(card=>{
    const ipa=card.question?.ipa;
-   return typeof ipa==='string'&&/^(?:\\/[^\\/\\]\\r\\n]+\\/|\\[[^\\/\\]\\r\\n]+\\])$/u.test(ipa.trim())&&ipa.trim().slice(1,-1).trim().length>0;
+   return typeof ipa==='string'&&/^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(ipa.trim())&&ipa.trim().slice(1,-1).trim().length>0;
   }).length;
   if(completeIPAInMain!==1177||items.length!==2873)
    throw Error('MASTER_V171_MAIN_LEARNING_IPA_COUNT_DRIFT');
