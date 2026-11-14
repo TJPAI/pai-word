@@ -25,7 +25,8 @@ assert(snap.exact>0,'must really match existing Master records');
 assert(snap.enriched>0,'must actually add V190 author fields');
 assert.equal(snap.exact,2498);
 assert.equal(snap.held,0);
-assert.equal(snap.enriched,314);
+assert(snap.enriched>=314,'new source-native IPA may extend the number of updated question cards');
+assert(snap.liveIPATest>=0 && snap.ipaUpdated>=0);
 assert.equal(snap.examplesAdded,0);
 assert.equal(snap.unmatchedSourceRows,502,'V190 source cannot be inflated into unready live cards');
 assert.equal(snap.legacyOutsideBatch,375,'legacy cards outside V190 first 3000 stay intact');
@@ -39,7 +40,17 @@ for(const x of snap.items){
  assert.equal(x.scene_id,before.scene_id);
  assert.equal(x.expression,before.expression);
  assert.equal(x.master_final_row,before.master_final_row);
- assert.deepEqual(x.question,before.question,'master author answer delta must never replace IPA/question');
+ if(x.question.master_live_ipa_test===true){
+  assert(['KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY','CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY'].includes(
+   x.question.master_live_ipa_source_status),'only unambiguous source candidates can update the question IPA');
+  assert.equal(x.question.master_previous_ipa_test,before.question.ipa||null);
+  assert.equal(x.question.ipa_source?.sense_match_approved,false);
+  assert.equal(x.question.ipa_source?.qa_approved,false);
+  assert.equal(x.question.ipa_provisional,true);
+  assert.equal(x.question.master_live_ipa_source_commit,snap.sourceCommit);
+ }else{
+  assert.deepEqual(x.question,before.question,'ambiguous/HOLD question IPA must remain unchanged');
+ }
  assert.equal(x.answer.meaning_zh,before.answer.meaning_zh,'old Chinese meaning must stay unchanged');
  for(const f of ['synonyms','antonyms','sense_disambiguation','synonyms_status','antonyms_status','content_complete']){
   if(Object.prototype.hasOwnProperty.call(before.answer,f))
@@ -56,5 +67,5 @@ for(const x of snap.items){
  }
 }
 console.log(JSON.stringify({status:'PASS',version:'V190',sourceRows:snap.sourceRows,
- matched:snap.exact,held:snap.held,enriched:snap.enriched,examplesAdded:snap.examplesAdded,
+ matched:snap.exact,held:snap.held,enriched:snap.enriched,examplesAdded:snap.examplesAdded,liveIPATest:snap.liveIPATest,ipaUpdated:snap.ipaUpdated,
  learnerCards:snap.items.length,unmatchedSourceRows:snap.unmatchedSourceRows,legacyOutsideBatch:snap.legacyOutsideBatch,scene500Writes:0,srsWrites:0,formalReady:0}));
