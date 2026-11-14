@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {measureScene1341MasterCoverage} from '../../rebuild-preview/scene1341-readonly/scene1341-master-coverage.mjs';
+import {applyV153ArchivedIpaTestOverlay} from '../../rebuild-preview/scene1341-readonly/scene1341-v153-archived-ipa-overlay.mjs';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
 import {loadScene1341V128Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v128-sc0011-loader.mjs';
 import {loadScene1341MasterNextBatches,MASTER_SCENE_BATCH_MANIFEST} from '../../rebuild-preview/scene1341-readonly/scene1341-next-three-master-loader.mjs';
@@ -141,31 +142,47 @@ assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2873,'cross-batch KU ide
 assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2873,'source Master identity must be globally unique');
 assert.equal(new Set(joined.map(x=>x.master_final_row)).size,2873,'original FINAL source rows must never be duplicated');
 assert.equal(new Set(joined.map(x=>x.scene_id)).size,14,'no un-authored scene must be declared playable');
-const coverage=measureScene1341MasterCoverage(joined);
+const v153=await applyV153ArchivedIpaTestOverlay(joined);
+assert.equal(v153.total,2873);assert.equal(v153.matched,996);
+assert.equal(v153.archivedSingleTestIpa,8);
+assert.equal(v153.archivedVariantsUnselected,25);
+assert.equal(v153.retainedWebTestIpa,4);
+assert.equal(v153.productionRelease,false);
+assert.equal(v153.canWriteSrs,false);
+const after=v153.items;
+assert.deepEqual(after.map(x=>x.master_record_id),joined.map(x=>x.master_record_id));
+for(let i=0;i<after.length;i++){
+ assert.equal(after[i].master_final_row,joined[i].master_final_row);
+ assert.deepEqual(after[i].answer,joined[i].answer);
+}
+assert.deepEqual(new Set(after.filter(x=>x.question.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY').map(x=>x.expression)),
+ new Set(['living room','stressed','bib','drowsy','sleepy','dizzy','rash','itchy']));
+const coverage=measureScene1341MasterCoverage(after);
 assert.equal(coverage.authorDrafts,2873);
 assert.equal(coverage.sceneCount,14);
-assert.equal(coverage.selectedTestIpa,202);
+assert.equal(coverage.selectedTestIpa,210);
 assert.equal(coverage.sourceVerifiedTestIpa,3);
 assert.equal(coverage.nativeSingleProvisional,195);
 assert.equal(coverage.webPageProvisional,4);
-assert.equal(coverage.missingSelectedIpa,2671);
-assert.equal(coverage.unselectedVariants,412);
+assert.equal(coverage.archivedKaikkiProvisional,8);
+assert.equal(coverage.missingSelectedIpa,2663);
+assert.equal(coverage.unselectedVariants,437);
 assert.equal(coverage.formallyReady,0);
 assert.equal(coverage.formallyCertified,0);
 assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').webPageProvisional,4);
-assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').missingSelectedIpa,239);
+assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').missingSelectedIpa,238);
 assert.equal(coverage.byScene.reduce((n,x)=>n+x.authorDrafts,0),2873);
-assert.equal(coverage.byScene.reduce((n,x)=>n+x.selectedTestIpa,0),202);
-assert.equal(coverage.byScene.reduce((n,x)=>n+x.missingSelectedIpa,0),2671);
-assert.equal(coverage.byScene.reduce((n,x)=>n+x.unselectedVariants,0),412);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.selectedTestIpa,0),210);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.missingSelectedIpa,0),2663);
+assert.equal(coverage.byScene.reduce((n,x)=>n+x.unselectedVariants,0),437);
 assert.deepEqual(coverage.byScene.filter(x=>x.scene_id>='SC50-0011').map(x=>[
  x.scene_id,x.authorDrafts,x.selectedTestIpa
 ]),[
- ['SC50-0011',255,0],['SC50-0012',253,0],
- ['SC50-0013',245,0],['SC50-0014',243,4]
+ ['SC50-0011',255,0],['SC50-0012',253,2],
+ ['SC50-0013',245,5],['SC50-0014',243,5]
 ]);
 
-assert.throws(()=>measureScene1341MasterCoverage([...joined,joined[0]]),/IDENTITY|CONFLICT/);
+assert.throws(()=>measureScene1341MasterCoverage([...after,after[0]]),/IDENTITY|CONFLICT/);
 
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
 assert.equal(snap.total+extra.total+next.total,2873);
