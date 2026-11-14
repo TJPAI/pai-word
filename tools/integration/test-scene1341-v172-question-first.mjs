@@ -15,9 +15,9 @@ const ctx={window:{}};vm.runInNewContext(source,ctx);
 assert.equal(ctx.window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA('/ɹɡt͡ʃd͡ʒ/'),'/rgtʃdʒ/');
 assert.equal(QUESTION_SHARDS.length,21);
 assert(QUESTION_SHARDS.every(s=>/^[a-f0-9]{40}$/.test(s.blob)), 'every pinned source must have a complete Git SHA-1');
-assert.equal(new Set(QUESTION_SHARDS.map(s=>s.file)).size,13, 'shard files unique');
+assert.equal(new Set(QUESTION_SHARDS.map(s=>s.file)).size,21, 'shard files unique');
 assert.equal(QUESTION_SHARDS[0].first,1);
-assert.equal(QUESTION_SHARDS.at(-1).last,39);
+assert.equal(QUESTION_SHARDS.at(-1).last,70);
 
 assert.equal(QUESTION_SHARDS.reduce((n,x)=>n+x.count,0),15078);
 const all=await auditAllQuestionShards();
