@@ -1,0 +1,28 @@
+{
+  "version": "V100",
+  "date": "2026-11-14",
+  "kind": "ITEM_LEVEL_AUTHOR_EDITORIAL_ADJUDICATION_OF_V99_ALIGNMENT_AUDIT",
+  "drive_data_url": "https://drive.google.com/file/d/1QorfYGNwmEq5iKJmI2k95J0C7byckA8S/view",
+  "drive_builder_url": "https://drive.google.com/file/d/1LGCCuKi_MkkHeKuo3oYT26HUQjmWmSGN/view",
+  "data_sha256": "9cf022669c6e4625ac82a0e6178899b7f89b4420b1e713af5e83801be5689674",
+  "bytes": 25472,
+  "counts": {
+    "source_v93_v98_unique_cards": 255,
+    "v99_nonliteral_cases_reviewed": 29,
+    "legitimate_natural_variants_retained": 19,
+    "v99_patches_rejected_original_retained": 5,
+    "v99_patches_accepted_as_editorial": 2,
+    "v99_patches_replaced_with_safer_V100_drafts": 3,
+    "independent_qa_pass": 0,
+    "canonical_sense_ids_approved": 0,
+    "release_allowed": 0
+  },
+  "evidence": "Exact six source SHA256 pins and V99 SHA256 rechecked by build_cgmaster_v100.py; no original overlay overwritten.",
+  "cautions": [
+    "Literal expression match is not sufficient for grammar/semantics.",
+    "Do not change subject agreement runs/run or tense hold/held to force an exact string.",
+    "Do not equate may contain allergen warnings with definite contains declarations.",
+    "Do not assert unsourced charging idle fee timing."
+  ],
+  "quality": "CG_MASTER_EDITORIAL_DECISION_ONLY; INDEPENDENT_SEMANTIC_QA_PENDING"
+}
