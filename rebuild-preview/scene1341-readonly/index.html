@@ -394,8 +394,17 @@ async function load(){
   }).length;
   if(completeIPAInMain!==1177||items.length!==2873)
    throw Error('MASTER_V171_MAIN_LEARNING_IPA_COUNT_DRIFT');
-  set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+completeIPAInMain+' 条，正式认证0、SRS写入关闭。');
-  set('status','Scene1341 · 主学习页面14场景 / 2,873条 · V171配对996条 · 可显示测试IPA '+completeIPAInMain+' · Ready 0');
+  // Source-pinned CG-MASTER V190: safely enrich existing Scene1341 card
+  // answers only; old content, IPA, Scene500 interaction and SRS remain intact.
+  const v190=await import('./scene1341-v190-master-answer-intake.mjs')
+   .then(m=>m.applyV190MasterAnswerIntake(items));
+  if(v190.sourceRows!==3000||v190.formalReady!==0||
+     v190.canWriteSrs!==false||v190.releaseAllowed!==false||
+     v190.items.length!==2873)throw Error('V190_UNSAFE_MASTER_INTAKE');
+  items=[...v190.items];
+  set('master-ipa-coverage','V190 Master 首批3,000条源关联已完成SHA核验；与旧2,873条学习卡精确身份匹配'+v190.exact+'条，待对账'+v190.held+'条，实际安全增量补充答案'+v190.enriched+'条。现有IPA1177条测试展示不变，正式认证0，SRS禁写。');
+  set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+completeIPAInMain+' 条；V190源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条，正式认证0、SRS写入关闭。');
+  set('status','Scene1341 · V190 Master内容已安全接入 '+v190.enriched+' 条 · 14场景 / 2,873卡 · 测试IPA '+completeIPAInMain+' · Ready 0');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
