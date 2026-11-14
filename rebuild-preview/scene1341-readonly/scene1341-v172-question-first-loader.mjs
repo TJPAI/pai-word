@@ -43,7 +43,7 @@ export async function loadQuestionShard(spec,{fetchImpl=fetch}={}){
   if(doc.version!==spec.version||
      (spec.version==='V168'?(doc.ready!==0||doc.formal_certification!==false):doc.release_allowed!==false)||
      !Array.isArray(doc.records)||doc.records.length!==spec.count)
-   throw Error('SC1341_MASTER_MANIFEST_DRIFT');
+   throw Error('SC1341_MASTER_MANIFEST_DRIFT_'+spec.file+'_version_'+doc.version+'_release_'+doc.release_allowed+'_ready_'+doc.ready+'_formal_'+doc.formal_certification+'_records_'+doc.records?.length+'_expected_'+spec.count);
   const records=new Set(),rows=new Set();let countIPA=0;
   for(const rec of doc.records){
    const q=rec.question_page,n=Number(rec.scene_id?.slice(5));
