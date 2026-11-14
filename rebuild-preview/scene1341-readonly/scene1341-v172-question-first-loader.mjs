@@ -27,7 +27,8 @@ export async function loadQuestionShard(spec,{fetchImpl=fetch}={}){
   const response=await fetchImpl(ROOT+spec.file,{cache:'no-store'});
   if(!response.ok)throw Error('SC1341_MASTER_HTTP_'+response.status);
   const raw=await response.text();
-  if(await gitBlob(raw)!==spec.blob)throw Error('SC1341_MASTER_BLOB_DRIFT_'+spec.file);
+  const actualBlob=await gitBlob(raw);
+  if(actualBlob!==spec.blob)throw Error('SC1341_MASTER_BLOB_DRIFT_'+spec.file+'_expected_'+spec.blob+'_actual_'+actualBlob+'_bytes_'+new TextEncoder().encode(raw).length);
   const doc=JSON.parse(raw);
   if(doc.version!==spec.version||
      (spec.version==='V168'?(doc.ready!==0||doc.formal_certification!==false):doc.release_allowed!==false)||
