@@ -19,7 +19,7 @@ export async function loadScene1341V120Test({fetchImpl=fetch}={}){
  const raw=await res.text();
  if(await exactGitBlob(raw)!==EXPECTED_BLOB)throw Error('MASTER_V120_SOURCE_BLOB_CHANGED');
  const data=JSON.parse(raw);
- if(data.version!=='V120'||data.scene_id!=='SC50-0011'||data.status!=='DRAFT_NOT_CERTIFIED'||
+ if(data.version!=='V120'||data.scene_id!=='SC50-0011'||data.status!=='AUTHOR_DRAFT_SOURCE_PINNED_NOT_RELEASED'||
     !Array.isArray(data.records)||data.records.length!==80||data.counts?.author_draft_answer_complete!==80||data.counts?.remaining_author_drafts!==175||data.counts?.native_ipa!==0||data.counts?.source_join_conflicts!==0)
   throw Error('MASTER_V120_MANIFEST_INVALID');
  const ids=new Set(),rows=new Set(),items=[];
