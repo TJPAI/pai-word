@@ -30,7 +30,8 @@ jobs:
             --cards tools/scene1341_master/qa_reports/CGMASTER_V150_SC0014_243_WITH_4_KAIKKI_PAGE_IPA_TEST_20261114.json \
             --out-dir /tmp/cgmaster_ipa_v151 \
             --workers 6 \
-            --retries 2
+            --retries 2 \
+            --fail-on-empty
       - name: Validate source and card consistency
         run: |
           python - <<'PY'
@@ -41,6 +42,7 @@ jobs:
           assert len(a['records'])==243
           assert r['total_cards']==243
           assert all(x['release_allowed'] is False and x['canonical_sense_id'] is None for x in a['records'])
+          assert r.get('source_format')=='KAIKKI_POSTPROCESSED_PER_WORD_JSONL_NOT_UNPROCESSED_WIKTEXTRACT'
           print('QA OK',r['counts'])
           PY
       - name: Upload source-provenance QA and test overlay
