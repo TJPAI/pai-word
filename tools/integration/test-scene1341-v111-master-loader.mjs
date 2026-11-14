@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {measureScene1341MasterCoverage} from '../../rebuild-preview/scene1341-readonly/scene1341-master-coverage.mjs';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
 import {loadScene1341V128Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v128-sc0011-loader.mjs';
 import {loadScene1341MasterNextBatches,MASTER_SCENE_BATCH_MANIFEST} from '../../rebuild-preview/scene1341-readonly/scene1341-next-three-master-loader.mjs';
@@ -140,6 +141,21 @@ assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2873,'cross-batch KU ide
 assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2873,'source Master identity must be globally unique');
 assert.equal(new Set(joined.map(x=>x.master_final_row)).size,2873,'original FINAL source rows must never be duplicated');
 assert.equal(new Set(joined.map(x=>x.scene_id)).size,14,'no un-authored scene must be declared playable');
+const coverage=measureScene1341MasterCoverage(joined);
+assert.equal(coverage.authorDrafts,2873);
+assert.equal(coverage.sceneCount,14);
+assert.equal(coverage.selectedTestIpa,202);
+assert.equal(coverage.sourceVerifiedTestIpa,3);
+assert.equal(coverage.nativeSingleProvisional,195);
+assert.equal(coverage.webPageProvisional,4);
+assert.equal(coverage.missingSelectedIpa,2671);
+assert.equal(coverage.unselectedVariants,412);
+assert.equal(coverage.formallyReady,0);
+assert.equal(coverage.formallyCertified,0);
+assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').webPageProvisional,4);
+assert.equal(coverage.byScene.find(x=>x.scene_id==='SC50-0014').missingSelectedIpa,239);
+assert.throws(()=>measureScene1341MasterCoverage([...joined,joined[0]]),/IDENTITY|CONFLICT/);
+
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
 assert.equal(snap.total+extra.total+next.total,2873);
 assert.equal(next.batches[2].sourceGitBlob,'3e1042efe58480e38ae90631c595f872622cd748');
