@@ -77,4 +77,19 @@ for(const invalid of [null,undefined,'','ɹɛd','/ɹɛd','/ɹɛd/ /ɹɪd/','/ɹ�
  assert.equal(guarded.text,'音标待补',String(invalid));
  assert.equal(guarded.status,'missing',String(invalid));
 }
-console.log(JSON.stringify({status:'PASS',formatterCases:cases.length,renderCases:14,mutations:0,approvedIPA:0,srsWrites:0}));
+// Execute the real statistics counting expression against valid and invalid
+// test-only readings: the stats panel must never inflate selected IPA coverage.
+const statStart=inline.indexOf('const withIpa=items.filter(x=>{');
+const statEnd=inline.indexOf('.length;',statStart);
+assert(statStart>0&&statEnd>statStart,'actual IPA stats predicate must exist');
+const statSource=inline.slice(statStart,statEnd+'.length;'.length);
+const statContext={items:[
+ {question:{ipa:'/rɛd/'}},{question:{ipa:'[tʃɪld]'}},
+ {question:{ipa:null}},{question:{ipa:''}},
+ {question:{ipa:'/   /'}},{question:{ipa:'[\\t]'}},
+ {question:{ipa:'/rɛd/ /rɪd/'}},{question:{ipa:'rɛd'}},
+ {question:{ipa:'/rɛd/（测试）'}}
+]};
+vm.runInNewContext(statSource+'\\nthis.selectedCount=withIpa;',statContext);
+assert.equal(statContext.selectedCount,2,'statistics count only two complete IPA candidates');
+console.log(JSON.stringify({status:'PASS',formatterCases:cases.length,renderCases:14,statsCases:9,mutations:0,approvedIPA:0,srsWrites:0}));
