@@ -123,12 +123,12 @@ assert(autoNativeSource.includes('state.autoBrowseEnabled=!!enabled;save();resta
  autoNativeSource.includes('state.autoBrowseEnabled=false;'),
  'UI persistence and reset are grounded in native Scene500 behavior');
 
-// The canonical 1341 scene catalog remains pinned; the visible content now
-// comes from the newer 1778 CG-QA screened provisional answers, read-only.
+// The canonical 1341 scene catalog remains pinned; visible test-only cards
+// are sourced from CG-MASTER V106 (1,877 exact source-row author drafts).
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
-assert(script.includes('scene1341-qa-preview-loader.mjs'));
-assert(script.includes('items.length!==1778'));
-assert(script.includes('CG-QA 暂通过'));
+assert(script.includes('scene1341-master-preview-loader.mjs'));
+assert(script.includes('items.length!==1877'));
+assert(script.includes('建设中 Master 测试'));
 assert(!script.includes('pai-word-preview-ku-durable'));
 
 // No browser-side persisted learning state and no service worker inside isolated preview.
@@ -186,7 +186,7 @@ assert(/class="recall-controls-row"[^>]*>.*?class="recall-cue".*?class="auto-wor
 assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift the study hero geometry');
 assert(!learningFace.includes('class="demo-ops"') && !learningFace.includes('class="demo-qa"') && !learningFace.includes('class="tap-hint"'), 'no Scene1341-only learning controls or notices');
 assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
-assert(script.includes('scene1341-qa-preview-loader.mjs'),'QA provisional, immutable preview source');
+assert(script.includes('scene1341-master-preview-loader.mjs'),'V106 Master source-exact staging preview');
 
 assert(html.includes('id="collocations-section"') && html.includes('id="usage-section"'),
  'optional answer teaching sections must have distinct view containers');
@@ -1589,4 +1589,4 @@ assert.equal(failedAudioPauses,2);
 assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
-console.log(JSON.stringify({status:'PASS',preview:'1778 SHA-pinned QA provisional',blocked:260,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+console.log(JSON.stringify({status:'PASS',preview:'1877 source-pinned CG-MASTER V106 author drafts',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
