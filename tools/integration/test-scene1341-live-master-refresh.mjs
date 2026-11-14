@@ -55,6 +55,8 @@ assert.match(incomplete.liveError,/MASTER_LIVE_MANIFEST_HTTP_404/);
 const offline=await resolveLatestMasterSnapshot({fetchImpl:async()=>{throw Error('network unavailable')}});
 assert.equal(offline.fallback,true);
 const page=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
+const contract=fs.readFileSync('docs/scene1341-live-master-data-contract.md','utf8');
+assert(contract.includes('CGMASTER_LIVE_FEED.json')&&contract.includes('3000'),'CG-MASTER must receive the rolling source contract');
 assert(page.includes("$('master-refresh').addEventListener('click'"));
 assert(page.includes('sourceLabel=v190.sourceVersion'));
 assert(page.includes("（实时）")&&page.includes("（回退）"));
