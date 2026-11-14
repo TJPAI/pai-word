@@ -144,10 +144,6 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
    <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
-   <details class="answer-section" id="enlex-section" hidden>
-    <summary class="answer-label">英文 Core20K V2 词库参考（匹配词头，不代表场景词义认证）</summary>
-    <div class="root" id="enlex-details"></div>
-   </details>
   </div>
   <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
  </div>
@@ -170,7 +166,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
-let BATCH=10,selectedGrade=null,lexiconSequence=0,lexiconPromise=null,ipaSequence=0,ipaIndexPromise=null;
+let BATCH=10,selectedGrade=null,ipaSequence=0;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
 const getRecBridge=()=>recBridgePromise||(recBridgePromise=import('./scene1341-rec-bridge.mjs').then(m=>m.readonlyScene1341Recommendation).catch(e=>{recBridgePromise=null;throw e}));
 async function updateSceneRecommendations(){
@@ -460,30 +456,6 @@ function renderQuestionIPA(card){
  el.title=native?'CG-MASTER V111 · 已核验 Kaikki 原生 IPA（未认证测试）':'CG-MASTER 尚未提供本词条的核验 Kaikki IPA';
  el.dataset.ipaStatus=native?'verified-master-test':'missing';
 }
-async function renderLexiconReference(card){
- const seq=++lexiconSequence;
- const node=$('enlex-section'),container=$('enlex-details');
- node.hidden=true;
- if(!revealed)return;
- try{
-  if(!lexiconPromise)lexiconPromise=import('./scene1341-enlex-preview.mjs')
-    .then(m=>m.englishCore20KV2Preview)
-    .catch(err=>{lexiconPromise=null;throw err});
-  const source=await lexiconPromise;
-  const rows=await source.lookup(card.expression);
-  if(seq!==lexiconSequence||!revealed||
-     subset()[index]?.scene_ku_id!==card.scene_ku_id)return;
-  container.replaceChildren();
-  if(!rows.length)return;
-  node.open=false;node.hidden=false;
-  for(const row of rows){
-    const line=document.createElement('p');
-    line.textContent=(row.pos?row.pos+' · ':'')+row.gloss_zh+
-       (row.gloss_en?' ('+row.gloss_en+')':'');
-    container.appendChild(line);
-  }
- }catch(error){window.PAI_SCENE1341_ENLEX_PREVIEW_ERROR=String(error)}
-}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const prefs=readOnlyPrefs.snapshot();
@@ -566,18 +538,10 @@ function renderCard(){
       example_zh:r.answer.example_zh,x:teachingNotes.join(' '),playable:false},
    readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
   };
-  // Move the stable ENLEX <details> out of the disposable rendered HTML
-  // before replacing the native pilot: prevents deleting its event/DOM identity.
-  const enlexNode=$('enlex-section');
-  if(enlexNode) $('answer').append(enlexNode);
   nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs);
-  // Keep the same optional, source-pinned Core20K reference on whichever
-  // answer is visible; never duplicate or replace its source/identity.
-  nativeSlot.querySelector('.answer')?.append($('enlex-section'));
   nativeSlot.hidden=!revealed;
   $('answer').hidden=true;
  }else{
-  $('answer').append($('enlex-section'));
   if(nativeSlot)nativeSlot.hidden=true;
  }
  
@@ -665,7 +629,7 @@ $('settings-back').addEventListener('click',()=>{
 $('preview-stats-button').addEventListener('click',()=>{
  const node=$('stats-panel');node.open=!node.open;
  set('preview-stats-content','Scene1341 目录：'+catalog.length+
-   ' 场景；V106 建设中 Master 测试词卡：'+items.length+
+   ' 场景；V111 建设中 Master 测试词卡：'+items.length+
    ' 条；本次体验评分：不知道 '+transientRatings.again+
    ' / 模糊 '+transientRatings.hard+' / 知道 '+transientRatings.good+
    '（仅内存，未写入正式SRS）');
