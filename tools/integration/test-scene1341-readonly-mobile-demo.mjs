@@ -168,7 +168,7 @@ assert(script.includes('scene1341-v153-archived-ipa-overlay.mjs')&&
  script.includes('MASTER_V153_PROVENANCE_OR_COUNT_MISMATCH')&&
  script.includes('coverage.archivedKaikkiProvisional!==8')&&
  script.includes("question?.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'")&&
- script.includes("archived?question.ipa+'（历史Kaikki·测试未认证）'")&&
+ script.includes("archived?learnerIPA+'（历史Kaikki·测试未认证）'")&&
  script.includes("archived?'archived-kaikki-provisional-test'"),
  'V153 archive-IPA overlay must be explicitly tagged and never silently promoted');
 
@@ -177,7 +177,7 @@ assert(script.includes('scene1341-v154-local-kaikki-ipa-overlay.mjs') &&
  script.includes('coverage.localArchiveProvisional!==v154.newlySelected') &&
  script.includes('v154.newlySelected!==83') &&
  script.includes("question?.ipa_status==='FULL_LOCAL_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'") &&
- script.includes("localArchive?question.ipa+'（本地Kaikki·测试未认证）'") &&
+ script.includes("localArchive?learnerIPA+'（本地Kaikki·测试未认证）'") &&
  script.includes("localArchive?'local-kaikki-provisional-test'"),
  'V154 source-pinned local Kaikki candidates must remain clearly test-only');
 
