@@ -1,0 +1,54 @@
+{
+  "version": "V172_REPAIR_1",
+  "github_commit": "29d47bce98b19cea5863147d6a6254d5bd056f54",
+  "branch": "cg-master-kaikki-evidence-intake-20261111",
+  "scope": "SC50-0026..SC50-0039",
+  "source_rows": [
+    6180,
+    9157
+  ],
+  "source_total": 2978,
+  "preview_ipa_nonempty": 2906,
+  "missing_ipa": 72,
+  "formal_ready": 0,
+  "release_allowed": false,
+  "explanation": "Four previously truncated .json files were removed and replaced with complete .json.gz Git blobs. Decompress before JSON parsing. Git object SHA-1, source SHA256 and gzip SHA256 are independently verified. Provisional phoneme candidates are not authoritative Kaikki whole-phrase IPA.",
+  "shards": [
+    {
+      "file": "CGMASTER_V172_SC0026_0029_QUESTION_IPA_TEST_20261114.json.gz",
+      "git_repo_path": "tools/scene1341_master/qa_reports/CGMASTER_V172_SC0026_0029_QUESTION_IPA_TEST_20261114.json.gz",
+      "record_count": 812,
+      "file_size_bytes": 120361,
+      "source_json_sha256": "8a0021f418b8ac1f5bfdd7b147b43f30cd7005ab8ceafd45a36ff2f2e21d0903",
+      "gzip_sha256": "df354432b8a6b7ee07e070ff02b26962d6ccef08469763769fa92a2177562282",
+      "git_blob_sha1": "960327da061ffd4e1cb8be2863bd159bdb9508f7"
+    },
+    {
+      "file": "CGMASTER_V172_SC0030_0032_QUESTION_IPA_TEST_20261114.json.gz",
+      "git_repo_path": "tools/scene1341_master/qa_reports/CGMASTER_V172_SC0030_0032_QUESTION_IPA_TEST_20261114.json.gz",
+      "record_count": 580,
+      "file_size_bytes": 85491,
+      "source_json_sha256": "a8eb421ceb36f6bf914fff8d4f06cb45fdde0b54ecd10fdd50840ec8bba955b4",
+      "gzip_sha256": "56c94958d919611f9f949b37a7bad0fd4f0c883ac316341b9926e56306a8ff79",
+      "git_blob_sha1": "1d9544b585d66179b848c62a17c2909dee74af69"
+    },
+    {
+      "file": "CGMASTER_V172_SC0033_0035_QUESTION_IPA_TEST_20261114.json.gz",
+      "git_repo_path": "tools/scene1341_master/qa_reports/CGMASTER_V172_SC0033_0035_QUESTION_IPA_TEST_20261114.json.gz",
+      "record_count": 695,
+      "file_size_bytes": 100147,
+      "source_json_sha256": "e049cb5ce2060fd3d2c2f2848d4c3a46fe1507ff156af5306d26069887460e2a",
+      "gzip_sha256": "0060be57f1dfe2623655bed8487ad15bcfd297f8cd0fcf880aaeb9a06ba1e636",
+      "git_blob_sha1": "d059760c982dc64b53cf8f830728f24538edfaaa"
+    },
+    {
+      "file": "CGMASTER_V172_SC0036_0039_QUESTION_IPA_TEST_20261114.json.gz",
+      "git_repo_path": "tools/scene1341_master/qa_reports/CGMASTER_V172_SC0036_0039_QUESTION_IPA_TEST_20261114.json.gz",
+      "record_count": 891,
+      "file_size_bytes": 129971,
+      "source_json_sha256": "118b8361f8a2857994ebfb520a9d1cb6eac427db88ebb06d7637908abbd4fd06",
+      "gzip_sha256": "9908e0009417c2be0f8540547767e4a51b317e839f218b05eb4d8aac2b3393e8",
+      "git_blob_sha1": "e3a0235304fe776d4b0d292a3b421fc40d16594f"
+    }
+  ]
+}
