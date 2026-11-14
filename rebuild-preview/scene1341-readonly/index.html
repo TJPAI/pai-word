@@ -506,8 +506,9 @@ function renderQuestionIPA(card){
  // An evidence flag alone is insufficient: never expose empty/malformed IPA
  // (including source-fragment text) as a selected test reading. Preserve
  // provenance/status and leave Master data untouched.
- const completeIPA=typeof question?.ipa==='string'&&
-   /^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(question.ipa.trim());
+ const ipaCandidate=typeof question?.ipa==='string'?question.ipa.trim():'';
+ const completeIPA=/^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(ipaCandidate)&&
+   ipaCandidate.slice(1,-1).trim().length>0; // reject empty/whitespace-only envelopes
  const native=question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'&&
               question?.ipa_source?.headword===card.expression&&
               question?.ipa_source?.url?.startsWith('https://kaikki.org/dictionary/English/')&&completeIPA;
