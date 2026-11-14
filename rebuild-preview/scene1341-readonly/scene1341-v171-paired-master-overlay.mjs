@@ -44,7 +44,7 @@ export async function applyV171PairedMasterOverlay(baseCards,{fetchImpl=fetch}={
       !q?.cue_zh?.trim()||!q?.audio_text?.trim()||
       !a?.meaning_zh?.trim()||!a?.example_en?.trim()||!a?.example_zh?.trim()||
       !Array.isArray(a.collocations)||a.collocations.length===0||!a?.usage_note?.trim()||
-      a.content_complete!==true||q.content_complete!==true||
+      a.content_complete!==true||q.content_complete!==(q.ipa!==null)||
       (q.ipa!==null&&!validIpa(q.ipa)))
     throw Error('V171_SOURCE_OR_ANSWER_INVALID_'+spec.scene+'_'+rec.source_final_row);
    ids.add(rec.record_id);rows.add(rec.source_final_row);
