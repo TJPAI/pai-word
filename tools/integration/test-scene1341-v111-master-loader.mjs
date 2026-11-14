@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
 import {loadScene1341V128Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v128-sc0011-loader.mjs';
 import {loadScene1341MasterNextBatches,MASTER_SCENE_BATCH_MANIFEST} from '../../rebuild-preview/scene1341-readonly/scene1341-next-three-master-loader.mjs';
@@ -142,5 +143,24 @@ assert.equal(new Set(joined.map(x=>x.scene_id)).size,14,'no un-authored scene mu
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
 assert.equal(snap.total+extra.total+next.total,2873);
 assert.equal(next.batches[2].sourceGitBlob,'3e1042efe58480e38ae90631c595f872622cd748');
+const oldURL='https://raw.githubusercontent.com/TJPAI/pai-word/3b77d762caf257e322894731bac69cb92775fed7/tools/scene1341_master/qa_reports/CGMASTER_V147_SC0014_ALL243_BILINGUAL_DRAFT_20261114.json';
+const oldResponse=await fetch(oldURL,{cache:'no-store'});
+assert(oldResponse.ok,'pinned V147 source must remain independently fetchable');
+const oldRaw=await oldResponse.text();
+const oldBlob=createHash('sha1').update('blob '+Buffer.byteLength(oldRaw)+'\\0').update(oldRaw).digest('hex');
+assert.equal(oldBlob,'e8589c6c6bc68f93d4183064e2f5a87845552da2');
+const oldV147=JSON.parse(oldRaw).records;
+assert.equal(oldV147.length,243);
+const newV150=new Map(next.items.filter(x=>x.scene_id==='SC50-0014').map(x=>[x.master_final_row,x]));
+for(const old of oldV147){
+ const now=newV150.get(old.source_final_row);
+ assert(now,'V150 must preserve all V147 source rows');
+ assert.equal(now.master_record_id,old.record_id);
+ assert.equal(now.expression,old.question_page.english_expression);
+ assert.equal(now.question.cue_zh,old.question_page.cue_zh);
+ assert.deepEqual(now.answer,old.answer_page,'V150 may not silently rewrite CG-MASTER answer pages');
+ assert.equal(now.production_release_allowed,false);
+}
+
 assert.equal(snap.scenes+extra.scenes,11);
 console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:14,combinedTestCards:2873,v150WebPageIpa:4,v150UnselectedVariant:2,productionRelease:snap.productionRelease}));
