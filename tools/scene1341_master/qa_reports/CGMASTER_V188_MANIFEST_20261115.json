@@ -1,0 +1,90 @@
+{
+  "version": "V188",
+  "date": "2026-11-15",
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "scope": {
+    "first_source_final_row": 1,
+    "last_source_final_row": 3000,
+    "source_association_rows": 3000,
+    "scenes": 13,
+    "lexical_entries": 2710,
+    "provisional_sense_groups": 313,
+    "provisional_reuse_associations": 25,
+    "certified_global_senses": 0
+  },
+  "source_base": "V185 unchanged immutable three gzip shards",
+  "source_deltas": {
+    "V183_exact_author_answers": 223,
+    "V184_exact_author_answers": 63
+  },
+  "counts": {
+    "filled_example_en": 286,
+    "filled_example_zh": 286,
+    "filled_collocations": 286,
+    "filled_usage_note": 286,
+    "new_bilingual_examples": 286,
+    "contrast_note_added": 10,
+    "author_records_merged": 286,
+    "rows": 3000,
+    "meaning_zh_filled": 3000,
+    "usage_note_filled": 907,
+    "collocations_filled": 907,
+    "examples_filled": 907,
+    "ipa_test_nonempty": 1478,
+    "gloss_en_filled": 338,
+    "pos_filled": 338,
+    "six_content_categories_filled_unverified": 112
+  },
+  "conflict_count": 0,
+  "coverage_missing": {
+    "meaning_zh": 0,
+    "gloss_en": 2662,
+    "pos": 2662,
+    "usage_note": 2093,
+    "collocations": 2093,
+    "examples": 2093
+  },
+  "ipa_status_breakdown": {
+    "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY": 292,
+    "IPA_MISSING_OR_AMBIGUOUS_HOLD": 1049,
+    "CMUDICT113_COMPONENTS_COMPOSED_PREVIEW_ONLY": 606,
+    "KAIKKI_EXACT_MULTIVARIANT_HOLD": 464,
+    "CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY": 104,
+    "KAIKKI_COMPONENTS_COMPOSED_PREVIEW_ONLY": 32,
+    "MIXED_COMPONENTS_COMPOSED_PREVIEW_ONLY": 36,
+    "CMUDICT113_MULTIVARIANT_HOLD": 9,
+    "V171_LEGACY_PREVIEW_FALLBACK_NOT_AUTHORITY": 408
+  },
+  "shards": [
+    {
+      "name": "CGMASTER_V188_SOURCE00001_01000_AUTHOR_MERGED_ANSWER_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 855114,
+      "sha256": "2cc0eb6a0c84067f2eec7ef91ea2639b0f337d88a9add09cec9677c1470558e6",
+      "git_blob_sha1": "bba55cda580d14b579311400636526a0a8263262"
+    },
+    {
+      "name": "CGMASTER_V188_SOURCE01001_02000_AUTHOR_MERGED_ANSWER_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 752883,
+      "sha256": "98077885b5c6a6e3d7752a5fe36c7eec759a5f90356785b0e2ddbde03f1ba9c9",
+      "git_blob_sha1": "b0e080ddd94baa416cfa0ec0b883ebaf18ca9f0d"
+    },
+    {
+      "name": "CGMASTER_V188_SOURCE02001_03000_AUTHOR_MERGED_ANSWER_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 806436,
+      "sha256": "39f1bc482aaad731e7d948ff4c664356c1068f0c25ce03623df7b61ea9317835",
+      "git_blob_sha1": "df741b624206c74c446b31cdb89318a2a8679747"
+    }
+  ],
+  "policy": {
+    "preserve_existing_author_content": true,
+    "new_examples_max": 3,
+    "new_synonyms_antonyms": "EMPTY_UNTIL_SENSE_VERIFIED",
+    "sense_disambiguation": "AUTHOR_CONTRAST_DRAFT_ONLY",
+    "formal_ready": false,
+    "srs_eligible": false
+  },
+  "source_patch_sha256": "07f1942045d797afae4bf3c495ecf1d1cdf061f2b6085e0e018011816d21cc0f"
+}
