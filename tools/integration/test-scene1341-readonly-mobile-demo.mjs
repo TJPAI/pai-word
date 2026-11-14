@@ -145,8 +145,8 @@ assert(!html.includes('id="enlex-section"') &&
 assert(script.includes("set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh)") &&
  script.includes("question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.headword===card.expression") &&
- script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':'音标待补'") &&
- script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':'missing'"),
+ script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':'音标待补'") &&
+ script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':'missing'"),
  'Scene1341 learning screen must display only exact CG-MASTER question IPA and Master answer fields');
 assert(script.includes("set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义')") &&
  !script.includes("set('cue',r.question.cue_zh)"),
@@ -162,7 +162,15 @@ assert(script.includes('items.length!==2873') && script.includes('countByScene.s
  script.includes("countByScene.get('SC50-0014')!==243"),
  'V128 all 255 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
 assert(script.includes('建设中 Master 测试'));
-assert(script.includes('V116+V128+V134/V142/V147 Master 词卡') &&
+assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY'") &&
+ script.includes("question?.ipa_source?.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'") &&
+ script.includes("question?.ipa_source?.native_raw_jsonl_sha256===null") &&
+ script.includes("pageEvidence?question.ipa+'（网页来源·测试未认证）'") &&
+ script.includes("pageEvidence?'web-page-provisional-test'") &&
+ script.includes('4条网页证据测试IPA，239条待补，正式认证0'),
+ 'V150 web-sourced IPA must be visibly provisional and never masquerade as native raw evidence');
+
+assert(script.includes('V116+V128+V134/V142/V150 Master 词卡') &&
  script.includes('第11场景255/255条作者草稿') &&
  script.includes('认证后置') &&
  script.includes('（未认证）') &&
@@ -1629,4 +1637,4 @@ assert.equal(failedAudioPauses,2);
 assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
-console.log(JSON.stringify({status:'PASS',preview:'2873 source-pinned CG-MASTER V116+V128+V134/V142/V147 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+console.log(JSON.stringify({status:'PASS',preview:'2873 source-pinned CG-MASTER V116+V128+V134/V142/V150 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
