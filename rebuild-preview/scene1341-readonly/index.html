@@ -130,7 +130,8 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
-   <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V134/V142/V150 · 部署源码版本核对中…</p>
+   <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
+    <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V134/V142/V150 · 部署源码版本核对中…</p>
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
@@ -323,11 +324,12 @@ async function showPreviewBuildVersion(){
 
 async function load(){
  try{
-  const [catalogRaw,qa,extra,next]=await Promise.all([
+  const [catalogRaw,qa,extra,next,coverageModule]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
     import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
     import('./scene1341-v128-sc0011-loader.mjs').then(m=>m.loadScene1341V128Test()),
-    import('./scene1341-next-three-master-loader.mjs').then(m=>m.loadScene1341MasterNextBatches())
+    import('./scene1341-next-three-master-loader.mjs').then(m=>m.loadScene1341MasterNextBatches()),
+    import('./scene1341-master-coverage.mjs')
   ]);
   const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
   catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')]))
@@ -343,6 +345,17 @@ async function load(){
    throw Error('MASTER_MANIFEST_CROSS_BATCH_CONFLICT');
   items=[...allPrior,...next.items]; // disposable Master drafts only, no Scene500 mutation.
 
+  const coverage=coverageModule.measureScene1341MasterCoverage(items);
+  if(coverage.authorDrafts!==2873||coverage.sceneCount!==14||
+     coverage.sourceVerifiedTestIpa!==3||coverage.nativeSingleProvisional!==195||
+     coverage.webPageProvisional!==4||coverage.selectedTestIpa!==202||
+     coverage.missingSelectedIpa!==2671||coverage.unselectedVariants!==412||
+     coverage.formallyReady!==0||coverage.formallyCertified!==0)
+   throw Error('MASTER_QUESTION_IPA_COVERAGE_DRIFT');
+  set('master-ipa-coverage','Master 题目页来源覆盖：作者答案草稿 '+coverage.authorDrafts+
+    ' 条；可显示测试 IPA '+coverage.selectedTestIpa+' 条（来源测试3、单读音候选195、网页来源4），'+
+    '未选定 IPA '+coverage.missingSelectedIpa+' 条（其中读音变体待裁决 '+coverage.unselectedVariants+
+    ' 条）。正式认证 0；完整可发布词卡 0。');
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
   if(countByScene.size!==14||items.length!==2873||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410||countByScene.get('SC50-0011')!==255||countByScene.get('SC50-0012')!==253||countByScene.get('SC50-0013')!==245||countByScene.get('SC50-0014')!==243)throw Error('MASTER_MANIFEST_SOURCE_EXACT_COUNT_MISMATCH');
@@ -664,7 +677,9 @@ $('settings-back').addEventListener('click',()=>{
 });
 $('preview-stats-button').addEventListener('click',()=>{
  const node=$('stats-panel');node.open=!node.open;
- set('preview-stats-content','Scene1341 目录：'+catalog.length+
+ const withIpa=items.filter(x=>x.question?.ipa!==null).length;
+  set('preview-stats-content','IPA 可显示测试来源 '+withIpa+'/'+items.length+'；未选定 '+(items.length-withIpa)+
+    '；认证完成 0，正式 Ready 0。 Scene1341 目录：'+catalog.length+
    ' 场景；V116+V128+V134/V142/V150 建设中 Master 测试词卡：'+items.length+
    ' 条；本次体验评分：不知道 '+transientRatings.again+
    ' / 模糊 '+transientRatings.hard+' / 知道 '+transientRatings.good+
