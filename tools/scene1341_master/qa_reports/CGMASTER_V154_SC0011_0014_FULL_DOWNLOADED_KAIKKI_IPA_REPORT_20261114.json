@@ -1,0 +1,57 @@
+{
+  "version": "V154",
+  "source": "EXISTING_LOCAL_KAIKKI_FULL_ENGLISH_COMPRESSED_VERIFIED",
+  "source_filename": "kaikki.org-dictionary-English.jsonl.gz",
+  "source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "source_size_bytes": 534186395,
+  "source_entries_processed": 1499161,
+  "v105_sha256": "5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a",
+  "counts": {
+    "target_rows": 996,
+    "unique_target_headwords": 980,
+    "exact_headword_coverage": 448,
+    "matched_unique_words": 434,
+    "source_entries_processed": 1499161,
+    "MULTIVARIANT_UNSELECTED": 243,
+    "NO_EXACT_HEADWORD": 548,
+    "SINGLE_PHONEMIC_TEST_CANDIDATE": 91,
+    "EXACT_WORD_NO_IPA": 114
+  },
+  "per_scene": {
+    "SC50-0011": {
+      "rows": 255,
+      "multivariant_unselected": 51,
+      "no_exact_headword": 148,
+      "single_phonemic_test_candidate": 20,
+      "exact_word_no_ipa": 36
+    },
+    "SC50-0012": {
+      "rows": 253,
+      "multivariant_unselected": 87,
+      "single_phonemic_test_candidate": 18,
+      "exact_word_no_ipa": 20,
+      "no_exact_headword": 128
+    },
+    "SC50-0013": {
+      "rows": 245,
+      "multivariant_unselected": 60,
+      "single_phonemic_test_candidate": 32,
+      "exact_word_no_ipa": 24,
+      "no_exact_headword": 129
+    },
+    "SC50-0014": {
+      "rows": 243,
+      "multivariant_unselected": 45,
+      "no_exact_headword": 143,
+      "exact_word_no_ipa": 34,
+      "single_phonemic_test_candidate": 21
+    }
+  },
+  "status": "TEST_ONLY_SOURCE_CANDIDATES_NO_SENSE_QA",
+  "release_allowed": false,
+  "checks": {
+    "identities_unique": true,
+    "source_rows_coverage": true,
+    "source_original_sha_verified": true
+  }
+}
