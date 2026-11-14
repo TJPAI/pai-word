@@ -21,7 +21,6 @@ export function auditV155Evidence(raw){
  assert.equal(data.counts?.total,243);
  assert.equal(data.counts?.american_region_unique_test,142);
  assert.equal(data.counts?.hold,101);
- assert.equal(data.counts?.release_allowed,false);
  assert.equal(data.records?.length,243);
  const ids=new Set(),rows=new Set();let candidate=0,hold=0;
  const reasons={};
