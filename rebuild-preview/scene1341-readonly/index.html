@@ -674,7 +674,9 @@ function moveBatch(delta){
  autoBrowse.restart();
 }
 function demoGrade(grade){
- if($('learning').hidden)return;
+ // Native grade buttons only accept these three values. Do not start the
+ // scratch rating overlay or pause auto on an invalid/stale grade event.
+ if($('learning').hidden||!['again','hard','good'].includes(grade)||!phaseController.state().cardKey)return;
  // An example utterance owns the old answer audio. Rating must preempt it
  // before graded speech begins, otherwise the graded TTS waits for the old
  // utterance while its stale completion may interfere with the new phase.
