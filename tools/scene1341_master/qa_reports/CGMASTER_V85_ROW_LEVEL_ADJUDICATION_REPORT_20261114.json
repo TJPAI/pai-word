@@ -1,0 +1,25 @@
+{
+  "version": "V85",
+  "master_final_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "v84_poly_dossier_sha256": "cce3bc28ba3de3ba5095d13d296e94adee0db351f555a1c5466c9670258de1d4",
+  "output": {
+    "filename": "CGMASTER_V85_P0_63690_MASTER_SENSE_SCENE_ADJUDICATION_ROWS.jsonl.gz",
+    "sha256": "38482e31ae622d8f2f2bed1962bb38e2ec57844655934f306b5e5078af80e5c6",
+    "bytes": 9578249
+  },
+  "counts": {
+    "original_master_rows": 63690,
+    "unique_final_row_ids": 63690,
+    "unique_expressions": 3000,
+    "distinct_scenes": 1303,
+    "priority_rows": {
+      "CROSS_GLOSS": 47321,
+      "HIGH_MULTISENSE": 15225,
+      "STANDARD": 1144
+    }
+  },
+  "interpretation": "A separate, contextual Sense-choice slot exists per original Master row, not merely per English expression. Candidate list contains source English glosses and all relevant POS. None are selected or certified. Same global Sense can be linked to several rows only after adjudication.",
+  "authoritative_reviewed_v13_not_joined": true,
+  "global_canonical_sense_ids_authorized": 0,
+  "release_allowed": false
+}
