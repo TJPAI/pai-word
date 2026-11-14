@@ -1,0 +1,25 @@
+{
+  "version": "V83-QUEUE",
+  "master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "strategy": "Prioritize by scene reuse and number of original source records. Polysemy queue further orders by distinct Chinese gloss variants. These queues are only candidate evidence retrieval and manual review, not approved Sense IDs.",
+  "counts": {
+    "missing_unique_expressions": 112851,
+    "missing_original_master_rows": 135976,
+    "polysemy_unique_expressions": 7722,
+    "polysemy_original_master_rows": 76206,
+    "single_full_candidate_unique_expressions": 4292,
+    "partial_samples_unique_expressions": 2744
+  },
+  "files": {
+    "CGMASTER_V83_PRIORITY_3000_MISSING_KAIKKI_SOURCE.jsonl": {
+      "sha256": "91719e655049c705711faf37f227b4a35f12792d1f2ef76c87b1f9920a3a6cf1",
+      "size": 1443696,
+      "rows": 3000
+    },
+    "CGMASTER_V83_PRIORITY_3000_POLYSEMY_SENSE_REVIEW.jsonl": {
+      "sha256": "1ed219962762418f04185676031562594a9f4915f2a0f3b1385688c433655d8c",
+      "size": 1537559,
+      "rows": 3000
+    }
+  }
+}
