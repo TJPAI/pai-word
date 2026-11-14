@@ -1160,7 +1160,8 @@ assert(phaseSource.includes('function suspend(){') &&
  phaseSource.includes('return Object.freeze({start,tap,choose,navigate,beginExample,exampleFinished,suspend,cancel,state})'),
  'read-only controller must expose suspend preserving revealed answer');
 assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
- script.includes("if(document.hidden){\n  autoBrowse.pause();") &&
+ script.includes("if(document.hidden){\n  // Backgrounding cancels the speaker takeover;") &&
+ script.includes("exampleToWordPending=false;\n  autoBrowse.pause();") &&
  script.includes("phaseController.suspend();") &&
  script.includes("stopWordAudio();"),
  'Safari page-background event must stop rating, auto and voice together');
