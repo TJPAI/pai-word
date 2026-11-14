@@ -1333,6 +1333,7 @@ const liveGrade=vm.runInNewContext('('+gradeAutoCode+')',{
  window:{PAI_SCRATCH_BEGIN_RATING:()=>{}},
  autoBrowse:{pause:()=>{gradePauseCount++}},
  stopAuto:()=>{gradeStopCount++},
+ exampleToWordPending:false,
  phaseController:{state:()=>({phase:'answer-paused',cardKey:'SC1341-TEST-KU'}),choose:grade=>{gradeChosen=grade}}
 });
 for(const choice of ['good','hard','again']){liveGrade(choice);assert.equal(gradeChosen,choice)}
