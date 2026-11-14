@@ -1,0 +1,65 @@
+{
+  "version": "V124",
+  "date": "2026-11-14",
+  "role": "CG-MASTER",
+  "scene_id": "SC50-0011",
+  "scene_name": "看电视与流媒体",
+  "kind": "V122_50_NEW_V123_130_TOTAL_SOURCE_PINNED_AUTHOR_DRAFT_DELIVERY",
+  "sources": {
+    "final_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "v105_staging_sha256": "5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a",
+    "prior_v120_git_blob": "6d73c17ddfa257d442bd0281b192bc3c272c0169"
+  },
+  "deliveries": [
+    {
+      "file": "CGMASTER_V122_SC0011_NEXT50_BILINGUAL_20261114.json",
+      "author_draft_records": 50,
+      "source_final_rows": "2460-2509",
+      "github_blob": "fb5f869ac0b8cc217792459560ffce173a54acd2",
+      "github_size_bytes": 60897,
+      "drive_url": "https://drive.google.com/file/d/1rypg2kZkE3mKNO0rnaOoW1yw0C4vROVD/view",
+      "drive_size_bytes": 77847,
+      "drive_raw_sha256": "7c8617691856728fb6df3591c697097d6a54f28e4e0ad6abe83f952c8163c449"
+    },
+    {
+      "file": "CGMASTER_V123_SC0011_FIRST130_BILINGUAL_20261114.json",
+      "author_draft_records": 130,
+      "source_final_rows": "2380-2509",
+      "github_blob": "b50195b86be67880ff4c5b21cd53b330c19e5446",
+      "github_size_bytes": 157028,
+      "drive_url": "https://drive.google.com/file/d/1J4IF3sJTF_l7NtnIki7ZU6B6JaaxQIVv/view",
+      "drive_size_bytes": 201018,
+      "drive_raw_sha256": "4fd54d614f31f9273582e27077862a096a92f9c7287e71d55c35e73c2ea49ea8"
+    }
+  ],
+  "verification": {
+    "v123_source_record_ids_unique": 130,
+    "v123_source_rows_contiguous": 130,
+    "v123_records_with_all_answer_fields": 130,
+    "original_v120_80_records_unchanged": 80,
+    "qa_certified": 0,
+    "ipa_approved": 0,
+    "sense_ids_approved": 0,
+    "release_violations": 0,
+    "drive_upload_success": true,
+    "drive_fetch_readback_success": true,
+    "github_blob_readback_success": true
+  },
+  "counts": {
+    "scene_source_rows": 255,
+    "prior_authored": 80,
+    "new_authored": 50,
+    "total_authored": 130,
+    "remaining": 125,
+    "scene_author_draft_percent": 50.98,
+    "first100_scenes_formal_ready": 0
+  },
+  "notes": [
+    "V123 is author bilingual ANSWER drafts and question prompts; IPA remains null on all 130, hence question_page.content_complete=false and no KU is certified",
+    "Source candidate record IDs not equivalent to canonical global Sense IDs",
+    "The 80 earlier rows in V120 are byte-for-byte semantically preserved as JSON objects in V123",
+    "Do not overwrite FINAL, Reviewed V13, Scene500, Core20K or V111",
+    "GitHub JSON is compact while Drive JSON includes indentation/trailing newline; SHA256 given for Drive raw bytes; GitHub blob IDs identify GitHub bytes"
+  ],
+  "release_allowed": false
+}
