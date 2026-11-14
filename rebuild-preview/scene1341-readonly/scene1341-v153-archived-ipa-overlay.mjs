@@ -69,8 +69,11 @@ export async function applyV153ArchivedIpaTestOverlay(baseCards,{fetchImpl=fetch
     selected++;retainedWeb++;
    }else if(q.ipa===null&&old.question.ipa===null){
     if(q.ipa_status==='ARCHIVED_KAIKKI_VARIANTS_UNSELECTED'){
-     if(e?.archive_git_blob!==ARCHIVE||!Array.isArray(e.ipa_candidates)||e.ipa_candidates.length<2||
-        e.sense_match_approved!==false||e.qa_approved!==false)
+     if(q.archived_kaikki_ipa_evidence?.archive_git_blob!==ARCHIVE||
+        !Array.isArray(q.archived_kaikki_ipa_evidence.ipa_candidates)||
+        q.archived_kaikki_ipa_evidence.ipa_candidates.length<2||
+        q.archived_kaikki_ipa_evidence.sense_match_approved!==false||
+        q.archived_kaikki_ipa_evidence.qa_approved!==false)
       throw Error('MASTER_V153_UNSELECTED_VARIANT_EVIDENCE_'+rec.source_final_row);
      patch={ipa:null,ipa_status:'MISSING_VERIFIED_KAIKKI_IPA',ipa_provisional:false,ipa_source:null,ipa_candidates_pending:true};
      archivedUnselected++;
