@@ -80,6 +80,12 @@ for(const row of extra.items){
  assert.equal(row.question.ipa_status,'MISSING_VERIFIED_KAIKKI_IPA');
  assert.equal(row.question.cue_zh,row.answer.meaning_zh);
 }
+const joined=[...snap.items,...extra.items];
+assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2007,'cross-batch KU identities must not collide');
+assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2007,'source Master identity must be globally unique');
+assert.equal(new Set(joined.map(x=>x.master_final_row)).size,2007,'original FINAL source rows must never be duplicated');
+assert.equal(new Set(joined.map(x=>x.scene_id)).size,11,'no un-authored scene must be declared playable');
+assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
 assert.equal(snap.total+extra.total,2007);
 assert.equal(snap.scenes+extra.scenes,11);
 console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:11,combinedTestCards:2007,productionRelease:snap.productionRelease}));
