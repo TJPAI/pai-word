@@ -1,0 +1,79 @@
+{
+  "version": "V190",
+  "date": "2026-11-15",
+  "batch_unit": "Sense-Scene association",
+  "source_final_rows": [
+    1,
+    3000
+  ],
+  "scene_count": 13,
+  "associations": 3000,
+  "lexical_entries": 2710,
+  "provisional_sense_groups": 313,
+  "reused_provisional_associations": 25,
+  "formal_global_sense_ids": 0,
+  "new_source_author_candidates": 288,
+  "merged_author_records": 288,
+  "held_author_candidates": 32,
+  "preserved_content_conflicts": 0,
+  "counts": {
+    "meaning_zh_filled": 3000,
+    "examples_filled": 1461,
+    "collocations_filled": 1461,
+    "usage_note_filled": 1461,
+    "test_ipa_nonempty": 1478,
+    "gloss_en_filled": 338,
+    "pos_filled": 338,
+    "complete_unverified": 180,
+    "author_records_merged": 288,
+    "new_example_en": 288,
+    "new_example_zh": 288,
+    "new_collocations": 288,
+    "new_usage_note": 288,
+    "new_examples": 288
+  },
+  "ipa_status_breakdown": {
+    "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY": 292,
+    "IPA_MISSING_OR_AMBIGUOUS_HOLD": 1049,
+    "CMUDICT113_COMPONENTS_COMPOSED_PREVIEW_ONLY": 606,
+    "KAIKKI_EXACT_MULTIVARIANT_HOLD": 464,
+    "CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY": 104,
+    "KAIKKI_COMPONENTS_COMPOSED_PREVIEW_ONLY": 32,
+    "MIXED_COMPONENTS_COMPOSED_PREVIEW_ONLY": 36,
+    "CMUDICT113_MULTIVARIANT_HOLD": 9,
+    "V171_LEGACY_PREVIEW_FALLBACK_NOT_AUTHORITY": 408
+  },
+  "shards": [
+    {
+      "name": "CGMASTER_V190_SOURCE00001_01000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 931510,
+      "sha256": "12c4d4b088d670feb6d9ec7cd895c8cdfb8fc08c42100b529bb9966ed12ba60c",
+      "git_blob_sha1": "b63daf359370a254491188188cbb036496d9a258"
+    },
+    {
+      "name": "CGMASTER_V190_SOURCE01001_02000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 768377,
+      "sha256": "05786ca01ba101373a711254d490552b7654693252af3f1b039737eb1325e148",
+      "git_blob_sha1": "ca147731e67979e875f3e37a95514a9bfeb3e9f0"
+    },
+    {
+      "name": "CGMASTER_V190_SOURCE02001_03000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 806388,
+      "sha256": "90afbdfb00536cd8c8840a7f88898c8b79e9bb14b884c604d0b32a6ba5bf703a",
+      "git_blob_sha1": "effac2ddb1fd145927d4ff41a130820d81ff83b2"
+    }
+  ],
+  "source_base": "V189 immutable 3000-row snapshot",
+  "source_crosswalk_sha1": "d5ce5dfa1d74b2f1779640f2071807bcef20b5f2",
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "notes": [
+    "Author examples are unreviewed staging, not independently QA-certified",
+    "No fabricated gloss POS synonyms antonyms canonical global sense",
+    "Original Master, Reviewed V13, V189 unchanged."
+  ]
+}
