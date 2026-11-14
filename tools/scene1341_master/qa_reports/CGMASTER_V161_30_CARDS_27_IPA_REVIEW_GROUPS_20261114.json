@@ -1,0 +1,1161 @@
+{
+  "version": "V161",
+  "input_version": "V160",
+  "input_kaikki_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "counts": {
+    "multi_us_same_pos_cards": 30,
+    "unique_expression_pos_review_groups": 27,
+    "cross_scene_duplicate_review_groups": 3,
+    "duplicate_extra_cards": 3,
+    "suspicious_source_vowel_groups": 1,
+    "ga_us_conflict_from_v160_excluded": 2,
+    "target_pos_no_us_from_v160_excluded": 2,
+    "formally_approved": 0
+  },
+  "policy": "Group only expression+context POS review tasks; never merge record ID, scene association or Sense. All candidates remain unselected.",
+  "groups": [
+    {
+      "review_group_id": "V161-4fa77d857538b2ba",
+      "expression": "boundary",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-9e11efbce2fdd45c4e6938867a2cf7ae"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2677
+      ],
+      "meanings_zh": [
+        "个人界限"
+      ],
+      "examples_en": [
+        "She set a boundary about answering calls at night."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈbaʊndəɹi/",
+          "/ˈbaʊndɹi/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈbaʊndəɹi/",
+        "/ˈbaʊndɹi/"
+      ],
+      "kaikki_source_line_numbers": [
+        27145
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-04f4949b471961d7",
+      "expression": "calm",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-a5fadb0674e2d91d8c3ad72767fb3752",
+        "SC1341-FINAL-SRC-6c2c3a4630c50f81ef002568d519cdfb"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013",
+        "SC50-0014"
+      ],
+      "source_final_rows": [
+        3025,
+        3266
+      ],
+      "meanings_zh": [
+        "平静的",
+        "平静的"
+      ],
+      "examples_en": [
+        "His calm voice helped the child relax.",
+        "The dog stayed calm during the examination."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/kæm/",
+          "/kɑlm/",
+          "/kɑm/",
+          "/kɔlm/",
+          "/kɔm/"
+        ],
+        [
+          "/kæm/",
+          "/kɑlm/",
+          "/kɑm/",
+          "/kɔlm/",
+          "/kɔm/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/kæm/",
+        "/kɑlm/",
+        "/kɑm/",
+        "/kɔlm/",
+        "/kɔm/"
+      ],
+      "kaikki_source_line_numbers": [
+        23736
+      ],
+      "risk_flags": [
+        "REPEATED_EXPRESSION_MULTI_SCENE_KEEP_RECORD_AND_SENSE_SEPARATE",
+        "FIVE_WIDE_REGIONAL_VARIANTS_NO_AUTOMATIC_CANONICAL"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-8484ac5ed137cb7c",
+      "expression": "carer",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-e154c6974b33bd6deae7238e13a2bdef"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        2891
+      ],
+      "meanings_zh": [
+        "照护者（英式）"
+      ],
+      "examples_en": [
+        "The local council offers advice for unpaid carers."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈkeɹɚ/",
+          "/ˈkɛəɹɚ/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈkeɹɚ/",
+        "/ˈkɛəɹɚ/"
+      ],
+      "kaikki_source_line_numbers": [
+        75064
+      ],
+      "risk_flags": [
+        "BRITISH_USAGE_CONTEXT_US_REGION_SELECTION_NOT_DEFAULT"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-1425c25586ada947",
+      "expression": "channel",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-26a646828a0ee8c4965b7ef8bcf3cc3a"
+      ],
+      "linked_scene_ids": [
+        "SC50-0011"
+      ],
+      "source_final_rows": [
+        2388
+      ],
+      "meanings_zh": [
+        "电视频道"
+      ],
+      "examples_en": [
+        "Change the channel to watch the news."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈt͡ʃeə̯nəl/",
+          "/ˈt͡ʃɛə̯nəl/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈt͡ʃeə̯nəl/",
+        "/ˈt͡ʃɛə̯nəl/"
+      ],
+      "kaikki_source_line_numbers": [
+        38988,
+        38990
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-e0f9aac7a055c53c",
+      "expression": "cousin",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-2eb7da7a87a3b03f7b02ba9393d7ada7"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2702
+      ],
+      "meanings_zh": [
+        "堂表兄弟姐妹"
+      ],
+      "examples_en": [
+        "My cousin is coming to our family reunion."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈkʌz(ə)n/",
+          "/ˈkʌzɪn/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈkʌz(ə)n/",
+        "/ˈkʌzɪn/"
+      ],
+      "kaikki_source_line_numbers": [
+        3981
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-d870aeb2a0d3a8c3",
+      "expression": "daughter",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-57cf80a3cbcd760c419863f47577ae97"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2690
+      ],
+      "meanings_zh": [
+        "女儿"
+      ],
+      "examples_en": [
+        "Her daughter is learning to swim."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈdɑ.tɚ/",
+          "/ˈdɔ.tɚ/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈdɑ.tɚ/",
+        "/ˈdɔ.tɚ/"
+      ],
+      "kaikki_source_line_numbers": [
+        3965
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-50eaee18e767ee6d",
+      "expression": "documentary",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-167469fa8ac06d69a28d3e599d797bc4"
+      ],
+      "linked_scene_ids": [
+        "SC50-0011"
+      ],
+      "source_final_rows": [
+        2421
+      ],
+      "meanings_zh": [
+        "纪录片"
+      ],
+      "examples_en": [
+        "We watched a documentary about marine life."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˌdɑ.kjəˈmɛn.tə.ɹi/",
+          "/ˌdɑ.kjəˈmɛn.tɹi/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˌdɑ.kjəˈmɛn.tə.ɹi/",
+        "/ˌdɑ.kjəˈmɛn.tɹi/"
+      ],
+      "kaikki_source_line_numbers": [
+        89719
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-9fe50f5a72df42a6",
+      "expression": "frustrated",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-f32ec18d2e1e23576b74f99cac93aefd"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2772
+      ],
+      "meanings_zh": [
+        "受挫的"
+      ],
+      "examples_en": [
+        "I felt frustrated when nobody would listen."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈfɹʌs.tɹeɪ.tɪd/",
+          "/ˈfʌs.tɹeɪ.tɪd/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈfɹʌs.tɹeɪ.tɪd/",
+        "/ˈfʌs.tɹeɪ.tɪd/"
+      ],
+      "kaikki_source_line_numbers": [
+        109788
+      ],
+      "risk_flags": [
+        "POSSIBLE_NONSTANDARD_R_DELETION_MANUAL_SOURCE_VERIFICATION"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-52bb994b70262a05",
+      "expression": "gossip",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-9481f04add10dfe0f25e655249be5bb9"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2649
+      ],
+      "meanings_zh": [
+        "八卦闲话"
+      ],
+      "examples_en": [
+        "I don't want to spread gossip about our neighbors."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈɡɑsəp/",
+          "/ˈɡɑsɪp/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈɡɑsəp/",
+        "/ˈɡɑsɪp/"
+      ],
+      "kaikki_source_line_numbers": [
+        4281
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-65a8154bb7f25820",
+      "expression": "grandparent",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-7c8c7be9e20f899c9fb150311cb0a698",
+        "SC1341-FINAL-SRC-0074725a9629f1837303ce845fad6ce1"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012",
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        2694,
+        2911
+      ],
+      "meanings_zh": [
+        "祖父母或外祖父母",
+        "祖父母或外祖父母"
+      ],
+      "examples_en": [
+        "Every grandparent received a family photo.",
+        "A grandparent often has stories the children love."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈɡɹæn(d)pæɹənt/",
+          "/ˈɡɹæn(d)pɛəɹənt/"
+        ],
+        [
+          "/ˈɡɹæn(d)pæɹənt/",
+          "/ˈɡɹæn(d)pɛəɹənt/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈɡɹæn(d)pæɹənt/",
+        "/ˈɡɹæn(d)pɛəɹənt/"
+      ],
+      "kaikki_source_line_numbers": [
+        3969
+      ],
+      "risk_flags": [
+        "REPEATED_EXPRESSION_MULTI_SCENE_KEEP_RECORD_AND_SENSE_SEPARATE"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-8d0f4c717892ddf0",
+      "expression": "honest",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-3468ddfcc6f74ce354caa60ea7c1b49b"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2790
+      ],
+      "meanings_zh": [
+        "坦诚的"
+      ],
+      "examples_en": [
+        "Be honest with me about what happened."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈɑ.nəst/",
+          "/ˈɑ.nɪst/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈɑ.nəst/",
+        "/ˈɑ.nɪst/"
+      ],
+      "kaikki_source_line_numbers": [
+        22799
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-e43f91f63fde4c7c",
+      "expression": "interested",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-252ab075ec6435cdaa63d8338d744395"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2780
+      ],
+      "meanings_zh": [
+        "感兴趣的"
+      ],
+      "examples_en": [
+        "I'm interested in hearing your point of view."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈɪn.(t)əˌɹɛs.tɪd/",
+          "/ˈɪn.tɹəs.tɪd/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈɪn.(t)əˌɹɛs.tɪd/",
+        "/ˈɪn.tɹəs.tɪd/"
+      ],
+      "kaikki_source_line_numbers": [
+        38584
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-12cc54b7fa53d5f8",
+      "expression": "joke",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-dfad716f7a4742e160085ddf3faa2196"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2648
+      ],
+      "meanings_zh": [
+        "笑话"
+      ],
+      "examples_en": [
+        "Grandpa told a joke that made everyone laugh."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈd͡ʒoʊ̯k/",
+          "/ˈd͡ʒɔʊ̯k/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈd͡ʒoʊ̯k/",
+        "/ˈd͡ʒɔʊ̯k/"
+      ],
+      "kaikki_source_line_numbers": [
+        24862
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-634e45a57357c783",
+      "expression": "lethargic",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-638a707bb2818c3745e5844732ba7d3d"
+      ],
+      "linked_scene_ids": [
+        "SC50-0014"
+      ],
+      "source_final_rows": [
+        3273
+      ],
+      "meanings_zh": [
+        "精神萎靡的"
+      ],
+      "examples_en": [
+        "The cat seems lethargic today, so we called the vet."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ləˈθɑɹd͡ʒɪk/",
+          "/lɪˈθɑɹd͡ʒɪk/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ləˈθɑɹd͡ʒɪk/",
+        "/lɪˈθɑɹd͡ʒɪk/"
+      ],
+      "kaikki_source_line_numbers": [
+        61237
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-170ea3d3101f8a2e",
+      "expression": "message",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-f277116748c1968619b2c81d8f009dc4"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012"
+      ],
+      "source_final_rows": [
+        2715
+      ],
+      "meanings_zh": [
+        "消息"
+      ],
+      "examples_en": [
+        "I left you a message about dinner."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈmɛs.ədʒ/",
+          "/ˈmɛs.ɪdʒ/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈmɛs.ədʒ/",
+        "/ˈmɛs.ɪdʒ/"
+      ],
+      "kaikki_source_line_numbers": [
+        36907
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-888d19ce6525c277",
+      "expression": "mobile",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-c57ad0a555af497ce8195921a136887d"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        3014
+      ],
+      "meanings_zh": [
+        "能够行动的"
+      ],
+      "examples_en": [
+        "She is still mobile enough to walk around the house."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈmoʊ.baɪl/",
+          "/ˈmoʊ.bil/",
+          "/ˈmoʊ.bəl/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈmoʊ.baɪl/",
+        "/ˈmoʊ.bil/",
+        "/ˈmoʊ.bəl/"
+      ],
+      "kaikki_source_line_numbers": [
+        1881
+      ],
+      "risk_flags": [
+        "THREE_SYLLABIFICATION_VARIANTS_NO_AUTOMATIC_CANONICAL"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-c32568a0a5491e71",
+      "expression": "mobility",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-be09bf4c945bc3cbc33b09302f031543"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        2914
+      ],
+      "meanings_zh": [
+        "行动能力"
+      ],
+      "examples_en": [
+        "She is gradually regaining mobility after the injury."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/moʊˈbɪləti/",
+          "/moʊˈbɪlɪti/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/moʊˈbɪləti/",
+        "/moʊˈbɪlɪti/"
+      ],
+      "kaikki_source_line_numbers": [
+        72371,
+        72372
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-9326e71ca3786ca1",
+      "expression": "nauseous",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-9df1abb5201614ea39b7cef84824b157"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        3041
+      ],
+      "meanings_zh": [
+        "恶心的"
+      ],
+      "examples_en": [
+        "She felt nauseous during the car ride."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈnɔʃəs/",
+          "/ˈnɔʒəs/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈnɔʃəs/",
+        "/ˈnɔʒəs/"
+      ],
+      "kaikki_source_line_numbers": [
+        55725
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-d749550cd533771d",
+      "expression": "obedience",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-7ca24ea1f2a77995a181cdde7a13e03a"
+      ],
+      "linked_scene_ids": [
+        "SC50-0014"
+      ],
+      "source_final_rows": [
+        3166
+      ],
+      "meanings_zh": [
+        "服从训练"
+      ],
+      "examples_en": [
+        "The class focuses on basic obedience."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/oʊˈbidiəns/",
+          "/əˈbidiəns/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/oʊˈbidiəns/",
+        "/əˈbidiəns/"
+      ],
+      "kaikki_source_line_numbers": [
+        47596
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-dd04f69b2d331888",
+      "expression": "obedient",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-9a6d2273635d6c0d315a8faaa34afac4"
+      ],
+      "linked_scene_ids": [
+        "SC50-0014"
+      ],
+      "source_final_rows": [
+        3270
+      ],
+      "meanings_zh": [
+        "听从口令的"
+      ],
+      "examples_en": [
+        "The dog is usually obedient during training."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/oʊˈbidiənt/",
+          "/əˈbidiənt/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/oʊˈbidiənt/",
+        "/əˈbidiənt/"
+      ],
+      "kaikki_source_line_numbers": [
+        47639
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-37b44a97c7844c33",
+      "expression": "parasite",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-0932dd79788400ba386ceca07c04f57b"
+      ],
+      "linked_scene_ids": [
+        "SC50-0014"
+      ],
+      "source_final_rows": [
+        3159
+      ],
+      "meanings_zh": [
+        "寄生虫"
+      ],
+      "examples_en": [
+        "The vet tested the puppy for a parasite."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈpæɹəˌsaɪt/",
+          "/ˈpɛɹəˌsaɪt/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈpæɹəˌsaɪt/",
+        "/ˈpɛɹəˌsaɪt/"
+      ],
+      "kaikki_source_line_numbers": [
+        37635
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-16d0ec93b447d1ea",
+      "expression": "parent",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-2d4f85f5073dad5bc986d79a98cc7bd8",
+        "SC1341-FINAL-SRC-ac72e3a6fd152a43675d9d2f610820dd"
+      ],
+      "linked_scene_ids": [
+        "SC50-0012",
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        2681,
+        2934
+      ],
+      "meanings_zh": [
+        "父母一方",
+        "父母"
+      ],
+      "examples_en": [
+        "Each parent signed the school form.",
+        "Each parent signed the school permission form."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈpæɹənt/",
+          "/ˈpɛəɹənt/"
+        ],
+        [
+          "/ˈpæɹənt/",
+          "/ˈpɛəɹənt/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈpæɹənt/",
+        "/ˈpɛəɹənt/"
+      ],
+      "kaikki_source_line_numbers": [
+        3946
+      ],
+      "risk_flags": [
+        "REPEATED_EXPRESSION_MULTI_SCENE_KEEP_RECORD_AND_SENSE_SEPARATE"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-fa7f5dceca6bd610",
+      "expression": "series",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-75c9d230e164c3f45755db06d265a420"
+      ],
+      "linked_scene_ids": [
+        "SC50-0011"
+      ],
+      "source_final_rows": [
+        2394
+      ],
+      "meanings_zh": [
+        "系列剧"
+      ],
+      "examples_en": [
+        "The series has six episodes."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈsiɹ.iz/",
+          "/ˈsɪɹ.iz/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈsiɹ.iz/",
+        "/ˈsɪɹ.iz/"
+      ],
+      "kaikki_source_line_numbers": [
+        17299
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-5d51f3a700283179",
+      "expression": "steady",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-840b1a9fbb2e6b8c11bcf093dd4bfbe8"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        3044
+      ],
+      "meanings_zh": [
+        "站得稳的"
+      ],
+      "examples_en": [
+        "Hold the rail until you feel steady on your feet."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈstɪdi/",
+          "/ˈstʌdi/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈstɪdi/",
+        "/ˈstʌdi/"
+      ],
+      "kaikki_source_line_numbers": [
+        61335
+      ],
+      "risk_flags": [
+        "PHONEMIC_VARIANT_SUSPICIOUS_VOWEL_MANUAL_SOURCE_VERIFICATION"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-7175b30936433257",
+      "expression": "supervision",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-3d9da303ffded39537b3c7cd0792c6aa"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        2896
+      ],
+      "meanings_zh": [
+        "看护与监督"
+      ],
+      "examples_en": [
+        "Young children need close supervision near water."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˈsupɚˌvɪʒən/",
+          "/ˌsupɚˈvɪʒən/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˈsupɚˌvɪʒən/",
+        "/ˌsupɚˈvɪʒən/"
+      ],
+      "kaikki_source_line_numbers": [
+        98243
+      ],
+      "risk_flags": [
+        "STRESS_PLACEMENT_VARIANTS_REQUIRE_LEXICAL_REVIEW"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-d6211393b2c79011",
+      "expression": "uncomfortable",
+      "editorial_context_pos": "adj",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-7c6633c169f06f3eeec05dc17bc603a1"
+      ],
+      "linked_scene_ids": [
+        "SC50-0013"
+      ],
+      "source_final_rows": [
+        3027
+      ],
+      "meanings_zh": [
+        "不舒服的"
+      ],
+      "examples_en": [
+        "Tell me if this position feels uncomfortable."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ʌnˈkʌm.fɚ.tə.bl̩/",
+          "/ʌnˈkʌmf.tɚ.bl̩/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ʌnˈkʌm.fɚ.tə.bl̩/",
+        "/ʌnˈkʌmf.tɚ.bl̩/"
+      ],
+      "kaikki_source_line_numbers": [
+        18283
+      ],
+      "risk_flags": [],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    },
+    {
+      "review_group_id": "V161-2e9e9e840ade3657",
+      "expression": "veterinarian",
+      "editorial_context_pos": "noun",
+      "linked_record_ids": [
+        "SC1341-FINAL-SRC-53bfa7d93f1e169e988967dc6a18a93e"
+      ],
+      "linked_scene_ids": [
+        "SC50-0014"
+      ],
+      "source_final_rows": [
+        3145
+      ],
+      "meanings_zh": [
+        "兽医"
+      ],
+      "examples_en": [
+        "The veterinarian checked the dog's injured paw."
+      ],
+      "ipa_variant_sets": [
+        [
+          "/ˌvɛt(ə)ɹəˈnɛɹ.i.ən/",
+          "/ˌvɛtʃ.ɹɪnˈɛɹ.i.ən/",
+          "/ˌvɛʔ.n̩ˈɛɹ.i.ən/"
+        ]
+      ],
+      "source_evidence_identical_across_cards": true,
+      "candidate_ipa_unselected": [
+        "/ˌvɛt(ə)ɹəˈnɛɹ.i.ən/",
+        "/ˌvɛtʃ.ɹɪnˈɛɹ.i.ən/",
+        "/ˌvɛʔ.n̩ˈɛɹ.i.ən/"
+      ],
+      "kaikki_source_line_numbers": [
+        39831
+      ],
+      "risk_flags": [
+        "REDUCED_COLLOQUIAL_VARIANTS_REQUIRE_LEXICAL_REVIEW"
+      ],
+      "editorial_pos_is_not_reviewed_master": true,
+      "canonical_sense_id": null,
+      "approved_ipa": null,
+      "qa_approved": false,
+      "release_allowed": false
+    }
+  ],
+  "formal_ready": 0,
+  "release_allowed": false
+}
