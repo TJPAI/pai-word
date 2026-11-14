@@ -1,0 +1,48 @@
+{
+  "version": "V108",
+  "date": "2026-11-14",
+  "role": "CG-MASTER",
+  "status": "ACTUAL_FIRST100_SCENES_KAIKKI_CANDIDATES_EXPANDED_NOT_COMPLETED_PAGES",
+  "batch": "BATCH001",
+  "scene_range": "SC50-0001..SC50-0100",
+  "counts": {
+    "scenes": 100,
+    "source_final_rows": 20696,
+    "rows_full_kaikki_evidence": 4242,
+    "rows_partial_kaikki_evidence": 2881,
+    "rows_without_kaikki_evidence_in_v83": 13573,
+    "expanded_candidate_sense_instances_over_rows_not_unique": 43579,
+    "expanded_english_example_instances_over_rows_not_unique": 37396,
+    "complete_question_answer_pages": 0,
+    "authorized_unique_senses": 0,
+    "certified": 0,
+    "release": 0
+  },
+  "input_sha256": {
+    "v105_rows": "5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a",
+    "v105_candidate_library": "6f53ef9bf2ca905f6bd3ce12654b0d08ce5258587e980e7290456235a892ed10",
+    "source_original_master": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986"
+  },
+  "outputs": {
+    "expanded_rows": "https://drive.google.com/file/d/1AU6k40e9BsDInQ-IuePLDyIG1-rogDuU/view",
+    "coverage_report": "https://drive.google.com/file/d/14u12saCfl09L3OyFz1DryG51F6EEKuI7/view",
+    "reproducible_script": "https://drive.google.com/file/d/1VTMoWLbOPjdIDHoS4zwEaAAiE4em6HPU/view",
+    "expanded_rows_sha256": "431a1f47936590b037597247c274f908c2382614f26b57837a6c43566515e56e",
+    "expanded_rows_bytes": 7409886,
+    "coverage_report_sha256": "40fafac15fbf9aec857d8a9cdd7ccacf6fcf0b24da204b6ea232e42ca0102ec9"
+  },
+  "checks": [
+    "all 20696 source identities unique; source V105 and dictionary SHA256 verified",
+    "100 distinct scene IDs preserved",
+    "Kaikki candidate count equals expanded items per row; every candidate carries native POS/gloss/source-line/source-pack SHA",
+    "No native dictionary candidate selected as final Sense; example candidates always flagged not approved for teaching",
+    "Missing original answer examples/zh translations/collocations/usage/IPA explicitly null; never fabricated",
+    "release_allowed=false and canonical_sense_id=null on every output record"
+  ],
+  "next_work": [
+    "CG-MASTER must source-join V106 real 1877 author draft answers by exact source FINAL row and expression/zh; no automatic lexical-only merge",
+    "CG-MASTER sources Kaikki pronunciation original entries and populates IPA with source locator and dialect/version",
+    "CG-MASTER authors remaining Q/A content in 100-scene blocks, then reports per-scene completeness; independent certification later"
+  ],
+  "ownership": "CG-MASTER owns both pages and IPA per V107; CG-MAIN consumes data and UI/tests only; no UI code touched in V108."
+}
