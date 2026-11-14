@@ -1,0 +1,133 @@
+{
+  "schema": "cg-qa-v107-batch001-structural-provenance-gate-v1",
+  "date": "2026-11-14",
+  "sources": [
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V107_UNIFIED_MASTER_PAGE_IPA_OWNERSHIP_CONTRACT_20261114.json",
+      "git_blob": "d071f1c9ddc226ebcf8e692bd7637399a4b3cad9"
+    },
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V105_BATCH001_100SCENES_KAIKKI_INTAKE_HANDOFF_20261114.json",
+      "git_blob": "1a33bbf801d7769144023c8c5b0e40bd80bb73bd"
+    },
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V106_REMOTE_FULL_BLOB_INDEPENDENT_CHECK_20261114.json",
+      "git_blob": "a5825783cfeabfbc24401ce81d1e21acedf387bf"
+    },
+    {
+      "path": "rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs",
+      "branch": "cg-main-fourline-integration-20261026",
+      "git_blob": "a7a6e0cca6b4a61a22a8821e6d1b2328589b0849"
+    }
+  ],
+  "summary": {
+    "checks": 16,
+    "first100_scenes": 100,
+    "source_rows_reported": 20696,
+    "v106_drafts_reported": 1877,
+    "held_ku_reported": 161,
+    "content_complete_scenes": 0,
+    "new_formal_qa_pass": 0,
+    "new_muse_pass": 0,
+    "release_allowed": false
+  },
+  "audit_scope": "Independent review of real V105/V106/V107 manifests and literal CG-MAIN loader, not raw 20,696-row or 1,877-row byte-level QA; authoritative source counts attributed to their manifests.",
+  "records": [
+    {
+      "check_id": "OWNER_UNIFIED",
+      "decision": "PASS_CONTRACT",
+      "evidence_and_rationale": "V107 assigns all Sense-scene, question, answer and Kaikki IPA production/integration to CG-MASTER; CG-QA/Muse certification explicitly deferred.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "BATCH_SIZE",
+      "decision": "PASS_CONTRACT",
+      "evidence_and_rationale": "100 scenes per batch; 13x100 +41 = 1341; first batch SC50-0001..0100.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "SOURCE_INTEGRITY",
+      "decision": "EVIDENCE_REPORTED_NOT_REMEASURED",
+      "evidence_and_rationale": "V105 reports 20,696 FINAL rows and original source SHA; full V105 row data not independently byte-reconciled during this gate review.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "EXACT_KAIKKI_COVERAGE",
+      "decision": "SOURCE_GAP",
+      "evidence_and_rationale": "V105: 4,242 rows full headword candidates; 2,881 partial; 13,573 without usable evidence in enumerated packs. Candidate POS/gloss not approved Sense.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "DICTIONARY_CANDIDATE_ID",
+      "decision": "HARD_BLOCK",
+      "evidence_and_rationale": "20,698 native dictionary candidate entries unselected; must not equate to 20,698 certified Sense IDs.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "AUTHOR_REUSE",
+      "decision": "PARTIAL_ONLY",
+      "evidence_and_rationale": "V106 1,877 unique FINAL source-row author records from 10 scenes; 161 other KU held; first100 full teaching content not complete.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "AUTHOR_ROW_COMPARISON",
+      "decision": "AUDIT_DEBT",
+      "evidence_and_rationale": "V106 remote full blob report verifies 1,877 parsed and unique; independently comparing V106 row bytes vs V105 row bytes remains unperformed.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "IPA_NATIVE_SOURCE",
+      "decision": "HARD_BLOCK",
+      "evidence_and_rationale": "V105/V106 report IPA null and no verified native IPA within V83 candidate bundle; do not display fabricated IPA, infer transcription from spelling or claim IPA complete.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "QUESTION_PAGE",
+      "decision": "HARD_BLOCK",
+      "evidence_and_rationale": "No complete question-page projection at batch scope; source expression is not a verified complete question page.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "ANSWER_PAGE",
+      "decision": "HARD_BLOCK",
+      "evidence_and_rationale": "1,877 source-grounded answer drafts are not 20,696 complete answer pages; all 100 scenes remain incomplete.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "OVERLAY_LINEAGE",
+      "decision": "HARD_BLOCK",
+      "evidence_and_rationale": "V102 original author overlay has zero exact scene+English+Chinese triple in first100 V105 subset; cannot auto-merge by lexical coincidence.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "PREVIEW_INTEGRITY",
+      "decision": "STATIC_PASS_ONLY",
+      "evidence_and_rationale": "Actual CG-MAIN loader fixes commit/blob source, checks Git blob digest and 1,877/161 manifest counts, canonical null and release false, unique KU and source rows; no actual browser/runtime tests performed by CG-QA.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "PREVIEW_SCOPE",
+      "decision": "PASS_TEST_BOUNDARY",
+      "evidence_and_rationale": "Loader only exposes 1,877 source-linked drafts from 10 scenes; blocked 161 are not loaded, and no production release or study migration is warranted.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "DISPOSABLE_TEST",
+      "decision": "CONTRACT_PASS_ONLY",
+      "evidence_and_rationale": "V107 directs disposable test data, preserving Scene500 production study records; CG-MAIN runtime behavior requires separate functional verification.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "DUAL_AI_CERTIFICATION",
+      "decision": "DEFERRED",
+      "evidence_and_rationale": "No CG-QA or MU-QA final certified Sense-scene decisions; no certification can be inferred from source staging or browser preview.",
+      "independently_recomputed_from_raw_data": false
+    },
+    {
+      "check_id": "FINAL_RELEASE",
+      "decision": "HARD_BLOCK",
+      "evidence_and_rationale": "Snapshot release_allowed=false; CONTENT_INCOMPLETE_BLOCKED for all first100 scenes; preview-test != production-ready.",
+      "independently_recomputed_from_raw_data": false
+    }
+  ]
+}
