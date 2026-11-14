@@ -10,6 +10,16 @@ export const MASTER_SCENE_BATCH_MANIFEST=Object.freeze([
  {version:'V142',scene:'SC50-0013',file:'CGMASTER_V142_SC0013_ALL245_BILINGUAL_DRAFT_20261114.json',blob:'c1d48fd5df4e7b2b2084e66b0e73649ccc3d852d',first:2888,last:3132,count:245},
  {version:'V147',scene:'SC50-0014',file:'CGMASTER_V147_SC0014_ALL243_BILINGUAL_DRAFT_20261114.json',blob:'e8589c6c6bc68f93d4183064e2f5a87845552da2',first:3133,last:3375,count:243}
 ].map(spec=>Object.freeze(spec)));
+// A new author batch is added by one manifest entry, never by hardcoded totals.
+for(let i=0;i<MASTER_SCENE_BATCH_MANIFEST.length;i++){
+ const item=MASTER_SCENE_BATCH_MANIFEST[i];
+ if(!/^SC50-\\d{4}$/.test(item.scene)||item.last-item.first+1!==item.count||
+    !/^[a-f0-9]{40}$/.test(item.blob)||
+    MASTER_SCENE_BATCH_MANIFEST.some((other,j)=>i!==j&&
+      (item.scene===other.scene||
+       (item.first<=other.last&&other.first<=item.last))))
+   throw Error('MASTER_BATCH_MANIFEST_ID_OR_RANGE_CONFLICT');
+}
 async function gitBlob(raw){
  if(!globalThis.crypto?.subtle)throw Error('MASTER_BATCH_HASH_UNAVAILABLE');
  const enc=new TextEncoder(),body=enc.encode(raw),prefix=enc.encode('blob '+body.length+'\0');
