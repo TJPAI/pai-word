@@ -161,7 +161,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene500-native-question-hero-exact.js"></script>
 <script src="./scene500-native-cycle-exact.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
-<script src="./scene1341-v163-ipa-learner-display.js"></script>
+<script src="./scene1341-v165-ipa-learner-display.js"></script>
 <script>
 'use strict';
 const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
@@ -529,7 +529,7 @@ function renderQuestionIPA(card){
  // Only learner-facing typography changes: preserve the authoritative
  // question.ipa field, exact-source gating, and all unapproved status labels.
  // Both QUESTION and ANSWER faces share this native Scene500 hero IPA line.
- const learnerIPA=window.PAI_SCENE1341_V163_IPA_DISPLAY.displayEnglishIPA(question?.ipa,{language:'en'});
+ const learnerIPA=window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA(question?.ipa,{language:'en'});
  el.textContent=native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':'音标待补';
  el.title=native?'CG-MASTER V116 · 原生 Kaikki IPA（测试中，未认证）':
           provisional?'CG-MASTER V116 · 原生单一读音候选，仅测试展示，尚未通过 POS/Sense 和 QA/Muse 认证':
