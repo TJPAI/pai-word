@@ -1,0 +1,84 @@
+{
+  "version": "V132",
+  "batch": "FIRST3000_SC0012_SC0023",
+  "source_queue_v130_sha256": "d94c46501881d0509fc5896004458e63476f29c876ae5a37658515008c3a88b3",
+  "author_draft_v131_sha256": "5615ae2a0b5a3bbdb0ccf7a35f99164f9a143ce8871c2d26e6a00879510aaeb1",
+  "counts": {
+    "source_rows": 3000,
+    "new_complete_author_drafts": 100,
+    "remaining_unproduced": 2900,
+    "scene_count": 12,
+    "ipa_approved": 0,
+    "canonical_sense_approved": 0,
+    "qa_pass": 0
+  },
+  "per_scene": {
+    "SC50-0012": {
+      "total": 253,
+      "author_complete": 100,
+      "pending": 153
+    },
+    "SC50-0013": {
+      "total": 245,
+      "author_complete": 0,
+      "pending": 245
+    },
+    "SC50-0014": {
+      "total": 243,
+      "author_complete": 0,
+      "pending": 243
+    },
+    "SC50-0015": {
+      "total": 250,
+      "author_complete": 0,
+      "pending": 250
+    },
+    "SC50-0016": {
+      "total": 298,
+      "author_complete": 0,
+      "pending": 298
+    },
+    "SC50-0017": {
+      "total": 232,
+      "author_complete": 0,
+      "pending": 232
+    },
+    "SC50-0018": {
+      "total": 234,
+      "author_complete": 0,
+      "pending": 234
+    },
+    "SC50-0019": {
+      "total": 221,
+      "author_complete": 0,
+      "pending": 221
+    },
+    "SC50-0020": {
+      "total": 248,
+      "author_complete": 0,
+      "pending": 248
+    },
+    "SC50-0021": {
+      "total": 247,
+      "author_complete": 0,
+      "pending": 247
+    },
+    "SC50-0022": {
+      "total": 272,
+      "author_complete": 0,
+      "pending": 272
+    },
+    "SC50-0023": {
+      "total": 257,
+      "author_complete": 0,
+      "pending": 257
+    }
+  },
+  "checks": {
+    "no_source_identity_collision": true,
+    "all_100_source_matched": true,
+    "source_rows_covered_exactly_once": true
+  },
+  "warning": "3000 is batch scope, NOT authored output. Only 100 completed bilateral draft pages, 2900 pending. Release forbidden.",
+  "release_allowed": false
+}
