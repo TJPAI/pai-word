@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
 import {loadScene1341V128Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v128-sc0011-loader.mjs';
-import {loadScene1341MasterNextBatches} from '../../rebuild-preview/scene1341-readonly/scene1341-next-three-master-loader.mjs';
+import {loadScene1341MasterNextBatches,MASTER_SCENE_BATCH_MANIFEST} from '../../rebuild-preview/scene1341-readonly/scene1341-next-three-master-loader.mjs';
 import {loadScene1341V118Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v118-sc0011-loader.mjs';
 import {loadScene1341V120Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs';
 import {loadScene1341V123Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v123-sc0011-loader.mjs';
@@ -94,8 +94,13 @@ for(const row of extra.items){
  assert.equal(row.question.cue_zh,row.answer.meaning_zh);
 }
 const next=await loadScene1341MasterNextBatches();
-assert.equal(next.total,598);
+assert.equal(next.total,741);
 assert.equal(next.scenes,3);
+assert.deepEqual(MASTER_SCENE_BATCH_MANIFEST.map(x=>[x.scene,x.count]),[
+ ['SC50-0012',253],['SC50-0013',245],['SC50-0014',243]
+]);
+assert.equal(MASTER_SCENE_BATCH_MANIFEST.reduce((n,x)=>n+x.count,0),next.total);
+
 assert.equal(next.canWriteSrs,false);
 assert.equal(next.productionRelease,false);
 const prior=[...snap.items,...extra.items];
@@ -103,18 +108,18 @@ const priorIds=new Set(prior.map(x=>x.master_record_id)),priorRows=new Set(prior
 assert(next.items.every(x=>!priorIds.has(x.master_record_id)&&!priorRows.has(x.master_final_row)));
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0012').length,253);
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0013').length,245);
-assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,100);
+assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,243);
 assert(next.items.every(x=>x.question.ipa===null&&x.production_release_allowed===false));
-assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,100,
- 'pet care is partial 100/243, never full-scene authored coverage');
+assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,243,
+ 'pet care 243 author drafts remain source-only and uncertified');
 assert(next.items.every(x=>x.question.ipa_status==='MISSING_VERIFIED_KAIKKI_IPA'),
  'the three new Master scenes must not invent any native IPA');
 const joined=[...prior,...next.items];
-assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2730,'cross-batch KU identities must not collide');
-assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2730,'source Master identity must be globally unique');
-assert.equal(new Set(joined.map(x=>x.master_final_row)).size,2730,'original FINAL source rows must never be duplicated');
+assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2873,'cross-batch KU identities must not collide');
+assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2873,'source Master identity must be globally unique');
+assert.equal(new Set(joined.map(x=>x.master_final_row)).size,2873,'original FINAL source rows must never be duplicated');
 assert.equal(new Set(joined.map(x=>x.scene_id)).size,14,'no un-authored scene must be declared playable');
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
-assert.equal(snap.total+extra.total+next.total,2730);
+assert.equal(snap.total+extra.total+next.total,2873);
 assert.equal(snap.scenes+extra.scenes,11);
-console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:14,combinedTestCards:2730,productionRelease:snap.productionRelease}));
+console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:14,combinedTestCards:2873,productionRelease:snap.productionRelease}));
