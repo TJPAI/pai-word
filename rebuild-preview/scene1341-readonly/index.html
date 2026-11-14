@@ -144,7 +144,9 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
-   <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div></div>
+   <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div><div id="extra-examples"></div></div>
+   <div class="answer-section" id="v188-relations-section" hidden><div class="answer-label">相关表达</div><div id="v188-synonyms"></div><div id="v188-antonyms"></div></div>
+   <div class="answer-section" id="v188-distinction-section" hidden><div class="answer-label">词义辨析</div><div id="v188-distinction"></div></div>
    <div class="answer-section" id="usage-section"><div class="answer-label">用法提醒</div><div class="root" id="usage"></div></div>
   </div>
   <div class="pai-scratch-area" aria-label="长按进入手绘，长按擦除，轻点退出"><canvas class="pai-scratch-canvas"></canvas></div>
@@ -162,6 +164,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene500-native-cycle-exact.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
 <script src="./scene1341-v165-ipa-learner-display.js"></script>
+<script src="./scene1341-v188-answer-presentation.js"></script>
 <script>
 'use strict';
 const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
@@ -618,8 +621,30 @@ function renderCard(){
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
  set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
- $('example-speak').dataset.speak=r.answer.example_en;
- set('example',r.answer.example_en);set('translation',r.answer.example_zh);
+ const answerView=window.PAI_SCENE1341_V188_ANSWER.project(r.answer);
+ const selectedExample=answerView.examples[0]||{en:'',zh:''};
+ $('example-speak').dataset.speak=selectedExample.en;
+ set('example',selectedExample.en);set('translation',selectedExample.zh);
+ const extraExamples=$('extra-examples');extraExamples.replaceChildren();
+ for(const [extraIndex,example] of answerView.examples.slice(1).entries()){
+  const item=document.createElement('div');item.className='example';
+  const no=document.createElement('span');no.className='example-num';no.textContent=(extraIndex+2)+'.';
+  const content=document.createElement('div');content.className='example-text';
+  const en=document.createElement('div');en.className='example-en';en.textContent=example.en;
+  const zh=document.createElement('div');zh.className='example-translation';zh.textContent=example.zh;
+  const speak=document.createElement('button');speak.type='button';speak.className='example-play';
+  speak.setAttribute('aria-label','播放例句 '+(extraIndex+2));speak.dataset.speak=example.en;
+  content.append(en,zh);item.append(no,content,speak);extraExamples.append(item);
+ }
+ const relationships=[['synonyms','同义词','v188-synonyms'],['antonyms','反义词','v188-antonyms']];
+ let relationsVisible=false;
+ for(const [kind,labelName,id] of relationships){
+  const list=answerView[kind];set(id,list.length?labelName+'：'+list.join(' · '):'');
+  if(list.length)relationsVisible=true;
+ }
+ $('v188-relations-section').hidden=!relationsVisible;
+ set('v188-distinction',answerView.distinction);
+ $('v188-distinction-section').hidden=!answerView.distinction;
  // Answer-only contract: optional teaching sections must never render empty
  // or leak editorial/QA/source metadata into the learner-facing answer.
  const collocations=prefs.showCollocations&&Array.isArray(r.answer.collocations)?r.answer.collocations.filter(v=>typeof v==='string'&&v.trim()):[];
@@ -628,7 +653,7 @@ function renderCard(){
  set('collocations',collocations.join(' · '));
  set('usage',teachingNotes.join(' '));
  $('collocations-section').hidden=collocations.length===0;
- $('examples-section').hidden=!prefs.showExamples;
+ $('examples-section').hidden=!prefs.showExamples||answerView.examples.length===0;
  $('usage-section').hidden=teachingNotes.length===0;
  $('answer').hidden=!revealed;
  // Opt-in A/B only: original Scene500 answerHtml byte-identical renderer,
@@ -760,6 +785,11 @@ $('preview-stats-button').addEventListener('click',()=>{
  if(node.open)node.scrollIntoView({block:'nearest',behavior:'smooth'});
 });
 $('more').addEventListener('click',()=>{visible+=35;renderHome()});
+$('extra-examples').addEventListener('click',e=>{
+ const b=e.target.closest('button[data-speak]');
+ if(!b||!$('extra-examples').contains(b))return;
+ playWord(b.dataset.speak);
+});
 // Match native Scene500 single delegated blank-click handler on the whole study screen.
 $('learning').addEventListener('click',e=>{
  if(e.target.closest('.answer,button,a,input,select,textarea,summary,details,label,.auto-word-toggle,[data-word-audio],[data-example-audio]'))return;
