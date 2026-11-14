@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
-import {loadScene1341V118Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v118-sc0011-loader.mjs';
+import {loadScene1341V120Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs';
 
 const snap=await loadScene1341MasterTest();
 assert.equal(snap.total,1877);
@@ -35,8 +35,8 @@ for(const card of snap.items){
   assert.equal(card.question.ipa_source,null);
  }
 }
-const extra=await loadScene1341V118Test();
-assert.equal(extra.total,30);
+const extra=await loadScene1341V120Test();
+assert.equal(extra.total,80);
 assert.equal(extra.scenes,1);
 assert.equal(extra.formalCertification,false);
 assert.equal(extra.productionRelease,false);
@@ -53,6 +53,6 @@ for(const row of extra.items){
  assert.equal(row.question.ipa_status,'MISSING_VERIFIED_KAIKKI_IPA');
  assert.equal(row.question.cue_zh,row.answer.meaning_zh);
 }
-assert.equal(snap.total+extra.total,1907);
+assert.equal(snap.total+extra.total,1957);
 assert.equal(snap.scenes+extra.scenes,11);
-console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:11,combinedTestCards:1907,productionRelease:snap.productionRelease}));
+console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:11,combinedTestCards:1957,productionRelease:snap.productionRelease}));
