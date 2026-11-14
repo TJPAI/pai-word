@@ -63,7 +63,7 @@ def main():
    existing=row.get('ipa') or ((row.get('question_page') or {}).get('ipa') if isinstance(row.get('question_page'),dict) else None)
    status='EXISTING_IPA_PRESERVED' if existing else ('KAIKKI_NATIVE_IPA_CANDIDATES_UNSELECTED' if options else 'NO_NATIVE_IPA_MATCH')
    record={'input_row':i,'scene_id':sc,'source_row_id':row.get('final_source_row') or row.get('source_final_row'),'source_sense_id':row.get('sense_id') or row.get('source_sense_id'),'expression':word,'existing_ipa_unchanged':existing,'candidate_ipa':options,'status':status,'selected_ipa':existing,'automatic_ipa_authorization':False,'release_allowed':False}
-   f.write(json.dumps(record,ensure_ascii=False)+'\\n');c[status]+=1;scenes[sc][status]+=1
+   f.write(json.dumps(record,ensure_ascii=False)+'\n');c[status]+=1;scenes[sc][status]+=1
  report={'version':'V112','kind':'NATIVE_KAIKKI_IPA_CANDIDATES_ONLY','input_card_sha256':sha(a.cards),'input_card_count':len(cardlist),'kaikki_sources_sha256':source,'counts':dict(c),'per_scene':{s:dict(v) for s,v in sorted(scenes.items())},'candidate_file_sha256':sha(out),'candidate_file_bytes':out.stat().st_size,'certified':0,'release_allowed':False,'notes':['Exact headword evidence is not sense or pronunciation approval','Native IPA only, no fabricated transliteration or TTS','Existing IPA preserved; homographs, accents and POS remain unselected','Source card rows immutable']}
  rp=output/'CGMASTER_V112_KAIKKI_IPA_REPORT.json';rp.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf-8')
  print(json.dumps({'counts':dict(c),'candidates_sha256':report['candidate_file_sha256'],'report_sha256':sha(rp)},ensure_ascii=False))
