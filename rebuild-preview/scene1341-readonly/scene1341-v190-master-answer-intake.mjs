@@ -115,7 +115,7 @@ async function loadSnapshot(cards,{fetchImpl,selected}){
   counts.examples!==selected.expected.examples||counts.ipa!==selected.expected.ipa||
   counts.usage!==selected.expected.usage||counts.collocations!==selected.expected.collocations)
   throw Error('V190_COVERAGE_MANIFEST_DRIFT_'+JSON.stringify(counts));
- let exact=0,held=0,enriched=0,preserved=0,examplesAdded=0;
+ let exact=0,held=0,enriched=0,preserved=0,examplesAdded=0,liveIPATest=0,ipaUpdated=0;
  const perScene=new Map();const touchedSourceIds=new Set();
  const track=(scene,field)=>{const entry=perScene.get(scene)||{matched:0,enriched:0,preserved:0,identityHold:0};entry[field]++;perScene.set(scene,entry);};
  const result=cards.map(card=>{
@@ -130,7 +130,32 @@ async function loadSnapshot(cards,{fetchImpl,selected}){
    held++;track(card.scene_id,'identityHold');return card;
   }
   exact++;track(card.scene_id,'matched');
-  const old=card.answer||{},next={...old};
+  const old=card.answer||{},next={...old},oldQuestion=card.question||{};
+  let nextQuestion=oldQuestion,questionChanged=false;
+  // Only a source-native unique entry or exact CMUdict 1.1.3
+  // candidate is eligible for learner-facing TEST display. No Sense
+  // or regional pronunciation is certified by this rule.
+  const eligibleStatus=['KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY',
+   'CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY'];
+  const candidate=clean(q.ipa);
+  const correctEnvelope=/^(?:\\/[^\\r\\n]+\\/|\\[[^\\r\\n]+\\])$/u.test(candidate) && candidate.length>2;
+  if(eligibleStatus.includes(q.ipa_status)&&correctEnvelope){
+   liveIPATest++;
+   const valueChanged=oldQuestion.ipa!==candidate;
+   if(valueChanged)ipaUpdated++;
+   nextQuestion={...oldQuestion,ipa:candidate,
+    ipa_status:'CGMASTER_LATEST_EXACT_TEST_ONLY',
+    ipa_provisional:true,master_live_ipa_test:true,
+    master_live_ipa_version:selected.version,
+    master_live_ipa_source_status:q.ipa_status,
+    master_live_ipa_source_commit:selected.commit,
+    master_previous_ipa_test:oldQuestion.ipa||null,
+    ipa_source:{source_type:'CGMASTER_LATEST_SOURCE_PINNED_EXACT_TEST_ONLY',
+      source_final_row:source.source_final_row,record_id:source.record_id,
+      git_commit:selected.commit,original_ipa_status:q.ipa_status,
+      sense_match_approved:false,qa_approved:false}};
+   questionChanged=true;
+  }
   let changed=false;
   const addText=(field)=>{if(!clean(next[field])&&clean(a[field])){next[field]=a[field];changed=true;}};
   for(const field of ['gloss_en','pos','usage_note'])addText(field);
@@ -160,7 +185,8 @@ async function loadSnapshot(cards,{fetchImpl,selected}){
   if(!('synonyms_status' in next))next.synonyms_status='UNVERIFIED';
   if(!('antonyms_status' in next))next.antonyms_status='UNVERIFIED';
   if(!('sense_disambiguation' in next))next.sense_disambiguation={note_zh:'',comparisons:[],status:'UNVERIFIED',source:null};
-  if(changed){enriched++;track(card.scene_id,'enriched');return {...card,answer:next,master_latest_answer_source:'V190_TEST_ONLY',
+  if(changed||questionChanged){enriched++;track(card.scene_id,'enriched');return {...card,answer:next,
+     question:nextQuestion,master_latest_answer_source:selected.version+'_TEST_ONLY',
      production_release_allowed:false};}
   preserved++;track(card.scene_id,'preserved');return card;
  });
@@ -168,7 +194,7 @@ async function loadSnapshot(cards,{fetchImpl,selected}){
  if(exact+held>2873||new Set(result.map(x=>x.master_record_id)).size!==2873||
     unmatchedSourceRows!==selected.expected.records-touchedSourceIds.size||legacyOutsideBatch!==2873-touchedSourceIds.size)throw Error('V190_MERGE_IDENTITY_DRIFT');
  return Object.freeze({items:result,sourceRows:3000,exact,held,enriched,preserved,
-  examplesAdded,unmatchedSourceRows,legacyOutsideBatch,
+  examplesAdded,liveIPATest,ipaUpdated,unmatchedSourceRows,legacyOutsideBatch,
   perScene:Object.freeze(Object.fromEntries([...perScene.entries()].sort((a,b)=>a[0].localeCompare(b[0])))),
   sourceCommit:selected.commit,sourceVersion:selected.version,sourceFallback:selected.fallback===true,
   sourceError:selected.liveError||'',formalReady:0,canWriteSrs:false,releaseAllowed:false});
