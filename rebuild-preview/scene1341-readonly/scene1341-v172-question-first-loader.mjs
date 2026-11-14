@@ -29,7 +29,8 @@ export async function loadQuestionShard(spec,{fetchImpl=fetch}={}){
   const raw=await response.text();
   if(await gitBlob(raw)!==spec.blob)throw Error('SC1341_MASTER_BLOB_DRIFT_'+spec.file);
   const doc=JSON.parse(raw);
-  if(doc.version!==spec.version||doc.release_allowed!==false||
+  if(doc.version!==spec.version||
+     (spec.version==='V168'?(doc.ready!==0||doc.formal_certification!==false):doc.release_allowed!==false)||
      !Array.isArray(doc.records)||doc.records.length!==spec.count)
    throw Error('SC1341_MASTER_MANIFEST_DRIFT');
   const records=new Set(),rows=new Set();let countIPA=0;
