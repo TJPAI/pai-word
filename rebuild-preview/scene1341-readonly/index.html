@@ -680,7 +680,10 @@ function demoGrade(grade){
  // An example utterance owns the old answer audio. Rating must preempt it
  // before graded speech begins, otherwise the graded TTS waits for the old
  // utterance while its stale completion may interfere with the new phase.
- if(phaseController.state().phase==='example'){
+ // The word speaker may already have switched the example phase to
+ // answer-paused while still owning exampleToWordPending. A new grade must
+ // cancel that takeover, or its old onend can restart auto during grading.
+ if(phaseController.state().phase==='example'||exampleToWordPending){
   exampleToWordPending=false;
   stopWordAudio();
  }
