@@ -1,3 +1,4 @@
+import {applyV154LocalKaikkiTestOverlay} from '../../rebuild-preview/scene1341-readonly/scene1341-v154-local-kaikki-ipa-overlay.mjs';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {measureScene1341MasterCoverage} from '../../rebuild-preview/scene1341-readonly/scene1341-master-coverage.mjs';
@@ -189,6 +190,29 @@ assert.deepEqual(coverage.byScene.filter(x=>x.scene_id>='SC50-0011').map(x=>[
  ['SC50-0013',245,5],['SC50-0014',243,5]
 ]);
 
+const v154=await applyV154LocalKaikkiTestOverlay(after);
+assert.equal(v154.sourceCandidates,91);
+assert.equal(v154.newlySelected+v154.retainedSelected+v154.variantBlocked,91);
+assert.equal(v154.productionRelease,false);
+assert.equal(v154.canWriteSrs,false);
+assert.equal(v154.formalCertification,false);
+assert.equal(v154.items.length,2873);
+assert.deepEqual(v154.items.map(x=>x.master_record_id),after.map(x=>x.master_record_id));
+for(let i=0;i<after.length;i++){
+ assert.deepEqual(v154.items[i].answer,after[i].answer,'V154 cannot rewrite answers');
+ assert.equal(v154.items[i].production_release_allowed,false);
+ if(after[i].question.ipa!==null)
+  assert.deepEqual(v154.items[i].question,after[i].question,'V154 cannot overwrite IPA');
+ if(after[i].question.ipa_candidates_pending)
+  assert.deepEqual(v154.items[i].question,after[i].question,'V154 cannot adjudicate variants');
+}
+const cover154=measureScene1341MasterCoverage(v154.items);
+assert.equal(cover154.selectedTestIpa,210+v154.newlySelected);
+assert.equal(cover154.localArchiveProvisional,v154.newlySelected);
+assert.equal(cover154.missingSelectedIpa,2663-v154.newlySelected);
+assert.equal(cover154.unselectedVariants,437);
+assert.equal(cover154.formallyReady,0);
+assert.equal(cover154.formallyCertified,0);
 assert.throws(()=>measureScene1341MasterCoverage([...after,after[0]]),/IDENTITY|CONFLICT/);
 
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
