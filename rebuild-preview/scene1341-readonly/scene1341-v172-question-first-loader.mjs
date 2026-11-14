@@ -12,7 +12,7 @@ const CACHE=new Map();
 async function gitBlob(raw){
  if(!globalThis.crypto?.subtle)throw Error('SC1341_CRYPTO_SUBTLE_UNAVAILABLE');
  const body=typeof raw==='string'?new TextEncoder().encode(raw):new Uint8Array(raw);
- const prefix=new TextEncoder().encode('blob '+body.length+'\\0');
+ const prefix=new TextEncoder().encode('blob '+body.length+'\0');
  const bytes=new Uint8Array(prefix.length+body.length);bytes.set(prefix);bytes.set(body,prefix.length);
  const digest=await crypto.subtle.digest('SHA-1',bytes);
  return Array.from(new Uint8Array(digest),v=>v.toString(16).padStart(2,'0')).join('');
