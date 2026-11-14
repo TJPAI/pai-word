@@ -8,6 +8,7 @@ on:
     paths:
       - '.github/workflows/cg-master-kaikki-native-ipa-v151.yml'
       - 'tools/scene1341_master/fetch_kaikki_word_ipa_v151.py'
+      - 'tools/scene1341_master/test_fetch_kaikki_word_ipa_v151.py'
 
 permissions:
   contents: read
@@ -21,6 +22,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Offline IPA safety regression tests
+        run: python tools/scene1341_master/test_fetch_kaikki_word_ipa_v151.py
       - name: Fetch individual Kaikki original word JSONLs and build conservative test overlay
         run: |
           python tools/scene1341_master/fetch_kaikki_word_ipa_v151.py \
