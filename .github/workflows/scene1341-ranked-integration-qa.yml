@@ -41,6 +41,8 @@ on:
       - 'tools/integration/test-scene1341-grade-entry-gate.mjs'
       - 'tools/integration/test-scene1341-v165-ipa-learner-display.mjs'
       - 'tools/integration/test-scene1341-v172-question-first.mjs'
+      - 'tools/integration/test-scene1341-v171-paired-learning.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene1341-v171-paired-master-overlay.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v172-question-first-loader.mjs'
       - 'rebuild-preview/scene1341-readonly/question-ipa-test.html'
       - 'rebuild-preview/scene1341-readonly/scene1341-v165-ipa-learner-display.js'
@@ -121,3 +123,5 @@ jobs:
           node tools/integration/test-scene1341-v165-ipa-learner-display.mjs
           node --check rebuild-preview/scene1341-readonly/scene1341-v172-question-first-loader.mjs
           node tools/integration/test-scene1341-v172-question-first.mjs
+          node --check rebuild-preview/scene1341-readonly/scene1341-v171-paired-master-overlay.mjs
+          node tools/integration/test-scene1341-v171-paired-learning.mjs
