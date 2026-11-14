@@ -1,0 +1,26 @@
+{
+  "version": "V183",
+  "date": "2026-11-15",
+  "base_version": "V182",
+  "scope": "SC50-0001",
+  "source_author_records": 234,
+  "exact_author_answer_matches": 223,
+  "identity_held": 11,
+  "integrated_into_full_v182_shards": false,
+  "update_type": "APPEND_ONLY_AUTHOR_ANSWER_REUSE_DELTA",
+  "requires_application_by_cg_master": true,
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "source": "CG-ENTEACH V51 six original Answer-only files; V75 exact crosswalk; V168 source rows",
+  "source_branch": "answer-enrichment-main-dev-20261026",
+  "data_path": "tools/scene1341_master/qa_reports/CGMASTER_V183_SC0001_EXISTING_ENTEACH_ANSWER_REUSE_DELTA_20261115.json",
+  "data_blob_sha": "62d3631f5524380abdf9ddf91ff2a660f1fb310b",
+  "preceding_v182_commit": "cd313a764eef523c1c640017a3939fbbc3ec82ec",
+  "data_commit": "8497e734a4046d3ecd95cb4eb93b2a4fd0a83bb1",
+  "notes": [
+    "Does not certify POS/gloss or Global Sense IDs",
+    "SC0001 original author examples Chinese translations collocations and usage notes preserved; 11 ambiguous records HOLD",
+    "No merge into V182 original gz shards yet. Counts for V182 overlay remain unchanged until materialized merge",
+    "No automatic activation or production SRS."
+  ]
+}
