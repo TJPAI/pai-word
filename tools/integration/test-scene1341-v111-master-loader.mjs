@@ -116,11 +116,24 @@ assert(next.items.every(x=>!priorIds.has(x.master_record_id)&&!priorRows.has(x.m
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0012').length,253);
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0013').length,245);
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,243);
-assert(next.items.every(x=>x.question.ipa===null&&x.production_release_allowed===false));
+assert(next.items.every(x=>x.production_release_allowed===false));
+const pageTest=next.items.filter(x=>x.question.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY');
+assert.equal(pageTest.length,4);
+assert.deepEqual(new Set(pageTest.map(x=>x.expression)),new Set(['pet','puppy','cat','kitten']));
+assert(pageTest.every(x=>x.scene_id==='SC50-0014'&&x.question.ipa_provisional===true&&
+ x.question.ipa_source.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'&&
+ x.question.ipa_source.native_raw_jsonl_sha256===null&&
+ x.question.ipa_source.formal_sense_alignment===false&&
+ x.question.ipa_source.author_review_required===true));
+assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014'&&x.question.ipa===null).length,239);
+assert.equal(next.items.filter(x=>x.question.ipa_candidates_pending).length,2);
+assert(next.items.every(x=>x.scene_id==='SC50-0014'||x.question.ipa===null));
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,243,
  'pet care 243 author drafts remain source-only and uncertified');
-assert(next.items.every(x=>x.question.ipa_status==='MISSING_VERIFIED_KAIKKI_IPA'),
- 'the three new Master scenes must not invent any native IPA');
+assert(next.items.every(x=>
+ x.question.ipa_status==='MISSING_VERIFIED_KAIKKI_IPA'||
+ x.question.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY'),
+ 'only four explicitly unapproved webpage-source IPA may be displayed, never raw-native approved');
 const joined=[...prior,...next.items];
 assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2873,'cross-batch KU identities must not collide');
 assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2873,'source Master identity must be globally unique');
@@ -128,5 +141,6 @@ assert.equal(new Set(joined.map(x=>x.master_final_row)).size,2873,'original FINA
 assert.equal(new Set(joined.map(x=>x.scene_id)).size,14,'no un-authored scene must be declared playable');
 assert(joined.every(x=>x.production_release_allowed===false),'no source draft may enter formal release');
 assert.equal(snap.total+extra.total+next.total,2873);
+assert.equal(next.batches[2].sourceGitBlob,'3e1042efe58480e38ae90631c595f872622cd748');
 assert.equal(snap.scenes+extra.scenes,11);
-console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:14,combinedTestCards:2873,productionRelease:snap.productionRelease}));
+console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:14,combinedTestCards:2873,v150WebPageIpa:4,v150UnselectedVariant:2,productionRelease:snap.productionRelease}));
