@@ -6,7 +6,7 @@ const cases=[
  ['/ˈɡɹiːn/','/ˈgriːn/'],
  ['/t͡ʃɪld/','/tʃɪld/'],
  ['/d͡ʒʌd͡ʒ/','/dʒʌdʒ/'],
- ['/ˌt͡ʃɹeɪnd͡ʒ/','/ˌtreɪndʒ/'],
+ ['/ˌt͡ʃɹeɪnd͡ʒ/','/ˌtʃreɪndʒ/'],
  ['[t͡ʃɡɹ]','[tʃgr]'],
  ['/tʃ dʒ/','/tʃ dʒ/'],
  ['/t͜ʃ/','/t͜ʃ/'], // different tie bar intentionally held
