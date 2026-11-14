@@ -3,7 +3,7 @@
  * Source pinned to immutable Git commit and exact blob hash.
  */
 const COMMIT='5a7e211950be614db0dd117eeafa8fdffa401102';
-const FILE='tools/scene1341_master/qa_reports/CGMASTER_V120_SC0011_FIRST80_BILINGUAL_QA_DRAFT_20261114.json';
+const FILE='tools/scene1341_master/qa_reports/CGMASTER_V120_SC0011_FIRST80_BILINGUAL_QA_MERGED_20261114.json';
 const EXPECTED_BLOB='6d73c17ddfa257d442bd0281b192bc3c272c0169';
 const URL='https://raw.githubusercontent.com/TJPAI/pai-word/'+COMMIT+'/'+FILE;
 async function exactGitBlob(raw){
