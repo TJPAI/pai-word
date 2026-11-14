@@ -192,6 +192,9 @@ assert.deepEqual(coverage.byScene.filter(x=>x.scene_id>='SC50-0011').map(x=>[
 
 const v154=await applyV154LocalKaikkiTestOverlay(after);
 assert.equal(v154.sourceCandidates,91);
+assert.equal(v154.newlySelected,83);
+assert.equal(v154.retainedSelected,8);
+assert.equal(v154.variantBlocked,0);
 assert.equal(v154.newlySelected+v154.retainedSelected+v154.variantBlocked,91);
 assert.equal(v154.productionRelease,false);
 assert.equal(v154.canWriteSrs,false);
@@ -207,8 +210,10 @@ for(let i=0;i<after.length;i++){
   assert.deepEqual(v154.items[i].question,after[i].question,'V154 cannot adjudicate variants');
 }
 const cover154=measureScene1341MasterCoverage(v154.items);
+assert.equal(cover154.selectedTestIpa,293);
 assert.equal(cover154.selectedTestIpa,210+v154.newlySelected);
 assert.equal(cover154.localArchiveProvisional,v154.newlySelected);
+assert.equal(cover154.missingSelectedIpa,2580);
 assert.equal(cover154.missingSelectedIpa,2663-v154.newlySelected);
 assert.equal(cover154.unselectedVariants,437);
 assert.equal(cover154.formallyReady,0);
