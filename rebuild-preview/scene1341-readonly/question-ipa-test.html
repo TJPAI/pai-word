@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scene1341 · 39场景题目页IPA测试</title>
+<style>
+:root{color-scheme:light;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#14243a;background:#f4f7fb}
+*{box-sizing:border-box}body{margin:0}main{max-width:780px;margin:auto;padding:16px 16px 90px}
+header{display:flex;align-items:center;gap:12px}h1{font-size:20px;margin:0}p{line-height:1.5}
+a{color:#2459a7;text-decoration:none}button,select{font:inherit;min-height:44px;border:1px solid #cbd4e2;border-radius:10px;background:#fff;color:#14243a;padding:9px 12px}
+button:disabled{opacity:.45}.sub{color:#5a6779;font-size:13px}.note{border:1px solid #d5ddea;background:#fff;border-radius:12px;padding:13px;margin:16px 0}
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}.controls select{flex:1;min-width:130px}
+.card{margin:18px 0;background:white;border:1px solid #e3e7ef;border-radius:18px;padding:22px 17px;min-height:240px}
+.word{font-size:clamp(25px,6.5vw,36px);font-weight:700;overflow-wrap:anywhere}
+.ipa{font-size:21px;margin-top:12px;overflow-wrap:anywhere;color:#2b4774}.cue{margin:20px 0 0;font-size:18px}
+.provenance{margin:24px 0 0;font-size:12px;color:#647389;line-height:1.5;overflow-wrap:anywhere}
+nav{display:flex;justify-content:space-between;gap:12px;margin-top:12px}nav button{flex:1}
+#status{font-size:14px}#count{font-size:14px;font-variant-numeric:tabular-nums}
+</style></head><body><main>
+<header><a href="./index.html" aria-label="返回 Scene1341 首页">‹ 返回</a><h1>题目页 IPA 测试</h1></header>
+<p class="sub">CG-MASTER V168–V172 · SC0001–SC0039 · 仅测试音标，正式 Ready 0。仅看题目页，不合成未交付答案，不评分或写入 SRS。</p>
+<div class="controls"><label for="scene">场景</label><select id="scene"></select><span id="count"></span></div>
+<div class="note" id="status" role="status" aria-live="polite">选择场景后按需载入已锁定的 CG-MASTER 原始数据。</div>
+<section class="card" aria-label="Scene1341 题目页预览">
+ <div class="word" id="word">正在准备</div><div class="ipa" id="ipa"></div><p class="cue" id="cue"></p>
+ <div class="provenance" id="provenance"></div>
+</section>
+<nav><button id="prev">上一条</button><button id="next">下一条</button></nav>
+<p class="sub">符号仅按 V165 显示规范处理；来源为 Kaikki 原生候选、CMU 辅助读音或拼接预览时均保留原状态，不视为正式词义读音认证。缺失条目显示“音标待补”。</p>
+</main>
+<script src="./scene1341-v165-ipa-learner-display.js"></script>
+<script type="module">
+import {loadQuestionScene,previewIPA,sourceStatus} from './scene1341-v172-question-first-loader.mjs';
+const $=id=>document.getElementById(id);
+for(let i=1;i<=39;i++){const option=document.createElement('option');option.value='SC50-'+String(i).padStart(4,'0');option.textContent='SC'+String(i).padStart(4,'0');$('scene').append(option)}
+let rows=[],index=0,ticket=0;
+function render(){
+ const rec=rows[index];if(!rec){$('word').textContent='无可展示记录';return}
+ const q=rec.question_page,ipa=previewIPA(rec);
+ $('word').textContent=q.english_expression;
+ $('ipa').textContent=ipa?window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA(ipa,{language:'en'})+'（测试未认证）':'音标待补';
+ $('cue').textContent=q.cue_zh;
+ $('provenance').textContent='来源状态：'+sourceStatus(rec)+' · Master行 '+rec.source_final_row+' · record_id '+rec.record_id+' · TEST_ONLY · Ready 0';
+ $('count').textContent=(index+1)+' / '+rows.length;
+ $('prev').disabled=rows.length<2;$('next').disabled=rows.length<2;
+}
+async function choose(){
+ const current=++ticket;index=0;rows=[];$('count').textContent='';
+ $('status').textContent='正在核验 CG-MASTER 原始 Git blob 与身份…';
+ $('word').textContent='加载中';$('ipa').textContent='';$('cue').textContent='';$('provenance').textContent='';
+ try{
+  const result=await loadQuestionScene($('scene').value);
+  if(current!==ticket)return;
+  rows=result.records;
+  $('status').textContent='本场景 '+rows.length+' 条 · 测试 IPA '+result.selectedIPA+' · 待补 '+(rows.length-result.selectedIPA)+' · 正式 Ready 0';
+  render();
+ }catch(e){if(current!==ticket)return;$('status').textContent='来源校验失败：'+String(e.message||e);$('word').textContent='不可显示未经核验的数据'}
+}
+$('scene').addEventListener('change',choose);
+$('prev').addEventListener('click',()=>{if(rows.length){index=(index+rows.length-1)%rows.length;render()}});
+$('next').addEventListener('click',()=>{if(rows.length){index=(index+1)%rows.length;render()}});
+const selected=new URLSearchParams(location.search).get('scene');
+if(/^SC50-00(?:0[1-9]|[12][0-9]|3[0-9])$/.test(selected||''))$('scene').value=selected;
+void choose();
+</script></body></html>
