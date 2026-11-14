@@ -162,6 +162,15 @@ assert(script.includes('items.length!==2873') && script.includes('countByScene.s
  script.includes("countByScene.get('SC50-0014')!==243"),
  'V128 all 255 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
 assert(script.includes('建设中 Master 测试'));
+assert(html.includes('id="master-ipa-coverage"') &&
+ script.includes("import('./scene1341-master-coverage.mjs')") &&
+ script.includes('coverage.selectedTestIpa!==202') &&
+ script.includes('coverage.missingSelectedIpa!==2671') &&
+ script.includes('coverage.unselectedVariants!==412') &&
+ script.includes('coverage.formallyReady!==0') &&
+ script.includes('完整可发布词卡 0'),
+ 'settings must report source-derived question IPA evidence instead of conflating authored answers with full Ready cards');
+
 assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'") &&
  script.includes("question?.ipa_source?.native_raw_jsonl_sha256===null") &&
