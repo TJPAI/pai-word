@@ -199,12 +199,13 @@ assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFI
  script.includes("question?.ipa_source?.native_raw_jsonl_sha256===null") &&
  script.includes("pageEvidence?learnerIPA+'（网页来源·测试未认证）'") &&
  script.includes("pageEvidence?'web-page-provisional-test'") &&
- script.includes('V154测试 IPA 已接入，正式认证0'),
+ script.includes('V171完整题目与答案配对') &&
+ script.includes('正式认证0'),
  'V150 web-sourced IPA must be visibly provisional and never masquerade as native raw evidence');
 
-assert(script.includes('V116+V128+V153+V154 Master 词卡') &&
- script.includes('第11场景255/255条作者草稿') &&
- script.includes('认证后置') &&
+assert(script.includes('当前完整学习草稿14场景、2,873条') &&
+ script.includes('SC0011–SC0014已接入996条V171完整题目与答案配对') &&
+ script.includes('SRS写入关闭') &&
  script.includes('（未认证）') &&
  html.includes('data-srs-write="disabled"'),
  'complete SC0011 author draft is still uncertified, never a release-ready study unit');
