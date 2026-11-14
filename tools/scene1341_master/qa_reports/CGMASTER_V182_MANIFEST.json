@@ -1,0 +1,88 @@
+{
+  "authority": "V108 + Reviewed V13 + V179 + V171 available paired drafts",
+  "counts": {
+    "answer_collocations_filled": 621,
+    "answer_example_en_filled": 621,
+    "answer_example_zh_filled": 621,
+    "answer_gloss_en_filled": 338,
+    "answer_meaning_zh_filled": 3000,
+    "answer_page_all_fields_nonempty_unverified": 65,
+    "answer_pos_filled": 338,
+    "answer_usage_note_filled": 621,
+    "ipa_status_breakdown": {
+      "CMUDICT113_COMPONENTS_COMPOSED_PREVIEW_ONLY": 606,
+      "CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY": 104,
+      "CMUDICT113_MULTIVARIANT_HOLD": 9,
+      "IPA_MISSING_OR_AMBIGUOUS_HOLD": 1049,
+      "KAIKKI_COMPONENTS_COMPOSED_PREVIEW_ONLY": 32,
+      "KAIKKI_EXACT_MULTIVARIANT_HOLD": 464,
+      "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY": 292,
+      "MIXED_COMPONENTS_COMPOSED_PREVIEW_ONLY": 36,
+      "V171_LEGACY_PREVIEW_FALLBACK_NOT_AUTHORITY": 408
+    },
+    "lexical_entries": 2710,
+    "official_global_sense_ids": 0,
+    "provisional_reused_associations": 25,
+    "provisional_reused_groups": 22,
+    "provisional_semantic_groups": 313,
+    "question_audio_text_filled": 3000,
+    "question_cue_zh_filled": 3000,
+    "question_expression_filled": 3000,
+    "question_ipa_filled": 1478,
+    "question_page_complete_test": 1478,
+    "records": 3000,
+    "reviewed_v13_ambiguous_or_missing": 594,
+    "reviewed_v13_unique_exact_links": 2406,
+    "scenes": 13,
+    "sense_CANDIDATE_MULTIPLE": 1016,
+    "sense_CANDIDATE_NONE": 1646,
+    "sense_CANDIDATE_SINGLE": 338,
+    "v13_held": 594,
+    "v171_ipa_reused_when_v179_missing": 408,
+    "v171_paired_source_rows_reused": 621,
+    "v179_test_ipa_reused": 1070
+  },
+  "date": "2026-11-15",
+  "open_issues": [
+    "SC0001-0010 CG-ENTEACH answer-only assets only evidenced through V75 join metadata; full author payload not yet materialized: preserve references, do not replace.",
+    "Kaikki single-sense evidence is still not independently aligned to Chinese meaning and cannot be certified.",
+    "Global Sense groups are provisional semantic-signature matches, never final canonical IDs.",
+    "No fabricated examples, translations, collocations, or usage notes.",
+    "All items require independent QA before Ready."
+  ],
+  "payload_files": [
+    "CGMASTER_V182_LEXICAL_ENTRIES.json.gz",
+    "CGMASTER_V182_PROVISIONAL_GLOBAL_SENSE_GROUPS.json.gz"
+  ],
+  "scope": "SC50-0001 through first 113 rows of SC50-0013",
+  "shards": [
+    {
+      "bytes": 790233,
+      "git_blob_sha1": "a3d0d53996c183a3776f7f0f735394d2f0f14fd4",
+      "name": "CGMASTER_V182_SOURCE00001_01000_FULL_PAGE_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "sha256": "4a445be83f7892b6b5a947b50406df0895255739206da1ccf1f9c9483e2bb8a3"
+    },
+    {
+      "bytes": 734441,
+      "git_blob_sha1": "bc32efb0e70e4f8b219d7ad7ce6b3214b4367190",
+      "name": "CGMASTER_V182_SOURCE01001_02000_FULL_PAGE_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "sha256": "ab5ead0aa201926217f59b8f2316fef40ea08296048005c9504e6ccb21563383"
+    },
+    {
+      "bytes": 783669,
+      "git_blob_sha1": "22f85054e85fbc63f5fe46d6b6a79ab4bf10a648",
+      "name": "CGMASTER_V182_SOURCE02001_03000_FULL_PAGE_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "sha256": "1eb8b2bc58897d2ebad6955b192ca0d176fec8145bbbcb5ad45f2badb0369784"
+    }
+  ],
+  "source_final_rows": [
+    1,
+    3000
+  ],
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "source_policy": "NO_OVERWRITE / NO_CANONICAL_SENSE_ID_INVENTION / ALL_PREVIEWS_TEST_ONLY / NO_SRS",
+  "version": "V182"
+}
