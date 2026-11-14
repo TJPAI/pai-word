@@ -206,7 +206,7 @@ assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFI
 assert(script.includes('当前完整学习草稿14场景、2,873条') &&
  script.includes('SC0011–SC0014已接入996条V171完整题目与答案配对') &&
  script.includes('SRS写入关闭') &&
- script.includes('（未认证）') &&
+ script.includes('正式认证0、SRS写入关闭') &&
  html.includes('data-srs-write="disabled"'),
  'complete SC0011 author draft is still uncertified, never a release-ready study unit');
 assert(!script.includes('pai-word-preview-ku-durable'));
