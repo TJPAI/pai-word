@@ -1,0 +1,64 @@
+{
+  "version": "V186",
+  "date": "2026-11-15",
+  "owner": "CG-MASTER",
+  "scope": "SC50-0001 onward across 1341 scenes",
+  "user_instruction": "每批3000个Sense",
+  "batch_unit": "DISTINCT_GLOBAL_SENSE_NOT_SENSE_SCENE_ROWS",
+  "batch_target_unique_senses": 3000,
+  "source_order": "source_final_row ascending, scene SC50-0001 onward",
+  "link_cardinality": "One Global Sense to N Sense–Scene associations; all contexts retained",
+  "source_systems": [
+    "V108 immutable original Master",
+    "Reviewed V13",
+    "V168-V185 incremental data",
+    "Kaikki English native sense evidence",
+    "CMUdict 1.1.3 phonetic fallback",
+    "verified CG-ENTEACH bilingual author materials"
+  ],
+  "identification_rules": [
+    "Never deduplicate on expression alone",
+    "Require headword+POS+semantics(gloss/sense reference) and substantive independent alignment to Chinese meaning",
+    "Use canonical ID only when real identity is explicitly verified; unresolved retain candidate_group_not_sense_id and HOLD, not a fabricated ID",
+    "A single Global Sense may link multiple Scene–Sense records, but its lexical/semantic core is not multiplied in the 3000-sense production count",
+    "Each scene association retains scene-specific bilingual examples 1–3, usage, collocations and cue"
+  ],
+  "batch_boundary": "Continue scanning forward until 3000 verified-distinct Global Sense identities have been produced; HOLD candidates and duplicated associations do not count toward the target. If the available inspected Master range is exhausted, mark partial instead of fabricating counts.",
+  "metrics_required": [
+    "unique_global_senses_created_or_enriched",
+    "sense_scene_associations_processed",
+    "unique_lexical_entries",
+    "cross_scene_sense_reuse_associations",
+    "unresolved_candidate_senses_hold",
+    "question_page_required_coverage",
+    "answer_page_required_coverage",
+    "Kaikki_IPA_native_count",
+    "CMUdict_IPA_fallback_count",
+    "composed_preview_count",
+    "IPA_HOLD_count",
+    "IPA_missing_count",
+    "global_sense_semantic_QA_status",
+    "Git_blob_sha",
+    "Drive_delivery",
+    "CI_result"
+  ],
+  "answer_schema": [
+    "meaning_zh",
+    "gloss_en",
+    "pos",
+    "examples[1..3]{example_en,example_zh}",
+    "collocations[1..3 recommended]",
+    "usage_note",
+    "synonyms[]",
+    "antonyms[]",
+    "sense_disambiguation"
+  ],
+  "release_policy": "Production can proceed in isolated staging. Global Sense production validation is not the same as dual-AI QA certification. No SRS/Ready until approved.",
+  "historical_reconciliation": {
+    "V182_to_V185": "Historical 3000 count is Sense–Scene association rows, NOT 3000 Global Senses",
+    "historical_provisional_groups": 313,
+    "historical_global_senses_certified": 0,
+    "warning": "Do not retrospectively label the first 3000 rows as the first 3000 unique senses or reset source-final-row progress."
+  },
+  "non_destructive": true
+}
