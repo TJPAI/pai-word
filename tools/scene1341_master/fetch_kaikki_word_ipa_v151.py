@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""CG-MASTER V151: obtain Kaikki per-headword raw Wiktextract JSONL, preserve provenance,
+"""CG-MASTER V151: obtain Kaikki per-headword POSTPROCESSED dictionary JSONL, preserve provenance,
 and build a test-only IPA overlay. Never equate headword pronunciation with Sense approval.
 
 Usage:
@@ -12,11 +12,11 @@ import argparse, concurrent.futures, hashlib, json, pathlib, time, unicodedata, 
 from collections import Counter,defaultdict
 
 BASE="https://kaikki.org/dictionary/English/meaning/"
-UA="PAI-Word-CG-MASTER/1.0 (Kaikki original-JSONL IPA attribution, noncommercial research)"
+UA="PAI-Word-CG-MASTER/1.1 (Kaikki postprocessed dictionary IPA attribution, research)"
 def norm(s):
     return unicodedata.normalize("NFKC",str(s or "")).strip().casefold()
 def source_url(word):
-    # The per-word .jsonl link is published beside the 'raw wiktextract data' panel.
+    # Per-word endpoints, when available, are Kaikki POSTPROCESSED dictionary data.\n    # They are NOT equivalent to the official unprocessed Wiktextract raw download.
     # Use literal first letters, preserving case for case-sensitive filesystem paths.
     prefix=urllib.parse.quote(word[:1],safe="")
     prefix2=urllib.parse.quote(word[:2],safe="")
@@ -54,10 +54,10 @@ def get_raw(word,cache_dir,retries):
             entry={"ipa":ipa.strip(),"pos":pos,"tags":snd.get("tags") or [],
                    "raw_tags":snd.get("raw_tags") or [],
                    "audio":{k:snd[k] for k in ("audio","ogg_url","mp3_url","wav_url") if snd.get(k)},
-                   "source_url":url,"source_raw_sha256":digest}
+                   "source_url":url,"source_download_sha256":digest}
             if entry not in choices:choices.append(entry)
     return {"word":word,"url":url,"status":"FETCHED" if entries else "NO_EXACT_ENGLISH_ENTRY",
-            "sha256":digest,"native_entry_count":len(entries),"native_ipa_candidates":choices}
+            "sha256":digest,"native_entry_count":len(entries),"source_format":"KAIKKI_POSTPROCESSED_PER_WORD_JSONL","native_ipa_candidates":choices}
 def build(args):
     source=pathlib.Path(args.cards); raw=source.read_bytes(); doc=json.loads(raw)
     if not isinstance(doc,dict) or not isinstance(doc.get("records"),list):
@@ -78,7 +78,7 @@ def build(args):
         q["ipa_candidates_raw"]=candidates
         q["ipa_source_status"]=ev["status"]
         q["ipa_source_url"]=ev["url"]
-        q["ipa_source_raw_sha256"]=ev.get("sha256")
+        q["ipa_source_download_sha256"]=ev.get("sha256")
         original=q.get("ipa")
         distinct=sorted({c["ipa"] for c in candidates})
         if original:
@@ -89,14 +89,14 @@ def build(args):
         elif len(distinct)==1 and distinct[0].startswith("/") and distinct[0].endswith("/"):
             # A single pronunciation across all observed POS may be shown in test,
             # but is NOT a certified alignment to the Master Sense.
-            q["ipa"]=distinct[0];q["ipa_status"]="NATIVE_SINGLE_READING_TEST_ONLY"
-            q["ipa_evidence"]={"source":"Kaikki individual raw wiktextract JSONL",
+            q["ipa"]=distinct[0];q["ipa_status"]="KAIKKI_POSTPROCESSED_SINGLE_READING_TEST_ONLY"
+            q["ipa_evidence"]={"source":"Kaikki per-word POSTPROCESSED dictionary JSONL (not raw Wiktextract)",
                  "url":ev["url"],"sha256":ev["sha256"],
                  "variant_tags_preserved":True,"sense_approved":False,"test_only":True}
             q["content_complete"]=True
             report["test_ipa_added"]+=1
             changes.append({"source_final_row":card.get("source_final_row"),"record_id":card.get("record_id"),
-                            "word":w,"ipa":distinct[0],"source_raw_sha256":ev["sha256"]})
+                            "word":w,"ipa":distinct[0],"source_download_sha256":ev["sha256"]})
         elif not candidates:
             q["ipa_status"]="NO_NATIVE_IPA_AT_EXACT_HEADWORD";report["no_native_ipa"]+=1
         else:
@@ -109,21 +109,24 @@ def build(args):
     patch.write_text(json.dumps({**{k:v for k,v in doc.items() if k!="records"},
          "version":"V151","source_cards_sha256":hashlib.sha256(raw).hexdigest(),"records":records,
          "test_only":True,"release_allowed":False},ensure_ascii=False,indent=2)+"\n")
-    report_data={"version":"V151","kind":"NATIVE_KAIKKI_PER_WORD_QUESTION_IPA",
+    report_data={"version":"V151","kind":"POSTPROCESSED_KAIKKI_PER_WORD_QUESTION_IPA_TEST",
         "source_card_sha256":hashlib.sha256(raw).hexdigest(),
         "output_sha256":hashlib.sha256(patch.read_bytes()).hexdigest(),
         "source_url_template":BASE+"{first}/{first2}/{headword}.jsonl",
+        "source_format":"KAIKKI_POSTPROCESSED_PER_WORD_JSONL_NOT_UNPROCESSED_WIKTEXTRACT",
         "distinct_words":len(words),"total_cards":len(records),"counts":dict(report),
         "source_word_evidence":results,"new_test_ipa":changes,"unselected_variants":unresolved,
         "rules":["Never guess IPA", "Exactly one phonemic IPA across all POS permits TEST_ONLY display",
                  "Multiple readings remain unselected, preserving tags and source URLs",
-                 "Source raw JSONL cached with per-word SHA256","Formal Sense/QA/release always deferred"],
+                 "Downloaded postprocessed per-word bytes cached with per-word SHA256","Not official unprocessed raw Wiktextract; formal Sense/QA/release always deferred"],
         "independent_qa_certified":0,"canonical_sense_certified":0,"release_allowed":False}
     (out/"CGMASTER_V151_IPA_EVIDENCE_REPORT.json").write_text(json.dumps(report_data,ensure_ascii=False,indent=2)+"\n")
     assert len(records)==len(originals)
     assert all(a.get("record_id")==b.get("record_id") and a.get("answer_page")==b.get("answer_page")
                for a,b in zip(records,originals))
     print(json.dumps({"cards":len(records),"unique_words":len(words),"counts":dict(report)},ensure_ascii=False))
+    if args.fail_on_empty and not any(r.get("status")=="FETCHED" for r in results):
+        raise SystemExit("No successful Kaikki per-word JSONL fetch; inspect artifact before claiming new IPA.")
 if __name__=="__main__":
     ap=argparse.ArgumentParser()
     ap.add_argument("--cards",required=True)
@@ -131,6 +134,7 @@ if __name__=="__main__":
     ap.add_argument("--cache-dir")
     ap.add_argument("--workers",type=int,default=6)
     ap.add_argument("--retries",type=int,default=2)
+    ap.add_argument("--fail-on-empty",action="store_true")
     a=ap.parse_args()
     if not 1<=a.workers<=12:ap.error("workers must be 1..12")
     build(a)
