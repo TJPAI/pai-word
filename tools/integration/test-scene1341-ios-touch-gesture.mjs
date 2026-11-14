@@ -60,4 +60,49 @@ start(150,200);endTouch(100,200);
 start(150,200);endTouch(50,105);
 start(150,200);clock+=900;endTouch(20,200);
 assert.deepEqual([moves.length,batches.length],baseline(),'thresholds and long presses remain safe');
-console.log(JSON.stringify({status:'PASS',cases:12,source:'real iPhone touch handlers',srsWrites:0,scene500Writes:0}));
+// Execute the actual dedicated-settings click handlers and Escape branch.
+// Hidden home controls must regain focus when the user returns from settings.
+const settingsBegin=script.indexOf(" $('preview-settings-button').addEventListener(");
+const actualSettingsBegin=settingsBegin>=0?settingsBegin:script.indexOf("$('preview-settings-button').addEventListener(");
+const settingsEnd=script.indexOf("\\n$('preview-stats-button').addEventListener(",actualSettingsBegin);
+assert(actualSettingsBegin>=0&&settingsEnd>actualSettingsBegin,'dedicated settings handler missing');
+const settingsEvents=[],settingsHandlers=new Map();
+const ui={
+ home:{hidden:false},'settings-page':{hidden:true},
+ 'preview-settings-button':{focus:()=>settingsEvents.push('focus-opener')},
+ 'settings-back':{focus:()=>settingsEvents.push('focus-back')}
+};
+for(const id of ['preview-settings-button','settings-back']){
+ ui[id].addEventListener=(type,fn)=>settingsHandlers.set(id+':'+type,fn);
+ ui[id].click=()=>settingsHandlers.get(id+':click')();
+}
+const settingCtx={$:id=>{assert(ui[id],'unknown node '+id);return ui[id]},
+ window:{scrollTo:()=>settingsEvents.push('scroll')},renderHome:()=>settingsEvents.push('render-home')};
+vm.runInNewContext(script.slice(actualSettingsBegin,settingsEnd),settingCtx);
+ui['preview-settings-button'].click();
+assert.equal(ui.home.hidden,true);
+assert.equal(ui['settings-page'].hidden,false);
+assert.equal(settingsEvents.at(-1),'focus-back');
+ui['settings-back'].click();
+assert.equal(ui.home.hidden,false);
+assert.equal(ui['settings-page'].hidden,true);
+assert.equal(settingsEvents.at(-1),'focus-opener');
+const keyBegin=script.indexOf("document.addEventListener('keydown',e=>{");
+const keyEnd=script.indexOf("\\n// Original welcome catalog action",keyBegin);
+assert(keyBegin>=0&&keyEnd>keyBegin,'keyboard navigation handler missing');
+let keyHandler,prevented=0;
+const keyCtx={
+ document:{addEventListener:(name,fn)=>{assert.equal(name,'keydown');keyHandler=fn}},
+ $:id=>{assert(ui[id]||id==='learning');return id==='learning'?{hidden:true}:ui[id]},
+ home:()=>{throw Error('study navigation must not execute while settings open')}
+};
+vm.runInNewContext(script.slice(keyBegin,keyEnd),keyCtx);
+ui['preview-settings-button'].click();
+keyHandler({key:'Escape',code:'Escape',repeat:false,ctrlKey:false,metaKey:false,altKey:false,
+ target:{tagName:'BUTTON'},preventDefault:()=>{prevented++}});
+assert.equal(prevented,1,'Escape must prevent browser navigation');
+assert.equal(ui['settings-page'].hidden,true);
+assert.equal(ui.home.hidden,false);
+assert.equal(settingsEvents.at(-1),'focus-opener');
+
+console.log(JSON.stringify({status:'PASS',cases:15,source:'real iPhone touch handlers',srsWrites:0,scene500Writes:0}));
