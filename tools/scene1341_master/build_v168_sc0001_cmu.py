@@ -26,16 +26,19 @@ def lookup(w):
   parts=w.split('-');xx=[lookup(z)[0] for z in parts]
   if all(xx):return ''.join(xx),'COMPOSED_HYPHEN_CMU_TEST'
  return None,'MISSING_CMU'
+EDITORIAL_SEGMENTAL_DRAFT={'ringtone':'rɪŋtoʊn','pillowcase':'pɪloʊkeɪs','bedsheet':'bɛdʃit','duvet':'duveɪ'}
 counts=collections.Counter();out=[]
 for x in rows:
  expr=x['expression'];parts=re.findall(r"[A-Za-z]+(?:['’][A-Za-z]+)?(?:-[A-Za-z]+)*",expr)
  resolved=[lookup(t) for t in parts]
  phon=' '.join(k for k,typ in resolved if k) if all(k for k,typ in resolved) and parts else None
  status=('CMU_TOKEN_COMPOSED_PREVIEW_ONLY' if len(parts)>1 else 'CMU_EXACT_LEXEME_PREVIEW_ONLY') if phon else 'IPA_MISSING_NEEDS_EDITOR'
+ if not phon and expr.lower() in EDITORIAL_SEGMENTAL_DRAFT:
+  phon=EDITORIAL_SEGMENTAL_DRAFT[expr.lower()];status='EDITORIAL_SEGMENTAL_PREVIEW_ONLY_NOT_KAIKKI'
  counts[status]+=1
  out.append({'scene_id':x['scene_id'],'source_final_row':x['source_final_row'],'record_id':x['original_record_id_candidate'], 'canonical_sense_id':None,
  'question_page':{'english_expression':expr,'cue_zh':x['original_sense_zh'],'ipa':('/'+phon+'/' if phon else None),'ipa_status':status,'audio_text':expr,'content_complete':bool(phon)},
- 'pronunciation_source':'CMUdict (supplemental, NOT Kaikki native exact-phrase proof)' if phon else None,
+ 'pronunciation_source':('EDITORIAL_PROVISIONAL_NOT_NATIVE_SOURCE' if status.startswith('EDITORIAL') else 'CMUdict (supplemental, NOT Kaikki native exact-phrase proof)') if phon else None,
  'unresolved_tokens':[t for t,(z,_ ) in zip(parts,resolved) if not z],
  'cg_qa_status':'DEFERRED','mu_qa_status':'DEFERRED','release_allowed':False})
 assert len({r['record_id'] for r in out})==294
