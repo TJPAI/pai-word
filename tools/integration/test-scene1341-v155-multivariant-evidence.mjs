@@ -34,8 +34,8 @@ export function auditV155Evidence(raw){
   assert.equal(rec.canonical_sense_id,null);
   assert.equal(typeof rec.expression,'string');
   assert(rec.expression.trim().length>0);
-  assert(Array.isArray(rec.phonemic_variants)&&rec.phonemic_variants.length>=2);
-  assert(Array.isArray(rec.source_evidence)&&rec.source_evidence.length>0);
+  assert(Array.isArray(rec.phonemic_variants));
+  assert(Array.isArray(rec.source_evidence));
   for(const e of rec.source_evidence){
    assert(/^\/[^/]+\/$/.test(e.ipa),'source IPA format');
    assert(Number.isSafeInteger(e.line)&&e.line>0,'source line');
@@ -45,6 +45,7 @@ export function auditV155Evidence(raw){
   reasons[rec.selection_reason]=(reasons[rec.selection_reason]||0)+1;
   if(rec.status==='AMERICAN_ACCENT_TEST_CANDIDATE_NOT_READY'){
    candidate++;
+   assert(rec.phonemic_variants.length>=2&&rec.source_evidence.length>0,'candidate evidence mandatory');
    assert(['GENERAL_AMERICAN_UNIQUE_REGION_EVIDENCE','US_UNIQUE_REGION_EVIDENCE'].includes(rec.selection_reason));
    assert(/^\/[^/]+\/$/.test(rec.ipa_candidate));
    assert(rec.phonemic_variants.includes(rec.ipa_candidate));
