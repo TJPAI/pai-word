@@ -1,0 +1,38 @@
+{
+  "version": "V115",
+  "date": "2026-11-14",
+  "role": "CG-MASTER",
+  "data_type": "SOURCE_PINNED_TEST_ONLY_FULL_QA_PAGE_MASTER_WITH_195_NATIVE_KAIKKI_IPA_OVERLAYS",
+  "source_v111_git_blob": "847c5a9432999426d0f7db807367720616bf1a57",
+  "source_v114_git_blob": "f6ced07c228ed4c95b82c81dde623ea7b600c8d8",
+  "v115_git_blob": "b34f637655f8ee49d00f5a1a72f6a1886920f598",
+  "source_final_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "counts": {
+    "existing_author_card_rows": 1877,
+    "source_identity_preserved": 1877,
+    "answer_pages_unchanged": 1877,
+    "original_verified_native_ipa": 3,
+    "additional_native_single_variant_ipa_TEST_ONLY": 195,
+    "total_with_ipa_test_version": 198,
+    "missing_ipa_in_test_version": 1679,
+    "content_scene_count": 10,
+    "scene_batch_target": 100,
+    "formally_certified_new_ipa": 0,
+    "formal_scene_ready": 0
+  },
+  "verification": {
+    "remote_readback": true,
+    "changed_question_ipa_rows": 195,
+    "preserved_existing_ipa": 3,
+    "answer_page_mismatch": 0,
+    "master_record_identity_mismatch": 0,
+    "release_violation": 0
+  },
+  "warnings": [
+    "195 candidate IPA are single native phonemic variants, but do not yet have independent POS/Sense matching or accent selection",
+    "V115 is an isolated test projection, not canonical production Master or V111 replacement",
+    "Remaining other 90 scenes in Batch001 require author Q/A content",
+    "QA and Muse independent certification deferred; no release"
+  ],
+  "release_allowed": false
+}
