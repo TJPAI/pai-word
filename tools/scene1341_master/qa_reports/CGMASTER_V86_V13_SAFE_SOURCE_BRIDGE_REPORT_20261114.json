@@ -1,0 +1,42 @@
+{
+  "version": "V86",
+  "date": "2026-11-14",
+  "purpose": "V13 to original FINAL exact source identity crosswalk and V85 P0 inclusion, NOT semantic Sense adjudication",
+  "authority_sha256": {
+    "final": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "v13": "568455645ff4d0ee6fba8177c45cf89d5f7f892ff8ecd7ad1897a9458c03aba6",
+    "v85": "38482e31ae622d8f2f2bed1962bb38e2ec57844655934f306b5e5078af80e5c6"
+  },
+  "counts": {
+    "v13_rows": 200144,
+    "original_final_rows": 230289,
+    "v85_p0_rows": 63690,
+    "reviewed_master_scenes": 1341,
+    "original_final_scenes": 1341,
+    "match_status": {
+      "ONE_TO_ONE_SCENE_EXPRESSION_ORIGINAL_ZH": 191621,
+      "GLOSS_MISMATCH_OR_ALTERNATE_SOURCE_GLOSS": 5376,
+      "NO_SCENE_EXPRESSION_IN_FINAL": 3140,
+      "NONUNIQUE_DO_NOT_AUTOLINK": 7
+    },
+    "v85_overlap": {
+      "EXACT_SOURCE_NOT_IN_V85_P0": 129488,
+      "NOT_UNAMBIGUOUS_SOURCE_LINK": 8523,
+      "V85_P0_ROW_EXACT_SAME_SOURCE": 62133
+    },
+    "safe_linked_unique_final_rows": 191621
+  },
+  "output": {
+    "file": "CGMASTER_V86_V13_TO_FINAL_AND_V85_SAFE_IDENTITY_BRIDGE.jsonl.gz",
+    "sha256": "58acc91357503cacdf41f88af93e4168d5c2039d21ec8b5d8b754a42544b18da",
+    "bytes": 9132925
+  },
+  "limitations": [
+    "Only exact unique (scene, normalized English expression, original Chinese gloss) qualifies; no original ordinal equivalence implied",
+    "V13 editorial status is evidence, not independent QA or lexical Sense approval",
+    "No candidate Kaikki Sense selected; preserve original FINAL and Reviewed V13",
+    "Unmatched/ambiguous V13 cases must be reviewed, never auto-merged"
+  ],
+  "canonical_sense_id_authorized": 0,
+  "release_allowed": false
+}
