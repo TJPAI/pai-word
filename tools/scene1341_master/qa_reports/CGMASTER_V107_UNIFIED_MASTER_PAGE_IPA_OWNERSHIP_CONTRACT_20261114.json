@@ -1,0 +1,61 @@
+{
+  "version": "V107",
+  "date": "2026-11-14",
+  "authority": "USER_DIRECTIVE",
+  "owner": "CG-MASTER",
+  "scope": "Scene1341 ALL 1341 scenes; authoritative FINAL 230289 source records; 100 scenes per production batch; full unified page content and IPA production",
+  "effective_immediately": true,
+  "accountability": {
+    "CG_MASTER": [
+      "Own end-to-end global Sense candidate adjudication working dataset, scene-to-Sense links, immutable source identity and provenance",
+      "Directly construct and integrate EVERY required question-page field: English expression, prompt/cue, pronunciation IPA if actually sourced, pronunciation availability/status and scene-appropriate context",
+      "Directly construct and integrate EVERY required answer-page field: Chinese meaning, English example, Chinese translation, collocations, usage notes, necessary contrast notes",
+      "Own IPA data construction: acquire verified Kaikki pronunciation sources, preserve source version, dictionary entry/headword or phrase, dialect, pronunciation type, IPA literal, source locator and checksum; handle missing and conflict explicitly",
+      "Reuse ENTEACH/ENLEX/Kaikki deliverables as inputs while CG-MASTER alone remains responsible for integrating and completing the actual source-locked Master staging rows",
+      "Produce complete, versioned, directly consumable Master batch artifacts in 100-scene units, with per-field and per-scene completeness audits and explicit unresolved data flags",
+      "Preserve original FINAL, Reviewed V13, frozen Core20K and Scene500 data unchanged"
+    ],
+    "CG_ENTEACH": "May provide optional author proposals and professional teaching language feedback to CG-MASTER; not responsible for final Master answer-page integration",
+    "CG_ENLEX": "May supply lexical research, pronunciation evidence and specialist feedback on request; not accountable for production/integration of Scene1341 Master IPA",
+    "CG_MAIN": "Consume CG-MASTER staging snapshots and own UI/UX, Scene500 parity, integration, preview deployment and testing; never silently create/edit Master page or IPA data",
+    "CG_QA_MU_QA": "Perform independent linguistic/semantic and dual-AI certification in subsequent unified phase as requested by user; not a prerequisite to ongoing isolated test intake"
+  },
+  "quality_boundary": {
+    "mandatory_at_authoring": [
+      "record integrity and exact source identity",
+      "native IPA source audit; never infer transcription from spelling",
+      "English example and Chinese translation consistency checks",
+      "all required question/answer fields present or explicit missing markers",
+      "source SHA checks",
+      "Sense-scene provenance and duplicate/collision reports",
+      "no false QA certification or release"
+    ],
+    "deferred": [
+      "CG-QA/Muse independent certification",
+      "final release authorization"
+    ],
+    "release_allowed": false
+  },
+  "batch_policy": {
+    "batch_size_scenes": 100,
+    "total_batches": 14,
+    "first13_batches_each": 100,
+    "last_batch": 41,
+    "first_batch": "SC50-0001 through SC50-0100",
+    "completion_definition": "All source rows accounted for, scene/Sense mapping fully audited as working data, BOTH question and answer pages complete as authored staging content and independently sourced IPA available OR explicitly reported as blocking missing; only label full content ready when required fields actually present; independent QA remains pending."
+  },
+  "integration_contract": {
+    "file_owner": "CG-MASTER",
+    "consumer": "CG-MAIN",
+    "format": "Versioned machine-readable staging data, with source record ID, candidate Sense ID, scene relation, complete question and answer page projections, Kaikki pronunciation and evidence provenance, completeness flags; no migrating test study history",
+    "test_mode": "Disposable learning/bookmark records; CG-MAIN handles UI/test state"
+  },
+  "current_state": {
+    "v105_first100_source_rows": 20696,
+    "v106_author_answers_exact_source_rows": 1877,
+    "v106_holds": 161,
+    "first100_scene_content_complete": false,
+    "kaikki_native_ipa_for_all": false
+  },
+  "explicit_note": "Responsibility reassignment is executed here as an ownership contract; it does not fabricate IPA or falsely assert the first 100 scenes have fully completed pages."
+}
