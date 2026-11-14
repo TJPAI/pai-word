@@ -145,8 +145,8 @@ assert(!html.includes('id="enlex-section"') &&
 assert(script.includes("set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh)") &&
  script.includes("question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.headword===card.expression") &&
- script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':archived?question.ipa+'（历史Kaikki·测试未认证）':'音标待补'") &&
- script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':'missing'"),
+ script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':archived?question.ipa+'（历史Kaikki·测试未认证）':localArchive?question.ipa+'（本地Kaikki·测试未认证）':'音标待补'") &&
+ script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':'missing'"),
  'Scene1341 learning screen must display only exact CG-MASTER question IPA and Master answer fields');
 assert(script.includes("set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义')") &&
  !script.includes("set('cue',r.question.cue_zh)"),
@@ -170,10 +170,18 @@ assert(script.includes('scene1341-v153-archived-ipa-overlay.mjs')&&
  script.includes("archived?'archived-kaikki-provisional-test'"),
  'V153 archive-IPA overlay must be explicitly tagged and never silently promoted');
 
+assert(script.includes('scene1341-v154-local-kaikki-ipa-overlay.mjs') &&
+ script.includes('MASTER_V154_SOURCE_OR_RELEASE_DRIFT') &&
+ script.includes('coverage.localArchiveProvisional!==v154.newlySelected') &&
+ script.includes("question?.ipa_status==='FULL_LOCAL_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'") &&
+ script.includes("localArchive?question.ipa+'（本地Kaikki·测试未认证）'") &&
+ script.includes("localArchive?'local-kaikki-provisional-test'"),
+ 'V154 source-pinned local Kaikki candidates must remain clearly test-only');
+
 assert(html.includes('id="master-ipa-coverage"') &&
  script.includes("import('./scene1341-master-coverage.mjs')") &&
- script.includes('coverage.selectedTestIpa!==210') &&
- script.includes('coverage.missingSelectedIpa!==2663') &&
+ script.includes('coverage.selectedTestIpa!==210+v154.newlySelected') &&
+ script.includes('coverage.missingSelectedIpa!==2663-v154.newlySelected') &&
  script.includes('coverage.unselectedVariants!==437') &&
  script.includes('coverage.formallyReady!==0') &&
  script.includes('完整可发布词卡 0'),
@@ -187,7 +195,7 @@ assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFI
  script.includes('4条网页证据测试IPA，239条待补，正式认证0'),
  'V150 web-sourced IPA must be visibly provisional and never masquerade as native raw evidence');
 
-assert(script.includes('V116+V128+V153 Master 词卡') &&
+assert(script.includes('V116+V128+V153+V154 Master 词卡') &&
  script.includes('第11场景255/255条作者草稿') &&
  script.includes('认证后置') &&
  script.includes('（未认证）') &&
