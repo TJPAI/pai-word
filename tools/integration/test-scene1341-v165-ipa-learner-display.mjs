@@ -70,4 +70,11 @@ assert.equal(result.status,'missing','HOLD may not be promoted by display format
 result=render({ipa:'/ɹɛd/',ipa_status:'NATIVE_KAIKKI_SINGLE_PHONEMIC_VARIANT_PROVISIONAL',ipa_provisional:true,ipa_source:{source_sha256:'test-sha'}});
 assert.equal(result.text,'/rɛd/（测试音标·未认证）');
 assert.equal(result.status,'provisional-master-test');
-console.log(JSON.stringify({status:'PASS',formatterCases:cases.length,renderCases:3,mutations:0,approvedIPA:0,srsWrites:0}));
+// Even a provenance-marked source cannot display missing, malformed or
+// concatenated IPA. No new candidate or formal approval may be inferred.
+for(const invalid of [null,undefined,'','ɹɛd','/ɹɛd','/ɹɛd/ /ɹɪd/','/ɹɛd/（未认证）','[ɹɛd/']){
+ const guarded=render({ipa:invalid,ipa_status:'NATIVE_KAIKKI_SINGLE_PHONEMIC_VARIANT_PROVISIONAL',ipa_provisional:true,ipa_source:{source_sha256:'test-sha'}});
+ assert.equal(guarded.text,'音标待补',String(invalid));
+ assert.equal(guarded.status,'missing',String(invalid));
+}
+console.log(JSON.stringify({status:'PASS',formatterCases:cases.length,renderCases:11,mutations:0,approvedIPA:0,srsWrites:0}));
