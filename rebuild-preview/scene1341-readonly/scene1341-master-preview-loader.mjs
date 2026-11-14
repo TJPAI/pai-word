@@ -54,7 +54,7 @@ export async function loadScene1341MasterTest({fetchImpl=fetch}={}){
        (question.ipa_provisional!==true||question.ipa_formal_approval!==false||
         !question.ipa_source?.source_sha256||
         !Array.isArray(question.ipa_source?.source_lines)||
-        !/^\\/[^/]+\\/$/.test(question.ipa)))||
+        !(question.ipa.startsWith('/')&&question.ipa.endsWith('/'))))||
      (!hasIpa&&(question.ipa!==null||question.ipa_status!=='MISSING_VERIFIED_KAIKKI_IPA'||
                 question.content_complete!==false))||
      (question.ipa_candidates!==undefined&&
