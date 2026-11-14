@@ -27,5 +27,5 @@ for r in src["records"]:
 counts=dict(collections.Counter(x["qa_status"] for x in out))
 assert len(out)==7 and counts=={"REJECT_V158_POS_UNIQUE_SHORTCUT_HOLD":4,"CONTEXT_POS_US_IPA_SOURCE_MATCH_QA_HOLD":3}
 result=dict(version="V159",input_version="V158",source_kaikki_sha256=src["source_sha256"],source_author_draft_files=names,counts=counts,records=out,formal_approved=0,release_allowed=False,notes="Teacher example POS is editorial inference, not authoritative Reviewed Master POS/Sense.")
-(folder/"CGMASTER_V159_7_TARGET_POS_CONTEXT_CROSSCHECK_20261114.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\\n",encoding="utf-8")
+(folder/"CGMASTER_V159_7_TARGET_POS_CONTEXT_CROSSCHECK_20261114.json").write_text(json.dumps(result,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
 print(counts)
