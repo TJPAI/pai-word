@@ -131,7 +131,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
-    <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153 · 部署源码版本核对中…</p>
+    <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
@@ -315,22 +315,23 @@ async function showPreviewBuildVersion(){
   if(!response.ok)throw Error('BUILD_SHA_HTTP_'+response.status);
   const sha=(await response.text()).trim();
   if(!/^[a-f0-9]{40}$/i.test(sha))throw Error('BUILD_SHA_INVALID');
-  node.textContent='Scene1341 Master V116+V128+V153 · 网站部署源码 '+sha.slice(0,12)+' · 测试数据未认证';
+  node.textContent='Scene1341 Master V116+V128+V153+V154 · 网站部署源码 '+sha.slice(0,12)+' · 测试数据未认证';
   node.title='完整网站部署源码 SHA：'+sha;
  }catch{
-  node.textContent='Scene1341 Master V116+V128+V153 · 无法读取网站部署版本（本地或缓存环境）';
+  node.textContent='Scene1341 Master V116+V128+V153+V154 · 无法读取网站部署版本（本地或缓存环境）';
  }
 }
 
 async function load(){
  try{
-  const [catalogRaw,qa,extra,next,coverageModule,overlayModule]=await Promise.all([
+  const [catalogRaw,qa,extra,next,coverageModule,overlayModule,v154Module]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
     import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
     import('./scene1341-v128-sc0011-loader.mjs').then(m=>m.loadScene1341V128Test()),
     import('./scene1341-next-three-master-loader.mjs').then(m=>m.loadScene1341MasterNextBatches()),
     import('./scene1341-master-coverage.mjs'),
-    import('./scene1341-v153-archived-ipa-overlay.mjs')
+    import('./scene1341-v153-archived-ipa-overlay.mjs'),
+    import('./scene1341-v154-local-kaikki-ipa-overlay.mjs')
   ]);
   const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
   catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')]))
@@ -350,24 +351,31 @@ async function load(){
      v153.archivedVariantsUnselected!==25||v153.retainedWebTestIpa!==4||
      v153.productionRelease!==false||v153.canWriteSrs!==false)
    throw Error('MASTER_V153_PROVENANCE_OR_COUNT_MISMATCH');
-  items=[...v153.items]; // disposable Master QA test, no formal SRS write or Scene500 mutation.
+  const v154=await v154Module.applyV154LocalKaikkiTestOverlay(v153.items);
+  if(v154.sourceCandidates!==91||v154.newlySelected+v154.retainedSelected+v154.variantBlocked!==91||
+     v154.formalCertification!==false||v154.productionRelease!==false||v154.canWriteSrs!==false)
+   throw Error('MASTER_V154_SOURCE_OR_RELEASE_DRIFT');
+  items=[...v154.items]; // disposable Master QA test, no formal SRS write or Scene500 mutation.
 
   const coverage=coverageModule.measureScene1341MasterCoverage(items);
   if(coverage.authorDrafts!==2873||coverage.sceneCount!==14||
      coverage.sourceVerifiedTestIpa!==3||coverage.nativeSingleProvisional!==195||
-     coverage.webPageProvisional!==4||coverage.archivedKaikkiProvisional!==8||coverage.selectedTestIpa!==210||
-     coverage.missingSelectedIpa!==2663||coverage.unselectedVariants!==437||
+     coverage.webPageProvisional!==4||coverage.archivedKaikkiProvisional!==8||
+     coverage.localArchiveProvisional!==v154.newlySelected||
+     coverage.selectedTestIpa!==210+v154.newlySelected||
+     coverage.missingSelectedIpa!==2663-v154.newlySelected||
+     coverage.unselectedVariants!==437||
      coverage.formallyReady!==0||coverage.formallyCertified!==0)
    throw Error('MASTER_QUESTION_IPA_COVERAGE_DRIFT');
   set('master-ipa-coverage','Master 题目页来源覆盖：作者答案草稿 '+coverage.authorDrafts+
-    ' 条；可显示测试 IPA '+coverage.selectedTestIpa+' 条（旧来源测试3、单读音候选195、网页来源4、历史Kaikki候选8），'+
+    ' 条；可显示测试 IPA '+coverage.selectedTestIpa+' 条（旧来源测试3、单读音候选195、网页来源4、V153历史候选8、V154本地档案新增'+v154.newlySelected+'），'+
     '未选定 IPA '+coverage.missingSelectedIpa+' 条（其中读音变体待裁决 '+coverage.unselectedVariants+
     ' 条）。正式认证 0；完整可发布词卡 0。');
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
   if(countByScene.size!==14||items.length!==2873||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410||countByScene.get('SC50-0011')!==255||countByScene.get('SC50-0012')!==253||countByScene.get('SC50-0013')!==245||countByScene.get('SC50-0014')!==243)throw Error('MASTER_MANIFEST_SOURCE_EXACT_COUNT_MISMATCH');
-  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116+V128+V153 Master 词卡；第11场景255/255条作者草稿；第12场景253/253条、第13场景245/245条，第14场景243/243条答案草稿（4条网页证据测试IPA，239条待补，正式认证0），161条旧来源待裁决不开放；测试记录不保留，认证后置。');
-  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V116+V128+V153 测试词卡 '+items.length+'（未认证）');
+  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116+V128+V153+V154 Master 词卡；第11场景255/255条作者草稿；第12场景253/253条、第13场景245/245条，第14场景243/243条答案草稿（4条网页证据测试IPA，239条待补，正式认证0），161条旧来源待裁决不开放；测试记录不保留，认证后置。');
+  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V116+V128+V153+V154 测试词卡 '+items.length+'（未认证）');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
@@ -505,20 +513,26 @@ function renderQuestionIPA(card){
                     question?.ipa_source?.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'&&
                     question?.ipa_source?.native_raw_jsonl_sha256===null&&
                     question?.ipa_source?.source_url?.startsWith('https://kaikki.org/dictionary/English/');
- const archived=question?.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'&&
+ const localArchive=question?.ipa_status==='FULL_LOCAL_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'&&
+                 question?.ipa_provisional===true&&
+                 question?.ipa_source?.source_type==='CGMASTER_LOCAL_KAIKKI_ARCHIVE_TEST'&&
+                 question?.ipa_source?.sense_match_approved===false&&
+                 question?.ipa_source?.qa_approved===false;
+  const archived=question?.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'&&
                 question?.ipa_provisional===true&&
                 question?.ipa_source?.archive_git_blob==='3fe3513bc4c313c3ae22282c6cf1fd4caee6ccd9'&&
                 question?.ipa_source?.ipa_candidates?.length===1&&
                 question?.ipa_source?.ipa_candidates[0]===question?.ipa&&
                 question?.ipa_source?.sense_match_approved===false&&
                 question?.ipa_source?.qa_approved===false;
- el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':archived?question.ipa+'（历史Kaikki·测试未认证）':'音标待补';
+ el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':archived?question.ipa+'（历史Kaikki·测试未认证）':localArchive?question.ipa+'（本地Kaikki·测试未认证）':'音标待补';
  el.title=native?'CG-MASTER V116 · 原生 Kaikki IPA（测试中，未认证）':
           provisional?'CG-MASTER V116 · 原生单一读音候选，仅测试展示，尚未通过 POS/Sense 和 QA/Muse 认证':
           pageEvidence?'CG-MASTER V150 · 来自 Kaikki 网页，不是原生 JSONL 证据；测试专用，尚未完成 Sense/口音与 QA/Muse 认证':
           archived?'CG-MASTER V153 · 历史Kaikki来源候选有SHA与行号，但尚未进行目标Sense/POS及QA/Muse认证':
+          localArchive?'CG-MASTER V154 · 完整本地Kaikki档案来源SHA和行号；未获Sense/POS和QA/Muse批准，仅测试展示':
           question?.ipa_candidates_pending?'存在多个原生 Kaikki 读音候选，等待 CG-MASTER 裁决，不随机选择':'CG-MASTER 尚未提供本词条可展示的 Kaikki IPA';
- el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':'missing';
+ el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':'missing';
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
@@ -695,7 +709,7 @@ $('preview-stats-button').addEventListener('click',()=>{
  const withIpa=items.filter(x=>x.question?.ipa!==null).length;
   set('preview-stats-content','IPA 可显示测试来源 '+withIpa+'/'+items.length+'；未选定 '+(items.length-withIpa)+
     '；认证完成 0，正式 Ready 0。 Scene1341 目录：'+catalog.length+
-   ' 场景；V116+V128+V153 建设中 Master 测试词卡：'+items.length+
+   ' 场景；V116+V128+V153+V154 建设中 Master 测试词卡：'+items.length+
    ' 条；本次体验评分：不知道 '+transientRatings.again+
    ' / 模糊 '+transientRatings.hard+' / 知道 '+transientRatings.good+
    '（仅内存，未写入正式SRS）');
