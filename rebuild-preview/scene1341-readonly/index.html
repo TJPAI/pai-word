@@ -130,6 +130,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
+   <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V111 · 部署源码版本核对中…</p>
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
@@ -306,6 +307,20 @@ function parseCsv(src){
  return lines;
 }
 async function getText(url){const res=await fetch(url,{cache:'force-cache'});if(!res.ok)throw Error('HTTP '+res.status);return res.text()}
+async function showPreviewBuildVersion(){
+ const node=$('preview-build-version');
+ try{
+  const response=await fetch('../../preview-source-sha.txt',{cache:'no-store'});
+  if(!response.ok)throw Error('BUILD_SHA_HTTP_'+response.status);
+  const sha=(await response.text()).trim();
+  if(!/^[a-f0-9]{40}$/i.test(sha))throw Error('BUILD_SHA_INVALID');
+  node.textContent='Scene1341 Master V111 · 网站部署源码 '+sha.slice(0,12)+' · 测试数据未认证';
+  node.title='完整网站部署源码 SHA：'+sha;
+ }catch{
+  node.textContent='Scene1341 Master V111 · 无法读取网站部署版本（本地或缓存环境）';
+ }
+}
+
 async function load(){
  try{
   const [catalogRaw,qa]=await Promise.all([
@@ -786,4 +801,5 @@ window.getVisibleLearningUnit=()=>({k:subset()[index]?.scene_ku_id||null});
 readOnlyPrefs.set('autoBrowseInterval',autoPreference.getSpeed());
 syncReadOnlySettingsControls(readOnlyPrefs.snapshot());
 load();
+void showPreviewBuildVersion();
 </script><script src="./scene500-native-scratch.js"></script></body></html>
