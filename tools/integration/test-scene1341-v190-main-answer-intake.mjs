@@ -41,6 +41,10 @@ for(const x of snap.items){
  assert.equal(x.master_final_row,before.master_final_row);
  assert.deepEqual(x.question,before.question,'master author answer delta must never replace IPA/question');
  assert.equal(x.answer.meaning_zh,before.answer.meaning_zh,'old Chinese meaning must stay unchanged');
+ for(const f of ['synonyms','antonyms','sense_disambiguation','synonyms_status','antonyms_status','content_complete']){
+  if(Object.prototype.hasOwnProperty.call(before.answer,f))
+   assert.deepEqual(x.answer[f],before.answer[f],'existing semantic annotation must not be erased by V190: '+f);
+ }
  for(const f of ['example_en','example_zh','usage_note']){
   if(typeof before.answer?.[f]==='string'&&before.answer[f].trim())
    assert.equal(x.answer[f],before.answer[f],'do not overwrite existing author field '+f);
