@@ -1333,7 +1333,7 @@ const liveGrade=vm.runInNewContext('('+gradeAutoCode+')',{
  window:{PAI_SCRATCH_BEGIN_RATING:()=>{}},
  autoBrowse:{pause:()=>{gradePauseCount++}},
  stopAuto:()=>{gradeStopCount++},
- phaseController:{state:()=>({phase:'answer-paused'}),choose:grade=>{gradeChosen=grade}}
+ phaseController:{state:()=>({phase:'answer-paused',cardKey:'SC1341-TEST-KU'}),choose:grade=>{gradeChosen=grade}}
 });
 for(const choice of ['good','hard','again']){liveGrade(choice);assert.equal(gradeChosen,choice)}
 assert.equal(gradePauseCount,3,'all three grading buttons pause rather than disable auto');
