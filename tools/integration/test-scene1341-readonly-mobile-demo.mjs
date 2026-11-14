@@ -173,6 +173,7 @@ assert(script.includes('scene1341-v153-archived-ipa-overlay.mjs')&&
 assert(script.includes('scene1341-v154-local-kaikki-ipa-overlay.mjs') &&
  script.includes('MASTER_V154_SOURCE_OR_RELEASE_DRIFT') &&
  script.includes('coverage.localArchiveProvisional!==v154.newlySelected') &&
+ script.includes('v154.newlySelected!==83') &&
  script.includes("question?.ipa_status==='FULL_LOCAL_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'") &&
  script.includes("localArchive?question.ipa+'（本地Kaikki·测试未认证）'") &&
  script.includes("localArchive?'local-kaikki-provisional-test'"),
@@ -192,7 +193,7 @@ assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFI
  script.includes("question?.ipa_source?.native_raw_jsonl_sha256===null") &&
  script.includes("pageEvidence?question.ipa+'（网页来源·测试未认证）'") &&
  script.includes("pageEvidence?'web-page-provisional-test'") &&
- script.includes('4条网页证据测试IPA，239条待补，正式认证0'),
+ script.includes('V154测试 IPA 已接入，正式认证0'),
  'V150 web-sourced IPA must be visibly provisional and never masquerade as native raw evidence');
 
 assert(script.includes('V116+V128+V153+V154 Master 词卡') &&
