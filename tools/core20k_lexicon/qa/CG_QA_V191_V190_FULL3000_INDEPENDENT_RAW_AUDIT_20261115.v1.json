@@ -1,0 +1,120 @@
+{
+  "schema": "cg-qa-v191-v190-full-raw-independent-structural-and-pronunciation-evidence-audit-v1",
+  "date": "2026-11-15",
+  "reviewer": "CG-QA",
+  "audit_scope": "Independent exact raw ZIP+three decompressed JSONL-GZIP shard review, structural/content-presence and pronunciation evidence diagnostic. Noncertifying; no original FINAL byte crosswalk.",
+  "sources": {
+    "master_commit": "acda081836511707bc12d8360fa0472ff12401b8",
+    "master_branch": "cg-master-kaikki-evidence-intake-20261111",
+    "drive_zip": "https://drive.google.com/file/d/1zjwIUm0C_fo5GSR3BvnQDXcHD8U8Bwh5/view",
+    "manifest_sha256": "c355b2c042e04595867ba1cb6f2de5ce33cc0afcaac341641fb2377346c0903a",
+    "manifest_git_blob": "8065cf79fe5ccde59274fdd0df3c1dda8bc9d8eb"
+  },
+  "independently_measured": {
+    "associations": 3000,
+    "unique_record_id": 3000,
+    "unique_source_final_row": 3000,
+    "source_rows_contiguous_1_to_3000": true,
+    "unique_lexical_entry_id": 2710,
+    "scenes": 13,
+    "meaning_zh_nonempty": 3000,
+    "gloss_en_nonempty": 338,
+    "pos_nonempty": 338,
+    "examples_bilingual_nonempty": 1461,
+    "collocations_nonempty": 1461,
+    "usage_note_nonempty": 1461,
+    "nonempty_all_six_categories": 180,
+    "test_ipa_nonempty": 1478,
+    "hold_author_candidates": 32,
+    "unique_hold_ku": 32,
+    "mechanical_identity_and_page_validation_failures": 0,
+    "certified_global_sense_ids": 0,
+    "new_chatgpt_certifications": 0,
+    "new_muse_certifications": 0
+  },
+  "shards": [
+    {
+      "name": "CGMASTER_V190_SOURCE00001_01000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 931510,
+      "sha256": "12c4d4b088d670feb6d9ec7cd895c8cdfb8fc08c42100b529bb9966ed12ba60c",
+      "sha256_verified": true
+    },
+    {
+      "name": "CGMASTER_V190_SOURCE01001_02000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 768377,
+      "sha256": "05786ca01ba101373a711254d490552b7654693252af3f1b039737eb1325e148",
+      "sha256_verified": true
+    },
+    {
+      "name": "CGMASTER_V190_SOURCE02001_03000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000,
+      "bytes": 806388,
+      "sha256": "90afbdfb00536cd8c8840a7f88898c8b79e9bb14b884c604d0b32a6ba5bf703a",
+      "sha256_verified": true
+    }
+  ],
+  "ipa_status_breakdown": {
+    "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY": 292,
+    "IPA_MISSING_OR_AMBIGUOUS_HOLD": 1049,
+    "CMUDICT113_COMPONENTS_COMPOSED_PREVIEW_ONLY": 606,
+    "KAIKKI_EXACT_MULTIVARIANT_HOLD": 464,
+    "CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY": 104,
+    "KAIKKI_COMPONENTS_COMPOSED_PREVIEW_ONLY": 32,
+    "MIXED_COMPONENTS_COMPOSED_PREVIEW_ONLY": 36,
+    "CMUDICT113_MULTIVARIANT_HOLD": 9,
+    "V171_LEGACY_PREVIEW_FALLBACK_NOT_AUTHORITY": 408
+  },
+  "risk_findings": [
+    {
+      "id": "IPA_COMPONENT_TOKEN_PROVENANCE_CONTAMINATION_UP",
+      "priority": "P1_SOURCE_EVIDENCE_REVIEW",
+      "affected_records": 105,
+      "diagnostic": "For component token 'up', Kaikki candidate list contains /daʊ̯n/, /dʌʊ̯n/, /dæʊ̯n/, /daːn/, /duːn/ associated with source lines 6165/6166. Those pronunciations appear to belong to 'down', not 'up'.",
+      "examples": [
+        {
+          "source_final_row": 1,
+          "expression": "wake up",
+          "selected_ipa": "/ˌweɪk ˈʌp/",
+          "status": "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY"
+        },
+        {
+          "source_final_row": 2,
+          "expression": "get up",
+          "selected_ipa": null,
+          "status": "IPA_MISSING_OR_AMBIGUOUS_HOLD"
+        },
+        {
+          "source_final_row": 18,
+          "expression": "wake up early",
+          "selected_ipa": "/wˈeɪk ˈʌp ˈɝli/",
+          "status": "CMUDICT113_COMPONENTS_COMPOSED_PREVIEW_ONLY"
+        }
+      ],
+      "affected_selected_status_counts": {
+        "CMUDICT113_COMPONENTS_COMPOSED_PREVIEW_ONLY": 50,
+        "IPA_MISSING_OR_AMBIGUOUS_HOLD": 43,
+        "V171_LEGACY_PREVIEW_FALLBACK_NOT_AUTHORITY": 9,
+        "MIXED_COMPONENTS_COMPOSED_PREVIEW_ONLY": 2,
+        "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY": 1
+      },
+      "interpretation": "Evidence-field contamination signal, NOT proof that 105 displayed IPA strings are incorrect. Final IPA and original Kaikki raw source not independently adjudicated.",
+      "action_owner": "CG-MASTER",
+      "required_action": "Reinspect native Kaikki entry/headword around lines 6165–6166 and the join on component='up'; prohibit polluted component candidates from being promoted to native Sense IPA; preserve test/HOLD status until corrected source-backed overlay."
+    }
+  ],
+  "controls": [
+    "No release/SRS promotion",
+    "No invented canonical Global Sense IDs",
+    "No double AI PASS",
+    "V187 batching = 3000 source associations including HOLD (V186 superseded)",
+    "No changes to Master/Scene500/Runtime/Core20K"
+  ],
+  "limitations": [
+    "Full V190 decoded raw shards and manifest SHA256 verified; no independent byte comparison against original FINAL Master or reviewed V13 performed",
+    "Pronunciation contamination is a signal requiring comparison against original Kaikki; not a definitive user-visible IPA error count",
+    "No independent formal linguistic certification, Muse calls or production readiness assessed"
+  ],
+  "disposition": "STRUCTURE_PASS_WITH_P1_PRONUNCIATION_PROVENANCE_FINDING; FORMAL_QA_DEFERRED; RELEASE_FALSE"
+}
