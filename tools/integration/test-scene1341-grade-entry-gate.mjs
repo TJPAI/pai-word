@@ -18,7 +18,7 @@ const ctx={
  window:{PAI_SCRATCH_BEGIN_RATING:()=>calls.scratch++},
  exampleToWordPending:true
 };
-vm.runInNewContext(inline.slice(begin,end)+'\nthis.demoGrade=demoGrade;this.pending=()=>exampleToWordPending;',ctx);
+vm.runInNewContext(inline.slice(begin,end)+'\nthis.demoGrade=demoGrade;this.pending=()=>exampleToWordPending;this.setPending=v=>exampleToWordPending=v;',ctx);
 const untouched=()=>{assert.equal(calls.scratch,0);assert.equal(calls.pause,0);assert.equal(calls.choose.length,0);assert.equal(calls.stop,0)};
 ctx.demoGrade('invalid');untouched();
 ctx.demoGrade(undefined);untouched();
@@ -35,4 +35,12 @@ assert.equal(calls.scratch,2);
 assert.equal(calls.pause,2);
 assert.deepEqual(calls.choose,['hard','good']);
 assert.equal(calls.stop,1,'no needless audio cancel on normal grade');
-console.log(JSON.stringify({status:'PASS',source:'actual demoGrade handler',cases:6,srsWrites:0}));
+// After example speaker is replaced by word speech, phase is already answer-paused.
+// A grade MUST still cancel that audio owner before starting the rating timer.
+ctx.setPending(true);ctx.demoGrade('again');
+assert.equal(ctx.pending(),false,'grade clears takeover even outside example phase');
+assert.equal(calls.stop,2,'preempt replaced word speech before rating');
+assert.equal(calls.scratch,3);
+assert.equal(calls.pause,3);
+assert.deepEqual(calls.choose,['hard','good','again']);
+console.log(JSON.stringify({status:'PASS',source:'actual demoGrade handler',cases:7,srsWrites:0}));
