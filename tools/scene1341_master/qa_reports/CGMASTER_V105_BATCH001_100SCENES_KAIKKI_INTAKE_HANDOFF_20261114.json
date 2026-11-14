@@ -1,0 +1,57 @@
+{
+  "version": "V105",
+  "date": "2026-11-14",
+  "batch": "BATCH001",
+  "meaning": "ACTUAL_FIRST100_SCENES_SOURCE_AND_KAIKKI_EVIDENCE_INTAKE_NOT_COMPLETE_TEACHING_PAGES",
+  "source_scene_range": "SC50-0001..SC50-0100",
+  "source_original_final_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "source_artifact_sha256": {
+    "v81_full_page_foundations": "4dc65d22954db01b82af5a24fc924a8d30347e5f1483f7ee461c9ac706084128",
+    "v83_final_crosswalk": "73a782e3f0abebff8bd3c1f1ebe07fb152260631facfdef96d01e37988dd1983",
+    "v83_candidate_library": "49043dfa36729ab9d3aad68fee0cdca99729c5b202a2ad563e2c3e93cb1cc869",
+    "v102_author_staging": "9b46197dfed85e4370792e5b5aa98058344de6746f0d975d799a40bc023c9aa1"
+  },
+  "counts": {
+    "scene_count": 100,
+    "source_final_rows": 20696,
+    "distinct_english_expressions": 16257,
+    "distinct_expression_gloss_candidate_groups": 18651,
+    "full_exact_headword_candidate_rows": 4242,
+    "partial_truncated_kaikki_evidence_rows": 2881,
+    "no_usable_evidence_rows_in_21_packs": 13573,
+    "distinct_library_headwords": 4159,
+    "kaikki_dictionary_candidate_sense_entries_unselected": 20698,
+    "v102_matched_author_proposals_by_scene_english_zh": 0,
+    "complete_question_pages_in_authoritative_final_layer": 0,
+    "complete_answer_pages_in_authoritative_final_layer": 0,
+    "content_complete_scenes": 0,
+    "approved_canonical_senses": 0,
+    "formal_release": 0
+  },
+  "drive_files": {
+    "source_preserving_rows": "https://drive.google.com/file/d/1gZXB4rtuOSl-bJzBBhI7bo1IX-ujIbNM/view",
+    "kaikki_dictionary_candidates": "https://drive.google.com/file/d/1CD2VZD9JqJtTChtWMhESo-czu2QnQeVy/view",
+    "per_scene_coverage": "https://drive.google.com/file/d/1rD_-Qu1DlXiuXeCA5ka09LV_Urbm481s/view",
+    "reproducible_python": "https://drive.google.com/file/d/14fi2ZjSZ1pcj1XKiFTkzzaIrIjNHD5iF/view"
+  },
+  "output_sha256": {
+    "source_preserving_rows": "5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a",
+    "kaikki_dictionary_candidates": "6f53ef9bf2ca905f6bd3ce12654b0d08ce5258587e980e7290456235a892ed10",
+    "coverage_report": "d0f25faf915a56bf7eb144517b1630c6d9e26a37232b310347f3d4b932a241ba"
+  },
+  "status": "FIRST100_SCENES_KAIKKI_CANDIDATE_STAGING_BUILT; TEACHING_CONTENT_INCOMPLETE_BLOCKED",
+  "boundaries": [
+    "All 20696 source records retained with immutable original row reference and exact original Master English/ZH",
+    "Kaikki exact-headword match does not prove correct scene-specific Sense; 20698 refers to unselected native dictionary candidate entries, not independent Sense count",
+    "V102 author overlay cannot be merged as original FINAL lineage just because scene/English/ZH match; 0 matching triples found in this source-ordered 100-scene subset",
+    "IPA/audio are not present in V83 dictionary candidate bundles and remain null",
+    "QA certification deferred by user directive, not structural QA; formal release blocked",
+    "Master original FINAL, Reviewed V13, frozen Core20K, Scene500 unmodified"
+  ],
+  "required_next": [
+    "Join actual V82 author 2038 through precise ORIGINAL FINAL/Reviewed V13 lineage rather than lexical-only assumptions",
+    "Create per-scene question and answer authored content for all 100 scenes and report exact missing fields",
+    "Bring separately authenticated IPA/audio evidence from Kaikki pronunciation source",
+    "Do not call Batch001 content complete until all 100 scenes satisfy required fields; defer independent QA certification until user-requested unified phase"
+  ]
+}
