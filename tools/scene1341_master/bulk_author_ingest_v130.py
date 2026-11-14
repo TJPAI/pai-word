@@ -47,10 +47,10 @@ def expression(x):
     return x.get("english_expression") or x.get("expression") or x.get("english") or x.get("headword") or x.get("question_page", {}).get("english_expression")
 
 def cue(x):
-    return x.get("chinese_meaning") or x.get("chinese_gloss") or x.get("meaning_zh") or x.get("cue_zh") or x.get("question_page", {}).get("cue_zh")
+    return x.get("original_sense_zh") or x.get("chinese_meaning") or x.get("chinese_gloss") or x.get("meaning_zh") or x.get("cue_zh") or x.get("question_page", {}).get("cue_zh")
 
 def ident(x):
-    return x.get("record_id") or x.get("source_record_id")
+    return x.get("record_id") or x.get("source_record_candidate_id_not_authorized") or x.get("source_record_id")
 
 def run(args):
     rows = [r for r in load_rows(args.source) if r.get("scene_id") in args.scenes]
@@ -85,7 +85,7 @@ def run(args):
             drafts.append(r)
     drafts.sort(key=lambda r:(r["scene_id"],r["source_final_row"]))
     queued=[{"scene_id":r["scene_id"],"source_final_row":r["source_final_row"],"record_id":ident(r),
-             "english_expression":expression(r),"cue_zh":cue(r),"source_status":r.get("kaikki_evidence_status"),
+             "english_expression":expression(r),"cue_zh":cue(r),"source_status":r.get("kaikki_evidence",{}).get("evidence_status") or r.get("kaikki_evidence_status"),
              "state":"AUTHOR_NOT_PRODUCED"} for k,r in sorted(by_row.items()) if k not in repeats]
     per_scene=defaultdict(lambda:{"source":0,"author_drafts":0,"pending":0})
     for r in rows: per_scene[r["scene_id"]]["source"]+=1
