@@ -1,7 +1,7 @@
 /* CG-MAIN source-pinned, disposable consumers for three CG-MASTER batches.
  * No Scene500/ENLEX fallbacks, guessed Sense/IPA, or production SRS release.
  */
-const PIN='81074812751a88efe6958996a332fc2bf9319ff6';
+const PIN='3b77d762caf257e322894731bac69cb92775fed7';
 const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+PIN+'/tools/scene1341_master/qa_reports/';
 const SOURCE='62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986';
 const V105='5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a';
