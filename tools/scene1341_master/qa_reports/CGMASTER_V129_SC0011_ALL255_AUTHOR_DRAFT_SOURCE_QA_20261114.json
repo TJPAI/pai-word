@@ -1,0 +1,73 @@
+{
+  "version": "V129",
+  "date": "2026-11-14",
+  "role": "CG-MASTER",
+  "scope": "SC50-0011 看电视与流媒体",
+  "status": "ALL255_AUTHOR_BILINGUAL_ANSWER_DRAFTS_COMPLETE_NOT_CERTIFIED",
+  "original_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "staging_v105_sha256": "5b50ad4fbe1c2134552b91f5dbaa4d205a4c93185cdd5817daf92fd19922837a",
+  "deliveries": [
+    {
+      "version": "V125",
+      "records": 50,
+      "rows": "2510-2559",
+      "drive_id": "14S3ePAJCqCbxloHoZEzyR0udhQwz5Fmb",
+      "drive_sha256": "84944e14126e533c0a345f38f05d03e96c8dedf83cce8120c1992de5a0f54ca6",
+      "github_commit": "cff61e12294365d0c8fe60a4c6a82add49dc1ecd"
+    },
+    {
+      "version": "V126",
+      "records": 180,
+      "rows": "2380-2559",
+      "drive_id": "12FLrbH5Y1eruDdQewxm9Kp99mVDAG5Ab",
+      "drive_sha256": "e82dc5655858df8f0d511bc3270cce5ea20a651088461b9cabbae0544df62dfd",
+      "github_commit": "ef30c79f1162f28da34209b68d5dbe6ad58d44de"
+    },
+    {
+      "version": "V127",
+      "records": 75,
+      "rows": "2560-2634",
+      "drive_id": "1a0DHieUlhfunOLgTNi6HLvoSEn_na8Cs",
+      "drive_sha256": "a954e25745b69f25dd78cf822c129010e9c6f0a25704b639cad3cc337fe63a83",
+      "github_commit": "8ce6d52f6111df60e9078c42d384846dcb29c357"
+    },
+    {
+      "version": "V128",
+      "records": 255,
+      "rows": "2380-2634",
+      "drive_id": "1geCB1zBkxqua4p_fig6UqE4dG0hMs7Pk",
+      "drive_sha256": "ac2e7d576d5d04f42812ace75d204d9d3bce6a906f8b484865d19d37b0a9a862",
+      "github_commit": "ccbd2bbf61e7d5ae59de1c5f3cf07cfd4b4bbb3d",
+      "github_blob": "48e9bbda469ff5c52532a60dab89dc68cc737a26"
+    }
+  ],
+  "checks": {
+    "source_rows_expected": 255,
+    "source_rows_present": 255,
+    "source_range": "2380-2634",
+    "unique_record_ids": 255,
+    "unique_expressions": 255,
+    "question_prompts_present": 255,
+    "complete_bilingual_answer_drafts": 255,
+    "source_join_or_content_failures": 0,
+    "selected_ipa": 0,
+    "formal_canonical_sense_ids": 0,
+    "qa_certified": 0,
+    "ready_scenes": 0,
+    "release_violations": 0,
+    "google_drive_upload_and_readback": true,
+    "github_blob_readback": true
+  },
+  "remaining": [
+    "CG-MASTER must perform original Kaikki Sense/POS adjudication and canonical global Sense assignment",
+    "Complete Kaikki native IPA and review variant ambiguity for this scene",
+    "Independent CG-QA and Muse certification later",
+    "Other 89 scenes in first 100 still have no author content"
+  ],
+  "safety_contract": [
+    "Never treat authored bilingual content as formally complete question page",
+    "Never reuse Scene500 or frozen Core20K for Scene1341 content",
+    "Do not overwrite original FINAL or Reviewed V13",
+    "release_allowed=false for all test cards"
+  ]
+}
