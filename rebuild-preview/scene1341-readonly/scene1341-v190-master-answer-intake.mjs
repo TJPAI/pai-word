@@ -138,7 +138,9 @@ async function loadSnapshot(cards,{fetchImpl,selected}){
   const eligibleStatus=['KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY',
    'CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY'];
   const candidate=clean(q.ipa);
-  const correctEnvelope=/^(?:\\/[^\\r\\n]+\\/|\\[[^\\r\\n]+\\])$/u.test(candidate) && candidate.length>2;
+  const correctEnvelope=((candidate.startsWith('/')&&candidate.endsWith('/'))||
+   (candidate.startsWith('[')&&candidate.endsWith(']')))&&candidate.length>2&&
+   !candidate.includes('\n')&&!candidate.includes('\r');
   if(eligibleStatus.includes(q.ipa_status)&&correctEnvelope){
    liveIPATest++;
    const valueChanged=oldQuestion.ipa!==candidate;
