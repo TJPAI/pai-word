@@ -1,0 +1,54 @@
+{
+  "version": "V187",
+  "date": "2026-11-15",
+  "status": "AUTHORITATIVE_USER_CORRECTION",
+  "supersedes": [
+    "CGMASTER_V186_3000_UNIQUE_GLOBAL_SENSE_PER_BATCH_POLICY_20261115.json",
+    "plan_v186_3000_unique_global_senses.py"
+  ],
+  "batch_unit": "SENSE_SCENE_ASSOCIATION_RECORD",
+  "batch_size": 3000,
+  "start_scene": "SC50-0001",
+  "order": "source_final_row ascending",
+  "rule": "Count every source Sense–Scene association as one record; same Global Sense in multiple scenes counts once PER association toward the 3000-row batch, even when it shares one Global Sense identity.",
+  "sense_identity": "Global Sense deduplication remains an independent semantic workflow, never a filter or batch gate.",
+  "candidate_policy": "HOLD candidates remain in original source order and count as source association records; annotate HOLD without excluding from batch.",
+  "boundaries": [
+    {
+      "batch": 1,
+      "source_final_row_start": 1,
+      "source_final_row_end": 3000
+    },
+    {
+      "batch": 2,
+      "source_final_row_start": 3001,
+      "source_final_row_end": 6000
+    },
+    {
+      "batch": 3,
+      "source_final_row_start": 6001,
+      "source_final_row_end": 9000
+    },
+    {
+      "batch": 4,
+      "source_final_row_start": 9001,
+      "source_final_row_end": 12000
+    }
+  ],
+  "report_separately": [
+    "sense_scene_associations_processed",
+    "unique_global_senses_verified",
+    "provisional_sense_groups",
+    "cross_scene_reused_sense_associations",
+    "semantic_identity_HOLD",
+    "question_page_coverage",
+    "answer_page_coverage",
+    "IPA_source_and_status",
+    "Git_SHA",
+    "Drive_package",
+    "CI"
+  ],
+  "data_immutability": "Keep V108, Reviewed V13, V179–V185, original Master and SRS untouched; new versions are additive.",
+  "example_policy": "1–3 bilingual example pairs per Sense–Scene association; synonyms, antonyms and sense disambiguation are fields requiring evidence.",
+  "release": "staging until independent QA, no fabricated identity IDs, no formal Ready"
+}
