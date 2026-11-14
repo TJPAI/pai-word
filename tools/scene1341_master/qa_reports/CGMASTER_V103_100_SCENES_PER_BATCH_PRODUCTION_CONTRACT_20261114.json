@@ -1,0 +1,77 @@
+{
+  "version": "V103",
+  "date": "2026-11-14",
+  "kind": "USER_APPROVED_SCENE_BATCH_PRODUCTION_CONTRACT",
+  "authority": "USER_DIRECT_INSTRUCTION",
+  "supersedes": "small arbitrary 20-60 author-row batches as principal CG-MASTER production cadence",
+  "scope": {
+    "scene_total": 1341,
+    "batch_size_scenes": 100,
+    "planned_batches": 14,
+    "full_batches": 13,
+    "last_batch_scenes": 41,
+    "order": "authoritative FINAL Master scene ordering; exact scene IDs assigned by source index, not fabricated",
+    "batch_01": "source scene ordinal 1-100",
+    "batch_14": "source scene ordinal 1301-1341"
+  },
+  "definition_of_batch_processed": {
+    "all_source_scene_rows_ingested": true,
+    "scene_to_candidate_sense_links_and_source_provenance": true,
+    "within_scene_and_cross_scene_duplicate_review_working_decisions": true,
+    "question_page": [
+      "expression",
+      "original meaning/short prompt appropriate for sense",
+      "literal IPA with Kaikki provenance if found; otherwise explicit MISSING/NOT_VERIFIED",
+      "pronunciation asset if sourced; otherwise explicit MISSING"
+    ],
+    "answer_page": [
+      "expression",
+      "meaning_zh",
+      "example_en",
+      "example_zh",
+      "collocations",
+      "usage_note",
+      "contrast_note when useful"
+    ],
+    "individual_missing_fields_must_be_reported": true,
+    "mechanical_QA": [
+      "record count parity",
+      "zero silent drops",
+      "deterministic candidate IDs not promoted to canonical Sense",
+      "field coverage",
+      "source SHA256",
+      "schema validation",
+      "example/translation alignment flags",
+      "intra-batch and cross-batch duplicate checks",
+      "no invented IPA/audio",
+      "release fail-closed"
+    ]
+  },
+  "certification_deferred": {
+    "cg_qa_independent_semantic_approval": false,
+    "muse_independent_approval": false,
+    "dual_ai_certified": false,
+    "canonical_sense_approval": false,
+    "release_allowed": false,
+    "interpretation": "Batch completion denotes authored and mechanically audited staging work; NEVER equate with completed certified Sense, learning readiness, or verified IPA/audio."
+  },
+  "release_gates": "No batch may be represented as FULL CONTENT READY while mandatory content remains blank; label each scene CONTENT_COMPLETE_STAGING or CONTENT_INCOMPLETE_BLOCKED and report exact missing fields/counts. Formal production release blocked until independent QA, provenance, final Sense IDs, and IPA/audio requirements resolved.",
+  "deliverables_per_batch": [
+    "full scene census with source rows and unique candidate group stats",
+    "complete scene-to-candidate-sense mapping with provenance",
+    "page-data staging payload with explicit missing-status fields",
+    "coverage and risk report per scene and whole batch",
+    "source SHA256 and generated artifact SHA256",
+    "separate QA/Muse certification handoff",
+    "immutable historical source maintained"
+  ],
+  "first_action": "Batch 001: source-ordered scenes 1-100; reconstruct against authoritative 230289-row FINAL, 200144-row V13 where applicable, exact Kaikki, V51 teaching and V102 255 overlay; reuse existing authored content and avoid double counting. Do not mark batch 001 complete until all 100 scene per-item coverage results exist.",
+  "no_overwrite": [
+    "Original FINAL 230289",
+    "Reviewed Master V13",
+    "Core20K frozen 27471 senses",
+    "Scene500",
+    "existing V51/V102 author sources"
+  ],
+  "notes": "This contract changes future cadence and completion criteria only. It does not claim the first 100 scenes are already processed."
+}
