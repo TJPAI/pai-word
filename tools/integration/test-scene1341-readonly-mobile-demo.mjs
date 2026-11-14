@@ -1441,7 +1441,7 @@ const crossRatedEnd=script.indexOf('\n }\n});',crossRatedStart);
 const crossRatedText=script.slice(crossRatedStart,crossRatedEnd+3).trim().replace(/^onAdvance:/,'');
 const crossClock=new Map(),crossGrades=[],crossAudio=[];let crossTick=0,crossTimer=0,autoOn=false,paused=0,resumed=0,restarted=0;
 const crossRows=Array.from({length:26},(_,i)=>({scene_ku_id:'C-'+i,expression:'word '+i}));
-const crossCtx={index:9,BATCH:10,selectedGrade:null,revealed:false,suppressTapUntil:0,
+const crossCtx={index:9,BATCH:10,selectedGrade:null,revealed:false,suppressTapUntil:0,exampleToWordPending:false,
  subset:()=>crossRows,scratchDrawing:()=>false,resetScratch:()=>{},
  stopWordAudio:()=>{crossAudio.push('stop')},playWord:()=>false,
  readOnlyPrefs:{get:()=>false},
