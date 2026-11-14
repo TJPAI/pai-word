@@ -722,7 +722,12 @@ $('settings-back').addEventListener('click',()=>{
 });
 $('preview-stats-button').addEventListener('click',()=>{
  const node=$('stats-panel');node.open=!node.open;
- const withIpa=items.filter(x=>x.question?.ipa!==null).length;
+ const withIpa=items.filter(x=>{
+  const raw=x.question?.ipa;
+  if(typeof raw!=='string')return false;
+  const candidate=raw.trim();
+  return /^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(candidate)&&candidate.slice(1,-1).trim().length>0;
+ }).length;
   set('preview-stats-content','IPA 可显示测试来源 '+withIpa+'/'+items.length+'；未选定 '+(items.length-withIpa)+
     '；认证完成 0，正式 Ready 0。 Scene1341 目录：'+catalog.length+
    ' 场景；V116+V128+V153+V154 建设中 Master 测试词卡：'+items.length+
