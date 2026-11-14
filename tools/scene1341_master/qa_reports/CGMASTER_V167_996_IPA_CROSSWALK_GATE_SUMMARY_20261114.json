@@ -1,0 +1,38 @@
+{
+  "version": "V167",
+  "scope": "V154 Kaikki-derived SC0011-SC0014 996-card source crosswalk",
+  "source_input_sha256": "d3ba27b85c030eccc514534227031f6ee069f6419531cb1ae26157c7422262be",
+  "kaikki_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "counts": {
+    "total": 996,
+    "phonemic_present": 330,
+    "phonemic_absent": 666,
+    "exact_headword_not_found": 548,
+    "exact_word_without_ipa": 114,
+    "multivariant_unselected": 243,
+    "single_phonemic_test_candidate": 91,
+    "single_phonemic_variant_total": 105,
+    "single_phonemic_but_unselected": 14
+  },
+  "hold_expressions": [
+    "invitation",
+    "decision",
+    "angry",
+    "gentle",
+    "slip",
+    "pet",
+    "puppy",
+    "kitten",
+    "breed",
+    "flea",
+    "litter",
+    "kennel",
+    "treat",
+    "skittish"
+  ],
+  "verification": "Script locally executed against V154 original crosswalk. Per-record ids, source POS/tags and other phonetic evidence are retained in generated full audit JSON.",
+  "policy": "14 entries remain HOLD, not automatically selected: orthographic/phonetic alternatives and source POS/tags require human QA.",
+  "formal_ready": 0,
+  "release_allowed": false,
+  "source_unchanged": true
+}
