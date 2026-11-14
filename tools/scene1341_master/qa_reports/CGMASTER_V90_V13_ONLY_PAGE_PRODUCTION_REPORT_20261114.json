@@ -1,0 +1,51 @@
+{
+  "version": "V90",
+  "data_type": "V13_SOURCE_PRESERVING_PAGE_FOUNDATIONS_AND_AUTHOR_HANDOFF",
+  "input_sha256": {
+    "v89": "d7e47b0371d22a783e886ecd37df39d3aae62a75b18ffcb37cf6be5bfa49e947",
+    "v13": "568455645ff4d0ee6fba8177c45cf89d5f7f892ff8ecd7ad1897a9458c03aba6"
+  },
+  "counts": {
+    "v13_only_rows": 3140,
+    "scenes": 1329,
+    "lineage": {
+      "NOT_IN_ORIGINAL_FINAL_ENGLISH_EXPRESSION_INDEX": 2799,
+      "EXISTS_IN_OTHER_SCENES_DIFFERENT_ZH_NO_SOURCE_MATCH": 258,
+      "EXISTS_IN_OTHER_SCENES_WITH_SAME_ZH_NOT_PROVEN_SAME_SOURCE": 83
+    },
+    "kaikki_evidence": {
+      "NO_EVIDENCE_IN_21_PACKS": 3077,
+      "PARTIAL_TRUNCATED_SAMPLES_ONLY": 8,
+      "FULL_EXACT_HEADWORD": 55
+    },
+    "source_only_page_drafts": 3140,
+    "complete_question_page": 0,
+    "complete_answer_page": 0,
+    "full_kaikki_candidate_evidence_records": 55,
+    "priority_author_tasks": 3000
+  },
+  "missing_answer_fields": {
+    "example_en": 3140,
+    "example_zh": 3140,
+    "collocations": 3140,
+    "usage_note": 3140,
+    "contrast_note": 3140
+  },
+  "files": {
+    "CGMASTER_V90_3140_V13_ONLY_SOURCE_PRESERVING_PAGE_FOUNDATIONS.jsonl.gz": {
+      "sha256": "c50ae818460e8449414ceb500ddb21a3c4afafed1816ab7423c696a2ece5bce9",
+      "bytes": 278093
+    },
+    "CGMASTER_V90_55_KAIKKI_FULL_CANDIDATE_TEACHING_EVIDENCE.jsonl": {
+      "sha256": "44aaeac15113984a7f7c1b4999d925d803586b0b7e03a14c80332495691104e0",
+      "bytes": 46294
+    },
+    "CGMASTER_V90_PRIORITY_3000_NEW_TEACHING_CONTENT_AUTHOR_TASKS.jsonl": {
+      "sha256": "db6a4f215cb936f9d0295e07f4bb6334eeacf257979c3d153118e5c6413324be",
+      "bytes": 1564964
+    }
+  },
+  "caution": "No verified literal IPA, audio, native V51 author example, bilingual translation, collocations or usage note joined. These are truthful source-only work foundations, not completed cards or new semantic Sense approvals. V13 identity independent from original FINAL.",
+  "canonical_sense_ids": 0,
+  "release_allowed": false
+}
