@@ -49,20 +49,27 @@ export async function resolveLatestMasterSnapshot({fetchImpl=fetch}={}){
     return m?{version:'V'+m[1],number:Number(m[1]),path:x.path}:null;
   }).filter(Boolean).filter(x=>x.number>=190).sort((a,b)=>b.number-a.number);
   if(!matches.length)throw Error('MASTER_LIVE_NO_COMPLETE_MANIFEST');
-  // Fail closed if the newest deliverable is incomplete; NEVER silently
-  // replace it with an older dynamic version.
-  const latest=matches[0],manifestResponse=await fetchImpl(
-   'https://raw.githubusercontent.com/TJPAI/pai-word/'+commit+'/'+latest.path,{cache:'no-store'});
-  if(!manifestResponse.ok)throw Error('MASTER_LIVE_MANIFEST_HTTP_'+manifestResponse.status);
-  const manifest=await manifestResponse.json();
-  const spec=assertSourceManifest(manifest,latest.version);
-  const basePath='tools/scene1341_master/qa_reports/';
-  for(const part of spec.shards){
-   const inTree=tree.tree.find(x=>x.path===basePath+part.name);
-   if(!inTree||inTree.sha!==part.git_blob_sha1)throw Error('MASTER_LIVE_SHARD_MISSING_OR_MISMATCH');
+  // A newer manifest may belong to the NEXT 3000-association batch.
+  // Keep consuming the newest compatible first-batch full page snapshot,
+  // instead of misclassifying the next batch as a corrupt first batch.
+  // Never silently downgrade within the same batch if its source is broken.
+  for(const latest of matches){
+   const manifestResponse=await fetchImpl(
+    'https://raw.githubusercontent.com/TJPAI/pai-word/'+commit+'/'+latest.path,{cache:'no-store'});
+   if(!manifestResponse.ok)throw Error('MASTER_LIVE_MANIFEST_HTTP_'+manifestResponse.status);
+   const manifest=await manifestResponse.json();
+   const range=manifest.source_final_rows||manifest.scope?.source_final_rows;
+   if(!Array.isArray(range)||range.length!==2||range[0]!==1||range[1]!==3000)continue;
+   const spec=assertSourceManifest(manifest,latest.version);
+   const basePath='tools/scene1341_master/qa_reports/';
+   for(const part of spec.shards){
+    const inTree=tree.tree.find(x=>x.path===basePath+part.name);
+    if(!inTree||inTree.sha!==part.git_blob_sha1)throw Error('MASTER_LIVE_SHARD_MISSING_OR_MISMATCH');
+   }
+   return {version:latest.version,commit,shards:spec.shards,expected:spec.expected,
+     fallback:false,manifest:latest.path};
   }
-  return {version:latest.version,commit,shards:spec.shards,expected:spec.expected,
-    fallback:false,manifest:latest.path};
+  throw Error('MASTER_LIVE_NO_FIRST_BATCH_FULL_PAGES');
  }catch(error){
   // Stable previously tested V190 remains available when GitHub API is
   // blocked/offline or when the new Master delivery is not yet complete.
