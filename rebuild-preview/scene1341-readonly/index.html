@@ -190,7 +190,7 @@ async function updateSceneRecommendations(){
 
 const readOnlyPrefs=window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings({onChange:applyReadOnlySetting});
 const displayBookmark=window.PAI_SCENE1341_DISPLAY_BOOKMARK;
-const savedDisplay=displayBookmark.load();
+const savedDisplay={lastScene:'SC50-0001',cursors:{}}; // Disposable test: ignore prior persistent state
 lastScene=savedDisplay.lastScene;
 const transientCursors=new Map(Object.entries(savedDisplay.cursors)); // isolated UI cursors; never KU/SRS records
 const autoPreference=window.PAI_SCENE1341_AUTO_PREFERENCE;
@@ -314,7 +314,7 @@ async function load(){
  try{
   const [catalogRaw,qa]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
-    import('./scene1341-qa-preview-loader.mjs').then(m=>m.loadScene1341QAProvisional())
+    import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest())
   ]);
   const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
   catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')]))
@@ -324,13 +324,12 @@ async function load(){
   items=[...qa.items]; // preview-only, no Scene500 PAI_CORE mutation.
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
-  if(countByScene.size!==10||items.length!==1778)throw Error('QA_PROVISIONAL_PREVIEW_COUNT_MISMATCH');
-  set('scope','英文教学预览：'+countByScene.size+'个场景、'+items.length+
-    '条 CG-QA 暂通过答案型 KU；另有260条阻塞未展示。尚未完成 Master/Muse 正式认证，不计入 SRS。');
-  set('status','Scene1341 目录 1,341 · CG-REC 推荐场景 110 · QA 暂通过教学词卡 '+items.length);
+  if(countByScene.size!==10||items.length!==1877)throw Error('MASTER_V106_SOURCE_EXACT_COUNT_MISMATCH');
+  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V106 作者词卡；161 条来源待裁决不开放。测试记录不保留，认证后置。');
+  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V106 测试词卡 '+items.length+'（未认证）');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
-  set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 仅保存浏览位置');
+  set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
   $('continue').disabled=!available(lastScene);
   renderCategories();renderHome();
  }catch(e){
@@ -561,7 +560,7 @@ function renderCard(){
   }else if(!isFunctionWord&&hint)hint.remove();
  }
 
- displayBookmark.save(sceneId,index,phaseController.state().preferredFace);
+ // Disposable test session: do not persist cursor, grade or study progress.
  $('learning').classList.toggle('revealed',revealed);
  $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
