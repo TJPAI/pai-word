@@ -20,7 +20,7 @@ export async function loadScene1341V118Test({fetchImpl=fetch}={}){
  if(await exactGitBlob(raw)!==EXPECTED_BLOB)throw Error('MASTER_V118_SOURCE_BLOB_CHANGED');
  const data=JSON.parse(raw);
  if(data.version!=='V118'||data.scene_id!=='SC50-0011'||data.status!=='DRAFT_NOT_CERTIFIED'||
-    !Array.isArray(data.records)||data.records.length!==30||data.counts?.records!==30)
+    !Array.isArray(data.records)||data.records.length!==30||data.counts?.author_drafts!==30||data.counts?.full_answer_fields!==30||data.counts?.native_ipa_selected!==0)
   throw Error('MASTER_V118_MANIFEST_INVALID');
  const ids=new Set(),rows=new Set(),items=[];
  for(const rec of data.records){
