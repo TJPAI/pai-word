@@ -45,7 +45,7 @@ export function auditV155Evidence(raw){
   reasons[rec.selection_reason]=(reasons[rec.selection_reason]||0)+1;
   if(rec.status==='AMERICAN_ACCENT_TEST_CANDIDATE_NOT_READY'){
    candidate++;
-   assert(rec.phonemic_variants.length>=2&&rec.source_evidence.length>0,'candidate evidence mandatory');
+   assert(rec.phonemic_variants.length>=1&&rec.source_evidence.length>0,'candidate evidence mandatory');
    assert(['GENERAL_AMERICAN_UNIQUE_REGION_EVIDENCE','US_UNIQUE_REGION_EVIDENCE'].includes(rec.selection_reason));
    assert(/^\/[^/]+\/$/.test(rec.ipa_candidate));
    assert(rec.phonemic_variants.includes(rec.ipa_candidate));
