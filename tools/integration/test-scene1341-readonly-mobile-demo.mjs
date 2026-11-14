@@ -187,7 +187,7 @@ assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFI
  script.includes('4条网页证据测试IPA，239条待补，正式认证0'),
  'V150 web-sourced IPA must be visibly provisional and never masquerade as native raw evidence');
 
-assert(script.includes('V116+V128+V134/V142/V150 Master 词卡') &&
+assert(script.includes('V116+V128+V153 Master 词卡') &&
  script.includes('第11场景255/255条作者草稿') &&
  script.includes('认证后置') &&
  script.includes('（未认证）') &&
