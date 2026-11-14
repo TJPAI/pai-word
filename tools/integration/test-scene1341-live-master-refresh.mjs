@@ -32,6 +32,22 @@ assert.equal(snap.fallback,false);
 assert.equal(snap.shards.length,3);
 assert.equal(snap.expected.examples,1461);
 assert.equal(snap.expected.ipa,1478);
+// A later V192 may describe rows 3001-6000. It must not invalidate the
+// latest complete FIRST batch (V191) or masquerade as source rows 1-3000.
+const otherBatch=await resolveLatestMasterSnapshot({fetchImpl:async url=>{
+ if(url.includes('/branches/'))return response({commit:{sha:commit}});
+ if(url.includes('/git/trees/'))return response({truncated:false,tree:[
+  ...manifest.shards.map(x=>({path:root+x.name,sha:x.git_blob_sha1})),
+  {path:root+'CGMASTER_V192_MANIFEST_20261115.json',sha:'1'.repeat(40)},
+  {path:root+'CGMASTER_V191_MANIFEST_20261115.json',sha:'2'.repeat(40)}
+ ]});
+ if(url.includes('CGMASTER_V192_MANIFEST_'))return response({...manifest,version:'V192',source_final_rows:[3001,6000]});
+ if(url.includes('CGMASTER_V191_MANIFEST_'))return response({...manifest,version:'V191'});
+ throw Error('Unexpected future batch request: '+url);
+}});
+assert.equal(otherBatch.version,'V191');
+assert.equal(otherBatch.fallback,false);
+
 const incomplete=await resolveLatestMasterSnapshot({fetchImpl:mockBranch('V192',true)});
 assert.equal(incomplete.version,'V190');
 assert.equal(incomplete.fallback,true);
@@ -43,6 +59,7 @@ assert(page.includes("$('master-refresh').addEventListener('click'"));
 assert(page.includes('sourceLabel=v190.sourceVersion'));
 assert(page.includes("（实时）")&&page.includes("（回退）"));
 assert(page.includes('数据校验失败')&&page.includes('正式认证0'));
+assert(page.includes('MASTER_LIVE_ALL_SOURCES_UNAVAILABLE'),'legacy baseline must survive even total Master source outage');
 assert(!page.includes('question-ipa-test.html'));
-console.log(JSON.stringify({status:'PASS',liveManifest:'V191',runtimeNoRebuild:true,branchPinned:true,
+console.log(JSON.stringify({status:'PASS',liveManifest:'V191',runtimeNoRebuild:true,branchPinned:true,newerDifferentBatchIgnored:true,
  incompleteFallback:'V190',offlineFallback:'V190',ready:0,srsWrites:0}));
