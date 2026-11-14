@@ -34,7 +34,7 @@ const cases=[
 for(const [original,expected] of cases)assert.equal(format(original),expected,original);
 assert.equal(format('/ɹɡt͡ʃd͡ʒ/',{language:'zh'}),'/ɹɡt͡ʃd͡ʒ/','non-English data must remain unchanged');
 assert.equal(format('/ɹɡt͡ʃd͡ʒ/',{language:'en-US'}),'/rgtʃdʒ/');
-assert.equal(context.window.PAI_SCENE1341_V165_IPA_DISPLAY.policy,'EN_IPA_APPROXIMANT_R_TO_LEARNER_R_DISPLAY_ONLY_V165');
+assert.equal(context.window.PAI_SCENE1341_V165_IPA_DISPLAY.policy,'EN_IPA_LEARNER_NOTATION_DISPLAY_ONLY_V165');
 // Test the actual shared scene1341 question/answer page formatter, not a duplicate rendering policy.
 const inline=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert(inline);
