@@ -1,0 +1,1000 @@
+{
+  "version": "V172",
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "kaikki_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "kaikki_entries_scanned": 1499161,
+  "native_source_headwords_with_phonemic": 1551,
+  "formal_approved": 0,
+  "release_allowed": false,
+  "scope": "SC50-0030..SC50-0032",
+  "record_count": 580,
+  "scene_count": 3,
+  "ipa_nonempty": 564,
+  "missing_ipa": 16,
+  "counts": {
+    "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD": 107,
+    "CMU_TOKEN_COMPOSED_PREVIEW_ONLY": 332,
+    "CMU_EXACT_LEXEME_PREVIEW_ONLY": 60,
+    "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY": 60,
+    "KAIKKI_MULTIVARIANT_HOLD_NO_IPA": 6,
+    "KAIKKI_COMPONENT_COMPOSED_PREVIEW_ONLY_NOT_NATIVE_PHRASE": 4,
+    "IPA_MISSING_REVIEW_REQUIRED": 10,
+    "CMU_COMPOSED_WITH_KAIKKI_MULTIVARIANT_HOLD": 1
+  },
+  "records": [
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6992,
+      "record_id": "SC1341-FINAL-SRC-4242cedef301f4492c4891e5d00dea27",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "ingredient",
+        "cue_zh": "烹饪某道菜所用的食材或配料",
+        "ipa": "/ɪngridiʌnt/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "ingredient",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ɪnˈɡɹiːdi.ənt/",
+          "/ɪnˈɡɹiːd͡ʒənt/",
+          "/ɪŋˈɡɹiːdi.ənt/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ɪnˈɡɹiːdi.ənt/",
+            "tags": [],
+            "line": 53171,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ɪŋˈɡɹiːdi.ənt/",
+            "tags": [],
+            "line": 53171,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ɪnˈɡɹiːd͡ʒənt/",
+            "tags": [
+              "dialectal"
+            ],
+            "line": 53171,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "ingredient",
+            "native_phonemic_candidates": [
+              "/ɪnˈɡɹiːdi.ənt/",
+              "/ɪnˈɡɹiːd͡ʒənt/",
+              "/ɪŋˈɡɹiːdi.ənt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6993,
+      "record_id": "SC1341-FINAL-SRC-1b32258dd3cb750f79bd4dfb58039712",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "main ingredient",
+        "cue_zh": "主要食材",
+        "ipa": "/meɪn ɪngridiʌnt/",
+        "ipa_status": "CMU_TOKEN_COMPOSED_PREVIEW_ONLY",
+        "audio_text": "main ingredient",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "main",
+            "native_phonemic_candidates": [
+              "/meɪn/"
+            ]
+          },
+          {
+            "token": "ingredient",
+            "native_phonemic_candidates": [
+              "/ɪnˈɡɹiːdi.ənt/",
+              "/ɪnˈɡɹiːd͡ʒənt/",
+              "/ɪŋˈɡɹiːdi.ənt/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6994,
+      "record_id": "SC1341-FINAL-SRC-713841f916855b06fa706d5c64111a1f",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "seasoning",
+        "cue_zh": "调味料",
+        "ipa": "/sizʌnɪŋ/",
+        "ipa_status": "CMU_EXACT_LEXEME_PREVIEW_ONLY",
+        "audio_text": "seasoning",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [],
+        "native_exact_sound_evidence": [],
+        "component_lookup": [
+          {
+            "token": "seasoning",
+            "native_phonemic_candidates": []
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6995,
+      "record_id": "SC1341-FINAL-SRC-6a0f2175683a5bccf40e33a7c8892016",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "spice",
+        "cue_zh": "香料；辛香调料",
+        "ipa": "/spaɪs/",
+        "ipa_status": "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY",
+        "audio_text": "spice",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/spaɪs/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/spaɪs/",
+            "tags": [],
+            "line": 17500,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/spaɪs/",
+            "tags": [],
+            "line": 17501,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/spaɪs/",
+            "tags": [],
+            "line": 17502,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/spaɪs/",
+            "tags": [],
+            "line": 746647,
+            "pos": "name"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "spice",
+            "native_phonemic_candidates": [
+              "/spaɪs/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6996,
+      "record_id": "SC1341-FINAL-SRC-0892116272d07d95a19288f21b0711b5",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "herb",
+        "cue_zh": "香草；用于调味的草本植物",
+        "ipa": "/ɝb/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "herb",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/(h)ɝb/",
+          "/hɜː(ɹ)b/",
+          "/hɜːb/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/hɜːb/",
+            "tags": [
+              "Australia",
+              "New-Zealand",
+              "UK"
+            ],
+            "line": 17506,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/(h)ɝb/",
+            "tags": [
+              "Canada",
+              "US"
+            ],
+            "line": 17506,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/hɜː(ɹ)b/",
+            "tags": [],
+            "line": 64247,
+            "pos": "name"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "herb",
+            "native_phonemic_candidates": [
+              "/(h)ɝb/",
+              "/hɜː(ɹ)b/",
+              "/hɜːb/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6997,
+      "record_id": "SC1341-FINAL-SRC-186d6a8f327d6ca3893d6047b2387de9",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "marinade",
+        "cue_zh": "腌料",
+        "ipa": "/mɑrɪneɪd/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "marinade",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˌmaɹəˈneɪd/",
+          "/ˌmaɹɪˈneɪd/",
+          "/ˌmɛɹəˈneɪd/",
+          "/ˌmɛɹɪˈneɪd/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˌmaɹɪˈneɪd/",
+            "tags": [
+              "UK"
+            ],
+            "line": 86879,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˌmaɹəˈneɪd/",
+            "tags": [
+              "UK"
+            ],
+            "line": 86879,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˌmɛɹɪˈneɪd/",
+            "tags": [
+              "US"
+            ],
+            "line": 86879,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˌmɛɹəˈneɪd/",
+            "tags": [
+              "US"
+            ],
+            "line": 86879,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˌmaɹɪˈneɪd/",
+            "tags": [
+              "UK"
+            ],
+            "line": 86880,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˌmaɹəˈneɪd/",
+            "tags": [
+              "UK"
+            ],
+            "line": 86880,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˌmɛɹɪˈneɪd/",
+            "tags": [
+              "US"
+            ],
+            "line": 86880,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˌmɛɹəˈneɪd/",
+            "tags": [
+              "US"
+            ],
+            "line": 86880,
+            "pos": "verb"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "marinade",
+            "native_phonemic_candidates": [
+              "/ˌmaɹəˈneɪd/",
+              "/ˌmaɹɪˈneɪd/",
+              "/ˌmɛɹəˈneɪd/",
+              "/ˌmɛɹɪˈneɪd/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6998,
+      "record_id": "SC1341-FINAL-SRC-2677ec5b5efeca726e88bab3d4fa9b6e",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "sauce",
+        "cue_zh": "酱汁",
+        "ipa": "/sɔs/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "sauce",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/sos/",
+          "/soːs/",
+          "/sɑs/",
+          "/sɒs/",
+          "/sɔs/",
+          "/sɔːs/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/sɔːs/",
+            "tags": [
+              "Northern-England",
+              "Received-Pronunciation",
+              "Wales"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/soːs/",
+            "tags": [
+              "Australia",
+              "British",
+              "New-Zealand",
+              "Southern",
+              "Standard"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɔs/",
+            "tags": [
+              "US"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɑs/",
+            "tags": [
+              "US",
+              "cot-caught-merger"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɒs/",
+            "tags": [
+              "Canada"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɔs/",
+            "tags": [
+              "Scotland"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sos/",
+            "tags": [
+              "Philippines"
+            ],
+            "line": 18511,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɔːs/",
+            "tags": [
+              "Northern-England",
+              "Received-Pronunciation",
+              "Wales"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/soːs/",
+            "tags": [
+              "Australia",
+              "British",
+              "New-Zealand",
+              "Southern",
+              "Standard"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/sɔs/",
+            "tags": [
+              "US"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/sɑs/",
+            "tags": [
+              "US",
+              "cot-caught-merger"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/sɒs/",
+            "tags": [
+              "Canada"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/sɔs/",
+            "tags": [
+              "Scotland"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/sos/",
+            "tags": [
+              "Philippines"
+            ],
+            "line": 18512,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/sɔːs/",
+            "tags": [
+              "Northern-England",
+              "Received-Pronunciation",
+              "Wales"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/soːs/",
+            "tags": [
+              "Australia",
+              "British",
+              "New-Zealand",
+              "Southern",
+              "Standard"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɔs/",
+            "tags": [
+              "US"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɑs/",
+            "tags": [
+              "US",
+              "cot-caught-merger"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɒs/",
+            "tags": [
+              "Canada"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sɔs/",
+            "tags": [
+              "Scotland"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/sos/",
+            "tags": [
+              "Philippines"
+            ],
+            "line": 18513,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "sauce",
+            "native_phonemic_candidates": [
+              "/sos/",
+              "/soːs/",
+              "/sɑs/",
+              "/sɒs/",
+              "/sɔs/",
+              "/sɔːs/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 6999,
+      "record_id": "SC1341-FINAL-SRC-93b974cd66245c6c2a2fe660a749774d",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "dressing",
+        "cue_zh": "沙拉酱汁",
+        "ipa": "/ˈdɹɛsɪŋ/",
+        "ipa_status": "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY",
+        "audio_text": "dressing",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈdɹɛsɪŋ/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈdɹɛsɪŋ/",
+            "tags": [],
+            "line": 62082,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈdɹɛsɪŋ/",
+            "tags": [],
+            "line": 62083,
+            "pos": "verb"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "dressing",
+            "native_phonemic_candidates": [
+              "/ˈdɹɛsɪŋ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 7000,
+      "record_id": "SC1341-FINAL-SRC-7ec585f5bb7a5c5d1e872be2b3f6584b",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "topping",
+        "cue_zh": "加在食物上面的配料",
+        "ipa": "/tɑpɪŋ/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "topping",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈtɑpɪŋ/",
+          "/ˈtɒpɪŋ/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈtɑpɪŋ/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 104017,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈtɒpɪŋ/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 104017,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈtɑpɪŋ/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 104018,
+            "pos": "adj"
+          },
+          {
+            "ipa": "/ˈtɒpɪŋ/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 104018,
+            "pos": "adj"
+          },
+          {
+            "ipa": "/ˈtɑpɪŋ/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 104019,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈtɒpɪŋ/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 104019,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "topping",
+            "native_phonemic_candidates": [
+              "/ˈtɑpɪŋ/",
+              "/ˈtɒpɪŋ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 7001,
+      "record_id": "SC1341-FINAL-SRC-1e4a04cd5b127e3a6ea0569386f9bc64",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "garnish",
+        "cue_zh": "点缀菜肴的配料",
+        "ipa": "/gɑrnɪʃ/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "garnish",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈɡäːnɪʃ/",
+          "/ˈɡɐːnɪʃ/",
+          "/ˈɡɑɹ.nɪʃ/",
+          "/ˈɡɑɹnɪʃ/",
+          "/ˈɡɑːnɪʃ/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈɡɑːnɪʃ/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 28326,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈɡäːnɪʃ/",
+            "tags": [
+              "Australia"
+            ],
+            "line": 28326,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈɡɐːnɪʃ/",
+            "tags": [
+              "Australia"
+            ],
+            "line": 28326,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈɡɑɹnɪʃ/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 28326,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈɡɑːnɪʃ/",
+            "tags": [
+              "Received-Pronunciation"
+            ],
+            "line": 28327,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈɡäːnɪʃ/",
+            "tags": [
+              "Australia"
+            ],
+            "line": 28327,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈɡɐːnɪʃ/",
+            "tags": [
+              "Australia"
+            ],
+            "line": 28327,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈɡɑɹnɪʃ/",
+            "tags": [
+              "General-American"
+            ],
+            "line": 28327,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈɡɑɹ.nɪʃ/",
+            "tags": [],
+            "line": 1177117,
+            "pos": "name"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "garnish",
+            "native_phonemic_candidates": [
+              "/ˈɡäːnɪʃ/",
+              "/ˈɡɐːnɪʃ/",
+              "/ˈɡɑɹ.nɪʃ/",
+              "/ˈɡɑɹnɪʃ/",
+              "/ˈɡɑːnɪʃ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 7002,
+      "record_id": "SC1341-FINAL-SRC-a445e37d0022227b90bdf174139de161",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "filling",
+        "cue_zh": "夹心；馅料",
+        "ipa": "/ˈfɪlɪŋ/",
+        "ipa_status": "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY",
+        "audio_text": "filling",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈfɪlɪŋ/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈfɪlɪŋ/",
+            "tags": [],
+            "line": 75366,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈfɪlɪŋ/",
+            "tags": [],
+            "line": 75367,
+            "pos": "adj"
+          },
+          {
+            "ipa": "/ˈfɪlɪŋ/",
+            "tags": [],
+            "line": 75368,
+            "pos": "noun"
+          }
+        ],
+        "component_lookup": [
+          {
+            "token": "filling",
+            "native_phonemic_candidates": [
+              "/ˈfɪlɪŋ/"
+            ]
+          }
+        ]
+      },
+      "pronunciation_policy": "PREVIEW_CANDIDATE_ONLY_NOT_AUTHORIZED_SENSE_OR_NATIVE_PHRASE_IPA",
+      "cg_qa_status": "DEFERRED",
+      "mu_qa_status": "DEFERRED",
+      "release_allowed": false
+    },
+    {
+      "scene_id": "SC50-0030",
+      "scene_name": "询问菜品与食材",
+      "source_final_row": 7003,
+      "record_id": "SC1341-FINAL-SRC-5165665e32ecda5cbc1f6e0e98a60c2a",
+      "canonical_sense_id": null,
+      "question_page": {
+        "english_expression": "batter",
+        "cue_zh": "炸制或烘焙时用的面糊",
+        "ipa": "/bætɝ/",
+        "ipa_status": "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD",
+        "audio_text": "batter",
+        "content_complete": true
+      },
+      "kaikki_source": {
+        "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+        "native_exact_headword_phonemic_candidates": [
+          "/ˈbætə/",
+          "/ˈbætɚ/"
+        ],
+        "native_exact_sound_evidence": [
+          {
+            "ipa": "/ˈbætə/",
+            "tags": [
+              "Australia",
+              "Received-Pronunciation"
+            ],
+            "line": 17170,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈbætɚ/",
+            "tags": [
+              "Canada",
+              "General-American"
+            ],
+            "line": 17170,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈbætə/",
+            "tags": [
+              "Australia",
+              "Received-Pronunciation"
+            ],
+            "line": 17171,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈbætɚ/",
+            "tags": [
+              "Canada",
+              "General-American"
+            ],
+            "line": 17171,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈbætə/",
+            "tags": [
+              "Australia",
+              "Received-Pronunciation"
+            ],
+            "line": 17172,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈbætɚ/",
+            "tags": [
+              "Canada",
+              "General-American"
+            ],
+            "line": 17172,
+            "pos": "verb"
+          },
+          {
+            "ipa": "/ˈbætə/",
+            "tags": [
+              "Australia",
+              "Received-Pronunciation"
+            ],
+            "line": 17173,
+            "pos": "noun"
+          },
+          {
+            "ipa": "/ˈbætɚ/",
+            "tags": [
