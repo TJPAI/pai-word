@@ -1,0 +1,55 @@
+{
+  "version": "V175",
+  "date": "2026-11-14",
+  "scope": "SC50-0071..SC50-0086",
+  "state": "STAGING_MANIFEST_ONLY_BINARY_SHARDS_NOT_COMMITTED",
+  "records": 3036,
+  "scenes": 16,
+  "source_final_rows": [
+    15079,
+    18114
+  ],
+  "master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "kaikki_sha256_expected": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "full_kaikki_rescanned": false,
+  "cmu_preview_only": 2979,
+  "missing_ipa": 57,
+  "breakdown": {
+    "CMU_EXACT_LEXEME_PREVIEW_ONLY": 513,
+    "CMU_TOKEN_COMPOSED_PREVIEW_ONLY": 2466,
+    "IPA_MISSING_KAIKKI_RESCAN_REQUIRED": 57
+  },
+  "formal_approved": 0,
+  "release_allowed": false,
+  "shards": [
+    {
+      "name": "CGMASTER_V175_SC0071_0086_PART1_SOURCE_PINNED_CMUPREVIEW_20261114.json.gz",
+      "records": 759,
+      "bytes": 186101,
+      "sha256": "b806d74febb13e92fae8a38862d9cbe7ec83646b8e2ca6029c9d7af4411a1d7b",
+      "github_blob_uploaded": false
+    },
+    {
+      "name": "CGMASTER_V175_SC0071_0086_PART2_SOURCE_PINNED_CMUPREVIEW_20261114.json.gz",
+      "records": 759,
+      "bytes": 244601,
+      "sha256": "423b6d0d3b6a2ff67ab2324acaf175b6b41e4bd50aa11238ef71a6ba88766969",
+      "github_blob_uploaded": false
+    },
+    {
+      "name": "CGMASTER_V175_SC0071_0086_PART3_SOURCE_PINNED_CMUPREVIEW_20261114.json.gz",
+      "records": 759,
+      "bytes": 295971,
+      "sha256": "1e95cecb9ddac2d1d3187d7ebfdb8dd67f32c732717ffb96e725ad784a552227",
+      "github_blob_uploaded": false
+    },
+    {
+      "name": "CGMASTER_V175_SC0071_0086_PART4_SOURCE_PINNED_CMUPREVIEW_20261114.json.gz",
+      "records": 759,
+      "bytes": 221877,
+      "sha256": "075cbca1ee2d3bcf81788ce2e45953d52f0098eda9945bb8b47da9baada35597",
+      "github_blob_uploaded": false
+    }
+  ],
+  "notes": "Only stage data, not CG-MASTER full native Kaikki IPA output; preexisting V108 Kaikki lexical candidates preserved. No new canonical sense IDs, certified answer page or audio URL."
+}
