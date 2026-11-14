@@ -145,8 +145,8 @@ assert(!html.includes('id="enlex-section"') &&
 assert(script.includes("set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh)") &&
  script.includes("question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.headword===card.expression") &&
- script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':'音标待补'") &&
- script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':'missing'"),
+ script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':archived?question.ipa+'（历史Kaikki·测试未认证）':'音标待补'") &&
+ script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':'missing'"),
  'Scene1341 learning screen must display only exact CG-MASTER question IPA and Master answer fields');
 assert(script.includes("set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义')") &&
  !script.includes("set('cue',r.question.cue_zh)"),
