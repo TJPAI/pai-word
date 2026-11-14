@@ -757,7 +757,8 @@ assert(script.includes('const keepDrawing=fromAuto&&scratchDrawing()') &&
  script.includes('if(keepDrawing)window.PAI_SCRATCH_AUTO_TRANSITION=false'),
  'auto next must preserve and subsequently restore native scratch overlay');
 assert(script.includes("document.addEventListener('visibilitychange',()=>{") &&
- script.includes("if(document.hidden){\n  autoBrowse.pause();") &&
+ script.includes("if(document.hidden){\n  // Backgrounding cancels the speaker takeover;") &&
+ script.includes("exampleToWordPending=false;\n  autoBrowse.pause();") &&
  script.includes('phaseController.suspend();') &&
  script.includes('}else autoBrowse.resume();'),
  'visibilitychange must pause auto and pending graded answer without losing selected toggle');
