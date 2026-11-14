@@ -127,6 +127,11 @@ assert(autoNativeSource.includes('state.autoBrowseEnabled=!!enabled;save();resta
 // are sourced from CG-MASTER V111 (1,877 exact source-row author drafts).
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
 assert(script.includes('scene1341-master-preview-loader.mjs'));
+assert(html.includes('id="preview-build-version"') &&
+ script.includes("fetch('../../preview-source-sha.txt',{cache:'no-store'})") &&
+ script.includes("if(!/^[a-f0-9]{40}$/i.test(sha))throw Error('BUILD_SHA_INVALID')") &&
+ script.includes('void showPreviewBuildVersion();'),
+ 'settings must expose actual deploy SHA from immutable Pages manifest, without guessing version');
 assert(!html.includes('id="enlex-section"') &&
  !script.includes('scene1341-enlex-preview.mjs') &&
  !script.includes('renderLexiconReference(') &&
