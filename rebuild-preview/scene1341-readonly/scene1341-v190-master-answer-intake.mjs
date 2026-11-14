@@ -22,7 +22,7 @@ function assertSourceManifest(m,version){
  if(!Array.isArray(range)||range[0]!==1||range[1]!==3000)
   throw Error('MASTER_LIVE_MANIFEST_WRONG_BATCH');
  const c=m.counts||{};
- const expected={records:3000,examples:c.examples_filled,ipa:c.test_ipa_nonempty??c.test_ipa_nonempty,
+ const expected={records:3000,examples:c.examples_filled,ipa:c.test_ipa_nonempty??c.ipa_test_nonempty,
   usage:c.usage_note_filled,collocations:c.collocations_filled};
  if(![expected.examples,expected.ipa,expected.usage,expected.collocations].every(n=>Number.isSafeInteger(n)&&n>=0&&n<=3000))
   throw Error('MASTER_LIVE_MANIFEST_UNSUPPORTED_COUNTS');
@@ -74,8 +74,7 @@ const digest=async(data,algorithm)=>Array.from(new Uint8Array(await crypto.subtl
 const clean=v=>typeof v==='string'?v.trim():'';
 const normalize=s=>clean(s).normalize('NFKC').toLowerCase().replace(/\s+/g,' ');
 const stablePair=x=>x&&typeof x==='object'&&clean(x.example_en)&&clean(x.example_zh);
-export async function applyV190MasterAnswerIntake(cards,{fetchImpl=fetch,snapshot=null}={}){
- const selected=snapshot||await resolveLatestMasterSnapshot({fetchImpl});
+async function loadSnapshot(cards,{fetchImpl,selected}){
  if(!Array.isArray(selected.shards)||selected.shards.length!==3||!selected.expected)throw Error('MASTER_LIVE_SNAPSHOT_INVALID');
  if(!Array.isArray(cards)||cards.length!==2873)throw Error('V190_BASE_CARD_DRIFT');
  if(!globalThis.crypto?.subtle||typeof DecompressionStream==='undefined')throw Error('V190_GZIP_CRYPTO_UNSUPPORTED');
@@ -173,4 +172,20 @@ export async function applyV190MasterAnswerIntake(cards,{fetchImpl=fetch,snapsho
   perScene:Object.freeze(Object.fromEntries([...perScene.entries()].sort((a,b)=>a[0].localeCompare(b[0])))),
   sourceCommit:selected.commit,sourceVersion:selected.version,sourceFallback:selected.fallback===true,
   sourceError:selected.liveError||'',formalReady:0,canWriteSrs:false,releaseAllowed:false});
+}
+
+/** Dynamic Master on every page open. Source failure never hides all legacy
+ * study cards: a pinned tested V190 snapshot is the explicit safe fallback.
+ * The UI reports fallback + reason rather than pretending it is up to date.
+ */
+export async function applyV190MasterAnswerIntake(cards,{fetchImpl=fetch,snapshot=null}={}){
+ const selected=snapshot||await resolveLatestMasterSnapshot({fetchImpl});
+ try{
+  return await loadSnapshot(cards,{fetchImpl,selected});
+ }catch(error){
+  if(snapshot||selected.fallback)throw error;
+  const fallback=await loadSnapshot(cards,{fetchImpl,selected:staticV190});
+  return Object.freeze({...fallback,sourceFallback:true,
+   sourceError:'MASTER_LIVE_SHARD_FALLBACK: '+String(error?.message||error)});
+ }
 }
