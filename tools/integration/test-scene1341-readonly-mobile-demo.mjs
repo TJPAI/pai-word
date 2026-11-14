@@ -771,9 +771,10 @@ assert.equal(voiceTasks.size,0);
 /* Native Scene500 continue/resume keeps last card position and preferred face.
  * For draft-only Scene1341 the cursor is ephemeral, never written to SRS. */
 assert(script.includes('const transientCursors=new Map(Object.entries(savedDisplay.cursors))') &&
- script.includes('const savedDisplay=displayBookmark.load()') &&
- script.includes('displayBookmark.save(sceneId,index,phaseController.state().preferredFace)'),
- 'Scene1341 must retain isolated UI bookmarks');
+ script.includes("const savedDisplay={lastScene:'SC50-0001',cursors:{}};") &&
+ !script.includes('displayBookmark.load()') &&
+ !script.includes('displayBookmark.save('),
+ 'V106 draft preview must keep in-session cursor only, never reload stale Master bookmarks');
 assert(script.includes('function openStudy(id,resume=false)') &&
  script.includes('resume?transientCursors.get(id):null') &&
  script.includes('index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0'),
