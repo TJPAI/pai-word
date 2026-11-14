@@ -1,0 +1,23 @@
+{
+  "version": "V102",
+  "date": "2026-11-14",
+  "type": "COLLOCATION_EDITORIAL_QUALITY_GATE_AND_255_STAGING_OVERLAY",
+  "source_v101_sha256": "bad9a414654005a631a35fd354c17d8b09ff89326feaf2b0199443f0716a31fe",
+  "drive_data": "https://drive.google.com/file/d/1o_sf-XZAYVdiINSsHhMRqYg09oDWDlCY/view",
+  "drive_qa_report": "https://drive.google.com/file/d/1DGwSQR_z28BPX9TbHk7zrgtgX3DSRaQJ/view",
+  "drive_builder": "https://drive.google.com/file/d/1LZXUMtez7kQVTJLhBkYcBtS1QVM48FNc/view",
+  "output_sha256": "9b46197dfed85e4370792e5b5aa98058344de6746f0d975d799a40bc023c9aa1",
+  "output_bytes": 432066,
+  "counts": {
+    "staging_cards": 255,
+    "one_collocation_exactly_equals_expression": 99,
+    "targeted_manual_collocation_edits": 20,
+    "unchanged_records": 235,
+    "unreviewed_heuristic_matches": 79,
+    "new_independent_QA_pass": 0,
+    "formal_release": 0
+  },
+  "checks": "255 identities exact and unique; only 20 collocations updated; zero English examples, Chinese translations, V13 glosses, IPA/audio/canonical ids/release gates changed",
+  "status": "EDITORIAL_STAGING_ONLY_NOT_CERTIFIED",
+  "notes": "An expression repeated as its collocation is a review signal, not a proof of linguistic defect. 20 candidate revisions require independent QA. Do not auto-apply 79 remaining."
+}
