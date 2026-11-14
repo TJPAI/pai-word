@@ -147,7 +147,7 @@ const oldURL='https://raw.githubusercontent.com/TJPAI/pai-word/3b77d762caf257e32
 const oldResponse=await fetch(oldURL,{cache:'no-store'});
 assert(oldResponse.ok,'pinned V147 source must remain independently fetchable');
 const oldRaw=await oldResponse.text();
-const oldBlob=createHash('sha1').update('blob '+Buffer.byteLength(oldRaw)+'\\0').update(oldRaw).digest('hex');
+const oldBlob=createHash('sha1').update('blob '+Buffer.byteLength(oldRaw)+'\0').update(oldRaw).digest('hex');
 assert.equal(oldBlob,'e8589c6c6bc68f93d4183064e2f5a87845552da2');
 const oldV147=JSON.parse(oldRaw).records;
 assert.equal(oldV147.length,243);
