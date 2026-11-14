@@ -193,7 +193,7 @@ assert(html.includes('id="master-ipa-coverage"') &&
 assert(script.includes("question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'") &&
  script.includes("question?.ipa_source?.native_raw_jsonl_sha256===null") &&
- script.includes("pageEvidence?question.ipa+'（网页来源·测试未认证）'") &&
+ script.includes("pageEvidence?learnerIPA+'（网页来源·测试未认证）'") &&
  script.includes("pageEvidence?'web-page-provisional-test'") &&
  script.includes('V154测试 IPA 已接入，正式认证0'),
  'V150 web-sourced IPA must be visibly provisional and never masquerade as native raw evidence');
