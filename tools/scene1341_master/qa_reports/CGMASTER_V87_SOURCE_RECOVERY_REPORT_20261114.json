@@ -1,0 +1,282 @@
+{
+  "version": "V87",
+  "date": "2026-11-14",
+  "source_sha256": {
+    "final": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "v13": "568455645ff4d0ee6fba8177c45cf89d5f7f892ff8ecd7ad1897a9458c03aba6",
+    "bridge": "58acc91357503cacdf41f88af93e4168d5c2039d21ec8b5d8b754a42544b18da"
+  },
+  "scope": {
+    "v13_unresolved": 8523,
+    "source_classes": {
+      "ONE_EXPRESSION_SOURCE_ROW_GLOSS_DIVERGENCE_REVIEW": 5059,
+      "V13_ONLY_OR_RENAMED_EXPRESSION_VERIFY_LINEAGE": 3140,
+      "MULTIPLE_ORIGINAL_SOURCE_ROWS_NEED_IDENTITY_REVIEW": 324
+    },
+    "affected_scenes": 1341,
+    "v13_only_affected_scenes": 1329,
+    "v13_only_source_versions_top15": [
+      [
+        "V83",
+        39
+      ],
+      [
+        "V51",
+        38
+      ],
+      [
+        "V82",
+        38
+      ],
+      [
+        "V85",
+        38
+      ],
+      [
+        "V58",
+        37
+      ],
+      [
+        "V84",
+        37
+      ],
+      [
+        "V61",
+        36
+      ],
+      [
+        "V74",
+        36
+      ],
+      [
+        "V76",
+        36
+      ],
+      [
+        "V81",
+        36
+      ],
+      [
+        "V57",
+        35
+      ],
+      [
+        "V86",
+        35
+      ],
+      [
+        "V59",
+        32
+      ],
+      [
+        "V77",
+        32
+      ],
+      [
+        "V67",
+        31
+      ]
+    ]
+  },
+  "examples": {
+    "ONE_EXPRESSION_SOURCE_ROW_GLOSS_DIVERGENCE_REVIEW": [
+      {
+        "v13_row": 6,
+        "english": "snooze",
+        "v13_zh": "æé¹éè´ªç¡é®ï¼è®©é¹éç¨åååï¼å°ç¡ä¸ä¼å¿",
+        "source_zh": [
+          "åç¡ä¸ä¼å¿"
+        ]
+      },
+      {
+        "v13_row": 60,
+        "english": "vibrate",
+        "v13_zh": "æ¯å¨ï¼ï¼ææºæé¹éï¼ä»¥æ¯å¨æé",
+        "source_zh": [
+          "æ¯å¨æé"
+        ]
+      },
+      {
+        "v13_row": 73,
+        "english": "rush",
+        "v13_zh": "åå¿ï¼èµ¶æ¶é´",
+        "source_zh": [
+          "åå¿èµ¶"
+        ]
+      },
+      {
+        "v13_row": 87,
+        "english": "schedule",
+        "v13_zh": "æ¥ç¨å®æï¼æ¶é´è¡¨",
+        "source_zh": [
+          "å½å¤©æ¥ç¨"
+        ]
+      },
+      {
+        "v13_row": 115,
+        "english": "comforter",
+        "v13_zh": "åè¢«å­ï¼ç¾å¼è±è¯­ä¸­å¸¸æå¡«åè¢«",
+        "source_zh": [
+          "ç¾å¼åè¢«å­"
+        ]
+      },
+      {
+        "v13_row": 147,
+        "english": "headache",
+        "v13_zh": "å¤´çï¼å¤´ç¼",
+        "source_zh": [
+          "å¤´ç"
+        ]
+      },
+      {
+        "v13_row": 199,
+        "english": "toast",
+        "v13_zh": "ç¤é¢åçï¼åå¸",
+        "source_zh": [
+          "ç¤é¢åç"
+        ]
+      },
+      {
+        "v13_row": 235,
+        "english": "wash",
+        "v13_zh": "æ´ï¼æ¸æ´ï¼æ­¤å¤ææ¸æ´èº«ä½ï¼",
+        "source_zh": [
+          "æ¸æ´èº«ä½"
+        ]
+      }
+    ],
+    "V13_ONLY_OR_RENAMED_EXPRESSION_VERIFY_LINEAGE": [
+      {
+        "v13_row": 231,
+        "english": "hit the snooze button",
+        "v13_zh": "æä¸è´ªç¡æé®",
+        "source_zh": []
+      },
+      {
+        "v13_row": 232,
+        "english": "morning grogginess",
+        "v13_zh": "æ©æ¨åéæ¶çææ²",
+        "source_zh": []
+      },
+      {
+        "v13_row": 233,
+        "english": "get out the door",
+        "v13_zh": "åºé¨ï¼å¨èº«ç¦»å®¶",
+        "source_zh": []
+      },
+      {
+        "v13_row": 234,
+        "english": "turn on the alarm",
+        "v13_zh": "æå¼é¹éåè½",
+        "source_zh": []
+      },
+      {
+        "v13_row": 406,
+        "english": "apply lip balm",
+        "v13_zh": "æ¶æ¶¦åè",
+        "source_zh": []
+      },
+      {
+        "v13_row": 407,
+        "english": "brush twice a day",
+        "v13_zh": "æ¯å¤©å·ä¸¤æ¬¡ç",
+        "source_zh": []
+      },
+      {
+        "v13_row": 408,
+        "english": "wash off makeup",
+        "v13_zh": "æ´æå¦å®¹",
+        "source_zh": []
+      },
+      {
+        "v13_row": 609,
+        "english": "back to front",
+        "v13_zh": "è¡£æååç©¿å",
+        "source_zh": []
+      }
+    ],
+    "MULTIPLE_ORIGINAL_SOURCE_ROWS_NEED_IDENTITY_REVIEW": [
+      {
+        "v13_row": 467,
+        "english": "suit",
+        "v13_zh": "ä¸å¥è¥¿è£ï¼å¥è£",
+        "source_zh": [
+          "æ¬¾å¼éåæäºº",
+          "æå¥è¥¿è£"
+        ]
+      },
+      {
+        "v13_row": 1844,
+        "english": "put your feet up",
+        "v13_zh": "åä¸æ¥ä¼æ¯ï¼æ¾æ¾ä¸ä¸",
+        "source_zh": [
+          "åä¸æ¬èµ·èä¼æ¯",
+          "æ¬èä¼æ¯"
+        ]
+      },
+      {
+        "v13_row": 6911,
+        "english": "bill",
+        "v13_zh": "è´¦åï¼è±å¼é¤åå¸¸ç¨ï¼ä¹å¯æçº¸å¸ï¼",
+        "source_zh": [
+          "é¤é¥®è´¦åï¼è±å¼å¸¸ç¨ï¼",
+          "çº¸å¸ï¼ç¾å¼å¦ä¸ä¹é¡¹ï¼"
+        ]
+      },
+      {
+        "v13_row": 6953,
+        "english": "bill",
+        "v13_zh": "è´¦åï¼è±å¼é¤åå¸¸ç¨ï¼ä¹å¯æçº¸å¸ï¼",
+        "source_zh": [
+          "é¤é¥®è´¦åï¼è±å¼å¸¸ç¨ï¼",
+          "çº¸å¸ï¼ç¾å¼å¦ä¸ä¹é¡¹ï¼"
+        ]
+      },
+      {
+        "v13_row": 7879,
+        "english": "grill",
+        "v13_zh": "ç§ç¤ï¼ç¤æ¶ä¸ç¤ï¼è±å¼ä¹å¯æä¸ç«çç¤ï¼",
+        "source_zh": [
+          "ç¤æ¶ï¼ç¤å¶è£ç½®",
+          "ç§ç¤ï¼ç¤æ¶ç¤å¶"
+        ]
+      },
+      {
+        "v13_row": 7927,
+        "english": "grill",
+        "v13_zh": "ç§ç¤ï¼ç¤æ¶ä¸ç¤ï¼è±å¼ä¹å¯æä¸ç«çç¤ï¼",
+        "source_zh": [
+          "ç¤æ¶ï¼ç¤å¶è£ç½®",
+          "ç§ç¤ï¼ç¤æ¶ç¤å¶"
+        ]
+      },
+      {
+        "v13_row": 11090,
+        "english": "out for delivery",
+        "v13_zh": "å·²äº¤ééåæ´¾éï¼æ­£å¨æ«ç«¯æé",
+        "source_zh": [
+          "å¿«éæ­£å¨æ´¾éä¸­",
+          "ééä¸­"
+        ]
+      },
+      {
+        "v13_row": 11155,
+        "english": "out for delivery",
+        "v13_zh": "å·²äº¤ééåæ´¾éï¼æ­£å¨æ«ç«¯æé",
+        "source_zh": [
+          "å¿«éæ­£å¨æ´¾éä¸­",
+          "ééä¸­"
+        ]
+      }
+    ]
+  },
+  "file": {
+    "name": "CGMASTER_V87_8523_V13_UNRESOLVED_SOURCE_RECOVERY.jsonl.gz",
+    "bytes": 737031,
+    "sha256": "0ec18ede7faec2c1d2627c84bdf1f227e9a3456db34340b12949e6c563b3b8a0"
+  },
+  "notice": "Only 5059 rows have exactly one ORIGINAL scene-expression candidate, but gloss differs. All require identity/meaning review; NO additional source links formally authorized. 3140 may be intentional V13 additions and must not be called erroneous without lineage verification. No semantic certification.",
+  "safe_new_authorized_links": 0,
+  "sense_ids_certified": 0,
+  "release_allowed": false
+}
