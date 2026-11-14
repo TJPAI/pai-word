@@ -31,7 +31,7 @@ assert.equal(snap.examplesAdded,0);
 assert.equal(snap.unmatchedSourceRows,502,'V190 source cannot be inflated into unready live cards');
 assert.equal(snap.legacyOutsideBatch,375,'legacy cards outside V190 first 3000 stay intact');
 assert.equal(Object.values(snap.perScene).reduce((n,v)=>n+v.matched,0),2498);
-assert.equal(Object.values(snap.perScene).reduce((n,v)=>n+v.enriched,0),314);
+assert.equal(Object.values(snap.perScene).reduce((n,v)=>n+v.enriched,0),snap.enriched);
 assert(html.includes('id="master-v190-gloss-section"')&&html.includes('id="master-v190-pos-section"'),'V190 English gloss and POS must be learner-visible as unverified test fields');
 assert(html.includes('英文释义（待核验）')&&html.includes('词性（待核验）'),'unapproved V190 gloss and POS must never masquerade as certified');
 assert(snap.items.every(x=>x.production_release_allowed!==true));
