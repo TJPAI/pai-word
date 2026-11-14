@@ -1,0 +1,91 @@
+{
+  "version": "V88",
+  "authority_sha256": {
+    "v87_workset": "0ec18ede7faec2c1d2627c84bdf1f227e9a3456db34340b12949e6c563b3b8a0",
+    "v83_lexical": "49043dfa36729ab9d3aad68fee0cdca99729c5b202a2ad563e2c3e93cb1cc869"
+  },
+  "census": {
+    "divergence_rows": 5059,
+    "scenes": 1336,
+    "types": {
+      "PARTIAL_KAIKKI_SAMPLES_NOT_FULL_SENSE": 282,
+      "FULL_KAIKKI_CANDIDATES_UNSELECTED": 2591,
+      "NO_USABLE_KAIKKI_EVIDENCE_IN_21_PACKS": 2186
+    },
+    "explicit_semantic_assessments": 16,
+    "suggested_single_lexical_candidates": 6,
+    "held_editorial": 10
+  },
+  "output_sha256": {
+    "triage": "263ae46c1ebb122dd7e95afaca7e44bcd9e9e7ada41ca58d07acf2494ecd25e4",
+    "pilot": "84353f7d1249ac4230a7e9354174363aa8d19ff1392982e7bbfeeac67b7d293c"
+  },
+  "output_bytes": {
+    "triage": 1517318,
+    "pilot": 14736
+  },
+  "sample_cases": {
+    "PARTIAL_KAIKKI_SAMPLES_NOT_FULL_SENSE": [
+      {
+        "v13_row": 6,
+        "expression": "snooze",
+        "v13_zh": "æé¹éè´ªç¡é®ï¼è®©é¹éç¨åååï¼å°ç¡ä¸ä¼å¿",
+        "master_zh": "åç¡ä¸ä¼å¿"
+      },
+      {
+        "v13_row": 60,
+        "expression": "vibrate",
+        "v13_zh": "æ¯å¨ï¼ï¼ææºæé¹éï¼ä»¥æ¯å¨æé",
+        "master_zh": "æ¯å¨æé"
+      },
+      {
+        "v13_row": 73,
+        "expression": "rush",
+        "v13_zh": "åå¿ï¼èµ¶æ¶é´",
+        "master_zh": "åå¿èµ¶"
+      }
+    ],
+    "FULL_KAIKKI_CANDIDATES_UNSELECTED": [
+      {
+        "v13_row": 87,
+        "expression": "schedule",
+        "v13_zh": "æ¥ç¨å®æï¼æ¶é´è¡¨",
+        "master_zh": "å½å¤©æ¥ç¨"
+      },
+      {
+        "v13_row": 147,
+        "expression": "headache",
+        "v13_zh": "å¤´çï¼å¤´ç¼",
+        "master_zh": "å¤´ç"
+      },
+      {
+        "v13_row": 246,
+        "expression": "deodorant",
+        "v13_zh": "é¤è­åï¼ä½é¦åï¼ä¸ä¸å®å·ææ­¢æ±ä½ç¨ï¼",
+        "master_zh": "æ­¢æ±é¤å³å"
+      }
+    ],
+    "NO_USABLE_KAIKKI_EVIDENCE_IN_21_PACKS": [
+      {
+        "v13_row": 338,
+        "expression": "put on deodorant",
+        "v13_zh": "æ¶é¤è­åæä½é¦å",
+        "master_zh": "æ¶æ­¢æ±é¤å³å"
+      },
+      {
+        "v13_row": 389,
+        "expression": "test a new product",
+        "v13_zh": "è¯ç¨ä¸ç§æ°äº§å",
+        "master_zh": "è¯ç¨æ°çæ´æ¤äº§å"
+      },
+      {
+        "v13_row": 401,
+        "expression": "check the expiration date",
+        "v13_zh": "æ¥çæææ",
+        "master_zh": "æ¥çäº§åæææ"
+      }
+    ]
+  },
+  "note": "No automated meaning alignment. 16 small explicit editorial assessments; all other 5043 rows are unreviewed. Even suggested candidates are provisional and require source validation and independent QA. No Sense ID or release.",
+  "release_allowed": false
+}
