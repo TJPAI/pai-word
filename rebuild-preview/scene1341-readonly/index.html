@@ -143,6 +143,8 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
  <div class="study-body" id="studybody">
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
+   <div class="answer-section" id="master-v190-gloss-section" hidden><div class="answer-label">英文释义（待核验）</div><div class="definition" id="master-v190-gloss"></div></div>
+   <div class="answer-section" id="master-v190-pos-section" hidden><div class="answer-label">词性（待核验）</div><div class="definition" id="master-v190-pos"></div></div>
    <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div><div id="extra-examples"></div></div>
    <div class="answer-section" id="v188-relations-section" hidden><div class="answer-label">相关表达</div><div id="v188-synonyms"></div><div id="v188-antonyms"></div></div>
@@ -630,6 +632,12 @@ function renderCard(){
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
  set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
+ const visibleGloss=typeof r.answer.gloss_en==='string'?r.answer.gloss_en.trim():'';
+ const visiblePos=typeof r.answer.pos==='string'?r.answer.pos.trim():'';
+ set('master-v190-gloss',visibleGloss);
+ set('master-v190-pos',visiblePos);
+ $('master-v190-gloss-section').hidden=!visibleGloss;
+ $('master-v190-pos-section').hidden=!visiblePos;
  const answerView=window.PAI_SCENE1341_V188_ANSWER.project(r.answer);
  const selectedExample=answerView.examples[0]||{en:'',zh:''};
  $('example-speak').dataset.speak=selectedExample.en;
