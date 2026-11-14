@@ -1,0 +1,52 @@
+name: CG-MASTER Kaikki Native IPA V151
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cg-master-kaikki-evidence-intake-20261111
+    paths:
+      - '.github/workflows/cg-master-kaikki-native-ipa-v151.yml'
+      - 'tools/scene1341_master/fetch_kaikki_word_ipa_v151.py'
+
+permissions:
+  contents: read
+
+jobs:
+  extract-sc0014-native-ipa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch individual Kaikki original word JSONLs and build conservative test overlay
+        run: |
+          python tools/scene1341_master/fetch_kaikki_word_ipa_v151.py \
+            --cards tools/scene1341_master/qa_reports/CGMASTER_V150_SC0014_243_WITH_4_KAIKKI_PAGE_IPA_TEST_20261114.json \
+            --out-dir /tmp/cgmaster_ipa_v151 \
+            --workers 6 \
+            --retries 2
+      - name: Validate source and card consistency
+        run: |
+          python - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('/tmp/cgmaster_ipa_v151')
+          a=json.loads((p/'CGMASTER_V151_QUESTION_IPA_TEST_OVERLAY.json').read_text())
+          r=json.loads((p/'CGMASTER_V151_IPA_EVIDENCE_REPORT.json').read_text())
+          assert len(a['records'])==243
+          assert r['total_cards']==243
+          assert all(x['release_allowed'] is False and x['canonical_sense_id'] is None for x in a['records'])
+          print('QA OK',r['counts'])
+          PY
+      - name: Upload source-provenance QA and test overlay
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-v151-kaikki-native-ipa-sc0014
+          path: |
+            /tmp/cgmaster_ipa_v151/*.json
+            /tmp/cgmaster_ipa_v151/raw_word_cache/*.jsonl
+          retention-days: 30
+          if-no-files-found: warn
