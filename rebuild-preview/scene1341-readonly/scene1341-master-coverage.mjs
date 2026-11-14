@@ -5,11 +5,12 @@
 const DIRECT='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY';
 const SINGLE='NATIVE_KAIKKI_SINGLE_PHONEMIC_VARIANT_PROVISIONAL';
 const WEB='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY';
+const ARCHIVED='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY';
 export function measureScene1341MasterCoverage(items){
  if(!Array.isArray(items))throw Error('MASTER_COVERAGE_RECORDS_REQUIRED');
  const ids=new Set(),sourceRows=new Set(),byScene=new Map();
  const summary={authorDrafts:0,sceneCount:0,sourceVerifiedTestIpa:0,nativeSingleProvisional:0,
-   webPageProvisional:0,selectedTestIpa:0,missingSelectedIpa:0,unselectedVariants:0,
+   webPageProvisional:0,archivedKaikkiProvisional:0,selectedTestIpa:0,missingSelectedIpa:0,unselectedVariants:0,
    formallyCertified:0,formallyReady:0};
  for(const card of items){
   const q=card?.question,scene=card?.scene_id,id=card?.master_record_id,row=card?.master_final_row;
@@ -20,7 +21,7 @@ export function measureScene1341MasterCoverage(items){
    throw Error('MASTER_COVERAGE_ID_OR_UNCERTIFIED_SOURCE_CONFLICT');
   ids.add(id);sourceRows.add(row);
   if(!byScene.has(scene))byScene.set(scene,{scene_id:scene,authorDrafts:0,
-    sourceVerifiedTestIpa:0,nativeSingleProvisional:0,webPageProvisional:0,
+    sourceVerifiedTestIpa:0,nativeSingleProvisional:0,webPageProvisional:0,archivedKaikkiProvisional:0,
     selectedTestIpa:0,missingSelectedIpa:0,unselectedVariants:0,
     formallyCertified:0,formallyReady:0});
   const perScene=byScene.get(scene);
@@ -40,6 +41,13 @@ export function measureScene1341MasterCoverage(items){
           q.ipa_source?.formal_sense_alignment===false&&
           q.ipa_source?.author_review_required===true)
     bucket='webPageProvisional';
+  else if(status===ARCHIVED&&typeof ipa==='string'&&q.ipa_provisional===true&&
+          q.ipa_source?.archive_git_blob==='3fe3513bc4c313c3ae22282c6cf1fd4caee6ccd9'&&
+          q.ipa_source?.ipa_candidates?.length===1&&
+          q.ipa_source?.ipa_candidates[0]===ipa&&
+          q.ipa_source?.sense_match_approved===false&&
+          q.ipa_source?.qa_approved===false)
+    bucket='archivedKaikkiProvisional';
   else if(ipa!==null)
     throw Error('MASTER_COVERAGE_UNAPPROVED_IPA_STATUS');
   else if(status!=='MISSING_VERIFIED_KAIKKI_IPA')
