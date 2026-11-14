@@ -1,0 +1,28 @@
+{
+  "version": "V106",
+  "date": "2026-11-14",
+  "reason": "Supersedes prior large-file inline fetch limitation; full content successfully retrieved by GitHub blob SHA",
+  "source_blob": "e24209cbcb6d803e9d9c80b9f388165fb6e24f99",
+  "checks": {
+    "full_blob_json_parsed": true,
+    "exact_source_row_author_records": 1877,
+    "unique_final_rows": 1877,
+    "covered_scenes": 10,
+    "hold_records": 161,
+    "all_five_answer_fields_present": 1877,
+    "release_all_false": true,
+    "canonical_id_all_null": true,
+    "ipa_all_null": true,
+    "min_final_row": 1,
+    "max_final_row": 2379
+  },
+  "unverified": [
+    "Independent byte-level row-by-row reconciliation against local V105",
+    "Drive mirror of V106 authored records",
+    "IPA/audio",
+    "formal Sense IDs",
+    "Independent CG-QA/Muse certification"
+  ],
+  "source_original_final_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "release_allowed": false
+}
