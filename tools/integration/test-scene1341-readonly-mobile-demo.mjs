@@ -146,7 +146,7 @@ assert(script.includes("set('expression',r.expression);scheduleQuestionFit();ren
  script.includes("question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.headword===card.expression") &&
  script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':'音标待补'") &&
- script.includes("el.dataset.ipaStatus=native?'verified-master-test':'missing'"),
+ script.includes("el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':'missing'"),
  'Scene1341 learning screen must display only exact CG-MASTER question IPA and Master answer fields');
 assert(script.includes("set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义')") &&
  !script.includes("set('cue',r.question.cue_zh)"),
