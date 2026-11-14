@@ -23,6 +23,12 @@ assert.equal(new Set(snap.items.map(x=>x.master_final_row)).size,2873);
 assert.equal(new Set(snap.items.map(x=>x.scene_ku_id)).size,2873);
 assert(snap.exact>0,'must really match existing Master records');
 assert(snap.enriched>0,'must actually add V190 author fields');
+assert.equal(snap.exact,2498);
+assert.equal(snap.held,0);
+assert.equal(snap.enriched,314);
+assert.equal(snap.examplesAdded,0);
+assert(html.includes('id="master-v190-gloss-section"')&&html.includes('id="master-v190-pos-section"'),'V190 English gloss and POS must be learner-visible as unverified test fields');
+assert(html.includes('英文释义（待核验）')&&html.includes('词性（待核验）'),'unapproved V190 gloss and POS must never masquerade as certified');
 assert(snap.items.every(x=>x.production_release_allowed!==true));
 for(const x of snap.items){
  const before=prior.get(x.master_record_id);
