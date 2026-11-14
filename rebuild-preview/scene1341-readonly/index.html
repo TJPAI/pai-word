@@ -130,7 +130,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
-   <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116 · 部署源码版本核对中…</p>
+   <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V118 · 部署源码版本核对中…</p>
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
@@ -314,30 +314,35 @@ async function showPreviewBuildVersion(){
   if(!response.ok)throw Error('BUILD_SHA_HTTP_'+response.status);
   const sha=(await response.text()).trim();
   if(!/^[a-f0-9]{40}$/i.test(sha))throw Error('BUILD_SHA_INVALID');
-  node.textContent='Scene1341 Master V116 · 网站部署源码 '+sha.slice(0,12)+' · 测试数据未认证';
+  node.textContent='Scene1341 Master V116+V118 · 网站部署源码 '+sha.slice(0,12)+' · 测试数据未认证';
   node.title='完整网站部署源码 SHA：'+sha;
  }catch{
-  node.textContent='Scene1341 Master V116 · 无法读取网站部署版本（本地或缓存环境）';
+  node.textContent='Scene1341 Master V116+V118 · 无法读取网站部署版本（本地或缓存环境）';
  }
 }
 
 async function load(){
  try{
-  const [catalogRaw,qa]=await Promise.all([
+  const [catalogRaw,qa,extra]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
-    import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest())
+    import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
+    import('./scene1341-v118-sc0011-loader.mjs').then(m=>m.loadScene1341V118Test())
   ]);
   const rows=parseCsv(catalogRaw),cols=rows.shift(),find=k=>cols.indexOf(k);
   catalog=rows.filter(r=>r[find('scene_id')]&&/^SC50-\d{4}$/.test(r[find('scene_id')]))
     .map(r=>({id:r[find('scene_id')],name:r[find('scene_name')],category:r[find('category')]}));
   if(catalog.length!==1341||new Set(catalog.map(x=>x.id)).size!==1341)
     throw Error('SCENE1341_CATALOG_ID_OR_COUNT_MISMATCH');
-  items=[...qa.items]; // preview-only, no Scene500 PAI_CORE mutation.
+  const ids=new Set(qa.items.map(x=>x.master_record_id)),rowsInMaster=new Set(qa.items.map(x=>x.master_final_row));
+  if(extra.total!==30||extra.scenes!==1||extra.items.some(x=>ids.has(x.master_record_id)||rowsInMaster.has(x.master_final_row)))
+   throw Error('MASTER_V118_INTEGRITY_OR_DUPLICATE_BLOCK');
+  items=[...qa.items,...extra.items]; // source-preserving disposable Master test; no Scene500 content.
+
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
-  if(countByScene.size!==10||items.length!==1877||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410)throw Error('MASTER_V116_SOURCE_EXACT_COUNT_MISMATCH');
-  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116 Master 词卡；161 条来源待裁决不开放。测试记录不保留，认证后置。');
-  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V116 测试词卡 '+items.length+'（未认证）');
+  if(countByScene.size!==11||items.length!==1907||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410||countByScene.get('SC50-0011')!==30)throw Error('MASTER_V116_V118_SOURCE_EXACT_COUNT_MISMATCH');
+  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116+V118 Master 词卡；第11场景新增30/255条作者草稿，161条旧来源待裁决不开放；测试记录不保留，认证后置。');
+  set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V116+V118 测试词卡 '+items.length+'（未认证）');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
@@ -649,7 +654,7 @@ $('settings-back').addEventListener('click',()=>{
 $('preview-stats-button').addEventListener('click',()=>{
  const node=$('stats-panel');node.open=!node.open;
  set('preview-stats-content','Scene1341 目录：'+catalog.length+
-   ' 场景；V116 建设中 Master 测试词卡：'+items.length+
+   ' 场景；V116+V118 建设中 Master 测试词卡：'+items.length+
    ' 条；本次体验评分：不知道 '+transientRatings.again+
    ' / 模糊 '+transientRatings.hard+' / 知道 '+transientRatings.good+
    '（仅内存，未写入正式SRS）');
