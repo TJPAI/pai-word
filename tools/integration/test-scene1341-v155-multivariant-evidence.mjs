@@ -3,6 +3,7 @@
  */
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
 const MASTER_COMMIT='919e2fef1005846ea2192a810e356d2ce51643ec';
 const PATH='tools/scene1341_master/qa_reports/CGMASTER_V155_SC0011_0014_243_MULTIVARIANT_FULL_EVIDENCE_20261114.json';
 const BLOB='9de667e851abd86989e9979f4e8bf0ab87cb55c9';
@@ -61,7 +62,7 @@ export function auditV155Evidence(raw){
  assert.deepEqual(reasons,data.counts.reasons);
  return Object.freeze({records:243,regionalCandidates:142,hold:101,certified:0,ready:0,published:0,sourceBlob:BLOB});
 }
-if(import.meta.url===new URL('file://'+process.argv[1]).href){
+if(import.meta.url===pathToFileURL(process.argv[1]).href){
  const response=await fetch(URL,{cache:'no-store'});
  assert(response.ok,'pinned V155 upstream source HTTP '+response.status);
  const result=auditV155Evidence(await response.text());
