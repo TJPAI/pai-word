@@ -1,0 +1,64 @@
+{
+  "version": "V104",
+  "date": "2026-11-14",
+  "type": "REAL_KAIKKI_EVIDENCE_UNIFICATION_PILOT",
+  "user_direction": "Use Kaikki consistently to enrich all Scene1341 Master data in batches of 100 scenes; unified QA certification deferred",
+  "authoritative_scope": {
+    "full_master_rows": 230289,
+    "scenes": 1341,
+    "v83_kaikki_packs": 21,
+    "v83_full_packs": 18,
+    "v83_partial_packs": 3,
+    "covered_v83_full_evidence_rows": 87802,
+    "covered_v83_partial_evidence_rows": 6511,
+    "v83_no_evidence_rows": 135976
+  },
+  "executed_scope": {
+    "input_author_cards": 255,
+    "source_scenes_represented": 119,
+    "exact_v90_kaikki_crossmatches": 51,
+    "evidence_provenance_restored_from_v90_for_cards_missing_embedded_candidate_source": 18,
+    "outside_local_v90_55_subset": 204,
+    "v90_evidence_not_in_v102_cards": 4,
+    "provenance_mismatches": 0,
+    "canonical_sense_approvals": 0,
+    "ipa_verified": 0,
+    "released": 0
+  },
+  "outputs": {
+    "unified_records_drive": "https://drive.google.com/file/d/1KMhnjaVjyFrVlg9rZu1kA2spUwDcgxSe/view",
+    "verification_report_drive": "https://drive.google.com/file/d/1VhrFnwpWUXs1mzFSojTDqy32v_kik5VY/view",
+    "reproducible_python_drive": "https://drive.google.com/file/d/1UIxlvKNPFUfVIw3k4ZS0XjsnowbQu_n7/view",
+    "unified_records_sha256": "75a449b99e13cfbe356371bdc6e338cc0db287c3c58975766ca16d954004540c",
+    "unified_records_bytes": 712216
+  },
+  "sources": {
+    "v102_sha256": "9b46197dfed85e4370792e5b5aa98058344de6746f0d975d799a40bc023c9aa1",
+    "v90_55_kaikki_sha256": "44aaeac15113984a7f7c1b4999d925d803586b0b7e03a14c80332495691104e0",
+    "v83_all_packs_report": "tools/scene1341_master/qa_reports/CGMASTER_V83_FULL1341_KAIKKI_EVIDENCE_REPORT_20261114.json"
+  },
+  "unified_kaikki_evidence_schema": {
+    "status": "EXACT_HEADWORD_NATIVE_SENSE_CANDIDATES_UNREVIEWED | NO_LOCAL_V90_EVIDENCE_CHECK_GLOBAL_V83_LIBRARY",
+    "candidates": [
+      "pos",
+      "glosses_en",
+      "native_index_NOT_SENSE_ID",
+      "source_pack_sha256",
+      "source_line"
+    ],
+    "verified_ipa": null,
+    "verified_audio": null,
+    "semantically_adjudicated": false,
+    "canonical_sense_id": null,
+    "release_allowed": false
+  },
+  "production_contract": {
+    "batch_size_scenes": 100,
+    "total_batches": 14,
+    "next": "Load authoritative FINAL source scene ordinals 1-100 with V83 row-crosswalk and native candidate library; do not rely on 55-row pilot as global coverage; process all source rows per scene; preserve non-exact and compositional phrases with explicit reason; do not infer approved global Sense ID from one candidate.",
+    "qa_certification": "DEFERRED_TO_UNIFIED_LATER_STAGE",
+    "mechanical_checks": "REQUIRED_NOW"
+  },
+  "honest_limitations": "This V104 is an actual 255-row cross-source reconciliation and staging enrichment, NOT an ingestion/complete processing of all 21 Kaikki packages or the first 100 full Master scenes. 204 unmatched means outside 55-row subset, not absence from Kaikki.",
+  "source_preservation": "FINAL, V13, Core20K, Scene500 unmodified"
+}
