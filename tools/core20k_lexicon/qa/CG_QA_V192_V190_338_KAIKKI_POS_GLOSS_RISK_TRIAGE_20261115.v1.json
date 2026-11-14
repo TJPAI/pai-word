@@ -2,7 +2,7 @@
   "schema": "cg-qa-v192-v190-kaikki-pos-gloss-independent-risk-triage-v1",
   "date": "2026-11-15",
   "role": "CG-QA",
-  "scope": "Real V190 full first-3000 raw source review, independently inspected all 338 nonempty Kaikki single-candidate English-gloss/POS overlays. 22 targeted conflicts or misaligned editorial roles; noncertifying risk triage.",
+  "scope": "Mechanically screened all 338 V190 records with nonempty Kaikki candidate English-gloss/POS. Independently inspected and annotated 22 targeted mismatches or contextual editorial risks; 316 other candidate records are NOT individually certified.",
   "source": {
     "repository": "TJPAI/pai-word",
     "branch": "cg-master-kaikki-evidence-intake-20261111",
@@ -241,5 +241,10 @@
     "Do not infer a global canonical Sense identity from provisional candidate group",
     "Preserve V190 immutable data and original FINAL/ReviewedV13/Core20K/Scene500/Runtime/SRS"
   ],
-  "status": "NONCERTIFYING_22_ITEM_SOURCE_ALIGNMENT_RISK_QUEUE; FORMAL_READY_0"
+  "status": "NONCERTIFYING_22_ITEM_SOURCE_ALIGNMENT_RISK_QUEUE; FORMAL_READY_0",
+  "methodology": {
+    "screening": "Programmatic scan of 338 raw candidate rows for source POS, gloss text, format/red-flag phrases, and expression/Chinese cue.",
+    "item_level": "22 selected cases evaluated manually for mismatched intended Sense/POS or editorial ambiguity.",
+    "not_claimed": "No exhaustive 338-item human semantic approval; no native Kaikki source-line adjudication or Muse independent signoff."
+  }
 }
