@@ -147,6 +147,13 @@ assert.equal(v153.total,2873);assert.equal(v153.matched,996);
 assert.equal(v153.archivedSingleTestIpa,8);
 assert.equal(v153.archivedVariantsUnselected,25);
 assert.equal(v153.retainedWebTestIpa,4);
+const overlayScenes=['SC50-0011','SC50-0012','SC50-0013','SC50-0014'];
+assert.deepEqual(overlayScenes.map(scene=>v153.items.filter(x=>x.scene_id===scene&&x.question.ipa!==null).length),
+ [0,2,5,5],'V153 selected TEST IPA count by original scene');
+assert.equal(v153.items.filter(x=>x.question.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY').length,8);
+assert.equal(v153.items.filter(x=>x.question.ipa_candidates_pending).length,437);
+assert(v153.items.every(x=>x.production_release_allowed===false));
+
 assert.equal(v153.productionRelease,false);
 assert.equal(v153.canWriteSrs,false);
 const after=v153.items;
