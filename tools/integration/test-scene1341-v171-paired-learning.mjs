@@ -17,7 +17,7 @@ const data=await applyV171PairedMasterOverlay(v154.items);
 assert.equal(data.replaced,996);assert.equal(data.selectedIPA,979);assert.equal(data.missingIPA,17);
 assert.equal(data.scenes,4);assert.equal(data.formalReady,0);assert.equal(data.canWriteSrs,false);
 assert.equal(data.releaseAllowed,false);assert.equal(data.items.length,2873);
-const selectedInMain=data.items.filter(x=>typeof x.question?.ipa==='string' && /^(?:\\/[^\\/\\]\\r\\n]+\\/|\\[[^\\/\\]\\r\\n]+\\])$/u.test(x.question.ipa.trim()) && x.question.ipa.trim().slice(1,-1).trim()).length;
+const selectedInMain=data.items.filter(x=>typeof x.question?.ipa==='string' && /^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(x.question.ipa.trim()) && x.question.ipa.trim().slice(1,-1).trim()).length;
 assert.equal(selectedInMain,1177,'V171 979 IPA plus 198 unchanged non-paired test IPA');
 assert(html.includes('MASTER_V171_MAIN_LEARNING_IPA_COUNT_DRIFT'),'main learning coverage must fail closed on source drift');
 assert(html.includes('SC0011–SC0014已接入996条V171完整题目与答案配对'),'main home must reflect actual V171 content instead of obsolete V154-only status');
