@@ -5,6 +5,7 @@ import vm from 'node:vm';
 import {QUESTION_SHARDS,loadQuestionScene,loadQuestionShard,auditAllQuestionShards,previewIPA} from '../../rebuild-preview/scene1341-readonly/scene1341-v172-question-first-loader.mjs';
 const home=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
 assert(!home.includes('question-ipa-test.html'),'old standalone IPA UI entry must remain absent');
+assert(!fs.existsSync('rebuild-preview/scene1341-readonly/question-ipa-test.html'),'retired standalone HTML must not be present');
 const source=fs.readFileSync('rebuild-preview/scene1341-readonly/scene1341-v165-ipa-learner-display.js','utf8');
 const ctx={window:{}};vm.runInNewContext(source,ctx);
 assert.equal(ctx.window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA('/ɹɡt͡ʃd͡ʒ/'),'/rgtʃdʒ/');
