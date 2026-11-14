@@ -1,0 +1,40 @@
+{
+  "version": "V101",
+  "date": "2026-11-14",
+  "type": "MATERIALIZED_SOURCE_LOCKED_EDITORIAL_STAGING_OVERLAY",
+  "drive_overlay": "https://drive.google.com/file/d/1pR4E3iz8oU2SGi77tXEesrrpSnpxk4DW/view",
+  "drive_verification_report": "https://drive.google.com/file/d/1PIVIc0j75DmeT1KFVFpYrNMI5j7n0gYc/view",
+  "drive_reproducible_build_script": "https://drive.google.com/file/d/1TBb5VJJDDVpa1L18x-0_O_Uc6HTz6Pbb/view",
+  "overlay_sha256": "bad9a414654005a631a35fd354c17d8b09ff89326feaf2b0199443f0716a31fe",
+  "overlay_bytes": 409102,
+  "counts": {
+    "source_staging_rows": 255,
+    "changed_bilingual_examples": 5,
+    "unchanged_source_cards": 250,
+    "accepted_V99_patches": 2,
+    "replaced_with_V100_drafts": 3,
+    "rejected_V99_patches_unchanged": 5,
+    "natural_variants_unchanged": 19,
+    "new_independent_semantic_QA_pass": 0,
+    "new_canonical_sense_ids": 0,
+    "released": 0
+  },
+  "source_sha256": {
+    "V93": "6e2fb2046612a1c2106266de7246b668767c963905eb276f512faefaff955fec",
+    "V94": "e52f3dd6b0b33f08b60a8e119f6d91c0229aa33258956c378868dfc86b1b5ec7",
+    "V95": "913b0e3b6c9bd7440924cd93a6e59321fc3c2555c3a5fcdd27baae92f554370c",
+    "V96": "ac196f0c8c5340ecff81b557bedfe7004da6a7dce47b536cacbdaabd443f9e5d",
+    "V97": "c4034843261cb5f08d472d5f026f3e94684121c7f2ad24c28ad47345741e59c3",
+    "V98": "57a1608de7f0833329813c74612a78c6c9e053539fd694d298ea808248b4091a",
+    "V100": "9cf022669c6e4625ac82a0e6178899b7f89b4420b1e713af5e83801be5689674"
+  },
+  "applied_v13_rows": [
+    6147,
+    6908,
+    12688,
+    16158,
+    17996
+  ],
+  "validation": "PASS exact SHA256 all seven sources, 255 unique V13 identities, source example exact equality, five approved changes, 250 unchanged, 29 editorial verdicts, release false, canonical IDs null",
+  "authoritative_note": "255 page records are staging author-draft overlays only; no independent CG-QA/Muse certification or IPA/audio verification. Original FINAL/V13/Core20K/Scene500 unchanged."
+}
