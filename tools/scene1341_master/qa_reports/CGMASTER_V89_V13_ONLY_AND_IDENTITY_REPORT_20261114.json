@@ -1,0 +1,142 @@
+{
+  "version": "V89",
+  "date": "2026-11-14",
+  "purpose": "Actual FULL 3140 V13-only cross-scene lineage + Kaikki source evidence and 324 competing original identities; no automatic source or semantic Sense merge",
+  "source_sha256": {
+    "final": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "v87": "0ec18ede7faec2c1d2627c84bdf1f227e9a3456db34340b12949e6c563b3b8a0",
+    "v83": "49043dfa36729ab9d3aad68fee0cdca99729c5b202a2ad563e2c3e93cb1cc869"
+  },
+  "counts": {
+    "v13_only_records": 3140,
+    "v13_only_lineage": {
+      "NOT_IN_ORIGINAL_FINAL_ENGLISH_EXPRESSION_INDEX": 2799,
+      "EXISTS_IN_OTHER_SCENES_DIFFERENT_ZH_NO_SOURCE_MATCH": 258,
+      "EXISTS_IN_OTHER_SCENES_WITH_SAME_ZH_NOT_PROVEN_SAME_SOURCE": 83
+    },
+    "v13_only_kaikki_evidence": {
+      "NO_EVIDENCE_IN_21_PACKS": 3077,
+      "PARTIAL_TRUNCATED_SAMPLES_ONLY": 8,
+      "FULL_EXACT_HEADWORD": 55
+    },
+    "other_scene_master_record_references": 739,
+    "other_scene_exact_zh_references": 125,
+    "multiple_original_identity_records": 324,
+    "multiple_original_identity_class": {
+      "DIFFERENT_ZH_COMPETING_FINAL_ROWS": 317,
+      "SAME_ZH_DUPLICATE_FINAL_ROWS": 7
+    }
+  },
+  "examples": {
+    "NOT_IN_ORIGINAL_FINAL_ENGLISH_EXPRESSION_INDEX": [
+      {
+        "v13_row": 231,
+        "expression": "hit the snooze button",
+        "zh": "æä¸è´ªç¡æé®",
+        "other_scene_count": 0
+      },
+      {
+        "v13_row": 232,
+        "expression": "morning grogginess",
+        "zh": "æ©æ¨åéæ¶çææ²",
+        "other_scene_count": 0
+      },
+      {
+        "v13_row": 233,
+        "expression": "get out the door",
+        "zh": "åºé¨ï¼å¨èº«ç¦»å®¶",
+        "other_scene_count": 0
+      },
+      {
+        "v13_row": 234,
+        "expression": "turn on the alarm",
+        "zh": "æå¼é¹éåè½",
+        "other_scene_count": 0
+      },
+      {
+        "v13_row": 406,
+        "expression": "apply lip balm",
+        "zh": "æ¶æ¶¦åè",
+        "other_scene_count": 0
+      }
+    ],
+    "EXISTS_IN_OTHER_SCENES_DIFFERENT_ZH_NO_SOURCE_MATCH": [
+      {
+        "v13_row": 407,
+        "expression": "brush twice a day",
+        "zh": "æ¯å¤©å·ä¸¤æ¬¡ç",
+        "other_scene_count": 1
+      },
+      {
+        "v13_row": 610,
+        "expression": "get changed",
+        "zh": "æ¢è¡£æ",
+        "other_scene_count": 1
+      },
+      {
+        "v13_row": 853,
+        "expression": "clean as you go",
+        "zh": "è¾¹åäºè¾¹éææ¸ç",
+        "other_scene_count": 1
+      },
+      {
+        "v13_row": 1065,
+        "expression": "hang clothes to dry",
+        "zh": "æè¡£ææèµ·æ¥æ¾å¹²",
+        "other_scene_count": 3
+      },
+      {
+        "v13_row": 1066,
+        "expression": "laundry detergent",
+        "zh": "æ´è¡£æ¶²ï¼æ´è¡£ç²ç­æ´æ¶¤å",
+        "other_scene_count": 3
+      }
+    ],
+    "EXISTS_IN_OTHER_SCENES_WITH_SAME_ZH_NOT_PROVEN_SAME_SOURCE": [
+      {
+        "v13_row": 818,
+        "expression": "put things back where they belong",
+        "zh": "æç©åæ¾ååä½",
+        "other_scene_count": 1
+      },
+      {
+        "v13_row": 1856,
+        "expression": "watch TV",
+        "zh": "ççµè§",
+        "other_scene_count": 1
+      },
+      {
+        "v13_row": 2461,
+        "expression": "open up to someone",
+        "zh": "åæäººæå¼å¿æ",
+        "other_scene_count": 2
+      },
+      {
+        "v13_row": 3953,
+        "expression": "take turns",
+        "zh": "è½®æµ",
+        "other_scene_count": 3
+      },
+      {
+        "v13_row": 4346,
+        "expression": "recycling symbol",
+        "zh": "åæ¶æ å¿",
+        "other_scene_count": 2
+      }
+    ]
+  },
+  "files": {
+    "CGMASTER_V89_3140_V13_ONLY_GLOBAL_LINEAGE_AND_KAIKKI_CANDIDATES.jsonl.gz": {
+      "sha256": "d7e47b0371d22a783e886ecd37df39d3aae62a75b18ffcb37cf6be5bfa49e947",
+      "bytes": 253705
+    },
+    "CGMASTER_V89_324_DUPLICATE_ORIGINAL_FINAL_SOURCE_IDENTITY_CASES.jsonl.gz": {
+      "sha256": "e36b8703deb778c8ec12e2a5920e73992ec6ef5ed29bc083b32bf0f1f9d60d97",
+      "bytes": 26995
+    }
+  },
+  "authority_note": "Same normalized English expression or Chinese gloss in another scene is NOT source lineage or semantic identity. V13-only rows may be new authored additions; do not delete. Candidate POS/gloss is not approved scene Sense.",
+  "new_source_lineages_authorized": 0,
+  "canonical_sense_ids_approved": 0,
+  "release_allowed": false
+}
