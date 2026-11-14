@@ -157,6 +157,12 @@ assert(script.includes('items.length!==2132') && script.includes('countByScene.s
  script.includes('MASTER_V128_INTEGRITY_OR_DUPLICATE_BLOCK'),
  'V128 all 255 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
 assert(script.includes('建设中 Master 测试'));
+assert(script.includes('V116+V128 Master 词卡') &&
+ script.includes('第11场景已累积255/255条作者草稿') &&
+ script.includes('认证后置') &&
+ script.includes('（未认证）') &&
+ html.includes('data-srs-write="disabled"'),
+ 'complete SC0011 author draft is still uncertified, never a release-ready study unit');
 assert(!script.includes('pai-word-preview-ku-durable'));
 
 // No browser-side persisted learning state and no service worker inside isolated preview.
