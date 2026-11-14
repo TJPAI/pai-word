@@ -503,29 +503,34 @@ function renderQuestionIPA(card){
  const el=$('ipa');
  if(ticket!==ipaSequence||subset()[index]?.scene_ku_id!==expectedKU)return;
  const question=card.question;
+ // An evidence flag alone is insufficient: never expose empty/malformed IPA
+ // (including source-fragment text) as a selected test reading. Preserve
+ // provenance/status and leave Master data untouched.
+ const completeIPA=typeof question?.ipa==='string'&&
+   /^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(question.ipa.trim());
  const native=question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'&&
               question?.ipa_source?.headword===card.expression&&
-              question?.ipa_source?.url?.startsWith('https://kaikki.org/dictionary/English/');
+              question?.ipa_source?.url?.startsWith('https://kaikki.org/dictionary/English/')&&completeIPA;
  const provisional=question?.ipa_status==='NATIVE_KAIKKI_SINGLE_PHONEMIC_VARIANT_PROVISIONAL'&&
                    question?.ipa_provisional===true&&
-                   question?.ipa_source?.source_sha256;
+                   question?.ipa_source?.source_sha256&&completeIPA;
  const pageEvidence=question?.ipa_status==='KAIKKI_POSTPROCESSED_PAGE_VERIFIED_TEST_ONLY'&&
                     question?.ipa_provisional===true&&
                     question?.ipa_source?.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'&&
                     question?.ipa_source?.native_raw_jsonl_sha256===null&&
-                    question?.ipa_source?.source_url?.startsWith('https://kaikki.org/dictionary/English/');
+                    question?.ipa_source?.source_url?.startsWith('https://kaikki.org/dictionary/English/')&&completeIPA;
  const localArchive=question?.ipa_status==='FULL_LOCAL_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'&&
                  question?.ipa_provisional===true&&
                  question?.ipa_source?.source_type==='CGMASTER_LOCAL_KAIKKI_ARCHIVE_TEST'&&
                  question?.ipa_source?.sense_match_approved===false&&
-                 question?.ipa_source?.qa_approved===false;
+                 question?.ipa_source?.qa_approved===false&&completeIPA;
   const archived=question?.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'&&
                 question?.ipa_provisional===true&&
                 question?.ipa_source?.archive_git_blob==='3fe3513bc4c313c3ae22282c6cf1fd4caee6ccd9'&&
                 question?.ipa_source?.ipa_candidates?.length===1&&
                 question?.ipa_source?.ipa_candidates[0]===question?.ipa&&
                 question?.ipa_source?.sense_match_approved===false&&
-                question?.ipa_source?.qa_approved===false;
+                question?.ipa_source?.qa_approved===false&&completeIPA;
  // Only learner-facing typography changes: preserve the authoritative
  // question.ipa field, exact-source gating, and all unapproved status labels.
  // Both QUESTION and ANSWER faces share this native Scene500 hero IPA line.
