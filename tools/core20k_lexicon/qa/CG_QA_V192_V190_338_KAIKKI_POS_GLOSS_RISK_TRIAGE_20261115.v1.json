@@ -1,0 +1,245 @@
+{
+  "schema": "cg-qa-v192-v190-kaikki-pos-gloss-independent-risk-triage-v1",
+  "date": "2026-11-15",
+  "role": "CG-QA",
+  "scope": "Real V190 full first-3000 raw source review, independently inspected all 338 nonempty Kaikki single-candidate English-gloss/POS overlays. 22 targeted conflicts or misaligned editorial roles; noncertifying risk triage.",
+  "source": {
+    "repository": "TJPAI/pai-word",
+    "branch": "cg-master-kaikki-evidence-intake-20261111",
+    "commit": "acda081836511707bc12d8360fa0472ff12401b8",
+    "drive_zip": "https://drive.google.com/file/d/1zjwIUm0C_fo5GSR3BvnQDXcHD8U8Bwh5/view",
+    "v190_manifest_blob": "8065cf79fe5ccde59274fdd0df3c1dda8bc9d8eb"
+  },
+  "computed": {
+    "total_source_associations": 3000,
+    "nonempty_kaikki_candidate_gloss_and_pos": 338,
+    "high_confidence_cross_sense_mismatch_p0": 13,
+    "contextual_pos_or_gloss_risk_p1": 9,
+    "targeted_risk_rows": 22,
+    "remaining_candidate_records_not_individually_labeled_error": 316,
+    "new_global_sense_approved": 0,
+    "new_chatgpt_formal_certified": 0,
+    "new_muse_formal_certified": 0,
+    "release_allowed": false
+  },
+  "provenance_findings": {
+    "kaikki_source_is_candidate_not_semantic_approval": true,
+    "formal_canonical_sense_id_unchanged": true,
+    "strict_key": "record_id + source_final_row + scene_id + expression + cue_zh + POS/gloss evidence",
+    "diagnostic_only_reference": "V191 105 'up' component IPA evidence contamination remains independently unresolved; do not multiply that number by 22 or claim final IPA incorrect."
+  },
+  "targeted_cases": [
+    {
+      "source_final_row": 200,
+      "expression": "toast",
+      "cue_zh": "烤面包片",
+      "selected_pos": "name",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "PostgreSQL TOAST technical initialism rather than food noun"
+    },
+    {
+      "source_final_row": 305,
+      "expression": "bathroom",
+      "cue_zh": "浴室、卫生间",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'assist patient with using the toilet' rather than room noun"
+    },
+    {
+      "source_final_row": 348,
+      "expression": "lotion",
+      "cue_zh": "乳液",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'apply lotion' rather than cosmetic product noun"
+    },
+    {
+      "source_final_row": 506,
+      "expression": "take off",
+      "cue_zh": "脱掉",
+      "selected_pos": "noun",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Noun/nonstandard spelling of takeoff rather than phrasal verb remove clothing"
+    },
+    {
+      "source_final_row": 580,
+      "expression": "handbag",
+      "cue_zh": "手提包",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'criticize/attack verbally' rather than bag noun"
+    },
+    {
+      "source_final_row": 821,
+      "expression": "duster",
+      "cue_zh": "除尘掸",
+      "selected_pos": "name",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Surname rather than cleaning implement noun"
+    },
+    {
+      "source_final_row": 1036,
+      "expression": "duster",
+      "cue_zh": "除尘掸",
+      "selected_pos": "name",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Surname rather than cleaning implement noun (second scene)"
+    },
+    {
+      "source_final_row": 1758,
+      "expression": "gravy",
+      "cue_zh": "肉汁",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'make gravy' rather than food noun"
+    },
+    {
+      "source_final_row": 2213,
+      "expression": "television",
+      "cue_zh": "电视机",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'watch television' rather than device noun"
+    },
+    {
+      "source_final_row": 2220,
+      "expression": "heater",
+      "cue_zh": "取暖器",
+      "selected_pos": "name",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Surname rather than heating appliance noun"
+    },
+    {
+      "source_final_row": 2380,
+      "expression": "television",
+      "cue_zh": "电视",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'watch television' rather than medium/device noun"
+    },
+    {
+      "source_final_row": 2409,
+      "expression": "trailer",
+      "cue_zh": "预告片",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Verb 'load/transport on trailer' rather than preview noun"
+    },
+    {
+      "source_final_row": 2696,
+      "expression": "grandpa",
+      "cue_zh": "爷爷或外公",
+      "selected_pos": "name",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P0",
+      "independent_rationale": "Disparaging address to unrelated elderly man rather than family-relationship sense"
+    },
+    {
+      "source_final_row": 203,
+      "expression": "pack lunch",
+      "cue_zh": "打包午饭",
+      "selected_pos": "noun",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Noun 'alternative form of packed lunch' rather than action phrase"
+    },
+    {
+      "source_final_row": 4,
+      "expression": "be awake",
+      "cue_zh": "醒着",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Translation-hub meta-gloss; insufficient Sense-specific adjective/state treatment"
+    },
+    {
+      "source_final_row": 137,
+      "expression": "refreshed",
+      "cue_zh": "精神恢复的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than contextual adjectival state; verify intended POS and gloss"
+    },
+    {
+      "source_final_row": 1611,
+      "expression": "thawed",
+      "cue_zh": "解冻的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than adjectival state; verify"
+    },
+    {
+      "source_final_row": 2057,
+      "expression": "rinsed",
+      "cue_zh": "已冲洗的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than adjectival state; verify"
+    },
+    {
+      "source_final_row": 2083,
+      "expression": "disinfected",
+      "cue_zh": "已消毒的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than adjectival state; verify"
+    },
+    {
+      "source_final_row": 2281,
+      "expression": "refreshed",
+      "cue_zh": "精神恢复的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than contextual adjectival state; verify second scene"
+    },
+    {
+      "source_final_row": 2282,
+      "expression": "recharged",
+      "cue_zh": "重新充满精力的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than figurative adjectival state"
+    },
+    {
+      "source_final_row": 2558,
+      "expression": "paused",
+      "cue_zh": "已暂停的",
+      "selected_pos": "verb",
+      "decision": "HOLD_SENSE_POS_GLOSS_REVIEW",
+      "priority": "P1",
+      "independent_rationale": "Morphological verb participle rather than adjectival state; verify"
+    }
+  ],
+  "non_error_automatic_diagnostics": {
+    "translation_hub_meta_gloss_count": 2,
+    "plural_of_gloss_count": 28,
+    "alternative_form_phrase_count": 12,
+    "policy": "These are morphology/entry-format flags, not automatically erroneous; must be judged against source expression and intended Sense."
+  },
+  "requirements": [
+    "CG-MASTER reselect original Kaikki source POS+gloss per exact intended Sense, not exact headword-only first match",
+    "Restore or HOLD affected candidate gloss/pos; do NOT silently modify authoritative source or promote to READY",
+    "Independent CG-QA and Muse formal certifications remain deferred under V107; this document is a risk triage, not formal approval",
+    "Do not infer a global canonical Sense identity from provisional candidate group",
+    "Preserve V190 immutable data and original FINAL/ReviewedV13/Core20K/Scene500/Runtime/SRS"
+  ],
+  "status": "NONCERTIFYING_22_ITEM_SOURCE_ALIGNMENT_RISK_QUEUE; FORMAL_READY_0"
+}
