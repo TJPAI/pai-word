@@ -129,6 +129,8 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>显示近义 / 易混词辨析</span><button type="button" class="switch" data-toggle-setting="showCompare" aria-label="显示近义 / 易混词辨析" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
+   <div class="setting-row"><span>Master 教学数据（刷新即检查最新交付）</span><button id="master-refresh" type="button" class="home-quiet-btn">检查最新 Master</button></div>
+   <p id="master-live-version" class="demo-tip" aria-live="polite">正在检查 CG-MASTER 最新数据…</p>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
     <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
@@ -396,17 +398,19 @@ async function load(){
   }).length;
   if(completeIPAInMain!==1177||items.length!==2873)
    throw Error('MASTER_V171_MAIN_LEARNING_IPA_COUNT_DRIFT');
-  // Source-pinned CG-MASTER V190: safely enrich existing Scene1341 card
-  // answers only; old content, IPA, Scene500 interaction and SRS remain intact.
+  // Dynamic CG-MASTER refresh: each page open checks the latest complete
+  // manifest; a verified immutable SHA prevents mixed-version data.
   const v190=await import('./scene1341-v190-master-answer-intake.mjs')
    .then(m=>m.applyV190MasterAnswerIntake(items));
   if(v190.sourceRows!==3000||v190.formalReady!==0||
      v190.canWriteSrs!==false||v190.releaseAllowed!==false||
      v190.items.length!==2873)throw Error('V190_UNSAFE_MASTER_INTAKE');
   items=[...v190.items];
-  set('master-ipa-coverage','V190 Master 首批3,000条源关联已完成SHA核验；与旧2,873条学习卡精确身份匹配'+v190.exact+'条，待对账'+v190.held+'条，实际安全增量补充答案'+v190.enriched+'条；另有'+v190.unmatchedSourceRows+'条V190源记录不在当前学习卡中，'+v190.legacyOutsideBatch+'张旧卡属于本批以外。现有IPA1177条测试展示不变，正式认证0，SRS禁写。');
-  set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+completeIPAInMain+' 条；V190源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条，正式认证0、SRS写入关闭。');
-  set('status','Scene1341 · V190 Master内容已安全接入 '+v190.enriched+' 条 · 14场景 / 2,873卡 · 测试IPA '+completeIPAInMain+' · Ready 0');
+  const sourceLabel=v190.sourceVersion+' · '+v190.sourceCommit.slice(0,12);
+  set('master-live-version',v190.sourceFallback?'使用已验证 '+sourceLabel+' 回退版本；最新来源暂不可用：'+v190.sourceError:'已读取 CG-MASTER 最新完整交付 '+sourceLabel+'（未认证）。刷新页面即可检查新版本。');
+  set('master-ipa-coverage',v190.sourceVersion+' Master 首批3,000条源关联已完成SHA核验；与旧2,873条学习卡精确身份匹配'+v190.exact+'条，待对账'+v190.held+'条，实际安全增量补充答案'+v190.enriched+'条；另有'+v190.unmatchedSourceRows+'条当前Master源记录不在当前学习卡中，'+v190.legacyOutsideBatch+'张旧卡属于本批以外。现有IPA1177条测试展示不变，正式认证0，SRS禁写。');
+  set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+completeIPAInMain+' 条；'+v190.sourceVersion+'源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条，正式认证0、SRS写入关闭。');
+  set('status','Scene1341 · '+v190.sourceVersion+' Master'+(v190.sourceFallback?'（回退）':'（实时）')+'安全接入 '+v190.enriched+' 条 · 14场景 / 2,873卡 · 测试IPA '+completeIPAInMain+' · Ready 0');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
@@ -944,6 +948,7 @@ $('settings-panel').addEventListener('click',e=>{
  readOnlyPrefs.set(key,!readOnlyPrefs.get(key));
 });
 $('settings-reset').addEventListener('click',()=>{readOnlyPrefs.reset();stopAuto()});
+$('master-refresh').addEventListener('click',()=>{window.location.reload()});
 document.addEventListener('visibilitychange',()=>{
  if(document.hidden){
   // Backgrounding cancels the speaker takeover; its stale completion must
