@@ -855,6 +855,9 @@ $('settings-panel').addEventListener('click',e=>{
 $('settings-reset').addEventListener('click',()=>{readOnlyPrefs.reset();stopAuto()});
 document.addEventListener('visibilitychange',()=>{
  if(document.hidden){
+  // Backgrounding cancels the speaker takeover; its stale completion must
+  // never resume auto-browse on a later card or after the app is foregrounded.
+  exampleToWordPending=false;
   autoBrowse.pause();
   stopWordAudio();
   if(!$('learning').hidden){
