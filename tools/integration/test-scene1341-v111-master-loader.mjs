@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
 import {loadScene1341V120Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs';
+import {loadScene1341V118Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v118-sc0011-loader.mjs';
 
 const snap=await loadScene1341MasterTest();
 assert.equal(snap.total,1877);
@@ -37,6 +38,19 @@ for(const card of snap.items){
 }
 const extra=await loadScene1341V120Test();
 assert.equal(extra.total,80);
+const original30=await loadScene1341V118Test();
+assert.equal(original30.total,30);
+const mergedByRow=new Map(extra.items.map(r=>[r.master_final_row,r]));
+for(const row of original30.items){
+ const merged=mergedByRow.get(row.master_final_row);
+ assert(merged,'V120 must preserve V118 original FINAL row '+row.master_final_row);
+ assert.equal(merged.master_record_id,row.master_record_id);
+ assert.equal(merged.expression,row.expression);
+ assert.deepEqual(merged.question,row.question);
+ assert.deepEqual(merged.answer,row.answer);
+ assert.equal(merged.production_release_allowed,false);
+}
+
 assert.equal(extra.scenes,1);
 assert.equal(extra.formalCertification,false);
 assert.equal(extra.productionRelease,false);
