@@ -505,12 +505,20 @@ function renderQuestionIPA(card){
                     question?.ipa_source?.source_type==='KAIKKI_POSTPROCESSED_DICTIONARY_WEB_PAGE'&&
                     question?.ipa_source?.native_raw_jsonl_sha256===null&&
                     question?.ipa_source?.source_url?.startsWith('https://kaikki.org/dictionary/English/');
- el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':'音标待补';
+ const archived=question?.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'&&
+                question?.ipa_provisional===true&&
+                question?.ipa_source?.archive_git_blob==='3fe3513bc4c313c3ae22282c6cf1fd4caee6ccd9'&&
+                question?.ipa_source?.ipa_candidates?.length===1&&
+                question?.ipa_source?.ipa_candidates[0]===question?.ipa&&
+                question?.ipa_source?.sense_match_approved===false&&
+                question?.ipa_source?.qa_approved===false;
+ el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':pageEvidence?question.ipa+'（网页来源·测试未认证）':archived?question.ipa+'（历史Kaikki·测试未认证）':'音标待补';
  el.title=native?'CG-MASTER V116 · 原生 Kaikki IPA（测试中，未认证）':
           provisional?'CG-MASTER V116 · 原生单一读音候选，仅测试展示，尚未通过 POS/Sense 和 QA/Muse 认证':
           pageEvidence?'CG-MASTER V150 · 来自 Kaikki 网页，不是原生 JSONL 证据；测试专用，尚未完成 Sense/口音与 QA/Muse 认证':
+          archived?'CG-MASTER V153 · 历史Kaikki来源候选有SHA与行号，但尚未进行目标Sense/POS及QA/Muse认证':
           question?.ipa_candidates_pending?'存在多个原生 Kaikki 读音候选，等待 CG-MASTER 裁决，不随机选择':'CG-MASTER 尚未提供本词条可展示的 Kaikki IPA';
- el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':'missing';
+ el.dataset.ipaStatus=native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':'missing';
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
