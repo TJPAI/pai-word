@@ -124,9 +124,14 @@ assert(autoNativeSource.includes('state.autoBrowseEnabled=!!enabled;save();resta
  'UI persistence and reset are grounded in native Scene500 behavior');
 
 // The canonical 1341 scene catalog remains pinned; visible test-only cards
-// are sourced from CG-MASTER V111 (1,877 exact source-row author drafts).
+// are sourced from CG-MASTER V116 (1,877 exact source-row author drafts).
 assert(script.includes("const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db'"));
 assert(script.includes('scene1341-master-preview-loader.mjs'));
+assert(script.includes("qa.provisionalNativeIpa!==195") &&
+ script.includes("qa.ipaPendingAdjudication!==410") &&
+ script.includes("question?.ipa_provisional===true") &&
+ script.includes("question?.ipa_candidates_pending?"),
+ 'V116 must label 195 provisional IPAs and withhold 410 unselected variants');
 assert(html.includes('id="preview-build-version"') &&
  script.includes("fetch('../../preview-source-sha.txt',{cache:'no-store'})") &&
  script.includes("if(!/^[a-f0-9]{40}$/i.test(sha))throw Error('BUILD_SHA_INVALID')") &&
@@ -140,7 +145,7 @@ assert(!html.includes('id="enlex-section"') &&
 assert(script.includes("set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh)") &&
  script.includes("question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.headword===card.expression") &&
- script.includes("el.textContent=native?question.ipa:'音标待补'") &&
+ script.includes("el.textContent=native?question.ipa:provisional?question.ipa+'（测试音标·未认证）':'音标待补'") &&
  script.includes("el.dataset.ipaStatus=native?'verified-master-test':'missing'"),
  'Scene1341 learning screen must display only exact CG-MASTER question IPA and Master answer fields');
 assert(script.includes("set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义')") &&
@@ -205,7 +210,7 @@ assert(/class="recall-controls-row"[^>]*>.*?class="recall-cue".*?class="auto-wor
 assert(!learningFace.includes('id="auto-speed"'),'speed settings must not shift the study hero geometry');
 assert(!learningFace.includes('class="demo-ops"') && !learningFace.includes('class="demo-qa"') && !learningFace.includes('class="tap-hint"'), 'no Scene1341-only learning controls or notices');
 assert(script.includes("b.disabled=false"),'both faces must retain Scene500 three-button visual layout');
-assert(script.includes('scene1341-master-preview-loader.mjs'),'V111 Master source-exact staging preview');
+assert(script.includes('scene1341-master-preview-loader.mjs'),'V116 Master source-exact staging preview');
 
 assert(html.includes('id="collocations-section"') && html.includes('id="usage-section"'),
  'optional answer teaching sections must have distinct view containers');
@@ -793,7 +798,7 @@ assert(script.includes('const transientCursors=new Map(Object.entries(savedDispl
  script.includes("const savedDisplay={lastScene:'SC50-0001',cursors:{}};") &&
  !script.includes('displayBookmark.load()') &&
  !script.includes('displayBookmark.save('),
- 'V111 draft preview must keep in-session cursor only, never reload stale Master bookmarks');
+ 'V116 draft preview must keep in-session cursor only, never reload stale Master bookmarks');
 assert(script.includes('function openStudy(id,resume=false)') &&
  script.includes('resume?transientCursors.get(id):null') &&
  script.includes('index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0'),
@@ -1609,4 +1614,4 @@ assert.equal(failedAudioPauses,2);
 assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
-console.log(JSON.stringify({status:'PASS',preview:'1877 source-pinned CG-MASTER V111 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+console.log(JSON.stringify({status:'PASS',preview:'1877 source-pinned CG-MASTER V116 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
