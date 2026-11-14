@@ -33,6 +33,7 @@ on:
       - 'rebuild-preview/scene1341-readonly/index.html'
       - 'tools/integration/test-scene1341-readonly-mobile-demo.mjs'
       - 'tools/integration/test-scene1341-v111-master-loader.mjs'
+      - 'tools/integration/test-scene1341-v155-multivariant-evidence.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v123-sc0011-loader.mjs'
@@ -98,5 +99,6 @@ jobs:
         run: |
           node --check rebuild-preview/scene1341-readonly/scene1341-v154-local-kaikki-ipa-overlay.mjs
           node tools/integration/test-scene1341-v111-master-loader.mjs
+          node tools/integration/test-scene1341-v155-multivariant-evidence.mjs
       - name: Validate isolated read-only mobile demo
         run: node tools/integration/test-scene1341-readonly-mobile-demo.mjs
