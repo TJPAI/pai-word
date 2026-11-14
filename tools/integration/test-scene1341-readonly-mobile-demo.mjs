@@ -151,11 +151,11 @@ assert(script.includes("set('expression',r.expression);scheduleQuestionFit();ren
 assert(script.includes("set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义')") &&
  !script.includes("set('cue',r.question.cue_zh)"),
  'question face must not leak Master answer meaning before reveal');
-assert(script.includes('items.length!==1907') && script.includes('countByScene.size!==11') &&
- script.includes("countByScene.get('SC50-0011')!==30") &&
- script.includes('scene1341-v118-sc0011-loader.mjs') &&
- script.includes('MASTER_V118_INTEGRITY_OR_DUPLICATE_BLOCK'),
- 'V118 first 30 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
+assert(script.includes('items.length!==1957') && script.includes('countByScene.size!==11') &&
+ script.includes("countByScene.get('SC50-0011')!==80") &&
+ script.includes('scene1341-v120-sc0011-loader.mjs') &&
+ script.includes('MASTER_V120_INTEGRITY_OR_DUPLICATE_BLOCK'),
+ 'V120 first 80 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
 assert(script.includes('建设中 Master 测试'));
 assert(!script.includes('pai-word-preview-ku-durable'));
 
@@ -1618,4 +1618,4 @@ assert.equal(failedAudioPauses,2);
 assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
-console.log(JSON.stringify({status:'PASS',preview:'1907 source-pinned CG-MASTER V116+V118 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+console.log(JSON.stringify({status:'PASS',preview:'1957 source-pinned CG-MASTER V116+V120 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
