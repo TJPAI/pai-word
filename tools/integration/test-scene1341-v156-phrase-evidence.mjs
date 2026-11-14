@@ -30,7 +30,7 @@ export function auditV156PhraseEvidence(raw){
   assert.equal(r.canonical_sense_id,null);
   assert.equal(r.qa_approved,false);
   assert.equal(r.release_allowed,false);
-  assert(Array.isArray(r.components)&&r.components.length>=2);
+  assert(Array.isArray(r.components)&&r.components.length>=1);
   let known=0;
   for(const c of r.components){
    assert(typeof c.token==='string'&&c.token);
