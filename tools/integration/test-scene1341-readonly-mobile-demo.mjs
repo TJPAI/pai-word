@@ -165,7 +165,9 @@ assert(script.includes('items.length!==2873') && script.includes('countByScene.s
  script.includes("countByScene.get('SC50-0013')!==245") &&
  script.includes("countByScene.get('SC50-0014')!==243"),
  'V128 all 255 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
-assert(script.includes('建设中 Master 测试'));
+assert(script.includes('当前完整学习草稿14场景、2,873条') &&
+ script.includes('MASTER_V171_MAIN_LEARNING_IPA_COUNT_DRIFT'),
+ 'main status must count V171 paired Master learning cards instead of obsolete V154-only wording');
 assert(script.includes('scene1341-v153-archived-ipa-overlay.mjs')&&
  script.includes('MASTER_V153_PROVENANCE_OR_COUNT_MISMATCH')&&
  script.includes('coverage.archivedKaikkiProvisional!==8')&&
