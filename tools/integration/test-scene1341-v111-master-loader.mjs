@@ -105,6 +105,10 @@ assert.equal(next.items.filter(x=>x.scene_id==='SC50-0012').length,253);
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0013').length,245);
 assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,100);
 assert(next.items.every(x=>x.question.ipa===null&&x.production_release_allowed===false));
+assert.equal(next.items.filter(x=>x.scene_id==='SC50-0014').length,100,
+ 'pet care is partial 100/243, never full-scene authored coverage');
+assert(next.items.every(x=>x.question.ipa_status==='MISSING_VERIFIED_KAIKKI_IPA'),
+ 'the three new Master scenes must not invent any native IPA');
 const joined=[...prior,...next.items];
 assert.equal(new Set(joined.map(x=>x.scene_ku_id)).size,2730,'cross-batch KU identities must not collide');
 assert.equal(new Set(joined.map(x=>x.master_record_id)).size,2730,'source Master identity must be globally unique');
