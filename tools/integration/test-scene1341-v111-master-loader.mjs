@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
-import {loadScene1341V120Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs';
+import {loadScene1341V123Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v123-sc0011-loader.mjs';
 import {loadScene1341V118Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v118-sc0011-loader.mjs';
+import {loadScene1341V120Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v120-sc0011-loader.mjs';
 
 const snap=await loadScene1341MasterTest();
 assert.equal(snap.total,1877);
@@ -36,8 +37,20 @@ for(const card of snap.items){
   assert.equal(card.question.ipa_source,null);
  }
 }
-const extra=await loadScene1341V120Test();
-assert.equal(extra.total,80);
+const extra=await loadScene1341V123Test();
+assert.equal(extra.total,130);
+const previous80=await loadScene1341V120Test();
+assert.equal(previous80.total,80);
+const merged130=new Map(extra.items.map(x=>[x.master_final_row,x]));
+for(const row of previous80.items){
+ const updated=merged130.get(row.master_final_row);
+ assert(updated,'V123 missing preserved V120 row '+row.master_final_row);
+ assert.equal(updated.master_record_id,row.master_record_id);
+ assert.equal(updated.expression,row.expression);
+ assert.deepEqual(updated.question,row.question);
+ assert.deepEqual(updated.answer,row.answer);
+ assert.equal(updated.production_release_allowed,false);
+}
 const original30=await loadScene1341V118Test();
 assert.equal(original30.total,30);
 const mergedByRow=new Map(extra.items.map(r=>[r.master_final_row,r]));
@@ -67,6 +80,6 @@ for(const row of extra.items){
  assert.equal(row.question.ipa_status,'MISSING_VERIFIED_KAIKKI_IPA');
  assert.equal(row.question.cue_zh,row.answer.meaning_zh);
 }
-assert.equal(snap.total+extra.total,1957);
+assert.equal(snap.total+extra.total,2007);
 assert.equal(snap.scenes+extra.scenes,11);
-console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:11,combinedTestCards:1957,productionRelease:snap.productionRelease}));
+console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:11,combinedTestCards:2007,productionRelease:snap.productionRelease}));
