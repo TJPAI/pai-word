@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {loadScene1341MasterTest} from '../../rebuild-preview/scene1341-readonly/scene1341-master-preview-loader.mjs';
+import {loadScene1341V118Test} from '../../rebuild-preview/scene1341-readonly/scene1341-v118-sc0011-loader.mjs';
 
 const snap=await loadScene1341MasterTest();
 assert.equal(snap.total,1877);
@@ -34,4 +35,24 @@ for(const card of snap.items){
   assert.equal(card.question.ipa_source,null);
  }
 }
-console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,productionRelease:snap.productionRelease}));
+const extra=await loadScene1341V118Test();
+assert.equal(extra.total,30);
+assert.equal(extra.scenes,1);
+assert.equal(extra.formalCertification,false);
+assert.equal(extra.productionRelease,false);
+assert.equal(extra.canWriteSrs,false);
+const oldIds=new Set(snap.items.map(x=>x.master_record_id));
+const oldRows=new Set(snap.items.map(x=>x.master_final_row));
+for(const row of extra.items){
+ assert.equal(row.scene_id,'SC50-0011');
+ assert(!oldIds.has(row.master_record_id));
+ assert(!oldRows.has(row.master_final_row));
+ assert.equal(row.scene_ku_id,row.master_record_id);
+ assert.equal(row.production_release_allowed,false);
+ assert.equal(row.question.ipa,null);
+ assert.equal(row.question.ipa_status,'MISSING_VERIFIED_KAIKKI_IPA');
+ assert.equal(row.question.cue_zh,row.answer.meaning_zh);
+}
+assert.equal(snap.total+extra.total,1907);
+assert.equal(snap.scenes+extra.scenes,11);
+console.log(JSON.stringify({status:'PASS',source:snap.source,records:snap.total,scenes:snap.scenes,ipaVerified:snap.verifiedNativeIpa,ipaProvisional:snap.provisionalNativeIpa,ipaPending:snap.ipaPendingAdjudication,ipaMissing:snap.total-checked.length,blocked:snap.excludedBlocked,v118NewDrafts:extra.total,combinedTestScenes:11,combinedTestCards:1907,productionRelease:snap.productionRelease}));
