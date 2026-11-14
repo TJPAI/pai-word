@@ -162,11 +162,19 @@ assert(script.includes('items.length!==2873') && script.includes('countByScene.s
  script.includes("countByScene.get('SC50-0014')!==243"),
  'V128 all 255 SC50-0011 Master cards must be source-verified and separate from 1877 V116 cards');
 assert(script.includes('建设中 Master 测试'));
+assert(script.includes('scene1341-v153-archived-ipa-overlay.mjs')&&
+ script.includes('MASTER_V153_PROVENANCE_OR_COUNT_MISMATCH')&&
+ script.includes('coverage.archivedKaikkiProvisional!==8')&&
+ script.includes("question?.ipa_status==='ARCHIVED_KAIKKI_SINGLE_PHONEMIC_TEST_ONLY'")&&
+ script.includes("archived?question.ipa+'（历史Kaikki·测试未认证）'")&&
+ script.includes("archived?'archived-kaikki-provisional-test'"),
+ 'V153 archive-IPA overlay must be explicitly tagged and never silently promoted');
+
 assert(html.includes('id="master-ipa-coverage"') &&
  script.includes("import('./scene1341-master-coverage.mjs')") &&
- script.includes('coverage.selectedTestIpa!==202') &&
- script.includes('coverage.missingSelectedIpa!==2671') &&
- script.includes('coverage.unselectedVariants!==412') &&
+ script.includes('coverage.selectedTestIpa!==210') &&
+ script.includes('coverage.missingSelectedIpa!==2663') &&
+ script.includes('coverage.unselectedVariants!==437') &&
  script.includes('coverage.formallyReady!==0') &&
  script.includes('完整可发布词卡 0'),
  'settings must report source-derived question IPA evidence instead of conflating authored answers with full Ready cards');
