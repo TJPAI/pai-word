@@ -1,4 +1,4 @@
-/* Source-executed SC1341 V168–V172 integration test: raw Git blob, identity, V165, no SRS. */
+/* Source-executed SC1341 V168–V174 integration test: raw Git blob, identity, V165, no SRS. */
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
@@ -13,24 +13,27 @@ assert(home.includes('question-ipa-test.html'),'standalone test must be discover
 const source=fs.readFileSync('rebuild-preview/scene1341-readonly/scene1341-v165-ipa-learner-display.js','utf8');
 const ctx={window:{}};vm.runInNewContext(source,ctx);
 assert.equal(ctx.window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA('/ɹɡt͡ʃd͡ʒ/'),'/rgtʃdʒ/');
-assert.equal(QUESTION_SHARDS.length,13);
+assert.equal(QUESTION_SHARDS.length,21);
 assert(QUESTION_SHARDS.every(s=>/^[a-f0-9]{40}$/.test(s.blob)), 'every pinned source must have a complete Git SHA-1');
 assert.equal(new Set(QUESTION_SHARDS.map(s=>s.file)).size,13, 'shard files unique');
 assert.equal(QUESTION_SHARDS[0].first,1);
 assert.equal(QUESTION_SHARDS.at(-1).last,39);
 
-assert.equal(QUESTION_SHARDS.reduce((n,x)=>n+x.count,0),9157);
+assert.equal(QUESTION_SHARDS.reduce((n,x)=>n+x.count,0),15078);
 const all=await auditAllQuestionShards();
-assert.deepEqual(all,{records:9157,scenes:39,selectedIPA:8968,missingIPA:189,formalReady:0,canWriteSrs:false});
+assert.deepEqual(all,{records:15078,scenes:70,selectedIPA:14736,missingIPA:342,formalReady:0,canWriteSrs:false});
 const first=await loadQuestionScene('SC50-0001');
 assert.equal(first.records.length,294);
 assert.equal(first.selectedIPA,294);
 assert.equal(first.records[0].question_page.english_expression,'wake up');
-const last=await loadQuestionScene('SC50-0039');
+const last=await loadQuestionScene('SC50-0070');
 assert(last.records.length>0);
 assert.equal(last.releaseAllowed,false);
 assert.equal(last.canWriteSrs,false);
 const missing=QUESTION_SHARDS.reduce((n,x)=>n+x.count,0)-all.selectedIPA;
-assert.equal(missing,189);
-await assert.rejects(loadQuestionScene('SC50-0040'),/NOT_IN_QUESTION_TEST/);
-console.log(JSON.stringify({status:'PASS',...all,sourceShards:13,releaseAllowed:false,srsWrites:0,scene500Writes:0}));
+assert.equal(missing,342);
+assert.equal(QUESTION_SHARDS.filter(x=>x.compressed).length,12,'V172–V174 must use repaired gzip blobs');
+assert(QUESTION_SHARDS.every(x=>x.blob.length===40),'all source Git blobs must be full SHA-1');
+assert(QUESTION_SHARDS.every((x,i)=>i===0||QUESTION_SHARDS[i-1].last+1===x.first),'70 scenes contiguous');
+await assert.rejects(loadQuestionScene('SC50-0071'),/NOT_IN_QUESTION_TEST/);
+console.log(JSON.stringify({status:'PASS',...all,sourceShards:21,releaseAllowed:false,srsWrites:0,scene500Writes:0}));
