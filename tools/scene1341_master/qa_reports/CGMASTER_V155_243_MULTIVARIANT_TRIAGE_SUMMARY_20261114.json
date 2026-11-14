@@ -1,0 +1,30 @@
+{
+  "version": "V155",
+  "source": "V154 996 card Kaikki exact-headword crosswalk",
+  "source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "scope": {
+    "scene_ids": [
+      "SC50-0011",
+      "SC50-0012",
+      "SC50-0013",
+      "SC50-0014"
+    ],
+    "multivariant_rows": 243
+  },
+  "results": {
+    "AMERICAN_ACCENT_TEST_CANDIDATE_NOT_READY": 142,
+    "HOLD_MULTI_IPA": 101
+  },
+  "reason_counts": {
+    "GENERAL_AMERICAN_UNIQUE_REGION_EVIDENCE": 111,
+    "US_UNIQUE_REGION_EVIDENCE": 31,
+    "NO_UNAMBIGUOUS_AMERICAN_REGION_EVIDENCE": 51,
+    "MULTIPLE_US_PRONUNCIATIONS_REQUIRE_POS_SENSE_REVIEW": 48,
+    "GA_US_REGION_CONFLICT": 2
+  },
+  "formal_ready": 0,
+  "release_allowed": false,
+  "script": "tools/scene1341_master/v155_ipa_multivariant_triage.py",
+  "input": "https://drive.google.com/file/d/1oUuG1jcNZvSvRrA-97S9vF4T-OQ82Akv/view",
+  "notes": "142 region-unique candidates are not lexicographic Sense/POS-certified; selection is regional evidence only, not confirmed pronunciation for target meaning. Preserve all 243 raw variants, POS and provenance. V154 91 candidates may overlap V153."
+}
