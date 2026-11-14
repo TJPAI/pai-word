@@ -352,7 +352,7 @@ async function load(){
      v153.productionRelease!==false||v153.canWriteSrs!==false)
    throw Error('MASTER_V153_PROVENANCE_OR_COUNT_MISMATCH');
   const v154=await v154Module.applyV154LocalKaikkiTestOverlay(v153.items);
-  if(v154.sourceCandidates!==91||v154.newlySelected+v154.retainedSelected+v154.variantBlocked!==91||
+  if(v154.sourceCandidates!==91||v154.newlySelected!==83||v154.retainedSelected!==8||v154.variantBlocked!==0||
      v154.formalCertification!==false||v154.productionRelease!==false||v154.canWriteSrs!==false)
    throw Error('MASTER_V154_SOURCE_OR_RELEASE_DRIFT');
   items=[...v154.items]; // disposable Master QA test, no formal SRS write or Scene500 mutation.
@@ -374,7 +374,7 @@ async function load(){
   const countByScene=new Map();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
   if(countByScene.size!==14||items.length!==2873||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410||countByScene.get('SC50-0011')!==255||countByScene.get('SC50-0012')!==253||countByScene.get('SC50-0013')!==245||countByScene.get('SC50-0014')!==243)throw Error('MASTER_MANIFEST_SOURCE_EXACT_COUNT_MISMATCH');
-  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116+V128+V153+V154 Master 词卡；第11场景255/255条作者草稿；第12场景253/253条、第13场景245/245条，第14场景243/243条答案草稿（4条网页证据测试IPA，239条待补，正式认证0），161条旧来源待裁决不开放；测试记录不保留，认证后置。');
+  set('scope','建设中 Master 测试：1,341 场景目录；V105 前100场景已建立来源/Kaikki证据，当前 '+countByScene.size+' 个场景有 '+items.length+' 条 V116+V128+V153+V154 Master 词卡；第11场景255/255条作者草稿；第12场景253/253条、第13场景245/245条，第14场景243/243条答案草稿（V154测试 IPA 已接入，正式认证0），161条旧来源待裁决不开放；测试记录不保留，认证后置。');
   set('status','Scene1341 目录 1,341 · V105 来源证据100场景 · V116+V128+V153+V154 测试词卡 '+items.length+'（未认证）');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
