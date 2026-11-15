@@ -55,3 +55,17 @@ export function resolveFirstReviewLabel(card,trustedReviews){
  return Object.freeze({visible:true,label:valid?'1审':'待审',
   verdict:valid?proof.verdict:null,reviewed:valid});
 }
+
+/* Resolve the author-only inspector against the SAME separately fetched,
+ * SHA-bound independent CG-QA index as normal cards. A review is not PASS.
+ */
+export function resolveEditorialFirstReview(row,trustedReviews){
+ const result=resolveFirstReviewLabel({
+  scene_id:row?.scene_id,
+  master_record_id:row?.record_id,
+  master_content_sha256:row?.content_sha256
+ },trustedReviews);
+ return Object.freeze({stage:result.reviewed?'1审':'待审',
+  verdict:result.reviewed?result.verdict:null,
+  firstReviewed:result.reviewed,formalReady:false,srsEligible:false});
+}
