@@ -657,8 +657,8 @@ function renderHome(){
 }
 // Full 1,341-scene Master contract: resolve one immutable source snapshot,
 // then load only the chosen scene. CG-MASTER publishes content; CG-QA owns 1审.
-// V247 is currently a Drive-only ZIP: until its Git scene index is published,
-// this path stays disabled without pretending the missing scenes are playable.
+// V252 full-scene Git index is published. Keep validation fail-closed;
+// no source association is a certified Sense or eligible SRS card.
 let masterSceneSnapshot=null,masterSceneAdapter=null,masterSceneLoading=new Set();
 async function initializeFullMasterSceneIndex(){
  try{
@@ -1058,7 +1058,7 @@ function demoGrade(grade){
  autoBrowse.pause();
  phaseController.choose(grade);
 }
-$('back').addEventListener('click',home);$('continue').addEventListener('click',()=>openStudy(lastScene,true));
+$('back').addEventListener('click',home);$('continue').addEventListener('click',()=>void openMasterScene(lastScene,true));
 $('search').addEventListener('input',e=>{filter=e.target.value;catalogVisible=false;recRequest++;recPending=false;recSubmitted=false;recRows=null;recError='';resultPage=0;renderHome()});
 $('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
 $('browse').addEventListener('click',()=>{
