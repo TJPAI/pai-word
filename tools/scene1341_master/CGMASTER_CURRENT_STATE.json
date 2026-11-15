@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "837e953d2fdd9bd1c6d66842cf576527d626033f",
-  "version": "V234",
+  "verified_base_head": "830c63c7ac8675b6bf8892b0d3f7b1455f77075a",
+  "version": "V235",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -365,6 +365,23 @@
       "path": "tools/scene1341_master/qa_reports/CGMASTER_V234_ALL1241_L1_L2_SCENE_TEST_COVERAGE_20261115.json",
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v235_reused_author_draft_scene_coverage": {
+      "scenes": [
+        "SC50-0011",
+        "SC50-0012",
+        "SC50-0013",
+        "SC50-0014"
+      ],
+      "rows": 996,
+      "by_scene": {
+        "SC50-0011": 255,
+        "SC50-0012": 253,
+        "SC50-0013": 245,
+        "SC50-0014": 243
+      },
+      "status": "L3_AUTHOR_DRAFT_UNREVIEWED",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -409,6 +426,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V235: reuse verified historical scene-specific paired draft files for SC0006..0010 and beyond, no duplicate authoring; scale scene coverage by bulk transformations and maintain source provenance.",
     "V234: scale scene-first source-row L1 test coverage to all 1341 scenes from authoritative Master without modifying frozen original; iterative Kaikki enrichment L2, teaching L3, CG-QA L4. Keep scene-first progressive test feed, no fake gloss/IPA.",
     "V233: CG-MAIN can integrate V233 as test-only Kaikki-native cards; CG-QA must independently review before 1审. Continue semantic adjudication of remaining 292 multi-sense HOLD and 691 no-exact-entry.",
     "V232: integrate 131 provenance-relinked native sense gloss/example candidates into test Master, retaining pending independent CG-QA; then review 292 unresolved with semantic cues.",
