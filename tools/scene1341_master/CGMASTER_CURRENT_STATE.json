@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "5fac3555da9171be9018a290d76110df5b96f0d5",
-  "version": "V245_SOURCE_CANDIDATE_STAGED",
+  "verified_base_head": "8a3c919c367ce42a379b639f287385aaf21bd1f7",
+  "version": "V246_SOURCE_CANDIDATE_STAGED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -541,6 +541,28 @@
       "qa_stage": "待审",
       "release_allowed": false,
       "manifest": "tools/scene1341_master/qa_reports/v245_source_candidate/CGMASTER_V245_MANIFEST.json"
+    },
+    "v246_source_candidate_stage": {
+      "scenes": 20,
+      "records": 4056,
+      "from": "SC50-0144",
+      "to": "SC50-0163",
+      "source_files": [
+        {
+          "drive_id": "1yQFRn7XtdvpXyyP9o1ZE7jngIEzsuxgL",
+          "name": "CG_ENLEX_NATIVE_CHATGPT_BACKFILL_0144_0153_ENHANCED.json",
+          "scenes": "SC50-0144..0153"
+        },
+        {
+          "drive_id": "1MXlO-wFwNgYS9VWrQVtmGcvV890qzGb6",
+          "name": "CG_ENLEX_NATIVE_CHATGPT_BACKFILL_0154_0163_ENHANCED.json",
+          "scenes": "SC50-0154..0163"
+        }
+      ],
+      "canonical_record_id_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "manifest": "tools/scene1341_master/qa_reports/v246_source_candidate/CGMASTER_V246_MANIFEST.json"
     }
   },
   "sources": {
@@ -550,7 +572,14 @@
     "source_evidence_library": "/PAI Word/CG-MASTER/CGMASTER_V198_SC0001_0005_FRESH_KAIKKI_EXACT_RAW_EVIDENCE_20261115.json",
     "frozen_identity_ledger_library": "/PAI Word/CG-MASTER/CGMASTER_V198_SC0001_0005_FRESH_SOURCE_IDENTITY_QA_LEDGER_20261115.jsonl",
     "reviewed_v13_immutable": true,
-    "original_master_immutable": true
+    "original_master_immutable": true,
+    "final_master_drive_file_id": "1bT_STgfNsJQA5v5x-8bP4T4DH9_eLNaF",
+    "final_master_drive_metadata_verified": {
+      "name": "PAI_Word_Scene1341_Sense_Scene_MASTER_FINAL.csv",
+      "size_bytes": 115664055,
+      "metadata_status": "EXACT_FILE_LOCATED_SIZE_VERIFIED_SHA256_FROM_PRIOR_MU_MASTER_REPORT_NOT_RECOMPUTED_THIS_TURN",
+      "expected_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986"
+    }
   },
   "qa": {
     "branch": "cg-qa-enlex-review-20261026",
@@ -585,9 +614,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Expand candidate L1 SC0144 onward using Drive source-files ledger, preserving provenance and isolation.",
-    "Locate frozen FINAL Master bytes and match SHA256 before any canonical Record ID promotion.",
-    "Expand native Kaikki L2 and complete L3 separately; independent CG-QA exact-content certification required for 1审."
+    "Directly read verified Drive FINAL Master ID 1bT_STgfNsJQA5v5x-8bP4T4DH9_eLNaF; recompute raw SHA256 before canonical row-identity linking.",
+    "Expand L1 candidate coverage SC0164 onward using Drive source ledger, keeping candidate-only isolation.",
+    "Validate source rows and audit each page L2/L3, independent CG-QA exact-content 1审 only."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
