@@ -198,13 +198,16 @@
       "scenes": 1341,
       "source_associations": 230289,
       "lazy_scene_loading": true,
-      "qa_first_review": "CG-QA independent sidecar only; never use Master claimed review",
+      "qa_first_review": "CG-QA independently signed exact record+content SHA, now eligible across SC0001–SC1341; unreviewed=待审",
       "unapproved_ipa": "HOLD",
       "srs": false,
       "source_current": "CG-MASTER V247 ZIP in Google Drive only, Git production scene files and index NOT YET PUBLISHED",
       "runtime_status": "Generic loader and navigation committed; full-scene activation awaits CG-MASTER publishing schema-v1 index/files, CI and browser tests not yet confirmed",
       "fallback": "legacy verified study cards remain available if new scene source missing",
-      "future_content_changes": "CG-MASTER publishes new index and scene data on branch; frontend unchanged"
+      "future_content_changes": "CG-MASTER publishes new index and scene data on branch; frontend unchanged",
+      "inline_pos": "No duplicate POS when meaning_display already begins with POS abbreviation",
+      "master_content_sha256": "Only accept 64-hex SHA from Master row; never trust Master qa_label",
+      "latest_verified_master": "V247 Git index missing; no full production activation"
     }
   },
   "ci": {
