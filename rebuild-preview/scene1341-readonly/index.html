@@ -137,7 +137,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
     <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
- <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
+ <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><span id="first-review-stage" class="study-batch-line" aria-live="polite" hidden>待审</span><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
  <div class="word-hero" id="hero">
    <div class="word-line"><div class="word" id="expression">加载中</div></div>
    <div class="ipa-line"><span class="ipa" id="ipa" aria-label="音标"></span><button class="speak-btn" id="speak" data-word-audio aria-label="播放单词">🔊</button></div>
@@ -177,6 +177,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let activeMasterFeed=null,sceneFeedRequest=0,sceneFeedCache=new Map();
+let resolveQaStage=()=>({visible:true,label:'待审',verdict:null,reviewed:false});
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null,ipaSequence=0;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
@@ -334,6 +335,7 @@ async function showPreviewBuildVersion(){
 
 async function load(){
  try{
+  resolveQaStage=(await import('./scene1341-first-review-stage.mjs')).resolveFirstReviewLabel;
   const [catalogRaw,qa,extra,next,coverageModule,overlayModule,v154Module]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
     import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
@@ -649,6 +651,12 @@ function renderQuestionIPA(card){
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
+ const qaStage=resolveQaStage(r),stageNode=$('first-review-stage');
+ stageNode.hidden=!qaStage.visible;
+ if(qaStage.visible){
+  stageNode.textContent=qaStage.label;
+  stageNode.title=qaStage.reviewed?'CG-QA已完成该内容版本一审；结论：'+qaStage.verdict+'；不代表正式批准':'该内容版本尚无匹配的CG-QA独立一审证据';
+ }
  const prefs=readOnlyPrefs.snapshot();
  // Combined opt-in exercises the true native question and answer together.
  // The default preview and independent one-sided A/B modes stay unchanged.
