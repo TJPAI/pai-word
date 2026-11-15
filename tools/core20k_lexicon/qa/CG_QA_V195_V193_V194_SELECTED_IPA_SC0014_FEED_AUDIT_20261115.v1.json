@@ -1,0 +1,162 @@
+{
+  "schema": "cg-qa-v195-v193-v194-v195-source-integrity-independent-followup-v1",
+  "date": "2026-11-15",
+  "role": "CG-QA",
+  "target": "TJPAI/pai-word",
+  "formal_certification": "DEFERRED",
+  "baseline_qa_commit": "0b4b6761589af012343b873f69b83f6b86106345",
+  "authority": {
+    "master_branch": "cg-master-kaikki-evidence-intake-20261111",
+    "v190_source_commit": "acda081836511707bc12d8360fa0472ff12401b8",
+    "v171_sc0014_blob": "b70377880c502284f9d5efffbed5d7b94ec25323",
+    "v190_source_zip": "https://drive.google.com/file/d/1zjwIUm0C_fo5GSR3BvnQDXcHD8U8Bwh5/view",
+    "v193_quarantine_blob": "711e4adb1a767f986139cd038457b7ce854337d2",
+    "v194_report_blob": "e9917b1fb6d69ad51dd6d2bff31c619ad66981c0",
+    "canonical_feed_blob": "91481a2d5ee3fd2ddcfa50251c7bf4ceaf4f72cd",
+    "candidate_feed_blob": "e946d49e8e0019d1b680b7f77b9cee42ca19b78e"
+  },
+  "independent_check_take_off": {
+    "source_final_row": 506,
+    "record_id": "SC1341-FINAL-SRC-a0b391ca46f5d231e41d1e8205d62ccd",
+    "scene_id": "SC50-0003",
+    "expression": "take off",
+    "target_meaning_zh": "脱掉",
+    "actual_selected_ipa": "/ˌpʊt ˈɒn/",
+    "actual_ipa_status": "KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY",
+    "actual_candidate_gloss_en": "Nonstandard spelling of takeoff.",
+    "actual_candidate_pos": "noun",
+    "independent_result": "CONFIRMED_P0_SELECTED_IPA_WRONG_EXPRESSION_AND_SENSE_POS_MISMATCH",
+    "triage_action": "Identity-pinned display suppression of selected IPA only; preserve answer and mark HOLD; no guessed replacement",
+    "method": "Reopened original V190 ZIP; verified 3/3 gzip SHA256 and Git-object SHA1 against V190 manifest, parsed exact source row."
+  },
+  "independent_check_sc0014": {
+    "source_blob_sha1": "b70377880c502284f9d5efffbed5d7b94ec25323",
+    "source_final_row_range": [
+      3133,
+      3375
+    ],
+    "source_count": 243,
+    "unique_record_ids": 243,
+    "unique_rows": 243,
+    "rows_contiguous": true,
+    "scene_count": 1,
+    "expression_nonempty": 243,
+    "cue_zh_nonempty": 243,
+    "meaning_zh_nonempty": 243,
+    "bilingual_example_pairs": 243,
+    "collocations_nonempty": 243,
+    "usage_note_nonempty": 243,
+    "selected_test_ipa_nonempty": 237,
+    "selected_test_ipa_missing": 6,
+    "question_page_complete_true": 237,
+    "answer_page_complete_true": 243,
+    "canonical_sense_ids_nonempty": 0,
+    "source_header_question_ipa_missing": 17,
+    "source_header_answer_draft_complete": 996,
+    "header_scope_mismatch_confirmed": true,
+    "missing_ipa": [
+      {
+        "source_final_row": 3160,
+        "record_id": "SC1341-FINAL-SRC-a6eb0d699c1ed8953b3d4fe123e61708",
+        "expression": "deworming"
+      },
+      {
+        "source_final_row": 3216,
+        "record_id": "SC1341-FINAL-SRC-f34b91f4cecb801c82faabde21a890a3",
+        "expression": "avoid overfeeding"
+      },
+      {
+        "source_final_row": 3232,
+        "record_id": "SC1341-FINAL-SRC-edf79bb8f1dfa2a4058f9ad1f4b2cf1f",
+        "expression": "unclip the leash"
+      },
+      {
+        "source_final_row": 3277,
+        "record_id": "SC1341-FINAL-SRC-079917cdea5b265c81c12403d45e599d",
+        "expression": "matted fur"
+      },
+      {
+        "source_final_row": 3290,
+        "record_id": "SC1341-FINAL-SRC-e00e17c0163b4e9ddb03bad1decf1fd1",
+        "expression": "microchipped"
+      },
+      {
+        "source_final_row": 3368,
+        "record_id": "SC1341-FINAL-SRC-e761a14d944d5197b593af5af7d79a45",
+        "expression": "follow aftercare instructions"
+      }
+    ],
+    "status_breakdown": {
+      "KAIKKI_NATIVE_EXACT_SINGLE_PHONEMIC_TEST_ONLY": 30,
+      "CMU_TOKEN_COMPOSED_PREVIEW_ONLY": 156,
+      "CMU_PREVIEW_WITH_KAIKKI_MULTIVARIANT_HOLD": 36,
+      "KAIKKI_COMPONENT_COMPOSED_PREVIEW_ONLY_NOT_NATIVE_PHRASE": 6,
+      "CMU_EXACT_LEXEME_PREVIEW_ONLY": 9,
+      "IPA_MISSING_REVIEW_REQUIRED": 6
+    },
+    "source_release_allowed_count": 0,
+    "source_chatgpt_PASS_count": 0,
+    "source_muse_PASS_count": 0
+  },
+  "feed_contract_check": {
+    "canonical_batches": 1,
+    "canonical_rows": [
+      1,
+      3000
+    ],
+    "canonical_version": "V190",
+    "candidate_batches": 2,
+    "candidate_rows": [
+      [
+        1,
+        3000
+      ],
+      [
+        3001,
+        6000
+      ]
+    ],
+    "candidate_batch1_exactly_equals_canonical_batch1": true,
+    "candidate_batch2_version": "V180",
+    "candidate_batch2_records": 3000,
+    "candidate_batch2_shards": 4,
+    "candidate_batch2_incomplete_answer_page": true,
+    "candidate_batch2_examples_filled_reported": 0,
+    "candidate_batch2_test_ipa_filled_reported": 1162,
+    "candidate_batch2_status": "INCOMPLETE_PAGE_CONTENT_SOURCE_ONLY",
+    "canonical_formal_ready_zero": true,
+    "candidate_formal_ready_zero": true,
+    "canonical_srs_disabled": true,
+    "candidate_srs_disabled": true,
+    "scope": "Manifest/source claims validated and matched V195 coverage report. Original V180 second-batch compressed bytes were not independently downloaded/decoded in this QA cycle; do not claim 4/4 second batch hashes independently checked."
+  },
+  "open_risks": [
+    {
+      "id": "QA-V191-IPA-UP-COMPONENT",
+      "affected_rows": 105,
+      "state": "OPEN_CANDIDATE_EVIDENCE_RISK_NOT_105_WRONG_SELECTED_IPAS"
+    },
+    {
+      "id": "QA-V192-POS-GLOSS",
+      "affected_rows": 22,
+      "state": "OPEN_13_P0_9_P1"
+    },
+    {
+      "id": "V193-SELECTED-IPA-ROW506",
+      "affected_rows": 1,
+      "state": "CONFIRMED_P0_NEEDS_DISPLAY_QUARANTINE_CHECK_AND_SOURCE_REEXTRACTION"
+    },
+    {
+      "id": "V194-SC0014-IPA-GAPS",
+      "affected_rows": 6,
+      "state": "CONFIRMED_SOURCE_MISSING_NEEDS_SOURCE_BACKED_REPAIR"
+    }
+  ],
+  "owners": {
+    "CG_MASTER": "IPA native evidence correction; exact Sense alignment; V171 metadata scoped correction in new version; second-batch author-safe merge + canonical promotion only when complete",
+    "CG_MAIN": "Identity-matched row506 rendering suppression without modifying source; candidate V180 never promoted as full cards",
+    "CG_QA": "Independent follow-up and noncertifying QA until formal dual AI gates"
+  },
+  "release_policy": "NO_SOURCE_EDIT_NO_SRS_NO_READY_NO_GLOBAL_SENSE_ID_INVENTION",
+  "outcome": "PASS_STRUCTURAL_SC0014_SOURCE; CONFIRMED_SELECTED_IPA_P0_ROW506; HOLD_SECOND_BATCH_CANDIDATE"
+}
