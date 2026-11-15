@@ -132,6 +132,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>Master 教学数据（刷新即检查最新交付）</span><button id="master-refresh" type="button" class="home-quiet-btn">检查最新 Master</button></div>
    <p id="master-live-version" class="demo-tip" aria-live="polite">正在检查 CG-MASTER 最新数据…</p>
    <p id="master-live-feed-status" class="demo-tip" aria-live="polite">正在检查全场景增量 Feed…</p>
+   <p id="phase1-review-source-status" class="demo-tip" aria-live="polite">正在检查CG-QA独立一审记录…</p>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
     <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
@@ -178,6 +179,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let activeMasterFeed=null,sceneFeedRequest=0,sceneFeedCache=new Map();
 let resolveQaStage=()=>({visible:true,label:'待审',verdict:null,reviewed:false});
+let independentQaReviews=new Map(),qaReviewSourceStatus='未发布';
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null,ipaSequence=0;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
@@ -335,7 +337,18 @@ async function showPreviewBuildVersion(){
 
 async function load(){
  try{
-  resolveQaStage=(await import('./scene1341-first-review-stage.mjs')).resolveFirstReviewLabel;
+  const qaModule=await import('./scene1341-first-review-stage.mjs');
+  resolveQaStage=qaModule.resolveFirstReviewLabel;
+  // Only an independent QA-branch review sidecar may authorize "1审".
+  try{
+   const qaSnapshot=await qaModule.fetchIndependentFirstReviews();
+   independentQaReviews=qaSnapshot.index;
+   qaReviewSourceStatus='独立QA '+qaSnapshot.commit.slice(0,12)+' · '+qaSnapshot.index.size+'条一审';
+  }catch(qaError){
+   independentQaReviews=new Map();
+   qaReviewSourceStatus='独立QA一审索引未发布或不可用，当前均显示待审';
+  }
+  set('phase1-review-source-status',qaReviewSourceStatus);
   const [catalogRaw,qa,extra,next,coverageModule,overlayModule,v154Module]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
     import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
@@ -651,7 +664,7 @@ function renderQuestionIPA(card){
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
- const qaStage=resolveQaStage(r),stageNode=$('first-review-stage');
+ const qaStage=resolveQaStage(r,independentQaReviews),stageNode=$('first-review-stage');
  stageNode.hidden=!qaStage.visible;
  if(qaStage.visible){
   stageNode.textContent=qaStage.label;
