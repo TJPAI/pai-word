@@ -1,0 +1,23 @@
+// CG-REC checkpoint structural and policy validator. No network, no gold access.
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const p=new URL('../CG_REC_CHECKPOINT.json',import.meta.url);
+const x=JSON.parse(fs.readFileSync(p,'utf8'));
+assert.equal(x.schema,'pai-word-cg-rec-checkpoint-v1');
+assert.equal(x.role,'CG-REC');
+assert.equal(x.branch,'scene500-recommendation-dev');
+assert.match(x.checkpoint_parent_head,/^[a-f0-9]{40}$/);
+assert.match(x.source_pins.scene1341_source_commit,/^[a-f0-9]{40}$/);
+assert.match(x.source_pins.scene1341_manifest_blob,/^[a-f0-9]{40}$/);
+assert.equal(x.source_pins.catalog_scenes,1341);
+assert.equal(x.source_pins.ranked_expressions,19371);
+assert.equal(x.safety.stable_hybrid_default_unchanged,true);
+assert.equal(x.safety.experimentalContrastiveTicketRefund_default,false);
+assert.equal(x.safety.formal_blind_human_gold,0);
+assert.equal(x.safety.blind24_not_accessed,true);
+assert.equal(x.safety.release_allowed,false);
+assert.equal(x.safety.production_deployed,false);
+assert.ok(x.risks.some(r=>r.priority==='P0'));
+assert.ok(x.next_tasks.length>=3);
+assert.ok(x.last_seen_issue_comments['1']>0&&x.last_seen_issue_comments['2']>0);
+console.log(JSON.stringify({status:'PASS',schema:x.schema,checkpoint_parent_head:x.checkpoint_parent_head,formal_blind_human_gold:0,release_allowed:false}));
