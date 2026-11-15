@@ -1,0 +1,35 @@
+{
+  "version": "V206",
+  "source": "V198 original Kaikki exact raw evidence plus 1241 frozen identity ledger",
+  "source_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "scope": "SC50-0001..SC50-0005",
+  "ambiguity_queue_total": 292,
+  "classification": {
+    "SINGLE_ENTRY_MULTIPLE_SENSES": 56,
+    "MULTIPLE_NATIVE_ENTRIES": 236
+  },
+  "deliverable": "CGMASTER_V206_PHASE1_AMBIGUITY_EVIDENCE_QUEUE_20261115.json generated and attached in conversation; not yet in GitHub",
+  "candidate_fields": [
+    "source_final_row",
+    "record_id",
+    "scene_id",
+    "expression",
+    "cue_zh",
+    "native_entry_count",
+    "native_sense_count",
+    "native_ipa_candidates",
+    "candidates[].raw_source_line",
+    "candidates[].pos",
+    "candidates[].sense_index_in_native_entry",
+    "candidates[].native_glosses",
+    "candidates[].native_tags",
+    "candidates[].native_example_count"
+  ],
+  "guardrails": {
+    "selected_native_sense": null,
+    "qa_stage": "待审",
+    "formal_ready": 0,
+    "release_allowed": false
+  },
+  "next": "QA/Master choose native exact sense per source row with explicit evidence; no automatic promotion."
+}
