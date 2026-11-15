@@ -1,0 +1,903 @@
+{
+  "schema": "cg-qa-v202-v221-unified-bilingual-batch-source-sense-screen/v1",
+  "version": "V202",
+  "date": "2026-11-15",
+  "role": "CG-QA",
+  "source": {
+    "master_branch": "cg-master-kaikki-evidence-intake-20261111",
+    "master_version": "V222",
+    "v221": {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V221_38_RECORD_UNIFIED_BILINGUAL_QA_BATCH_20261115.json",
+      "git_blob": "95c560495a00c343aa12abcdd6b7fb609c2a475b"
+    },
+    "v218": {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V218_FOUR_SENSE_POS_ERRATA_UNREVIEWED_20261115.json",
+      "git_blob": "0a755d645b6896c7084e8e56b50163d221ad3d06"
+    }
+  },
+  "scope": "38 original association IDs from V221 with 36 bilingual pairs; original raw Kaikki archive NOT independently reopened, so this is a content/scene/pair candidate screening, not native source attestation or full canonical page first review.",
+  "counts": {
+    "records": 38,
+    "example_pairs": 36,
+    "with_examples": 35,
+    "without_examples": 3,
+    "kaikki_native_provenance_claims": 11,
+    "editor_authored_provenance": 27,
+    "independent_candidate_verdicts": {
+      "CONDITIONAL": 31,
+      "REVISE": 3,
+      "HOLD": 4
+    },
+    "verified_exact_content_sha256": 0,
+    "new_runtime_first_review": 0,
+    "prior_runtime_first_review_total": 19,
+    "formal_dual_ai_certified": 0,
+    "formal_ready": 0
+  },
+  "records": [
+    {
+      "source_final_row": 20,
+      "record_id": "SC1341-FINAL-SRC-acbf3f932cdc7eb23b56e01f9dff7bb8",
+      "scene_id": "SC50-0001",
+      "expression": "get up early",
+      "cue_zh": "早起床",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 1063929,
+      "native_sense_index": 1,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Next Tuesday we'll have to get up early, because the site visit starts at dawn.",
+          "zh": "下周二我们得早起，因为实地考察在黎明时开始。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 115,
+      "record_id": "SC1341-FINAL-SRC-8d2afce40b6a06af6565bbe869380a8d",
+      "scene_id": "SC50-0001",
+      "expression": "slippers",
+      "cue_zh": "室内拖鞋",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 124562,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "I keep my slippers beside the bed.",
+          "zh": "我把室内拖鞋放在床边。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 118,
+      "record_id": "SC1341-FINAL-SRC-e196a5d3988fc5cd5a819e174057b4db",
+      "scene_id": "SC50-0001",
+      "expression": "blinds",
+      "cue_zh": "百叶帘",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 115759,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Please close the blinds before you go to sleep.",
+          "zh": "睡觉前请拉上百叶帘。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Plural-of-blind native gloss alone does not disambiguate window blinds. This sentence strongly fits windows, but independent native sense remains HOLD.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 166,
+      "record_id": "SC1341-FINAL-SRC-0f2dbf4536172a36752e99ec16fe8306",
+      "scene_id": "SC50-0001",
+      "expression": "dry mouth",
+      "cue_zh": "口干",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 131121,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "I woke up with a dry mouth this morning.",
+          "zh": "今天早上醒来时我觉得口干。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 176,
+      "record_id": "SC1341-FINAL-SRC-b2ab46047530e35f624cb6647ef2c9bc",
+      "scene_id": "SC50-0001",
+      "expression": "take a bath",
+      "cue_zh": "泡澡",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 188699,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "She told the children to take a bath and wash off the mud and grime.",
+          "zh": "她让孩子们洗个澡，把身上的泥土和污垢洗掉。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "'Take a bath' may mean bathe; Chinese 泡澡 can specifically suggest a soak, ensure scene usage note.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 331,
+      "record_id": "SC1341-FINAL-SRC-75eac73360b69085609d0e52dcf69f7c",
+      "scene_id": "SC50-0002",
+      "expression": "bristles",
+      "cue_zh": "刷毛",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 30815,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Rinse the toothbrush to clean the bristles.",
+          "zh": "冲洗牙刷，把刷毛洗干净。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 338,
+      "record_id": "SC1341-FINAL-SRC-6bcd2106a7fe00d4df5fe13f86493e83",
+      "scene_id": "SC50-0002",
+      "expression": "gums",
+      "cue_zh": "牙龈",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 155216,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Brush gently to avoid hurting your gums.",
+          "zh": "轻轻刷牙，避免伤到牙龈。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Plural-of-gum does not pin gingival tissue sense; example supports gums as gingiva but native sense needs recheck.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 355,
+      "record_id": "SC1341-FINAL-SRC-86f71e0211d0e6c563f4e016d1188d93",
+      "scene_id": "SC50-0002",
+      "expression": "hairbrush",
+      "cue_zh": "发刷",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 104622,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "I use a hairbrush to untangle my hair.",
+          "zh": "我用发刷把头发梳顺。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 408,
+      "record_id": "SC1341-FINAL-SRC-49bc4328c349a8d0324c7e21bdd7cb8e",
+      "scene_id": "SC50-0002",
+      "expression": "hygienic",
+      "cue_zh": "卫生的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 97337,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Wash your hands to keep them clean and hygienic.",
+          "zh": "洗手以保持双手清洁卫生。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 428,
+      "record_id": "SC1341-FINAL-SRC-738b62ba89c138d91d66e82d745a6210",
+      "scene_id": "SC50-0002",
+      "expression": "dandruff",
+      "cue_zh": "头皮屑",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 50074,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Dandruff is on my collar again.",
+          "zh": "我的衣领上又有头皮屑了。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 432,
+      "record_id": "SC1341-FINAL-SRC-3663246babb7264fc3a5c5b734344ada",
+      "scene_id": "SC50-0002",
+      "expression": "close shave",
+      "cue_zh": "刮得很干净",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 150327,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "He used a new razor blade for a good close shave.",
+          "zh": "他换了一片新刀片，刮得很干净。"
+        }
+      ],
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "Native English 'a close shave' is a noun phrase; original Chinese recall cue 刮得很干净 is predicative verbal rendering. Source-example noun/Chinese-usage teaching alignment should be repaired.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 435,
+      "record_id": "SC1341-FINAL-SRC-8297b3f333b0a253e5732a5cb70f7629",
+      "scene_id": "SC50-0002",
+      "expression": "lukewarm",
+      "cue_zh": "微温的",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 4026,
+      "native_sense_index": 0,
+      "example_count": 2,
+      "bilingual_examples": [
+        {
+          "en": "Wash it in lukewarm water.",
+          "zh": "用温水清洗它。"
+        },
+        {
+          "en": "My curry is lukewarm.",
+          "zh": "我的咖喱已经不怎么热了。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Both translated lukewarm examples broadly correct; note lukewarm can mean tepid, not always no longer hot.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 557,
+      "record_id": "SC1341-FINAL-SRC-e184ec0f6c71dbc1190322f8f7df92ee",
+      "expression": "underwear",
+      "cue_zh": "内衣裤",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 56170,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "I packed clean underwear for the weekend trip.",
+          "zh": "我为周末旅行收拾了干净的内衣裤。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 564,
+      "record_id": "SC1341-FINAL-SRC-d66c725db73ab14812eb4094bed7f4c8",
+      "expression": "gloves",
+      "cue_zh": "手套",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 70832,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Put on your gloves before going outside in the cold.",
+          "zh": "天冷出门前戴上手套。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 573,
+      "record_id": "SC1341-FINAL-SRC-32cc0d25de18b644158db4eee39b633b",
+      "expression": "flats",
+      "cue_zh": "平底鞋",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 130517,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "She chose comfortable flats for the long walk.",
+          "zh": "她为长时间步行选了一双舒适的平底鞋。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Plural-of-flat source could denote apartment or shoe; new example supports shoes but source sense unverified.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 574,
+      "record_id": "SC1341-FINAL-SRC-fb36371fd6e17b0f1bf3bf76a7b3e6bc",
+      "scene_id": "SC50-0003",
+      "expression": "heels",
+      "cue_zh": "高跟鞋",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 66994,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "She wore a short skirt and heels.",
+          "zh": "她穿着短裙和高跟鞋。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 575,
+      "record_id": "SC1341-FINAL-SRC-e2e9861506b43a9e48a839c80df93d55",
+      "expression": "loafers",
+      "cue_zh": "乐福鞋",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 118733,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "These brown loafers go well with my trousers.",
+          "zh": "这双棕色乐福鞋和我的长裤很搭。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Plural-of-loafer could mean idler or shoe; new editorial example supports footwear but not native source disambiguation.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 584,
+      "record_id": "SC1341-FINAL-SRC-9b56d1e05106872f1b22a501b687b55d",
+      "expression": "smart casual",
+      "cue_zh": "商务休闲或得体休闲风格",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 89184,
+      "native_sense_index": null,
+      "example_count": 0,
+      "bilingual_examples": [],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "reason": "V218 proposes correct noun sense for smart casual, but original Kaikki line not independently reopened; no example yet. HOLD until actual native source validated.",
+      "v218_erratum": {
+        "prior_native_line": 89185,
+        "proposed_native_line": 89184,
+        "source_pos": "noun",
+        "source_gloss": [
+          "A style that is informal yet smart enough for a particular situation."
+        ],
+        "source_selection_status": "NOT_RAW_INDEPENDENTLY_VERIFIED"
+      },
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 585,
+      "record_id": "SC1341-FINAL-SRC-09c36543650fb7983eeabdc7c953211d",
+      "expression": "business casual",
+      "cue_zh": "商务休闲装",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 398974,
+      "native_sense_index": null,
+      "example_count": 0,
+      "bilingual_examples": [],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "reason": "V218 proposes noun dress-standard sense, but original Kaikki line not independently reopened; no example yet. HOLD until source validated.",
+      "v218_erratum": {
+        "prior_native_line": 398975,
+        "proposed_native_line": 398974,
+        "source_pos": "noun",
+        "source_gloss": [
+          "Any standard of dress used in many business environments that is casual overall; it thus excludes most formal clothes (such as a business suit and tie) but also excludes certain overly casual clothes (such as short shorts)."
+        ],
+        "source_selection_status": "NOT_RAW_INDEPENDENTLY_VERIFIED"
+      },
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 602,
+      "record_id": "SC1341-FINAL-SRC-3d6a1eaab2b90c58113aaf17cb84a6ce",
+      "expression": "sleeveless",
+      "cue_zh": "无袖的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 47700,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "He wore a sleeveless shirt on the hot afternoon.",
+          "zh": "炎热的下午，他穿了一件无袖衫。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 604,
+      "record_id": "SC1341-FINAL-SRC-2de75241bfd1615d339b245fecf835df",
+      "expression": "low-rise",
+      "cue_zh": "低腰的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 108646,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "She tried on a pair of low-rise jeans.",
+          "zh": "她试穿了一条低腰牛仔裤。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 606,
+      "record_id": "SC1341-FINAL-SRC-6c0308c5010d3e4beaf31bda65b0b515",
+      "scene_id": "SC50-0003",
+      "expression": "striped",
+      "cue_zh": "条纹的",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 107747,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Jim is the boy in the striped polo.",
+          "zh": "吉姆就是那个穿条纹Polo衫的男孩。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 617,
+      "record_id": "SC1341-FINAL-SRC-50166be991474bc3bc45e119079b5094",
+      "expression": "wrinkled",
+      "cue_zh": "起皱的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 45318,
+      "native_sense_index": null,
+      "example_count": 0,
+      "bilingual_examples": [],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "reason": "Clothing scene requires fabric wrinkles but available native gloss emphasized skin/hide; native sand example from V211 was irrelevant. No replacement source/example ready.",
+      "v218_erratum": {
+        "prior_native_line": 45318,
+        "proposed_native_line": 45318,
+        "source_pos": null,
+        "source_gloss": null,
+        "source_selection_status": "NOT_RAW_INDEPENDENTLY_VERIFIED"
+      },
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 624,
+      "record_id": "SC1341-FINAL-SRC-6d25105e9dd009b93175817c78f3103d",
+      "expression": "breathable",
+      "cue_zh": "透气的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 71803,
+      "native_sense_index": 1,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "This breathable fabric keeps me comfortable in warm weather.",
+          "zh": "这种透气面料让我在温暖的天气里感觉舒适。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "New original breathable-fabric full sentence is an improvement over V211 'breathable paint' fragment, but source raw sense still pending.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 823,
+      "record_id": "SC1341-FINAL-SRC-418d871917f5dfa3650f905f9a96f3ea",
+      "scene_id": "SC50-0004",
+      "expression": "disinfectant",
+      "cue_zh": "消毒剂",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 105616,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "The scalpels were soaked in disinfectant before the operation so disease wouldn't be spread.",
+          "zh": "手术前，手术刀浸泡在消毒剂中，以防止疾病传播。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Surgical disinfectant example is medically framed but semantically suitable; do not promote as safety/medical instructional advice.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 831,
+      "record_id": "SC1341-FINAL-SRC-fddbcfa7e0be47e93c18a9c7cd5f595c",
+      "scene_id": "SC50-0004",
+      "expression": "keepsake",
+      "cue_zh": "纪念品",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 19479,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "She kept the ticket as a keepsake from the trip.",
+          "zh": "她把那张票留作旅行纪念。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 840,
+      "record_id": "SC1341-FINAL-SRC-ddb4a23b469ffb82313684fdc4dc40a0",
+      "scene_id": "SC50-0004",
+      "expression": "within reach",
+      "cue_zh": "伸手就能拿到",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 450203,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Keep the remote within reach of the sofa.",
+          "zh": "把遥控器放在沙发旁伸手可及的地方。"
+        }
+      ],
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "'Keep the remote within reach of the sofa' is awkward spatial anchoring. Prefer 'Keep the remote within reach when you're sitting on the sofa' / '坐在沙发上时，把遥控器放在伸手可及的地方'.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 841,
+      "record_id": "SC1341-FINAL-SRC-d6c8a8958a5a5da535ad68f1953ed70c",
+      "scene_id": "SC50-0004",
+      "expression": "out of reach",
+      "cue_zh": "够不着",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 612121,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "The top shelf is out of reach without a stool.",
+          "zh": "不用凳子就够不着最上面的架子。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 848,
+      "record_id": "SC1341-FINAL-SRC-ec4a3354abf1069293c0d2c25dafa017",
+      "scene_id": "SC50-0004",
+      "expression": "cluttered",
+      "cue_zh": "杂物堆积的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 182201,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "The desk was cluttered with papers and cables.",
+          "zh": "桌上堆满了纸张和电线，显得杂乱。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 854,
+      "record_id": "SC1341-FINAL-SRC-055e79d100043fe37896f4603b247ec0",
+      "scene_id": "SC50-0004",
+      "expression": "spacious",
+      "cue_zh": "宽敞的",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 83216,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "The apartment has a spacious bedroom.",
+          "zh": "这套公寓有一间宽敞的卧室。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 855,
+      "record_id": "SC1341-FINAL-SRC-5b426d93e770ac02affcd35d0f30aec1",
+      "scene_id": "SC50-0004",
+      "expression": "crowded",
+      "cue_zh": "堆满东西的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 73374,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "The storage room was crowded with boxes.",
+          "zh": "储藏室里堆满了箱子。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 987,
+      "record_id": "SC1341-FINAL-SRC-c543bcd96b4c09c7dc13cc3c636420c5",
+      "scene_id": "SC50-0005",
+      "expression": "tidying",
+      "cue_zh": "整理东西",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 218166,
+      "native_sense_index": null,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "I spent the morning tidying the living room.",
+          "zh": "我花了一上午整理客厅。"
+        }
+      ],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "reason": "V218 proposes verb participle source vs earlier nominal sense; new sentence is verbal participle. Proposed raw source not independently verified, retain HOLD.",
+      "v218_erratum": {
+        "prior_native_line": 218167,
+        "proposed_native_line": 218166,
+        "source_pos": "verb",
+        "source_gloss": [
+          "present participle and gerund of tidy"
+        ],
+        "source_selection_status": "NOT_RAW_INDEPENDENTLY_VERIFIED"
+      },
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 1031,
+      "record_id": "SC1341-FINAL-SRC-aba80c4ca5dcded1b64d28b458ed4e06",
+      "scene_id": "SC50-0005",
+      "expression": "vacuum cleaner",
+      "cue_zh": "吸尘器",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 38909,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "Use the vacuum cleaner to clean the carpet.",
+          "zh": "用吸尘器清洁地毯。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 1035,
+      "record_id": "SC1341-FINAL-SRC-b6f699900fe7607a171919f01164d8b6",
+      "scene_id": "SC50-0005",
+      "expression": "scrub brush",
+      "cue_zh": "硬毛刷",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 1334261,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "She used a scrub brush to clean the tiles.",
+          "zh": "她用硬毛刷刷洗瓷砖。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 1095,
+      "record_id": "SC1341-FINAL-SRC-d53f32c5d856d29cc926fb2c289e663e",
+      "scene_id": "SC50-0005",
+      "expression": "manageable",
+      "cue_zh": "能够完成的",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 124418,
+      "native_sense_index": 1,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "We divided the chores into manageable tasks.",
+          "zh": "我们把家务分成了能够完成的小任务。"
+        }
+      ],
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "Chinese example 我们把家务分成了能够完成的小任务 is stiff/incomplete because manageable denotes readily manageable, not merely possible to finish. Prefer 我们把家务拆分成易于完成的小任务.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 1096,
+      "record_id": "SC1341-FINAL-SRC-bc02401c79ef84063771415681943cd6",
+      "scene_id": "SC50-0005",
+      "expression": "exhausting",
+      "cue_zh": "让人疲惫的",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 157914,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "This task is exhausting!",
+          "zh": "这项任务真让人筋疲力尽！"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 1098,
+      "record_id": "SC1341-FINAL-SRC-877fd4527de3a2c68ac8daa6c23933b7",
+      "scene_id": "SC50-0005",
+      "expression": "fair share",
+      "cue_zh": "公平分担的部分",
+      "source_kind": "KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION",
+      "native_source_line": 1266115,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "As the company had no dedicated janitor, all employees were expected to do their fair share of cleaning up after lunch.",
+          "zh": "由于公司没有专职保洁员，所有员工都应在午餐后公平分担清洁工作。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P1",
+      "reason": "Fair share Chinese '公平分担清洁工作' conveys duty, though source phrase specifically individual expected portion rather than any equal split.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    },
+    {
+      "source_final_row": 1099,
+      "record_id": "SC1341-FINAL-SRC-d2685cb68b5581354f282844a370fe38",
+      "scene_id": "SC50-0005",
+      "expression": "workload",
+      "cue_zh": "工作量",
+      "source_kind": "CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI",
+      "native_source_line": 54067,
+      "native_sense_index": 0,
+      "example_count": 1,
+      "bilingual_examples": [
+        {
+          "en": "We shared the workload so everyone could finish on time.",
+          "zh": "我们分担了工作量，这样大家都能按时完成。"
+        }
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "English/Chinese pair is intelligible, idiomatic enough for an editor draft, and fits the target scene; original native-sense/source authenticity still requires independent raw Kaikki verification before certification.",
+      "v218_erratum": null,
+      "first_review_promotion": false
+    }
+  ],
+  "immediate_action": [
+    "CG-MASTER preserve and verify raw V218 source POS changes on 584,585,987; leave 617 source HOLD until fabric-specific evidence.",
+    "Revise 432 close shave noun-versus-verb teaching cue, 840 within reach unnatural sofa anchor, and 1095 manageable Chinese translation.",
+    "For 118 blinds/338 gums/573 flats/575 loafers obtain exact native sub-sense attestation despite plausible new sentences.",
+    "V221 example records require independent content-SHA by full finalized page version prior to 1审; never grant 1审 from mere native_source_line or report hash."
+  ],
+  "safety": {
+    "source_mutated": false,
+    "original_master_mutated": false,
+    "core20k_mutated": false,
+    "runtime_mutated": false,
+    "srs_eligible": false,
+    "release_allowed": false
+  },
+  "limitations": [
+    "The 36 bilingual pairs were manually assessed for immediate semantics/scene-fit; this does not authenticate claimed Kaikki example provenance against full raw archive.",
+    "Conditional does not mean PASS, and 38 candidate reviews are not a 38-row addition to runtime exact-content first reviews.",
+    "No change to existing 19 independent 1审 records."
+  ]
+}
