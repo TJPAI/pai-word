@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "a396dfab00174dddc609e76c0b7cb43f0799b2bf",
-  "version": "V242_RANKED_CANDIDATE_STAGED",
+  "verified_base_head": "f9be1ab2da8a11e6aed6e3850ceff5c78bb37a90",
+  "version": "V243_INTEGRITY_GATE_DELIVERED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -487,6 +487,16 @@
       "manifest": "tools/scene1341_master/qa_reports/v242_ranked_l1_candidate/CGMASTER_V242_MANIFEST.json",
       "source_ranked_csv": "tools/integration/scene1341-ranked/v61-ranked.csv",
       "source_ranked_blob_sha": "a82538a17b69b9c2f7e0803b5da5b17fb7a0a875"
+    },
+    "v243_candidate_integrity": {
+      "validator": "tools/scene1341_master/validate_v243_ranked_candidate.py",
+      "workflow": ".github/workflows/cgmaster-v243-candidate-integrity.yml",
+      "verification_scope": "V242 candidate JSON structure, all 1730 rows, source-row pointers, QA and release quarantine; NOT frozen FINAL Master identity certification",
+      "expected_scenes": 10,
+      "expected_records": 1730,
+      "canonical_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -531,9 +541,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Relink SC0101..0110 ranked candidate source_master_row pointers to frozen FINAL Master actual record IDs, verify expressions/senses, and separate editorial additions.",
-    "Continue sourcing original Master rows beyond SC0110; do not count V242 ranked candidates in verified 20696 records.",
-    "Extend native Kaikki L2/L3 only with actual attestation; independent CG-QA must validate exact versions before 1审."
+    "Locate complete frozen FINAL Master bytes and verify SHA256 62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986 before canonical Record ID relinking.",
+    "Relink V242 1693 source-row pointers via exact expression/scene/meaning and immutable original row ID; isolate remaining 37 editorial additions.",
+    "Seek authoritative source shards SC0111 onward for subsequent ~3000-row L1 test exports; retain QA pending and no SRS release."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
