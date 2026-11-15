@@ -1,0 +1,20 @@
+name: CG-MASTER Phase1 editorial integrity
+on:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - 'tools/scene1341_master/CGMASTER_CURRENT_STATE.json'
+      - 'tools/scene1341_master/validate_phase1_editor_drafts.mjs'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V19*_PHASE1*'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V20*_PHASE1*'
+      - '.github/workflows/cgmaster-phase1-integrity.yml'
+  workflow_dispatch:
+jobs:
+  provenance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node tools/scene1341_master/validate_phase1_editor_drafts.mjs
