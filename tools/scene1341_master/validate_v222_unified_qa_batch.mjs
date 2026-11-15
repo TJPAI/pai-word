@@ -16,7 +16,7 @@ for(const x of c.records){
  assert.equal(x.source_final_row,y.row.source_final_row);assert.equal(x.expression,y.row.expression);
  assert.equal(x.qa_stage,'待审');assert.equal(x.formal_ready,0);assert.equal(x.release_allowed,false);
  assert.equal(x.qa_reviewer,null);assert.equal(x.approved_content_hash,null);
- assert(Number.isInteger(x.native_source_line)&&x.native_source_line>0);
+ assert((Number.isInteger(x.native_source_line)&&x.native_source_line>0)||(x.hold===true&&x.native_source_line===null),'missing source line only allowed for HOLD');
  assert.equal(x.source_kind,y.kind==='native'?'KAIKKI_NATIVE_EXAMPLE_WITH_EDITORIAL_TRANSLATION':'CGMASTER_ORIGINAL_EDITORIAL_EXAMPLE_NOT_KAIKKI');
  if(y.kind==='native'){
   assert.equal(x.native_source_line,y.row.native_source_line);
