@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest}
+import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,phase1EditorialPreview}
  from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs';
 const V=['V199','V200','V201'],N=[35,55,61];
 const counts=[79,40,13,12,7],sceneIds=counts.flatMap((n,i)=>Array(n).fill('SC50-000'+(i+1)));
@@ -74,3 +74,22 @@ await assert.rejects(()=>fetchPhase1FreshDraftsLatest({commit,fetchImpl:async ur
  url.includes('FIRST203')?new Response(JSON.stringify(modified)):serveLatest(url)
 }),/PHASE1_FRESH_V202_GIT_BLOB_SHA1/);
 console.log('PASS V202 incremental 203/1241, four SHA-pinned Git blobs, no review promotion or SRS');
+
+const sample=structuredClone(newRows[0]);
+sample.question_page={...sample.question_page,english_expression:'clear out',cue_zh:'清空',
+ ipa:'/tɛst/',ipa_native_all_phonemic_candidates:['/tɛst/'],
+ ipa_source_status:'NATIVE_EXACT_PHONEMIC_SINGLE_UNREVIEWED'};
+sample.answer_page={meaning_zh:'清空',gloss_en:'To empty',pos:'verb',
+ examples:[{example_en:'Clear the shelf.',example_zh:'清空架子。',
+ source:'CG_MASTER_NEW_EDITOR_ORIGINAL_NOT_KAIKKI_ATTESTATION',qa_status:'待审'}],usage_note:'用于清理'};
+const shown=phase1EditorialPreview(sample);
+assert.equal(shown.stage,'待审');assert.equal(shown.ipaCandidate,'/tɛst/');
+assert.equal(shown.examples.length,1);assert.equal(shown.verdict,'未审');
+const held=structuredClone(sample);
+held.question_page.ipa_source_status='NATIVE_MULTIVARIANT_HOLD';
+assert.equal(phase1EditorialPreview(held).ipaCandidate,null);
+const forged=structuredClone(sample);forged.qa_stage_label='1审';
+assert.throws(()=>phase1EditorialPreview(forged),/PHASE1_FRESH_PREVIEW_SOURCE/);
+const injected=structuredClone(sample);injected.srs_eligible=true;
+assert.throws(()=>phase1EditorialPreview(injected),/PHASE1_FRESH_PREVIEW_SOURCE/);
+console.log('PASS phase1 diagnostic only: IPA ambiguity blocked, QA forgery blocked, SRS blocked');
