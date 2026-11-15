@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "e76bc1931eec738109202f769738b4549919639f",
-  "version": "V207",
+  "verified_base_head": "748dc7b489f45b28977a41a62454a1115be34f6e",
+  "version": "V208",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -59,7 +59,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V204_PHASE1_REMAINING983_TRIAGE_SUMMARY_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V205_PHASE1_691_EXACT_EXPRESSION_GAP_ANALYSIS_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V206_PHASE1_AMBIGUITY_QUEUE_BUILD_REPORT_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V207_TWO_CANDIDATE_43_QA_PRIORITY_REPORT_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V207_TWO_CANDIDATE_43_QA_PRIORITY_REPORT_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V208_TWO_CANDIDATE_EDITORIAL_SENSE_PROPOSALS_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -98,6 +99,13 @@
       "generator": "tools/scene1341_master/build_v207_two_candidate_qa_queue.py",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V207_TWO_CANDIDATE_43_QA_PRIORITY_REPORT_20261115.json",
       "full_queue": "conversation artifact only"
+    },
+    "two_candidate_editorial_proposals": {
+      "total": 43,
+      "proposed": 38,
+      "hold": 5,
+      "qa_first_review_pass": 0,
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V208_TWO_CANDIDATE_EDITORIAL_SENSE_PROPOSALS_20261115.json"
     }
   },
   "sources": {
@@ -142,6 +150,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V208: CG-QA independent first review of 38 native sense matching proposals; 5 HOLD need further evidence; no release before QA.",
     "V207 prioritize exact original Kaikki semantic adjudication for 43 two-candidate records; no QA promotion before independent CG-QA first review.",
     "V206: select native sense for 292 ambiguity records only with original Kaikki source evidence and independent QA; generated evidence queue is unreviewed.",
     "V205: Requery 687 full multiword expressions against complete Kaikki; if exact native entry unavailable, component lemma evidence must remain non-attesting and QA HOLD.",
