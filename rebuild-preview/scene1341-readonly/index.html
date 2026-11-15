@@ -665,9 +665,14 @@ async function initializeFullMasterSceneIndex(){
   set('master-live-feed-status','全量Master 1,341场景动态骨架可用 · 来源 '+masterSceneSnapshot.commit.slice(0,12)+
    ' · 按需读取场景内容 · QA独立 · SRS禁写');
   renderHome();
+  const activeScene=sceneId;
+  if(!$('learning').hidden&&activeScene&&masterSceneSnapshot){
+   // Never silently reset the learner's card or page face on hot-load.
+   set('master-live-feed-status',$('master-live-feed-status').textContent+' · 当前学习页请返回场景后重新进入以读取全量Master');
+  }
  }catch(error){
   masterSceneSnapshot=null;
-  set('master-live-feed-status','全量Master V247仍需CG-MASTER发布Git场景索引（Drive ZIP不能直接作为浏览器动态源）：'+
+  set('master-live-feed-status','全量Master动态索引读取或校验失败：'+
    String(error?.message||error).slice(0,85));
  }
 }
@@ -678,6 +683,8 @@ async function openMasterScene(id,resume=false){
  try{
   const scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
   items=masterSceneAdapter.mergeMasterScene(items,scene);
+  countByScene.set(id,scene.recordCount);
+  set('master-live-feed-status','全量Master '+masterSceneSnapshot.commit.slice(0,12)+' · '+id+'已加载'+scene.recordCount+'条原始关联L1测试卡（非正式Sense） · 待审 · SRS禁写');
   if(!available(id))throw Error('NO_VERIFIED_SCENE_CARDS');
   openStudy(id,resume);
  }catch(error){
