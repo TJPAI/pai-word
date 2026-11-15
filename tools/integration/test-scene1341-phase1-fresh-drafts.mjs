@@ -211,6 +211,14 @@ assert(!JSON.stringify(newStudy.items[0]).includes('OLD ANSWER'));
 assert.equal(newStudy.items[1].question.ipa,null);
 assert.equal(newStudy.items[1].question.ipa_status,'PHASE1_KAIKKI_IPA_HOLD');
 assert.equal(newStudy.items[1].answer.usage_note,'');
+const legacyChinese=structuredClone(oldStudy);
+legacyChinese[0].question.cue_zh='历史提示未更新';
+legacyChinese[0].answer.meaning_zh='历史释义未更新';
+const corrected=applyPhase1StudyOverlay(legacyChinese,{rows:sourceCards,
+ onlyDiagnostic:true,canWriteSrs:false,formalReady:0,version:'V202',commit});
+assert.equal(corrected.items[0].question.cue_zh,'醒来');
+assert.equal(corrected.items[0].answer.meaning_zh,'醒来');
+assert.equal(corrected.items[0].master_content_sha256,sourceCards[0].content_sha256);
 const edited=structuredClone(sourceCards);
 edited[0].qa_stage_label='1审';
 assert.throws(()=>applyPhase1StudyOverlay(oldStudy,{rows:edited,
