@@ -541,6 +541,23 @@ async function load(){
   }catch(err){
    phase1StudyOverlayStatus='新版Kaikki学习卡加载受阻，保留旧卡：'+String(err?.message||err).slice(0,100);
   }
+  // L1-only SC0006–0025: a SHA-pinned V238/V239 feed extends the actual
+  // read-only study queue, preserving the richer legacy cards on exact match.
+  // No CMU-composed phrase IPA, author-first-review or SRS promotion.
+  let scene25TestStatus='';
+  try{
+   const module=await import('./scene1341-v238-v239-scene25-feed.mjs');
+   const data=await module.fetchScene25TestFeed();
+   const stage=module.applyScene25TestFeed(items,data);
+   items=[...stage.items];
+   countByScene.clear();
+   for(const card of items)countByScene.set(card.scene_id,(countByScene.get(card.scene_id)||0)+1);
+   scene25TestStatus=' · V238/V239测试新增'+stage.appended+
+    '张（旧卡精确保留'+stage.matched+'张），均待审/IPA HOLD';
+  }catch(e){
+   scene25TestStatus=' · V238/V239测试扩展未通过来源校验，沿用旧卡：'+
+    String(e?.message||e).slice(0,80);
+  }
   // A missing feed is expected until CG-MASTER publishes its atomic index.
   // Never promote the unverified feed to playable cards.
   try{
@@ -564,10 +581,10 @@ async function load(){
   set('master-ipa-coverage',!v190.sourceRows?'动态 Master 暂不可用，保留已校验的 V171 与历史测试词卡；正式认证0，SRS禁写。':v190.sourceVersion+' Master 首批3,000条源关联已完成SHA核验；与旧2,873条学习卡精确身份匹配'+v190.exact+'条，待对账'+v190.held+'条，实际安全增量补充答案'+v190.enriched+'条；另有'+v190.unmatchedSourceRows+'条当前Master源记录不在当前学习卡中，'+v190.legacyOutsideBatch+'张旧卡属于本批以外。源内唯一读音候选更新'+v190.liveIPATest+'条（其中读音变化'+v190.ipaUpdated+'条，均未认证），正式认证0，SRS禁写。');
   set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+latestIPAVisible+' 条；'+(v190.sourceRows?v190.sourceVersion+'源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条':'动态Master暂不可用，使用历史测试词卡')+'，正式认证0、SRS写入关闭。');
   set('master-ipa-coverage',phase1StudyOverlayStatus+' '+$('master-ipa-coverage').textContent);
-  set('status','Scene1341 · '+v190.sourceVersion+' Master'+(v190.sourceFallback?'（回退）':'（实时）')+'更新 '+v190.enriched+' 卡 · 最新测试IPA候选 '+v190.liveIPATest+' · 14场景 / 2,873卡 · Ready 0');
+  set('status','Scene1341 · '+v190.sourceVersion+' Master'+(v190.sourceFallback?'（回退）':'（实时）')+'更新 '+v190.enriched+' 卡 · 最新测试IPA候选 '+v190.liveIPATest+' · '+countByScene.size+'场景 / '+items.length+'测试卡 · Ready 0');
   // Distinguish the legacy-card count from actual source-exact Phase1 overrides.
-  set('scope',$('scope').textContent+' · '+phase1StudyOverlayStatus);
-  set('status',$('status').textContent+' · '+phase1StudyOverlayStatus);
+  set('scope',$('scope').textContent+' · '+phase1StudyOverlayStatus+scene25TestStatus);
+  set('status',$('status').textContent+' · '+phase1StudyOverlayStatus+scene25TestStatus);
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
