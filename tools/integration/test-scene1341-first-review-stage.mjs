@@ -52,5 +52,5 @@ assert(html.includes('qaModule.fetchIndependentFirstReviews()'));
 assert(html.includes('qaModule.resolveEditorialFirstReview(row,independentQaReviews)'));
 assert(html.includes('data.qaResolve(row,independentQaReviews)'));
 assert(html.includes('resolveQaStage(r,independentQaReviews)'));
-assert(html.includes('不代表正式批准')&&html.includes('data-srs-write="disabled"'));
+assert(html.includes('data-srs-write="disabled"')&&html.includes("const reviewText=qaStage.visible?(qaStage.reviewed?'1审':'待审'):''"), 'review status is only simple standalone text; release stays disabled');
 console.log('PASS true independent CG-QA SHA-pinned report, author-forged review ignored, content edits reset 待审; first-reviewed REVISE displays 1审, SRS0');
