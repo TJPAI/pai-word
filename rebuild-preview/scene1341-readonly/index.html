@@ -427,9 +427,10 @@ async function load(){
   // Never promote the unverified feed to playable cards.
   try{
    const feedModule=await import('./scene1341-live-feed.mjs');
-   const liveFeed=await feedModule.resolveLiveFeed({commit:v190.sourceCommit});
+   const liveFeed=await feedModule.resolveLiveFeed();
    activeMasterFeed=liveFeed;
-   set('master-live-feed-status','全场景 Feed 已核验：'+liveFeed.stats.batchCount+'批、'+liveFeed.stats.associationCount+
+   sceneFeedCache.clear();
+   set('master-live-feed-status','全场景 Feed '+liveFeed.commit.slice(0,12)+' 已核验：'+liveFeed.stats.batchCount+'批、'+liveFeed.stats.associationCount+
      '条源关联；可按场景读取，尚未自动升级为正式学习卡；SRS禁写。');
   }catch(feedError){
    set('master-live-feed-status','全场景增量 Feed 尚未发布或校验不可用；继续使用首批 Master 与旧卡（'+
