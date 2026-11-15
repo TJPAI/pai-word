@@ -15,7 +15,7 @@ Source: `tools/scene1341_master/qa_reports/CGMASTER_V193_V190_SCENE_COVERAGE_AND
 | SC50-0003 | 237 | 86 | 172 | 25 |
 | SC50-0004 | 245 | 94 | 184 | 24 |
 | SC50-0005 | 259 | 96 | 104 | 29 |
-| TOTAL | 1241 | 449 | 740 | 136 |
+| TOTAL | 1241 | 449 | 840 | 136 |
 
 The `SC50-0003` original source row 506 (`take off`) currently contains the **known wrong** selected IPA `/ˌpʊt ˈɒn/`. CG-MAIN must continue suppressing it by exact record_id, source row, scene and expression even if older manifests are loaded. Thus even the 449 nonempty source candidates do not establish 449 safe selected pronunciations.
 
