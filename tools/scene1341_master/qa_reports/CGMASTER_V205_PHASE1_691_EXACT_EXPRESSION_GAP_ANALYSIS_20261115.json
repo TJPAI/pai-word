@@ -1,0 +1,61 @@
+{
+  "version": "V205",
+  "scope": "SC50-0001..SC50-0005",
+  "evidence": "V198 original source identity ledger, 1241 rows",
+  "v204_no_exact_native_entries": 691,
+  "multiword_expressions": 687,
+  "single_token_expressions": 4,
+  "by_scene": {
+    "SC50-0001": 180,
+    "SC50-0002": 123,
+    "SC50-0003": 98,
+    "SC50-0004": 127,
+    "SC50-0005": 163
+  },
+  "single_token_cases": [
+    {
+      "source_final_row": 233,
+      "expression": "Morning!"
+    },
+    {
+      "source_final_row": 603,
+      "expression": "high-waisted"
+    },
+    {
+      "source_final_row": 616,
+      "expression": "weather-appropriate"
+    },
+    {
+      "source_final_row": 1087,
+      "expression": "fresh-smelling"
+    }
+  ],
+  "examples_of_multiword_gaps": [
+    {
+      "source_final_row": 3,
+      "expression": "get out of bed"
+    },
+    {
+      "source_final_row": 7,
+      "expression": "go back to sleep"
+    },
+    {
+      "source_final_row": 26,
+      "expression": "catch up on sleep"
+    }
+  ],
+  "interpretation": "691 are exact-expression lookup gaps in the V198 subset, not proven absence from the full Kaikki corpus. 687 are multiword expressions, so native compositional word evidence cannot be treated as an attested whole-phrase sense.",
+  "proposed_evidence_tiers": [
+    "T1 exact full-expression original Kaikki entry and sense",
+    "T2 original component lemma entries with explicit compositional inference HOLD",
+    "T3 editor-generated phrase semantics/examples requiring independent QA",
+    "T4 no native source evidence HOLD"
+  ],
+  "guardrails": {
+    "qa_stage": "待审",
+    "formal_ready": 0,
+    "release_allowed": false,
+    "prohibit_component_to_phrase_native_attestation": true
+  },
+  "next": "Build full-original-Kaikki exact-phrase relookup first, then component-level evidence as non-attestation with reviewer HOLD."
+}
