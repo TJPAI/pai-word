@@ -5,6 +5,7 @@
 const ID=/^SC50-(?:0[0-9]{3}|1[0-2][0-9]{2}|13[0-3][0-9]|134[01])$/;
 const ROW=/^SC1341-FINAL-SRC-[0-9a-f]{32}$/;
 const SHA=/^[0-9a-f]{40}$/;
+const HASH64=/^[0-9a-f]{64}$/;
 const fail=x=>{throw Error('MASTER_SCENE_V1_'+x)};
 const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/';
 const API='https://api.github.com/repos/TJPAI/pai-word/';
@@ -15,15 +16,19 @@ function normalized(row){
  const q=row.question_page||{},a=row.answer_page||{};
  const expression=text(q.expression||q.english_expression||row.expression);
  const meaning=text(a.meaning_display||a.meaning_zh||q.cue_zh);
+ const pos=text(a.pos);
+ // Keep POS inline once, never create a separate POS row or duplicate it.
+ const inlinePos=pos&&meaning.startsWith(pos+' ')?'':pos;
  if(!expression)fail('EXPRESSION_'+row.source_final_row);
  return {
   scene_ku_id:row.record_id,master_record_id:row.record_id,
   master_final_row:row.source_final_row,source_rank:row.source_final_row,
   scene_id:row.scene_id,expression,
+  master_content_sha256:HASH64.test(row.content_sha256||'')?row.content_sha256:undefined,
   question:{expression,cue_zh:text(q.cue_zh||a.meaning_zh),ipa:null,
    ipa_status:'UNAPPROVED_CANDIDATE_HOLD',ipa_provisional:false,
    ipa_candidates_pending:!!(q.ipa_candidate||q.ipa),ipa_source:null},
-  answer:{meaning_zh:meaning,pos:text(a.pos),gloss_en:text(a.gloss_en),
+  answer:{meaning_zh:meaning,pos:inlinePos,gloss_en:text(a.gloss_en),
    example_en:text(a.example_en),example_zh:text(a.example_zh),
    examples:Array.isArray(a.examples)?a.examples:[],
    collocations:list(a.collocations),usage_note:text(a.usage_note),
@@ -43,7 +48,8 @@ export function validateMasterSceneDocument(doc,sceneId){
   if(!ROW.test(r?.record_id||'')||r.scene_id!==sceneId||
    !Number.isSafeInteger(r.source_final_row)||r.source_final_row<1||
    seen.has(r.record_id)||rows.has(r.source_final_row)||
-   r.release_allowed!==false||r.srs_eligible===true)fail('ROW');
+   r.release_allowed!==false||r.srs_eligible===true||
+   (r.content_sha256!==undefined&&!HASH64.test(r.content_sha256)))fail('ROW');
   seen.add(r.record_id);rows.add(r.source_final_row);
   cards.push(normalized(r));
  }
