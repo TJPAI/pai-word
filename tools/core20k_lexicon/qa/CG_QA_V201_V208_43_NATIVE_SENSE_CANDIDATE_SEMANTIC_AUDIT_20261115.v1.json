@@ -1,0 +1,899 @@
+{
+  "schema": "cg-qa-v201-v208-43-source-proposal-independent-candidate-audit/v1",
+  "version": "V201",
+  "date": "2026-11-15",
+  "role": "CG-QA",
+  "scope": "All 43 V208 two-source-candidate editorial decisions: 38 proposed selections plus five native-ambiguity HOLDs. Independent semantic/POS/scene screening of exact GitHub data, NOT independent archival Kaikki raw-line verification.",
+  "source": {
+    "branch": "cg-master-kaikki-evidence-intake-20261111",
+    "packs": [
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V208_TWO_CANDIDATE_EDITORIAL_SENSE_PROPOSALS_20261115.json",
+        "git_blob": "0ceb73cf420252037c10066ddae3a04563ee91eb"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V209_38_EDITORIAL_SENSE_PAGE_SKELETONS_UNREVIEWED_20261115.json",
+        "git_blob": "00638e7dd0079fbaef43dc1da5a5823407593787"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V216_SC0003_SEVEN_ORIGINAL_BILINGUAL_EXAMPLE_DRAFTS_20261115.json",
+        "git_blob": "b85cab245faa395e56c60d728851ba5fbc3f6aa1"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V217_17_OTHER_SCENES_ORIGINAL_BILINGUAL_EXAMPLES_20261115.json",
+        "git_blob": "6960de3c6ce0e726741d4531917b69f8db73dadb"
+      }
+    ],
+    "master_current_state_version": "V217"
+  },
+  "counts": {
+    "v208_total": 43,
+    "v208_editorial_candidates": 38,
+    "v208_preexisting_holds": 5,
+    "candidate_conditional": 30,
+    "candidate_hold": 8,
+    "candidate_pass": 0,
+    "source_identity_v208_v209_crosscheck_pass": 38,
+    "formal_ready": 0,
+    "double_ai_certified": 0
+  },
+  "independent_candidate_reviews": [
+    {
+      "source_final_row": 20,
+      "record_id": "SC1341-FINAL-SRC-acbf3f932cdc7eb23b56e01f9dff7bb8",
+      "scene_id": "SC50-0001",
+      "expression": "get up early",
+      "chinese_cue": "早起床",
+      "selected_native_line": 1063929,
+      "selected_native_sense_index": 1,
+      "native_pos": "verb",
+      "native_gloss": [
+        "Used other than figuratively or idiomatically: see get up, early."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Nonidiomatic compositional redirect is a source gloss, not a learner-ready definition. Native example demonstrates early rising, but exact raw attestation not independently re-opened.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 115,
+      "record_id": "SC1341-FINAL-SRC-8d2afce40b6a06af6565bbe869380a8d",
+      "scene_id": "SC50-0001",
+      "expression": "slippers",
+      "chinese_cue": "室内拖鞋",
+      "selected_native_line": 124562,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of slipper"
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Plural-of-slipper supports footwear morphology; require full learner gloss and confirm indoor subtype in scene.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 118,
+      "record_id": "SC1341-FINAL-SRC-e196a5d3988fc5cd5a819e174057b4db",
+      "scene_id": "SC50-0001",
+      "expression": "blinds",
+      "chinese_cue": "百叶帘",
+      "selected_native_line": 115759,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of blind"
+      ],
+      "verdict": "HOLD",
+      "severity": "P1",
+      "independent_reason": "Native gloss 'plural of blind' does not by itself disambiguate window coverings from the adjective blind or blind person; ask for specifically sourced noun-sense evidence before accepting 百叶帘.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 166,
+      "record_id": "SC1341-FINAL-SRC-0f2dbf4536172a36752e99ec16fe8306",
+      "scene_id": "SC50-0001",
+      "expression": "dry mouth",
+      "chinese_cue": "口干",
+      "selected_native_line": 131121,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "Abnormal dryness of the mouth"
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Source gloss 'abnormal dryness' is slightly more medical than everyday 'waking with dry mouth'; preserve nuance in teaching gloss.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 176,
+      "record_id": "SC1341-FINAL-SRC-b2ab46047530e35f624cb6647ef2c9bc",
+      "scene_id": "SC50-0001",
+      "expression": "take a bath",
+      "chinese_cue": "泡澡",
+      "selected_native_line": 188699,
+      "selected_native_sense_index": 0,
+      "native_pos": "verb",
+      "native_gloss": [
+        "To bathe."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "English gloss 'to bathe' is broad, while Chinese 泡澡 implies soaking in a bathtub; example 'take a bath' supports bathing but not necessarily soaking.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 331,
+      "record_id": "SC1341-FINAL-SRC-75eac73360b69085609d0e52dcf69f7c",
+      "scene_id": "SC50-0002",
+      "expression": "bristles",
+      "chinese_cue": "刷毛",
+      "selected_native_line": 30815,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of bristle"
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Plural-of-bristle is morphological reference; use toothbrush-bristle learner definition.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 338,
+      "record_id": "SC1341-FINAL-SRC-6bcd2106a7fe00d4df5fe13f86493e83",
+      "scene_id": "SC50-0002",
+      "expression": "gums",
+      "chinese_cue": "牙龈",
+      "selected_native_line": 155216,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of gum"
+      ],
+      "verdict": "HOLD",
+      "severity": "P1",
+      "independent_reason": "Native gloss 'plural of gum' is too broad: gums may mean gingiva, gum sweets or chewing gums; dental scene cues cannot alone prove chosen native sense.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 355,
+      "record_id": "SC1341-FINAL-SRC-86f71e0211d0e6c563f4e016d1188d93",
+      "scene_id": "SC50-0002",
+      "expression": "hairbrush",
+      "chinese_cue": "发刷",
+      "selected_native_line": 104622,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "A brush used in hair care for brushing, tidying, and detangling hair"
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Exact hairbrush gloss matches intended hair-care tool; original editorial example remains unreviewed.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 408,
+      "record_id": "SC1341-FINAL-SRC-49bc4328c349a8d0324c7e21bdd7cb8e",
+      "scene_id": "SC50-0002",
+      "expression": "hygienic",
+      "chinese_cue": "卫生的",
+      "selected_native_line": 97337,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Pertaining to hygiene; clean, sanitary, free of disease."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Native hygiene adjective gloss fits cleanliness sense, not certified example.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 428,
+      "record_id": "SC1341-FINAL-SRC-738b62ba89c138d91d66e82d745a6210",
+      "scene_id": "SC50-0002",
+      "expression": "dandruff",
+      "chinese_cue": "头皮屑",
+      "selected_native_line": 50074,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "scaly white dead skin flakes from the human scalp; Pityriasis capitis"
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Dandruff scalp skin-flake gloss aligns, native example translation requires independent source check.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 432,
+      "record_id": "SC1341-FINAL-SRC-3663246babb7264fc3a5c5b734344ada",
+      "scene_id": "SC50-0002",
+      "expression": "close shave",
+      "chinese_cue": "刮得很干净",
+      "selected_native_line": 150327,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "A shave that is very short or near the skin."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "English source noun 'a close shave' does not have POS for Chinese verbal paraphrase 刮得很干净; change cue to noun phrase or explicitly teach verbal expression.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 435,
+      "record_id": "SC1341-FINAL-SRC-8297b3f333b0a253e5732a5cb70f7629",
+      "scene_id": "SC50-0002",
+      "expression": "lukewarm",
+      "chinese_cue": "微温的",
+      "selected_native_line": 4026,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Between warm and cool."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Lukewarm is between warm and cool; do not over-specialize to hot water.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 557,
+      "record_id": "SC1341-FINAL-SRC-e184ec0f6c71dbc1190322f8f7df92ee",
+      "scene_id": "SC50-0003",
+      "expression": "underwear",
+      "chinese_cue": "内衣裤",
+      "selected_native_line": 56170,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "Clothes worn next to the skin, underneath outer clothing."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Underwear noun gloss fits scene, editorial translation pending.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 564,
+      "record_id": "SC1341-FINAL-SRC-d66c725db73ab14812eb4094bed7f4c8",
+      "scene_id": "SC50-0003",
+      "expression": "gloves",
+      "chinese_cue": "手套",
+      "selected_native_line": 70832,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of glove"
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Plural-of-glove gloss is morphological only, clothes/hands subtype can be taught separately.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 573,
+      "record_id": "SC1341-FINAL-SRC-32cc0d25de18b644158db4eee39b633b",
+      "scene_id": "SC50-0003",
+      "expression": "flats",
+      "chinese_cue": "平底鞋",
+      "selected_native_line": 130517,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of flat"
+      ],
+      "verdict": "HOLD",
+      "severity": "P1",
+      "independent_reason": "Source 'plural of flat' does not establish shoe sense vs flat apartment, level area, or adjective; require explicit footwear native sense.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 574,
+      "record_id": "SC1341-FINAL-SRC-fb36371fd6e17b0f1bf3bf76a7b3e6bc",
+      "scene_id": "SC50-0003",
+      "expression": "heels",
+      "chinese_cue": "高跟鞋",
+      "selected_native_line": 66994,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "High-heeled shoes."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "High-heeled shoes native gloss fits scene high heels, noun sense.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 575,
+      "record_id": "SC1341-FINAL-SRC-e2e9861506b43a9e48a839c80df93d55",
+      "scene_id": "SC50-0003",
+      "expression": "loafers",
+      "chinese_cue": "乐福鞋",
+      "selected_native_line": 118733,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "plural of loafer"
+      ],
+      "verdict": "HOLD",
+      "severity": "P1",
+      "independent_reason": "Source 'plural of loafer' does not disambiguate loafer shoe from idler; request exact footwear sense evidence.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 584,
+      "record_id": "SC1341-FINAL-SRC-9b56d1e05106872f1b22a501b687b55d",
+      "scene_id": "SC50-0003",
+      "expression": "smart casual",
+      "chinese_cue": "商务休闲或得体休闲风格",
+      "selected_native_line": 89185,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Designating such a style."
+      ],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "independent_reason": "Selected adjectival 'designating such a style' mismatches nominal Chinese cue 商务休闲或得体休闲风格. Master V216 independently holds; require correct POS/sense and revised cue.",
+      "master_v216_217_author_example_status": "HOLD_POS_SENSE_DISAMBIGUATION",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 585,
+      "record_id": "SC1341-FINAL-SRC-09c36543650fb7983eeabdc7c953211d",
+      "scene_id": "SC50-0003",
+      "expression": "business casual",
+      "chinese_cue": "商务休闲装",
+      "selected_native_line": 398975,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Designating such a style of dress."
+      ],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "independent_reason": "Selected adjectival 'designating such a style of dress' mismatches nominal Chinese cue 商务休闲装. Master V216 holds; require noun/adjective adjudication.",
+      "master_v216_217_author_example_status": "HOLD_POS_SENSE_DISAMBIGUATION",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 602,
+      "record_id": "SC1341-FINAL-SRC-3d6a1eaab2b90c58113aaf17cb84a6ce",
+      "scene_id": "SC50-0003",
+      "expression": "sleeveless",
+      "chinese_cue": "无袖的",
+      "selected_native_line": 47700,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Of a garment, having no sleeves."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Sleeveless adjective matches garment sense.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 604,
+      "record_id": "SC1341-FINAL-SRC-2de75241bfd1615d339b245fecf835df",
+      "scene_id": "SC50-0003",
+      "expression": "low-rise",
+      "chinese_cue": "低腰的",
+      "selected_native_line": 108646,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Of lower body clothing: whose waistline does not reach the waist, but hangs along the hips."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Low-rise garment adjective fits clothing scene.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 606,
+      "record_id": "SC1341-FINAL-SRC-6c0308c5010d3e4beaf31bda65b0b515",
+      "scene_id": "SC50-0003",
+      "expression": "striped",
+      "chinese_cue": "条纹的",
+      "selected_native_line": 107747,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Having stripes, decorated or marked with bands differing in color."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Striped adjective aligned, examples must be checked separately.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 617,
+      "record_id": "SC1341-FINAL-SRC-50166be991474bc3bc45e119079b5094",
+      "scene_id": "SC50-0003",
+      "expression": "wrinkled",
+      "chinese_cue": "起皱的",
+      "selected_native_line": 45318,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Uneven, with many furrows and prominent points, often in reference to the skin or hide of animals."
+      ],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "independent_reason": "Chosen native gloss specifically emphasizes skin/hide texture; clothing scene wants fabric wrinkled. Master V216 holds and V211 beach-sand example was scene-mismatched.",
+      "master_v216_217_author_example_status": "HOLD_NATIVE_SENSE_SCENE_FIT",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 624,
+      "record_id": "SC1341-FINAL-SRC-6d25105e9dd009b93175817c78f3103d",
+      "scene_id": "SC50-0003",
+      "expression": "breathable",
+      "chinese_cue": "透气的",
+      "selected_native_line": 71803,
+      "selected_native_sense_index": 1,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Letting air seep through."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Breathable source gloss permits air; choose a full clothing/fabric example, not paint phrase fragment.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 823,
+      "record_id": "SC1341-FINAL-SRC-418d871917f5dfa3650f905f9a96f3ea",
+      "scene_id": "SC50-0004",
+      "expression": "disinfectant",
+      "chinese_cue": "消毒剂",
+      "selected_native_line": 105616,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "A substance that kills germs or viruses."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Disinfectant definition matches cleaning context; do not infer medical safety endorsement.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 831,
+      "record_id": "SC1341-FINAL-SRC-fddbcfa7e0be47e93c18a9c7cd5f595c",
+      "scene_id": "SC50-0004",
+      "expression": "keepsake",
+      "chinese_cue": "纪念品",
+      "selected_native_line": 19479,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "An object given by a person and retained in memory of something or someone; something kept for sentimental or nostalgic reasons."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Keepsake definition matches memory souvenir, distinguish sentimental from ordinary commodity souvenir.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 840,
+      "record_id": "SC1341-FINAL-SRC-ddb4a23b469ffb82313684fdc4dc40a0",
+      "scene_id": "SC50-0004",
+      "expression": "within reach",
+      "chinese_cue": "伸手就能拿到",
+      "selected_native_line": 450203,
+      "selected_native_sense_index": 0,
+      "native_pos": "prep_phrase",
+      "native_gloss": [
+        "At a distance close enough to touch by reaching."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Within reach native phrase fits manual access scene.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 841,
+      "record_id": "SC1341-FINAL-SRC-d6c8a8958a5a5da535ad68f1953ed70c",
+      "scene_id": "SC50-0004",
+      "expression": "out of reach",
+      "chinese_cue": "够不着",
+      "selected_native_line": 612121,
+      "selected_native_sense_index": 0,
+      "native_pos": "prep_phrase",
+      "native_gloss": [
+        "Outside the distance to which someone can stretch out their hand."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Out of reach fits cannot reach; may be physical or abstract, this scene physical.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 848,
+      "record_id": "SC1341-FINAL-SRC-ec4a3354abf1069293c0d2c25dafa017",
+      "scene_id": "SC50-0004",
+      "expression": "cluttered",
+      "chinese_cue": "杂物堆积的",
+      "selected_native_line": 182201,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Scattered with a disorderly mixture of objects that occupies space; littered."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Cluttered gloss fits a room scattered with things.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 854,
+      "record_id": "SC1341-FINAL-SRC-055e79d100043fe37896f4603b247ec0",
+      "scene_id": "SC50-0004",
+      "expression": "spacious",
+      "chinese_cue": "宽敞的",
+      "selected_native_line": 83216,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Having plenty of space; roomy; capacious."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Spacious adjective gloss fits roomy space.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 855,
+      "record_id": "SC1341-FINAL-SRC-5b426d93e770ac02affcd35d0f30aec1",
+      "scene_id": "SC50-0004",
+      "expression": "crowded",
+      "chinese_cue": "堆满东西的",
+      "selected_native_line": 73374,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Containing a dense pack or mass of something; teeming."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Crowded with boxes may fit densely packed storage, do not assume humans only.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 987,
+      "record_id": "SC1341-FINAL-SRC-c543bcd96b4c09c7dc13cc3c636420c5",
+      "scene_id": "SC50-0005",
+      "expression": "tidying",
+      "chinese_cue": "整理东西",
+      "selected_native_line": 218167,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "The act or process in which things are tidied."
+      ],
+      "verdict": "HOLD",
+      "severity": "P0",
+      "independent_reason": "Chosen nominal 'act or process of tidying' conflicts with the verbal participle usage in new bilingual example 'I spent the morning tidying...'; source-index/POS review needed.",
+      "master_v216_217_author_example_status": "HOLD_POS_USAGE_REVIEW",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 1031,
+      "record_id": "SC1341-FINAL-SRC-aba80c4ca5dcded1b64d28b458ed4e06",
+      "scene_id": "SC50-0005",
+      "expression": "vacuum cleaner",
+      "chinese_cue": "吸尘器",
+      "selected_native_line": 38909,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "A device that uses suction, and often agitation, in order to remove dirt and other debris from carpets and hard floors."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Vacuum cleaner device noun aligns.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 1035,
+      "record_id": "SC1341-FINAL-SRC-b6f699900fe7607a171919f01164d8b6",
+      "scene_id": "SC50-0005",
+      "expression": "scrub brush",
+      "chinese_cue": "硬毛刷",
+      "selected_native_line": 1334261,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "Alternative form of scrubbing brush."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Scrub brush source redirects to scrubbing brush; still needs learner gloss describing stiff-bristled cleaning brush.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 1095,
+      "record_id": "SC1341-FINAL-SRC-d53f32c5d856d29cc926fb2c289e663e",
+      "scene_id": "SC50-0005",
+      "expression": "manageable",
+      "chinese_cue": "能够完成的",
+      "selected_native_line": 124418,
+      "selected_native_sense_index": 1,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Capable of being done or fulfilled; achievable."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Manageable source 'able to be done' matches ability-to-complete work; contrast ability to manage physically.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 1096,
+      "record_id": "SC1341-FINAL-SRC-bc02401c79ef84063771415681943cd6",
+      "scene_id": "SC50-0005",
+      "expression": "exhausting",
+      "chinese_cue": "让人疲惫的",
+      "selected_native_line": 157914,
+      "selected_native_sense_index": 0,
+      "native_pos": "adj",
+      "native_gloss": [
+        "Very tiring."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Exhausting adjective gloss matches tiring.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 1098,
+      "record_id": "SC1341-FINAL-SRC-877fd4527de3a2c68ac8daa6c23933b7",
+      "scene_id": "SC50-0005",
+      "expression": "fair share",
+      "chinese_cue": "公平分担的部分",
+      "selected_native_line": 1266115,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "An equitable or reasonable portion, especially in regards to contributions towards a particular duty, or the dividends thereof."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Fair share refers equitable portion; sentence fairness context matches.",
+      "master_v216_217_author_example_status": null,
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    },
+    {
+      "source_final_row": 1099,
+      "record_id": "SC1341-FINAL-SRC-d2685cb68b5581354f282844a370fe38",
+      "scene_id": "SC50-0005",
+      "expression": "workload",
+      "chinese_cue": "工作量",
+      "selected_native_line": 54067,
+      "selected_native_sense_index": 0,
+      "native_pos": "noun",
+      "native_gloss": [
+        "The amount of work assigned to a particular worker, normally in a specified time period."
+      ],
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "independent_reason": "Workload noun definition matches work assigned.",
+      "master_v216_217_author_example_status": "EDITORIAL_EXAMPLE_UNREVIEWED",
+      "source_crosscheck": {
+        "v208_v209_immutable_identity_match": true
+      },
+      "review_scope": "candidate_source_sense_screening_not_full_first_review"
+    }
+  ],
+  "preexisting_native_ambiguity_holds": [
+    {
+      "source_final_row": 137,
+      "record_id": "SC1341-FINAL-SRC-757d1b80091041b28a7251a5f3e3e08b",
+      "expression": "refreshed",
+      "reason": "Native adjective candidate lacks gloss in this evidence queue; do not select an empty gloss",
+      "qa_gate": "RETAIN_HOLD_NO_SELECTED_SENSE"
+    },
+    {
+      "source_final_row": 343,
+      "record_id": "SC1341-FINAL-SRC-bf6dbbe643af94d5c9b9582f80bf3ec6",
+      "expression": "shaving cream",
+      "reason": "Two near-overlapping shaving cream product senses; source cue insufficient",
+      "qa_gate": "RETAIN_HOLD_NO_SELECTED_SENSE"
+    },
+    {
+      "source_final_row": 436,
+      "record_id": "SC1341-FINAL-SRC-923c15044cb45672b1275992c53eab41",
+      "expression": "scalding hot",
+      "reason": "Both native senses are synonymous and lack a reliable scene-specific boundary",
+      "qa_gate": "RETAIN_HOLD_NO_SELECTED_SENSE"
+    },
+    {
+      "source_final_row": 651,
+      "record_id": "SC1341-FINAL-SRC-20c55992c3e0428a45e33dc9b92e7a39",
+      "expression": "extra-large",
+      "reason": "Duplicate alternative-spelling glosses; no distinct semantic evidence",
+      "qa_gate": "RETAIN_HOLD_NO_SELECTED_SENSE"
+    },
+    {
+      "source_final_row": 1037,
+      "record_id": "SC1341-FINAL-SRC-459ecf62c6b00993a665ce4e24e6b65c",
+      "expression": "paper towel",
+      "reason": "Kitchen versus restroom paper towel is inferable from cue but Chinese cue alone does not prove exact source Sense",
+      "qa_gate": "RETAIN_HOLD_NO_SELECTED_SENSE"
+    }
+  ],
+  "p0_candidates": [
+    584,
+    585,
+    617,
+    987
+  ],
+  "p1_candidates": [
+    118,
+    338,
+    573,
+    575
+  ],
+  "warnings": [
+    "V216 independently flags rows584,585,617; V217 flags row987; QA independently concurs on POS/sense discrepancies.",
+    "Some ambiguous plural gloss rows have candidate headword but cannot independently pin native sub-sense of this context.",
+    "Original Kaikki raw lexical lines not reopened in V201; this is not a signed exact content-sha first-review and 1审 index MUST remain unchanged.",
+    "V209 skeletons lack V203 canonical content SHA and are not complete teaching cards; 38 candidates are NOT new additions to 258 fully authored draft count.",
+    "One candidate can be lexically plausible while the newly written bilingual example or Chinese cue is wrong.",
+    "Do not auto-approve native IPA, collocations, original English example attestation, or Muse review."
+  ],
+  "release_allowed": false,
+  "srs_eligible": false
+}
