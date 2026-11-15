@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V250_FULL1341_QA_TRIAGE",
+  "version": "V251_MISSING_MEANING_FORENSIC",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -624,6 +624,18 @@
       "qa_stage": "待审",
       "canonical_sense_ids_verified": 0,
       "release_allowed": false
+    },
+    "v251_missing_meaning_forensic": {
+      "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+      "missing_total": 222,
+      "one_same_expression_meaning_candidate": 43,
+      "multiple_meanings": 50,
+      "no_same_expression_evidence": 129,
+      "drive_archive_id": "1Eqf1I_ciBSEQScVEZGN_K9MTQP6DOMcW",
+      "qa_stage": "待审",
+      "all_hold": true,
+      "auto_fill_count": 0,
+      "release_allowed": false
     }
   },
   "sources": {
@@ -677,9 +689,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "CG-QA prioritize V250 polysemy and missing-meaning queues, preserving exact source rows and evidence.",
-    "Use Kaikki semantic evidence to determine Sense identity; do not merge on identical gloss alone.",
-    "Continue L2/L3 answer and question page enrichment and preserve 1审 only for independently verified content."
+    "CG-QA review 43 single-meaning candidates first, using scene semantics and Kaikki evidence; do not auto-fill.",
+    "Disambiguate 50 multiple-meaning rows against Kaikki sense-level evidence.",
+    "Source independent evidence for 129 unmatched expressions; preserve all 222 HOLD until verified."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
