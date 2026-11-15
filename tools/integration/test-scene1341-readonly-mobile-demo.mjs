@@ -147,8 +147,8 @@ assert(script.includes("set('expression',r.expression);scheduleQuestionFit();ren
  script.includes("question?.ipa_source?.headword===card.expression") &&
  html.includes('<script src="./scene1341-v165-ipa-learner-display.js"></script>') &&
  script.includes("const learnerIPA=window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA(question?.ipa,{language:'en'})") &&
- script.includes("el.textContent=latestExact?learnerIPA+'（最新Master测试·未认证）':native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':v171Paired?learnerIPA+'（V171测试音标·未认证）':'音标待补'") &&
- script.includes("el.dataset.ipaStatus=latestExact?'latest-master-unique-test':native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':v171Paired?'v171-paired-test':'missing'") &&
+ script.includes("el.textContent=phase1Native?learnerIPA+'（Kaikki来源候选·待审）':phase1Hold?'音标待核验':latestExact?learnerIPA+'（最新Master测试·未认证）':native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':v171Paired?learnerIPA+'（V171测试音标·未认证）':'音标待补'") &&
+ script.includes("el.dataset.ipaStatus=phase1Native?'phase1-kaikki-unreviewed':phase1Hold?'phase1-hold':latestExact?'latest-master-unique-test':native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':v171Paired?'v171-paired-test':'missing'") &&
   script.includes("question?.ipa_test_only_v171===true") &&
   script.includes("card.master_paired_test_version==='V171'"),
  'Scene1341 learning screen must display only exact CG-MASTER question IPA and Master answer fields');
@@ -1674,3 +1674,14 @@ assert.equal(failedAudioResumes,2);
 assert.equal(examplePhase.state().phase,'answer-paused');
 
 console.log(JSON.stringify({status:'PASS',preview:'2873 source-pinned CG-MASTER V116+V128+V134/V142/V150 authored Master pages',blocked:161,releaseApproved:0,readonly:true,inlineScriptSyntax:true}));
+
+// New P0: exactly sourced Phase1 draft question+answer projection on the
+// ACTUAL study screen, not Settings-only; legacy fallback remains unchanged.
+assert(script.includes("applyPhase1StudyOverlay(items,fresh)") &&
+ script.includes("items=[...staging.items]") &&
+ script.includes("r.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST'") &&
+ script.includes("question?.ipa_status==='PHASE1_KAIKKI_NATIVE_SINGLE_UNREVIEWED'") &&
+ script.includes("phase1Hold?'音标待核验'") &&
+ script.includes("Kaikki原生·待审") &&
+ script.includes("用法说明（编辑草稿·待审）"),
+ 'fresh Master full question/answer and native IPA source status must reach actual study cards');
