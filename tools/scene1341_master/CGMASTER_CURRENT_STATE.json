@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "18bcf561a2ab3fd1ebd645fc36c91372e51bc588",
-  "version": "V241_VERIFIED",
+  "verified_base_head": "a396dfab00174dddc609e76c0b7cb43f0799b2bf",
+  "version": "V242_RANKED_CANDIDATE_STAGED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -473,6 +473,20 @@
       "workflow_run_id": 43700907489,
       "workflow_conclusion": "success",
       "verification_note": "30 scene JSON files fetched individually; records array length matches all per-scene manifest counts; 5618 disjoint source rows per builder assertions; L1 test only, QA pending."
+    },
+    "v242_ranked_candidate_stage": {
+      "scenes": 10,
+      "from": "SC50-0101",
+      "to": "SC50-0110",
+      "records": 1730,
+      "original_master_row_pointers": 1693,
+      "editorial_additions_without_master_row": 37,
+      "canonical_record_ids_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "manifest": "tools/scene1341_master/qa_reports/v242_ranked_l1_candidate/CGMASTER_V242_MANIFEST.json",
+      "source_ranked_csv": "tools/integration/scene1341-ranked/v61-ranked.csv",
+      "source_ranked_blob_sha": "a82538a17b69b9c2f7e0803b5da5b17fb7a0a875"
     }
   },
   "sources": {
@@ -517,9 +531,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Extend L1 coverage from SC50-0101 onward using existing source shards and verified record IDs, in ~3000-row batches.",
-    "Round-robin enrich existing cards with native Kaikki POS/sense/gloss/IPA/examples, then bilingual instructional L3.",
-    "Keep QA marks 待审 until exact content-version CG-QA pass; do not release to formal SRS."
+    "Relink SC0101..0110 ranked candidate source_master_row pointers to frozen FINAL Master actual record IDs, verify expressions/senses, and separate editorial additions.",
+    "Continue sourcing original Master rows beyond SC0110; do not count V242 ranked candidates in verified 20696 records.",
+    "Extend native Kaikki L2/L3 only with actual attestation; independent CG-QA must validate exact versions before 1审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
