@@ -1,0 +1,155 @@
+{
+  "version": "V198",
+  "date": "2026-11-15",
+  "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+  "scope": "SC50-0001..0005",
+  "status": "RAW_KAIKKI_FRESH_EXACT_HEADWORD_CANDIDATE_EXTRACTION_DONE_SEMANTIC_SELECTION_HOLD",
+  "source": {
+    "archive_filename": "kaikki.org-dictionary-English.jsonl.gz",
+    "archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "archive_bytes": 534186395,
+    "source_parts": [
+      {
+        "name": "part01",
+        "sha256": "1aece8566c5b6343c8be137154c444b8a54509833b32179bd09dd0d11c4a1b16"
+      },
+      {
+        "name": "part02",
+        "sha256": "f85844bb3129b4e606839da4a4b32f7787a83f90107454ab03b3fb6501a460a4"
+      },
+      {
+        "name": "part03",
+        "sha256": "a21af8b16b53b4512cff851c076c6c418b5905ae8f1cab2e0e3c7ff7c5341978"
+      },
+      {
+        "name": "part04",
+        "sha256": "3c9fba31f886afe1b920bbe33a2f3dbfbc1e1414dce8c3c93aa9c990bb44d7ed"
+      }
+    ],
+    "raw_en_entries_scanned": 1499161,
+    "exact_english_expression_variants": 1169,
+    "matched_exact_expression_variants": 495,
+    "native_entries_for_matched_words": 956,
+    "record_match_is_not_sense_alignment": true
+  },
+  "frozen_master": {
+    "original_source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "association_count": 1241,
+    "stable_id_record_id_source_final_row_scene_id_preserved": true,
+    "global_sense_ids_certified": 0
+  },
+  "counts": {
+    "source_associations": 1241,
+    "exact_raw_expression_word_record_matches": 550,
+    "native_sense_candidate_record_matches": 550,
+    "native_ipa_candidate_record_matches": 374,
+    "unmatched_exact_raw_expression_associations": 691,
+    "without_native_ipa_candidates": 867,
+    "prior_author_bilingual_examples_reference_only": 840,
+    "prior_test_ipa_reference_only": 449,
+    "prior_en_gloss_pos_reference_only": 136,
+    "qa_stage_pending": "待审",
+    "first_reviewed": "0",
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "by_scene": [
+    {
+      "scene_id": "SC50-0001",
+      "associations": 294,
+      "exact_raw_headword_candidates": 114,
+      "native_ipa_candidate_records": 67,
+      "old_author_example_reference_only": 223,
+      "old_test_ipa_reference_only": 103,
+      "old_gloss_pos_reference_only": 33
+    },
+    {
+      "scene_id": "SC50-0002",
+      "associations": 206,
+      "exact_raw_headword_candidates": 83,
+      "native_ipa_candidate_records": 48,
+      "old_author_example_reference_only": 157,
+      "old_test_ipa_reference_only": 70,
+      "old_gloss_pos_reference_only": 25
+    },
+    {
+      "scene_id": "SC50-0003",
+      "associations": 237,
+      "exact_raw_headword_candidates": 139,
+      "native_ipa_candidate_records": 110,
+      "old_author_example_reference_only": 172,
+      "old_test_ipa_reference_only": 86,
+      "old_gloss_pos_reference_only": 25
+    },
+    {
+      "scene_id": "SC50-0004",
+      "associations": 245,
+      "exact_raw_headword_candidates": 118,
+      "native_ipa_candidate_records": 88,
+      "old_author_example_reference_only": 184,
+      "old_test_ipa_reference_only": 94,
+      "old_gloss_pos_reference_only": 24
+    },
+    {
+      "scene_id": "SC50-0005",
+      "associations": 259,
+      "exact_raw_headword_candidates": 96,
+      "native_ipa_candidate_records": 61,
+      "old_author_example_reference_only": 104,
+      "old_test_ipa_reference_only": 96,
+      "old_gloss_pos_reference_only": 29
+    }
+  ],
+  "p0": [
+    {
+      "source_final_row": 506,
+      "scene_id": "SC50-0003",
+      "expression": "take off",
+      "old_invalid_selected_ipa": "/ˌpʊt ˈɒn/",
+      "fresh_native_entries": 2,
+      "fresh_pos_candidates": [
+        "noun",
+        "verb"
+      ],
+      "fresh_senses_candidates": 13,
+      "native_ipa_candidates": 0,
+      "status": "HOLD_P0_WRONG_IPA_QUARANTINED"
+    }
+  ],
+  "storage": {
+    "library_root": "/PAI Word/CG-MASTER",
+    "raw_evidence": {
+      "name": "CGMASTER_V198_SC0001_0005_FRESH_KAIKKI_EXACT_RAW_EVIDENCE_20261115.json",
+      "size_bytes": 5051433,
+      "sha256": "328ace7320a4b5bde941cbea54eee79117d0710ebe8c09dfafcb7d9df4318e73"
+    },
+    "source_ledger": {
+      "name": "CGMASTER_V198_SC0001_0005_FRESH_SOURCE_IDENTITY_QA_LEDGER_20261115.jsonl",
+      "size_bytes": 931208,
+      "sha256": "7c3bbed0ee34255a94d8a7817b8d0482219091b0a6b2124f2857c61a607cbe5c"
+    },
+    "report": {
+      "name": "CGMASTER_V198_PHASE1_FRESH_SOURCE_REPORT_20261115.json",
+      "sha256": "8498ed4d90e9abcd64f81fae7eb3a17ea4dd1d91d1d8a1a18c35eed1d8f9715a"
+    }
+  },
+  "qa_contract": {
+    "label_unreviewed": "待审",
+    "label_first_reviewed": "1审",
+    "reviewed_stage_requires_content_sha_reviewer_evidence_commit_verdict_date": true,
+    "one_review_is_not_pass": true,
+    "change_resets_to_pending": true,
+    "question_complete_default": false,
+    "answer_complete_default": false,
+    "ipa_selection_status": "HOLD_UNADJUDICATED_EXACT_NATIVE_CANDIDATES",
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "notes": [
+    "Fresh full 1,499,161-entry Kaikki raw archive scanned; no legacy V179 derived sense was used as authoritative source.",
+    "Exact whole-expression headword retrieval may not include compositional phrases; missing exact word does not prove expression absent from all possible forms.",
+    "No POS/Sense chosen automatically, no bilingual author content falsely attributed to Kaikki.",
+    "Raw evidence and row-by-row review queue are in persistent user Library, not GitHub binary shards.",
+    "Not yet a complete question/answer production payload nor independent CG-QA review."
+  ]
+}
