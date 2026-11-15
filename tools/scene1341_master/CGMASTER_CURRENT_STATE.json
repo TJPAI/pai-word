@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "a6abcde715709b5f56dab622e7ee271240d6da5d",
-  "version": "V241_PREPARED",
+  "verified_base_head": "18bcf561a2ab3fd1ebd645fc36c91372e51bc588",
+  "version": "V241_VERIFIED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -416,16 +416,17 @@
       "release_allowed": false
     },
     "current_staged_disjoint_scene_coverage": {
-      "scenes": 70,
-      "rows": 15078,
+      "scenes": 100,
+      "rows": 20696,
       "components": [
         "V234 SC0001..0005 1241",
         "V239 SC0006..0010 and 0015..0016 1686",
         "V235 SC0011..0014 996",
         "V238 SC0017..0025 2256",
-        "V240 SC0026..0070 8899"
+        "V240 SC0026..0070 8899",
+        "V241 SC0071..0100 5618"
       ],
-      "note": "Disjoint by scene. Test coverage; not QA certified. CMU IPA previews not native Kaikki."
+      "note": "Disjoint scene ranges; L1 test coverage only, not independently QA certified."
     },
     "v239_scene_first_test_pages": {
       "scenes": [
@@ -464,9 +465,14 @@
       ],
       "builder": "tools/scene1341_master/build_v241_sc0071_0100.py",
       "workflow": ".github/workflows/cgmaster-v241-sc0071-0100.yml",
-      "generated_outputs_verified": false,
+      "generated_outputs_verified": true,
       "qa_stage": "待审",
-      "release_allowed": false
+      "release_allowed": false,
+      "file_count_verified": 30,
+      "manifest": "tools/scene1341_master/qa_reports/v241_scene_test/CGMASTER_V241_MANIFEST.json",
+      "workflow_run_id": 43700907489,
+      "workflow_conclusion": "success",
+      "verification_note": "30 scene JSON files fetched individually; records array length matches all per-scene manifest counts; 5618 disjoint source rows per builder assertions; L1 test only, QA pending."
     }
   },
   "sources": {
@@ -511,49 +517,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "V241: check actions workflow generated 30 scene files and manifest 5618; if absent, execute workflow_dispatch or use local input shards and write outputs. Do NOT count 5618 as newly staged until files present.",
-    "V240: Next scale SC0071+ from original frozen Master/Reviewed V13, bulk 3000 source rows, then iteratively enrich L2 Kaikki source sense evidence and L3 answers; maintain QA 待审.",
-    "V239: SC0001..0025 staged 6179 source-row TEST records. Expand to SC0026..0070 via V172..174 gzip shards; maintain scene-first files, no false QA claims.",
-    "V238: expand scene-first L1 coverage from existing V169/V170/V172/V173/V174 source overlays, avoid counting overlapping V190. Preserve unreviewed IPA status and provenance.",
-    "V237 blocker: trigger V236 workflow_dispatch manually on cg-master-kaikki-evidence-intake-20261111 or confirm GitHub Actions branch permissions; verify output tree and 3000-row generated manifest. Avoid claiming success before files appear.",
-    "V236: verify GitHub Actions execution and generated per-scene 3000-row output; if workflow did not run, manually trigger workflow_dispatch in GitHub Actions. Only after validation count expanded coverage.",
-    "V235: reuse verified historical scene-specific paired draft files for SC0006..0010 and beyond, no duplicate authoring; scale scene coverage by bulk transformations and maintain source provenance.",
-    "V234: scale scene-first source-row L1 test coverage to all 1341 scenes from authoritative Master without modifying frozen original; iterative Kaikki enrichment L2, teaching L3, CG-QA L4. Keep scene-first progressive test feed, no fake gloss/IPA.",
-    "V233: CG-MAIN can integrate V233 as test-only Kaikki-native cards; CG-QA must independently review before 1审. Continue semantic adjudication of remaining 292 multi-sense HOLD and 691 no-exact-entry.",
-    "V232: integrate 131 provenance-relinked native sense gloss/example candidates into test Master, retaining pending independent CG-QA; then review 292 unresolved with semantic cues.",
-    "V231: CG-MAIN may read five V231 per-scene native candidate JSON files and 127 V230 preview records as test-only; do not publish formal cards or mark 1审. Next semantic matching for 423 ambiguous native records.",
-    "V230: stage 1.7MB V229 full candidate source and V230 127 page JSON into authoritative GitHub/Drive; only builder is committed to GitHub. Validate before CG-MAIN consumption.",
-    "V228: retrieve FULL Kaikki English dictionary, not only V198 subset, for 691 unmatched expressions; fill verified native POS/gloss/IPA/examples directly into V227 test overlay with exact source line.",
-    "V227: enrich 691 unmatched expressions from full Kaikki and select sense-specific glosses for 292 ambiguous native entries; V227 is all-row test overlay not complete page certification.",
-    "V226: fill remaining 983 source rows from exact native Kaikki evidence scene-first; do not wait for full author enrichment or QA to populate candidate fields.",
-    "V225: use existing Kaikki source evidence to populate full 1241 SC0001–0005 records scene-first; use V225 38-record test overlay as schema, not a claim of full Master coverage.",
-    "V224: source-ground 15 IPA-missing records from full Kaikki or CMUdict with explicit phoneme-to-IPA method; independently review 17 single candidates and 6 ambiguous candidates.",
-    "V223: CG-MAIN may consume review-only preview page payloads but must preserve complete=false and release_allowed=false; CG-MASTER continue IPA and full content enrichment.",
-    "V222: verify GitHub Actions validator pass, fix any CI regressions before further promotion.",
-    "V221: CG-QA review single 38-record bilingual batch; prioritize 4 holds, release only exact approved content hash.",
-    "V220: independently QA 27-row source provenance ledger; record exact approved content hash only after actual CG-QA review.",
-    "V219: independent QA 24 editorial examples, confirm V218 3 revised POS selections and 1 wrinkled HOLD; retain original native source lines.",
-    "V218: independent QA on four POS/sense errata; apply only to new reviewed content snapshot after approval; never silently rewrite V208/V209.",
-    "V217: independently QA 16 scene-fit examples and hold tidying noun-versus-verb mismatch; cross-check 24 original editorial drafts across V216 and V217.",
-    "V216: CG-QA independently review 7 authored bilingual examples, revisit noun/adjective source for smart casual/business casual, find clothing-specific wrinkled Sense.",
-    "V215: prioritize 27 missing scene-fit examples (SC0003=10), preserve native source provenance and separate editorial examples from Kaikki originals.",
-    "V214: CG-QA independent review 11 scene-fit bilingual native example records; 2 scene-fit HOLD remain separate.",
-    "V212: run new cross-artifact validator in CI and obtain independent QA review; preserve exact original Sense line and immutable source ID.",
-    "V211: CG-QA verify 14 translated native examples; replace 2 scene-incompatible examples only with source-backed better examples, no fabricated source attribution.",
-    "V210: independently QA 13 source-pinned English examples and 17 native IPA candidates; create bilingual translations before marking answer complete.",
-    "V209: enrich 38 page skeletons with independently verified IPA, native examples, bilingual translations and usage; no premature promotion.",
-    "V208: CG-QA independent first review of 38 native sense matching proposals; 5 HOLD need further evidence; no release before QA.",
-    "V207 prioritize exact original Kaikki semantic adjudication for 43 two-candidate records; no QA promotion before independent CG-QA first review.",
-    "V206: select native sense for 292 ambiguity records only with original Kaikki source evidence and independent QA; generated evidence queue is unreviewed.",
-    "V205: Requery 687 full multiword expressions against complete Kaikki; if exact native entry unavailable, component lemma evidence must remain non-attesting and QA HOLD.",
-    "Disambiguate 56 single-entry multi-sense and 236 multi-entry candidates, preserve HOLD until source-matched and independently reviewed.",
-    "Recover full original Kaikki corpus for 691 source rows with no exact entry in V198 subset; subset absence is not proof of lexeme absence.",
-    "Run or verify newly added provenance CI at exact HEAD and fix any failing integrity checks before more editor production.",
-    "Resolve IPA HOLD from actual raw Kaikki and separately verify ambiguity, never invent phonetics.",
-    "Coordinate independent CG-QA per-record exact-content SHA first review on existing GitHub JSON.",
-    "Complete question and answer schema with sourced examples/collocations where available and review editorial fields; leave unfilled fields pending rather than claim completion.",
-    "Keep this file updated after each actual batch with verified HEAD, artifact paths and CI result.",
-    "Resolve remaining 983 source associations; multi-sense evidence requires editorial disambiguation and independent QA."
+    "Extend L1 coverage from SC50-0101 onward using existing source shards and verified record IDs, in ~3000-row batches.",
+    "Round-robin enrich existing cards with native Kaikki POS/sense/gloss/IPA/examples, then bilingual instructional L3.",
+    "Keep QA marks 待审 until exact content-version CG-QA pass; do not release to formal SRS."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
