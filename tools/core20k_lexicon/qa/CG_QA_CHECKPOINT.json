@@ -3,8 +3,8 @@
   "role": "CG-QA",
   "updated_at": "2026-11-15",
   "branch": "cg-qa-enlex-review-20261026",
-  "verified_previous_head": "adcc94c855b8f7fe30a0064285b7ec64f7bc1b12",
-  "last_completed_version": "V200",
+  "verified_previous_head": "b17f0c0c95aadab9ef96db1d7604f03709faff53",
+  "last_completed_version": "V201",
   "formal_dual_ai_certified": 0,
   "formal_ready": 0,
   "srs_eligible": false,
@@ -57,12 +57,18 @@
       "rows": 14,
       "path": "tools/core20k_lexicon/qa/CG_QA_V200_14_METAGLOSS_INDEPENDENT_FIRST_REVIEW_AND_V211_INTAKE_20261115.v1.json",
       "findings": "14 V203 independently reviewed: 1 P0 HOLD pack lunch POS/sense mismatch, 1 P1 REVISE running late, 12 P2 CONDITIONAL learner-gloss expansions. V211 13 original records/14 editor bilingual pairs intake: 2 scene/fragment HOLD. 19 cumulative exact-hash first reviews, zero PASS."
+    },
+    {
+      "version": "V201",
+      "rows": 43,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V201_V208_43_NATIVE_SENSE_CANDIDATE_SEMANTIC_AUDIT_20261115.v1.json",
+      "findings": "V208 38 candidate source senses: 30 CONDITIONAL, 8 independent HOLD; 5 prior native ambiguity HOLD; 38/38 V208-V209 identity match; no canonical content SHA for skeletons; first-review index unchanged at 19."
     }
   ],
   "source_state": {
     "master_branch": "cg-master-kaikki-evidence-intake-20261111",
     "master_state_path": "tools/scene1341_master/CGMASTER_CURRENT_STATE.json",
-    "master_state_version_at_intake": "V211",
+    "master_state_version_at_intake": "V217",
     "phase1_original_associations": 1241,
     "phase1_drafts_at_intake": 258,
     "phase1_first_review": 19,
@@ -73,7 +79,8 @@
   "open_p0": [
     "V190 row506 take off mismatched POS/gloss and IPA; source-backed author correction not independently verified",
     "V192 13 source-to-intended-sense/POS candidate mismatches awaiting Master adjudication",
-    "V200 V203 row203 pack lunch as noun alternative to packed lunch conflicts with source Chinese action cue 打包午饭; HOLD until true intended verb/noun source adjudication."
+    "V200 V203 row203 pack lunch as noun alternative to packed lunch conflicts with source Chinese action cue 打包午饭; HOLD until true intended verb/noun source adjudication.",
+    "V201 V208 rows584 smart casual,585 business casual adjectival native sense vs nominal Chinese cue; row617 wrinkled skin/hide native gloss vs clothing scene; row987 tidying noun sense vs verbal-participle new example. Hold all four."
   ],
   "open_p1": [
     "V191 105 up-component evidence contamination candidates; do not confuse with selected IPA errors",
@@ -84,23 +91,24 @@
     "V198 row359 body lotion, row543 sweater, row352 cotton swab, row1046 laundry detergent require source-safe content revisions; row70 weekday conditional example improvement",
     "V203 46 of 55 newly source-linked rows have empty answer example arrays; 14 have relation/form-only gloss that is not independently confirmed as learner-ready definition.",
     "V200 V203 row63 running late has grammatical-reference gloss, not learner meaning; 12 metagloss rows require pedagogical expansion (CONDITIONAL).",
-    "V211 row617 wrinkled beach-sand example wrong for clothing scene; row624 breathable paint is a fragment, not a complete learner sentence."
+    "V211 row617 wrinkled beach-sand example wrong for clothing scene; row624 breathable paint is a fragment, not a complete learner sentence.",
+    "V201 unresolved V208 source sense ambiguity rows118 blinds,338 gums,573 flats,575 loafers; selected raw plural-of lemmas cannot establish narrow scene-specific native sense."
   ],
   "pending_tasks": [
-    "Prioritize independent review of V208 38 chosen two-candidate Sense proposals (5 HOLD) and V209 associated page skeletons, exact raw sense evidence",
-    "Review V211 native-example provenance and 14 translations with immutable source evidence, not author assertion",
-    "Validate fresh CG-MASTER edits against prior 19 exact content SHA first-review rows and reset changed items to 待审",
-    "Continue V191 component IPA and V192 semantic risk closure",
-    "Continue 3000-association batch structural audits after new canonical source data becomes available"
+    "Obtain independent original raw Kaikki lines and disambiguate V208 P0/P1 eight source-sense HOLD cases",
+    "Audit V214 11 scene-fit bilingual draft records/12 pairs plus V216/V217 author-created examples, provenance versus actual raw source",
+    "For V209 38 skeletons, wait for individually hashed canonical complete pages before writing 1审 index; retain 19 current original reviews",
+    "Continue V203 missing content and V191/V192 semantic and IPA risks without altering Master",
+    "Run next isolated 3000-row structural batch on new canonical published source"
   ],
   "last_issue_comment_ids_observed": {
-    "issue1": 6890902670,
-    "issue2": 6890947636
+    "issue1": 6891023325,
+    "issue2": 6891159357
   },
   "invariants": [
     "Do not mutate Core20K or original Master/Scene500/Runtime/SRS",
     "No Muse signoff asserted",
     "No AI-first-review label without actual record/content SHA adjudication"
   ],
-  "next_action": "Audit 38 V208 native sense selections and 13 V211 bilingual pair risks; do not confer full dual AI certification."
+  "next_action": "Target native-sense original source verification and 24 new editorial example pairs, especially V216 and V217 HOLDs. 1审 stays 19; Ready0."
 }
