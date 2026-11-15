@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "92b23671a4317c04cf77d879f9bcf3e10f59a989",
+  "verified_parent_head": "6071df3689dde44199798fcd880e49cb6831d787",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,8 +13,8 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "023be2e5b48268b055a148cb035256d31b1e99c6",
-    "latest_master_version": "V209",
+    "latest_master_head": "326ea3e0d363cd6d4100d836764138603f4ca1bf",
+    "latest_master_version": "V215",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -24,14 +24,15 @@
       46,
       46
     ],
-    "independent_first_reviews": 5,
+    "independent_first_reviews": 19,
     "formal_ready": 0,
     "srs_eligible": false,
-    "latest_qa_head": "df6b34e9df4e3ced83544eb6af3c697d6915ab60",
-    "pending_first_review": 253,
+    "latest_qa_head": "49f086ac87c16707af61bb6cd1b2c04d5620ba03",
+    "pending_first_review": 239,
     "review_verdict_counts": {
-      "REVISE": 4,
-      "CONDITIONAL": 1,
+      "REVISE": 5,
+      "CONDITIONAL": 13,
+      "HOLD": 1,
       "PASS": 0
     }
   },
@@ -98,16 +99,28 @@
       "qa_labels": "one shared plain label beside IPA on both faces",
       "formal_ready": 0,
       "srs_writes": 0
-    }
+    },
+    "p0_scene_sense_quarantine": {
+      "scene": "SC50-0001",
+      "expression": "pack lunch",
+      "source_final_row": 203,
+      "record_id": "SC1341-FINAL-SRC-c11130a3098680db35fc444573431858",
+      "reason": "CG-QA V200 independent P0 HOLD: Kaikki noun alternative to packed lunch is inconsistent with Chinese action cue 打包午饭",
+      "rule": "Hide from all read-only learning queues, counts and swipe/auto paths; fail closed if QA index unavailable; reconsider only after matching independently first-reviewed PASS",
+      "master_modified": false,
+      "formal_ready": 0,
+      "srs_writes": 0
+    },
+    "new_master_status": "CG-MASTER V215 still 258 authored/1241, 983 missing; V209/211/214/215 evidence/skeletons/recovery queues are NOT authored completed cards"
   },
   "ci": {
-    "latest_code_head": "c49bc792d5aa6d7ba5f383f7123bfdf8cb3ec9b4",
+    "latest_code_head": "b45e6e7b44addb4efd53a2f5b7a208c7745cff72",
     "ranked": {
-      "run": 43689360460,
+      "run": 43689673460,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43689360552,
+      "run": 43689673469,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -121,10 +134,9 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Owner manual deploy and verify v. 醒来 without standalone POS section on both Safari/Chrome",
-    "User manually deploys preview; visual smoke test both faces and native-question A/B",
-    "QA label remains beside IPA during auto browsing and swipe with exact record SHA gating",
-    "Continue SC0001–SC0005 Master authored data and IPA integration without SRS writes"
+    "CG-MASTER V215: continue evidence-complete full teaching pages for 983 outstanding; never conflate 38 proposed sense skeletons with authored pages",
+    "CG-QA V200: independent 19 exact-content first reviews, 1 P0 HOLD in SC0001 quarantined, 0 formalReady",
+    "Manual deployment and browser iPhone smoke test of wake up and pack lunch quarantine pending"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
