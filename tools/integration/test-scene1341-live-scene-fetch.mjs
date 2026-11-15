@@ -1,9 +1,8 @@
 import assert from 'node:assert/strict';
-import {webcrypto,createHash} from 'node:crypto';
+import {createHash} from 'node:crypto';
 import {gzipSync} from 'node:zlib';
 import fs from 'node:fs';
 import {fetchSceneAssociations} from '../../rebuild-preview/scene1341-readonly/scene1341-live-feed.mjs';
-globalThis.crypto=webcrypto;
 const records=[1,2].map(i=>({record_id:'SC1341-FINAL-SRC-'+String(i).padStart(32,'0'),
  source_final_row:i,scene_id:i===1?'SC50-0001':'SC50-0002',release_allowed:false,srs_eligible:false,
  question_page:{expression:'sample'},answer_page:{meaning_zh:'测试'}}));
