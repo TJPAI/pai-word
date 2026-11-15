@@ -134,6 +134,16 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <p id="master-live-feed-status" class="demo-tip" aria-live="polite">正在检查全场景增量 Feed…</p>
    <p id="phase1-review-source-status" class="demo-tip" aria-live="polite">正在检查CG-QA独立一审记录…</p>
    <p id="phase1-fresh-draft-status" class="demo-tip" aria-live="polite">SC0001–SC0005 Kaikki 新稿来源检查中…</p>
+   <div id="phase1-editor-inspector" class="panel-block" hidden style="margin:12px 0;padding:12px;border:1px dashed #a5b4c7;border-radius:12px">
+    <strong>Kaikki 全新题目／答案草稿抽检（仅研发诊断）</strong>
+    <p class="demo-tip">不进入正式学习卡，不写入 SRS；所有内容均待审，音标只显示未审原生候选。</p>
+    <label for="phase1-editor-scene">场景</label>
+    <select id="phase1-editor-scene" aria-label="筛选全新草稿场景"><option value="SC50-0001">SC0001</option><option value="SC50-0002">SC0002</option><option value="SC50-0003">SC0003</option><option value="SC50-0004">SC0004</option><option value="SC50-0005">SC0005</option></select>
+    <button id="phase1-editor-prev" type="button" class="home-quiet-btn">上一条</button>
+    <button id="phase1-editor-next" type="button" class="home-quiet-btn">下一条</button>
+    <p id="phase1-editor-counter" class="demo-tip" aria-live="polite"></p>
+    <div id="phase1-editor-readonly" style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65"></div>
+   </div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
     <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
@@ -353,14 +363,22 @@ async function load(){
   // Inspect real first-phase author drafts as DIAGNOSTICS ONLY. They are not
   // CG-QA approved and cannot replace cards until canonical Master publication.
   void import('./scene1341-phase1-fresh-drafts.mjs')
-   .then(m=>m.fetchPhase1FreshDraftsLatest())
-   .then(fresh=>set('phase1-fresh-draft-status',
+   .then(async m=>({m,fresh:await m.fetchPhase1FreshDraftsLatest()}))
+   .then(({m,fresh})=>{
+    phase1FreshInspectorData={rows:fresh.rows,preview:m.phase1EditorialPreview};
+    $('phase1-editor-inspector').hidden=false;
+    renderPhase1EditorInspector();
+    set('phase1-fresh-draft-status',
      'SC0001–SC0005 全新Kaikki草稿：'+fresh.rows.length+'条（按场景 '+[
        'SC50-0001','SC50-0002','SC50-0003','SC50-0004','SC50-0005'
      ].map(id=>id.slice(-4)+':'+(fresh.perScene[id]||0)).join(' / ')+
-     '）；源Git分片'+fresh.verifiedBlobCount+'已校验；全部待审、未接入正式词卡；SRS禁写。'))
-   .catch(()=>set('phase1-fresh-draft-status',
-    '全新Kaikki草稿索引暂不可验证；保留已有词卡，不提升审核或发布状态。'));
+     '）；源Git分片'+fresh.verifiedBlobCount+'已校验；全部待审、未接入正式词卡；SRS禁写。');
+   })
+   .catch(()=>{
+    phase1FreshInspectorData=null;
+    $('phase1-editor-inspector').hidden=true;
+    set('phase1-fresh-draft-status','全新Kaikki草稿索引暂不可验证；保留已有词卡，不提升审核或发布状态。');
+   });
   const [catalogRaw,qa,extra,next,coverageModule,overlayModule,v154Module]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
     import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
@@ -880,6 +898,29 @@ $('preview-settings-button').addEventListener('click',()=>{
  window.scrollTo?.(0,0);
  $('settings-back').focus(); // enter the dedicated page at its visible back control
 });
+let phase1FreshInspectorData=null;
+let phase1EditorOffset=0;
+function renderPhase1EditorInspector(){
+ const data=phase1FreshInspectorData;
+ if(!data||$('phase1-editor-inspector').hidden)return;
+ const scene=$('phase1-editor-scene').value;
+ const rows=data.rows.filter(r=>r.scene_id===scene).sort((a,b)=>a.source_final_row-b.source_final_row);
+ if(!rows.length){$('phase1-editor-readonly').textContent='暂无已验证的新草稿';return;}
+ phase1EditorOffset=(phase1EditorOffset%rows.length+rows.length)%rows.length;
+ const item=data.preview(rows[phase1EditorOffset]);
+ $('phase1-editor-counter').textContent=scene.slice(-4)+' · '+(phase1EditorOffset+1)+' / '+rows.length+' · '+item.stage+' · '+item.verdict;
+ $('phase1-editor-readonly').textContent=
+  '【题目页 · 未审草稿】\\n'+item.expression+'\\n'+item.cue+
+  '\\nIPA: '+(item.ipaCandidate?item.ipaCandidate+'（未审原生候选）':'待核验 / HOLD')+
+  '\\n\\n【答案页 · 未审草稿】\\n'+item.meaning+
+  '\\n'+item.pos+' · '+item.gloss+
+  '\\n'+item.examples.map(e=>e.en+'\\n'+e.zh).join('\\n')+
+  '\\n'+item.usage+'\\n\\n'+item.warning+
+  '\\nrecord_id: '+item.recordId;
+}
+$('phase1-editor-scene').addEventListener('change',()=>{phase1EditorOffset=0;renderPhase1EditorInspector()});
+$('phase1-editor-prev').addEventListener('click',()=>{phase1EditorOffset--;renderPhase1EditorInspector()});
+$('phase1-editor-next').addEventListener('click',()=>{phase1EditorOffset++;renderPhase1EditorInspector()});
 $('settings-back').addEventListener('click',()=>{
  $('settings-page').hidden=true;$('home').hidden=false;renderHome();
  window.scrollTo?.(0,0);
