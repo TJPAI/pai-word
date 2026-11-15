@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "45962c34724084e48c317dc3a54e94c49390ff96",
-  "version": "V233",
+  "verified_base_head": "837e953d2fdd9bd1c6d66842cf576527d626033f",
+  "version": "V234",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -355,6 +355,16 @@
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V233_258_KAIKKI_NATIVE_SENSE_INTEGRATED_TEST_CARDS_20261115.json",
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v234_full_coverage": {
+      "source_rows": 1241,
+      "l1_source_cue_only": 983,
+      "l2_kaikki_native_candidate": 258,
+      "records_with_ipa_candidates": 374,
+      "scenes": 5,
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V234_ALL1241_L1_L2_SCENE_TEST_COVERAGE_20261115.json",
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -399,6 +409,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V234: scale scene-first source-row L1 test coverage to all 1341 scenes from authoritative Master without modifying frozen original; iterative Kaikki enrichment L2, teaching L3, CG-QA L4. Keep scene-first progressive test feed, no fake gloss/IPA.",
     "V233: CG-MAIN can integrate V233 as test-only Kaikki-native cards; CG-QA must independently review before 1审. Continue semantic adjudication of remaining 292 multi-sense HOLD and 691 no-exact-entry.",
     "V232: integrate 131 provenance-relinked native sense gloss/example candidates into test Master, retaining pending independent CG-QA; then review 292 unresolved with semantic cues.",
     "V231: CG-MAIN may read five V231 per-scene native candidate JSON files and 127 V230 preview records as test-only; do not publish formal cards or mark 1审. Next semantic matching for 423 ambiguous native records.",
@@ -438,5 +449,6 @@
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
     "issue2": 6889893324
-  }
+  },
+  "production_policy": "Full coverage first, iterative L1 source-cue -> L2 Kaikki native -> L3 teaching completeness -> L4 independent QA certification; no fabricated evidence; source row identity immutable."
 }
