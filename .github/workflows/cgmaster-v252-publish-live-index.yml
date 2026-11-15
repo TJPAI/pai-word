@@ -19,7 +19,7 @@ jobs:
         run: |
           set -euo pipefail
           python -m pip install --quiet gdown
-          gdown --id 1rfA7iCop1uIYM24alz_6fgJWfpWRKXY9 -O /tmp/v252.zip
+          gdown 1rfA7iCop1uIYM24alz_6fgJWfpWRKXY9 -O /tmp/v252.zip
           echo '34365008898ddcae674444e1dfa5aa39a3dd2a46a1261acbcb0b2a2a4dd6855c  /tmp/v252.zip' | sha256sum -c -
       - name: Extract and validate immutable full1341 payload
         shell: bash
