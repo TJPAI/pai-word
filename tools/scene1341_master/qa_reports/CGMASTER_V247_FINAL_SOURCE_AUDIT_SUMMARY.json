@@ -1,0 +1,48 @@
+{
+  "schema": "cgmaster-v247-final-drive-reconciliation/v1",
+  "version": "V247",
+  "authority": {
+    "drive_id": "1bT_STgfNsJQA5v5x-8bP4T4DH9_eLNaF",
+    "file": "PAI_Word_Scene1341_Sense_Scene_MASTER_FINAL.csv",
+    "sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "sha256_independently_recomputed": true,
+    "size_bytes": 115664055,
+    "scene_count": 1341,
+    "source_records": 230289,
+    "missing_chinese_meaning": 222,
+    "sense_id_column_filled": 0
+  },
+  "full_l1": {
+    "scene_files_generated": 1341,
+    "source_records": 230289,
+    "qa": "待审",
+    "global_sense_ids_verified": 0,
+    "release_allowed": false,
+    "drive_archive_file_id": "15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x",
+    "drive_archive_bytes": 12430241,
+    "github_builder": "tools/scene1341_master/build_v247_full1341_from_final.py",
+    "per_scene_git_files_committed": false
+  },
+  "v61": {
+    "ranked_rows": 1730,
+    "source_master_row_pointers": 1693,
+    "editorial_without_master_row": 37,
+    "source_row_pointer_offset": -1,
+    "corrected_expression_scene_matches": 1693,
+    "corrected_expression_scene_zh_matches": 1642,
+    "editorial_zh_differences_hold": 51,
+    "note": "V61 source_master_row values are one higher than 1-based actual CSV data-row ordinals. Preserve original V61 rows; apply offset only via externally verified exact source read, never overwrite raw."
+  },
+  "source_author_batches_sc0111_0163": {
+    "scenes": 53,
+    "rows": 10978,
+    "exact_position_expression_chinese_matches": 10978,
+    "qa": "待审"
+  },
+  "rules": [
+    "Frozen FINAL raw source is immutable; preserve original source record and SHA.",
+    "Do not invent global Sense ID from source row.",
+    "Only exact-content independent CG-QA PASS permits 1审; L1 remains 待审.",
+    "No SRS promotion."
+  ]
+}
