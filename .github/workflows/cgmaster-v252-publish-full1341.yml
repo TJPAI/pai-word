@@ -1,0 +1,60 @@
+name: CG-MASTER V252 publish full1341 live test feed
+on:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - '.github/workflows/cgmaster-v252-publish-full1341.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Download frozen V247 source-derived L1 ZIP
+        run: |
+          python -m pip install --disable-pip-version-check gdown
+          gdown --id 15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x -O /tmp/CGMASTER_V247_FULL1341_L1_TEST.zip
+          python - <<'PY'
+          import zipfile
+          p='/tmp/CGMASTER_V247_FULL1341_L1_TEST.zip'
+          with zipfile.ZipFile(p) as z:
+              assert z.testzip() is None
+              assert len([n for n in z.namelist() if n.endswith('_L1_TEST_PAGES.json')])==1341
+          print('V247 ZIP integrity and scene count PASS')
+          PY
+      - name: Build all 1341 scene files and atomic index
+        run: |
+          python tools/scene1341_master/build_v252_live_contract.py /tmp/CGMASTER_V247_FULL1341_L1_TEST.zip .
+      - name: Verify source count and per-scene Git blob SHA
+        run: |
+          python - <<'PY'
+          import hashlib,json,pathlib
+          root=pathlib.Path('tools/scene1341_master/production')
+          idx=json.loads((root/'SCENE1341_LIVE_INDEX.json').read_text())
+          assert len(idx['scenes'])==1341 and sum(x['records'] for x in idx['scenes'].values())==230289
+          for sid,entry in idx['scenes'].items():
+              b=pathlib.Path(entry['path']).read_bytes()
+              sha=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
+              assert sha==entry['git_blob_sha1'],sid
+          print('All 1341 blob hashes PASS')
+          PY
+      - name: Publish test-only scene documents and live index
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add tools/scene1341_master/production/scenes tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json
+          if git diff --cached --quiet; then
+            echo 'No changes to publish'
+          else
+            git commit -m "data(cg-master): publish V252 1341 L1 test scenes and live index"
+            git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
+          fi
