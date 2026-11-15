@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "166e221f059fe5df8ea24999042aa2136ca4013e",
+  "verified_parent_head": "642c83faeb64395fb1f90abfdb4a94d472347750",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,16 +13,16 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "85e37b9ae8fb13cff6b483461f4c2ac5cab228cb",
-    "latest_master_version": "V202",
-    "fresh_editor_drafts": 203,
-    "remaining": 1038,
+    "latest_master_head": "1dc0019096d9b6fcdd590d149f3a3dfe5b02702a",
+    "latest_master_version": "V205",
+    "fresh_editor_drafts": 258,
+    "remaining": 983,
     "by_scene": [
-      79,
-      40,
-      13,
-      37,
-      34
+      85,
+      46,
+      35,
+      46,
+      46
     ],
     "independent_first_reviews": 0,
     "formal_ready": 0,
@@ -33,7 +33,7 @@
     "implementation": "rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs",
     "regression": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs",
     "ui": "rebuild-preview/scene1341-readonly/index.html",
-    "intake": "Dynamic CG-MASTER branch HEAD once, immutable pinned V201 first151 + V202 next52, exact Git blob SHA1, source and ID checks; diagnostic-only; stage stays 待审",
+    "intake": "Rolling state-driven immutable CG-MASTER V199-V203 five Git blob SHA1 checked, source identities and per-scene totals validated; V204/V205 analysis excluded from draft count; QA pending, SRS disabled",
     "canonical_study_cards_unchanged": true,
     "wrong_row506_ipa_quarantined": true,
     "inspector": {
@@ -44,16 +44,24 @@
       "no_srs": true,
       "show_unreviewed_native_ipa_candidates_only": true,
       "source": "4 immutably pinned Git blobs, 203 fresh editorial candidates"
+    },
+    "rolling": {
+      "module": "rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs",
+      "function": "fetchPhase1FreshDraftsCurrent",
+      "source": "tools/scene1341_master/CGMASTER_CURRENT_STATE.json",
+      "dynamic_new_batch_metadata_sha": true,
+      "fail_closed": true,
+      "test": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs"
     }
   },
   "ci": {
-    "latest_code_head": "453323953748dc40738352d287a7b646a2ecdea2",
+    "latest_code_head": "d7826963e64af34e95c4a904e3b68233567f7070",
     "ranked": {
-      "run": 43683208025,
+      "run": 43684835443,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43683208028,
+      "run": 43684835409,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -67,10 +75,14 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Check exact-head ranked CI 43684452190 and fix if failed",
-    "CG-QA 5 targeted content risks still unresolved, no independent 1审 index",
-    "Maintain staged preview separate from canonical study records",
-    "Preserve raw Kaikki evidence, strict version pins, row506 IPA quarantine"
+    "CG-MASTER produce remaining 983 records and preserve full Kaikki evidence; future batches must follow rolling contract",
+    "CG-QA independent exact-content reviewed index is still absent; all phase1 cards 待审",
+    "Keep unreviewed IPA and unfinished examples only in isolated inspector",
+    "No frontend redeploy needed for conforming Master data changes after user manually deploys current UI once"
   ],
-  "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml"
+  "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
+  "last_issue_seen": {
+    "issue1": 6890226825,
+    "issue2": 6890202010
+  }
 }
