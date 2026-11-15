@@ -1,0 +1,77 @@
+{
+  "schema": "cg-qa-checkpoint/v1",
+  "role": "CG-QA",
+  "updated_at": "2026-11-15",
+  "branch": "cg-qa-enlex-review-20261026",
+  "verified_previous_head": "73d655cbe13e04633c7ad6a5163111db28d5c441",
+  "last_completed_version": "V196",
+  "formal_dual_ai_certified": 0,
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "completed_audits": [
+    {
+      "version": "V191",
+      "rows": 3000,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V191_V190_FULL3000_INDEPENDENT_RAW_AUDIT_20261115.v1.json",
+      "risks": "105 up component evidence candidates"
+    },
+    {
+      "version": "V192",
+      "rows_screened": 338,
+      "p0": 13,
+      "p1": 9,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V192_V190_338_KAIKKI_POS_GLOSS_RISK_TRIAGE_20261115.v1.json"
+    },
+    {
+      "version": "V195",
+      "rows": 243,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V195_V193_V194_SELECTED_IPA_SC0014_FEED_AUDIT_20261115.v1.json",
+      "risks": "row506 take off wrong TEST IPA /ˌpʊt ˈɒn/; SC0014 missing 6 in V171"
+    },
+    {
+      "version": "V196",
+      "rows": 3000,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V196_V180_TO_V196_FULL_SECOND_BATCH_INDEPENDENT_DIFF_20261115.v1.json",
+      "findings": "243 author additions, 2757 missing, IPA gap 143 (V171 vs V196 SC0014)"
+    }
+  ],
+  "source_state": {
+    "master_branch": "cg-master-kaikki-evidence-intake-20261111",
+    "master_state_path": "tools/scene1341_master/CGMASTER_CURRENT_STATE.json",
+    "master_state_version_at_intake": "V202",
+    "phase1_original_associations": 1241,
+    "phase1_drafts_at_intake": 203,
+    "phase1_first_review": 0,
+    "phase1_report_path": "tools/core20k_lexicon/qa/SC1341_PHASE1_INDEPENDENT_FIRST_REVIEW.json",
+    "phase1_report_exists_at_intake": false,
+    "drive_folder": "https://drive.google.com/drive/folders/1LXwdHabvBjOop0UgQa3NQY-hizRspMa9"
+  },
+  "open_p0": [
+    "V190 row506 take off mismatched POS/gloss and IPA; source-backed author correction not independently verified",
+    "V192 13 source-to-intended-sense/POS candidate mismatches awaiting Master adjudication"
+  ],
+  "open_p1": [
+    "V191 105 up-component evidence contamination candidates; do not confuse with selected IPA errors",
+    "V192 9 contextual POS/gloss candidate risks",
+    "V196 SC0014 143 cross-version IPA differences require independent source checks",
+    "V196 batch2 2757 records lack authored answers",
+    "Phase1 first 203 editorial drafts pending independent exact-content first review"
+  ],
+  "pending_tasks": [
+    "Read latest Master V203+ changed manifests and raw draft JSON",
+    "Independently audit fresh phase1 editor drafts by record_id, content_sha256 and semantic risk",
+    "Publish independent first-review evidence only for rows actually inspected",
+    "Run next 3000 row mechanical batch after canonical source archive available",
+    "Post Issue #1 targeted handoff after actual QA delivery"
+  ],
+  "last_issue_comment_ids_observed": {
+    "issue1": 6890007156,
+    "issue2": 6890007156
+  },
+  "invariants": [
+    "Do not mutate Core20K or original Master/Scene500/Runtime/SRS",
+    "No Muse signoff asserted",
+    "No AI-first-review label without actual record/content SHA adjudication"
+  ],
+  "next_action": "Independently review source-bound Phase1 drafts; exact-content indexes must be evidence-backed and review verdict separate from certification."
+}
