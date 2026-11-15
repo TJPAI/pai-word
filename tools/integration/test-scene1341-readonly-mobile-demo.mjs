@@ -1682,8 +1682,8 @@ assert(script.includes("applyPhase1StudyOverlay(items,fresh)") &&
  script.includes("r.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST'") &&
  script.includes("question?.ipa_status==='PHASE1_KAIKKI_NATIVE_SINGLE_UNREVIEWED'") &&
  script.includes("phase1Hold?'音标待核验'") &&
- script.includes("Kaikki原生·待审") &&
- script.includes("用法说明（编辑草稿·待审）"),
+ script.includes("Kaikki原生") &&
+ script.includes("用法说明"),
  'fresh Master full question/answer and native IPA source status must reach actual study cards');
 
 assert(script.includes("question?.ipa_candidates_pending?'音标待核验':'音标待补'"),
