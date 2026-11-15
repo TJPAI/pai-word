@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V252_FULL1341_LIVE_CONTRACT_BUILT_NOT_PUBLISHED",
+  "version": "V252_FULL1341_PUBLISH_WORKFLOW_READY",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -639,7 +639,9 @@
     },
     "v252_full1341_live_contract": {
       "builder": "tools/scene1341_master/build_v252_live_contract.py",
-      "source_archive_drive_id": "15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x",
+      "archive_drive_id": "1rfA7iCop1uIYM24alz_6fgJWfpWRKXY9",
+      "archive_sha256": "34365008898ddcae674444e1dfa5aa39a3dd2a46a1261acbcb0b2a2a4dd6855c",
+      "publication_workflow": ".github/workflows/cgmaster-v252-publish-live-index.yml",
       "local_validation": {
         "scenes": 1341,
         "source_associations": 230289,
@@ -704,9 +706,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Publish all 1341 V252 scene JSON files and atomic SCENE1341_LIVE_INDEX.json on CG-MASTER branch, verify every Git blob SHA.",
-    "Ask CG-MAIN to run generic frontend regression against actual published index and preview browser.",
-    "Continue Kaikki L2/L3 and independent QA."
+    "Trigger and verify GitHub Actions cgmaster-v252-publish-live-index.yml (Drive archive access may require permissions); do not mark published until GitHub index and 1341 files exist.",
+    "CG-MAIN independently run real-browser hot-load and refresh tests after publication.",
+    "Continue Kaikki L2/L3 and CG-QA review."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
