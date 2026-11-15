@@ -9,6 +9,9 @@ on:
       - rebuild-preview/scene1341-readonly/scene1341-v238-v239-scene25-feed.mjs
       - tools/integration/test-scene1341-v234-phase1-test-overlay.mjs
       - tools/integration/test-scene1341-v238-v239-scene25-feed.mjs
+      - tools/integration/test-scene1341-master-scene-v1.mjs
+      - rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs
+      - rebuild-preview/scene1341-readonly/scene1341-first-review-stage.mjs
       - .github/workflows/cgmain-v234-phase1-smoke.yml
   workflow_dispatch:
 jobs:
@@ -22,6 +25,8 @@ jobs:
           node-version: '22'
       - name: Check V234 source-identity, authored precedence and QA isolation
         run: node tools/integration/test-scene1341-v234-phase1-test-overlay.mjs
+      - name: Check all-1341 generic Master scene hot-swap contract
+        run: node tools/integration/test-scene1341-master-scene-v1.mjs
       - name: Check dynamic V238/V239 16-scene L1 test feed
         run: node tools/integration/test-scene1341-v238-v239-scene25-feed.mjs
       - name: Check existing Phase1 immutable draft overlay regression
