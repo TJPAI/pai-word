@@ -133,6 +133,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <p id="master-live-version" class="demo-tip" aria-live="polite">正在检查 CG-MASTER 最新数据…</p>
    <p id="master-live-feed-status" class="demo-tip" aria-live="polite">正在检查全场景增量 Feed…</p>
    <p id="phase1-review-source-status" class="demo-tip" aria-live="polite">正在检查CG-QA独立一审记录…</p>
+   <p id="phase1-fresh-draft-status" class="demo-tip" aria-live="polite">SC0001–SC0005 Kaikki 新稿来源检查中…</p>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
     <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
@@ -349,6 +350,17 @@ async function load(){
    qaReviewSourceStatus='独立QA一审索引未发布或不可用，当前均显示待审';
   }
   set('phase1-review-source-status',qaReviewSourceStatus);
+  // Inspect real first-phase author drafts as DIAGNOSTICS ONLY. They are not
+  // CG-QA approved and cannot replace cards until canonical Master publication.
+  void import('./scene1341-phase1-fresh-drafts.mjs')
+   .then(m=>m.fetchPhase1FreshDrafts())
+   .then(fresh=>set('phase1-fresh-draft-status',
+     'SC0001–SC0005 全新Kaikki草稿：'+fresh.rows.length+'条（按场景 '+[
+       'SC50-0001','SC50-0002','SC50-0003','SC50-0004','SC50-0005'
+     ].map(id=>id.slice(-4)+':'+(fresh.perScene[id]||0)).join(' / ')+
+     '）；源Git分片'+fresh.verifiedBlobCount+'/3已校验；全部待审、未接入正式词卡；SRS禁写。'))
+   .catch(()=>set('phase1-fresh-draft-status',
+    '全新Kaikki草稿索引暂不可验证；保留已有词卡，不提升审核或发布状态。'));
   const [catalogRaw,qa,extra,next,coverageModule,overlayModule,v154Module]=await Promise.all([
     getText(ROOT+'scene1341-source/all_1341_scene_status.csv'),
     import('./scene1341-master-preview-loader.mjs').then(m=>m.loadScene1341MasterTest()),
