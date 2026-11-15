@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "ac8a4372ed9c9b2f90edc361bdbc0e3f4129b3b9",
-  "version": "V224",
+  "verified_base_head": "ec605db06d93eddb3c11324b6be14b8145543464",
+  "version": "V225",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -251,6 +251,14 @@
       "without_candidates": 15,
       "approved": 0,
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V224_23_KAIKKI_IPA_CANDIDATE_SELECTION_QUEUE_20261115.json"
+    },
+    "v225_scene_first_kaikki_overlay": {
+      "scenes": 5,
+      "records": 38,
+      "single_ipa_test_candidates": 17,
+      "scope": "existing 38 records only, not full 1241",
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V225_SC0001_0005_KAIKKI_FIRST_TEST_MASTER_OVERLAY_20261115.json",
+      "qa_stage": "待审"
     }
   },
   "sources": {
@@ -295,6 +303,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V225: use existing Kaikki source evidence to populate full 1241 SC0001–0005 records scene-first; use V225 38-record test overlay as schema, not a claim of full Master coverage.",
     "V224: source-ground 15 IPA-missing records from full Kaikki or CMUdict with explicit phoneme-to-IPA method; independently review 17 single candidates and 6 ambiguous candidates.",
     "V223: CG-MAIN may consume review-only preview page payloads but must preserve complete=false and release_allowed=false; CG-MASTER continue IPA and full content enrichment.",
     "V222: verify GitHub Actions validator pass, fix any CI regressions before further promotion.",
