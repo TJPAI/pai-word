@@ -29,9 +29,9 @@ await assert.rejects(()=>fetchSceneAssociations({commit,feed:corrupted},'SC50-00
 // Even correctly hashed gzip may be semantically corrupt. Verify every row
 // belongs to the declared original batch and its listed scene.
 const makeFixture=(rows)=>{
- const compressed=gzipSync(rows.map(row=>JSON.stringify(row)).join('\\n')+'\\n');
+ const compressed=gzipSync(rows.map(row=>JSON.stringify(row)).join('\n')+'\n');
  const blobSha=createHash('sha1').update(Buffer.concat([
-  Buffer.from('blob '+compressed.length+'\\0'),compressed])).digest('hex');
+  Buffer.from('blob '+compressed.length+'\0'),compressed])).digest('hex');
  const digest=createHash('sha256').update(compressed).digest('hex');
  const next=structuredClone(feed);
  next.batches[0].shards[0]={...next.batches[0].shards[0],git_blob_sha1:blobSha,sha256:digest};
