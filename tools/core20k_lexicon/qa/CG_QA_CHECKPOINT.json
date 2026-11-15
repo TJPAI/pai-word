@@ -3,8 +3,8 @@
   "role": "CG-QA",
   "updated_at": "2026-11-15",
   "branch": "cg-qa-enlex-review-20261026",
-  "verified_previous_head": "73d655cbe13e04633c7ad6a5163111db28d5c441",
-  "last_completed_version": "V196",
+  "verified_previous_head": "a8ee5950245a15fd21d0182cdf2b673326ba435e",
+  "last_completed_version": "V197",
   "formal_dual_ai_certified": 0,
   "formal_ready": 0,
   "srs_eligible": false,
@@ -33,6 +33,12 @@
       "rows": 3000,
       "path": "tools/core20k_lexicon/qa/CG_QA_V196_V180_TO_V196_FULL_SECOND_BATCH_INDEPENDENT_DIFF_20261115.v1.json",
       "findings": "243 author additions, 2757 missing, IPA gap 143 (V171 vs V196 SC0014)"
+    },
+    {
+      "version": "V197",
+      "rows": 203,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V197_PHASE1_FIRST203_FOUR_GIT_BLOBS_INDEPENDENT_MECHANICAL_AUDIT_20261115.v1.json",
+      "findings": "203 unique ID/row, 43 unreviewed IPA, 203 editor examples, 0 mechanical anomalies, 0 first reviews"
     }
   ],
   "source_state": {
@@ -58,7 +64,7 @@
     "Phase1 first 203 editorial drafts pending independent exact-content first review"
   ],
   "pending_tasks": [
-    "Read latest Master V203+ changed manifests and raw draft JSON",
+    "Verify per-record content SHA and fresh native Kaikki sense evidence before independent first-review judgments",
     "Independently audit fresh phase1 editor drafts by record_id, content_sha256 and semantic risk",
     "Publish independent first-review evidence only for rows actually inspected",
     "Run next 3000 row mechanical batch after canonical source archive available",
