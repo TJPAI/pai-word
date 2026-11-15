@@ -1,0 +1,19 @@
+name: CG-MASTER V243 candidate-only integrity
+on:
+  push:
+    branches:
+      - cg-master-kaikki-evidence-intake-20261111
+    paths:
+      - 'tools/scene1341_master/qa_reports/v242_ranked_l1_candidate/**'
+      - 'tools/scene1341_master/validate_v243_ranked_candidate.py'
+      - '.github/workflows/cgmaster-v243-candidate-integrity.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: python tools/scene1341_master/validate_v243_ranked_candidate.py
