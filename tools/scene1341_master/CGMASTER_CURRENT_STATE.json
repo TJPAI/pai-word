@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "ec605db06d93eddb3c11324b6be14b8145543464",
-  "version": "V225",
+  "verified_base_head": "4f496bce69307da43aee3dfd1b660ade48de8cd5",
+  "version": "V226",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -259,6 +259,22 @@
       "scope": "existing 38 records only, not full 1241",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V225_SC0001_0005_KAIKKI_FIRST_TEST_MASTER_OVERLAY_20261115.json",
       "qa_stage": "待审"
+    },
+    "v226_scene_first_258": {
+      "records": 258,
+      "source_total": 1241,
+      "remaining": 983,
+      "scenes": {
+        "SC50-0001": 85,
+        "SC50-0002": 46,
+        "SC50-0003": 35,
+        "SC50-0004": 46,
+        "SC50-0005": 46
+      },
+      "with_ipa_candidate": 52,
+      "with_example": 212,
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V226_SC0001_0005_EXISTING_258_KAIKKI_SCENE_MASTER_20261115.json",
+      "qa_stage": "待审"
     }
   },
   "sources": {
@@ -303,6 +319,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V226: fill remaining 983 source rows from exact native Kaikki evidence scene-first; do not wait for full author enrichment or QA to populate candidate fields.",
     "V225: use existing Kaikki source evidence to populate full 1241 SC0001–0005 records scene-first; use V225 38-record test overlay as schema, not a claim of full Master coverage.",
     "V224: source-ground 15 IPA-missing records from full Kaikki or CMUdict with explicit phoneme-to-IPA method; independently review 17 single candidates and 6 ambiguous candidates.",
     "V223: CG-MAIN may consume review-only preview page payloads but must preserve complete=false and release_allowed=false; CG-MASTER continue IPA and full content enrichment.",
