@@ -66,11 +66,16 @@ async function blobHash(raw,cryptoImpl){
  return [...new Uint8Array(hash)].map(v=>v.toString(16).padStart(2,'0')).join('');
 }
 export async function resolveMasterSceneIndex({fetchImpl=fetch}={}){
- const response=await fetchImpl(API+'branches/'+BRANCH,{cache:'no-store'});
- if(!response.ok)fail('BRANCH_HTTP_'+response.status);
- const commit=(await response.json())?.commit?.sha;
- if(!SHA.test(commit||''))fail('COMMIT');
- const url=ROOT+commit+'/tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json';
+ let commit=null;
+ try{
+  const response=await fetchImpl(API+'branches/'+BRANCH,{cache:'no-store'});
+  if(response.ok){const candidate=(await response.json())?.commit?.sha;if(SHA.test(candidate||''))commit=candidate}
+ }catch(_error){/* Unauthenticated GitHub API may be blocked or rate limited on iPhone. */}
+ // Fallback reads the published branch index directly. Per-scene immutable
+ // Git blob SHA-1 from that index is still mandatory, so branch movement
+ // cannot silently mix inconsistent documents.
+ const base=ROOT+(commit||BRANCH)+'/';
+ const url=base+'tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json';
  const r=await fetchImpl(url,{cache:'no-store'});
  if(!r.ok)fail('INDEX_NOT_PUBLISHED_'+r.status);
  const index=await r.json();
@@ -86,10 +91,10 @@ export async function resolveMasterSceneIndex({fetchImpl=fetch}={}){
    entry.path!=='tools/scene1341_master/production/scenes/'+scene+'.json')fail('INDEX_SCENE');
  }
  if(Object.values(index.scenes).reduce((sum,v)=>sum+v.records,0)!==230289)fail('INDEX_TOTAL');
- return Object.freeze({commit,index,canWriteSrs:false,formalReady:0});
+ return Object.freeze({commit:commit||BRANCH,index,canWriteSrs:false,formalReady:0,branchFallback:!commit});
 }
 export async function fetchMasterScene(snapshot,sceneId,{fetchImpl=fetch,cryptoImpl=globalThis.crypto}={}){
- if(!SHA.test(snapshot?.commit||'')||!ID.test(sceneId))fail('REQUEST');
+ if(!(SHA.test(snapshot?.commit||'')||snapshot?.commit===BRANCH)||!ID.test(sceneId))fail('REQUEST');
  const entry=snapshot.index.scenes[sceneId];
  if(!entry)fail('MISSING_SCENE');
  const response=await fetchImpl(ROOT+snapshot.commit+'/'+entry.path,{cache:'no-store'});
