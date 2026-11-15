@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "dbb2307851fdf6f9372e6edeb512513123ef01b5",
-  "version": "V244_SOURCE_CANDIDATE_STAGED",
+  "verified_base_head": "5fac3555da9171be9018a290d76110df5b96f0d5",
+  "version": "V245_SOURCE_CANDIDATE_STAGED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -519,6 +519,28 @@
       "qa_stage": "待审",
       "release_allowed": false,
       "manifest": "tools/scene1341_master/qa_reports/v244_source_candidate/CGMASTER_V244_MANIFEST.json"
+    },
+    "v245_source_candidate_stage": {
+      "scenes": 20,
+      "records": 4421,
+      "from": "SC50-0124",
+      "to": "SC50-0143",
+      "source_files": [
+        {
+          "drive_id": "1Z9bDliiKK6GNYEhiuKSx-QKCHCamadYZ",
+          "name": "CG_ENLEX_NATIVE_CHATGPT_BACKFILL_0124_0133_ENHANCED.json",
+          "scenes": "SC50-0124..0133"
+        },
+        {
+          "drive_id": "10SGCaP5x0vJ2132wep5u89h6MvPM4SIP",
+          "name": "CG_ENLEX_NATIVE_CHATGPT_BACKFILL_0134_0143_ENHANCED.json",
+          "scenes": "SC50-0134..0143"
+        }
+      ],
+      "canonical_record_id_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "manifest": "tools/scene1341_master/qa_reports/v245_source_candidate/CGMASTER_V245_MANIFEST.json"
     }
   },
   "sources": {
@@ -563,9 +585,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Reconcile V244 source candidate entries with frozen FINAL Master source record IDs, preserving the source file and candidate status.",
-    "Continue source candidate SC0124 onward in ~3000 row batches if original FINAL Master remains unavailable; keep verified coverage at 20696 until actual identity verification.",
-    "Independently verify frozen FINAL Master SHA256 before canonical promotion; no 1审 without content-version-matched CG-QA."
+    "Expand candidate L1 SC0144 onward using Drive source-files ledger, preserving provenance and isolation.",
+    "Locate frozen FINAL Master bytes and match SHA256 before any canonical Record ID promotion.",
+    "Expand native Kaikki L2 and complete L3 separately; independent CG-QA exact-content certification required for 1审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
