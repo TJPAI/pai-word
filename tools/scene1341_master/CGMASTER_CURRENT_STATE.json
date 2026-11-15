@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "eb651be2067cba951248679bfa5393de29213233",
-  "version": "V218",
+  "verified_base_head": "4eacdb4d48489afc5713c0b67b244e7dc94cca54",
+  "version": "V219",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -69,7 +69,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V215_27_MISSING_SCENE_FIT_EXAMPLE_RECOVERY_QUEUE_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V216_SC0003_SEVEN_ORIGINAL_BILINGUAL_EXAMPLE_DRAFTS_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V217_17_OTHER_SCENES_ORIGINAL_BILINGUAL_EXAMPLES_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V218_FOUR_SENSE_POS_ERRATA_UNREVIEWED_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V218_FOUR_SENSE_POS_ERRATA_UNREVIEWED_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V219_27_EDITORIAL_EXAMPLE_SENSE_CONSISTENCY_HANDOFF_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -189,6 +190,14 @@
       ],
       "qa_stage": "待审",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V218_FOUR_SENSE_POS_ERRATA_UNREVIEWED_20261115.json"
+    },
+    "v219_example_sense_consistency": {
+      "records": 27,
+      "original_example_drafts": 24,
+      "hold_no_example": 3,
+      "focus_sense_review": 4,
+      "qa_stage": "待审",
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V219_27_EDITORIAL_EXAMPLE_SENSE_CONSISTENCY_HANDOFF_20261115.json"
     }
   },
   "sources": {
@@ -233,6 +242,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V219: independent QA 24 editorial examples, confirm V218 3 revised POS selections and 1 wrinkled HOLD; retain original native source lines.",
     "V218: independent QA on four POS/sense errata; apply only to new reviewed content snapshot after approval; never silently rewrite V208/V209.",
     "V217: independently QA 16 scene-fit examples and hold tidying noun-versus-verb mismatch; cross-check 24 original editorial drafts across V216 and V217.",
     "V216: CG-QA independently review 7 authored bilingual examples, revisit noun/adjective source for smart casual/business casual, find clothing-specific wrinkled Sense.",
