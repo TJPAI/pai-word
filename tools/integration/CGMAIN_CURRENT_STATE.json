@@ -188,6 +188,23 @@
       "expected_all_25_scene_total": 6179,
       "ci": "Dedicated workflow includes V238/V239 test; outcome pending external verification",
       "browser": "manual user deployment and iPhone acceptance outstanding"
+    },
+    "full1341_dynamic_master_v1": {
+      "schema": "scene1341-master-index/v1 + scene1341-master-scene/v1",
+      "module": "rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs",
+      "ui": "rebuild-preview/scene1341-readonly/index.html",
+      "test": "tools/integration/test-scene1341-master-scene-v1.mjs",
+      "source": "CG-MASTER immutable Git commit + per-scene Git blob SHA1",
+      "scenes": 1341,
+      "source_associations": 230289,
+      "lazy_scene_loading": true,
+      "qa_first_review": "CG-QA independent sidecar only; never use Master claimed review",
+      "unapproved_ipa": "HOLD",
+      "srs": false,
+      "source_current": "CG-MASTER V247 ZIP in Google Drive only, Git production scene files and index NOT YET PUBLISHED",
+      "runtime_status": "Generic loader and navigation committed; full-scene activation awaits CG-MASTER publishing schema-v1 index/files, CI and browser tests not yet confirmed",
+      "fallback": "legacy verified study cards remain available if new scene source missing",
+      "future_content_changes": "CG-MASTER publishes new index and scene data on branch; frontend unchanged"
     }
   },
   "ci": {
@@ -211,10 +228,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Verify V238/V239 CI and run iPhone manual-deploy smoke test; specifically SC0015 new L1, SC0025 long phrases, SC0001 wake up, unreviewed IPA HOLD",
-    "Integrate V240/V241 per-scene lazy source-verified data without downloading 75 scene files at every home load",
-    "Do not ingest V242 SC0101–0110 37 ranked additions lacking canonical record identities; request Master remediation",
-    "Continue 983 incomplete first-five-scene pedagogical records with CG-MASTER and independent CG-QA"
+    "CG-MASTER publish all 1341 canonical scene files + atomic index in GitHub, source identity and SHA1; Drive-only V247 ZIP cannot hot-load in browser",
+    "CG-MASTER iterate same v1 schema question_page/answer_page, Kaikki fields, source provenance; avoid UI-specific version adapters",
+    "CG-QA independently publish 1审 exact record+content SHA sidecar; no Master review self-attestation",
+    "Run node tools/integration/test-scene1341-master-scene-v1.mjs and browser/iPhone acceptance, manual deployment"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
