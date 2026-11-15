@@ -1,0 +1,76 @@
+{
+  "schema_version": "scene1341-live-feed/v1",
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "feed_status": "TEST_ONLY_UNCERTIFIED",
+  "source_batch_unit": "Sense-Scene association; HOLD included",
+  "source_order": "source_final_row ascending",
+  "notes": [
+    "V190 immutable source 1..3000; first live feed only, not 1341-scene completion",
+    "SC50-0014 and source rows 3001 onward are NOT included until full page delivery is verified",
+    "CG-QA V191 flags 105 component-up pronunciation provenance risks; V192 flags 22 POS/gloss candidate alignment risks; candidate semantic or IPA entries must never be auto-certified.",
+    "HOLD and TEST_ONLY must remain visible and SRS disabled"
+  ],
+  "batches": [
+    {
+      "first_source_final_row": 1,
+      "last_source_final_row": 3000,
+      "version": "V190",
+      "records": 3000,
+      "scene_ids": [
+        "SC50-0001",
+        "SC50-0002",
+        "SC50-0003",
+        "SC50-0004",
+        "SC50-0005",
+        "SC50-0006",
+        "SC50-0007",
+        "SC50-0008",
+        "SC50-0009",
+        "SC50-0010",
+        "SC50-0011",
+        "SC50-0012",
+        "SC50-0013"
+      ],
+      "shards": [
+        {
+          "name": "CGMASTER_V190_SOURCE00001_01000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+          "records": 1000,
+          "git_blob_sha1": "b63daf359370a254491188188cbb036496d9a258",
+          "sha256": "12c4d4b088d670feb6d9ec7cd895c8cdfb8fc08c42100b529bb9966ed12ba60c"
+        },
+        {
+          "name": "CGMASTER_V190_SOURCE01001_02000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+          "records": 1000,
+          "git_blob_sha1": "ca147731e67979e875f3e37a95514a9bfeb3e9f0",
+          "sha256": "05786ca01ba101373a711254d490552b7654693252af3f1b039737eb1325e148"
+        },
+        {
+          "name": "CGMASTER_V190_SOURCE02001_03000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+          "records": 1000,
+          "git_blob_sha1": "effac2ddb1fd145927d4ff41a130820d81ff83b2",
+          "sha256": "90afbdfb00536cd8c8840a7f88898c8b79e9bb14b884c604d0b32a6ba5bf703a"
+        }
+      ],
+      "counts": {
+        "examples_filled": 1461,
+        "test_ipa_nonempty": 1478,
+        "usage_note_filled": 1461,
+        "collocations_filled": 1461,
+        "meaning_zh_filled": 3000,
+        "gloss_en_filled": 338,
+        "pos_filled": 338,
+        "complete_unverified": 180,
+        "formal_global_sense_ids": 0
+      },
+      "qa": {
+        "status": "INDEPENDENT_STRUCTURAL_PASS_NOT_CERTIFIED",
+        "author_identity_hold": 32,
+        "semantic_candidate_risk_review": 22,
+        "component_up_provenance_risk": 105,
+        "release_allowed": false
+      }
+    }
+  ]
+}
