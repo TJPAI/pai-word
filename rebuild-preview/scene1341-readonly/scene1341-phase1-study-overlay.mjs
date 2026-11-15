@@ -79,3 +79,26 @@ export function applyPhase1StudyOverlay(baseCards,fresh,{strict=true}={}){
   perScene:Object.freeze(perScene),sourceCommit:fresh.commit,
   formalReady:0,canWriteSrs:false,onlyTest:true});
 }
+
+/* Master V199–V203 content_sha256 is SHA256 of recursively key-sorted
+ * JSON excluding only content_sha256. Verify it independently before
+ * the study overlay may consume review labels tied to that digest.
+ */
+function stableContent(x){
+ if(Array.isArray(x))return '['+x.map(stableContent).join(',')+']';
+ if(x&&typeof x==='object')return '{'+Object.keys(x).sort()
+  .map(k=>JSON.stringify(k)+':'+stableContent(x[k])).join(',')+'}';
+ return JSON.stringify(x);
+}
+export async function verifyPhase1ContentDigests(fresh,{cryptoImpl=globalThis.crypto}={}){
+ if(!fresh||!Array.isArray(fresh.rows)||fresh.rows.length<203||
+    !cryptoImpl?.subtle||typeof TextEncoder==='undefined')fail('CONTENT_CRYPTO_UNAVAILABLE');
+ for(const record of fresh.rows){
+  if(!SHA.test(record?.content_sha256||''))fail('CONTENT_HASH_FORMAT');
+  const {content_sha256,...payload}=record;
+  const hash=await cryptoImpl.subtle.digest('SHA-256',new TextEncoder().encode(stableContent(payload)));
+  const actual=Array.from(new Uint8Array(hash),v=>v.toString(16).padStart(2,'0')).join('');
+  if(actual!==content_sha256)fail('CONTENT_SHA256_MISMATCH_'+record.source_final_row);
+ }
+ return Object.freeze({verified:fresh.rows.length,canWriteSrs:false});
+}
