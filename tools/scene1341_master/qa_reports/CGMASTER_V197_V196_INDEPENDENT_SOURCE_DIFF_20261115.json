@@ -1,0 +1,64 @@
+{
+  "version": "V197",
+  "date": "2026-11-15",
+  "type": "INDEPENDENT_V196_DECODED_SOURCE_DIFF_AND_INVARIANT_AUDIT",
+  "source_v180": "CGMASTER_V180_SC0013_0025_KAIKKI_CMUDICT113_SENSE_IPA_PACKAGE_20261115.zip",
+  "source_v147": "CGMASTER_V147_SC0014_ALL243_BILINGUAL_DRAFT_20261114.json",
+  "target_v196": {
+    "drive_url": "https://drive.google.com/file/d/1wMO5DhXyVnDOIJNfdw-3J87YvEA6mXxK/view",
+    "zip_sha256": "9221e878e6527c8c511b9a39b2f042397bc93eaae10f75918ab8e2ad88d5e3fb"
+  },
+  "actual_run": {
+    "method": "Independently decoded original V180 and V196 gzip shards and source V147 JSON in current runtime; compared all 3000 records field by field",
+    "source_files_validated": 4,
+    "target_files_validated": 4,
+    "source_sha256_validated": true,
+    "target_sha256_and_git_blob_sha1_validated": true,
+    "source_order_contiguous": true,
+    "record_ids_unchanged": true,
+    "base_associations": 3000,
+    "target_associations": 3000,
+    "altered_source_final_rows": [
+      3133,
+      3375
+    ],
+    "altered_records_count": 243,
+    "altered_fields_exact": [
+      "answer_page",
+      "qa_status",
+      "srs_eligible"
+    ],
+    "unmodified_records_count": 2757,
+    "unmodified_question_page_count": 3000,
+    "unmodified_pronunciation_count": 3000,
+    "unmodified_sense_evidence_count": 3000,
+    "unexpected_changes": 0,
+    "identity_conflicts": 0,
+    "clobbered_existing_answer_fields": 0,
+    "source_merge_author_draft_pairs": 243,
+    "selected_test_ipa": 1162,
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "sc0014_ipa_regression_risk": {
+    "source_rows": [
+      3133,
+      3375
+    ],
+    "v196_v180_nonempty_selected_ipa": 94,
+    "v171_nonempty_selected_ipa": 237,
+    "net_nonempty_count_gap": 143,
+    "warning": "The 143 figure is a difference in aggregate nonempty counts, NOT verified record-wise 143 mismatches. Exact 243-row join and dialect/status adjudication is required before accepting any V171 pronunciation values.",
+    "unknown_exact_overlap": true,
+    "allowed_action": "Test-only source evidence reconciliation, never replace multivariant HOLD with guessed IPA"
+  },
+  "new_guard_script": "tools/scene1341_master/audit_v197_v196_against_v180.py",
+  "guard_run_status": "COMMITTED_SCRIPT_NOT_YET_EXECUTED_IN_CI",
+  "master_feed_status": "Canonical remains V190 first batch only; V196 gzip stored in Drive, not GitHub",
+  "notes": [
+    "V196 immutable original V180 source not overwritten",
+    "The historical V171 authored SC0014 question IPA 237 was NOT merged and is not evidence that V180 143 additional rows have approved one-to-one exact readings",
+    "No author rework requested from CG-ENTEACH; CG-MASTER is exclusive Master author",
+    "QA has not independently certified SC0014; no formal Ready or SRS"
+  ]
+}
