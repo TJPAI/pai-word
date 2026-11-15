@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "b07362ef838a35ed9bc69a10ef694390999a5648",
-  "version": "V220",
+  "verified_base_head": "833a236163ca93a1f288910937e9c5f6e9a55c17",
+  "version": "V221",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -71,7 +71,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V217_17_OTHER_SCENES_ORIGINAL_BILINGUAL_EXAMPLES_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V218_FOUR_SENSE_POS_ERRATA_UNREVIEWED_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V219_27_EDITORIAL_EXAMPLE_SENSE_CONSISTENCY_HANDOFF_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V220_27_SOURCE_PROVENANCE_RECONCILED_QA_LEDGER_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V220_27_SOURCE_PROVENANCE_RECONCILED_QA_LEDGER_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V221_38_RECORD_UNIFIED_BILINGUAL_QA_BATCH_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -213,6 +214,16 @@
       "native_provenance_missing": 0,
       "qa_stage": "待审",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V220_27_SOURCE_PROVENANCE_RECONCILED_QA_LEDGER_20261115.json"
+    },
+    "v221_unified_bilingual_qa_batch": {
+      "records": 38,
+      "records_with_examples": 35,
+      "bilingual_pairs": 36,
+      "native_example_records": 11,
+      "editorial_example_records": 27,
+      "hold_records": 4,
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V221_38_RECORD_UNIFIED_BILINGUAL_QA_BATCH_20261115.json",
+      "qa_stage": "待审"
     }
   },
   "sources": {
@@ -257,6 +268,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V221: CG-QA review single 38-record bilingual batch; prioritize 4 holds, release only exact approved content hash.",
     "V220: independently QA 27-row source provenance ledger; record exact approved content hash only after actual CG-QA review.",
     "V219: independent QA 24 editorial examples, confirm V218 3 revised POS selections and 1 wrinkled HOLD; retain original native source lines.",
     "V218: independent QA on four POS/sense errata; apply only to new reviewed content snapshot after approval; never silently rewrite V208/V209.",
