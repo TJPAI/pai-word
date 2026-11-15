@@ -197,6 +197,15 @@ const FIRST_FOUR=[
  'CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json',
  'CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json'
 ].map(x=>DIRECTORY+x);
+const ROLLING_EDITORIAL=/^tools\/scene1341_master\/qa_reports\/CGMASTER_(V[0-9]{3,})_PHASE1_[A-Z0-9_]+(?:DRAFT|UNREVIEWED)_20[0-9]{6}\.json$/;
+export function selectPhase1RollingEditorialArtifacts(paths){
+ if(!Array.isArray(paths))fail('ROLLING_ARTIFACT_INPUT');
+ return paths.slice(4).filter(path=>{
+  if(typeof path!=='string')fail('ROLLING_ARTIFACT_PATH_TYPE');
+  const matched=path.match(ROLLING_EDITORIAL);
+  return !!matched&&Number(matched[1].slice(1))>=203;
+ });
+}
 export async function fetchPhase1FreshDraftsCurrent({fetchImpl=fetch,commit}={}){
  if(commit==null){
   const res=await fetchImpl('https://api.github.com/repos/TJPAI/pai-word/branches/cg-master-kaikki-evidence-intake-20261111',{cache:'no-store'});
@@ -215,8 +224,10 @@ export async function fetchPhase1FreshDraftsCurrent({fetchImpl=fetch,commit}={})
     !Array.isArray(phase.editorial_artifacts))fail('ROLLING_STATE');
  const expected=FIRST_FOUR;
  if(expected.some((p,i)=>phase.editorial_artifacts[i]!==p))fail('ROLLING_BASE_FILES');
- const extraPaths=phase.editorial_artifacts.slice(4).filter(p=>
-  /^tools\/scene1341_master\/qa_reports\/CGMASTER_V2[0-9]{2}_PHASE1_[A-Z0-9_]+(?:DRAFT|UNREVIEWED)_20261115\.json$/.test(p));
+ // Future production batches may span V300+ and any calendar date.
+ // Only files explicitly named PHASE1 editorial DRAFT/UNREVIEWED are eligible;
+ // analysis, QA handoff, example recovery and Sense skeletons stay excluded.
+ const extraPaths=selectPhase1RollingEditorialArtifacts(phase.editorial_artifacts);
  if(extraPaths.length>24||new Set(extraPaths).size!==extraPaths.length)fail('ROLLING_EXTRA_FILES');
  // The first 203 records already have their own immutable manifest and hash chain.
  const base=await fetchPhase1FreshDraftsLatest({fetchImpl,commit});
@@ -236,7 +247,8 @@ export async function fetchPhase1FreshDraftsCurrent({fetchImpl=fetch,commit}={})
   const raw=await dataRes.text();
   if(await gitBlobSha(raw)!==meta.sha)fail('ROLLING_BLOB_SHA1');
   const doc=JSON.parse(raw);
-  const version=path.match(/CGMASTER_(V2[0-9]{2})_PHASE1_/)[1];
+  const version=path.match(ROLLING_EDITORIAL)?.[1];
+  if(!version)fail('ROLLING_BATCH_VERSION');
   if(!String(doc.version||'').startsWith(version+'_')||
      doc.source_associations_total!==1241||
      !Array.isArray(doc.records)||doc.records.length!==doc.new_records||
