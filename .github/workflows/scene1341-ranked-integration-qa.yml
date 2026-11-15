@@ -50,6 +50,8 @@ on:
       - 'tools/integration/test-scene1341-live-scene-fetch.mjs'
       - 'tools/integration/test-scene1341-live-study-entry.mjs'
       - 'tools/integration/test-scene1341-selected-ipa-quarantine.mjs'
+      - 'tools/integration/test-scene1341-phase1-gate.mjs'
+      - 'docs/scene1341-phase1-sc0001-sc0005-acceptance.md'
       - 'rebuild-preview/scene1341-readonly/scene1341-selected-ipa-quarantine.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-live-feed.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v190-master-answer-intake.mjs'
@@ -148,3 +150,4 @@ jobs:
           node tools/integration/test-scene1341-live-study-entry.mjs
           node --check rebuild-preview/scene1341-readonly/scene1341-selected-ipa-quarantine.mjs
           node tools/integration/test-scene1341-selected-ipa-quarantine.mjs
+          node tools/integration/test-scene1341-phase1-gate.mjs
