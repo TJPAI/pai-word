@@ -893,11 +893,6 @@ $('browse').addEventListener('click',()=>{
 });
 $('recommendation-prev').addEventListener('click',()=>{if(resultPage>0){resultPage--;renderHome()}});
 $('recommendation-next').addEventListener('click',()=>{resultPage++;renderHome()});
-$('preview-settings-button').addEventListener('click',()=>{
- $('home').hidden=true;$('settings-page').hidden=false;
- window.scrollTo?.(0,0);
- $('settings-back').focus(); // enter the dedicated page at its visible back control
-});
 let phase1FreshInspectorData=null;
 let phase1EditorOffset=0;
 function renderPhase1EditorInspector(){
@@ -921,6 +916,11 @@ function renderPhase1EditorInspector(){
 $('phase1-editor-scene').addEventListener('change',()=>{phase1EditorOffset=0;renderPhase1EditorInspector()});
 $('phase1-editor-prev').addEventListener('click',()=>{phase1EditorOffset--;renderPhase1EditorInspector()});
 $('phase1-editor-next').addEventListener('click',()=>{phase1EditorOffset++;renderPhase1EditorInspector()});
+$('preview-settings-button').addEventListener('click',()=>{
+ $('home').hidden=true;$('settings-page').hidden=false;
+ window.scrollTo?.(0,0);
+ $('settings-back').focus(); // enter the dedicated page at its visible back control
+});
 $('settings-back').addEventListener('click',()=>{
  $('settings-page').hidden=true;$('home').hidden=false;renderHome();
  window.scrollTo?.(0,0);
