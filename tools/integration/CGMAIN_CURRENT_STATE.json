@@ -89,16 +89,25 @@
       "independent_exact_sha_review": true,
       "formal_ready": 0,
       "srs_writes": 0
+    },
+    "pos_and_meaning_layout": {
+      "question": "No change to Scene500 question layout",
+      "answer": "Abbreviated POS and Chinese meaning share one line: v. 醒来, n. ..., adj. ...",
+      "separate_pos_row": false,
+      "source": "card.answer.pos; render-only, Master untouched",
+      "qa_labels": "one shared plain label beside IPA on both faces",
+      "formal_ready": 0,
+      "srs_writes": 0
     }
   },
   "ci": {
-    "latest_code_head": "f7946bb642d97e10a56fb21e8be4085581ab693e",
+    "latest_code_head": "c49bc792d5aa6d7ba5f383f7123bfdf8cb3ec9b4",
     "ranked": {
-      "run": 43688833318,
+      "run": 43689360460,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43688833347,
+      "run": 43689360552,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -112,6 +121,7 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
+    "Owner manual deploy and verify v. 醒来 without standalone POS section on both Safari/Chrome",
     "User manually deploys preview; visual smoke test both faces and native-question A/B",
     "QA label remains beside IPA during auto browsing and swipe with exact record SHA gating",
     "Continue SC0001–SC0005 Master authored data and IPA integration without SRS writes"
