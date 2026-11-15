@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "16f9b5ff0535974cee790eb675268a43453cbe89",
-  "version": "V228",
+  "verified_base_head": "74b9961a2538c9198de44012b1dbd5cf3a3bf1e0",
+  "version": "V230",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -297,6 +297,22 @@
         "SC50-0005": 163
       },
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V228_691_SCENE_PRIORITY_KAIKKI_SOURCE_GAPS_20261115.json"
+    },
+    "v230_single_native_sense_preview": {
+      "records": 127,
+      "by_scene": {
+        "SC50-0001": 31,
+        "SC50-0002": 23,
+        "SC50-0003": 23,
+        "SC50-0004": 22,
+        "SC50-0005": 28
+      },
+      "native_examples": 102,
+      "records_with_ipa_candidates": 34,
+      "builder": "tools/scene1341_master/build_v230_single_sense_preview.py",
+      "data_location": "conversation artifact /mnt/data/CGMASTER_V230_127_KAIKKI_SINGLE_SENSE_PREVIEW_PAGES.json (not GitHub)",
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -341,6 +357,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V230: stage 1.7MB V229 full candidate source and V230 127 page JSON into authoritative GitHub/Drive; only builder is committed to GitHub. Validate before CG-MAIN consumption.",
     "V228: retrieve FULL Kaikki English dictionary, not only V198 subset, for 691 unmatched expressions; fill verified native POS/gloss/IPA/examples directly into V227 test overlay with exact source line.",
     "V227: enrich 691 unmatched expressions from full Kaikki and select sense-specific glosses for 292 ambiguous native entries; V227 is all-row test overlay not complete page certification.",
     "V226: fill remaining 983 source rows from exact native Kaikki evidence scene-first; do not wait for full author enrichment or QA to populate candidate fields.",
