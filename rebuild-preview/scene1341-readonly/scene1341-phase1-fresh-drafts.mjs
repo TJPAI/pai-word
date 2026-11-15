@@ -185,3 +185,96 @@ export function phase1EditorialPreview(row){
   warning:'仅供研发检查：释义与例句尚未独立审查，音标仅为未审来源候选；不能计入正式教学或SRS。'
  });
 }
+
+/* Rolling, SHA-pinned Master intake. No new front-end build for later Master
+ * batches conforming to the recorded source contract. Unknown schema fails
+ * closed. Git contents metadata supplies the immutable blob SHA for each batch.
+ */
+const STATE_PATH='tools/scene1341_master/CGMASTER_CURRENT_STATE.json';
+const FIRST_FOUR=[
+ 'CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json',
+ 'CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json',
+ 'CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json',
+ 'CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json'
+].map(x=>DIRECTORY+x);
+export async function fetchPhase1FreshDraftsCurrent({fetchImpl=fetch,commit}={}){
+ if(commit==null){
+  const res=await fetchImpl('https://api.github.com/repos/TJPAI/pai-word/branches/cg-master-kaikki-evidence-intake-20261111',{cache:'no-store'});
+  if(!res.ok)fail('ROLLING_BRANCH_HTTP_'+res.status);
+  commit=(await res.json())?.commit?.sha;
+ }
+ if(!SHA40.test(commit||''))fail('ROLLING_COMMIT');
+ const stateRes=await fetchImpl(BASE+commit+'/'+STATE_PATH,{cache:'no-store'});
+ if(!stateRes.ok)fail('ROLLING_STATE_HTTP_'+stateRes.status);
+ const state=await stateRes.json();
+ const phase=state?.phase1;
+ if(state?.schema!=='cgmaster-current-state/v1'||
+    state?.role!=='CG-MASTER'||state?.branch!=='cg-master-kaikki-evidence-intake-20261111'||
+    state?.sources?.raw_kaikki_archive_sha256!==KAIKKI||
+    phase?.original_source_associations!==1241||
+    !Array.isArray(phase.editorial_artifacts))fail('ROLLING_STATE');
+ const expected=FIRST_FOUR;
+ if(expected.some((p,i)=>phase.editorial_artifacts[i]!==p))fail('ROLLING_BASE_FILES');
+ const extraPaths=phase.editorial_artifacts.slice(4).filter(p=>
+  /^tools\/scene1341_master\/qa_reports\/CGMASTER_V2[0-9]{2}_PHASE1_[A-Z0-9_]+(?:DRAFT|UNREVIEWED)_20261115\.json$/.test(p));
+ if(extraPaths.length>24||new Set(extraPaths).size!==extraPaths.length)fail('ROLLING_EXTRA_FILES');
+ // The first 203 records already have their own immutable manifest and hash chain.
+ const base=await fetchPhase1FreshDraftsLatest({fetchImpl,commit});
+ const merged=[...base.rows];
+ const ids=new Set(merged.map(x=>x.record_id));
+ const sourceRows=new Set(merged.map(x=>x.source_final_row));
+ const perScene={...base.perScene};
+ for(const path of extraPaths){
+  const metaRes=await fetchImpl(
+    'https://api.github.com/repos/TJPAI/pai-word/contents/'+path+'?ref='+commit,{cache:'no-store'});
+  if(!metaRes.ok)fail('ROLLING_META_HTTP_'+metaRes.status);
+  const meta=await metaRes.json();
+  if(meta.type!=='file'||meta.path!==path||!SHA40.test(meta.sha||'')||
+     meta.size>2000000||meta.size<10)fail('ROLLING_META');
+  const dataRes=await fetchImpl(BASE+commit+'/'+path,{cache:'no-store'});
+  if(!dataRes.ok)fail('ROLLING_DATA_HTTP_'+dataRes.status);
+  const raw=await dataRes.text();
+  if(await gitBlobSha(raw)!==meta.sha)fail('ROLLING_BLOB_SHA1');
+  const doc=JSON.parse(raw);
+  const version=path.match(/CGMASTER_(V2[0-9]{2})_PHASE1_/)[1];
+  if(!String(doc.version||'').startsWith(version+'_')||
+     doc.source_associations_total!==1241||
+     !Array.isArray(doc.records)||doc.records.length!==doc.new_records||
+     doc.new_records<1||doc.new_records>500||
+     doc.prior_editorial_records!==merged.length||
+     doc.cumulative_distinct_records!==merged.length+doc.records.length||
+     doc.formal_ready!==0||doc.qa_status!=='待审')fail('ROLLING_BATCH');
+  for(const row of doc.records){
+   const q=row?.question_page,a=row?.answer_page,e=row?.source_evidence;
+   if(!RECORD.test(row?.record_id||'')||!SCENE.test(row?.scene_id||'')||
+      !Number.isSafeInteger(row.source_final_row)||row.source_final_row<1||
+      row.source_final_row>1241||ids.has(row.record_id)||
+      sourceRows.has(row.source_final_row)||!SHA64.test(row.content_sha256||'')||
+      !q?.english_expression?.trim()||!q?.cue_zh?.trim()||
+      !a?.meaning_zh?.trim()||!a?.gloss_en?.trim()||
+      e?.archive_sha256!==KAIKKI||
+      e.kaikki_lemma!==q.english_expression||
+      e.kaikki_pos!==a.pos||e.native_gloss!==a.gloss_en||
+      !Number.isSafeInteger(e.kaikki_exact_raw_line)||e.kaikki_exact_raw_line<1||
+      !Number.isSafeInteger(e.sense_index_zero_based)||e.sense_index_zero_based<0||
+      row.qa_stage_label!=='待审'||row.qa_first_review_verdict!==null||
+      row.formal_ready!==0||row.srs_eligible!==false||row.release_allowed!==false)
+    fail('ROLLING_ROW');
+   ids.add(row.record_id);sourceRows.add(row.source_final_row);
+   perScene[row.scene_id]=(perScene[row.scene_id]||0)+1;
+   merged.push(row);
+  }
+ }
+ if(merged.length!==phase.fresh_editorial_drafts||
+    merged.length+phase.remaining_without_fresh_editorial_draft!==1241||
+    ids.size!==merged.length||sourceRows.size!==merged.length||
+    Object.keys(phase.by_scene||{}).length!==5)fail('ROLLING_TOTAL');
+ for(const [scene,stats] of Object.entries(phase.by_scene)){
+  if(!SCENE.test(scene)||perScene[scene]!==stats.drafts||
+     stats.drafts+stats.remaining!==stats.total)fail('ROLLING_SCENE');
+ }
+ return Object.freeze({rows:Object.freeze(merged),perScene:Object.freeze(perScene),
+  commit,verifiedBlobCount:4+extraPaths.length,unreviewed:merged.length,
+  onlyDiagnostic:true,canWriteSrs:false,formalReady:0,version:state.version,
+  pendingReview:true});
+}
