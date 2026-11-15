@@ -418,6 +418,11 @@ async function load(){
     liveIPATest:0,ipaUpdated:0,sourceFallback:true,
     sourceError:'MASTER_LIVE_ALL_SOURCES_UNAVAILABLE: '+String(liveError?.message||liveError)};
   }
+  // CG-MASTER V193 confirmed row 506 has the wrong selected IPA. This
+  // independent final render gate also applies to offline/fallback cards.
+  const ipaQuarantine=await import('./scene1341-selected-ipa-quarantine.mjs')
+   .then(m=>m.applyMasterSelectedIpaQuarantine(items));
+  items=[...ipaQuarantine.items];
   // A missing feed is expected until CG-MASTER publishes its atomic index.
   // Never promote the unverified feed to playable cards.
   try{
@@ -430,6 +435,7 @@ async function load(){
    set('master-live-feed-status','全场景增量 Feed 尚未发布或校验不可用；继续使用首批 Master 与旧卡（'+
      String(feedError?.message||feedError).slice(0,110)+'）。');
   }
+  if(ipaQuarantine.suppressed)console.warn('CG-MASTER V193 quarantined wrong-headword selected IPA: '+ipaQuarantine.suppressed);
   const latestIPAVisible=items.filter(card=>{
    const ipa=card.question?.ipa;
    return typeof ipa==='string'&&/^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(ipa.trim())&&ipa.trim().slice(1,-1).trim().length>0;
