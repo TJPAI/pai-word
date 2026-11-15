@@ -295,6 +295,8 @@ const label=id=>catalog.find(x=>x.id===id)?.name||id;
 // before reconsidering eligibility (first-review PASS is not formal release).
 const P0_PACK_LUNCH_RECORD='SC1341-FINAL-SRC-c11130a3098680db35fc444573431858';
 function eligiblePreviewCard(card){
+ // Source identity failures are hard HOLD: exclude from counts, gestures and autoplay.
+ if(card.master_source_identity_hold===true)return false;
  if(card.master_record_id!==P0_PACK_LUNCH_RECORD)return true;
  const review=resolveQaStage(card,independentQaReviews);
  return review.reviewed&&review.verdict==='PASS'&&
