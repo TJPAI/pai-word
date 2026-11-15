@@ -363,7 +363,7 @@ async function load(){
   // Inspect real first-phase author drafts as DIAGNOSTICS ONLY. They are not
   // CG-QA approved and cannot replace cards until canonical Master publication.
   void import('./scene1341-phase1-fresh-drafts.mjs')
-   .then(async m=>({m,fresh:await m.fetchPhase1FreshDraftsLatest()}))
+   .then(async m=>({m,fresh:await m.fetchPhase1FreshDraftsCurrent()}))
    .then(({m,fresh})=>{
     phase1FreshInspectorData={rows:fresh.rows,preview:m.phase1EditorialPreview};
     $('phase1-editor-inspector').hidden=false;
