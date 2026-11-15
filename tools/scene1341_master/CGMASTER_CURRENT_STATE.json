@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "afacd6cbbe4d3c9c997e6ba144e673dffe697fb3",
-  "version": "V232",
+  "verified_base_head": "45962c34724084e48c317dc3a54e94c49390ff96",
+  "version": "V233",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -338,6 +338,23 @@
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V232_423_MULTISENSE_PRIOR_EDITOR_EXACT_RELINK_20261115.json",
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v233_integrated_kaikki_test_cards": {
+      "total": 258,
+      "single_sense": 127,
+      "prior_editor_exact_relinked": 131,
+      "native_examples": 313,
+      "records_with_ipa_candidates": 122,
+      "by_scene": {
+        "SC50-0001": 85,
+        "SC50-0002": 46,
+        "SC50-0003": 35,
+        "SC50-0004": 46,
+        "SC50-0005": 46
+      },
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V233_258_KAIKKI_NATIVE_SENSE_INTEGRATED_TEST_CARDS_20261115.json",
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -382,6 +399,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V233: CG-MAIN can integrate V233 as test-only Kaikki-native cards; CG-QA must independently review before 1审. Continue semantic adjudication of remaining 292 multi-sense HOLD and 691 no-exact-entry.",
     "V232: integrate 131 provenance-relinked native sense gloss/example candidates into test Master, retaining pending independent CG-QA; then review 292 unresolved with semantic cues.",
     "V231: CG-MAIN may read five V231 per-scene native candidate JSON files and 127 V230 preview records as test-only; do not publish formal cards or mark 1审. Next semantic matching for 423 ambiguous native records.",
     "V230: stage 1.7MB V229 full candidate source and V230 127 page JSON into authoritative GitHub/Drive; only builder is committed to GitHub. Validate before CG-MAIN consumption.",
