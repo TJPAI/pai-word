@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "7e3c43b3e0ecf693035a5a68e2857622f163e5f5",
-  "version": "V247_FULL1341_L1_SOURCE_VERIFIED",
+  "version": "V248_GLOBAL_DEDUP_AUDITED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -580,6 +580,21 @@
       "drive_archive_size_bytes": 12430241,
       "git_scene_files_committed": false,
       "note": "All 1341 scene JSON files and manifest generated from checked original FINAL Master, zipped and stored in Google Drive authority folder. GitHub contains builder/checkpoint, not all per-scene JSON blobs. Source-row ID is not a certified global Sense ID."
+    },
+    "v248_global_dedup_audit": {
+      "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+      "source_rows": 230289,
+      "scenes": 1341,
+      "distinct_normalized_expressions": 127609,
+      "distinct_normalized_expression_zh_pairs": 176006,
+      "exact_pair_repeated_rows": 54283,
+      "exact_pairs_shared_across_scenes": 17718,
+      "expressions_with_multiple_chinese_meanings": 15582,
+      "missing_zh_rows": 222,
+      "qa_stage": "待审",
+      "canonical_sense_ids_verified": 0,
+      "method": "Unicode casefold + whitespace normalization; expression and Chinese meaning equality only; no semantic merges",
+      "note": "176006 distinct expression/meaning pairs are NOT 176006 certified senses. Global sense identity needs Kaikki alignment and manual/independent semantic QA."
     }
   },
   "sources": {
@@ -633,9 +648,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Coordinate CG-MAIN dynamic intake of V247 Drive full 1341 scene L1 archive, preserving strict TEST-only QA status and never linking to formal SRS.",
-    "Batch build and pin scene index/overlays for all 230289 source rows; keep source line/row identities exact, assign global Sense IDs only after dedup policy and QA.",
-    "Iteratively add Kaikki native semantic gloss/POS/IPA/examples (L2), then bilingual collocation/usage L3; independent exact-content CG-QA for 1审."
+    "Run lossless full1341 candidate grouping and assign provisional group IDs distinct from canonical sense_id; preserve all source rows.",
+    "Prioritize ambiguous expression groups and 222 missing Chinese meanings for Kaikki + author review.",
+    "CG-MAIN dynamic test loader should consume V247 Drive archive, not assume all GitHub JSON committed; keep QA stage 待审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
