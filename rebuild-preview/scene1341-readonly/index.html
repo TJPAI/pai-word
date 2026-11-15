@@ -146,6 +146,16 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
     <p id="phase1-editor-counter" class="demo-tip" aria-live="polite"></p>
     <div id="phase1-editor-readonly" style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65"></div>
    </div>
+   <div id="v223-inspector" class="panel-block" hidden style="margin:12px 0;padding:12px;border:1px dashed #a5b4c7;border-radius:12px">
+    <strong>Master 最新 Sense 题目／答案预览（研发抽检）</strong>
+    <p class="demo-tip" id="v223-status">未完成词卡，未获 IPA 和 QA 批准；只读，不进入学习队列。</p>
+    <label for="v223-scene">场景</label>
+    <select id="v223-scene"><option value="SC50-0001">SC0001</option><option value="SC50-0002">SC0002</option><option value="SC50-0003">SC0003</option><option value="SC50-0004">SC0004</option><option value="SC50-0005">SC0005</option></select>
+    <button id="v223-prev" type="button" class="home-quiet-btn">上一条</button>
+    <button id="v223-next" type="button" class="home-quiet-btn">下一条</button>
+    <p class="demo-tip" id="v223-position"></p>
+    <div id="v223-content" style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65"></div>
+   </div>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
     <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
@@ -374,6 +384,22 @@ async function load(){
    qaReviewSourceStatus='独立QA一审索引未发布或不可用，当前均显示待审';
   }
   set('phase1-review-source-status',qaReviewSourceStatus);
+  // Distinct read-only Sense payloads; never append to items or the SRS.
+  void import('./scene1341-v223-preview-inspector.mjs')
+   .then(async m=>({m,data:await m.fetchCurrentPreviewPayload()}))
+   .then(({m,data})=>{
+    if(!data.rows.length)return;
+    v223Data={rows:data.rows,project:m.previewV223Row};
+    $('v223-inspector').hidden=false;
+    set('v223-status',data.version+' · '+data.rows.length+'条Sense研发草稿，'+
+     data.coverage.exampleRecords+'条含双语例句，0条完整、0条IPA批准；只读，不进入学习卡。');
+    renderV223Inspector();
+   }).catch(e=>{
+    v223Data=null;
+    $('v223-inspector').hidden=true;
+    set('v223-status','最新版Sense预览无法安全验证：'+String(e?.message||e));
+   });
+
   // Inspect real first-phase author drafts as DIAGNOSTICS ONLY. They are not
   // CG-QA approved and cannot replace cards until canonical Master publication.
   phase1FreshPromise=import('./scene1341-phase1-fresh-drafts.mjs')
@@ -960,6 +986,26 @@ $('browse').addEventListener('click',()=>{
 });
 $('recommendation-prev').addEventListener('click',()=>{if(resultPage>0){resultPage--;renderHome()}});
 $('recommendation-next').addEventListener('click',()=>{resultPage++;renderHome()});
+let v223Data=null,v223Position=0;
+function renderV223Inspector(){
+ if(!v223Data?.rows||$('v223-inspector').hidden)return;
+ const scene=$('v223-scene').value;
+ const rows=v223Data.rows.filter(r=>r.scene_id===scene)
+  .sort((a,b)=>a.source_final_row-b.source_final_row);
+ if(!rows.length){set('v223-content','当前场景无新增预览草稿');set('v223-position','0 / 0');return}
+ v223Position=(v223Position%rows.length+rows.length)%rows.length;
+ const r=rows[v223Position],v=v223Data.project(r);
+ set('v223-position',scene.slice(-4)+' · '+(v223Position+1)+' / '+rows.length+' · '+(v.hold?'Sense HOLD':'未审草稿'));
+ set('v223-content','【题目页】\\n'+v.word+'\\n'+v.ipa+'\\n\\n【答案页】\\n'+v.meaning+
+  '\\n英文释义：'+v.gloss+'\\n'+v.examples.map(e=>e.en+'\\n'+e.zh+
+    (e.native?'\\n（Kaikki 原生英文例句／中文编辑翻译）':'\\n（编辑原创例句）')).join('\\n')+
+  '\\n\\n待审 · 未完成 · 不进入学习卡 · SRS禁写'+
+  (v.hold?'\\n此条 Sense 存在待裁决风险，禁止自动接入学习卡。':'')+
+  '\\nrecord_id: '+v.recordId);
+}
+$('v223-scene').addEventListener('change',()=>{v223Position=0;renderV223Inspector()});
+$('v223-prev').addEventListener('click',()=>{v223Position--;renderV223Inspector()});
+$('v223-next').addEventListener('click',()=>{v223Position++;renderV223Inspector()});
 let phase1FreshInspectorData=null;
 let phase1EditorOffset=0;
 function renderPhase1EditorInspector(){
