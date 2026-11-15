@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "7c54d2b1c5c27533fd302b7fbdbc1b78fced707f",
-  "version": "V211",
+  "verified_base_head": "fb15ed6dd6a3dccf2ae1005b14f259c720c5a50a",
+  "version": "V212",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -63,7 +63,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V208_TWO_CANDIDATE_EDITORIAL_SENSE_PROPOSALS_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V209_38_EDITORIAL_SENSE_PAGE_SKELETONS_UNREVIEWED_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V210_38_NATIVE_EXAMPLE_ENRICHMENT_REPORT_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V211_13_NATIVE_EXAMPLE_BILINGUAL_EDITORIAL_DRAFT_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V211_13_NATIVE_EXAMPLE_BILINGUAL_EDITORIAL_DRAFT_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V212_CROSS_ARTIFACT_HANDOFF_INTEGRITY_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -131,6 +132,17 @@
       "scene_fit_hold_records": 2,
       "qa_stage": "待审",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V211_13_NATIVE_EXAMPLE_BILINGUAL_EDITORIAL_DRAFT_20261115.json"
+    },
+    "v212_cross_artifact_validation": {
+      "status": "PASS_SOURCE_IDENTITY",
+      "v208": 43,
+      "v209": 38,
+      "v211": 13,
+      "examples": 14,
+      "scene_fit_hold": 2,
+      "qa_stage": "待审",
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V212_CROSS_ARTIFACT_HANDOFF_INTEGRITY_20261115.json",
+      "validator": "tools/scene1341_master/validate_v212_editorial_handoff.mjs"
     }
   },
   "sources": {
@@ -175,6 +187,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V212: run new cross-artifact validator in CI and obtain independent QA review; preserve exact original Sense line and immutable source ID.",
     "V211: CG-QA verify 14 translated native examples; replace 2 scene-incompatible examples only with source-backed better examples, no fabricated source attribution.",
     "V210: independently QA 13 source-pinned English examples and 17 native IPA candidates; create bilingual translations before marking answer complete.",
     "V209: enrich 38 page skeletons with independently verified IPA, native examples, bilingual translations and usage; no premature promotion.",
