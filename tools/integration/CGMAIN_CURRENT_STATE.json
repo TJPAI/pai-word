@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "8400619c5f7292f6bd13a3672f31d6763c502d42",
+  "verified_parent_head": "16420cc55c6d6d4c37f539c572e1547c8986d8c4",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,8 +13,8 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "26461f0cee931cadc276a8ecae4669b8a64ead67",
-    "latest_master_version": "V208",
+    "latest_master_head": "023be2e5b48268b055a148cb035256d31b1e99c6",
+    "latest_master_version": "V209",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -40,16 +40,16 @@
     "regression": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs",
     "ui": "rebuild-preview/scene1341-readonly/index.html",
     "intake": "Rolling state-driven immutable CG-MASTER V199-V203 five Git blob SHA1 checked, source identities and per-scene totals validated; V204/V205 analysis excluded from draft count; QA pending, SRS disabled",
-    "canonical_study_cards_unchanged": true,
+    "canonical_study_cards_unchanged": false,
     "wrong_row506_ipa_quarantined": true,
     "inspector": {
       "location": "Settings only",
       "file": "rebuild-preview/scene1341-readonly/index.html",
-      "stage": "all 待审",
+      "stage": "5 exact CG-QA first-reviewed (4 REVISE, 1 CONDITIONAL), remaining 253 待审",
       "read_only": true,
       "no_srs": true,
       "show_unreviewed_native_ipa_candidates_only": true,
-      "source": "4 immutably pinned Git blobs, 203 fresh editorial candidates"
+      "source": "5 immutable V199–V203 Git blobs, 258 editorial candidates"
     },
     "rolling": {
       "module": "rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs",
@@ -60,16 +60,33 @@
       "test": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs",
       "version": "V208 state / 258 authored V203 rows; V206–V208 are noncanonical source triage and must not be counted as study cards"
     },
-    "independent_review_stage": "Settings editor inspector uses exact record_id + content_sha256 against separate CG-QA branch SHA-pinned first-review index; 5 1审 (4 REVISE,1 CONDITIONAL), 253 待审, formalReady0, SRS0"
+    "independent_review_stage": "Settings editor inspector uses exact record_id + content_sha256 against separate CG-QA branch SHA-pinned first-review index; 5 1审 (4 REVISE,1 CONDITIONAL), 253 待审, formalReady0, SRS0",
+    "main_learning_overlay": {
+      "module": "rebuild-preview/scene1341-readonly/scene1341-phase1-study-overlay.mjs",
+      "scope": "SC50-0001 through SC50-0005, source-exact matches among existing 2873 preview cards",
+      "source": "CGMASTER_CURRENT_STATE dynamically pinned V199-V203 258 rows",
+      "card_count_changed": false,
+      "legacy_v116_v190_v171_fallback": true,
+      "legacy_ipa_not_borrowed": true,
+      "ipa_status": "source-single candidate displayed as unreviewed test; multi-IPA and missing remain HOLD",
+      "content_sha256_verified": true,
+      "independent_review_status_by_exact_hash": true,
+      "formal_certified": 0,
+      "can_write_srs": false,
+      "example": "wake up native IPA /ˌweɪk ˈʌp/, native gloss and bilingual author draft",
+      "remaining_new_page_gap": 983,
+      "ux": "Scene500 existing gestures/phase/rating preserved",
+      "actual_browser_test": "manual deployment and smoke test still required"
+    }
   },
   "ci": {
-    "latest_code_head": "2bfbdc4845e58730344e1b63f8f01ca99aacab67",
+    "latest_code_head": "75654cbb886ce3f7f2638d61b104ad55170b051c",
     "ranked": {
-      "run": 43685180152,
+      "run": 43686805512,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43685180172,
+      "run": 43686805546,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -83,14 +100,14 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Continue exact-QA SHA-based display without trusting embedded author content labels",
-    "CG-QA independent re-review after Master revises 5 identified risks; stale SHA resets label 待审",
-    "CG-MASTER V208 38 native Sense candidate proposals and five HOLD are NOT additional finished draft pages",
-    "Preserve dynamic rolling batch source validation, no deployment/SRS"
+    "Manual deploy preview and verify actual first SC0001 wake up renders Kaikki gloss/POS/IPA candidate, not old collocation layout; browser/Safari check pending",
+    "Coordinate CG-MASTER for 983 missing complete Phase1 pages; V209 38 native Sense skeletons not yet full authored cards",
+    "QA 5 first-review non-PASS labels remain exact SHA-bound, 0 formal approvals",
+    "Future conforming Master editorial batches automatically ingested without new front-end build, but new source schema requires contract review"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
-    "issue1": 6890226825,
-    "issue2": 6890202010
+    "issue1": 6890323284,
+    "issue2": 6890284593
   }
 }
