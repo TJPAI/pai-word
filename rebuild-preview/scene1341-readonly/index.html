@@ -475,7 +475,10 @@ async function load(){
   try{
    const {fresh}=await phase1FreshPromise;
    const staging=await import('./scene1341-phase1-study-overlay.mjs')
-    .then(m=>m.applyPhase1StudyOverlay(items,fresh));
+    .then(async m=>{
+     await m.verifyPhase1ContentDigests(fresh);
+     return m.applyPhase1StudyOverlay(items,fresh);
+    });
    items=[...staging.items];
    phase1StudyOverlayStatus='新版Kaikki题目/答案接入 '+staging.matched+' 张测试词卡；'+
     staging.held+' 条身份未精确对应，保留原卡；来源IPA均待审。';
