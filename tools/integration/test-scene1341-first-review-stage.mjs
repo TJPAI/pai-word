@@ -35,14 +35,15 @@ assert.equal(fetched.commit,commit);assert.equal(fetched.index.size,1);assert(ca
 await assert.rejects(()=>fetchIndependentFirstReviews({fetchImpl:async()=>new Response('Not found',{status:404})}),/BRANCH_HTTP_404/);
 const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
 assert(html.includes('id="first-review-stage"'));
-assert(html.includes('id="answer-review-stage"'));
+assert(!html.includes('id="answer-review-stage"'), 'answer bottom review marker must not exist');
 assert(!/<div class="study-top"[^>]*>[\\s\\S]*?id="first-review-stage"/.test(html),
  'review text must not appear in top title/progress bar');
-assert(html.indexOf('id="answer-review-stage"')<html.indexOf('id="demo-note"'),
- 'answer review text is immediately before the bottom tap hint');
+assert(/class="ipa-line"[^>]*>[^\n]*id="ipa"[^\n]*id="first-review-stage"/.test(html),
+ 'one common status label must be next to IPA on both faces');
 assert(html.includes("const reviewText=qaStage.visible?(qaStage.reviewed?'1审':'待审'):''"));
-assert(html.includes("questionStage.hidden=!reviewText||revealed;"));
-assert(html.includes("answerStage.hidden=!reviewText||!revealed;"));
+assert(html.includes("questionStage.hidden=!reviewText;"));
+assert(!html.includes("revealed .phase-review-text")&&!html.includes("answerStage.textContent"),
+ 'neither face may hide or duplicate the shared IPA-adjacent review label');
 assert(html.includes("if($('ipa')&&questionStage.parentElement!==$('ipa').parentElement)$('ipa').after(questionStage)"));
 assert(!html.includes("Kaikki来源候选·待审")&&!html.includes("编辑草稿·待审"),
  'other learner-facing locations cannot contain extra review labels');
