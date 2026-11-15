@@ -579,7 +579,7 @@ async function load(){
   const sourceLabel=v190.sourceVersion+' · '+v190.sourceCommit.slice(0,12);
   set('master-live-version',v190.sourceFallback?'使用已验证 '+sourceLabel+' 回退版本；最新来源暂不可用：'+v190.sourceError:'已读取 CG-MASTER 最新完整交付 '+sourceLabel+'（未认证）。刷新页面即可检查新版本。');
   set('master-ipa-coverage',!v190.sourceRows?'动态 Master 暂不可用，保留已校验的 V171 与历史测试词卡；正式认证0，SRS禁写。':v190.sourceVersion+' Master 首批3,000条源关联已完成SHA核验；与旧2,873条学习卡精确身份匹配'+v190.exact+'条，待对账'+v190.held+'条，实际安全增量补充答案'+v190.enriched+'条；另有'+v190.unmatchedSourceRows+'条当前Master源记录不在当前学习卡中，'+v190.legacyOutsideBatch+'张旧卡属于本批以外。源内唯一读音候选更新'+v190.liveIPATest+'条（其中读音变化'+v190.ipaUpdated+'条，均未认证），正式认证0，SRS禁写。');
-  set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+latestIPAVisible+' 条；'+(v190.sourceRows?v190.sourceVersion+'源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条':'动态Master暂不可用，使用历史测试词卡')+'，正式认证0、SRS写入关闭。');
+  set('scope','Scene1341 正式目录1,341个场景；当前只读测试覆盖'+countByScene.size+'场景、'+items.length+'张词卡；原有2,873张教学草稿（含SC0011–SC0014的996份V171配对草稿）保留，新扩展仅为L1测试内容，不能当作完整教学页；主学习界面可显示测试IPA '+latestIPAVisible+' 条；'+(v190.sourceRows?v190.sourceVersion+'源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条':'动态Master暂不可用，使用历史测试词卡')+'，正式认证0、SRS写入关闭。');
   set('master-ipa-coverage',phase1StudyOverlayStatus+' '+$('master-ipa-coverage').textContent);
   set('status','Scene1341 · '+v190.sourceVersion+' Master'+(v190.sourceFallback?'（回退）':'（实时）')+'更新 '+v190.enriched+' 卡 · 最新测试IPA候选 '+v190.liveIPATest+' · '+countByScene.size+'场景 / '+items.length+'测试卡 · Ready 0');
   // Distinguish the legacy-card count from actual source-exact Phase1 overrides.
