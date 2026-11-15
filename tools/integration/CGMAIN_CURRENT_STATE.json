@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "642c83faeb64395fb1f90abfdb4a94d472347750",
+  "verified_parent_head": "8400619c5f7292f6bd13a3672f31d6763c502d42",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,8 +13,8 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "1dc0019096d9b6fcdd590d149f3a3dfe5b02702a",
-    "latest_master_version": "V205",
+    "latest_master_head": "26461f0cee931cadc276a8ecae4669b8a64ead67",
+    "latest_master_version": "V208",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -24,10 +24,16 @@
       46,
       46
     ],
-    "independent_first_reviews": 0,
+    "independent_first_reviews": 5,
     "formal_ready": 0,
     "srs_eligible": false,
-    "latest_qa_head": "1219157035eaa0da564414c37cc3080e16c23f15"
+    "latest_qa_head": "df6b34e9df4e3ced83544eb6af3c697d6915ab60",
+    "pending_first_review": 253,
+    "review_verdict_counts": {
+      "REVISE": 4,
+      "CONDITIONAL": 1,
+      "PASS": 0
+    }
   },
   "integration": {
     "implementation": "rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs",
@@ -51,17 +57,19 @@
       "source": "tools/scene1341_master/CGMASTER_CURRENT_STATE.json",
       "dynamic_new_batch_metadata_sha": true,
       "fail_closed": true,
-      "test": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs"
-    }
+      "test": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs",
+      "version": "V208 state / 258 authored V203 rows; V206–V208 are noncanonical source triage and must not be counted as study cards"
+    },
+    "independent_review_stage": "Settings editor inspector uses exact record_id + content_sha256 against separate CG-QA branch SHA-pinned first-review index; 5 1审 (4 REVISE,1 CONDITIONAL), 253 待审, formalReady0, SRS0"
   },
   "ci": {
-    "latest_code_head": "d7826963e64af34e95c4a904e3b68233567f7070",
+    "latest_code_head": "2bfbdc4845e58730344e1b63f8f01ca99aacab67",
     "ranked": {
-      "run": 43684835443,
+      "run": 43685180152,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43684835409,
+      "run": 43685180172,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -75,10 +83,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "CG-MASTER produce remaining 983 records and preserve full Kaikki evidence; future batches must follow rolling contract",
-    "CG-QA independent exact-content reviewed index is still absent; all phase1 cards 待审",
-    "Keep unreviewed IPA and unfinished examples only in isolated inspector",
-    "No frontend redeploy needed for conforming Master data changes after user manually deploys current UI once"
+    "Continue exact-QA SHA-based display without trusting embedded author content labels",
+    "CG-QA independent re-review after Master revises 5 identified risks; stale SHA resets label 待审",
+    "CG-MASTER V208 38 native Sense candidate proposals and five HOLD are NOT additional finished draft pages",
+    "Preserve dynamic rolling batch source validation, no deployment/SRS"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
