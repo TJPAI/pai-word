@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "5127bd40a9bfeca621621eb3d256e6b1f84214cb",
+  "verified_base_head": "411b325d15b42e368ce117e8d12e4d4970c03f5c",
   "version": "V202",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
@@ -69,7 +69,7 @@
   },
   "qa": {
     "branch": "cg-qa-enlex-review-20261026",
-    "verified_qa_head": "73d655cbe13e04633c7ad6a5163111db28d5c441",
+    "verified_qa_head": "c4dff2e82feaf63390acea137e29ca6773c4d994",
     "independent_index_path": "tools/core20k_lexicon/qa/SC1341_PHASE1_INDEPENDENT_FIRST_REVIEW.json",
     "independent_index_found": false,
     "pending_editorial_drafts": 203,
@@ -87,10 +87,15 @@
   "ci": {
     "phase1_master_exact_head_run_verified": null,
     "latest_known_main_integration_success_run": "https://github.com/TJPAI/pai-word/actions/runs/43682182363",
-    "note": "Main integration SUCCESS is not a CG-MASTER exact-head test; do not infer Master CI PASS."
+    "note": "New Phase1 provenance CI authored; no matching successful exact-head workflow run verified. Previous unrelated historical V151 Actions include failures. Do not claim PASS.",
+    "phase1_validator_path": "tools/scene1341_master/validate_phase1_editor_drafts.mjs",
+    "phase1_workflow_path": ".github/workflows/cgmaster-phase1-integrity.yml",
+    "phase1_validator_commit": "33e77d766708efb2b5599627fe0b97f3dac17ea8",
+    "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "Run or verify newly added provenance CI at exact HEAD and fix any failing integrity checks before more editor production.",
     "Resolve remaining 1038 frozen source associations using V198 original raw Kaikki exact entry/POS/sense evidence, preserve original IDs and append new editor records.",
     "Resolve IPA HOLD from actual raw Kaikki and separately verify ambiguity, never invent phonetics.",
     "Coordinate independent CG-QA per-record exact-content SHA first review on existing GitHub JSON.",
