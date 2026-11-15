@@ -996,12 +996,12 @@ function renderV223Inspector(){
  v223Position=(v223Position%rows.length+rows.length)%rows.length;
  const r=rows[v223Position],v=v223Data.project(r);
  set('v223-position',scene.slice(-4)+' · '+(v223Position+1)+' / '+rows.length+' · '+(v.hold?'Sense HOLD':'未审草稿'));
- set('v223-content','【题目页】\\n'+v.word+'\\n'+v.ipa+'\\n\\n【答案页】\\n'+v.meaning+
-  '\\n英文释义：'+v.gloss+'\\n'+v.examples.map(e=>e.en+'\\n'+e.zh+
-    (e.native?'\\n（Kaikki 原生英文例句／中文编辑翻译）':'\\n（编辑原创例句）')).join('\\n')+
-  '\\n\\n待审 · 未完成 · 不进入学习卡 · SRS禁写'+
-  (v.hold?'\\n此条 Sense 存在待裁决风险，禁止自动接入学习卡。':'')+
-  '\\nrecord_id: '+v.recordId);
+ set('v223-content','【题目页】\n'+v.word+'\n'+v.ipa+'\n\n【答案页】\n'+v.meaning+
+  '\n英文释义：'+v.gloss+'\n'+v.examples.map(e=>e.en+'\n'+e.zh+
+    (e.native?'\n（Kaikki 原生英文例句／中文编辑翻译）':'\n（编辑原创例句）')).join('\n')+
+  '\n\n待审 · 未完成 · 不进入学习卡 · SRS禁写'+
+  (v.hold?'\n此条 Sense 存在待裁决风险，禁止自动接入学习卡。':'')+
+  '\nrecord_id: '+v.recordId);
 }
 $('v223-scene').addEventListener('change',()=>{v223Position=0;renderV223Inspector()});
 $('v223-prev').addEventListener('click',()=>{v223Position--;renderV223Inspector()});
