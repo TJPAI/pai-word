@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "6071df3689dde44199798fcd880e49cb6831d787",
+  "verified_parent_head": "e4655faf2206766a323dff23008f9a2ef9e8acab",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,8 +13,8 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "326ea3e0d363cd6d4100d836764138603f4ca1bf",
-    "latest_master_version": "V215",
+    "latest_master_head": "60740ff55b78f749bbc9ff13b8b66d52f0993a74",
+    "latest_master_version": "V219",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -27,7 +27,7 @@
     "independent_first_reviews": 19,
     "formal_ready": 0,
     "srs_eligible": false,
-    "latest_qa_head": "49f086ac87c16707af61bb6cd1b2c04d5620ba03",
+    "latest_qa_head": "523c31a47942ee90f4a57c3bf82644acad786ade",
     "pending_first_review": 239,
     "review_verdict_counts": {
       "REVISE": 5,
@@ -59,7 +59,17 @@
       "dynamic_new_batch_metadata_sha": true,
       "fail_closed": true,
       "test": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs",
-      "version": "V208 state / 258 authored V203 rows; V206–V208 are noncanonical source triage and must not be counted as study cards"
+      "version": "Master V219 state 258 authored, 983 remaining; new compatible V300+ next-day files accepted, V209-219 noncanonical triage excluded",
+      "future_version_selector": true,
+      "date_independent": true,
+      "strict_only_phase1_editorial_drafts": true,
+      "examples": [
+        "CGMASTER_V300_PHASE1_NEXT42_KAIKKI_EDITOR_DRAFT_20261116.json",
+        "CGMASTER_V1000_PHASE1_NATIVE_SOURCE_UNREVIEWED_20271116.json"
+      ],
+      "content_identity_sha_validation": true,
+      "formally_ready": 0,
+      "srs_writes": 0
     },
     "independent_review_stage": "Settings editor inspector uses exact record_id + content_sha256 against separate CG-QA branch SHA-pinned first-review index; 5 1审 (4 REVISE,1 CONDITIONAL), 253 待审, formalReady0, SRS0",
     "main_learning_overlay": {
@@ -114,13 +124,13 @@
     "new_master_status": "CG-MASTER V215 still 258 authored/1241, 983 missing; V209/211/214/215 evidence/skeletons/recovery queues are NOT authored completed cards"
   },
   "ci": {
-    "latest_code_head": "b45e6e7b44addb4efd53a2f5b7a208c7745cff72",
+    "latest_code_head": "bb726e1d0002e887a3c3723534b4bb24e369cd9c",
     "ranked": {
-      "run": 43689673460,
+      "run": 43691021937,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43689673469,
+      "run": 43691021916,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -134,9 +144,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "CG-MASTER V215: continue evidence-complete full teaching pages for 983 outstanding; never conflate 38 proposed sense skeletons with authored pages",
-    "CG-QA V200: independent 19 exact-content first reviews, 1 P0 HOLD in SC0001 quarantined, 0 formalReady",
-    "Manual deployment and browser iPhone smoke test of wake up and pack lunch quarantine pending"
+    "Dynamic intake accepts future numbered/dates fully authored Kaikki Phase1 editorial batches only; do not treat V216–V219 evidence and example handoffs as ready pages",
+    "Await CG-MASTER canonical authored full rows for 983 Phase1 gaps; dynamic page refresh can then ingest validated versions without rebuilding",
+    "CG-QA V200 independent first reviews 19, zero PASS; pack lunch P0 HOLD remains excluded from preview",
+    "Owner manually deploy and smoke test iPhone IPA, POS and QA marker on both faces"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
