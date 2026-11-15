@@ -365,14 +365,14 @@ async function load(){
   void import('./scene1341-phase1-fresh-drafts.mjs')
    .then(async m=>({m,fresh:await m.fetchPhase1FreshDraftsCurrent()}))
    .then(({m,fresh})=>{
-    phase1FreshInspectorData={rows:fresh.rows,preview:m.phase1EditorialPreview};
+    phase1FreshInspectorData={rows:fresh.rows,preview:m.phase1EditorialPreview,qaResolve:qaModule.resolveEditorialFirstReview};
     $('phase1-editor-inspector').hidden=false;
     renderPhase1EditorInspector();
     set('phase1-fresh-draft-status',
      'SC0001–SC0005 全新Kaikki草稿：'+fresh.rows.length+'条（按场景 '+[
        'SC50-0001','SC50-0002','SC50-0003','SC50-0004','SC50-0005'
      ].map(id=>id.slice(-4)+':'+(fresh.perScene[id]||0)).join(' / ')+
-     '）；源Git分片'+fresh.verifiedBlobCount+'已校验；全部待审、未接入正式词卡；SRS禁写。');
+     '）；源Git分片'+fresh.verifiedBlobCount+'已校验；独立1审'+fresh.rows.filter(row=>qaModule.resolveEditorialFirstReview(row,independentQaReviews).firstReviewed).length+'条，其余待审；均未获正式发布认可，SRS禁写。');
    })
    .catch(()=>{
     phase1FreshInspectorData=null;
@@ -902,8 +902,9 @@ function renderPhase1EditorInspector(){
  const rows=data.rows.filter(r=>r.scene_id===scene).sort((a,b)=>a.source_final_row-b.source_final_row);
  if(!rows.length){$('phase1-editor-readonly').textContent='暂无已验证的新草稿';return;}
  phase1EditorOffset=(phase1EditorOffset%rows.length+rows.length)%rows.length;
- const item=data.preview(rows[phase1EditorOffset]);
- $('phase1-editor-counter').textContent=scene.slice(-4)+' · '+(phase1EditorOffset+1)+' / '+rows.length+' · '+item.stage+' · '+item.verdict;
+ const row=rows[phase1EditorOffset],item=data.preview(row);
+ const reviewed=data.qaResolve(row,independentQaReviews);
+ $('phase1-editor-counter').textContent=scene.slice(-4)+' · '+(phase1EditorOffset+1)+' / '+rows.length+' · '+reviewed.stage+' · '+(reviewed.verdict||'未审')+' · 正式发布否';
  $('phase1-editor-readonly').textContent=
   '【题目页 · 未审草稿】\\n'+item.expression+'\\n'+item.cue+
   '\\nIPA: '+(item.ipaCandidate?item.ipaCandidate+'（未审原生候选）':'待核验 / HOLD')+
