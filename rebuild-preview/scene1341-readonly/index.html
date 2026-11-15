@@ -161,8 +161,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   <div class="answer" id="answer" hidden>
    <div class="answer-section"><div class="answer-label">释义</div><div class="definition-line"><div class="definition" id="meaning"></div></div></div>
    <div class="answer-section" id="master-v190-gloss-section" hidden><div class="answer-label">英文释义（待核验）</div><div class="definition" id="master-v190-gloss"></div></div>
-   <div class="answer-section" id="master-v190-pos-section" hidden><div class="answer-label">词性（待核验）</div><div class="definition" id="master-v190-pos"></div></div>
-   <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
+      <div class="answer-section" id="collocations-section"><div class="answer-label">高频搭配</div><div class="collocations" id="collocations"></div></div>
    <div class="answer-section examples-section" id="examples-section" data-test-teaching="example" data-publication-status="author-draft"><div class="answer-label">例句</div><div class="example"><span class="example-num">1.</span><div class="example-text"><div class="example-en" id="example"></div><div class="example-translation" id="translation"></div></div><button type="button" class="example-play" id="example-speak" aria-label="播放例句">🔊</button></div><div id="extra-examples"></div></div>
    <div class="answer-section" id="v188-relations-section" hidden><div class="answer-label">相关表达</div><div id="v188-synonyms"></div><div id="v188-antonyms"></div></div>
    <div class="answer-section" id="v188-distinction-section" hidden><div class="answer-label">词义辨析</div><div id="v188-distinction"></div></div>
@@ -719,6 +718,24 @@ function renderQuestionIPA(card){
           question?.ipa_candidates_pending?'存在多个原生 Kaikki 读音候选，等待 CG-MASTER 裁决，不随机选择':'CG-MASTER 尚未提供本词条可展示的 Kaikki IPA';
  el.dataset.ipaStatus=phase1Native?'phase1-kaikki-unreviewed':phase1Hold?'phase1-hold':latestExact?'latest-master-unique-test':native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':v171Paired?'v171-paired-test':question?.ipa_candidates_pending?'pending-ipa-adjudication':'missing';
 }
+function formatMeaningWithPos(answer){
+ const meaning=typeof answer?.meaning_zh==='string'?answer.meaning_zh.trim():'';
+ const pos=typeof answer?.pos==='string'?answer.pos.trim().toLowerCase():'';
+ const abbreviations={
+  'noun':'n.','n':'n.','n.':'n.','proper noun':'n.','verb':'v.','v':'v.','v.':'v.',
+  'adjective':'adj.','adj':'adj.','adj.':'adj.','adverb':'adv.','adv':'adv.','adv.':'adv.',
+  'phrasal verb':'phr. v.','phrasal-verb':'phr. v.','phr. v.':'phr. v.',
+  'preposition':'prep.','prep':'prep.','prep.':'prep.',
+  'pronoun':'pron.','pron':'pron.','pron.':'pron.',
+  'conjunction':'conj.','conj':'conj.','conj.':'conj.',
+  'determiner':'det.','det':'det.','det.':'det.',
+  'interjection':'interj.','interj':'interj.','interj.':'interj.',
+  'numeral':'num.','num':'num.','num.':'num.',
+  'particle':'part.','part':'part.','part.':'part.'
+ };
+ const abbrev=abbreviations[pos]||'';
+ return abbrev?(abbrev+' '+meaning):meaning;
+}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  const qaStage=resolveQaStage(r,independentQaReviews);
@@ -784,20 +801,16 @@ function renderCard(){
  $('hero').classList.toggle('listen-only',prefs.hideWord&&!revealed);
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
- set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
+ set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',formatMeaningWithPos(r.answer));
   const phase1Card=r.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST';
   $('master-v190-gloss-section').querySelector('.answer-label').textContent=phase1Card?'英文释义（Kaikki原生）':'英文释义（待核验）';
-  $('master-v190-pos-section').querySelector('.answer-label').textContent=phase1Card?'词性（Kaikki原生）':'词性（待核验）';
   $('usage-section').querySelector('.answer-label').textContent=phase1Card?'用法说明':'用法提醒';
   $('collocations-section').querySelector('.answer-label').textContent=phase1Card?'常用搭配':'高频搭配';
   $('examples-section').querySelector('.answer-label').textContent=phase1Card?'双语例句':'例句';
   $('answer').dataset.masterPhase1=String(phase1Card);
  const visibleGloss=typeof r.answer.gloss_en==='string'?r.answer.gloss_en.trim():'';
- const visiblePos=typeof r.answer.pos==='string'?r.answer.pos.trim():'';
  set('master-v190-gloss',visibleGloss);
- set('master-v190-pos',visiblePos);
  $('master-v190-gloss-section').hidden=!visibleGloss;
- $('master-v190-pos-section').hidden=!visiblePos;
  const answerView=window.PAI_SCENE1341_V188_ANSWER.project(r.answer);
  const selectedExample=answerView.examples[0]||{en:'',zh:''};
  $('example-speak').dataset.speak=selectedExample.en;
