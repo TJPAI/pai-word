@@ -38,7 +38,8 @@ export function validatePreviewPayload(doc,expected){
    typeof a.gloss_en!=='string'||!a.gloss_en.trim()||
    q.complete!==false||a.complete!==false||q.ipa!==null||
    a.ipa!==null||q.qa_label!=='待审'||a.qa_label!=='待审'||
-   r.qa_stage!=='待审'||r.formal_ready!==0||r.release_allowed!==false||
+   r.qa_stage!=='待审'||(r.qa_label!==undefined&&r.qa_label!=='待审')||
+   r.formal_ready!==0||r.release_allowed!==false||
    !Number.isSafeInteger(r.native_source_line)||r.native_source_line<1||
    !Array.isArray(q.ipa_candidates)||!Array.isArray(a.examples)||
    a.examples.length>3||
