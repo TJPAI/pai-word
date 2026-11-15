@@ -1,0 +1,67 @@
+{
+  "version": "V199",
+  "date": "2026-11-15",
+  "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+  "scope": "SC50-0001..0005",
+  "phase1_associations": 1241,
+  "deliverable": "35 hand-edited bilingual question/answer sense candidates with exact fresh raw Kaikki lemma POS zero-based sense index and line attribution",
+  "qa_stage_label": "待审",
+  "first_review_verdict": null,
+  "first_reviewed_records": 0,
+  "pilot_records": 35,
+  "editorial_bilingual_example_pairs": 35,
+  "verified_native_unique_phonemic_ipa_candidates_unreviewed": 4,
+  "ipa_hold": 31,
+  "official_sense_ids": 0,
+  "answer_complete_certified": 0,
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "identity_source": "V198 source exact 1241-row frozen record_id/source_final_row/scene_id",
+  "selected_examples_source": "CG_MASTER_NEW_EDITOR_ORIGINAL_NOT_KAIKKI_ATTESTATION",
+  "data_artifact": {
+    "library_path": "/PAI Word/CG-MASTER/CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+    "size_bytes": 77520,
+    "sha256": "11bf62193e8cd62975adc8249e0cf7b63acadbfb0b340cad0d7c61de37ecca43",
+    "library_file_id": "libfile_5ecc14a7eec88191bdc18c5735fbac6b"
+  },
+  "reproducible_builder": {
+    "library_path": "/PAI Word/CG-MASTER/build_cgmaster_v199_phase1_35_pilot.py",
+    "library_file_id": "libfile_6e9b340816c081918bc057dc6da01124"
+  },
+  "review_policy": {
+    "qa_label_change_condition": "Only CG-QA independently signed evidence tied to exact content_sha256 changes 待审 to 1审; first-review verdict separate; any subsequent text/IPA edit resets to 待审.",
+    "valid_verdicts": [
+      "PASS",
+      "CONDITIONAL",
+      "REVISE",
+      "HOLD"
+    ],
+    "selection_status": "CG_MASTER_EDITOR_CANDIDATE_PENDING_QA",
+    "source_gloss_and_pos": "Exact Kaikki raw lemma and sense-index selection is an editorial candidate, not yet independent verification",
+    "ipa": "Only unique exact native phonemic candidate; multiple/absent = HOLD; do not compose phrase phonemes",
+    "synonym_antonym": "Empty pending sense-specific evidence",
+    "collocations": "Empty pending trustworthy sourced or editor-reviewed additions",
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "p0": {
+    "source_final_row": 506,
+    "expression": "take off",
+    "fresh_raw_line": 23178,
+    "source_sense_index": 0,
+    "pos": "verb",
+    "source_gloss": "To remove.",
+    "native_whole_phrase_ipa": null,
+    "invalid_legacy_ipa": "/ˌpʊt ˈɒn/",
+    "action": "QUARANTINE_OLD_DISPLAY_NEVER_USE"
+  },
+  "remaining_authoring_scope": 1206,
+  "notes": [
+    "Only 35 pilot author drafts made; not 35 approved finished cards",
+    "All English example sentences and Chinese translations are new CG-MASTER editorial drafts, not asserted as Kaikki-attested",
+    "All independent QA stage remains 待审; no fake QA 1审 labels",
+    "Does not modify FINAL Master, Reviewed V13, baseline V190 or first-batch dynamic feed",
+    "Source artifacts stored in user Library, not GitHub gzip; do not claim dynamic app intake"
+  ]
+}
