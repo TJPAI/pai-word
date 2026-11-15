@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "5f5d86dc37771d1e990bef0ce795b72db348cf12",
-  "version": "V204",
+  "verified_base_head": "22c20b8bf092bc7e0df190ee93cbfa602dd2db03",
+  "version": "V205",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -56,7 +56,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V203_PHASE1_NATIVE_SINGLE_SENSE_55_UNREVIEWED_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V204_PHASE1_REMAINING983_TRIAGE_SUMMARY_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V204_PHASE1_REMAINING983_TRIAGE_SUMMARY_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V205_PHASE1_691_EXACT_EXPRESSION_GAP_ANALYSIS_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -66,7 +67,9 @@
       "no_exact_native_entry_in_v198_subset": 691,
       "single_entry_multiple_senses": 56,
       "multiple_native_entries": 236,
-      "untriaged": 0
+      "untriaged": 0,
+      "no_exact_multiword_expressions": 687,
+      "no_exact_single_token_expressions": 4
     }
   },
   "sources": {
@@ -111,6 +114,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V205: Requery 687 full multiword expressions against complete Kaikki; if exact native entry unavailable, component lemma evidence must remain non-attesting and QA HOLD.",
     "Disambiguate 56 single-entry multi-sense and 236 multi-entry candidates, preserve HOLD until source-matched and independently reviewed.",
     "Recover full original Kaikki corpus for 691 source rows with no exact entry in V198 subset; subset absence is not proof of lexeme absence.",
     "Run or verify newly added provenance CI at exact HEAD and fix any failing integrity checks before more editor production.",
