@@ -155,3 +155,33 @@ export async function fetchPhase1FreshDraftsLatest({fetchImpl=fetch,commit}={}){
   unreviewed:203,formalReady:0,canWriteSrs:false,onlyDiagnostic:true,
   version:'V202'});
 }
+
+/* Deliberately read-only editorial inspector. Never map these candidates onto
+ * canonical study records, SRS, verified IPA, or authenticated review badges.
+ */
+export function phase1EditorialPreview(row){
+ if(!RECORD.test(row?.record_id||'')||!SCENE.test(row?.scene_id||'')||
+    row?.qa_stage_label!=='待审'||row?.qa_first_review_verdict!==null||
+    row?.formal_ready!==0||row?.srs_eligible!==false||
+    row?.release_allowed!==false||!SHA64.test(row?.content_sha256||'')||
+    row?.source_evidence?.archive_sha256!==KAIKKI)fail('PREVIEW_SOURCE');
+ const q=row.question_page,a=row.answer_page;
+ if(!q?.english_expression?.trim()||!q?.cue_zh?.trim()||
+    !a?.meaning_zh?.trim()||!a?.gloss_en?.trim())fail('PREVIEW_FIELDS');
+ const candidates=Array.isArray(q.ipa_native_all_phonemic_candidates)
+  ? q.ipa_native_all_phonemic_candidates.filter(x=>typeof x==='string'&&x.trim()):[];
+ const selected=q.ipa_source_status==='NATIVE_EXACT_PHONEMIC_SINGLE_UNREVIEWED'&&
+  candidates.length===1&&q.ipa===candidates[0]?q.ipa:null;
+ const examples=Array.isArray(a.examples)?a.examples.filter(e=>
+  e?.source==='CG_MASTER_NEW_EDITOR_ORIGINAL_NOT_KAIKKI_ATTESTATION'&&
+  e?.qa_status==='待审'&&typeof e.example_en==='string'&&
+  typeof e.example_zh==='string').map(e=>({en:e.example_en,zh:e.example_zh})):[];
+ return Object.freeze({
+  recordId:row.record_id,sceneId:row.scene_id,contentSha:row.content_sha256,
+  expression:q.english_expression,cue:q.cue_zh,meaning:a.meaning_zh,
+  gloss:a.gloss_en,pos:String(a.pos||''),usage:String(a.usage_note||''),
+  ipaCandidate:selected,ipaStatus:q.ipa_source_status||'HOLD',
+  examples:Object.freeze(examples),stage:'待审',verdict:'未审',
+  warning:'仅供研发检查：释义与例句尚未独立审查，音标仅为未审来源候选；不能计入正式教学或SRS。'
+ });
+}
