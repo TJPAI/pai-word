@@ -1,0 +1,98 @@
+{
+  "schema": "cg-enteach-sc0010-duplicate-expression-author-semantic-comparison-v1",
+  "date": "2026-11-15",
+  "role": "CG-ENTEACH",
+  "source_branch": "answer-enrichment-main-dev-20261026",
+  "source_head_at_review": "23b2743e7bb5361da83f3cdbb5170c428cc143a3",
+  "source_hold_blob": "fca7a4d391a09353dca77bb0b733e1285e1e0a96",
+  "scope": {
+    "scenes": [
+      "SC50-0010"
+    ],
+    "expression_pairs": 2,
+    "ku_records": 4
+  },
+  "comparison": [
+    {
+      "expression": "peace and quiet",
+      "scene_id": "SC50-0010",
+      "items": [
+        {
+          "ku": "SC1341-KU-01880",
+          "candidate_source_row": 2184,
+          "source_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+          "meaning_zh": "安宁清静",
+          "example_en": "After a noisy day, I just want some peace and quiet.",
+          "example_zh": "吵闹一天之后，我只想清静一会儿。",
+          "collocations": [
+            "peace and quiet",
+            "enjoy some peace and quiet"
+          ],
+          "usage_note": "peace and quiet是固定搭配，强调安宁清静。"
+        },
+        {
+          "ku": "SC1341-KU-01992",
+          "candidate_source_row": 2304,
+          "source_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+          "meaning_zh": "清静安宁",
+          "example_en": "I need some peace and quiet after work.",
+          "example_zh": "下班后我需要一点安宁清静。",
+          "collocations": [
+            "peace and quiet",
+            "enjoy peace and quiet"
+          ],
+          "usage_note": "peace and quiet是固定短语。"
+        }
+      ],
+      "editorial_assessment": "Both English examples instantiate the same idiomatic noun phrase meaning a peaceful and undisturbed environment. Chinese meanings are paraphrases, not evidence for separate lexical senses. No demonstrated sense-level distinction in these original author answers.",
+      "suggested_action": "Master to inspect both immutable source-row identities, original sense evidence and scenario rationale; if one canonical learning objective is supported, preserve both historic IDs with one non-playing duplicate/alias record as appropriate under Master authority. Preserve both examples as candidate alternatives; do not copy data or reassign ID until signed off."
+    },
+    {
+      "expression": "take a screen break",
+      "scene_id": "SC50-0010",
+      "items": [
+        {
+          "ku": "SC1341-KU-01954",
+          "candidate_source_row": 2263,
+          "source_blob": "6ce1b5229f1581c04af717461ed45825e120de0d",
+          "meaning_zh": "暂停看屏幕",
+          "example_en": "Let's take a screen break and look out the window.",
+          "example_zh": "我们暂停看屏幕，看看窗外吧。",
+          "collocations": [
+            "take a screen break",
+            "take regular screen breaks"
+          ],
+          "usage_note": "screen break指暂时离开电子屏幕。"
+        },
+        {
+          "ku": "SC1341-KU-02028",
+          "candidate_source_row": 2371,
+          "source_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+          "meaning_zh": "让眼睛休息一下",
+          "example_en": "Take a screen break if your eyes feel tired.",
+          "example_zh": "眼睛累了就暂停看屏幕。",
+          "collocations": [
+            "take a screen break",
+            "take regular screen breaks"
+          ],
+          "usage_note": "screen break指暂时远离屏幕。"
+        }
+      ],
+      "editorial_assessment": "Both expressions instruct a temporary break from screen use. The second Chinese gloss paraphrases the benefit rather than providing a demonstrably distinct sense. Collocation inventories are identical in original author answers.",
+      "suggested_action": "Master to inspect both immutable source rows for distinct pedagogical objectives; if no independent sense exists, select canonical teaching-objective presentation without rewriting original ID; retain both original bilingual examples as candidate alternatives, pending QA."
+    }
+  ],
+  "editorial_result": "P0_SAME_TEACHING_OBJECTIVE_CANDIDATE_NOT_MASTER_IDENTITY_DECISION",
+  "master_required": "Verify record_id, source_final_row, scene_id, original Sense/POS/gloss, duplicate intent and current field conflicts for each proposed source row; own canonical identity and any alias policy.",
+  "qa_required": "CG-QA and MU-QA independent semantic assessment of two pairs; verify author examples and naturalness before any answer import.",
+  "muse_verdict": "PENDING_NOT_SIMULATED",
+  "cg_qa_verdict": "PENDING_INDEPENDENT",
+  "merge_or_release_allowed": false,
+  "mutations": {
+    "master": false,
+    "original_ku": false,
+    "runtime": false,
+    "srs": false
+  },
+  "notes": "No fabricated sense distinction. Original author wordings shown verbatim; editorial assessments are proposals and are not certification."
+}
