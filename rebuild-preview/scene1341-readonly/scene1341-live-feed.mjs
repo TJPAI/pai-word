@@ -72,6 +72,8 @@ export async function fetchSceneAssociations(snapshot,sceneId,{fetchImpl=fetch}=
  const all=[],seenIds=new Set(),seenRows=new Set();
  for(const b of selected){
   let batchCount=0;
+  const batchRows=new Set();
+  const listedScenes=new Set(b.scene_ids);
   for(const shard of b.shards){
    const url='https://raw.githubusercontent.com/TJPAI/pai-word/'+snapshot.commit+'/tools/scene1341_master/qa_reports/'+shard.name;
    const response=await fetchImpl(url,{cache:'no-store'});
@@ -89,13 +91,15 @@ export async function fetchSceneAssociations(snapshot,sceneId,{fetchImpl=fetch}=
     if(!Number.isSafeInteger(row.source_final_row)||row.source_final_row<b.first_source_final_row||
        row.source_final_row>b.last_source_final_row||
        typeof row.record_id!=='string'||!/^SC1341-FINAL-SRC-[a-f0-9]{32}$/.test(row.record_id)||
-       !ID.test(row.scene_id)||seenIds.has(row.record_id)||seenRows.has(row.source_final_row)||
+       !ID.test(row.scene_id)||!listedScenes.has(row.scene_id)||seenIds.has(row.record_id)||seenRows.has(row.source_final_row)||
        row.release_allowed===true||row.srs_eligible===true)fail('ROW_IDENTITY');
-    seenIds.add(row.record_id);seenRows.add(row.source_final_row);
+    seenIds.add(row.record_id);seenRows.add(row.source_final_row);batchRows.add(row.source_final_row);
     if(row.scene_id===sceneId)all.push(row);
    }
   }
-  if(batchCount!==b.records)fail('BATCH_COUNT');
+  if(batchCount!==b.records||batchRows.size!==b.records)fail('BATCH_COUNT');
+  for(let row=b.first_source_final_row;row<=b.last_source_final_row;row++)
+   if(!batchRows.has(row))fail('BATCH_NONCONTIGUOUS');
  }
  return Object.freeze({sceneId,rows:all,batches:selected.length,unverified:true,
   sourceCommit:snapshot.commit,canWriteSrs:false});
