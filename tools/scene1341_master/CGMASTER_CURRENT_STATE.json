@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "79b23469be40fc94a732f2b2c516c4f114855ad0",
-  "version": "V216",
+  "verified_base_head": "a2c97bad804f90d99f7676d06c5079c6bcbae517",
+  "version": "V217",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -67,7 +67,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V212_CROSS_ARTIFACT_HANDOFF_INTEGRITY_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V214_11_SCENE_FIT_BILINGUAL_EXAMPLE_QA_HANDOFF_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V215_27_MISSING_SCENE_FIT_EXAMPLE_RECOVERY_QUEUE_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V216_SC0003_SEVEN_ORIGINAL_BILINGUAL_EXAMPLE_DRAFTS_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V216_SC0003_SEVEN_ORIGINAL_BILINGUAL_EXAMPLE_DRAFTS_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V217_17_OTHER_SCENES_ORIGINAL_BILINGUAL_EXAMPLES_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -168,6 +169,13 @@
       "hold_sense_fit": 3,
       "qa_stage": "待审",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V216_SC0003_SEVEN_ORIGINAL_BILINGUAL_EXAMPLE_DRAFTS_20261115.json"
+    },
+    "v217_other_scenes_examples": {
+      "records": 17,
+      "original_bilingual_drafts": 17,
+      "pos_hold": 1,
+      "qa_stage": "待审",
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V217_17_OTHER_SCENES_ORIGINAL_BILINGUAL_EXAMPLES_20261115.json"
     }
   },
   "sources": {
@@ -212,6 +220,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V217: independently QA 16 scene-fit examples and hold tidying noun-versus-verb mismatch; cross-check 24 original editorial drafts across V216 and V217.",
     "V216: CG-QA independently review 7 authored bilingual examples, revisit noun/adjective source for smart casual/business casual, find clothing-specific wrinkled Sense.",
     "V215: prioritize 27 missing scene-fit examples (SC0003=10), preserve native source provenance and separate editorial examples from Kaikki originals.",
     "V214: CG-QA independent review 11 scene-fit bilingual native example records; 2 scene-fit HOLD remain separate.",
