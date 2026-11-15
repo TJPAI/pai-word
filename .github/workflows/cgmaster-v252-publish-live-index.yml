@@ -1,0 +1,59 @@
+name: CG-MASTER V252 publish 1341 scene live index
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-v252-publish
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+          persist-credentials: true
+      - name: Fetch immutable V252 source archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --quiet gdown
+          gdown --id 1rfA7iCop1uIYM24alz_6fgJWfpWRKXY9 -O /tmp/v252.zip
+          echo '34365008898ddcae674444e1dfa5aa39a3dd2a46a1261acbcb0b2a2a4dd6855c  /tmp/v252.zip' | sha256sum -c -
+      - name: Extract and validate immutable full1341 payload
+        shell: bash
+        run: |
+          set -euo pipefail
+          unzip -q /tmp/v252.zip -d .
+          python - <<'PY'
+          import json,pathlib,hashlib
+          p=pathlib.Path('tools/scene1341_master/production')
+          index=json.loads((p/'SCENE1341_LIVE_INDEX.json').read_text())
+          assert index['schema_version']=='scene1341-master-index/v1'
+          assert index['scene_count']==1341 and index['source_associations']==230289
+          assert index['release_allowed'] is False and index['srs_eligible'] is False
+          assert len(index['scenes'])==1341
+          total=0
+          for sid,item in index['scenes'].items():
+              b=pathlib.Path(item['path']).read_bytes()
+              h=hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
+              assert h==item['git_blob_sha1'],sid
+              doc=json.loads(b)
+              assert doc['scene_id']==sid and doc['record_count']==item['records']
+              assert doc['release_allowed'] is False and doc['srs_eligible'] is False
+              assert all(x['record_id'] is None and x['release_allowed'] is False for x in doc['records'])
+              total+=item['records']
+          assert total==230289,total
+          print('PASS 1341 scenes / 230289 source rows / all blob hashes')
+          PY
+      - name: Commit and push atomic data snapshot
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/scene1341_master/production/
+          git diff --cached --quiet && exit 0
+          git commit -m 'data(cg-master): publish V252 1341-scene live index and test-only pages'
+          git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
