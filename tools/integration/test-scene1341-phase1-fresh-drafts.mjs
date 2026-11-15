@@ -51,7 +51,7 @@ const newRows=Array.from({length:52},(_,i)=>({
 }));
 const latestPayload={version:'V202',source_associations_total:1241,new_records:52,records:newRows};
 const latestText=JSON.stringify(latestPayload);
-const latestBlob=createHash('sha1').update('blob '+Buffer.byteLength(latestText)+'\\0').update(latestText).digest('hex');
+const latestBlob=createHash('sha1').update('blob '+Buffer.byteLength(latestText)+'\0').update(latestText).digest('hex');
 const latestReport={version:'V202',original_associations:1241,prior_editor_drafts:151,new_editor_drafts:52,
  distinct_editorial_drafts_total:203,source:{fresh_kaikki_english_raw_sha256:rawSource},
  qa:{first_reviewed:0,formal_ready:0,srs_eligible:false},
