@@ -1,0 +1,123 @@
+{
+  "version": "V201",
+  "date": "2026-11-15",
+  "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+  "scope": "SC50-0001..0005",
+  "original_associations": 1241,
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "native_kaikki_raw_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+  "qa_stage_policy": "All source editorial drafts 待审 until independently signed first-review evidence for exact record+content_sha256; 1审 denotes first review, not PASS; new edits invalidate prior review.",
+  "delivery_status": "FULL_EDITORIAL_JSON_TEXT_COMMITTED_TO_GITHUB_TEST_ONLY_QA_PENDING",
+  "version_batches": [
+    {
+      "version": "V199",
+      "records": 35,
+      "first_reviewed": 0,
+      "native_single_ipa_unreviewed": 4,
+      "git_blob_sha1": "198041d48aaf06e83a7352b09d633bfc4e58573c",
+      "library_file_sha256": "11bf62193e8cd62975adc8249e0cf7b63acadbfb0b340cad0d7c61de37ecca43",
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json"
+    },
+    {
+      "version": "V200",
+      "records": 55,
+      "first_reviewed": 0,
+      "native_single_ipa_unreviewed": 12,
+      "git_blob_sha1": "abaef260727a272d7bfc232c1b665b1773b3fd5e",
+      "library_file_sha256": "e347182d24b697688c3785d341b9db962f6084c85aad6803186ee1cd0650ebc8",
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json"
+    },
+    {
+      "version": "V201",
+      "records": 61,
+      "first_reviewed": 0,
+      "native_single_ipa_unreviewed": 13,
+      "git_blob_sha1": "1e8d2aa243ac531d06e739a9361b00bc5e939662",
+      "library_file_sha256": "29937e923afc12a0bbea5453b1b084686f97921296c94a10639e2c385641524b",
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json"
+    }
+  ],
+  "cumulative": {
+    "source_linked_editor_candidates_distinct": 151,
+    "remaining_not_in_fresh_editor_draft": 1090,
+    "native_exact_single_phonemic_ipa_unreviewed": 29,
+    "ipa_held": 122,
+    "qa_stage_pending": 151,
+    "qa_first_reviewed": 0,
+    "author_bilingual_example_pairs": 151,
+    "source_native_pos_gloss_editor_candidates": 151,
+    "collocations_qa_sourced": 0,
+    "global_sense_certified": 0,
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "per_scene": {
+    "SC50-0001": {
+      "source_associations": 294,
+      "editor_drafts": 79
+    },
+    "SC50-0002": {
+      "source_associations": 206,
+      "editor_drafts": 40
+    },
+    "SC50-0003": {
+      "source_associations": 237,
+      "editor_drafts": 13
+    },
+    "SC50-0004": {
+      "source_associations": 245,
+      "editor_drafts": 12
+    },
+    "SC50-0005": {
+      "source_associations": 259,
+      "editor_drafts": 7
+    }
+  },
+  "v201_new": {
+    "records": 61,
+    "per_scene": {
+      "SC50-0002": 30,
+      "SC50-0003": 12,
+      "SC50-0004": 12,
+      "SC50-0005": 7
+    },
+    "safety_cases": [
+      {
+        "source_final_row": 582,
+        "expression": "casual",
+        "native_pos": "adj",
+        "sense_index_zero_based": 6,
+        "selected_gloss": "Designed for informal or everyday use."
+      },
+      {
+        "source_final_row": 583,
+        "expression": "formal",
+        "native_pos": "adj",
+        "sense_index_zero_based": 5,
+        "selected_gloss": "Proper, according to strict etiquette; not casual."
+      },
+      {
+        "source_final_row": 340,
+        "expression": "cavity",
+        "native_pos": "noun",
+        "sense_index_zero_based": 2,
+        "focus": "dental cavity"
+      },
+      {
+        "source_final_row": 357,
+        "expression": "shampoo",
+        "native_pos": "noun",
+        "sense_index_zero_based": 1,
+        "focus": "hair washing product"
+      }
+    ]
+  },
+  "production_limitations": [
+    "Candidate bilingual examples and usage notes are new CG-MASTER editorial drafts, not sourced from Wiktionary attestation; independent QA pending.",
+    "Question_complete flag in pilot reflects unique native IPA candidate presence only; not teaching-ready approval.",
+    "Source Kaikki exact phonemic IPA candidates may still have region or entry-sense mismatch; no automatic selection of HOLD values.",
+    "No auto-filled unsupported collocations, synonyms, antonyms, canonical Global Sense IDs.",
+    "Github JSON was reconstructed through Library line reads; preserve per-record content_sha256; local Library-file SHA256 and Git blob SHA1 describe distinct serialized bytes.",
+    "Canonical live feed continues V190 as before; these staging drafts are not incorporated into user-facing study cards."
+  ]
+}
