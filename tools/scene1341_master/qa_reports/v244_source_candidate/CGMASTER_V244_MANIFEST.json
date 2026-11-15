@@ -1,0 +1,38 @@
+{
+  "schema": "cgmaster-v244-source-candidate-manifest/v1",
+  "version": "V244_CANDIDATE",
+  "scene_count": 13,
+  "record_count": 2501,
+  "by_scene": {
+    "SC50-0111": 188,
+    "SC50-0112": 201,
+    "SC50-0113": 201,
+    "SC50-0114": 244,
+    "SC50-0115": 208,
+    "SC50-0116": 168,
+    "SC50-0117": 195,
+    "SC50-0118": 179,
+    "SC50-0119": 215,
+    "SC50-0120": 171,
+    "SC50-0121": 178,
+    "SC50-0122": 173,
+    "SC50-0123": 180
+  },
+  "source_files": [
+    {
+      "drive_id": "1PH6AYSO5jOhFT-umuozfqcwHkqjCCbLD",
+      "name": "CG_ENLEX_NATIVE_CHATGPT_BATCH_0104_0113_FRESH.json",
+      "included_scenes": "SC50-0111..0113"
+    },
+    {
+      "drive_id": "13WovsyhsDp-hZd616en9-87Cl1FtKPRK",
+      "name": "CG_ENLEX_NATIVE_CHATGPT_BACKFILL_0114_0123_ENHANCED.json",
+      "included_scenes": "SC50-0114..0123"
+    }
+  ],
+  "canonical_record_id_verified": 0,
+  "qa_stage": "待审",
+  "release_allowed": false,
+  "add_to_verified_canonical_coverage": false,
+  "note": "Source-authored candidate expressions, NOT frozen FINAL Master rows; no exact canonical record IDs, no Kaikki-native IPA certification, no semantic CG-QA review. Must not count as verified original Master associations."
+}

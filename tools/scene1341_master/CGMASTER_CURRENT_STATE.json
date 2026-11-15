@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "f9be1ab2da8a11e6aed6e3850ceff5c78bb37a90",
-  "version": "V243_INTEGRITY_GATE_DELIVERED",
+  "verified_base_head": "dbb2307851fdf6f9372e6edeb512513123ef01b5",
+  "version": "V244_SOURCE_CANDIDATE_STAGED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -497,6 +497,28 @@
       "canonical_verified": 0,
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v244_source_candidate_stage": {
+      "scenes": 13,
+      "records": 2501,
+      "from": "SC50-0111",
+      "to": "SC50-0123",
+      "source_files": [
+        {
+          "drive_id": "1PH6AYSO5jOhFT-umuozfqcwHkqjCCbLD",
+          "name": "CG_ENLEX_NATIVE_CHATGPT_BATCH_0104_0113_FRESH.json",
+          "included_scenes": "SC50-0111..0113"
+        },
+        {
+          "drive_id": "13WovsyhsDp-hZd616en9-87Cl1FtKPRK",
+          "name": "CG_ENLEX_NATIVE_CHATGPT_BACKFILL_0114_0123_ENHANCED.json",
+          "included_scenes": "SC50-0114..0123"
+        }
+      ],
+      "canonical_record_id_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "manifest": "tools/scene1341_master/qa_reports/v244_source_candidate/CGMASTER_V244_MANIFEST.json"
     }
   },
   "sources": {
@@ -541,9 +563,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Locate complete frozen FINAL Master bytes and verify SHA256 62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986 before canonical Record ID relinking.",
-    "Relink V242 1693 source-row pointers via exact expression/scene/meaning and immutable original row ID; isolate remaining 37 editorial additions.",
-    "Seek authoritative source shards SC0111 onward for subsequent ~3000-row L1 test exports; retain QA pending and no SRS release."
+    "Reconcile V244 source candidate entries with frozen FINAL Master source record IDs, preserving the source file and candidate status.",
+    "Continue source candidate SC0124 onward in ~3000 row batches if original FINAL Master remains unavailable; keep verified coverage at 20696 until actual identity verification.",
+    "Independently verify frozen FINAL Master SHA256 before canonical promotion; no 1审 without content-version-matched CG-QA."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
