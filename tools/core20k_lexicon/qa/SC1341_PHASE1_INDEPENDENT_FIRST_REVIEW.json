@@ -1,0 +1,66 @@
+{
+  "schema": "scene1341-phase1-independent-first-review/v1",
+  "reviewer": "CG-QA",
+  "updated_at": "2026-11-15",
+  "review_scope": "Only five V198 independently semantically examined rows whose content SHA256 has now been independently recomputed against immutable V199-V202 original GitHub content in V199 hash evidence; all outcomes remain non-PASS.",
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "reviews": [
+    {
+      "scene_id": "SC50-0002",
+      "record_id": "SC1341-FINAL-SRC-4a343b35c035ed8172d4988f5c60f940",
+      "content_sha256": "85f76c95e6bfb891ffe7c70336f80f507986aec21ad2c54042895606b713f632",
+      "reviewer": "CG-QA",
+      "evidence_commit": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+      "evidence_path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+      "reviewed_at": "2026-11-15",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_id": "SC50-0003",
+      "record_id": "SC1341-FINAL-SRC-500eb3bfedae6ae514e74d3bcc3c6619",
+      "content_sha256": "2d800300285298344608aaf050e355359a963abc28d61fe5b33376ffea3c11e1",
+      "reviewer": "CG-QA",
+      "evidence_commit": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+      "evidence_path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+      "reviewed_at": "2026-11-15",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "record_id": "SC1341-FINAL-SRC-b5fc0c9da07e017d1c85b651702fee06",
+      "content_sha256": "76560638d30db446ee4825014e8caf59759e5e15ff6dfa57721e274a2d10238f",
+      "reviewer": "CG-QA",
+      "evidence_commit": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+      "evidence_path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+      "reviewed_at": "2026-11-15",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_id": "SC50-0005",
+      "record_id": "SC1341-FINAL-SRC-783a930c7067ad09f97d303b1e9810be",
+      "content_sha256": "10e203171ab9e6b48f84022118390892c98a315ad19936269bb05b53d7f258db",
+      "reviewer": "CG-QA",
+      "evidence_commit": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+      "evidence_path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+      "reviewed_at": "2026-11-15",
+      "verdict": "REVISE"
+    },
+    {
+      "scene_id": "SC50-0001",
+      "record_id": "SC1341-FINAL-SRC-bd42dcb7d5e33f1e57c5718765d44580",
+      "content_sha256": "bf13e18ce0e2d7d95a3af2807f33b3aba7fb906de5fdabd03e7b6251dbdd076f",
+      "reviewer": "CG-QA",
+      "evidence_commit": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+      "evidence_path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+      "reviewed_at": "2026-11-15",
+      "verdict": "CONDITIONAL"
+    }
+  ],
+  "formal_double_ai_pass": 0,
+  "notes": [
+    "1审 identifies a completed independent first review of exact unchanged content, NOT acceptable quality, release authorization, native IPA verification, or Muse agreement.",
+    "Four REVISE and one CONDITIONAL; corrections must get new content hash and automatically return 待审 until separately reviewed.",
+    "All other 253 V199-V203 records remain 待审; 55 V203 rows had only structural audit."
+  ]
+}
