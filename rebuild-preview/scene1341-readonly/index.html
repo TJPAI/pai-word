@@ -590,6 +590,7 @@ async function load(){
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
   $('continue').disabled=!available(lastScene);
   renderCategories();renderHome();
+  void initializeFullMasterSceneIndex();
  }catch(e){
   items=[];set('status','数据校验失败：'+String(e?.message||e));
   set('scope','本次预览暂不可进入未经验证的词卡；请核对 GitHub 数据来源。');
@@ -636,8 +637,8 @@ function renderHome(){
    const quantity=document.createElement('b'),sub=document.createElement('small');
    quantity.textContent=n?String(n):'—';sub.textContent=n?'可体验':'待交付';
    count.append(quantity,sub);
-   btn.disabled=!n;btn.append(no,name,count);
-   btn.addEventListener('click',()=>openStudy(sc.id));$('scenes').append(btn);
+   btn.disabled=!n&&!masterSceneSnapshot;btn.append(no,name,count);
+   btn.addEventListener('click',()=>openMasterScene(sc.id));$('scenes').append(btn);
   }
  }
  $('recommendation-pages').hidden=!active||sorted.length<=5;
@@ -649,8 +650,40 @@ function renderHome(){
  const last=lastScene&&available(lastScene)?lastScene:null;
  recent.hidden=!last;
  if(last){const btn=document.createElement('button');btn.type='button';
-   btn.textContent=label(lastScene);btn.addEventListener('click',()=>openStudy(lastScene,true));
+   btn.textContent=label(lastScene);btn.addEventListener('click',()=>openMasterScene(lastScene,true));
    list.appendChild(btn)}
+}
+// Full 1,341-scene Master contract: resolve one immutable source snapshot,
+// then load only the chosen scene. CG-MASTER publishes content; CG-QA owns 1审.
+// V247 is currently a Drive-only ZIP: until its Git scene index is published,
+// this path stays disabled without pretending the missing scenes are playable.
+let masterSceneSnapshot=null,masterSceneAdapter=null,masterSceneLoading=new Set();
+async function initializeFullMasterSceneIndex(){
+ try{
+  masterSceneAdapter=await import('./scene1341-master-scene-v1.mjs');
+  masterSceneSnapshot=await masterSceneAdapter.resolveMasterSceneIndex();
+  set('master-live-feed-status','全量Master 1,341场景动态骨架可用 · 来源 '+masterSceneSnapshot.commit.slice(0,12)+
+   ' · 按需读取场景内容 · QA独立 · SRS禁写');
+  renderHome();
+ }catch(error){
+  masterSceneSnapshot=null;
+  set('master-live-feed-status','全量Master V247仍需CG-MASTER发布Git场景索引（Drive ZIP不能直接作为浏览器动态源）：'+
+   String(error?.message||error).slice(0,85));
+ }
+}
+async function openMasterScene(id,resume=false){
+ if(!masterSceneSnapshot){if(available(id))openStudy(id,resume);return}
+ if(masterSceneLoading.has(id))return;
+ masterSceneLoading.add(id);
+ try{
+  const scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
+  items=masterSceneAdapter.mergeMasterScene(items,scene);
+  if(!available(id))throw Error('NO_VERIFIED_SCENE_CARDS');
+  openStudy(id,resume);
+ }catch(error){
+  set('master-live-feed-status','场景'+id+'动态Master加载失败，未显示未核验内容：'+String(error?.message||error).slice(0,100));
+  if(available(id))openStudy(id,resume);
+ }finally{masterSceneLoading.delete(id);renderHome()}
 }
 let exampleToWordPending=false;
 // Background source inspection is intentionally read-only. New associations
