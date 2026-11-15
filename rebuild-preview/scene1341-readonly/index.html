@@ -509,6 +509,21 @@ async function load(){
   const ipaQuarantine=await import('./scene1341-selected-ipa-quarantine.mjs')
    .then(m=>m.applyMasterSelectedIpaQuarantine(items));
   items=[...ipaQuarantine.items];
+  // Dynamic V234 all-1241 source coverage, TEST ONLY. Runs before the
+  // SHA256-verified 258 authored-card overlay, which always takes precedence.
+  // If latest source cannot be validated, retain previously verified cards.
+  try{
+   const {fetchV234FullCoverage,applyV234Phase1TestOverlay}=
+    await import('./scene1341-v234-phase1-test-overlay.mjs');
+   const feed=await fetchV234FullCoverage();
+   const stage=applyV234Phase1TestOverlay(items,feed);
+   items=[...stage.items];
+   phase1StudyOverlayStatus='V234全量源测试：精确对应'+stage.matched+
+    '条；基础测试'+stage.baseline+'条；'+stage.held+'条身份不符保留旧卡。';
+  }catch(err){
+   phase1StudyOverlayStatus='V234全量测试来源暂不可验证，保留已核验旧卡：'+
+    String(err?.message||err).slice(0,90);
+  }
   // The real Phase1 study cards consume the same Git-source-verified Master
   // as the Settings inspector. Nothing here certifies QA or enables SRS.
   try{
