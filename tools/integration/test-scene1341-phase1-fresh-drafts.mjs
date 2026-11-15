@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,phase1EditorialPreview}
+import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,fetchPhase1FreshDraftsCurrent,phase1EditorialPreview}
  from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs';
 const V=['V199','V200','V201'],N=[35,55,61];
 const counts=[79,40,13,12,7],sceneIds=counts.flatMap((n,i)=>Array(n).fill('SC50-000'+(i+1)));
@@ -93,3 +93,70 @@ assert.throws(()=>phase1EditorialPreview(forged),/PHASE1_FRESH_PREVIEW_SOURCE/);
 const injected=structuredClone(sample);injected.srs_eligible=true;
 assert.throws(()=>phase1EditorialPreview(injected),/PHASE1_FRESH_PREVIEW_SOURCE/);
 console.log('PASS phase1 diagnostic only: IPA ambiguity blocked, QA forgery blocked, SRS blocked');
+
+const rollingPath='tools/scene1341_master/qa_reports/CGMASTER_V203_PHASE1_NATIVE_SINGLE_SENSE_55_UNREVIEWED_20261115.json';
+const rollingCounts=[85,46,35,46,46];
+const v203Rows=Array.from({length:55},(_,i)=>{
+ const r=structuredClone(newRows[0]);
+ r.record_id='SC1341-FINAL-SRC-'+(i+204).toString(16).padStart(32,'0');
+ r.source_final_row=i+204;
+ r.scene_id=i<6?'SC50-0001':i<12?'SC50-0002':i<34?'SC50-0003':i<43?'SC50-0004':'SC50-0005';
+ r.source_evidence={archive_sha256:rawSource,kaikki_lemma:'test expression',
+  kaikki_pos:'verb',native_gloss:'Native gloss',kaikki_exact_raw_line:i+1,sense_index_zero_based:0};
+ r.question_page={english_expression:'test expression',cue_zh:'提示',ipa:null,
+  ipa_source_status:'NATIVE_EXACT_PHONEMIC_AMBIGUOUS_OR_ABSENT_HOLD',
+  ipa_native_all_phonemic_candidates:[]};
+ r.answer_page={meaning_zh:'含义',gloss_en:'Native gloss',pos:'verb',examples:[],usage_note:null};
+ return r;
+});
+const rollingDoc={version:'V203_NATIVE_ONLY_UNREVIEWED',source_associations_total:1241,
+ prior_editorial_records:203,new_records:55,cumulative_distinct_records:258,
+ qa_status:'待审',formal_ready:0,records:v203Rows};
+const rollingText=JSON.stringify(rollingDoc);
+const rollingBlob=createHash('sha1').update('blob '+Buffer.byteLength(rollingText)+'\0').update(rollingText).digest('hex');
+const rollingState={schema:'cgmaster-current-state/v1',role:'CG-MASTER',
+ branch:'cg-master-kaikki-evidence-intake-20261111',version:'V205',
+ sources:{raw_kaikki_archive_sha256:rawSource},phase1:{
+ original_source_associations:1241,fresh_editorial_drafts:258,
+ remaining_without_fresh_editorial_draft:983,
+ editorial_artifacts:[...version_batches.map(x=>x.path),
+ latestReport.artifacts.real_full_json_git_path,rollingPath,
+ 'tools/scene1341_master/qa_reports/CGMASTER_V204_PHASE1_REMAINING983_TRIAGE_SUMMARY_20261115.json'],
+ by_scene:Object.fromEntries(rollingCounts.map((n,i)=>['SC50-000'+(i+1),
+  {drafts:n,total:[294,206,237,245,259][i],
+   remaining:[294,206,237,245,259][i]-n}]))
+}};
+const serveRolling=async url=>{
+ if(url.includes('CGMASTER_CURRENT_STATE'))return new Response(JSON.stringify(rollingState));
+ if(url.includes('/contents/'+rollingPath))return new Response(JSON.stringify({
+  type:'file',path:rollingPath,sha:rollingBlob,size:rollingText.length}));
+ if(url.includes('V203_PHASE1_NATIVE_SINGLE'))return new Response(rollingText);
+ return serveLatest(url);
+};
+const rolling=await fetchPhase1FreshDraftsCurrent({commit,fetchImpl:serveRolling});
+assert.equal(rolling.rows.length,258);
+assert.equal(rolling.unreviewed,258);
+assert.equal(rolling.perScene['SC50-0003'],35);
+assert.equal(rolling.verifiedBlobCount,5);
+assert.equal(rolling.version,'V205');
+assert.equal(rolling.canWriteSrs,false);
+const wrongState=structuredClone(rollingState);
+wrongState.phase1.fresh_editorial_drafts=259;
+await assert.rejects(()=>fetchPhase1FreshDraftsCurrent({commit,fetchImpl:url=>
+ url.includes('CGMASTER_CURRENT_STATE')?new Response(JSON.stringify(wrongState)):serveRolling(url)
+}),/PHASE1_FRESH_ROLLING_TOTAL/);
+const badMeta=async url=>url.includes('/contents/'+rollingPath)?
+ new Response(JSON.stringify({type:'file',path:rollingPath,sha:'0'.repeat(40),size:rollingText.length})):
+ serveRolling(url);
+await assert.rejects(()=>fetchPhase1FreshDraftsCurrent({commit,fetchImpl:badMeta}),
+ /PHASE1_FRESH_ROLLING_BLOB_SHA1/);
+const tamperedDoc=structuredClone(rollingDoc);tamperedDoc.records[0].qa_stage_label='1审';
+const tamperedText=JSON.stringify(tamperedDoc);
+const tamperedSha=createHash('sha1').update('blob '+Buffer.byteLength(tamperedText)+'\0').update(tamperedText).digest('hex');
+await assert.rejects(()=>fetchPhase1FreshDraftsCurrent({commit,fetchImpl:url=>{
+ if(url.includes('/contents/'+rollingPath))return new Response(JSON.stringify({
+  type:'file',path:rollingPath,sha:tamperedSha,size:tamperedText.length}));
+ if(url.includes('V203_PHASE1_NATIVE_SINGLE'))return new Response(tamperedText);
+ return serveRolling(url);
+}}),/PHASE1_FRESH_ROLLING_ROW/);
+console.log('PASS rolling V203+V205 state 258 distinct, immutable Git metadata, forged QA and count mismatch blocked');
