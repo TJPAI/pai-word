@@ -48,3 +48,45 @@ export async function resolveLiveFeed({fetchImpl=fetch,commit}={}){
  const stats=validateLiveFeed(feed);
  return Object.freeze({commit,feed,stats,formalReady:0,canWriteSrs:false});
 }
+
+/** On-demand scene rows: fetch only matching batches after validating source
+ * identity and all compressed bytes. Never return partial batches on failure.
+ * Caller must not treat these rows as approved study cards.
+ */
+const hex=async(bytes,algorithm)=>Array.from(new Uint8Array(await crypto.subtle.digest(algorithm,bytes)),x=>x.toString(16).padStart(2,'0')).join('');
+export async function fetchSceneAssociations(snapshot,sceneId,{fetchImpl=fetch}={}){
+ if(!snapshot||!HASH40.test(snapshot.commit||''))fail('COMMIT');
+ const selected=selectSceneBatches(snapshot.feed,sceneId);
+ if(!selected.length)return Object.freeze({sceneId,rows:[],batches:0,unverified:true,canWriteSrs:false});
+ if(typeof crypto==='undefined'||!crypto.subtle||typeof DecompressionStream==='undefined')fail('CRYPTO_GZIP_UNAVAILABLE');
+ const all=[],seenIds=new Set(),seenRows=new Set();
+ for(const b of selected){
+  let batchCount=0;
+  for(const shard of b.shards){
+   const url='https://raw.githubusercontent.com/TJPAI/pai-word/'+snapshot.commit+'/tools/scene1341_master/qa_reports/'+shard.name;
+   const response=await fetchImpl(url,{cache:'no-store'});
+   if(!response.ok)fail('SHARD_HTTP_'+response.status);
+   const bytes=new Uint8Array(await response.arrayBuffer());
+   const header=new TextEncoder().encode('blob '+bytes.length+'\\0');
+   const gitBytes=new Uint8Array(header.length+bytes.length);gitBytes.set(header);gitBytes.set(bytes,header.length);
+   if(await hex(gitBytes,'SHA-1')!==shard.git_blob_sha1||
+      await hex(bytes,'SHA-256')!==shard.sha256)fail('SHARD_HASH');
+   const decoded=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
+   const lines=decoded.trimEnd().split('\\n');
+   if(lines.length!==shard.records)fail('SHARD_COUNT');
+   for(const line of lines){
+    const row=JSON.parse(line);batchCount++;
+    if(!Number.isSafeInteger(row.source_final_row)||row.source_final_row<b.first_source_final_row||
+       row.source_final_row>b.last_source_final_row||
+       typeof row.record_id!=='string'||!/^SC1341-FINAL-SRC-[a-f0-9]{32}$/.test(row.record_id)||
+       !ID.test(row.scene_id)||seenIds.has(row.record_id)||seenRows.has(row.source_final_row)||
+       row.release_allowed===true||row.srs_eligible===true)fail('ROW_IDENTITY');
+    seenIds.add(row.record_id);seenRows.add(row.source_final_row);
+    if(row.scene_id===sceneId)all.push(row);
+   }
+  }
+  if(batchCount!==b.records)fail('BATCH_COUNT');
+ }
+ return Object.freeze({sceneId,rows:all,batches:selected.length,unverified:true,
+  sourceCommit:snapshot.commit,canWriteSrs:false});
+}
