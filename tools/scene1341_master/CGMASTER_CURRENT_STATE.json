@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "411b325d15b42e368ce117e8d12e4d4970c03f5c",
-  "version": "V202",
+  "verified_base_head": "75c67004285e07749e392e1682c3c7a3c46610de",
+  "version": "V203",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -15,33 +15,33 @@
       "SC50-0005"
     ],
     "original_source_associations": 1241,
-    "fresh_editorial_drafts": 203,
-    "remaining_without_fresh_editorial_draft": 1038,
+    "fresh_editorial_drafts": 258,
+    "remaining_without_fresh_editorial_draft": 983,
     "by_scene": {
       "SC50-0001": {
         "total": 294,
-        "drafts": 79,
-        "remaining": 215
+        "drafts": 85,
+        "remaining": 209
       },
       "SC50-0002": {
         "total": 206,
-        "drafts": 40,
-        "remaining": 166
+        "drafts": 46,
+        "remaining": 160
       },
       "SC50-0003": {
         "total": 237,
-        "drafts": 13,
-        "remaining": 224
+        "drafts": 35,
+        "remaining": 202
       },
       "SC50-0004": {
         "total": 245,
-        "drafts": 37,
-        "remaining": 208
+        "drafts": 46,
+        "remaining": 199
       },
       "SC50-0005": {
         "total": 259,
-        "drafts": 34,
-        "remaining": 225
+        "drafts": 46,
+        "remaining": 213
       }
     },
     "approved_complete_question_pages": 0,
@@ -54,9 +54,13 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V203_PHASE1_NATIVE_SINGLE_SENSE_55_UNREVIEWED_20261115.json"
     ],
-    "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json"
+    "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
+    "provisional_native_ipa_single_candidates_v203": 9,
+    "v203_native_example_records": 9,
+    "v203_note": "55 strictly single-entry single-sense native source records; example translations and usage notes pending; all QA 待审; no formal promotion."
   },
   "sources": {
     "original_final_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
@@ -72,7 +76,7 @@
     "verified_qa_head": "c4dff2e82feaf63390acea137e29ca6773c4d994",
     "independent_index_path": "tools/core20k_lexicon/qa/SC1341_PHASE1_INDEPENDENT_FIRST_REVIEW.json",
     "independent_index_found": false,
-    "pending_editorial_drafts": 203,
+    "pending_editorial_drafts": 258,
     "first_review_label_policy": "Default 待审; only independent CG-QA review matching record_id and exact content_sha256 can show 1审; PASS/CONDITIONAL/REVISE/HOLD is a separate verdict.",
     "formal_ready": 0,
     "srs_eligible": false,
@@ -90,17 +94,17 @@
     "note": "New Phase1 provenance CI authored; no matching successful exact-head workflow run verified. Previous unrelated historical V151 Actions include failures. Do not claim PASS.",
     "phase1_validator_path": "tools/scene1341_master/validate_phase1_editor_drafts.mjs",
     "phase1_workflow_path": ".github/workflows/cgmaster-phase1-integrity.yml",
-    "phase1_validator_commit": "33e77d766708efb2b5599627fe0b97f3dac17ea8",
+    "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
     "Run or verify newly added provenance CI at exact HEAD and fix any failing integrity checks before more editor production.",
-    "Resolve remaining 1038 frozen source associations using V198 original raw Kaikki exact entry/POS/sense evidence, preserve original IDs and append new editor records.",
     "Resolve IPA HOLD from actual raw Kaikki and separately verify ambiguity, never invent phonetics.",
     "Coordinate independent CG-QA per-record exact-content SHA first review on existing GitHub JSON.",
     "Complete question and answer schema with sourced examples/collocations where available and review editorial fields; leave unfilled fields pending rather than claim completion.",
-    "Keep this file updated after each actual batch with verified HEAD, artifact paths and CI result."
+    "Keep this file updated after each actual batch with verified HEAD, artifact paths and CI result.",
+    "Resolve remaining 983 source associations; multi-sense evidence requires editorial disambiguation and independent QA."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
