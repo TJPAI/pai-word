@@ -37,12 +37,10 @@ export function applyPhase1StudyOverlay(baseCards,fresh,{strict=true}={}){
  const matched=new Set(),perScene={},items=baseCards.map(card=>{
   const row=byId.get(card.master_record_id);
   if(!row)return card;
-  // Exact stable Master association, including original source row and phrase.
+  // Exact stable Master association, including original source row and phrase.\n  // Editorial cue and Chinese meaning MAY change in new Master versions.
   // Invalid match is HOLD and must never use another Sense's teaching content.
   if(card.scene_id!==row.scene_id||card.master_final_row!==row.source_final_row||
-     normalize(card.expression)!==normalize(row.question_page?.english_expression)||
-     normalize(card.question?.cue_zh)!==normalize(row.question_page?.cue_zh)||
-     normalize(card.answer?.meaning_zh)!==normalize(row.answer_page?.meaning_zh))
+     normalize(card.expression)!==normalize(row.question_page?.english_expression))
    return card;
   if(matched.has(row.record_id))fail('DUPLICATE_CARD_ID');
   matched.add(row.record_id);
