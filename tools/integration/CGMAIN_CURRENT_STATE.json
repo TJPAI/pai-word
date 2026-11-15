@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "d2cee2454ad81e939daf6cb1ab981605a0ed8fdc",
+  "verified_parent_head": "92b23671a4317c04cf77d879f9bcf3e10f59a989",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -79,24 +79,26 @@
       "actual_browser_test": "manual deployment and smoke test still required"
     },
     "review_stage_layout": {
-      "question": "Plain 待审 or 1审 adjacent to IPA in the current Scene500 hero, not title/progress",
-      "answer": "Plain 待审 or 1审 in centered row immediately above bottom 点空白… prompt",
-      "mutually_exclusive": true,
-      "only_text": true,
-      "removed_from": "top bar, IPA suffix, answer headings, tooltip",
-      "native_hero_replacement_safe": true,
-      "independent_qa_exact_sha_guard_unchanged": true,
-      "srs_write_disabled": true
+      "question": "Single plain 待审 or 1审 immediately adjacent to IPA",
+      "answer": "The exact same single review label remains immediately adjacent to IPA",
+      "shared_element_id": "first-review-stage",
+      "no_bottom_review_marker": true,
+      "no_top_review_marker": true,
+      "no_answer_headings_review_suffix": true,
+      "hero_replacement_reattachment": true,
+      "independent_exact_sha_review": true,
+      "formal_ready": 0,
+      "srs_writes": 0
     }
   },
   "ci": {
-    "latest_code_head": "6075c7ad67de18c09cb9c67cebfcf0f725f08913",
+    "latest_code_head": "f7946bb642d97e10a56fb21e8be4085581ab693e",
     "ranked": {
-      "run": 43687807460,
+      "run": 43688833318,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43687807463,
+      "run": 43688833347,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -110,9 +112,9 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Manual deployment by project owner; inspect iPhone layout both faces and auto/manual word switching",
-    "Preserve exact content SHA independent first-review; do not infer PASS from 1审",
-    "Continue CG-MASTER Phase1 V209+ source page integration, keep HOLD and SRS zero"
+    "User manually deploys preview; visual smoke test both faces and native-question A/B",
+    "QA label remains beside IPA during auto browsing and swipe with exact record SHA gating",
+    "Continue SC0001–SC0005 Master authored data and IPA integration without SRS writes"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
