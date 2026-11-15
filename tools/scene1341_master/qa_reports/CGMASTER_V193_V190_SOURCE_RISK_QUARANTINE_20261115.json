@@ -1,0 +1,60 @@
+{
+  "schema": "cgmaster-v193-non-destructive-sense-source-risk-quarantine-v1",
+  "source_commit": "acda081836511707bc12d8360fa0472ff12401b8",
+  "source_range": [
+    1,
+    3000
+  ],
+  "status": "QA_HOLD_TEST_ONLY",
+  "selected_ipa_display_quarantine": [
+    {
+      "source_final_row": 506,
+      "record_id": "SC1341-FINAL-SRC-a0b391ca46f5d231e41d1e8205d62ccd",
+      "scene_id": "SC50-0003",
+      "expression": "take off",
+      "invalid_selected_ipa": "/ˌpʊt ˈɒn/",
+      "reason": "Selected test IPA corresponds to unrelated expression 'put on'",
+      "resolution": "HIDE_IN_PREVIEW_UNTIL_REEXTRACTED_AND_QA_REVIEWED",
+      "do_not_change_source_record": true
+    }
+  ],
+  "candidate_semantic_recheck": {
+    "p0_source_final_rows": [
+      200,
+      305,
+      348,
+      506,
+      580,
+      821,
+      1036,
+      1758,
+      2213,
+      2220,
+      2380,
+      2409,
+      2696
+    ],
+    "p1_source_final_rows": [
+      4,
+      137,
+      203,
+      1611,
+      2057,
+      2083,
+      2281,
+      2282,
+      2558
+    ],
+    "status": "HOLD_KAIKKI_POS_GLOSS_SENSE_ALIGNMENT",
+    "independent_qa_report": "CG_QA_V192_V190_338_KAIKKI_POS_GLOSS_RISK_TRIAGE_20261115.v1.json"
+  },
+  "candidate_component_up_recheck": {
+    "risk_associations": 105,
+    "status": "P1_HEADWORD_PROVENANCE_UNRESOLVED",
+    "independent_qa_report": "CG_QA_V191_V190_FULL3000_INDEPENDENT_RAW_AUDIT_20261115.v1.json",
+    "note": "Not all 105 selected IPA are incorrect; quarantine candidate provenance without blanket removing correct user-facing readings"
+  },
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "application_policy": "Non-authoritative overlay; CG-MAIN should fail closed for exact selected IPA quarantine identity match; never rewrite V190 immutable source."
+}
