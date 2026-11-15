@@ -9,7 +9,7 @@ const source=[
  ['SC50-0005',259,96,104,29]
 ];
 const totals=source.reduce((x,s)=>x.map((v,i)=>v+s[i+1]),[0,0,0,0]);
-assert.deepEqual(totals,[1241,449,740,136]);
+assert.deepEqual(totals,[1241,449,840,136]);
 for(const [scene,total,ipa,examples,pos] of source){
  assert(contract.includes('| '+scene+' | '+total+' | '+ipa+' | '+examples+' | '+pos+' |'));
 }
