@@ -51,8 +51,8 @@ const renderContext={
  ipaSequence:0
 };
 vm.runInNewContext(inline.slice(begin,end)+'\nthis.renderQuestionIPA=renderQuestionIPA;',renderContext);
-function render(question){
- current={scene_ku_id:'SC1341-TEST-UNIT',expression:'red',question};
+function render(question,cardExtras={}){
+ current={scene_ku_id:'SC1341-TEST-UNIT',expression:'red',question,...cardExtras};
  const before=JSON.stringify(question);
  renderContext.renderQuestionIPA(current);
  assert.equal(JSON.stringify(question),before,'formatter must not mutate Master source JSON');
@@ -65,8 +65,22 @@ assert.equal(result.status,'local-kaikki-provisional-test');
 // The same native hero IPA line is used on both preferred QUESTION and ANSWER screens.
 assert(inline.includes('renderQuestionIPA(r);'));
 result=render({ipa:'/ɹɛd/',ipa_status:'HOLD_MULTI_IPA',ipa_candidates_pending:['/ɹɛd/']});
-assert.equal(result.text,'音标待补');
-assert.equal(result.status,'missing','HOLD may not be promoted by display formatter');
+assert.equal(result.text,'音标待核验');
+assert.equal(result.status,'pending-ipa-adjudication','HOLD may not be promoted by display formatter');
+// Real Kaikki Phase1 source-bound single IPA is displayed as unreviewed TEST.
+const phase1Id='SC1341-FINAL-SRC-'+'a'.repeat(32);
+result=render({ipa:'/ɹɛd/',ipa_status:'PHASE1_KAIKKI_NATIVE_SINGLE_UNREVIEWED',
+ ipa_source:{record_id:phase1Id}}, {master_phase1_source:'KAIKKI_FRESH_EDITOR_TEST',
+ master_record_id:phase1Id});
+assert.equal(result.text,'/rɛd/（Kaikki来源候选·待审）');
+assert.equal(result.status,'phase1-kaikki-unreviewed');
+// Even if the old learning-card IPA has a value, an unknown Phase1 source
+// must HOLD rather than borrow a potentially wrong Sense/pronunciation.
+result=render({ipa:'/ɹɛd/',ipa_status:'PHASE1_KAIKKI_IPA_HOLD',
+ ipa_source:{record_id:phase1Id}}, {master_phase1_source:'KAIKKI_FRESH_EDITOR_TEST',
+ master_record_id:phase1Id});
+assert.equal(result.text,'音标待核验');
+assert.equal(result.status,'phase1-hold');
 result=render({ipa:'/ɹɛd/',ipa_status:'NATIVE_KAIKKI_SINGLE_PHONEMIC_VARIANT_PROVISIONAL',ipa_provisional:true,ipa_source:{source_sha256:'test-sha'}});
 assert.equal(result.text,'/rɛd/（测试音标·未认证）');
 assert.equal(result.status,'provisional-master-test');
