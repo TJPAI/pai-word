@@ -207,12 +207,17 @@
       "future_content_changes": "CG-MASTER publishes new index and scene data on branch; frontend unchanged",
       "inline_pos": "No duplicate POS when meaning_display already begins with POS abbreviation",
       "master_content_sha256": "Only accept 64-hex SHA from Master row; never trust Master qa_label",
-      "latest_verified_master": "V251_MISSING_MEANING_FORENSIC; V247 Drive ZIP source, Git production scene index still not verified",
+      "latest_verified_master": "V252 Git-published 1341-scene index, 230289 source rows; first SC0001=294, last SC1341=265",
       "ci_regression_fix": "53c0509c850608f8ae010b354a8a40770f504c5b: corrected source row offsets for SC0015-0025 in V238/V239 regression; historical run 43705833463 failed 5184 != 6180, new run PASS pending",
       "latest_notice": "Issue #1 CG-MASTER P0 request 6893827626: prioritize full 1341 preview, dynamic Master refresh, source-truthful counts, iPhone acceptance",
       "v247_real_schema_fix": "V247 builder source rows have record_id=null, 222 missing meaning_zh; accept null and use SC1341-FINAL-ROW-###### preview-only identity, not canonical Sense",
       "real_builder": "tools/scene1341_master/build_v247_full1341_from_final.py",
-      "latest_commit": "1f9b2d9c7b807e32759bde1927aee07979f58839"
+      "latest_commit": "1f9b2d9c7b807e32759bde1927aee07979f58839",
+      "git_index_publication": "CG-MASTER 34f63aecfb48c8e8a7a4ab40a3d8bc87d4a416b4; Git Actions 43716576022 success",
+      "authored_precedence_commit": "0715b006120b14be5e1aee2f0f6bdd39378972df",
+      "authored_precedence_test": "3db7d6d233cc61276e7b86924a8724fce1624c7f",
+      "study_status_commit": "a33ed3b7c13ef4bd83378941c2e35a2c6f7a72e0",
+      "browser_acceptance": "NOT YET VERIFIED; manual deployment outstanding"
     }
   },
   "ci": {
