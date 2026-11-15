@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "a59b79cfa224ff3e21d99219eb901068a2ade423",
-  "version": "V236",
+  "verified_base_head": "0fa10666e3b9d2222fe827b5d871eeaec1ee055a",
+  "version": "V237",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -390,6 +390,13 @@
       "generated_outputs_verified": false,
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v237_source_coverage_handoff": {
+      "v190_source_rows": 3000,
+      "v190_scenes": 13,
+      "v236_generated_scene_files_verified": false,
+      "manifest": "tools/scene1341_master/qa_reports/CGMASTER_V237_V190_3000_SOURCE_COVERAGE_HANDOFF_20261115.json",
+      "dedup_note": "V234 and V235 are subsets of source rows; never add their counts to V190 3000 as new unique rows."
     }
   },
   "sources": {
@@ -434,6 +441,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V237 blocker: trigger V236 workflow_dispatch manually on cg-master-kaikki-evidence-intake-20261111 or confirm GitHub Actions branch permissions; verify output tree and 3000-row generated manifest. Avoid claiming success before files appear.",
     "V236: verify GitHub Actions execution and generated per-scene 3000-row output; if workflow did not run, manually trigger workflow_dispatch in GitHub Actions. Only after validation count expanded coverage.",
     "V235: reuse verified historical scene-specific paired draft files for SC0006..0010 and beyond, no duplicate authoring; scale scene coverage by bulk transformations and maintain source provenance.",
     "V234: scale scene-first source-row L1 test coverage to all 1341 scenes from authoritative Master without modifying frozen original; iterative Kaikki enrichment L2, teaching L3, CG-QA L4. Keep scene-first progressive test feed, no fake gloss/IPA.",
