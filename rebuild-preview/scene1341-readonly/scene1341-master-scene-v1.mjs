@@ -103,13 +103,37 @@ export async function fetchMasterScene(snapshot,sceneId,{fetchImpl=fetch,cryptoI
 export function mergeMasterScene(existing,scene){
  if(!Array.isArray(existing)||!scene?.sceneId||!Array.isArray(scene.cards))fail('MERGE');
  const outside=existing.filter(c=>c.scene_id!==scene.sceneId);
- const old=new Map(existing.filter(c=>c.scene_id===scene.sceneId).map(c=>[c.master_record_id,c]));
+ const oldByRow=new Map();
+ for(const card of existing.filter(c=>c.scene_id===scene.sceneId)){
+  if(Number.isSafeInteger(card.master_final_row)){
+   if(oldByRow.has(card.master_final_row))fail('DUPLICATE_PRIOR_SOURCE_ROW');
+   oldByRow.set(card.master_final_row,card);
+  }
+ }
  const cards=scene.cards.map(card=>{
-  const prior=old.get(card.master_record_id);
+  const prior=oldByRow.get(card.master_final_row);
   if(!prior)return card;
-  if(prior.master_final_row!==card.master_final_row||
-   prior.expression.normalize('NFKC').toLowerCase()!==card.expression.normalize('NFKC').toLowerCase())fail('IDENTITY_DRIFT');
-  return card;
+  if(prior.expression.normalize('NFKC').toLowerCase()!==card.expression.normalize('NFKC').toLowerCase())fail('IDENTITY_DRIFT');
+  // Master remains authoritative for source meaning and all future populated fields.
+  // Legacy authored L2/L3 enrichment survives ONLY for an exact source row,
+  // expression AND matching normalized meaning. Never transplant stale semantics.
+  const norm=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/\\s+/g,' ').trim();
+  const oldMeaning=norm(prior.answer?.meaning_zh).replace(/^(?:n|v|adj|adv|prep|pron|conj|interj)\\.\\s*/,'');
+  const newMeaning=norm(card.answer?.meaning_zh).replace(/^(?:n|v|adj|adv|prep|pron|conj|interj)\\.\\s*/,'');
+  if(!oldMeaning||!newMeaning||oldMeaning!==newMeaning)return card;
+  const oldAnswer=prior.answer||{},newAnswer=card.answer;
+  const keep=(key)=>newAnswer[key]||oldAnswer[key]||'';
+  const keepArray=(key)=>Array.isArray(newAnswer[key])&&newAnswer[key].length?newAnswer[key]:
+   (Array.isArray(oldAnswer[key])?oldAnswer[key]:[]);
+  return {...card,answer:{...newAnswer,
+   gloss_en:keep('gloss_en'),example_en:keep('example_en'),example_zh:keep('example_zh'),
+   examples:keepArray('examples'),collocations:keepArray('collocations'),
+   usage_note:keep('usage_note'),
+   content_complete:newAnswer.content_complete===true||oldAnswer.content_complete===true},
+   // QA/IPA/release state always comes from the new verified Master projection.
+   qa_status:card.qa_status,question:card.question,
+   production_release_allowed:false};
  });
- return [...outside,...cards].sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||a.source_rank-b.source_rank);
+ return [...outside,...cards].sort((a,b)=>a.scene_id.localeCompare(b.scene_id)||
+  (a.source_rank??a.master_final_row??0)-(b.source_rank??b.master_final_row??0));
 }
