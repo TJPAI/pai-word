@@ -95,3 +95,63 @@ export async function fetchPhase1FreshDrafts({fetchImpl=fetch,commit}={}){
  return Object.freeze({...result,commit,verifiedBlobCount:3,unreviewed:151,
   onlyDiagnostic:true});
 }
+
+/* V202 incremental staging: preserve V201 immutable three-blob validation;
+ * all new rows remain diagnostic-only until an independent QA evidence index.
+ */
+export async function fetchPhase1FreshDraftsLatest({fetchImpl=fetch,commit}={}){
+ if(commit==null){
+  const r=await fetchImpl('https://api.github.com/repos/TJPAI/pai-word/branches/cg-master-kaikki-evidence-intake-20261111',{cache:'no-store'});
+  if(!r.ok)fail('LATEST_BRANCH_HTTP_'+r.status);
+  commit=(await r.json())?.commit?.sha;
+ }
+ if(!SHA40.test(commit||''))fail('LATEST_COMMIT');
+ const old=await fetchPhase1FreshDrafts({fetchImpl,commit});
+ const reportPath=DIRECTORY+'CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json';
+ const reportResponse=await fetchImpl(BASE+commit+'/'+reportPath,{cache:'no-store'});
+ if(!reportResponse.ok)fail('V202_REPORT_HTTP_'+reportResponse.status);
+ const report=await reportResponse.json();
+ const artifact=report?.artifacts;
+ if(report.version!=='V202'||report.original_associations!==1241||
+    report.source?.fresh_kaikki_english_raw_sha256!==KAIKKI||
+    report.prior_editor_drafts!==151||report.new_editor_drafts!==52||
+    report.distinct_editorial_drafts_total!==203||
+    report.qa?.first_reviewed!==0||report.qa?.formal_ready!==0||
+    report.qa?.srs_eligible!==false||
+    artifact?.real_full_json_git_path!==DIRECTORY+'CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json'||
+    !SHA40.test(artifact?.real_json_git_blob_sha1||''))
+   fail('V202_REPORT');
+ const response=await fetchImpl(BASE+commit+'/'+artifact.real_full_json_git_path,{cache:'no-store'});
+ if(!response.ok)fail('V202_BATCH_HTTP_'+response.status);
+ const raw=await response.text();
+ if(await gitBlobSha(raw)!==artifact.real_json_git_blob_sha1)fail('V202_GIT_BLOB_SHA1');
+ const payload=JSON.parse(raw);
+ if(payload.version!=='V202'||payload.new_records!==52||payload.records?.length!==52||
+    payload.source_associations_total!==1241)fail('V202_COUNT');
+ const ids=new Set(old.rows.map(x=>x.record_id));
+ const sourceRows=new Set(old.rows.map(x=>x.source_final_row));
+ const perScene={...old.perScene};
+ for(const row of payload.records){
+  const q=row?.question_page,a=row?.answer_page,s=row?.source_evidence;
+  if(!RECORD.test(row?.record_id||'')||!SCENE.test(row.scene_id||'')||
+    !Number.isSafeInteger(row.source_final_row)||row.source_final_row<1||row.source_final_row>1241||
+    ids.has(row.record_id)||sourceRows.has(row.source_final_row)||
+    !SHA64.test(row.content_sha256||'')||
+    !q?.english_expression?.trim()||!q?.cue_zh?.trim()||
+    !a?.meaning_zh?.trim()||s?.archive_sha256!==KAIKKI||
+    row.qa_stage_label!=='待审'||row.qa_first_review_verdict!==null||
+    row.formal_ready!==0||row.srs_eligible!==false||row.release_allowed!==false)
+   fail('V202_ROW');
+  ids.add(row.record_id);sourceRows.add(row.source_final_row);
+  perScene[row.scene_id]=(perScene[row.scene_id]||0)+1;
+ }
+ for(const [scene,counts] of Object.entries(report.by_scene||{})){
+  if(perScene[scene]!==counts.new_editor_drafts_total)fail('V202_SCENE_COUNTS');
+ }
+ if(Object.keys(perScene).length!==5||ids.size!==203||sourceRows.size!==203)
+  fail('V202_DISTINCT');
+ return Object.freeze({rows:Object.freeze([...old.rows,...payload.records]),
+  perScene:Object.freeze(perScene),commit,verifiedBlobCount:4,
+  unreviewed:203,formalReady:0,canWriteSrs:false,onlyDiagnostic:true,
+  version:'V202'});
+}
