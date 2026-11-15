@@ -1,0 +1,57 @@
+{
+  "schema": "cgmain-current-state/v1",
+  "updated_at": "2026-11-15",
+  "role": "CG-MAIN",
+  "branch": "cg-main-fourline-integration-20261026",
+  "verified_parent_head": "1c5470a3a37563e6df89e732f1ae72f9a9fbe042",
+  "phase1": {
+    "scenes": [
+      "SC50-0001",
+      "SC50-0002",
+      "SC50-0003",
+      "SC50-0004",
+      "SC50-0005"
+    ],
+    "original_associations": 1241,
+    "latest_master_head": "aadd07698bd33f10924d0e230bb53be94d9075a7",
+    "latest_master_version": "V202",
+    "fresh_editor_drafts": 203,
+    "remaining": 1038,
+    "by_scene": [
+      79,
+      40,
+      13,
+      37,
+      34
+    ],
+    "independent_first_reviews": 0,
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "integration": {
+    "implementation": "rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs",
+    "regression": "tools/integration/test-scene1341-phase1-fresh-drafts.mjs",
+    "ui": "rebuild-preview/scene1341-readonly/index.html",
+    "intake": "Dynamic CG-MASTER branch HEAD once, immutable pinned V201 first151 + V202 next52, exact Git blob SHA1, source and ID checks; diagnostic-only; stage stays 待审",
+    "canonical_study_cards_unchanged": true,
+    "wrong_row506_ipa_quarantined": true
+  },
+  "ci": {
+    "latest_code_head": "8194712379728b85472807f42ca96be866181ac9",
+    "ranked": {
+      "run": 43683208025,
+      "conclusion": "success"
+    },
+    "fourline": {
+      "run": 43683208028,
+      "conclusion": "success"
+    }
+  },
+  "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+  "next": [
+    "Wait for real independently reviewed exact-content CG-QA index before 1审",
+    "Advance beyond V202 with manifest-driven dynamic batches, preserve strict git SHA identity and no silent promotion",
+    "When canonical content contract validated, separately review staged question/answer/IPA integration without SRS writes"
+  ],
+  "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml"
+}
