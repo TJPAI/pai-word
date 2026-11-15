@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "821f4ad4652c22a8895ecaaa9826a701ea6eab91",
+  "verified_parent_head": "cf1d87cb6371f2b73c85a94f2f98a48380d9f917",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -14,7 +14,7 @@
     ],
     "original_associations": 1241,
     "latest_master_head": "ee8b50a3aa5127de01381060a746373814731ed5",
-    "latest_master_version": "V241_VERIFIED",
+    "latest_master_version": "V242_RANKED_CANDIDATE_STAGED",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -121,7 +121,7 @@
       "formal_ready": 0,
       "srs_writes": 0
     },
-    "new_master_status": "CG-MASTER V239: V234 provides 1241 L1/L2 TEST source rows for five scenes (not 1241 complete teaching cards); V235/V238/V239 test data reaches SC0001–0025, 6179 overlapping-safe association rows. Authored 258/1241, 983 remaining; QA V203 original first-review 19, formalReady0.",
+    "new_master_status": "Latest Master V242: V234 five-scene 1241 L1/L2; V235 996 L3 author drafts (SC0011-14); V238/V239 3942 L1 test rows (SC0006-10,0015-25); V240 8899 across 45 more scenes; V241 5618 across SC0071-0100; V242 1730 candidates SC0101-0110 including 37 without original Master row IDs (not eligible). Do not sum overlapping source data or claim certified teaching.",
     "latest_v223_inspector": {
       "module": "rebuild-preview/scene1341-readonly/scene1341-v223-preview-inspector.mjs",
       "ui": "Settings only, independent five-scene next/previous page inspection",
@@ -164,6 +164,30 @@
       "inline_pos": "V234 meaning_display already includes POS abbreviation; clear old card answer.pos before render to avoid v. v. duplicate",
       "mismatch_policy": "master_source_identity_hold=true; excluded in eligiblePreviewCard shared by counts/manual/auto/vertical batch",
       "test_status": "New checks committed; CI execution not yet verified; no browser test claimed."
+    },
+    "scene25_dynamic_test": {
+      "module": "rebuild-preview/scene1341-readonly/scene1341-v238-v239-scene25-feed.mjs",
+      "real_ui": "rebuild-preview/scene1341-readonly/index.html load()",
+      "test": "tools/integration/test-scene1341-v238-v239-scene25-feed.mjs",
+      "scope": "V239 SC0006–0010,SC0015–0016; V238 SC0017–0025",
+      "authoritative_records": 3942,
+      "scenes": 16,
+      "actual_source_scan": {
+        "records": 3942,
+        "unique_ids": 3942,
+        "unique_original_rows": 3942,
+        "flag_violations": 0
+      },
+      "runtime": "dynamic latest CG-MASTER commit, 16 source Git blob SHA1 and root-source SHA256 pinned; preserves richer old cards, appends missing L1 test rows",
+      "clinical": false,
+      "content_complete": false,
+      "ipa_policy": "CMU candidate HOLD; no guessed native Kaikki IPA or automatic approval",
+      "qa_policy": "待审 unless independent exact record+SHA first review; new L1 has no independent PASS",
+      "production_release": false,
+      "can_write_srs": false,
+      "expected_all_25_scene_total": 6179,
+      "ci": "Dedicated workflow includes V238/V239 test; outcome pending external verification",
+      "browser": "manual user deployment and iPhone acceptance outstanding"
     }
   },
   "ci": {
@@ -187,9 +211,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Verify dedicated GitHub Actions workflow on branch (no run returned by commit workflow endpoint); collect PASS or concrete failure",
-    "Owner manually deploy and verify both faces, wake up and baseline missing cards, no duplicated POS, IPA HOLD, QA labels only by IPA",
-    "Next ingest SC0006–0025 test coverage only with exact identity and immutable Git-source hash, without false formal completion"
+    "Verify V238/V239 CI and run iPhone manual-deploy smoke test; specifically SC0015 new L1, SC0025 long phrases, SC0001 wake up, unreviewed IPA HOLD",
+    "Integrate V240/V241 per-scene lazy source-verified data without downloading 75 scene files at every home load",
+    "Do not ingest V242 SC0101–0110 37 ranked additions lacking canonical record identities; request Master remediation",
+    "Continue 983 incomplete first-five-scene pedagogical records with CG-MASTER and independent CG-QA"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
