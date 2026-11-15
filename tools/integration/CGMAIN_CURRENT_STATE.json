@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "4a47c48e1fc6c6643eab936fdff2041a93739030",
+  "verified_parent_head": "b6432a7c76298a87ba66d1e212c220fee7bb9381",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -157,8 +157,9 @@
       "release_allowed": false,
       "formal_ready": 0,
       "can_write_srs": false,
-      "ci": "new V234 test added; workflow result not yet verified",
-      "browser": "user manual deployment and browser smoke test required"
+      "ci": "Dedicated .github/workflows/cgmain-v234-phase1-smoke.yml created at b6432a7c76298a87ba66d1e212c220fee7bb9381; no corresponding commit workflow runs/statuses reported at last check; PASS not claimed.",
+      "browser": "user manual deployment and browser smoke test required",
+      "source_file_verification": "Current V234 file parsed successfully from Master branch: 911448 characters; 1241 records; counts 294/206/237/245/259; zero source flag violations in independently inspected 1241 source fields."
     }
   },
   "ci": {
@@ -182,7 +183,7 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Run test-scene1341-v234-phase1-test-overlay.mjs and existing ranked/fourline CI; record actual outcomes",
+    "Verify GitHub Actions cgmain-v234-phase1-smoke.yml result (new workflow may need workflow activation); do not claim PASS without run.",
     "Manually deploy preview and check wake up + missing 983 L1 test pages, no unreviewed IPA promotion, two-face label and same-line POS",
     "Next ingest SC0006–0025 V235/V238/V239 as isolated source-verified test-only feed, no false teaching completion",
     "Ask CG-MASTER to continue full teaching content for 983 and QA to hash-review them"
