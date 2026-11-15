@@ -1,0 +1,24 @@
+name: CG-MAIN V234 Phase1 study intake
+on:
+  push:
+    branches:
+      - cg-main-fourline-integration-20261026
+    paths:
+      - rebuild-preview/scene1341-readonly/scene1341-v234-phase1-test-overlay.mjs
+      - rebuild-preview/scene1341-readonly/index.html
+      - tools/integration/test-scene1341-v234-phase1-test-overlay.mjs
+      - .github/workflows/cgmain-v234-phase1-smoke.yml
+  workflow_dispatch:
+jobs:
+  phase1-v234-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check V234 source-identity, authored precedence and QA isolation
+        run: node tools/integration/test-scene1341-v234-phase1-test-overlay.mjs
+      - name: Check existing Phase1 immutable draft overlay regression
+        run: node tools/integration/test-scene1341-phase1-fresh-drafts.mjs
