@@ -18,6 +18,15 @@ const script=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert(script,'isolated demo must include executable inline JS');
 new vm.Script(script,{filename:'scene1341-readonly-inline.js'});
 
+assert(html.includes('id="v223-inspector"')&&html.includes('id="v223-scene"')&&
+ html.includes('id="v223-content"')&&html.includes("fetchCurrentPreviewPayload()")&&
+ html.includes('renderV223Inspector();'), 'V223 needs real, reachable read-only source-verified Settings inspection');
+assert(script.includes("v223Data={rows:data.rows,project:m.previewV223Row}")&&
+ !script.includes("items=[...items,...data.rows]")&&
+ script.includes("0条完整、0条IPA批准；只读，不进入学习卡"),
+ 'V223 draft may not enter study card queue, SRS or imply completeness');
+
+
 /* Long phrases on the QUESTION page must remain on exactly one row
    at actual viewport width, without reducing the standard short-word size. */
 assert(html.includes('white-space:nowrap!important') &&
