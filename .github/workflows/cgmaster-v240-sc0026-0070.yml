@@ -1,0 +1,51 @@
+name: CG-MASTER V240 full source-row scene export SC0026-0070
+on:
+  workflow_dispatch:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - 'tools/scene1341_master/build_v240_sc0026_0070.py'
+      - '.github/workflows/cgmaster-v240-sc0026-0070.yml'
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-v240-scene-export
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Build and verify 8899 records from existing authoritative source shards
+        run: |
+          python tools/scene1341_master/build_v240_sc0026_0070.py
+          python - <<'PY'
+          import json,pathlib
+          d=pathlib.Path('tools/scene1341_master/qa_reports/v240_scene_test')
+          m=json.loads((d/'CGMASTER_V240_MANIFEST.json').read_text())
+          assert m['scene_count']==45 and m['source_records']==8899
+          assert sum(m['by_scene'].values())==8899
+          for scene,n in m['by_scene'].items():
+              f=d/f'CGMASTER_V240_{scene}_L1_TEST_PAGES.json'
+              x=json.loads(f.read_text())
+              assert len(x['records'])==n
+              assert all(not r['release_allowed'] and not r['formal_ready'] for r in x['records'])
+          print('V240 PASS: 45 scenes, 8899 source rows')
+          PY
+      - name: Commit generated per-scene test artifacts
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/scene1341_master/qa_reports/v240_scene_test/
+          if ! git diff --cached --quiet; then
+            git commit -m 'CG-MASTER V240 generate 8899 source-row test pages across 45 scenes'
+            git pull --rebase origin cg-master-kaikki-evidence-intake-20261111
+            git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
+          fi
