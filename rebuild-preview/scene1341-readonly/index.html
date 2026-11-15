@@ -189,6 +189,7 @@ const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/in
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
 let activeMasterFeed=null,sceneFeedRequest=0,sceneFeedCache=new Map();
+let phase1FreshPromise=null,phase1StudyOverlayStatus='';
 let resolveQaStage=()=>({visible:true,label:'待审',verdict:null,reviewed:false});
 let independentQaReviews=new Map(),qaReviewSourceStatus='未发布';
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
@@ -362,8 +363,9 @@ async function load(){
   set('phase1-review-source-status',qaReviewSourceStatus);
   // Inspect real first-phase author drafts as DIAGNOSTICS ONLY. They are not
   // CG-QA approved and cannot replace cards until canonical Master publication.
-  void import('./scene1341-phase1-fresh-drafts.mjs')
-   .then(async m=>({m,fresh:await m.fetchPhase1FreshDraftsCurrent()}))
+  phase1FreshPromise=import('./scene1341-phase1-fresh-drafts.mjs')
+   .then(async m=>({m,fresh:await m.fetchPhase1FreshDraftsCurrent()}));
+  void phase1FreshPromise
    .then(({m,fresh})=>{
     phase1FreshInspectorData={rows:fresh.rows,preview:m.phase1EditorialPreview,qaResolve:qaModule.resolveEditorialFirstReview};
     $('phase1-editor-inspector').hidden=false;
@@ -468,6 +470,18 @@ async function load(){
   const ipaQuarantine=await import('./scene1341-selected-ipa-quarantine.mjs')
    .then(m=>m.applyMasterSelectedIpaQuarantine(items));
   items=[...ipaQuarantine.items];
+  // The real Phase1 study cards consume the same Git-source-verified Master
+  // as the Settings inspector. Nothing here certifies QA or enables SRS.
+  try{
+   const {fresh}=await phase1FreshPromise;
+   const staging=await import('./scene1341-phase1-study-overlay.mjs')
+    .then(m=>m.applyPhase1StudyOverlay(items,fresh));
+   items=[...staging.items];
+   phase1StudyOverlayStatus='新版Kaikki题目/答案接入 '+staging.matched+' 张测试词卡；'+
+    staging.held+' 条身份未精确对应，保留原卡；来源IPA均待审。';
+  }catch(err){
+   phase1StudyOverlayStatus='新版Kaikki学习卡加载受阻，保留旧卡：'+String(err?.message||err).slice(0,100);
+  }
   // A missing feed is expected until CG-MASTER publishes its atomic index.
   // Never promote the unverified feed to playable cards.
   try{
@@ -490,6 +504,7 @@ async function load(){
   set('master-live-version',v190.sourceFallback?'使用已验证 '+sourceLabel+' 回退版本；最新来源暂不可用：'+v190.sourceError:'已读取 CG-MASTER 最新完整交付 '+sourceLabel+'（未认证）。刷新页面即可检查新版本。');
   set('master-ipa-coverage',!v190.sourceRows?'动态 Master 暂不可用，保留已校验的 V171 与历史测试词卡；正式认证0，SRS禁写。':v190.sourceVersion+' Master 首批3,000条源关联已完成SHA核验；与旧2,873条学习卡精确身份匹配'+v190.exact+'条，待对账'+v190.held+'条，实际安全增量补充答案'+v190.enriched+'条；另有'+v190.unmatchedSourceRows+'条当前Master源记录不在当前学习卡中，'+v190.legacyOutsideBatch+'张旧卡属于本批以外。源内唯一读音候选更新'+v190.liveIPATest+'条（其中读音变化'+v190.ipaUpdated+'条，均未认证），正式认证0，SRS禁写。');
   set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+latestIPAVisible+' 条；'+(v190.sourceRows?v190.sourceVersion+'源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条':'动态Master暂不可用，使用历史测试词卡')+'，正式认证0、SRS写入关闭。');
+  set('master-ipa-coverage',phase1StudyOverlayStatus+' '+$('master-ipa-coverage').textContent);
   set('status','Scene1341 · '+v190.sourceVersion+' Master'+(v190.sourceFallback?'（回退）':'（实时）')+'更新 '+v190.enriched+' 卡 · 最新测试IPA候选 '+v190.liveIPATest+' · 14场景 / 2,873卡 · Ready 0');
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
@@ -681,16 +696,20 @@ function renderQuestionIPA(card){
   question?.ipa_source?.git_commit===question?.master_live_ipa_source_commit&&
   ['KAIKKI_EXACT_UNIQUE_HEADWORD_TEST_ONLY','CMUDICT113_EXACT_ARPABET_CONVERTED_TEST_ONLY']
    .includes(question?.master_live_ipa_source_status)&&completeIPA;
- const learnerIPA=window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA(question?.ipa,{language:'en'});
- el.textContent=latestExact?learnerIPA+'（最新Master测试·未认证）':native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':v171Paired?learnerIPA+'（V171测试音标·未认证）':'音标待补';
- el.title=latestExact?'CG-MASTER '+question.master_live_ipa_version+' · 已验证Git来源的唯一候选测试读音（仍需目标Sense/口音/QA审核）':native?'CG-MASTER V116 · 原生 Kaikki IPA（测试中，未认证）':
+ const phase1Native=card.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST'&&
+   question?.ipa_status==='PHASE1_KAIKKI_NATIVE_SINGLE_UNREVIEWED'&&
+   question?.ipa_source?.record_id===card.master_record_id&&completeIPA;
+  const phase1Hold=card.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST'&&!phase1Native;
+  const learnerIPA=window.PAI_SCENE1341_V165_IPA_DISPLAY.displayEnglishIPA(question?.ipa,{language:'en'});
+ el.textContent=phase1Native?learnerIPA+'（Kaikki来源候选·待审）':phase1Hold?'音标待核验':latestExact?learnerIPA+'（最新Master测试·未认证）':native?learnerIPA:provisional?learnerIPA+'（测试音标·未认证）':pageEvidence?learnerIPA+'（网页来源·测试未认证）':archived?learnerIPA+'（历史Kaikki·测试未认证）':localArchive?learnerIPA+'（本地Kaikki·测试未认证）':v171Paired?learnerIPA+'（V171测试音标·未认证）':'音标待补';
+ el.title=phase1Native?'原生Kaikki单音标测试候选，Sense和口音未获CG-QA认证':phase1Hold?'原生Kaikki音标缺失或多候选HOLD，不借用旧版不匹配的IPA':latestExact?'CG-MASTER '+question.master_live_ipa_version+' · 已验证Git来源的唯一候选测试读音（仍需目标Sense/口音/QA审核）':native?'CG-MASTER V116 · 原生 Kaikki IPA（测试中，未认证）':
           provisional?'CG-MASTER V116 · 原生单一读音候选，仅测试展示，尚未通过 POS/Sense 和 QA/Muse 认证':
           pageEvidence?'CG-MASTER V150 · 来自 Kaikki 网页，不是原生 JSONL 证据；测试专用，尚未完成 Sense/口音与 QA/Muse 认证':
           archived?'CG-MASTER V153 · 历史Kaikki来源候选有SHA与行号，但尚未进行目标Sense/POS及QA/Muse认证':
           localArchive?'CG-MASTER V154 · 完整本地Kaikki档案来源SHA和行号；未获Sense/POS和QA/Muse批准，仅测试展示':
           v171Paired?'CG-MASTER V171 · 题目与答案配对草稿，Kaikki/CMU读音状态按源保留，未完成Sense/POS和QA认证':
           question?.ipa_candidates_pending?'存在多个原生 Kaikki 读音候选，等待 CG-MASTER 裁决，不随机选择':'CG-MASTER 尚未提供本词条可展示的 Kaikki IPA';
- el.dataset.ipaStatus=latestExact?'latest-master-unique-test':native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':v171Paired?'v171-paired-test':'missing';
+ el.dataset.ipaStatus=phase1Native?'phase1-kaikki-unreviewed':phase1Hold?'phase1-hold':latestExact?'latest-master-unique-test':native?'verified-master-test':provisional?'provisional-master-test':pageEvidence?'web-page-provisional-test':archived?'archived-kaikki-provisional-test':localArchive?'local-kaikki-provisional-test':v171Paired?'v171-paired-test':'missing';
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
@@ -750,6 +769,13 @@ function renderCard(){
  set('cue',prefs.hideWord&&!revealed?'听音回忆知识点':'回忆词义');
  set('scene-title',label(sceneId));set('batch-position','第'+(Math.floor(index/BATCH)+1)+'/'+Math.ceil(cards.length/BATCH)+'批');set('progress','本批已学 '+(index%BATCH)+'/'+Math.min(BATCH,cards.length-Math.floor(index/BATCH)*BATCH));
  set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh);
+  const phase1Card=r.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST';
+  $('master-v190-gloss-section').querySelector('.answer-label').textContent=phase1Card?'英文释义（Kaikki原生·待审）':'英文释义（待核验）';
+  $('master-v190-pos-section').querySelector('.answer-label').textContent=phase1Card?'词性（Kaikki原生·待审）':'词性（待核验）';
+  $('usage-section').querySelector('.answer-label').textContent=phase1Card?'用法说明（编辑草稿·待审）':'用法提醒';
+  $('collocations-section').querySelector('.answer-label').textContent=phase1Card?'常用搭配（编辑草稿·待审）':'高频搭配';
+  $('examples-section').querySelector('.answer-label').textContent=phase1Card?'双语例句（编辑草稿·待审）':'例句';
+  $('answer').dataset.masterPhase1=String(phase1Card);
  const visibleGloss=typeof r.answer.gloss_en==='string'?r.answer.gloss_en.trim():'';
  const visiblePos=typeof r.answer.pos==='string'?r.answer.pos.trim():'';
  set('master-v190-gloss',visibleGloss);
