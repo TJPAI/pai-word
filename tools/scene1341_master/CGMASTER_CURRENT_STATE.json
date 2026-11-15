@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "22c20b8bf092bc7e0df190ee93cbfa602dd2db03",
-  "version": "V205",
+  "verified_base_head": "8028d368c45cd6ba0ae2eec118d0ce454d92be8a",
+  "version": "V206",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -57,7 +57,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V203_PHASE1_NATIVE_SINGLE_SENSE_55_UNREVIEWED_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V204_PHASE1_REMAINING983_TRIAGE_SUMMARY_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V205_PHASE1_691_EXACT_EXPRESSION_GAP_ANALYSIS_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V205_PHASE1_691_EXACT_EXPRESSION_GAP_ANALYSIS_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V206_PHASE1_AMBIGUITY_QUEUE_BUILD_REPORT_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -70,6 +71,16 @@
       "untriaged": 0,
       "no_exact_multiword_expressions": 687,
       "no_exact_single_token_expressions": 4
+    },
+    "ambiguity_queue": {
+      "rows": 292,
+      "single_entry_multiple_senses": 56,
+      "multiple_native_entries": 236,
+      "source": "V198 raw Kaikki and identity ledger",
+      "report_path": "tools/scene1341_master/qa_reports/CGMASTER_V206_PHASE1_AMBIGUITY_QUEUE_BUILD_REPORT_20261115.json",
+      "generator": "tools/scene1341_master/build_v206_ambiguity_queue.py",
+      "full_queue_delivery": "conversation artifact, GitHub summary and generator committed",
+      "qa_status": "待审"
     }
   },
   "sources": {
@@ -114,6 +125,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V206: select native sense for 292 ambiguity records only with original Kaikki source evidence and independent QA; generated evidence queue is unreviewed.",
     "V205: Requery 687 full multiword expressions against complete Kaikki; if exact native entry unavailable, component lemma evidence must remain non-attesting and QA HOLD.",
     "Disambiguate 56 single-entry multi-sense and 236 multi-entry candidates, preserve HOLD until source-matched and independently reviewed.",
     "Recover full original Kaikki corpus for 691 source rows with no exact entry in V198 subset; subset absence is not proof of lexeme absence.",
