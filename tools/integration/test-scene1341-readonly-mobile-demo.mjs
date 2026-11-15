@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import './test-scene1341-v223-preview-inspector.mjs';
 
 const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
 assert(html.startsWith('<!doctype html>'));
