@@ -46,6 +46,8 @@ on:
       - 'tools/integration/test-scene1341-v188-source-audit.mjs'
       - 'tools/integration/test-scene1341-v190-main-answer-intake.mjs'
       - 'tools/integration/test-scene1341-live-master-refresh.mjs'
+      - 'tools/integration/test-scene1341-live-feed.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene1341-live-feed.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v190-master-answer-intake.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-v188-answer-presentation.js'
       - 'rebuild-preview/scene1341-readonly/scene1341-v171-paired-master-overlay.mjs'
@@ -136,3 +138,5 @@ jobs:
           node --check rebuild-preview/scene1341-readonly/scene1341-v190-master-answer-intake.mjs
           node tools/integration/test-scene1341-v190-main-answer-intake.mjs
           node tools/integration/test-scene1341-live-master-refresh.mjs
+          node --check rebuild-preview/scene1341-readonly/scene1341-live-feed.mjs
+          node tools/integration/test-scene1341-live-feed.mjs
