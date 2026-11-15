@@ -3,8 +3,8 @@
   "role": "CG-QA",
   "updated_at": "2026-11-15",
   "branch": "cg-qa-enlex-review-20261026",
-  "verified_previous_head": "ee15a71ddc67800eb8eba920e977f71049628eb5",
-  "last_completed_version": "V198",
+  "verified_previous_head": "b632dbd779c96e20aefa1da481465f1d85d595c2",
+  "last_completed_version": "V199",
   "formal_dual_ai_certified": 0,
   "formal_ready": 0,
   "srs_eligible": false,
@@ -45,17 +45,23 @@
       "rows": 5,
       "path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
       "findings": "4 REVISE P1, 1 CONDITIONAL P2. Actual source content inspected; no runtime 1审 index until independent content-hash verification."
+    },
+    {
+      "version": "V199",
+      "rows": 258,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V199_PHASE1_258_HASH_AND_V203_INDEPENDENT_MECHANICAL_AUDIT_20261115.v1.json",
+      "findings": "All 258 source content_sha256 independently recomputed equal. V203 +55; 46 empty authored example arrays, 14 metalinguistic gloss candidates. Exactly 5 prior semantically reviewed V198 items published as 1审 (REVISE4, CONDITIONAL1), none PASS."
     }
   ],
   "source_state": {
     "master_branch": "cg-master-kaikki-evidence-intake-20261111",
     "master_state_path": "tools/scene1341_master/CGMASTER_CURRENT_STATE.json",
-    "master_state_version_at_intake": "V202",
+    "master_state_version_at_intake": "V204",
     "phase1_original_associations": 1241,
-    "phase1_drafts_at_intake": 203,
-    "phase1_first_review": 0,
+    "phase1_drafts_at_intake": 258,
+    "phase1_first_review": 5,
     "phase1_report_path": "tools/core20k_lexicon/qa/SC1341_PHASE1_INDEPENDENT_FIRST_REVIEW.json",
-    "phase1_report_exists_at_intake": false,
+    "phase1_report_exists_at_intake": true,
     "drive_folder": "https://drive.google.com/drive/folders/1LXwdHabvBjOop0UgQa3NQY-hizRspMa9"
   },
   "open_p0": [
@@ -68,23 +74,24 @@
     "V196 SC0014 143 cross-version IPA differences require independent source checks",
     "V196 batch2 2757 records lack authored answers",
     "Phase1 first 203 editorial drafts pending independent exact-content first review",
-    "V198 row359 body lotion, row543 sweater, row352 cotton swab, row1046 laundry detergent require source-safe content revisions; row70 weekday conditional example improvement"
+    "V198 row359 body lotion, row543 sweater, row352 cotton swab, row1046 laundry detergent require source-safe content revisions; row70 weekday conditional example improvement",
+    "V203 46 of 55 newly source-linked rows have empty answer example arrays; 14 have relation/form-only gloss that is not independently confirmed as learner-ready definition."
   ],
   "pending_tasks": [
-    "Independently recompute stored content SHA for five source-bound reviews, then publish valid 1审 index with earlier evidence commit and exact matching ID/hash",
-    "Check current Master validator exact-head CI before accepting source-backed provenance claims",
-    "Review further phase1 rows, prioritizing P0 and author revisions",
-    "Continue 3000-row mechanical audit after canonical new source changes",
-    "Keep Issue #1 and checkpoint updated"
+    "Independently inspect fresh V203 55 rows' Sense semantics, 46 missing examples, and 14 morphological/link glosses",
+    "Re-review revised content from CG-MASTER at new content SHA; previous five 1审 revert to 待审 when changed",
+    "Independently examine source-native IPA and V191 P1 plus V192 13 P0/9 P1 risks",
+    "Continue new 3000-row structural batch after source staging becomes available",
+    "Keep checkpoint and Issue #1 incremental status current"
   ],
   "last_issue_comment_ids_observed": {
-    "issue1": 6890139948,
-    "issue2": 6890147525
+    "issue1": 6890226825,
+    "issue2": 6890202010
   },
   "invariants": [
     "Do not mutate Core20K or original Master/Scene500/Runtime/SRS",
     "No Muse signoff asserted",
     "No AI-first-review label without actual record/content SHA adjudication"
   ],
-  "next_action": "Verify five content hashes and source raw Kaikki, publish proof-pinned first-review index only after gating; remain formalReady0"
+  "next_action": "Perform source-specific semantic checks for V203, prioritize malformed/grammatical-gloss issues, expand independent first reviews without implying dual certification."
 }
