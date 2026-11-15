@@ -6,6 +6,10 @@ on:
       - 'tools/scene1341_master/CGMASTER_CURRENT_STATE.json'
       - 'tools/scene1341_master/validate_phase1_editor_drafts.mjs'
       - 'tools/scene1341_master/validate_v212_editorial_handoff.mjs'
+      - 'tools/scene1341_master/validate_v222_unified_qa_batch.mjs'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V214_*'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V220_*'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V221_*'
       - 'tools/scene1341_master/qa_reports/CGMASTER_V208_*'
       - 'tools/scene1341_master/qa_reports/CGMASTER_V209_*'
       - 'tools/scene1341_master/qa_reports/CGMASTER_V211_*'
@@ -24,3 +28,4 @@ jobs:
           node-version: '22'
       - run: node tools/scene1341_master/validate_phase1_editor_drafts.mjs
       - run: node tools/scene1341_master/validate_v212_editorial_handoff.mjs
+      - run: node tools/scene1341_master/validate_v222_unified_qa_batch.mjs
