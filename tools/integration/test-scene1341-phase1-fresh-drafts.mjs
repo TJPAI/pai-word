@@ -164,7 +164,7 @@ const futurePayload={version:'V300_NEXT_EDITOR_DRAFT',source_associations_total:
  prior_editorial_records:258,new_records:1,cumulative_distinct_records:259,
  qa_status:'待审',formal_ready:0,records:[futureRow]};
 const futureText=JSON.stringify(futurePayload);
-const futureBlob=createHash('sha1').update('blob '+Buffer.byteLength(futureText)+'\\0').update(futureText).digest('hex');
+const futureBlob=createHash('sha1').update('blob '+Buffer.byteLength(futureText)+'\0').update(futureText).digest('hex');
 const futureState=structuredClone(rollingState);
 futureState.version='V300';
 futureState.phase1.editorial_artifacts=[...rollingState.phase1.editorial_artifacts,futureEditorial];
