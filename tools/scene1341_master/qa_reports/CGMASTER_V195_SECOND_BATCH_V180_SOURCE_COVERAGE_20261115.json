@@ -1,0 +1,149 @@
+{
+  "schema": "cgmaster-v195-second-batch-source-inventory-v1",
+  "date": "2026-11-15",
+  "source_package": "CGMASTER_V180_SC0013_0025_KAIKKI_CMUDICT113_SENSE_IPA_PACKAGE_20261115.zip",
+  "source_manifest_path": "tools/scene1341_master/qa_reports/CGMASTER_V180_SC0013_0025_FULL_SHARD_MANIFEST_20261115.json",
+  "scope": {
+    "first_source_final_row": 3001,
+    "last_source_final_row": 6000,
+    "source_associations": 3000,
+    "unique_record_ids": 3000,
+    "source_scenes": 13,
+    "shards": 4,
+    "records_per_shard": 750
+  },
+  "actual_shard_inspection": "4 gzip decompressed in active workspace; SHA256 matched manifest; consecutive shard ranges 3001-3750, 3751-4500, 4501-5250, 5251-6000",
+  "scene_matrix": [
+    {
+      "scene_id": "SC50-0013",
+      "associations": 132,
+      "selected_test_ipa_nonempty": 42,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 3001,
+      "last_source_final_row": 3132
+    },
+    {
+      "scene_id": "SC50-0014",
+      "associations": 243,
+      "selected_test_ipa_nonempty": 94,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 3133,
+      "last_source_final_row": 3375
+    },
+    {
+      "scene_id": "SC50-0015",
+      "associations": 250,
+      "selected_test_ipa_nonempty": 111,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 3376,
+      "last_source_final_row": 3625
+    },
+    {
+      "scene_id": "SC50-0016",
+      "associations": 298,
+      "selected_test_ipa_nonempty": 104,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 3626,
+      "last_source_final_row": 3923
+    },
+    {
+      "scene_id": "SC50-0017",
+      "associations": 232,
+      "selected_test_ipa_nonempty": 99,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 3924,
+      "last_source_final_row": 4155
+    },
+    {
+      "scene_id": "SC50-0018",
+      "associations": 234,
+      "selected_test_ipa_nonempty": 94,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 4156,
+      "last_source_final_row": 4389
+    },
+    {
+      "scene_id": "SC50-0019",
+      "associations": 221,
+      "selected_test_ipa_nonempty": 85,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 4390,
+      "last_source_final_row": 4610
+    },
+    {
+      "scene_id": "SC50-0020",
+      "associations": 248,
+      "selected_test_ipa_nonempty": 98,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 4611,
+      "last_source_final_row": 4858
+    },
+    {
+      "scene_id": "SC50-0021",
+      "associations": 247,
+      "selected_test_ipa_nonempty": 103,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 4859,
+      "last_source_final_row": 5105
+    },
+    {
+      "scene_id": "SC50-0022",
+      "associations": 272,
+      "selected_test_ipa_nonempty": 108,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 5106,
+      "last_source_final_row": 5377
+    },
+    {
+      "scene_id": "SC50-0023",
+      "associations": 324,
+      "selected_test_ipa_nonempty": 99,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 5378,
+      "last_source_final_row": 5701
+    },
+    {
+      "scene_id": "SC50-0024",
+      "associations": 240,
+      "selected_test_ipa_nonempty": 82,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 5702,
+      "last_source_final_row": 5941
+    },
+    {
+      "scene_id": "SC50-0025",
+      "associations": 59,
+      "selected_test_ipa_nonempty": 43,
+      "bilingual_examples_nonempty": 0,
+      "first_source_final_row": 5942,
+      "last_source_final_row": 6000
+    }
+  ],
+  "source_totals": {
+    "selected_test_ipa_nonempty": 1162,
+    "source_selected_ipa_missing_or_held": 1838,
+    "answer_example_nonempty": 0,
+    "author_page_completeness": "not yet integrated"
+  },
+  "sc0014_author_source_available": {
+    "version": "V171",
+    "source_rows": [
+      3133,
+      3375
+    ],
+    "records": 243,
+    "paired_bilingual_example_records": 243,
+    "selected_test_ipa_nonempty": 237,
+    "not_integrated_into_v180": true
+  },
+  "publication": {
+    "canonical_live_feed_path": "tools/scene1341_master/qa_reports/CGMASTER_LIVE_FEED.json",
+    "canonical_live_feed_remains_first_batch_only": true,
+    "candidate_live_feed_path": "tools/scene1341_master/qa_reports/CGMASTER_LIVE_FEED_V195_CANDIDATE.json",
+    "candidate_batches": 2,
+    "source_rows_candidate": 6000,
+    "not_full_author_page_or_certified": true
+  },
+  "formal_ready": 0,
+  "srs_eligible": false
+}
