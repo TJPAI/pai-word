@@ -75,7 +75,7 @@ export function applyV234Phase1TestOverlay(cards,feed){
   if(seen.has(r.record_id))fail('DUPLICATE_CARD');
   seen.add(r.record_id);
   if(card.scene_id!==r.scene_id||card.master_final_row!==r.source_final_row||
-    norm(card.expression)!==norm(r.question_page.expression)){held++;return card}
+    norm(card.expression)!==norm(r.question_page.expression)){held++;return {...card,master_source_identity_hold:true,production_release_allowed:false}}
   matched++;
   // The independently content-SHA checked fresh 258 editorial cards take precedence.
   if(card.master_phase1_source==='KAIKKI_FRESH_EDITOR_TEST'){preserved++;return card}
@@ -84,12 +84,12 @@ export function applyV234Phase1TestOverlay(cards,feed){
   const next={...card,
    question:{...card.question,expression:r.question_page.expression,ipa:null,
     ipa_status:'PHASE1_V234_TEST_IPA_HOLD',ipa_candidates_pending:true},
-   answer:{...card.answer,meaning_zh:r.answer_page.meaning_display,
+   answer:{...card.answer,pos:'',meaning_zh:r.answer_page.meaning_display,
     gloss_en:r.coverage_level==='L2_KAIKKI_NATIVE_CANDIDATE'?r.answer_page.gloss_en||'':'',
     examples:[],example_en:'',example_zh:'',collocations:[],usage_note:'',
     content_complete:false},
    display:{...card.display,w:r.question_page.expression,m:r.answer_page.meaning_display},
-   master_phase1_source:'KAIKKI_V234_L1_L2_UNREVIEWED_TEST',
+   master_phase1_source:'KAIKKI_V234_L1_L2_UNREVIEWED_TEST',master_source_identity_hold:false,
    production_release_allowed:false,qa_status:'DEFERRED_TEST_ONLY'};
   baseline++;
   return next;
