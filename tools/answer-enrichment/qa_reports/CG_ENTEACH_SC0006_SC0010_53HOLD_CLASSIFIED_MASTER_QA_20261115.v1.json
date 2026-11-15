@@ -1,0 +1,1113 @@
+{
+  "schema": "cg-enteach-v75-53-author-master-identity-hold-triage-v1",
+  "date": "2026-11-15",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "source_handoff_path": "tools/answer-enrichment/qa_reports/CG_ENTEACH_SC0006_SC0010_V75_993KU_MASTER_INTAKE_20261115.v1.json",
+  "source_handoff_blob": "bbce4da15bd7f284bdac397c559f67acc02e9e38",
+  "scope": "53 held author KUs in SC0006..SC0010, using existing V75 source-rank crosswalk; not re-performing authoritative Master raw line check",
+  "counts": {
+    "holds": 53,
+    "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT": 31,
+    "NO_MASTER_CROSSWALK_ROW": 18,
+    "DUPLICATE_SOURCE_EXPRESSION_REQUIRES_CANONICAL_SENSE_REVIEW": 4,
+    "exact_same_scene_duplicate_pairs": 2,
+    "certified": 0,
+    "released": 0
+  },
+  "priority_policy": "Four exact-expression dual source-row cases are P0 for canonical Sense/teaching-objective determination, not claimed to be four malformed records. 18 no source row are not promotable. 31 loose row matches require direct source intent comparison.",
+  "cases": [
+    {
+      "scene_ku_id": "SC1341-KU-01046",
+      "scene_id": "SC50-0006",
+      "expression": "laundry",
+      "meaning_zh": "待洗或洗好的衣物；洗衣这件事",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_original_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "crosswalk_rows": [
+        1242
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01065",
+      "scene_id": "SC50-0006",
+      "expression": "hang clothes to dry",
+      "meaning_zh": "把衣服挂起来晾干",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_original_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01066",
+      "scene_id": "SC50-0006",
+      "expression": "laundry detergent",
+      "meaning_zh": "洗衣液；洗衣粉等洗涤剂",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_original_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01068",
+      "scene_id": "SC50-0006",
+      "expression": "load",
+      "meaning_zh": "一机次的洗衣量；一批衣物",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_original_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "crosswalk_rows": [
+        1245
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01076",
+      "scene_id": "SC50-0006",
+      "expression": "lint",
+      "meaning_zh": "衣物绒毛；棉絮",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-001-037.v2.json",
+      "source_original_pack_blob": "05e7612586d283977a03bbaa536ae1a25790c0dc",
+      "crosswalk_rows": [
+        1263
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01087",
+      "scene_id": "SC50-0006",
+      "expression": "air-dry",
+      "meaning_zh": "自然晾干；风干",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-038-087.v2.json",
+      "source_original_pack_blob": "2d133bf2ff5b762ba59255015974af0cc244c2c9",
+      "crosswalk_rows": [
+        1276
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01183",
+      "scene_id": "SC50-0006",
+      "expression": "color bleeding",
+      "meaning_zh": "衣物染料串色；掉色染到其他衣物",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-138-187.v2.json",
+      "source_original_pack_blob": "efe2b644fe17e1b7f7035e403c279f00d71f242a",
+      "crosswalk_rows": [
+        1375
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01234",
+      "scene_id": "SC50-0006",
+      "expression": "color bleed",
+      "meaning_zh": "衣物串色；掉色",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-188-190.v2.json",
+      "source_original_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01235",
+      "scene_id": "SC50-0006",
+      "expression": "take the laundry out",
+      "meaning_zh": "把衣物从洗衣机取出",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0006-answer-only-188-190.v2.json",
+      "source_original_pack_blob": "48434aae60a4b18cd3ce977934b3c091abccadba",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "b378da7d1dcfa47715aac06ca94f98bc1d3cdb22",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01237",
+      "scene_id": "SC50-0007",
+      "expression": "recipe",
+      "meaning_zh": "食谱；烹饪方法及步骤",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_original_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "crosswalk_rows": [
+        1460
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01249",
+      "scene_id": "SC50-0007",
+      "expression": "meal prep",
+      "meaning_zh": "提前备餐；预先准备多餐食材或饭菜",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_original_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "crosswalk_rows": [
+        1457
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01257",
+      "scene_id": "SC50-0007",
+      "expression": "poultry",
+      "meaning_zh": "家禽肉",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_original_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "crosswalk_rows": [
+        1467
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01268",
+      "scene_id": "SC50-0007",
+      "expression": "seasoning",
+      "meaning_zh": "调味料；调味",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_original_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "crosswalk_rows": [
+        1478
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01279",
+      "scene_id": "SC50-0007",
+      "expression": "stock",
+      "meaning_zh": "用于烹饪的高汤；汤底",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-001-047.v2.json",
+      "source_original_pack_blob": "df1e062106f13a580993d4eb0918006a83474175",
+      "crosswalk_rows": [
+        1491
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01360",
+      "scene_id": "SC50-0007",
+      "expression": "grill fish",
+      "meaning_zh": "烤鱼；用烤架或高温烤制鱼（具体烹法因地区而异）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-098-147.v2.json",
+      "source_original_pack_blob": "06ac5ba633d7ad04e3b73a1050b782d9edd88950",
+      "crosswalk_rows": [
+        1580
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01449",
+      "scene_id": "SC50-0007",
+      "expression": "mise en place",
+      "meaning_zh": "烹饪前把食材与用具准备就绪",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01450",
+      "scene_id": "SC50-0007",
+      "expression": "prep ingredients",
+      "meaning_zh": "预处理食材",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01451",
+      "scene_id": "SC50-0007",
+      "expression": "cook over medium heat",
+      "meaning_zh": "用中火烹饪",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01452",
+      "scene_id": "SC50-0007",
+      "expression": "prep the ingredients",
+      "meaning_zh": "准备食材",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0007-answer-only-198-217.v2.json",
+      "source_original_pack_blob": "a127d775f2627d7efe7b19d8c6b41bc3332134ce",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01472",
+      "scene_id": "SC50-0008",
+      "expression": "help yourself to seconds",
+      "meaning_zh": "自己再盛一份",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-001-030.v2.json",
+      "source_original_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01482",
+      "scene_id": "SC50-0008",
+      "expression": "serving",
+      "meaning_zh": "一份（食物）；上菜",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-001-030.v2.json",
+      "source_original_pack_blob": "d66d0ddb2f15f4ef1d4e8297e07d9c65746ebe87",
+      "crosswalk_rows": [
+        1713
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01483",
+      "scene_id": "SC50-0008",
+      "expression": "helping",
+      "meaning_zh": "一份（盛取的食物）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_original_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "crosswalk_rows": [
+        1714
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01489",
+      "scene_id": "SC50-0008",
+      "expression": "takeout",
+      "meaning_zh": "外带餐食（美式）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_original_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "crosswalk_rows": [
+        1721
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01490",
+      "scene_id": "SC50-0008",
+      "expression": "takeaway",
+      "meaning_zh": "外带餐食（英式）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_original_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "crosswalk_rows": [
+        1722
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01492",
+      "scene_id": "SC50-0008",
+      "expression": "potluck",
+      "meaning_zh": "每人带一道菜的聚餐",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_original_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "crosswalk_rows": [
+        1725
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01495",
+      "scene_id": "SC50-0008",
+      "expression": "seconds",
+      "meaning_zh": "再添的一份食物",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_original_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "crosswalk_rows": [
+        1728
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01496",
+      "scene_id": "SC50-0008",
+      "expression": "course",
+      "meaning_zh": "一道菜；一轮菜",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-031-080.v2.json",
+      "source_original_pack_blob": "d6ce38acd9ef6262c69148d91c08a75ade35cfa0",
+      "crosswalk_rows": [
+        1729
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "4b933238ec4147cf4238fba074a91d39d8ee8fc1",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01639",
+      "scene_id": "SC50-0008",
+      "expression": "pass the dish around",
+      "meaning_zh": "把菜盘传给大家",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_original_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01640",
+      "scene_id": "SC50-0008",
+      "expression": "silverware",
+      "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0008-answer-only-181-188.v2.json",
+      "source_original_pack_blob": "e5938bbcd926e46578e95da8f49806cd43a141c1",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01650",
+      "scene_id": "SC50-0009",
+      "expression": "grease",
+      "meaning_zh": "油脂；油垢",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_original_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "crosswalk_rows": [
+        1960
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01667",
+      "scene_id": "SC50-0009",
+      "expression": "washing-up",
+      "meaning_zh": "洗碗（英式）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_original_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "crosswalk_rows": [
+        1928
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01673",
+      "scene_id": "SC50-0009",
+      "expression": "dish towel",
+      "meaning_zh": "擦碗布；厨房擦拭巾",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_original_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "crosswalk_rows": [
+        1939
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01674",
+      "scene_id": "SC50-0009",
+      "expression": "tea towel",
+      "meaning_zh": "厨房擦拭巾（英式）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_original_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "crosswalk_rows": [
+        1940
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01679",
+      "scene_id": "SC50-0009",
+      "expression": "cutlery",
+      "meaning_zh": "刀叉勺等餐具",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_original_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "crosswalk_rows": [
+        1949
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01680",
+      "scene_id": "SC50-0009",
+      "expression": "silverware",
+      "meaning_zh": "刀叉勺等餐具（美式，不限银制）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-001-042.v2.json",
+      "source_original_pack_blob": "163840500bcfaba67a6c06773444361c6eb8cb57",
+      "crosswalk_rows": [
+        1950
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01837",
+      "scene_id": "SC50-0009",
+      "expression": "scrape food scraps into the bin",
+      "meaning_zh": "把食物残渣刮进垃圾桶",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_original_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01838",
+      "scene_id": "SC50-0009",
+      "expression": "let the dishes air-dry",
+      "meaning_zh": "让餐具自然晾干",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_original_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01839",
+      "scene_id": "SC50-0009",
+      "expression": "let the dishes soak",
+      "meaning_zh": "让餐具浸泡一会儿",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0009-answer-only-193-199.v2.json",
+      "source_original_pack_blob": "737949764b8f443e5e627d698d29c617f430e9f0",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01844",
+      "scene_id": "SC50-0010",
+      "expression": "put your feet up",
+      "meaning_zh": "坐下来休息；放松一下",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2159,
+        2233
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01856",
+      "scene_id": "SC50-0010",
+      "expression": "watch TV",
+      "meaning_zh": "看电视",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01859",
+      "scene_id": "SC50-0010",
+      "expression": "chill out",
+      "meaning_zh": "放松；冷静下来",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2160
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01861",
+      "scene_id": "SC50-0010",
+      "expression": "me time",
+      "meaning_zh": "属于自己的放松时间",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2162
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01864",
+      "scene_id": "SC50-0010",
+      "expression": "power nap",
+      "meaning_zh": "短时间恢复精力的小睡",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2167
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01874",
+      "scene_id": "SC50-0010",
+      "expression": "sleep off",
+      "meaning_zh": "通过睡眠消除或缓解（疲劳、酒意等）",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2177
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01876",
+      "scene_id": "SC50-0010",
+      "expression": "stay in",
+      "meaning_zh": "晚上或空闲时待在家里不外出",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2180
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01878",
+      "scene_id": "SC50-0010",
+      "expression": "homebody",
+      "meaning_zh": "喜欢待在家里的人",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2182
+      ],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "CROSSWALK_ROW_EXISTS_BUT_NOT_EXACT",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Compare actual full Master row: expression, Chinese sense/cue, stable record_id and scene semantics; preserve mismatch or approve corrected source with provenance.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01880",
+      "scene_id": "SC50-0010",
+      "expression": "peace and quiet",
+      "meaning_zh": "安宁清静",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-001-043.v2.json",
+      "source_original_pack_blob": "f0ce351885053175271649f7fbc30069b328ecd1",
+      "crosswalk_rows": [
+        2184,
+        2304
+      ],
+      "crosswalk_exact_rows": [
+        2184
+      ],
+      "crosswalk_blob": "bc8aa4862e435422667e07e3a44f3e2b84ffce08",
+      "triage_reason": "DUPLICATE_SOURCE_EXPRESSION_REQUIRES_CANONICAL_SENSE_REVIEW",
+      "priority": "P0",
+      "exact_same_scene_author_peers": [
+        {
+          "ku": "SC1341-KU-01992",
+          "expression": "peace and quiet",
+          "meaning_zh": "清静安宁",
+          "source_rows": [
+            2184,
+            2304
+          ],
+          "exact_rows": [
+            2304
+          ]
+        }
+      ],
+      "required_master_action": "Two original author KU map to multiple potential source rows with identical expression; confirm per-row Sense/scenario differences or select canonical teaching objective; no auto ID merge.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01954",
+      "scene_id": "SC50-0010",
+      "expression": "take a screen break",
+      "meaning_zh": "暂停看屏幕",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-094-143.v2.json",
+      "source_original_pack_blob": "6ce1b5229f1581c04af717461ed45825e120de0d",
+      "crosswalk_rows": [
+        2263,
+        2371
+      ],
+      "crosswalk_exact_rows": [
+        2263
+      ],
+      "crosswalk_blob": "7d7e89a11202fdf9bae2097fcf5250335dcc3613",
+      "triage_reason": "DUPLICATE_SOURCE_EXPRESSION_REQUIRES_CANONICAL_SENSE_REVIEW",
+      "priority": "P0",
+      "exact_same_scene_author_peers": [
+        {
+          "ku": "SC1341-KU-02028",
+          "expression": "take a screen break",
+          "meaning_zh": "让眼睛休息一下",
+          "source_rows": [
+            2263,
+            2371
+          ],
+          "exact_rows": [
+            2371
+          ]
+        }
+      ],
+      "required_master_action": "Two original author KU map to multiple potential source rows with identical expression; confirm per-row Sense/scenario differences or select canonical teaching objective; no auto ID merge.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01992",
+      "scene_id": "SC50-0010",
+      "expression": "peace and quiet",
+      "meaning_zh": "清静安宁",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_original_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "crosswalk_rows": [
+        2184,
+        2304
+      ],
+      "crosswalk_exact_rows": [
+        2304
+      ],
+      "crosswalk_blob": "7d7e89a11202fdf9bae2097fcf5250335dcc3613",
+      "triage_reason": "DUPLICATE_SOURCE_EXPRESSION_REQUIRES_CANONICAL_SENSE_REVIEW",
+      "priority": "P0",
+      "exact_same_scene_author_peers": [
+        {
+          "ku": "SC1341-KU-01880",
+          "expression": "peace and quiet",
+          "meaning_zh": "安宁清静",
+          "source_rows": [
+            2184,
+            2304
+          ],
+          "exact_rows": [
+            2184
+          ]
+        }
+      ],
+      "required_master_action": "Two original author KU map to multiple potential source rows with identical expression; confirm per-row Sense/scenario differences or select canonical teaching objective; no auto ID merge.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02028",
+      "scene_id": "SC50-0010",
+      "expression": "take a screen break",
+      "meaning_zh": "让眼睛休息一下",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-144-193.v2.json",
+      "source_original_pack_blob": "25aeb40bf2914e78c0f55e10b81564cbc41da6ea",
+      "crosswalk_rows": [
+        2263,
+        2371
+      ],
+      "crosswalk_exact_rows": [
+        2371
+      ],
+      "crosswalk_blob": "7d7e89a11202fdf9bae2097fcf5250335dcc3613",
+      "triage_reason": "DUPLICATE_SOURCE_EXPRESSION_REQUIRES_CANONICAL_SENSE_REVIEW",
+      "priority": "P0",
+      "exact_same_scene_author_peers": [
+        {
+          "ku": "SC1341-KU-01954",
+          "expression": "take a screen break",
+          "meaning_zh": "暂停看屏幕",
+          "source_rows": [
+            2263,
+            2371
+          ],
+          "exact_rows": [
+            2263
+          ]
+        }
+      ],
+      "required_master_action": "Two original author KU map to multiple potential source rows with identical expression; confirm per-row Sense/scenario differences or select canonical teaching objective; no auto ID merge.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02036",
+      "scene_id": "SC50-0010",
+      "expression": "curl up on the couch",
+      "meaning_zh": "蜷在沙发上休息",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_original_pack_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "7d7e89a11202fdf9bae2097fcf5250335dcc3613",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02037",
+      "scene_id": "SC50-0010",
+      "expression": "switch off after work",
+      "meaning_zh": "下班后放松、不再想工作",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_original_pack_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "7d7e89a11202fdf9bae2097fcf5250335dcc3613",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-02038",
+      "scene_id": "SC50-0010",
+      "expression": "get comfortable",
+      "meaning_zh": "让自己待得舒服些",
+      "source_original_pack_path": "tools/answer-enrichment/scene1341-v51-sc0010-answer-only-194-199.v2.json",
+      "source_original_pack_blob": "809b7bc31c80fdd0efc56533242ebf7144457024",
+      "crosswalk_rows": [],
+      "crosswalk_exact_rows": [],
+      "crosswalk_blob": "7d7e89a11202fdf9bae2097fcf5250335dcc3613",
+      "triage_reason": "NO_MASTER_CROSSWALK_ROW",
+      "priority": "P1",
+      "exact_same_scene_author_peers": [],
+      "required_master_action": "Check whether author-only additional expression lacks authoritative Sense–Scene row; do not fabricate original source identity.",
+      "cg_qa": "PENDING_INDEPENDENT",
+      "muse_qa": "PENDING",
+      "release_allowed": false
+    }
+  ],
+  "source_master_owner": "CG-MASTER",
+  "independent_review": "CG-QA + MU-QA",
+  "nonmutation": "No original KU, Master, QA, V190, IPA, UI, SRS modification",
+  "release_allowed": false
+}
