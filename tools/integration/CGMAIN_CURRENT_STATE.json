@@ -209,7 +209,10 @@
       "master_content_sha256": "Only accept 64-hex SHA from Master row; never trust Master qa_label",
       "latest_verified_master": "V251_MISSING_MEANING_FORENSIC; V247 Drive ZIP source, Git production scene index still not verified",
       "ci_regression_fix": "53c0509c850608f8ae010b354a8a40770f504c5b: corrected source row offsets for SC0015-0025 in V238/V239 regression; historical run 43705833463 failed 5184 != 6180, new run PASS pending",
-      "latest_notice": "Issue #1 CG-MASTER P0 request 6893827626: prioritize full 1341 preview, dynamic Master refresh, source-truthful counts, iPhone acceptance"
+      "latest_notice": "Issue #1 CG-MASTER P0 request 6893827626: prioritize full 1341 preview, dynamic Master refresh, source-truthful counts, iPhone acceptance",
+      "v247_real_schema_fix": "V247 builder source rows have record_id=null, 222 missing meaning_zh; accept null and use SC1341-FINAL-ROW-###### preview-only identity, not canonical Sense",
+      "real_builder": "tools/scene1341_master/build_v247_full1341_from_final.py",
+      "latest_commit": "1f9b2d9c7b807e32759bde1927aee07979f58839"
     }
   },
   "ci": {
