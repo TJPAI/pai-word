@@ -7,8 +7,10 @@ const spec=[
  ['V238',17,232],['V238',18,234],['V238',19,221],['V238',20,248],
  ['V238',21,247],['V238',22,272],['V238',23,324],['V238',24,240],['V238',25,238]
 ];
-let pointer=1242;
+const starts={6:1242,7:1456,8:1700,9:1927,10:2153,15:3376,16:3626,
+ 17:3924,18:4156,19:4390,20:4611,21:4859,22:5106,23:5378,24:5702,25:5942};
 const docs=spec.map(([version,n,count])=>{
+ let pointer=starts[n];
  const scene='SC50-'+String(n).padStart(4,'0');
  const records=Array.from({length:count},()=>{
   const source_final_row=pointer++;
@@ -18,9 +20,11 @@ const docs=spec.map(([version,n,count])=>{
    answer_page:{meaning_zh:'中文 '+source_final_row,examples:[],qa_label:'待审'},
    coverage_level:'L1_SOURCE_CUE_WITH_TEST_IPA',complete:false,formal_ready:0,release_allowed:false};
  });
+ assert.equal(pointer,starts[n]+count);
  return {version,scene_id:scene,record_count:count,qa_stage:'待审',release_allowed:false,records};
 });
-assert.equal(pointer,6180);
+assert.equal(docs.reduce((n,d)=>n+d.record_count,0),3942);
+assert.equal(docs.at(-1).records.at(-1).source_final_row,6179);
 const v=validateScene25Documents(docs);
 assert.equal(v.sourceCount,3942);
 const original=docs.slice(0,5).flatMap(d=>d.records).slice(0,636).map(r=>({
