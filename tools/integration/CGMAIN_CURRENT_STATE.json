@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "b6432a7c76298a87ba66d1e212c220fee7bb9381",
+  "verified_parent_head": "821f4ad4652c22a8895ecaaa9826a701ea6eab91",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -14,7 +14,7 @@
     ],
     "original_associations": 1241,
     "latest_master_head": "ee8b50a3aa5127de01381060a746373814731ed5",
-    "latest_master_version": "V239",
+    "latest_master_version": "V241_VERIFIED",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -159,7 +159,11 @@
       "can_write_srs": false,
       "ci": "Dedicated .github/workflows/cgmain-v234-phase1-smoke.yml created at b6432a7c76298a87ba66d1e212c220fee7bb9381; no corresponding commit workflow runs/statuses reported at last check; PASS not claimed.",
       "browser": "user manual deployment and browser smoke test required",
-      "source_file_verification": "Current V234 file parsed successfully from Master branch: 911448 characters; 1241 records; counts 294/206/237/245/259; zero source flag violations in independently inspected 1241 source fields."
+      "source_file_verification": "Current V234 file parsed successfully from Master branch: 911448 characters; 1241 records; counts 294/206/237/245/259; zero source flag violations in independently inspected 1241 source fields.",
+      "source_root_sha_validation": true,
+      "inline_pos": "V234 meaning_display already includes POS abbreviation; clear old card answer.pos before render to avoid v. v. duplicate",
+      "mismatch_policy": "master_source_identity_hold=true; excluded in eligiblePreviewCard shared by counts/manual/auto/vertical batch",
+      "test_status": "New checks committed; CI execution not yet verified; no browser test claimed."
     }
   },
   "ci": {
@@ -183,10 +187,9 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Verify GitHub Actions cgmain-v234-phase1-smoke.yml result (new workflow may need workflow activation); do not claim PASS without run.",
-    "Manually deploy preview and check wake up + missing 983 L1 test pages, no unreviewed IPA promotion, two-face label and same-line POS",
-    "Next ingest SC0006–0025 V235/V238/V239 as isolated source-verified test-only feed, no false teaching completion",
-    "Ask CG-MASTER to continue full teaching content for 983 and QA to hash-review them"
+    "Verify dedicated GitHub Actions workflow on branch (no run returned by commit workflow endpoint); collect PASS or concrete failure",
+    "Owner manually deploy and verify both faces, wake up and baseline missing cards, no duplicated POS, IPA HOLD, QA labels only by IPA",
+    "Next ingest SC0006–0025 test coverage only with exact identity and immutable Git-source hash, without false formal completion"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
