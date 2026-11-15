@@ -52,6 +52,8 @@ on:
       - 'tools/integration/test-scene1341-selected-ipa-quarantine.mjs'
       - 'tools/integration/test-scene1341-phase1-gate.mjs'
       - 'tools/integration/test-scene1341-first-review-stage.mjs'
+      - 'tools/integration/test-scene1341-phase1-fresh-drafts.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs'
       - 'rebuild-preview/scene1341-readonly/scene1341-first-review-stage.mjs'
       - 'docs/scene1341-phase1-sc0001-sc0005-acceptance.md'
       - 'rebuild-preview/scene1341-readonly/scene1341-selected-ipa-quarantine.mjs'
@@ -154,3 +156,4 @@ jobs:
           node tools/integration/test-scene1341-selected-ipa-quarantine.mjs
           node tools/integration/test-scene1341-phase1-gate.mjs
           node tools/integration/test-scene1341-first-review-stage.mjs
+          node tools/integration/test-scene1341-phase1-fresh-drafts.mjs
