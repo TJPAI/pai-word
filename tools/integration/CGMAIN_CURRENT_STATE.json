@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "9a11a1927ec46762a96ad128415797e652e7b1e1",
+  "verified_parent_head": "4a47c48e1fc6c6643eab936fdff2041a93739030",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,8 +13,8 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "4c514d7b139626016d689233964fb31e8cb546a7",
-    "latest_master_version": "V224",
+    "latest_master_head": "ee8b50a3aa5127de01381060a746373814731ed5",
+    "latest_master_version": "V239",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -121,7 +121,7 @@
       "formal_ready": 0,
       "srs_writes": 0
     },
-    "new_master_status": "CG-MASTER V215 still 258 authored/1241, 983 missing; V209/211/214/215 evidence/skeletons/recovery queues are NOT authored completed cards",
+    "new_master_status": "CG-MASTER V239: V234 provides 1241 L1/L2 TEST source rows for five scenes (not 1241 complete teaching cards); V235/V238/V239 test data reaches SC0001–0025, 6179 overlapping-safe association rows. Authored 258/1241, 983 remaining; QA V203 original first-review 19, formalReady0.",
     "latest_v223_inspector": {
       "module": "rebuild-preview/scene1341-readonly/scene1341-v223-preview-inspector.mjs",
       "ui": "Settings only, independent five-scene next/previous page inspection",
@@ -144,6 +144,21 @@
       "main_learning_queue_changed": false,
       "formal_ready": 0,
       "srs_writes": 0
+    },
+    "v234_full_phase1_study_overlay": {
+      "module": "rebuild-preview/scene1341-readonly/scene1341-v234-phase1-test-overlay.mjs",
+      "consumer": "rebuild-preview/scene1341-readonly/index.html real learning load()",
+      "test": "tools/integration/test-scene1341-v234-phase1-test-overlay.mjs",
+      "source": "CG-MASTER V234 1241 L1/L2 TEST records (258 enhanced, 983 baseline), at HEAD of CG-MASTER V239 branch",
+      "integrity": "single latest Master commit pin, Git blob SHA1 and 1241 source identities/counts",
+      "semantics": "258 V199-V203 content-SHA256 checked authored cards override V234 test content",
+      "ipa": "do not select V234 unreviewed IPA, set HOLD on baseline",
+      "review": "no 1审 from author data; independent QA only, 19 original content review records",
+      "release_allowed": false,
+      "formal_ready": 0,
+      "can_write_srs": false,
+      "ci": "new V234 test added; workflow result not yet verified",
+      "browser": "user manual deployment and browser smoke test required"
     }
   },
   "ci": {
@@ -167,10 +182,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Owner manually deploy and verify Settings V223 latest 38 source-pinned preview records on iPhone; no study queue mixing",
-    "CG-MASTER latest V224 23 native IPA candidate selection queue is unapproved, so do not display selected pronunciation as formal",
-    "CG-QA V203 19 independent original exact SHA first reviews, 0 PASS/release",
-    "Continue first-five-scenes remaining 983 genuinely source-linked full teaching records, update without front-end rebuild"
+    "Run test-scene1341-v234-phase1-test-overlay.mjs and existing ranked/fourline CI; record actual outcomes",
+    "Manually deploy preview and check wake up + missing 983 L1 test pages, no unreviewed IPA promotion, two-face label and same-line POS",
+    "Next ingest SC0006–0025 V235/V238/V239 as isolated source-verified test-only feed, no false teaching completion",
+    "Ask CG-MASTER to continue full teaching content for 983 and QA to hash-review them"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
