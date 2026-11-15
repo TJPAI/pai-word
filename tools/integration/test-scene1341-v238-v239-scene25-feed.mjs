@@ -23,15 +23,15 @@ const docs=spec.map(([version,n,count])=>{
 assert.equal(pointer,6180);
 const v=validateScene25Documents(docs);
 assert.equal(v.sourceCount,3942);
-const original=docs.slice(0,5).flatMap(d=>d.records).map(r=>({
+const original=docs.slice(0,5).flatMap(d=>d.records).slice(0,636).map(r=>({
  master_record_id:r.record_id,master_final_row:r.source_final_row,scene_id:r.scene_id,
  expression:r.question_page.expression,question:{ipa:'/legacy/',expression:r.question_page.expression},
  answer:{meaning_zh:'原版完整教材',content_complete:true},source_rank:r.source_final_row
 }));
-assert.equal(original.length,1138);
+assert.equal(original.length,636);
 const merged=applyScene25TestFeed(original,{rows:v.rows,commit:'f'.repeat(40),
  onlyTest:true,canWriteSrs:false,formalReady:0});
-assert.equal(merged.matched,1138);assert.equal(merged.appended,2804);
+assert.equal(merged.matched,636);assert.equal(merged.appended,3306);
 assert.equal(merged.items.length,3942);assert.equal(merged.canWriteSrs,false);
 assert.equal(merged.items.find(x=>x.master_final_row===1242).answer.meaning_zh,'原版完整教材');
 const newCard=merged.items.find(x=>x.master_final_row===3376);
@@ -45,4 +45,4 @@ assert.throws(()=>validateScene25Documents(forged),/SCENE25_TEST_ROW/);
 const wrong=[{...original[0],expression:'another Sense'},...original.slice(1)];
 assert.throws(()=>applyScene25TestFeed(wrong,{rows:v.rows,commit:'f'.repeat(40),
  onlyTest:true,canWriteSrs:false,formalReady:0}),/SCENE25_TEST_BASE_IDENTITY/);
-console.log('PASS Scene25 V238/V239: 3942 source rows, 1138 legacy preserved, 2804 L1 appended, IPA HOLD, SRS0');
+console.log('PASS Scene25 V238/V239: 3942 source rows, 636 legacy preserved, 3306 L1 appended, IPA HOLD, SRS0');
