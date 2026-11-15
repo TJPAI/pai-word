@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "16420cc55c6d6d4c37f539c572e1547c8986d8c4",
+  "verified_parent_head": "d2cee2454ad81e939daf6cb1ab981605a0ed8fdc",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -77,16 +77,26 @@
       "remaining_new_page_gap": 983,
       "ux": "Scene500 existing gestures/phase/rating preserved",
       "actual_browser_test": "manual deployment and smoke test still required"
+    },
+    "review_stage_layout": {
+      "question": "Plain 待审 or 1审 adjacent to IPA in the current Scene500 hero, not title/progress",
+      "answer": "Plain 待审 or 1审 in centered row immediately above bottom 点空白… prompt",
+      "mutually_exclusive": true,
+      "only_text": true,
+      "removed_from": "top bar, IPA suffix, answer headings, tooltip",
+      "native_hero_replacement_safe": true,
+      "independent_qa_exact_sha_guard_unchanged": true,
+      "srs_write_disabled": true
     }
   },
   "ci": {
-    "latest_code_head": "75654cbb886ce3f7f2638d61b104ad55170b051c",
+    "latest_code_head": "6075c7ad67de18c09cb9c67cebfcf0f725f08913",
     "ranked": {
-      "run": 43686805512,
+      "run": 43687807460,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43686805546,
+      "run": 43687807463,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -100,10 +110,9 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Manual deploy preview and verify actual first SC0001 wake up renders Kaikki gloss/POS/IPA candidate, not old collocation layout; browser/Safari check pending",
-    "Coordinate CG-MASTER for 983 missing complete Phase1 pages; V209 38 native Sense skeletons not yet full authored cards",
-    "QA 5 first-review non-PASS labels remain exact SHA-bound, 0 formal approvals",
-    "Future conforming Master editorial batches automatically ingested without new front-end build, but new source schema requires contract review"
+    "Manual deployment by project owner; inspect iPhone layout both faces and auto/manual word switching",
+    "Preserve exact content SHA independent first-review; do not infer PASS from 1审",
+    "Continue CG-MASTER Phase1 V209+ source page integration, keep HOLD and SRS zero"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
