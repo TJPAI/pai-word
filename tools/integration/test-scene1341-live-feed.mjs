@@ -18,5 +18,21 @@ const response=await resolveLiveFeed({commit,fetchImpl:async (url,opts)=>{
  assert.equal(opts.cache,'no-store');return new Response(JSON.stringify(feed),{status:200});
 }});
 assert.equal(response.canWriteSrs,false);assert.equal(response.commit,commit);
+const newerCommit='d'.repeat(40);
+const calls=[];
+const latest=await resolveLiveFeed({fetchImpl:async(url,options)=>{
+ calls.push(url);
+ assert.equal(options.cache,'no-store');
+ if(url.includes('/branches/'))return new Response(JSON.stringify({commit:{sha:newerCommit}}),{status:200});
+ assert(url.includes('/'+newerCommit+'/tools/scene1341_master/qa_reports/CGMASTER_LIVE_FEED.json'));
+ return new Response(JSON.stringify(feed),{status:200});
+}});
+assert.equal(latest.commit,newerCommit);
+assert.equal(latest.stats.associationCount,6000);
+assert.equal(calls.length,2);
+assert(calls[0].includes('/branches/cg-master-kaikki-evidence-intake-20261111'));
+assert(calls[1].includes('/'+newerCommit+'/'));
+await assert.rejects(()=>resolveLiveFeed({fetchImpl:async()=>new Response('rate limited',{status:429})}),/MASTER_FEED_BRANCH_HTTP_429/);
+
 await assert.rejects(()=>resolveLiveFeed({commit:'latest',fetchImpl:async()=>{throw Error('must not fetch')}}),/MASTER_FEED_COMMIT/);
 console.log('PASS multi-batch feed 6000 associations, scene lazy selection, immutable SHA, fail-closed validation, SRS=0');
