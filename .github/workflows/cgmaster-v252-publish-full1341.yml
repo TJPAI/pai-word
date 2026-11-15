@@ -22,7 +22,7 @@ jobs:
       - name: Download frozen V247 source-derived L1 ZIP
         run: |
           python -m pip install --disable-pip-version-check gdown
-          gdown --id 15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x -O /tmp/CGMASTER_V247_FULL1341_L1_TEST.zip
+          gdown 15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x -O /tmp/CGMASTER_V247_FULL1341_L1_TEST.zip
           python - <<'PY'
           import zipfile
           p='/tmp/CGMASTER_V247_FULL1341_L1_TEST.zip'
