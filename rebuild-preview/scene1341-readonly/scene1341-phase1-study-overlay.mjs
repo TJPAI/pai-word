@@ -6,8 +6,7 @@ const SHA=/^[a-f0-9]{64}$/;
 const SCENE=/^SC50-000[1-5]$/;
 const SOURCE='4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99';
 const normalize=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
-const safeIPA=x=>typeof x==='string'&&/^\/[^
-/]+\/$/.test(x)&&x.length>2;
+const safeIPA=x=>typeof x==='string'&&x.startsWith('/')&&x.endsWith('/')&&x.length>2&&!/[\\r\\n]/.test(x)&&x.slice(1,-1).trim().length>0;
 const fail=x=>{throw Error('PHASE1_STUDY_'+x)};
 function exampleRows(rows){
  if(!Array.isArray(rows))return [];
