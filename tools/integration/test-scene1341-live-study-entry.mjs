@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
+assert(html.includes('let activeMasterFeed=null,sceneFeedRequest=0,sceneFeedCache=new Map()'));
+assert(html.includes('activeMasterFeed=liveFeed;'));
+assert(html.includes('async function inspectSceneMasterFeed(id,request)'));
+assert(html.includes('view=await module.fetchSceneAssociations(activeMasterFeed,id)'));
+assert(html.includes('if(request!==sceneFeedRequest||sceneId!==id||$(\'learning\').hidden)return;'));
+assert(html.includes('const feedRequest=++sceneFeedRequest;'));
+assert(html.includes('void inspectSceneMasterFeed(id,feedRequest);'));
+assert(html.includes('场景增量来源暂不可用，沿用已验证词卡'));
+assert(html.includes('Master已校验')&&html.includes('（仅测试、未认证）'));
+assert(html.includes('id="master-live-feed-status"'));
+assert(!html.includes('question-ipa-test.html'));
+console.log('PASS original learning scene entry checks immutable live feed lazily; no SRS/card promotion; races and fallback guarded');
