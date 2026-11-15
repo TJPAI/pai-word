@@ -26,6 +26,23 @@ const absent=await fetchSceneAssociations({commit,feed},'SC50-0003',{fetchImpl:a
 assert.equal(absent.rows.length,0);
 const corrupted=structuredClone(feed);corrupted.batches[0].shards[0].sha256='0'.repeat(64);
 await assert.rejects(()=>fetchSceneAssociations({commit,feed:corrupted},'SC50-0001',{fetchImpl}),/MASTER_FEED_SHARD_HASH/);
+// Even correctly hashed gzip may be semantically corrupt. Verify every row
+// belongs to the declared original batch and its listed scene.
+const makeFixture=(rows)=>{
+ const compressed=gzipSync(rows.map(row=>JSON.stringify(row)).join('\\n')+'\\n');
+ const blobSha=createHash('sha1').update(Buffer.concat([
+  Buffer.from('blob '+compressed.length+'\\0'),compressed])).digest('hex');
+ const digest=createHash('sha256').update(compressed).digest('hex');
+ const next=structuredClone(feed);
+ next.batches[0].shards[0]={...next.batches[0].shards[0],git_blob_sha1:blobSha,sha256:digest};
+ return {next,compressed};
+};
+const wrongScene=makeFixture([{...records[0],scene_id:'SC50-0004'},records[1]]);
+await assert.rejects(()=>fetchSceneAssociations({commit,feed:wrongScene.next},'SC50-0001',
+ {fetchImpl:async()=>response(wrongScene.compressed)}),/MASTER_FEED_ROW_IDENTITY/);
+const noncontiguous=makeFixture([records[0],{...records[1],source_final_row:3}]);
+await assert.rejects(()=>fetchSceneAssociations({commit,feed:noncontiguous.next},'SC50-0001',
+ {fetchImpl:async()=>response(noncontiguous.compressed)}),/MASTER_FEED_ROW_IDENTITY/);
 const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
 assert(html.includes('id="master-live-feed-status"'));
 assert(html.includes("import('./scene1341-live-feed.mjs')"));
