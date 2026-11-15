@@ -16,7 +16,8 @@ assert.equal(resolveFirstReviewLabel({...card,scene_id:'SC50-0002'},trusted).lab
 assert.equal(resolveFirstReviewLabel({...card,scene_id:'SC50-0006'},trusted).visible,false);
 assert.throws(()=>createTrustedFirstReviewIndex({...report,reviews:[proof,proof]},{commit}),/DUPLICATE/);
 assert.throws(()=>createTrustedFirstReviewIndex({...report,reviews:[{...proof,reviewer:'CG-MASTER'}]},{commit}),/PROOF/);
-assert.throws(()=>createTrustedFirstReviewIndex({...report,reviews:[{...proof,evidence_commit:'d'.repeat(40)}]},{commit}),/PROOF/);
+assert.doesNotThrow(()=>createTrustedFirstReviewIndex({...report,reviews:[{...proof,evidence_commit:'d'.repeat(40)}]},{commit}),'actual review evidence may predate the QA index commit');
+assert.throws(()=>createTrustedFirstReviewIndex({...report,reviews:[{...proof,evidence_commit:'wrong'}]},{commit}),/PROOF/);
 assert.throws(()=>createTrustedFirstReviewIndex({...report,formal_ready:1},{commit}),/REPORT/);
 const calls=[];
 const fetched=await fetchIndependentFirstReviews({fetchImpl:async(url,opts)=>{
