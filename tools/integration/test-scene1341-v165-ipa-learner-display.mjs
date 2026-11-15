@@ -72,7 +72,7 @@ const phase1Id='SC1341-FINAL-SRC-'+'a'.repeat(32);
 result=render({ipa:'/ɹɛd/',ipa_status:'PHASE1_KAIKKI_NATIVE_SINGLE_UNREVIEWED',
  ipa_source:{record_id:phase1Id}}, {master_phase1_source:'KAIKKI_FRESH_EDITOR_TEST',
  master_record_id:phase1Id});
-assert.equal(result.text,'/rɛd/（Kaikki来源候选·待审）');
+assert.equal(result.text,'/rɛd/','review stage must be a separate plain-text marker adjacent to IPA');
 assert.equal(result.status,'phase1-kaikki-unreviewed');
 // Even if the old learning-card IPA has a value, an unknown Phase1 source
 // must HOLD rather than borrow a potentially wrong Sense/pronunciation.
