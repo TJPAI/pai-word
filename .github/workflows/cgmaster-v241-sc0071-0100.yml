@@ -1,0 +1,46 @@
+name: CG-MASTER V241 bulk scene export SC0071-0100
+on:
+  workflow_dispatch:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - 'tools/scene1341_master/build_v241_sc0071_0100.py'
+      - '.github/workflows/cgmaster-v241-sc0071-0100.yml'
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-v241-scene-export
+  cancel-in-progress: false
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Generate 5618 source row test cards from V176 and V178
+        run: |
+          python tools/scene1341_master/build_v241_sc0071_0100.py
+          python - <<'PY'
+          import json,pathlib
+          d=pathlib.Path('tools/scene1341_master/qa_reports/v241_scene_test')
+          m=json.loads((d/'CGMASTER_V241_MANIFEST.json').read_text())
+          assert m['source_records']==5618 and m['scene_count']==30
+          assert sum(m['by_scene'].values())==5618
+          print('V241 verified',m['source_records'],m['scene_count'])
+          PY
+      - name: Commit generated L1 test scenes
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/scene1341_master/qa_reports/v241_scene_test/
+          if ! git diff --cached --quiet; then
+            git commit -m 'CG-MASTER V241 generate 5618 scene test records for SC0071-0100'
+            git pull --rebase origin cg-master-kaikki-evidence-intake-20261111
+            git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
+          fi
