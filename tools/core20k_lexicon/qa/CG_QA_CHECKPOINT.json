@@ -3,8 +3,8 @@
   "role": "CG-QA",
   "updated_at": "2026-11-15",
   "branch": "cg-qa-enlex-review-20261026",
-  "verified_previous_head": "a8ee5950245a15fd21d0182cdf2b673326ba435e",
-  "last_completed_version": "V197",
+  "verified_previous_head": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+  "last_completed_version": "V198",
   "formal_dual_ai_certified": 0,
   "formal_ready": 0,
   "srs_eligible": false,
@@ -39,6 +39,12 @@
       "rows": 203,
       "path": "tools/core20k_lexicon/qa/CG_QA_V197_PHASE1_FIRST203_FOUR_GIT_BLOBS_INDEPENDENT_MECHANICAL_AUDIT_20261115.v1.json",
       "findings": "203 unique ID/row, 43 unreviewed IPA, 203 editor examples, 0 mechanical anomalies, 0 first reviews"
+    },
+    {
+      "version": "V198",
+      "rows": 5,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+      "findings": "4 REVISE P1, 1 CONDITIONAL P2. Actual source content inspected; no runtime 1审 index until independent content-hash verification."
     }
   ],
   "source_state": {
@@ -61,23 +67,24 @@
     "V192 9 contextual POS/gloss candidate risks",
     "V196 SC0014 143 cross-version IPA differences require independent source checks",
     "V196 batch2 2757 records lack authored answers",
-    "Phase1 first 203 editorial drafts pending independent exact-content first review"
+    "Phase1 first 203 editorial drafts pending independent exact-content first review",
+    "V198 row359 body lotion, row543 sweater, row352 cotton swab, row1046 laundry detergent require source-safe content revisions; row70 weekday conditional example improvement"
   ],
   "pending_tasks": [
-    "Verify per-record content SHA and fresh native Kaikki sense evidence before independent first-review judgments",
-    "Independently audit fresh phase1 editor drafts by record_id, content_sha256 and semantic risk",
-    "Publish independent first-review evidence only for rows actually inspected",
-    "Run next 3000 row mechanical batch after canonical source archive available",
-    "Post Issue #1 targeted handoff after actual QA delivery"
+    "Independently recompute stored content SHA for five source-bound reviews, then publish valid 1审 index with earlier evidence commit and exact matching ID/hash",
+    "Check current Master validator exact-head CI before accepting source-backed provenance claims",
+    "Review further phase1 rows, prioritizing P0 and author revisions",
+    "Continue 3000-row mechanical audit after canonical new source changes",
+    "Keep Issue #1 and checkpoint updated"
   ],
   "last_issue_comment_ids_observed": {
-    "issue1": 6890007156,
-    "issue2": 6890007156
+    "issue1": 6890139948,
+    "issue2": 6890147525
   },
   "invariants": [
     "Do not mutate Core20K or original Master/Scene500/Runtime/SRS",
     "No Muse signoff asserted",
     "No AI-first-review label without actual record/content SHA adjudication"
   ],
-  "next_action": "Independently review source-bound Phase1 drafts; exact-content indexes must be evidence-backed and review verdict separate from certification."
+  "next_action": "Verify five content hashes and source raw Kaikki, publish proof-pinned first-review index only after gating; remain formalReady0"
 }
