@@ -1,0 +1,141 @@
+{
+  "schema": "cg-enlex-native27-eight-conditional-triage/v1",
+  "date": "2026-11-15",
+  "role": "CG-ENLEX",
+  "source": {
+    "branch": "core20k-teaching-qa-b162-20261024",
+    "path": "tools/core20k_lexicon/staging/MU_ENLEX_IPA_NATIVE27.v1.json",
+    "git_blob_sha": "81247ed6c53afead54036826658b697f8f4a4bf3",
+    "reviewer": "Muse",
+    "raw_kaikki_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99"
+  },
+  "counts": {
+    "reviewed": 27,
+    "muse_pass": 19,
+    "muse_conditional": 8,
+    "triaged": 8,
+    "independent_cg_qa_pass_new": 0,
+    "dual_ai_certified": 0
+  },
+  "records": [
+    {
+      "scene_ku_id": "SC1341-KU-00079",
+      "expression": "day off",
+      "source_line": 164261,
+      "sound_index": 1,
+      "source_ipa_verbatim": "/ˈdeɪ.ɒf/",
+      "source_region": "generic",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "REGIONAL_LABEL",
+      "source_muse_reason": "The stress pattern is right for the noun compound 休息日 (primary on 'day'; the other candidate reverses the stress onto 'off', which is only a contrastive pattern), but both candidates are labelled 'generic' while using the RP vowel in 'off', so the selected form must be published as RP/UK rather than dialect-neutral.",
+      "required_action": "Record correct target regional label (UK/RP or US/GA) and verify teaching locale policy",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00098",
+      "expression": "roll over",
+      "source_line": 195091,
+      "sound_index": 0,
+      "source_ipa_verbatim": "/ˌɹəʊl ˈəʊvə(ɹ)/",
+      "source_region": "generic",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "REGIONAL_LABEL",
+      "source_muse_reason": "Stress and segments are right for the verb sense 翻身 (secondary on 'roll', primary on 'over', optional linking r marked), but the transcription is RP-coloured — the GOAT diphthong and the non-rhotic 'over' — while the row is labelled 'generic'. Publish as RP/UK, not dialect-neutral.",
+      "required_action": "Record correct target regional label (UK/RP or US/GA) and verify teaching locale policy",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00280",
+      "expression": "bath towel",
+      "source_line": 588069,
+      "sound_index": 1,
+      "source_ipa_verbatim": "/ˌbæθ ˈtaʊ̯.əl/",
+      "source_region": "both",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "REGIONAL_LABEL",
+      "source_muse_reason": "Correct General American segments and stress for 浴巾, but the 'both' tag over-claims: the RP form of 'bath' uses the long BATH vowel, which does not appear among the eight candidates, and the short-a candidate is a northern-English form, not RP. Publish the selected form as US/GA only.",
+      "required_action": "Record correct target regional label (UK/RP or US/GA) and verify teaching locale policy",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00412",
+      "expression": "put on",
+      "source_line": 10993,
+      "sound_index": 0,
+      "source_ipa_verbatim": "/ˌpʊt ˈɒn/",
+      "source_region": "generic",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "REGIONAL_LABEL",
+      "source_muse_reason": "Stress is right for the phrasal verb 穿上或戴上 (secondary on 'put', primary on 'on') and the segments are a correct RP rendering, but the rounded vowel in 'on' is RP-specific while the row is labelled 'generic'. Publish as RP/UK, not dialect-neutral.",
+      "required_action": "Record correct target regional label (UK/RP or US/GA) and verify teaching locale policy",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00640",
+      "expression": "get rid of",
+      "source_line": 68126,
+      "sound_index": 0,
+      "source_ipa_verbatim": "/ɡɛt ɹɪd ʌv/",
+      "source_region": "generic",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "STRESS_OR_WEAK_FORM",
+      "source_muse_reason": "Segments are correct for the verb sense 处理掉不需要的东西, but the transcription carries no stress marks at all and gives 'of' in its strong form; in this phrase 'of' is normally weak and the primary stress falls on 'rid'. Usable as a segment guide only; add stress before publishing as a teaching IPA.",
+      "required_action": "Obtain independently verified stress/weak-form teaching transcription; do not silently alter Kaikki citation",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-00950",
+      "expression": "fair share",
+      "source_line": 1266115,
+      "sound_index": 0,
+      "source_ipa_verbatim": "/fɛə ʃɛə/",
+      "source_region": "uk",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "REGIONAL_LABEL",
+      "source_muse_reason": "Segments and the RP diphthong are correct for the noun 公平分担的部分, but none of the three candidates marks any stress; the citation form needs primary stress on 'fair'. The second UK candidate uses the older long-vowel variant of the vowel in 'fair' and is less standard.",
+      "required_action": "Record correct target regional label (UK/RP or US/GA) and verify teaching locale policy",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01241",
+      "expression": "cutting board",
+      "source_line": 422939,
+      "sound_index": 0,
+      "source_ipa_verbatim": "/ˈkʰʌɾɪŋ bɔɹd/",
+      "source_region": "us",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "TRANSCRIPTION_NOTATION",
+      "source_muse_reason": "The sounds are correct GA for 砧板 (aspirated initial k, flapped t, rhotic 'board'), but narrow phonetic detail is placed inside phonemic slashes; a teaching IPA should either use brackets for this narrow form or normalize it to the broad phonemic form. Do not publish the slash form as-is.",
+      "required_action": "Require new explicitly sourced broad /.../ or correct [...] notation; preserve source verbatim separately",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    },
+    {
+      "scene_ku_id": "SC1341-KU-01710",
+      "expression": "cutting board",
+      "source_line": 422939,
+      "sound_index": 0,
+      "source_ipa_verbatim": "/ˈkʰʌɾɪŋ bɔɹd/",
+      "source_region": "us",
+      "muse_original_verdict": "CONDITIONAL",
+      "blocker": "TRANSCRIPTION_NOTATION",
+      "source_muse_reason": "Same expression and source line as SC1341-KU-01241 (raw-meat example here, same noun sense 砧板); same verdict for consistency: the GA sounds are right, but narrow phonetic detail inside phonemic slashes is a notation defect that must be fixed before publication.",
+      "required_action": "Require new explicitly sourced broad /.../ or correct [...] notation; preserve source verbatim separately",
+      "cg_enlex_status": "SOURCE_TRIAGED_PENDING_INDEPENDENT_QA",
+      "formal_pass": false
+    }
+  ],
+  "policy": {
+    "do_not_override_original_muse_verdict": true,
+    "do_not_relabel_source_as_edited": true,
+    "do_not_promote_to_published_ipa": true,
+    "do_not_merge_duplicate_KU_without_master": true
+  },
+  "next": "Request CG-QA independent item-by-item phonetic adjudication; ask CG-MASTER for original exact Sense/scene sentence when needed"
+}
