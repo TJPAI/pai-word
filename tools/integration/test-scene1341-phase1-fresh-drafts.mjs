@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
-import {applyPhase1StudyOverlay} from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-study-overlay.mjs';
+import {createHash,webcrypto} from 'node:crypto';
+import {applyPhase1StudyOverlay,verifyPhase1ContentDigests} from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-study-overlay.mjs';
 import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,fetchPhase1FreshDraftsCurrent,phase1EditorialPreview}
  from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs';
 const V=['V199','V200','V201'],N=[35,55,61];
@@ -233,3 +233,24 @@ const partial=applyPhase1StudyOverlay(cardDrift,{rows:sourceCards,
 assert.equal(partial.matched,1);
 assert.equal(partial.items[0].answer.usage_note,'OLD ANSWER');
 console.log('PASS actual SC0001 wake up new Master answer/Kaikki IPA and get up HOLD; no legacy field leakage or SRS');
+
+function stableSHAJSON(x){
+ if(Array.isArray(x))return '['+x.map(stableSHAJSON).join(',')+']';
+ if(x&&typeof x==='object')return '{'+Object.keys(x).sort()
+  .map(k=>JSON.stringify(k)+':'+stableSHAJSON(x[k])).join(',')+'}';
+ return JSON.stringify(x);
+}
+const correctlyHashed=structuredClone(sourceCards);
+for(const rec of correctlyHashed){
+ const {content_sha256,...payload}=rec;
+ rec.content_sha256=createHash('sha256').update(stableSHAJSON(payload)).digest('hex');
+}
+const verifiedDigest=await verifyPhase1ContentDigests({rows:correctlyHashed},{cryptoImpl:webcrypto});
+assert.equal(verifiedDigest.verified,203);
+const tamperedContent=structuredClone(correctlyHashed);
+tamperedContent[0].answer_page.gloss_en='UNREVIEWED ALTERED GLOSS';
+await assert.rejects(()=>verifyPhase1ContentDigests({rows:tamperedContent},{cryptoImpl:webcrypto}),
+ /PHASE1_STUDY_CONTENT_SHA256_MISMATCH_1/);
+await assert.rejects(()=>verifyPhase1ContentDigests({rows:correctlyHashed},{cryptoImpl:{}}),
+ /PHASE1_STUDY_CONTENT_CRYPTO_UNAVAILABLE/);
+console.log('PASS all 203 source content SHA256 independently verified; stale reviewed SHA rejected');
