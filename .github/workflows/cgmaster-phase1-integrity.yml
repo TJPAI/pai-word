@@ -5,6 +5,11 @@ on:
     paths:
       - 'tools/scene1341_master/CGMASTER_CURRENT_STATE.json'
       - 'tools/scene1341_master/validate_phase1_editor_drafts.mjs'
+      - 'tools/scene1341_master/validate_v212_editorial_handoff.mjs'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V208_*'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V209_*'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V211_*'
+      - 'tools/scene1341_master/qa_reports/CGMASTER_V212_*'
       - 'tools/scene1341_master/qa_reports/CGMASTER_V19*_PHASE1*'
       - 'tools/scene1341_master/qa_reports/CGMASTER_V20*_PHASE1*'
       - '.github/workflows/cgmaster-phase1-integrity.yml'
@@ -18,3 +23,4 @@ jobs:
         with:
           node-version: '22'
       - run: node tools/scene1341_master/validate_phase1_editor_drafts.mjs
+      - run: node tools/scene1341_master/validate_v212_editorial_handoff.mjs
