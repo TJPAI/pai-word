@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {createHash,webcrypto} from 'node:crypto';
 import {applyPhase1StudyOverlay,verifyPhase1ContentDigests} from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-study-overlay.mjs';
-import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,fetchPhase1FreshDraftsCurrent,phase1EditorialPreview}
+import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,fetchPhase1FreshDraftsCurrent,selectPhase1RollingEditorialArtifacts,phase1EditorialPreview}
  from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs';
 const V=['V199','V200','V201'],N=[35,55,61];
 const counts=[79,40,13,12,7],sceneIds=counts.flatMap((n,i)=>Array(n).fill('SC50-000'+(i+1)));
@@ -134,6 +134,63 @@ const serveRolling=async url=>{
  if(url.includes('V203_PHASE1_NATIVE_SINGLE'))return new Response(rollingText);
  return serveLatest(url);
 };
+const futureEditorial='tools/scene1341_master/qa_reports/CGMASTER_V300_PHASE1_NEXT42_KAIKKI_EDITOR_DRAFT_20261116.json';
+const longFutureEditorial='tools/scene1341_master/qa_reports/CGMASTER_V1000_PHASE1_NATIVE_SOURCE_UNREVIEWED_20271116.json';
+const unrelatedArtifacts=[
+ 'tools/scene1341_master/qa_reports/CGMASTER_V209_38_EDITORIAL_SENSE_PAGE_SKELETONS_UNREVIEWED_20261115.json',
+ 'tools/scene1341_master/qa_reports/CGMASTER_V219_27_EDITORIAL_EXAMPLE_SENSE_CONSISTENCY_HANDOFF_20261115.json',
+ 'tools/scene1341_master/qa_reports/CGMASTER_V301_PHASE1_EXAMPLE_HANDOFF_REPORT_20261116.json',
+ 'tools/scene1341_master/qa_reports/CGMASTER_V302_PHASE1_EXAMPLE_REVISE_20261116.json',
+ 'tools/scene1341_master/qa_reports/CGMASTER_V300_PHASE2_NEW_EDITOR_DRAFT_20261116.json',
+ 'tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEW_EDITOR_DRAFT_20261116.json',
+ 'tools/scene1341_master/qa_reports/CGMASTER_V300_PHASE1_NEW_EDITOR_DRAFT_20261116.json.bak'
+];
+assert.deepEqual(selectPhase1RollingEditorialArtifacts([
+ ...rollingState.phase1.editorial_artifacts.slice(0,4),rollingPath,
+ ...unrelatedArtifacts,futureEditorial,longFutureEditorial]),[rollingPath,futureEditorial,longFutureEditorial],
+ 'Only future dated, source-phase1 editorial records may join rolling learning cards');
+assert.deepEqual(selectPhase1RollingEditorialArtifacts(rollingState.phase1.editorial_artifacts),[rollingPath],
+ 'The 2026-11-15 V204+ triage artifacts are NOT production draft cards');
+assert.throws(()=>selectPhase1RollingEditorialArtifacts(
+ [...rollingState.phase1.editorial_artifacts.slice(0,4),null]),/PHASE1_FRESH_ROLLING_ARTIFACT_PATH_TYPE/);
+// Future-dated V300 published as a coherent 1-row incremental batch must
+// be fully Git-blob SHA-checked and identity/total reconciled, not merely
+// recognized by filename.
+const futureRow=structuredClone(v203Rows[0]);
+futureRow.record_id='SC1341-FINAL-SRC-'+(259).toString(16).padStart(32,'0');
+futureRow.source_final_row=259;
+futureRow.scene_id='SC50-0001';
+const futurePayload={version:'V300_NEXT_EDITOR_DRAFT',source_associations_total:1241,
+ prior_editorial_records:258,new_records:1,cumulative_distinct_records:259,
+ qa_status:'待审',formal_ready:0,records:[futureRow]};
+const futureText=JSON.stringify(futurePayload);
+const futureBlob=createHash('sha1').update('blob '+Buffer.byteLength(futureText)+'\\0').update(futureText).digest('hex');
+const futureState=structuredClone(rollingState);
+futureState.version='V300';
+futureState.phase1.editorial_artifacts=[...rollingState.phase1.editorial_artifacts,futureEditorial];
+futureState.phase1.fresh_editorial_drafts=259;
+futureState.phase1.remaining_without_fresh_editorial_draft=982;
+futureState.phase1.by_scene['SC50-0001'].drafts+=1;
+futureState.phase1.by_scene['SC50-0001'].remaining-=1;
+const futureFetch=async url=>{
+ if(url.includes('CGMASTER_CURRENT_STATE'))return new Response(JSON.stringify(futureState));
+ if(url.includes('/contents/'+futureEditorial))return new Response(JSON.stringify({
+   type:'file',path:futureEditorial,sha:futureBlob,size:futureText.length
+ }));
+ if(url.includes(futureEditorial))return new Response(futureText);
+ return serveRolling(url);
+};
+const futureResult=await fetchPhase1FreshDraftsCurrent({commit,fetchImpl:futureFetch});
+assert.equal(futureResult.rows.length,259);
+assert.equal(futureResult.verifiedBlobCount,6);
+assert.equal(futureResult.version,'V300');
+assert.equal(futureResult.canWriteSrs,false);
+await assert.rejects(()=>fetchPhase1FreshDraftsCurrent({commit,fetchImpl:async url=>{
+ if(url.includes('/contents/'+futureEditorial))return new Response(JSON.stringify({
+  type:'file',path:futureEditorial,sha:'0'.repeat(40),size:futureText.length}));
+ return futureFetch(url);
+}}),/PHASE1_FRESH_ROLLING_BLOB_SHA1/);
+console.log('PASS V300 2026-11-16 & V1000 future identifiers recognized, triage excluded, valid V300 batch joined and tampered SHA blocked');
 const rolling=await fetchPhase1FreshDraftsCurrent({commit,fetchImpl:serveRolling});
 assert.equal(rolling.rows.length,258);
 assert.equal(rolling.unreviewed,258);
