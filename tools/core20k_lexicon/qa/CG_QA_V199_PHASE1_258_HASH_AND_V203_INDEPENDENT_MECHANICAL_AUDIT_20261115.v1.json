@@ -1,0 +1,120 @@
+{
+  "schema": "cg-qa-v199-phase1-258-content-digest-and-v203-delta-audit/v1",
+  "role": "CG-QA",
+  "version": "V199",
+  "date": "2026-11-15",
+  "source_branch": "cg-master-kaikki-evidence-intake-20261111",
+  "source_packs": [
+    {
+      "version": "V199",
+      "records": 35,
+      "git_blob": "198041d48aaf06e83a7352b09d633bfc4e58573c"
+    },
+    {
+      "version": "V200",
+      "records": 55,
+      "git_blob": "abaef260727a272d7bfc232c1b665b1773b3fd5e"
+    },
+    {
+      "version": "V201",
+      "records": 61,
+      "git_blob": "1e8d2aa243ac531d06e739a9361b00bc5e939662"
+    },
+    {
+      "version": "V202",
+      "records": 52,
+      "git_blob": "24c3603c04dd4378fd24f97000d6717839326570"
+    },
+    {
+      "version": "V203",
+      "records": 55,
+      "git_blob": "aac36bfa931a578704d5452f914328175a9e5488"
+    }
+  ],
+  "hash_algorithm": "SHA256 UTF-8 of recursively lexicographically sorted compact JSON without content_sha256; verified independent JS implementation against standard SHA256('abc') ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+  "results": {
+    "source_rows": 258,
+    "unique_record_id": 258,
+    "unique_source_final_row": 258,
+    "stored_content_sha256_recomputed_equal": 258,
+    "mismatch": 0,
+    "phase1_scene_counts": {
+      "SC50-0001": 85,
+      "SC50-0002": 46,
+      "SC50-0003": 35,
+      "SC50-0004": 46,
+      "SC50-0005": 46
+    },
+    "new_v203": 55,
+    "new_v203_native_ipa_selected_unreviewed": 9,
+    "new_v203_native_example_counts_positive": 25,
+    "new_v203_answer_examples_empty": 46,
+    "new_v203_identity_or_release_safety_failures": 0,
+    "new_v203_metalinguistic_gloss_count": 14,
+    "first_review_eligible_from_prior_independent_linguistic_review": 5,
+    "first_review_verdicts": {
+      "REVISE": 4,
+      "CONDITIONAL": 1
+    },
+    "formal_dual_ai_certification": 0,
+    "formal_ready": 0,
+    "srs": false
+  },
+  "v203_metalinguistic_gloss_rows": [
+    63,
+    77,
+    113,
+    203,
+    556,
+    569,
+    570,
+    572,
+    576,
+    577,
+    828,
+    842,
+    1108,
+    1112
+  ],
+  "source_v204_triage": {
+    "remaining_without_editorial_draft": 983,
+    "no_exact_native_entry_in_subset": 691,
+    "single_entry_multi_sense_hold": 56,
+    "multiple_native_entries_hold": 236,
+    "triage_total": 983,
+    "qualification": "No exact entry in V198 evidence subset does NOT prove absence from all raw Kaikki."
+  },
+  "linked_independent_semantic_review": {
+    "report": "tools/core20k_lexicon/qa/CG_QA_V198_PHASE1_FIVE_EDITORIAL_INDEPENDENT_RISK_ADJUDICATION_20261115.v1.json",
+    "evidence_commit": "ee15a71ddc67800eb8eba920e977f71049628eb5",
+    "verdict_rows": [
+      {
+        "row": 70,
+        "verdict": "CONDITIONAL"
+      },
+      {
+        "row": 352,
+        "verdict": "REVISE"
+      },
+      {
+        "row": 359,
+        "verdict": "REVISE"
+      },
+      {
+        "row": 543,
+        "verdict": "REVISE"
+      },
+      {
+        "row": 1046,
+        "verdict": "REVISE"
+      }
+    ]
+  },
+  "limitations": [
+    "Hash verification ensures exact integrity to stored records, NOT truth of raw Kaikki source-lines or sense selection.",
+    "The V203 55 new rows were mechanically reviewed only; do NOT issue 1审 for these.",
+    "Original 5 linguistically reviewed rows contain unresolved author issues; 1审 is a review stage, NOT PASS.",
+    "Formal double-AI certification and release remain zero; no Master, Core20K, Runtime, or SRS mutations."
+  ],
+  "disposition": "CONTENT_HASH_MECHANICAL_PASS_258_AND_FIVE_PREVIOUS_INDEPENDENT_REVIEW_ROWS_READY_FOR_FAIL_CLOSED_1REVIEW_INDEX"
+}
