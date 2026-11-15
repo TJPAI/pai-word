@@ -8,6 +8,13 @@ const record={record_id:'SC1341-FINAL-SRC-'+'a'.repeat(32),scene_id:scene,source
  release_allowed:false};
 const doc={schema_version:'scene1341-master-scene/v1',scene_id:scene,record_count:1,release_allowed:false,srs_eligible:false,records:[record]};
 const valid=validateMasterSceneDocument(doc,scene);
+const v247=structuredClone(doc);
+v247.records[0].record_id=null;
+v247.records[0].answer_page.meaning_zh=null;
+const sourceRowCard=validateMasterSceneDocument(v247,scene).cards[0];
+assert.equal(sourceRowCard.master_record_id,'SC1341-FINAL-ROW-230289');
+assert.equal(sourceRowCard.answer.meaning_zh,'到家');
+assert.equal(sourceRowCard.production_release_allowed,false);
 assert.equal(valid.recordCount,1);assert.equal(valid.cards[0].question.ipa,null);
 assert.equal(valid.cards[0].question.ipa_status,'UNAPPROVED_CANDIDATE_HOLD');
 assert.equal(valid.cards[0].answer.example_en,'I got home.');
