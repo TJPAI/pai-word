@@ -119,7 +119,7 @@ const rollingState={schema:'cgmaster-current-state/v1',role:'CG-MASTER',
  sources:{raw_kaikki_archive_sha256:rawSource},phase1:{
  original_source_associations:1241,fresh_editorial_drafts:258,
  remaining_without_fresh_editorial_draft:983,
- editorial_artifacts:[...version_batches.map(x=>x.path),
+ editorial_artifacts:['tools/scene1341_master/qa_reports/CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json','tools/scene1341_master/qa_reports/CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json','tools/scene1341_master/qa_reports/CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json',
  latestReport.artifacts.real_full_json_git_path,rollingPath,
  'tools/scene1341_master/qa_reports/CGMASTER_V204_PHASE1_REMAINING983_TRIAGE_SUMMARY_20261115.json'],
  by_scene:Object.fromEntries(rollingCounts.map((n,i)=>['SC50-000'+(i+1),
