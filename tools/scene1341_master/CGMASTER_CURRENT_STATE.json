@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "8a3c919c367ce42a379b639f287385aaf21bd1f7",
-  "version": "V246_SOURCE_CANDIDATE_STAGED",
+  "verified_base_head": "7e3c43b3e0ecf693035a5a68e2857622f163e5f5",
+  "version": "V247_FULL1341_L1_SOURCE_VERIFIED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -563,6 +563,23 @@
       "qa_stage": "待审",
       "release_allowed": false,
       "manifest": "tools/scene1341_master/qa_reports/v246_source_candidate/CGMASTER_V246_MANIFEST.json"
+    },
+    "v247_full1341": {
+      "status": "FULL_SOURCE_ROWS_L1_TEST_DELIVERED_DRIVE",
+      "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+      "source_records": 230289,
+      "scene_count": 1341,
+      "missing_chinese_meaning": 222,
+      "canonical_sense_ids_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "formal_srs_allowed": false,
+      "builder": "tools/scene1341_master/build_v247_full1341_from_final.py",
+      "drive_archive_id": "15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x",
+      "drive_archive_name": "CGMASTER_V247_FULL1341_L1_TEST.zip",
+      "drive_archive_size_bytes": 12430241,
+      "git_scene_files_committed": false,
+      "note": "All 1341 scene JSON files and manifest generated from checked original FINAL Master, zipped and stored in Google Drive authority folder. GitHub contains builder/checkpoint, not all per-scene JSON blobs. Source-row ID is not a certified global Sense ID."
     }
   },
   "sources": {
@@ -577,8 +594,10 @@
     "final_master_drive_metadata_verified": {
       "name": "PAI_Word_Scene1341_Sense_Scene_MASTER_FINAL.csv",
       "size_bytes": 115664055,
-      "metadata_status": "EXACT_FILE_LOCATED_SIZE_VERIFIED_SHA256_FROM_PRIOR_MU_MASTER_REPORT_NOT_RECOMPUTED_THIS_TURN",
-      "expected_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986"
+      "metadata_status": "RAW_BYTES_DOWNLOADED_LOCAL_SHA256_RECOMPUTED_EXACT_MATCH",
+      "actual_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+      "total_source_rows_read": 230289,
+      "scenes_read": 1341
     }
   },
   "qa": {
@@ -614,9 +633,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Directly read verified Drive FINAL Master ID 1bT_STgfNsJQA5v5x-8bP4T4DH9_eLNaF; recompute raw SHA256 before canonical row-identity linking.",
-    "Expand L1 candidate coverage SC0164 onward using Drive source ledger, keeping candidate-only isolation.",
-    "Validate source rows and audit each page L2/L3, independent CG-QA exact-content 1审 only."
+    "Coordinate CG-MAIN dynamic intake of V247 Drive full 1341 scene L1 archive, preserving strict TEST-only QA status and never linking to formal SRS.",
+    "Batch build and pin scene index/overlays for all 230289 source rows; keep source line/row identities exact, assign global Sense IDs only after dedup policy and QA.",
+    "Iteratively add Kaikki native semantic gloss/POS/IPA/examples (L2), then bilingual collocation/usage L3; independent exact-content CG-QA for 1审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
