@@ -3,8 +3,8 @@
   "role": "CG-QA",
   "updated_at": "2026-11-15",
   "branch": "cg-qa-enlex-review-20261026",
-  "verified_previous_head": "d1ff27c26b21fe8f3830c15e5d7c2e0c73dabd27",
-  "last_completed_version": "V202",
+  "verified_previous_head": "b0a147b327ccab1a746d688965ba1d96f160a2e8",
+  "last_completed_version": "V203",
   "formal_dual_ai_certified": 0,
   "formal_ready": 0,
   "srs_eligible": false,
@@ -70,12 +70,19 @@
       "bilingual_pairs": 36,
       "path": "tools/core20k_lexicon/qa/CG_QA_V202_V221_38_RECORD_36_PAIR_BATCH_INDEPENDENT_EDITORIAL_SCREEN_20261115.v1.json",
       "findings": "V221 38 candidate records/36 bilingual pairs: 31 CONDITIONAL,3 REVISE,4 P0 HOLD; 11 native-example provenance claimed,27 editorial-source rows, no raw native independently attested; 1审 remains19."
+    },
+    {
+      "version": "V203",
+      "rows": 38,
+      "bilingual_pairs": 36,
+      "path": "tools/core20k_lexicon/qa/CG_QA_V203_V223_38_PREVIEW_PAGE_INDEPENDENT_AUDIT_20261115.v1.json",
+      "findings": "V223 preview cross-source matched 38/38 and 36/36 pairs, 0 premature QA/IPA/complete/release flags; 2 POS internal-key leaks 'prep_phrase.' rows 840,841; question_page preview cue_zh field absent 38/38; 4 P0 Sense HOLD persist."
     }
   ],
   "source_state": {
     "master_branch": "cg-master-kaikki-evidence-intake-20261111",
     "master_state_path": "tools/scene1341_master/CGMASTER_CURRENT_STATE.json",
-    "master_state_version_at_intake": "V222",
+    "master_state_version_at_intake": "V223",
     "phase1_original_associations": 1241,
     "phase1_drafts_at_intake": 258,
     "phase1_first_review": 19,
@@ -101,23 +108,24 @@
     "V200 V203 row63 running late has grammatical-reference gloss, not learner meaning; 12 metagloss rows require pedagogical expansion (CONDITIONAL).",
     "V211 row617 wrinkled beach-sand example wrong for clothing scene; row624 breathable paint is a fragment, not a complete learner sentence.",
     "V201 unresolved V208 source sense ambiguity rows118 blinds,338 gums,573 flats,575 loafers; selected raw plural-of lemmas cannot establish narrow scene-specific native sense.",
-    "V202 bilingual batch row432 close shave English noun vs Chinese verb cue; row840 within reach of sofa awkward spatial anchor; row1095 manageable Chinese example unnatural; source-version corrections pending."
+    "V202 bilingual batch row432 close shave English noun vs Chinese verb cue; row840 within reach of sofa awkward spatial anchor; row1095 manageable Chinese example unnatural; source-version corrections pending.",
+    "V203 V223 rows 840 within reach and 841 out of reach display literal internal POS key prep_phrase. rather than approved human abbreviation; report sent to CG-MASTER/CG-MAIN."
   ],
   "pending_tasks": [
-    "Obtain source-pin original raw Kaikki for V218 noun/verb corrected rows and verify accurate source POS",
-    "Review missing V221 example content, revise 432/840/1095 and re-audit newly issued content SHAs",
-    "Expand independent first-review index only when finalized canonical page content_sha256 is recomputed and evidence is actual reviewer work",
-    "Audit next published 3000 master associations in isolated QA batches, without SRS or Master mutation",
-    "Continue prior V191 component-IPA and V192 POS/gloss risk queue"
+    "Verify all new Master page versions against original immutable source and independent raw Kaikki sense evidence, prioritizing P0 four holds",
+    "Verify human-facing POS abbreviation and the question_page cue_zh omission policy with CG-MAIN",
+    "Audit remaining first-stage 983 missing authored records as CG-MASTER publishes versioned batches",
+    "Re-review V221 three P1 author content risks, and complete native example provenance",
+    "Maintain separate independently authenticated 1审 index; never infer Muse formal certification"
   ],
   "last_issue_comment_ids_observed": {
-    "issue1": 6891189934,
-    "issue2": 6891197706
+    "issue1": 6891230592,
+    "issue2": 6891220021
   },
   "invariants": [
     "Do not mutate Core20K or original Master/Scene500/Runtime/SRS",
     "No Muse signoff asserted",
     "No AI-first-review label without actual record/content SHA adjudication"
   ],
-  "next_action": "Prioritize real source-pin retrieval for 4 P0 V218 holds and 3 V221 P1 example/cue corrections; fast QA on new master batches."
+  "next_action": "Focus on genuine source pinning and content corrections for four source HOLDs and two leaked prep_phrase abbreviations; run cross-artifact rapid batches."
 }
