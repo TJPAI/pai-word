@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "8b3e9d121edd93c5795b45eb9292638f9c419fc5",
-  "version": "V214",
+  "verified_base_head": "8749b62b9962d0fa5c01aced9222a6e0ed1bed4b",
+  "version": "V215",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -65,7 +65,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V210_38_NATIVE_EXAMPLE_ENRICHMENT_REPORT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V211_13_NATIVE_EXAMPLE_BILINGUAL_EDITORIAL_DRAFT_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V212_CROSS_ARTIFACT_HANDOFF_INTEGRITY_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V214_11_SCENE_FIT_BILINGUAL_EXAMPLE_QA_HANDOFF_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V214_11_SCENE_FIT_BILINGUAL_EXAMPLE_QA_HANDOFF_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V215_27_MISSING_SCENE_FIT_EXAMPLE_RECOVERY_QUEUE_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -151,6 +152,14 @@
       "scene_mismatch_hold": 2,
       "qa_stage": "待审",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V214_11_SCENE_FIT_BILINGUAL_EXAMPLE_QA_HANDOFF_20261115.json"
+    },
+    "v215_missing_example_recovery": {
+      "records": 27,
+      "scene_fit_example_records": 11,
+      "scene_fit_holds": 2,
+      "with_single_ipa_candidate": 12,
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V215_27_MISSING_SCENE_FIT_EXAMPLE_RECOVERY_QUEUE_20261115.json",
+      "qa_stage": "待审"
     }
   },
   "sources": {
@@ -195,6 +204,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V215: prioritize 27 missing scene-fit examples (SC0003=10), preserve native source provenance and separate editorial examples from Kaikki originals.",
     "V214: CG-QA independent review 11 scene-fit bilingual native example records; 2 scene-fit HOLD remain separate.",
     "V212: run new cross-artifact validator in CI and obtain independent QA review; preserve exact original Sense line and immutable source ID.",
     "V211: CG-QA verify 14 translated native examples; replace 2 scene-incompatible examples only with source-backed better examples, no fabricated source attribution.",
