@@ -1,0 +1,86 @@
+{
+  "schema": "cg-rec-eval-checkpoint-v1",
+  "owner": "CG-REC-EVAL",
+  "repository": "TJPAI/pai-word",
+  "branch": "cg-rec-eval-isolated-20261027",
+  "checkpoint_date": "2026-11-15",
+  "recorded_from_verified_branch_head": "2e53c07998a29a9396655594cd7d5db86f6c43c7",
+  "self_sha_policy": "recorded_from_verified_branch_head is a PARENT/BASELINE; NEVER interpret as containing the checkpoint file, which would create a self-referential commit SHA.",
+  "issue_cursors": {
+    "1": {
+      "last_seen_comment_id": 6890036204,
+      "incremental_query": "Retrieve comments with id > cursor; update only after reading the new comments."
+    },
+    "2": {
+      "last_seen_comment_id": 6890007156,
+      "incremental_query": "Retrieve comments with id > cursor; update only after reading the new comments."
+    }
+  },
+  "verified_peers": {
+    "scene500-recommendation-dev": "b9e3ad59ceb74a56c8e3857a590627615df33bd5",
+    "cg-main-fourline-integration-20261026": "166e221f059fe5df8ea24999042aa2136ca4013e"
+  },
+  "last_verified_eval_ci": {
+    "run_id": 43386759224,
+    "head_sha": "2e53c07998a29a9396655594cd7d5db86f6c43c7",
+    "conclusion": "success",
+    "kind": "CG-REC-EVAL Scene1341 independent lexical A/B",
+    "artifact_id": 14019186661,
+    "artifact_sha256": "811d2b1d7f1e46a0a3d27c9007cd2c3ca48271ea61e40640b87a4df7dcb2c410"
+  },
+  "frozen_evaluation_state": {
+    "protected_blind24_query_count": 24,
+    "protected_blind24_double_human_gold_count": 0,
+    "human_relevance_accuracy_verified": false,
+    "synthetic_review_gate_tests_are_not_human_gold": true,
+    "open_nonblind_24_queries": 24,
+    "open_nonblind_24_searches": 72,
+    "open_nonblind_24_changed_results": 2,
+    "open_nonblind_24_changed_top1": 1,
+    "independent_baselines": [
+      "Scene500 original 80",
+      "Scene1341 22/14/27/36/41",
+      "Scene1341 prior open 32 pairs"
+    ],
+    "official_release_allowed": false
+  },
+  "source_pins": {
+    "open_contrastive_candidate": "b9e3ad59ceb74a56c8e3857a590627615df33bd5",
+    "frozen_scene1341_data": "17c6c758e1dfd27cfa2fe1669d3f1784bedb0668",
+    "frozen_manifest_blob": "803d2fccfd2d1ec200723f7f38e73d57495a5dd0",
+    "open_contrastive_summary_path": "tools/cg-rec-eval/scene1341-open-contrastive-newquery24-independent-review-20261113.json"
+  },
+  "guardrails": {
+    "work_only_on_isolated_branch": true,
+    "do_not_modify_master_runtime_srs_production": true,
+    "no_fabricated_qa_labels": true,
+    "no_automated_paid_api_calls": true,
+    "no_accuracy_gain_claim_without_locked_double_human_gold": true,
+    "no_pages_deployment": true
+  },
+  "open_work": [
+    {
+      "priority": "P0",
+      "task": "Obtain two genuinely independent, locked human relevance submissions for all 24 protected queries; compare candidate pool and adjudicate before formal scorer.",
+      "state": "BLOCKED_AWAITING_REAL_HUMAN_LABELS"
+    },
+    {
+      "priority": "P1",
+      "task": "Independently inspect CG-REC experimental contrastive negative purchase/refund relevance, especially opposite intent; keep default OFF.",
+      "state": "OPEN_NONBLIND_ONLY"
+    },
+    {
+      "priority": "P1",
+      "task": "On next work cycle, review only commits and Issue comments newer than stored cursors; verify CI only for touched work.",
+      "state": "ACTIVE"
+    }
+  ],
+  "next_session_protocol": [
+    "Fetch this checkpoint first.",
+    "Verify current eval HEAD and relevant peer HEADs (don't assume checkpoint SHA is current).",
+    "Read only commits since recorded baseline and comments after issue cursors; do not reload whole issue histories or large frozen files.",
+    "Do actual coding/testing on isolated branch and preserve source-pinned evidence.",
+    "Update this checkpoint after real work. Keep last known completed CI separate from newly queued/in-progress runs.",
+    "Keep final user report to: completed tasks, commit, CI, next."
+  ]
+}
