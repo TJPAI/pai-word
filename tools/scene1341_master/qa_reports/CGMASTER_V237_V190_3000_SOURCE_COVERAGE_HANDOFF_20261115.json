@@ -1,0 +1,37 @@
+{
+  "version": "V237",
+  "strategy": "SOURCE_FIRST_COVERAGE_WITH_INCREMENTAL_QUALITY",
+  "source": "CGMASTER_V190_MANIFEST_20261115.json",
+  "source_rows": 3000,
+  "source_scenes": 13,
+  "source_lexical_entries": 2710,
+  "source_shards": [
+    {
+      "name": "CGMASTER_V190_SOURCE00001_01000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000
+    },
+    {
+      "name": "CGMASTER_V190_SOURCE01001_02000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000
+    },
+    {
+      "name": "CGMASTER_V190_SOURCE02001_03000_BATCH03_AUTHOR_MERGED_OVERLAY.jsonl.gz",
+      "records": 1000
+    }
+  ],
+  "known_staged_test_files": {
+    "sc0001_to_0005": "CGMASTER_V234_ALL1241_L1_L2_SCENE_TEST_COVERAGE_20261115.json",
+    "sc0011_to_0014": [
+      "CGMASTER_V235_SC0011_L3_AUTHOR_DRAFT_TEST_PAGES_20261115.json",
+      "CGMASTER_V235_SC0012_L3_AUTHOR_DRAFT_TEST_PAGES_20261115.json",
+      "CGMASTER_V235_SC0013_L3_AUTHOR_DRAFT_TEST_PAGES_20261115.json",
+      "CGMASTER_V235_SC0014_L3_AUTHOR_DRAFT_TEST_PAGES_20261115.json"
+    ]
+  },
+  "deduplication": "Source_final_row and record_id: do not sum V190 3000 with V234/V235 overlapping source rows.",
+  "current_v236_generated_outputs_verified": false,
+  "blocking": "GitHub Actions not observed for workflow commit; generated per-scene JSON not yet present in GitHub tree.",
+  "action": "Run workflow_dispatch manually or enable Actions for branch; verify generated manifest 3000 and 13 scenes; only then mark V236 generated.",
+  "qa_stage": "待审",
+  "release_allowed": false
+}
