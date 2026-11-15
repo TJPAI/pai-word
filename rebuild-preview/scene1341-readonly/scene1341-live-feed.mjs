@@ -39,6 +39,16 @@ export function selectSceneBatches(feed,sceneId){
  return feed.batches.filter(b=>b.scene_ids.includes(sceneId)).sort((a,b)=>a.first_source_final_row-b.first_source_final_row);
 }
 export async function resolveLiveFeed({fetchImpl=fetch,commit}={}){
+ // Read the mutable branch ONLY once. Pin the returned commit before reading
+ // index or data shards. A previous V190 snapshot must not pin the feed to an
+ // earlier commit that predates its publication.
+ if(commit==null){
+  const branchUrl='https://api.github.com/repos/TJPAI/pai-word/branches/cg-master-kaikki-evidence-intake-20261111';
+  const branchResponse=await fetchImpl(branchUrl,{cache:'no-store',headers:{Accept:'application/vnd.github+json'}});
+  if(!branchResponse.ok)fail('BRANCH_HTTP_'+branchResponse.status);
+  const branch=await branchResponse.json();
+  commit=branch?.commit?.sha;
+ }
  if(!HASH40.test(commit||''))fail('COMMIT');
  const path='tools/scene1341_master/qa_reports/CGMASTER_LIVE_FEED.json';
  const url='https://raw.githubusercontent.com/TJPAI/pai-word/'+commit+'/'+path;
