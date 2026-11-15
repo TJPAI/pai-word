@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "4101e6dbd9773289e1da7d5fa29afa2f63962e38",
-  "version": "V240",
+  "verified_base_head": "a6abcde715709b5f56dab622e7ee271240d6da5d",
+  "version": "V241_PREPARED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -454,6 +454,19 @@
       "manifest": "tools/scene1341_master/qa_reports/v240_scene_test/CGMASTER_V240_MANIFEST.json",
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v241_source_export_prepared": {
+      "source_rows": 5618,
+      "scenes": 30,
+      "source_versions": [
+        "V176",
+        "V178"
+      ],
+      "builder": "tools/scene1341_master/build_v241_sc0071_0100.py",
+      "workflow": ".github/workflows/cgmaster-v241-sc0071-0100.yml",
+      "generated_outputs_verified": false,
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -498,6 +511,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V241: check actions workflow generated 30 scene files and manifest 5618; if absent, execute workflow_dispatch or use local input shards and write outputs. Do NOT count 5618 as newly staged until files present.",
     "V240: Next scale SC0071+ from original frozen Master/Reviewed V13, bulk 3000 source rows, then iteratively enrich L2 Kaikki source sense evidence and L3 answers; maintain QA 待审.",
     "V239: SC0001..0025 staged 6179 source-row TEST records. Expand to SC0026..0070 via V172..174 gzip shards; maintain scene-first files, no false QA claims.",
     "V238: expand scene-first L1 coverage from existing V169/V170/V172/V173/V174 source overlays, avoid counting overlapping V190. Preserve unreviewed IPA status and provenance.",
