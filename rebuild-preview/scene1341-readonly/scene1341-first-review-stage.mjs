@@ -14,13 +14,15 @@ export function createTrustedFirstReviewIndex(report,{commit}={}){
  if(!HASH40.test(commit||'')||!report||report.schema!=='scene1341-phase1-independent-first-review/v1'||
     report.reviewer!=='CG-QA'||report.formal_ready!==0||report.srs_eligible!==false||
     !Array.isArray(report.reviews))fail('REPORT');
+ // The independent report itself is pinned by commit. Evidence commits may
+ // predate that report; demanding equality creates an impossible self-hash.
  const index=new Map();
  for(const proof of report.reviews){
   if(!RECORD.test(proof?.record_id||'')||!ELIGIBLE.has(proof.scene_id)||
      !HASH64.test(proof.content_sha256||'')||!VERDICTS.has(proof.verdict)||
      proof.reviewer!=='CG-QA'||!/^20\d\d-\d\d-\d\d/.test(proof.reviewed_at||'')||
      typeof proof.evidence_path!=='string'||!/^tools\//.test(proof.evidence_path)||
-     proof.evidence_commit!==commit)fail('PROOF');
+     !HASH40.test(proof.evidence_commit||''))fail('PROOF');
   const key=proof.record_id+':'+proof.content_sha256;
   if(index.has(key))fail('DUPLICATE');
   index.set(key,Object.freeze({...proof}));
