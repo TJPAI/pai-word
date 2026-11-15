@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "e4655faf2206766a323dff23008f9a2ef9e8acab",
+  "verified_parent_head": "9a11a1927ec46762a96ad128415797e652e7b1e1",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,8 +13,8 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "60740ff55b78f749bbc9ff13b8b66d52f0993a74",
-    "latest_master_version": "V219",
+    "latest_master_head": "4c514d7b139626016d689233964fb31e8cb546a7",
+    "latest_master_version": "V224",
     "fresh_editor_drafts": 258,
     "remaining": 983,
     "by_scene": [
@@ -27,7 +27,7 @@
     "independent_first_reviews": 19,
     "formal_ready": 0,
     "srs_eligible": false,
-    "latest_qa_head": "523c31a47942ee90f4a57c3bf82644acad786ade",
+    "latest_qa_head": "c28b841e7f7980fedf7f00399434ab8ee4e13b79",
     "pending_first_review": 239,
     "review_verdict_counts": {
       "REVISE": 5,
@@ -121,16 +121,39 @@
       "formal_ready": 0,
       "srs_writes": 0
     },
-    "new_master_status": "CG-MASTER V215 still 258 authored/1241, 983 missing; V209/211/214/215 evidence/skeletons/recovery queues are NOT authored completed cards"
+    "new_master_status": "CG-MASTER V215 still 258 authored/1241, 983 missing; V209/211/214/215 evidence/skeletons/recovery queues are NOT authored completed cards",
+    "latest_v223_inspector": {
+      "module": "rebuild-preview/scene1341-readonly/scene1341-v223-preview-inspector.mjs",
+      "ui": "Settings only, independent five-scene next/previous page inspection",
+      "records": 38,
+      "with_bilingual_examples": 35,
+      "example_pairs": 36,
+      "unapproved_ipa": 38,
+      "complete_question_pages": 0,
+      "complete_answer_pages": 0,
+      "hold_records": [
+        584,
+        585,
+        617,
+        987
+      ],
+      "source": "CG-MASTER V223 38-source snapshot; V224 only new IPA candidate queue, not approved",
+      "source_pinned_to_one_master_commit": true,
+      "git_blob_sha1_checked": true,
+      "safe_fallback": "hide inspector on verification failure",
+      "main_learning_queue_changed": false,
+      "formal_ready": 0,
+      "srs_writes": 0
+    }
   },
   "ci": {
-    "latest_code_head": "bb726e1d0002e887a3c3723534b4bb24e369cd9c",
+    "latest_code_head": "a78bb1fb5464ea00d7b443098a88eb79a550b383",
     "ranked": {
-      "run": 43691021937,
+      "run": 43691798960,
       "conclusion": "success"
     },
     "fourline": {
-      "run": 43691021916,
+      "run": 43691798956,
       "conclusion": "success"
     },
     "inspector_ranked": {
@@ -144,10 +167,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Dynamic intake accepts future numbered/dates fully authored Kaikki Phase1 editorial batches only; do not treat V216–V219 evidence and example handoffs as ready pages",
-    "Await CG-MASTER canonical authored full rows for 983 Phase1 gaps; dynamic page refresh can then ingest validated versions without rebuilding",
-    "CG-QA V200 independent first reviews 19, zero PASS; pack lunch P0 HOLD remains excluded from preview",
-    "Owner manually deploy and smoke test iPhone IPA, POS and QA marker on both faces"
+    "Owner manually deploy and verify Settings V223 latest 38 source-pinned preview records on iPhone; no study queue mixing",
+    "CG-MASTER latest V224 23 native IPA candidate selection queue is unapproved, so do not display selected pronunciation as formal",
+    "CG-QA V203 19 independent original exact SHA first reviews, 0 PASS/release",
+    "Continue first-five-scenes remaining 983 genuinely source-linked full teaching records, update without front-end rebuild"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
