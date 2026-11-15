@@ -67,12 +67,12 @@ export async function fetchSceneAssociations(snapshot,sceneId,{fetchImpl=fetch}=
    const response=await fetchImpl(url,{cache:'no-store'});
    if(!response.ok)fail('SHARD_HTTP_'+response.status);
    const bytes=new Uint8Array(await response.arrayBuffer());
-   const header=new TextEncoder().encode('blob '+bytes.length+'\\0');
+   const header=new TextEncoder().encode('blob '+bytes.length+'\0');
    const gitBytes=new Uint8Array(header.length+bytes.length);gitBytes.set(header);gitBytes.set(bytes,header.length);
    if(await hex(gitBytes,'SHA-1')!==shard.git_blob_sha1||
       await hex(bytes,'SHA-256')!==shard.sha256)fail('SHARD_HASH');
    const decoded=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text();
-   const lines=decoded.trimEnd().split('\\n');
+   const lines=decoded.trimEnd().split('\n');
    if(lines.length!==shard.records)fail('SHARD_COUNT');
    for(const line of lines){
     const row=JSON.parse(line);batchCount++;
