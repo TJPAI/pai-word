@@ -35,7 +35,7 @@ export function validatePhase1FreshManifest(manifest){
   if(batch.version!==versions[i]||batch.records!==counts[i]||
      batch.first_reviewed!==0||!SHA40.test(batch.git_blob_sha1||'')||
      typeof batch.path!=='string'||!batch.path.startsWith(DIRECTORY)||
-     !/^tools\/scene1341_master\/qa_reports\/CGMASTER_V20[019]_PHASE1_[A-Za-z0-9_]+\.json$/.test(batch.path))
+     !/^tools\/scene1341_master\/qa_reports\/CGMASTER_V(?:199|200|201)_PHASE1_[A-Za-z0-9_]+\.json$/.test(batch.path))
    fail('BATCH');
  }
  return Object.freeze({records:151,batches:3,firstReviewed:0});
