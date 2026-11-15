@@ -1,0 +1,126 @@
+{
+  "version": "V202",
+  "date": "2026-11-15",
+  "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+  "source": {
+    "original_final_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "fresh_kaikki_english_raw_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "evidence": "V198 direct raw Kaikki exact word+POS+sense source-line extraction"
+  },
+  "original_associations": 1241,
+  "new_editor_drafts": 52,
+  "prior_editor_drafts": 151,
+  "distinct_editorial_drafts_total": 203,
+  "remaining_not_newly_edited": 1038,
+  "by_scene": {
+    "SC50-0001": {
+      "original": 294,
+      "new_editor_drafts_total": 79,
+      "new_v202": 0
+    },
+    "SC50-0002": {
+      "original": 206,
+      "new_editor_drafts_total": 40,
+      "new_v202": 0
+    },
+    "SC50-0003": {
+      "original": 237,
+      "new_editor_drafts_total": 13,
+      "new_v202": 0
+    },
+    "SC50-0004": {
+      "original": 245,
+      "new_editor_drafts_total": 37,
+      "new_v202": 25,
+      "new_v202_unique_ipa": 7
+    },
+    "SC50-0005": {
+      "original": 259,
+      "new_editor_drafts_total": 34,
+      "new_v202": 27,
+      "new_v202_unique_ipa": 7
+    }
+  },
+  "field_completeness": {
+    "v202_english_expression": 52,
+    "v202_cue_zh": 52,
+    "v202_english_gloss_and_pos_editor_candidate": 52,
+    "v202_chinese_meaning": 52,
+    "v202_editor_original_bilingual_example_pairs": 52,
+    "v202_editor_usage_notes": 52,
+    "v202_native_exact_single_ipa_candidates_unreviewed": 14,
+    "v202_ipa_hold": 38,
+    "v202_sourced_collocations": 0,
+    "v202_verified_synonyms_antonyms": 0,
+    "v202_question_complete_approved": 0,
+    "v202_answer_complete_approved": 0
+  },
+  "qa": {
+    "stage_pending": 52,
+    "first_reviewed": 0,
+    "verdicts": {
+      "PASS": 0,
+      "CONDITIONAL": 0,
+      "REVISE": 0,
+      "HOLD": 0
+    },
+    "all_new_content_qa_stage_label": "待审",
+    "first_review_requirement": "Independent CG-QA SHA-pinned exact content review record; 1审 is stage not verdict; author cannot self-certify",
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "artifacts": {
+    "real_full_json_git_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+    "real_json_git_blob_sha1": "24c3603c04dd4378fd24f97000d6717839326570",
+    "real_json_local_file_sha256": "3235fecebe531a201a37816043fa29efbde30113e9337e02085f0c4ad256f83c",
+    "local_library_path": "/PAI Word/CG-MASTER/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+    "repro_builder_git_path": "tools/scene1341_master/build_cgmaster_v202_phase1.py",
+    "source_raw_data_library_path": "/PAI Word/CG-MASTER/CGMASTER_V198_SC0001_0005_FRESH_KAIKKI_EXACT_RAW_EVIDENCE_20261115.json",
+    "original_ledger_library_path": "/PAI Word/CG-MASTER/CGMASTER_V198_SC0001_0005_FRESH_SOURCE_IDENTITY_QA_LEDGER_20261115.jsonl"
+  },
+  "cross_batch_local_audit": {
+    "v199_v200_v201_v202_records": 203,
+    "unique_source_final_row": 203,
+    "all_original_record_id_scene_id_expression_cue_meaning_match": true,
+    "all_stored_content_sha256_recomputed_and_match": true,
+    "all_stage_pending": true,
+    "all_srs_false": true
+  },
+  "specific_sense_guards": [
+    {
+      "source_final_row": 740,
+      "expression": "straighten up",
+      "pos": "verb",
+      "native_sense_index": 4,
+      "reason": "tidy rather than posture"
+    },
+    {
+      "source_final_row": 746,
+      "expression": "clear off",
+      "pos": "verb",
+      "native_sense_index": 1,
+      "reason": "clear the table rather than leave abruptly"
+    },
+    {
+      "source_final_row": 766,
+      "expression": "mop",
+      "pos": "verb",
+      "native_sense_index": 0,
+      "reason": "mop floor rather than tool noun"
+    },
+    {
+      "source_final_row": 1050,
+      "expression": "disinfectant",
+      "pos": "noun",
+      "native_sense_index": 0,
+      "reason": "substance rather than germ-killing adjective"
+    }
+  ],
+  "limitations": [
+    "Editor-generated bilingual examples and usage notes are not Kaikki-attested examples and remain unreviewed.",
+    "Even exactly one native phonemic IPA spelling may have source/POS/dialect caveats; do not promote to reliable without QA.",
+    "No sourced collocations/synonyms/antonyms invented. Content is not finished dual-page acceptance.",
+    "The first five-scene Phase1 source identity unchanged; original Master and Reviewed V13 immutable.",
+    "Canonical live feed still V190; V202 editorial JSON is GitHub QA staging, not automatically playable."
+  ]
+}
