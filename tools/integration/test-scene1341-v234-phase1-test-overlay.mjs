@@ -31,6 +31,8 @@ assert.equal(result.baseline,983);assert.equal(result.held,0);
 assert.equal(result.items[0].question.ipa,'/legacy/');
 assert.equal(result.items[258].question.ipa,null);
 assert.equal(result.items[258].answer.meaning_zh,'v. 中文259');
+assert.equal(result.items[258].answer.pos,'');
+assert.equal(result.items[258].master_source_identity_hold,false);
 assert.equal(result.items[258].production_release_allowed,false);
 assert.equal(result.canWriteSrs,false);
 const wrong=structuredClone(doc);wrong.scenes['SC50-0001'][0].question_page.ipa_approved=true;
@@ -40,4 +42,6 @@ const held=applyV234Phase1TestOverlay(bad,{rows:validated.byId,commit:'f'.repeat
  onlyTest:true,formalReady:0,canWriteSrs:false});
 assert.equal(held.held,1);assert.equal(held.baseline,982);
 assert.equal(held.items[258].expression,'DIFFERENT SENSE');
+assert.equal(held.items[258].master_source_identity_hold,true);
+assert.equal(held.items[258].production_release_allowed,false);
 console.log('PASS V234 1241 L1/L2 test overlay; 258 authored preserved; IPA HOLD; QA/SRS0');
