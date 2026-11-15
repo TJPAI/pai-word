@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V251_MISSING_MEANING_FORENSIC",
+  "version": "V252_FULL1341_LIVE_CONTRACT_BUILT_NOT_PUBLISHED",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -636,6 +636,21 @@
       "all_hold": true,
       "auto_fill_count": 0,
       "release_allowed": false
+    },
+    "v252_full1341_live_contract": {
+      "builder": "tools/scene1341_master/build_v252_live_contract.py",
+      "source_archive_drive_id": "15J87lBrbYXLrsdn3ncSWFjRqkQWHaf2x",
+      "local_validation": {
+        "scenes": 1341,
+        "source_associations": 230289,
+        "missing_meaning": 222,
+        "duplicate_source_rows": 0
+      },
+      "git_scene_files_committed": false,
+      "git_live_index_committed": false,
+      "frontend_hotload_unblocked": false,
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -689,9 +704,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "CG-QA review 43 single-meaning candidates first, using scene semantics and Kaikki evidence; do not auto-fill.",
-    "Disambiguate 50 multiple-meaning rows against Kaikki sense-level evidence.",
-    "Source independent evidence for 129 unmatched expressions; preserve all 222 HOLD until verified."
+    "Publish all 1341 V252 scene JSON files and atomic SCENE1341_LIVE_INDEX.json on CG-MASTER branch, verify every Git blob SHA.",
+    "Ask CG-MAIN to run generic frontend regression against actual published index and preview browser.",
+    "Continue Kaikki L2/L3 and independent QA."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
