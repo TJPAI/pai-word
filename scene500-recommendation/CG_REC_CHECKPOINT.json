@@ -1,0 +1,78 @@
+{
+  "schema": "pai-word-cg-rec-checkpoint-v1",
+  "role": "CG-REC",
+  "branch": "scene500-recommendation-dev",
+  "checkpoint_parent_head": "b9e3ad59ceb74a56c8e3857a590627615df33bd5",
+  "checkpoint_rule": "checkpoint_parent_head is verified predecessor; never claim it is self-referential latest commit. Read remote branch HEAD first, then incremental commits/issues/CI only.",
+  "last_seen_issue_comments": {
+    "1": 6890117275,
+    "2": 6890127369
+  },
+  "peers": {
+    "CG-REC-EVAL": "b9812dd5e87155bd6d36fe569ca467cac59c75f8",
+    "CG-MAIN": "166e221f059fe5df8ea24999042aa2136ca4013e"
+  },
+  "source_pins": {
+    "scene1341_source_commit": "17c6c758e1dfd27cfa2fe1669d3f1784bedb0668",
+    "scene1341_manifest_blob": "803d2fccfd2d1ec200723f7f38e73d57495a5dd0",
+    "catalog_scenes": 1341,
+    "ranked_scenes": 110,
+    "ranked_expressions": 19371
+  },
+  "current_evidence": {
+    "open_nonblind_factorial_queries": 59,
+    "open_nonblind_searches": 236,
+    "contrastive_refund_queries": 11,
+    "contrastive_refund_searches": 22,
+    "contrastive_refund_top1_changes": 3,
+    "contrastive_refund_unchanged_queries": 8,
+    "contrastive_refund_ci_run": 43379339943,
+    "contrastive_refund_artifact": 14016131446,
+    "contrastive_refund_artifact_sha256": "06a87edc54283f826f74fb8abfed5c1524f3268c74cf19a3e61cd88802a06e21",
+    "exact_head_success_runs": {
+      "scene1341_isolated": 43379339943,
+      "scene500_contract_hybrid": 43379339963,
+      "scene500_isolated_qa": 43379339994,
+      "scene500_semantic_qa": 43379340847
+    }
+  },
+  "safety": {
+    "stable_hybrid_default_unchanged": true,
+    "experimentalContrastiveTicketRefund_default": false,
+    "source_certified_ticket_refund_sense_scene": 0,
+    "formal_blind_human_gold": 0,
+    "blind24_not_accessed": true,
+    "release_allowed": false,
+    "production_deployed": false
+  },
+  "risks": [
+    {
+      "priority": "P0",
+      "issue": "SC50-0075 catalog-title-only ticket-refund hypothesis has zero certified Sense–Scene candidate associations; do not promote without source/QA evidence"
+    },
+    {
+      "priority": "P1",
+      "issue": "Contrastive negation tested on 11 open nonblind cases only; broader adversarial and multilingual false activation still unmeasured"
+    },
+    {
+      "priority": "P1",
+      "issue": "No independent human semantic adjudication for 24 protected queries; open Top1 movement is not relevance gain"
+    }
+  ],
+  "next_tasks": [
+    "Use this checkpoint as startup; read remote HEAD, Issues #1/#2 comments after saved IDs, relevant peer HEADs and latest CI only.",
+    "Ask CG-REC-EVAL for independent open nonblind false-trigger review and blind reviewer packet progress without opening protected gold.",
+    "Expand directional negation boundary tests with source-pinned adversarial cases while keeping experimental flag off.",
+    "Await CG-MASTER and CG-QA certified Sense–Scene evidence before any production candidate promotion.",
+    "After real GitHub delivery update checkpoint with verified predecessor HEAD, exact CI IDs, issues and next tasks."
+  ],
+  "protected_paths": [
+    "main",
+    "frozen Core20K",
+    "Google Drive Master",
+    "KU/SRS",
+    "Scene500 production runtime",
+    "production Pages"
+  ],
+  "workflow": "Normal ChatGPT + GitHub connector; incremental reads, compact outputs; no paid Muse/API."
+}
