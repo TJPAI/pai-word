@@ -1,0 +1,107 @@
+{
+  "version": "V200",
+  "date": "2026-11-15",
+  "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+  "scope": "SC50-0001..0005",
+  "status": "NEW_EDITOR_DOUBLE_PAGE_CANDIDATES_QA_PENDING",
+  "authoritative_source": {
+    "kaikki_raw_english_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+    "frozen_source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+    "V198_exact_raw_data": "/PAI Word/CG-MASTER/CGMASTER_V198_SC0001_0005_FRESH_KAIKKI_EXACT_RAW_EVIDENCE_20261115.json",
+    "V198_identity_ledger": "/PAI Word/CG-MASTER/CGMASTER_V198_SC0001_0005_FRESH_SOURCE_IDENTITY_QA_LEDGER_20261115.jsonl"
+  },
+  "scope_original_associations": 1241,
+  "previous_v199_candidates": 35,
+  "new_v200_candidates": 55,
+  "cumulative_distinct_candidates": 90,
+  "scene_new": {
+    "SC50-0001": 45,
+    "SC50-0002": 10,
+    "SC50-0003": 0,
+    "SC50-0004": 0,
+    "SC50-0005": 0
+  },
+  "fields": {
+    "question_expression_and_cue_present": 55,
+    "english_kaikki_gloss_and_pos_editor_candidate": 55,
+    "new_editor_bilingual_examples": 55,
+    "editor_usage_note": 55,
+    "collocations_with_source_and_qa": 0,
+    "synonyms_with_source_and_qa": 0,
+    "antonyms_with_source_and_qa": 0,
+    "certified_question_pages": 0,
+    "certified_answer_pages": 0,
+    "exact_native_unique_phonemic_ipa_candidates_unreviewed": 12,
+    "ipa_hold": 43
+  },
+  "qa": {
+    "stage_labels": {
+      "待审": 55,
+      "1审": 0
+    },
+    "qa_first_review_verdicts": {
+      "PASS": 0,
+      "CONDITIONAL": 0,
+      "REVISE": 0,
+      "HOLD": 0
+    },
+    "reviewed_content_sha256_count": 0,
+    "explicit_protocol": "Only verified independent CG-QA first-review evidence bound to exact content_sha256 may change 待审 -> 1审; stage does not equal PASS; content edits reset stage."
+  },
+  "release_allowed": false,
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "artifacts": {
+    "draft": {
+      "library_path": "/PAI Word/CG-MASTER/CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "library_file_id": "libfile_bf9361ee82f481919fb887fc667fb1b2",
+      "size_bytes": 125182,
+      "sha256": "e347182d24b697688c3785d341b9db962f6084c85aad6803186ee1cd0650ebc8"
+    },
+    "reproducible_builder": {
+      "library_path": "/PAI Word/CG-MASTER/build_cgmaster_v200_phase1_next55.py",
+      "library_file_id": "libfile_5799a2b0988481918df8e591db091b8d"
+    }
+  },
+  "high_risk_explicit_sense_examples": [
+    {
+      "source_final_row": 200,
+      "expression": "toast",
+      "native_pos": "noun",
+      "native_sense_index": 0,
+      "gloss": "Bread that has been toasted (cooked lightly by browning).",
+      "qa_stage": "待审"
+    },
+    {
+      "source_final_row": 201,
+      "expression": "cereal",
+      "native_pos": "noun",
+      "native_sense_index": 2,
+      "gloss": "Breakfast cereal.",
+      "qa_stage": "待审"
+    },
+    {
+      "source_final_row": 303,
+      "expression": "wash up",
+      "native_pos": "verb",
+      "native_sense_index": 1,
+      "gloss": "To wash one's hands or face, often around mealtimes.",
+      "qa_stage": "待审"
+    },
+    {
+      "source_final_row": 305,
+      "expression": "bathroom",
+      "native_pos": "noun",
+      "native_sense_index": 1,
+      "gloss": "A lavatory: a room containing a toilet and (typically but not necessarily) a bathtub.",
+      "qa_stage": "待审"
+    }
+  ],
+  "safety_notes": [
+    "Draft examples are freshly CG-MASTER edited and not asserted Wiktionary native attestations.",
+    "All POS/sense selection are editor candidates; not signed independent QA.",
+    "No invented canonical global sense ID, no phrase IPA, no overwriting source V190/V198/V199.",
+    "Pilot new draft rows only; no claim 90 validated study-ready cards.",
+    "All first five scenes remain phase1 objective; V200 adds 45 SC0001 and 10 SC0002 records only."
+  ]
+}
