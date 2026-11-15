@@ -142,7 +142,7 @@ assert(!html.includes('id="enlex-section"') &&
  !script.includes('renderLexiconReference(') &&
  !script.includes("append($('enlex-section'))"),
  'Scene1341 must never mount legacy Core20K content or reference UI');
-assert(script.includes("set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',r.answer.meaning_zh)") &&
+assert(script.includes("set('expression',r.expression);scheduleQuestionFit();renderQuestionIPA(r);set('meaning',formatMeaningWithPos(r.answer))") &&
  script.includes("question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'") &&
  script.includes("question?.ipa_source?.headword===card.expression") &&
  html.includes('<script src="./scene1341-v165-ipa-learner-display.js"></script>') &&
@@ -1688,3 +1688,20 @@ assert(script.includes("applyPhase1StudyOverlay(items,fresh)") &&
 
 assert(script.includes("question?.ipa_candidates_pending?'音标待核验':'音标待补'"),
  'do not mislabel native candidate IPA awaiting adjudication as a missing pronunciation');
+
+const posStart=script.indexOf('function formatMeaningWithPos(answer){');
+const posEnd=script.indexOf('\nfunction renderCard(){',posStart);
+assert(posStart>0&&posEnd>posStart,'standalone POS formatter must exist');
+const posContext={};
+vm.runInNewContext(script.slice(posStart,posEnd)+'\nthis.formatMeaningWithPos=formatMeaningWithPos;',posContext);
+for(const [pos,expected] of [
+ ['verb','v. 醒来'],['noun','n. 醒来'],['adjective','adj. 醒来'],
+ ['adverb','adv. 醒来'],['phrasal verb','phr. v. 醒来'],
+ ['preposition','prep. 醒来'],['','醒来']]){
+ assert.equal(posContext.formatMeaningWithPos({pos,meaning_zh:'醒来'}),expected);
+}
+assert(!html.includes('id="master-v190-pos-section"')&&!html.includes('id="master-v190-pos"'),
+ 'independent POS row must not be rendered');
+assert(script.includes("set('meaning',formatMeaningWithPos(r.answer))"),
+ 'POS must be prefixed to Chinese meaning in same definition line');
+console.log('PASS inline POS abbreviation before Chinese meaning, no separate POS row');
