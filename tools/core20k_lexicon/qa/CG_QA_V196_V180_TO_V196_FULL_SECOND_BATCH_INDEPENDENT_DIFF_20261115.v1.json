@@ -1,0 +1,169 @@
+{
+  "schema": "cg-qa-v196-independent-v180-to-v196-full-second-batch-byte-and-row-audit-v1",
+  "date": "2026-11-15",
+  "role": "CG-QA",
+  "scope": "Real downloaded Google Drive V180 and V196 original ZIP archives, every GZIP shard decoded and independently compared at all 3000 source_final_rows. Mechanical and source-provenance audit only; no formal linguistics/Muse certification.",
+  "sources": {
+    "v180_drive": "https://drive.google.com/file/d/1oJ6U2IgsOfClgz1q-z0kbKtB3UVye3rl/view",
+    "v180_zip_sha256": "46d51f337014b7f6434ca41a0daa24239a31f7c46e93278984055017ef64d2e9",
+    "v196_drive": "https://drive.google.com/file/d/1wMO5DhXyVnDOIJNfdw-3J87YvEA6mXxK/view",
+    "v196_zip_sha256": "9221e878e6527c8c511b9a39b2f042397bc93eaae10f75918ab8e2ad88d5e3fb",
+    "v196_github_manifest_blob": "62cd87e9003887b0c54f843239f6b7c2f656805a",
+    "v147_author_source_git_blob": "e8589c6c6bc68f93d4183064e2f5a87845552da2",
+    "author_source_semantic_comparison": "V147 source blob verified readable in GitHub, but a 243x author-versus-V196 bytewise full author-field comparison was not executed in this audit."
+  },
+  "source_data": {
+    "V180": {
+      "rows": 3000,
+      "unique_ids": 3000,
+      "source_rows_contiguous_3001_to_6000": true,
+      "scenes": 13,
+      "sha256_gzip_verified": 4,
+      "git_blob_sha1_verified": 4,
+      "examples_filled": 0,
+      "collocations_filled": 0,
+      "usage_filled": 0,
+      "test_ipa_filled": 1162,
+      "canonical_sense_ids": 0,
+      "shards": [
+        {
+          "name": "CGMASTER_V180_SC0013_0025_PART1_SENSE_IPA_TEST_20261115.jsonl.gz",
+          "records": 750,
+          "sha256": "739dfe385e2da4215c7a5096c5afa09873161ab683c45819d898c6e903448169",
+          "git_blob_sha1": "3ca6002637fd03e6c28411aa746170ee499aa593"
+        },
+        {
+          "name": "CGMASTER_V180_SC0013_0025_PART2_SENSE_IPA_TEST_20261115.jsonl.gz",
+          "records": 750,
+          "sha256": "12a638cbfa6ec88b89f07c8e10c200be7a54763f8fb1f5dcd861e3b122b3e7ca",
+          "git_blob_sha1": "0bfc7d7b15d55039ff23433eb3d6fd5ad1a0f057"
+        },
+        {
+          "name": "CGMASTER_V180_SC0013_0025_PART3_SENSE_IPA_TEST_20261115.jsonl.gz",
+          "records": 750,
+          "sha256": "5f87c64238814e4ab155530b4549424609a1c3950cb602cb179c11510662888a",
+          "git_blob_sha1": "8694fb87438448c4908a11ef81485f0c680cd4cd"
+        },
+        {
+          "name": "CGMASTER_V180_SC0013_0025_PART4_SENSE_IPA_TEST_20261115.jsonl.gz",
+          "records": 750,
+          "sha256": "4fb8eb26d9c9aa023ce92c7273605553ce76d6fa27628516f5d18b08ee30e44e",
+          "git_blob_sha1": "e2b3a0c367a4b31ae4f68f9e9fba8aabb001081a"
+        }
+      ]
+    },
+    "V196": {
+      "rows": 3000,
+      "unique_ids": 3000,
+      "source_rows_contiguous_3001_to_6000": true,
+      "scenes": 13,
+      "sha256_gzip_verified": 4,
+      "git_blob_sha1_verified": 4,
+      "examples_filled": 243,
+      "collocations_filled": 243,
+      "usage_filled": 243,
+      "test_ipa_filled": 1162,
+      "canonical_sense_ids": 0,
+      "shards": [
+        {
+          "name": "CGMASTER_V196_SOURCE03001_03750_SC0014_AUTHOR_OVERLAY.jsonl.gz",
+          "records": 750,
+          "bytes": 487425,
+          "sha256": "6277960ad62e25a8890779197462022001cce67433bc2f717f775248d89a18eb",
+          "git_blob_sha1": "b669c2e1f7c3b4ee5cc810ff9d4a659e90c37e4f"
+        },
+        {
+          "name": "CGMASTER_V196_SOURCE03751_04500_SC0014_AUTHOR_OVERLAY.jsonl.gz",
+          "records": 750,
+          "bytes": 457975,
+          "sha256": "bcb75751a23ecaf047b61643ea55d0efddde772b8e8798ad78bf5421b5f8b2a1",
+          "git_blob_sha1": "0ee0e9e91252bf714f2ceffe40e1b0f79c06375c"
+        },
+        {
+          "name": "CGMASTER_V196_SOURCE04501_05250_SC0014_AUTHOR_OVERLAY.jsonl.gz",
+          "records": 750,
+          "bytes": 413902,
+          "sha256": "d454b019f3f2b44fbfacc37c285fd632adb78ad0750c020c3e4c414e7145858e",
+          "git_blob_sha1": "fe1b8ca09cc6a9bf28e0bc9aa4d27832c8e65ba9"
+        },
+        {
+          "name": "CGMASTER_V196_SOURCE05251_06000_SC0014_AUTHOR_OVERLAY.jsonl.gz",
+          "records": 750,
+          "bytes": 489523,
+          "sha256": "bcd59b218a9da6850d6aaec89474bf837dc4b8cd2e52e6ca8314cdee8fbf02ea",
+          "git_blob_sha1": "6247fefa053358290c57205a332da594574882b0"
+        }
+      ]
+    }
+  },
+  "exact_v180_to_v196_diff": {
+    "modified_records": 243,
+    "only_scene": "SC50-0014",
+    "only_rows": [
+      3133,
+      3375
+    ],
+    "unchanged_records": 2757,
+    "identity_changes": 0,
+    "pronunciation_evidence_changes": 0,
+    "question_page_changes": 0,
+    "changed_answer_fields_each_243": [
+      "example_en",
+      "example_zh",
+      "examples",
+      "collocations",
+      "usage_note",
+      "content_complete",
+      "author_provenance"
+    ],
+    "changed_safety_metadata_each_243": {
+      "qa_status": [
+        "DEFERRED",
+        "PENDING_INDEPENDENT_QA"
+      ],
+      "srs_eligible": [
+        null,
+        false
+      ],
+      "release_allowed": [
+        false,
+        false
+      ]
+    },
+    "modified_243_provenance_source_version": "V147",
+    "modified_243_provenance_record_id_matches": true,
+    "modified_243_provenance_source_row_matches": true,
+    "modified_243_examples_array_length": 1,
+    "modified_243_examples_status": "UNVERIFIED",
+    "unreviewed_author_english_content_not_certified": true
+  },
+  "sc0014_ipa_cross_version": {
+    "source_range": [
+      3133,
+      3375
+    ],
+    "rows": 243,
+    "v180_selected_test_ipa": 94,
+    "v196_selected_test_ipa": 94,
+    "v171_separate_author_draft_selected_test_ipa": 237,
+    "count_gap_vs_v171": 143,
+    "interpretation": "Potential recoverable source readings, not automatically valid as native/semantically approved; require native/CMU exact and provenance checks. No automatic copy from V171."
+  },
+  "release_gates": {
+    "canonical_feed_still_first_batch_only": true,
+    "second_batch_github_gzip_published": false,
+    "second_batch_complete_answer_pages": false,
+    "second_batch_unauthored_rows": 2757,
+    "formal_global_sense_certified": 0,
+    "formal_ready": 0,
+    "srs_eligible": false
+  },
+  "open_items": [
+    "CG-MASTER perform source-backed 243-row V147 author content equality audit and semantic QA",
+    "CG-MASTER source-reconcile 143 V171-only selected IPA candidates, safeguard multivariant and composed",
+    "CG-MASTER fill 2757 absent authored answers and deliver second-batch GitHub gzip before canonical feed promotion",
+    "CG-QA independently inspect 53 CG-ENTEACH V51 crosswalk HOLD and V191/V192 existing risks",
+    "CG-MAIN quarantine source row506 erroneous selected IPA until corrected"
+  ],
+  "disposition": "V196_RAW_ARCHIVE_HASH_AND_NONDESTRUCTIVE_IDENTITY_PASS; SECOND_BATCH_AUTHOR_CONTENT_INCOMPLETE; SEMANTIC_CERTIFICATION_NOT_PERFORMED"
+}
