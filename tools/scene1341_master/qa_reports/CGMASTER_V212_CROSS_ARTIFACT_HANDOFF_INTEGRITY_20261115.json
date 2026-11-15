@@ -1,0 +1,23 @@
+{
+  "version": "V212",
+  "scope": "V208->V209->V211",
+  "verified_against_remote_git_files": true,
+  "counts": {
+    "v208_candidates": 43,
+    "v208_editorial_proposals": 38,
+    "v208_hold": 5,
+    "v209_page_skeletons": 38,
+    "v211_example_senses": 13,
+    "v211_translated_examples": 14,
+    "v211_scene_fit_hold_examples": 2
+  },
+  "checks": {
+    "v209_record_id_and_native_sense_line_match_v208": "PASS",
+    "v211_record_id_and_native_sense_line_match_v208": "PASS",
+    "duplicate_or_missing_record_identity": "NONE_OBSERVED",
+    "release_allowed": false,
+    "qa_stage": "待审"
+  },
+  "validator": "tools/scene1341_master/validate_v212_editorial_handoff.mjs",
+  "caveat": "Cross-artifact checks validate identity and non-release; they do not certify semantic quality or bilingual translations."
+}
