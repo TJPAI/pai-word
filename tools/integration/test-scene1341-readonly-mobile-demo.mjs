@@ -22,6 +22,11 @@ new vm.Script(script,{filename:'scene1341-readonly-inline.js'});
 assert(html.includes('id="v223-inspector"')&&html.includes('id="v223-scene"')&&
  html.includes('id="v223-content"')&&html.includes("fetchCurrentPreviewPayload()")&&
  html.includes('renderV223Inspector();'), 'V223 needs real, reachable read-only source-verified Settings inspection');
+assert(html.includes('id="v223-prev"')&&html.includes('id="v223-next"')&&
+ script.includes("$('v223-scene').addEventListener('change'")&&
+ script.includes("$('v223-prev').addEventListener('click'")&&
+ script.includes("$('v223-next').addEventListener('click'"),
+ '38 newer incomplete Sense previews must be inspectable by scene and previous/next without entering study mode');
 assert(script.includes("v223Data={rows:data.rows,project:m.previewV223Row}")&&
  !script.includes("items=[...items,...data.rows]")&&
  script.includes("0条完整、0条IPA批准；只读，不进入学习卡"),
