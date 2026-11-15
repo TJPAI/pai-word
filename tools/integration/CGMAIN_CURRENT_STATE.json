@@ -3,7 +3,7 @@
   "updated_at": "2026-11-15",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "1c5470a3a37563e6df89e732f1ae72f9a9fbe042",
+  "verified_parent_head": "166e221f059fe5df8ea24999042aa2136ca4013e",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -13,7 +13,7 @@
       "SC50-0005"
     ],
     "original_associations": 1241,
-    "latest_master_head": "aadd07698bd33f10924d0e230bb53be94d9075a7",
+    "latest_master_head": "85e37b9ae8fb13cff6b483461f4c2ac5cab228cb",
     "latest_master_version": "V202",
     "fresh_editor_drafts": 203,
     "remaining": 1038,
@@ -26,7 +26,8 @@
     ],
     "independent_first_reviews": 0,
     "formal_ready": 0,
-    "srs_eligible": false
+    "srs_eligible": false,
+    "latest_qa_head": "1219157035eaa0da564414c37cc3080e16c23f15"
   },
   "integration": {
     "implementation": "rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs",
@@ -34,10 +35,19 @@
     "ui": "rebuild-preview/scene1341-readonly/index.html",
     "intake": "Dynamic CG-MASTER branch HEAD once, immutable pinned V201 first151 + V202 next52, exact Git blob SHA1, source and ID checks; diagnostic-only; stage stays 待审",
     "canonical_study_cards_unchanged": true,
-    "wrong_row506_ipa_quarantined": true
+    "wrong_row506_ipa_quarantined": true,
+    "inspector": {
+      "location": "Settings only",
+      "file": "rebuild-preview/scene1341-readonly/index.html",
+      "stage": "all 待审",
+      "read_only": true,
+      "no_srs": true,
+      "show_unreviewed_native_ipa_candidates_only": true,
+      "source": "4 immutably pinned Git blobs, 203 fresh editorial candidates"
+    }
   },
   "ci": {
-    "latest_code_head": "8194712379728b85472807f42ca96be866181ac9",
+    "latest_code_head": "453323953748dc40738352d287a7b646a2ecdea2",
     "ranked": {
       "run": 43683208025,
       "conclusion": "success"
@@ -45,13 +55,22 @@
     "fourline": {
       "run": 43683208028,
       "conclusion": "success"
+    },
+    "inspector_ranked": {
+      "run": 43684452190,
+      "conclusion": "pending at checkpoint"
+    },
+    "inspector_fourline": {
+      "run": 43684407728,
+      "conclusion": "success on prior code HEAD 3abf2f4"
     }
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "Wait for real independently reviewed exact-content CG-QA index before 1审",
-    "Advance beyond V202 with manifest-driven dynamic batches, preserve strict git SHA identity and no silent promotion",
-    "When canonical content contract validated, separately review staged question/answer/IPA integration without SRS writes"
+    "Check exact-head ranked CI 43684452190 and fix if failed",
+    "CG-QA 5 targeted content risks still unresolved, no independent 1审 index",
+    "Maintain staged preview separate from canonical study records",
+    "Preserve raw Kaikki evidence, strict version pins, row506 IPA quarantine"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml"
 }
