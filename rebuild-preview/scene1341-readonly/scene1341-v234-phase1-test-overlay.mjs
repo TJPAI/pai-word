@@ -7,6 +7,8 @@ const BRANCH='cg-master-kaikki-evidence-intake-20261111';
 const PATH='tools/scene1341_master/qa_reports/CGMASTER_V234_ALL1241_L1_L2_SCENE_TEST_COVERAGE_20261115.json';
 const ID=/^SC1341-FINAL-SRC-[a-f0-9]{32}$/;
 const COMMIT=/^[a-f0-9]{40}$/;
+const ORIGINAL_MASTER='62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986';
+const KAIKKI='4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99';
 const norm=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
 const fail=x=>{throw Error('V234_PHASE1_'+x)};
 async function sha1Blob(raw,cryptoImpl){
@@ -50,7 +52,10 @@ export async function fetchV234FullCoverage({fetchImpl=fetch,cryptoImpl=globalTh
  const stateRes=await fetchImpl(RAW+commit+'/tools/scene1341_master/CGMASTER_CURRENT_STATE.json',{cache:'no-store'});
  if(!stateRes.ok)fail('STATE_HTTP_'+stateRes.status);
  const state=await stateRes.json();
- if(state.version?.slice(1)*1<234||state.phase1?.original_source_associations!==1241||
+ if(!/^V\\d+/.test(state.version||'')||Number(state.version.match(/^V(\\d+)/)[1])<234||
+ state.sources?.original_final_master_sha256!==ORIGINAL_MASTER||
+ state.sources?.raw_kaikki_archive_sha256!==KAIKKI||
+ state.phase1?.original_source_associations!==1241||
  state.phase1?.v234_full_coverage?.path!==PATH||
  state.phase1?.v234_full_coverage?.release_allowed!==false)fail('STATE');
  const metaRes=await fetchImpl(REPO+'contents/'+PATH+'?ref='+commit,{cache:'no-store'});
