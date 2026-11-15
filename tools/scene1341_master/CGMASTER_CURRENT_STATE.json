@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "9362b39a417f74e5d7b1df777947d49ec45d4e7b",
-  "version": "V223",
+  "verified_base_head": "ac8a4372ed9c9b2f90edc361bdbc0e3f4129b3b9",
+  "version": "V224",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -73,7 +73,8 @@
       "tools/scene1341_master/qa_reports/CGMASTER_V219_27_EDITORIAL_EXAMPLE_SENSE_CONSISTENCY_HANDOFF_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V220_27_SOURCE_PROVENANCE_RECONCILED_QA_LEDGER_20261115.json",
       "tools/scene1341_master/qa_reports/CGMASTER_V221_38_RECORD_UNIFIED_BILINGUAL_QA_BATCH_20261115.json",
-      "tools/scene1341_master/qa_reports/CGMASTER_V223_38_PREVIEW_QUESTION_ANSWER_PAGE_PAYLOADS_20261115.json"
+      "tools/scene1341_master/qa_reports/CGMASTER_V223_38_PREVIEW_QUESTION_ANSWER_PAGE_PAYLOADS_20261115.json",
+      "tools/scene1341_master/qa_reports/CGMASTER_V224_23_KAIKKI_IPA_CANDIDATE_SELECTION_QUEUE_20261115.json"
     ],
     "summary_path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_FIRST203_EDITORIAL_COVERAGE_AND_QA_HANDOFF_20261115.json",
     "provisional_native_ipa_single_candidates_v203": 9,
@@ -241,6 +242,15 @@
       "approved_ipa": 0,
       "qa_stage": "待审",
       "report": "tools/scene1341_master/qa_reports/CGMASTER_V223_38_PREVIEW_QUESTION_ANSWER_PAGE_PAYLOADS_20261115.json"
+    },
+    "v224_ipa_candidates": {
+      "total": 38,
+      "with_candidates": 23,
+      "single": 17,
+      "multiple": 6,
+      "without_candidates": 15,
+      "approved": 0,
+      "report": "tools/scene1341_master/qa_reports/CGMASTER_V224_23_KAIKKI_IPA_CANDIDATE_SELECTION_QUEUE_20261115.json"
     }
   },
   "sources": {
@@ -285,6 +295,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V224: source-ground 15 IPA-missing records from full Kaikki or CMUdict with explicit phoneme-to-IPA method; independently review 17 single candidates and 6 ambiguous candidates.",
     "V223: CG-MAIN may consume review-only preview page payloads but must preserve complete=false and release_allowed=false; CG-MASTER continue IPA and full content enrichment.",
     "V222: verify GitHub Actions validator pass, fix any CI regressions before further promotion.",
     "V221: CG-QA review single 38-record bilingual batch; prioritize 4 holds, release only exact approved content hash.",
