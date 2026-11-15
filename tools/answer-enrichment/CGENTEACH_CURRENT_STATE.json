@@ -1,0 +1,60 @@
+{
+  "schema": "cg-enteach-current-state/v1",
+  "updated_date": "2026-11-15",
+  "role": "CG-ENTEACH",
+  "branch": "answer-enrichment-main-dev-20261026",
+  "prior_base_commit": "78433933d2a6355b31aca02b5ad84c764851b271",
+  "latest_completed_work_commit": "16747f02249dc6dfa029bf647e8f56effa6bab1e",
+  "phase1_priority": {
+    "scenes": [
+      "SC50-0001",
+      "SC50-0002",
+      "SC50-0003",
+      "SC50-0004",
+      "SC50-0005"
+    ],
+    "frozen_source_associations": 1241,
+    "master_fresh_editor_drafts_at_verified_source": 203,
+    "remaining_without_fresh_editor_draft": 1038,
+    "all_new_drafts_first_review": "待审",
+    "formal_ready": 0,
+    "source_master_head": "aadd07698bd33f10924d0e230bb53be94d9075a7",
+    "source_author_qa_delta": "tools/answer-enrichment/qa_reports/CG_ENTEACH_PHASE1_FRESH203_AUTHOR_EDITORIAL_P1P2_DELTA_20261115.v1.json",
+    "author_p1": 4,
+    "author_p2": 1,
+    "description": "CG-ENTEACH author editorial audit suggestions only; CG-MASTER owns source Master/new question and answer page and IPA; CG-QA/MU-QA independent certification."
+  },
+  "secondary_backlog": {
+    "scenes": "SC50-0006..SC50-0010",
+    "existing_v51_author_ku": 993,
+    "strict_crosswalk_candidate_not_certified": 940,
+    "hold": 53,
+    "no_row": 18,
+    "nonexact": 31,
+    "duplicate_dual_rows": 4,
+    "identity_change_allowed": false
+  },
+  "resume_protocol": [
+    "Read this checkpoint and latest branch HEAD, not full histories",
+    "Fetch incremental Issue #1/#2 comments since last anchor ID 6890007156 or 2026-11-15T05:54:22Z",
+    "Prioritize Phase1 fresh Kaikki author editorial support and CG-QA response; keep secondary 993 KU handoff paused until Phase1 scope accepted",
+    "Read only changed manifests and targeted per-record data; preserve SHA-pinned source evidence",
+    "Commit source-pinned author patches/reports to this branch, read back remote blob, then update this checkpoint",
+    "No author-claimed first-review, no promotion, no changes to frozen IDs/Master, runtime or SRS"
+  ],
+  "last_issue_checkpoint": {
+    "issue1_comment_id": 6890007156,
+    "issue2_comment_id": 6889893324
+  },
+  "pending_handoff": [
+    "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
+    "CG-ENTEACH-SC0006-SC0010-V75-993KU-20261115"
+  ],
+  "verification": {
+    "drafts_examined": 203,
+    "source_packs": 4,
+    "recommendations": 5,
+    "independent_language_certifications": 0,
+    "release_allowed": false
+  }
+}
