@@ -1,0 +1,22 @@
+name: CG-REC-EVAL persistent checkpoint integrity
+on:
+  push:
+    branches: [cg-rec-eval-isolated-20261027]
+    paths:
+      - 'tools/cg-rec-eval/CG_REC_EVAL_CHECKPOINT.json'
+      - 'tools/cg-rec-eval/validate-checkpoint.mjs'
+      - '.github/workflows/cg-rec-eval-checkpoint.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-checkpoint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify compact persistent checkpoint
+        run: node tools/cg-rec-eval/validate-checkpoint.mjs tools/cg-rec-eval/CG_REC_EVAL_CHECKPOINT.json
