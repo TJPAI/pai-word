@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V249_FULL1341_CANDIDATE_INDEX",
+  "version": "V250_FULL1341_QA_TRIAGE",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -609,6 +609,21 @@
       "release_allowed": false,
       "local_archive": "CGMASTER_V249_INDEX.zip",
       "builder": "tools/scene1341_master/build_v249_candidate_index.py"
+    },
+    "v250_full1341_qa_triage": {
+      "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+      "queue_counts": {
+        "polysemy_expressions": 15582,
+        "cross_scene_reuse_groups": 17718,
+        "exact_pair_repeats": 17719,
+        "missing_chinese_meaning_rows": 222
+      },
+      "drive_archive_id": "1nIEKp1Vk2svecRgDTZdeHKVHhzR9KXXa",
+      "drive_archive_name": "CGMASTER_V250_QA_TRIAGE.zip",
+      "builder": "tools/scene1341_master/build_v250_qa_triage.py",
+      "qa_stage": "待审",
+      "canonical_sense_ids_verified": 0,
+      "release_allowed": false
     }
   },
   "sources": {
@@ -662,9 +677,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Upload V249 index to canonical Drive folder and preserve hash/metadata.",
-    "Use candidate groups to build ambiguity and missing-meaning QA queues.",
-    "Keep candidate keys separate from canonical Sense IDs and require independent QA before 1审."
+    "CG-QA prioritize V250 polysemy and missing-meaning queues, preserving exact source rows and evidence.",
+    "Use Kaikki semantic evidence to determine Sense identity; do not merge on identical gloss alone.",
+    "Continue L2/L3 answer and question page enrichment and preserve 1审 only for independently verified content."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
