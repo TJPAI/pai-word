@@ -278,8 +278,20 @@ const autoBrowse=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyAutoBrowse({
  onState:enabled=>{$('auto-toggle').checked=enabled}
 });
 const label=id=>catalog.find(x=>x.id===id)?.name||id;
-const available=id=>items.reduce((n,r)=>n+(r.scene_id===id),0);
-const subset=()=>items.filter(x=>x.scene_id===sceneId);
+// CG-QA V200 P0: the native noun sense for 'pack lunch' conflicts with
+// the action-cue Chinese meaning. Exclude it from ALL test learning routes
+// even if QA index fetch fails; keep it in Master/Settings for adjudication.
+// A new source correction + exact independently reviewed PASS is required
+// before reconsidering eligibility (first-review PASS is not formal release).
+const P0_PACK_LUNCH_RECORD='SC1341-FINAL-SRC-c11130a3098680db35fc444573431858';
+function eligiblePreviewCard(card){
+ if(card.master_record_id!==P0_PACK_LUNCH_RECORD)return true;
+ const review=resolveQaStage(card,independentQaReviews);
+ return review.reviewed&&review.verdict==='PASS'&&
+  card.master_content_sha256!==undefined;
+}
+const available=id=>items.reduce((n,r)=>n+(r.scene_id===id&&eligiblePreviewCard(r)?1:0),0);
+const subset=()=>items.filter(x=>x.scene_id===sceneId&&eligiblePreviewCard(x));
 // Same two-stage cycle as native Scene500 cycleKeys() + browseAnswer():
 // slice the CURRENT round (10/25/50 KUs), then wrap within that slice.
 // This is the sole word-index owner for auto, manual, and rated advance.
