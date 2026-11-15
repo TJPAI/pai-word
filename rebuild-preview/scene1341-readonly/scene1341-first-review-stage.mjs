@@ -6,7 +6,7 @@ const HASH64=/^[a-f0-9]{64}$/;
 const HASH40=/^[a-f0-9]{40}$/;
 const RECORD=/^SC1341-FINAL-SRC-[a-f0-9]{32}$/;
 const VERDICTS=new Set(['PASS','CONDITIONAL','REVISE','HOLD']);
-const ELIGIBLE=new Set(['SC50-0001','SC50-0002','SC50-0003','SC50-0004','SC50-0005']);
+const ELIGIBLE=/^SC50-(?:0[0-9]{3}|1[0-2][0-9]{2}|13[0-3][0-9]|134[01])$/;
 const qaRepo='https://raw.githubusercontent.com/TJPAI/pai-word/';
 const qaBranch='cg-qa-enlex-review-20261026';
 const fail=reason=>{throw Error('SC1341_QA_STAGE_'+reason)};
@@ -18,7 +18,7 @@ export function createTrustedFirstReviewIndex(report,{commit}={}){
  // predate that report; demanding equality creates an impossible self-hash.
  const index=new Map();
  for(const proof of report.reviews){
-  if(!RECORD.test(proof?.record_id||'')||!ELIGIBLE.has(proof.scene_id)||
+  if(!RECORD.test(proof?.record_id||'')||!ELIGIBLE.test(proof.scene_id||'')||
      !HASH64.test(proof.content_sha256||'')||!VERDICTS.has(proof.verdict)||
      proof.reviewer!=='CG-QA'||!/^20\d\d-\d\d-\d\d/.test(proof.reviewed_at||'')||
      typeof proof.evidence_path!=='string'||!/^tools\//.test(proof.evidence_path)||
@@ -43,7 +43,7 @@ export async function fetchIndependentFirstReviews({fetchImpl=fetch}={}){
  return Object.freeze({commit,index:createTrustedFirstReviewIndex(report,{commit})});
 }
 export function resolveFirstReviewLabel(card,trustedReviews){
- if(!ELIGIBLE.has(card?.scene_id))return Object.freeze({visible:false,label:'',verdict:null,reviewed:false});
+ if(!ELIGIBLE.test(card?.scene_id||''))return Object.freeze({visible:false,label:'',verdict:null,reviewed:false});
  const recordId=card.master_record_id;
  const contentSha=card.master_content_sha256;
  // An embedded author-provided qa_first_review is deliberately ignored.
