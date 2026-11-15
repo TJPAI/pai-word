@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "77d3cb243bc552175232b3248bbf0589d1d63ce6",
-  "version": "V239",
+  "verified_base_head": "4101e6dbd9773289e1da7d5fa29afa2f63962e38",
+  "version": "V240",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -416,16 +416,16 @@
       "release_allowed": false
     },
     "current_staged_disjoint_scene_coverage": {
-      "scenes": 25,
-      "rows": 6179,
+      "scenes": 70,
+      "rows": 15078,
       "components": [
         "V234 SC0001..0005 1241",
-        "V239 SC0006..0010 1138",
+        "V239 SC0006..0010 and 0015..0016 1686",
         "V235 SC0011..0014 996",
-        "V239 SC0015..0016 548",
-        "V238 SC0017..0025 2256"
+        "V238 SC0017..0025 2256",
+        "V240 SC0026..0070 8899"
       ],
-      "note": "Do not sum overlapping V190 3000; all QA pending."
+      "note": "Disjoint by scene. Test coverage; not QA certified. CMU IPA previews not native Kaikki."
     },
     "v239_scene_first_test_pages": {
       "scenes": [
@@ -440,6 +440,19 @@
       "rows": 1686,
       "source": "V169/V170 QUESTION IPA TEST",
       "status": "L1_SOURCE_CUE_WITH_TEST_IPA",
+      "release_allowed": false
+    },
+    "v240_scene_first_0026_0070": {
+      "source_records": 8899,
+      "scene_count": 45,
+      "source_versions": [
+        "V172",
+        "V173",
+        "V174"
+      ],
+      "file_count_verified": 45,
+      "manifest": "tools/scene1341_master/qa_reports/v240_scene_test/CGMASTER_V240_MANIFEST.json",
+      "qa_stage": "待审",
       "release_allowed": false
     }
   },
@@ -485,6 +498,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V240: Next scale SC0071+ from original frozen Master/Reviewed V13, bulk 3000 source rows, then iteratively enrich L2 Kaikki source sense evidence and L3 answers; maintain QA 待审.",
     "V239: SC0001..0025 staged 6179 source-row TEST records. Expand to SC0026..0070 via V172..174 gzip shards; maintain scene-first files, no false QA claims.",
     "V238: expand scene-first L1 coverage from existing V169/V170/V172/V173/V174 source overlays, avoid counting overlapping V190. Preserve unreviewed IPA status and provenance.",
     "V237 blocker: trigger V236 workflow_dispatch manually on cg-master-kaikki-evidence-intake-20261111 or confirm GitHub Actions branch permissions; verify output tree and 3000-row generated manifest. Avoid claiming success before files appear.",
