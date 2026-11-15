@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {resolveFirstReviewLabel,createTrustedFirstReviewIndex,fetchIndependentFirstReviews} from '../../rebuild-preview/scene1341-readonly/scene1341-first-review-stage.mjs';
+import {resolveFirstReviewLabel,resolveEditorialFirstReview,createTrustedFirstReviewIndex,fetchIndependentFirstReviews} from '../../rebuild-preview/scene1341-readonly/scene1341-first-review-stage.mjs';
 const record='SC1341-FINAL-SRC-'+'a'.repeat(32),sha='b'.repeat(64),commit='c'.repeat(40);
 const card={scene_id:'SC50-0001',master_record_id:record,master_content_sha256:sha,qa_stage_label:'1审',
  qa_first_review:{reviewer:'CG-QA',record_id:record,content_sha256:sha,evidence_commit:commit,evidence_path:'tools/qa/forged.json',reviewed_at:'2026-11-15',verdict:'PASS'}};
@@ -10,6 +10,13 @@ const proof={scene_id:'SC50-0001',reviewer:'CG-QA',record_id:record,content_sha2
 const report={schema:'scene1341-phase1-independent-first-review/v1',reviewer:'CG-QA',formal_ready:0,srs_eligible:false,reviews:[proof]};
 const trusted=createTrustedFirstReviewIndex(report,{commit});
 assert.deepEqual(resolveFirstReviewLabel(card,trusted),{visible:true,label:'1审',verdict:'REVISE',reviewed:true});
+const editor={record_id:record,scene_id:'SC50-0001',content_sha256:sha,
+ qa_stage_label:'1审',qa_first_review:{...proof,verdict:'PASS'}};
+assert.deepEqual(resolveEditorialFirstReview(editor,trusted),
+ {stage:'1审',verdict:'REVISE',firstReviewed:true,formalReady:false,srsEligible:false});
+assert.equal(resolveEditorialFirstReview({...editor,content_sha256:'e'.repeat(64)},trusted).stage,'待审');
+assert.equal(resolveEditorialFirstReview(editor,new Map()).stage,'待审');
+
 assert.equal(resolveFirstReviewLabel({...card,master_content_sha256:'e'.repeat(64)},trusted).label,'待审');
 assert.equal(resolveFirstReviewLabel({...card,master_record_id:'SC1341-FINAL-SRC-'+'d'.repeat(32)},trusted).label,'待审');
 assert.equal(resolveFirstReviewLabel({...card,scene_id:'SC50-0002'},trusted).label,'待审');
@@ -30,6 +37,8 @@ const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8
 assert(html.includes('id="first-review-stage"'));
 assert(html.includes('id="phase1-review-source-status"'));
 assert(html.includes('qaModule.fetchIndependentFirstReviews()'));
+assert(html.includes('qaModule.resolveEditorialFirstReview(row,independentQaReviews)'));
+assert(html.includes('data.qaResolve(row,independentQaReviews)'));
 assert(html.includes('resolveQaStage(r,independentQaReviews)'));
 assert(html.includes('不代表正式批准')&&html.includes('data-srs-write="disabled"'));
 console.log('PASS true independent CG-QA SHA-pinned report, author-forged review ignored, content edits reset 待审; first-reviewed REVISE displays 1审, SRS0');
