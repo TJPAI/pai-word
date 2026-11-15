@@ -506,6 +506,9 @@ async function load(){
   set('scope','Scene1341 正式目录1,341个场景；当前完整学习草稿14场景、2,873条，其中SC0011–SC0014已接入996条V171完整题目与答案配对（979条测试IPA，17条待补），其余1,877条保持原来源；主学习界面可显示测试IPA '+latestIPAVisible+' 条；'+(v190.sourceRows?v190.sourceVersion+'源关联3,000条中已精确匹配旧词卡 '+v190.exact+' 条、安全增量增强 '+v190.enriched+' 条':'动态Master暂不可用，使用历史测试词卡')+'，正式认证0、SRS写入关闭。');
   set('master-ipa-coverage',phase1StudyOverlayStatus+' '+$('master-ipa-coverage').textContent);
   set('status','Scene1341 · '+v190.sourceVersion+' Master'+(v190.sourceFallback?'（回退）':'（实时）')+'更新 '+v190.enriched+' 卡 · 最新测试IPA候选 '+v190.liveIPATest+' · 14场景 / 2,873卡 · Ready 0');
+  // Distinguish the legacy-card count from actual source-exact Phase1 overrides.
+  set('scope',$('scope').textContent+' · '+phase1StudyOverlayStatus);
+  set('status',$('status').textContent+' · '+phase1StudyOverlayStatus);
   if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
