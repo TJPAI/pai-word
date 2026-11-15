@@ -353,12 +353,12 @@ async function load(){
   // Inspect real first-phase author drafts as DIAGNOSTICS ONLY. They are not
   // CG-QA approved and cannot replace cards until canonical Master publication.
   void import('./scene1341-phase1-fresh-drafts.mjs')
-   .then(m=>m.fetchPhase1FreshDrafts())
+   .then(m=>m.fetchPhase1FreshDraftsLatest())
    .then(fresh=>set('phase1-fresh-draft-status',
      'SC0001–SC0005 全新Kaikki草稿：'+fresh.rows.length+'条（按场景 '+[
        'SC50-0001','SC50-0002','SC50-0003','SC50-0004','SC50-0005'
      ].map(id=>id.slice(-4)+':'+(fresh.perScene[id]||0)).join(' / ')+
-     '）；源Git分片'+fresh.verifiedBlobCount+'/3已校验；全部待审、未接入正式词卡；SRS禁写。'))
+     '）；源Git分片'+fresh.verifiedBlobCount+'已校验；全部待审、未接入正式词卡；SRS禁写。'))
    .catch(()=>set('phase1-fresh-draft-status',
     '全新Kaikki草稿索引暂不可验证；保留已有词卡，不提升审核或发布状态。'));
   const [catalogRaw,qa,extra,next,coverageModule,overlayModule,v154Module]=await Promise.all([
