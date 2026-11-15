@@ -1,0 +1,111 @@
+{
+  "schema": "cg-enteach-phase1-master-editorial-delta-v1",
+  "date": "2026-11-15",
+  "role": "CG-ENTEACH",
+  "source_master_branch": "cg-master-kaikki-evidence-intake-20261111",
+  "source_master_head": "aadd07698bd33f10924d0e230bb53be94d9075a7",
+  "scope": {
+    "phase": "SC50-0001..SC50-0005",
+    "fresh_drafts_examined": 203,
+    "source_packs": 4,
+    "actionable_findings": 5,
+    "p1": 4,
+    "p2": 1,
+    "formal_approval": 0
+  },
+  "source_packs": [
+    {
+      "name": "CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "blob": "198041d48aaf06e83a7352b09d633bfc4e58573c"
+    },
+    {
+      "name": "CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "blob": "abaef260727a272d7bfc232c1b665b1773b3fd5e"
+    },
+    {
+      "name": "CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "blob": "1e8d2aa243ac531d06e739a9361b00bc5e939662"
+    },
+    {
+      "name": "CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+      "blob": "24c3603c04dd4378fd24f97000d6717839326570"
+    }
+  ],
+  "editorial_findings": [
+    {
+      "row": 359,
+      "id": "SC1341-FINAL-SRC-4a343b35c035ed8172d4988f5c60f940",
+      "sha": "85f76c95e6bfb891ffe7c70336f80f507986aec21ad2c54042895606b713f632",
+      "expression": "body lotion",
+      "severity": "P1",
+      "field": "answer_page.gloss_en",
+      "original": "A cleansing lotion designed for the body, to help keep the skin smooth",
+      "issue": "The native source gloss says cleansing, but in ordinary usage body lotion is primarily a moisturizing product and is not necessarily a body cleanser. Directly displaying this gloss as learner definition conflicts with original Chinese meaning and example.",
+      "suggested": "A moisturizing lotion applied to the skin of the body.",
+      "proposed_zh": "用于身体皮肤的保湿乳液；身体乳",
+      "evidence_note": "Editor correction proposal is usage-based, not a verbatim Kaikki attestation. Preserve the raw native_gloss as evidence, flag lexical sense gloss conflict to Master/QA for adjudication."
+    },
+    {
+      "row": 543,
+      "id": "SC1341-FINAL-SRC-500eb3bfedae6ae514e74d3bcc3c6619",
+      "sha": "2d800300285298344608aaf050e355359a963abc28d61fe5b33376ffea3c11e1",
+      "expression": "sweater",
+      "severity": "P1",
+      "field": "answer_page.gloss_en",
+      "original": "A knitted jacket or jersey, usually of thick wool, worn by athletes before or after exercise.",
+      "issue": "Native gloss focuses on athletes and thick wool, an unnecessarily narrow description for modern sweater meaning and the broad Chinese meaning 毛衣. Original teaching example is general cold-weather clothing, not athletics.",
+      "suggested": "A knitted item of clothing worn on the upper body, often for warmth.",
+      "proposed_zh": "针织上衣；毛衣",
+      "evidence_note": "Retain original Kaikki gloss verbatim in native evidence and label revised teaching definition as editor-proposed pending QA. Native sense indexing must be rechecked for an alternative more general sense."
+    },
+    {
+      "row": 352,
+      "id": "SC1341-FINAL-SRC-b5fc0c9da07e017d1c85b651702fee06",
+      "sha": "76560638d30db446ee4825014e8caf59759e5e15ff6dfa57721e274a2d10238f",
+      "expression": "cotton swab",
+      "severity": "P1",
+      "field": "answer_page.examples[0]",
+      "original": "Use a cotton swab to clean the small edge. | 用棉签清洁这个小边缘。",
+      "issue": "The small edge is underspecified and unnatural in this hygiene context; the Chinese translation reproduces the awkward referent.",
+      "suggested": "Use a cotton swab to remove the smudged makeup at the corner of your eye. | 用棉签擦掉眼角晕开的妆。",
+      "evidence_note": "New editor example, not Kaikki attestation; no advice to insert swabs into the ear canal."
+    },
+    {
+      "row": 1046,
+      "id": "SC1341-FINAL-SRC-783a930c7067ad09f97d303b1e9810be",
+      "sha": "10e203171ab9e6b48f84022118390892c98a315ad19936269bb05b53d7f258db",
+      "expression": "laundry detergent",
+      "severity": "P1",
+      "field": "answer_page.meaning_zh",
+      "original": "洗衣液",
+      "issue": "Laundry detergent covers powder, liquid and other laundry-washing detergent forms; present Chinese label 洗衣液 is too narrow even though source gloss is generic detergent.",
+      "suggested": "洗衣用洗涤剂；洗衣液或洗衣粉",
+      "proposed_example": "Use the right amount of laundry detergent for this load. | 这一批衣服要使用适量洗衣剂。",
+      "evidence_note": "Keep scene 0005 row1046 separate from scene 0006 previous V51 author KU; no cross-scene identity inference."
+    },
+    {
+      "row": 70,
+      "id": "SC1341-FINAL-SRC-bd42dcb7d5e33f1e57c5718765d44580",
+      "sha": "bf13e18ce0e2d7d95a3af2807f33b3aba7fb906de5fdabd03e7b6251dbdd076f",
+      "expression": "weekday",
+      "severity": "P2",
+      "field": "answer_page.examples[0]",
+      "original": "I work from Monday to Friday, so Saturday is not a weekday. | 我周一到周五上班，因此周六不是工作日。",
+      "issue": "This example implies the weekday/weekend classification depends on the speaker's work schedule, whereas weekday typically means Mon–Fri in many English contexts with regional/technical nuance.",
+      "suggested": "The office is open on weekdays, from Monday to Friday. | 这间办公室周一至周五工作日开放。",
+      "evidence_note": "Keep native source definition and dialect note separate; do not alter IPA multivariant HOLD."
+    }
+  ],
+  "editorial_scope": "Field-level author-quality and semantic coherence proposals only; not full independent QA of 203 rows, and not all five problems are independently certified errors.",
+  "required_action": "CG-MASTER compare exact content_sha256, immutable Master row, Kaikki native evidence and current competing edits before incorporating revised teaching fields; CG-QA/MU-QA adjudicate independently. New editorial examples must be labeled non-Kaikki.",
+  "qa_status": "AUTHOR_EDITORIAL_PROPOSED_PENDING_INDEPENDENT_QA",
+  "first_review_label": "待审",
+  "release_allowed": false,
+  "mutation": {
+    "frozen_master": false,
+    "original_ku": false,
+    "core20k": false,
+    "runtime": false,
+    "srs": false
+  }
+}
