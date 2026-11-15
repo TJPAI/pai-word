@@ -176,6 +176,7 @@ const SOURCE='2cecf85fdb1b6b73fcd4b96c11bcb872a30c92db';
 const ROOT='https://raw.githubusercontent.com/TJPAI/pai-word/'+SOURCE+'/tools/integration/';
 // Immutable author commit: candidate KU only; never use this URL as runtime release permission.
 const $=id=>document.getElementById(id),set=(id,value)=>{$(id).textContent=String(value??'')};
+let activeMasterFeed=null,sceneFeedRequest=0,sceneFeedCache=new Map();
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null,ipaSequence=0;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
@@ -422,6 +423,7 @@ async function load(){
   try{
    const feedModule=await import('./scene1341-live-feed.mjs');
    const liveFeed=await feedModule.resolveLiveFeed({commit:v190.sourceCommit});
+   activeMasterFeed=liveFeed;
    set('master-live-feed-status','全场景 Feed 已核验：'+liveFeed.stats.batchCount+'批、'+liveFeed.stats.associationCount+
      '条源关联；可按场景读取，尚未自动升级为正式学习卡；SRS禁写。');
   }catch(feedError){
@@ -505,13 +507,34 @@ function renderHome(){
    list.appendChild(btn)}
 }
 let exampleToWordPending=false;
+// Background source inspection is intentionally read-only. New associations
+// are NOT study cards until CG-MASTER supplies complete pages + QA identity.
+async function inspectSceneMasterFeed(id,request){
+ if(!activeMasterFeed)return;
+ try{
+  let view=sceneFeedCache.get(id);
+  if(!view){
+   const module=await import('./scene1341-live-feed.mjs');
+   view=await module.fetchSceneAssociations(activeMasterFeed,id);
+   sceneFeedCache.set(id,view);
+  }
+  if(request!==sceneFeedRequest||sceneId!==id||$('learning').hidden)return;
+  set('continue-description','可体验'+available(id)+'条作者草稿 · Master已校验'+view.rows.length+
+   '条源关联（仅测试、未认证） · 不保存学习记录');
+ }catch(error){
+  if(request!==sceneFeedRequest||sceneId!==id||$('learning').hidden)return;
+  set('continue-description','可体验'+available(id)+'条作者草稿 · 场景增量来源暂不可用，沿用已验证词卡 · 不保存学习记录');
+ }
+}
 function openStudy(id,resume=false){
  if(!available(id)||!items.length)return;
  exampleToWordPending=false;autoBrowse.pause();sceneId=id;lastScene=id;revealed=false;resetScratch();
+ const feedRequest=++sceneFeedRequest;
  const rows=subset(),saved=resume?transientCursors.get(id):null;
  index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0;
  $('home').hidden=true;$('learning').hidden=false;
  set('continue-name',label(id));set('continue-description','可体验'+available(id)+'条作者草稿 · 不保存学习记录');
+ void inspectSceneMasterFeed(id,feedRequest);
  phaseController.start(rows[index].scene_ku_id);
  if(saved?.face==='answer')phaseController.tap();
  if(readOnlyPrefs.get(revealed?'autoPronounce.swipe':'autoPronounce.question'))playWord(rows[index].expression);
