@@ -1,0 +1,130 @@
+{
+  "schema": "cg-qa-v203-v223-preview-projection-independent-structural-and-pedagogical-audit/v1",
+  "version": "V203",
+  "role": "CG-QA",
+  "date": "2026-11-15",
+  "source": {
+    "branch": "cg-master-kaikki-evidence-intake-20261111",
+    "files": [
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V223_38_PREVIEW_QUESTION_ANSWER_PAGE_PAYLOADS_20261115.json",
+        "git_blob": "7bdb1f6a7e4116dd30ae0885030eb3ba4fc2ecc6"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V221_38_RECORD_UNIFIED_BILINGUAL_QA_BATCH_20261115.json",
+        "git_blob": "95c560495a00c343aa12abcdd6b7fb609c2a475b"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V218_FOUR_SENSE_POS_ERRATA_UNREVIEWED_20261115.json",
+        "git_blob": "0a755d645b6896c7084e8e56b50163d221ad3d06"
+      }
+    ]
+  },
+  "scope": "All 38 unreviewed V223 question/answer preview objects cross-compared to V221 bilingual source and V218 POS errata.",
+  "results": {
+    "records": 38,
+    "examples": 36,
+    "qa_unreviewed": 38,
+    "ready_true": 0,
+    "question_complete_true": 0,
+    "answer_complete_true": 0,
+    "ipa_approved": 0,
+    "missing_question_cue_field": 38,
+    "source_qa_status_mismatch": 0,
+    "new_display_abbreviation_risks": 2,
+    "p0_sense_holds_retained": 4,
+    "independent_first_review_count_unchanged": 19,
+    "formal_dual_ai_certified": 0
+  },
+  "findings": {
+    "identity_and_example_mismatches": [],
+    "display_abbreviation_risks": [
+      {
+        "row": 840,
+        "expression": "within reach",
+        "pos": "prep_phrase",
+        "shown": "prep_phrase. 伸手就能拿到",
+        "suggested": "prep. phr. 伸手就能拿到"
+      },
+      {
+        "row": 841,
+        "expression": "out of reach",
+        "pos": "prep_phrase",
+        "shown": "prep_phrase. 够不着",
+        "suggested": "prep. phr. 够不着"
+      }
+    ],
+    "preexisting_p0_holds": [
+      {
+        "row": 584,
+        "expression": "smart casual",
+        "prevHold": true,
+        "errata": "EDITORIAL_SENSE_CORRECTION_UNREVIEWED",
+        "selected_native_line": 89184,
+        "ipa_candidates": 0,
+        "conclusion": "HOLD pending independent original Kaikki line proof"
+      },
+      {
+        "row": 585,
+        "expression": "business casual",
+        "prevHold": true,
+        "errata": "EDITORIAL_SENSE_CORRECTION_UNREVIEWED",
+        "selected_native_line": 398974,
+        "ipa_candidates": 0,
+        "conclusion": "HOLD pending independent original Kaikki line proof"
+      },
+      {
+        "row": 617,
+        "expression": "wrinkled",
+        "prevHold": true,
+        "errata": "HOLD_CONTEXT_SPECIFIC_GLOSS",
+        "selected_native_line": 45318,
+        "ipa_candidates": 1,
+        "conclusion": "HOLD pending independent original Kaikki line proof"
+      },
+      {
+        "row": 987,
+        "expression": "tidying",
+        "prevHold": true,
+        "errata": "EDITORIAL_SENSE_CORRECTION_UNREVIEWED",
+        "selected_native_line": 218166,
+        "ipa_candidates": 1,
+        "conclusion": "HOLD pending independent original Kaikki line proof"
+      }
+    ],
+    "question_page_schema_notice": "Question_page preview objects omit a dedicated cue_zh field in all 38, while answer_page.meaning_zh retains source cue. Confirm this is intentional for Scene500 parity before claiming complete question page. This is schema observation, not proof of a runtime bug.",
+    "other_open_risks": [
+      {
+        "row": 432,
+        "expression": "close shave",
+        "issue": "n. 刮得很干净 uses a predicative action gloss where source grammatical POS is noun; teach close shave with nominal Chinese meaning or adjust target."
+      },
+      {
+        "row": 840,
+        "expression": "within reach",
+        "issue": "English example says 'within reach of the sofa', awkward frame of reference; improve spatial anchor."
+      },
+      {
+        "row": 1095,
+        "expression": "manageable",
+        "issue": "Chinese translation literal '能够完成的小任务' not idiomatic enough for 'manageable tasks'; recommend 易于完成的小任务."
+      }
+    ]
+  },
+  "status": {
+    "v223_is_preview_only": true,
+    "complete_teaching_pages": 0,
+    "ipa_approved": 0,
+    "new_canonical_source_content_hash_review": 0,
+    "new_runtime_1review": 0,
+    "independent_source_archive_reopened": false,
+    "release_allowed": false,
+    "srs_eligible": false
+  },
+  "handoff": [
+    "CG-MASTER: ensure POS abbreviations are human-facing, in particular prep_phrase -> prep. phr. (or agreed standard).",
+    "CG-MAIN: keep displayed POS immediately preceding Chinese definition, never separate row; inspect question-face cue schema intentionality.",
+    "CG-MASTER: retain 4 P0 source HOLD cases, implement P1 Chinese/English wording fixes, and provide fresh exact content-SHA when finalizing.",
+    "Do not classify integrity PASS as teaching completeness or dual-AI certification."
+  ]
+}
