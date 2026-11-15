@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
+import {applyPhase1StudyOverlay} from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-study-overlay.mjs';
 import {validatePhase1FreshManifest,validatePhase1DraftRows,fetchPhase1FreshDrafts,fetchPhase1FreshDraftsLatest,fetchPhase1FreshDraftsCurrent,phase1EditorialPreview}
  from '../../rebuild-preview/scene1341-readonly/scene1341-phase1-fresh-drafts.mjs';
 const V=['V199','V200','V201'],N=[35,55,61];
@@ -160,3 +161,67 @@ await assert.rejects(()=>fetchPhase1FreshDraftsCurrent({commit,fetchImpl:url=>{
  return serveRolling(url);
 }}),/PHASE1_FRESH_ROLLING_ROW/);
 console.log('PASS rolling V203+V205 state 258 distinct, immutable Git metadata, forged QA and count mismatch blocked');
+
+/* P0 regression: wake up in the ACTUAL Scene1341 study queue must use
+ * source-exact fresh Kaikki question+answer, not historical V116/V190 content.
+ * An IPA-HOLD entry must not inherit stale selected IPA from legacy cards.
+ */
+const sourceCards=[...rows,...newRows].map(x=>structuredClone(x));
+sourceCards[0].record_id='SC1341-FINAL-SRC-f80790f4252d2220527cf7c9b5df8b62';
+sourceCards[0].source_final_row=1;
+sourceCards[0].question_page={english_expression:'wake up',cue_zh:'醒来',ipa:'/ˌweɪk ˈʌp/',
+ ipa_source_status:'NATIVE_EXACT_PHONEMIC_SINGLE_UNREVIEWED',
+ ipa_native_all_phonemic_candidates:['/ˌweɪk ˈʌp/']};
+sourceCards[0].answer_page={meaning_zh:'醒来',gloss_en:'To stop sleeping; to awake.',pos:'verb',
+ examples:[{example_en:'I wake up at seven every day.',example_zh:'我每天七点醒来。',
+ source:'CG_MASTER_NEW_EDITOR_ORIGINAL_NOT_KAIKKI_ATTESTATION',qa_status:'待审'}],
+ collocations:[],usage_note:'不及物 wake up 表示醒来；wake somebody up 表示叫醒别人。',
+ answer_complete:false};
+sourceCards[0].source_evidence={archive_sha256:rawSource,kaikki_lemma:'wake up',
+ kaikki_pos:'verb',native_gloss:'To stop sleeping; to awake.',kaikki_exact_raw_line:50969};
+sourceCards[1].question_page={english_expression:'get up',cue_zh:'起床',ipa:null,
+ ipa_source_status:'NATIVE_EXACT_PHONEMIC_AMBIGUOUS_OR_ABSENT_HOLD',
+ ipa_native_all_phonemic_candidates:[]};
+sourceCards[1].answer_page={meaning_zh:'起床',gloss_en:'To rise from bed.',pos:'verb',
+ examples:[],collocations:[],usage_note:null,answer_complete:false};
+sourceCards[1].source_evidence={archive_sha256:rawSource,kaikki_lemma:'get up',
+ kaikki_pos:'verb',native_gloss:'To rise from bed.',kaikki_exact_raw_line:1234};
+const oldStudy=[
+ {scene_ku_id:'SC1341-KU-00001',scene_id:'SC50-0001',
+  master_record_id:sourceCards[0].record_id,master_final_row:1,expression:'wake up',
+  question:{cue_zh:'醒来',ipa:null},answer:{meaning_zh:'醒来',
+   collocations:['OLD INCORRECT COLLOCATION'],usage_note:'OLD ANSWER'}},
+ {scene_ku_id:'SC1341-KU-00002',scene_id:'SC50-0001',
+  master_record_id:sourceCards[1].record_id,master_final_row:2,expression:'get up',
+  question:{cue_zh:'起床',ipa:'/old-wrong/'},answer:{meaning_zh:'起床',
+   collocations:['OLD COLLOCATION'],usage_note:'OLD USAGE'}}
+];
+const newStudy=applyPhase1StudyOverlay(oldStudy,{rows:sourceCards,
+ onlyDiagnostic:true,canWriteSrs:false,formalReady:0,version:'V202',commit});
+assert.equal(newStudy.matched,2);
+assert.equal(newStudy.canWriteSrs,false);
+assert.equal(newStudy.formalReady,0);
+assert.equal(newStudy.items[0].scene_ku_id,oldStudy[0].scene_ku_id);
+assert.equal(newStudy.items[0].question.ipa,'/ˌweɪk ˈʌp/');
+assert.equal(newStudy.items[0].question.ipa_status,'PHASE1_KAIKKI_NATIVE_SINGLE_UNREVIEWED');
+assert.equal(newStudy.items[0].answer.gloss_en,'To stop sleeping; to awake.');
+assert.equal(newStudy.items[0].answer.examples[0].example_zh,'我每天七点醒来。');
+assert.equal(newStudy.items[0].answer.collocations.length,0);
+assert(!JSON.stringify(newStudy.items[0]).includes('OLD ANSWER'));
+assert.equal(newStudy.items[1].question.ipa,null);
+assert.equal(newStudy.items[1].question.ipa_status,'PHASE1_KAIKKI_IPA_HOLD');
+assert.equal(newStudy.items[1].answer.usage_note,'');
+const edited=structuredClone(sourceCards);
+edited[0].qa_stage_label='1审';
+assert.throws(()=>applyPhase1StudyOverlay(oldStudy,{rows:edited,
+ onlyDiagnostic:true,canWriteSrs:false,formalReady:0}),/PHASE1_STUDY_EDITOR_ROW/);
+const wrongSource=structuredClone(sourceCards);
+wrongSource[0].source_evidence.archive_sha256='0'.repeat(64);
+assert.throws(()=>applyPhase1StudyOverlay(oldStudy,{rows:wrongSource,
+ onlyDiagnostic:true,canWriteSrs:false,formalReady:0}),/PHASE1_STUDY_EDITOR_ROW/);
+const cardDrift=structuredClone(oldStudy);cardDrift[0].master_final_row=56;
+const partial=applyPhase1StudyOverlay(cardDrift,{rows:sourceCards,
+ onlyDiagnostic:true,canWriteSrs:false,formalReady:0});
+assert.equal(partial.matched,1);
+assert.equal(partial.items[0].answer.usage_note,'OLD ANSWER');
+console.log('PASS actual SC0001 wake up new Master answer/Kaikki IPA and get up HOLD; no legacy field leakage or SRS');
