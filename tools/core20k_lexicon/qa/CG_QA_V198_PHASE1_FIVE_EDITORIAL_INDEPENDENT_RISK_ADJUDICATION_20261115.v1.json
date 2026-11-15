@@ -1,0 +1,108 @@
+{
+  "schema": "cg-qa-v198-independent-five-content-review/v1",
+  "role": "CG-QA",
+  "date": "2026-11-15",
+  "version": "V198",
+  "review_scope": "Five source-linked disputed phase1 editorial records individually examined from actual Master V199-V202 GitHub JSON, separately from CG-ENTEACH author suggestions; this review is independent CG-QA critical adjudication, not Muse certification.",
+  "source_evidence": {
+    "master_branch": "cg-master-kaikki-evidence-intake-20261111",
+    "source_files": [
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+        "blob_sha": "198041d48aaf06e83a7352b09d633bfc4e58573c"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+        "blob_sha": "abaef260727a272d7bfc232c1b665b1773b3fd5e"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+        "blob_sha": "1e8d2aa243ac531d06e739a9361b00bc5e939662"
+      },
+      {
+        "path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+        "blob_sha": "24c3603c04dd4378fd24f97000d6717839326570"
+      }
+    ],
+    "author_proposals": "tools/answer-enrichment/qa_reports/CG_ENTEACH_PHASE1_FRESH203_AUTHOR_EDITORIAL_P1P2_DELTA_20261115.v1.json",
+    "author_proposals_blob": "c44f188e4d667575ec08b2e570a18bd438cf508b"
+  },
+  "reviews": [
+    {
+      "row": 359,
+      "scene_id": "SC50-0002",
+      "record_id": "SC1341-FINAL-SRC-4a343b35c035ed8172d4988f5c60f940",
+      "content_sha256": "85f76c95e6bfb891ffe7c70336f80f507986aec21ad2c54042895606b713f632",
+      "expression": "body lotion",
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "Displayed native cleansing-lotion gloss conflicts with moisturising body-lotion meaning, Chinese body lotion cue and shower-use example. Separate untouched source gloss from corrected learner explanation; validate native indexed sense before adopting rewording.",
+      "required_fix": "Source-adjudicate native sense; offer editorial learner gloss 'A lotion applied to the body, typically to moisturize the skin' with explicit non-Kaikki authorship."
+    },
+    {
+      "row": 543,
+      "scene_id": "SC50-0003",
+      "record_id": "SC1341-FINAL-SRC-500eb3bfedae6ae514e74d3bcc3c6619",
+      "content_sha256": "2d800300285298344608aaf050e355359a963abc28d61fe5b33376ffea3c11e1",
+      "expression": "sweater",
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "Stored native gloss restricts to athletic thick-wool garment, while ordinary sweater learner cue and example are general. Re-select appropriate native Sense or label general explanation editorial, keeping native gloss in evidence.",
+      "required_fix": "Inspect alternative raw senses; do not silently rewrite native_gloss as if quoted. Native IPA multivariant HOLD remains."
+    },
+    {
+      "row": 352,
+      "scene_id": "SC50-0002",
+      "record_id": "SC1341-FINAL-SRC-b5fc0c9da07e017d1c85b651702fee06",
+      "content_sha256": "76560638d30db446ee4825014e8caf59759e5e15ff6dfa57721e274a2d10238f",
+      "expression": "cotton swab",
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "Example 'clean the small edge' lacks a clear referent and sounds unnatural; translation inherits same issue.",
+      "required_fix": "Replace with concrete everyday cosmetics usage e.g. 'Use a cotton swab to remove smudged makeup.' / '用棉签擦掉晕开的妆。'; label as fresh editor example."
+    },
+    {
+      "row": 1046,
+      "scene_id": "SC50-0005",
+      "record_id": "SC1341-FINAL-SRC-783a930c7067ad09f97d303b1e9810be",
+      "content_sha256": "10e203171ab9e6b48f84022118390892c98a315ad19936269bb05b53d7f258db",
+      "expression": "laundry detergent",
+      "verdict": "REVISE",
+      "severity": "P1",
+      "reason": "Chinese 洗衣液 narrows broad laundry detergent to liquid only; English can refer to powder or liquid.",
+      "required_fix": "Use 洗衣用洗涤剂（如洗衣液、洗衣粉） and align example translation; preserve native gloss."
+    },
+    {
+      "row": 70,
+      "scene_id": "SC50-0001",
+      "record_id": "SC1341-FINAL-SRC-bd42dcb7d5e33f1e57c5718765d44580",
+      "content_sha256": "bf13e18ce0e2d7d95a3af2807f33b3aba7fb906de5fdabd03e7b6251dbdd076f",
+      "expression": "weekday",
+      "verdict": "CONDITIONAL",
+      "severity": "P2",
+      "reason": "Original example is comprehensible but links weekend classification to an individual's work schedule in a potentially misleading way. Not a definite lexical error.",
+      "required_fix": "Prefer neutral 'The office is open on weekdays, from Monday to Friday.' / '这间办公室周一至周五开放。' and retain regional caveat; IPA multivariant HOLD remains."
+    }
+  ],
+  "counts": {
+    "reviewed": 5,
+    "revise": 4,
+    "conditional": 1,
+    "pass": 0,
+    "hold": 0,
+    "p1": 4,
+    "p2": 1
+  },
+  "uncertainties": [
+    "Raw complete Kaikki archive was not reopened or linguistically checked for alternate native senses in this targeted review.",
+    "Per-record content_sha256 copied as exact version identifiers from GitHub source; not independently cryptographically recomputed in this turn. Do NOT publish runtime 1审 index based solely on this report until exact hash verification.",
+    "No actual author source changes and no independent Muse review.",
+    "Other 198 editorial rows remain unreviewed for linguistic quality."
+  ],
+  "formal_dual_ai_certified": 0,
+  "formal_ready": 0,
+  "srs_eligible": false,
+  "release_allowed": false,
+  "first_review_runtime_index_published": false,
+  "disposition": "REAL_TARGETED_EDITORIAL_QA_RECORDED_NO_AUTOMATIC_1REVIEW_PROMOTION"
+}
