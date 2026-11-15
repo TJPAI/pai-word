@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "74b9961a2538c9198de44012b1dbd5cf3a3bf1e0",
-  "version": "V230",
+  "verified_base_head": "6a00833cb3ca186fb0a0d92917e3e1656c4c7d2a",
+  "version": "V231",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -313,6 +313,23 @@
       "data_location": "conversation artifact /mnt/data/CGMASTER_V230_127_KAIKKI_SINGLE_SENSE_PREVIEW_PAGES.json (not GitHub)",
       "qa_stage": "待审",
       "release_allowed": false
+    },
+    "v231_kaikki_native_source_in_github": {
+      "total": 1241,
+      "scenes": 5,
+      "single_sense": 127,
+      "multiple_senses": 423,
+      "no_exact": 691,
+      "paths": [
+        "tools/scene1341_master/qa_reports/CGMASTER_V231_SC50-0001_KAIKKI_NATIVE_SENSE_CANDIDATES_20261115.json",
+        "tools/scene1341_master/qa_reports/CGMASTER_V231_SC50-0002_KAIKKI_NATIVE_SENSE_CANDIDATES_20261115.json",
+        "tools/scene1341_master/qa_reports/CGMASTER_V231_SC50-0003_KAIKKI_NATIVE_SENSE_CANDIDATES_20261115.json",
+        "tools/scene1341_master/qa_reports/CGMASTER_V231_SC50-0004_KAIKKI_NATIVE_SENSE_CANDIDATES_20261115.json",
+        "tools/scene1341_master/qa_reports/CGMASTER_V231_SC50-0005_KAIKKI_NATIVE_SENSE_CANDIDATES_20261115.json"
+      ],
+      "v230_preview": "tools/scene1341_master/qa_reports/CGMASTER_V230_127_KAIKKI_SINGLE_SENSE_PREVIEW_PAGES_20261115.json",
+      "qa_stage": "待审",
+      "release_allowed": false
     }
   },
   "sources": {
@@ -357,6 +374,7 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
+    "V231: CG-MAIN may read five V231 per-scene native candidate JSON files and 127 V230 preview records as test-only; do not publish formal cards or mark 1审. Next semantic matching for 423 ambiguous native records.",
     "V230: stage 1.7MB V229 full candidate source and V230 127 page JSON into authoritative GitHub/Drive; only builder is committed to GitHub. Validate before CG-MAIN consumption.",
     "V228: retrieve FULL Kaikki English dictionary, not only V198 subset, for 691 unmatched expressions; fill verified native POS/gloss/IPA/examples directly into V227 test overlay with exact source line.",
     "V227: enrich 691 unmatched expressions from full Kaikki and select sense-specific glosses for 292 ambiguous native entries; V227 is all-row test overlay not complete page certification.",
