@@ -5,6 +5,7 @@ on:
     paths:
       - 'tools/cg-rec-eval/CG_REC_EVAL_CHECKPOINT.json'
       - 'tools/cg-rec-eval/validate-checkpoint.mjs'
+      - 'tools/cg-rec-eval/test-checkpoint-adversarial.mjs'
       - '.github/workflows/cg-rec-eval-checkpoint.yml'
   workflow_dispatch:
 permissions:
@@ -20,3 +21,5 @@ jobs:
           node-version: '22'
       - name: Verify compact persistent checkpoint
         run: node tools/cg-rec-eval/validate-checkpoint.mjs tools/cg-rec-eval/CG_REC_EVAL_CHECKPOINT.json
+      - name: Reject forged gold, release flags and broken incremental cursors
+        run: node tools/cg-rec-eval/test-checkpoint-adversarial.mjs tools/cg-rec-eval/CG_REC_EVAL_CHECKPOINT.json
