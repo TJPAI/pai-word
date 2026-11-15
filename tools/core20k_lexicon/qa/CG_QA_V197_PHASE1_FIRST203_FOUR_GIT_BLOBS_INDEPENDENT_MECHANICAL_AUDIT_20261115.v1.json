@@ -1,0 +1,87 @@
+{
+  "schema": "cg-qa-v197-phase1-four-source-blob-independent-mechanical-audit/v1",
+  "version": "V197",
+  "date": "2026-11-15",
+  "role": "CG-QA",
+  "classification": "STRUCTURAL_AND_PROVENANCE_CONSISTENCY_ONLY_NOT_FIRST_REVIEW",
+  "source_branch": "cg-master-kaikki-evidence-intake-20261111",
+  "files": [
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "blob": "198041d48aaf06e83a7352b09d633bfc4e58573c",
+      "records": 35
+    },
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "blob": "abaef260727a272d7bfc232c1b665b1773b3fd5e",
+      "records": 55
+    },
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "blob": "1e8d2aa243ac531d06e739a9361b00bc5e939662",
+      "records": 61
+    },
+    {
+      "path": "tools/scene1341_master/qa_reports/CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+      "blob": "24c3603c04dd4378fd24f97000d6717839326570",
+      "records": 52
+    }
+  ],
+  "results": {
+    "parsed_records": 203,
+    "unique_record_ids": 203,
+    "unique_source_final_rows": 203,
+    "scene_counts": {
+      "SC50-0001": 79,
+      "SC50-0002": 40,
+      "SC50-0003": 13,
+      "SC50-0004": 37,
+      "SC50-0005": 34
+    },
+    "all_english_expression_cue_source_gloss_pos_present_and_lemma_pos_equal": true,
+    "all_editor_examples_single_pair_labeled_not_kaikki_attestation": 203,
+    "selected_ipa_nonempty_unreviewed": 43,
+    "qa_stage_pending": 203,
+    "first_review_proofs": 0,
+    "formal_ready": 0,
+    "srs_eligible": 0,
+    "release_allowed": 0,
+    "mechanical_anomalies": 0,
+    "first_review_pass": 0,
+    "formal_dual_ai_pass": 0
+  },
+  "targeted_legacy_risk_checks": [
+    {
+      "source_final_row": 506,
+      "expression": "take off",
+      "v190_issue": "unrelated put on IPA and noun takeoff gloss",
+      "fresh_v199": "source gloss To remove; POS verb; IPA null",
+      "disposition": "OLDER_P0_NOT_CARRIED_OVER_TO_NEW_DRAFT; NATIVE_IPA_HOLD; no source-external certification; retain historical risk until original raw entry verified"
+    },
+    {
+      "source_final_row": 200,
+      "expression": "toast",
+      "fresh_v199": "noun Bread that has been toasted; IPA null",
+      "disposition": "SOURCE_CANDIDATE_SEMANTICALLY_PLAUSIBLE_NOT_FIRST_REVIEW"
+    },
+    {
+      "source_final_row": 305,
+      "expression": "bathroom",
+      "fresh_v199": "noun lavatory; IPA null",
+      "disposition": "SOURCE_CANDIDATE_SEMANTICALLY_PLAUSIBLE_NOT_FIRST_REVIEW"
+    }
+  ],
+  "limits": [
+    "GitHub native blob contents parsed directly; raw 1,499,161-record Kaikki archive and original FINAL source rows were NOT independently reread during V197",
+    "No cryptographic recomputation of per-record content_sha256 in V197; values must be independently checked before issuing first review",
+    "No acceptance of candidate IPA dialect accuracy or source sense index",
+    "No independent linguistic review of all 203 example/usage pairs",
+    "No signed 1审 or Muse certification; source author claims do not set reviewer labels"
+  ],
+  "next": [
+    "Obtain raw Kaikki exact source evidence and verify record content digest against immutable source; review selected pilot rows linguistically",
+    "Publish SHA-matched independent first-review index only upon actually completed record-level review",
+    "Request CG-MASTER resolution of historical P0/P1 and complete 1038 remaining first-five-scene associations",
+    "Keep canonical live feed limited to source-safe first batch; V196 second batch remains non-ready"
+  ]
+}
