@@ -1,0 +1,99 @@
+{
+  "schema_version": "1.0",
+  "owner": "CG-ZH",
+  "role": "Chief Chinese Lexicon Architect",
+  "repo": "TJPAI/pai-word",
+  "branch": "chinese-core20k-dev",
+  "checkpoint_date": "2026-11-15",
+  "verified_remote_head_before_checkpoint": "9e9480bc82953591359b9da7ad1b51cfadc112f6",
+  "source_of_truth": {
+    "frozen_runtime_version": "V0.10.1-evidence-compat",
+    "term_count": 20000,
+    "term_id_policy": "IMMUTABLE",
+    "runtime_sha256": "18adea58a3615935c1b632c22934a91855171063862f7471999f9900415e8093",
+    "runtime_path": "data/zh-core20k-v0101-scene500-runtime.json.gz.b64",
+    "materialize_script": "scripts/materialize-zh-core20k-v0101.mjs"
+  },
+  "verified_artifacts": [
+    {
+      "path": "tools/chinese-core20k/pos/zh-pos-batch05-consolidated-review60-20261027.json",
+      "blob_sha": "be447ce253f79f39f24c9934c423035268bcfa7f",
+      "entry_count": 60,
+      "status": "EDITORIAL_ONLY_UNCERTIFIED"
+    },
+    {
+      "path": "tools/chinese-core20k/pos/zh-pos-batch05-triage-200-20261027.json",
+      "blob_sha": "e3dbc2c43bcf57796ed73936303ef369e621b28f",
+      "entry_count": 200,
+      "status": "PRELIMINARY_TRIAGE_NOT_CERTIFIED"
+    }
+  ],
+  "historical_pos_summary": {
+    "batch01_candidates": 57,
+    "batch02_candidates": 117,
+    "batch03_candidates": 40,
+    "batch04_candidates": 68,
+    "batch05_candidates": 136,
+    "total_preliminary_candidates": 418,
+    "correction": "Candidate counts describe unapproved triage, not certified POS coverage. Batch05 60 focused reviews are not additional runtime coverage."
+  },
+  "issue_cursors": {
+    "issue_1_latest_comment_id": 6890147039,
+    "issue_2_latest_comment_id": 6890147525,
+    "read_comment_counts": {
+      "issue_1": 1339,
+      "issue_2": 448
+    },
+    "policy": "Read only messages after cursor; consult full history only for conflicts."
+  },
+  "governance": {
+    "cg_zh": "Independent Chinese lexicon, token/POS/semantic QA",
+    "cg_master": "Scene1341 sole scene-semantic Master authority",
+    "cg_qa_mu_qa": "Independent review required before official POS activation",
+    "integrations": "Do not alter Scene500, SRS, live preview, frozen 20K membership or term IDs.",
+    "kaikki": "English Kaikki is not independent Chinese POS evidence."
+  },
+  "active_tasks": [
+    {
+      "priority": "P0",
+      "task": "Obtain explicit independent QA decisions on existing Batch05 60 review entries; do not promote without them.",
+      "state": "OPEN"
+    },
+    {
+      "priority": "P1",
+      "task": "Audit remaining Batch05 preliminary triage entries for distinct grammatical evidence, including construction boundary and multi-POS cases.",
+      "state": "OPEN"
+    },
+    {
+      "priority": "P1",
+      "task": "Recheck preliminary POS batches01-04 and earlier challenge terms against frozen runtime before eventual promotion.",
+      "state": "OPEN"
+    },
+    {
+      "priority": "P1",
+      "task": "Add a runnable validator for checkpoint IDs and source pins; update checkpoint after substantive commits.",
+      "state": "OPEN"
+    }
+  ],
+  "quality_risks": [
+    {
+      "level": "P0",
+      "description": "Premature promotion of unreviewed or template-derived POS proposals"
+    },
+    {
+      "level": "P1",
+      "description": "Confusing morphological components with standalone words and syntactic roles with lexical POS"
+    },
+    {
+      "level": "P1",
+      "description": "Potential stale Issue guidance; comments are coordination history, not formal Master release evidence"
+    }
+  ],
+  "next_resume_actions": [
+    "Fetch latest branch HEAD and this checkpoint; validate source blob hashes.",
+    "Fetch only Issue #1/#2 comments newer than saved cursors.",
+    "Check whether independent QA has delivered a source-pinned PASS/REVISE/HOLD ledger.",
+    "Continue prioritized Chinese POS editorial audit, commit changes, then refresh this checkpoint."
+  ],
+  "checkpoint_self_sha_policy": "Checkpoint contains PRE-COMMIT verified HEAD to avoid self-referential hashes; on resume compare GitHub current head and inspect incremental changes."
+}
