@@ -635,9 +635,11 @@ function renderHome(){
    const count=document.createElement('span');count.className='pai-count-slot scene-result-count';
    const n=available(sc.id);
    const quantity=document.createElement('b'),sub=document.createElement('small');
-   quantity.textContent=n?String(n):'—';sub.textContent=n?'可体验':'待交付';
+   const indexed=masterSceneSnapshot?.index?.scenes?.[sc.id]?.records||0;
+   quantity.textContent=String(indexed||n||'—');
+   sub.textContent=indexed?'L1测试':n?'可体验':'待交付';
    count.append(quantity,sub);
-   btn.disabled=!n&&!masterSceneSnapshot;btn.append(no,name,count);
+   btn.disabled=!n&&!masterSceneSnapshot?.index?.scenes?.[sc.id];btn.append(no,name,count);
    btn.addEventListener('click',()=>openMasterScene(sc.id));$('scenes').append(btn);
   }
  }
@@ -664,6 +666,12 @@ async function initializeFullMasterSceneIndex(){
   masterSceneSnapshot=await masterSceneAdapter.resolveMasterSceneIndex();
   set('master-live-feed-status','全量Master 1,341场景动态骨架可用 · 来源 '+masterSceneSnapshot.commit.slice(0,12)+
    ' · 按需读取场景内容 · QA独立 · SRS禁写');
+  set('scope','全量Master索引已核验：1,341个场景、230,289条原始场景关联（L1只读测试骨架，非正式Sense）。场景点开时动态加载；旧版25场景/5,875张词卡仅为历史已加载草稿，不代表全量覆盖。待审 · SRS禁写。');
+  set('status','Scene1341 · Master '+masterSceneSnapshot.commit.slice(0,12)+' · 全量1,341场景可按需体验 · 230,289条原始关联L1测试骨架 · Ready 0');
+  if(lastScene&&masterSceneSnapshot.index.scenes[lastScene]){
+   $('continue').disabled=false;
+   set('continue-description','点击后按需加载 '+masterSceneSnapshot.index.scenes[lastScene].records+' 条原始关联L1测试卡 · 待审');
+  }
   renderHome();
   const activeScene=sceneId;
   if(!$('learning').hidden&&activeScene&&masterSceneSnapshot){
