@@ -4,6 +4,7 @@
  */
 const ID=/^SC50-(?:0[0-9]{3}|1[0-2][0-9]{2}|13[0-3][0-9]|134[01])$/;
 const ROW=/^SC1341-FINAL-SRC-[0-9a-f]{32}$/;
+const SOURCE_ROW_ID=n=>'SC1341-FINAL-ROW-'+String(n).padStart(6,'0');
 const SHA=/^[0-9a-f]{40}$/;
 const HASH64=/^[0-9a-f]{64}$/;
 const fail=x=>{throw Error('MASTER_SCENE_V1_'+x)};
@@ -21,7 +22,8 @@ function normalized(row){
  const inlinePos=pos&&meaning.startsWith(pos+' ')?'':pos;
  if(!expression)fail('EXPRESSION_'+row.source_final_row);
  return {
-  scene_ku_id:row.record_id,master_record_id:row.record_id,
+  scene_ku_id:row.record_id||SOURCE_ROW_ID(row.source_final_row),
+  master_record_id:row.record_id||SOURCE_ROW_ID(row.source_final_row),
   master_final_row:row.source_final_row,source_rank:row.source_final_row,
   scene_id:row.scene_id,expression,
   master_content_sha256:HASH64.test(row.content_sha256||'')?row.content_sha256:undefined,
@@ -45,12 +47,12 @@ export function validateMasterSceneDocument(doc,sceneId){
   !Array.isArray(doc.records)||doc.records.length!==doc.record_count)fail('MANIFEST');
  const seen=new Set(),rows=new Set(),cards=[];
  for(const r of doc.records){
-  if(!ROW.test(r?.record_id||'')||r.scene_id!==sceneId||
+  if(!(r?.record_id===null||ROW.test(r?.record_id||''))||r.scene_id!==sceneId||
    !Number.isSafeInteger(r.source_final_row)||r.source_final_row<1||
-   seen.has(r.record_id)||rows.has(r.source_final_row)||
+   seen.has(r.record_id||SOURCE_ROW_ID(r.source_final_row))||rows.has(r.source_final_row)||
    r.release_allowed!==false||r.srs_eligible===true||
    (r.content_sha256!==undefined&&!HASH64.test(r.content_sha256)))fail('ROW');
-  seen.add(r.record_id);rows.add(r.source_final_row);
+  seen.add(r.record_id||SOURCE_ROW_ID(r.source_final_row));rows.add(r.source_final_row);
   cards.push(normalized(r));
  }
  return Object.freeze({sceneId,cards,recordCount:cards.length,canWriteSrs:false,formalReady:0});
