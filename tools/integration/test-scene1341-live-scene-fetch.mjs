@@ -29,6 +29,6 @@ await assert.rejects(()=>fetchSceneAssociations({commit,feed:corrupted},'SC50-00
 const html=fs.readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
 assert(html.includes('id="master-live-feed-status"'));
 assert(html.includes("import('./scene1341-live-feed.mjs')"));
-assert(html.includes("resolveLiveFeed({commit:v190.sourceCommit})"));
+assert(html.includes("resolveLiveFeed()"));
 assert(!html.includes('question-ipa-test.html'));
 console.log('PASS scene-scoped immutable gzip SHA1/SHA256, row separation, missing scene, invalid hash, original settings diagnostics, SRS=0');
