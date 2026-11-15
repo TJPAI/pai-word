@@ -3,8 +3,8 @@
   "updated_at": "2026-11-15",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "7e3c43b3e0ecf693035a5a68e2857622f163e5f5",
-  "version": "V248_GLOBAL_DEDUP_AUDITED",
+  "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
+  "version": "V249_FULL1341_CANDIDATE_INDEX",
   "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -595,6 +595,20 @@
       "canonical_sense_ids_verified": 0,
       "method": "Unicode casefold + whitespace normalization; expression and Chinese meaning equality only; no semantic merges",
       "note": "176006 distinct expression/meaning pairs are NOT 176006 certified senses. Global sense identity needs Kaikki alignment and manual/independent semantic QA."
+    },
+    "v249_global_candidate_index": {
+      "source_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+      "source_links": 230289,
+      "candidate_groups": 176006,
+      "expressions": 127609,
+      "multi_meaning_expressions": 15582,
+      "cross_scene_groups": 17718,
+      "missing_meaning": 222,
+      "canonical_sense_ids_verified": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "local_archive": "CGMASTER_V249_INDEX.zip",
+      "builder": "tools/scene1341_master/build_v249_candidate_index.py"
     }
   },
   "sources": {
@@ -648,9 +662,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Run lossless full1341 candidate grouping and assign provisional group IDs distinct from canonical sense_id; preserve all source rows.",
-    "Prioritize ambiguous expression groups and 222 missing Chinese meanings for Kaikki + author review.",
-    "CG-MAIN dynamic test loader should consume V247 Drive archive, not assume all GitHub JSON committed; keep QA stage 待审."
+    "Upload V249 index to canonical Drive folder and preserve hash/metadata.",
+    "Use candidate groups to build ambiguity and missing-meaning QA queues.",
+    "Keep candidate keys separate from canonical Sense IDs and require independent QA before 1审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6889893060,
