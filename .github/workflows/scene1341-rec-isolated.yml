@@ -49,6 +49,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate persistent CG-REC checkpoint and no-release invariants
+        run: node rec/scene500-recommendation/qa/validate-cg-rec-checkpoint.mjs
       - name: Preflight syntax and frozen comparison checkout
         run: |
           node --check rec/scene500-recommendation/scene1341-search-core.mjs
