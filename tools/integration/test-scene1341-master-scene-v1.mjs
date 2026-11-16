@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {validateMasterSceneDocument,mergeMasterScene,resolveMasterSceneIndex} from '../../rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs';
+import {validateMasterSceneDocument,mergeMasterScene,resolveMasterSceneIndex,masterReleaseView} from '../../rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs';
 const scene='SC50-1341';
 const record={record_id:'SC1341-FINAL-SRC-'+'a'.repeat(32),scene_id:scene,source_final_row:230289,
  question_page:{expression:'get home',cue_zh:'到家',ipa_candidate:'/x/'},
@@ -77,3 +77,20 @@ assert.equal(fallback.commit,'cg-master-kaikki-evidence-intake-20261111');
 assert.equal(calls.length,2);
 assert.match(calls[1],/raw.githubusercontent.com.*SCENE1341_LIVE_INDEX.json/);
 console.log('PASS: GitHub API 403 falls back to raw branch while preserving per-scene blob verification');
+
+const releaseIndex={...index,master_release:{
+ metadata_schema:'scene1341-master-release/v1',version:'V256',
+ published_date:'2026-11-16',release_allowed:false,srs_eligible:false,
+ headline:'新增38条Kaikki单义项证据对应的场景化双语例句',
+ changed_scene_ids:['SC50-0001','SC50-0005'],
+ changes:[{category:'bilingual_examples',count:38}]
+}};
+const release=masterReleaseView(releaseIndex);
+assert.equal(release.label,'Master V256 · 2026-11-16');
+assert.equal(release.changed.has('SC50-0005'),true);
+assert.equal(release.changed.has('SC50-0015'),false);
+assert.equal(release.changes[0].count,38);
+assert.equal(masterReleaseView(index),null);
+assert.equal(masterReleaseView({...releaseIndex,master_release:{...releaseIndex.master_release,release_allowed:true}}),null);
+assert.equal(masterReleaseView({...releaseIndex,master_release:{...releaseIndex.master_release,version:'INVALID'}}),null);
+console.log('PASS Master V256 metadata display, optional older index and release fail-closed');
