@@ -6711,5 +6711,34 @@
       "records": 265,
       "git_blob_sha1": "08b6026c837c7a7342486fcd53d617691e0821b0"
     }
+  },
+  "master_release": {
+    "metadata_schema": "scene1341-master-release/v1",
+    "version": "V256",
+    "content_baseline": "V255_PHASE1_38_SCENE_FIT_BILINGUAL_DRAFTS",
+    "published_date": "2026-11-16",
+    "stage": "TEST_ONLY_QA_PENDING",
+    "headline": "新增38条Kaikki单义项证据对应的场景化双语例句",
+    "changes": [
+      {
+        "category": "bilingual_examples",
+        "count": 38
+      },
+      {
+        "category": "scene_documents_updated",
+        "count": 5
+      }
+    ],
+    "changed_scene_ids": [
+      "SC50-0001",
+      "SC50-0002",
+      "SC50-0003",
+      "SC50-0004",
+      "SC50-0005"
+    ],
+    "index_policy": "Every content update must publish version and change summary with the atomic index; do not require frontend rebuild.",
+    "qa_stage": "待审",
+    "release_allowed": false,
+    "srs_eligible": false
   }
 }
