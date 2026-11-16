@@ -36,7 +36,7 @@ def candidate(entry, line):
         glosses = [g for g in (s.get("glosses") or s.get("raw_glosses") or []) if isinstance(g, str)]
         senses.append({"source_sense_index": n, "glosses": glosses,
                        "native_example_count": len(s.get("examples") or [])})
-    return {"source_line": line, "pos": entry.get("pos"),
+    return {"source_line": line, "source_word": entry.get("word"), "pos": entry.get("pos"),
             "ipa_candidates": ipa, "senses": senses}
 
 def run(root, archive, release, date, apply):
@@ -106,8 +106,8 @@ def run(root, archive, release, date, apply):
                 counters["single_entry_single_sense_candidate"] += 1
             else:
                 counters["ambiguous_hold"] += 1
-            ipas = [set(x["ipa_candidates"]) for x in native]
-            common = set.intersection(*ipas) if ipas and all(ipas) else set()
+            ipas = [set(x["ipa_candidates"]) for x in native if unicodedata.normalize("NFC", x["source_word"]) == unicodedata.normalize("NFC", r["question_page"]["expression"])]
+            common = set.intersection(*ipas) if len(ipas) == len(native) and ipas and all(ipas) else set()
             if len(common) == 1 and not r["question_page"].get("ipa_candidate"):
                 r["question_page"]["ipa_candidate"] = next(iter(common))
                 r["ipa_full_evidence"] = {
