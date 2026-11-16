@@ -897,7 +897,10 @@ function formatMeaningWithPos(answer){
   'particle':'part.','part':'part.','part.':'part.'
  };
  const abbrev=abbreviations[pos]||'';
- return abbrev?(abbrev+' '+meaning):meaning;
+ // Master may already store a POS-prefixed display meaning. Never render
+ // duplicate labels such as "v. v. 醒来" on hot updates.
+ const existing=/^(?:phr\.\s*v\.|(?:n|v|adj|adv|prep|pron|conj|det|interj|num|part)\.)\s+/i;
+ return abbrev&&!existing.test(meaning)?(abbrev+' '+meaning):meaning;
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
