@@ -8,6 +8,7 @@
  const defaults=Object.freeze({
   wordsPerRound:10,autoBrowseInterval:1.5,speechSpeed:100,voiceAccent:'us',
   hideWord:false,showCollocations:true,showExamples:true,showCompare:true,
+  showEnglishDefinition:true,showUsage:true,showRelations:true,showExampleTranslations:true,
   autoPronounce:Object.freeze({question:true,swipe:true})
  });
  const choices=Object.freeze({
@@ -16,7 +17,8 @@
   speechSpeed:Object.freeze([80,100,120,150]),
   voiceAccent:Object.freeze(['us','gb'])
  });
- const booleanKeys=Object.freeze(['hideWord','showCollocations','showExamples','showCompare']);
+ const booleanKeys=Object.freeze(['hideWord','showCollocations','showExamples','showCompare',
+  'showEnglishDefinition','showUsage','showRelations','showExampleTranslations']);
  const clone=()=>({...defaults,autoPronounce:{...defaults.autoPronounce}});
  const KEY='pai-word-scene1341-readonly-preferences-v1';
  const normalize=source=>{
