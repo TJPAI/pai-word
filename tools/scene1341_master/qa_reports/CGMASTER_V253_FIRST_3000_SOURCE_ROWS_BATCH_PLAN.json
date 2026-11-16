@@ -1,0 +1,102 @@
+{
+  "schema_version": "cgmaster-editorial-batch-plan/v1",
+  "source_index_path": "tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json",
+  "source_index_schema": "scene1341-master-index/v1",
+  "source_master_sha256": "62dc58fa9e7d4c5a0c7731bd8b970e170002423c82577ab192c890fd82c2b986",
+  "scope": "First sequential >=3000 source associations; not 3000 unique senses or completed teaching pages",
+  "qa_stage": "待审",
+  "release_allowed": false,
+  "srs_eligible": false,
+  "editorial_completed_in_this_manifest": 0,
+  "selection_rule": "Sequential SC50 scene order until source row count >=3000; no invented sense-level status",
+  "source_associations": 3132,
+  "scenes": [
+    {
+      "scene_id": "SC50-0001",
+      "source_rows": 294,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0001.json",
+      "git_blob_sha1": "93cac9f343e49f5c6a1b8f52ff3714803e3780b2"
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rows": 206,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0002.json",
+      "git_blob_sha1": "f4e2d0bf626196eb5337ead758b13169b047cdeb"
+    },
+    {
+      "scene_id": "SC50-0003",
+      "source_rows": 237,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0003.json",
+      "git_blob_sha1": "b22fb978d7ca756ff32c4d5a8c5d48153b4ee7ec"
+    },
+    {
+      "scene_id": "SC50-0004",
+      "source_rows": 245,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0004.json",
+      "git_blob_sha1": "9ff467c4488858f456ebe4f2f3728d7f71bbf441"
+    },
+    {
+      "scene_id": "SC50-0005",
+      "source_rows": 259,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0005.json",
+      "git_blob_sha1": "1c6378f12e2e3915a224e8b3cf3a0df60999457d"
+    },
+    {
+      "scene_id": "SC50-0006",
+      "source_rows": 214,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0006.json",
+      "git_blob_sha1": "a122b3d6640782bbfa6afac30315c3f97462b19c"
+    },
+    {
+      "scene_id": "SC50-0007",
+      "source_rows": 244,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0007.json",
+      "git_blob_sha1": "1f44984d6227a22181f8f4f11d73e4425d03b06a"
+    },
+    {
+      "scene_id": "SC50-0008",
+      "source_rows": 227,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0008.json",
+      "git_blob_sha1": "905053bda6f693f799d438bb506a38fee1d6fb3f"
+    },
+    {
+      "scene_id": "SC50-0009",
+      "source_rows": 226,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0009.json",
+      "git_blob_sha1": "c78c0e8e01c31de3d3bc4e2fefb190b26fa0415a"
+    },
+    {
+      "scene_id": "SC50-0010",
+      "source_rows": 227,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0010.json",
+      "git_blob_sha1": "cf02731623789d56c9e61cb294e7d0ea75ff74db"
+    },
+    {
+      "scene_id": "SC50-0011",
+      "source_rows": 255,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0011.json",
+      "git_blob_sha1": "0b5d9e1d3a0567d0b5c37726e4d0cfd3939bbe8f"
+    },
+    {
+      "scene_id": "SC50-0012",
+      "source_rows": 253,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0012.json",
+      "git_blob_sha1": "022490a8d5e2210bb76b6cb0131f8b482584bbb5"
+    },
+    {
+      "scene_id": "SC50-0013",
+      "source_rows": 245,
+      "source_path": "tools/scene1341_master/production/scenes/SC50-0013.json",
+      "git_blob_sha1": "debcf885669dc010426ff9c41797d45e57a4e9b8"
+    }
+  ],
+  "required_outputs": [
+    "sense identity and source evidence",
+    "question page",
+    "answer page",
+    "IPA with provenance or explicit missing",
+    "CG-QA exact-version first review",
+    "updated per-scene JSON and live index with blob integrity"
+  ],
+  "notes": "SC50-0001..0005 have 258 existing fresh drafts and 983 remaining without fresh drafts per V252 checkpoint; this manifest is scheduling only and does not imply those drafts are incorporated into live JSON."
+}
