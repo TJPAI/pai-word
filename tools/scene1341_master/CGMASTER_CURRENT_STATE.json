@@ -4,8 +4,8 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V257_SC0001_29_ORIGINAL_BILINGUAL_DRAFTS",
-  "status": "FULL1341_L1_PUBLISHED_PHASE1_EDITORIAL_ENRICHMENT_QA_PENDING",
+  "version": "V258_PHASE1_60_ORIGINAL_BILINGUAL_DRAFTS",
+  "status": "FULL1341_DYNAMIC_LIVE_INDEX_PUBLISHED_PHASE1_BILINGUAL_EDITORIAL_INCREMENTAL",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -789,6 +789,33 @@
         "complete_bilingual": true,
         "unreviewed_rows": true
       }
+    },
+    "v258_original_editorial_batch": {
+      "scene_ids": [
+        "SC50-0001",
+        "SC50-0002",
+        "SC50-0003",
+        "SC50-0004",
+        "SC50-0005"
+      ],
+      "new_original_bilingual_drafts": 60,
+      "by_scene": {
+        "SC50-0001": 12,
+        "SC50-0002": 12,
+        "SC50-0003": 12,
+        "SC50-0004": 12,
+        "SC50-0005": 12
+      },
+      "new_complete_qa_approved_pages": 0,
+      "remaining_of_original_983_without_any_new_editorial_draft": 894,
+      "original_983_baseline_note": "V257 produced 29 distinct new bilingual draft rows, V258 adds 60 distinct rows; V254/V255 38 evidence/bilingual rows are counted separately and still incomplete.",
+      "index_commit": "bbd211fe7fc575b5b39f0816b9af7ace98a441f9",
+      "integrity": "PASS: 1341 index entries sum 230289; 5/5 modified scene blob SHA and row counts; 60/60 bilingual drafts are marked pending with release=false and SRS=false",
+      "frontend_display_contract": "master_release.version V258, changed_scene_ids SC0001..0005",
+      "first_review_pass": 0,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "srs_eligible": false
     }
   },
   "sources": {
@@ -842,10 +869,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Next V258 continue SC0001..0005 source-linked editorial draft batches, prioritizing Kaikki sense-fit and IPA candidates.",
-    "Every scene content update must atomically update index SHA and master_release.version/date/headline/changed_scene_ids.",
-    "CG-MAIN one-time masterReleaseView UI adapter delivered in Issue #2; deployment and iPhone Safari verification remain outside CG-MASTER validation.",
-    "Keep independent QA stage 待审 and release=false/SRS=false."
+    "Continue source-linked new editorial drafts for 894 residual SC0001..0005 source records, avoid conflating L3 draft with QA-approved complete page.",
+    "For each iteration publish Master scene JSON changes then atomic index with master_release version/date/summary and affected scenes.",
+    "CG-MAIN once-only release metadata display implementation acknowledged in Issue #2; do not claim deployment or Safari confirmation without evidence.",
+    "CG-QA independently review exact content versions. Preserve provenance, release=false, SRS=false."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
