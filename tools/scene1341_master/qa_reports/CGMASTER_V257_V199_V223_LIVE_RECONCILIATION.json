@@ -1,0 +1,75 @@
+{
+  "schema_version": "cgmaster-v257-integration-reconciliation/v1",
+  "scope": "SC50-0001..0005",
+  "source_artifacts": [
+    "CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+    "CGMASTER_V200_PHASE1_NEXT55_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+    "CGMASTER_V201_PHASE1_NEXT61_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+    "CGMASTER_V202_PHASE1_NEXT52_FRESH_KAIKKI_EDITOR_DRAFT_20261115.json",
+    "CGMASTER_V223_38_PREVIEW_QUESTION_ANSWER_PAGE_PAYLOADS_20261115.json"
+  ],
+  "source_artifact_rows": 241,
+  "source_artifact_rows_integrated": 240,
+  "source_artifact_rows_not_integrated": 1,
+  "exceptions": [
+    {
+      "artifact": "CGMASTER_V199_PHASE1_35_SOURCE_LINKED_EDITOR_QUESTION_ANSWER_DRAFT_20261115.json",
+      "scene_id": "SC50-0003",
+      "source_final_row": 506,
+      "expression": "take off",
+      "reason": "not integrated"
+    }
+  ],
+  "live_stats": [
+    {
+      "scene_id": "SC50-0001",
+      "source_rows": 294,
+      "l2": 84,
+      "l1": 210,
+      "ipa_candidates": 16,
+      "examples": 84
+    },
+    {
+      "scene_id": "SC50-0002",
+      "source_rows": 206,
+      "l2": 47,
+      "l1": 159,
+      "ipa_candidates": 3,
+      "examples": 47
+    },
+    {
+      "scene_id": "SC50-0003",
+      "source_rows": 237,
+      "l2": 24,
+      "l1": 213,
+      "ipa_candidates": 3,
+      "examples": 21
+    },
+    {
+      "scene_id": "SC50-0004",
+      "source_rows": 245,
+      "l2": 44,
+      "l1": 201,
+      "ipa_candidates": 13,
+      "examples": 44
+    },
+    {
+      "scene_id": "SC50-0005",
+      "source_rows": 259,
+      "l2": 41,
+      "l1": 218,
+      "ipa_candidates": 8,
+      "examples": 41
+    }
+  ],
+  "totals": {
+    "source_rows": 1241,
+    "l2": 240,
+    "l1": 1001,
+    "ipa_candidates": 43
+  },
+  "qa_status": "待审",
+  "release_allowed": false,
+  "srs_eligible": false,
+  "notes": "Artifact rows are not all distinct; count unique live source rows separately. Source identity mismatch is HOLD; never force match or overwrite."
+}
