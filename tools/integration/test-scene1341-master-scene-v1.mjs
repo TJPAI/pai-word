@@ -25,7 +25,7 @@ recentIPA.records[0].question_page.ipa_candidate='/ˌweɪk ˈʌp/';
 assert.equal(validateMasterSceneDocument(recentIPA,scene).cards[0].question.ipa,'/ˌweɪk ˈʌp/');
 
 assert.equal(valid.recordCount,1);assert.equal(valid.cards[0].question.ipa,'/x/');
-assert.equal(valid.cards[0].question.ipa_status,'UNAPPROVED_CANDIDATE_HOLD');
+assert.equal(valid.cards[0].question.ipa_status,'MASTER_PROVIDED_UNREVIEWED');
 assert.equal(valid.cards[0].answer.example_en,'I got home.');
 assert.equal(valid.cards[0].answer.pos,'');
 assert.equal(valid.cards[0].master_content_sha256,'b'.repeat(64));
@@ -65,6 +65,14 @@ const enrichedSparse=mergeMasterScene([legacy],validateMasterSceneDocument(spars
 assert.equal(enrichedSparse.answer.example_en,'Rich author example.');
 assert.equal(enrichedSparse.answer.collocations[0],'arrive home safely');
 assert.equal(enrichedSparse.answer.content_complete,true);
+const spacedMeaning=structuredClone(sparse);
+spacedMeaning.records[0].answer_page.meaning_zh='v.   到家';
+const normalizedMerge=mergeMasterScene([legacy],validateMasterSceneDocument(spacedMeaning,scene))[0];
+assert.equal(normalizedMerge.answer.example_en,'Rich author example.');
+assert.equal(normalizedMerge.answer.content_complete,true);
+const posChanged=structuredClone(sparse);
+posChanged.records[0].answer_page.meaning_zh='到家';
+assert.equal(mergeMasterScene([legacy],validateMasterSceneDocument(posChanged,scene))[0].answer.example_en,'Rich author example.');
 assert.equal(enrichedSparse.question.ipa,'/x/');
 assert.equal(enrichedSparse.qa_status,'DEFERRED_TEST_ONLY');
 const changedMeaning=structuredClone(sparse);
