@@ -3,7 +3,7 @@
   "updated_at": "2026-11-16",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "191453889260746d4c4ae18796764e2e4e85ccb9",
+  "verified_parent_head": "007e0dab5c351ba469ef57c90a7f20869f59c457",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -327,5 +327,17 @@
     "master_data_mutated": false,
     "qa_certification_mutated": false,
     "srs_writes": 0
+  },
+  "master_merge_regex_fix": {
+    "status": "COMMITTED_PENDING_REMOTE_CI",
+    "implementation_commit": "52a06757b63470693a1c0d1ed354152b4bfed3de",
+    "regression_commit": "007e0dab5c351ba469ef57c90a7f20869f59c457",
+    "module": "rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs",
+    "test": "tools/integration/test-scene1341-master-scene-v1.mjs",
+    "fix": "correct accidental double-escaped whitespace/POS regex in Master legacy enrichment merge; align obsolete IPA stage expectation; added matching-meaning whitespace and POS tests",
+    "master_status_seen": "V261_KAIKKI_20_NATIVE_SINGLE_IPA_CANDIDATES",
+    "review_state": "unchanged: test-only, unreviewed, SRS0",
+    "ci": "No matching pull-request workflow runs/combined statuses exposed by connector; no PASS claim",
+    "deployment": "not requested; no preview deployment"
   }
 }
