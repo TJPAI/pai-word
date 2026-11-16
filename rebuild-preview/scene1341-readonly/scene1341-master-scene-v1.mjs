@@ -149,9 +149,9 @@ export function mergeMasterScene(existing,scene){
   // Master remains authoritative for source meaning and all future populated fields.
   // Legacy authored L2/L3 enrichment survives ONLY for an exact source row,
   // expression AND matching normalized meaning. Never transplant stale semantics.
-  const norm=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/\\s+/g,' ').trim();
-  const oldMeaning=norm(prior.answer?.meaning_zh).replace(/^(?:n|v|adj|adv|prep|pron|conj|interj)\\.\\s*/,'');
-  const newMeaning=norm(card.answer?.meaning_zh).replace(/^(?:n|v|adj|adv|prep|pron|conj|interj)\\.\\s*/,'');
+  const norm=x=>String(x||'').normalize('NFKC').toLowerCase().replace(/\s+/g,' ').trim();
+  const oldMeaning=norm(prior.answer?.meaning_zh).replace(/^(?:n|v|adj|adv|prep|pron|conj|interj)\.\s*/,'');
+  const newMeaning=norm(card.answer?.meaning_zh).replace(/^(?:n|v|adj|adv|prep|pron|conj|interj)\.\s*/,'');
   if(!oldMeaning||!newMeaning||oldMeaning!==newMeaning)return card;
   const oldAnswer=prior.answer||{},newAnswer=card.answer;
   const keep=(key)=>newAnswer[key]||oldAnswer[key]||'';
