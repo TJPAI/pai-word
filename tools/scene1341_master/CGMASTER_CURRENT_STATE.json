@@ -4,8 +4,8 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V259_PHASE1_60_ORIGINAL_BILINGUAL_DRAFTS",
-  "status": "FULL1341_L1_PUBLISHED_PHASE1_BILINGUAL_DRAFTS_QA_PENDING",
+  "version": "V260_PHASE1_75_ORIGINAL_BILINGUAL_DRAFTS",
+  "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -842,6 +842,39 @@
       "live_index_commit": "88863fbdb4561a1bc087368174757bf90be88db8",
       "verification": "5/5 scene SHA matches index; 1341 scenes and 230289 original source rows unchanged; no duplicate source row in changed scenes",
       "frontend_ui": "CG-MAIN one-time version adapter previously delivered, deployment and iPhone verification not established"
+    },
+    "v260_original_editorial_batch": {
+      "scene_ids": [
+        "SC50-0001",
+        "SC50-0002",
+        "SC50-0003",
+        "SC50-0004",
+        "SC50-0005"
+      ],
+      "new_bilingual_example_usage_drafts": 75,
+      "by_scene": {
+        "SC50-0001": 15,
+        "SC50-0002": 15,
+        "SC50-0003": 15,
+        "SC50-0004": 15,
+        "SC50-0005": 15
+      },
+      "original_983_baseline_remaining_without_new_editorial_draft": 759,
+      "still_l1_by_scene": {
+        "SC50-0001": 141,
+        "SC50-0002": 115,
+        "SC50-0003": 157,
+        "SC50-0004": 156,
+        "SC50-0005": 169
+      },
+      "qa_stage": "待审",
+      "formal_complete": 0,
+      "approved_ipa_added": 0,
+      "source_attestation": "ORIGINAL_EDITORIAL_NOT_KAIKKI_ATTESTATION",
+      "index_commit": "d9327b06f1487c73c65284c2257d9bc8d7ab771b",
+      "validation": "PASS 5/5 scene-index SHA, unique source row, bilateral example, hold flags; index 1341 scenes and 230289 associations",
+      "release_allowed": false,
+      "srs_eligible": false
     }
   },
   "sources": {
@@ -895,9 +928,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Continue 834 missing fresh editorial draft rows in SC0001..0005 and separately verify precise Kaikki evidence; do not treat editorial-only text as certified sense.",
-    "For each Master version update scene files, Git blob hashes and master_release index metadata, without CG-MAIN code changes.",
-    "CG-QA independently first-review exact record+content version; all unreviewed stay 待审, release=false, SRS0."
+    "Continue 759 remaining frozen L1 source rows in SC0001..0005 with independently authored bilingual draft; prioritize Kaikki sourced gloss and IPA where unambiguous.",
+    "Every new batch must atomically update scene documents and live index with version/date/change summary; CG-MAIN stays unchanged.",
+    "Request independent CG-QA review on version-pinned exact record/content; no self-certified 1审.",
+    "Separate original editorial drafts from validated native dictionary source; do not imply completeness or approved IPA."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
