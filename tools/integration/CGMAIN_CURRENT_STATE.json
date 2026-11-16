@@ -1,9 +1,9 @@
 {
   "schema": "cgmain-current-state/v1",
-  "updated_at": "2026-11-15",
+  "updated_at": "2026-11-16",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "cf1d87cb6371f2b73c85a94f2f98a48380d9f917",
+  "verified_parent_head": "191453889260746d4c4ae18796764e2e4e85ccb9",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -310,5 +310,22 @@
   "last_issue_seen": {
     "issue1": 6890323284,
     "issue2": 6890284593
+  },
+  "ipa_audit_v2": {
+    "status": "COMMITTED_PENDING_CI",
+    "file": "tools/integration/audit-scene1341-master-ipa.mjs",
+    "regression": "tools/integration/test-scene1341-master-ipa-audit.mjs",
+    "implementation_commit": "a47526645e079ba1c92841c725f6eb1acc534ab3",
+    "test_commit": "191453889260746d4c4ae18796764e2e4e85ccb9",
+    "features": [
+      "single vs multiword source-association coverage",
+      "single vs multiword unique-expression coverage",
+      "nonempty candidate with missing explicit source provenance count",
+      "trimmed fallback from ipa to ipa_candidate"
+    ],
+    "risk": "Synthetic regression updated; full 1341 real-scene audit and remote Actions confirmation not yet executed. Counts remain TEST-ONLY and do not certify Kaikki or CG-QA.",
+    "master_data_mutated": false,
+    "qa_certification_mutated": false,
+    "srs_writes": 0
   }
 }
