@@ -224,15 +224,16 @@
       "deployment": "NOT VERIFIED; user must manually deploy preview workflow",
       "master_release_ui": {
         "metadata_schema": "scene1341-master-release/v1",
-        "current_observed": "V256",
+        "current_observed": "V258",
         "last_observed_master_release_commit": "f15bc72829b344b9eac7a8e6e4263eca4188f8a1",
         "adapter_commit": "bea53de9ed16dbdaa3654f00b8f469a804c3c253",
         "ui_commit": "851b19fa553487dcc9d12adc6baec1fb8feddfeb",
         "test_commit": "69577dbdf0095b372ebdeb3eb3e8bbe3443b9fbe",
         "behavior": "Index-driven Master version/date/headline/changed scenes on home and study pages, fallback when absent, no CG-MAIN rebuild per Master revision",
-        "ci": "NOT YET VERIFIED",
+        "ci": "PENDING",
         "safari": "NOT YET VERIFIED ON V256",
-        "deployment": "NOT DEPLOYED BY CG-MAIN"
+        "deployment": "NOT YET DEPLOYED; prior SHA verified by owner as 6c046866c08e2e81a1cf55d09d01e9f73ac27a62",
+        "date_regex_fix": "428fde5f37ecc8706c39d0ae4723eeb8e877a79f: fixed erroneous escaped date regex which rejected valid 2026-11-16 and hid Master release banner"
       }
     }
   },
