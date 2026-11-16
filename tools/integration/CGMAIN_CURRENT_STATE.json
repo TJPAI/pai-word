@@ -258,6 +258,25 @@
         "srs_allowed": false,
         "qa": "independent-only",
         "deploy": "NOT VERIFIED"
+      },
+      "ipa_coverage_audit": {
+        "tool": "tools/integration/audit-scene1341-master-ipa.mjs",
+        "test": "tools/integration/test-scene1341-master-ipa-audit.mjs",
+        "target": "All 1341 production scene JSONs, 230289 frozen source association rows",
+        "metrics": "association IPA rate, unique-expression IPA rate, empty scenes, missing samples, conflicting IPA variants, provenance categories",
+        "classification": "candidate vs approved never conflated; source row IDs remain immutable",
+        "source_examples": {
+          "SC0001": "16/294",
+          "SC0015": "0/250",
+          "SC0100": "0/210",
+          "SC0500": "0/183"
+        },
+        "source_version": "CG-MASTER V260",
+        "tool_commit": "e7a8f60a06d305c50999acd68ca5cc08406fc145",
+        "test_commit": "918c791fa0de6690ec05a8dd7f07e3d48871b6b0",
+        "ci_wiring_commit": "90eda74cda2353bff9d61a7d31b5455db9978853",
+        "ci": "configured but not yet PASS confirmed",
+        "caveat": "No full data audit executed in this conversation; code can run when 1341 scene files are available in checkout"
       }
     }
   },
@@ -282,10 +301,10 @@
   },
   "handoff": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next": [
-    "CG-MASTER publish all 1341 canonical scene files + atomic index in GitHub, source identity and SHA1; Drive-only V247 ZIP cannot hot-load in browser",
-    "CG-MASTER iterate same v1 schema question_page/answer_page, Kaikki fields, source provenance; avoid UI-specific version adapters",
-    "CG-QA independently publish 1审 exact record+content SHA sidecar; no Master review self-attestation",
-    "Run node tools/integration/test-scene1341-master-scene-v1.mjs and browser/iPhone acceptance, manual deployment"
+    "Request CG-MASTER run all-1341 IPA audit with production scenes and report baseline as counts, not unsupported Kaikki scarcity claim",
+    "CG-MASTER unique-expression join Kaikki exact word/phrase IPA, append candidates with provenance, publish index/scene hashes without CG-MAIN changes",
+    "CG-QA independently first-review exact IPA + matched Sense evidence, with distinct 待审 and 1审 status",
+    "CI and iPhone smoke test after next IPA populated Master release; do not rebuild frontend per data change"
   ],
   "manual_deploy_only": "https://github.com/TJPAI/pai-word-preview/actions/workflows/deploy-preview.yml",
   "last_issue_seen": {
