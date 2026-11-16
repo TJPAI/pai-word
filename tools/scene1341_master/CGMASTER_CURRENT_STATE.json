@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "daec2273e714936856393da687b76a5b384a114c",
-  "version": "V264_550_KAIKKI_NATIVE_EXACT_ENTRY_EVIDENCE",
+  "version": "V265_FULL1341_KAIKKI_EVIDENCE_PUBLISHED",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -958,6 +958,27 @@
       "first_review": 0,
       "release_allowed": false,
       "srs_eligible": false
+    },
+    "v265_full1341_kaikki_intake": {
+      "source_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+      "counts": {
+        "exact_entry_associations": 111681,
+        "evidence_updated": 111681,
+        "ambiguous_hold": 94213,
+        "not_found": 118608,
+        "single_entry_single_sense_candidate": 17468,
+        "new_ipa_candidates": 19868,
+        "scene_count": 1341,
+        "associations": 230289,
+        "unique_expressions": 127609,
+        "exact_native_expressions": 23104,
+        "changed_scenes": 1340
+      },
+      "qa_stage": "待审",
+      "first_review": 0,
+      "release_allowed": false,
+      "srs_eligible": false,
+      "status": "PUBLISHED_TEST_ONLY"
     }
   },
   "sources": {
