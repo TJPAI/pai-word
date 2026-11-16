@@ -1,4 +1,6 @@
 import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {runInNewContext} from 'node:vm';
 import {validateMasterSceneDocument,mergeMasterScene,resolveMasterSceneIndex,masterReleaseView} from '../../rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs';
 const scene='SC50-1341';
 const record={record_id:'SC1341-FINAL-SRC-'+'a'.repeat(32),scene_id:scene,source_final_row:230289,
@@ -126,3 +128,15 @@ assert.equal(masterReleaseView(index),null);
 assert.equal(masterReleaseView({...releaseIndex,master_release:{...releaseIndex.master_release,release_allowed:true}}),null);
 assert.equal(masterReleaseView({...releaseIndex,master_release:{...releaseIndex.master_release,version:'INVALID'}}),null);
 console.log('PASS Master V256 metadata display, optional older index and release fail-closed');
+
+// Exercise the exact HTML formatter rather than an independently copied POS mapping.
+const uiSource=readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
+const formatterSource=uiSource.match(/function formatMeaningWithPos\\(answer\\)\\{[\\s\\S]*?\\n\\}\\nfunction renderCard\\(/)?.[0];
+assert.ok(formatterSource,'real answer-page POS formatter present');
+const formatter=runInNewContext(formatterSource.replace(/\\nfunction renderCard\\($/,'')+'\\nformatMeaningWithPos');
+assert.equal(formatter({meaning_zh:'醒来',pos:'verb'}),'v. 醒来');
+assert.equal(formatter({meaning_zh:'v. 醒来',pos:'verb'}),'v. 醒来');
+assert.equal(formatter({meaning_zh:'adj. 困倦的',pos:'adjective'}),'adj. 困倦的');
+assert.equal(formatter({meaning_zh:'phr. v. 起床',pos:'phrasal verb'}),'phr. v. 起床');
+assert.equal(formatter({meaning_zh:'醒来',pos:''}),'醒来');
+console.log('PASS: real Scene1341 answer POS inline, no duplicate prefixes');
