@@ -3,8 +3,8 @@
   "updated_at": "2026-11-16",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "1199be4e9cc7efd3e5c90139d925e2c737eb7444",
-  "version": "V261_KAIKKI_20_NATIVE_SINGLE_IPA_CANDIDATES",
+  "verified_base_head": "9065f84d7740f4c2dfdda2166ea6e18583f64fca",
+  "version": "V262_KAIKKI_63_CONCORDANT_MULTI_ENTRY_IPA_CANDIDATES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -896,6 +896,26 @@
       "scene_commit_last": "a3dfc685624927a4fe9f282825f24be45e707fdc",
       "index_commit": "1199be4e9cc7efd3e5c90139d925e2c737eb7444",
       "original_source_associations_unchanged": 230289
+    },
+    "v262_ipa_concordant": {
+      "scenes": 5,
+      "added_ipa_candidates": 63,
+      "by_scene": {
+        "SC50-0001": 6,
+        "SC50-0002": 8,
+        "SC50-0003": 25,
+        "SC50-0004": 13,
+        "SC50-0005": 11
+      },
+      "method": "exact frozen expression/source row match to V231 native Kaikki; multiple native entries but one distinct IPA string across all entries with IPA; native sense NOT selected",
+      "note": "Multi-entry candidates still have unresolved sense/POS; do not call them independently approved pronunciations.",
+      "prior_v261_added_candidates": 20,
+      "cumulative_v261_v262_new_ipa_candidates": 83,
+      "qa_stage": "待审",
+      "first_review": 0,
+      "release_allowed": false,
+      "srs_eligible": false,
+      "index_commit": "9065f84d7740f4c2dfdda2166ea6e18583f64fca"
     }
   },
   "sources": {
@@ -949,10 +969,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Run exact-head integrity check for V261 scene blob hashes and unchanged 1341 scene/230289 source associations.",
-    "Scale exact Kaikki IPA join across all 127609 normalized expressions / 230289 associations, with variant conflicts held and no fabricated compositional phrase IPA.",
-    "Continue all-scene English/Chinese gloss and bilingual-example enrichment, preserving native versus editorial provenance.",
-    "Independent CG-QA exact-content first review only; keep 待审 otherwise."
+    "Verify all 5 changed scene blob hashes, row identity/order and flags against V262 atomic index.",
+    "Bulk Kaikki IPA join for all 1341 scenes using source-pinned raw archive, no fabricated multiword IPA.",
+    "Expand editorial question/answer fields and preserve originals/Kaikki provenance; handle ambiguous POS and source conflict separately.",
+    "Independent CG-QA 1审 only against exact content fingerprint; never infer approval."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
