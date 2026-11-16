@@ -17,7 +17,7 @@ const FILE=/^tools\/scene1341_master\/production\/scenes\/SC50-\d{4}\.json$/;
 const sha=/^[0-9a-f]{40}$/;
 const fail=(s)=>{throw Error('SC1341_IPA_AUDIT_'+s)};
 const norm=(s)=>String(s||'').normalize('NFKC').trim().replace(/\s+/g,' ').toLowerCase();
-const ipa=(q)=>String(q?.ipa||q?.ipa_candidate||'').trim();
+const ipa=(q)=>String(q?.ipa||'').trim()||String(q?.ipa_candidate||'').trim();
 const parseArgs=(argv)=>{
  const out={root:'tools/scene1341_master/production',output:null};
  for(let i=0;i<argv.length;i++){
@@ -38,7 +38,12 @@ export function inspectMasterIPA(index,readScene) {
  const scenes=[],expressions=new Map(),seenRows=new Set();
  const totals={associations:0,withIPA:0,withoutIPA:0,uniqueExpressions:0,
   uniqueWithIPA:0,uniqueWithoutIPA:0,scenesWithZeroIPA:0,
-  conflictingPronunciationExpressions:0};
+  conflictingPronunciationExpressions:0,
+  singleTokenAssociations:0,singleTokenWithIPA:0,singleTokenWithoutIPA:0,
+  multiwordAssociations:0,multiwordWithIPA:0,multiwordWithoutIPA:0,
+  uniqueSingleTokenExpressions:0,uniqueMultiwordExpressions:0,
+  uniqueSingleTokenWithIPA:0,uniqueMultiwordWithIPA:0,
+  ipaWithoutExplicitProvenance:0};
  const sourceCategories=new Map();
  const variants=new Map();
  const missingSamples=[],conflictSamples=[];
@@ -64,9 +69,18 @@ export function inspectMasterIPA(index,readScene) {
    if(p){withIPA++;lexical.withIPA++;lexical.ipas.add(p);}
    else{missingIPA++;if(missingSamples.length<30)missingSamples.push({scene_id:id,source_final_row:r.source_final_row,expression:e})}
    expressions.set(e,lexical);
-   if(e.includes(' '))multiword++;else word++;
+   if(e.includes(' ')){
+    multiword++;totals.multiwordAssociations++;
+    if(p)totals.multiwordWithIPA++;else totals.multiwordWithoutIPA++;
+   }else{
+    word++;totals.singleTokenAssociations++;
+    if(p)totals.singleTokenWithIPA++;else totals.singleTokenWithoutIPA++;
+   }
    const origin=String(r.question_page?.ipa_source||r.question_page?.ipa_provenance||'UNSPECIFIED');
-   if(p)sourceCategories.set(origin,(sourceCategories.get(origin)||0)+1);
+   if(p){
+    sourceCategories.set(origin,(sourceCategories.get(origin)||0)+1);
+    if(origin==='UNSPECIFIED')totals.ipaWithoutExplicitProvenance++;
+   }
   }
   scenes.push({scene_id:id,associations:doc.record_count,withIPA,withoutIPA:missingIPA,
     coveragePercent:safePct(withIPA,doc.record_count),singleToken:word,multiword});
@@ -76,6 +90,13 @@ export function inspectMasterIPA(index,readScene) {
  if(totals.associations!==230289||seenRows.size!==230289)fail('SOURCE_TOTAL');
  for(const x of expressions.values()){
   if(x.withIPA)totals.uniqueWithIPA++;else totals.uniqueWithoutIPA++;
+  if(x.expression.includes(' ')){
+   totals.uniqueMultiwordExpressions++;
+   if(x.withIPA)totals.uniqueMultiwordWithIPA++;
+  }else{
+   totals.uniqueSingleTokenExpressions++;
+   if(x.withIPA)totals.uniqueSingleTokenWithIPA++;
+  }
   if(x.ipas.size>1){
    totals.conflictingPronunciationExpressions++;
    if(conflictSamples.length<30)conflictSamples.push({expression:x.expression,ipaVariants:[...x.ipas],scenes:[...x.scenes].slice(0,8)});
@@ -88,7 +109,11 @@ export function inspectMasterIPA(index,readScene) {
   masterRelease:index.master_release?.version||null,
   releaseAllowed:false,srsEligible:false,
   totals:{...totals,coveragePercent:safePct(totals.withIPA,totals.associations),
-   uniqueExpressionCoveragePercent:safePct(totals.uniqueWithIPA,totals.uniqueExpressions)},
+   uniqueExpressionCoveragePercent:safePct(totals.uniqueWithIPA,totals.uniqueExpressions),
+   singleTokenCoveragePercent:safePct(totals.singleTokenWithIPA,totals.singleTokenAssociations),
+   multiwordCoveragePercent:safePct(totals.multiwordWithIPA,totals.multiwordAssociations),
+   uniqueSingleTokenCoveragePercent:safePct(totals.uniqueSingleTokenWithIPA,totals.uniqueSingleTokenExpressions),
+   uniqueMultiwordCoveragePercent:safePct(totals.uniqueMultiwordWithIPA,totals.uniqueMultiwordExpressions)},
   provenanceObserved:[...sourceCategories].map(([name,count])=>({name,count})).sort(byCountDesc),
   worstScenes:scenes.slice().sort((a,b)=>a.coveragePercent-b.coveragePercent||a.scene_id.localeCompare(b.scene_id)).slice(0,20),
   bestScenes:scenes.slice().sort((a,b)=>b.coveragePercent-a.coveragePercent||a.scene_id.localeCompare(b.scene_id)).slice(0,20),
