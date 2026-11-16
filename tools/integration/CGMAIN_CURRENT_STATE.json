@@ -221,7 +221,19 @@
       "iphone_notice": "Issue #1 6895114205: deployed iPhone page still old 25 scenes/5875 cards, SC0026-29 pending",
       "home_full_index_fix": "7e510e51f0135a9333fdabe736c1331c9bb5daa7: after index verified show 1341/230289 L1 source associations and per-scene indexed counts",
       "continue_fix": "92e0a93fb64f07dfe88790286577b7da19838a4a: continue button now resolves Master on demand",
-      "deployment": "NOT VERIFIED; user must manually deploy preview workflow"
+      "deployment": "NOT VERIFIED; user must manually deploy preview workflow",
+      "master_release_ui": {
+        "metadata_schema": "scene1341-master-release/v1",
+        "current_observed": "V256",
+        "last_observed_master_release_commit": "f15bc72829b344b9eac7a8e6e4263eca4188f8a1",
+        "adapter_commit": "bea53de9ed16dbdaa3654f00b8f469a804c3c253",
+        "ui_commit": "851b19fa553487dcc9d12adc6baec1fb8feddfeb",
+        "test_commit": "69577dbdf0095b372ebdeb3eb3e8bbe3443b9fbe",
+        "behavior": "Index-driven Master version/date/headline/changed scenes on home and study pages, fallback when absent, no CG-MAIN rebuild per Master revision",
+        "ci": "NOT YET VERIFIED",
+        "safari": "NOT YET VERIFIED ON V256",
+        "deployment": "NOT DEPLOYED BY CG-MAIN"
+      }
     }
   },
   "ci": {
