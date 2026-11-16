@@ -4,8 +4,8 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V254_KAIKKI_SINGLE_SENSE_L2_EVIDENCE_BATCH1",
-  "status": "FULL1341_L1_PUBLISHED_PHASE1_L2_SOURCE_EVIDENCE_INCREMENTAL",
+  "version": "V255_PHASE1_38_SCENE_FIT_BILINGUAL_DRAFTS",
+  "status": "FULL1341_L1_PUBLISHED_PHASE1_BILINGUAL_EDITORIAL_DRAFTS_IN_PROGRESS",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -686,6 +686,34 @@
       "qa_stage": "待审",
       "release_allowed": false,
       "srs_eligible": false
+    },
+    "v255_original_bilingual_example_batch": {
+      "scene_ids": [
+        "SC50-0001",
+        "SC50-0002",
+        "SC50-0003",
+        "SC50-0004",
+        "SC50-0005"
+      ],
+      "records": 38,
+      "by_scene": {
+        "SC50-0001": 1,
+        "SC50-0002": 5,
+        "SC50-0003": 16,
+        "SC50-0004": 6,
+        "SC50-0005": 10
+      },
+      "english_example_and_chinese_translation_complete": 38,
+      "original_editorial_example_not_native_kaikki": true,
+      "native_examples_retained_as_provenance": true,
+      "kaikki_unique_entry_single_sense_evidence": true,
+      "complete_question_answer_pages": 0,
+      "new_ipa_approved": 0,
+      "first_review": 0,
+      "baseline_983_full_editorial_draft_gap_still_open": true,
+      "index_commit": "55114b55ebad57f464e16f890060aa50a9779c52",
+      "verification": "5/5 index SHA1, 5/5 scene unique row counts, 38/38 bilingual and release=false/srs=false",
+      "qa_stage": "待审"
     }
   },
   "sources": {
@@ -739,10 +767,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "P0: Continue 983 missing complete editorial drafts for SC50-0001..0005; V254 38 native source-evidence increments are NOT complete bilingual drafts and do not reduce 983 baseline.",
-    "Prioritize sense-specific editor authoring, complete bilingual example translations and evidence-driven IPA; ambiguous senses and dialect variants HOLD.",
-    "Publish scene JSON updates and refresh atomic live index blob SHA1; full scene count and source association count must remain 1341/230289.",
-    "Request CG-QA independent first review on exact record identity + content hash; no self-promotion to 1审."
+    "P0: Complete IPA, POS-specific sense-fit, collocations and usage notes for the 38 V255 editorial bilingual candidates; independent QA before 1审.",
+    "P0: Expand genuine complete editorial drafts into remaining 983 Phase1 SC0001..0005 source rows; prioritize sense matches and avoid cross-reference-only glosses.",
+    "Maintain atomic Git scene+index publishing for each content batch; immutable 1341 scenes / 230289 associations.",
+    "Start subsequent ~3000 record batches SC0006 onward once Phase1 content workflow is repeatable."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
