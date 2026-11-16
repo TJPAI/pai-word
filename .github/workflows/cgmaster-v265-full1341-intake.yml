@@ -1,0 +1,91 @@
+name: CG-MASTER V265 full1341 source audit and optional Kaikki intake
+on:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - ".github/workflows/cgmaster-v265-full1341-intake.yml"
+      - "tools/scene1341_master/build_v265_full_kaikki_intake.py"
+      - "tools/scene1341_master/audit_v265_full1341_ipa.py"
+  workflow_dispatch:
+    inputs:
+      run_full_intake:
+        type: boolean
+        required: false
+        default: false
+        description: "Download verified Kaikki archive and publish all 1341 TEST-ONLY scene evidence files"
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-v265-full-intake
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+      - name: Compile source scripts
+        run: python -m py_compile tools/scene1341_master/build_v265_full_kaikki_intake.py tools/scene1341_master/audit_v265_full1341_ipa.py
+      - name: Audit all 1341 committed scene documents
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/scene1341_master/audit_v265_full1341_ipa.py . | tee /tmp/cgmaster-v265-ipa-audit.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-v265-full1341-ipa-audit
+          path: /tmp/cgmaster-v265-ipa-audit.json
+  intake:
+    if: github.event_name == 'workflow_dispatch' && inputs.run_full_intake
+    needs: audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+          persist-credentials: true
+      - name: Fetch exactly pinned raw Kaikki archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 4 --retry-delay 15 \
+            "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl.gz" \
+            -o /tmp/kaikki.org-dictionary-English.jsonl.gz
+          echo "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99  /tmp/kaikki.org-dictionary-English.jsonl.gz" | sha256sum --check -
+      - name: Dry run source-pinned intake
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/scene1341_master/build_v265_full_kaikki_intake.py \
+            --root . --kaikki /tmp/kaikki.org-dictionary-English.jsonl.gz --release V265 > /tmp/cgmaster-v265-intake-dryrun.json
+      - name: Apply test-only native evidence and validate all scene hashes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python tools/scene1341_master/build_v265_full_kaikki_intake.py \
+            --root . --kaikki /tmp/kaikki.org-dictionary-English.jsonl.gz \
+            --release V265 --date 2026-11-16 --apply > /tmp/cgmaster-v265-intake.json
+          python tools/scene1341_master/audit_v265_full1341_ipa.py . > /tmp/cgmaster-v265-after-audit.json
+      - name: Commit verified scene data and dynamic index
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/scene1341_master/production tools/scene1341_master/qa_reports/CGMASTER_V265_FULL1341_KAIKKI_INTAKE_REPORT.json
+          if git diff --cached --quiet; then
+            echo "No changes; preserving current published release"
+            exit 0
+          fi
+          git commit -m 'CG-MASTER V265: source-pinned full1341 Kaikki evidence publish (test only)'
+          git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-v265-full-intake-results
+          path: |
+            /tmp/cgmaster-v265-intake-dryrun.json
+            /tmp/cgmaster-v265-intake.json
+            /tmp/cgmaster-v265-after-audit.json
