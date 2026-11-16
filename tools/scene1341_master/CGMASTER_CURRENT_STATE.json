@@ -3,8 +3,8 @@
   "updated_at": "2026-11-16",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "dc44450e55c657893a8c7269d0fe3e14725fdd28",
-  "version": "V263_14_SOURCE_LINKED_EDITORIAL_ENGLISH_GLOSS_DRAFTS",
+  "verified_base_head": "daec2273e714936856393da687b76a5b384a114c",
+  "version": "V264_550_KAIKKI_NATIVE_EXACT_ENTRY_EVIDENCE",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -937,6 +937,27 @@
       "release_allowed": false,
       "srs_eligible": false,
       "index_commit": "dc44450e55c657893a8c7269d0fe3e14725fdd28"
+    },
+    "v264_native_exact_entry_evidence": {
+      "scenes": 5,
+      "records_with_new_evidence": 550,
+      "single_native_entry_single_sense_candidates": 127,
+      "multi_entry_or_multi_sense_hold": 423,
+      "by_scene": {
+        "SC50-0001": 114,
+        "SC50-0002": 83,
+        "SC50-0003": 139,
+        "SC50-0004": 118,
+        "SC50-0005": 96
+      },
+      "source": "V231 raw source-pinned Kaikki exact expression records",
+      "source_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+      "data_policy": "Add evidence object only, preserve existing editorial text and original identity; no native sense selection; source lists record each original source line and each original sense gloss",
+      "release_index_commit": "daec2273e714936856393da687b76a5b384a114c",
+      "qa_stage": "待审",
+      "first_review": 0,
+      "release_allowed": false,
+      "srs_eligible": false
     }
   },
   "sources": {
@@ -990,10 +1011,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Validate all 5 V263 scene blob hashes and preserve frozen row identity.",
-    "Extend full 1341-scene source-pinned Kaikki IPA matching from deduplicated expressions (127609) and distinguish phrase/word entries and dialect.",
-    "Produce meaningful per-sense English gloss, bilingual example, collocation and usage content without mistaking form-of redirects for teaching gloss.",
-    "Independent CG-QA exact-content first-review only; preserve 待审 otherwise."
+    "Validate V264 all five scene blob SHA1 and original row identity before claiming success.",
+    "Create one-pass full 1341-scene exact-lexical headword Kaikki evidence ingestion from verified raw archive; avoid fabricated phrase IPA.",
+    "Prioritize 423 ambiguous native matches for semantic mapping with explicit HOLD decisions.",
+    "Continue bilingual educational payload and independent CG-QA version-pinned first review; keep SRS disabled."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
