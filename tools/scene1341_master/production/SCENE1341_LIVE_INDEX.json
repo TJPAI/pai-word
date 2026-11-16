@@ -9,7 +9,7 @@
     "SC50-0001": {
       "path": "tools/scene1341_master/production/scenes/SC50-0001.json",
       "records": 294,
-      "git_blob_sha1": "ffcd883ead996b9d34810ad2423f1dfce78b358b"
+      "git_blob_sha1": "a2c47203e190c74ad51f098fbcb7e47821411e83"
     },
     "SC50-0002": {
       "path": "tools/scene1341_master/production/scenes/SC50-0002.json",
@@ -6714,29 +6714,24 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V256",
-    "content_baseline": "V255_PHASE1_38_SCENE_FIT_BILINGUAL_DRAFTS",
+    "version": "V257",
+    "content_baseline": "V257_SC0001_29_ORIGINAL_BILINGUAL_EDITORIAL_DRAFTS",
     "published_date": "2026-11-16",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "新增38条Kaikki单义项证据对应的场景化双语例句",
+    "headline": "SC0001新增29条睡眠与闹钟场景双语教学草稿（待审）",
     "changes": [
       {
-        "category": "bilingual_examples",
-        "count": 38
+        "category": "bilingual_editorial_drafts",
+        "count": 29
       },
       {
         "category": "scene_documents_updated",
-        "count": 5
+        "count": 1
       }
     ],
     "changed_scene_ids": [
-      "SC50-0001",
-      "SC50-0002",
-      "SC50-0003",
-      "SC50-0004",
-      "SC50-0005"
+      "SC50-0001"
     ],
-    "index_policy": "Every content update must publish version and change summary with the atomic index; do not require frontend rebuild.",
     "qa_stage": "待审",
     "release_allowed": false,
     "srs_eligible": false
