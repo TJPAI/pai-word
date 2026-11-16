@@ -6,6 +6,7 @@ on:
       - ".github/workflows/cgmaster-v265-full1341-intake.yml"
       - "tools/scene1341_master/build_v265_full_kaikki_intake.py"
       - "tools/scene1341_master/audit_v265_full1341_ipa.py"
+      - "tools/scene1341_master/CGMASTER_V265_INTAKE_TRIGGER.json"
   workflow_dispatch:
     inputs:
       run_full_intake:
@@ -38,7 +39,7 @@ jobs:
           name: cgmaster-v265-full1341-ipa-audit
           path: /tmp/cgmaster-v265-ipa-audit.json
   intake:
-    if: github.event_name == 'workflow_dispatch' && inputs.run_full_intake
+    if: (github.event_name == 'workflow_dispatch' && inputs.run_full_intake) || (github.event_name == 'push' && contains(github.event.head_commit.message, '[CGMASTER-V265-FULL-INTAKE]'))
     needs: audit
     runs-on: ubuntu-latest
     timeout-minutes: 180
@@ -75,7 +76,21 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/scene1341_master/production tools/scene1341_master/qa_reports/CGMASTER_V265_FULL1341_KAIKKI_INTAKE_REPORT.json
+          python - <<'PY'
+          import json,pathlib
+          base=pathlib.Path("tools/scene1341_master")
+          report=json.loads((base/"qa_reports/CGMASTER_V265_FULL1341_KAIKKI_INTAKE_REPORT.json").read_text())
+          p=base/"CGMASTER_CURRENT_STATE.json"
+          state=json.loads(p.read_text())
+          state["version"]="V265_FULL1341_KAIKKI_EVIDENCE_PUBLISHED"
+          state["updated_at"]="2026-11-16"
+          state.setdefault("phase1",{})["v265_full1341_kaikki_intake"]={
+            "source_sha256":report["archive_sha256"],"counts":report["counts"],
+            "qa_stage":"待审","first_review":0,"release_allowed":False,
+            "srs_eligible":False,"status":"PUBLISHED_TEST_ONLY"}
+          p.write_text(json.dumps(state,ensure_ascii=False,indent=2)+"\n")
+          PY
+          git add tools/scene1341_master/production tools/scene1341_master/qa_reports/CGMASTER_V265_FULL1341_KAIKKI_INTAKE_REPORT.json tools/scene1341_master/CGMASTER_CURRENT_STATE.json
           if git diff --cached --quiet; then
             echo "No changes; preserving current published release"
             exit 0
