@@ -99,7 +99,7 @@ export function masterReleaseView(index){
  const m=index?.master_release;
  if(!m||m.metadata_schema!=='scene1341-master-release/v1'||
     !/^V[0-9]{1,8}$/.test(m.version||'')||
-    !/^\\d{4}-\\d{2}-\\d{2}$/.test(m.published_date||'')||
+    !/^\d{4}-\d{2}-\d{2}$/.test(m.published_date||'')||
     m.release_allowed!==false||m.srs_eligible!==false)return null;
  const changed=new Set(Array.isArray(m.changed_scene_ids)?
   m.changed_scene_ids.filter(x=>ID.test(x)&&index.scenes?.[x]):[]);
