@@ -4,8 +4,8 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V258_PHASE1_60_ORIGINAL_BILINGUAL_DRAFTS",
-  "status": "FULL1341_DYNAMIC_LIVE_INDEX_PUBLISHED_PHASE1_BILINGUAL_EDITORIAL_INCREMENTAL",
+  "version": "V259_PHASE1_60_ORIGINAL_BILINGUAL_DRAFTS",
+  "status": "FULL1341_L1_PUBLISHED_PHASE1_BILINGUAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -816,6 +816,32 @@
       "qa_stage": "待审",
       "release_allowed": false,
       "srs_eligible": false
+    },
+    "v259_original_editorial_batch": {
+      "scene_ids": [
+        "SC50-0001",
+        "SC50-0002",
+        "SC50-0003",
+        "SC50-0004",
+        "SC50-0005"
+      ],
+      "new_bilingual_drafts": 60,
+      "by_scene": {
+        "SC50-0001": 12,
+        "SC50-0002": 12,
+        "SC50-0003": 12,
+        "SC50-0004": 12,
+        "SC50-0005": 12
+      },
+      "remaining_of_original_983_without_new_editorial_draft": 834,
+      "qa_stage": "待审",
+      "qa_approved": 0,
+      "release_allowed": false,
+      "srs_eligible": false,
+      "source_attestation": "Original editorial draft based on immutable scene cue, NOT Kaikki native attestation",
+      "live_index_commit": "88863fbdb4561a1bc087368174757bf90be88db8",
+      "verification": "5/5 scene SHA matches index; 1341 scenes and 230289 original source rows unchanged; no duplicate source row in changed scenes",
+      "frontend_ui": "CG-MAIN one-time version adapter previously delivered, deployment and iPhone verification not established"
     }
   },
   "sources": {
@@ -869,10 +895,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Continue source-linked new editorial drafts for 894 residual SC0001..0005 source records, avoid conflating L3 draft with QA-approved complete page.",
-    "For each iteration publish Master scene JSON changes then atomic index with master_release version/date/summary and affected scenes.",
-    "CG-MAIN once-only release metadata display implementation acknowledged in Issue #2; do not claim deployment or Safari confirmation without evidence.",
-    "CG-QA independently review exact content versions. Preserve provenance, release=false, SRS=false."
+    "Continue 834 missing fresh editorial draft rows in SC0001..0005 and separately verify precise Kaikki evidence; do not treat editorial-only text as certified sense.",
+    "For each Master version update scene files, Git blob hashes and master_release index metadata, without CG-MAIN code changes.",
+    "CG-QA independently first-review exact record+content version; all unreviewed stay 待审, release=false, SRS0."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
