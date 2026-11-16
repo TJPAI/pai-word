@@ -3,7 +3,7 @@
   "updated_at": "2026-11-16",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "007e0dab5c351ba469ef57c90a7f20869f59c457",
+  "verified_parent_head": "fb900f1dbb16e8098fd8576cd5850fe119130a70",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -339,5 +339,18 @@
     "review_state": "unchanged: test-only, unreviewed, SRS0",
     "ci": "No matching pull-request workflow runs/combined statuses exposed by connector; no PASS claim",
     "deployment": "not requested; no preview deployment"
+  },
+  "pos_display_regression": {
+    "status": "COMMITTED_PENDING_CI",
+    "master_version_seen": "V264_550_KAIKKI_NATIVE_EXACT_ENTRY_EVIDENCE",
+    "fix_commit": "72647805cbedb249d62fb959ab0db4d8e7c31072",
+    "test_commit": "fb900f1dbb16e8098fd8576cd5850fe119130a70",
+    "scope": "answer page inline POS prefix once only; prevent 'v. v. 醒来' for already POS-prefixed Master meanings",
+    "test_file": "tools/integration/test-scene1341-master-scene-v1.mjs",
+    "live_master_mutation": false,
+    "qa_mutation": false,
+    "srs_writes": 0,
+    "real_browser_test": "not performed",
+    "ci_result": "not verified"
   }
 }
