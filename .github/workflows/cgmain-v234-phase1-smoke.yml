@@ -10,6 +10,8 @@ on:
       - tools/integration/test-scene1341-v234-phase1-test-overlay.mjs
       - tools/integration/test-scene1341-v238-v239-scene25-feed.mjs
       - tools/integration/test-scene1341-master-scene-v1.mjs
+      - tools/integration/test-scene1341-answer-settings.mjs
+      - rebuild-preview/scene1341-readonly/scene500-readonly-settings.js
       - rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs
       - rebuild-preview/scene1341-readonly/scene1341-first-review-stage.mjs
       - .github/workflows/cgmain-v234-phase1-smoke.yml
@@ -27,6 +29,8 @@ jobs:
         run: node tools/integration/test-scene1341-v234-phase1-test-overlay.mjs
       - name: Check all-1341 generic Master scene hot-swap contract
         run: node tools/integration/test-scene1341-master-scene-v1.mjs
+      - name: Check rich answer show-hide preferences and SRS isolation
+        run: node tools/integration/test-scene1341-answer-settings.mjs
       - name: Check dynamic V238/V239 16-scene L1 test feed
         run: node tools/integration/test-scene1341-v238-v239-scene25-feed.mjs
       - name: Check existing Phase1 immutable draft overlay regression
