@@ -102,6 +102,11 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
     <p id="rec-status" class="demo-tip" role="status" aria-live="polite">CG-REC 中英文混合场景推荐 · 仅供体验</p>
     <section class="scene-results" id="recommendations" hidden><div class="scene-results-head"><h3>为你推荐</h3><span id="recommendation-difficulty">全部</span></div><div id="scenes" class="scene-results-list"></div><div class="scene-pages" id="recommendation-pages" hidden><button id="recommendation-prev" type="button">上一页</button><span id="recommendation-position">1 / 1</span><button id="recommendation-next" type="button">下一页</button></div><p class="scene-results-note">当前场景仅表示相关教学候选；未正式认证的 KU 仅在隔离体验中可学习，不进入正式 SRS。</p></section>
     <div id="categories" class="demo-categories" hidden></div>
+    <div id="master-release-banner" aria-live="polite" style="margin:10px 0;padding:10px 14px;border:1px solid #c9d6ea;border-radius:12px;background:#f7faff" hidden>
+     <strong id="master-release-label">Master 待检测</strong>
+     <span id="master-release-headline" style="display:block;font-size:13px;color:#46566e;margin-top:3px"></span>
+     <details id="master-release-details" style="font-size:12px;color:#52617a;margin-top:5px"><summary>本轮更新</summary><span id="master-release-summary"></span></details>
+    </div>
     <p class="demo-tip" id="scope">正在加载 Scene1341 教学内容；未获正式认证的词卡仅在此独立体验。</p>
     <div class="demo-status" id="status" role="status">正在载入 1,341 场景目录及教学词卡…</div>
     <button id="more" class="home-quiet-btn" type="button" hidden>查看更多场景</button>
@@ -162,6 +167,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
+ <div id="master-study-release" aria-live="polite" style="font-size:12px;color:#536b90;padding:2px 14px 3px" hidden></div>
  <div class="word-hero" id="hero">
    <div class="word-line"><div class="word" id="expression">加载中</div></div>
    <div class="ipa-line"><span class="ipa" id="ipa" aria-label="音标"></span><span id="first-review-stage" class="phase-review-text" aria-live="polite" hidden></span><button class="speak-btn" id="speak" data-word-audio aria-label="播放单词">🔊</button></div>
@@ -607,6 +613,7 @@ function renderCategories(){
 }
 function renderHome(){
  if(!catalog.length)return;
+ renderMasterRelease();
  const q=filter.trim(),active=(!!q&&recSubmitted)||catalogVisible;
  const matches=q?(recRows||[]).map(x=>catalog.find(c=>c.id===x.id)).filter(Boolean):catalog;
  const selected=matches.filter(x=>category==='全部'||x.category===category);
@@ -638,6 +645,11 @@ function renderHome(){
    const indexed=masterSceneSnapshot?.index?.scenes?.[sc.id]?.records||0;
    quantity.textContent=String(indexed||n||'—');
    sub.textContent=indexed?'L1测试':n?'可体验':'待交付';
+   if(masterReleaseInfo?.changed.has(sc.id)){
+    const newer=document.createElement('small');
+    newer.textContent='本轮更新';newer.style.cssText='color:#315eab;font-weight:600;display:block';
+    count.append(newer);
+   }
    count.append(quantity,sub);
    btn.disabled=!n&&!masterSceneSnapshot?.index?.scenes?.[sc.id];btn.append(no,name,count);
    btn.addEventListener('click',()=>openMasterScene(sc.id));$('scenes').append(btn);
@@ -660,10 +672,26 @@ function renderHome(){
 // V252 full-scene Git index is published. Keep validation fail-closed;
 // no source association is a certified Sense or eligible SRS card.
 let masterSceneSnapshot=null,masterSceneAdapter=null,masterSceneLoading=new Set();
+let masterReleaseInfo=null;
+function renderMasterRelease(){
+ const info=masterReleaseInfo;
+ const banner=$('master-release-banner'),study=$('master-study-release');
+ banner.hidden=!info;
+ if(!info){study.hidden=true;return}
+ set('master-release-label',info.label+' · L1测试');
+ set('master-release-headline',info.headline||'Master 数据已更新');
+ const changes=info.changes.map(x=>x.category+' '+x.count).join(' · ');
+ set('master-release-summary',(changes||'暂无分类统计')+' · 更新场景 '+info.changed.size+' 个 · '+info.stage);
+ study.hidden=false;
+ set('master-study-release',info.label+(info.changed.has(sceneId)?' · 本轮已更新':'')+' · 待审');
+}
+
 async function initializeFullMasterSceneIndex(){
  try{
   masterSceneAdapter=await import('./scene1341-master-scene-v1.mjs');
   masterSceneSnapshot=await masterSceneAdapter.resolveMasterSceneIndex();
+  masterReleaseInfo=masterSceneAdapter.masterReleaseView(masterSceneSnapshot.index);
+  renderMasterRelease();
   set('master-live-feed-status','全量Master 1,341场景动态骨架可用 · 来源 '+masterSceneSnapshot.commit.slice(0,12)+
    ' · 按需读取场景内容 · QA独立 · SRS禁写');
   set('scope','全量Master索引已核验：1,341个场景、230,289条原始场景关联（L1只读测试骨架，非正式Sense）。场景点开时动态加载；旧版25场景/5,875张词卡仅为历史已加载草稿，不代表全量覆盖。待审 · SRS禁写。');
@@ -680,6 +708,8 @@ async function initializeFullMasterSceneIndex(){
   }
  }catch(error){
   masterSceneSnapshot=null;
+  masterReleaseInfo=null;
+  renderMasterRelease();
   set('master-live-feed-status','全量Master动态索引读取或校验失败：'+
    String(error?.message||error).slice(0,85));
  }
@@ -858,6 +888,7 @@ function formatMeaningWithPos(answer){
 }
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
+ renderMasterRelease();
  const qaStage=resolveQaStage(r,independentQaReviews);
  const reviewText=qaStage.visible?(qaStage.reviewed?'1审':'待审'):'';
  const prefs=readOnlyPrefs.snapshot();
