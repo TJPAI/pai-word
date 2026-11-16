@@ -234,6 +234,16 @@
         "safari": "NOT YET VERIFIED ON V256",
         "deployment": "NOT YET DEPLOYED; prior SHA verified by owner as 6c046866c08e2e81a1cf55d09d01e9f73ac27a62",
         "date_regex_fix": "428fde5f37ecc8706c39d0ae4723eeb8e877a79f: fixed erroneous escaped date regex which rejected valid 2026-11-16 and hid Master release banner"
+      },
+      "ipa_display_rule": {
+        "status": "CODE_COMMITTED_VALIDATION_PENDING",
+        "user_rule": "Master/previous card if IPA present: show IPA verbatim on both question and answer faces; adjacent QA only 待审 or 1审; missing IPA stays missing; never promote unreviewed QA or SRS",
+        "adapter_commit": "1b07963887074137c49d00cf773f3b4a4c10b6b7",
+        "renderer_commit": "cbc2a3d8a2f550dc0d52530746df58c158aed408",
+        "regression_commit": "2f77a613dd630b67097e09d910b87d79457a10fc",
+        "ci": "PENDING",
+        "iphone": "PENDING",
+        "deployment": "PENDING"
       }
     }
   },
