@@ -1,11 +1,11 @@
 {
   "schema": "cgmaster-current-state/v1",
-  "updated_at": "2026-11-15",
+  "updated_at": "2026-11-16",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V252_FULL1341_PUBLISH_WORKFLOW_READY",
-  "status": "PHASE1_EDITORIAL_IN_PROGRESS_QA_PENDING",
+  "version": "V253_FULL1341_GITHUB_PUBLICATION_VERIFIED",
+  "status": "FULL1341_L1_GIT_PUBLISHED_EDITORIAL_ENRICHMENT_IN_PROGRESS_QA_PENDING",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -648,11 +648,21 @@
         "missing_meaning": 222,
         "duplicate_source_rows": 0
       },
-      "git_scene_files_committed": false,
-      "git_live_index_committed": false,
-      "frontend_hotload_unblocked": false,
+      "git_scene_files_committed": true,
+      "git_live_index_committed": true,
+      "frontend_hotload_unblocked": true,
       "qa_stage": "待审",
-      "release_allowed": false
+      "release_allowed": false,
+      "publication_verified": {
+        "index_path": "tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json",
+        "index_blob_sha1": "f50fb42ea0d9cba3bae171c3159ae0b0cfbb46b2",
+        "scene_count": 1341,
+        "source_associations": 230289,
+        "sc50_0001_record_count": 294,
+        "sc50_0001_blob_sha1": "ddf56bf945704631247fb08d1d0d0635588dc022",
+        "status": "GITHUB_PUBLISHED_FRONTEND_DEVICE_ACCEPTANCE_SEPARATE",
+        "verified_date": "2026-11-16"
+      }
     }
   },
   "sources": {
@@ -706,13 +716,14 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Trigger and verify GitHub Actions cgmaster-v252-publish-live-index.yml (Drive archive access may require permissions); do not mark published until GitHub index and 1341 files exist.",
-    "CG-MAIN independently run real-browser hot-load and refresh tests after publication.",
-    "Continue Kaikki L2/L3 and CG-QA review."
+    "P0: Enrich SC50-0001..0005 remaining 983 editorial drafts from traceable Kaikki/CMUdict evidence; maintain source_final_row and existing scene identity.",
+    "P1: Publish reviewed-content candidate changes as scene JSON + atomic live index; validate per-scene Git blob SHA1 and 230289 source rows.",
+    "P2: Batch ~3000 source associations from SC50-0006 onward; independently hand off exact content to CG-QA.",
+    "CG-MAIN device/browser acceptance and deployment are separate; do not claim verified here."
   ],
   "last_issue_comment_observed_ids": {
-    "issue1": 6889893060,
-    "issue2": 6889893324
+    "issue1": 6898227914,
+    "issue2": 6907425307
   },
   "production_policy": "Full coverage first, iterative L1 source-cue -> L2 Kaikki native -> L3 teaching completeness -> L4 independent QA certification; no fabricated evidence; source row identity immutable."
 }
