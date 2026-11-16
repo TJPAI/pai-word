@@ -131,9 +131,9 @@ console.log('PASS Master V256 metadata display, optional older index and release
 
 // Exercise the exact HTML formatter rather than an independently copied POS mapping.
 const uiSource=readFileSync('rebuild-preview/scene1341-readonly/index.html','utf8');
-const formatterSource=uiSource.match(/function formatMeaningWithPos\\(answer\\)\\{[\\s\\S]*?\\n\\}\\nfunction renderCard\\(/)?.[0];
+const formatterSource=uiSource.match(/function formatMeaningWithPos\(answer\)\{[\s\S]*?\n\}\nfunction renderCard\(/)?.[0];
 assert.ok(formatterSource,'real answer-page POS formatter present');
-const formatter=runInNewContext(formatterSource.replace(/\\nfunction renderCard\\($/,'')+'\\nformatMeaningWithPos');
+const formatter=runInNewContext(formatterSource.replace(/\nfunction renderCard\($/,'')+'\nformatMeaningWithPos');
 assert.equal(formatter({meaning_zh:'醒来',pos:'verb'}),'v. 醒来');
 assert.equal(formatter({meaning_zh:'v. 醒来',pos:'verb'}),'v. 醒来');
 assert.equal(formatter({meaning_zh:'adj. 困倦的',pos:'adjective'}),'adj. 困倦的');
