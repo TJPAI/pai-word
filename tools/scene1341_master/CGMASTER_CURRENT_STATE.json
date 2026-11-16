@@ -4,8 +4,8 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V253_FULL1341_GITHUB_PUBLICATION_VERIFIED",
-  "status": "FULL1341_L1_GIT_PUBLISHED_EDITORIAL_ENRICHMENT_IN_PROGRESS_QA_PENDING",
+  "version": "V254_KAIKKI_SINGLE_SENSE_L2_EVIDENCE_BATCH1",
+  "status": "FULL1341_L1_PUBLISHED_PHASE1_L2_SOURCE_EVIDENCE_INCREMENTAL",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -663,6 +663,29 @@
         "status": "GITHUB_PUBLISHED_FRONTEND_DEVICE_ACCEPTANCE_SEPARATE",
         "verified_date": "2026-11-16"
       }
+    },
+    "v254_kaikki_single_sense_batch1": {
+      "scope": "SC50-0001..SC50-0005",
+      "newly_enriched_existing_l1_rows": 38,
+      "by_scene": {
+        "SC50-0001": 1,
+        "SC50-0002": 5,
+        "SC50-0003": 16,
+        "SC50-0004": 6,
+        "SC50-0005": 10
+      },
+      "native_english_example_rows": 20,
+      "cross_reference_or_inflection_holds": 17,
+      "new_editorial_chinese_translations": 0,
+      "approved_ipa_new": 0,
+      "original_editorial_draft_baseline": 258,
+      "remaining_new_editorial_draft_gap_unchanged": 983,
+      "kaikki_evidence_source": "V231 source-pinned native candidates; exactly one native entry and exactly one native sense",
+      "production_index_commit": "c0f7a43bee8b6b21b17c6d97a1fd8d6d906f5201",
+      "verification": "5/5 index blob SHA1 matches; 5/5 scene row counts and unique source rows; full index 1341 scenes 230289 associations",
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "srs_eligible": false
     }
   },
   "sources": {
@@ -716,10 +739,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "P0: Enrich SC50-0001..0005 remaining 983 editorial drafts from traceable Kaikki/CMUdict evidence; maintain source_final_row and existing scene identity.",
-    "P1: Publish reviewed-content candidate changes as scene JSON + atomic live index; validate per-scene Git blob SHA1 and 230289 source rows.",
-    "P2: Batch ~3000 source associations from SC50-0006 onward; independently hand off exact content to CG-QA.",
-    "CG-MAIN device/browser acceptance and deployment are separate; do not claim verified here."
+    "P0: Continue 983 missing complete editorial drafts for SC50-0001..0005; V254 38 native source-evidence increments are NOT complete bilingual drafts and do not reduce 983 baseline.",
+    "Prioritize sense-specific editor authoring, complete bilingual example translations and evidence-driven IPA; ambiguous senses and dialect variants HOLD.",
+    "Publish scene JSON updates and refresh atomic live index blob SHA1; full scene count and source association count must remain 1341/230289.",
+    "Request CG-QA independent first review on exact record identity + content hash; no self-promotion to 1审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
