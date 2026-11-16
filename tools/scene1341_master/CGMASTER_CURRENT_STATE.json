@@ -4,8 +4,8 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V256_MASTER_LIVE_VERSION_METADATA_CONTRACT",
-  "status": "FULL1341_L1_PUBLISHED_PHASE1_BILINGUAL_EDITORIAL_DRAFTS_IN_PROGRESS",
+  "version": "V257_SC0001_29_ORIGINAL_BILINGUAL_DRAFTS",
+  "status": "FULL1341_L1_PUBLISHED_PHASE1_EDITORIAL_ENRICHMENT_QA_PENDING",
   "phase1": {
     "scene_ids": [
       "SC50-0001",
@@ -735,6 +735,60 @@
       "qa_stage": "待审",
       "release_allowed": false,
       "srs_eligible": false
+    },
+    "v257_original_editorial_batch": {
+      "scene_id": "SC50-0001",
+      "count": 29,
+      "source_final_rows": [
+        3,
+        5,
+        7,
+        14,
+        15,
+        17,
+        18,
+        19,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        39,
+        40,
+        41,
+        43,
+        44,
+        45,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52
+      ],
+      "qa_stage": "待审",
+      "native_kaikki_exact_sense_attested": false,
+      "approved_ipa": 0,
+      "full_pedagogy_complete": 0,
+      "original_258_drafts_unchanged": true,
+      "remaining_of_983_without_any_new_editorial_draft": 954,
+      "important_counting_note": "29 newly authored bilingual drafts from previously L1 rows; still not fully complete QA-certified pages.",
+      "index_commit": "8eeed925b72c0f56593287986e49d2858958bec4",
+      "integrity": {
+        "release": "V257",
+        "scene_blob_sha_matches": true,
+        "index_scenes": 1341,
+        "index_associations": 230289,
+        "scene_rows": 294,
+        "unique_rows": 294,
+        "bilingual_rows": 29,
+        "complete_bilingual": true,
+        "unreviewed_rows": true
+      }
     }
   },
   "sources": {
@@ -788,9 +842,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Each future CG-MASTER scene/index content batch MUST increment master_release.version, date, headline and changed_scene_ids, and publish in one consistent index snapshot.",
-    "CG-MAIN once-only UI integration to show human-readable live version/date/change summary and changed-scene badges; no subsequent CG-MAIN changes for Master data updates.",
-    "Continue Phase1 983 incomplete original editorial draft gaps; QA independent first-review gate and SRS=false retained."
+    "Next V258 continue SC0001..0005 source-linked editorial draft batches, prioritizing Kaikki sense-fit and IPA candidates.",
+    "Every scene content update must atomically update index SHA and master_release.version/date/headline/changed_scene_ids.",
+    "CG-MAIN one-time masterReleaseView UI adapter delivered in Issue #2; deployment and iPhone Safari verification remain outside CG-MASTER validation.",
+    "Keep independent QA stage 待审 and release=false/SRS=false."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
