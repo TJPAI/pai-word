@@ -93,6 +93,26 @@ export async function resolveMasterSceneIndex({fetchImpl=fetch}={}){
  if(Object.values(index.scenes).reduce((sum,v)=>sum+v.records,0)!==230289)fail('INDEX_TOTAL');
  return Object.freeze({commit:commit||BRANCH,index,canWriteSrs:false,formalReady:0,branchFallback:!commit});
 }
+// Optional human-readable release metadata is CG-MASTER-owned. It does not
+// alter the frozen source identity or any CG-QA certification state.
+export function masterReleaseView(index){
+ const m=index?.master_release;
+ if(!m||m.metadata_schema!=='scene1341-master-release/v1'||
+    !/^V[0-9]{1,8}$/.test(m.version||'')||
+    !/^\\d{4}-\\d{2}-\\d{2}$/.test(m.published_date||'')||
+    m.release_allowed!==false||m.srs_eligible!==false)return null;
+ const changed=new Set(Array.isArray(m.changed_scene_ids)?
+  m.changed_scene_ids.filter(x=>ID.test(x)&&index.scenes?.[x]):[]);
+ const safe=x=>typeof x==='string'?x.trim().slice(0,140):'';
+ const changes=Array.isArray(m.changes)?m.changes.slice(0,12).filter(x=>
+  typeof x?.category==='string'&&Number.isSafeInteger(x?.count)&&x.count>=0)
+  .map(x=>({category:safe(x.category),count:x.count})):[];
+ return Object.freeze({
+  version:m.version,date:m.published_date,
+  label:'Master '+m.version+' · '+m.published_date,
+  headline:safe(m.headline),changed,changes,stage:'待审 · 测试数据'
+ });
+}
 export async function fetchMasterScene(snapshot,sceneId,{fetchImpl=fetch,cryptoImpl=globalThis.crypto}={}){
  if(!(SHA.test(snapshot?.commit||'')||snapshot?.commit===BRANCH)||!ID.test(sceneId))fail('REQUEST');
  const entry=snapshot.index.scenes[sceneId];
