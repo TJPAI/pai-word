@@ -814,6 +814,15 @@ function renderQuestionIPA(card){
  // (including source-fragment text) as a selected test reading. Preserve
  // provenance/status and leave Master data untouched.
  const ipaCandidate=typeof question?.ipa==='string'?question.ipa.trim():'';
+ // The learner's rule: display any IPA provided by Master/earlier source.
+ // QA review controls ONLY the adjacent 待审/1审 badge, never IPA visibility.
+ // Use textContent to avoid interpreting source strings as markup.
+ if(ipaCandidate){
+  el.textContent=ipaCandidate;
+  el.title='数据源已有音标；是否独立审核仅由音标旁的待审/1审表示';
+  el.dataset.ipaStatus=question?.ipa_status||'source-ipa-visible';
+  return;
+ }
  const completeIPA=/^(?:\/[^\/\]\r\n]+\/|\[[^\/\]\r\n]+\])$/u.test(ipaCandidate)&&
    ipaCandidate.slice(1,-1).trim().length>0; // reject empty/whitespace-only envelopes
  const native=question?.ipa_status==='VERIFIED_NATIVE_KAIKKI_EXACT_ENTRY_TEST_ONLY'&&
@@ -890,7 +899,7 @@ function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  renderMasterRelease();
  const qaStage=resolveQaStage(r,independentQaReviews);
- const reviewText=qaStage.visible?(qaStage.reviewed?'1审':'待审'):'';
+ const reviewText=qaStage.visible&&qaStage.reviewed?'1审':'待审';
  const prefs=readOnlyPrefs.snapshot();
  // Combined opt-in exercises the true native question and answer together.
  // The default preview and independent one-sided A/B modes stay unchanged.
