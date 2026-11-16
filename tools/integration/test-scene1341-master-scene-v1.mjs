@@ -15,7 +15,16 @@ const sourceRowCard=validateMasterSceneDocument(v247,scene).cards[0];
 assert.equal(sourceRowCard.master_record_id,'SC1341-FINAL-ROW-230289');
 assert.equal(sourceRowCard.answer.meaning_zh,'到家');
 assert.equal(sourceRowCard.production_release_allowed,false);
-assert.equal(valid.recordCount,1);assert.equal(valid.cards[0].question.ipa,null);
+assert.equal(sourceRowCard.question.ipa,'/x/');
+assert.equal(sourceRowCard.qa_status,'DEFERRED_TEST_ONLY');
+const absentIPA=structuredClone(v247);
+absentIPA.records[0].question_page.ipa_candidate=null;
+assert.equal(validateMasterSceneDocument(absentIPA,scene).cards[0].question.ipa,null);
+const recentIPA=structuredClone(v247);
+recentIPA.records[0].question_page.ipa_candidate='/ˌweɪk ˈʌp/';
+assert.equal(validateMasterSceneDocument(recentIPA,scene).cards[0].question.ipa,'/ˌweɪk ˈʌp/');
+
+assert.equal(valid.recordCount,1);assert.equal(valid.cards[0].question.ipa,'/x/');
 assert.equal(valid.cards[0].question.ipa_status,'UNAPPROVED_CANDIDATE_HOLD');
 assert.equal(valid.cards[0].answer.example_en,'I got home.');
 assert.equal(valid.cards[0].answer.pos,'');
@@ -41,7 +50,7 @@ const enrichedSparse=mergeMasterScene([legacy],validateMasterSceneDocument(spars
 assert.equal(enrichedSparse.answer.example_en,'Rich author example.');
 assert.equal(enrichedSparse.answer.collocations[0],'arrive home safely');
 assert.equal(enrichedSparse.answer.content_complete,true);
-assert.equal(enrichedSparse.question.ipa,null);
+assert.equal(enrichedSparse.question.ipa,'/x/');
 assert.equal(enrichedSparse.qa_status,'DEFERRED_TEST_ONLY');
 const changedMeaning=structuredClone(sparse);
 changedMeaning.records[0].answer_page.meaning_zh='不同意思';
