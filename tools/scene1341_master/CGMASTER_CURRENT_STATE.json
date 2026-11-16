@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "4d8ff727e025a8af2e94817c330c710b1503129b",
-  "version": "V255_PHASE1_38_SCENE_FIT_BILINGUAL_DRAFTS",
+  "version": "V256_MASTER_LIVE_VERSION_METADATA_CONTRACT",
   "status": "FULL1341_L1_PUBLISHED_PHASE1_BILINGUAL_EDITORIAL_DRAFTS_IN_PROGRESS",
   "phase1": {
     "scene_ids": [
@@ -714,6 +714,27 @@
       "index_commit": "55114b55ebad57f464e16f890060aa50a9779c52",
       "verification": "5/5 index SHA1, 5/5 scene unique row counts, 38/38 bilingual and release=false/srs=false",
       "qa_stage": "待审"
+    },
+    "v256_release_metadata": {
+      "index_commit": "f15bc72829b344b9eac7a8e6e4263eca4188f8a1",
+      "index_blob_sha": "e7af5d4359f4a25246be137d7e0bfa6e19322a68",
+      "version": "V256",
+      "release_metadata_schema": "scene1341-master-release/v1",
+      "scene_count": 1341,
+      "source_associations": 230289,
+      "changed_scenes": [
+        "SC50-0001",
+        "SC50-0002",
+        "SC50-0003",
+        "SC50-0004",
+        "SC50-0005"
+      ],
+      "ui_adaptation": "CG-MAIN one-time integration requested in Issue #2 comment 6909237913",
+      "frontend_implemented": false,
+      "frontend_browser_verified": false,
+      "qa_stage": "待审",
+      "release_allowed": false,
+      "srs_eligible": false
     }
   },
   "sources": {
@@ -767,10 +788,9 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "P0: Complete IPA, POS-specific sense-fit, collocations and usage notes for the 38 V255 editorial bilingual candidates; independent QA before 1审.",
-    "P0: Expand genuine complete editorial drafts into remaining 983 Phase1 SC0001..0005 source rows; prioritize sense matches and avoid cross-reference-only glosses.",
-    "Maintain atomic Git scene+index publishing for each content batch; immutable 1341 scenes / 230289 associations.",
-    "Start subsequent ~3000 record batches SC0006 onward once Phase1 content workflow is repeatable."
+    "Each future CG-MASTER scene/index content batch MUST increment master_release.version, date, headline and changed_scene_ids, and publish in one consistent index snapshot.",
+    "CG-MAIN once-only UI integration to show human-readable live version/date/change summary and changed-scene badges; no subsequent CG-MAIN changes for Master data updates.",
+    "Continue Phase1 983 incomplete original editorial draft gaps; QA independent first-review gate and SRS=false retained."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
