@@ -156,3 +156,15 @@ assert.equal(formatter({meaning_zh:'adj. 困倦的',pos:'adjective'}),'adj. 困�
 assert.equal(formatter({meaning_zh:'phr. v. 起床',pos:'phrasal verb'}),'phr. v. 起床');
 assert.equal(formatter({meaning_zh:'醒来',pos:''}),'醒来');
 console.log('PASS: real Scene1341 answer POS inline, no duplicate prefixes');
+const masterOpenSection=uiSource.slice(
+ uiSource.indexOf('async function openMasterScene('),
+ uiSource.indexOf('let exampleToWordPending=false;')
+);
+assert.ok(masterOpenSection.startsWith('async function openMasterScene('));
+assert.match(masterOpenSection,/masterSceneAdapter\.fetchMasterScene\(masterSceneSnapshot,id\)/);
+assert.match(masterOpenSection,/await masterSceneAdapter\.fetchMasterScene\(masterSceneSnapshot,id\)/);
+assert.match(masterOpenSection,/已阻止旧卡片回退/);
+const masterCatch=masterOpenSection.slice(masterOpenSection.indexOf('}catch(error){'));
+assert.doesNotMatch(masterCatch,/openStudy\(id,resume\)/,
+ 'failed indexed Master load must never silently show cached cards');
+console.log('PASS: indexed Master fetch/blob failure cannot open stale legacy cards');
