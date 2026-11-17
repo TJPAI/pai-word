@@ -3,7 +3,7 @@
   "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "457b18ed4225d60b0e2b5956644483d1eeaf6197",
+  "verified_parent_head": "24b99de4a4a6dccdace535be91ed9795970e5583",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -494,5 +494,20 @@
     "safari": "not verified",
     "deployment": "none",
     "known_master_blocker": "SC0027 index blob mismatch still observed in V271"
+  },
+  "native_answer_blank_tap": {
+    "state": "COMMITTED_PENDING_CI_SAFARI",
+    "implementation_commit": "190e8a88be85a5caa7a0f5db4a7fbfbc9905c60b",
+    "regression_commit": "24b99de4a4a6dccdace535be91ed9795970e5583",
+    "source": "rebuild-preview/scene1341-readonly/index.html",
+    "reason": "Scene500 source answer HTML stops propagation, so a study-screen level click handler cannot toggle the question/answer face from inside the native answer shell.",
+    "fix": "Attach direct native answer shell blank-tap callback; exclude button/link/input/interactive controls, text selection and rely on existing show() touch/scratch suppressions; multi-example audio delegated to shell separately.",
+    "master_version_seen": "V273",
+    "master_sc0027_index_sha": "705c866351cb540f6a464a1b5b0f296962a21dfa",
+    "master_sc0027_actual_sha": "8d89002f09334066d6fb001e5b30c5892f07c0e9",
+    "ci": "pending",
+    "iphone_safari": "not tested",
+    "deployment": "none",
+    "srs_writes": 0
   }
 }
