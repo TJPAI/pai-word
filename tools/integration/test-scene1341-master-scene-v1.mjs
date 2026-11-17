@@ -236,3 +236,15 @@ assert.equal(allLocalCounters.length,0,'must not shadow global count map inside 
 assert.match(entryFunction,/countByScene\.set\(id,scene\.recordCount\)/,
  'scene entry must update the shared scene count map');
 console.log('PASS: full Master scene entry countByScene is global and not shadowed');
+
+const nativeQuestionSelector=uiSource.match(/function preferScene500Question\(\)\{[\s\S]*?\n\}/)?.[0];
+assert.ok(nativeQuestionSelector,'Scene500 question preference must have a shared implementation');
+assert.match(nativeQuestionSelector,/get\('nativeQuestion'\)!=='0'/,
+ 'source-exact Scene500 question hero must be default');
+assert.match(uiSource,/if\(preferScene500Question\(\)\)\{/,
+ 'renderCard must use default native Scene500 question template');
+assert.equal((uiSource.match(/if\(!preferScene500Question\(\)\)return;/g)||[]).length,2,
+ 'both dynamic auto-toggle and word speech event delegates must follow same native-default decision');
+assert.match(uiSource,/const nativePilot=new URLSearchParams\(location.search\).get\('nativeAnswer'\)==='1'\|\|nativeUI/,
+ 'richer answer stays on standard Master UI until source-exact renderer retains all Master fields');
+console.log('PASS: Scene500 native question is default, opt-out available; event delegates and rich answer isolated');
