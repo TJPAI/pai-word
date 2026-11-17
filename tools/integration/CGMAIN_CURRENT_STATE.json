@@ -3,7 +3,7 @@
   "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "0f020274b8c5736cfec0381649b8d86d9155b393",
+  "verified_parent_head": "457b18ed4225d60b0e2b5956644483d1eeaf6197",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -466,5 +466,33 @@
     "iphone_safari": "unverified",
     "ci": "not verified",
     "deployment": "manual only, not executed"
+  },
+  "scene500_native_rich_answer_default": {
+    "state": "COMMITTED_PENDING_CI_SAFARI",
+    "master_index_version_seen": "V271",
+    "frontend_commit": "759b65f132feb3786022cd4e5e9dc8d0129ba07f",
+    "rich_adapter_commit": "c6a07dc92dfe0c81f5db695e0a9df8ebce4f1d8f",
+    "inside_source_answer_shell_commit": "a986253e08e5ecaa3cfcd14bfa741ef1a34dad80",
+    "multi_example_audio_fix": "36c79f1725666738023745bd48a36de0fbb551dc",
+    "new_regression_commit": "457b18ed4225d60b0e2b5956644483d1eeaf6197",
+    "prior_regression_updated_commit": "2838114e95c27fc03a5373b345c88fffb721b332",
+    "workflow_commit": "a61c4487b68cf1d1e8ca418d1755e8994f23d96c",
+    "default": "Scene500 exact source answer shell + inside-shell rich Master glossary and bilingual examples",
+    "reversible_query": "?nativeAnswer=0",
+    "fields": [
+      "inline POS Chinese meaning",
+      "Master English gloss",
+      "up to 3 bilingual examples",
+      "collocations",
+      "usage notes",
+      "independently validated relations and distinctions"
+    ],
+    "qa": "no inferred 1审; relations filtered by existing V188 validator",
+    "srs_writes": 0,
+    "app_home_parity": "not yet complete",
+    "ci": "pending verification",
+    "safari": "not verified",
+    "deployment": "none",
+    "known_master_blocker": "SC0027 index blob mismatch still observed in V271"
   }
 }
