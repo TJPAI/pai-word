@@ -213,6 +213,7 @@ let activeMasterFeed=null,sceneFeedRequest=0,sceneFeedCache=new Map();
 let phase1FreshPromise=null,phase1StudyOverlayStatus='';
 let resolveQaStage=()=>({visible:true,label:'待审',verdict:null,reviewed:false});
 let independentQaReviews=new Map(),qaReviewSourceStatus='未发布';
+let countByScene=new Map();
 let catalog=[],items=[],flags=new Map(),category='全部',filter='',visible=35,sceneId='SC50-0001',index=0,revealed=false,lastScene='SC50-0001',transientRatings={again:0,hard:0,good:0};
 let BATCH=10,selectedGrade=null,ipaSequence=0;
 let recRows=null,recPending=false,recError='',recRequest=0,recBridgePromise=null,catalogVisible=false,resultPage=0,recSubmitted=false;
@@ -479,7 +480,7 @@ async function load(){
     ' 条；可显示测试 IPA '+coverage.selectedTestIpa+' 条（旧来源测试3、单读音候选195、网页来源4、V153历史候选8、V154本地档案新增'+v154.newlySelected+'），'+
     '未选定 IPA '+coverage.missingSelectedIpa+' 条（其中读音变体待裁决 '+coverage.unselectedVariants+
     ' 条）。正式认证 0；完整可发布词卡 0。');
-  const countByScene=new Map();
+  countByScene.clear();
   for(const r of items)countByScene.set(r.scene_id,(countByScene.get(r.scene_id)||0)+1);
   if(countByScene.size!==14||items.length!==2873||qa.verifiedNativeIpa!==3||qa.provisionalNativeIpa!==195||qa.ipaPendingAdjudication!==410||countByScene.get('SC50-0011')!==255||countByScene.get('SC50-0012')!==253||countByScene.get('SC50-0013')!==245||countByScene.get('SC50-0014')!==243)throw Error('MASTER_MANIFEST_SOURCE_EXACT_COUNT_MISMATCH');
   // Replace ONLY existing 996 SC0011–SC0014 test cards with full V171
