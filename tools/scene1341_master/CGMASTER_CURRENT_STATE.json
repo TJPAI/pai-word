@@ -1,10 +1,10 @@
 {
   "schema": "cgmaster-current-state/v1",
-  "updated_at": "2026-11-16",
+  "updated_at": "2026-11-17",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "daec2273e714936856393da687b76a5b384a114c",
-  "version": "V265_FULL1341_KAIKKI_EVIDENCE_PUBLISHED",
+  "verified_base_head": "3fceb6103c3471e7ffebb4b7dd10e43662f6c6af",
+  "version": "V266_123_KAIKKI_SINGLE_SENSE_ENGLISH_GLOSS",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -979,6 +979,26 @@
       "release_allowed": false,
       "srs_eligible": false,
       "status": "PUBLISHED_TEST_ONLY"
+    },
+    "v266_gloss_en": {
+      "updated_scenes": 6,
+      "added_source_pinned_english_glosses": 123,
+      "scene_counts": {
+        "SC50-0006": 14,
+        "SC50-0007": 20,
+        "SC50-0008": 18,
+        "SC50-0009": 22,
+        "SC50-0010": 24,
+        "SC50-0015": 25
+      },
+      "origin": "KAIKKI_V265_SINGLE_ENTRY_SINGLE_SENSE_VERBATIM_GLOSS",
+      "selection_rule": "exact expression; one native entry and one native sense with exactly one gloss; skip inflection/form-of, synonyms, translation hubs; no existing gloss overwritten",
+      "source_archive_sha256": "4d03b6cba283744756c57ff661c2c6cbfe34fcf8ff513a966576cf7d97e91a99",
+      "qa_stage": "待审",
+      "first_review": 0,
+      "release_allowed": false,
+      "srs_eligible": false,
+      "index_commit": "3fceb6103c3471e7ffebb4b7dd10e43662f6c6af"
     }
   },
   "sources": {
@@ -1032,10 +1052,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Validate V264 all five scene blob SHA1 and original row identity before claiming success.",
-    "Create one-pass full 1341-scene exact-lexical headword Kaikki evidence ingestion from verified raw archive; avoid fabricated phrase IPA.",
-    "Prioritize 423 ambiguous native matches for semantic mapping with explicit HOLD decisions.",
-    "Continue bilingual educational payload and independent CG-QA version-pinned first review; keep SRS disabled."
+    "Verify six updated scene blob SHA and source_final_row identity against V266 atomic live index.",
+    "Scale source-pinned single-entry/single-sense Kaikki gloss enrichment to remaining 1335 scenes using batch CI with exact-content checks.",
+    "Do not imply a single Kaikki dictionary sense equals correct contextual Sense without independent semantic QA.",
+    "Continue full bilingual examples, collocations, usage guidance, IPA variant review and CG-QA status provenance."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
