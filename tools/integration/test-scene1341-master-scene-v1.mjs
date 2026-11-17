@@ -245,6 +245,12 @@ assert.match(uiSource,/if\(preferScene500Question\(\)\)\{/,
  'renderCard must use default native Scene500 question template');
 assert.equal((uiSource.match(/if\(!preferScene500Question\(\)\)return;/g)||[]).length,2,
  'both dynamic auto-toggle and word speech event delegates must follow same native-default decision');
-assert.match(uiSource,/const nativePilot=new URLSearchParams\(location.search\).get\('nativeAnswer'\)==='1'\|\|nativeUI/,
- 'richer answer stays on standard Master UI until source-exact renderer retains all Master fields');
-console.log('PASS: Scene500 native question is default, opt-out available; event delegates and rich answer isolated');
+assert.match(uiSource,/function preferScene500Answer\(\)/,
+ 'Scene500 answer default is controlled by one shared preference');
+assert.match(uiSource,/const nativePilot=preferScene500Answer\(\)/,
+ 'native Scene500 answer shell is now the default');
+assert.match(uiSource,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.append\(nativeSlot,rich\)/,
+ 'richer Master fields must be retained in native answer');
+assert.match(uiSource,/get\('nativeAnswer'\)!=='0'/,
+ 'nativeAnswer=0 supports reversible legacy comparison');
+console.log('PASS: Scene500 native question and rich answer default, opt-out available and SRS isolated');
