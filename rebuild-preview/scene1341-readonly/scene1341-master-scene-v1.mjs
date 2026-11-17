@@ -28,7 +28,7 @@ function normalized(row){
   scene_id:row.scene_id,expression,
   master_content_sha256:HASH64.test(row.content_sha256||'')?row.content_sha256:undefined,
   question:{expression,cue_zh:text(q.cue_zh||a.meaning_zh),
-   ipa:text(q.ipa||q.ipa_candidate)||null,
+   ipa:text(q.ipa)||text(q.ipa_candidate)||null,
    ipa_status:'MASTER_PROVIDED_UNREVIEWED',ipa_provisional:true,
    ipa_candidates_pending:false,ipa_source:null},
   answer:{meaning_zh:meaning,pos:inlinePos,gloss_en:text(a.gloss_en),
