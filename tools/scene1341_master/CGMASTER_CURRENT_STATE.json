@@ -3,8 +3,8 @@
   "updated_at": "2026-11-17",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "ea97106527f4d19ad4dd6498b46e60baf7b8fb60",
-  "version": "V271_395_KAIKKI_SOURCE_PINNED_ENGLISH_GLOSSES_SC0051_0075",
+  "verified_base_head": "47d7fff7777aa3927c61244852f0518250d286f6",
+  "version": "V272_421_KAIKKI_SOURCE_PINNED_ENGLISH_GLOSSES_SC0076_0100",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,7 +1077,7 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V271-395-SOURCE-PINNED-GLOSSES-20261118",
+  "handoff_id": "SC1341-V272-421-SOURCE-PINNED-GLOSSES-20261118",
   "next_tasks": [
     "Run V267 14-scene identity, source-gloss, blob SHA audit and record results.",
     "Scale selective Kaikki English gloss pipeline to rest of 1341 scenes without repeated manual entries.",
@@ -1143,5 +1143,18 @@
     "index_commit": "ea97106527f4d19ad4dd6498b46e60baf7b8fb60",
     "rule": "Single native Kaikki entry and single sense; source-pinned English gloss; never overwrite existing gloss",
     "next": "Expand high-confidence bulk enrichment to the next scenes; preserve immutable original source and audit states; validate scene blob SHA release index"
+  },
+  "v272": {
+    "scene_range": "SC50-0076..SC50-0100",
+    "scene_documents_updated": 25,
+    "new_english_glosses": 421,
+    "cumulative_new_glosses_v268_v272": 1228,
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false,
+    "index_commit": "47d7fff7777aa3927c61244852f0518250d286f6",
+    "rule": "Single native entry and single sense; source-pinned Kaikki gloss; no overwrite of existing gloss",
+    "next": "Build full batch automation and coverage reporting, then continue SC0101 onward"
   }
 }
