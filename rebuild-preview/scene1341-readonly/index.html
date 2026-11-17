@@ -730,8 +730,10 @@ async function openMasterScene(id,resume=false){
   if(!available(id))throw Error('NO_VERIFIED_SCENE_CARDS');
   openStudy(id,resume);
  }catch(error){
-  set('master-live-feed-status','场景'+id+'动态Master加载失败，未显示未核验内容：'+String(error?.message||error).slice(0,100));
-  if(available(id))openStudy(id,resume);
+  // Once a verified Master index exists, a failed scene fetch or blob
+  // verification must never open an older locally cached study card.
+  // This is a read-only L1 preview: fail closed and let the user retry.
+  set('master-live-feed-status','场景'+id+'动态Master加载失败；已阻止旧卡片回退：'+String(error?.message||error).slice(0,100));
  }finally{masterSceneLoading.delete(id);renderHome()}
 }
 let exampleToWordPending=false;
