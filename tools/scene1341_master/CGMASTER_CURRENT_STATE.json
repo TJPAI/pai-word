@@ -3,8 +3,8 @@
   "updated_at": "2026-11-17",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "3fceb6103c3471e7ffebb4b7dd10e43662f6c6af",
-  "version": "V266_123_KAIKKI_SINGLE_SENSE_ENGLISH_GLOSS",
+  "verified_base_head": "6e744192c1a5882060fb0038bf782881d78f7bf2",
+  "version": "V267_255_KAIKKI_SOURCE_PINNED_ENGLISH_GLOSSES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -999,6 +999,33 @@
       "release_allowed": false,
       "srs_eligible": false,
       "index_commit": "3fceb6103c3471e7ffebb4b7dd10e43662f6c6af"
+    },
+    "v267_gloss_en": {
+      "updated_scenes": 14,
+      "added_source_pinned_english_glosses": 255,
+      "scene_counts": {
+        "SC50-0011": 15,
+        "SC50-0012": 18,
+        "SC50-0013": 14,
+        "SC50-0014": 14,
+        "SC50-0016": 28,
+        "SC50-0017": 21,
+        "SC50-0018": 12,
+        "SC50-0019": 24,
+        "SC50-0020": 19,
+        "SC50-0021": 14,
+        "SC50-0022": 22,
+        "SC50-0023": 21,
+        "SC50-0024": 14,
+        "SC50-0025": 19
+      },
+      "source": "V265 full Kaikki native evidence",
+      "filter": "exact expression, one native entry, one sense, one 16-850 character English gloss; exclude grammatical form-of, spelling-only, translation hubs, markup; preserve existing gloss and QA",
+      "qa_stage": "待审",
+      "first_review": 0,
+      "release_allowed": false,
+      "srs_eligible": false,
+      "index_commit": "6e744192c1a5882060fb0038bf782881d78f7bf2"
     }
   },
   "sources": {
@@ -1052,10 +1079,10 @@
   },
   "handoff_id": "SC1341-PHASE1-SC0001-0005-KAIKKI-REBUILD-QA-LABELS-20261115",
   "next_tasks": [
-    "Verify six updated scene blob SHA and source_final_row identity against V266 atomic live index.",
-    "Scale source-pinned single-entry/single-sense Kaikki gloss enrichment to remaining 1335 scenes using batch CI with exact-content checks.",
-    "Do not imply a single Kaikki dictionary sense equals correct contextual Sense without independent semantic QA.",
-    "Continue full bilingual examples, collocations, usage guidance, IPA variant review and CG-QA status provenance."
+    "Run V267 14-scene identity, source-gloss, blob SHA audit and record results.",
+    "Scale selective Kaikki English gloss pipeline to rest of 1341 scenes without repeated manual entries.",
+    "Work with CG-QA for source- and content-identity-pinned independent semantic first review; no automatic 1审.",
+    "Enhance scene-specific original bilingual examples, collocations and usage notes; preserve original association and test-only SRS gates."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
