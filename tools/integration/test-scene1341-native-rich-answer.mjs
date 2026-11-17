@@ -59,6 +59,12 @@ assert.match(html,/if\(!allowable\.some\(e=>e\.en===button\.dataset\.speak\)\)re
 assert.match(html,/playExampleSentence\(button\.dataset\.speak\)/);
 assert.match(html,/nativeAnswerBody\.addEventListener\('click',event=>/,
  'native answer audio handler must be attached before source shell stops bubbling');
+assert.match(html,/if\(event\.target\.closest\('button,a,input,select,textarea,label,summary,details,\[data-example-audio\],\[data-word-audio\]'\)\)return;/,
+ 'answer blank taps must not hijack speaker or interactive controls');
+assert.match(html,/if\(window\.getSelection\?\.\(\)\?\.toString\(\)\)return;/,
+ 'selecting answer text must not toggle the learning page');
+assert.match(html,/\/\/ Scene500's source answer shell stops click bubbling,[\s\S]*?show\(\);/,
+ 'native answer needs a direct local blank-tap toggle when propagation is stopped');
 assert.doesNotMatch(html,/closest\('#scene1341-native-answer-pilot \.example-play/,
  'do not delegate native example speaker from #learning; source shell stops bubbling');
 console.log('PASS: Scene500 native answer + rich Master fields, multi-example speech, QA filter and SRS0');
