@@ -11,7 +11,7 @@ const root=resolve(process.argv[2]||'tools/scene1341_master/production');
 const repoRoot=resolve(root,'../../..');
 const indexPath=join(root,'SCENE1341_LIVE_INDEX.json');
 const gitBlob=bytes=>createHash('sha1')
- .update('blob '+bytes.length+'\\0').update(bytes).digest('hex');
+ .update('blob '+bytes.length+'\0').update(bytes).digest('hex');
 const isSHA=sha=>typeof sha==='string'&&/^[0-9a-f]{40}$/.test(sha);
 const fail=message=>{throw Error('MASTER_BLOB_AUDIT_'+message)};
 export async function inspectMasterBlobIndex({rootDir=root,read=readFile}={}){
@@ -24,7 +24,7 @@ export async function inspectMasterBlobIndex({rootDir=root,read=readFile}={}){
  const missing=[],mismatch=[],invalid=[];
  for(const [id,entry] of Object.entries(index.scenes)){
   const expected='tools/scene1341_master/production/scenes/'+id+'.json';
-  if(!/^SC50-\\d{4}$/.test(id)||entry.path!==expected||!isSHA(entry.git_blob_sha1)||
+  if(!/^SC50-\d{4}$/.test(id)||entry.path!==expected||!isSHA(entry.git_blob_sha1)||
     !Number.isSafeInteger(entry.records)||entry.records<1){
    invalid.push({id,issue:'INDEX_ENTRY_INVALID'});continue;
   }
@@ -54,7 +54,7 @@ export async function inspectMasterBlobIndex({rootDir=root,read=readFile}={}){
 if(process.argv[1]&&resolve(process.argv[1])===resolve(new URL(import.meta.url).pathname)){
  try{
   const out=await inspectMasterBlobIndex();
-  process.stdout.write(JSON.stringify(out,null,2)+'\\n');
+  process.stdout.write(JSON.stringify(out,null,2)+'\n');
   if(!out.ok)process.exitCode=1;
- }catch(error){process.stderr.write(String(error.stack||error)+'\\n');process.exitCode=1}
+ }catch(error){process.stderr.write(String(error.stack||error)+'\n');process.exitCode=1}
 }
