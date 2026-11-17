@@ -228,3 +228,11 @@ assert.match(entryFunction,/sceneEntryError=/,
 assert.doesNotMatch(entryFunction.slice(entryFunction.indexOf('}catch(error){')),/openStudy\(id,resume\)/,
  'failed indexed scene must not display stale local preview cards');
 console.log('PASS: recommended scenes clickable, retry remote index, visible failure and no stale fallback');
+
+const declaredGlobalSceneCounter=uiSource.match(/let countByScene=new Map\(\);/g)||[];
+assert.equal(declaredGlobalSceneCounter.length,1,'exactly one shared scene count map');
+const allLocalCounters=uiSource.match(/const countByScene=new Map\(\);/g)||[];
+assert.equal(allLocalCounters.length,0,'must not shadow global count map inside initial loader');
+assert.match(entryFunction,/countByScene\.set\(id,scene\.recordCount\)/,
+ 'scene entry must update the shared scene count map');
+console.log('PASS: full Master scene entry countByScene is global and not shadowed');
