@@ -6,7 +6,7 @@ import {inspectMasterBlobIndex} from './verify-scene1341-master-blob-index.mjs';
 // Synthetic complete 1,341-scene fixture; never presented as real Master coverage.
 const root=resolve('/tmp/cgmain-master-blob-test/tools/scene1341_master/production');
 const scenes={},files=new Map();
-const sha=bytes=>createHash('sha1').update('blob '+bytes.length+'\\0').update(bytes).digest('hex');
+const sha=bytes=>createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex');
 for(let i=1;i<=1341;i++){
  const id='SC50-'+String(i).padStart(4,'0');
  const count=i===1?228949:1;
