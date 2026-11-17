@@ -174,12 +174,12 @@
     "SC50-0034": {
       "path": "tools/scene1341_master/production/scenes/SC50-0034.json",
       "records": 233,
-      "git_blob_sha1": "f6aad64d9f2d70b7f3853395eeeddb6584ac1651"
+      "git_blob_sha1": "c90f005f68a0eba4bf90238666b5d394b6c4bbc3"
     },
     "SC50-0035": {
       "path": "tools/scene1341_master/production/scenes/SC50-0035.json",
       "records": 221,
-      "git_blob_sha1": "e6a7565b14f51184edd81b16eb1350f8872d8f4c"
+      "git_blob_sha1": "28fd2abc09c8e2d4b781df0b30d6d9bfa49237df"
     },
     "SC50-0036": {
       "path": "tools/scene1341_master/production/scenes/SC50-0036.json",
@@ -6714,23 +6714,24 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V268",
-    "content_baseline": "V268_SC0026_KAIKKI_SINGLE_SENSE_ENGLISH_GLOSSES",
+    "version": "V269",
+    "content_baseline": "V269_SC0034_0035_KAIKKI_ENGLISH_GLOSSES",
     "published_date": "2026-11-17",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "SC0026增补32条Kaikki唯一原生义项英文释义（待审）",
+    "headline": "SC0034～0035增补42条Kaikki唯一义项英文释义（待审）",
     "changes": [
       {
         "category": "answer_page_gloss_en_source_pinned",
-        "count": 32
+        "count": 42
       },
       {
         "category": "scene_documents_updated",
-        "count": 1
+        "count": 2
       }
     ],
     "changed_scene_ids": [
-      "SC50-0026"
+      "SC50-0034",
+      "SC50-0035"
     ],
     "qa_stage": "待审",
     "release_allowed": false,
