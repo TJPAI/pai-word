@@ -745,7 +745,11 @@ async function openMasterScene(id,resume=false){
   // verification must never open an older locally cached study card.
   // This is a read-only L1 preview: fail closed and let the user retry.
   set('master-live-feed-status','场景'+id+'动态Master加载失败；已阻止旧卡片回退：'+String(error?.message||error).slice(0,100));
-  sceneEntryError='无法进入 '+id+'：Master 数据加载失败。请检查网络并重试点击；'+String(error?.message||error).slice(0,75);
+  const errorCode=String(error?.message||error);
+  const mismatch=errorCode.includes('MASTER_SCENE_V1_SCENE_BLOB');
+  sceneEntryError=mismatch
+   ?'无法进入 '+id+'：Master 索引与场景文件版本不一致，需要数据发布方修复；不是网络或手机缓存问题。'
+   :'无法进入 '+id+'：Master 数据加载失败，请检查网络并重试点击；'+errorCode.slice(0,75);
  }finally{masterSceneLoading.delete(id);renderHome()}
 }
 let exampleToWordPending=false;
