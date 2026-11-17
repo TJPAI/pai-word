@@ -3,7 +3,7 @@
   "updated_at": "2026-11-17",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "036c2e41bb8983bbf90421c730835721272bbda2",
+  "verified_parent_head": "35be576ba21fbbf09f91ed0f4c173904bad6b64b",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -414,5 +414,25 @@
     "fix": "All recommended scenes clickable, retry Master index, show visible entry errors, preserve fail-closed behavior",
     "tests": "committed, CI pending",
     "deployment": "none"
+  },
+  "p0_iphone_scene_entry_audit": {
+    "screenshots": [
+      "SC50-0001: Can't find variable countByScene",
+      "SC50-0027: MASTER_SCENE_V1_SCENE_BLOB"
+    ],
+    "source_fix_commit": "b2390aa8042b6a1d7cd2cf82cedeb27cc3c6dbd9",
+    "regression_commit": "822cd8b5cdf4f767032d82b48454d18d37f89fa4",
+    "parity_audit_commit": "35be576ba21fbbf09f91ed0f4c173904bad6b64b",
+    "master_index_version_checked": "V269",
+    "master_sc0027_expected_sha": "705c866351cb540f6a464a1b5b0f296962a21dfa",
+    "master_sc0027_actual_sha": "8d89002f09334066d6fb001e5b30c5892f07c0e9",
+    "sample_other_five_scenes_match": true,
+    "master_index_fix_owner": "CG-MASTER, blocking",
+    "ui_parity": "not complete: separate standalone Scene1341 home and learning shell; see audit",
+    "ci": "not verified",
+    "safari_acceptance": "not performed",
+    "deployment": "not performed",
+    "srs_writes": 0,
+    "qa_promotion": false
   }
 }
