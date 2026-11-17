@@ -920,18 +920,23 @@ function formatMeaningWithPos(answer){
  const existing=/^(?:phr\.\s*v\.|(?:n|v|adj|adv|prep|pron|conj|det|interj|num|part)\.)\s+/i;
  return abbrev&&!existing.test(meaning)?(abbrev+' '+meaning):meaning;
 }
+function preferScene500Question(){
+ // Native Scene500 question hero is the default. Use ?nativeQuestion=0 only
+ // as a temporary fallback for Safari visual comparison and regression triage.
+ const params=new URLSearchParams(location.search);
+ return params.get('nativeQuestion')!=='0'||params.get('nativeUI')==='1';
+}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  renderMasterRelease();
  const qaStage=resolveQaStage(r,independentQaReviews);
  const reviewText=qaStage.visible&&qaStage.reviewed?'1审':'待审';
  const prefs=readOnlyPrefs.snapshot();
- // Combined opt-in exercises the true native question and answer together.
- // The default preview and independent one-sided A/B modes stay unchanged.
+ // Native source-exact question is default; native answer remains a separate pilot.
  const nativeUI=new URLSearchParams(location.search).get('nativeUI')==='1';
  // Reversible P0 A/B: actual Scene500 learning-screen question hero HTML,
  // with isolated source-pinned IPA hydration and no production registry.
- if(new URLSearchParams(location.search).get('nativeQuestion')==='1'||nativeUI){
+ if(preferScene500Question()){
   const original=$('hero');
   // A stable source-exact DOM is crucial: an auto-switch or rating redraw
   // must not destroy its control mid-click or force another IPA fetch.
@@ -1320,16 +1325,14 @@ $('auto-toggle').addEventListener('change',e=>{e.stopPropagation();if(e.target.c
 // original nodes; do not invoke native setAutoBrowse or PAI_AUDIO/SRS APIs.
 const legacyAutoInput=$('auto-toggle'),legacyWordSpeaker=$('speak');
 $('learning').addEventListener('change',e=>{
- if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'&&
-    new URLSearchParams(location.search).get('nativeUI')!=='1')return;
+ if(!preferScene500Question())return;
  if(e.target?.id!=='auto-toggle'||e.target===legacyAutoInput)return;
  e.stopPropagation();
  legacyAutoInput.checked=e.target.checked;
  legacyAutoInput.dispatchEvent(new Event('change'));
 });
 $('learning').addEventListener('click',e=>{
- if(new URLSearchParams(location.search).get('nativeQuestion')!=='1'&&
-    new URLSearchParams(location.search).get('nativeUI')!=='1')return;
+ if(!preferScene500Question())return;
  if(!e.target.closest('#speak')||e.target===legacyWordSpeaker)return;
  e.stopPropagation();
  legacyWordSpeaker.click();
