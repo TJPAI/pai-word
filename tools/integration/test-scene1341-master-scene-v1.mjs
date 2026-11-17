@@ -1,7 +1,8 @@
 import assert from 'node:assert/strict';
+import {createHash,webcrypto} from 'node:crypto';
 import {readFileSync} from 'node:fs';
 import {runInNewContext} from 'node:vm';
-import {validateMasterSceneDocument,mergeMasterScene,resolveMasterSceneIndex,masterReleaseView} from '../../rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs';
+import {validateMasterSceneDocument,mergeMasterScene,resolveMasterSceneIndex,masterReleaseView,fetchMasterScene} from '../../rebuild-preview/scene1341-readonly/scene1341-master-scene-v1.mjs';
 const scene='SC50-1341';
 const record={record_id:'SC1341-FINAL-SRC-'+'a'.repeat(32),scene_id:scene,source_final_row:230289,
  question_page:{expression:'get home',cue_zh:'到家',ipa_candidate:'/x/'},
@@ -168,3 +169,41 @@ const masterCatch=masterOpenSection.slice(masterOpenSection.indexOf('}catch(erro
 assert.doesNotMatch(masterCatch,/openStudy\(id,resume\)/,
  'failed indexed Master load must never silently show cached cards');
 console.log('PASS: indexed Master fetch/blob failure cannot open stale legacy cards');
+
+// Simulate data-only Master V266 -> V267 publication with identical UI/runtime code.
+// The immutable blob SHA in each index must match the fetched scene source.
+const gitBlob=raw=>createHash('sha1').update('blob '+Buffer.byteLength(raw)+'\\0').update(raw).digest('hex');
+const scenePath='tools/scene1341_master/production/scenes/'+scene+'.json';
+const oldVersionDoc=structuredClone(doc);
+oldVersionDoc.records[0].answer_page.gloss_en='Earlier unreviewed meaning.';
+oldVersionDoc.records[0].question_page.ipa_candidate='/old/';
+const newVersionDoc=structuredClone(doc);
+newVersionDoc.records[0].answer_page.gloss_en='New source-pinned Kaikki English definition.';
+newVersionDoc.records[0].question_page.ipa_candidate='/new/';
+const oldRaw=JSON.stringify(oldVersionDoc),newRaw=JSON.stringify(newVersionDoc);
+const snapshotFor=(raw,commit)=>({
+ commit,index:{scenes:{[scene]:{path:scenePath,records:1,git_blob_sha1:gitBlob(raw)}}}
+});
+const sourceFetch=raw=>async url=>{
+ assert.ok(url.endsWith('/'+scenePath));
+ return {ok:true,text:async()=>raw};
+};
+const oldSnapshot=snapshotFor(oldRaw,'c'.repeat(40));
+const newSnapshot=snapshotFor(newRaw,'d'.repeat(40));
+const oldLoaded=await fetchMasterScene(oldSnapshot,scene,{fetchImpl:sourceFetch(oldRaw),cryptoImpl:webcrypto});
+const newLoaded=await fetchMasterScene(newSnapshot,scene,{fetchImpl:sourceFetch(newRaw),cryptoImpl:webcrypto});
+assert.equal(oldLoaded.cards[0].answer.gloss_en,'Earlier unreviewed meaning.');
+assert.equal(newLoaded.cards[0].answer.gloss_en,'New source-pinned Kaikki English definition.');
+assert.equal(newLoaded.cards[0].question.ipa,'/new/');
+assert.equal(newLoaded.cards[0].qa_status,'DEFERRED_TEST_ONLY');
+assert.equal(newLoaded.cards[0].production_release_allowed,false);
+assert.equal(newLoaded.canWriteSrs,false);
+const replaced=mergeMasterScene(oldLoaded.cards,newLoaded);
+assert.equal(replaced.length,1);
+assert.equal(replaced[0].answer.gloss_en,'New source-pinned Kaikki English definition.');
+assert.equal(replaced[0].question.ipa,'/new/');
+await assert.rejects(
+ fetchMasterScene(newSnapshot,scene,{fetchImpl:sourceFetch(oldRaw),cryptoImpl:webcrypto}),
+ /MASTER_SCENE_V1_SCENE_BLOB/
+);
+console.log('PASS: dynamic version-only Master update changes IPA/gloss; old scene blob fails closed, QA/SRS isolated');
