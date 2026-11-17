@@ -1067,6 +1067,19 @@ function renderCard(){
   const nativeAnswerBody=nativeSlot.querySelector(':scope > .answer');
   if(!nativeAnswerBody)throw Error('SC1341_NATIVE_ANSWER_SHELL_MISSING');
   window.PAI_SCENE1341_NATIVE_ANSWER_RICH.append(nativeAnswerBody,rich);
+  // Scene500's source answer shell has an inline stopPropagation handler.
+  // Bind audio delegation on that shell, not #learning, so iPhone taps
+  // actually reach the speaker after the dynamic answer is re-rendered.
+  nativeAnswerBody.addEventListener('click',event=>{
+   const button=event.target.closest('.example-play[data-example-audio]');
+   if(!button||!nativeAnswerBody.contains(button))return;
+   event.stopPropagation();
+   const current=subset()[index];
+   if(!current)return;
+   const allowable=window.PAI_SCENE1341_V188_ANSWER.project(current.answer).examples;
+   if(!allowable.some(e=>e.en===button.dataset.speak))return;
+   playExampleSentence(button.dataset.speak);
+  });
   nativeSlot.hidden=!revealed;
   $('answer').hidden=true;
  }else{
@@ -1297,18 +1310,6 @@ function playCurrentExample(){
 }
 $('example-speak').addEventListener('click',e=>{
  e.stopPropagation();playCurrentExample();
-});
-// Native Scene500 answerHtml inserts dynamic data-example-audio buttons;
-// delegate rather than wiring nodes destroyed on each new word.
-$('learning').addEventListener('click',e=>{
- const button=e.target.closest('#scene1341-native-answer-pilot .example-play[data-example-audio]');
- if(!button||$('scene1341-native-answer-pilot')?.hidden)return;
- e.stopPropagation();
- const current=subset()[index];
- if(!current)return;
- const allowable=window.PAI_SCENE1341_V188_ANSWER.project(current.answer).examples;
- if(!allowable.some(e=>e.en===button.dataset.speak))return;
- playExampleSentence(button.dataset.speak);
 });
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
