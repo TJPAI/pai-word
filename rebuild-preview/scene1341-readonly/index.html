@@ -63,8 +63,10 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 #settings-page[hidden]{display:none!important}
 .settings-page-shell{max-width:760px;margin:0 auto;padding:16px 18px 36px}
 .settings-page-header{display:flex;align-items:center;gap:14px;margin-bottom:18px}
-.settings-page-header h1{font-size:22px;margin:0;font-weight:750}
+.settings-page-header h2{font-size:22px;margin:0;font-weight:750}
 #settings-page #settings-panel{display:block!important;background:#fff;border:1px solid #e5e9f0;border-radius:16px;padding:16px 18px}
+#settings-page #scene1341-algorithm-panel{margin-top:8px}
+#settings-page #scene1341-master-diagnostics:not([open])>*:not(summary),#settings-page #scene1341-version-diagnostics:not([open])>*:not(summary){display:none!important}
 #settings-page .settings-heading{font-size:17px;margin:0 0 12px}
 #settings-page .setting-row{min-height:50px}
 </style></head>
@@ -123,8 +125,13 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 
   <p class="demo-footer">本预览复用 Scene500 设置和移动端学习页样式。页面选项仅用于本次测试；浏览位置、评分和 SRS 不保存，不修改正式 App 或 KU。教学内容仍属于审核草稿。</p></div>
 </section>
-<section id="settings-page" class="screen settings-screen" hidden aria-label="学习设置"><div class="settings-page-shell"><header class="settings-page-header"><button id="settings-back" class="back-btn" type="button" aria-label="返回首页">‹</button><h1>设置</h1></header>  <div id="settings-panel" class="panel-block" style="margin:14px 0;padding:14px 16px;border:1px solid #e5e9f0;border-radius:14px;background:#fff">
-   <h2 class="settings-heading">学习设置</h2>
+<section id="settings-page" class="screen panel-screen settings-screen" hidden aria-label="学习设置"><div class="settings-page-shell"><header class="panel-top settings-page-header"><button id="settings-back" class="back-btn" type="button" aria-label="返回首页">‹</button><h2>设置</h2></header>
+  <div class="panel-block" id="scene1341-algorithm-panel"><h3>记忆算法</h3>
+   <div class="setting-row"><span>当前算法</span><strong>Basic SRS（正式系统）</strong></div>
+   <p class="muted">Scene1341 为只读体验：评分仅在内存中统计，不写入 Basic SRS 或正式学习进度。</p>
+  </div>
+  <div id="settings-panel" class="panel-block">
+   <h3 class="settings-heading">学习设置</h3>
    <p class="demo-tip">与 Scene500 使用相同的选项值和默认值。自动切词及学习页选项供体验；浏览位置不做持久化保存，不修改正式 App 设置或 SRS。</p>
    <div class="setting-row"><span>每轮词数</span><select data-setting="wordsPerRound" aria-label="每轮词数"><option value="10">10</option><option value="25">25</option><option value="50">50</option></select></div>
    <div class="setting-row"><span>自动切词速度</span><select id="auto-speed" data-setting="autoBrowseInterval" aria-label="自动切词速度"><option value="0.9">更快</option><option value="1.5">快</option><option value="3">中</option><option value="6">慢</option></select></div>
@@ -140,6 +147,8 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
    <div class="setting-row"><span>显示近义 / 易混词辨析</span><button type="button" class="switch" data-toggle-setting="showCompare" aria-label="显示近义 / 易混词辨析" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>题目页自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.question" aria-label="题目页自动发音" aria-pressed="true"><i></i></button></div>
    <div class="setting-row"><span>切词后自动发音</span><button type="button" class="switch" data-toggle-setting="autoPronounce.swipe" aria-label="切词后自动发音" aria-pressed="true"><i></i></button></div>
+   <details id="scene1341-master-diagnostics" class="panel-block" style="margin-top:14px">
+   <summary>Master 数据与研发诊断（只读）</summary>
    <div class="setting-row"><span>Master 教学数据（刷新即检查最新交付）</span><button id="master-refresh" type="button" class="home-quiet-btn">检查最新 Master</button></div>
    <p id="master-live-version" class="demo-tip" aria-live="polite">正在检查 CG-MASTER 最新数据…</p>
    <p id="master-live-feed-status" class="demo-tip" aria-live="polite">正在检查全场景增量 Feed…</p>
@@ -165,9 +174,12 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
     <p class="demo-tip" id="v223-position"></p>
     <div id="v223-content" style="white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65"></div>
    </div>
+   </details>
    <div class="setting-row"><span>恢复默认设置</span><button id="settings-reset" type="button" class="home-quiet-btn">恢复默认</button></div>
-   <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
-    <p id="preview-build-version" class="demo-tip" aria-live="polite">Scene1341 Master V116+V128+V153+V154 · 部署源码版本核对中…</p>
+   <details id="scene1341-version-diagnostics" class="panel-block"><summary>数据与部署版本</summary>
+    <p id="master-ipa-coverage" class="demo-tip" aria-live="polite">Master 题目页 IPA 来源覆盖统计加载中…</p>
+    <p id="preview-build-version" class="demo-tip" aria-live="polite">部署源码版本核对中…</p>
+   </details>
   </div></div></section>
 <section id="learning" class="screen study-screen learning-screen demo-learning" hidden data-srs-write="disabled" data-author-draft="true">
  <div class="study-top"><button class="back-btn" id="back" aria-label="返回场景">‹</button><div class="study-scene" id="scene-title">场景学习</div><div class="study-progress"><span class="study-batch-line" id="batch-position">第1/1批</span><span class="study-batch-line" id="progress">本批已学 0/10</span></div></div>
