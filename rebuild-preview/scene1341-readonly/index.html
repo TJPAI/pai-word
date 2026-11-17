@@ -198,6 +198,7 @@ body{background:#fff}#app{min-height:100dvh}.demo-home{min-height:100dvh}.home-s
 <script src="./scene500-readonly-phase.js"></script>
 <script src="./scene1341-auto-preference.js"></script>
 <script src="./scene500-native-answer-exact.js"></script>
+<script src="./scene1341-native-answer-rich.js"></script>
 <script src="./scene500-native-question-hero-exact.js"></script>
 <script src="./scene500-native-cycle-exact.js"></script>
 <script src="./scene1341-display-bookmark.js"></script>
@@ -926,13 +927,19 @@ function preferScene500Question(){
  const params=new URLSearchParams(location.search);
  return params.get('nativeQuestion')!=='0'||params.get('nativeUI')==='1';
 }
+function preferScene500Answer(){
+ // Scene500 exact answer shell plus isolated Master rich-content extension.
+ // Temporary ?nativeAnswer=0 is available for iPhone comparison.
+ const params=new URLSearchParams(location.search);
+ return params.get('nativeAnswer')!=='0'||params.get('nativeUI')==='1';
+}
 function renderCard(){
  const cards=subset(),r=cards[index];if(!r)return;
  renderMasterRelease();
  const qaStage=resolveQaStage(r,independentQaReviews);
  const reviewText=qaStage.visible&&qaStage.reviewed?'1审':'待审';
  const prefs=readOnlyPrefs.snapshot();
- // Native source-exact question is default; native answer remains a separate pilot.
+ // Both faces now use source-exact Scene500 geometry; Master-only fields remain read-only extensions.
  const nativeUI=new URLSearchParams(location.search).get('nativeUI')==='1';
  // Reversible P0 A/B: actual Scene500 learning-screen question hero HTML,
  // with isolated source-pinned IPA hydration and no production registry.
@@ -1039,7 +1046,7 @@ function renderCard(){
  // Opt-in A/B only: original Scene500 answerHtml byte-identical renderer,
  // with an explicitly quarantined unit and no native study queue/SRS writes.
  // Default Scene1341 preview remains unchanged until UX/Safari review.
- const nativePilot=new URLSearchParams(location.search).get('nativeAnswer')==='1'||nativeUI;
+ const nativePilot=preferScene500Answer();
  let nativeSlot=$('scene1341-native-answer-pilot');
  if(nativePilot){
   if(!nativeSlot){
@@ -1048,12 +1055,16 @@ function renderCard(){
   }
   const draftUnit={
    k:r.scene_ku_id,w:{w:r.expression,pos:'',allSenses:[]},
-   s:{ku_id:r.scene_ku_id,kuType:'scene1341',pos:'',m:r.answer.meaning_zh,
-      c:collocations.join(' · '),e:[r.answer.example_en],
-      example_zh:r.answer.example_zh,x:teachingNotes.join(' '),playable:false},
+   s:{ku_id:r.scene_ku_id,kuType:'scene1341',pos:'',m:formatMeaningWithPos(r.answer),
+      c:collocations.join(' · '),e:[],
+      example_zh:'',x:prefs.showUsage?teachingNotes.join(' '):'',playable:false},
    readOnly:true,canWriteSrs:false,productionReleaseAllowed:false
   };
+  // Original Scene500 HTML owns the primary answer structure. Extra source-
+  // pinned Master fields are appended with safe textContent, not HTML strings.
   nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs);
+  const rich=window.PAI_SCENE1341_NATIVE_ANSWER_RICH.project(r.answer,prefs,answerView);
+  window.PAI_SCENE1341_NATIVE_ANSWER_RICH.append(nativeSlot,rich);
   nativeSlot.hidden=!revealed;
   $('answer').hidden=true;
  }else{
@@ -1261,8 +1272,8 @@ $('speak').addEventListener('click',e=>{
  };
  if(!playWord(subset()[index].expression,.84,wordDone))wordDone();
 });
-function playCurrentExample(){
- if($('learning').hidden||!revealed||!subset()[index])return;
+function playExampleSentence(sentence){
+ if($('learning').hidden||!revealed||!subset()[index]||!sentence)return;
  // Starting example speech during a rated answer cancels the grade timer.
  // Release the scratch rating overlay as well, otherwise it remains stuck
  // after the phase controller discards that pending grade.
@@ -1274,7 +1285,13 @@ function playCurrentExample(){
  // the same isolated audio phase and Safari watchdog. A stale card is
  // already canceled by navigation's stopWordAudio/phaseController.navigate.
  const finishExample=()=>{if(phaseController.exampleFinished())autoBrowse.resumeAfterSpeech()};
- if(!playWord(subset()[index].answer.example_en,.9,finishExample))finishExample();
+ if(!playWord(sentence,.9,finishExample))finishExample();
+}
+function playCurrentExample(){
+ const current=subset()[index];
+ if(!current)return;
+ const examples=window.PAI_SCENE1341_V188_ANSWER.project(current.answer).examples;
+ playExampleSentence(examples[0]?.en||current.answer.example_en);
 }
 $('example-speak').addEventListener('click',e=>{
  e.stopPropagation();playCurrentExample();
@@ -1285,8 +1302,11 @@ $('learning').addEventListener('click',e=>{
  const button=e.target.closest('#scene1341-native-answer-pilot .example-play[data-example-audio]');
  if(!button||$('scene1341-native-answer-pilot')?.hidden)return;
  e.stopPropagation();
- if(button.dataset.speak!==subset()[index]?.answer.example_en)return;
- playCurrentExample();
+ const current=subset()[index];
+ if(!current)return;
+ const allowable=window.PAI_SCENE1341_V188_ANSWER.project(current.answer).examples;
+ if(!allowable.some(e=>e.en===button.dataset.speak))return;
+ playExampleSentence(button.dataset.speak);
 });
 let start=null;
 $('learning').addEventListener('touchstart',e=>{
