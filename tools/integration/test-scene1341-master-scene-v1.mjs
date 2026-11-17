@@ -25,6 +25,22 @@ assert.equal(validateMasterSceneDocument(absentIPA,scene).cards[0].question.ipa,
 const recentIPA=structuredClone(v247);
 recentIPA.records[0].question_page.ipa_candidate='/ˌweɪk ˈʌp/';
 assert.equal(validateMasterSceneDocument(recentIPA,scene).cards[0].question.ipa,'/ˌweɪk ˈʌp/');
+const whitespacePrimaryIPA=structuredClone(recentIPA);
+whitespacePrimaryIPA.records[0].question_page.ipa='   ';
+assert.equal(validateMasterSceneDocument(whitespacePrimaryIPA,scene).cards[0].question.ipa,'/ˌweɪk ˈʌp/');
+const v265Ambiguous=structuredClone(absentIPA);
+v265Ambiguous.records[0].kaikki_full_native_evidence={
+ schema:'scene1341-kaikki-full-native/v1',source_final_row:230289,
+ expression_exact:'get home',native_sense_selection:'UNRESOLVED',
+ qa_stage:'待审',first_review:false,release_allowed:false,
+ candidates:[{source_line:5,source_word:'get home',pos:'verb',
+  ipa_candidates:['/one/','/two/'],senses:[{source_sense_index:0,glosses:['Native candidate only.'],native_example_count:1}]}]
+};
+const ambiguousCard=validateMasterSceneDocument(v265Ambiguous,scene).cards[0];
+assert.equal(ambiguousCard.question.ipa,null,'unresolved V265 native IPA variants must not be promoted');
+assert.equal(ambiguousCard.answer.gloss_en,'','unresolved Kaikki sense must not become approved English gloss');
+assert.equal(ambiguousCard.qa_status,'DEFERRED_TEST_ONLY');
+assert.equal(ambiguousCard.production_release_allowed,false);
 
 assert.equal(valid.recordCount,1);assert.equal(valid.cards[0].question.ipa,'/x/');
 assert.equal(valid.cards[0].question.ipa_status,'MASTER_PROVIDED_UNREVIEWED');
