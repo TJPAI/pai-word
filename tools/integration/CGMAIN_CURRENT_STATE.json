@@ -3,7 +3,7 @@
   "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "24b99de4a4a6dccdace535be91ed9795970e5583",
+  "verified_parent_head": "5720fcd1f3d1cac796ef0d2a378d40c80328ff57",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -509,5 +509,20 @@
     "iphone_safari": "not tested",
     "deployment": "none",
     "srs_writes": 0
+  },
+  "scene500_settings_panel_parity": {
+    "status": "COMMITTED_CI_AND_IPHONE_PENDING",
+    "markup_commit": "ab7ba7efbeb6039977503206c28a505ccfdb2621",
+    "build_label_commit": "a644378cc52207d4226a694e6b3e3aacec0c4e35",
+    "test_commit": "28311362f6fc42d9a744b6bf20253ff09da2a223",
+    "workflow_commit": "5720fcd1f3d1cac796ef0d2a378d40c80328ff57",
+    "scope": "Scene500 panel-screen/panel-top/panel-block settings structure; source Basic SRS algorithm area with explicit Scene1341 read-only status; 13 existing Scene1341 preference toggles preserved; Master diagnostic and version metadata folded into details; no SRS reset",
+    "master_index_version_seen": "V273",
+    "master_sc0027_blocker": "index 705c866351cb540f6a464a1b5b0f296962a21dfa vs actual 8d89002f09334066d6fb001e5b30c5892f07c0e9",
+    "local_source_assertions": "checked via connector text against native source: all pass",
+    "ci": "GitHub Actions run result not yet verified",
+    "iphone": "not verified",
+    "deployment": "not performed",
+    "full_home_parity": "still incomplete"
   }
 }
