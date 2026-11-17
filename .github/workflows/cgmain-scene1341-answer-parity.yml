@@ -1,0 +1,30 @@
+name: CG-MAIN Scene1341 native answer parity
+
+on:
+  push:
+    branches:
+      - cg-main-fourline-integration-20261026
+    paths:
+      - 'rebuild-preview/scene1341-readonly/index.html'
+      - 'rebuild-preview/scene1341-readonly/scene1341-native-answer-rich.js'
+      - 'rebuild-preview/scene1341-readonly/scene500-native-answer-exact.js'
+      - 'tools/integration/test-scene1341-native-rich-answer.mjs'
+      - '.github/workflows/cgmain-scene1341-answer-parity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-answer-readonly:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Scene500-native answer and rich Master projection
+        run: node tools/integration/test-scene1341-native-rich-answer.mjs
