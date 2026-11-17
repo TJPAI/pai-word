@@ -1064,7 +1064,9 @@ function renderCard(){
   // pinned Master fields are appended with safe textContent, not HTML strings.
   nativeSlot.innerHTML=window.PAI_SCENE1341_NATIVE_ANSWER.render(draftUnit,prefs);
   const rich=window.PAI_SCENE1341_NATIVE_ANSWER_RICH.project(r.answer,prefs,answerView);
-  window.PAI_SCENE1341_NATIVE_ANSWER_RICH.append(nativeSlot,rich);
+  const nativeAnswerBody=nativeSlot.querySelector(':scope > .answer');
+  if(!nativeAnswerBody)throw Error('SC1341_NATIVE_ANSWER_SHELL_MISSING');
+  window.PAI_SCENE1341_NATIVE_ANSWER_RICH.append(nativeAnswerBody,rich);
   nativeSlot.hidden=!revealed;
   $('answer').hidden=true;
  }else{
