@@ -3,7 +3,7 @@
   "updated_at": "2026-11-17",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "13299f65200138fd757c0a4a3647b4c7c855db78",
+  "verified_parent_head": "2f37389273a76b697fbb000351c385c5b6d60734",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -372,5 +372,23 @@
     "live_release": false,
     "srs_writes": 0,
     "master_mutation": false
+  },
+  "v266_fail_closed": {
+    "master_version_seen": "V266_123_KAIKKI_SINGLE_SENSE_ENGLISH_GLOSS",
+    "release_index_version": "V266",
+    "source_scene_count": 1341,
+    "source_associations": 230289,
+    "changed_scene_ids": 6,
+    "new_unreviewed_english_glosses": 123,
+    "fix_commit": "1ce6514619a6b8569c16fd1e630241f384aa3218",
+    "test_commit": "2f37389273a76b697fbb000351c385c5b6d60734",
+    "issue": "An indexed scene fetch or Blob SHA validation failure could silently fall back to stale locally cached card via openStudy.",
+    "resolution": "Indexed scene failures never open older cards; show explicit retryable status instead.",
+    "test_scope": "Static regression verifies no openStudy call from indexed load catch. Runtime iPhone browser test not performed.",
+    "ci": "pending exact-head verification",
+    "qa": "unchanged; no inferred 1审",
+    "release_allowed": false,
+    "srs_writes": 0,
+    "deployed": false
   }
 }
