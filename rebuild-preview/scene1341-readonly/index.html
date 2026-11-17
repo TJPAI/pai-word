@@ -389,10 +389,10 @@ async function showPreviewBuildVersion(){
   if(!response.ok)throw Error('BUILD_SHA_HTTP_'+response.status);
   const sha=(await response.text()).trim();
   if(!/^[a-f0-9]{40}$/i.test(sha))throw Error('BUILD_SHA_INVALID');
-  node.textContent='Scene1341 Master V116+V128+V153+V154 · 网站部署源码 '+sha.slice(0,12)+' · 测试数据未认证';
+  node.textContent='Scene1341 · 当前部署源码 '+sha.slice(0,12)+' · Master 按需实时读取 · 待审测试数据';
   node.title='完整网站部署源码 SHA：'+sha;
  }catch{
-  node.textContent='Scene1341 Master V116+V128+V153+V154 · 无法读取网站部署版本（本地或缓存环境）';
+  node.textContent='Scene1341 · 无法读取部署源码版本（请检查预览来源）';
  }
 }
 
