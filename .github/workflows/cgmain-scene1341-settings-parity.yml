@@ -1,0 +1,29 @@
+name: CG-MAIN Scene1341 settings parity
+
+on:
+  push:
+    branches:
+      - cg-main-fourline-integration-20261026
+    paths:
+      - 'rebuild-preview/scene1341-readonly/index.html'
+      - 'rebuild-preview/scene1341-readonly/scene500-readonly-settings.js'
+      - 'tools/integration/test-scene1341-settings-panel-parity.mjs'
+      - '.github/workflows/cgmain-scene1341-settings-parity.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  settings-parity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare settings shell with Scene500 and preserve SRS isolation
+        run: node tools/integration/test-scene1341-settings-panel-parity.mjs
