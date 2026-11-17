@@ -655,7 +655,9 @@ function renderHome(){
     count.append(newer);
    }
    count.append(quantity,sub);
-   btn.disabled=!n&&!masterSceneSnapshot?.index?.scenes?.[sc.id];btn.append(no,name,count);
+   // All 1341 catalog scenes are selectable even before the remote Master
+   // index finishes loading. Selection retries the index and reports failures.
+   btn.disabled=false;btn.append(no,name,count);
    btn.addEventListener('click',()=>openMasterScene(sc.id));$('scenes').append(btn);
   }
  }
@@ -719,10 +721,16 @@ async function initializeFullMasterSceneIndex(){
  }
 }
 async function openMasterScene(id,resume=false){
- if(!masterSceneSnapshot){if(available(id))openStudy(id,resume);return}
  if(masterSceneLoading.has(id))return;
  masterSceneLoading.add(id);
  try{
+  if(!masterSceneSnapshot){
+   set('rec-status','正在连接最新Master以进入 '+id+'…');
+   await initializeFullMasterSceneIndex();
+  }
+  if(!masterSceneSnapshot||!masterSceneAdapter){
+   throw Error('MASTER_INDEX_UNAVAILABLE');
+  }
   const scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
   items=masterSceneAdapter.mergeMasterScene(items,scene);
   countByScene.set(id,scene.recordCount);
@@ -734,6 +742,7 @@ async function openMasterScene(id,resume=false){
   // verification must never open an older locally cached study card.
   // This is a read-only L1 preview: fail closed and let the user retry.
   set('master-live-feed-status','场景'+id+'动态Master加载失败；已阻止旧卡片回退：'+String(error?.message||error).slice(0,100));
+  set('rec-status','无法进入 '+id+'：Master 数据加载失败。请检查网络并重试点击；'+String(error?.message||error).slice(0,75));
  }finally{masterSceneLoading.delete(id);renderHome()}
 }
 let exampleToWordPending=false;
