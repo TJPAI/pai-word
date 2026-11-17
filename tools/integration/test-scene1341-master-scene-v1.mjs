@@ -249,7 +249,7 @@ assert.match(uiSource,/function preferScene500Answer\(\)/,
  'Scene500 answer default is controlled by one shared preference');
 assert.match(uiSource,/const nativePilot=preferScene500Answer\(\)/,
  'native Scene500 answer shell is now the default');
-assert.match(uiSource,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.append\(nativeSlot,rich\)/,
+assert.match(uiSource,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.append\(nativeAnswerBody,rich\)/,
  'richer Master fields must be retained in native answer');
 assert.match(uiSource,/get\('nativeAnswer'\)!=='0'/,
  'nativeAnswer=0 supports reversible legacy comparison');
