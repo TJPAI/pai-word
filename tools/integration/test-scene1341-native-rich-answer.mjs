@@ -57,4 +57,8 @@ assert.match(html,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.project\(r\.answer,prefs,an
 assert.match(html,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.append\(nativeAnswerBody,rich\)/);
 assert.match(html,/if\(!allowable\.some\(e=>e\.en===button\.dataset\.speak\)\)return;/);
 assert.match(html,/playExampleSentence\(button\.dataset\.speak\)/);
+assert.match(html,/nativeAnswerBody\.addEventListener\('click',event=>/,
+ 'native answer audio handler must be attached before source shell stops bubbling');
+assert.doesNotMatch(html,/closest\('#scene1341-native-answer-pilot \.example-play/,
+ 'do not delegate native example speaker from #learning; source shell stops bubbling');
 console.log('PASS: Scene500 native answer + rich Master fields, multi-example speech, QA filter and SRS0');
