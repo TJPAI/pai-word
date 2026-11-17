@@ -3,7 +3,7 @@
   "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "b5075888a06dd1e773ecdd9051fafd872bb359ab",
+  "verified_parent_head": "0f020274b8c5736cfec0381649b8d86d9155b393",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -452,5 +452,19 @@
     "qa_promotion": false,
     "ci_workflow": ".github/workflows/cgmain-scene1341-master-blob-gate.yml",
     "ci_workflow_commit": "b5075888a06dd1e773ecdd9051fafd872bb359ab"
+  },
+  "scene500_native_question_default": {
+    "status": "COMMITTED_PENDING_CI_AND_IPHONE",
+    "master_index_version_seen": "V271",
+    "implementation_commit": "e6df8e88e9f630f899437258f58f8ffcc82a96dc",
+    "regression_commit": "0f020274b8c5736cfec0381649b8d86d9155b393",
+    "source": "rebuild-preview/scene1341-readonly/scene500-native-question-hero-exact.js",
+    "implementation": "Scene500 source-exact question hero now default rather than URL-only pilot; native auto switch and speaker proxy delegates follow same helper. ?nativeQuestion=0 reversible fallback",
+    "scope": "question-face only; answer-face remains richer Master projection and is NOT full parity; home scene UI remains different",
+    "srs_writes": 0,
+    "qa_promotion": false,
+    "iphone_safari": "unverified",
+    "ci": "not verified",
+    "deployment": "manual only, not executed"
   }
 }
