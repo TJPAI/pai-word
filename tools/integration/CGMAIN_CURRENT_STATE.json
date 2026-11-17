@@ -3,7 +3,7 @@
   "updated_at": "2026-11-17",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "2f37389273a76b697fbb000351c385c5b6d60734",
+  "verified_parent_head": "036c2e41bb8983bbf90421c730835721272bbda2",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -390,5 +390,23 @@
     "release_allowed": false,
     "srs_writes": 0,
     "deployed": false
+  },
+  "v267_hot_refresh_regression": {
+    "master_version": "V267_255_KAIKKI_SOURCE_PINNED_ENGLISH_GLOSSES",
+    "index_version": "V267",
+    "changed_scenes": 14,
+    "new_unreviewed_english_glosses": 255,
+    "test_commit": "036c2e41bb8983bbf90421c730835721272bbda2",
+    "test_file": "tools/integration/test-scene1341-master-scene-v1.mjs",
+    "coverage": [
+      "data-only V266 -> V267 English gloss refresh",
+      "data-only V266 -> V267 IPA refresh",
+      "previous index blob rejects stale scene bytes",
+      "QA remains unreviewed and SRS disabled"
+    ],
+    "ci": "test committed, exact-head Actions PASS not verified",
+    "browser": "iPhone Safari still pending",
+    "deployment": "not performed",
+    "master_content_mutation": false
   }
 }
