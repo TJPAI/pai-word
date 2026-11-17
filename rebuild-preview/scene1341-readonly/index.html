@@ -1080,6 +1080,14 @@ function renderCard(){
    if(!allowable.some(e=>e.en===button.dataset.speak))return;
    playExampleSentence(button.dataset.speak);
   });
+  // Scene500's source answer shell stops click bubbling, so the study-level
+  // blank-tap handler never sees this region. Restore Scene500 face toggling
+  // locally without intercepting example speech, controls or text selection.
+  nativeAnswerBody.addEventListener('click',event=>{
+   if(event.target.closest('button,a,input,select,textarea,label,summary,details,[data-example-audio],[data-word-audio]'))return;
+   if(window.getSelection?.()?.toString())return;
+   show();
+  });
   nativeSlot.hidden=!revealed;
   $('answer').hidden=true;
  }else{
