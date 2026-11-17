@@ -9,6 +9,7 @@ on:
       - 'rebuild-preview/scene1341-readonly/scene1341-native-answer-rich.js'
       - 'rebuild-preview/scene1341-readonly/scene500-native-answer-exact.js'
       - 'tools/integration/test-scene1341-native-rich-answer.mjs'
+      - 'tools/integration/test-scene1341-master-scene-v1.mjs'
       - '.github/workflows/cgmain-scene1341-answer-parity.yml'
   workflow_dispatch:
 
@@ -28,3 +29,5 @@ jobs:
           node-version: '22'
       - name: Verify Scene500-native answer and rich Master projection
         run: node tools/integration/test-scene1341-native-rich-answer.mjs
+      - name: Verify Master data hotload and Scene500 UI regression
+        run: node tools/integration/test-scene1341-master-scene-v1.mjs
