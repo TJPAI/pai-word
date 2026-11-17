@@ -3,7 +3,7 @@
   "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "3c3377ecd314fc0f26aefe0833c4ecc8d6090860",
+  "verified_parent_head": "b5075888a06dd1e773ecdd9051fafd872bb359ab",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -445,10 +445,12 @@
     "verifier_commit": "8fe576f6347a919a7305e50ef58d04b1193d3e86",
     "test_commit": "3c3377ecd314fc0f26aefe0833c4ecc8d6090860",
     "scope": "Check each of 1341 index SHA1 pointers against actual scene Git blob, source association count 230289, reject mismatches; display user-facing specific Blob mismatch error",
-    "ci": "not run against full real production tree in this session; pending GitHub Actions",
+    "ci": "workflow committed, checks current CG-MAIN synthetic audit and separate CG-MASTER full 1341-scene production checkout; exact-head Actions result pending",
     "safari": "not verified",
     "release": false,
     "srs_writes": 0,
-    "qa_promotion": false
+    "qa_promotion": false,
+    "ci_workflow": ".github/workflows/cgmain-scene1341-master-blob-gate.yml",
+    "ci_workflow_commit": "b5075888a06dd1e773ecdd9051fafd872bb359ab"
   }
 }
