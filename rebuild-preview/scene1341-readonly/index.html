@@ -628,10 +628,10 @@ function renderHome(){
  const start=resultPage*5;
  $('recommendations').hidden=!active;
  $('scenes').replaceChildren();
- const message=!q?'场景目录 · 1,341 场景'
+ const message=sceneEntryError||(!q?'场景目录 · 1,341 场景'
    :recPending?'正在运行 CG-REC 中英文推荐…'
    :recError?'查询失败：'+recError
-   :('CG-REC 场景推荐 · '+sorted.length+'个相关场景；未认证内容仅供体验');
+   :('CG-REC 场景推荐 · '+sorted.length+'个相关场景；未认证内容仅供体验'));
  set('rec-status',message);
  if(active){
   for(const [position,sc] of sorted.slice(start,start+5).entries()){
@@ -678,7 +678,7 @@ function renderHome(){
 // V252 full-scene Git index is published. Keep validation fail-closed;
 // no source association is a certified Sense or eligible SRS card.
 let masterSceneSnapshot=null,masterSceneAdapter=null,masterSceneLoading=new Set();
-let masterReleaseInfo=null;
+let masterReleaseInfo=null,sceneEntryError='';
 function renderMasterRelease(){
  const info=masterReleaseInfo;
  const banner=$('master-release-banner'),study=$('master-study-release');
@@ -723,6 +723,7 @@ async function initializeFullMasterSceneIndex(){
 async function openMasterScene(id,resume=false){
  if(masterSceneLoading.has(id))return;
  masterSceneLoading.add(id);
+ sceneEntryError='';
  try{
   if(!masterSceneSnapshot){
    set('rec-status','正在连接最新Master以进入 '+id+'…');
@@ -737,12 +738,13 @@ async function openMasterScene(id,resume=false){
   set('master-live-feed-status','全量Master '+masterSceneSnapshot.commit.slice(0,12)+' · '+id+'已加载'+scene.recordCount+'条原始关联L1测试卡（非正式Sense） · 待审 · SRS禁写');
   if(!available(id))throw Error('NO_VERIFIED_SCENE_CARDS');
   openStudy(id,resume);
+  sceneEntryError='';
  }catch(error){
   // Once a verified Master index exists, a failed scene fetch or blob
   // verification must never open an older locally cached study card.
   // This is a read-only L1 preview: fail closed and let the user retry.
   set('master-live-feed-status','场景'+id+'动态Master加载失败；已阻止旧卡片回退：'+String(error?.message||error).slice(0,100));
-  set('rec-status','无法进入 '+id+'：Master 数据加载失败。请检查网络并重试点击；'+String(error?.message||error).slice(0,75));
+  sceneEntryError='无法进入 '+id+'：Master 数据加载失败。请检查网络并重试点击；'+String(error?.message||error).slice(0,75);
  }finally{masterSceneLoading.delete(id);renderHome()}
 }
 let exampleToWordPending=false;
