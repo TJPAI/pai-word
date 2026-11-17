@@ -1,9 +1,9 @@
 {
   "schema": "cgmain-current-state/v1",
-  "updated_at": "2026-11-16",
+  "updated_at": "2026-11-17",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "fb900f1dbb16e8098fd8576cd5850fe119130a70",
+  "verified_parent_head": "13299f65200138fd757c0a4a3647b4c7c855db78",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -352,5 +352,25 @@
     "srs_writes": 0,
     "real_browser_test": "not performed",
     "ci_result": "not verified"
+  },
+  "v265_intake_acceptance": {
+    "master_version": "V265_FULL1341_KAIKKI_EVIDENCE_PUBLISHED",
+    "production_index_metadata": "V265",
+    "source_associations": 230289,
+    "scene_count": 1341,
+    "actual_representative_ipa_counts": {
+      "SC50-0015": "18/250",
+      "SC50-0671": "9/119",
+      "SC50-1341": "39/265"
+    },
+    "fix_commit": "cdf0c194c0424e5c6484a82559355ac142cfe761",
+    "test_commit": "13299f65200138fd757c0a4a3647b4c7c855db78",
+    "fix": "Master q.ipa whitespace no longer masks available q.ipa_candidate",
+    "test": "whitespace primary IPA fallback; unresolved V265 Kaikki candidate variants cannot become rendered IPA/approved gloss/certified content",
+    "ci": "not verified for current HEAD",
+    "manual_safari": "not executed",
+    "live_release": false,
+    "srs_writes": 0,
+    "master_mutation": false
   }
 }
