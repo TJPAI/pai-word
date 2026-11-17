@@ -1,9 +1,9 @@
 {
   "schema": "cgmain-current-state/v1",
-  "updated_at": "2026-11-17",
+  "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "35be576ba21fbbf09f91ed0f4c173904bad6b64b",
+  "verified_parent_head": "3c3377ecd314fc0f26aefe0833c4ecc8d6090860",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -432,6 +432,22 @@
     "ci": "not verified",
     "safari_acceptance": "not performed",
     "deployment": "not performed",
+    "srs_writes": 0,
+    "qa_promotion": false
+  },
+  "v270_master_blob_gate": {
+    "master_version": "V270_338_KAIKKI_SOURCE_PINNED_ENGLISH_GLOSSES_SC0036_0050",
+    "master_index_version": "V270",
+    "status": "SC0027_INDEX_MISMATCH_STILL_BLOCKING",
+    "read_only_verifier": "tools/integration/verify-scene1341-master-blob-index.mjs",
+    "synthetic_test": "tools/integration/test-scene1341-master-blob-index.mjs",
+    "fix_frontend": "aa9b7fd5008793875ca3ca864ea2c330cf03a3af",
+    "verifier_commit": "8fe576f6347a919a7305e50ef58d04b1193d3e86",
+    "test_commit": "3c3377ecd314fc0f26aefe0833c4ecc8d6090860",
+    "scope": "Check each of 1341 index SHA1 pointers against actual scene Git blob, source association count 230289, reject mismatches; display user-facing specific Blob mismatch error",
+    "ci": "not run against full real production tree in this session; pending GitHub Actions",
+    "safari": "not verified",
+    "release": false,
     "srs_writes": 0,
     "qa_promotion": false
   }
