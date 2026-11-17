@@ -54,7 +54,7 @@ assert.match(html,/get\('nativeAnswer'\)!=='0'/);
 assert.match(html,/const nativePilot=preferScene500Answer\(\)/);
 assert.match(html,/scene1341-native-answer-rich\.js/);
 assert.match(html,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.project\(r\.answer,prefs,answerView\)/);
-assert.match(html,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.append\(nativeSlot,rich\)/);
+assert.match(html,/PAI_SCENE1341_NATIVE_ANSWER_RICH\.append\(nativeAnswerBody,rich\)/);
 assert.match(html,/if\(!allowable\.some\(e=>e\.en===button\.dataset\.speak\)\)return;/);
 assert.match(html,/playExampleSentence\(button\.dataset\.speak\)/);
 console.log('PASS: Scene500 native answer + rich Master fields, multi-example speech, QA filter and SRS0');
