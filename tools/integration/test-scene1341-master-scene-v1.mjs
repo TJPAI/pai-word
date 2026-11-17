@@ -207,3 +207,24 @@ await assert.rejects(
  /MASTER_SCENE_V1_SCENE_BLOB/
 );
 console.log('PASS: dynamic version-only Master update changes IPA/gloss; old scene blob fails closed, QA/SRS isolated');
+const sceneButtons=uiSource.slice(
+ uiSource.indexOf('function renderHome(){'),
+ uiSource.indexOf('// Full 1,341-scene Master contract:')
+);
+assert.match(sceneButtons,/btn\.disabled=false;btn\.append\(no,name,count\)/,
+ 'recommended scenes remain clickable before Master index resolves');
+assert.doesNotMatch(sceneButtons,/btn\.disabled=!n&&!masterSceneSnapshot/,
+ 'remote Master loading cannot disable all newly recommended scenes');
+const entryFunction=uiSource.slice(
+ uiSource.indexOf('async function openMasterScene('),
+ uiSource.indexOf('let exampleToWordPending=false;')
+);
+assert.match(entryFunction,/await initializeFullMasterSceneIndex\(\)/,
+ 'click must retry a missing Master index');
+assert.match(entryFunction,/MASTER_INDEX_UNAVAILABLE/,
+ 'index failure must be actionable');
+assert.match(entryFunction,/sceneEntryError=/,
+ 'entry failure must survive renderHome rerender');
+assert.doesNotMatch(entryFunction.slice(entryFunction.indexOf('}catch(error){')),/openStudy\(id,resume\)/,
+ 'failed indexed scene must not display stale local preview cards');
+console.log('PASS: recommended scenes clickable, retry remote index, visible failure and no stale fallback');
