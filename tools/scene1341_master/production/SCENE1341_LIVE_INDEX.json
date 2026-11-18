@@ -634,47 +634,47 @@
     "SC50-0126": {
       "path": "tools/scene1341_master/production/scenes/SC50-0126.json",
       "records": 213,
-      "git_blob_sha1": "cddf04a87029871abc210f67e184a0d10283ef35"
+      "git_blob_sha1": "8e43af35acc068c1f030ff08420efd69c9f5e33d"
     },
     "SC50-0127": {
       "path": "tools/scene1341_master/production/scenes/SC50-0127.json",
       "records": 199,
-      "git_blob_sha1": "6bdbbb7379f8d7d44868e56b8253df303f9d8615"
+      "git_blob_sha1": "3d3fc584e99ed0ff16f88de455eb68166d88bac0"
     },
     "SC50-0128": {
       "path": "tools/scene1341_master/production/scenes/SC50-0128.json",
       "records": 205,
-      "git_blob_sha1": "2f8c860127c53d3bb3880d737ad5a13cb770ddce"
+      "git_blob_sha1": "cc84ceaa371187588649f75b5e5719bd7d5ec834"
     },
     "SC50-0129": {
       "path": "tools/scene1341_master/production/scenes/SC50-0129.json",
       "records": 211,
-      "git_blob_sha1": "8483e4e21046f2e5c1ce3790e63f8dfcabd1c11b"
+      "git_blob_sha1": "14d300a96ae13723655c79feeb11fd727062539d"
     },
     "SC50-0130": {
       "path": "tools/scene1341_master/production/scenes/SC50-0130.json",
       "records": 211,
-      "git_blob_sha1": "ca02e5988b57e4eb59cd4135616e1d6b5c53a224"
+      "git_blob_sha1": "d638b4fa98de02712c52bd43d5d65a1862cae725"
     },
     "SC50-0131": {
       "path": "tools/scene1341_master/production/scenes/SC50-0131.json",
       "records": 179,
-      "git_blob_sha1": "3a0c55da0ef5b9ec547b47dd3e8d9c4c916ba711"
+      "git_blob_sha1": "48ab0a23d733b284ab49818108d72f8aa38af6b0"
     },
     "SC50-0132": {
       "path": "tools/scene1341_master/production/scenes/SC50-0132.json",
       "records": 194,
-      "git_blob_sha1": "94ee4887dad83c693d6788bfc0c64fd25eab40d2"
+      "git_blob_sha1": "3f549756ec68a27e890e7378be79e4bb2cf2a50c"
     },
     "SC50-0133": {
       "path": "tools/scene1341_master/production/scenes/SC50-0133.json",
       "records": 195,
-      "git_blob_sha1": "09e4d4a014de4dac0a6c085a53e8774f11b421a8"
+      "git_blob_sha1": "ad9b923fdedab4f21a5ad22a33f8f3246dc8d058"
     },
     "SC50-0134": {
       "path": "tools/scene1341_master/production/scenes/SC50-0134.json",
       "records": 292,
-      "git_blob_sha1": "62a7ad0b45e24d982caeb7f3458921d7db86ba42"
+      "git_blob_sha1": "9a1786b0319b1bbdc445ff1a9fa74923d3e1a1f9"
     },
     "SC50-0135": {
       "path": "tools/scene1341_master/production/scenes/SC50-0135.json",
@@ -6714,19 +6714,27 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V274",
-    "content_baseline": "V273_SC0101_SC0125_PLUS_SC0027_ATOMIC_BLOB_REPAIR",
+    "version": "V275",
+    "content_baseline": "V274_PLUS_SC0126_0135_KAIKKI_BATCH_PARTIAL",
     "published_date": "2026-11-18",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "修复SC50-0027动态索引Blob SHA映射；教学内容与230289原始关联不变",
+    "headline": "批量增补SC0126起源证据绑定英文释义，修复中断后的索引指针",
     "changes": [
       {
-        "category": "scene_blob_index_integrity_repair",
-        "count": 1
+        "category": "scene_documents_updated",
+        "count": 9
       }
     ],
     "changed_scene_ids": [
-      "SC50-0027"
+      "SC50-0126",
+      "SC50-0127",
+      "SC50-0128",
+      "SC50-0129",
+      "SC50-0130",
+      "SC50-0131",
+      "SC50-0132",
+      "SC50-0133",
+      "SC50-0134"
     ],
     "qa_stage": "待审",
     "release_allowed": false,
