@@ -83,7 +83,15 @@ if(outcomes.source_associations!==230289)throw Error('source association total c
 if(outcomes.hash_mismatches_after.length)throw Error('post-write hash mismatch');
 if(!dryRun){
  for(const [p,b] of changes)fs.writeFileSync(p,b);
- index.master_release={metadata_schema:'scene1341-master-release/v1',version:'V275',content_baseline:'BATCH_KAIKKI_EXACT_GLOSS',published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'自动批量填充Kaikki唯一义项英文释义（未经独立审核）',changes:[{category:'answer_page_gloss_en_source_pinned',count:outcomes.records_enriched},{category:'scene_documents_updated',count:changes.size}],changed_scene_ids:[...changes.keys()].map(x=>path.basename(x,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
+ index.master_release={metadata_schema:'scene1341-master-release/v1',version:'V278',content_baseline:'FULL1341_BULK_KAIKKI_EXACT_GLOSS',published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'自动批量填充Kaikki唯一义项英文释义（未经独立审核）',changes:[{category:'answer_page_gloss_en_source_pinned',count:outcomes.records_enriched},{category:'scene_documents_updated',count:changes.size}],changed_scene_ids:[...changes.keys()].map(x=>path.basename(x,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
  fs.writeFileSync(indexPath,JSON.stringify(index,null,2)+'\n');
+ const cpPath=path.resolve('tools/scene1341_master/CGMASTER_CURRENT_STATE.json');
+ const checkpoint=JSON.parse(fs.readFileSync(cpPath,'utf8'));
+ checkpoint.version='V278_BULK_KAIKKI_AUTO_TEST_ONLY';
+ checkpoint.updated_at=new Date().toISOString().slice(0,10);
+ checkpoint.handoff_id='SC1341-V278-BULK-KAIKKI-SOURCE-GLOSS';
+ checkpoint.v278={start_scene:start,end_scene:end,batch_size:batchSize,scenes_scanned:outcomes.scenes_scanned,records_scanned:outcomes.records_scanned,new_english_glosses:outcomes.records_enriched,scenes_updated:changes.size,preexisting_index_sha_mismatches:outcomes.hash_mismatches_before,post_write_index_sha_mismatches:outcomes.hash_mismatches_after,qa_stage:'待审',first_review_confirmed:0,release_allowed:false,srs_eligible:false,status:'TEST_ONLY_PENDING_INDEPENDENT_QA'};
+ checkpoint.next_tasks=['Verify full 1341 index↔blob contract and update CG-MAIN handoff.','Independent CG-QA source/content review, no automatic 1审.','Expand IPA/POS, example, collocation and usage coverage after English-gloss batch.'];
+ fs.writeFileSync(cpPath,JSON.stringify(checkpoint,null,2)+'\n');
 }
 console.log(JSON.stringify({...outcomes,changed_scenes:changes.size,dry_run:dryRun},null,2));
