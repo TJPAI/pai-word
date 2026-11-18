@@ -1219,5 +1219,36 @@
     "first_review_confirmed": 0,
     "release_allowed": false,
     "srs_eligible": false
+  },
+  "atomic_bulk_automation_20261118": {
+    "runner": "tools/scene1341_master/run_atomic_bulk.mjs",
+    "runner_commit": "76b0b3b301c464d0a4b204cce77049ba244134cc",
+    "workflow": ".github/workflows/cgmaster-atomic-bulk.yml",
+    "workflow_commit": "0e8bfe74203570457f5d181d0333d97545d898ce",
+    "behavior": "temporary detached worktree at latest origin branch; full 1341 SHA+source identity verification before and after production; one commit per batch; non-force push rejects concurrent branch advances",
+    "qa_stage": "待审",
+    "srs_eligible": false,
+    "status": "COMMITTED_NOT_DISPATCHED",
+    "manual_dispatch_required": true,
+    "verified_sample_scene_ids": [
+      "SC50-0027",
+      "SC50-0135",
+      "SC50-0136",
+      "SC50-0137",
+      "SC50-0138",
+      "SC50-0139",
+      "SC50-0140",
+      "SC50-0141",
+      "SC50-0142",
+      "SC50-0143",
+      "SC50-0150"
+    ],
+    "sample_blob_sha_mismatches": 0,
+    "full1341_validator_actual_execution": "NOT_RUN",
+    "next_dispatch": {
+      "start": 151,
+      "end": 165,
+      "batch_size": 3000
+    }
   }
 }
