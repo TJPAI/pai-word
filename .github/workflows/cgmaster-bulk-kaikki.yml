@@ -45,7 +45,7 @@ jobs:
         run: |
           git config user.name "CG-MASTER automation"
           git config user.email "actions@users.noreply.github.com"
-          git add tools/scene1341_master/production/scenes tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json
+          git add tools/scene1341_master/production/scenes tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json tools/scene1341_master/CGMASTER_CURRENT_STATE.json
           if git diff --cached --quiet; then
             echo "No eligible source-backed changes"
           else
