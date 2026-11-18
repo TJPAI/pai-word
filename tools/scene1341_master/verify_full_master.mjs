@@ -41,6 +41,8 @@ for(let n=1;n<=1341;n++){
   if(a.gloss_en_provenance?.source==='Kaikki English'){
     coverage.source_pinned_glosses++;
     if(e?.archive_sha256!==a.gloss_en_provenance.archive_sha256 || e?.expression_exact!==q.expression)failures.push('gloss provenance '+id+':'+r.source_final_row);
+    const matches=(e?.candidates||[]).flatMap(candidate=>(candidate.senses||[]).filter(s=>candidate.source_line===a.gloss_en_provenance.source_line&&s.source_sense_index===a.gloss_en_provenance.source_sense_index).map(s=>({candidate,s})));
+    if(matches.length!==1||!matches[0].s.glosses?.includes(a.gloss_en))failures.push('source gloss text mismatch '+id+':'+r.source_final_row);
   }
   if(e?.qa_stage==='1审'||a.gloss_en_provenance?.qa_stage==='1审')coverage.reviewed_claims++;
  }
