@@ -542,5 +542,22 @@
     "remaining": "Native home controller still separate; exact Safari visual parity and CI unverified; Master SC0027 SHA mismatch pending",
     "srs_writes": 0,
     "deployment": "none"
+  },
+  "master_index_rollover_20261118": {
+    "status": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "690983f102ff46becd011e5ee807960d2c065e9c",
+    "regression_commit": "7734ff35bfe9c9fd2796b72acc3cf639c1b64b85",
+    "workflow_commit": "baca6218eba012dfd09039e05644fdf51de9ff57",
+    "source": "rebuild-preview/scene1341-readonly/index.html",
+    "behavior": "On SHA mismatch only, resolve one fresh validated 1341/230289 index and retry exact Git blob verification; if same immutable index or repeat failure, fail closed. Never fall back to historical cards.",
+    "master_report": "V275 SC0027 index repaired; latest checkpoint observed V277; full all-scene verification pending",
+    "master_version_seen": "V277_SC0143_0150_NATIVE_GLOSS",
+    "formal_ready_promotion": false,
+    "srs_writes": 0,
+    "qa_promotion": false,
+    "tests": "Source guard committed; CI run not yet observed",
+    "iphone_safari": "not verified",
+    "deployment": "none",
+    "remaining": "Native home/controller parity, iPhone visual and gestures, independent 1341 Git SHA check"
   }
 }
