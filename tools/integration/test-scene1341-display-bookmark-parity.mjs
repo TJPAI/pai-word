@@ -39,6 +39,10 @@ assert.match(html,/displayBookmark\.save\(sceneId,index,face\)/,
  'leaving a study screen should preserve its exact display cursor');
 assert.match(html,/available\(lastScene\)\|\|masterSceneSnapshot\?\.index\?\.scenes\?\.\[lastScene\]/,
  'recent scene remains visible even before its cards have been fetched');
+assert.match(html,/if\(!catalog\.some\(scene=>scene\.id===lastScene\)\)lastScene=/,
+ 'startup must not overwrite a valid 1341-scene bookmark just because legacy 14-scene local content excludes it');
+assert.doesNotMatch(html,/if\(!countByScene\.has\(lastScene\)\)lastScene=/,
+ 'legacy local pack coverage must not invalidate Master scene bookmarks');
 assert.doesNotMatch(html,/const savedDisplay=\{lastScene:/,
  'do not silently erase previously saved display cursor on every page load');
 console.log('PASS: Scene1341 UI-only bookmark persists scene, card and face; Master dynamic continue, SRS isolated');
