@@ -679,42 +679,42 @@
     "SC50-0135": {
       "path": "tools/scene1341_master/production/scenes/SC50-0135.json",
       "records": 256,
-      "git_blob_sha1": "ac310f4687a81dcd2b7f304b0e06b93a3720f583"
+      "git_blob_sha1": "f1be0621f50be14f5032fde07e0b5380e9f2ae3e"
     },
     "SC50-0136": {
       "path": "tools/scene1341_master/production/scenes/SC50-0136.json",
       "records": 255,
-      "git_blob_sha1": "fe6f21674d998d352e3d5250e6f2613e1c4dd70e"
+      "git_blob_sha1": "f2ff894a30757507fc42d959a063f3cc830d5315"
     },
     "SC50-0137": {
       "path": "tools/scene1341_master/production/scenes/SC50-0137.json",
       "records": 236,
-      "git_blob_sha1": "27eb3d98681ca27857667cbebd0016fe84a910e5"
+      "git_blob_sha1": "a12c34ccd99c18da005ad91c4fb8e350e9582e40"
     },
     "SC50-0138": {
       "path": "tools/scene1341_master/production/scenes/SC50-0138.json",
       "records": 234,
-      "git_blob_sha1": "690b618744130c0fcae5a6b8f4b12bb25ff2e0e7"
+      "git_blob_sha1": "3c5ad9f1ca403ee387cceab4122558c759ad8b09"
     },
     "SC50-0139": {
       "path": "tools/scene1341_master/production/scenes/SC50-0139.json",
       "records": 225,
-      "git_blob_sha1": "3b4a707bc4b53eb1b63949a9786f429be511894d"
+      "git_blob_sha1": "345f424ac7013dbe0a46874f139760fa8f0492b4"
     },
     "SC50-0140": {
       "path": "tools/scene1341_master/production/scenes/SC50-0140.json",
       "records": 210,
-      "git_blob_sha1": "2ecc9e69bd9ceb267799ab3349910567cb44a621"
+      "git_blob_sha1": "4b5216a045bdbc7ed239b6c58985665a539d136f"
     },
     "SC50-0141": {
       "path": "tools/scene1341_master/production/scenes/SC50-0141.json",
       "records": 218,
-      "git_blob_sha1": "9497a78e1ab3e82d7659d20f8521164d3aefb39c"
+      "git_blob_sha1": "d395dc3ab2f3569e4158c07c70ca2bc3cfb3fbd0"
     },
     "SC50-0142": {
       "path": "tools/scene1341_master/production/scenes/SC50-0142.json",
       "records": 221,
-      "git_blob_sha1": "c69917307f149c82ab0340c844b4bf8360ff4958"
+      "git_blob_sha1": "644432daf792d5a03efd40aa06fe5f27f6c1d6e2"
     },
     "SC50-0143": {
       "path": "tools/scene1341_master/production/scenes/SC50-0143.json",
@@ -6714,27 +6714,30 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V275",
-    "content_baseline": "V274_PLUS_SC0126_0135_KAIKKI_BATCH_PARTIAL",
+    "version": "V276",
+    "content_baseline": "V275_PLUS_SC0135_SC0142_SOURCE_GLOSS",
     "published_date": "2026-11-18",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "批量增补SC0126起源证据绑定英文释义，修复中断后的索引指针",
+    "headline": "SC0135～SC0142新增128条唯一义项Kaikki英文释义（待审）",
     "changes": [
       {
+        "category": "answer_page_gloss_en_source_pinned",
+        "count": 128
+      },
+      {
         "category": "scene_documents_updated",
-        "count": 9
+        "count": 8
       }
     ],
     "changed_scene_ids": [
-      "SC50-0126",
-      "SC50-0127",
-      "SC50-0128",
-      "SC50-0129",
-      "SC50-0130",
-      "SC50-0131",
-      "SC50-0132",
-      "SC50-0133",
-      "SC50-0134"
+      "SC50-0135",
+      "SC50-0136",
+      "SC50-0137",
+      "SC50-0138",
+      "SC50-0139",
+      "SC50-0140",
+      "SC50-0141",
+      "SC50-0142"
     ],
     "qa_stage": "待审",
     "release_allowed": false,
