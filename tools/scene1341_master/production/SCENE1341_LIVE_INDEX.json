@@ -139,7 +139,7 @@
     "SC50-0027": {
       "path": "tools/scene1341_master/production/scenes/SC50-0027.json",
       "records": 194,
-      "git_blob_sha1": "705c866351cb540f6a464a1b5b0f296962a21dfa"
+      "git_blob_sha1": "8d89002f09334066d6fb001e5b30c5892f07c0e9"
     },
     "SC50-0028": {
       "path": "tools/scene1341_master/production/scenes/SC50-0028.json",
@@ -6714,47 +6714,19 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V273",
-    "content_baseline": "V273_SC0101_SC0125_KAIKKI_ENGLISH_GLOSSES",
+    "version": "V274",
+    "content_baseline": "V273_SC0101_SC0125_PLUS_SC0027_ATOMIC_BLOB_REPAIR",
     "published_date": "2026-11-18",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "SC0101～SC0125增补386条Kaikki唯一义项英文释义（待审）",
+    "headline": "修复SC50-0027动态索引Blob SHA映射；教学内容与230289原始关联不变",
     "changes": [
       {
-        "category": "answer_page_gloss_en_source_pinned",
-        "count": 386
-      },
-      {
-        "category": "scene_documents_updated",
-        "count": 25
+        "category": "scene_blob_index_integrity_repair",
+        "count": 1
       }
     ],
     "changed_scene_ids": [
-      "SC50-0101",
-      "SC50-0102",
-      "SC50-0103",
-      "SC50-0104",
-      "SC50-0105",
-      "SC50-0106",
-      "SC50-0107",
-      "SC50-0108",
-      "SC50-0109",
-      "SC50-0110",
-      "SC50-0111",
-      "SC50-0112",
-      "SC50-0113",
-      "SC50-0114",
-      "SC50-0115",
-      "SC50-0116",
-      "SC50-0117",
-      "SC50-0118",
-      "SC50-0119",
-      "SC50-0120",
-      "SC50-0121",
-      "SC50-0122",
-      "SC50-0123",
-      "SC50-0124",
-      "SC50-0125"
+      "SC50-0027"
     ],
     "qa_stage": "待审",
     "release_allowed": false,
