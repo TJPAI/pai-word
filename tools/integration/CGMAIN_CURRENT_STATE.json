@@ -573,5 +573,17 @@
     "deployment": "none",
     "master_version_seen": "V277_SC0143_0150_NATIVE_GLOSS",
     "remaining": "Native Scene500 home/controller convergence, 1341-scene SHA full audit, iPhone E2E"
+  },
+  "scene1341_search_entry_parity_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "4dc07d535eedccbe267ee12d16cd3bdf413fdc99",
+    "regression_commit": "705f78fd3bb0662fc7535f48ca41da0db6d30850",
+    "workflow_commit": "ce2ced9e750b35687c272c13ebd4e083380052ab",
+    "change": "Shared submit handler for Find Scenes button and Enter (IME-safe); resets stale catalog category to 全部 before global CG-REC recommendation; existing scene click remains Master SHA-gated",
+    "master_version_seen": "V278_SC0151_0158_SOURCE_GLOSSES",
+    "ci": "pending",
+    "safari": "pending",
+    "srs_writes": 0,
+    "deploy": "none"
   }
 }
