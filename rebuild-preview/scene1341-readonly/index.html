@@ -700,7 +700,7 @@ function renderHome(){
 // then load only the chosen scene. CG-MASTER publishes content; CG-QA owns 1审.
 // V252 full-scene Git index is published. Keep validation fail-closed;
 // no source association is a certified Sense or eligible SRS card.
-let masterSceneSnapshot=null,masterSceneAdapter=null,masterSceneLoading=new Set();
+let masterSceneSnapshot=null,masterSceneAdapter=null,masterSceneLoading=new Set(),latestSceneEntryRequest=0;
 let masterReleaseInfo=null,sceneEntryError='';
 function renderMasterRelease(){
  const info=masterReleaseInfo;
@@ -744,7 +744,10 @@ async function initializeFullMasterSceneIndex(){
  }
 }
 async function openMasterScene(id,resume=false){
+ // Latest user intent wins even if an older GitHub fetch resolves last.
+ // Duplicate taps of the same still-loading scene are coalesced.
  if(masterSceneLoading.has(id))return;
+ const request=++latestSceneEntryRequest;
  masterSceneLoading.add(id);
  sceneEntryError='';
  try{
@@ -771,6 +774,7 @@ async function openMasterScene(id,resume=false){
    masterSceneSnapshot=fresh;
    masterReleaseInfo=masterSceneAdapter.masterReleaseView(fresh.index);
   }
+  if(request!==latestSceneEntryRequest)return;
   items=masterSceneAdapter.mergeMasterScene(items,scene);
   countByScene.set(id,scene.recordCount);
   set('master-live-feed-status','全量Master '+masterSceneSnapshot.commit.slice(0,12)+' · '+id+'已加载'+scene.recordCount+'条原始关联L1测试卡（非正式Sense） · 待审 · SRS禁写');
@@ -778,6 +782,7 @@ async function openMasterScene(id,resume=false){
   openStudy(id,resume);
   sceneEntryError='';
  }catch(error){
+  if(request!==latestSceneEntryRequest)return;
   // Once a verified Master index exists, a failed scene fetch or blob
   // verification must never open an older locally cached study card.
   // This is a read-only L1 preview: fail closed and let the user retry.
@@ -787,7 +792,7 @@ async function openMasterScene(id,resume=false){
   sceneEntryError=mismatch
    ?'无法进入 '+id+'：Master 索引与场景文件版本不一致，需要数据发布方修复；不是网络或手机缓存问题。'
    :'无法进入 '+id+'：Master 数据加载失败，请检查网络并重试点击；'+errorCode.slice(0,75);
- }finally{masterSceneLoading.delete(id);renderHome()}
+ }finally{masterSceneLoading.delete(id);if(request===latestSceneEntryRequest)renderHome()}
 }
 let exampleToWordPending=false;
 // Background source inspection is intentionally read-only. New associations
