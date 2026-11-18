@@ -1209,7 +1209,18 @@ function demoGrade(grade){
 }
 $('back').addEventListener('click',home);$('continue').addEventListener('click',()=>void openMasterScene(lastScene,true));
 $('search').addEventListener('input',e=>{filter=e.target.value;catalogVisible=false;recRequest++;recPending=false;recSubmitted=false;recRows=null;recError='';resultPage=0;renderHome()});
-$('find-scenes').addEventListener('click',()=>{filter=$('search').value;catalogVisible=false;void updateSceneRecommendations()});
+function submitSceneSearch(){
+ filter=$('search').value;catalogVisible=false;
+ // Recommendation search is global, not constrained by a stale catalog tab.
+ if(category!=='全部'){category='全部';renderCategories()}
+ void updateSceneRecommendations();
+}
+$('find-scenes').addEventListener('click',submitSceneSearch);
+$('search').addEventListener('keydown',event=>{
+ if(event.key==='Enter'&&!event.isComposing){
+  event.preventDefault();submitSceneSearch();
+ }
+});
 $('browse').addEventListener('click',()=>{
  filter='';$('search').value='';category='全部';catalogVisible=true;visible=35;
  recRequest++;recRows=null;recPending=false;resultPage=0;recSubmitted=false;renderCategories();renderHome();
