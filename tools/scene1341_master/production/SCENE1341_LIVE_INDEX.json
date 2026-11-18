@@ -6715,30 +6715,17 @@
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
     "version": "V276",
-    "content_baseline": "V275_PLUS_SC0135_SC0142_SOURCE_GLOSS",
+    "content_baseline": "V275_PLUS_SC0135_0139_REMOTE_BLOB_RECONCILIATION",
     "published_date": "2026-11-18",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "SC0135～SC0142新增128条唯一义项Kaikki英文释义（待审）",
+    "headline": "同步SC0135–0139远端场景Blob指针；不虚报新增释义",
     "changes": [
       {
-        "category": "answer_page_gloss_en_source_pinned",
-        "count": 128
-      },
-      {
-        "category": "scene_documents_updated",
-        "count": 8
+        "category": "index_pointer_reconciliation",
+        "count": 0
       }
     ],
-    "changed_scene_ids": [
-      "SC50-0135",
-      "SC50-0136",
-      "SC50-0137",
-      "SC50-0138",
-      "SC50-0139",
-      "SC50-0140",
-      "SC50-0141",
-      "SC50-0142"
-    ],
+    "changed_scene_ids": [],
     "qa_stage": "待审",
     "release_allowed": false,
     "srs_eligible": false
