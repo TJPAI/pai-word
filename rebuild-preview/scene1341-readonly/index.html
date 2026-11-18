@@ -755,7 +755,22 @@ async function openMasterScene(id,resume=false){
   if(!masterSceneSnapshot||!masterSceneAdapter){
    throw Error('MASTER_INDEX_UNAVAILABLE');
   }
-  const scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
+  let scene;
+  try{
+   scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
+  }catch(firstError){
+   // A new Master release may arrive after the home index is loaded.
+   // Retry ONLY a genuine index/blob mismatch against a freshly verified
+   // immutable snapshot. Never bypass the SHA gate or fall back to old cards.
+   if(!String(firstError?.message||firstError).includes('MASTER_SCENE_V1_SCENE_BLOB'))throw firstError;
+   const previous=masterSceneSnapshot;
+   const fresh=await masterSceneAdapter.resolveMasterSceneIndex();
+   if(fresh.commit===previous.commit&&
+      fresh.index.scenes[id]?.git_blob_sha1===previous.index.scenes[id]?.git_blob_sha1)throw firstError;
+   scene=await masterSceneAdapter.fetchMasterScene(fresh,id);
+   masterSceneSnapshot=fresh;
+   masterReleaseInfo=masterSceneAdapter.masterReleaseView(fresh.index);
+  }
   items=masterSceneAdapter.mergeMasterScene(items,scene);
   countByScene.set(id,scene.recordCount);
   set('master-live-feed-status','全量Master '+masterSceneSnapshot.commit.slice(0,12)+' · '+id+'已加载'+scene.recordCount+'条原始关联L1测试卡（非正式Sense） · 待审 · SRS禁写');
