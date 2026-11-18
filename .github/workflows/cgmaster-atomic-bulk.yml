@@ -1,0 +1,49 @@
+name: CG-MASTER atomic bulk production
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: 'First 1-based Scene1341 scene number'
+        required: true
+        default: '151'
+      end:
+        description: 'Last 1-based scene number (use ~15 scenes / 3000 associations per run)'
+        required: true
+        default: '165'
+      batch_size:
+        description: 'Target associations per reporting batch'
+        required: true
+        default: '3000'
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-atomic-bulk-production
+  cancel-in-progress: false
+jobs:
+  produce:
+    if: github.ref == 'refs/heads/cg-master-kaikki-evidence-intake-20261111'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate program syntax
+        run: |
+          node --check tools/scene1341_master/batch_enrich_master.mjs
+          node --check tools/scene1341_master/run_atomic_bulk.mjs
+      - name: Configure commit identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Run protected full-index validation and batch
+        env:
+          SCENE_START: ${{ inputs.start }}
+          SCENE_END: ${{ inputs.end }}
+          SCENE_BATCH: ${{ inputs.batch_size }}
+        run: |
+          node tools/scene1341_master/run_atomic_bulk.mjs --start "$SCENE_START" --end "$SCENE_END" --batch-size "$SCENE_BATCH"
