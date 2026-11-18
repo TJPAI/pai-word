@@ -1,0 +1,54 @@
+name: CG-MASTER full Kaikki bulk enrichment
+on:
+  workflow_dispatch:
+    inputs:
+      start:
+        description: First scene number (default 151)
+        required: false
+        default: '151'
+      end:
+        description: Last scene number (default 1341)
+        required: false
+        default: '1341'
+  push:
+    branches:
+      - cg-master-kaikki-evidence-intake-20261111
+    paths:
+      - .github/workflows/cgmaster-bulk-kaikki.yml
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-bulk-kaikki-production
+  cancel-in-progress: false
+jobs:
+  full-bulk:
+    if: github.ref == 'refs/heads/cg-master-kaikki-evidence-intake-20261111'
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - name: Checkout authoritative Master branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Check baseline scene SHA and identity before writing
+        run: node tools/scene1341_master/verify_full_master.mjs
+      - name: Generate source-pinned Kaikki drafts, 3000 records per report segment
+        env:
+          START: ${{ github.event.inputs.start || '151' }}
+          END: ${{ github.event.inputs.end || '1341' }}
+        run: |
+          node tools/scene1341_master/batch_enrich_master.mjs --start "$START" --end "$END" --batch-size 3000 | tee cgmaster_bulk_report.json
+      - name: Validate every scene and 230289 identities after enrichment
+        run: node tools/scene1341_master/verify_full_master.mjs | tee cgmaster_verify_report.json
+      - name: Commit coherent scene files and live index together
+        run: |
+          git config user.name "CG-MASTER automation"
+          git config user.email "actions@users.noreply.github.com"
+          git add tools/scene1341_master/production/scenes tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json
+          if git diff --cached --quiet; then
+            echo "No eligible source-backed changes"
+          else
+            git commit -m "data(cg-master): automated full-scene Kaikki teaching-gloss coverage (test-only)"
+            git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
+          fi
