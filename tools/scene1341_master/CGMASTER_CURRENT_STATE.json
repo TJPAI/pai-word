@@ -1,10 +1,10 @@
 {
   "schema": "cgmaster-current-state/v1",
-  "updated_at": "2026-11-17",
+  "updated_at": "2026-11-18",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "2769ab01bf30d5c38cf5803f861abd2d215cb5de",
-  "version": "V273_386_KAIKKI_SOURCE_PINNED_ENGLISH_GLOSSES_SC0101_0125",
+  "verified_base_head": "5abb9c9994a1049c62a94ef37a72097aa2d207dc",
+  "version": "V274_P0_SC0027_BLOB_REPAIR_AND_BULK_PIPELINE",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,12 +1077,12 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V273-386-SOURCE-PINNED-GLOSSES-20261118",
+  "handoff_id": "SC1341-V274-SC0027-REPAIR-BULK-PIPELINE-20261118",
   "next_tasks": [
-    "Run V267 14-scene identity, source-gloss, blob SHA audit and record results.",
-    "Scale selective Kaikki English gloss pipeline to rest of 1341 scenes without repeated manual entries.",
-    "Work with CG-QA for source- and content-identity-pinned independent semantic first review; no automatic 1审.",
-    "Enhance scene-specific original bilingual examples, collocations and usage notes; preserve original association and test-only SRS gates."
+    "Run full-checkout batch_enrich_master.mjs --start 126 --end 1341 --batch-size 3000 and inspect dry-run counts first.",
+    "Run independent full 1341 index↔scene SHA verifier and reconcile all mismatches.",
+    "Commit tested changes in manageable atomic scene+index batches with status test-only.",
+    "Request CG-QA independent content-specific review; never auto-promote 待审 to 1审."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1169,5 +1169,21 @@
     "index_commit": "2769ab01bf30d5c38cf5803f861abd2d215cb5de",
     "rule": "Single native entry and single sense, source-pinned Kaikki gloss, no overwriting existing gloss",
     "next": "Automate whole-scene batch update with coverage QA and continue SC0126+"
+  },
+  "v274": {
+    "scene_blob_repair": "SC50-0027",
+    "old_index_sha": "705c866351cb540f6a464a1b5b0f296962a21dfa",
+    "verified_scene_blob_sha": "8d89002f09334066d6fb001e5b30c5892f07c0e9",
+    "index_commit": "3d3b317b410eb125d83b6f40ad385861e629ae8b",
+    "bulk_pipeline_commit": "5abb9c9994a1049c62a94ef37a72097aa2d207dc",
+    "bulk_pipeline": "tools/scene1341_master/batch_enrich_master.mjs",
+    "scope": "repair one known bad index SHA; no original association change, no editorial audit promotion",
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false,
+    "full_1341_checker_execution": "NOT_RUN_THIS_SESSION",
+    "bulk_production_execution": "NOT_RUN_THIS_SESSION",
+    "status": "CODE_COMMITTED_VALIDATION_PENDING"
   }
 }
