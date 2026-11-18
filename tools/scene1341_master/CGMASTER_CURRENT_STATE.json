@@ -3,8 +3,8 @@
   "updated_at": "2026-11-18",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "5abb9c9994a1049c62a94ef37a72097aa2d207dc",
-  "version": "V274_P0_SC0027_BLOB_REPAIR_AND_BULK_PIPELINE",
+  "verified_base_head": "e8bf360a70cfb9321bd6fb8a48ab28e5da0b8cbd",
+  "version": "V275_PARTIAL_BULK_SC0126_SC0134_SOURCE_PINNED_GLOSSES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,12 +1077,12 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V274-SC0027-REPAIR-BULK-PIPELINE-20261118",
+  "handoff_id": "SC1341-V275-SC0126-0134-BULK-RECONCILED-20261118",
   "next_tasks": [
-    "Run full-checkout batch_enrich_master.mjs --start 126 --end 1341 --batch-size 3000 and inspect dry-run counts first.",
-    "Run independent full 1341 index↔scene SHA verifier and reconcile all mismatches.",
-    "Commit tested changes in manageable atomic scene+index batches with status test-only.",
-    "Request CG-QA independent content-specific review; never auto-promote 待审 to 1审."
+    "Run full-1341 SHA verifier on current production branch before accepting full catalog integrity.",
+    "Run batch_enrich_master.mjs on full Git checkout, preferentially SC0135 onward, controlled 3000-association batches with atomic stage/commit.",
+    "Produce coverage report for IPA/POS/Chinese and English glosses/examples/collocations/usage and QA pending.",
+    "Do not upgrade editorial QA states without CG-QA identity-pinned evidence."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1185,5 +1185,20 @@
     "full_1341_checker_execution": "NOT_RUN_THIS_SESSION",
     "bulk_production_execution": "NOT_RUN_THIS_SESSION",
     "status": "CODE_COMMITTED_VALIDATION_PENDING"
+  },
+  "v275": {
+    "scene_range": "SC50-0126..SC50-0134",
+    "scene_documents_updated": 9,
+    "source_pinned_glosses_in_updated_scenes": 161,
+    "scope_note": "161 is current count of eligible native glosses on updated scenes; new increments not independently recomputed against old versions",
+    "index_commit": "e8bf360a70cfb9321bd6fb8a48ab28e5da0b8cbd",
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false,
+    "verified_scene_blob_pointer_count": 9,
+    "full1341_integrity_check": "NOT_RUN",
+    "status": "PARTIAL_BATCH_PUBLISHED_TEST_ONLY",
+    "next": "Execute local full-checkout batch pipeline and full 1341 SHA regression before expanding release"
   }
 }
