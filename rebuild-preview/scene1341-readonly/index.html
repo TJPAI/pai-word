@@ -248,14 +248,21 @@ async function updateSceneRecommendations(){
 
 const readOnlyPrefs=window.PAI_SCENE500_READONLY_SETTINGS.createReadOnlySettings({onChange:applyReadOnlySetting});
 const displayBookmark=window.PAI_SCENE1341_DISPLAY_BOOKMARK;
-const savedDisplay={lastScene:'SC50-0001',cursors:{}}; // Disposable test: ignore prior persistent state
+const savedDisplay=displayBookmark.load(); // Isolated UI-only bookmark; never KU/SRS progress
 lastScene=savedDisplay.lastScene;
-const transientCursors=new Map(Object.entries(savedDisplay.cursors)); // isolated UI cursors; never KU/SRS records
+const transientCursors=new Map(Object.entries(savedDisplay.cursors)); // UI-only cursors, separate from KU/SRS
 const autoPreference=window.PAI_SCENE1341_AUTO_PREFERENCE;
 const scratchDrawing=()=>window.PAI_SCRATCH_DRAWING?.()===true;
 const resetScratch=()=>window.PAI_SCENE1341_SCRATCH_RESET?.();
 const phaseController=window.PAI_SCENE500_READONLY_PHASE.createReadOnlyPhaseController({
- onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;if(!$('learning').hidden)window.render?.()},
+ onUpdate:phase=>{revealed=phase.revealed;selectedGrade=phase.selected;
+  if(!$('learning').hidden){
+   // Scene500-style continue position with a separate, non-SRS display bookmark.
+   transientCursors.set(sceneId,{index,face:phase.preferredFace});
+   displayBookmark.save(sceneId,index,phase.preferredFace);
+   window.render?.();
+  }
+ },
  onGradeComplete:grade=>{transientRatings[grade]++},
  playRatedWord:(grade,iteration,done)=>{
   if(!readOnlyPrefs.get('autoPronounce.swipe')){done();return null}
@@ -681,7 +688,7 @@ function renderHome(){
  $('recommendation-next').disabled=resultPage+1>=totalPages;
  $('more').hidden=true;
  const recent=$('recent-section'),list=$('recent-row');list.replaceChildren();
- const last=lastScene&&available(lastScene)?lastScene:null;
+ const last=lastScene&&(available(lastScene)||masterSceneSnapshot?.index?.scenes?.[lastScene])?lastScene:null;
  recent.hidden=!last;
  if(last){const btn=document.createElement('button');btn.type='button';
    btn.textContent=label(lastScene);btn.addEventListener('click',()=>openMasterScene(lastScene,true));
@@ -800,7 +807,11 @@ function openStudy(id,resume=false){
  if(autoPreference.get())autoBrowse.start();else autoBrowse.stop();
 }
 function home(){
- if(!$('learning').hidden)transientCursors.set(sceneId,{index,face:phaseController.state().preferredFace});
+ if(!$('learning').hidden){
+  const face=phaseController.state().preferredFace;
+  transientCursors.set(sceneId,{index,face});
+  displayBookmark.save(sceneId,index,face);
+ }
  exampleToWordPending=false;autoBrowse.pause();stopWordAudio();resetScratch();$('learning').hidden=true;
  window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome();
 }
