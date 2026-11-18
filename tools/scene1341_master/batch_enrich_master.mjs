@@ -23,6 +23,7 @@ const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,already_pr
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
+const seenSourceRows=new Set();
 function eligible(record){
   const evidence=record.kaikki_full_native_evidence;
   if(!evidence||evidence.expression_exact!==record.question_page?.expression) return null;
@@ -47,6 +48,10 @@ for(let i=1;i<=1341;i++){
  const scene=JSON.parse(before);
  if(scene.scene_id!==id||!Array.isArray(scene.records)||scene.records.length!==ent.records||scene.release_allowed!==false||scene.srs_eligible!==false)throw Error('contract mismatch '+id);
  outcomes.source_associations+=scene.records.length;
+ for(const record of scene.records){
+  if(record.scene_id!==id || !Number.isInteger(record.source_final_row) || seenSourceRows.has(record.source_final_row))throw Error('invalid or duplicate frozen source identity '+id);
+  seenSourceRows.add(record.source_final_row);
+ }
  const inside=i>=start&&i<=end;
  if(inside){
   outcomes.scenes_scanned++;
@@ -63,12 +68,9 @@ for(let i=1;i<=1341;i++){
    outcomes.records_enriched++;batch.glosses++;
   }
   if(batch.records>=batchSize)flush();
-  if(batch.glosses||scene.records.some(r=>r.answer_page?.gloss_en_provenance?.selection_rule==='EXACT_SINGLE_ENTRY_SINGLE_SENSE')) {
-    // Rewrite only when this run actually added a gloss for this scene.
-  }
   const oldExisting=JSON.parse(before);
   if(JSON.stringify(scene)!==JSON.stringify(oldExisting)){
-   const rendered=JSON.stringify(scene,null,2)+'\n';
+   const rendered=before.toString('utf8').startsWith('{\n') ? JSON.stringify(scene,null,2)+'\n' : JSON.stringify(scene);
    changes.set(p,Buffer.from(rendered));
   }
  }
