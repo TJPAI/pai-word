@@ -3,8 +3,8 @@
   "updated_at": "2026-11-18",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "c3125f9479f2e969f042a7027f53e7a197723785",
-  "version": "V277_SC0143_0150_NATIVE_GLOSS",
+  "verified_base_head": "71996702fd790050478a372a56ca9b786be949e4",
+  "version": "V278_SC0151_0158_SOURCE_GLOSSES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,11 +1077,11 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V277-SC0143-0150-SOURCE-GLOSS-20261118",
+  "handoff_id": "SC1341-V278-SC0151-0158-ENGLISH-GLOSS-20261118",
   "next_tasks": [
-    "Run full 1341 scene index SHA verifier; no global PASS yet.",
-    "Run remaining SC0151..SC1341 automation in real full checkout with one scene-index coherent git commit.",
-    "Produce field completeness report and independent CG-QA review handoff for new content."
+    "Run full1341 integrity CI and verify actual workflow completion, not assume new workflow ran.",
+    "If full master pass, automate SC0159..1341 from pinned Kaikki single sense, keep test-only.",
+    "Expand independent sense/scene bilingual examples and POS/IPA source selection; QA must independently verify."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1250,5 +1250,22 @@
       "end": 165,
       "batch_size": 3000
     }
+  },
+  "v278": {
+    "scene_range": "SC50-0151..SC50-0158",
+    "scene_documents_updated": 8,
+    "new_english_glosses": 66,
+    "index_commit": "71996702fd790050478a372a56ca9b786be949e4",
+    "pipeline_code_commits": [
+      "5cf9d0905a0918f07c3ece7a5a8a2276bee4e77b",
+      "10f647b5a55904fb815d73e5133ab181a2b24b15",
+      "17289da658e8e47e6f0828db9b09d3ccf0b8d04f"
+    ],
+    "full_1341_verification": "NOT_CONFIRMED",
+    "actions_run": "NOT_CONFIRMED",
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false
   }
 }
