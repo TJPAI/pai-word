@@ -719,42 +719,42 @@
     "SC50-0143": {
       "path": "tools/scene1341_master/production/scenes/SC50-0143.json",
       "records": 235,
-      "git_blob_sha1": "cf19d4e0ba9ca06d8470d112f3d9798a538dbb03"
+      "git_blob_sha1": "924e46639d7a41de2f3a22465fb137b534058c7d"
     },
     "SC50-0144": {
       "path": "tools/scene1341_master/production/scenes/SC50-0144.json",
       "records": 251,
-      "git_blob_sha1": "aed5c58a1668c3f08bad9ff93a77861ff81df261"
+      "git_blob_sha1": "06dd722a05d759ad0dd76b797543f1e1b6cd70bc"
     },
     "SC50-0145": {
       "path": "tools/scene1341_master/production/scenes/SC50-0145.json",
       "records": 226,
-      "git_blob_sha1": "8496e6afcd2f245e743f3f160906731f44797c48"
+      "git_blob_sha1": "0e3bde489cc6f229bf8d1bf13e9214a00fc3e207"
     },
     "SC50-0146": {
       "path": "tools/scene1341_master/production/scenes/SC50-0146.json",
       "records": 225,
-      "git_blob_sha1": "29806587f4686614e113f2c3a1a6379e78cd4660"
+      "git_blob_sha1": "1c6f0cf0b25f57f542d7eb322284ac4ed0345251"
     },
     "SC50-0147": {
       "path": "tools/scene1341_master/production/scenes/SC50-0147.json",
       "records": 209,
-      "git_blob_sha1": "366d4cc326702a5ee2a82e3c36b0e6b54275b5d6"
+      "git_blob_sha1": "63037c005eef82221829dbb1b4ceb76bbfeb0606"
     },
     "SC50-0148": {
       "path": "tools/scene1341_master/production/scenes/SC50-0148.json",
       "records": 215,
-      "git_blob_sha1": "e7325aaa637447f37aece7b65f685aae2eb72e25"
+      "git_blob_sha1": "8f5075d033e66937e3f089d05d4e38c27832980c"
     },
     "SC50-0149": {
       "path": "tools/scene1341_master/production/scenes/SC50-0149.json",
       "records": 207,
-      "git_blob_sha1": "0aef6b9091ce964bec330583c36b8bda7c7d7b8d"
+      "git_blob_sha1": "c8b664e90bd98104d8f9c45d6254fab3f24c639b"
     },
     "SC50-0150": {
       "path": "tools/scene1341_master/production/scenes/SC50-0150.json",
       "records": 189,
-      "git_blob_sha1": "a25349a9912ff87d62254e414032cd488a8068c3"
+      "git_blob_sha1": "c15da57e433da60861bd15031c6997cf27b9fef6"
     },
     "SC50-0151": {
       "path": "tools/scene1341_master/production/scenes/SC50-0151.json",
@@ -6714,18 +6714,31 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V276",
-    "content_baseline": "V275_PLUS_SC0135_0139_REMOTE_BLOB_RECONCILIATION",
+    "version": "V277",
+    "content_baseline": "V276_PLUS_SC0143_SC0150_SOURCE_GLOSS",
     "published_date": "2026-11-18",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "同步SC0135–0139远端场景Blob指针；不虚报新增释义",
+    "headline": "SC0143～SC0150新增86条Kaikki唯一义项英文释义（待审）",
     "changes": [
       {
-        "category": "index_pointer_reconciliation",
-        "count": 0
+        "category": "answer_page_gloss_en_source_pinned",
+        "count": 86
+      },
+      {
+        "category": "scene_documents_updated",
+        "count": 8
       }
     ],
-    "changed_scene_ids": [],
+    "changed_scene_ids": [
+      "SC50-0143",
+      "SC50-0144",
+      "SC50-0145",
+      "SC50-0146",
+      "SC50-0147",
+      "SC50-0148",
+      "SC50-0149",
+      "SC50-0150"
+    ],
     "qa_stage": "待审",
     "release_allowed": false,
     "srs_eligible": false
