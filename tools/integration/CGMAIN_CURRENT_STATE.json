@@ -3,7 +3,7 @@
   "updated_at": "2026-11-18",
   "role": "CG-MAIN",
   "branch": "cg-main-fourline-integration-20261026",
-  "verified_parent_head": "5720fcd1f3d1cac796ef0d2a378d40c80328ff57",
+  "verified_parent_head": "f02c820a80f7176567a1e77ba8f02b9255b83197",
   "phase1": {
     "scenes": [
       "SC50-0001",
@@ -524,5 +524,23 @@
     "iphone": "not verified",
     "deployment": "not performed",
     "full_home_parity": "still incomplete"
+  },
+  "scene1341_display_bookmark_parity": {
+    "status": "COMMITTED_CI_AND_IPHONE_PENDING",
+    "implementation_commits": [
+      "60db6c28730ae132fccfff0bf5bc7235842ac821",
+      "bff8c73f183ca3695fcf5b9fbe87df185d54c603"
+    ],
+    "test_commits": [
+      "4da3ed9d1bf138bdb2af1f207a556c2335136e03",
+      "9da2be159601714a917b8b4afc8f2156c39f2e43"
+    ],
+    "ci_workflow_commit": "f02c820a80f7176567a1e77ba8f02b9255b83197",
+    "fix": "Use already-existing Scene1341 UI-only bookmark store for last scene, card cursor and preferred question/answer face; updates on phase transitions and exit; recent button works for any 1341 index scene even outside local 14-scene pack; initialization no longer destroys bookmark",
+    "isolation": "Separate localStorage namespace, no grade/queue/KU/SRS",
+    "source_native": "Scene500 home-dashboard recent/continue and learning cursor behavior",
+    "remaining": "Native home controller still separate; exact Safari visual parity and CI unverified; Master SC0027 SHA mismatch pending",
+    "srs_writes": 0,
+    "deployment": "none"
   }
 }
