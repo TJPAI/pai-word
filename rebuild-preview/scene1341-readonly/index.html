@@ -616,7 +616,9 @@ async function load(){
   // Distinguish the legacy-card count from actual source-exact Phase1 overrides.
   set('scope',$('scope').textContent+' · '+phase1StudyOverlayStatus+scene25TestStatus);
   set('status',$('status').textContent+' · '+phase1StudyOverlayStatus+scene25TestStatus);
-  if(!countByScene.has(lastScene))lastScene=[...countByScene.keys()][0];
+  // A valid bookmark may point to one of the 1,341 Master-only scenes not
+  // present in the legacy 14-scene teaching pack. Preserve its identity.
+  if(!catalog.some(scene=>scene.id===lastScene))lastScene=[...countByScene.keys()][0];
   set('continue-name',label(lastScene));
   set('continue-description','可体验 '+available(lastScene)+' 条英文教学词卡 · 测试状态不保留');
   $('continue').disabled=!available(lastScene);
