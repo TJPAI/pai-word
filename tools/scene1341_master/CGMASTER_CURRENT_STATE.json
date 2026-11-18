@@ -3,8 +3,8 @@
   "updated_at": "2026-11-18",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "e8bf360a70cfb9321bd6fb8a48ab28e5da0b8cbd",
-  "version": "V275_PARTIAL_BULK_SC0126_SC0134_SOURCE_PINNED_GLOSSES",
+  "verified_base_head": "c3125f9479f2e969f042a7027f53e7a197723785",
+  "version": "V277_SC0143_0150_NATIVE_GLOSS",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,12 +1077,11 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V275-SC0126-0134-BULK-RECONCILED-20261118",
+  "handoff_id": "SC1341-V277-SC0143-0150-SOURCE-GLOSS-20261118",
   "next_tasks": [
-    "Run full-1341 SHA verifier on current production branch before accepting full catalog integrity.",
-    "Run batch_enrich_master.mjs on full Git checkout, preferentially SC0135 onward, controlled 3000-association batches with atomic stage/commit.",
-    "Produce coverage report for IPA/POS/Chinese and English glosses/examples/collocations/usage and QA pending.",
-    "Do not upgrade editorial QA states without CG-QA identity-pinned evidence."
+    "Run full 1341 scene index SHA verifier; no global PASS yet.",
+    "Run remaining SC0151..SC1341 automation in real full checkout with one scene-index coherent git commit.",
+    "Produce field completeness report and independent CG-QA review handoff for new content."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1200,5 +1199,25 @@
     "full1341_integrity_check": "NOT_RUN",
     "status": "PARTIAL_BATCH_PUBLISHED_TEST_ONLY",
     "next": "Execute local full-checkout batch pipeline and full 1341 SHA regression before expanding release"
+  },
+  "v276": {
+    "scene_range": "SC50-0135..SC50-0142",
+    "scene_documents_updated": 8,
+    "new_english_glosses": 128,
+    "release_index_commit": "8fd0bad24d747baf880541be065f4da0a3432113",
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false
+  },
+  "v277": {
+    "scene_range": "SC50-0143..SC50-0150",
+    "scene_documents_updated": 8,
+    "new_english_glosses": 86,
+    "release_index_commit": "c3125f9479f2e969f042a7027f53e7a197723785",
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false
   }
 }
