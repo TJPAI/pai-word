@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const start=source.indexOf('function submitSceneSearch()');
+assert.ok(start>0);
+const block=source.slice(start,start+650);
+assert.match(block,/filter=\$\('search'\)\.value/);
+assert.match(block,/category!=='全部'/);
+assert.match(block,/category='全部';renderCategories\(\)/);
+assert.match(block,/updateSceneRecommendations\(\)/);
+assert.match(block,/addEventListener\('click',submitSceneSearch\)/);
+assert.match(block,/addEventListener\('keydown',event=>/);
+assert.match(block,/event\.key==='Enter'&&!event\.isComposing/);
+assert.match(block,/event\.preventDefault\(\);submitSceneSearch\(\)/);
+assert.match(source,/btn\.addEventListener\('click',\(\)=>openMasterScene\(sc\.id\)\)/);
+console.log('PASS: recommendation click and keyboard Enter share global search; scene entry preserved');
