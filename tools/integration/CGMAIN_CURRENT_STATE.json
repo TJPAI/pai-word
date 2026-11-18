@@ -559,5 +559,19 @@
     "iphone_safari": "not verified",
     "deployment": "none",
     "remaining": "Native home/controller parity, iPhone visual and gestures, independent 1341 Git SHA check"
+  },
+  "scene1341_entry_race_20261118": {
+    "status": "COMMITTED_CI_AND_SAFARI_PENDING",
+    "source_commit": "545d48918d3db4f7a6ace1a752366fb45f0289b8",
+    "test_commit": "a5cdcab04f854fb493287d97787b3d3443e5aa77",
+    "workflow_commit": "c6d60cfc8921131124074569098f944e7b4f3efe",
+    "behavior": "Separate scene requests are guarded by last-click-wins token, duplicate same-scene taps coalesced. Older requests cannot enter study, overwrite visible errors or trigger home rerender after newer selection.",
+    "srs_writes": 0,
+    "qa_promotion": false,
+    "source_verification": "Code assertions committed, CI outcome unverified",
+    "safari": "not tested",
+    "deployment": "none",
+    "master_version_seen": "V277_SC0143_0150_NATIVE_GLOSS",
+    "remaining": "Native Scene500 home/controller convergence, 1341-scene SHA full audit, iPhone E2E"
   }
 }
