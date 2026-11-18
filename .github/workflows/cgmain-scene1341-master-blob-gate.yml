@@ -8,6 +8,7 @@ on:
       - 'tools/integration/verify-scene1341-master-blob-index.mjs'
       - 'tools/integration/test-scene1341-master-blob-index.mjs'
       - 'tools/integration/test-scene1341-master-rollover.mjs'
+      - 'tools/integration/test-scene1341-scene-entry-race.mjs'
       - 'rebuild-preview/scene1341-readonly/index.html'
       - 'tools/integration/CGMAIN_CURRENT_STATE.json'
       - '.github/workflows/cgmain-scene1341-master-blob-gate.yml'
@@ -40,5 +41,7 @@ jobs:
         run: node source/tools/integration/test-scene1341-master-blob-index.mjs
       - name: Verify index rollover remains fail-closed
         run: node source/tools/integration/test-scene1341-master-rollover.mjs
+      - name: Verify Scene1341 scene-entry race guard
+        run: node source/tools/integration/test-scene1341-scene-entry-race.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
