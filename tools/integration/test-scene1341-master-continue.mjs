@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+assert.match(source,/\$\('continue'\)\.disabled=!catalog\.some\(scene=>scene\.id===lastScene\)/);
+assert.match(source,/if\(catalog\.some\(scene=>scene\.id===lastScene\)\)\{\s*\$\('continue'\)\.disabled=false/);
+assert.doesNotMatch(source,/\$\('continue'\)\.disabled=!available\(lastScene\)/);
+assert.match(source,/\$\('continue'\)\.addEventListener\('click',\(\)=>void openMasterScene\(lastScene,true\)\)/);
+assert.match(source,/scene=await masterSceneAdapter\.fetchMasterScene\(masterSceneSnapshot,id\)/);
+assert.match(source,/displayBookmark\.save\(sceneId,index,face\)/);
+console.log('PASS: continue accepts Master-only catalog bookmark and remains SHA-gated, UI-only');
