@@ -7,6 +7,8 @@ on:
     paths:
       - 'tools/integration/verify-scene1341-master-blob-index.mjs'
       - 'tools/integration/test-scene1341-master-blob-index.mjs'
+      - 'tools/integration/test-scene1341-master-rollover.mjs'
+      - 'rebuild-preview/scene1341-readonly/index.html'
       - 'tools/integration/CGMAIN_CURRENT_STATE.json'
       - '.github/workflows/cgmain-scene1341-master-blob-gate.yml'
   workflow_dispatch:
@@ -36,5 +38,7 @@ jobs:
           node-version: '22'
       - name: Verify synthetic 1341-scene regression
         run: node source/tools/integration/test-scene1341-master-blob-index.mjs
+      - name: Verify index rollover remains fail-closed
+        run: node source/tools/integration/test-scene1341-master-rollover.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
