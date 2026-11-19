@@ -21,7 +21,12 @@ jobs:
           node --check tools/scene1341_master/audit_kaikki_evidence_gaps.mjs
           node tools/scene1341_master/audit_kaikki_evidence_gaps.mjs 1 150 > /tmp/cgmaster-evidence-gaps.json
           cat /tmp/cgmaster-evidence-gaps.json
+          node --check tools/scene1341_master/ipa_consensus_probe.mjs
+          node tools/scene1341_master/ipa_consensus_probe.mjs 1 150 > /tmp/cgmaster-ipa-consensus.json
+          cat /tmp/cgmaster-ipa-consensus.json
       - uses: actions/upload-artifact@v4
         with:
           name: cgmaster-evidence-gaps-sc0001-sc0150
-          path: /tmp/cgmaster-evidence-gaps.json
+          path: |
+            /tmp/cgmaster-evidence-gaps.json
+            /tmp/cgmaster-ipa-consensus.json
