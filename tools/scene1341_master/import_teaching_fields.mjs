@@ -18,7 +18,7 @@ if(idx.scene_count!==1341||idx.source_associations!==230289||idx.release_allowed
 const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
 const allowed=['example_en','example_zh','collocations','usage_note'];
 const valid=v=>typeof v==='string'&&v.trim().length>=3&&v.trim().length<=800&&!/[<>]/.test(v);
-const lines=fs.readFileSync(input,'utf8').split(/\\r?\\n/).filter(Boolean);
+const lines=fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean);
 const seen=new Set(),byScene=new Map();
 for(const [i,line] of lines.entries()){
  const r=JSON.parse(line),key=r.scene_id+':'+r.source_final_row;
