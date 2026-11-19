@@ -50,6 +50,19 @@ try{
   const changed=exec('git',['diff','--name-only'],wt).split('\n').filter(Boolean);
   const allowed=p=>p===indexRel||p==='tools/scene1341_master/CGMASTER_CURRENT_STATE.json'||/^tools\/scene1341_master\/production\/scenes\/SC50-\d{4}\.json$/.test(p);
   if(changed.some(p=>!allowed(p)))throw Error('unexpected changed paths');
+  if(!changed.includes(indexRel)||!changed.includes('tools/scene1341_master/CGMASTER_CURRENT_STATE.json'))throw Error('release index/checkpoint not staged');
+  const sceneFiles=changed.filter(p=>p.startsWith('tools/scene1341_master/production/scenes/'));
+  if(sceneFiles.length!==result.changed_scenes)throw Error('changed scene count mismatch');
+  for(const p of sceneFiles){
+   const old=JSON.parse(exec('git',['show',base+':'+p],wt));
+   const now=JSON.parse(fs.readFileSync(path.join(wt,p),'utf8'));
+   if(old.records.length!==now.records.length)throw Error('record count changed '+p);
+   for(let i=0;i<old.records.length;i++){
+    const a=old.records[i],b=now.records[i];
+    if(a.record_id!==b.record_id||a.source_final_row!==b.source_final_row||JSON.stringify(a.source)!==JSON.stringify(b.source)||a.scene_id!==b.scene_id)throw Error('immutable source record changed '+p);
+    if(a.release_allowed!==false||b.release_allowed!==false||a.srs_eligible!==false||b.srs_eligible!==false)throw Error('SRS gate changed '+p);
+   }
+  }
   exec('git',['add','--','tools/scene1341_master/production','tools/scene1341_master/CGMASTER_CURRENT_STATE.json'],wt);
   exec('git',['commit','-m','data(cg-master): '+next+' source-safe IPA/POS '+result.changed_rows+' records'],wt);
   const commit=exec('git',['rev-parse','HEAD'],wt);
