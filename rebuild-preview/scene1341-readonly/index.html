@@ -750,9 +750,10 @@ async function initializeFullMasterSceneIndex(){
  }
 }
 async function openMasterScene(id,resume=false){
- // Latest user intent wins even if an older GitHub fetch resolves last.
- // Duplicate taps of the same still-loading scene are coalesced.
- if(masterSceneLoading.has(id))return;
+ // Latest user intent wins, including A -> B -> A taps while A is
+ // still loading. Do not discard the final A intent as a duplicate.
+ // Concurrent requests may share network cache, but only the newest token
+ // is allowed to merge cards, open study, or display an error.
  const request=++latestSceneEntryRequest;
  masterSceneLoading.add(id);
  sceneEntryError='';
