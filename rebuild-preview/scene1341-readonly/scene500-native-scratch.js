@@ -144,7 +144,12 @@
   pendingAutoRestore=(pendingAutoRestore||activeMode)&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning';
   reset();
   const result=previousRender.apply(this,args);
-  if(state.view==='learning')requestAnimationFrame(()=>{initScratch();if(pendingAutoRestore&&activeSurface&&!activeMode&&state.view==='learning'){pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.();}});
+  if(state.view!=='learning'){pendingAutoRestore=false;return result;}
+  requestAnimationFrame(()=>{
+   if(state.view!=='learning'){pendingAutoRestore=false;return;}
+   initScratch();
+   if(pendingAutoRestore&&activeSurface&&!activeMode){pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.();}
+  });
   return result;
  };
  if(state.view==='learning')requestAnimationFrame(initScratch);
