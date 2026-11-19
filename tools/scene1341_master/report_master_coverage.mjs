@@ -3,6 +3,7 @@
  * Read-only coverage report across the complete frozen Scene1341 master.
  * node tools/scene1341_master/report_master_coverage.mjs
  * Does not modify scene, identity, labels or release metadata.
+ * Coverage CI persists an exact per-release snapshot for UI and QA consumption.
  */
 import fs from 'node:fs';
 import path from 'node:path';
