@@ -19,10 +19,10 @@ function sourceSafe(r,native,values){
   if(!native||native.expression_exact!==r.question_page?.expression||!Array.isArray(native.candidates)||!native.candidates.length)return {ipa:null,pos:null};
   const candidates=native.candidates;
   if(candidates.some(c=>c.source_word!==native.expression_exact))return {ipa:null,pos:null};
-  const pos=consensus(candidates.map(c=>c.pos));
+  const pos=candidates.every(c=>canonical(c.pos))?consensus(candidates.map(c=>c.pos)):null;
   const ipaLists=candidates.map(c=>Array.isArray(c.ipa_candidates)?c.ipa_candidates.map(canonical).filter(Boolean):[]);
   // Only a single IPA shared across every native entry is unambiguous.
-  const ipa=ipaLists.every(xs=>xs.length===1)&&consensus(ipaLists.map(xs=>xs[0]))||null;
+  const ipa=ipaLists.every(xs=>xs.length===1)?consensus(ipaLists.map(xs=>xs[0])):null;
   return {ipa:values.ipa?null:ipa,pos:values.pos?null:pos};
 }
 
