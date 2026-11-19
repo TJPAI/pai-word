@@ -652,5 +652,16 @@
     "safari": "pending",
     "deployment": "not performed",
     "srs_writes": 0
+  },
+  "scene1341_retry_request_guard_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "abd3974b71c75b5aea21e9a163e0ef55afb6a374",
+    "test_commit": "0c0da39c9e643af02223e32c818390d257f49ba5",
+    "workflow_commit": "5bcc12a6963e3a9ba922205565c1eb1c2bb06347",
+    "change": "SHA mismatch retry checks request token after index resolve and scene fetch before publishing snapshot, preventing stale retries overwriting active selection",
+    "ci": "pending",
+    "safari": "pending",
+    "deployment": "not performed",
+    "srs_writes": 0
   }
 }
