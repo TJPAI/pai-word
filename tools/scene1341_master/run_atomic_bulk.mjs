@@ -80,7 +80,14 @@ try{
   after.master_release={metadata_schema:'scene1341-master-release/v1',version:next,content_baseline:'ATOMIC_KAIKKI_SOURCE_GLOSSES_SC'+String(start).padStart(4,'0')+'_SC'+String(end).padStart(4,'0'),published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'Kaikki唯一义项来源绑定英文释义批量增补（待审）',changes:[{category:'answer_page_gloss_en_source_pinned',count:changedRecords},{category:'scene_documents_updated',count:scenes.length}],changed_scene_ids:scenes.map(p=>path.basename(p,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
   fs.writeFileSync(afterPath,JSON.stringify(after,null,2)+'\n');
   validate(wt);
-  run('git',['add','--',dir],wt);
+  const checkpointPath=path.join(wt,'tools/scene1341_master/CGMASTER_CURRENT_STATE.json');
+  const checkpoint=JSON.parse(fs.readFileSync(checkpointPath,'utf8'));
+  checkpoint.version=next+'_ATOMIC_KAIKKI_SOURCE_GLOSSES';
+  checkpoint.updated_at=new Date().toISOString().slice(0,10);
+  checkpoint.handoff_id='SC1341-'+next+'-ATOMIC-SC'+String(start).padStart(4,'0')+'-SC'+String(end).padStart(4,'0');
+  checkpoint['v'+next.slice(1)]={scene_range:'SC50-'+String(start).padStart(4,'0')+'..SC50-'+String(end).padStart(4,'0'),scene_documents_updated:scenes.length,new_english_glosses:changedRecords,qa_stage:'待审',release_allowed:false,srs_eligible:false,full1341_integrity_verified:true};
+  fs.writeFileSync(checkpointPath,JSON.stringify(checkpoint,null,2)+'\n');
+  run('git',['add','--',dir,'tools/scene1341_master/CGMASTER_CURRENT_STATE.json'],wt);
   run('git',['commit','-m','data(cg-master): '+next+' atomic Kaikki enrichment '+start+'-'+end+' ('+changedRecords+' new glosses)'],wt);
   const commit=run('git',['rev-parse','HEAD'],wt);
   // The remote cannot be force-updated. A concurrent writer makes this push fail.
