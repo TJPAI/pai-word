@@ -1,10 +1,10 @@
 {
   "schema": "cgmaster-current-state/v1",
-  "updated_at": "2026-11-18",
+  "updated_at": "2026-11-19",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "71996702fd790050478a372a56ca9b786be949e4",
-  "version": "V278_SC0151_0158_SOURCE_GLOSSES",
+  "verified_base_head": "e07d7a00e3d886a0d2cccb7bd3c528b89e3adf86",
+  "version": "V279_SC0159_SC0167_SOURCE_GLOSSES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,11 +1077,11 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V278-SC0151-0158-ENGLISH-GLOSS-20261118",
+  "handoff_id": "SC1341-V279-SC0159-SC0167-KAIKKI-20261119",
   "next_tasks": [
-    "Run full1341 integrity CI and verify actual workflow completion, not assume new workflow ran.",
-    "If full master pass, automate SC0159..1341 from pinned Kaikki single sense, keep test-only.",
-    "Expand independent sense/scene bilingual examples and POS/IPA source selection; QA must independently verify."
+    "Run full 1341-blob index SHA and 230289 source identity audit before calling complete.",
+    "Dispatch cgmaster-atomic-bulk workflow on this branch to accelerate from SC0168 (manual dispatch required).",
+    "Expand bilingual examples, IPA, POS, collocations and usage with source pins and QA gates."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1263,6 +1263,20 @@
     ],
     "full_1341_verification": "NOT_CONFIRMED",
     "actions_run": "NOT_CONFIRMED",
+    "qa_stage": "待审",
+    "first_review_confirmed": 0,
+    "release_allowed": false,
+    "srs_eligible": false
+  },
+  "v279": {
+    "scene_range": "SC50-0159..SC50-0167",
+    "scene_documents_updated": 9,
+    "new_english_glosses": 89,
+    "source": "Kaikki exact expression, single native entry and sense",
+    "index_commit": "e07d7a00e3d886a0d2cccb7bd3c528b89e3adf86",
+    "index_sha": "60e48ebb4f0c0f054f74b688ec3e5ffa12655398",
+    "sampled_file_blobs_verified": 9,
+    "full1341_integrity_check": "NOT_RUN",
     "qa_stage": "待审",
     "first_review_confirmed": 0,
     "release_allowed": false,
