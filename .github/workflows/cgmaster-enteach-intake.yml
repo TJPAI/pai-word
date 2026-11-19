@@ -39,6 +39,10 @@ jobs:
         run: |
           cd master
           node tools/scene1341_master/audit_enteach_import_readiness.mjs ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-readiness.json
+      - name: Validate complete two-page ready packages
+        run: |
+          cd master
+          node tools/scene1341_master/validate_two_page_import.mjs ../cgmaster-enteach-matched-candidates-ready.jsonl | tee ../cgmaster-enteach-two-page-validation.json
       - name: Upload candidate evidence and HOLD summary
         if: always()
         uses: actions/upload-artifact@v4
@@ -49,6 +53,7 @@ jobs:
             cgmaster-enteach-matched-candidates-holds.jsonl
             cgmaster-enteach-matching-summary.json
             cgmaster-enteach-readiness.json
+            cgmaster-enteach-two-page-validation.json
             cgmaster-enteach-matched-candidates-ready.jsonl
             cgmaster-enteach-matched-candidates-blocked.jsonl
           if-no-files-found: warn
