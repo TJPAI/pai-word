@@ -13,7 +13,7 @@ const blob=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0'
 const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));
 if(manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE')throw Error('unexpected manifest status');
 const index=JSON.parse(fs.readFileSync('tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json','utf8'));
-const summary={packs:0,author_drafts:0,matched_unique:0,held_no_match:0,held_ambiguous:0,held_incomplete:0,held_source_mismatch:0};
+const summary={packs:0,author_drafts:0,matched_unique:0,held_no_match:0,held_ambiguous:0,held_incomplete:0,held_source_mismatch:0,held_meaning_conflict:0};
 const sceneCache=new Map(),out=[],holds=[],usedTargets=new Set(),seenAuthorIds=new Set();
 function loadScene(id){
  if(sceneCache.has(id))return sceneCache.get(id);
@@ -39,7 +39,12 @@ for(const pack of manifest.assets.packs){
   const s=loadScene(d.scene_id);
   if(!s){summary.held_no_match++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,reason:'SCENE_NOT_FOUND'});continue;}
   const candidates=s.records.filter(r=>norm(r.question_page?.expression)===norm(d.expression)&&norm(r.answer_page?.meaning_zh)===norm(d.sense_zh));
-  if(!candidates.length){summary.held_no_match++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,expression:d.expression,reason:'NO_EXACT_EXPRESSION_AND_MEANING'});continue;}
+  if(!candidates.length){
+   const expressionMatches=s.records.filter(r=>norm(r.question_page?.expression)===norm(d.expression));
+   if(expressionMatches.length){summary.held_meaning_conflict++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,expression:d.expression,author_meaning:d.sense_zh,reason:'EXPRESSION_MATCH_MEANING_CONFLICT',master_candidates:expressionMatches.slice(0,8).map(r=>({source_final_row:r.source_final_row,meaning_zh:r.answer_page?.meaning_zh}))});}
+   else {summary.held_no_match++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,expression:d.expression,reason:'NO_EXPRESSION_MATCH'});}
+   continue;
+  }
   if(candidates.length!==1){summary.held_ambiguous++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,expression:d.expression,reason:'MULTIPLE_MASTER_SENSES',matches:candidates.length});continue;}
   const target=candidates[0],a=d.answer||{};
   const targetKey=d.scene_id+':'+target.source_final_row;
@@ -52,7 +57,7 @@ for(const pack of manifest.assets.packs){
  }
 }
 if(summary.author_drafts!==manifest.assets.packs.reduce((n,p)=>n+p.records,0))throw Error('manifest count mismatch');
-if(summary.matched_unique+summary.held_no_match+summary.held_ambiguous+summary.held_incomplete+summary.held_source_mismatch!==summary.author_drafts)throw Error('candidate accounting mismatch');
+if(summary.matched_unique+summary.held_no_match+summary.held_ambiguous+summary.held_incomplete+summary.held_source_mismatch+summary.held_meaning_conflict!==summary.author_drafts)throw Error('candidate accounting mismatch');
 fs.writeFileSync(outFile,out.map(x=>JSON.stringify(x)).join('\n')+(out.length?'\n':''));
 const holdFile=outFile.replace(/\.jsonl$/,'-holds.jsonl');
 fs.writeFileSync(holdFile,holds.map(x=>JSON.stringify(x)).join('\n')+(holds.length?'\n':''));
