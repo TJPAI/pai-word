@@ -97,7 +97,7 @@ try{
   const commit=run('git',['rev-parse','HEAD'],wt);
   // The remote cannot be force-updated. A concurrent writer makes this push fail.
   run('git',['push','origin','HEAD:refs/heads/'+BRANCH],wt,true);
-  console.log(JSON.stringify({status:'PUSHED_AND_VALIDATED',expected_remote:expected,commit,release:next,changed_scene_documents:scenes.length,new_glosses:changedRecords,associations:230289,qa:'待审',srs:false}));
+  console.log(JSON.stringify({status:'PUSHED_AND_VALIDATED',expected_remote:expected,commit,release:next,changed_scene_documents:scenes.length,new_glosses:changedFields.glosses,new_english_examples:changedFields.examples,associations:230289,qa:'待审',srs:false}));
   }
  }
 }finally{
