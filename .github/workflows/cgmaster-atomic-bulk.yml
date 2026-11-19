@@ -41,10 +41,13 @@ jobs:
         run: |
           node --check tools/scene1341_master/batch_enrich_master.mjs
           node --check tools/scene1341_master/run_atomic_bulk.mjs
+          node --check tools/scene1341_master/reconcile_live_index_preflight.mjs
       - name: Configure commit identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      - name: Audit all 1341 scenes and reconcile stale SHA pointers (identity guarded)
+        run: node tools/scene1341_master/reconcile_live_index_preflight.mjs
       - name: Run protected full-index validation and batch
         env:
           SCENE_START: ${{ inputs.start || '176' }}
