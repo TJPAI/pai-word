@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const scratch=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/scene500-native-scratch.js',import.meta.url),'utf8');
+const study=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+assert.match(scratch,/const previousRender=window\.render/);
+assert.match(scratch,/pendingAutoRestore=\(pendingAutoRestore\|\|activeMode\)&&window\.PAI_SCRATCH_AUTO_TRANSITION===true/);
+assert.match(scratch,/if\(state\.view!=='learning'\)\{pendingAutoRestore=false;return result;\}/);
+assert.match(scratch,/requestAnimationFrame\(\(\)=>\{\s*if\(state\.view!=='learning'\)\{pendingAutoRestore=false;return;\}/);
+assert.match(scratch,/if\(pendingAutoRestore&&activeSurface&&!activeMode\)\{pendingAutoRestore=false;window\.PAI_SCRATCH_REENTER\?\.\(\);\}/);
+assert.match(scratch,/window\.PAI_SCRATCH_BEGIN_RATING=\(\)=>\{if\(activeMode\)ratingWasDrawing=true\}/);
+assert.match(scratch,/window\.PAI_SCRATCH_FINISH_RATING=\(\)=>\{/);
+assert.match(scratch,/if\(state\.view!=='learning'\|\|document\.hidden\|\|!expectedKU\|\|window\.getVisibleLearningUnit\?\.\(\)\?\.k!==expectedKU\)return/);
+assert.match(study,/if\(keepDrawing\)window\.PAI_SCRATCH_AUTO_TRANSITION=true/);
+assert.match(study,/if\(!keepDrawing\)resetScratch\(\)/);
+assert.match(study,/if\(keepDrawing\)window\.PAI_SCRATCH_AUTO_TRANSITION=false/);
+assert.match(scratch,/setTimeout\(\(\)=>\{[\s\S]*?\},600\)/);
+console.log('PASS: scratch restoration is scoped to current study view and KU; auto and rating hooks guarded');
