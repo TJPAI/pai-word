@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const begin=source.indexOf('async function openMasterScene(');
+const end=source.indexOf('let exampleToWordPending=false;',begin);
+assert.ok(begin>0&&end>begin);
+const entry=source.slice(begin,end);
+assert.match(entry,/const current=await masterSceneAdapter\.resolveMasterSceneIndex\(\)/);
+assert.match(entry,/scene=await masterSceneAdapter\.fetchMasterScene\(current,id\)/,'initial blob fetch uses request-local verified index');
+assert.match(entry,/const previous=current;/,'mismatch comparison uses same request-local index');
+assert.match(entry,/if\(request!==latestSceneEntryRequest\)return;\s*if\(fresh\.commit===previous\.commit/,'retry respects last-tap guard');
+assert.match(entry,/scene=await masterSceneAdapter\.fetchMasterScene\(fresh,id\)/);
+assert.doesNotMatch(entry,/fetchMasterScene\(masterSceneSnapshot,id\)/);
+assert.doesNotMatch(entry,/const previous=masterSceneSnapshot/);
+console.log('PASS: concurrent Master scene entry cannot fetch or compare another request\'s mutable snapshot');
