@@ -630,5 +630,16 @@
     "safari": "pending",
     "deployment": "not performed",
     "srs_writes": 0
+  },
+  "scene1341_startup_entry_race_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "7aadab7f25e1c2b65ee9fc39e8b4b573688e5b06",
+    "test_commit": "a5478da831f97521a8410544a261477d2224726e",
+    "workflow_commit": "0cf78778a6c6393be5a4da280c93479b097ad5d6",
+    "change": "Scene entry no longer waits for startup initializeFullMasterSceneIndex that can race with later scene entry and overwrite its snapshot. Scene entry independently imports adapter, resolves latest atomic index, SHA-gates fetch.",
+    "ci": "pending",
+    "safari": "pending",
+    "deployment": "not performed",
+    "srs_writes": 0
   }
 }
