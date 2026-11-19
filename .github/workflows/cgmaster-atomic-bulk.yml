@@ -1,5 +1,5 @@
 name: CG-MASTER atomic bulk production
-# Source-pinned IPA consensus + POS/gloss enrichment; guarded 1201-1341-scene batch.
+# Source-pinned IPA consensus + POS/gloss enrichment; guarded second-pass 0001-0150 POS consensus batch.
 on:
   push:
     branches:
@@ -11,11 +11,11 @@ on:
       start:
         description: 'First 1-based Scene1341 scene number'
         required: true
-        default: '1201'
+        default: '1'
       end:
         description: 'Last 1-based scene number (use up to 250 scenes, large-batch association throughput per run)'
         required: true
-        default: '1341'
+        default: '150'
       batch_size:
         description: 'Target associations per reporting batch'
         required: true
@@ -52,8 +52,8 @@ jobs:
         run: node tools/scene1341_master/reconcile_live_index_preflight.mjs
       - name: Run protected full-index validation and batch
         env:
-          SCENE_START: ${{ inputs.start || '1201' }}
-          SCENE_END: ${{ inputs.end || '1341' }}
+          SCENE_START: ${{ inputs.start || '1' }}
+          SCENE_END: ${{ inputs.end || '150' }}
           SCENE_BATCH: ${{ inputs.batch_size || '3000' }}
         run: |
           node tools/scene1341_master/run_atomic_bulk.mjs --start "$SCENE_START" --end "$SCENE_END" --batch-size "$SCENE_BATCH"
