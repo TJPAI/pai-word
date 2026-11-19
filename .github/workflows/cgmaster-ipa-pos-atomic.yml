@@ -1,5 +1,9 @@
 name: CG-MASTER atomic IPA POS batch
 on:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - .github/workflows/cgmaster-ipa-pos-atomic.yml
   workflow_dispatch:
     inputs:
       max_rows:
