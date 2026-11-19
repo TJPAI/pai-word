@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "8424efb91ab119d11992f49fce981c448ea11450",
-  "version": "V283_ATOMIC_KAIKKI_SOURCE_GLOSSES",
+  "version": "V284_ATOMIC_KAIKKI_SOURCE_GLOSSES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,7 +1077,7 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V283-ATOMIC-SC0221-SC0280",
+  "handoff_id": "SC1341-V284-ATOMIC-SC0281-SC0400",
   "next_tasks": [
     "Verify full 1341 index↔blob contract and update CG-MAIN handoff.",
     "Independent CG-QA source/content review, no automatic 1审.",
@@ -1252,13 +1252,13 @@
     }
   },
   "v278": {
-    "start_scene": 221,
-    "end_scene": 280,
+    "start_scene": 281,
+    "end_scene": 400,
     "batch_size": 3000,
-    "scenes_scanned": 60,
-    "records_scanned": 9773,
-    "new_english_glosses": 638,
-    "scenes_updated": 60,
+    "scenes_scanned": 120,
+    "records_scanned": 19022,
+    "new_english_glosses": 890,
+    "scenes_updated": 117,
     "preexisting_index_sha_mismatches": [],
     "post_write_index_sha_mismatches": [],
     "qa_stage": "待审",
@@ -1346,6 +1346,15 @@
     "scene_range": "SC50-0221..SC50-0280",
     "scene_documents_updated": 60,
     "new_english_glosses": 638,
+    "qa_stage": "待审",
+    "release_allowed": false,
+    "srs_eligible": false,
+    "full1341_integrity_verified": true
+  },
+  "v284": {
+    "scene_range": "SC50-0281..SC50-0400",
+    "scene_documents_updated": 117,
+    "new_english_glosses": 890,
     "qa_stage": "待审",
     "release_allowed": false,
     "srs_eligible": false,
