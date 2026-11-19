@@ -1,0 +1,42 @@
+name: CG-MASTER gloss blocker diagnostics
+on:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - .github/workflows/cgmaster-gloss-gap-diagnostics.yml
+      - tools/scene1341_master/batch_enrich_master.mjs
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        range:
+          - {start: 1, end: 150}
+          - {start: 151, end: 300}
+          - {start: 301, end: 450}
+          - {start: 451, end: 600}
+          - {start: 601, end: 750}
+          - {start: 751, end: 900}
+          - {start: 901, end: 1050}
+          - {start: 1051, end: 1200}
+          - {start: 1201, end: 1341}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate diagnostic syntax
+        run: node --check tools/scene1341_master/batch_enrich_master.mjs
+      - name: Report gloss blockers without modifying production
+        run: |
+          node tools/scene1341_master/batch_enrich_master.mjs --start ${{ matrix.range.start }} --end ${{ matrix.range.end }} --batch-size 3000 --dry-run > gloss-diagnostics.json
+          node -e "const x=require('./gloss-diagnostics.json'); console.log(JSON.stringify({range:[${{ matrix.range.start }},${{ matrix.range.end }}],records:x.records_scanned,gloss_blockers:x.gloss_candidate_diagnostics,eligible_glosses:x.records_enriched,pos:x.pos_enriched,ipa:x.ipa_enriched},null,2))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-gloss-blockers-${{ matrix.range.start }}-${{ matrix.range.end }}
+          path: gloss-diagnostics.json
