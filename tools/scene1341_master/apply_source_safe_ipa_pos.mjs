@@ -16,6 +16,8 @@ const indexPath=path.join(base,'SCENE1341_LIVE_INDEX.json');
 const idx=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(idx.scene_count!==1341||idx.source_associations!==230289||idx.release_allowed!==false||idx.srs_eligible!==false)throw Error('index gate mismatch');
 const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
+const originalIndex=fs.readFileSync(indexPath);
+const originalIndexSha=sha(originalIndex);
 const trim=v=>typeof v==='string'?v.trim():'';
 const unanimous=xs=>xs.length&&xs.every(Boolean)&&new Set(xs).size===1?xs[0]:null;
 const changes=[],pending=[],seenRows=new Set();
@@ -53,6 +55,7 @@ for(let n=start;n<=end;n++){
 if(verifiedRows!==Array.from({length:end-start+1},(_,i)=>idx.scenes['SC50-'+String(i+start).padStart(4,'0')].records).reduce((a,b)=>a+b,0))throw Error('selected scene identity count mismatch');
 if(write&&pending.length){
  // Revalidate the full original index before making any file changes.
+ if(sha(fs.readFileSync(indexPath))!==originalIndexSha)throw Error('concurrent index modification');
  for(let n=1;n<=1341;n++){
   const id='SC50-'+String(n).padStart(4,'0'),meta=idx.scenes[id],raw=fs.readFileSync(meta.path);
   if(sha(raw)!==meta.git_blob_sha1)throw Error('concurrent modification '+id);
