@@ -21,7 +21,7 @@ function run(command,args,cwd){
  if(r.status!==0)throw new Error(command+' '+args.join(' ')+' failed: '+(r.stderr||r.stdout||''));
  return r.stdout.trim();
 }
-const blob=buf=>crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\\0'.replace('\\0','\0'))).update(buf).digest('hex');
+const blob=buf=>crypto.createHash('sha1').update(Buffer.concat([Buffer.from('blob '+buf.length),Buffer.from([0]),buf])).digest('hex');
 const repo=run('git',['rev-parse','--show-toplevel'],process.cwd());
 run('git',['fetch','origin','refs/heads/'+BRANCH+':refs/remotes/origin/'+BRANCH],repo);
 const expected=run('git',['rev-parse','refs/remotes/origin/'+BRANCH],repo);
