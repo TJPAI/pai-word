@@ -11,6 +11,7 @@ const argv=process.argv.slice(2);
 const number=(flag,def)=>{const i=argv.indexOf(flag);return i<0?def:Number(argv[i+1]);};
 const start=number('--start',1),end=number('--end',1341),max=number('--max-rows',3000),write=argv.includes('--write');
 if(write&&!argv.includes('--atomic-release-context'))throw Error('write requires --atomic-release-context; use controlled atomic publisher, not standalone mutation');
+if(write&&!/^V[0-9]+$/.test(process.env.CGMASTER_NEXT_RELEASE||''))throw Error('atomic write requires CGMASTER_NEXT_RELEASE=V<number>');
 if(![start,end,max].every(Number.isInteger)||start<1||end>1341||start>end||max<1)throw Error('invalid range');
 const base='tools/scene1341_master/production';
 const indexPath=path.join(base,'SCENE1341_LIVE_INDEX.json');
@@ -66,6 +67,16 @@ if(write&&pending.length){
   fs.writeFileSync(p.file,raw);
   idx.scenes[p.id].git_blob_sha1=sha(raw);
  }
+ const previous=idx.master_release?.version;
+ if(!/^V[0-9]+$/.test(previous)||Number(process.env.CGMASTER_NEXT_RELEASE.slice(1))!==Number(previous.slice(1))+1)throw Error('release must advance exactly one version');
+ idx.master_release={metadata_schema:'scene1341-master-release/v1',version:process.env.CGMASTER_NEXT_RELEASE,content_baseline:'SOURCE_SAFE_KAIKKI_IPA_POS',published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'Kaikki来源严格一致的音标与词性候选增补（待审）',changes:[{category:'native_ipa_pos_source_pinned',count:changes.length},{category:'scene_documents_updated',count:pending.length}],changed_scene_ids:pending.map(p=>p.id),qa_stage:'待审',release_allowed:false,srs_eligible:false};
  fs.writeFileSync(indexPath,JSON.stringify(idx,null,2)+'\n');
+ const checkpointPath='tools/scene1341_master/CGMASTER_CURRENT_STATE.json';
+ const checkpoint=JSON.parse(fs.readFileSync(checkpointPath,'utf8'));
+ checkpoint.version=process.env.CGMASTER_NEXT_RELEASE+'_ATOMIC_SOURCE_SAFE_IPA_POS';
+ checkpoint.updated_at=new Date().toISOString().slice(0,10);
+ checkpoint.handoff_id='SC1341-'+process.env.CGMASTER_NEXT_RELEASE+'-IPA-POS';
+ checkpoint.latest_ipa_pos_fill={release:process.env.CGMASTER_NEXT_RELEASE,changed_rows:changes.length,changed_scenes:pending.length,qa_stage:'待审',release_allowed:false,srs_eligible:false};
+ fs.writeFileSync(checkpointPath,JSON.stringify(checkpoint,null,2)+'\n');
 }
 console.log(JSON.stringify({mode:write?'LOCAL_WRITE':'DRY_RUN',verified_rows:verifiedRows,changed_rows:touched,changed_scenes:pending.length,changes,qa_stage:'待审',release_allowed:false,srs_eligible:false},null,2));
