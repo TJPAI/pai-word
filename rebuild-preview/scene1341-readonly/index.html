@@ -802,6 +802,9 @@ async function openMasterScene(id,resume=false){
   set('master-live-feed-status','全量Master '+masterSceneSnapshot.commit.slice(0,12)+' · '+id+'已加载'+scene.recordCount+'条原始关联L1测试卡（非正式Sense） · 待审 · SRS禁写');
   if(!available(id))throw Error('NO_VERIFIED_SCENE_CARDS');
   openStudy(id,resume);
+  // Publish the verified release only after the requested scene is ready:
+  // the study badge must reflect the same atomic snapshot as its cards.
+  renderMasterRelease();
   sceneEntryError='';
  }catch(error){
   if(request!==latestSceneEntryRequest)return;
