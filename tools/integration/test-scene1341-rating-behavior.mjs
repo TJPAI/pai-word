@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
+const timers=new Map();let id=0;
+const schedule=(fn,ms)=>{const key=++id;timers.set(key,{fn,ms});return key};
+const unschedule=key=>timers.delete(key);
+const root={};
+vm.runInNewContext(readFileSync(new URL('../../rebuild-preview/scene1341-readonly/scene500-readonly-phase.js',import.meta.url),'utf8'),{window:root,globalThis:root});
+const {createReadOnlyPhaseController}=root.PAI_SCENE500_READONLY_PHASE;
+const done=[],advances=[],updates=[];
+const phase=createReadOnlyPhaseController({schedule,unschedule,onUpdate:s=>updates.push({...s}),onGradeComplete:(grade,key)=>done.push([grade,key]),onAdvance:(grade,key)=>advances.push([grade,key])});
+phase.start('ku-1');
+assert.equal(phase.choose('invalid'),false);
+for(const [grade,ms] of [['again',6000],['hard',4000],['good',2000]]){
+ phase.start('ku-'+grade);
+ assert.equal(phase.choose(grade),true);
+ assert.equal(phase.state().selected,grade);
+ assert.equal(phase.state().revealed,true);
+ const timer=[...timers.entries()].find(([,v])=>v.ms===ms);
+ assert.ok(timer,grade+' schedules native duration');
+ timers.delete(timer[0]);timer[1].fn();
+ assert.equal(done.at(-1)[0],grade);
+ assert.equal(advances.at(-1)[0],grade);
+}
+phase.start('ku-cancel');
+phase.choose('again');
+phase.navigate('ku-next');
+assert.equal(phase.state().selected,null);
+assert.equal(timers.size,0,'navigation cancels grade timer');
+const before=advances.length;
+phase.start('ku-home');phase.choose('good');phase.cancel();
+assert.equal(timers.size,0,'home cancels pending rating');
+assert.equal(advances.length,before,'cancel must not advance or commit');
+assert.equal(done.length,4,'navigation may finish ephemeral grade; cancel does not');
+console.log('PASS: three native grade durations, invalid grade guard, navigation/home cancellation; ephemeral only');
