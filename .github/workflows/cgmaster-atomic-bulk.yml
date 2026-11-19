@@ -11,11 +11,11 @@ on:
       start:
         description: 'First 1-based Scene1341 scene number'
         required: true
-        default: '1'
+        default: '151'
       end:
         description: 'Last 1-based scene number (use up to 250 scenes, large-batch association throughput per run)'
         required: true
-        default: '150'
+        default: '300'
       batch_size:
         description: 'Target associations per reporting batch'
         required: true
@@ -52,8 +52,8 @@ jobs:
         run: node tools/scene1341_master/reconcile_live_index_preflight.mjs
       - name: Run protected full-index validation and batch
         env:
-          SCENE_START: ${{ inputs.start || '1' }}
-          SCENE_END: ${{ inputs.end || '150' }}
+          SCENE_START: ${{ inputs.start || '151' }}
+          SCENE_END: ${{ inputs.end || '300' }}
           SCENE_BATCH: ${{ inputs.batch_size || '3000' }}
         run: |
           node tools/scene1341_master/run_atomic_bulk.mjs --start "$SCENE_START" --end "$SCENE_END" --batch-size "$SCENE_BATCH"
