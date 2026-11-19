@@ -30,6 +30,8 @@ for(const line of fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean)){
   if(complete(existing)&&complete(incoming)&&JSON.stringify(existing)!==JSON.stringify(incoming)){report.conflicts++;answer=false;}
   if(!complete(existing)&&!complete(incoming)){report.missing_answer_fields[field]++;answer=false;}
  }
+ // An author candidate must never count as a complete answer unless every field
+ // is present either in the frozen Master or the source-pinned author draft.
  if(answer)report.ready_full_answer++;
  if(q&&answer)report.ready_both++;
 }
