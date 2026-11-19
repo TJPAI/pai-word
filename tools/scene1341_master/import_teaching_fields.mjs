@@ -15,9 +15,10 @@ if(write&&(!args.includes('--atomic-release-context')||!/^V[0-9]+$/.test(process
 const base='tools/scene1341_master/production';
 const idx=JSON.parse(fs.readFileSync(base+'/SCENE1341_LIVE_INDEX.json','utf8'));
 if(idx.scene_count!==1341||idx.source_associations!==230289||idx.release_allowed!==false||idx.srs_eligible!==false)throw Error('frozen catalog invariant');
-const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
+const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
 const allowed=['pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
-const valid=v=>typeof v==='string'&&v.trim().length>=3&&v.trim().length<=800&&!/[<>]/.test(v);
+const valid=v=>typeof v==='string'&&v.trim().length>=1&&v.trim().length<=800&&!/[<>]/.test(v);
+const validField=(k,v)=>k==='collocations'?(Array.isArray(v)&&v.length>0&&v.every(valid)):valid(v);
 const lines=fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean);
 const seen=new Set(),byScene=new Map();
 for(const [i,line] of lines.entries()){
@@ -25,7 +26,7 @@ for(const [i,line] of lines.entries()){
  if(!/^SC50-(0[0-9]{3}|1[0-2][0-9]{2}|13[0-3][0-9]|134[01])$/.test(r.scene_id)||!idx.scenes[r.scene_id]||!Number.isInteger(r.source_final_row)||seen.has(key))throw Error('invalid/duplicate identity line '+(i+1));
  seen.add(key);
  if(!r.provenance||typeof r.provenance.source!=='string'||!r.provenance.source.trim()||typeof r.provenance.source_id!=='string'||!r.provenance.source_id.trim())throw Error('missing source provenance line '+(i+1));
- if(!r.fields||allowed.some(k=>!valid(r.fields[k]))||Object.keys(r.fields).some(k=>!allowed.includes(k)))throw Error('invalid teaching fields line '+(i+1));
+ if(!r.fields||allowed.some(k=>!validField(k,r.fields[k]))||Object.keys(r.fields).some(k=>!allowed.includes(k)))throw Error('invalid teaching fields line '+(i+1));
  if(!byScene.has(r.scene_id))byScene.set(r.scene_id,[]);
  byScene.get(r.scene_id).push(r);
 }
@@ -47,13 +48,13 @@ for(const [id,items] of byScene){
   let rowChanged=false;
   for(const [field,value] of Object.entries(item.fields)){
    if(row.answer_page[field]){result.already_present++;continue;}
-   row.answer_page[field]=value.trim();
+   row.answer_page[field]=Array.isArray(value)?value.map(x=>x.trim()):value.trim();
    row.answer_page[field+'_provenance']={...item.provenance,qa_stage:'待审',first_review:false};
    result.changed_fields[field]++;changed=true;rowChanged=true;
   }
   if(rowChanged)result.changed_records++;
  }
- if(changed){result.scenes_changed++;pending.push({path:meta.path,bytes:Buffer.from(JSON.stringify(scene,null,2)+'\\n')});}
+ if(changed){result.scenes_changed++;pending.push({path:meta.path,bytes:Buffer.from(JSON.stringify(scene,null,2)+'\n')});}
 }
 if(write)for(const p of pending)fs.writeFileSync(p.path,p.bytes);
 console.log(JSON.stringify(result,null,2));
