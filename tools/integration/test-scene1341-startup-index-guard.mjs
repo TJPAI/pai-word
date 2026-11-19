@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const s=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const start=s.indexOf('async function initializeFullMasterSceneIndex()'),end=s.indexOf('async function openMasterScene(',start);
+const init=s.slice(start,end);
+assert.match(init,/const entryAtStart=latestSceneEntryRequest/);
+assert.match(init,/const snapshot=await adapter\.resolveMasterSceneIndex\(\)/);
+assert.match(init,/if\(entryAtStart!==latestSceneEntryRequest\)return;\s*masterSceneAdapter=adapter/);
+assert.match(init,/masterSceneSnapshot=snapshot/);
+assert.match(init,/catch\(error\)\{[\s\S]*?if\(entryAtStart!==latestSceneEntryRequest\)return;\s*masterSceneSnapshot=null/);
+console.log('PASS: stale startup success and failure cannot overwrite active scene index');
