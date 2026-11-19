@@ -18,7 +18,7 @@ for(let i=start;i<=end;i++){
   totals.records++;
   const ev=row.kaikki_full_native_evidence;
   if(!ev){totals.missing_evidence++;add('missing_evidence',{scene:id,row:row.source_final_row,expression:row.question_page?.expression});}
-  else {totals.with_evidence++;if(ev.candidates?.length)add('candidate_shape',{scene:id,row:row.source_final_row,keys:Object.keys(ev.candidates[0]),pos:ev.candidates[0].pos,sounds:ev.candidates[0].sounds?.slice?.(0,2)});}
+  else {totals.with_evidence++;if(ev.candidates?.length){add('candidate_shape',{scene:id,row:row.source_final_row,keys:Object.keys(ev.candidates[0]),pos:ev.candidates[0].pos,ipa_candidates:ev.candidates[0].ipa_candidates?.slice?.(0,3)});if(!row.question_page?.ipa_candidate&&ev.candidates.some(x=>Array.isArray(x.ipa_candidates)&&x.ipa_candidates.length))add('available_ipa',{scene:id,row:row.source_final_row,expression:row.question_page?.expression,candidates:ev.candidates.slice(0,3).map(x=>({source_word:x.source_word,source_line:x.source_line,ipa_candidates:x.ipa_candidates?.slice?.(0,3)}))});}}
   if(!row.answer_page?.pos)totals.missing_pos++;
   if(!row.question_page?.ipa_candidate)totals.missing_ipa++;
   if(!row.answer_page?.gloss_en)totals.missing_gloss++;
