@@ -5,7 +5,7 @@ const study=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index
 assert.match(scratch,/const previousRender=window\.render/);
 assert.match(scratch,/pendingAutoRestore=\(pendingAutoRestore\|\|activeMode\)&&window\.PAI_SCRATCH_AUTO_TRANSITION===true/);
 assert.match(scratch,/if\(state\.view!=='learning'\)\{pendingAutoRestore=false;return result;\}/);
-assert.match(scratch,/requestAnimationFrame\(\(\)=>\{\s*if\(state\.view!=='learning'\)\{pendingAutoRestore=false;return;\}/);
+assert.match(scratch,/requestAnimationFrame\(\(\)=>\{\s*if\(generation!==restoreGeneration\)return;\s*if\(state\.view!=='learning'\)\{pendingAutoRestore=false;return;\}/);
 assert.match(scratch,/if\(pendingAutoRestore&&activeSurface&&!activeMode\)\{pendingAutoRestore=false;window\.PAI_SCRATCH_REENTER\?\.\(\);\}/);
 assert.match(scratch,/window\.PAI_SCRATCH_BEGIN_RATING=\(\)=>\{if\(activeMode\)ratingWasDrawing=true\}/);
 assert.match(scratch,/window\.PAI_SCRATCH_FINISH_RATING=\(\)=>\{/);
