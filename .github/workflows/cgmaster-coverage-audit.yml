@@ -1,0 +1,33 @@
+name: CG-MASTER full teaching coverage audit
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cg-master-kaikki-evidence-intake-20261111
+    paths:
+      - tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json
+      - tools/scene1341_master/report_master_coverage.mjs
+permissions:
+  contents: read
+concurrency:
+  group: cgmaster-coverage-audit
+  cancel-in-progress: true
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate coverage program
+        run: node --check tools/scene1341_master/report_master_coverage.mjs
+      - name: Verify 1341 scene identities and emit teaching field counts
+        run: node tools/scene1341_master/report_master_coverage.mjs | tee cgmaster-coverage.json
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: cgmaster-coverage
+          path: cgmaster-coverage.json
+          retention-days: 30
