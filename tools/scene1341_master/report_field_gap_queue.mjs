@@ -72,5 +72,6 @@ for(let i=1;i<=1341;i++){
 }
 pushBatch();
 if(associations!==230289||seen.size!==230289||Object.keys(index.scenes).length!==1341)throw Error('frozen coverage totals mismatch');
+const completionPriority=sceneTotals.map(s=>({scene_id:s.scene_id,records:s.records,missing_total:Object.values(s.missing).reduce((a,b)=>a+b,0),missing:s.missing})).sort((a,b)=>a.missing_total-b.missing_total||a.scene_id.localeCompare(b.scene_id));
 const summary={schema:'cgmaster-field-gap-queue/v1',release:index.master_release?.version??null,scenes:1341,associations,source_evidence_records:sourceReady,ambiguous_native_entry_records:ambiguous,unresolved_native_sense_records:unresolvedSense,source_safe_proposal_counts:safeCounts,fields:tally,incomplete_rows:batches.reduce((s,b)=>s+b.records,0),batch_size:3000,batch_count:batches.length,release_allowed:false,srs_eligible:false};
-console.log(JSON.stringify({summary,scene_totals:sceneTotals,batches,source_safe_proposals:safeCandidates},null,2));
+console.log(JSON.stringify({summary,completion_priority:completionPriority,scene_totals:sceneTotals,batches,source_safe_proposals:safeCandidates},null,2));
