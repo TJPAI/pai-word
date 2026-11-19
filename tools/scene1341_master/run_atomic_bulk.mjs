@@ -77,6 +77,10 @@ try{
    }
    return n;
   },0);
+  if(scenes.length===0 || changedRecords===0){
+   console.log(JSON.stringify({status:'NOOP_NO_NEW_GLOSSES',release_unchanged:before.master_release.version,scene_documents_changed:scenes.length,new_glosses:changedRecords}));
+   process.exitCode=0;
+  }else{
   after.master_release={metadata_schema:'scene1341-master-release/v1',version:next,content_baseline:'ATOMIC_KAIKKI_SOURCE_GLOSSES_SC'+String(start).padStart(4,'0')+'_SC'+String(end).padStart(4,'0'),published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'Kaikki唯一义项来源绑定英文释义批量增补（待审）',changes:[{category:'answer_page_gloss_en_source_pinned',count:changedRecords},{category:'scene_documents_updated',count:scenes.length}],changed_scene_ids:scenes.map(p=>path.basename(p,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
   fs.writeFileSync(afterPath,JSON.stringify(after,null,2)+'\n');
   validate(wt);
@@ -93,6 +97,7 @@ try{
   // The remote cannot be force-updated. A concurrent writer makes this push fail.
   run('git',['push','origin','HEAD:refs/heads/'+BRANCH],wt,true);
   console.log(JSON.stringify({status:'PUSHED_AND_VALIDATED',expected_remote:expected,commit,release:next,changed_scene_documents:scenes.length,new_glosses:changedRecords,associations:230289,qa:'待审',srs:false}));
+  }
  }
 }finally{
  if(added)run('git',['worktree','remove','--force',wt],cwd);
