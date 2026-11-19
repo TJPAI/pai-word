@@ -35,7 +35,10 @@ jobs:
           node tools/scene1341_master/report_field_gap_queue.mjs > cgmaster-field-gap-queue.json
           node -e 'const fs=require("fs");const d=JSON.parse(fs.readFileSync("cgmaster-field-gap-queue.json","utf8"));console.log(JSON.stringify(d.summary,null,2))'
       - name: Preview first 3000 source-safe IPA/POS field fills without modifying data
-        run: node tools/scene1341_master/apply_source_safe_ipa_pos.mjs --start 1 --end 1341 --max-rows 3000 > cgmaster-ipa-pos-dry-run.json
+        run: |
+          node tools/scene1341_master/apply_source_safe_ipa_pos.mjs --start 1 --end 1341 --max-rows 3000 > cgmaster-ipa-pos-dry-run.json
+          node -e 'const fs=require("fs");const d=JSON.parse(fs.readFileSync("cgmaster-ipa-pos-dry-run.json","utf8"));console.log(JSON.stringify({mode:d.mode,verified_rows:d.verified_rows,changed_rows:d.changed_rows,changed_scenes:d.changed_scenes,qa_stage:d.qa_stage},null,2))'
+          test -z "$(git status --porcelain -- tools/scene1341_master/production)"
       - uses: actions/upload-artifact@v4
         if: success()
         with:
