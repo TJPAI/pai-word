@@ -758,13 +758,11 @@ async function openMasterScene(id,resume=false){
  masterSceneLoading.add(id);
  sceneEntryError='';
  try{
-  if(!masterSceneSnapshot){
-   set('rec-status','正在连接最新Master以进入 '+id+'…');
-   await initializeFullMasterSceneIndex();
+  if(!masterSceneAdapter){
+   masterSceneAdapter=await import('./scene1341-master-scene-v1.mjs');
   }
-  if(!masterSceneSnapshot||!masterSceneAdapter){
-   throw Error('MASTER_INDEX_UNAVAILABLE');
-  }
+  if(request!==latestSceneEntryRequest)return;
+  if(!masterSceneAdapter)throw Error('MASTER_INDEX_UNAVAILABLE');
   // Every explicit scene entry checks the latest atomic Master index, even
   // when the old index and old scene blob still match each other. Otherwise
   // V284+ content would remain stale until a hard reload or SHA mismatch.
