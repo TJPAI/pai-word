@@ -56,6 +56,8 @@ for(let n=start;n<=end;n++){
 }
 if(verifiedRows!==Array.from({length:end-start+1},(_,i)=>idx.scenes['SC50-'+String(i+start).padStart(4,'0')].records).reduce((a,b)=>a+b,0))throw Error('selected scene identity count mismatch');
 if(write&&pending.length){
+ const previous=idx.master_release?.version;
+ if(!/^V[0-9]+$/.test(previous)||Number(process.env.CGMASTER_NEXT_RELEASE.slice(1))!==Number(previous.slice(1))+1)throw Error('release must advance exactly one version');
  // Revalidate the full original index before making any file changes.
  if(sha(fs.readFileSync(indexPath))!==originalIndexSha)throw Error('concurrent index modification');
  for(let n=1;n<=1341;n++){
@@ -67,8 +69,6 @@ if(write&&pending.length){
   fs.writeFileSync(p.file,raw);
   idx.scenes[p.id].git_blob_sha1=sha(raw);
  }
- const previous=idx.master_release?.version;
- if(!/^V[0-9]+$/.test(previous)||Number(process.env.CGMASTER_NEXT_RELEASE.slice(1))!==Number(previous.slice(1))+1)throw Error('release must advance exactly one version');
  idx.master_release={metadata_schema:'scene1341-master-release/v1',version:process.env.CGMASTER_NEXT_RELEASE,content_baseline:'SOURCE_SAFE_KAIKKI_IPA_POS',published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'Kaikki来源严格一致的音标与词性候选增补（待审）',changes:[{category:'native_ipa_pos_source_pinned',count:changes.length},{category:'scene_documents_updated',count:pending.length}],changed_scene_ids:pending.map(p=>p.id),qa_stage:'待审',release_allowed:false,srs_eligible:false};
  fs.writeFileSync(indexPath,JSON.stringify(idx,null,2)+'\n');
  const checkpointPath='tools/scene1341_master/CGMASTER_CURRENT_STATE.json';
