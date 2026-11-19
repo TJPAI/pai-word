@@ -7,6 +7,7 @@ on:
     paths:
       - tools/scene1341_master/prepare_enteach_drafts.mjs
       - tools/scene1341_master/audit_enteach_import_readiness.mjs
+      - tools/scene1341_master/publish_enteach_ready.mjs
       - .github/workflows/cgmaster-enteach-intake.yml
 permissions:
   contents: read
@@ -26,8 +27,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate script
-        run: node --check master/tools/scene1341_master/prepare_enteach_drafts.mjs
+      - name: Validate scripts
+        run: |
+          node --check master/tools/scene1341_master/prepare_enteach_drafts.mjs
+          node --check master/tools/scene1341_master/audit_enteach_import_readiness.mjs
+          node --check master/tools/scene1341_master/publish_enteach_ready.mjs
       - name: Match all author draft packs against immutable Master
         run: |
           mkdir -p master/tools/answer-enrichment
