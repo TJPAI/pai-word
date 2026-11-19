@@ -1079,9 +1079,10 @@
   },
   "handoff_id": "SC1341-V288-ATOMIC-SC1101-SC1341",
   "next_tasks": [
-    "Verify full 1341 index↔blob contract and update CG-MAIN handoff.",
-    "Independent CG-QA source/content review, no automatic 1审.",
-    "Expand IPA/POS, example, collocation and usage coverage after English-gloss batch."
+    "Read coverage workflow artifact and inspect field counts before claiming any percentage.",
+    "Use 3000-row deterministic gap queues to batch source-faithful IPA/POS/zh/en example/collocation/usage enrichment; do not assign ambiguous senses automatically.",
+    "Confirm source identities and every updated Git blob SHA; preserve QA 待审 and SRS gates.",
+    "Coordinate independent first review with CG-QA and dynamic index consumption with CG-MAIN."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1395,5 +1396,22 @@
     "release_allowed": false,
     "srs_eligible": false,
     "full1341_integrity_verified": true
+  },
+  "field_gap_audit_20261119": {
+    "status": "SCRIPT_AND_WORKFLOW_COMMITTED_EXECUTION_PENDING",
+    "script": "tools/scene1341_master/report_field_gap_queue.mjs",
+    "workflow": ".github/workflows/cgmaster-coverage-audit.yml",
+    "batch_size": 3000,
+    "script_commit": "4dbb52afdd17947c733d808154ba30dd2797b51a",
+    "workflow_commit": "7872ccdc62ac14ff648e1ffcadac310b7b1e65d6",
+    "features": [
+      "1341 scenes and 230289 identity enforcement",
+      "Git blob SHA verification for every scene",
+      "eight teaching-field missing/present counts",
+      "deterministic 3000-row missing-field work queues",
+      "no QA or SRS promotion"
+    ],
+    "full_catalog_audit_run": "PENDING_CI",
+    "teaching_field_counts": "NOT_YET_REPORTED"
   }
 }
