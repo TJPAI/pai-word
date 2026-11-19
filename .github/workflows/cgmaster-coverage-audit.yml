@@ -11,7 +11,7 @@ on:
       - tools/scene1341_master/apply_source_safe_ipa_pos.mjs
       - tools/scene1341_master/run_atomic_ipa_pos.mjs
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: cgmaster-coverage-audit
   cancel-in-progress: true
@@ -43,6 +43,19 @@ jobs:
           node tools/scene1341_master/apply_source_safe_ipa_pos.mjs --start 1 --end 1341 --max-rows 3000 > cgmaster-ipa-pos-dry-run.json
           node -e 'const fs=require("fs");const d=JSON.parse(fs.readFileSync("cgmaster-ipa-pos-dry-run.json","utf8"));console.log(JSON.stringify({mode:d.mode,verified_rows:d.verified_rows,changed_rows:d.changed_rows,changed_scenes:d.changed_scenes,qa_stage:d.qa_stage},null,2))'
           test -z "$(git status --porcelain -- tools/scene1341_master/production)"
+      - name: Publish compact completeness snapshot to repository
+        if: success()
+        run: |
+          mkdir -p tools/scene1341_master/qa_reports
+          node -e 'const fs=require("fs");const x=JSON.parse(fs.readFileSync("cgmaster-coverage.json","utf8"));const y={release:x.release,counts:x.counts,scene_completeness:x.scene_completeness,percent:x.percent};fs.writeFileSync("tools/scene1341_master/qa_reports/CGMASTER_LATEST_COMPLETENESS.json",JSON.stringify(y,null,2)+"\n")'
+          git config user.name cg-master-bot
+          git config user.email cg-master-bot@users.noreply.github.com
+          git add tools/scene1341_master/qa_reports/CGMASTER_LATEST_COMPLETENESS.json
+          if ! git diff --cached --quiet; then
+            git commit -m "data(cg-master): publish full scene teaching completeness audit"
+            git pull --rebase origin cg-master-kaikki-evidence-intake-20261111
+            git push origin HEAD:cg-master-kaikki-evidence-intake-20261111
+          fi
       - uses: actions/upload-artifact@v4
         if: success()
         with:
