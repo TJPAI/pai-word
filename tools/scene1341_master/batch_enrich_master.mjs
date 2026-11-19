@@ -19,7 +19,7 @@ if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||end>1341||start>en
 const shaBlob=(buf)=>crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\0')).update(buf).digest('hex');
 const index=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289)throw Error('immutable master totals mismatch');
-const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,ipa_enriched:0,ipa_conflicts:0,already_present:0,ambiguous_hold:0,no_native_match:0,diagnostics:{evidence_missing:0,expression_mismatch:0,row_mismatch:0,candidates_missing:0,source_word_mismatch:0,source_line_missing:0,pos_missing_or_unsupported:0,pos_conflict:0,pos_already_present:0},batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
+const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,ipa_enriched:0,ipa_conflicts:0,already_present:0,ambiguous_hold:0,no_native_match:0,gloss_candidate_diagnostics:{no_evidence:0,identity_mismatch:0,no_candidates:0,multiple_entries:0,multiple_senses:0,multiple_glosses:0,gloss_filtered:0,source_identity_missing:0,eligible:0},diagnostics:{evidence_missing:0,expression_mismatch:0,row_mismatch:0,candidates_missing:0,source_word_mismatch:0,source_line_missing:0,pos_missing_or_unsupported:0,pos_conflict:0,pos_already_present:0},batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
@@ -101,6 +101,18 @@ for(let i=1;i<=1341;i++){
       outcomes.ipa_enriched++;
      }else if(all.length>0)outcomes.ipa_conflicts++;
     }
+   }
+   if(!record.answer_page?.gloss_en){
+    const d=outcomes.gloss_candidate_diagnostics,ev=record.kaikki_full_native_evidence,es=ev?.candidates;
+    if(!ev)d.no_evidence++;
+    else if(ev.expression_exact!==record.question_page?.expression||ev.source_final_row!==record.source_final_row)d.identity_mismatch++;
+    else if(!Array.isArray(es)||!es.length)d.no_candidates++;
+    else if(es.length!==1||es[0]?.source_word!==ev.expression_exact)d.multiple_entries++;
+    else if(!Array.isArray(es[0].senses)||es[0].senses.length!==1)d.multiple_senses++;
+    else if(!Array.isArray(es[0].senses[0].glosses)||es[0].senses[0].glosses.length!==1)d.multiple_glosses++;
+    else if(!Number.isInteger(es[0].source_line)||!Number.isInteger(es[0].senses[0].source_sense_index))d.source_identity_missing++;
+    else if(!eligible(record))d.gloss_filtered++;
+    else d.eligible++;
    }
    const candidate=eligible(record);
    if(!candidate){if(record.kaikki_full_native_evidence)outcomes.ambiguous_hold++;else outcomes.no_native_match++;continue;}
