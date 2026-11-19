@@ -19,7 +19,7 @@ if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||end>1341||start>en
 const shaBlob=(buf)=>crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\0')).update(buf).digest('hex');
 const index=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289)throw Error('immutable master totals mismatch');
-const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
+const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
@@ -60,12 +60,22 @@ for(let i=1;i<=1341;i++){
   for(const record of scene.records){
    outcomes.records_scanned++;batch.records++;
    if(record.release_allowed!==false||record.srs_eligible!==false||record.scene_id!==id||!Number.isInteger(record.source_final_row))throw Error('record identity or release violation '+id);
-   if(record.answer_page?.gloss_en){outcomes.already_present++;continue;}
+   if(record.answer_page?.gloss_en){outcomes.already_present++;}
    const candidate=eligible(record);
    if(!candidate){if(record.kaikki_full_native_evidence)outcomes.ambiguous_hold++;else outcomes.no_native_match++;continue;}
-   record.answer_page.gloss_en=candidate.gloss;
-   record.answer_page.gloss_en_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE',qa_stage:'待审'};
-   outcomes.records_enriched++;batch.glosses++;
+   if(!record.answer_page.gloss_en){
+    record.answer_page.gloss_en=candidate.gloss;
+    record.answer_page.gloss_en_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE',qa_stage:'待审'};
+    outcomes.records_enriched++;batch.glosses++;
+   }
+   const sense=record.kaikki_full_native_evidence.candidates[0].senses[0];
+   const examples=Array.isArray(sense.examples)?sense.examples:[];
+   const clean=examples.map(e=>typeof e==='string'?e:(e&&typeof e.text==='string'?e.text:null)).filter(x=>typeof x==='string').map(x=>x.trim()).filter(x=>x.length>=12&&x.length<=400&&!/[<>\\[\\]{}]/.test(x));
+   if(!record.answer_page.example_en&&clean.length===1){
+    record.answer_page.example_en=clean[0];
+    record.answer_page.example_en_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE_SINGLE_EXAMPLE',qa_stage:'待审'};
+    outcomes.english_examples_enriched++;
+   }
   }
   if(batch.records>=batchSize)flush();
   const oldExisting=JSON.parse(before);
