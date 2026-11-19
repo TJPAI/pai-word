@@ -4,7 +4,7 @@
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
   "verified_base_head": "8424efb91ab119d11992f49fce981c448ea11450",
-  "version": "V280_SC0168_SC0175_SOURCE_GLOSSES",
+  "version": "V281_ATOMIC_KAIKKI_SOURCE_GLOSSES",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,11 +1077,11 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V280-SC0168-SC0175-KAIKKI-20261119",
+  "handoff_id": "SC1341-V281-ATOMIC-SC0176-SC0190",
   "next_tasks": [
-    "Run full 1341 scene blob and frozen source identity validation.",
-    "Enable atomic bulk workflow execution from scene SC0176 onward, prefer multiple thousands of associations per batch.",
-    "Extend IPA/POS, examples/collocations/usage source pinned across catalog; keep 待审 until CG-QA certifies."
+    "Verify full 1341 index↔blob contract and update CG-MAIN handoff.",
+    "Independent CG-QA source/content review, no automatic 1审.",
+    "Expand IPA/POS, example, collocation and usage coverage after English-gloss batch."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1252,21 +1252,20 @@
     }
   },
   "v278": {
-    "scene_range": "SC50-0151..SC50-0158",
-    "scene_documents_updated": 8,
-    "new_english_glosses": 66,
-    "index_commit": "71996702fd790050478a372a56ca9b786be949e4",
-    "pipeline_code_commits": [
-      "5cf9d0905a0918f07c3ece7a5a8a2276bee4e77b",
-      "10f647b5a55904fb815d73e5133ab181a2b24b15",
-      "17289da658e8e47e6f0828db9b09d3ccf0b8d04f"
-    ],
-    "full_1341_verification": "NOT_CONFIRMED",
-    "actions_run": "NOT_CONFIRMED",
+    "start_scene": 176,
+    "end_scene": 190,
+    "batch_size": 3000,
+    "scenes_scanned": 15,
+    "records_scanned": 2962,
+    "new_english_glosses": 219,
+    "scenes_updated": 15,
+    "preexisting_index_sha_mismatches": [],
+    "post_write_index_sha_mismatches": [],
     "qa_stage": "待审",
     "first_review_confirmed": 0,
     "release_allowed": false,
-    "srs_eligible": false
+    "srs_eligible": false,
+    "status": "TEST_ONLY_PENDING_INDEPENDENT_QA"
   },
   "v279": {
     "scene_range": "SC50-0159..SC50-0167",
@@ -1308,5 +1307,14 @@
     "source_rows_verified": 230289,
     "content_modified": false,
     "qa_promotions": 0
+  },
+  "v281": {
+    "scene_range": "SC50-0176..SC50-0190",
+    "scene_documents_updated": 15,
+    "new_english_glosses": 219,
+    "qa_stage": "待审",
+    "release_allowed": false,
+    "srs_eligible": false,
+    "full1341_integrity_verified": true
   }
 }
