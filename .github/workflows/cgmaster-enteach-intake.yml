@@ -1,0 +1,43 @@
+name: CG-MASTER ENTEACH draft matching
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - cg-master-kaikki-evidence-intake-20261111
+    paths:
+      - tools/scene1341_master/prepare_enteach_drafts.mjs
+      - .github/workflows/cgmaster-enteach-intake.yml
+permissions:
+  contents: read
+jobs:
+  match:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: cg-master-kaikki-evidence-intake-20261111
+          path: master
+      - uses: actions/checkout@v4
+        with:
+          ref: answer-enrichment-main-dev-20261026
+          path: author
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate script
+        run: node --check master/tools/scene1341_master/prepare_enteach_drafts.mjs
+      - name: Match all author draft packs against immutable Master
+        run: |
+          mkdir -p master/tools/answer-enrichment
+          cp author/tools/answer-enrichment/scene1341-v51-*.json master/tools/answer-enrichment/
+          cd master
+          node tools/scene1341_master/prepare_enteach_drafts.mjs tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1782.json ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-matching-summary.json
+      - name: Upload candidate evidence and HOLD summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-enteach-matching
+          path: |
+            cgmaster-enteach-matched-candidates.jsonl
+            cgmaster-enteach-matching-summary.json
+          retention-days: 30
