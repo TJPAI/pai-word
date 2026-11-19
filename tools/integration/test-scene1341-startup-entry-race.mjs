@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const s=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const start=s.indexOf('async function openMasterScene('),end=s.indexOf('let exampleToWordPending=false;',start);
+const entry=s.slice(start,end);
+assert.doesNotMatch(entry,/await initializeFullMasterSceneIndex\(\)/);
+assert.match(entry,/masterSceneAdapter=await import\('\.\/scene1341-master-scene-v1\.mjs'\)/);
+assert.match(entry,/const current=await masterSceneAdapter\.resolveMasterSceneIndex\(\)/);
+assert.match(entry,/if\(request!==latestSceneEntryRequest\)return/);
+assert.match(entry,/scene=await masterSceneAdapter\.fetchMasterScene\(masterSceneSnapshot,id\)/);
+console.log('PASS: scene entry resolves its own current immutable index; startup cannot gate it');
