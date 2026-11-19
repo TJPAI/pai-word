@@ -12,6 +12,7 @@ on:
       - 'tools/integration/test-scene1341-master-continue.mjs'
       - 'tools/integration/test-scene1341-master-fresh-entry.mjs'
       - 'tools/integration/test-scene1341-aba-tap.mjs'
+      - 'tools/integration/test-scene1341-home-cancels-entry.mjs'
       - 'tools/integration/test-scene1341-scene-entry-race.mjs'
       - 'rebuild-preview/scene1341-readonly/index.html'
       - 'tools/integration/CGMAIN_CURRENT_STATE.json'
@@ -55,5 +56,7 @@ jobs:
         run: node source/tools/integration/test-scene1341-master-fresh-entry.mjs
       - name: Verify A-B-A last-tap scene entry
         run: node source/tools/integration/test-scene1341-aba-tap.mjs
+      - name: Verify Home cancels pending scene entry
+        run: node source/tools/integration/test-scene1341-home-cancels-entry.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
