@@ -843,6 +843,10 @@ function openStudy(id,resume=false){
  if(autoPreference.get())autoBrowse.start();else autoBrowse.stop();
 }
 function home(){
+ // Explicit Home intent cancels any in-flight scene entry. Otherwise a
+ // delayed Master fetch can reopen study after the learner chose Home.
+ ++latestSceneEntryRequest;
+ sceneEntryError='';
  if(!$('learning').hidden){
   const face=phaseController.state().preferredFace;
   transientCursors.set(sceneId,{index,face});
