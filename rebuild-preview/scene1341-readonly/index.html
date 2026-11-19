@@ -780,13 +780,13 @@ async function openMasterScene(id,resume=false){
   masterReleaseInfo=masterSceneAdapter.masterReleaseView(current.index);
   let scene;
   try{
-   scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
+   scene=await masterSceneAdapter.fetchMasterScene(current,id);
   }catch(firstError){
    // A new Master release may arrive after the home index is loaded.
    // Retry ONLY a genuine index/blob mismatch against a freshly verified
    // immutable snapshot. Never bypass the SHA gate or fall back to old cards.
    if(!String(firstError?.message||firstError).includes('MASTER_SCENE_V1_SCENE_BLOB'))throw firstError;
-   const previous=masterSceneSnapshot;
+   const previous=current;
    const fresh=await masterSceneAdapter.resolveMasterSceneIndex();
    if(request!==latestSceneEntryRequest)return;
    if(fresh.commit===previous.commit&&
