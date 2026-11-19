@@ -49,5 +49,5 @@ report.ready_records=ready.length;report.blocked_records=blocked.length;
 report.blocked_by_field=Object.fromEntries(fields.map(k=>[k,blocked.filter(x=>x.missing_fields?.includes(k)).length]));
 report.blocked_by_conflict_field=Object.fromEntries(fields.map(k=>[k,blocked.filter(x=>x.conflicting_fields?.includes(k)).length]));
 if(report.identity_errors)process.exitCode=2;
-if(report.ready_both+blocked.length+report.identity_errors!==report.candidates)throw Error('readiness accounting mismatch');
+if(ready.length+blocked.length!==report.candidates)throw Error('readiness accounting mismatch');
 console.log(JSON.stringify(report,null,2));
