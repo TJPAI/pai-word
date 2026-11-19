@@ -23,6 +23,7 @@ on:
       - 'tools/integration/test-scene1341-rating-behavior.mjs'
       - 'tools/integration/test-scene1341-scratch-restore-guard.mjs'
       - 'tools/integration/test-scene1341-scratch-explicit-cancel.mjs'
+      - 'tools/integration/test-scene1341-request-local-snapshot.mjs'
       - 'rebuild-preview/scene1341-readonly/scene500-native-scratch.js'
       - 'rebuild-preview/scene1341-readonly/scene500-readonly-settings.js'
       - 'rebuild-preview/scene1341-readonly/scene500-native-cycle-exact.js'
@@ -92,5 +93,7 @@ jobs:
         run: node source/tools/integration/test-scene1341-scratch-restore-guard.mjs
       - name: Verify explicit scratch cancellation on scene exit
         run: node source/tools/integration/test-scene1341-scratch-explicit-cancel.mjs
+      - name: Verify request-local atomic Master snapshot isolation
+        run: node source/tools/integration/test-scene1341-request-local-snapshot.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
