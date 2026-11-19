@@ -82,6 +82,10 @@ flush();
 if(outcomes.source_associations!==230289)throw Error('source association total corrupted');
 if(outcomes.hash_mismatches_after.length)throw Error('post-write hash mismatch');
 if(!dryRun){
+ if(changes.size===0){
+  console.log(JSON.stringify({...outcomes,changed_scenes:0,dry_run:false,status:'NOOP_NO_ELIGIBLE_SOURCE_GLOSSES',release_unchanged:index.master_release?.version},null,2));
+  process.exit(0);
+ }
  for(const [p,b] of changes)fs.writeFileSync(p,b);
  index.master_release={metadata_schema:'scene1341-master-release/v1',version:'V278',content_baseline:'FULL1341_BULK_KAIKKI_EXACT_GLOSS',published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'自动批量填充Kaikki唯一义项英文释义（未经独立审核）',changes:[{category:'answer_page_gloss_en_source_pinned',count:outcomes.records_enriched},{category:'scene_documents_updated',count:changes.size}],changed_scene_ids:[...changes.keys()].map(x=>path.basename(x,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
  fs.writeFileSync(indexPath,JSON.stringify(index,null,2)+'\n');
