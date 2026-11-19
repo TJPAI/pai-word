@@ -841,7 +841,7 @@ async function inspectSceneMasterFeed(id,request){
 }
 function openStudy(id,resume=false){
  if(!available(id)||!items.length)return;
- exampleToWordPending=false;autoBrowse.pause();sceneId=id;lastScene=id;revealed=false;resetScratch();
+ exampleToWordPending=false;autoBrowse.pause();sceneId=id;lastScene=id;revealed=false;window.PAI_SCENE1341_SCRATCH_CANCEL_PENDING?.();resetScratch();
  const feedRequest=++sceneFeedRequest;
  const rows=subset(),saved=resume?transientCursors.get(id):null;
  index=saved?Math.max(0,Math.min(rows.length-1,saved.index)):0;
@@ -863,7 +863,7 @@ function home(){
   transientCursors.set(sceneId,{index,face});
   displayBookmark.save(sceneId,index,face);
  }
- exampleToWordPending=false;autoBrowse.pause();stopWordAudio();resetScratch();$('learning').hidden=true;
+ exampleToWordPending=false;autoBrowse.pause();stopWordAudio();window.PAI_SCENE1341_SCRATCH_CANCEL_PENDING?.();resetScratch();$('learning').hidden=true;
  window.PAI_SCRATCH_FINISH_RATING?.();phaseController.cancel();$('home').hidden=false;renderHome();
 }
 // Fit long English headwords/expressions to exactly one line without affecting
