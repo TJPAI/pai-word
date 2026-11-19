@@ -5,6 +5,8 @@ on:
     branches: [cg-master-kaikki-evidence-intake-20261111]
     paths:
       - .github/workflows/cgmaster-evidence-gap-audit.yml
+      - tools/scene1341_master/ipa_consensus_probe.mjs
+      - tools/scene1341_master/audit_kaikki_evidence_gaps.mjs
   workflow_dispatch:
 permissions:
   contents: read
