@@ -1524,7 +1524,7 @@
     "SC50-0304": {
       "path": "tools/scene1341_master/production/scenes/SC50-0304.json",
       "records": 177,
-      "git_blob_sha1": "54fe7481080e5c4716a813f132d9a0f2272260d5"
+      "git_blob_sha1": "bfb1959366801b3f4136dafc1de65031328eb637"
     },
     "SC50-0305": {
       "path": "tools/scene1341_master/production/scenes/SC50-0305.json",
@@ -1964,17 +1964,17 @@
     "SC50-0392": {
       "path": "tools/scene1341_master/production/scenes/SC50-0392.json",
       "records": 188,
-      "git_blob_sha1": "5e4ecdebc18df4c0b60d01b5bc5e58a5b6c017de"
+      "git_blob_sha1": "1eb3a58d2568528b60ee930908c392057fb364c4"
     },
     "SC50-0393": {
       "path": "tools/scene1341_master/production/scenes/SC50-0393.json",
       "records": 187,
-      "git_blob_sha1": "a511efc5f835075d010aef800a088f717ba0dbc6"
+      "git_blob_sha1": "49e1fb7b35bce5ee7b284c1914fc95d5dceb7718"
     },
     "SC50-0394": {
       "path": "tools/scene1341_master/production/scenes/SC50-0394.json",
       "records": 193,
-      "git_blob_sha1": "c6eff6fb12d30671757c3d2fe7919fa64719b68c"
+      "git_blob_sha1": "feca44431a46d1e0b33352ed327936f57605c383"
     },
     "SC50-0395": {
       "path": "tools/scene1341_master/production/scenes/SC50-0395.json",
@@ -2054,7 +2054,7 @@
     "SC50-0410": {
       "path": "tools/scene1341_master/production/scenes/SC50-0410.json",
       "records": 131,
-      "git_blob_sha1": "a02ec8016b7d7561a13d280e0fa5e69eb6056bdf"
+      "git_blob_sha1": "d574d7925b518930c61994967b3d3aeccb15c602"
     },
     "SC50-0411": {
       "path": "tools/scene1341_master/production/scenes/SC50-0411.json",
@@ -2064,7 +2064,7 @@
     "SC50-0412": {
       "path": "tools/scene1341_master/production/scenes/SC50-0412.json",
       "records": 137,
-      "git_blob_sha1": "90cd4b94e339e97835d0e9a0df9c77df35f7dd32"
+      "git_blob_sha1": "f1a79ec7e864fd9ef1772e607cb9a6b2208ad3b1"
     },
     "SC50-0413": {
       "path": "tools/scene1341_master/production/scenes/SC50-0413.json",
@@ -2119,7 +2119,7 @@
     "SC50-0423": {
       "path": "tools/scene1341_master/production/scenes/SC50-0423.json",
       "records": 132,
-      "git_blob_sha1": "66964aa1cc672b08c1255e2056c6fa2974e0926c"
+      "git_blob_sha1": "a47e74206759dcb7d397ff864df77170f06bc442"
     },
     "SC50-0424": {
       "path": "tools/scene1341_master/production/scenes/SC50-0424.json",
@@ -2149,7 +2149,7 @@
     "SC50-0429": {
       "path": "tools/scene1341_master/production/scenes/SC50-0429.json",
       "records": 143,
-      "git_blob_sha1": "224b4700c47e21907b9eea9ca6b8c2d06fa43693"
+      "git_blob_sha1": "f3f5b17371a8ec8f68534e32138091abb82ab0bf"
     },
     "SC50-0430": {
       "path": "tools/scene1341_master/production/scenes/SC50-0430.json",
@@ -2169,7 +2169,7 @@
     "SC50-0433": {
       "path": "tools/scene1341_master/production/scenes/SC50-0433.json",
       "records": 135,
-      "git_blob_sha1": "a230c8e730fd2557056aeca161294f89ce5d80ce"
+      "git_blob_sha1": "eaed4376aa5060a1ba0a496ef38a8f013a576d14"
     },
     "SC50-0434": {
       "path": "tools/scene1341_master/production/scenes/SC50-0434.json",
@@ -6714,8 +6714,8 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V300",
-    "content_baseline": "ATOMIC_KAIKKI_SOURCE_GLOSSES_SC0151_SC0300",
+    "version": "V301",
+    "content_baseline": "ATOMIC_KAIKKI_SOURCE_GLOSSES_SC0301_SC0450",
     "published_date": "2026-11-19",
     "stage": "TEST_ONLY_QA_PENDING",
     "headline": "Kaikki唯一义项来源绑定英文释义批量增补（待审）",
@@ -6734,17 +6734,23 @@
       },
       {
         "category": "question_page_ipa_source_pinned",
-        "count": 3
+        "count": 9
       },
       {
         "category": "scene_documents_updated",
-        "count": 3
+        "count": 9
       }
     ],
     "changed_scene_ids": [
-      "SC50-0190",
-      "SC50-0281",
-      "SC50-0283"
+      "SC50-0304",
+      "SC50-0392",
+      "SC50-0393",
+      "SC50-0394",
+      "SC50-0410",
+      "SC50-0412",
+      "SC50-0423",
+      "SC50-0429",
+      "SC50-0433"
     ],
     "qa_stage": "待审",
     "release_allowed": false,
