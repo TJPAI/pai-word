@@ -716,10 +716,16 @@ function renderMasterRelease(){
 }
 
 async function initializeFullMasterSceneIndex(){
+ // Startup is a background reader. It must not replace a newer snapshot
+ // selected by an explicit scene tap while its own network request is pending.
+ const entryAtStart=latestSceneEntryRequest;
  try{
-  masterSceneAdapter=await import('./scene1341-master-scene-v1.mjs');
-  masterSceneSnapshot=await masterSceneAdapter.resolveMasterSceneIndex();
-  masterReleaseInfo=masterSceneAdapter.masterReleaseView(masterSceneSnapshot.index);
+  const adapter=await import('./scene1341-master-scene-v1.mjs');
+  const snapshot=await adapter.resolveMasterSceneIndex();
+  if(entryAtStart!==latestSceneEntryRequest)return;
+  masterSceneAdapter=adapter;
+  masterSceneSnapshot=snapshot;
+  masterReleaseInfo=adapter.masterReleaseView(snapshot.index);
   renderMasterRelease();
   // The last-scene bookmark may belong to any of the 1,341 Master-only scenes.
   // Never disable Continue merely because its old 14-scene local pack is empty.
@@ -742,6 +748,8 @@ async function initializeFullMasterSceneIndex(){
    set('master-live-feed-status',$('master-live-feed-status').textContent+' · 当前学习页请返回场景后重新进入以读取全量Master');
   }
  }catch(error){
+  // A stale startup failure cannot erase a newer valid entry snapshot.
+  if(entryAtStart!==latestSceneEntryRequest)return;
   masterSceneSnapshot=null;
   masterReleaseInfo=null;
   renderMasterRelease();
