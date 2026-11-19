@@ -1,0 +1,13 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const s=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const start=s.indexOf('async function openMasterScene('),end=s.indexOf('let exampleToWordPending=false;',start);
+assert.ok(start>=0&&end>start);
+const entry=s.slice(start,end);
+assert.match(entry,/masterReleaseInfo=masterSceneAdapter\.masterReleaseView\(current\.index\)/);
+assert.match(entry,/items=masterSceneAdapter\.mergeMasterScene\(items,scene\)/);
+assert.match(entry,/openStudy\(id,resume\);\s*(?:\/\/[^\n]*\n)*\s*renderMasterRelease\(\);\s*sceneEntryError=''/);
+const badge=s.slice(s.indexOf('function renderMasterRelease(){'),s.indexOf('async function initializeFullMasterSceneIndex()'));
+assert.match(badge,/set\('master-study-release',info\.label/);
+assert.match(badge,/info\.changed\.has\(sceneId\)/);
+console.log('PASS: verified scene entry refreshes study Master version badge');
