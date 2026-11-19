@@ -19,7 +19,7 @@ if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||end>1341||start>en
 const shaBlob=(buf)=>crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\0')).update(buf).digest('hex');
 const index=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289)throw Error('immutable master totals mismatch');
-const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
+const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
@@ -67,6 +67,14 @@ for(let i=1;i<=1341;i++){
     record.answer_page.gloss_en=candidate.gloss;
     record.answer_page.gloss_en_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE',qa_stage:'待审'};
     outcomes.records_enriched++;batch.glosses++;
+   }
+   const native=record.kaikki_full_native_evidence.candidates[0];
+   const nativePos=typeof native.pos==='string'?native.pos.trim().toLowerCase():'';
+   const posMap={noun:'n.',verb:'v.',adjective:'adj.',adverb:'adv.',pronoun:'pron.',preposition:'prep.',conjunction:'conj.',interjection:'interj.',determiner:'det.',numeral:'num.'};
+   if(!record.answer_page.pos&&Object.hasOwn(posMap,nativePos)){
+    record.answer_page.pos=posMap[nativePos];
+    record.answer_page.pos_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE_POS',qa_stage:'待审'};
+    outcomes.pos_enriched++;
    }
    const sense=record.kaikki_full_native_evidence.candidates[0].senses[0];
    const examples=Array.isArray(sense.examples)?sense.examples:[];
