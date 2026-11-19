@@ -21,6 +21,8 @@ on:
       - 'tools/integration/test-scene1341-native-cycle-behavior.mjs'
       - 'tools/integration/test-scene1341-settings-persistence.mjs'
       - 'tools/integration/test-scene1341-rating-behavior.mjs'
+      - 'tools/integration/test-scene1341-scratch-restore-guard.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene500-native-scratch.js'
       - 'rebuild-preview/scene1341-readonly/scene500-readonly-settings.js'
       - 'rebuild-preview/scene1341-readonly/scene500-native-cycle-exact.js'
       - 'rebuild-preview/scene1341-readonly/scene500-readonly-phase.js'
@@ -85,5 +87,7 @@ jobs:
         run: node source/tools/integration/test-scene1341-settings-persistence.mjs
       - name: Verify three Scene500 rating buttons and cancellation
         run: node source/tools/integration/test-scene1341-rating-behavior.mjs
+      - name: Verify scratch restoration cannot leak across Home
+        run: node source/tools/integration/test-scene1341-scratch-restore-guard.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
