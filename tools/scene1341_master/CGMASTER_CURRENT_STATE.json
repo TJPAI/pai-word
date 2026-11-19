@@ -1398,7 +1398,7 @@
     "full1341_integrity_verified": true
   },
   "field_gap_audit_20261119": {
-    "status": "SCRIPT_AND_WORKFLOW_COMMITTED_EXECUTION_PENDING",
+    "status": "SOURCE_SAFE_IPA_POS_PROPOSAL_CODE_COMMITTED_CI_PENDING",
     "script": "tools/scene1341_master/report_field_gap_queue.mjs",
     "workflow": ".github/workflows/cgmaster-coverage-audit.yml",
     "batch_size": 3000,
@@ -1412,6 +1412,19 @@
       "no QA or SRS promotion"
     ],
     "full_catalog_audit_run": "PENDING_CI",
-    "teaching_field_counts": "NOT_YET_REPORTED"
-  }
+    "teaching_field_counts": "NOT_YET_REPORTED",
+    "latest_script_commit": "93ecd91e9e0486581c401e762ebb43f39b3fdd73",
+    "source_safe_rules": [
+      "exact expression and source word agreement",
+      "POS unanimous across native candidates",
+      "IPA exactly one identical candidate per native entry",
+      "only missing IPA/POS proposed; QA remains 待审"
+    ]
+  },
+  "next": [
+    "Verify coverage workflow execution and inspect real eight-field counts.",
+    "Inspect source-safe IPA/POS proposals; publish only source-pinned, unreviewed candidates in atomic scene batches.",
+    "Do not auto-select multi-sense glosses or fabricate bilingual examples.",
+    "Preserve frozen record identities, blob hashes, CG-QA review and SRS gates."
+  ]
 }
