@@ -149,17 +149,17 @@
     "SC50-0029": {
       "path": "tools/scene1341_master/production/scenes/SC50-0029.json",
       "records": 190,
-      "git_blob_sha1": "e7e61684173ca8e79e0ce1102acc5fe288391c4a"
+      "git_blob_sha1": "9cb6d79a9c8716ee5d3ce0302bbf964b7a3822cb"
     },
     "SC50-0030": {
       "path": "tools/scene1341_master/production/scenes/SC50-0030.json",
       "records": 209,
-      "git_blob_sha1": "4471b5452668fe7ac3a77a8f7be4904082ae7390"
+      "git_blob_sha1": "a1542cfecb2da8687691c7853d5f096f73534565"
     },
     "SC50-0031": {
       "path": "tools/scene1341_master/production/scenes/SC50-0031.json",
       "records": 183,
-      "git_blob_sha1": "05e6bba04b6b51e3141e96cc32f9f92f6d6cf2f8"
+      "git_blob_sha1": "cad98ca523d05f04e2efb244eb589057f73c2b30"
     },
     "SC50-0032": {
       "path": "tools/scene1341_master/production/scenes/SC50-0032.json",
@@ -169,7 +169,7 @@
     "SC50-0033": {
       "path": "tools/scene1341_master/production/scenes/SC50-0033.json",
       "records": 241,
-      "git_blob_sha1": "7272d30c71c0b9f4b7131fde73131f28177a176e"
+      "git_blob_sha1": "c6558800d5ef2b50ebb5ef14e7a8cc2450276f77"
     },
     "SC50-0034": {
       "path": "tools/scene1341_master/production/scenes/SC50-0034.json",
@@ -6752,6 +6752,20 @@
       "qa_unchanged": true,
       "date": "2026-11-19",
       "full1341_validation": "PENDING"
+    },
+    "integrity_reconciliation": {
+      "date": "2026-11-19",
+      "method": "full_scene_identity_and_git_blob_audit",
+      "number_repaired": 4,
+      "repaired_scene_ids": [
+        "SC50-0029",
+        "SC50-0030",
+        "SC50-0031",
+        "SC50-0033"
+      ],
+      "all_230289_source_ids_verified": true,
+      "scene_content_modified": false,
+      "qa_status_modified": false
     }
   }
 }
