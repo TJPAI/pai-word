@@ -9,7 +9,7 @@ const blob=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0'
 const fields=['pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
 const complete=v=>Array.isArray(v)?v.length>0&&v.every(x=>typeof x==='string'&&x.trim()):typeof v==='string'&&!!v.trim();
 const report={candidates:0,ready_question:0,ready_full_answer:0,ready_both:0,missing_question_ipa:0,missing_answer_fields:Object.fromEntries(fields.map(k=>[k,0])),conflicts:0,identity_errors:0,scenes:0,publication:'NONE_AUDIT_ONLY'};
-const scenes=new Map(),seen=new Set();
+const scenes=new Map(),seen=new Set(),ready=[],blocked=[];
 for(const line of fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean)){
  const d=JSON.parse(line);report.candidates++;
  const meta=idx.scenes[d.scene_id];if(!meta)throw Error('unknown scene '+d.scene_id);
@@ -24,16 +24,21 @@ for(const line of fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean)){
  if(!r||r.question_page?.expression!==d.expression||r.release_allowed!==false||r.srs_eligible!==false){report.identity_errors++;continue;}
  const q=complete(r.question_page?.expression)&&complete(r.question_page?.ipa_candidate);
  if(q)report.ready_question++;else report.missing_question_ipa++;
- let answer=true;
+ let answer=true;const missing=[],conflicting=[];
  for(const field of fields){
   const existing=r.answer_page?.[field],incoming=d.fields?.[field];
-  if(complete(existing)&&complete(incoming)&&JSON.stringify(existing)!==JSON.stringify(incoming)){report.conflicts++;answer=false;}
-  if(!complete(existing)&&!complete(incoming)){report.missing_answer_fields[field]++;answer=false;}
+  if(complete(existing)&&complete(incoming)&&JSON.stringify(existing)!==JSON.stringify(incoming)){report.conflicts++;answer=false;conflicting.push(field);}
+  if(!complete(existing)&&!complete(incoming)){report.missing_answer_fields[field]++;answer=false;missing.push(field);}
  }
  // An author candidate must never count as a complete answer unless every field
  // is present either in the frozen Master or the source-pinned author draft.
  if(answer)report.ready_full_answer++;
- if(q&&answer)report.ready_both++;
+ if(q&&answer){report.ready_both++;ready.push({scene_id:d.scene_id,source_final_row:d.source_final_row,expression:d.expression,source_id:d.provenance?.source_id});}
+ else blocked.push({scene_id:d.scene_id,source_final_row:d.source_final_row,expression:d.expression,missing_ipa:!q,missing_fields:missing,conflicting_fields:conflicting});
 }
 report.scenes=scenes.size;
+const base=input.replace(/\.jsonl$/,'');
+fs.writeFileSync(base+'-ready.jsonl',ready.map(x=>JSON.stringify(x)).join('\n')+(ready.length?'\n':''));
+fs.writeFileSync(base+'-blocked.jsonl',blocked.map(x=>JSON.stringify(x)).join('\n')+(blocked.length?'\n':''));
+report.ready_file=base+'-ready.jsonl';report.blocked_file=base+'-blocked.jsonl';
 console.log(JSON.stringify(report,null,2));
