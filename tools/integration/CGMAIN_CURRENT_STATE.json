@@ -641,5 +641,16 @@
     "safari": "pending",
     "deployment": "not performed",
     "srs_writes": 0
+  },
+  "scene1341_startup_index_guard_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "f573212bcdad9eeef543e2ad3a307dcfde65da9c",
+    "test_commit": "a804e7aef1a4684f35e1e8458c1a04390804e6ac",
+    "workflow_commit": "b93149106151d467cde2e1c73a7bdf400b4e8c5e",
+    "change": "Background startup initializer checks scene-entry request token before publishing snapshot or clearing it on failure; stale startup no longer overwrites newer entry snapshot.",
+    "ci": "pending",
+    "safari": "pending",
+    "deployment": "not performed",
+    "srs_writes": 0
   }
 }
