@@ -49,5 +49,7 @@ jobs:
             cgmaster-enteach-matched-candidates-holds.jsonl
             cgmaster-enteach-matching-summary.json
             cgmaster-enteach-readiness.json
+            cgmaster-enteach-matched-candidates-ready.jsonl
+            cgmaster-enteach-matched-candidates-blocked.jsonl
           if-no-files-found: warn
           retention-days: 30
