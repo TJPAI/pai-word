@@ -15,7 +15,7 @@ const base='tools/scene1341_master/production';
 const indexPath=path.join(base,'SCENE1341_LIVE_INDEX.json');
 const idx=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(idx.scene_count!==1341||idx.source_associations!==230289||idx.release_allowed!==false||idx.srs_eligible!==false)throw Error('index gate mismatch');
-const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
+const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0')).update(b).digest('hex');
 const trim=v=>typeof v==='string'?v.trim():'';
 const unanimous=xs=>xs.length&&xs.every(Boolean)&&new Set(xs).size===1?xs[0]:null;
 const changes=[],pending=[];
@@ -55,10 +55,10 @@ if(write&&pending.length){
   if(sha(raw)!==meta.git_blob_sha1)throw Error('concurrent modification '+id);
  }
  for(const p of pending){
-  const raw=Buffer.from(JSON.stringify(p.scene,null,2)+'\\n');
+  const raw=Buffer.from(JSON.stringify(p.scene,null,2)+'\n');
   fs.writeFileSync(p.file,raw);
   idx.scenes[p.id].git_blob_sha1=sha(raw);
  }
- fs.writeFileSync(indexPath,JSON.stringify(idx,null,2)+'\\n');
+ fs.writeFileSync(indexPath,JSON.stringify(idx,null,2)+'\n');
 }
 console.log(JSON.stringify({mode:write?'LOCAL_WRITE':'DRY_RUN',changed_rows:touched,changed_scenes:pending.length,changes,qa_stage:'待审',release_allowed:false,srs_eligible:false},null,2));
