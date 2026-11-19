@@ -619,5 +619,16 @@
     "safari": "pending",
     "deployment": "not performed",
     "srs_writes": 0
+  },
+  "scene1341_home_cancel_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "e26ada205994c29ef39f8ed6c273b373253acc69",
+    "test_commit": "b6bba53be15c6c41c24fe181af4f980f522d7cbe",
+    "workflow_commit": "2788346df54c5797deb483f087df6669f196b447",
+    "change": "Explicit Home invalidates in-flight Master scene entry token, preventing delayed fetch from reopening study after Home intent; retains phase/audio/scratch cleanup",
+    "ci": "pending",
+    "safari": "pending",
+    "deployment": "not performed",
+    "srs_writes": 0
   }
 }
