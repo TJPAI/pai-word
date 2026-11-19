@@ -125,6 +125,12 @@
  document.addEventListener('selectstart',e=>{if(state.view==='learning'&&scratchSelectionTarget(e.target))e.preventDefault()},true);
  document.addEventListener('contextmenu',e=>{if(state.view==='learning'&&scratchSelectionTarget(e.target))e.preventDefault()},true);
  let pendingAutoRestore=false,ratingWasDrawing=false;
+ // Home and new-scene entry must cancel pending RAF restoration even if
+ // no render() runs while the study screen is hidden.
+ window.PAI_SCENE1341_SCRATCH_CANCEL_PENDING=()=>{
+  pendingAutoRestore=false;ratingWasDrawing=false;
+  reset();
+ };
  window.PAI_SCRATCH_BEGIN_RATING=()=>{if(activeMode)ratingWasDrawing=true};
  window.PAI_SCRATCH_FINISH_RATING=()=>{
   if(!ratingWasDrawing)return;
