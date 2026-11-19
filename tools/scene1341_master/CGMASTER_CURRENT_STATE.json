@@ -3,8 +3,8 @@
   "updated_at": "2026-11-19",
   "role": "CG-MASTER",
   "branch": "cg-master-kaikki-evidence-intake-20261111",
-  "verified_base_head": "e83b76ec2794756a72328997b7043e50a5a4bd87",
-  "version": "V293_ATOMIC_SOURCE_SAFE_IPA_POS",
+  "verified_base_head": "3ad42f6847d9d9fb27fbe46902b98d410a675bc5",
+  "version": "V294_ATOMIC_SOURCE_SAFE_IPA_POS",
   "status": "FULL1341_TEST_INDEX_PUBLISHED_EDITORIAL_DRAFTS_QA_PENDING",
   "phase1": {
     "scene_ids": [
@@ -1077,7 +1077,7 @@
     "phase1_validator_commit": "75c67004285e07749e392e1682c3c7a3c46610de",
     "phase1_workflow_commit": "411b325d15b42e368ce117e8d12e4d4970c03f5c"
   },
-  "handoff_id": "SC1341-V293-IPA-POS",
+  "handoff_id": "SC1341-V294-IPA-POS",
   "next_tasks": [
     "Read coverage workflow artifact and inspect field counts before claiming any percentage.",
     "Use 3000-row deterministic gap queues to batch source-faithful IPA/POS/zh/en example/collocation/usage enrichment; do not assign ambiguous senses automatically.",
@@ -1428,9 +1428,9 @@
     "Preserve frozen record identities, blob hashes, CG-QA review and SRS gates."
   ],
   "latest_ipa_pos_fill": {
-    "release": "V293",
+    "release": "V294",
     "changed_rows": 3000,
-    "changed_scenes": 107,
+    "changed_scenes": 84,
     "qa_stage": "待审",
     "release_allowed": false,
     "srs_eligible": false
