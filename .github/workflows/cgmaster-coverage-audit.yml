@@ -10,6 +10,8 @@ on:
       - tools/scene1341_master/report_field_gap_queue.mjs
       - tools/scene1341_master/apply_source_safe_ipa_pos.mjs
       - tools/scene1341_master/run_atomic_ipa_pos.mjs
+      - tools/scene1341_master/batch_enrich_master.mjs
+      - tools/scene1341_master/run_atomic_bulk.mjs
 permissions:
   contents: write
 concurrency:
@@ -27,6 +29,8 @@ jobs:
       - name: Validate coverage program
         run: |
           node --check tools/scene1341_master/report_master_coverage.mjs
+          node --check tools/scene1341_master/batch_enrich_master.mjs
+          node --check tools/scene1341_master/run_atomic_bulk.mjs
           node --check tools/scene1341_master/report_field_gap_queue.mjs
           node --check tools/scene1341_master/apply_source_safe_ipa_pos.mjs
           node --check tools/scene1341_master/run_atomic_ipa_pos.mjs
