@@ -54,7 +54,7 @@
     "SC50-0010": {
       "path": "tools/scene1341_master/production/scenes/SC50-0010.json",
       "records": 227,
-      "git_blob_sha1": "049a6f1267004603574385cf403c8d1f7e863b1d"
+      "git_blob_sha1": "230d6b88452052904eba70b78496ccca1e846d3f"
     },
     "SC50-0011": {
       "path": "tools/scene1341_master/production/scenes/SC50-0011.json",
@@ -74,7 +74,7 @@
     "SC50-0014": {
       "path": "tools/scene1341_master/production/scenes/SC50-0014.json",
       "records": 243,
-      "git_blob_sha1": "88c96e16df6140ecbd644282577f3ee017d46b9c"
+      "git_blob_sha1": "c164a8187e5a4e93bd39d7d0deb3e7a8b7ee3920"
     },
     "SC50-0015": {
       "path": "tools/scene1341_master/production/scenes/SC50-0015.json",
@@ -99,7 +99,7 @@
     "SC50-0019": {
       "path": "tools/scene1341_master/production/scenes/SC50-0019.json",
       "records": 221,
-      "git_blob_sha1": "b123518f9866406ff2c3f2686cdbbea75a1fc775"
+      "git_blob_sha1": "c10563faf488a4859dcd6a9cae8fae8d08496163"
     },
     "SC50-0020": {
       "path": "tools/scene1341_master/production/scenes/SC50-0020.json",
@@ -109,7 +109,7 @@
     "SC50-0021": {
       "path": "tools/scene1341_master/production/scenes/SC50-0021.json",
       "records": 247,
-      "git_blob_sha1": "ce8a8ff07a1aef1cafc0c5d5b52009e199531226"
+      "git_blob_sha1": "0f06706395d3547a5ad247ff393fd6ff9609f4e8"
     },
     "SC50-0022": {
       "path": "tools/scene1341_master/production/scenes/SC50-0022.json",
@@ -209,7 +209,7 @@
     "SC50-0041": {
       "path": "tools/scene1341_master/production/scenes/SC50-0041.json",
       "records": 241,
-      "git_blob_sha1": "0035a79902dbe2ddcb30274b36d598f10e765458"
+      "git_blob_sha1": "3323fca6f159ebb2347a6d74e5f30eeb4bdb7c01"
     },
     "SC50-0042": {
       "path": "tools/scene1341_master/production/scenes/SC50-0042.json",
@@ -404,7 +404,7 @@
     "SC50-0080": {
       "path": "tools/scene1341_master/production/scenes/SC50-0080.json",
       "records": 183,
-      "git_blob_sha1": "a73ed5e215098206ffedd82dd94de69e10601809"
+      "git_blob_sha1": "914d95965459f30a8b0bfec28639dc26255533dc"
     },
     "SC50-0081": {
       "path": "tools/scene1341_master/production/scenes/SC50-0081.json",
@@ -429,7 +429,7 @@
     "SC50-0085": {
       "path": "tools/scene1341_master/production/scenes/SC50-0085.json",
       "records": 193,
-      "git_blob_sha1": "71775e5f5d7abb899c73ae713faacb1eb875bb2b"
+      "git_blob_sha1": "cc486e6bad0a0a60f034475cf2175fc97b71bed1"
     },
     "SC50-0086": {
       "path": "tools/scene1341_master/production/scenes/SC50-0086.json",
@@ -524,7 +524,7 @@
     "SC50-0104": {
       "path": "tools/scene1341_master/production/scenes/SC50-0104.json",
       "records": 228,
-      "git_blob_sha1": "d0abf7e1ba3d390ff1a4928bd992123a765fd232"
+      "git_blob_sha1": "ee2278b7f5329fd112dfc8a0da2f667a321b6a63"
     },
     "SC50-0105": {
       "path": "tools/scene1341_master/production/scenes/SC50-0105.json",
@@ -724,7 +724,7 @@
     "SC50-0144": {
       "path": "tools/scene1341_master/production/scenes/SC50-0144.json",
       "records": 251,
-      "git_blob_sha1": "ce06e3f9dc0e3ef73726adc841a13388f08d36a3"
+      "git_blob_sha1": "055d01c1de10c71ca86af8c57da755ed43ff3cc6"
     },
     "SC50-0145": {
       "path": "tools/scene1341_master/production/scenes/SC50-0145.json",
@@ -6714,32 +6714,43 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V298",
-    "content_baseline": "ATOMIC_CG_ENTEACH_V51_FULL_TWO_PAGE",
+    "version": "V299",
+    "content_baseline": "ATOMIC_KAIKKI_SOURCE_GLOSSES_SC0001_SC0150",
     "published_date": "2026-11-19",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "CG-ENTEACH来源绑定双页面完整包（待审）",
+    "headline": "Kaikki唯一义项来源绑定英文释义批量增补（待审）",
     "changes": [
       {
-        "category": "complete_two_page_author_intake",
-        "count": 9
+        "category": "answer_page_gloss_en_source_pinned",
+        "count": 0
       },
       {
-        "category": "answer_fields_filled",
-        "count": 34
+        "category": "answer_page_example_en_source_pinned",
+        "count": 0
+      },
+      {
+        "category": "answer_page_pos_source_pinned",
+        "count": 0
+      },
+      {
+        "category": "question_page_ipa_source_pinned",
+        "count": 10
       },
       {
         "category": "scene_documents_updated",
-        "count": 6
+        "count": 9
       }
     ],
     "changed_scene_ids": [
-      "SC50-0003",
-      "SC50-0005",
-      "SC50-0006",
-      "SC50-0007",
-      "SC50-0008",
-      "SC50-0009"
+      "SC50-0010",
+      "SC50-0014",
+      "SC50-0019",
+      "SC50-0021",
+      "SC50-0041",
+      "SC50-0080",
+      "SC50-0085",
+      "SC50-0104",
+      "SC50-0144"
     ],
     "qa_stage": "待审",
     "release_allowed": false,
