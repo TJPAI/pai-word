@@ -61,6 +61,11 @@ try{
     const a=old.records[i],b=now.records[i];
     if(a.record_id!==b.record_id||a.source_final_row!==b.source_final_row||JSON.stringify(a.source)!==JSON.stringify(b.source)||a.scene_id!==b.scene_id)throw Error('immutable source record changed '+p);
     if(a.release_allowed!==false||b.release_allowed!==false||a.srs_eligible!==false||b.srs_eligible!==false)throw Error('SRS gate changed '+p);
+    const expected=structuredClone(a);
+    if(!expected.question_page.ipa_candidate&&b.question_page.ipa_candidate)expected.question_page.ipa_candidate=b.question_page.ipa_candidate;
+    if(!expected.answer_page.pos&&!expected.question_page.pos&&b.answer_page.pos)expected.answer_page.pos=b.answer_page.pos;
+    if(b.native_field_fill_provenance)expected.native_field_fill_provenance=b.native_field_fill_provenance;
+    if(JSON.stringify(expected)!==JSON.stringify(b))throw Error('unexpected record field modification '+p+' row '+a.source_final_row);
    }
   }
   exec('git',['add','--','tools/scene1341_master/production','tools/scene1341_master/CGMASTER_CURRENT_STATE.json'],wt);
