@@ -40,3 +40,46 @@ jobs:
         with:
           name: cgmaster-gloss-blockers-${{ matrix.range.start }}-${{ matrix.range.end }}
           path: gloss-diagnostics.json
+  aggregate:
+    needs: diagnose
+    if: always()
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: cgmaster-gloss-blockers-*
+          path: shards
+          merge-multiple: false
+      - name: Summarize all available shard diagnostics
+        run: |
+          python3 - <<'PY'
+          import json,glob,os
+          files=glob.glob('shards/**/gloss-diagnostics.json',recursive=True)
+          if len(files)!=9:
+              raise SystemExit(f'Expected 9 shard reports; received {len(files)}')
+          total={}
+          scenes=[]
+          records=0
+          for file in files:
+              d=json.load(open(file))
+              records+=d['records_scanned']
+              for k,v in d['gloss_candidate_diagnostics'].items():
+                  total[k]=total.get(k,0)+v
+              scenes.extend(d.get('gloss_priority_scenes',[]))
+          scenes.sort(key=lambda x:x.get('no_evidence',0)+x.get('multiple_senses',0)+x.get('multiple_entries',0),reverse=True)
+          result={'shards':len(files),'records_scanned':records,'gloss_blockers':total,'top_30_scenes':scenes[:30]}
+          with open('gloss-all-scenes-summary.json','w') as out: json.dump(result,out,ensure_ascii=False,indent=2)
+          with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
+              out.write('## CG-MASTER all-scene gloss blocker audit\\n\\n')
+              out.write(f'Shards: {len(files)}; associations scanned: {records}\\n\\n')
+              out.write('| Reason | Records |\\n|---|---:|\\n')
+              for k,v in sorted(total.items(),key=lambda x:-x[1]):out.write(f'| {k} | {v:,} |\\n')
+              out.write('\\nTop 30 scenes are in the JSON artifact.\\n')
+          print(json.dumps(result,ensure_ascii=False)[:12000])
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-gloss-all-scenes-summary
+          path: gloss-all-scenes-summary.json
