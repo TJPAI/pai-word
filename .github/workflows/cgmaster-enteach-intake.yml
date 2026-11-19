@@ -6,6 +6,7 @@ on:
       - cg-master-kaikki-evidence-intake-20261111
     paths:
       - tools/scene1341_master/prepare_enteach_drafts.mjs
+      - tools/scene1341_master/audit_enteach_import_readiness.mjs
       - .github/workflows/cgmaster-enteach-intake.yml
 permissions:
   contents: read
@@ -34,6 +35,10 @@ jobs:
           test -f master/tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1782.json
           cd master
           node tools/scene1341_master/prepare_enteach_drafts.mjs tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1782.json ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-matching-summary.json
+      - name: Audit nine-field import readiness
+        run: |
+          cd master
+          node tools/scene1341_master/audit_enteach_import_readiness.mjs ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-readiness.json
       - name: Upload candidate evidence and HOLD summary
         if: always()
         uses: actions/upload-artifact@v4
@@ -43,5 +48,6 @@ jobs:
             cgmaster-enteach-matched-candidates.jsonl
             cgmaster-enteach-matched-candidates-holds.jsonl
             cgmaster-enteach-matching-summary.json
+            cgmaster-enteach-readiness.json
           if-no-files-found: warn
           retention-days: 30
