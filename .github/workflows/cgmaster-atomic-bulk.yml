@@ -40,6 +40,7 @@ jobs:
       - name: Validate program syntax
         run: |
           node --check tools/scene1341_master/batch_enrich_master.mjs
+          node --check tools/scene1341_master/report_master_coverage.mjs
           node --check tools/scene1341_master/run_atomic_bulk.mjs
           node --check tools/scene1341_master/reconcile_live_index_preflight.mjs
       - name: Configure commit identity
@@ -55,3 +56,17 @@ jobs:
           SCENE_BATCH: ${{ inputs.batch_size || '3000' }}
         run: |
           node tools/scene1341_master/run_atomic_bulk.mjs --start "$SCENE_START" --end "$SCENE_END" --batch-size "$SCENE_BATCH"
+
+      - name: Audit latest Master completeness after production
+        if: success()
+        run: |
+          git fetch origin refs/heads/cg-master-kaikki-evidence-intake-20261111
+          git checkout --detach FETCH_HEAD
+          node tools/scene1341_master/report_master_coverage.mjs > /tmp/cgmaster-post-bulk-coverage.json
+          node -e "const r=require('/tmp/cgmaster-post-bulk-coverage.json'); console.log(JSON.stringify({release:r.release,counts:r.counts,scene_completeness:r.scene_completeness},null,2))"
+      - name: Upload post-production completeness evidence
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-post-bulk-completeness
+          path: /tmp/cgmaster-post-bulk-coverage.json
