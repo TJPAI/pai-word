@@ -50,6 +50,7 @@ for(let n=start;n<=end;n++){
  }
  if(changed)pending.push({id,file,scene});
 }
+if(verifiedRows!==Array.from({length:end-start+1},(_,i)=>idx.scenes['SC50-'+String(i+start).padStart(4,'0')].records).reduce((a,b)=>a+b,0))throw Error('selected scene identity count mismatch');
 if(write&&pending.length){
  // Revalidate the full original index before making any file changes.
  for(let n=1;n<=1341;n++){
