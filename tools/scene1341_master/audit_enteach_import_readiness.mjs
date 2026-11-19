@@ -21,7 +21,7 @@ for(const line of fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean)){
  const key=d.scene_id+':'+d.source_final_row;
  if(seen.has(key))throw Error('duplicate target '+key);seen.add(key);
  const r=scenes.get(d.scene_id).get(d.source_final_row);
- if(!r||r.question_page?.expression!==d.expression||r.release_allowed!==false||r.srs_eligible!==false){report.identity_errors++;continue;}
+ if(!r||r.question_page?.expression!==d.expression||r.release_allowed!==false||r.srs_eligible!==false){report.identity_errors++;blocked.push({scene_id:d.scene_id,source_final_row:d.source_final_row,expression:d.expression,reason:'FROZEN_IDENTITY_OR_RELEASE_GUARD'});continue;}
  const q=complete(r.question_page?.expression)&&complete(r.question_page?.ipa_candidate);
  if(q)report.ready_question++;else report.missing_question_ipa++;
  let answer=true;const missing=[],conflicting=[];
@@ -45,5 +45,6 @@ const base=input.replace(/\.jsonl$/,'');
 fs.writeFileSync(base+'-ready.jsonl',ready.map(x=>JSON.stringify(x)).join('\n')+(ready.length?'\n':''));
 fs.writeFileSync(base+'-blocked.jsonl',blocked.map(x=>JSON.stringify(x)).join('\n')+(blocked.length?'\n':''));
 report.ready_file=base+'-ready.jsonl';report.blocked_file=base+'-blocked.jsonl';
+if(report.identity_errors)process.exitCode=2;
 if(report.ready_both+blocked.length+report.identity_errors!==report.candidates)throw Error('readiness accounting mismatch');
 console.log(JSON.stringify(report,null,2));
