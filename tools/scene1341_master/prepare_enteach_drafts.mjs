@@ -6,7 +6,6 @@
  * Output is a candidate evidence queue, NOT an approved Master import.
  */
 import fs from 'node:fs';
-import path from 'node:path';
 import crypto from 'node:crypto';
 const [manifestFile,outFile]=process.argv.slice(2);
 if(!manifestFile||!outFile)throw Error('manifest and output required');
@@ -15,7 +14,7 @@ const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));
 if(manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE')throw Error('unexpected manifest status');
 const index=JSON.parse(fs.readFileSync('tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json','utf8'));
 const summary={packs:0,author_drafts:0,matched_unique:0,held_no_match:0,held_ambiguous:0,held_incomplete:0,held_source_mismatch:0};
-const sceneCache=new Map(),out=[],holds=[],usedTargets=new Set();
+const sceneCache=new Map(),out=[],holds=[],usedTargets=new Set(),seenAuthorIds=new Set();
 function loadScene(id){
  if(sceneCache.has(id))return sceneCache.get(id);
  const meta=index.scenes[id];if(!meta)return null;
@@ -34,6 +33,9 @@ for(const pack of manifest.assets.packs){
  summary.packs++;
  for(const d of doc.records){
   summary.author_drafts++;
+  if(!d.scene_ku_id||seenAuthorIds.has(d.scene_ku_id))throw Error('duplicate/missing author KU identity '+d.scene_ku_id);
+  seenAuthorIds.add(d.scene_ku_id);
+  if(d.scene_id!==doc.scope?.scene_id)throw Error('author pack scene mismatch '+pack.path);
   const s=loadScene(d.scene_id);
   if(!s){summary.held_no_match++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,reason:'SCENE_NOT_FOUND'});continue;}
   const candidates=s.records.filter(r=>norm(r.question_page?.expression)===norm(d.expression)&&norm(r.answer_page?.meaning_zh)===norm(d.sense_zh));
@@ -50,6 +52,7 @@ for(const pack of manifest.assets.packs){
  }
 }
 if(summary.author_drafts!==manifest.assets.packs.reduce((n,p)=>n+p.records,0))throw Error('manifest count mismatch');
+if(summary.matched_unique+summary.held_no_match+summary.held_ambiguous+summary.held_incomplete+summary.held_source_mismatch!==summary.author_drafts)throw Error('candidate accounting mismatch');
 fs.writeFileSync(outFile,out.map(x=>JSON.stringify(x)).join('\n')+(out.length?'\n':''));
 const holdFile=outFile.replace(/\.jsonl$/,'-holds.jsonl');
 fs.writeFileSync(holdFile,holds.map(x=>JSON.stringify(x)).join('\n')+(holds.length?'\n':''));
