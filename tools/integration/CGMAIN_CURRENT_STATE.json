@@ -731,5 +731,16 @@
     "ci": "pending",
     "safari": "pending",
     "deployment": "not performed"
+  },
+  "scene1341_request_local_master_snapshot_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "834ba8fa7123879ecf309b58b4af0a308021684f",
+    "updated_regression_commit": "5cffd16108338c9bf78097517479ec815dad67fa",
+    "new_regression_commit": "784de206a392a471f876d07a640f0dbdfe8d9300",
+    "workflow_commit": "590e7032294e84bb4f53601bb3af24d41ad44b1f",
+    "change": "Initial Master scene fetch and SHA mismatch comparison use immutable request-local current snapshot rather than mutable shared masterSceneSnapshot, preventing concurrent A/B entry cross-request contamination",
+    "ci": "pending: GitHub connector exposes only PR-triggered workflow runs; push workflow conclusion not available",
+    "safari": "pending",
+    "deployment": "not performed"
   }
 }
