@@ -9,6 +9,7 @@ on:
       - tools/scene1341_master/report_master_coverage.mjs
       - tools/scene1341_master/report_field_gap_queue.mjs
       - tools/scene1341_master/apply_source_safe_ipa_pos.mjs
+      - tools/scene1341_master/run_atomic_ipa_pos.mjs
 permissions:
   contents: read
 concurrency:
@@ -28,6 +29,7 @@ jobs:
           node --check tools/scene1341_master/report_master_coverage.mjs
           node --check tools/scene1341_master/report_field_gap_queue.mjs
           node --check tools/scene1341_master/apply_source_safe_ipa_pos.mjs
+          node --check tools/scene1341_master/run_atomic_ipa_pos.mjs
       - name: Verify 1341 scene identities and emit teaching field counts
         run: node tools/scene1341_master/report_master_coverage.mjs | tee cgmaster-coverage.json
       - name: Emit actionable 3000-row missing-field batches
