@@ -8,6 +8,7 @@ on:
       - tools/scene1341_master/prepare_enteach_drafts.mjs
       - tools/scene1341_master/audit_enteach_import_readiness.mjs
       - tools/scene1341_master/publish_enteach_ready.mjs
+      - tools/scene1341_master/triage_enteach_blockers.mjs
       - .github/workflows/cgmaster-enteach-intake.yml
 permissions:
   contents: write
@@ -35,6 +36,7 @@ jobs:
           node --check master/tools/scene1341_master/prepare_enteach_drafts.mjs
           node --check master/tools/scene1341_master/audit_enteach_import_readiness.mjs
           node --check master/tools/scene1341_master/publish_enteach_ready.mjs
+          node --check master/tools/scene1341_master/triage_enteach_blockers.mjs
       - name: Match all author draft packs against immutable Master
         run: |
           mkdir -p master/tools/answer-enrichment
@@ -46,6 +48,10 @@ jobs:
         run: |
           cd master
           node tools/scene1341_master/audit_enteach_import_readiness.mjs ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-readiness.json
+      - name: Prioritize evidence-backed missing-field production
+        run: |
+          cd master
+          node tools/scene1341_master/triage_enteach_blockers.mjs ../cgmaster-enteach-matched-candidates-blocked.jsonl | tee ../cgmaster-enteach-blocker-triage.json
       - name: Validate complete two-page ready packages
         run: |
           cd master
@@ -76,6 +82,8 @@ jobs:
             cgmaster-enteach-readiness.json
             cgmaster-enteach-two-page-validation.json
             cgmaster-enteach-publication.json
+            cgmaster-enteach-blocker-triage.json
+            cgmaster-enteach-matched-candidates-blocked-triage.jsonl
             cgmaster-enteach-matched-candidates-ready.jsonl
             cgmaster-enteach-matched-candidates-blocked.jsonl
           if-no-files-found: warn
