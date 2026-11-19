@@ -10,7 +10,10 @@ on:
       - tools/scene1341_master/publish_enteach_ready.mjs
       - .github/workflows/cgmaster-enteach-intake.yml
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: cgmaster-enteach-atomic-publisher
+  cancel-in-progress: false
 jobs:
   match:
     runs-on: ubuntu-latest
@@ -47,6 +50,15 @@ jobs:
         run: |
           cd master
           node tools/scene1341_master/validate_two_page_import.mjs ../cgmaster-enteach-matched-candidates-ready.jsonl | tee ../cgmaster-enteach-two-page-validation.json
+      - name: Publish verified complete packages atomically
+        id: publish
+        run: |
+          if [ ! -s cgmaster-enteach-matched-candidates-ready.jsonl ]; then
+            echo 'NOOP: no complete nine-field Sense packages; release unchanged'
+            exit 0
+          fi
+          cd master
+          node tools/scene1341_master/publish_enteach_ready.mjs "$GITHUB_WORKSPACE/cgmaster-enteach-matched-candidates-ready.jsonl" | tee ../cgmaster-enteach-publication.json
       - name: Upload candidate evidence and HOLD summary
         if: always()
         uses: actions/upload-artifact@v4
@@ -58,6 +70,7 @@ jobs:
             cgmaster-enteach-matching-summary.json
             cgmaster-enteach-readiness.json
             cgmaster-enteach-two-page-validation.json
+            cgmaster-enteach-publication.json
             cgmaster-enteach-matched-candidates-ready.jsonl
             cgmaster-enteach-matched-candidates-blocked.jsonl
           if-no-files-found: warn
