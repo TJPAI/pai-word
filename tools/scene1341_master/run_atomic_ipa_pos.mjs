@@ -47,6 +47,11 @@ try{
  else{
   const after=validate();
   if(after.master_release?.version!==next||after.release_allowed!==false||after.srs_eligible!==false)throw Error('release metadata mismatch');
+  const checkpointFile=path.join(wt,'tools/scene1341_master/CGMASTER_CURRENT_STATE.json');
+  const checkpoint=JSON.parse(fs.readFileSync(checkpointFile,'utf8'));
+  if(checkpoint.latest_ipa_pos_fill?.release!==next||checkpoint.latest_ipa_pos_fill.changed_rows!==result.changed_rows||checkpoint.latest_ipa_pos_fill.changed_scenes!==result.changed_scenes)throw Error('checkpoint counters mismatch');
+  checkpoint.verified_base_head=base;
+  fs.writeFileSync(checkpointFile,JSON.stringify(checkpoint,null,2)+'\n');
   const changed=exec('git',['diff','--name-only'],wt).split('\n').filter(Boolean);
   const allowed=p=>p===indexRel||p==='tools/scene1341_master/CGMASTER_CURRENT_STATE.json'||/^tools\/scene1341_master\/production\/scenes\/SC50-\d{4}\.json$/.test(p);
   if(changed.some(p=>!allowed(p)))throw Error('unexpected changed paths');
