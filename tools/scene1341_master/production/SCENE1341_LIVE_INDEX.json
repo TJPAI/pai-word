@@ -19,7 +19,7 @@
     "SC50-0003": {
       "path": "tools/scene1341_master/production/scenes/SC50-0003.json",
       "records": 237,
-      "git_blob_sha1": "8d4f958d8344da53ed2ff6e0727639569fb8f1ff"
+      "git_blob_sha1": "ae9ccb2c3c9d6138f6d8cfad83e0ce0640df35b3"
     },
     "SC50-0004": {
       "path": "tools/scene1341_master/production/scenes/SC50-0004.json",
@@ -29,27 +29,27 @@
     "SC50-0005": {
       "path": "tools/scene1341_master/production/scenes/SC50-0005.json",
       "records": 259,
-      "git_blob_sha1": "9b3a94375cbd318905c14117fdaad64ce1159123"
+      "git_blob_sha1": "1c3a1f669086951ead127a1418c638d075ef3d7c"
     },
     "SC50-0006": {
       "path": "tools/scene1341_master/production/scenes/SC50-0006.json",
       "records": 214,
-      "git_blob_sha1": "c1ac5c83ddd9f016d5571791fd3d78f525a41a49"
+      "git_blob_sha1": "c781910ff9864b4dfdfdd30e996f7dae4b12a05f"
     },
     "SC50-0007": {
       "path": "tools/scene1341_master/production/scenes/SC50-0007.json",
       "records": 244,
-      "git_blob_sha1": "c1dcb87a0e60230e3175fc35446f0d5a129a8306"
+      "git_blob_sha1": "5458c74b2cfacc3fa8f915e286756e80ad1a3e37"
     },
     "SC50-0008": {
       "path": "tools/scene1341_master/production/scenes/SC50-0008.json",
       "records": 227,
-      "git_blob_sha1": "6de2fda979a2de757b9caa991a98a583896964a6"
+      "git_blob_sha1": "38912affa3e3432e91ec6db10a6768c680f60840"
     },
     "SC50-0009": {
       "path": "tools/scene1341_master/production/scenes/SC50-0009.json",
       "records": 226,
-      "git_blob_sha1": "b8cd766d562de9123a7a30c13ddd5a58c4c28432"
+      "git_blob_sha1": "0c48d08052ac5f2783284f982efb5761eeb696bf"
     },
     "SC50-0010": {
       "path": "tools/scene1341_master/production/scenes/SC50-0010.json",
@@ -6714,22 +6714,33 @@
   },
   "master_release": {
     "metadata_schema": "scene1341-master-release/v1",
-    "version": "V297",
-    "content_baseline": "ATOMIC_KAIKKI_SOURCE_GLOSSES_SC0151_SC0300",
+    "version": "V298",
+    "content_baseline": "ATOMIC_CG_ENTEACH_V51_FULL_TWO_PAGE",
     "published_date": "2026-11-19",
     "stage": "TEST_ONLY_QA_PENDING",
-    "headline": "Kaikki唯一义项来源绑定英文释义批量增补（待审）",
+    "headline": "CG-ENTEACH来源绑定双页面完整包（待审）",
     "changes": [
       {
-        "category": "answer_page_gloss_en_source_pinned",
-        "count": 0
+        "category": "complete_two_page_author_intake",
+        "count": 9
+      },
+      {
+        "category": "answer_fields_filled",
+        "count": 34
       },
       {
         "category": "scene_documents_updated",
-        "count": 0
+        "count": 6
       }
     ],
-    "changed_scene_ids": [],
+    "changed_scene_ids": [
+      "SC50-0003",
+      "SC50-0005",
+      "SC50-0006",
+      "SC50-0007",
+      "SC50-0008",
+      "SC50-0009"
+    ],
     "qa_stage": "待审",
     "release_allowed": false,
     "srs_eligible": false
