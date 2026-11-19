@@ -15,7 +15,7 @@ const manifest=JSON.parse(fs.readFileSync(manifestFile,'utf8'));
 if(manifest.status!=='AUTHOR_DRAFT_QA_PENDING_NO_RELEASE')throw Error('unexpected manifest status');
 const index=JSON.parse(fs.readFileSync('tools/scene1341_master/production/SCENE1341_LIVE_INDEX.json','utf8'));
 const summary={packs:0,author_drafts:0,matched_unique:0,held_no_match:0,held_ambiguous:0,held_incomplete:0,held_source_mismatch:0};
-const sceneCache=new Map(),out=[];
+const sceneCache=new Map(),out=[],holds=[],usedTargets=new Set();
 function loadScene(id){
  if(sceneCache.has(id))return sceneCache.get(id);
  const meta=index.scenes[id];if(!meta)return null;
@@ -35,17 +35,22 @@ for(const pack of manifest.assets.packs){
  for(const d of doc.records){
   summary.author_drafts++;
   const s=loadScene(d.scene_id);
-  if(!s){summary.held_no_match++;continue;}
+  if(!s){summary.held_no_match++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,reason:'SCENE_NOT_FOUND'});continue;}
   const candidates=s.records.filter(r=>norm(r.question_page?.expression)===norm(d.expression)&&norm(r.answer_page?.meaning_zh)===norm(d.sense_zh));
-  if(!candidates.length){summary.held_no_match++;continue;}
-  if(candidates.length!==1){summary.held_ambiguous++;continue;}
+  if(!candidates.length){summary.held_no_match++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,expression:d.expression,reason:'NO_EXACT_EXPRESSION_AND_MEANING'});continue;}
+  if(candidates.length!==1){summary.held_ambiguous++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,expression:d.expression,reason:'MULTIPLE_MASTER_SENSES',matches:candidates.length});continue;}
   const target=candidates[0],a=d.answer||{};
-  if(!a.example_en||!a.example_zh||!Array.isArray(a.collocations)||!a.collocations.length||!a.usage_note){summary.held_incomplete++;continue;}
-  if(d.authoring_status!=='AUTHOR_DRAFT_QA_PENDING'||d.independent_language_qa!=='NOT_REVIEWED'||d.activation_allowed!==false){summary.held_source_mismatch++;continue;}
+  const targetKey=d.scene_id+':'+target.source_final_row;
+  if(usedTargets.has(targetKey)){summary.held_ambiguous++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,reason:'DUPLICATE_MASTER_TARGET',source_final_row:target.source_final_row});continue;}
+  if(!a.example_en||!a.example_zh||!Array.isArray(a.collocations)||!a.collocations.length||!a.usage_note){summary.held_incomplete++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,reason:'INCOMPLETE_AUTHOR_ANSWER'});continue;}
+  if(d.authoring_status!=='AUTHOR_DRAFT_QA_PENDING'||d.independent_language_qa!=='NOT_REVIEWED'||d.activation_allowed!==false){summary.held_source_mismatch++;holds.push({scene_id:d.scene_id,source_sense_id:d.source_sense_id,reason:'UNEXPECTED_QA_STATUS'});continue;}
+  usedTargets.add(targetKey);
   out.push({scene_id:d.scene_id,source_final_row:target.source_final_row,expression:target.question_page.expression,source_sense_id:d.source_sense_id,source_rank:d.source_rank,fields:{meaning_zh:a.meaning_zh,example_en:a.example_en,example_zh:a.example_zh,collocations:a.collocations,usage_note:a.usage_note},provenance:{source:'CG-ENTEACH V51 author draft',source_id:d.scene_ku_id,pack_path:pack.path,pack_blob:pack.git_blob},qa_stage:'待审',release_allowed:false,srs_eligible:false});
   summary.matched_unique++;
  }
 }
 if(summary.author_drafts!==manifest.assets.packs.reduce((n,p)=>n+p.records,0))throw Error('manifest count mismatch');
 fs.writeFileSync(outFile,out.map(x=>JSON.stringify(x)).join('\n')+(out.length?'\n':''));
-console.log(JSON.stringify({...summary,output:outFile,publication:'NONE_DRAFT_QUEUE_ONLY'},null,2));
+const holdFile=outFile.replace(/\.jsonl$/,'-holds.jsonl');
+fs.writeFileSync(holdFile,holds.map(x=>JSON.stringify(x)).join('\n')+(holds.length?'\n':''));
+console.log(JSON.stringify({...summary,output:outFile,hold_file:holdFile,publication:'NONE_DRAFT_QUEUE_ONLY'},null,2));
