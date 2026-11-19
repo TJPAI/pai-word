@@ -13,7 +13,7 @@ if(index.scene_count!==1341||index.source_associations!==230289||index.release_a
 const fields=['ipa','pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
 const tally=Object.fromEntries(fields.map(f=>[f,{present:0,missing:0}]));
 const batches=[],sceneTotals=[],seen=new Set();
-let batch=[],associations=0,sourceReady=0,ambiguous=0;
+let batch=[],associations=0,sourceReady=0,ambiguous=0,unresolvedSense=0;
 const isText=v=>typeof v==='string'&&v.trim().length>0;
 const isNonempty=v=>Array.isArray(v)?v.length>0:isText(v);
 const gitBlob=buf=>crypto.createHash('sha1').update(Buffer.concat([Buffer.from('blob '+buf.length+'\0'),buf])).digest('hex');
@@ -33,6 +33,7 @@ for(let i=1;i<=1341;i++){
     if(native)sourceReady++;
     const candidateCount=native?.candidates?.length||0;
     if(candidateCount>1)ambiguous++;
+    if(native?.native_sense_selection==='UNRESOLVED')unresolvedSense++;
     const ex=Array.isArray(a.examples)?a.examples:[];
     const values={
       ipa:isNonempty(q.ipa_candidate),pos:isNonempty(q.pos)||isNonempty(a.pos),
@@ -45,7 +46,7 @@ for(let i=1;i<=1341;i++){
     for(const f of fields){tally[f][values[f]?'present':'missing']++;if(!values[f])local[f]++;}
     if(gaps.length){
       // Source pointers only: no unsupported sense selection or invented teaching text.
-      batch.push({scene_id:id,source_final_row:r.source_final_row,expression:q.expression??null,missing_fields:gaps,kaikki_candidates:candidateCount,qa_stage:native?.qa_stage??'待审'});
+      batch.push({scene_id:id,source_final_row:r.source_final_row,expression:q.expression??null,missing_fields:gaps,kaikki_candidates:candidateCount,native_sense_selection:native?.native_sense_selection??null,qa_stage:native?.qa_stage??'待审'});
       if(batch.length===3000)pushBatch();
     }
   }
@@ -53,5 +54,5 @@ for(let i=1;i<=1341;i++){
 }
 pushBatch();
 if(associations!==230289||seen.size!==230289||Object.keys(index.scenes).length!==1341)throw Error('frozen coverage totals mismatch');
-const summary={schema:'cgmaster-field-gap-queue/v1',release:index.master_release?.version??null,scenes:1341,associations,source_evidence_records:sourceReady,ambiguous_native_entry_records:ambiguous,fields:tally,incomplete_rows:batches.reduce((s,b)=>s+b.records,0),batch_size:3000,batch_count:batches.length,release_allowed:false,srs_eligible:false};
+const summary={schema:'cgmaster-field-gap-queue/v1',release:index.master_release?.version??null,scenes:1341,associations,source_evidence_records:sourceReady,ambiguous_native_entry_records:ambiguous,unresolved_native_sense_records:unresolvedSense,fields:tally,incomplete_rows:batches.reduce((s,b)=>s+b.records,0),batch_size:3000,batch_count:batches.length,release_allowed:false,srs_eligible:false};
 console.log(JSON.stringify({summary,scene_totals:sceneTotals,batches},null,2));
