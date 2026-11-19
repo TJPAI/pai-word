@@ -764,6 +764,13 @@ async function openMasterScene(id,resume=false){
   if(!masterSceneSnapshot||!masterSceneAdapter){
    throw Error('MASTER_INDEX_UNAVAILABLE');
   }
+  // Every explicit scene entry checks the latest atomic Master index, even
+  // when the old index and old scene blob still match each other. Otherwise
+  // V284+ content would remain stale until a hard reload or SHA mismatch.
+  const current=await masterSceneAdapter.resolveMasterSceneIndex();
+  if(request!==latestSceneEntryRequest)return;
+  masterSceneSnapshot=current;
+  masterReleaseInfo=masterSceneAdapter.masterReleaseView(current.index);
   let scene;
   try{
    scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id);
