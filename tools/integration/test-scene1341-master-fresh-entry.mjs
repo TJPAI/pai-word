@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const start=source.indexOf('async function openMasterScene(');
+assert.ok(start>0,'Master entry exists');
+const entry=source.slice(start,source.indexOf('let exampleToWordPending=false;',start));
+const refresh=entry.indexOf('const current=await masterSceneAdapter.resolveMasterSceneIndex()');
+const fetch=entry.indexOf('scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id)');
+assert.ok(refresh>=0&&fetch>refresh,'fresh atomic index is resolved before every scene fetch');
+assert.match(entry,/if\(request!==latestSceneEntryRequest\)return;\s*masterSceneSnapshot=current/);
+assert.match(entry,/masterReleaseInfo=masterSceneAdapter\.masterReleaseView\(current\.index\)/);
+assert.match(entry,/if\(!String\(firstError\?\.message\|\|firstError\)\.includes\('MASTER_SCENE_V1_SCENE_BLOB'\)\)throw firstError/);
+assert.match(entry,/scene=await masterSceneAdapter\.fetchMasterScene\(fresh,id\)/);
+assert.match(entry,/if\(request!==latestSceneEntryRequest\)return;\s*items=masterSceneAdapter\.mergeMasterScene/);
+assert.match(entry,/sceneEntryError=mismatch/);
+console.log('PASS: every entry rechecks atomic Master index, preserves SHA-gated fetch and latest-tap protection');
