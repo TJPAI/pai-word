@@ -34,6 +34,7 @@ jobs:
           cd master
           node tools/scene1341_master/prepare_enteach_drafts.mjs tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1782.json ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-matching-summary.json
       - name: Upload candidate evidence and HOLD summary
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: cgmaster-enteach-matching
@@ -41,4 +42,5 @@ jobs:
             cgmaster-enteach-matched-candidates.jsonl
             cgmaster-enteach-matched-candidates-holds.jsonl
             cgmaster-enteach-matching-summary.json
+          if-no-files-found: warn
           retention-days: 30
