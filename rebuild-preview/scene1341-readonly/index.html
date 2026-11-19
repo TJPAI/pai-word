@@ -788,9 +788,11 @@ async function openMasterScene(id,resume=false){
    if(!String(firstError?.message||firstError).includes('MASTER_SCENE_V1_SCENE_BLOB'))throw firstError;
    const previous=masterSceneSnapshot;
    const fresh=await masterSceneAdapter.resolveMasterSceneIndex();
+   if(request!==latestSceneEntryRequest)return;
    if(fresh.commit===previous.commit&&
       fresh.index.scenes[id]?.git_blob_sha1===previous.index.scenes[id]?.git_blob_sha1)throw firstError;
    scene=await masterSceneAdapter.fetchMasterScene(fresh,id);
+   if(request!==latestSceneEntryRequest)return;
    masterSceneSnapshot=fresh;
    masterReleaseInfo=masterSceneAdapter.masterReleaseView(fresh.index);
   }
