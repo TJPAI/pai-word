@@ -607,5 +607,17 @@
     "safari": "pending",
     "deployment": "not performed",
     "srs_writes": 0
+  },
+  "scene1341_aba_last_tap_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "a974b3c98d396f2989c6d6e5a0c32ab2334d3c89",
+    "test_commit": "c594491ad22ca8bcf8213f4ba9a2cae79ca871c6",
+    "workflow_commit": "97152a1b0b0b47b2b6035db336f2edfdcb3035db",
+    "master_version_reported": "V286",
+    "change": "Remove premature same-ID loading coalescence that dropped last tap in A-B-A sequence; preserve newest token, fresh Master index, SHA verification, fail closed",
+    "ci": "pending",
+    "safari": "pending",
+    "deployment": "not performed",
+    "srs_writes": 0
   }
 }
