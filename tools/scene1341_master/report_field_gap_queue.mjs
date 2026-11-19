@@ -11,8 +11,8 @@ const root=path.resolve('tools/scene1341_master/production');
 const index=JSON.parse(fs.readFileSync(path.join(root,'SCENE1341_LIVE_INDEX.json'),'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289||index.release_allowed!==false||index.srs_eligible!==false)throw Error('frozen index or release gate mismatch');
 const fields=['ipa','pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
-const safeCandidates={ipa:[],pos:[]};
-const safeCounts={ipa:0,pos:0,ipa_and_pos:0};
+const safeCandidates={ipa:[],pos:[],gloss_en:[]};
+const safeCounts={ipa:0,pos:0,ipa_and_pos:0,gloss_en:0};
 const canonical=v=>typeof v==='string'?v.trim():'';
 function consensus(values){const unique=[...new Set(values.map(canonical).filter(Boolean))];return unique.length===1?unique[0]:null;}
 function sourceSafe(r,native,values){
@@ -61,6 +61,12 @@ for(let i=1;i<=1341;i++){
     const safe=sourceSafe(r,native,values);
     for(const field of ['ipa','pos'])if(safe[field]){safeCounts[field]++;safeCandidates[field].push({scene_id:id,source_final_row:r.source_final_row,value:safe[field],evidence_archive_sha256:native.archive_sha256,source_lines:native.candidates.map(c=>c.source_line),qa_stage:'待审'});}
     if(safe.ipa&&safe.pos)safeCounts.ipa_and_pos++;
+    if(!values.gloss_en&&native?.expression_exact===q.expression&&native?.source_final_row===r.source_final_row&&candidateCount===1){
+      const entry=native.candidates[0],sense=entry?.senses?.length===1?entry.senses[0]:null,gloss=sense?.glosses?.length===1?sense.glosses[0]:null;
+      if(entry?.source_word===q.expression&&Number.isInteger(entry.source_line)&&Number.isInteger(sense?.source_sense_index)&&typeof gloss==='string'&&gloss.trim().length>=16&&gloss.trim().length<=850&&!/[<>\[\]{}]/.test(gloss)&&!/^((inflection|form|plural|past tense|alternative spelling|misspelling|translation) of)\b/i.test(gloss.trim())){
+        safeCounts.gloss_en++;safeCandidates.gloss_en.push({scene_id:id,source_final_row:r.source_final_row,value:gloss.trim(),archive_sha256:native.archive_sha256,source_line:entry.source_line,source_sense_index:sense.source_sense_index,qa_stage:'待审'});
+      }
+    }
     for(const f of fields){tally[f][values[f]?'present':'missing']++;if(!values[f])local[f]++;}
     if(gaps.length){
       // Source pointers only: no unsupported sense selection or invented teaching text.
