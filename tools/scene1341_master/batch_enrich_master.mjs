@@ -26,9 +26,9 @@ const changes=new Map();
 const seenSourceRows=new Set();
 function eligible(record){
   const evidence=record.kaikki_full_native_evidence;
-  if(!evidence||evidence.expression_exact!==record.question_page?.expression) return null;
+  if(!evidence||evidence.expression_exact!==record.question_page?.expression||evidence.source_final_row!==record.source_final_row) return null;
   const entries=evidence.candidates;
-  if(!Array.isArray(entries)||entries.length!==1)return null;
+  if(!Array.isArray(entries)||entries.length!==1||entries[0]?.source_word!==evidence.expression_exact)return null;
   const e=entries[0];
   if(!Array.isArray(e.senses)||e.senses.length!==1)return null;
   const sense=e.senses[0], glosses=sense.glosses;
