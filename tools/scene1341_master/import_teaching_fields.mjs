@@ -19,6 +19,7 @@ const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\0')
 const allowed=['pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
 const valid=v=>typeof v==='string'&&v.trim().length>=1&&v.trim().length<=800&&!/[<>]/.test(v);
 const validField=(k,v)=>k==='collocations'?(Array.isArray(v)&&v.length>0&&v.every(valid)):valid(v);
+const same=(a,b)=>JSON.stringify(a)===JSON.stringify(b);
 const lines=fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean);
 const seen=new Set(),byScene=new Map();
 for(const [i,line] of lines.entries()){
@@ -32,6 +33,7 @@ for(const [i,line] of lines.entries()){
 }
 const result={mode:write?'LOCAL_ATOMIC_STAGE':'DRY_RUN',input_rows:lines.length,changed_records:0,changed_fields:Object.fromEntries(allowed.map(k=>[k,0])),already_present:0,scenes_changed:0,identity_errors:0,qa_stage:'待审',release_allowed:false,srs_eligible:false};
 const pending=[];
+if(lines.length>3000)throw Error('maximum one atomic intake batch: 3000 rows');
 for(const [id,items] of byScene){
  const meta=idx.scenes[id],raw=fs.readFileSync(meta.path);
  if(sha(raw)!==meta.git_blob_sha1)throw Error('stale index '+id);
@@ -43,7 +45,7 @@ for(const [id,items] of byScene){
   if(!row||row.scene_id!==id||row.question_page?.expression!==item.expression||row.release_allowed!==false||row.srs_eligible!==false)throw Error('frozen row/expression mismatch '+id+':'+item.source_final_row);
   if(!row.answer_page||typeof row.answer_page!=='object')throw Error('missing answer page');
   if(!valid(row.question_page?.expression)||!valid(row.question_page?.ipa_candidate))throw Error('question 1-2 must be complete before importing answer 3-9 '+id+':'+item.source_final_row);
-  for(const field of allowed){if(row.answer_page[field]&&JSON.stringify(row.answer_page[field])!==JSON.stringify(item.fields[field]))throw Error('conflicting existing answer field '+field+' '+id+':'+item.source_final_row);}
+  for(const field of allowed){if(row.answer_page[field]&&!same(row.answer_page[field],item.fields[field]))throw Error('conflicting existing answer field '+field+' '+id+':'+item.source_final_row);}
   if(Object.keys(item.fields).length!==7)throw Error('answer package must contain exactly fields 3-9');
   let rowChanged=false;
   for(const [field,value] of Object.entries(item.fields)){
@@ -56,5 +58,9 @@ for(const [id,items] of byScene){
  }
  if(changed){result.scenes_changed++;pending.push({path:meta.path,bytes:Buffer.from(JSON.stringify(scene,null,2)+'\n')});}
 }
-if(write)for(const p of pending)fs.writeFileSync(p.path,p.bytes);
+if(write){
+ // Stage only: never publish a scene file without its matching live-index blob SHA.
+ // The caller must update the index and commit atomically before exposing this tree.
+ for(const p of pending)fs.writeFileSync(p.path,p.bytes);
+}
 console.log(JSON.stringify(result,null,2));
