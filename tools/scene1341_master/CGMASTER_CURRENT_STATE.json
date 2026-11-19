@@ -1079,9 +1079,9 @@
   },
   "handoff_id": "SC1341-V281-ATOMIC-SC0176-SC0190",
   "next_tasks": [
-    "Verify full 1341 index↔blob contract and update CG-MAIN handoff.",
-    "Independent CG-QA source/content review, no automatic 1审.",
-    "Expand IPA/POS, example, collocation and usage coverage after English-gloss batch."
+    "Confirm GitHub Action from workflow commit 89d1a6b: full 1341 identity and blob audit; observe any fail-closed structural errors.",
+    "Verify SC0176..SC0190 actual batch commit and V281 index/checkpoint before claiming production.",
+    "Keep 230289 identity and all QA flags immutable; no review promotion."
   ],
   "last_issue_comment_observed_ids": {
     "issue1": 6898227914,
@@ -1316,5 +1316,20 @@
     "release_allowed": false,
     "srs_eligible": false,
     "full1341_integrity_verified": true
+  },
+  "last_index_integrity_incident": {
+    "date": "2026-11-19",
+    "failed_action_log": "2026-11-19T05:04:43Z",
+    "symptom": "Git blob mismatch SC50-0028 before content production",
+    "scope": "SC50-0028 was a confirmed stale pointer (scene file 207/207 records); other stale pointers cannot be ruled out until full runner audit",
+    "sc28_index_repair_commit": "c2ddb4531fa01b7e82403531d0df863601caca13",
+    "sc28_blob": "5c89242b027d54a79f3f3f4d2c88708daa66ea9b",
+    "preflight_script_commit": "5f731c3594611812fdd2b636edbb527c2ef616f4",
+    "workflow_preflight_commit": "89d1a6b40a2bebbd781286a761de1b3d52a07f05",
+    "full1341_audit": "PENDING_ACTIONS_RESULT",
+    "SC0176_SC0190_produced": "NOT_VERIFIED",
+    "qa_stage": "待审",
+    "release_allowed": false,
+    "srs_eligible": false
   }
 }
