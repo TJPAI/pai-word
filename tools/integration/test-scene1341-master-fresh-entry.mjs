@@ -5,7 +5,7 @@ const start=source.indexOf('async function openMasterScene(');
 assert.ok(start>0,'Master entry exists');
 const entry=source.slice(start,source.indexOf('let exampleToWordPending=false;',start));
 const refresh=entry.indexOf('const current=await masterSceneAdapter.resolveMasterSceneIndex()');
-const fetch=entry.indexOf('scene=await masterSceneAdapter.fetchMasterScene(masterSceneSnapshot,id)');
+const fetch=entry.indexOf('scene=await masterSceneAdapter.fetchMasterScene(current,id)');
 assert.ok(refresh>=0&&fetch>refresh,'fresh atomic index is resolved before every scene fetch');
 assert.match(entry,/if\(request!==latestSceneEntryRequest\)return;\s*masterSceneSnapshot=current/);
 assert.match(entry,/masterReleaseInfo=masterSceneAdapter\.masterReleaseView\(current\.index\)/);
