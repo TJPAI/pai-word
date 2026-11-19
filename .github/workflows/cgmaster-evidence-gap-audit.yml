@@ -1,0 +1,26 @@
+name: CG-MASTER Kaikki evidence gap audit
+on:
+  push:
+    branches: [cg-master-kaikki-evidence-intake-20261111]
+    paths:
+      - .github/workflows/cgmaster-evidence-gap-audit.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect missing Kaikki evidence and candidate field structure
+        run: |
+          node --check tools/scene1341_master/audit_kaikki_evidence_gaps.mjs
+          node tools/scene1341_master/audit_kaikki_evidence_gaps.mjs 1 150 > /tmp/cgmaster-evidence-gaps.json
+          cat /tmp/cgmaster-evidence-gaps.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cgmaster-evidence-gaps-sc0001-sc0150
+          path: /tmp/cgmaster-evidence-gaps.json
