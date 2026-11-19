@@ -10,6 +10,7 @@ import crypto from 'node:crypto';
 const argv=process.argv.slice(2);
 const number=(flag,def)=>{const i=argv.indexOf(flag);return i<0?def:Number(argv[i+1]);};
 const start=number('--start',1),end=number('--end',1341),max=number('--max-rows',3000),write=argv.includes('--write');
+if(write&&!argv.includes('--atomic-release-context'))throw Error('write requires --atomic-release-context; use controlled atomic publisher, not standalone mutation');
 if(![start,end,max].every(Number.isInteger)||start<1||end>1341||start>end||max<1)throw Error('invalid range');
 const base='tools/scene1341_master/production';
 const indexPath=path.join(base,'SCENE1341_LIVE_INDEX.json');
