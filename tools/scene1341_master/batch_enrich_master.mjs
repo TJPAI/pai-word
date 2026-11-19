@@ -19,7 +19,7 @@ if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||end>1341||start>en
 const shaBlob=(buf)=>crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\0')).update(buf).digest('hex');
 const index=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289)throw Error('immutable master totals mismatch');
-const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
+const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,diagnostics:{evidence_missing:0,expression_mismatch:0,row_mismatch:0,candidates_missing:0,source_word_mismatch:0,source_line_missing:0,pos_missing_or_unsupported:0,pos_conflict:0,pos_already_present:0},batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
@@ -67,6 +67,15 @@ for(let i=1;i<=1341;i++){
     const ev=record.kaikki_full_native_evidence;
     const entries=ev?.candidates;
     const posMap={noun:'n.',verb:'v.',adjective:'adj.',adverb:'adv.',pronoun:'pron.',preposition:'prep.',conjunction:'conj.',interjection:'interj.',determiner:'det.',numeral:'num.'};
+    const diag=outcomes.diagnostics;
+    if(!ev)diag.evidence_missing++;
+    else if(ev.expression_exact!==record.question_page?.expression)diag.expression_mismatch++;
+    else if(ev.source_final_row!==record.source_final_row)diag.row_mismatch++;
+    else if(!Array.isArray(entries)||entries.length===0)diag.candidates_missing++;
+    else if(entries.some(e=>e.source_word!==ev.expression_exact))diag.source_word_mismatch++;
+    else if(entries.some(e=>!Number.isInteger(e.source_line)))diag.source_line_missing++;
+    else if(entries.some(e=>!Object.hasOwn(posMap,String(e.pos||'').trim().toLowerCase())))diag.pos_missing_or_unsupported++;
+    else if(new Set(entries.map(e=>posMap[e.pos.trim().toLowerCase()])).size>1)diag.pos_conflict++;
     if(ev?.expression_exact===record.question_page?.expression&&ev?.source_final_row===record.source_final_row&&Array.isArray(entries)&&entries.length>0&&entries.every(e=>e.source_word===ev.expression_exact&&Number.isInteger(e.source_line)&&Object.hasOwn(posMap,String(e.pos||'').trim().toLowerCase()))){
      const values=[...new Set(entries.map(e=>posMap[e.pos.trim().toLowerCase()]))];
      if(values.length===1){
@@ -76,6 +85,7 @@ for(let i=1;i<=1341;i++){
      }
     }
    }
+   else outcomes.diagnostics.pos_already_present++;
    const candidate=eligible(record);
    if(!candidate){if(record.kaikki_full_native_evidence)outcomes.ambiguous_hold++;else outcomes.no_native_match++;continue;}
    if(!record.answer_page.gloss_en){
