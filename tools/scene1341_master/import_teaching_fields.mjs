@@ -16,7 +16,7 @@ const base='tools/scene1341_master/production';
 const idx=JSON.parse(fs.readFileSync(base+'/SCENE1341_LIVE_INDEX.json','utf8'));
 if(idx.scene_count!==1341||idx.source_associations!==230289||idx.release_allowed!==false||idx.srs_eligible!==false)throw Error('frozen catalog invariant');
 const sha=b=>crypto.createHash('sha1').update(Buffer.from('blob '+b.length+'\\0')).update(b).digest('hex');
-const allowed=['example_en','example_zh','collocations','usage_note'];
+const allowed=['pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
 const valid=v=>typeof v==='string'&&v.trim().length>=3&&v.trim().length<=800&&!/[<>]/.test(v);
 const lines=fs.readFileSync(input,'utf8').split(/\r?\n/).filter(Boolean);
 const seen=new Set(),byScene=new Map();
@@ -25,7 +25,7 @@ for(const [i,line] of lines.entries()){
  if(!/^SC50-(0[0-9]{3}|1[0-2][0-9]{2}|13[0-3][0-9]|134[01])$/.test(r.scene_id)||!idx.scenes[r.scene_id]||!Number.isInteger(r.source_final_row)||seen.has(key))throw Error('invalid/duplicate identity line '+(i+1));
  seen.add(key);
  if(!r.provenance||typeof r.provenance.source!=='string'||!r.provenance.source.trim()||typeof r.provenance.source_id!=='string'||!r.provenance.source_id.trim())throw Error('missing source provenance line '+(i+1));
- if(!r.fields||!Object.keys(r.fields).length||Object.keys(r.fields).some(k=>!allowed.includes(k)||!valid(r.fields[k])))throw Error('invalid teaching fields line '+(i+1));
+ if(!r.fields||allowed.some(k=>!valid(r.fields[k]))||Object.keys(r.fields).some(k=>!allowed.includes(k)))throw Error('invalid teaching fields line '+(i+1));
  if(!byScene.has(r.scene_id))byScene.set(r.scene_id,[]);
  byScene.get(r.scene_id).push(r);
 }
@@ -41,6 +41,9 @@ for(const [id,items] of byScene){
   const row=rows.get(item.source_final_row);
   if(!row||row.scene_id!==id||row.question_page?.expression!==item.expression||row.release_allowed!==false||row.srs_eligible!==false)throw Error('frozen row/expression mismatch '+id+':'+item.source_final_row);
   if(!row.answer_page||typeof row.answer_page!=='object')throw Error('missing answer page');
+  if(!valid(row.question_page?.expression)||!valid(row.question_page?.ipa_candidate))throw Error('question 1-2 must be complete before importing answer 3-9 '+id+':'+item.source_final_row);
+  for(const field of allowed){if(row.answer_page[field]&&JSON.stringify(row.answer_page[field])!==JSON.stringify(item.fields[field]))throw Error('conflicting existing answer field '+field+' '+id+':'+item.source_final_row);}
+  if(Object.keys(item.fields).length!==7)throw Error('answer package must contain exactly fields 3-9');
   let rowChanged=false;
   for(const [field,value] of Object.entries(item.fields)){
    if(row.answer_page[field]){result.already_present++;continue;}
