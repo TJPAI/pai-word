@@ -16,7 +16,7 @@ const batches=[],sceneTotals=[],seen=new Set();
 let batch=[],associations=0,sourceReady=0,ambiguous=0;
 const isText=v=>typeof v==='string'&&v.trim().length>0;
 const isNonempty=v=>Array.isArray(v)?v.length>0:isText(v);
-const gitBlob=buf=>crypto.createHash('sha1').update(Buffer.concat([Buffer.from('blob '+buf.length+'\\0'),buf])).digest('hex');
+const gitBlob=buf=>crypto.createHash('sha1').update(Buffer.concat([Buffer.from('blob '+buf.length+'\0'),buf])).digest('hex');
 function pushBatch(){if(!batch.length)return;batches.push({batch_number:batches.length+1,records:batch.length,first:batch[0],last:batch.at(-1),rows:batch});batch=[];}
 for(let i=1;i<=1341;i++){
   const id='SC50-'+String(i).padStart(4,'0'),meta=index.scenes[id];
