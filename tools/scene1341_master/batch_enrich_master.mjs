@@ -21,6 +21,7 @@ const index=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289)throw Error('immutable master totals mismatch');
 const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,ipa_enriched:0,ipa_conflicts:0,already_present:0,ambiguous_hold:0,no_native_match:0,gloss_candidate_diagnostics:{no_evidence:0,identity_mismatch:0,no_candidates:0,multiple_entries:0,multiple_senses:0,multiple_glosses:0,gloss_filtered:0,source_identity_missing:0,eligible:0},diagnostics:{evidence_missing:0,expression_mismatch:0,row_mismatch:0,candidates_missing:0,source_word_mismatch:0,source_line_missing:0,pos_missing_or_unsupported:0,pos_conflict:0,pos_already_present:0},batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
+const glossScenePriority=[];
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
 const seenSourceRows=new Set();
@@ -55,6 +56,7 @@ for(let i=1;i<=1341;i++){
  const inside=i>=start&&i<=end;
  if(inside){
   outcomes.scenes_scanned++;
+  const beforeGloss={...outcomes.gloss_candidate_diagnostics};
   if(batch.start_scene===null)batch.start_scene=id;
   batch.end_scene=id;
   for(const record of scene.records){
@@ -130,6 +132,10 @@ for(let i=1;i<=1341;i++){
     outcomes.english_examples_enriched++;
    }
   }
+  if(outcomes.gloss_candidate_diagnostics){
+   const deltas=Object.fromEntries(Object.entries(outcomes.gloss_candidate_diagnostics).map(([k,v])=>[k,v-(beforeGloss[k]||0)]));
+   glossScenePriority.push({scene_id:id,records:scene.records.length,...deltas});
+  }
   if(batch.records>=batchSize)flush();
   const oldExisting=JSON.parse(before);
   if(JSON.stringify(scene)!==JSON.stringify(oldExisting)){
@@ -142,6 +148,7 @@ for(let i=1;i<=1341;i++){
  if(ent.git_blob_sha1!==shaBlob(finalBytes))outcomes.hash_mismatches_after.push(id);
 }
 flush();
+outcomes.gloss_priority_scenes=glossScenePriority.sort((a,b)=>(b.no_evidence+b.multiple_senses+b.multiple_entries)-(a.no_evidence+a.multiple_senses+a.multiple_entries)).slice(0,30);
 if(outcomes.source_associations!==230289)throw Error('source association total corrupted');
 if(outcomes.hash_mismatches_after.length)throw Error('post-write hash mismatch');
 if(!dryRun){
