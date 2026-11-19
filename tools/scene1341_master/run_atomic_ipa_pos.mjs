@@ -48,7 +48,7 @@ try{
   const after=validate();
   if(after.master_release?.version!==next||after.release_allowed!==false||after.srs_eligible!==false)throw Error('release metadata mismatch');
   const changed=exec('git',['diff','--name-only'],wt).split('\n').filter(Boolean);
-  const allowed=p=>p===indexRel||p==='tools/scene1341_master/CGMASTER_CURRENT_STATE.json'||/^tools\/scene1341_master\/production\/scenes\/SC50-\d{4}\\.json$/.test(p);
+  const allowed=p=>p===indexRel||p==='tools/scene1341_master/CGMASTER_CURRENT_STATE.json'||/^tools\/scene1341_master\/production\/scenes\/SC50-\d{4}\.json$/.test(p);
   if(changed.some(p=>!allowed(p)))throw Error('unexpected changed paths');
   exec('git',['add','--','tools/scene1341_master/production','tools/scene1341_master/CGMASTER_CURRENT_STATE.json'],wt);
   exec('git',['commit','-m','data(cg-master): '+next+' source-safe IPA/POS '+result.changed_rows+' records'],wt);
