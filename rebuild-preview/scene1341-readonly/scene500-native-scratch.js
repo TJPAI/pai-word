@@ -124,11 +124,11 @@
  };
  document.addEventListener('selectstart',e=>{if(state.view==='learning'&&scratchSelectionTarget(e.target))e.preventDefault()},true);
  document.addEventListener('contextmenu',e=>{if(state.view==='learning'&&scratchSelectionTarget(e.target))e.preventDefault()},true);
- let pendingAutoRestore=false,ratingWasDrawing=false;
+ let pendingAutoRestore=false,ratingWasDrawing=false,restoreGeneration=0;
  // Home and new-scene entry must cancel pending RAF restoration even if
  // no render() runs while the study screen is hidden.
  window.PAI_SCENE1341_SCRATCH_CANCEL_PENDING=()=>{
-  pendingAutoRestore=false;ratingWasDrawing=false;
+  restoreGeneration++;pendingAutoRestore=false;ratingWasDrawing=false;
   reset();
  };
  window.PAI_SCRATCH_BEGIN_RATING=()=>{if(activeMode)ratingWasDrawing=true};
@@ -150,8 +150,10 @@
   pendingAutoRestore=(pendingAutoRestore||activeMode)&&window.PAI_SCRATCH_AUTO_TRANSITION===true&&state.view==='learning';
   reset();
   const result=previousRender.apply(this,args);
+  const generation=++restoreGeneration;
   if(state.view!=='learning'){pendingAutoRestore=false;return result;}
   requestAnimationFrame(()=>{
+   if(generation!==restoreGeneration)return;
    if(state.view!=='learning'){pendingAutoRestore=false;return;}
    initScratch();
    if(pendingAutoRestore&&activeSurface&&!activeMode){pendingAutoRestore=false;window.PAI_SCRATCH_REENTER?.();}
