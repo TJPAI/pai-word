@@ -1,0 +1,12 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+const home=source.slice(source.indexOf('function home(){'),source.indexOf('// Fit long English',source.indexOf('function home(){')));
+const entry=source.slice(source.indexOf('async function openMasterScene('),source.indexOf('let exampleToWordPending=false;',source.indexOf('async function openMasterScene(')));
+assert.match(home,/\+\+latestSceneEntryRequest/);
+assert.match(home,/sceneEntryError=''/);
+assert.match(home,/autoBrowse\.pause\(\);stopWordAudio\(\);resetScratch\(\)/);
+assert.match(entry,/const request=\+\+latestSceneEntryRequest/);
+assert.match(entry,/if\(request!==latestSceneEntryRequest\)return/);
+assert.match(entry,/if\(request===latestSceneEntryRequest\)renderHome\(\)/);
+console.log('PASS: explicit Home invalidates in-flight scene entries and preserves cleanup');
