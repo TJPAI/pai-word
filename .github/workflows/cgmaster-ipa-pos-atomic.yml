@@ -1,0 +1,46 @@
+name: CG-MASTER atomic IPA POS batch
+on:
+  workflow_dispatch:
+    inputs:
+      max_rows:
+        description: Maximum rows to fill
+        required: false
+        default: '3000'
+      start:
+        description: First scene
+        required: false
+        default: '1'
+      end:
+        description: Last scene
+        required: false
+        default: '1341'
+permissions:
+  contents: write
+concurrency:
+  group: cgmaster-atomic-publisher
+  cancel-in-progress: false
+jobs:
+  publish:
+    if: github.ref == 'refs/heads/cg-master-kaikki-evidence-intake-20261111'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check publisher syntax
+        run: |
+          node --check tools/scene1341_master/apply_source_safe_ipa_pos.mjs
+          node --check tools/scene1341_master/run_atomic_ipa_pos.mjs
+      - name: Atomic source-safe fill and push
+        env:
+          GIT_AUTHOR_NAME: cg-master-bot
+          GIT_AUTHOR_EMAIL: cg-master-bot@users.noreply.github.com
+          GIT_COMMITTER_NAME: cg-master-bot
+          GIT_COMMITTER_EMAIL: cg-master-bot@users.noreply.github.com
+        run: |
+          node tools/scene1341_master/run_atomic_ipa_pos.mjs --start "${{ inputs.start || '1' }}" --end "${{ inputs.end || '1341' }}" --max-rows "${{ inputs.max_rows || '3000' }}"
