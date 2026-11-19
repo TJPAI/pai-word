@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const scratch=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/scene500-native-scratch.js',import.meta.url),'utf8');
+const study=readFileSync(new URL('../../rebuild-preview/scene1341-readonly/index.html',import.meta.url),'utf8');
+assert.match(scratch,/window\.PAI_SCENE1341_SCRATCH_CANCEL_PENDING=\(\)=>\{\s*pendingAutoRestore=false;ratingWasDrawing=false;\s*reset\(\);/);
+const home=study.slice(study.indexOf('function home(){'),study.indexOf('function fitQuestionExpression(){'));
+assert.match(home,/window\.PAI_SCENE1341_SCRATCH_CANCEL_PENDING\?\.\(\);resetScratch\(\);\$\('learning'\)\.hidden=true/);
+const entry=study.slice(study.indexOf('function openStudy('),study.indexOf('function home(){'));
+assert.match(entry,/window\.PAI_SCENE1341_SCRATCH_CANCEL_PENDING\?\.\(\);resetScratch\(\)/);
+assert.match(scratch,/if\(state\.view!=='learning'\)\{pendingAutoRestore=false;return;\}/);
+console.log('PASS: Home and new-scene entry explicitly cancel pending handwriting restoration');
