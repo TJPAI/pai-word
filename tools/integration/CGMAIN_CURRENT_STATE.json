@@ -742,5 +742,16 @@
     "ci": "pending: GitHub connector exposes only PR-triggered workflow runs; push workflow conclusion not available",
     "safari": "pending",
     "deployment": "not performed"
+  },
+  "scene1341_scratch_raf_generation_20261119": {
+    "state": "COMMITTED_CI_SAFARI_PENDING",
+    "source_commit": "bff0928bc02c6bddaf18bdf99c42e6b3d0bd985a",
+    "updated_regression_commit": "d32be2c195a2246e32712fbe8f77f51d06ad999f",
+    "new_regression_commit": "41090107018beab77e0cd4675905a6c64f944040",
+    "workflow_commit": "06a8e306bc71ce4ac5785600b61f4ae2774c00c6",
+    "change": "Invalidate stale requestAnimationFrame callbacks with generation token on each render and explicit scene exit, preventing prior scene callback from restoring handwriting in a later scene",
+    "ci": "pending",
+    "safari": "pending",
+    "deployment": "not performed"
   }
 }
