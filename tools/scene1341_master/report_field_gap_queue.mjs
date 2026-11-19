@@ -11,6 +11,21 @@ const root=path.resolve('tools/scene1341_master/production');
 const index=JSON.parse(fs.readFileSync(path.join(root,'SCENE1341_LIVE_INDEX.json'),'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289||index.release_allowed!==false||index.srs_eligible!==false)throw Error('frozen index or release gate mismatch');
 const fields=['ipa','pos','meaning_zh','gloss_en','example_en','example_zh','collocations','usage_note'];
+const safeCandidates={ipa:[],pos:[]};
+const safeCounts={ipa:0,pos:0,ipa_and_pos:0};
+const canonical=v=>typeof v==='string'?v.trim():'';
+function consensus(values){const unique=[...new Set(values.map(canonical).filter(Boolean))];return unique.length===1?unique[0]:null;}
+function sourceSafe(r,native,values){
+  if(!native||native.expression_exact!==r.question_page?.expression||!Array.isArray(native.candidates)||!native.candidates.length)return {ipa:null,pos:null};
+  const candidates=native.candidates;
+  if(candidates.some(c=>c.source_word!==native.expression_exact))return {ipa:null,pos:null};
+  const pos=consensus(candidates.map(c=>c.pos));
+  const ipaLists=candidates.map(c=>Array.isArray(c.ipa_candidates)?c.ipa_candidates.map(canonical).filter(Boolean):[]);
+  // Only a single IPA shared across every native entry is unambiguous.
+  const ipa=ipaLists.every(xs=>xs.length===1)&&consensus(ipaLists.map(xs=>xs[0]))||null;
+  return {ipa:values.ipa?null:ipa,pos:values.pos?null:pos};
+}
+
 const tally=Object.fromEntries(fields.map(f=>[f,{present:0,missing:0}]));
 const batches=[],sceneTotals=[],seen=new Set();
 let batch=[],associations=0,sourceReady=0,ambiguous=0,unresolvedSense=0;
@@ -43,6 +58,9 @@ for(let i=1;i<=1341;i++){
       collocations:isNonempty(a.collocations),usage_note:isNonempty(a.usage_note)
     };
     const gaps=fields.filter(f=>!values[f]);
+    const safe=sourceSafe(r,native,values);
+    for(const field of ['ipa','pos'])if(safe[field]){safeCounts[field]++;safeCandidates[field].push({scene_id:id,source_final_row:r.source_final_row,value:safe[field],evidence_archive_sha256:native.archive_sha256,source_lines:native.candidates.map(c=>c.source_line),qa_stage:'待审'});}
+    if(safe.ipa&&safe.pos)safeCounts.ipa_and_pos++;
     for(const f of fields){tally[f][values[f]?'present':'missing']++;if(!values[f])local[f]++;}
     if(gaps.length){
       // Source pointers only: no unsupported sense selection or invented teaching text.
@@ -54,5 +72,5 @@ for(let i=1;i<=1341;i++){
 }
 pushBatch();
 if(associations!==230289||seen.size!==230289||Object.keys(index.scenes).length!==1341)throw Error('frozen coverage totals mismatch');
-const summary={schema:'cgmaster-field-gap-queue/v1',release:index.master_release?.version??null,scenes:1341,associations,source_evidence_records:sourceReady,ambiguous_native_entry_records:ambiguous,unresolved_native_sense_records:unresolvedSense,fields:tally,incomplete_rows:batches.reduce((s,b)=>s+b.records,0),batch_size:3000,batch_count:batches.length,release_allowed:false,srs_eligible:false};
-console.log(JSON.stringify({summary,scene_totals:sceneTotals,batches},null,2));
+const summary={schema:'cgmaster-field-gap-queue/v1',release:index.master_release?.version??null,scenes:1341,associations,source_evidence_records:sourceReady,ambiguous_native_entry_records:ambiguous,unresolved_native_sense_records:unresolvedSense,source_safe_proposal_counts:safeCounts,fields:tally,incomplete_rows:batches.reduce((s,b)=>s+b.records,0),batch_size:3000,batch_count:batches.length,release_allowed:false,srs_eligible:false};
+console.log(JSON.stringify({summary,scene_totals:sceneTotals,batches,source_safe_proposals:safeCandidates},null,2));
