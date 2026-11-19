@@ -31,6 +31,7 @@ jobs:
         run: |
           mkdir -p master/tools/answer-enrichment
           cp author/tools/answer-enrichment/scene1341-v51-*.json master/tools/answer-enrichment/
+          test -f master/tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1782.json
           cd master
           node tools/scene1341_master/prepare_enteach_drafts.mjs tools/answer-enrichment/scene1341-v51-answer-only-v2-manifest-1782.json ../cgmaster-enteach-matched-candidates.jsonl | tee ../cgmaster-enteach-matching-summary.json
       - name: Upload candidate evidence and HOLD summary
