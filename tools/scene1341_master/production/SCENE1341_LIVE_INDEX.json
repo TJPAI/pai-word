@@ -144,7 +144,7 @@
     "SC50-0028": {
       "path": "tools/scene1341_master/production/scenes/SC50-0028.json",
       "records": 207,
-      "git_blob_sha1": "46a5f64490d54c9c9a2444a04906e492c38af16e"
+      "git_blob_sha1": "5c89242b027d54a79f3f3f4d2c88708daa66ea9b"
     },
     "SC50-0029": {
       "path": "tools/scene1341_master/production/scenes/SC50-0029.json",
@@ -6741,6 +6741,17 @@
     ],
     "qa_stage": "待审",
     "release_allowed": false,
-    "srs_eligible": false
+    "srs_eligible": false,
+    "integrity_patch": {
+      "reason": "preflight Git blob mismatch SC50-0028",
+      "scene": "SC50-0028",
+      "previous": "46a5f64490d54c9c9a2444a04906e492c38af16e",
+      "current": "5c89242b027d54a79f3f3f4d2c88708daa66ea9b",
+      "source_rows_preserved": true,
+      "source_content_unchanged": true,
+      "qa_unchanged": true,
+      "date": "2026-11-19",
+      "full1341_validation": "PENDING"
+    }
   }
 }
