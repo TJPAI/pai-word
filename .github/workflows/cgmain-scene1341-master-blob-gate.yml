@@ -19,6 +19,8 @@ on:
       - 'tools/integration/test-scene1341-release-badge-on-entry.mjs'
       - 'tools/integration/test-scene1341-phase-auto-behavior.mjs'
       - 'tools/integration/test-scene1341-native-cycle-behavior.mjs'
+      - 'tools/integration/test-scene1341-settings-persistence.mjs'
+      - 'rebuild-preview/scene1341-readonly/scene500-readonly-settings.js'
       - 'rebuild-preview/scene1341-readonly/scene500-native-cycle-exact.js'
       - 'rebuild-preview/scene1341-readonly/scene500-readonly-phase.js'
       - 'tools/integration/test-scene1341-scene-entry-race.mjs'
@@ -78,5 +80,7 @@ jobs:
         run: node source/tools/integration/test-scene1341-phase-auto-behavior.mjs
       - name: Verify Scene500 native 10/25/50 round navigation
         run: node source/tools/integration/test-scene1341-native-cycle-behavior.mjs
+      - name: Verify Scene1341 isolated settings persistence
+        run: node source/tools/integration/test-scene1341-settings-persistence.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
