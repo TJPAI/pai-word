@@ -16,6 +16,7 @@ on:
       - 'tools/integration/test-scene1341-startup-entry-race.mjs'
       - 'tools/integration/test-scene1341-startup-index-guard.mjs'
       - 'tools/integration/test-scene1341-retry-request-guard.mjs'
+      - 'tools/integration/test-scene1341-release-badge-on-entry.mjs'
       - 'tools/integration/test-scene1341-scene-entry-race.mjs'
       - 'rebuild-preview/scene1341-readonly/index.html'
       - 'tools/integration/CGMAIN_CURRENT_STATE.json'
@@ -67,5 +68,7 @@ jobs:
         run: node source/tools/integration/test-scene1341-startup-index-guard.mjs
       - name: Verify Master retry request guard
         run: node source/tools/integration/test-scene1341-retry-request-guard.mjs
+      - name: Verify visible Master release badge after scene entry
+        run: node source/tools/integration/test-scene1341-release-badge-on-entry.mjs
       - name: Verify all 1341 real Master scene files against atomic index
         run: node source/tools/integration/verify-scene1341-master-blob-index.mjs master/tools/scene1341_master/production
