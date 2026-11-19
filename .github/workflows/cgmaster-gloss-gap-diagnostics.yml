@@ -68,8 +68,14 @@ jobs:
               for k,v in d['gloss_candidate_diagnostics'].items():
                   total[k]=total.get(k,0)+v
               scenes.extend(d.get('gloss_priority_scenes',[]))
+          if records!=230289:
+              raise SystemExit(f'Frozen association count mismatch: {records} != 230289')
+          eligible=total.get('eligible',0)
+          blocked=sum(total.values())-eligible
+          if blocked+eligible>records:
+              raise SystemExit(f'Diagnostic counts exceed associations: {blocked+eligible} > {records}')
           scenes.sort(key=lambda x:x.get('no_evidence',0)+x.get('multiple_senses',0)+x.get('multiple_entries',0),reverse=True)
-          result={'shards':len(files),'records_scanned':records,'gloss_blockers':total,'top_30_scenes':scenes[:30]}
+          result={'shards':len(files),'records_scanned':records,'missing_gloss_diagnosed':blocked+eligible,'source_pinned_eligible':eligible,'blocked_glosses':blocked,'gloss_blockers':total,'top_30_scenes':scenes[:30]}
           with open('gloss-all-scenes-summary.json','w') as out: json.dump(result,out,ensure_ascii=False,indent=2)
           with open(os.environ['GITHUB_STEP_SUMMARY'],'a') as out:
               out.write('## CG-MASTER all-scene gloss blocker audit\\n\\n')
