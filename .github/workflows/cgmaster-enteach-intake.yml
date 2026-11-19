@@ -52,7 +52,12 @@ jobs:
           node tools/scene1341_master/validate_two_page_import.mjs ../cgmaster-enteach-matched-candidates-ready.jsonl | tee ../cgmaster-enteach-two-page-validation.json
       - name: Publish verified complete packages atomically
         id: publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set -euo pipefail
+          git -C master config user.name 'github-actions[bot]'
+          git -C master config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           if [ ! -s cgmaster-enteach-matched-candidates-ready.jsonl ]; then
             echo 'NOOP: no complete nine-field Sense packages; release unchanged'
             exit 0
