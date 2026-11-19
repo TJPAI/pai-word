@@ -61,20 +61,27 @@ for(let i=1;i<=1341;i++){
    outcomes.records_scanned++;batch.records++;
    if(record.release_allowed!==false||record.srs_eligible!==false||record.scene_id!==id||!Number.isInteger(record.source_final_row))throw Error('record identity or release violation '+id);
    if(record.answer_page?.gloss_en){outcomes.already_present++;}
+   // POS is an entry-level property: all exact-word native candidates must
+   // agree before it can be imported, even when gloss senses remain ambiguous.
+   if(!record.answer_page?.pos){
+    const ev=record.kaikki_full_native_evidence;
+    const entries=ev?.candidates;
+    const posMap={noun:'n.',verb:'v.',adjective:'adj.',adverb:'adv.',pronoun:'pron.',preposition:'prep.',conjunction:'conj.',interjection:'interj.',determiner:'det.',numeral:'num.'};
+    if(ev?.expression_exact===record.question_page?.expression&&ev?.source_final_row===record.source_final_row&&Array.isArray(entries)&&entries.length>0&&entries.every(e=>e.source_word===ev.expression_exact&&Number.isInteger(e.source_line)&&Object.hasOwn(posMap,String(e.pos||'').trim().toLowerCase()))){
+     const values=[...new Set(entries.map(e=>posMap[e.pos.trim().toLowerCase()]))];
+     if(values.length===1){
+      record.answer_page.pos=values[0];
+      record.answer_page.pos_provenance={source:'Kaikki English',archive_sha256:ev.archive_sha256,source_lines:entries.map(e=>e.source_line),selection_rule:'EXACT_WORD_ALL_NATIVE_ENTRIES_POS_CONSENSUS',qa_stage:'待审'};
+      outcomes.pos_enriched++;
+     }
+    }
+   }
    const candidate=eligible(record);
    if(!candidate){if(record.kaikki_full_native_evidence)outcomes.ambiguous_hold++;else outcomes.no_native_match++;continue;}
    if(!record.answer_page.gloss_en){
     record.answer_page.gloss_en=candidate.gloss;
     record.answer_page.gloss_en_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE',qa_stage:'待审'};
     outcomes.records_enriched++;batch.glosses++;
-   }
-   const native=record.kaikki_full_native_evidence.candidates[0];
-   const nativePos=typeof native.pos==='string'?native.pos.trim().toLowerCase():'';
-   const posMap={noun:'n.',verb:'v.',adjective:'adj.',adverb:'adv.',pronoun:'pron.',preposition:'prep.',conjunction:'conj.',interjection:'interj.',determiner:'det.',numeral:'num.'};
-   if(!record.answer_page.pos&&Object.hasOwn(posMap,nativePos)){
-    record.answer_page.pos=posMap[nativePos];
-    record.answer_page.pos_provenance={source:'Kaikki English',archive_sha256:candidate.archive,source_line:candidate.line,source_sense_index:candidate.sense,selection_rule:'EXACT_SINGLE_ENTRY_SINGLE_SENSE_POS',qa_stage:'待审'};
-    outcomes.pos_enriched++;
    }
    const sense=record.kaikki_full_native_evidence.candidates[0].senses[0];
    const examples=Array.isArray(sense.examples)?sense.examples:[];
