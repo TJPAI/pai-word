@@ -19,7 +19,7 @@ if(!Number.isInteger(start)||!Number.isInteger(end)||start<1||end>1341||start>en
 const shaBlob=(buf)=>crypto.createHash('sha1').update(Buffer.from('blob '+buf.length+'\0')).update(buf).digest('hex');
 const index=JSON.parse(fs.readFileSync(indexPath,'utf8'));
 if(index.scene_count!==1341||index.source_associations!==230289)throw Error('immutable master totals mismatch');
-const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,already_present:0,ambiguous_hold:0,no_native_match:0,diagnostics:{evidence_missing:0,expression_mismatch:0,row_mismatch:0,candidates_missing:0,source_word_mismatch:0,source_line_missing:0,pos_missing_or_unsupported:0,pos_conflict:0,pos_already_present:0},batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
+const outcomes={scenes_scanned:0,records_scanned:0,records_enriched:0,english_examples_enriched:0,pos_enriched:0,ipa_enriched:0,ipa_conflicts:0,already_present:0,ambiguous_hold:0,no_native_match:0,diagnostics:{evidence_missing:0,expression_mismatch:0,row_mismatch:0,candidates_missing:0,source_word_mismatch:0,source_line_missing:0,pos_missing_or_unsupported:0,pos_conflict:0,pos_already_present:0},batches:[],source_associations:0,hash_mismatches_before:[],hash_mismatches_after:[]};
 let batch={start_scene:null,end_scene:null,records:0,glosses:0};
 const flush=()=>{if(batch.records){outcomes.batches.push(batch);batch={start_scene:null,end_scene:null,records:0,glosses:0};}};
 const changes=new Map();
@@ -86,6 +86,22 @@ for(let i=1;i<=1341;i++){
     }
    }
    else outcomes.diagnostics.pos_already_present++;
+   // IPA is an expression-level field. Import only when every native entry is
+   // exact-word and source-line pinned, and all nonempty string candidates agree.
+   // Object-shaped or unknown IPA evidence is intentionally held for review.
+   if(!record.question_page?.ipa_candidate){
+    const ev=record.kaikki_full_native_evidence, entries=ev?.candidates;
+    if(ev?.expression_exact===record.question_page?.expression&&ev?.source_final_row===record.source_final_row&&typeof ev.archive_sha256==='string'&&ev.archive_sha256.length>0&&Array.isArray(entries)&&entries.length>0&&entries.every(e=>e.source_word===ev.expression_exact&&Number.isInteger(e.source_line)&&Array.isArray(e.ipa_candidates))){
+     const all=entries.flatMap(e=>e.ipa_candidates);
+     const valid=all.length>0&&all.every(x=>typeof x==='string'&&x.trim().length>0&&x.trim().length<120);
+     const distinct=valid?[...new Set(all.map(x=>x.trim()))]:[];
+     if(distinct.length===1){
+      record.question_page.ipa_candidate=distinct[0];
+      record.question_page.ipa_provenance={source:'Kaikki English',archive_sha256:ev.archive_sha256,source_lines:entries.map(e=>e.source_line),selection_rule:'EXACT_WORD_ALL_NATIVE_IPA_CANDIDATES_CONSENSUS',qa_stage:'待审'};
+      outcomes.ipa_enriched++;
+     }else if(all.length>0)outcomes.ipa_conflicts++;
+    }
+   }
    const candidate=eligible(record);
    if(!candidate){if(record.kaikki_full_native_evidence)outcomes.ambiguous_hold++;else outcomes.no_native_match++;continue;}
    if(!record.answer_page.gloss_en){
