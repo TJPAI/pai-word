@@ -72,18 +72,19 @@ try{
    const oldByRow=new Map(old.map(x=>[x.source_final_row,x]));
    for(const row of newRows){
     const prev=oldByRow.get(row.source_final_row);
-    if(!prev||JSON.stringify(prev.source)!==JSON.stringify(row.source)||row.scene_id!==prev.scene_id||JSON.stringify(prev.question_page)!==JSON.stringify(row.question_page))throw Error('immutable row altered '+p);
+    if(!prev||JSON.stringify(prev.source)!==JSON.stringify(row.source)||row.scene_id!==prev.scene_id||JSON.stringify({...prev.question_page,ipa_candidate:row.question_page?.ipa_candidate,ipa_provenance:row.question_page?.ipa_provenance})!==JSON.stringify(row.question_page))throw Error('immutable row altered '+p);
     if(!prev.answer_page.gloss_en&&row.answer_page.gloss_en)n.glosses++;
     if(!prev.answer_page.example_en&&row.answer_page.example_en)n.examples++;
     if(!prev.answer_page.pos&&row.answer_page.pos)n.pos++;
+    if(!prev.question_page?.ipa_candidate&&row.question_page?.ipa_candidate)n.ipa++;
    }
    return n;
-  },{glosses:0,examples:0,pos:0});
-  if(scenes.length===0 || (changedFields.glosses===0 && changedFields.examples===0 && changedFields.pos===0)){
-   console.log(JSON.stringify({status:'NOOP_NO_NEW_GLOSSES',release_unchanged:before.master_release.version,scene_documents_changed:scenes.length,new_glosses:changedFields.glosses,new_english_examples:changedFields.examples,new_pos:changedFields.pos}));
+  },{glosses:0,examples:0,pos:0,ipa:0});
+  if(scenes.length===0 || (changedFields.glosses===0 && changedFields.examples===0 && changedFields.pos===0 && changedFields.ipa===0)){
+   console.log(JSON.stringify({status:'NOOP_NO_NEW_GLOSSES',release_unchanged:before.master_release.version,scene_documents_changed:scenes.length,new_glosses:changedFields.glosses,new_english_examples:changedFields.examples,new_pos:changedFields.pos,new_ipa:changedFields.ipa}));
    process.exitCode=0;
   }else{
-  after.master_release={metadata_schema:'scene1341-master-release/v1',version:next,content_baseline:'ATOMIC_KAIKKI_SOURCE_GLOSSES_SC'+String(start).padStart(4,'0')+'_SC'+String(end).padStart(4,'0'),published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'Kaikki唯一义项来源绑定英文释义批量增补（待审）',changes:[{category:'answer_page_gloss_en_source_pinned',count:changedFields.glosses},{category:'answer_page_example_en_source_pinned',count:changedFields.examples},{category:'answer_page_pos_source_pinned',count:changedFields.pos},{category:'scene_documents_updated',count:scenes.length}],changed_scene_ids:scenes.map(p=>path.basename(p,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
+  after.master_release={metadata_schema:'scene1341-master-release/v1',version:next,content_baseline:'ATOMIC_KAIKKI_SOURCE_GLOSSES_SC'+String(start).padStart(4,'0')+'_SC'+String(end).padStart(4,'0'),published_date:new Date().toISOString().slice(0,10),stage:'TEST_ONLY_QA_PENDING',headline:'Kaikki唯一义项来源绑定英文释义批量增补（待审）',changes:[{category:'answer_page_gloss_en_source_pinned',count:changedFields.glosses},{category:'answer_page_example_en_source_pinned',count:changedFields.examples},{category:'answer_page_pos_source_pinned',count:changedFields.pos},{category:'question_page_ipa_source_pinned',count:changedFields.ipa},{category:'scene_documents_updated',count:scenes.length}],changed_scene_ids:scenes.map(p=>path.basename(p,'.json')),qa_stage:'待审',release_allowed:false,srs_eligible:false};
   fs.writeFileSync(afterPath,JSON.stringify(after,null,2)+'\n');
   validate(wt);
   const checkpointPath=path.join(wt,'tools/scene1341_master/CGMASTER_CURRENT_STATE.json');
@@ -91,14 +92,14 @@ try{
   checkpoint.version=next+'_ATOMIC_KAIKKI_SOURCE_GLOSSES';
   checkpoint.updated_at=new Date().toISOString().slice(0,10);
   checkpoint.handoff_id='SC1341-'+next+'-ATOMIC-SC'+String(start).padStart(4,'0')+'-SC'+String(end).padStart(4,'0');
-  checkpoint['v'+next.slice(1)]={scene_range:'SC50-'+String(start).padStart(4,'0')+'..SC50-'+String(end).padStart(4,'0'),scene_documents_updated:scenes.length,new_english_glosses:changedFields.glosses,new_english_examples:changedFields.examples,new_pos:changedFields.pos,qa_stage:'待审',release_allowed:false,srs_eligible:false,full1341_integrity_verified:true};
+  checkpoint['v'+next.slice(1)]={scene_range:'SC50-'+String(start).padStart(4,'0')+'..SC50-'+String(end).padStart(4,'0'),scene_documents_updated:scenes.length,new_english_glosses:changedFields.glosses,new_english_examples:changedFields.examples,new_pos:changedFields.pos,new_ipa:changedFields.ipa,qa_stage:'待审',release_allowed:false,srs_eligible:false,full1341_integrity_verified:true};
   fs.writeFileSync(checkpointPath,JSON.stringify(checkpoint,null,2)+'\n');
   run('git',['add','--',dir,'tools/scene1341_master/CGMASTER_CURRENT_STATE.json'],wt);
   run('git',['commit','-m','data(cg-master): '+next+' atomic Kaikki enrichment '+start+'-'+end+' ('+changedFields.glosses+' glosses, '+changedFields.examples+' examples)'],wt);
   const commit=run('git',['rev-parse','HEAD'],wt);
   // The remote cannot be force-updated. A concurrent writer makes this push fail.
   run('git',['push','origin','HEAD:refs/heads/'+BRANCH],wt,true);
-  console.log(JSON.stringify({status:'PUSHED_AND_VALIDATED',expected_remote:expected,commit,release:next,changed_scene_documents:scenes.length,new_glosses:changedFields.glosses,new_english_examples:changedFields.examples,associations:230289,qa:'待审',srs:false}));
+  console.log(JSON.stringify({status:'PUSHED_AND_VALIDATED',expected_remote:expected,commit,release:next,changed_scene_documents:scenes.length,new_glosses:changedFields.glosses,new_english_examples:changedFields.examples,new_ipa:changedFields.ipa,associations:230289,qa:'待审',srs:false}));
   }
  }
 }finally{
